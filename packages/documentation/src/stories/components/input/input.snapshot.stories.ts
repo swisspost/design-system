@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './input.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
@@ -16,18 +16,21 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
   const combinations = [
     ...COMBINATIONS,
     {
-      label: `Label - no Placeholder`,
+      title: 'No placeholder',
+      label: `Label`,
       placeholder: null,
     },
     {
-      label: `Label - with Value`,
+      title: 'With value',
+      label: `Label`,
       value: 'Lorem Ipsum',
     },
   ];
   return schemes(
     scheme => html`
-      <div class="d-flex gap-16 flex-column">
-        <h3>Standard</h3>
+      <h1>Inputs</h1>
+      <h2 class="h4">Standard</h2>
+      <div class="row">
         ${getCombinations('floatingLabel', [false], combinations)
           .filter(
             (args: Args) =>
@@ -37,12 +40,15 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
           .map((args: Args) => {
             context.id = `${scheme}-${crypto.randomUUID()}`;
             return html`
-              <div>
+              <div class="col-md-6 mb-16">
+                <h3 class="h6">${args.title}</h3>
                 <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
               </div>
             `;
           })}
-        <h3>Floating Label</h3>
+      </div>
+      <h2 class="h4">Floating Label</h2>
+      <div class="row">
         ${getCombinations('floatingLabel', [true], combinations)
           .filter(
             (args: Args) =>
@@ -51,7 +57,10 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
           )
           .map((args: Args) => {
             context.id = `${scheme}-${crypto.randomUUID()}`;
-            return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
+            return html` <div class="col-md-6 mb-16">
+              <h3 class="h6">${args.title}</h3>
+              <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+            </div>`;
           })}
       </div>
     `,

@@ -8,13 +8,16 @@ name: Lint files
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
         with:
           fetch-depth: 0
 
@@ -23,6 +26,9 @@ jobs:
 
       - name: Install dependencies of changed packages
         run: pnpm install
+
+      - name: Build eslint package
+        run: pnpm --filter @swisspost/design-system-eslint build
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since

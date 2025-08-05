@@ -15,7 +15,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+    - uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
       env:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         PREVIEW_URL: ${{ inputs.preview-url }}

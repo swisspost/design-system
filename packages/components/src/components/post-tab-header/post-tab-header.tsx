@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
@@ -20,11 +20,11 @@ export class PostTabHeader {
   /**
    * The name of the panel controlled by the tab header.
    */
-  @Prop({ reflect: true }) readonly panel: HTMLPostTabPanelElement['name'];
+  @Prop({ reflect: true }) readonly panel!: string;
 
   @Watch('panel')
   validateFor() {
-    checkNonEmpty(this, 'panel');
+    checkRequiredAndType(this, 'panel', 'string');
   }
 
   componentWillLoad() {

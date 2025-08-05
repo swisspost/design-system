@@ -1,8 +1,8 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 const defaultSteps = ['Sender', 'Product', 'Other details', 'Order summary'];
 
@@ -154,7 +154,7 @@ export const InformationalStepper: StoryObj = {
 export const LongLabels: StoryObj = {
   args: {
     steps: [
-      'Nullam luctus mi sit amet nisl suscipit, nec tempor justo varius',
+      'Personal information and shipping address',
       ...defaultSteps.slice(1),
     ],
   },

@@ -1,5 +1,77 @@
 # @swisspost/design-system-components-angular-workspace
 
+## 1.1.10-next.42
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.42
+  - @swisspost/design-system-styles@10.0.0-next.42
+
+## 1.1.10-next.41
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.41
+  - @swisspost/design-system-styles@10.0.0-next.41
+
+## 1.1.10-next.40
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.40
+  - @swisspost/design-system-styles@10.0.0-next.40
+
+## 1.1.10-next.39
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.39
+  - @swisspost/design-system-styles@10.0.0-next.39
+
+## 1.1.10-next.38
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.38
+  - @swisspost/design-system-styles@10.0.0-next.38
+
+## 1.1.10-next.37
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.37
+  - @swisspost/design-system-styles@10.0.0-next.37
+
+## 1.1.10-next.36
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.36
+  - @swisspost/design-system-components@9.0.0-next.36
+
+## 1.1.10-next.35
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.35
+  - @swisspost/design-system-components@9.0.0-next.35
+
+## 1.1.10-next.34
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.34
+  - @swisspost/design-system-styles@9.0.0-next.34
+
 ## 1.1.10-next.33
 
 ### Patch Changes

@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as PopoverStories from './popover.stories';
 
 <Meta of={PopoverStories} />
@@ -6,9 +6,7 @@ import * as PopoverStories from './popover.stories';
 <div className="docs-title">
   # Popover
 
-  <nav>
-    <link-design of={JSON.stringify(PopoverStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(PopoverStories)}></link-design>
 </div>
 
 <div className="lead">

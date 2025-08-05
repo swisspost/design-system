@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent, HeadingLevel } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -49,9 +49,9 @@ export default meta;
 function getAccordionItemContent(position: number | string, headingLevel?: number) {
   const level = headingLevel ? html` <code>h${headingLevel}</code>` : nothing;
   return html`
-    <span slot="header">Titulum ${position}${level}</span>
+    <span slot="header">Title ${position}${level}</span>
     <div>
-      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      <p>Example content for accordion item ${position}. This is a sample text demonstrating how the accordion component works.</p>
     </div>
   `;
 }

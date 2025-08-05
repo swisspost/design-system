@@ -1,22 +1,11 @@
-import {
-  Component,
-  h,
-  Host,
-  State,
-  Element,
-  Method,
-  Watch,
-  Event,
-  EventEmitter,
-} from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
+import { breakpoint } from '../../utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { eventGuard } from '@/utils/event-guard';
-
-export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
+import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -38,7 +27,7 @@ export class PostHeader {
   private lastFocusableEl: HTMLElement | null;
   private mobileMenu: HTMLElement;
   private mobileMenuAnimation: Animation;
-  private readonly throttledResize = throttle(50, () => this.handleResize());
+  private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   get scrollParent(): HTMLElement {
@@ -65,9 +54,8 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: DEVICE_SIZE = null;
+  @State() device: string = breakpoint.get('device');
   @State() mobileMenuExtended: boolean = false;
-
   @State() megadropdownOpen: boolean = false;
 
   @Watch('device')
@@ -86,19 +74,29 @@ export class PostHeader {
     }
   }
 
-  /**
-   * An event emitted when the device has changed
-   */
-  @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
-
   constructor() {
     this.handleScrollEvent = this.handleScrollEvent.bind(this);
     this.updateScrollParentHeight = this.updateScrollParentHeight.bind(this);
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
-    this.megedropdownStateHandler = this.megedropdownStateHandler.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
   }
+
+  private readonly breakpointChange = (e: CustomEvent) => {
+    this.device = e.detail;
+    this.switchLanguageSwitchMode();
+
+    if (this.device === 'desktop' && this.mobileMenuExtended) {
+      this.closeMobileMenu();
+    }
+    
+    if (this.device !== 'desktop') {
+      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+        dropdown.hide(false, true);
+      });
+      this.megadropdownOpen = false;
+    }
+  };
 
   connectedCallback() {
     window.addEventListener('resize', this.throttledResize, { passive: true });
@@ -108,13 +106,17 @@ export class PostHeader {
     this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
-    document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
+    document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
+    window.addEventListener('postBreakpoint:device', this.breakpointChange);
+    this.switchLanguageSwitchMode();
 
-    this.handleResize();
-    this.handleScrollEvent();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
+  }
+
+  componentWillRender() {
+    this.handleScrollEvent();
   }
 
   componentDidRender() {
@@ -122,14 +124,19 @@ export class PostHeader {
     this.handleLocalHeaderResize();
   }
 
+  componentDidLoad() {
+    this.updateLocalHeaderHeight();
+  }
+
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
     scrollParent.removeEventListener('scroll', this.handleScrollEvent);
-    document.removeEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
+    document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     this.host.removeEventListener('click', this.handleLinkClick);
 
@@ -145,12 +152,27 @@ export class PostHeader {
     this.mobileMenuExtended = false;
   }
 
+  private async closeMobileMenu() {
+    this.mobileMenuAnimation.finish();
+
+    const menuButton = this.getMenuButton();
+    if (menuButton) {
+      menuButton.toggled = false;
+    }
+
+    this.mobileMenuExtended = false;
+  }
+
   /**
    * Toggles the mobile navigation.
    */
   @Method()
   async toggleMobileMenu(force?: boolean) {
     if (this.device === 'desktop') return;
+    if (this.megadropdownOpen) {
+      this.megadropdownOpen = false;
+      return;
+    }
 
     this.mobileMenuAnimation = this.mobileMenuExtended
       ? slideUp(this.mobileMenu)
@@ -171,19 +193,10 @@ export class PostHeader {
     }
   }
 
-  private megedropdownStateHandler = (event: CustomEvent) => {
-    eventGuard(
-      this.host,
-      event,
-      {
-        targetLocalName: 'post-megadropdown',
-        delegatorSelector: 'post-header',
-      },
-      () => {
-        this.megadropdownOpen = event.detail.isVisible;
-      }
-    );
-  };
+  @EventFrom('post-megadropdown')
+  private megadropdownStateHandler = (event: CustomEvent) => {
+      this.megadropdownOpen = event.detail.isVisible;
+    };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -192,7 +205,7 @@ export class PostHeader {
       ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="meta-navigation"]) > li')),
       ...Array.from(
         this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-mainnavigation > .back-button, post-megadropdown-trigger',
+          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
         ),
       ),
       ...Array.from(
@@ -210,6 +223,10 @@ export class PostHeader {
 
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+  }
+
+  private getMenuButton(): HTMLPostTogglebuttonElement | null {
+    return this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
   }
 
   private keyboardHandler(e: KeyboardEvent) {
@@ -233,17 +250,19 @@ export class PostHeader {
   }
 
   private updateLocalHeaderHeight() {
-    const localHeaderHeight =
-      this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    document.documentElement.style.setProperty(
-      '--post-local-header-height',
-      `${localHeaderHeight}px`,
-    );
+    const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
+    
+    if (localHeaderElement) {
+      document.documentElement.style.setProperty(
+        '--post-local-header-height',
+        `${localHeaderElement.clientHeight}px`,
+      );
+    }
   }
 
   private updateScrollParentHeight() {
     this.host.style.setProperty(
-      '--header-scroll-parent-height',
+      '--post-header-scroll-parent-height',
       `${this.scrollParent.clientHeight}px`,
     );
   }
@@ -267,30 +286,6 @@ export class PostHeader {
       if (megadropdownLink) {
         target.closest('post-megadropdown').hide(true);
       }
-    }
-  }
-
-  private handleResize() {
-    const previousDevice = this.device;
-    let newDevice: DEVICE_SIZE;
-    const width = window?.innerWidth;
-
-    if (width >= 1024) {
-      newDevice = 'desktop';
-    } else if (width >= 600) {
-      newDevice = 'tablet';
-    } else {
-      newDevice = 'mobile';
-    }
-
-    // Apply only on change for doing work only when necessary
-    if (newDevice !== previousDevice) {
-      this.device = newDevice;
-
-      this.postUpdateDevice.emit(this.device);
-      window.requestAnimationFrame(() => {
-        this.switchLanguageSwitchMode();
-      });
     }
   }
 
@@ -333,7 +328,7 @@ export class PostHeader {
     return (
       <div
         class={navigationClasses.join(' ')}
-        style={{ '--header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+        style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           <slot name="post-mainnavigation"></slot>
@@ -351,7 +346,7 @@ export class PostHeader {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} data-color-scheme="light">
         <div class="global-header">
           <div class="global-sub">
             <div class="logo">

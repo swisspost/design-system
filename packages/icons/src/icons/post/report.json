@@ -13146,7 +13146,7 @@
         }
       },
       "createdAt": "2021-11-18T11:57:14.000Z",
-      "modifiedAt": "2024-12-04T16:25:21.000Z"
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
     },
     {
       "uuid": "53813210-4867-11ec-8a20-005056873709",
@@ -24427,6 +24427,1593 @@
       },
       "createdAt": "2025-02-04T06:07:38.000Z",
       "modifiedAt": "2025-02-04T06:13:01.000Z"
+    },
+    {
+      "uuid": "dfde97f0-1458-11f0-990c-005056873709",
+      "id": 3027185,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3027185/storage/MDAzMDI3MTg1LzAvbWFzdGVy",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "Financing",
+          "Finanzieren",
+          "Financement",
+          "Finanziamenti",
+          "Insurance",
+          "Versichern",
+          "Assurance",
+          "Assicurazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2645.svg",
+        "basename": "2645",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T09:07:19.000Z",
+      "modifiedAt": "2025-04-09T09:05:01.342Z"
+    },
+    {
+      "uuid": "e68a7090-145a-11f0-990c-005056873709",
+      "id": 3027662,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3027662/storage/MDAzMDI3NjYyLzAvbWFzdGVy",
+        "keywords": [
+          "Discovery",
+          "Entdecken",
+          "Découvrir",
+          "Scoprire",
+          "Entdecken Sie",
+          "Découvrez",
+          "Scoprite",
+          "Enjoy",
+          "Geniessen",
+          "Savourer",
+          "Godersi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2646.svg",
+        "basename": "2646",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T09:21:49.000Z",
+      "modifiedAt": "2025-04-09T09:05:01.342Z"
+    },
+    {
+      "uuid": "03454bc0-1469-11f0-990c-005056873709",
+      "id": 3030852,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3030852/storage/MDAzMDMwODUyLzAvbWFzdGVy",
+        "keywords": [
+          "Kasse",
+          "Cash desk",
+          "Cassa",
+          "Caisse",
+          "kontaktlos",
+          "contactless",
+          "senza contatto",
+          "sans contact"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2647.svg",
+        "basename": "2647",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T11:02:50.000Z",
+      "modifiedAt": "2025-04-09T08:10:09.000Z"
+    },
+    {
+      "uuid": "06116ea0-146a-11f0-990c-005056873709",
+      "id": 3031094,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3031094/storage/MDAzMDMxMDk0LzAvbWFzdGVy",
+        "keywords": [
+          "verpacken",
+          "package",
+          "Imballaggio",
+          "Emballage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2648.svg",
+        "basename": "2648",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T11:10:04.000Z",
+      "modifiedAt": "2025-04-09T08:10:09.000Z"
+    },
+    {
+      "uuid": "64b008c0-1476-11f0-990c-005056873709",
+      "id": 3033928,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3033928/storage/MDAzMDMzOTI4LzAvbWFzdGVy",
+        "keywords": [
+          "Tech Consulting",
+          "Conseil en technologie",
+          "Consulenza tecnica",
+          "integration",
+          "Integration",
+          "Intégration",
+          "Integrazione",
+          "Technologiekompetenz",
+          "technological competence",
+          "Competenza tecnologica",
+          "Compétences technologiques",
+          "Technologie",
+          "Technology",
+          "tecnologia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2649.svg",
+        "basename": "2649",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T12:38:37.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "4da55530-1477-11f0-990c-005056873709",
+      "id": 3034128,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3034128/storage/MDAzMDM0MTI4LzAvbWFzdGVy",
+        "keywords": [
+          "Cyber Defence",
+          "Cibersicurezza",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Cybersicherheit",
+          "Cibersécurité",
+          "Cibersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2650.svg",
+        "basename": "2650",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T12:45:08.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "5752a372-1478-11f0-990c-005056873709",
+      "id": 3034369,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3034369/storage/MDAzMDM0MzY5LzAvbWFzdGVy",
+        "keywords": [
+          "System"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2651.svg",
+        "basename": "2651",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T12:52:34.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "76128950-1479-11f0-990c-005056873709",
+      "id": 3034633,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3034633/storage/MDAzMDM0NjMzLzAvbWFzdGVy",
+        "keywords": [
+          "Bedrohung",
+          "threat",
+          "Menace",
+          "Minaccia",
+          "Threat Detection",
+          "Bedrohungserkennung",
+          "Détection des menaces",
+          "Rilevamento delle minacce"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2652.svg",
+        "basename": "2652",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T13:00:35.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "be9e48f3-147c-11f0-990c-005056873709",
+      "id": 3035359,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3035359/storage/MDAzMDM1MzU5LzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Offensive security",
+          "Offensive Sicherheit",
+          "Sécurité offensive",
+          "Sicurezza offensiva"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2653.svg",
+        "basename": "2653",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T13:24:05.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "bbcbd290-147d-11f0-990c-005056873709",
+      "id": 3035590,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3035590/storage/MDAzMDM1NTkwLzAvbWFzdGVy",
+        "keywords": [
+          "Threat Intelligence",
+          "Renseignements sur les menaces",
+          "Intelligenza delle minacce",
+          "Bedrohung",
+          "threat",
+          "Menace",
+          "Minaccia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2654.svg",
+        "basename": "2654",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T13:31:10.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "7584fd10-147e-11f0-990c-005056873709",
+      "id": 3035746,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3035746/storage/MDAzMDM1NzQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Steering",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2655.svg",
+        "basename": "2655",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T13:36:21.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "6174ebe1-147f-11f0-990c-005056873709",
+      "id": 3035955,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3035955/storage/MDAzMDM1OTU1LzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2656.svg",
+        "basename": "2656",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T13:42:57.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "a4e277c0-1480-11f0-990c-005056873709",
+      "id": 3036247,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3036247/storage/MDAzMDM2MjQ3LzAvbWFzdGVy",
+        "keywords": [
+          "Digital Risk Monitoring",
+          "Surveillance des risques numériques",
+          "Monitoraggio digitale dei rischi",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2657.svg",
+        "basename": "2657",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T13:52:00.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "ab8a4e37-1481-11f0-990c-005056873709",
+      "id": 3036475,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3036475/storage/MDAzMDM2NDc1LzAvbWFzdGVy",
+        "keywords": [
+          "pentest",
+          "Pentest",
+          "Test d’intrusion",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2658.svg",
+        "basename": "2658",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T13:59:20.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "f21a01a0-1482-11f0-990c-005056873709",
+      "id": 3036788,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3036788/storage/MDAzMDM2Nzg4LzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Breach Attack Simulation",
+          "Simulation von Übergriffen",
+          "Simulation d'attaque de violation",
+          "Simulazione di attacco di violazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2659.svg",
+        "basename": "2659",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T14:08:28.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "c1a4ffa0-1484-11f0-990c-005056873709",
+      "id": 3037250,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3037250/storage/MDAzMDM3MjUwLzAvbWFzdGVy",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2660.svg",
+        "basename": "2660",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-08T14:21:26.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "edbd9a00-14fe-11f0-990c-005056873709",
+      "id": 3064103,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3064103/storage/MDAzMDY0MTAzLzAvbWFzdGVy",
+        "keywords": [
+          "Dev Ops",
+          "Opérations de développement",
+          "Operazioni di sviluppo",
+          "developpement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2661.svg",
+        "basename": "2661",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-09T04:55:59.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "6bee4a00-14ff-11f0-990c-005056873709",
+      "id": 3064214,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3064214/storage/MDAzMDY0MjE0LzAvbWFzdGVy",
+        "keywords": [
+          "Portfoliomanagement",
+          "Portfolio management",
+          "Gestione portafoglio",
+          "Gestion de portefeuille"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2662.svg",
+        "basename": "2662",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-09T04:59:30.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "06138053-1500-11f0-990c-005056873709",
+      "id": 3064344,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3064344/storage/MDAzMDY0MzQ0LzAvbWFzdGVy",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cybercriminal",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Cibersicurezza",
+          "Cybersicherheit"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2663.svg",
+        "basename": "2663",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-09T05:03:49.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "14ba7541-1501-11f0-990c-005056873709",
+      "id": 3064560,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3064560/storage/MDAzMDY0NTYwLzAvbWFzdGVy",
+        "keywords": [
+          "Steering",
+          "Meeting",
+          "Réunion",
+          "Riunione",
+          "Steeringmeeting"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2664.svg",
+        "basename": "2664",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-09T05:11:23.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "36a88f82-1695-11f0-990c-005056873709",
+      "id": 3147756,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3147756/storage/MDAzMTQ3NzU2LzAvbWFzdGVy",
+        "keywords": [
+          "Risk analysis",
+          "Risikoanalyse",
+          "Analyse des risques",
+          "Analisi del rischio",
+          "Risk management",
+          "Risikomanagement",
+          "Gestione del rischio",
+          "Gestion des risques"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2665.svg",
+        "basename": "2665",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T05:24:17.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "d25c06f0-1695-11f0-990c-005056873709",
+      "id": 3147846,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3147846/storage/MDAzMTQ3ODQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Audit ICT",
+          "Audit des TIC",
+          "Controlla ICT",
+          "Software audit",
+          "Software-Audit",
+          "Audit logiciel",
+          "Controllo software",
+          "System Audit",
+          "Audit di sistema",
+          "Audit du système",
+          "System-Audit"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2666.svg",
+        "basename": "2666",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T05:28:38.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "ae12ab90-1696-11f0-990c-005056873709",
+      "id": 3147946,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3147946/storage/MDAzMTQ3OTQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Analyse",
+          "analysis",
+          "Analisi",
+          "Risk analysis",
+          "Risikoanalyse",
+          "Analyse des risques",
+          "Analisi del rischio",
+          "gap analysis",
+          "Lückenanalyse",
+          "Analyse des lacunes",
+          "Analisi delle lacune"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2667.svg",
+        "basename": "2667",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T05:34:46.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "9ae58052-1697-11f0-990c-005056873709",
+      "id": 3148055,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3148055/storage/MDAzMTQ4MDU1LzAvbWFzdGVy",
+        "keywords": [
+          "Cybersecurity Readiness",
+          "Cybersecurity-Readiness",
+          "État de préparation à la cybersécurité",
+          "Preparazione alla cibersicurezza",
+          "Cibersécurité",
+          "Cibersicurezza",
+          "Cibersecurity",
+          "Cybersecurity",
+          "Cybersécurité",
+          "Cybersicherheit"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2668.svg",
+        "basename": "2668",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T05:41:24.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "adde1c20-1698-11f0-990c-005056873709",
+      "id": 3148191,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3148191/storage/MDAzMTQ4MTkxLzAvbWFzdGVy",
+        "keywords": [
+          "Security Officer on Demand",
+          "Responsable de la sécurité à la demande",
+          "Responsabile della sicurezza a richiesta",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2669.svg",
+        "basename": "2669",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T05:49:05.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "4b188c42-169a-11f0-990c-005056873709",
+      "id": 3148381,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3148381/storage/MDAzMTQ4MzgxLzAvbWFzdGVy",
+        "keywords": [
+          "CISO",
+          "CISO as a Service",
+          "Le CISO en tant que service",
+          "CISO come servizio",
+          "Cibersécurité",
+          "Cibersicurezza",
+          "Cibersecurity",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2670.svg",
+        "basename": "2670",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T06:00:38.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "f3dca130-169b-11f0-990c-005056873709",
+      "id": 3148569,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3148569/storage/MDAzMTQ4NTY5LzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Usecase Integration",
+          "Intégration de cas",
+          "Integrazione degli usi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2671.svg",
+        "basename": "2671",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T06:12:31.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "e64f47b0-169c-11f0-990c-005056873709",
+      "id": 3148688,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3148688/storage/MDAzMTQ4Njg4LzAvbWFzdGVy",
+        "keywords": [
+          "Managed EDR Firewall​",
+          "Pare-feu EDR géré ​",
+          "Firewall EDR gestito​"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2672.svg",
+        "basename": "2672",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T06:19:18.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "bbac196c-169d-11f0-990c-005056873709",
+      "id": 3148781,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3148781/storage/MDAzMTQ4NzgxLzAvbWFzdGVy",
+        "keywords": [
+          "Vulnerability Scanning​",
+          "Analyse des vulnérabilités ​",
+          "Scansione delle vulnerabilità​",
+          "Weak points",
+          "Schwachstellen",
+          "Points faibles",
+          "Punti deboli",
+          "Scanning",
+          "Scansione",
+          "Scannage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2673.svg",
+        "basename": "2673",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T06:25:16.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "2fbea601-169f-11f0-990c-005056873709",
+      "id": 3148957,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3148957/storage/MDAzMTQ4OTU3LzAvbWFzdGVy",
+        "keywords": [
+          "SIEM",
+          "Event Management",
+          "Eventmanagement",
+          "Gestion des événements",
+          "Gestione eventi",
+          "Information and Event Management",
+          "Informations- und Eventmanagement",
+          "Gestion des informations et des événements",
+          "Gestione delle informazioni e degli eventi",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2674.svg",
+        "basename": "2674",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T06:35:40.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "f62d7cc0-16a0-11f0-990c-005056873709",
+      "id": 3149175,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3149175/storage/MDAzMTQ5MTc1LzAvbWFzdGVy",
+        "keywords": [
+          "Threads",
+          "Thread",
+          "Bedrohung",
+          "threat",
+          "Menace",
+          "Minaccia",
+          "Threat ​ ​Hunting",
+          "Bedrohung ​​Jagd",
+          "Menace ​Chasse ​",
+          "Minaccia ​​Caccia",
+          "Threat Hunting​​",
+          "Bedrohungssuche​​",
+          "Chasse aux menaces​ ​",
+          "Minaccia Caccia​ ​"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2675.svg",
+        "basename": "2675",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T06:48:22.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "6adec4f0-16a3-11f0-990c-005056873709",
+      "id": 3149488,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3149488/storage/MDAzMTQ5NDg4LzAvbWFzdGVy",
+        "keywords": [
+          "Sandbox",
+          "Sandkasten",
+          "Bac à sable",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2676.svg",
+        "basename": "2676",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T07:05:57.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "96b0c460-16a4-11f0-990c-005056873709",
+      "id": 3149645,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3149645/storage/MDAzMTQ5NjQ1LzAvbWFzdGVy",
+        "keywords": [
+          "Honeypot",
+          "Honigtopf",
+          "Pot De Miel",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2677.svg",
+        "basename": "2677",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T07:14:20.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "bad74390-16a5-11f0-990c-005056873709",
+      "id": 3149784,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3149784/storage/MDAzMTQ5Nzg0LzAvbWFzdGVy",
+        "keywords": [
+          "Service Risk Evaluation",
+          "Évaluation des risques liés aux services",
+          "Valutazione del rischio del servizio",
+          "Service",
+          "Cibersécurité",
+          "Cibersicurezza",
+          "Cibersecurity",
+          "Cybersecurity",
+          "Risk analysis",
+          "Risikoanalyse",
+          "Analyse des risques",
+          "Analisi del rischio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2678.svg",
+        "basename": "2678",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T07:22:30.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "7cd1a930-16a7-11f0-990c-005056873709",
+      "id": 3150015,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3150015/storage/MDAzMTUwMDE1LzAvbWFzdGVy",
+        "keywords": [
+          "Workshop User Awareness",
+          "Awareness der Workshop-Nutzer",
+          "Sensibilisation des utilisateurs à l'atelier",
+          "Consapevolezza dell'utente del workshop"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2679.svg",
+        "basename": "2679",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T07:35:05.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "5bead9c0-16a8-11f0-990c-005056873709",
+      "id": 3150127,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3150127/storage/MDAzMTUwMTI3LzAvbWFzdGVy",
+        "keywords": [
+          "Vishing",
+          "Pêche",
+          "Pesca",
+          "Voice Phishing",
+          "Hameçonnage vocal",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2680.svg",
+        "basename": "2680",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T07:41:20.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "50b2bae0-16a9-11f0-990c-005056873709",
+      "id": 3150253,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3150253/storage/MDAzMTUwMjUzLzAvbWFzdGVy",
+        "keywords": [
+          "Cloud pentest",
+          "Cloud Pentest",
+          "Test d’intrusion dans le cloud",
+          "pentest",
+          "Pentest",
+          "Test d’intrusion",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2681.svg",
+        "basename": "2681",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T07:48:10.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "d6d67410-16ac-11f0-990c-005056873709",
+      "id": 3150698,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3150698/storage/MDAzMTUwNjk4LzAvbWFzdGVy",
+        "keywords": [
+          "Physical intrusion test",
+          "Physischer Intrusionstest",
+          "Test d’intrusion physique",
+          "Test di intrusione fisico",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2682.svg",
+        "basename": "2682",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T08:13:24.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "9b616510-16ad-11f0-990c-005056873709",
+      "id": 3150805,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3150805/storage/MDAzMTUwODA1LzAvbWFzdGVy",
+        "keywords": [
+          "Code",
+          "Codice",
+          "programming code",
+          "Programmiercode",
+          "Code de programmation",
+          "Codice di programmazione",
+          "Secure Code Review​",
+          "Prüfung des sicheren Codes​",
+          "Révision du code sécurisé​",
+          "Revisione del codice protetto​"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2683.svg",
+        "basename": "2683",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T08:18:54.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "7c184010-16ae-11f0-990c-005056873709",
+      "id": 3150918,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3150918/storage/MDAzMTUwOTE4LzAvbWFzdGVy",
+        "keywords": [
+          "Configuration",
+          "Konfiguration",
+          "configurazione",
+          "review",
+          "Überprüfung",
+          "Vérification",
+          "Verifica",
+          "Configuration Review",
+          "Examen de la configuration",
+          "Revisione della configurazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2684.svg",
+        "basename": "2684",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-11T08:25:11.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "220198b0-190b-11f0-990c-005056873709",
+      "id": 3300389,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3300389/storage/MDAzMzAwMzg5LzAvbWFzdGVy",
+        "keywords": [
+          "Hackademy",
+          "Cibersécurité",
+          "Cibersicurezza",
+          "Cibersecurity",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2685.svg",
+        "basename": "2685",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-14T08:33:25.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "c874ae30-190b-11f0-990c-005056873709",
+      "id": 3300464,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3300464/storage/MDAzMzAwNDY0LzAvbWFzdGVy",
+        "keywords": [
+          "CSIRT",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2686.svg",
+        "basename": "2686",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-14T08:38:04.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "54569df0-190c-11f0-990c-005056873709",
+      "id": 3300519,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3300519/storage/MDAzMzAwNTE5LzAvbWFzdGVy",
+        "keywords": [
+          "SOC",
+          "Security Operations Center",
+          "Centre des opérations de sécurité",
+          "Centro operativo per la sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2687.svg",
+        "basename": "2687",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-14T08:41:59.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "4773d060-2020-11f0-990c-005056873709",
+      "id": 3654762,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3654762/storage/MDAzNjU0NzYyLzAvbWFzdGVy",
+        "keywords": [
+          "Meeting",
+          "Réunion",
+          "Riunione",
+          "Tischplatte",
+          "Tabletop",
+          "Piano del tavolo",
+          "Table",
+          "Tabletop Exercise",
+          "Tischübung",
+          "Exercice Sur Table",
+          "Esercizio Di Tablet"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2688.svg",
+        "basename": "2688",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-23T08:52:25.000Z",
+      "modifiedAt": "2025-04-24T15:05:08.302Z"
+    },
+    {
+      "uuid": "cae1b550-2108-11f0-990c-005056873709",
+      "id": 3697833,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3697833/storage/MDAzNjk3ODMzLzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Redteaming"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2689.svg",
+        "basename": "2689",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-24T12:36:49.000Z",
+      "modifiedAt": "2025-04-25T12:05:06.942Z"
+    },
+    {
+      "uuid": "a82a28a0-23ea-11f0-bf8f-005056873709",
+      "id": 3849144,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3849144/storage/MDAzODQ5MTQ0LzAvbWFzdGVy",
+        "keywords": [
+          "power of women",
+          "Frauenpower",
+          "Femmes motivées",
+          "potere alle donne",
+          "feminism",
+          "Feminismus",
+          "Féminisme",
+          "Feminismo",
+          "emancipation",
+          "Emanzipation",
+          "Emancipation",
+          "Emancipazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2690.svg",
+        "basename": "2690",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-28T04:38:39.000Z",
+      "modifiedAt": "2025-04-29T04:05:06.259Z"
+    },
+    {
+      "uuid": "43bc1f82-25c6-11f0-bf8f-005056873709",
+      "id": 3937213,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3937213/storage/MDAzOTM3MjEzLzAvbWFzdGVy",
+        "keywords": [
+          "Galaxus",
+          "Galaxus tortoise",
+          "Galaxus Schildkröte",
+          "Tortue Galaxus",
+          "La tartaruga di Galaxus"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2691.svg",
+        "basename": "2691",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-30T13:23:11.000Z",
+      "modifiedAt": "2025-05-13T12:05:00.559Z"
+    },
+    {
+      "uuid": "5aebff14-297a-11f0-bf8f-005056873709",
+      "id": 4128891,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/4128891/storage/MDA0MTI4ODkxLzAvbWFzdGVy",
+        "keywords": [
+          "CSIRT",
+          "Notfall"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2692.svg",
+        "basename": "2692",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-05-05T06:29:53.000Z",
+      "modifiedAt": "2025-05-07T10:35:14.000Z"
+    },
+    {
+      "uuid": "aae7a530-477c-11f0-bc26-005056873709",
+      "id": 5075952,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5075952/storage/MDA1MDc1OTUyLzAvbWFzdGVy",
+        "keywords": [
+          "Angebot",
+          "Offer",
+          "Offerta",
+          "Offre"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2693.svg",
+        "basename": "2693",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-06-12T11:02:01.000Z",
+      "modifiedAt": "2025-06-12T11:05:32.000Z"
+    },
+    {
+      "uuid": "41adffd1-678c-11f0-ad2d-005056873709",
+      "id": 5623270,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5623270/storage/MDA1NjIzMjcwLzAvbWFzdGVy",
+        "keywords": [
+          "Télécharger",
+          "Download",
+          "Herunterladen",
+          "Scaricare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2694.svg",
+        "basename": "2694",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-07-23T06:14:14.000Z",
+      "modifiedAt": "2025-07-23T06:19:33.000Z"
+    },
+    {
+      "uuid": "1041c204-678d-11f0-ad2d-005056873709",
+      "id": 5623329,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5623329/storage/MDA1NjIzMzI5LzAvbWFzdGVy",
+        "keywords": [
+          "ZIP",
+          "Télécharger",
+          "Download",
+          "Herunterladen",
+          "Scaricare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2695.svg",
+        "basename": "2695",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-07-23T06:20:00.000Z",
+      "modifiedAt": "2025-07-24T06:05:03.467Z"
     },
     {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
@@ -37667,13 +39254,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 976,
+    "success": 1027,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-04-06T02:13:40.021Z",
-  "version": "9.0.0-next.33"
+  "created": "2025-07-29T08:14:07.100Z",
+  "version": "10.0.0-next.42"
 }

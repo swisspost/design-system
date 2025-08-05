@@ -1,5 +1,80 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.42
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.42
+
+## 10.0.0-next.41
+
+### Patch Changes
+
+- Improved URL handling in `post-icon` component:
+  - Enhanced URL construction to properly handle both absolute and relative URLs
+  - Fixed slug detection to correctly identify root paths ("/") as valid slugs
+  - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.41
+
+## 10.0.0-next.40
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.40
+
+## 10.0.0-next.39
+
+### Major Changes
+
+- Added the styles responsible for preventing fouc (flashes of unstyled content) for web-, angular- and react-components in the respective component packages:
+  - `@swisspost/design-system-components/post-components/post-components.css`
+  - `@swisspost/design-system-components-angular/post-components.css`
+  - `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.39
+
+## 10.0.0-next.38
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.38
+
+## 10.0.0-next.37
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.37
+
+## 9.0.0-next.36
+
+### Patch Changes
+
+- Fixed path to types file, errors like "Could not find a declaration file for module X" should now be gone. (by [@gfellerph](https://github.com/gfellerph) with [#5358](https://github.com/swisspost/design-system/pull/5358))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.35
+
+## 9.0.0-next.34
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.34
+
 ## 9.0.0-next.33
 
 ### Patch Changes

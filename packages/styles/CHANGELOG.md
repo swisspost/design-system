@@ -1,5 +1,101 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.42
+
+## 10.0.0-next.41
+
+### Major Changes
+
+- Renamed the `chip-filter` to `chip-selectable` and removed the `chip-sm` variant. (by [@leagrdv](https://github.com/leagrdv) with [#5755](https://github.com/swisspost/design-system/pull/5755))
+
+- Renamed the following CSS custom properties and Sass variables: - `--post-breakpoint-widths` → `--post-grid-breakpoint-widths`
+  - `--post-breakpoint-keys` → `--post-grid-breakpoint-keys`
+  - `--post-breakpoint-names` → `--post-grid-breakpoint-devices`
+  - `$grid-breakpoints-key-name-map` → `$grid-breakpoint-to-device` (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+### Minor Changes
+
+- Updated media utilities to support device names: `mobile`, `tablet`, and `desktop`. (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+## 10.0.0-next.40
+
+### Major Changes
+
+- Renamed the `List Group` component to `List Interactive`. (by [@schaertim](https://github.com/schaertim) with [#5675](https://github.com/swisspost/design-system/pull/5675))
+
+## 10.0.0-next.39
+
+### Major Changes
+
+- Removed the file responsible for preventing fouc (flashes of unstyled content) for the web-components: `@swisspost/design-system-styles/components/not-defined.(scss|css)`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5696](https://github.com/swisspost/design-system/pull/5696))
+
+### Patch Changes
+
+- Fixed an issue on iOS Chrome where floating labels would appear above the mobile navigation menu after users interacted with multiple form inputs, by increasing the z-index hierarchy for `post-header` components on mobile and tablet devices to ensure proper layering and maintain the navigation menu's top-level priority. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5550](https://github.com/swisspost/design-system/pull/5550))
+
+- Adjusted label top position to prevent text from appearing between label and border on Windows at 125% scaling. (by [@myrta2302](https://github.com/myrta2302) with [#5547](https://github.com/swisspost/design-system/pull/5547))
+
+## 10.0.0-next.38
+
+## 10.0.0-next.37
+
+### Major Changes
+
+- Fixed the disappearing validation icons on text input fields when browser autocomplete is applied. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5339](https://github.com/swisspost/design-system/pull/5339))
+
+- Prefixed the following CSS custom variables with `post`:
+  - `--section-width` is now `--post-section-width`
+  - `--section-container-width` is now `--post-section-container-width`
+  - `--section-container-content-offset` is now `--post-section-container-content-offset`
+  - `--section-container-padding` is now `--post-section-container-padding` (by [@leagrdv](https://github.com/leagrdv) with [#5354](https://github.com/swisspost/design-system/pull/5354))
+
+### Patch Changes
+
+- Fixed background on disabled textarea labels to maintain readability when content overflows. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5453](https://github.com/swisspost/design-system/pull/5453))
+
+## 9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Major Changes
+
+- Removed all imports and CSS related to the bootstrap `navbar` component. (by [@leagrdv](https://github.com/leagrdv) with [#5313](https://github.com/swisspost/design-system/pull/5313))
+
+- Removed all of the imports from bootstrap regarding the `modal` component as well as all of its CSS style. (by [@leagrdv](https://github.com/leagrdv) with [#5309](https://github.com/swisspost/design-system/pull/5309))
+
+- Removed the `@mixin scroll-shadows-y` as its only use was in the modal component which has been removed. (by [@leagrdv](https://github.com/leagrdv) with [#5309](https://github.com/swisspost/design-system/pull/5309))
+
+### Patch Changes
+
+- Fixed an issue on iOS where floating labels would appear above the `post-header` component when an input was focused, by lowering their z-index to ensure they remain underneath the header, even during Safari's automatic zoom on form inputs, which alters the rendering context and can mess with layering. (by [@leagrdv](https://github.com/leagrdv) with [#5346](https://github.com/swisspost/design-system/pull/5346))
+
+- Added back the `.text-reset` class as it was deleted accidentally. (by [@leagrdv](https://github.com/leagrdv) with [#5290](https://github.com/swisspost/design-system/pull/5290))
+
+## 9.0.0-next.34
+
+### Major Changes
+
+- Removed all of the font sizes variables (`$font-size-*`) and CSS classes (`.font-size-*`), which can now be replaced by the font sizes utilities. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+- Removed the `@mixin font-curve()`. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+- Updated the file structure for the `post-footer` component global styles:  
+  `dist/components/globals/post-footer.(css|scss)` -> `dist/components/footer/index.(css|scss)`
+
+  If you're importing one of these files manually in your project, you'll need to update the import path! (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5180](https://github.com/swisspost/design-system/pull/5180))
+
+- Renamed all of the font curve variables (`$fs-*`) and CSS classes (`.fs-*`) to numbers 1 to 11 (e.g. `fs-huge` is now `fs-1`, and `fs-tiny` would be `fs-11`). (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+### Minor Changes
+
+- Added 11 font sizes utilities, from `.fs-1` to `.fs-11`. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+### Patch Changes
+
+- Resolved styling inconsistencies for `segmented-button` component on iOS devices. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4964](https://github.com/swisspost/design-system/pull/4964))
+
+- Updated the `not-defined` selector to ensure server-side rendered components are visible on the client-side even before JavaScript initializes, while client-side rendered web components remain hidden until fully hydrated. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5163](https://github.com/swisspost/design-system/pull/5163))
+
 ## 9.0.0-next.33
 
 ### Patch Changes

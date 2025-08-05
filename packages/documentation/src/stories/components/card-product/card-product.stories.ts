@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { nothing } from 'lit';
 import { MetaComponent } from '@root/types';
@@ -16,9 +16,9 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    title: 'Produkta',
+    title: 'Product',
     level: 'h3',
-    text: 'Ĉi tio estas mallonga priskribo de la produkto.',
+    text: 'This is a short description of the product.',
   },
   argTypes: {
     title: {
@@ -98,7 +98,7 @@ function renderProductCard(args: Args) {
         ${getTitle(args)} ${getText(args)}
         <span class="link-icon">
           <post-icon name="3020" aria-hidden="true"></post-icon>
-          <span>Lernu pli</span>
+          <span>Learn more</span>
         </span>
       </div>
     </a>
@@ -117,7 +117,7 @@ export const Groupped: Story = {
   render: (args: Args) => html`
     <div class="row row-cols-md-2 row-cols-xl-3 border-gutters">
       <div class="col-12">
-        ${renderProductCard({ ...args, title: `${args.title} 1`, text: 'Tre mallonga priskribo.' })}
+        ${renderProductCard({ ...args, title: `${args.title} 1`, text: 'Very short description.' })}
       </div>
       <div class="col-12">${renderProductCard({ ...args, title: `${args.title} 2` })}</div>
       <div class="col-12">
@@ -128,7 +128,7 @@ export const Groupped: Story = {
         ${renderProductCard({
           ...args,
           title: `${args.title} 5`,
-          text: 'Ĉi tio estas pli longa priskribo de la produkto por montri kiel la kartoj estas kunmetitaj.',
+          text: 'This is a longer description of the product to show how the cards are composed.',
         })}
       </div>
     </div>
@@ -146,22 +146,23 @@ export const Multipart: Story = {
           <div class="card-body" data-sync-height-with="product-header">
             <div class="product-navigation">
               <div>
-                <h3>Preiswert</h3>
+                <h3>Affordable</h3>
                 <h4 class="mb-16">Sample Product</h4>
                 <p class="lead">
-                  Mit SAMPLE PRODUCT kommen Ihre Briefe kostengünstig und zuverlässig ans Ziel.
+                  With SAMPLE PRODUCT, your letters arrive at their destination cost-effectively and
+                  reliably.
                 </p>
               </div>
               <div>
                 <a href="#" class="link-icon">
                   <post-icon name="3020" aria-hidden="true"></post-icon>
-                  <span>Mehr erfahren</span>
+                  <span>Learn more</span>
                 </a>
               </div>
             </div>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-1">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -208,7 +209,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-3">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -223,7 +224,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate">
+          <div class="card-body palette palette-alternate">
             <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>
@@ -240,24 +241,24 @@ export const Multipart: Story = {
           <div class="card-body" data-sync-height-with="product-header">
             <div class="product-navigation">
               <div>
-                <h3>Schneller</h3>
+                <h3>Faster</h3>
                 <h4 class="mb-16">Sample Product</h4>
                 <p class="lead">
-                  Lorem ipsum aafw ea aewfwe awef awfeaea awefa wawef waf wawefa ea dolor sit amet
-                  consectetur adipisicing elit. Iusto nulla laboriosam nesciunt. Unde velit dolores
-                  at fugiat dolorum nobis sit.
+                  This is a sample description with more detailed information about the product
+                  features and benefits. It demonstrates the layout and structure of the product
+                  card component.
                 </p>
               </div>
               <div>
                 <a href="#" class="link-icon">
                   <post-icon name="3020" aria-hidden="true"></post-icon>
-                  <span>Mehr erfahren</span>
+                  <span>Learn more</span>
                 </a>
               </div>
             </div>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-1">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -295,7 +296,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-3">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -310,7 +311,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate">
+          <div class="card-body palette palette-alternate">
             <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>

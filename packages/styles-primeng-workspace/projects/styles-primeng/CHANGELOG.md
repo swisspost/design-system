@@ -1,5 +1,68 @@
 # @swisspost/design-system-styles-primeng
 
+## 10.0.0-next.42
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.42
+
+## 10.0.0-next.41
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.41
+
+## 10.0.0-next.40
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.40
+
+## 10.0.0-next.39
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.39
+
+## 10.0.0-next.38
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.38
+
+## 10.0.0-next.37
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.37
+
+## 9.0.0-next.36
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.35
+
+## 9.0.0-next.34
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.34
+
 ## 9.0.0-next.33
 
 ### Patch Changes

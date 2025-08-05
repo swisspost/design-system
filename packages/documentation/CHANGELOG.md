@@ -1,5 +1,221 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.43
+
+### Patch Changes
+
+- Added the `components-react` package to the Getting started guide for developers. (by [@leagrdv](https://github.com/leagrdv) with [#5831](https://github.com/swisspost/design-system/pull/5831))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.42
+  - @swisspost/design-system-components-react@10.0.0-next.42
+  - @swisspost/design-system-styles@10.0.0-next.42
+  - @swisspost/design-system-tokens@10.0.0-next.42
+  - @swisspost/design-system-icons@10.0.0-next.42
+  - @swisspost/internet-header@2.0.0-next.42
+
+## 6.0.0-next.42
+
+### Minor Changes
+
+- Renamed the `chip-filter` to `chip-selectable` and removed the `chip-sm` variant. (by [@leagrdv](https://github.com/leagrdv) with [#5755](https://github.com/swisspost/design-system/pull/5755))
+
+### Patch Changes
+
+- Added an info banner to the styles for PrimeNG package documentation to clearly communicate that `@swisspost/design-system-styles-primeng` only provides styling for PrimeNG datatables. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5752](https://github.com/swisspost/design-system/pull/5752))
+
+- Added documentation for required and optional fields on form elements. (by [@leagrdv](https://github.com/leagrdv) with [#5622](https://github.com/swisspost/design-system/pull/5622))
+
+- Updated Design System Team members displayed in the documentation footer. (by [@schaertim](https://github.com/schaertim) with [#5778](https://github.com/swisspost/design-system/pull/5778))
+
+- Add accessibility note in the Language Switch page to highlight the requirement for clear accessible `names` on language selection options. (by [@myrta2302](https://github.com/myrta2302) with [#5350](https://github.com/swisspost/design-system/pull/5350))
+
+- Fixed the missing `aria-describedby` connection between the slider input and its valid/invalid feedback in the design system documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5622](https://github.com/swisspost/design-system/pull/5622))
+
+- Fixed styling and contents of `Available bundles` table on the styles package page. (by [@schaertim](https://github.com/schaertim) with [#5673](https://github.com/swisspost/design-system/pull/5673))
+
+- Reorganized `story action` buttons and added corresponding icons to improve user experience. Updated "Copy link" button label to "Copy deep link" for better clarity. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5598](https://github.com/swisspost/design-system/pull/5598))
+
+- Made the scroll-to anchor on the icons search page unfocusable and hid it for screenreaders, since we only need it for our custom search-icons.block javascript logic. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5715](https://github.com/swisspost/design-system/pull/5715))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.41
+  - @swisspost/design-system-components@10.0.0-next.41
+  - @swisspost/design-system-styles@10.0.0-next.41
+  - @swisspost/design-system-components-react@10.0.0-next.41
+  - @swisspost/internet-header@2.0.0-next.41
+  - @swisspost/design-system-tokens@10.0.0-next.41
+
+## 6.0.0-next.41
+
+### Minor Changes
+
+- Renamed the `List Group` component to `List Interactive`. (by [@schaertim](https://github.com/schaertim) with [#5675](https://github.com/swisspost/design-system/pull/5675))
+
+- Dynamically generate dependencies table for `styles` package. (by [@schaertim](https://github.com/schaertim) with [#5669](https://github.com/swisspost/design-system/pull/5669))
+
+### Patch Changes
+
+- Updated styles page by marking the design system version 7.x as end of life. (by [@schaertim](https://github.com/schaertim) with [#5582](https://github.com/swisspost/design-system/pull/5582))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.40
+  - @swisspost/design-system-styles@10.0.0-next.40
+  - @swisspost/design-system-components-react@10.0.0-next.40
+  - @swisspost/internet-header@2.0.0-next.40
+  - @swisspost/design-system-tokens@10.0.0-next.40
+  - @swisspost/design-system-icons@10.0.0-next.40
+
+## 6.0.0-next.40
+
+### Minor Changes
+
+- Only show `health` and `raw-components` stories in development environment and filter them from the search in production mode. (by [@schaertim](https://github.com/schaertim) with [#5377](https://github.com/swisspost/design-system/pull/5377))
+
+### Patch Changes
+
+- Updated `post-popover` component documentation by adding missing `close-button-caption` attribute in component examples. (by [@myrta2302](https://github.com/myrta2302) with [#5501](https://github.com/swisspost/design-system/pull/5501))
+
+- Added a new page 'Header with Custom Logo Link' under Guidelines, on how to use post-header logo with a custom link wrapper. (by [@myrta2302](https://github.com/myrta2302) with [#5171](https://github.com/swisspost/design-system/pull/5171))
+
+- Updated the PrimeNG styles package documentation. (by [@alizedebray](https://github.com/alizedebray) with [#5488](https://github.com/swisspost/design-system/pull/5488))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.39
+  - @swisspost/design-system-components@10.0.0-next.39
+  - @swisspost/design-system-styles@10.0.0-next.39
+  - @swisspost/design-system-components-react@10.0.0-next.39
+  - @swisspost/internet-header@2.0.0-next.39
+  - @swisspost/design-system-tokens@10.0.0-next.39
+
+## 6.0.0-next.39
+
+### Patch Changes
+
+- Added the migration guide for v8 to v9 and updated the migration guide for v9 to v10. (by [@leagrdv](https://github.com/leagrdv) with [#5485](https://github.com/swisspost/design-system/pull/5485))
+
+- Replaced fake text (lorem ipsum, esperanto) in documentation stories with meaningful English to improve clarity and usability. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5394](https://github.com/swisspost/design-system/pull/5394))
+
+- Updated the styles package version informations. (by [@leagrdv](https://github.com/leagrdv) with [#5512](https://github.com/swisspost/design-system/pull/5512))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.38
+  - @swisspost/internet-header@2.0.0-next.38
+  - @swisspost/design-system-components@10.0.0-next.38
+  - @swisspost/design-system-styles@10.0.0-next.38
+  - @swisspost/design-system-components-react@10.0.0-next.38
+  - @swisspost/design-system-tokens@10.0.0-next.38
+
+## 6.0.0-next.38
+
+### Major Changes
+
+- Fixed the disappearing validation icons on text input fields when browser autocomplete is applied. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5339](https://github.com/swisspost/design-system/pull/5339))
+
+### Patch Changes
+
+- Removed the rotation of the back button in the `post-header`, which means users need to change the back button's icon `arrowright` to `arrowleft` to make sure it's pointing in the right direction. (by [@leagrdv](https://github.com/leagrdv) with [#5466](https://github.com/swisspost/design-system/pull/5466))
+
+- Updated a table in the developers guide as previously, a `scope="col"` was applied on a `<td>`, but it should only be used on `<th>` elements. (by [@leagrdv](https://github.com/leagrdv) with [#5349](https://github.com/swisspost/design-system/pull/5349))
+
+- Added visible focus to the storybook sidebar elements that do get a focus. (by [@leagrdv](https://github.com/leagrdv) with [#5352](https://github.com/swisspost/design-system/pull/5352))
+
+- Trap keyboard focus within the icon details popover on the find icon page to ensure accessible and consistent keyboard navigation. (by [@schaertim](https://github.com/schaertim) with [#5365](https://github.com/swisspost/design-system/pull/5365))
+
+- Moved header and footer documentation pages to the components folder. (by [@leagrdv](https://github.com/leagrdv) with [#5462](https://github.com/swisspost/design-system/pull/5462))
+
+- Fixed rendering issues for Designer and Developer pages in the Getting Started category. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5356](https://github.com/swisspost/design-system/pull/5356))
+
+- The default value of the arrow property for the <post-tooltip> element has been changed to `false`. This means, that tooltips do not display arrows by default anymore. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4477](https://github.com/swisspost/design-system/pull/4477))
+
+- Added cypress eslint plugin to enable linting for all cypress folders and files. (by [@schaertim](https://github.com/schaertim) with [#5102](https://github.com/swisspost/design-system/pull/5102))
+
+- Resolved broken links to v5 documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5367](https://github.com/swisspost/design-system/pull/5367))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.37
+  - @swisspost/design-system-components@10.0.0-next.37
+  - @swisspost/design-system-styles@10.0.0-next.37
+  - @swisspost/design-system-tokens@10.0.0-next.37
+  - @swisspost/internet-header@2.0.0-next.37
+  - @swisspost/design-system-components-react@10.0.0-next.37
+
+## 6.0.0-next.37
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components-react@9.0.0-next.36
+  - @swisspost/design-system-styles@9.0.0-next.36
+  - @swisspost/design-system-tokens@9.0.0-next.36
+  - @swisspost/design-system-components@9.0.0-next.36
+  - @swisspost/design-system-icons@9.0.0-next.36
+  - @swisspost/internet-header@2.0.0-next.36
+
+## 6.0.0-next.36
+
+### Major Changes
+
+- Removed the deprecated notification overlay documentation page. (by [@leagrdv](https://github.com/leagrdv) with [#5304](https://github.com/swisspost/design-system/pull/5304))
+
+### Patch Changes
+
+- Updated Card-Control, Form Checkbox, Form Radio Button, Form Switch, Form Select, Form Input, Form Textarea and Form Validation documentation examples with missing `aria` attributes. (by [@myrta2302](https://github.com/myrta2302) with [#4949](https://github.com/swisspost/design-system/pull/4949))
+
+- Changed a text's color in the Vertical align documentation to improve contrast and make it accessible. (by [@leagrdv](https://github.com/leagrdv) with [#5296](https://github.com/swisspost/design-system/pull/5296))
+
+- Improved the contrast of the links and buttons in the arguments table. (by [@leagrdv](https://github.com/leagrdv) with [#5323](https://github.com/swisspost/design-system/pull/5323))
+
+- Updated Storybook documentation to reflect the renaming of `<post-breadcrumb>` components to `<post-breadcrumbs>`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5291](https://github.com/swisspost/design-system/pull/5291))
+
+- Changed some of the code colors in `<pre>` tags in the documentation to improve contrast and make it accessible. (by [@leagrdv](https://github.com/leagrdv) with [#5292](https://github.com/swisspost/design-system/pull/5292))
+
+- Removed the stepper warning banner from the documentation as it was no longer relevant. (by [@leagrdv](https://github.com/leagrdv) with [#5301](https://github.com/swisspost/design-system/pull/5301))
+
+- Fixed an issue where the close button in the Toast component was not properly aligned when the toast was rendered with `position: fixed`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5303](https://github.com/swisspost/design-system/pull/5303))
+
+- Fixed the accessibility issue in the Form labels section under Guidelines by properly associating labels with radio inputs. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5288](https://github.com/swisspost/design-system/pull/5288))
+
+- Removed all occurences of the `<nav>` tag around the figma links to avoid having two navigations within the same page. (by [@leagrdv](https://github.com/leagrdv) with [#5319](https://github.com/swisspost/design-system/pull/5319))
+
+- Ensured the focus ring on the anchor links are always visible, even when the file formatting adds an extra `<p>` tag around links text in the `*.docs.mdx` files. (by [@leagrdv](https://github.com/leagrdv) with [#5332](https://github.com/swisspost/design-system/pull/5332))
+
+- Updated some broken links to the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5280](https://github.com/swisspost/design-system/pull/5280))
+
+- Minor accessibility and data display improvements. (by [@leagrdv](https://github.com/leagrdv) with [#5265](https://github.com/swisspost/design-system/pull/5265))
+
+- Enhanced link accessibility throughout the documentation by ensuring all links provide clear and meaningful context about their destination. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5315](https://github.com/swisspost/design-system/pull/5315))
+
+- Removed deprecated ng-bootstrap modal documentation page. (by [@leagrdv](https://github.com/leagrdv) with [#5309](https://github.com/swisspost/design-system/pull/5309))
+
+- Updated the heading structure on some of the documentation's pages to have a correct hierarchy throughout the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5337](https://github.com/swisspost/design-system/pull/5337))
+
+- Removed the deprecated ng-bootstrap custom select documentation page. (by [@leagrdv](https://github.com/leagrdv) with [#5302](https://github.com/swisspost/design-system/pull/5302))
+
+- Improved the contrast of the expandable content's trigger in the arguments table. (by [@leagrdv](https://github.com/leagrdv) with [#5322](https://github.com/swisspost/design-system/pull/5322))
+
+- Added the missing Figma design link to the Composable Footer documentation page in Storybook. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5320](https://github.com/swisspost/design-system/pull/5320))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.35
+  - @swisspost/design-system-styles@9.0.0-next.35
+  - @swisspost/design-system-components@9.0.0-next.35
+  - @swisspost/internet-header@2.0.0-next.35
+  - @swisspost/design-system-components-react@9.0.0-next.35
+  - @swisspost/design-system-tokens@9.0.0-next.35
+
+## 6.0.0-next.35
+
+### Minor Changes
+
+- Added 11 font sizes utilities, from `.fs-1` to `.fs-11`. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+### Patch Changes
+
+- Improved responsiveness and mobile behaviour of the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5216](https://github.com/swisspost/design-system/pull/5216))
+
+- Added End-to-End tests for the `post-header`component which ensure correct behaviour for react routing simulated by removing and reattaching the header. (by [@schaertim](https://github.com/schaertim) with [#5098](https://github.com/swisspost/design-system/pull/5098))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.34
+  - @swisspost/design-system-components@9.0.0-next.34
+  - @swisspost/design-system-styles@9.0.0-next.34
+  - @swisspost/design-system-components-react@9.0.0-next.34
+  - @swisspost/internet-header@2.0.0-next.34
+  - @swisspost/design-system-tokens@9.0.0-next.34
+
 ## 6.0.0-next.34
 
 ### Patch Changes

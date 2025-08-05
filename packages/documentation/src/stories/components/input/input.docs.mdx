@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as InputStories from './input.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -7,9 +7,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="docs-title">
   # Input
 
-  <nav>
-    <link-design of={JSON.stringify(InputStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(InputStories)}></link-design>
 </div>
 
 <div className="lead">

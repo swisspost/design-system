@@ -1,5 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import { PostBanner } from '@swisspost/design-system-components-react';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import * as BannerStories from './standard-html/banner.stories';
 import * as PostBannerStories from './web-component/post-banner.stories';
@@ -10,9 +9,8 @@ import BannerDismissSample from './web-component/banner-dismiss.sample?raw';
 <div className="docs-title">
   # Banner
 
-  <nav>
-    <link-design of={JSON.stringify(BannerStories)}></link-design>
-  </nav>
+<link-design of={JSON.stringify(BannerStories)}></link-design>
+
 </div>
 
 <div className="lead">
@@ -23,11 +21,13 @@ import BannerDismissSample from './web-component/banner-dismiss.sample?raw';
 
 Banners are intended to attract the user's attention without interrupting their ongoing task.
 
-<PostBanner type="info">
+<post-banner type="info">
   <p slot="heading">There are various methods to integrate this component into your project.</p>
-  <p>We advise opting for the "Standard HTML" approach for banners that remain static on the page and
-    using the "Web Component" method for dismissible banners.</p>
-</PostBanner>
+  <p>
+    We advise opting for the "Standard HTML" approach for banners that remain static on the page and
+    using the "Web Component" method for dismissible banners.
+  </p>
+</post-banner>
 
 <post-tabs>
     <post-tab-header panel="standardHTML">Standard HTML</post-tab-header>
@@ -101,7 +101,7 @@ Banners are intended to attract the user's attention without interrupting their 
 
       Banners come with a preassigned icon based on their type.
       You have the option to customize this icon by assigning the desired icon's name to the `icon` property of the banner.
-      Find the icon you need with the [icon search page](/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs).
+      Find the icon you need with the [icon search page](/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs).
 
       <Canvas of={PostBannerStories.CustomIcon} />
 

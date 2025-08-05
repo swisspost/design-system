@@ -1,5 +1,5 @@
-import type { Args } from '@storybook/web-components';
-import { useArgs, useState } from '@storybook/preview-api';
+import type { Args } from '@storybook/web-components-vite';
+import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -81,7 +81,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -150,13 +150,18 @@ export const Default = {
       'checkbox-button-card': args.type === 'checkbox',
       'radio-button-card': args.type === 'radio',
     });
-    const validationClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
+    const validationClass = args.validation !== 'null' ? `${args.validation}` : undefined;
 
     // Child components
     const controlId = `CardControl_${id}`;
     const description = html`<span class="fs-11">${args.description}</span>`;
     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
-    const invalidFeedback = html`<p class="invalid-feedback mt-8">Invalid feedback</p>`;
+    const invalidFeedback = html`<p
+      class="invalid-feedback mt-8"
+      id="${args.validation}-id-${controlId}"
+    >
+      Invalid feedback
+    </p>`;
 
     return html`
       <div class="${cardClasses}">
@@ -169,6 +174,10 @@ export const Default = {
           .checked="${args.checked}"
           checked="${args.checked || nothing}"
           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
+          aria-describedby="${args.validation != 'null'
+            ? `${args.validation}-id-${controlId}`
+            : nothing}"
+          aria-invalid="${args.validation != 'null' ? true : nothing}"
         />
         <label for="${controlId}">
           <span>${args.label}</span>

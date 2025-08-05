@@ -9,7 +9,7 @@ npm-debug.log
 *.code-workspace
 stylelint-report.txt
 storybook-static
-src/utilities/_not-defined.scss
+src/utilities/_env-variables.scss
 
 # Mac OSX Finder files.
 **/.DS_Store

@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { choose } from 'lit/directives/choose.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -12,7 +12,13 @@ const meta: MetaComponent = {
   parameters: {
     badges: [],
     controls: {
-      exclude: ['Custom Header', 'Custom Body', 'Custom Footer', 'Show Body', 'Show List Group'],
+      exclude: [
+        'Custom Header',
+        'Custom Body',
+        'Custom Footer',
+        'Show Body',
+        'Show List Interactive',
+      ],
     },
     design: {
       type: 'figma',
@@ -28,7 +34,7 @@ const meta: MetaComponent = {
     customBody: null,
     showTitle: true,
     showSubtitle: false,
-    content: 'Contentus momentus vero siteos et accusam iretea et justo.',
+    content: 'This is the card content that can contain various types of information.',
     action: 'button',
     showListGroup: false,
     showFooter: false,
@@ -168,8 +174,8 @@ const meta: MetaComponent = {
       },
     },
     showListGroup: {
-      name: 'Show List Group',
-      description: 'When set to `true`, a list group is shown in the card.',
+      name: 'Show List Interactive',
+      description: 'When set to `true`, a list interactive is shown in the card.',
       control: {
         type: 'boolean',
       },
@@ -223,16 +229,14 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 // RENDERER
 function getCardLinks() {
   return html`
-    ${['Ligilo teksto', 'Pli da ligo'].map(
-      label => html` <a class="card-link" href="#">${label}</a> `,
-    )}
+    ${['Link Text', 'More Link'].map(label => html` <a class="card-link" href="#">${label}</a> `)}
   `;
 }
 
 function getCardButton() {
   return html`
     <button class="btn btn-primary">
-      <span>Butonon teksto</span>
+      <span>Button Text</span>
     </button>
   `;
 }
@@ -242,8 +246,10 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
 
   return html`
     <div class="card-body">
-      ${showTitle ? html` <h5 class="card-title">Titulum</h5> ` : nothing}
-      ${showSubtitle ? html` <h6 class="card-subtitle mb-8 text-muted">Sub Titulum</h6> ` : nothing}
+      ${showTitle ? html` <h5 class="card-title">Card Title</h5> ` : nothing}
+      ${showSubtitle
+        ? html` <h6 class="card-subtitle mb-8 text-muted">Card Subtitle</h6> `
+        : nothing}
       <p class="card-text">${content}</p>
       ${choose(
         action,
@@ -259,9 +265,9 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
 
 function getCardListGroup() {
   return html`
-    <ul class="list-group">
-      ${['Ero', 'Dua ero', 'Alio ero'].map(
-        label => html` <li class="list-group-item">${label}</li> `,
+    <ul class="list-interactive">
+      ${['First Item', 'Second Item', 'Another Item'].map(
+        label => html` <li class="list-interactive-item">${label}</li> `,
       )}
     </ul>
   `;
@@ -270,13 +276,13 @@ function getCardListGroup() {
 function getCardHeader({ customHeader }: Args) {
   if (customHeader) return unsafeHTML(customHeader);
 
-  return html` <div class="card-header">Kapo Titulum</div> `;
+  return html` <div class="card-header">Header Title</div> `;
 }
 
 function getCardFooter({ customFooter }: Args) {
   if (customFooter) return unsafeHTML(customFooter);
 
-  return html` <div class="card-footer">Piedo Contentus momentus</div> `;
+  return html` <div class="card-footer">Footer Content</div> `;
 }
 
 function getCardImage({ imagePosition }: Args) {
@@ -340,7 +346,7 @@ export const Palette: Story = {
   },
   render: () =>
     html`
-      <div class="palette-default">
+      <div class="palette palette-default">
         <div class="container py-32">
           <div class="row gy-16">
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
@@ -348,7 +354,7 @@ export const Palette: Story = {
           </div>
         </div>
       </div>
-      <div class="palette-alternate">
+      <div class="palette palette-alternate">
         <div class="container py-32">
           <div class="row gy-16">
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
@@ -378,32 +384,32 @@ export const CustomContent: Story = {
     action: 'links',
     customHeader: `<div class="card-header d-flex">
   <post-icon aria-hidden="true" scale="2" name="3217"></post-icon>
-  <h3 class="fw-bold mb-0 me-auto">Detaloj de la Uzanto</h3>
-  <a href="#" aria-labelledby="detaloj-title">
+  <h3 class="fw-bold mb-0 me-auto">User Details</h3>
+  <a href="#" aria-labelledby="details-title">
     <post-icon aria-hidden="true" scale="1.5" name="3020"></post-icon>
-    <span class="visually-hidden">Administrado de kontoj</span>
+    <span class="visually-hidden">Account Management</span>
   </a>
 </div>`,
-    customBody: `<ul class="list-group">
-  <li class="list-group-item d-flex align-items-center justify-content-between">
+    customBody: `<ul class="list-interactive">
+  <li class="list-interactive-item d-flex align-items-center justify-content-between">
     <address class="mb-0">
-      Mr<br>Pronomo Familinomo<br>Strato 1<br>1234 Urbo
+      Mr<br>First Name Last Name<br>Street 1<br>1234 City
     </address>
     <a href="#">
-      <post-icon aria-label="Redaktu adreson" scale="1.5" name="3193"></post-icon>
-      <span class="visually-hidden">Redaktu adreson</span>
+      <post-icon aria-label="Edit Address" scale="1.5" name="3193"></post-icon>
+      <span class="visually-hidden">Edit Address</span>
     </a>
   </li>
-  <li class="list-group-item d-flex align-items-center justify-content-between">
-    <p class="mb-0">Lingvo: <span class="fw-bold">Germana</span></p>
+  <li class="list-interactive-item d-flex align-items-center justify-content-between">
+    <p class="mb-0">Language: <span class="fw-bold">English</span></p>
     <a href="#">
-      <post-icon aria-label="Redakti lingvon" scale="1.5" name="3193"></post-icon>
-      <span class="visually-hidden">Redakti lingvon</span>
+      <post-icon aria-label="Edit Language" scale="1.5" name="3193"></post-icon>
+      <span class="visually-hidden">Edit Language</span>
     </a>
   </li>
 </ul>`,
     customFooter: `<div class="card-footer card-links">
-  <a href="#">Aldonu adreson</a>
+  <a href="#">Add Address</a>
 </div>`,
   },
 };
@@ -415,12 +421,12 @@ export const BackgroundImage: Story = {
     customBody: `<img class="card-img" src="https://picsum.photos/id/20/300/200" alt="" />
   <div class="card-img-overlay">
     <div class="card-body">
-      <h5 class="card-title">Titulum</h5>
+      <h5 class="card-title">Card Title</h5>
 
-      <p class="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
+      <p class="card-text">This is the card content that can contain various types of information.</p>
 
       <button class="btn btn-primary">
-        <span>Butonon teksto</span>
+        <span>Button Text</span>
       </button>
     </div>
   </div>`,

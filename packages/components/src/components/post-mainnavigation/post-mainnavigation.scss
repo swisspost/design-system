@@ -42,20 +42,6 @@ post-mainnavigation {
     }
   }
 
-  .back-button {
-    post-icon {
-      transform: rotate(180deg);
-    }
-
-    @include media.max(lg) {
-      font-size: 16px;
-    }
-
-    @include media.max(sm) {
-      font-size: 14px;
-    }
-  }
-
   // styles specific to for the mega-dropdown buttons
   > button,
   post-megadropdown-trigger button {
@@ -79,49 +65,42 @@ post-mainnavigation {
   // desktop styles
   @include media.min(lg) {
     display: block;
-    overflow-x: hidden;
+    position: relative;
+    height: var(--post-main-navigation-height);
+    background: color.$white;
+    user-select: none;
 
     nav {
-      max-width: 100%;
-      background: color.$white;
-      max-height: var(--post-main-navigation-height);
-      user-select: none;
-      transition: margin animation.$transition-base-timing;
+      flex: 1 1 auto;
+      overflow: hidden;
+      scroll-behavior: smooth;
     }
 
-    .left-scroll-button,
-    .right-scroll-button {
-      z-index: 4;
+    .scroll-control {
+      cursor: pointer;
       position: absolute;
-      inset-block-end: 0;
-      overflow: hidden;
+      inset-block: 0;
+      z-index: 5;
+      padding: 16px;
+      background: color.$white;
+      box-shadow: elevation.$elevation-500;
+      line-height: 1;
 
-      button {
-        @include button.reset-button;
-        background: color.$white;
-        padding: 16px;
-        box-shadow: elevation.$elevation-500;
-        line-height: 100%;
-        height: var(--post-main-navigation-height);
+      &.scroll-left {
+        inset-inline-start: 0;
+      }
 
-        post-icon {
-          font-size: 1rem;
-        }
+      &.scroll-right {
+        inset-inline-end: 0;
       }
 
       &.d-none {
         display: none;
       }
-    }
 
-    .left-scroll-button {
-      inset-inline-start: 0;
-      padding-inline-end: 2rem;
-    }
-
-    .right-scroll-button {
-      inset-inline-end: 0;
-      padding-inline-start: 2rem;
+      post-icon {
+        font-size: 1rem;
+      }
     }
 
     post-list > [role='list'] {
@@ -139,6 +118,10 @@ post-mainnavigation {
         gap: 4px;
         font-size: 16px;
         z-index: 4;
+
+        @include media.max(lg) {
+          z-index: 5;
+        }
 
         .nav-el-active {
           font-weight: 700;
@@ -206,10 +189,6 @@ post-mainnavigation {
         @include header-mx.mobile-header-interactive;
       }
     }
-
-    [slot='back-button'] {
-      display: none;
-    }
   }
 
   // tablet/mobile styles
@@ -218,8 +197,7 @@ post-mainnavigation {
       transform: none !important;
     }
 
-    .left-scroll-button,
-    .right-scroll-button {
+    .scroll-control {
       display: none;
     }
 
@@ -240,9 +218,5 @@ post-mainnavigation {
     post-megadropdown-trigger button::after {
       transform: rotate(-90deg);
     }
-  }
-
-  .back-button .btn {
-    padding-inline: 0;
   }
 }

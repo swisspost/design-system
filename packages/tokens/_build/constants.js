@@ -17,13 +17,14 @@ export const FILE_HEADER = [
 export const TOKENSET_NAMES = {
   Core: 'core',
   Scheme: 'scheme',
+  SchemeStatic: 'scheme',
   Device: 'device',
   Channel: 'channel',
   Theme: 'theme',
+  Palette: 'palette',
   Elements: 'elements',
   Components: 'components',
   Utilities: 'utilities',
-  Palettes: 'palettes',
   Helpers: 'helpers',
 };
 
@@ -55,3 +56,6 @@ export const NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES = [
   'spacing',
   'sizing',
 ];
+
+export const PX_TO_REM_TOKEN_TYPE = 'fontSize';
+export const BASE_FONT_SIZE = 16;

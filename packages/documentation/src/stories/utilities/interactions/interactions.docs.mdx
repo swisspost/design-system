@@ -1,0 +1,27 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Interactions from './interactions.stories';
+
+<Meta of={Interactions} />
+
+# Interactions
+
+<div className="lead">
+  Use pointer events and user select classes to define how users interact with your content.
+</div>
+
+## Pointer events
+
+- `.pe-none`: Prevents pointer interactions on links and controls.
+- `.pe-auto`: Enables pointer interactions (default).
+
+Note that setting `.pe-none` to an element only prevents interactions with pointers (mouse, stylus, touch) but keyboard users can still interact with it.
+
+<Canvas sourceState="shown" of={Interactions.PointerEvents} />
+
+### User select
+
+- `.user-select-all`: The whole context of the selection will be selected automatically.
+- `.user-select-auto`: Only the part selected by the user is selected (default).
+- `.user-select-none`: The text of the element is not selectable.
+
+<Canvas sourceState="shown" of={Interactions.UserSelect} />

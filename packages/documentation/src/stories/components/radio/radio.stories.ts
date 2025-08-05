@@ -1,8 +1,9 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { useArgs } from '@storybook/preview-api';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+import { useArgs } from 'storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { getLabelText, getValidationMessages } from '@/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -31,6 +32,7 @@ const meta: MetaComponent = {
     checked: false,
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     hiddenLegend: {
@@ -56,7 +58,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -77,7 +79,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -102,6 +104,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
   render: render,
 };
@@ -118,13 +136,10 @@ function render(args: Args, context: StoryContext) {
   const useAriaLabel = args.hiddenLabel;
 
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}">${args.label}</label> `
+    ? html` <label for="${id}">${getLabelText(args)}</label> `
     : null;
 
-  const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
-    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
-  ];
+  const contextual: (TemplateResult | null)[] = getValidationMessages(args, context, false);
 
   const control = html`
     <input
@@ -136,7 +151,11 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+      aria-describedby="${args.validation != 'null'
+        ? `${args.validation}-id-${context.id}`
+        : nothing}"
       @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
+      ?required="${args.requiredOptional === 'required'}"
     />
   `;
 

@@ -1,5 +1,5 @@
-import { StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { StoryObj } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
 
@@ -20,28 +20,32 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
     activePanel: {
       name: 'active-panel',
       control: 'select',
-      options: ['unua', 'dua', 'tria'],
+      options: ['first', 'second', 'third'],
     },
   },
+  args: { fullWidth: false },
 };
 
 export default meta;
 
 function renderTabs(args: Partial<HTMLPostTabsElement>) {
   return html`
-    <post-tabs active-panel="${ifDefined(args.activePanel)}">
-      <post-tab-header panel="unua">Unua langeto</post-tab-header>
-      <post-tab-header panel="dua">Dua langeto</post-tab-header>
-      <post-tab-header panel="tria">Tria langeto</post-tab-header>
+    <post-tabs
+      active-panel="${ifDefined(args.activePanel)}"
+      full-width="${args.fullWidth ? true : nothing}"
+    >
+      <post-tab-header panel="first">First tab</post-tab-header>
+      <post-tab-header panel="second">Second tab</post-tab-header>
+      <post-tab-header panel="third">Third tab</post-tab-header>
 
-      <post-tab-panel name="unua">
-        Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
+      <post-tab-panel name="first">
+        This is the content of the first tab. By default it is shown initially.
       </post-tab-panel>
-      <post-tab-panel name="dua">
-        Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
+      <post-tab-panel name="second">
+        This is the content of the second tab. By default it is hidden initially.
       </post-tab-panel>
-      <post-tab-panel name="tria">
-        Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
+      <post-tab-panel name="third">
+        This is the content of the third tab. By default it is also hidden initially.
       </post-tab-panel>
     </post-tabs>
   `;
@@ -50,12 +54,24 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
 // STORIES
 type Story = StoryObj<HTMLPostTabsElement>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
 
 export const ActivePanel: Story = {
   args: {
-    activePanel: 'tria',
+    activePanel: 'third',
   },
+};
+
+export const FullWidth: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: { fullWidth: true },
+  decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
 export const Async: Story = {
@@ -67,8 +83,8 @@ export const Async: Story = {
 
         tabIndex++;
         const newTab = `
-          <post-tab-header panel="panel-${tabIndex}">Nova langeto ${tabIndex}</post-tab-header>
-          <post-tab-panel name="panel-${tabIndex}">Jen la enhavo de la nova langeto ${tabIndex}.</post-tab-panel>
+          <post-tab-header panel="panel-${tabIndex}">New tab ${tabIndex}</post-tab-header>
+          <post-tab-panel name="panel-${tabIndex}">This is the content of the new tab ${tabIndex}.</post-tab-panel>
         `;
 
         tabs?.insertAdjacentHTML('beforeend', newTab);

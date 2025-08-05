@@ -1,7 +1,8 @@
-import { Meta, Source } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
 import * as PackageStories from './components-angular.stories';
 import AngularAppModuleSample from './angular-app-module.sample.ts?raw';
 import AngularAppComponentSample from './angular-app-component.sample.html?raw';
+import SampleCssGlobal from './angular-app-css-global.sample.css?raw';
 import changelog from '@/../../components-angular/projects/components/CHANGELOG.md?raw';
 import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
@@ -9,7 +10,9 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
 # @swisspost/design-system-components-angular
 
-[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-angular.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-angular)
+<div className="npm-package-link">
+  [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-angular.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-angular)
+</div>
 
 <div className='lead'>
   The Design System Angular Components, ready for use in your Angular project.
@@ -53,6 +56,13 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   <Source code={`npm install @swisspost/design-system-components-angular`} language="bash" />
 
   ## Usage
+
+  Import the packages global styles. They are required for the components to work properly.
+
+  <Source
+    code={SampleCssGlobal}
+    language="scss"
+  />
 
   Importing the components to your project.
 

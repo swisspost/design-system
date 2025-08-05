@@ -1,11 +1,11 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '8ca2bd70-56e6-4da9-b1fd-4e55388dca88',
   title: 'Raw Components/Menu Button',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'devOnly'],
   component: 'post-menu',
   parameters: {
     design: {},
@@ -63,10 +63,7 @@ function render(args: Args) {
       placement="${args.placement !== 'bottom' ? args.placement : nothing}"
     >
       <post-menu-item><button>Example 1</button></post-menu-item>
-      <post-menu-item>
-        <a href="#">Example 2</a>
-        <post-menu-item><div>Example 3</div></post-menu-item>
-      </post-menu-item>
+      <post-menu-item><a href="#">Example 2</a></post-menu-item>
     </post-menu>
   `;
 }

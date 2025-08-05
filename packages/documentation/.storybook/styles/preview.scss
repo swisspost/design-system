@@ -1,14 +1,29 @@
+// importing the global component styles
+@use '@swisspost/design-system-components/post-components.css';
+
 // importing the complete styles package scss
 @use '@swisspost/design-system-styles/core.scss' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/tokens/elements';
+@use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/utilities';
-@use '@swisspost/design-system-styles/tokens/elements';
 
 tokens.$default-map: utilities.$post-color;
 
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+// Mixin for toolbar button icons
+@mixin toolbar-icon($icon-name) {
+  @include post.post-icon($name: $icon-name, $base: '/post-icons');
+  content: '';
+  margin-right: 0.5rem;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 #storybook-root,
 #storybook-docs {
@@ -89,7 +104,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   // Style buttons related to the current page next to the tile
   .docs-title,
-  .docs-title nav {
+  .docs-title > .buttons-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -97,8 +112,14 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   }
 
   // aligns figma button to the title
-  .docs-title nav {
+  .docs-title > link-design,
+  .docs-title > .buttons-container {
     margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
+  }
+
+  // ensures the focus ring is visible on anchor links
+  .docs-container ul li a > p {
+    display: inline;
   }
 
   .docs-title {
@@ -109,8 +130,18 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .npm-package-link a {
+    display: inline-block;
+    @include post.focus-style;
+  }
+
   pre {
     font-size: 100%;
+
+    .token.comment,
+    .token.doctype {
+      color: #888;
+    }
   }
 
   code {
@@ -159,9 +190,82 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .sbdocs-expandable {
+    color: #0073bc;
+  }
+
   .docs-story {
+    padding: 1rem;
+    padding-block-end: 2rem;
+
     [scale] {
       transform: none;
+    }
+
+    > :first-child {
+      padding: 0;
+    }
+
+    > :last-child {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      background: transparent;
+
+      button {
+        &:hover {
+          background-color: rgba(0, 115, 188, 0.08);
+        }
+
+        &:nth-of-type(2) {
+          border-top-left-radius: 4px;
+        }
+      }
+    }
+  }
+
+  .docblock-argstable-body td a,
+  // targets only the visible buttons
+  .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
+    color: #0073bc;
+  }
+
+  @include media.max(sm) {
+    .docs-story > div:first-child {
+      padding-bottom: 3rem;
+    }
+  }
+
+  .docblock-code-toggle {
+    margin-right: auto;
+    border-radius: 0 4px 0 0;
+
+    @include media.min(md) {
+      &::before {
+        @include toolbar-icon('2052');
+        transition: all 0.3s ease;
+      }
+
+      &--expanded::before {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .docblock-code-toggle + button {
+    @include media.min(md) {
+      &::before {
+        @include toolbar-icon('resizeexpand');
+      }
+
+      + button::before {
+        @include toolbar-icon('link');
+      }
+
+      + button + button::before {
+        @include toolbar-icon('code');
+      }
     }
   }
 
@@ -205,8 +309,50 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   overflow-x: hidden;
 }
 
-.sbdocs-preview:not([data-color-scheme]) {
-  display: none;
+.sbdocs-preview {
+  &:not([data-color-scheme]) {
+    display: none;
+  }
+
+  .docs-story {
+    > div:last-child {
+      background: none !important;
+
+      button {
+        color: inherit;
+      }
+    }
+  }
+
+  &[data-color-scheme='light'] {
+    .docs-story {
+      > div:last-child {
+        button {
+          background-color: #efefef;
+          border-color: #ccc;
+
+          &:hover {
+            background-color: #e2e2e2;
+          }
+        }
+      }
+    }
+  }
+
+  &[data-color-scheme='dark'] {
+    .docs-story {
+      > div:last-child {
+        button {
+          background-color: #4b4b4b;
+          border-color: #5d5d5d;
+
+          &:hover {
+            background-color: #424242;
+          }
+        }
+      }
+    }
+  }
 }
 
 .fake-content {

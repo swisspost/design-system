@@ -1,7 +1,8 @@
 import { MetaComponent } from '@root/types';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { mapClasses } from '@/utils';
+import { getLabelText, getValidationMessages } from '@/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -26,9 +27,10 @@ const meta: MetaComponent = {
     floatingLabel: true,
     hiddenLabel: false,
     value: undefined,
-    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
+    hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     label: {
@@ -54,7 +56,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -103,7 +105,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -128,6 +130,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
 };
 
@@ -141,20 +159,20 @@ function renderTextarea(args: Args, context: StoryContext) {
     [args.validation]: args.validation,
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
+
   const label = !useAriaLabel
-    ? html` <label for=${context.id} class="form-label">${args.label}</label> `
+    ? html` <label for=${context.id} class="form-label">${getLabelText(args)}</label> `
     : null;
-  const contextual = [
-    args.validation === 'is-valid'
-      ? html`<div class="valid-feedback">Ggranda sukceso!</div>`
-      : null,
-    args.validation === 'is-invalid'
-      ? html`<div class="invalid-feedback">Eraro okazis!</div>`
-      : null,
-    args.hint !== ''
-      ? html`<p class="form-hint" id="form-hint-${context.id}">${args.hint}</p>`
-      : null,
-  ];
+  const contextual = getValidationMessages(args, context);
+
+  const ariaDescribedByParts = [
+    args.hint ? 'form-hint-' + context.id : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+  ].filter(Boolean);
+
+  const ariaDescribedBy =
+    args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
+
   const control = html`
     <textarea
       id=${context.id}
@@ -165,8 +183,9 @@ function renderTextarea(args: Args, context: StoryContext) {
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
-      aria-describedby="${args.hint ? 'form-hint-' + context.id : ''}"
+      aria-describedby="${ariaDescribedBy}"
       style=${args.resize ?? nothing}
+      ?required="${args.requiredOptional === 'required'}"
     >
 ${args.textInside ?? nothing}</textarea
     >

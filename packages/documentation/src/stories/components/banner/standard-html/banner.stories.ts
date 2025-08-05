@@ -1,4 +1,4 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getBannerClasses } from './getBannerClasses';
@@ -20,7 +20,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    content: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
+    content: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     show: true,
     action: true,
     noIcon: false,
@@ -171,21 +171,21 @@ function renderBanner(args: Args) {
   `;
 
   const body = html`
-    ${args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing}
-    ${args.action ? html` <div class="banner-content">${content}</div> ` : content}
-    ${args.action
-      ? html`
-          <div class="banner-buttons">
-            <button class="btn btn-primary">
-              <span>Akcepti</span>
-            </button>
-            <button class="btn btn-secondary">
-              <span>Aborti</span>
-            </button>
-          </div>
-        `
-      : null}
-  `;
+  ${args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing}
+  ${args.action ? html` <div class="banner-content">${content}</div> ` : content}
+  ${args.action
+    ? html`
+        <div class="banner-buttons">
+          <button class="btn btn-primary">
+            <span>Accept</span>
+          </button>
+          <button class="btn btn-secondary">
+            <span>Cancel</span>
+          </button>
+        </div>
+      `
+    : null}
+`;
 
   if (args.dialog) {
     return html`<dialog class="banner-container" open="${args.open || nothing}">
@@ -210,15 +210,15 @@ export const Default: Story = {};
 
 export const AdditionalContent: Story = {
   args: {
-    title: 'Titulum',
-    content: `<p>Contentum momentum ipsum tipsum sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+    title: 'Title',
+    content: `<p>This content demonstrates a full-featured banner with multiple elements. It includes formatted text, lists, and a separator to organize information effectively.</p>
   <ul>
-    <li>Un orde redlis titem</li>
-    <li>An deven moreun orde redlis titem</li>
-    <li>Thel astofu orde redlis titem</li>
+    <li>First ordered list item</li>
+    <li>Another important ordered list item</li>
+    <li>The last ordered list item</li>
   </ul>
 <hr />
-<p>An deven morecon tentum no sea takimata sanctus est magna aliquyam erat.</p>`,
+<p>Additional content follows the separator to provide further context or instructions as needed.</p>`,
   },
 };
 

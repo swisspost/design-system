@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as AppStoreBadgeStories from './app-store-badge.stories';
 
 <Meta of={AppStoreBadgeStories} />
@@ -6,9 +6,7 @@ import * as AppStoreBadgeStories from './app-store-badge.stories';
 <div className="docs-title">
   # App Store Badge
 
-  <nav>
-    <link-design of={JSON.stringify(AppStoreBadgeStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(AppStoreBadgeStories)}></link-design>
 </div>
 
 <div className="lead">

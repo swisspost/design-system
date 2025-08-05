@@ -1,7 +1,8 @@
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { IS_BROWSER, getAttributeObserver } from '@/utils';
+import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
+import { IS_BROWSER, getAttributeObserver, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -41,16 +42,26 @@ export class PostPopover {
   @Element() host: HTMLPostPopoverElement;
 
   /**
-   * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   * Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted
-   * towards the viewport if they would overlap edge boundaries.
+   * Defines the position of the popover relative to its trigger.
+   * Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+   * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
   @Prop() readonly placement?: Placement = 'top';
+
+  @Watch('placement')
+  validatePlacement() {
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
+  }
 
   /**
    * Define the caption of the close button for assistive technology
    */
   @Prop() readonly closeButtonCaption!: string;
+
+  @Watch('closeButtonCaption')
+  validateCloseButtonCaption() {
+    checkRequiredAndType(this, 'closeButtonCaption', 'string');
+  }
   /**
    * Show a little indicator arrow
    */
@@ -79,6 +90,8 @@ export class PostPopover {
   }
 
   componentDidLoad() {
+    this.validatePlacement();
+    this.validateCloseButtonCaption();
     this.popoverRef.addEventListener('beforetoggle', this.localBeforeToggleHandler);
   }
 
@@ -103,6 +116,7 @@ export class PostPopover {
   @Method()
   async show(target: HTMLElement) {
     this.popoverRef.show(target);
+    console.log(this.popoverRef);
     target.setAttribute('aria-expanded', 'true');
   }
 

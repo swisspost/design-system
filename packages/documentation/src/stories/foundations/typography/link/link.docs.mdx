@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as LinkStories from './link.stories';
 
 <Meta of={LinkStories} />
@@ -6,10 +6,9 @@ import * as LinkStories from './link.stories';
 <div className="docs-title">
   # Link
 
-  <nav>
-    <link-design of={JSON.stringify(LinkStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(LinkStories)}></link-design>
 </div>
+
 <div className="lead">
   Use links to navigate users to another location, such as a different site, resource, or section within the same page.
 </div>

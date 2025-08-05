@@ -45,22 +45,16 @@ const TEAM_MEMBERS: TeamMember[] = [
     githubUsername: 'alionazherdetska',
   },
   {
-    name: 'Tim Schär',
-    title: 'UI Developer',
-    githubImageId: '59233938',
-    githubUsername: 'schaertim',
-  },
-  {
     name: 'Rouven Steiger',
     title: 'Art Guy EDK',
     githubImageId: '104423005',
     githubUsername: 'rouvenpost',
   },
   {
-    name: 'Christian Zundel',
-    title: 'UX Designer',
-    githubImageId: '119845956',
-    githubUsername: 'Cian77',
+    name: 'Sandra Hohl',
+    title: 'UX Architect',
+    githubImageId: '175929675',
+    githubUsername: 'sandra-post',
   },
   {
     name: 'Alessio Travaglini',
@@ -69,10 +63,10 @@ const TEAM_MEMBERS: TeamMember[] = [
     githubUsername: 'Vandapanda',
   },
   {
-    name: 'Romain Veya',
+    name: 'Hugo Machado da Silva',
     title: 'UI Developer',
-    githubImageId: '111903046',
-    githubUsername: 'veyaromain',
+    githubImageId: '170833805',
+    githubUsername: 'hugomslv',
   },
 ];
 

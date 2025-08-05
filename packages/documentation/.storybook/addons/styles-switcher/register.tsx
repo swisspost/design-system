@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { addons, types } from '@storybook/manager-api';
+import { addons, types } from 'storybook/manager-api';
 import StylesSwitcher from './StylesSwitcher';
 
 const ADDON_ID = 'postStylesSwitcher';

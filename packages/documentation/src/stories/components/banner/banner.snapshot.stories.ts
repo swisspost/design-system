@@ -1,4 +1,4 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -76,10 +76,10 @@ export const Banner: Story = {
                     ? html`
                         <div class="banner-buttons">
                           <button class="btn btn-primary">
-                            <span>Akcepti</span>
+                            <span>Accept</span>
                           </button>
                           <button class="btn btn-secondary">
-                            <span>Aborti</span>
+                            <span>Cancel</span>
                           </button>
                         </div>
                       `
@@ -89,6 +89,10 @@ export const Banner: Story = {
             )}
         </div>
       `,
+      {
+        // dark mode is not yet designed/implemented
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };
@@ -128,6 +132,10 @@ export const PostBanner: Story = {
           )}
         </div>
       `,
+      {
+        // dark mode is not yet designed/implemented
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };

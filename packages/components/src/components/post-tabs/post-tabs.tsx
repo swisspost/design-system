@@ -22,10 +22,10 @@ export class PostTabs {
   private isLoaded = false;
 
   private get tabs(): HTMLPostTabHeaderElement[] {
-    return Array.from(this.host.querySelectorAll<HTMLPostTabHeaderElement>('post-tab-header')).filter(tab =>
-      tab.closest('post-tabs') === this.host
-    );
-  }  
+    return Array.from(
+      this.host.querySelectorAll<HTMLPostTabHeaderElement>('post-tab-header'),
+    ).filter(tab => tab.closest('post-tabs') === this.host);
+  }
 
   @Element() host: HTMLPostTabsElement;
 
@@ -35,7 +35,13 @@ export class PostTabs {
    *
    * **Changing this value after initialization has no effect.**
    */
-  @Prop() readonly activePanel: HTMLPostTabPanelElement['name'];
+  @Prop() readonly activePanel?: HTMLPostTabPanelElement['name'];
+
+  /**
+   * When set to true, this property allows the tabs container to span the
+   * full width of the screen, from edge to edge.
+   */
+  @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.

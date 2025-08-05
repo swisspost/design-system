@@ -1,9 +1,8 @@
 import { Component, Element, Host, h, Prop, Watch, State, Listen } from '@stencil/core';
-import { checkEmptyOrOneOf, checkType } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { nanoid } from 'nanoid';
-import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-language-switch',
@@ -11,26 +10,34 @@ import { eventGuard } from '@/utils/event-guard';
   shadow: true,
 })
 export class PostLanguageSwitch {
+  private readonly menuId = `p${nanoid(11)}`;
+  private readonly listSpanId = `list-span-${nanoid(11)}`;
+  private get languageOptions(): HTMLPostLanguageOptionElement[] {
+    return Array.from(
+      this.host.querySelectorAll<HTMLPostLanguageOptionElement>('post-language-option'),
+    );
+  }
+
   @Element() host: HTMLPostLanguageSwitchElement;
 
   /**
    * A title for the list of language options
    */
-  @Prop() caption: string;
+  @Prop() caption!: string;
 
   @Watch('caption')
   validateCaption() {
-    checkType(this, 'caption', 'string');
+    checkRequiredAndType(this, 'caption', 'string');
   }
 
   /**
    * A descriptive text for the list of language options
    */
-  @Prop() description: string;
+  @Prop() description!: string;
 
   @Watch('description')
   validateDescription() {
-    checkType(this, 'description', 'string');
+    checkRequiredAndType(this, 'description', 'string');
   }
 
   /**
@@ -57,38 +64,31 @@ export class PostLanguageSwitch {
     // Initially set variants and active language
     // Handles cases where the language-switch is rendered after the language-options have been rendered
     this.updateChildrenVariant();
-    this.updateActiveLanguage();
   }
 
   /**
    * Listen for the postChange event and guard it to run only for events originating from a <post-language-option> element.
    */
   @Listen('postChange')
+  @EventFrom('post-language-option')
   handlePostChange(event: CustomEvent<string>) {
-    eventGuard(
-      this.host,
-      event,
-      { targetLocalName: 'post-language-option', delegatorSelector: 'post-language-switch' },
-      () => {
-        this.activeLang = event.detail;
-  
-        // Update the active state in the children post-language-option components
-        this.languageOptions.forEach(lang => {
-          if (lang.code && lang.code === this.activeLang) {
-            lang.setAttribute('active', '');
-          } else {
-            lang.removeAttribute('active');
-          }
-        });
-  
-        // Hides the dropdown when an option has been clicked
-        if (this.variant === 'menu') {
-          const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
-          menu.hide();
-        }
+    this.activeLang = event.detail;
+
+    // Update the active state in the children post-language-option components
+    this.languageOptions.forEach(lang => {
+      if (lang.code && lang.code === this.activeLang) {
+        lang.setAttribute('active', '');
+      } else {
+        lang.removeAttribute('active');
       }
-    );
-  }  
+    });
+
+    // Hides the dropdown when an option has been clicked
+    if (this.variant === 'menu') {
+      const menu = this.host.shadowRoot.querySelector<HTMLPostMenuElement>('post-menu');
+      menu.hide();
+    }
+  }
 
   /**
    * Handles cases where the language switch is being rendered before options are available
@@ -99,36 +99,27 @@ export class PostLanguageSwitch {
     this.activeLang = event.detail;
   }
 
-  private get languageOptions() {
-    return this.host.querySelectorAll('post-language-option');
-  }
-
-  private get activeLanguageOption() {
-    return this.host.querySelector('post-language-option[active]:not([active="false"])');
-  }
-
-  private handleSlotChange() {
-    this.updateActiveLanguage();
-  }
-
-  private updateActiveLanguage() {
-    this.activeLang = this.activeLanguageOption.getAttribute('code');
-  }
-
   // Update post-language-option variant to have the correct style
   private updateChildrenVariant() {
     this.languageOptions.forEach(el => {
       el.setAttribute('variant', this.variant);
+      el.setAttribute('role', this.variant == 'menu' ? 'menuitem' : 'listitem');
     });
   }
 
-  private menuId = `p${nanoid(11)}`;
-
   private renderList() {
     return (
-      <Host data-version={version} role="list" aria-label={this.caption}>
-        <div class="post-language-switch-list" role="group" aria-label={this.description}>
-          <slot onSlotchange={() => this.handleSlotChange()}></slot>
+      <Host data-version={version}>
+        <div
+          class="post-language-switch-list"
+          role="list"
+          aria-label={this.caption}
+          aria-describedby={this.listSpanId}
+        >
+          <span id={this.listSpanId} class="visually-hidden">
+            {this.description}
+          </span>
+          <slot></slot>
         </div>
       </Host>
     );
@@ -138,8 +129,10 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
-          <button class="post-language-switch-trigger" aria-label={this.description}>
+          <button class="post-language-switch-trigger">
             {this.activeLang}
+            <span class="visually-hidden">{this.caption}</span>
+            <span class="visually-hidden">{this.description}</span>
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
@@ -147,8 +140,9 @@ export class PostLanguageSwitch {
           id={this.menuId}
           class="post-language-switch-dropdown-container"
           aria-label={this.caption}
+          role="menu"
         >
-          <slot onSlotchange={() => this.handleSlotChange()}></slot>
+          <slot></slot>
         </post-menu>
       </Host>
     );

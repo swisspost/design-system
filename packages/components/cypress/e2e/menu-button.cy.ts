@@ -4,6 +4,11 @@ describe('menu', () => {
   describe('default', () => {
     beforeEach(() => {
       cy.getComponents(MENUBUTTON_ID, 'default', 'post-menu', 'post-menu-trigger');
+
+      // Ensure the components are hydrated, which is necessary to ensure the component is ready for interaction
+      cy.get('post-menu-trigger[data-hydrated]');
+      cy.get('post-menu[data-hydrated]');
+
       cy.get('@menu-trigger').find('.btn').as('trigger');
     });
 
@@ -16,10 +21,7 @@ describe('menu', () => {
     });
 
     it('should be initially hidden', () => {
-      cy.get('@menu')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none')
+      cy.get('@menu').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
     });
 
     it('should update the "aria-expanded" attribute after showing the menu', () => {
@@ -37,10 +39,7 @@ describe('menu', () => {
 
     it('should hide the menu after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
-      cy.get('@menu')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none');
+      cy.get('@menu').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
     });
 
     it('should update the "aria-expanded" attribute after hiding the menu', () => {
@@ -54,6 +53,11 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
   describe('multiple menus', () => {
     beforeEach(() => {
       cy.visit('cypress/fixtures/post-menu.test.html');
+
+      // Ensure the components are hydrated, which is necessary to ensure the component is ready for interaction
+      cy.get('post-menu-trigger[data-hydrated]');
+      cy.get('post-menu[data-hydrated]');
+
       cy.get('post-menu-trigger[for="menu-one"]').as('triggerA');
       cy.get('post-menu#menu-one').as('menuA');
       cy.get('post-menu-trigger[for="menu-two"]').as('triggerB');
@@ -76,22 +80,10 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should be initially hidden', () => {
-      cy.get('@menuA')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none')
-      cy.get('@menuB')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none')
-      cy.get('@menuC')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none')
-      cy.get('@menuD')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none')
+      cy.get('@menuA').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
+      cy.get('@menuB').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
+      cy.get('@menuC').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
+      cy.get('@menuD').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
     });
 
     it('should toggle menuA when clicking triggerA', () => {
@@ -100,10 +92,7 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
         .shadow()
         .find('post-popovercontainer')
         .should('not.have.css', 'display', 'none');
-      cy.get('@menuB')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none');
+      cy.get('@menuB').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
     });
 
     it('should toggle menuB when clicking triggerB', () => {
@@ -112,10 +101,7 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
         .shadow()
         .find('post-popovercontainer')
         .should('not.have.css', 'display', 'none');
-      cy.get('@menuA')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none');
+      cy.get('@menuA').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
     });
 
     it('should toggle menuC when clicking triggerC or triggerD', () => {
@@ -124,10 +110,7 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
         .shadow()
         .find('post-popovercontainer')
         .should('not.have.css', 'display', 'none');
-      cy.get('@menuD')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none');
+      cy.get('@menuD').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
 
       cy.get('@triggerC').click();
       cy.get('@triggerD').click();
@@ -139,16 +122,10 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('should not affect menuD when clicking triggerC or triggerD', () => {
       cy.get('@triggerC').click();
-      cy.get('@menuD')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none');
+      cy.get('@menuD').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
 
       cy.get('@triggerD').click();
-      cy.get('@menuD')
-        .shadow()
-        .find('post-popovercontainer')
-        .should('have.css', 'display', 'none');
+      cy.get('@menuD').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
     });
   });
 });

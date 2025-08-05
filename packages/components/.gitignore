@@ -2,6 +2,7 @@ dist/
 www/
 loader/
 loaders/
+hydrate/
 storybook-static/
 
 *~
@@ -20,6 +21,7 @@ log.txt
 .sass-cache/
 .versions/
 node_modules/
+src/styles/generated/
 $RECYCLE.BIN/
 
 .DS_Store

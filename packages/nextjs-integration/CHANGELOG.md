@@ -1,5 +1,86 @@
 # @swisspost/design-system-nextjs-integration
 
+## 0.1.14-next.42
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components-react@10.0.0-next.42
+  - @swisspost/design-system-styles@10.0.0-next.42
+  - @swisspost/internet-header@2.0.0-next.42
+
+## 0.1.14-next.41
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.41
+  - @swisspost/design-system-components-react@10.0.0-next.41
+  - @swisspost/internet-header@2.0.0-next.41
+
+## 0.1.14-next.40
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.40
+  - @swisspost/design-system-components-react@10.0.0-next.40
+  - @swisspost/internet-header@2.0.0-next.40
+
+## 0.1.14-next.39
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.39
+  - @swisspost/design-system-components-react@10.0.0-next.39
+  - @swisspost/internet-header@2.0.0-next.39
+
+## 0.1.14-next.38
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/internet-header@2.0.0-next.38
+  - @swisspost/design-system-styles@10.0.0-next.38
+  - @swisspost/design-system-components-react@10.0.0-next.38
+
+## 0.1.14-next.37
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.37
+  - @swisspost/internet-header@2.0.0-next.37
+  - @swisspost/design-system-components-react@10.0.0-next.37
+
+## 0.1.14-next.36
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components-react@9.0.0-next.36
+  - @swisspost/design-system-styles@9.0.0-next.36
+  - @swisspost/internet-header@2.0.0-next.36
+
+## 0.1.14-next.35
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.35
+  - @swisspost/internet-header@2.0.0-next.35
+  - @swisspost/design-system-components-react@9.0.0-next.35
+
+## 0.1.14-next.34
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.34
+  - @swisspost/design-system-components-react@9.0.0-next.34
+  - @swisspost/internet-header@2.0.0-next.34
+
 ## 0.1.14-next.33
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 // Source: https://github.com/NicholasBoll/cypress-storybook
 
-import { addons } from '@storybook/preview-api';
-import Events from '@storybook/core-events';
+import { addons } from 'storybook/preview-api';
+import Events from 'storybook/internal/core-events';
 
 // Collect actions emitted by storybook/addon-actions
 window.__actions = {};

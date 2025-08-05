@@ -1,9 +1,10 @@
-import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { getLabelText } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
@@ -24,6 +25,7 @@ const meta: MetaComponent = {
     checked: false,
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     labelPosition: {
@@ -54,7 +56,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -75,7 +77,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -96,6 +98,22 @@ const meta: MetaComponent = {
         },
       },
       options: ['null', 'is-valid', 'is-invalid'],
+      table: {
+        category: 'States',
+      },
+    },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
       table: {
         category: 'States',
       },
@@ -126,17 +144,26 @@ function renderSwitch(args: Args, context: StoryContext) {
   const useLabelAfter = !useAriaLabel && 'after' === args.labelPosition;
 
   const labelBefore = useLabelBefore
-    ? html` <label for=${context.id} class="form-check-label order-first">${args.label}</label> `
+    ? html`
+        <label for=${context.id} class="form-check-label order-first">${getLabelText(args)}</label>
+      `
     : null;
 
   const labelAfter = useLabelAfter
-    ? html` <label for=${context.id} class="form-check-label">${args.label}</label> `
+    ? html` <label for=${context.id} class="form-check-label">${getLabelText(args)}</label> `
     : null;
 
-  const validationText = args.validation === 'is-valid' ? 'Ggranda sukceso!' : 'Eraro okazis!';
+  const validationText = args.validation === 'is-valid' ? 'Great success!' : 'An error occurred!';
   const validationFeedback =
     args.validation !== 'null'
-      ? html` <p class=${args.validation.split('-')[1] + '-feedback'}>${validationText}</p> `
+      ? html`
+          <p
+            class=${args.validation.split('-')[1] + '-feedback'}
+            id="${args.validation}-id-${context.id}"
+          >
+            ${validationText}
+          </p>
+        `
       : null;
 
   return html`
@@ -151,7 +178,11 @@ function renderSwitch(args: Args, context: StoryContext) {
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? ariaLabel : nothing}
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
+        aria-describedby="${args.validation != 'null'
+          ? `${args.validation}-id-${context.id}`
+          : nothing}"
         @change=${() => updateArgs({ checked: !args.checked })}
+        ?required="${args.requiredOptional === 'required'}"
       />
       ${labelBefore} ${labelAfter} ${args.validation !== 'null' ? validationFeedback : nothing}
     </div>
@@ -171,6 +202,6 @@ export const MultilineLabels: Story = {
   args: {
     labelPosition: 'after',
     label:
-      'Longa etikedo kiu plej versajne ne taugas sur unu linio kaj tial devas esti envolvita. Kaj nur por esti sur la sekura flanko, ni simple aldonu unu plian tre sencelan frazon ci tie. Vi neniam scias...',
+      'A long label that probably does not fit on one line and therefore must be wrapped. And just to be on the safe side, we simply add one more very senseless sentence here. You never know...',
   },
 };

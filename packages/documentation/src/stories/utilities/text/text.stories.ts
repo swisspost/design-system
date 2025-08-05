@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 
@@ -74,12 +74,12 @@ export const TextWrapping: Story = {
   render: () => html`
     <div class="my-container w-half">
       <p class="text-nowrap">
-        This text should NOT wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.
+        This text should NOT wrap, demonstrating how text behaves without wrapping enabled.
       </p>
     </div>
     <div class="my-container w-half text-nowrap">
       <p class="text-wrap">
-        This text should wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.
+        This text should wrap, showing how text naturally breaks into multiple lines when wrapping is enabled.
       </p>
     </div>
   `,

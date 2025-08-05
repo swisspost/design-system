@@ -1,11 +1,11 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 export interface PostLinkarea {
   dataLink?: boolean;
   anchorDefaultLink?: string;
-  anchorSepcifiedLink?: string;
+  anchorSpecifiedLink?: string;
 }
 
 const meta: MetaComponent<PostLinkarea> = {
@@ -20,7 +20,7 @@ const meta: MetaComponent<PostLinkarea> = {
   args: {
     dataLink: false,
     anchorDefaultLink: '#',
-    anchorSepcifiedLink: '#',
+    anchorSpecifiedLink: '#',
   },
   argTypes: {
     dataLink: {
@@ -44,7 +44,7 @@ const meta: MetaComponent<PostLinkarea> = {
         category: 'Links',
       },
     },
-    anchorSepcifiedLink: {
+    anchorSpecifiedLink: {
       name: 'Second link URL',
       description: 'This is the URL used for the second link in the card.',
       control: {
@@ -64,16 +64,16 @@ function renderLinkarea(args: Args) {
     <post-linkarea>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Titulum</h5>
-
-          <p class="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
-
-          <a class="card-link" href="${args.anchorDefaultLink}">Ligilo teksto</a>
+          <h5 class="card-title">Title</h5>
+          
+          <p class="card-text">This card demonstrates the link area functionality. Click anywhere to navigate to the first link, unless a specific link is marked with data-link.</p>
+          
+          <a class="card-link" href="${args.anchorDefaultLink}">Link text</a>
           <a
             class="card-link"
-            href="${args.anchorSepcifiedLink}"
+            href="${args.anchorSpecifiedLink}"
             data-link=${args.dataLink ? '' : nothing}
-            >Pli da ligo</a
+            >More links</a
           >
         </div>
       </div>

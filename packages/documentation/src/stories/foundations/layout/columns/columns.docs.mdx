@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ColumnStories from './columns.stories';
 import './columns.styles.scss';
 
@@ -12,11 +12,11 @@ import './columns.styles.scss';
 <li><b>When building grid layouts, all content goes in columns.</b> The hierarchy of our grid goes from container to row to column to your content.</li>
 </ul>
 
-### Alignment
+## Alignment
 
 Use flexbox alignment utilities to vertically and horizontally align columns.
 
-#### Vertical alignment
+### Vertical alignment
 
 Change the vertical alignment with any of the responsive <code>align-items-\*</code> classes.
 
@@ -27,7 +27,7 @@ Or, change the alignment of each column individually with any of the responsive 
   <Controls of={ColumnStories.VerticalExample} />
 </div>
 
-#### Horizontal alignment
+### Horizontal alignment
 
 Change the horizontal alignment with any of the responsive <code>justify-content-\*</code> classes.
 
@@ -36,7 +36,7 @@ Change the horizontal alignment with any of the responsive <code>justify-content
   <Controls of={ColumnStories.HorizontalExample} />
 </div>
 
-#### Column wrapping
+### Column wrapping
 
 If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line.
 
@@ -45,7 +45,7 @@ If more than 12 columns are placed within a single row, each group of extra colu
   <Controls of={ColumnStories.ColumnWrapping} />
 </div>
 
-#### Column breaks
+### Column breaks
 
 Breaking columns to a new line in flexbox requires a small hack: add an element with <code>width: 100%</code> wherever you want to wrap your columns to a new line. Normally this is accomplished with multiple <code>.rows</code>, but not every implementation method can account for this.
 
@@ -54,9 +54,9 @@ Breaking columns to a new line in flexbox requires a small hack: add an element 
   <Controls of={ColumnStories.ColumnBreakExample} />
 </div>
 
-### Reorderning
+## Reorderning
 
-#### Order classes
+### Order classes
 
 Use <code>.order-</code> classes for controlling the visual order of your content. These classes are responsive, so you can set the order by breakpoint (e.g. <code>.order-1</code><code>.order-md-2</code>). Includes support for 1 through 5 across all seven grid tiers. If you need more <code>.order-\*</code> classes.
 
@@ -69,11 +69,11 @@ There are also responsive <code>.order-first</code> and <code>.order-last</code>
 
 <Canvas of={ColumnStories.OrderMaxExample} />
 
-### Offsetting columns
+## Offsetting columns
 
 You can offset grid columns in two ways: our responsive <code>.offset-</code> grid classes and our margin utilities. Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.
 
-#### Offset classes
+### Offset classes
 
 Move columns to the right using <code>.offset-\*</code> classes. These classes increase the left margin of a column by \* columns. For example, <code>.offset-4</code> moves <code>.col-1</code> over four columns. You can also apply the offset above a certain breakpoint with the breakpoint infixes e.g. <code>offset-md-4</code>.
 

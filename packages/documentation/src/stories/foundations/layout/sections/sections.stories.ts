@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 import './sections.styles.scss';
@@ -113,13 +113,14 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () => html`
-    <section class="section palette-brand">
+    <section class="section palette palette-brand">
       <div class="container py-64">
         <h2>Title</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium facere maiores unde
-          magni sequi a? Id ipsam neque hic consequuntur, iusto nemo, nisi in cupiditate numquam
-          necessitatibus, dicta voluptate ipsum?
+          This section demonstrates a foundational layout component with proper spacing and
+          container styling. Sections help in organizing content into distinct visual blocks,
+          improving readability and structure. The container ensures consistent horizontal padding
+          and maximum width across different screen sizes.
         </p>
       </div>
     </section>
@@ -156,7 +157,7 @@ export const Alignment: Story = {
     }
 
     return html`
-      <section class="section palette-brand">
+      <section class="section palette palette-brand">
         <div class="container">${content}</div>
       </section>
     `;

@@ -1,9 +1,10 @@
-import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { getLabelText } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
@@ -20,11 +21,12 @@ const meta: MetaComponent = {
   args: {
     hiddenLegend: false,
     inline: false,
-    label: 'Etikedo',
+    label: 'Label',
     hiddenLabel: false,
     checked: 'unchecked',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     hiddenLegend: {
@@ -64,7 +66,7 @@ const meta: MetaComponent = {
         'If `true`, the checkbox label is set via an `aria-label` attribute and is therefore not visible.' +
         '<span className="mt-8 banner banner-info banner-sm">' +
         'Shown or hidden, a label must always be defined.<br/>' +
-        'More details in our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs">accessibility docs</a>.' +
+        'More details in our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.' +
         '</span>',
       control: {
         type: 'boolean',
@@ -95,7 +97,7 @@ const meta: MetaComponent = {
         'If `true`, makes the checkbox appear inactive and disables its functionality.' +
         '<span className="mt-8 banner banner-info banner-sm">' +
         'There are accessibility concerns with the disabled state.<br/>' +
-        'More details in our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs">accessibility docs</a>.' +
+        'More details in our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.' +
         '</span>',
       control: {
         type: 'boolean',
@@ -117,6 +119,22 @@ const meta: MetaComponent = {
         },
       },
       options: ['null', 'valid', 'invalid'],
+      table: {
+        category: 'States',
+      },
+    },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
       table: {
         category: 'States',
       },
@@ -147,14 +165,10 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   invalid: true,
 };
 
-function getLabel({ label }: Args, { id }: StoryContext) {
-  return html` <label for="${id}">${label}</label> `;
-}
-
-function getValidationFeedback({ validation }: Args) {
+function getValidationFeedback({ validation }: Args, context: StoryContext) {
   return html`
-    <p class="${validation + '-feedback'}">
-      ${validation === 'valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
+    <p class="${validation + '-feedback'}" id="is-${validation}-id-${context.id}-">
+      ${validation === 'valid' ? 'Great success!' : 'An error occurred!'}
     </p>
   `;
 }
@@ -168,7 +182,8 @@ function renderCheckbox(args: Args, context: StoryContext) {
     'form-check-inline': args.inline,
   });
 
-  const validationClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
+  const validationClass =
+    args.validation !== 'null' ? `${context.id}-is-${args.validation}` : undefined;
 
   const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
@@ -187,12 +202,16 @@ function renderCheckbox(args: Args, context: StoryContext) {
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
+        aria-describedby="${args.validation != 'null'
+          ? `is-${args.validation}-id-${context.id}`
+          : nothing}"
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"
+        ?required="${args.requiredOptional === 'required'}"
       />
-      ${args.hiddenLabel ? nothing : getLabel(args, context)}
-      ${args.validation !== 'null' ? getValidationFeedback(args) : nothing}
+      ${args.hiddenLabel ? nothing : html`<label for="${context.id}">${getLabelText(args)}</label>`}
+      ${args.validation !== 'null' ? getValidationFeedback(args, context) : nothing}
     </div>
   `;
 }
@@ -225,7 +244,7 @@ export const Grouped: Story = {
       <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
         Legend
       </legend>
-      ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
+      ${['First Label', 'Second Label', 'Third Label', 'Fourth Label'].map((label, index) =>
         renderCheckbox(
           { ...args, label, checked: false },
           { ...context, id: `${context.id}-${index}` },
@@ -246,7 +265,7 @@ export const Inline: Story = {
       <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
         Legend
       </legend>
-      ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
+      ${['First Label', 'Second Label', 'Third Label', 'Fourth Label'].map((label, index) =>
         renderCheckbox(
           { ...args, label, checked: false },
           { ...context, id: `${context.id}-${index}` },

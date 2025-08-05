@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as ToastStories from './toast.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -7,9 +7,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="docs-title">
   # Toast
 
-  <nav>
-    <link-design of={JSON.stringify(ToastStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(ToastStories)}></link-design>
 </div>
 
 <div className="lead">
@@ -25,7 +23,7 @@ They are intended to be small interruptions to your visitors or users, and there
   <Controls of={ToastStories.Default} />
 </div>
 
-<StylesPackageImport components={["toast"]} />
+<StylesPackageImport components={['toast']} />
 
 ## Concrete Examples of Application
 
@@ -52,4 +50,4 @@ You can stack toasts by wrapping them in a `.toast-container`, which will vertic
 
 Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an Live region.
 
-See [How to implement a Live region](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#live-region)
+See how to implement it on our [live regions documentation](/?path=/docs/548d973c-679c-4a02-96cd-70f82aec5f65--docs).

@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as BreadcrumbsStories from './breadcrumbs.stories';
 
 <Meta of={BreadcrumbsStories} />
@@ -6,9 +6,7 @@ import * as BreadcrumbsStories from './breadcrumbs.stories';
 <div className="docs-title">
   # Breadcrumbs
 
-  <nav>
-    <link-design of={JSON.stringify(BreadcrumbsStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(BreadcrumbsStories)}></link-design>
 </div>
 
 <div className="lead">Indicate the current page’s location within the navigational hierarchy.</div>

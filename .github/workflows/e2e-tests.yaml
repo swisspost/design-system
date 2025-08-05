@@ -10,13 +10,16 @@ on:
       - 'packages/tokens/tokensstudio-generated/tokens.json'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   e2e:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
         with:
           fetch-depth: 0
 
@@ -26,7 +29,7 @@ jobs:
           use_cache: false
 
       - name: Cache cypress
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        uses: actions/cache@640a1c2554105b57832a23eea0b4672fc7a790d5
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
@@ -48,7 +51,7 @@ jobs:
         run: pnpm e2e:ci
 
       - name: Upload screenshots
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
         if: failure()
         with:
           name: cypress-snapshots

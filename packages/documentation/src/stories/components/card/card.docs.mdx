@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as CardStories from './card.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -7,9 +7,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="docs-title">
   # Card
 
-  <nav>
-    <link-design of={JSON.stringify(CardStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(CardStories)}></link-design>
 </div>
 
 <div className="lead">
@@ -56,9 +54,9 @@ This applies to the body of the card as well as its header and footer.
 
 <Canvas of={CardStories.CustomContent} />
 
-### List Group
+### List Interactive
 
-Create lists of content in a card by simply using a flush list group in place of the card body.
+Create lists of content in a card by simply using a list interactive in place of the card body.
 
 <Canvas of={CardStories.ListGroup} />
 

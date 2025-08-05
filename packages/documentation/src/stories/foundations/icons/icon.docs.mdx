@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as IconStories from './icon.stories';
 import SampleMixin from './mixin.sample.scss?raw';
 import { POST_ICONS_COUNT, UI_ICONS_COUNT, Search } from './search/search-icons.blocks';
@@ -9,9 +9,7 @@ import './icon.styles.scss';
 <div className="docs-title">
   # Icons
 
-  <nav>
-    <link-design of={JSON.stringify(IconStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(IconStories)}></link-design>
 </div>
 
 <div className="lead">

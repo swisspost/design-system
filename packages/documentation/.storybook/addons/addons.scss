@@ -5,7 +5,7 @@
 tokens.$default-map: utilities.$post-spacing;
 
 .addon-label {
-  color: post.$body-color !important;
+  color: var(--post-current-fg) !important;
 }
 
 .addon-dropdown {
@@ -27,7 +27,7 @@ tokens.$default-map: utilities.$post-spacing;
     padding: tokens.get('utility-gap-8') tokens.get('utility-gap-12');
     border-radius: post.$border-radius-sm;
     text-decoration: none;
-    color: post.$body-color !important;
+    color: var(--post-current-fg) !important;
 
     &:hover {
       background-color: post.$gray-10;

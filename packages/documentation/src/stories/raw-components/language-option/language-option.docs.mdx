@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as languageOptionStories from './language-option.stories';
 
 <Meta of={languageOptionStories} />
@@ -6,9 +6,7 @@ import * as languageOptionStories from './language-option.stories';
 <div className="docs-title">
   # Language Option
 
-  <nav>
-    <link-design of={JSON.stringify(languageOptionStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(languageOptionStories)}></link-design>
 </div>
 
 <p className="lead">Enable users to select their preferred language.</p>

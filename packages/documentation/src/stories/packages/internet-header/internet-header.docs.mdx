@@ -1,4 +1,4 @@
-import { Meta, Source } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
 import SampleFrameworks from './internet-header-frameworks.sample.html?raw';
 import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
 import SampleBareComponent from './internet-header-bare-component.sample.js?raw';
@@ -17,7 +17,9 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
 # @swisspost/internet-header
 
-[![npm version](https://badge.fury.io/js/@swisspost%2Finternet-header.svg)](https://badge.fury.io/js/@swisspost%2Finternet-header)
+<div className="npm-package-link">
+  [![npm version](https://badge.fury.io/js/@swisspost%2Finternet-header.svg)](https://badge.fury.io/js/@swisspost%2Finternet-header)
+</div>
 
 <div className='lead'>
   The header for client-facing applications.
@@ -26,25 +28,25 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 <PackageDocs changelog={changelog}>
   <div className="card my-40">
     <div className="card-body">
-      <h5 className="card-title">Request a configuration</h5>
+      <h2 className="card-title">Request a configuration</h2>
 
       <p className="card-text">The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header.
       <br/>If you're working on a new project, you probably need a new configuration. Please contact the Post Portal Team.</p>
 
-      <h6>Step 1</h6>
+      <h3>Step 1</h3>
       <p>Integration of header only: contact  <a href="mailto:dm-tec@post.ch" rel="noopener">dm-tec@post.ch <post-icon name="1001" /></a> directly</p>
       <p>Integration of header and KLP: contact KLP first for integration</p>
 
-      <h6>Step 2</h6>
+      <h3>Step 2</h3>
       <p>Provide these informations to DM Tec:</p>
       <ul>
         <li>ServiceID (ProjektID)</li>
         <li>Languages which you'd like to support</li>
         <li>Allowed referrers per environment (test/int/prod)</li>
-        <li>Categories for the Online Service (see <a href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending</a> for a list)</li>
+        <li>Categories for the Online Service (see the <a href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">Swiss Post online services overview page</a>)</li>
         <li>Name of the Online Service in all available languages</li>
         <li>URLs of all environments and languages (links should be dependent on language)</li>
-        <li>Abstract in all available languages (will be shown on <a href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending</a>)</li>
+        <li>Abstract in all available languages (will be shown on the <a href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">Swiss Post online services overview page</a>)</li>
       </ul>
 
       <div className="banner banner-info banner-md mt-24">
@@ -182,7 +184,7 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   <Source code={SampleFixAppStyles} dark={true} language="html" />
 
   - Likely you'll need the class `container` around your main content to align it properly in the center.
-  - For bonus points on semantic markup, use the [`<main>` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) around the main page content
+  - For improved semantic markup, consider wrapping the main page content in a `<main>` tag. ([Learn more about the `<main>` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main)).
   - Check if you need the `staticasset` stylesheets linked in the header
 
   If you need to do any other changes,

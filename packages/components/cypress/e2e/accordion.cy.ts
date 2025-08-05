@@ -40,8 +40,98 @@ describe('accordion', () => {
         .last()
         .click()
         .then(() => {
-          expect(EventHandlerMock).to.be.calledTwice;
+          cy.wrap(EventHandlerMock).should('have.been.calledTwice');
         });
+    });
+
+    describe('icon rotation behavior', () => {
+      it('should have icons in all accordion items', () => {
+        cy.get('@collapsibles').each(($item) => {
+          cy.wrap($item)
+            .shadow()
+            .find('post-icon[name="2051"]')
+            .should('exist');
+        });
+      });
+
+      it('should show expanded icon (no collapsed class) for the first item initially', () => {
+        cy.get('@collapsibles')
+          .first()
+          .shadow()
+          .find('.accordion-button')
+          .should('not.have.class', 'collapsed');
+      });
+
+      it('should show collapsed icons (collapsed class) for non-expanded items initially', () => {
+        cy.get('@collapsibles')
+          .not(':first')
+          .each(($item) => {
+            cy.wrap($item)
+              .shadow()
+              .find('.accordion-button')
+              .should('have.class', 'collapsed');
+          });
+      });
+
+      
+      it('should rotate icon when clicking to expand collapsed item', () => {
+        cy.get('@collapsibles')
+          .last()
+          .shadow()
+          .find('.accordion-button')
+          .should('have.class', 'collapsed');
+
+        cy.get('@collapsibles')
+          .last()
+          .shadow()
+          .find('.accordion-button')
+          .click({ force: true });
+
+        cy.get('@collapsibles')
+          .last()
+          .shadow()
+          .find('.accordion-button')
+          .should('not.have.class', 'collapsed');
+      });
+
+      it('should rotate icon when clicking to collapse expanded item', () => {
+        cy.get('@collapsibles')
+          .first()
+          .shadow()
+          .find('.accordion-button')
+          .should('not.have.class', 'collapsed');
+        cy.get('@collapsibles')
+          .first()
+          .shadow()
+          .find('.accordion-button')
+          .click({ force: true });
+
+        cy.get('@collapsibles')
+          .first()
+          .shadow()
+          .find('.accordion-button')
+          .should('have.class', 'collapsed');
+      });
+
+      it('should have correct icon transform states for collapsed vs expanded', () => {
+        cy.get('@collapsibles')
+          .first()
+          .shadow()
+          .find('post-icon')
+          .then(($expandedIcon) => {
+            const expandedTransform = $expandedIcon.css('transform');
+
+            cy.get('@collapsibles')
+              .last()
+              .shadow()
+              .find('post-icon')
+              .then(($collapsedIcon) => {
+                const collapsedTransform = $collapsedIcon.css('transform');
+                
+                expect(expandedTransform).to.not.equal(collapsedTransform);
+              });
+          });
+      });
     });
   });
 
@@ -86,7 +176,7 @@ describe('accordion', () => {
           .eq(3)
           .click()
           .then(() => {
-            expect(EventHandlerMock).to.be.called;
+            cy.wrap(EventHandlerMock).should('have.been.called');
           });
       });
     });

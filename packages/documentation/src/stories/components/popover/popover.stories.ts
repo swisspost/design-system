@@ -1,4 +1,4 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
@@ -53,7 +53,7 @@ const meta: MetaComponent = {
         'Value can either be in `vw`, `px` or `%`. If no max-width is defined, the popover will extend to the width of its content.',
       table: {
         category: 'General',
-        defaultValue: { summary: '280px' }
+        defaultValue: { summary: '280px' },
       },
     },
     palette: {
@@ -101,9 +101,10 @@ function render(args: Args) {
       </button>
     </div>
     <post-popover
-      class="${args.palette}"
+      class="palette ${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
+      close-button-caption="${args.closeButtonCaption}"
       ?arrow="${args.arrow}"
       style="${args.maxWidth ? '--post-popover-max-width: ' + args.maxWidth : ''}"
     >

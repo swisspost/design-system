@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 
@@ -21,9 +21,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => html`
     <p class="lead">
-      Lead text nullam quis risus eget urna mollis ornare veleu leo. Cum sociis natoque penatibus et
-      magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies
-      vehicula.
+      It helps readers quickly understand what to expect. 
+      This component is styled to stand out slightly from regular text while maintaining readability. 
+      Use it for introductory summaries in articles, sections, or announcements.
     </p>
   `,
 };

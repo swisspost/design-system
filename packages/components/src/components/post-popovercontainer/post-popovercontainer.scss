@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/spacing';
 @use '@swisspost/design-system-styles/mixins/color' as color-mx;
+@use '@swisspost/design-system-styles/mixins/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/mixins/utilities';
@@ -34,8 +35,15 @@
     max-width: 100%;
     color: var(--post-current-palette-fg);
     background-color: var(--post-current-palette-bg);
-    border: 2px solid transparent; // Keeping the default border for HCM
     border-radius: commons.$border-radius;
+
+    &.animate-pop-in {
+      @include animation.pop-in-animation(0.25s);
+    }
+
+    @include utilities.high-contrast-mode {
+      border: 2px solid transparent; // border is needed in HCM because the shadow is not visible
+    }
   }
 
   &[tooltip] {
@@ -53,24 +61,24 @@
 
   &[safe-space='triangle']::after {
     clip-path: polygon(
-      var(--safe-space-cursor-x, 0) var(--safe-space-cursor-y, 0),
-      var(--safe-space-popover-x-start, var(--safe-space-popover-x, 0))
-        var(--safe-space-popover-y, var(--safe-space-popover-y-start, 0)),
-      var(--safe-space-popover-x-end, var(--safe-space-popover-x, 0))
-        var(--safe-space-popover-y, var(--safe-space-popover-y-end, 0))
+      var(--post-safe-space-cursor-x, 0) var(--post-safe-space-cursor-y, 0),
+      var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
+        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0)),
+      var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
+        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0))
     );
   }
 
   &[safe-space='trapezoid']::after {
     clip-path: polygon(
-      var(--safe-space-trigger-x-start, var(--safe-space-trigger-x, 0))
-        var(--safe-space-trigger-y, var(--safe-space-trigger-y-start, 0)),
-      var(--safe-space-trigger-x-end, var(--safe-space-trigger-x, 0))
-        var(--safe-space-trigger-y, var(--safe-space-trigger-y-end, 0)),
-      var(--safe-space-popover-x-end, var(--safe-space-popover-x, 0))
-        var(--safe-space-popover-y, var(--safe-space-popover-y-end, 0)),
-      var(--safe-space-popover-x-start, var(--safe-space-popover-x, 0))
-        var(--safe-space-popover-y, var(--safe-space-popover-y-start, 0))
+      var(--post-safe-space-trigger-x-start, var(--post-safe-space-trigger-x, 0))
+        var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-start, 0)),
+      var(--post-safe-space-trigger-x-end, var(--post-safe-space-trigger-x, 0))
+        var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-end, 0)),
+      var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
+        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0)),
+      var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
+        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0))
     );
   }
 

@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as ListStories from './list.stories';
 
 <Meta of={ListStories} />
@@ -6,9 +6,7 @@ import * as ListStories from './list.stories';
 <div className="docs-title">
   # List
 
-  <nav>
-    <link-design of={JSON.stringify(ListStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(ListStories)}></link-design>
 </div>
 
 The `<post-list>` is a container for `<post-list-item>` components.

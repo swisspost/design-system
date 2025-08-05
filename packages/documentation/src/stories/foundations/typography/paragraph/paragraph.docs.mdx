@@ -1,4 +1,4 @@
-import { Canvas, Meta } from '@storybook/blocks';
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
 import * as ParagraphStories from './paragraph.stories';
 
 <Meta of={ParagraphStories} />
@@ -6,9 +6,7 @@ import * as ParagraphStories from './paragraph.stories';
 <div className="docs-title">
   # Paragraph
 
-  <nav>
-    <link-design of={JSON.stringify(ParagraphStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(ParagraphStories)}></link-design>
 </div>
 
 Default paragraph without size variants.
