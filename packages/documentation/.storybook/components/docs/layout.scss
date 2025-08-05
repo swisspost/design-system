@@ -1,5 +1,11 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+.docs-eol {
+  background-color: post.$warning;
+  font-size: 1rem;
+  margin-bottom: 4rem;
+}
+
 .docs-header {
   margin-top: -4rem;
   background-image: url('../../../public/images/header.png');
