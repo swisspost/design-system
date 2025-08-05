@@ -475,23 +475,14 @@ export namespace Components {
          */
         "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
+          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * @default false
+         */
+        "fullWidth": boolean;
+        /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
         "show": (panelName: string) => Promise<void>;
-    }
-    interface PostTag {
-        /**
-          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
-         */
-        "icon"?: string;
-        /**
-          * Defines the size of the component.
-         */
-        "size"?: 'sm';
-        /**
-          * Defines the color variant of the component.
-         */
-        "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTogglebutton {
         /**
@@ -899,12 +890,6 @@ declare global {
         prototype: HTMLPostTabsElement;
         new (): HTMLPostTabsElement;
     };
-    interface HTMLPostTagElement extends Components.PostTag, HTMLStencilElement {
-    }
-    var HTMLPostTagElement: {
-        prototype: HTMLPostTagElement;
-        new (): HTMLPostTagElement;
-    };
     interface HTMLPostTogglebuttonElement extends Components.PostTogglebutton, HTMLStencilElement {
     }
     var HTMLPostTogglebuttonElement: {
@@ -962,7 +947,6 @@ declare global {
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
-        "post-tag": HTMLPostTagElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
         "post-tooltip-trigger": HTMLPostTooltipTriggerElement;
@@ -1370,23 +1354,14 @@ declare namespace LocalJSX {
          */
         "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
+          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * @default false
+         */
+        "fullWidth"?: boolean;
+        /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
-    }
-    interface PostTag {
-        /**
-          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
-         */
-        "icon"?: string;
-        /**
-          * Defines the size of the component.
-         */
-        "size"?: 'sm';
-        /**
-          * Defines the color variant of the component.
-         */
-        "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTogglebutton {
         /**
@@ -1474,7 +1449,6 @@ declare namespace LocalJSX {
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
-        "post-tag": PostTag;
         "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
         "post-tooltip-trigger": PostTooltipTrigger;
@@ -1523,7 +1497,6 @@ declare module "@stencil/core" {
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
-            "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
             "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;

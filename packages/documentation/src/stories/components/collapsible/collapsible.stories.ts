@@ -1,5 +1,5 @@
-import { useArgs } from '@storybook/preview-api';
-import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';

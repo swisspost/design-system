@@ -7,6 +7,7 @@ tokens.$default-map: elements.$post-heading;
 :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6) {
   line-height: tokens.get('heading-line-height');
   font-weight: tokens.get('heading-font-weight');
+  text-wrap: balance; /* Balances heading text and prevents orphaned words on the last line */
 
   &:first-child {
     margin-block-start: 0;

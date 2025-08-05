@@ -1,6 +1,6 @@
 // https://storybook.js.org/docs/react/configure/theming#using-the-theme-for-addon-authors
 
-import { styled } from '@storybook/theming';
+import { styled } from 'storybook/theming';
 
 export const resetComponents: object = {
   a: styled.a``,

@@ -72,7 +72,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
 
       ::slotted(span) {
         font-size: 0.6875em;
-        color: post.$gray-600;
+        color: post.$gray-60;
       }
     }
 
@@ -84,7 +84,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       }
     }
 
-    @include post.media-breakpoint-down(md) {
+    @include post.max(md) {
       width: $tile-rg-size;
       height: $tile-rg-size;
 

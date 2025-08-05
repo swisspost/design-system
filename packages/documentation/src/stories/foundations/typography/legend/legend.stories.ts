@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
 

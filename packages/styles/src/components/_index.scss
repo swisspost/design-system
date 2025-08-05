@@ -3,7 +3,6 @@
 @use 'avatar';
 @use 'badge';
 @use 'banner';
-@use 'breadcrumb';
 @use 'blockquote';
 @use 'button';
 @use 'button-group';
@@ -13,11 +12,9 @@
 @use 'close';
 @use 'error-container';
 @use 'form-footer';
-@use 'form-range';
 @use 'form-search-input';
 @use 'form-select';
 @use 'form-textarea';
-@use 'datatable';
 @use 'dialog';
 @use 'form-check';
 @use 'radio-button';
@@ -32,10 +29,9 @@
 @use 'lead';
 @use 'list-interactive';
 @use 'list-check';
-@use 'pagination';
+@use 'palette';
 @use 'popover';
 @use 'product-card';
-@use 'progress';
 @use 'segmented-button';
 @use 'skiplinks';
 @use 'spinner';
@@ -45,13 +41,6 @@
 @use 'tabs';
 @use 'teaser';
 @use 'text-highlight';
-@use 'timepicker';
 @use 'toast';
-@use 'tooltip';
-@use 'transitions';
 @use 'tag';
 @use 'validation';
-
-// Imports depending on source order to override bootstrap styles
-@use 'datepicker';
-@use 'dropdown';

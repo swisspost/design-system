@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent, HeadingLevel } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';

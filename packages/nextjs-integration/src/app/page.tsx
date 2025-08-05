@@ -17,7 +17,6 @@ import {
   PostTabs,
   PostTabHeader,
   PostTabPanel,
-  PostTag,
   PostTooltipTrigger,
   PostTooltip,
 } from '@swisspost/design-system-components-react/server';
@@ -135,7 +134,7 @@ export default function Home() {
         </button>
       </div>
       <PostPopover
-        className="palette-alternate"
+        className="palette palette-alternate"
         id="popover-one"
         placement="top"
         closeButtonCaption="Close Popover"
@@ -169,7 +168,6 @@ export default function Home() {
       </PostTabs>
 
       <h2>Tag</h2>
-      <PostTag>Tag</PostTag>
 
       <h2>Tooltip</h2>
       <PostTooltipTrigger for="tooltip-one">
@@ -178,7 +176,7 @@ export default function Home() {
           Button
         </button>
       </PostTooltipTrigger>
-      <PostTooltip id="tooltip-one" className="palette-accent" placement="top">
+      <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
         Hi there 👋
       </PostTooltip>
     </>

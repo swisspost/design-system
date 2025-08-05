@@ -71,6 +71,6 @@ img,
   transition: color animation.$transition-base-timing, background-color animation.$transition-base-timing;
 
   span {
-    @include post.visually-hidden();
+    @include post.visuallyhidden();
   }
 }

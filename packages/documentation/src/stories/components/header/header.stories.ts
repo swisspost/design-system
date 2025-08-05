@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { fakeContent } from '@/utils';
@@ -130,9 +130,6 @@ export const Default: Story = {
 
       <!-- Main navigation -->
       <post-mainnavigation caption="Main navigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
-        </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
