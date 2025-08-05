@@ -1,39 +1,24 @@
 @use './../variables/commons';
-@use '../variables/breakpoints' as bp;
-@use '../mixins/breakpoints' as bp-mixin;
-@use 'sass:map';
 
-.fixed-top {
+.fixed-top,
+.fixed-bottom {
   position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
+  inset-inline: 0;
   z-index: commons.$zindex-fixed;
 }
 
-.fixed-bottom {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.sticky-top,
+.sticky-bottom {
+  position: sticky;
   z-index: commons.$zindex-header;
 }
 
-// Responsive sticky top and bottom
-@each $breakpoint in map.keys(bp.$grid-breakpoints) {
-  @include bp-mixin.media-breakpoint-up($breakpoint, bp.$grid-breakpoints) {
-    $infix: bp-mixin.breakpoint-infix($breakpoint, bp.$grid-breakpoints);
+.sticky-top,
+.fixed-top {
+  inset-block-start: 0;
+}
 
-    .sticky#{$infix}-top {
-      position: sticky;
-      top: 0;
-      z-index: 1020;
-    }
-
-    .sticky#{$infix}-bottom {
-      position: sticky;
-      bottom: 0;
-      z-index: 1020;
-    }
-  }
+.sticky-bottom,
+.fixed-bottom {
+  inset-block-end: 0;
 }

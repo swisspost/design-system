@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles': patch
+'@swisspost/design-system-styles': major
 ---
 
-Internalized Bootstrap position classes into the Design System.
+Replaced bootstrap fixed and sticky position helper classes with our own built-in versions, and removed responsive sticky position classes.
