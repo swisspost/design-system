@@ -1,4 +1,4 @@
-import { addons } from '@storybook/manager-api';
+import { addons } from 'storybook/manager-api';
 import { defineCustomElement as definePostIcon } from '@swisspost/design-system-components/dist/components/post-icon.js';
 import themes from './styles/themes';
 import { API_PreparedIndexEntry, API_StatusObject, API_HashEntry } from '@storybook/types';

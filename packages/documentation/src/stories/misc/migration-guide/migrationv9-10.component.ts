@@ -569,6 +569,28 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    Removed the dependency to bootstrap as well as all of the overrides of its SCSS
+                    variables and classes.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the dependency to ng-bootstrap as well as all of the components built on it:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li>datepicker</li>
+                    <li>timepicker</li>
+                    <li>pagination</li>
+                    <li>typeahead</li>
+                    <li>dropdown</li>
+                    <li>datatable</li>
+                    <li>progressbar</li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The card button CSS component has been removed.The <code>.card-button</code> and
                     <code>.card-buttons</code> are therefore no longer available.
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -653,6 +675,14 @@ export class MigrationV99Component extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">Card elements should be set inside a grid container.</p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The <code>.chip-filter</code> has been renamed to
+                    <code>.chip-selectable</code> and the small variant of the chip
+                    <code>.chip-sm</code> has been removed.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
                 </li>
                 <li class="mb-16">
                   <p>

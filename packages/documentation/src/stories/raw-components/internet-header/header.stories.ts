@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryObj, WebComponentsRenderer } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj, WebComponentsRenderer } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { fakeContent, spreadArgs } from '@/utils';
 import customConfig from './config/custom-config';
@@ -195,7 +195,7 @@ export const CssVariables = {
         }
       </style>
       ${meta.render && meta.render(args, context)}
-      <p id="my-div" class="position-sticky palette-accent p-16">
+      <p id="my-div" class="position-sticky palette palette-accent p-16">
         I am sticky! I am always positioned right below the header when you scroll up and down.
       </p>
     `;

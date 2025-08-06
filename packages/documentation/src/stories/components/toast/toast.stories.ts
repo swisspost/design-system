@@ -1,5 +1,5 @@
-import { useArgs } from '@storybook/preview-api';
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -354,7 +354,7 @@ function getToastIcon(args: Args) {
 
 function getDismissButton(args: Args, isFixed: boolean) {
   return args.dismissible || isFixed
-    ? html` <button class="toast-close-button" aria-label="close"></button> `
+    ? html` <button type="button" class="toast-close-button" aria-label="close"></button> `
     : null;
 }
 

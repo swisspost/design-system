@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkEmptyOrOneOf, eventGuard } from '@/utils';
+import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
@@ -52,15 +52,9 @@ export class PostAccordionItem {
 
   // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
+  @EventFrom('post-accordion-item')
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    eventGuard(
-      this.host,
-      event,
-      { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion-item' },
-      () => {
-        this.collapsed = !event.detail;
-      },
-    );
+    this.collapsed = !event.detail;
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 import * as CardControlStandardHTMLStories from './standard-html/card-control.stories';
@@ -12,15 +12,18 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 <div className="docs-title">
   # Card-Control
 
-  <link-design of={JSON.stringify(CardControlStories)}></link-design>
+<link-design of={JSON.stringify(CardControlStories)}></link-design>
+
 </div>
 
 <p className="lead">For a more specialized visualization of checkbox and radio elements.</p>
 
 <post-banner type="info">
   <p slot="heading">There are various methods to integrate this component into your project.</p>
-  <p>We advise opting for the "Standard HTML" approach for when you need full access to the input
-    field and using the "Web Component" method in every other case.</p>
+  <p>
+    We advise opting for the "Standard HTML" approach for when you need full access to the input
+    field and using the "Web Component" method in every other case.
+  </p>
 </post-banner>
 
 <post-tabs>
@@ -74,7 +77,8 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
 <post-tab-header panel="webcomponent">Webcomponent</post-tab-header>
 <post-tab-panel name="webcomponent">
-<Canvas of={CardControlStories.Default} sourceState="shown"/>
+
+<Canvas of={CardControlStories.Default} sourceState="shown" />
 <Controls of={CardControlStories.Default} />
 
     ## Installation

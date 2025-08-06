@@ -1,5 +1,5 @@
-import type { Args } from '@storybook/web-components';
-import { useArgs, useState } from '@storybook/preview-api';
+import type { Args } from '@storybook/web-components-vite';
+import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';

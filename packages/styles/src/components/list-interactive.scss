@@ -1,5 +1,3 @@
-@use './../themes/bootstrap/core' as *;
-
 @use './../variables/animation';
 @use './../mixins/utilities' as utilities-mx;
 
@@ -101,7 +99,5 @@ tokens.$default-map: components.$post-list;
 }
 
 .list-interactive-link post-icon {
-  @include transition(
-    transform animation.$transition-time-area-small animation.$transition-easing-default
-  );
+  transition: animation.$transition-time-area-small animation.$transition-easing-default;
 }

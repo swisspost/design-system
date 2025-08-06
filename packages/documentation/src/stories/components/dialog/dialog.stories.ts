@@ -1,4 +1,4 @@
-import { Args, Meta, StoryObj } from '@storybook/web-components';
+import { Args, Meta, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit-html';
 
 const meta: Meta = {
@@ -146,7 +146,7 @@ const Template = {
 
     return html`
       <dialog
-        class="${args.palette}"
+        class="palette ${args.palette}"
         data-size="${args.size}"
         data-position="${args.position}"
         data-animation="${args.animation}"

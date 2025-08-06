@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { nothing } from 'lit';
 import { MetaComponent } from '@root/types';
@@ -162,7 +162,7 @@ export const Multipart: Story = {
             </div>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-1">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -209,7 +209,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-3">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -224,7 +224,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate">
+          <div class="card-body palette palette-alternate">
             <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>
@@ -258,7 +258,7 @@ export const Multipart: Story = {
             </div>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-1">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -296,7 +296,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-3">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -311,7 +311,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate">
+          <div class="card-body palette palette-alternate">
             <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>

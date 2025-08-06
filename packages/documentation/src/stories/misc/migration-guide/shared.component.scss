@@ -29,7 +29,7 @@ migration-global-state {
       border-left: 4px solid post.$gray-10;
       min-height: 5rem;
 
-      @include post.media-breakpoint-down(sm) {
+      @include post.max(sm) {
         margin-left: 1rem;
         padding-bottom: 1rem;
         padding-left: 2rem;
@@ -57,7 +57,7 @@ migration-global-state {
         font-weight: bold;
         font-size: 1.2em;
 
-        @include post.media-breakpoint-down(sm) {
+        @include post.max(sm) {
           width: 3rem;
           height: 3rem;
           font-size: 1em;

@@ -66,6 +66,6 @@ img,
   text-transform: uppercase;
 
   span {
-    @include post.visually-hidden();
+    @include post.visuallyhidden();
   }
 }
