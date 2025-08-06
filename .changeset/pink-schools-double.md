@@ -3,4 +3,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Removed loader-xs and loader-sm from spinner stylesheet and documentation.
+Removed `.loader-xs` and `.loader-sm` classes from spinner stylesheet and documentation.
