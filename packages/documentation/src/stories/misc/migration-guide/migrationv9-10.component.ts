@@ -51,6 +51,23 @@ export class MigrationV99Component extends LitElement {
             <section>
               <h4>Styles</h4>
 
+              <h5>Spinner</h5>
+              <ul>
+                <li class="mb-16">
+                  <p>
+                    Removed loader classes
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                  <li><code>.loader-xs</code></li>
+                  <li><code>.loader-sm</code></li>
+                  </ul>
+                  <p class="info">
+                    Instead, use classes <code>.loader-16</code> and
+                    <code>.loader-40</code>.
+                  </p>
+                </li>
+
               <h5>Forms</h5>
               <ul>
                 <li class="mb-16">
