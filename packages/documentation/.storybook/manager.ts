@@ -1,15 +1,13 @@
 import { addons } from 'storybook/manager-api';
 import { defineCustomElement as definePostIcon } from '@swisspost/design-system-components/dist/components/post-icon.js';
 import themes from './styles/themes';
-import { API_PreparedIndexEntry, API_StatusObject, API_HashEntry } from '@storybook/types';
 import cssIcon from '../public/assets/images/sidebar-icons/css.svg';
-import ngBootstrapIcon from '../public/assets/images/sidebar-icons/ngBootstrap.svg';
 import webComponentsIcon from '../public/assets/images/sidebar-icons/web_component.svg';
 import React from 'react';
+import { API_HashEntry, API_PreparedIndexEntry, StatusByTypeId } from 'storybook/internal/types';
 
 const TECH_ICONS: Record<string, string> = {
   Styles: cssIcon,
-  NgBootstrap: ngBootstrapIcon,
   WebComponents: webComponentsIcon,
 };
 
@@ -27,7 +25,7 @@ document.documentElement.setAttribute('data-env', initialEnv);
 
 // Filter functions
 const excludeDevOnlyFilter = (
-  item: API_PreparedIndexEntry & { status: Record<string, API_StatusObject | null> },
+  item: API_PreparedIndexEntry & { statuses: StatusByTypeId; },
 ): boolean => !(item.tags ?? []).includes('devOnly');
 const includeAllFilter = () => true;
 
