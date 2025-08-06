@@ -17,7 +17,7 @@ export interface HeaderState {
   osFlyoutOverrides?: NavMainEntity;
   stickyness: StickynessOptions;
   logoutUrl: string | undefined;
-  selfAdminOrigin?: string | undefined;
+  selfAdminOrigin: string | undefined;
 }
 
 export const { state, reset, dispose } = createStore<HeaderState>({
