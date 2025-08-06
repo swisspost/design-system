@@ -567,6 +567,15 @@ $utilities: (
       reset: inherit,
     ),
   ),
+  'user-select': (
+    property: user-select,
+    values: all auto none,
+  ),
+  'pointer-events': (
+    property: pointer-events,
+    class: pe,
+    values: none auto,
+  ),
   'z-index': (
     property: z-index,
     class: z,
@@ -579,5 +588,3 @@ $utilities: (
     ),
   ),
 );
-
-/* IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`. */

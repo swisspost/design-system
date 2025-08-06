@@ -5,7 +5,6 @@
 @use './../variables/commons';
 @use './../variables/components/stepper';
 
-@use './../themes/bootstrap/core' as *;
 @use './../mixins/media';
 
 @use './../functions/tokens';
@@ -231,7 +230,7 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 // smaller screens
-@include media-breakpoint-down(sm) {
+@include media.max(sm) {
   .stepper-item:first-child,
   .stepper-item:last-child {
     padding-inline: 0;
