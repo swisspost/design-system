@@ -567,6 +567,13 @@ $utilities: (
       reset: inherit,
     ),
   ),
+  'visibility': (
+    property: visibility,
+    values: (
+      visible: visible,
+      invisible: hidden,
+    ),
+  ),
   'user-select': (
     property: user-select,
     values: all auto none,

@@ -1,0 +1,18 @@
+@use '@swisspost/design-system-styles/core' as post;
+.visibility-box {
+  width: 50px;
+  height: 50px;
+  background-color: post.$yellow;
+  border: post.$white 2px solid  ;
+  border-radius: 0.5rem;
+}
+
+.visibility-example {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.visibility-wrapper {
+  padding: 1rem;
+}
