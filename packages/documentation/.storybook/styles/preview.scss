@@ -214,6 +214,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       background: transparent;
 
       button {
+        font-size: 0.875rem;
         &:hover {
           background-color: rgba(0, 115, 188, 0.08);
         }
