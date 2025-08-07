@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import './z-index.styles.scss';
 import { MetaExtended } from '@root/types';
@@ -37,9 +37,9 @@ const meta: MetaExtended = {
   render: (args: Args) => {
     return html`
       <div class="container-examples">
-        <div class="z-${args.zIndex1} position-absolute">Box 1 (z-${args.zIndex1})</div>
-        <div class="z-${args.zIndex2} position-absolute">Box 2 (z-${args.zIndex2})</div>
-        <div class="z-${args.zIndex3} position-absolute">Box 3 (z-${args.zIndex3})</div>
+        <div class="z-${args.zIndex1} position-absolute">z-${args.zIndex1}</div>
+        <div class="z-${args.zIndex2} position-absolute">z-${args.zIndex2}</div>
+        <div class="z-${args.zIndex3} position-absolute">z-${args.zIndex3}</div>
       </div>
     `;
   },
