@@ -47,16 +47,14 @@ The same tooltip can be displayed on multiple elements. This reduces the amount 
 
 ### Dynamic tooltips
 
-To generate a list of items with a corresponding unique tooltip for each one, you can use Angular’s `*ngFor` directive to create them dynamically.
+To generate a list of items with unique tooltips, use Angular's `@for` to create triggers dynamically.
+Loop through your elements to render each `<post-tooltip-trigger>`, and use a single `<post-tooltip>` component whose content updates based on the active trigger.
+You can achieve this by listening to the custom `postTriggered` event – emited on hover – and setting the active item accordingly.
 
 #### Data
 
-Each element needs to have its own unique ID in order to be connected to its own tooltip dynamically.
-
 <Source code={SampleDynamicTooltipData} language="typescript" />
 
-#### NgFor integration
-
-Adding the same `for` attribute to the `<post-tooltip-trigger>` and `ID` attribute to the `<post-tooltip>` will ensure their connection to each other.
+#### Template integration
 
 <Source code={SampleDynamicTooltipCode} language="html" />

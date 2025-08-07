@@ -1,12 +1,9 @@
-<ng-container *ngFor="let item of items">
-  <post-tooltip-trigger [attr.for]="'tooltip-' + item.id">
-    <button class="btn btn-secondary">
-      {{ item.title }}
-    </button>
+@for (item of items; track item.id) {
+  <post-tooltip-trigger for="itemDetails" (postTriggered)="currentItem = item">
+    <button class="btn btn-secondary">{{ item.title }}</button>
   </post-tooltip-trigger>
+}
 
-  <post-tooltip [attr.id]="'tooltip-' + item.id">
-    <p><strong>Status:</strong> {{ item.shippingInfo }}</p>
-    <p><strong>Quantity:</strong> {{ item.quantity }}</p>
-  </post-tooltip>
-</ng-container>
+<post-tooltip id="itemDetails">
+  <p><strong>{{ currentItem?.title }} status:</strong> {{ currentItem?.shippingInfo }}</p>
+</post-tooltip>

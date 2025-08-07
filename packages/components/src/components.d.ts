@@ -371,6 +371,10 @@ export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostTabsElement;
 }
+export interface PostTooltipTriggerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostTooltipTriggerElement;
+}
 declare global {
     interface HTMLPostAccordionElement extends Components.PostAccordion, HTMLStencilElement {
     }
@@ -542,7 +546,18 @@ declare global {
         prototype: HTMLPostTooltipElement;
         new (): HTMLPostTooltipElement;
     };
+    interface HTMLPostTooltipTriggerElementEventMap {
+        "postTriggered": void;
+    }
     interface HTMLPostTooltipTriggerElement extends Components.PostTooltipTrigger, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostTooltipTriggerElementEventMap>(type: K, listener: (this: HTMLPostTooltipTriggerElement, ev: PostTooltipTriggerCustomEvent<HTMLPostTooltipTriggerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostTooltipTriggerElementEventMap>(type: K, listener: (this: HTMLPostTooltipTriggerElement, ev: PostTooltipTriggerCustomEvent<HTMLPostTooltipTriggerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostTooltipTriggerElement: {
         prototype: HTMLPostTooltipTriggerElement;
@@ -849,6 +864,10 @@ declare namespace LocalJSX {
           * ID of the tooltip element that this trigger is linked to.
          */
         "for": string;
+        /**
+          * An event emitted when the component is triggered.
+         */
+        "onPostTriggered"?: (event: PostTooltipTriggerCustomEvent<void>) => void;
     }
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
