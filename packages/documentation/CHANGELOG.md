@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 5.7.0
+
+### Minor Changes
+
+- Added Nattaya's photo and info on the documentation footer. (by [@bucknatt](https://github.com/bucknatt) with [#5939](https://github.com/swisspost/design-system/pull/5939))
+
 ## 5.6.1
 
 ### Patch Changes
