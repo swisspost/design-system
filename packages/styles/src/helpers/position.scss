@@ -1,0 +1,24 @@
+@use './../variables/commons';
+
+.fixed-top,
+.fixed-bottom {
+  position: fixed;
+  inset-inline: 0;
+  z-index: commons.$zindex-fixed;
+}
+
+.sticky-top,
+.sticky-bottom {
+  position: sticky;
+  z-index: commons.$zindex-header;
+}
+
+.sticky-top,
+.fixed-top {
+  inset-block-start: 0;
+}
+
+.sticky-bottom,
+.fixed-bottom {
+  inset-block-end: 0;
+}
