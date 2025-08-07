@@ -1,5 +1,25 @@
 # @swisspost/design-system-documentation
 
+## 5.7.0
+
+### Minor Changes
+
+- Dynamically generate dependencies table for `styles` package. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5737](https://github.com/swisspost/design-system/pull/5737))
+
+### Patch Changes
+
+- Added deprecation notice on the `ng-bootstrap` components. (by [@leagrdv](https://github.com/leagrdv) with [#5824](https://github.com/swisspost/design-system/pull/5824))
+
+- Added an info banner to the styles for PrimeNG package documentation to clearly communicate that `@swisspost/design-system-styles-primeng` only provides styling for PrimeNG datatables. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5756](https://github.com/swisspost/design-system/pull/5756))
+
+- Updated Design System Team members displayed in the documentation footer. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5822](https://github.com/swisspost/design-system/pull/5822))
+- Updated dependencies:
+  - @swisspost/design-system-components-react@9.0.3
+  - @swisspost/design-system-styles@9.0.3
+  - @swisspost/design-system-components@9.0.3
+  - @swisspost/internet-header@1.15.17
+  - @swisspost/design-system-icons@9.0.3
+
 ## 5.6.3
 
 ### Patch Changes

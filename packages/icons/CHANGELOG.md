@@ -1,5 +1,7 @@
 # @swisspost/design-system-icons
 
+## 9.0.3
+
 ## 9.0.2
 
 ## 9.0.1

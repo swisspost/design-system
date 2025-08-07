@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.3
+
+### Patch Changes
+
+- Updated `@ng-bootstrap/ng-bootstrap` peer dependency to include `^19.0.0`. This aligns compatibility with Angular 20.0.0. Updated `bootstrap` peer dependency to `~5.3.6` to align with `@ng-bootstrap/ng-bootstrap` v19's requirements. (by [@myrta2302](https://github.com/myrta2302) with [#5780](https://github.com/swisspost/design-system/pull/5780))
+
 ## 9.0.2
 
 ## 9.0.1

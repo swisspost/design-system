@@ -13,42 +13,46 @@
         >
           <h1 class="m-0 font-weight-bold">{{ siteTitle }}</h1>
         </div>
-
-        <nav
-          *ngIf="hasNavbar && condenseHeader && !isMobile"
-          aria-label="navigation"
-          class="justify-content-start top-navigation condense m-0 d-md-flex"
-          [ngClass]="{ 'd-none': !openedMenu }"
-        >
-          <ng-container *ngTemplateOutlet="navbar"></ng-container>
-          <div *ngIf="showIntranetSearch" class="col search-textbox d-md-none">
+        @if (hasNavbar && condenseHeader && !isMobile) {
+          <nav
+            aria-label="navigation"
+            class="justify-content-start top-navigation condense m-0 d-md-flex"
+            [ngClass]="{ 'd-none': !openedMenu }"
+          >
+            <ng-container *ngTemplateOutlet="navbar"></ng-container>
+            @if (showIntranetSearch) {
+              <div class="col search-textbox d-md-none">
+                <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
+              </div>
+            }
+          </nav>
+        }
+        @if (showIntranetSearch) {
+          <div
+            id="intranetSearch"
+            class="col search-textbox d-none d-md-block"
+            [ngClass]="{ 'col-3': condenseHeader }"
+          >
             <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
           </div>
-        </nav>
-        <div
-          *ngIf="showIntranetSearch"
-          id="intranetSearch"
-          class="col search-textbox d-none d-md-block"
-          [ngClass]="{ 'col-3': condenseHeader }"
-        >
-          <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
-        </div>
-        <div
-          id="optionHeaderContent"
-          *ngIf="optionHeaderContent"
-          class="settings ms-auto flex-shrink-0 d-flex align-self-stretch"
-        >
-          <div class="align-self-stretch d-flex" display="dynamic" container="body">
-            <div class="align-self-center p-16">
-              <div #headerExtraContent>
-                <ng-container
-                  [ngTemplateOutlet]="optionHeaderContent"
-                  [ngTemplateOutletContext]="headerExtraContent"
-                ></ng-container>
+        }
+        @if (optionHeaderContent) {
+          <div
+            id="optionHeaderContent"
+            class="settings ms-auto flex-shrink-0 d-flex align-self-stretch"
+          >
+            <div class="align-self-stretch d-flex" display="dynamic" container="body">
+              <div class="align-self-center p-16">
+                <div #headerExtraContent>
+                  <ng-container
+                    [ngTemplateOutlet]="optionHeaderContent"
+                    [ngTemplateOutletContext]="headerExtraContent"
+                  ></ng-container>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        }
         <div
           [ngClass]="{ 'ms-auto': !optionHeaderContent }"
           class="settings flex-shrink-0 d-flex align-self-stretch"
@@ -71,30 +75,41 @@
             </button>
             <div class="dropdown-menu" id="languageParent" ngbDropdownMenu>
               <div class="language-menu">
-                <ng-container *ngFor="let appLang of appLangs">
-                  <button
-                    type="button"
-                    class="btn btn-secondary dropdown-item"
-                    *ngIf="!isLanguageActive(appLang)"
-                    (click)="handleLanguageChange(appLang)"
-                  >
-                    {{ appLang.toUpperCase() }}
-                  </button>
-                  <div class="dropdown-item active" *ngIf="isLanguageActive(appLang)">
-                    {{ appLang.toUpperCase() }}
-                  </div>
-                </ng-container>
+                @for (appLang of appLangs; track appLang) {
+                  <ng-container>
+                    @if (!isLanguageActive(appLang)) {
+                      <button
+                        type="button"
+                        class="btn btn-secondary dropdown-item"
+                        (click)="handleLanguageChange(appLang)"
+                      >
+                        {{ appLang.toUpperCase() }}
+                      </button>
+                    }
+                    @if (isLanguageActive(appLang)) {
+                      <div class="dropdown-item active">
+                        {{ appLang.toUpperCase() }}
+                      </div>
+                    }
+                  </ng-container>
+                }
               </div>
               <div class="other-items">
-                <div class="dropdown-item" *ngIf="currentUserId && !hideCurrentUserId">
-                  {{ currentUserId }}
-                </div>
-                <div class="dropdown-item" *ngIf="displayName">
-                  {{ displayName }}
-                </div>
-                <div class="dropdown-item" *ngIf="additionalInfo">
-                  {{ additionalInfo }}
-                </div>
+                @if (currentUserId && !hideCurrentUserId) {
+                  <div class="dropdown-item">
+                    {{ currentUserId }}
+                  </div>
+                }
+                @if (displayName) {
+                  <div class="dropdown-item">
+                    {{ displayName }}
+                  </div>
+                }
+                @if (additionalInfo) {
+                  <div class="dropdown-item">
+                    {{ additionalInfo }}
+                  </div>
+                }
                 <ng-container
                   [ngTemplateOutlet]="optionDropdownContent"
                   [ngTemplateOutletContext]="{ dropdownRef: optionDropdown }"
@@ -103,30 +118,31 @@
             </div>
           </div>
         </div>
-        <button
-          *ngIf="hasNavbar"
-          (click)="toggleMenu()"
-          id="nav-toggler"
-          class="btn btn-lg btn-tertiary px-16 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
-        >
-          <em class="pi pi-2070"></em>
-        </button>
+        @if (hasNavbar) {
+          <button
+            (click)="toggleMenu()"
+            id="nav-toggler"
+            class="btn btn-lg btn-tertiary px-16 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
+          >
+            <em class="pi pi-2070"></em>
+          </button>
+        }
       </div>
     </div>
-    <nav
-      *ngIf="hasNavbar && (!condenseHeader || isMobile)"
-      class="row justify-content-center top-navigation m-0 d-md-flex"
-      aria-label="navigation"
-      [ngClass]="{ 'd-none': !openedMenu }"
-    >
-      <ng-container *ngTemplateOutlet="navbar"></ng-container>
-    </nav>
-    <div
-      *ngIf="showIntranetSearch && ((condenseHeader && !openedMenu) || !condenseHeader)"
-      class="search-textbox d-md-none"
-    >
-      <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
-    </div>
+    @if (hasNavbar && (!condenseHeader || isMobile)) {
+      <nav
+        class="row justify-content-center top-navigation m-0 d-md-flex"
+        aria-label="navigation"
+        [ngClass]="{ 'd-none': !openedMenu }"
+      >
+        <ng-container *ngTemplateOutlet="navbar"></ng-container>
+      </nav>
+    }
+    @if (showIntranetSearch && ((condenseHeader && !openedMenu) || !condenseHeader)) {
+      <div class="search-textbox d-md-none">
+        <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
+      </div>
+    }
   </div>
 </header>
 
