@@ -92,11 +92,6 @@
       align-items: center;
     }
 
-    // Hide default SVG icons
-    > a > div > svg {
-      display: none;
-    }
-
     &[data-nodetype='group'] svg {
       color: post.$gray-60;
     }
@@ -133,6 +128,11 @@
   [data-parent-id='misc']:where(:not([data-parent-id='misc'] + *)) {
     margin-block-start: 1rem;
   }
+}
+
+// Hide default SVG icons
+[data-env="development"] #storybook-explorer-tree .sidebar-item > a > div > svg {
+  display: none;
 }
 
 #storybook-explorer-menu {
