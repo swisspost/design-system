@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as ZIndexStories from './z-index.stories';
+
+<Meta of={ZIndexStories} />
+
+# Z-Index
+
+<div className="lead">
+  Use our <code>{".z-{value}"}</code> utility classes to control element stacking. Each element must have a non-static position (e.g. <code>relative</code>, <code>absolute</code> or <code>fixed</code>) for the z-index to take effect.
+</div>
+
+**Available classes:**
+- <code>.z-n1</code>
+- <code>.z-0</code>
+- <code>.z-1</code>
+- <code>.z-2</code>
+- <code>.z-3</code>
+
+## Example
+
+<Canvas sourceState="shown" of={ZIndexStories.ZIndex} />
+<div className="hide-col-default">
+  <Controls of={ZIndexStories.ZIndex} />
+</div>
