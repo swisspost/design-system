@@ -87,30 +87,29 @@ post-header {
   }
 
   ul[slot='meta-navigation'] {
-    @include media.min(lg) {
-      gap: 4px;
-    }
+    gap: 0 4px;
 
-    @include media.max(lg) {
-      flex-direction: column;
-      gap: 0;
+    &:where(post-header:has(post-mainnavigation) > *) {
+      @include media.max(lg) {
+        flex-direction: column;
 
-      a,
-      button {
-        justify-content: space-between;
-        border-radius: 0;
-        @include mobile-header-interactive;
+        a,
+        button {
+          justify-content: space-between;
+          border-radius: 0;
+          @include mobile-header-interactive;
 
-        @include utilities.focus-style-custom {
-          border-radius: 4px;
+          @include utilities.focus-style-custom {
+            border-radius: 4px;
+          }
         }
       }
-    }
 
-    @include media.max(sm) {
-      a,
-      button {
-        font-size: 14px;
+      @include media.max(sm) {
+        a,
+        button {
+          font-size: 14px;
+        }
       }
     }
   }

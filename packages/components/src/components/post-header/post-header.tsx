@@ -31,8 +31,8 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
 
-  private get isLanguageSwitchInMainHeader(): boolean {
-    return this.device === 'desktop' || !this.hasNavigation;
+  private get hasMobileMenu(): boolean {
+    return this.device !== 'desktop' && this.hasNavigation;
   }
 
   get scrollParent(): HTMLElement {
@@ -115,6 +115,8 @@ export class PostHeader {
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
+
+    this.checkNavigationExistence();
     this.switchLanguageSwitchMode();
 
     this.handleScrollParentResize();
@@ -123,7 +125,6 @@ export class PostHeader {
 
   componentWillRender() {
     this.handleScrollEvent();
-    this.checkNavigationExistence();
   }
 
   componentDidRender() {
@@ -317,7 +318,7 @@ export class PostHeader {
   }
 
   private switchLanguageSwitchMode() {
-    const variant: SwitchVariant = this.isLanguageSwitchInMainHeader ? 'menu' : 'list';
+    const variant: SwitchVariant = this.hasMobileMenu ? 'list' : 'menu';
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
       languageSwitch?.setAttribute('variant', variant);
     });
@@ -369,9 +370,9 @@ export class PostHeader {
             </div>
           </div>
           <div class="global-sub">
-            {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
+            {!this.hasMobileMenu && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
-            {(this.isLanguageSwitchInMainHeader) && <slot name="post-language-switch"></slot>}
+            {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
             {this.hasNavigation && (
               <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
                 <slot name="post-togglebutton"></slot>
