@@ -1,5 +1,23 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.42
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.42
+
+## 10.0.0-next.41
+
+### Patch Changes
+
+- Improved URL handling in `post-icon` component:
+  - Enhanced URL construction to properly handle both absolute and relative URLs
+  - Fixed slug detection to correctly identify root paths ("/") as valid slugs
+  - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.41
+
 ## 10.0.0-next.40
 
 ### Patch Changes

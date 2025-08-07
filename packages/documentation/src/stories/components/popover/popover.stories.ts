@@ -1,4 +1,4 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
@@ -101,7 +101,7 @@ function render(args: Args) {
       </button>
     </div>
     <post-popover
-      class="${args.palette}"
+      class="palette ${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
       close-button-caption="${args.closeButtonCaption}"

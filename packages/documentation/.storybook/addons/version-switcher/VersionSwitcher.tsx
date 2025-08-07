@@ -1,4 +1,4 @@
-import { IconButton, WithTooltip } from '@storybook/components';
+import { IconButton, WithTooltip } from 'storybook/internal/components';
 import React, { useEffect, useState } from 'react';
 import { getVersion } from '../../../src/utils/version';
 import * as packageJson from '../../../package.json';

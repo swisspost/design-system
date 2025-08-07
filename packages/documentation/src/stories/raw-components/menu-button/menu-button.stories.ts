@@ -1,4 +1,4 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -63,10 +63,7 @@ function render(args: Args) {
       placement="${args.placement !== 'bottom' ? args.placement : nothing}"
     >
       <post-menu-item><button>Example 1</button></post-menu-item>
-      <post-menu-item>
-        <a href="#">Example 2</a>
-        <post-menu-item><div>Example 3</div></post-menu-item>
-      </post-menu-item>
+      <post-menu-item><a href="#">Example 2</a></post-menu-item>
     </post-menu>
   `;
 }

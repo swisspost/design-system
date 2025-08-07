@@ -1,7 +1,8 @@
-import { Meta, Source } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
 import * as PackageStories from './components-react.stories';
-import ReactAppModuleSample from './react-app-module.sample.ts?raw';
-import SampleCssGlobal from './react-app-css-global.sample.css?raw';
+import GlobalCSSSample from './global-css.sample.css?raw';
+import CSRSample from './csr.sample.tsx?raw';
+import SSRSample from './ssr.sample.tsx?raw';
 import changelog from '@/../../components-react/CHANGELOG.md?raw';
 import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
@@ -37,20 +38,31 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
   </div>
 
-## Installation
+  ## Installation
 
-<Source code={`npm install @swisspost/design-system-components-react`} language="bash" />
+  <Source code={`npm install @swisspost/design-system-components-react`} language="bash" />
 
-## Usage
+  ## Usage
 
-Import the packages global styles. They are required for the components to work properly.
+  Import the packages global styles. They are required for the components to work properly.
 
-<Source
-  code={SampleCssGlobal}
-  language="scss"
-/>
+  <Source
+    code={GlobalCSSSample}
+    language="scss"
+  />
 
-Importing the components to your project.
+  Importing the components to your project.
 
-<Source code={ReactAppModuleSample} language="typescript" />
+
+  The package provides two different javascript entry points. One for CSR (Client-Side Rendering) and one for SSR (Server-Side Rendering).
+
+  The CSR entry point is the default one and can be used in any project, that uses a supported react version.
+
+  <Source code={CSRSample} language="typescript" />
+
+  The SSR entry point is needed for server-side rendering (e.g. in a NextJS project).
+
+  <Source code={SSRSample} language="typescript" />
 </PackageDocs>
+
+

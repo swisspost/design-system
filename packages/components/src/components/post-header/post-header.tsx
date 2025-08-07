@@ -1,19 +1,11 @@
-import {
-  Component,
-  h,
-  Host,
-  State,
-  Element,
-  Method,
-  Watch,
-} from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint } from '../../utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { eventGuard } from '@/utils/event-guard';
+import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -97,6 +89,13 @@ export class PostHeader {
     if (this.device === 'desktop' && this.mobileMenuExtended) {
       this.closeMobileMenu();
     }
+    
+    if (this.device !== 'desktop') {
+      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+        dropdown.hide(false, true);
+      });
+      this.megadropdownOpen = false;
+    }
   };
 
   connectedCallback() {
@@ -112,7 +111,6 @@ export class PostHeader {
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
     this.switchLanguageSwitchMode();
 
-    this.updateLocalHeaderHeight();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
@@ -124,6 +122,10 @@ export class PostHeader {
   componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
+  }
+
+  componentDidLoad() {
+    this.updateLocalHeaderHeight();
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -167,6 +169,10 @@ export class PostHeader {
   @Method()
   async toggleMobileMenu(force?: boolean) {
     if (this.device === 'desktop') return;
+    if (this.megadropdownOpen) {
+      this.megadropdownOpen = false;
+      return;
+    }
 
     this.mobileMenuAnimation = this.mobileMenuExtended
       ? slideUp(this.mobileMenu)
@@ -187,19 +193,10 @@ export class PostHeader {
     }
   }
 
+  @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-    eventGuard(
-      this.host,
-      event,
-      {
-        targetLocalName: 'post-megadropdown',
-        delegatorSelector: 'post-header',
-      },
-      () => {
-        this.megadropdownOpen = event.detail.isVisible;
-      },
-    );
-  };
+      this.megadropdownOpen = event.detail.isVisible;
+    };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -208,7 +205,7 @@ export class PostHeader {
       ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="meta-navigation"]) > li')),
       ...Array.from(
         this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-mainnavigation > .back-button, post-megadropdown-trigger',
+          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
         ),
       ),
       ...Array.from(
@@ -253,12 +250,14 @@ export class PostHeader {
   }
 
   private updateLocalHeaderHeight() {
-    const localHeaderHeight =
-      this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    document.documentElement.style.setProperty(
-      '--post-local-header-height',
-      `${localHeaderHeight}px`,
-    );
+    const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
+    
+    if (localHeaderElement) {
+      document.documentElement.style.setProperty(
+        '--post-local-header-height',
+        `${localHeaderElement.clientHeight}px`,
+      );
+    }
   }
 
   private updateScrollParentHeight() {
@@ -347,7 +346,7 @@ export class PostHeader {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} data-color-scheme="light">
         <div class="global-header">
           <div class="global-sub">
             <div class="logo">

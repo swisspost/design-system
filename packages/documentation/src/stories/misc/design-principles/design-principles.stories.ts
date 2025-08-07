@@ -1,5 +1,5 @@
 import { MetaExtended } from '@root/types';
-import { StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components-vite';
 
 const meta: MetaExtended = {
   id: '43f5818c-98a0-48ba-84f1-bf4d8fe1e70d',

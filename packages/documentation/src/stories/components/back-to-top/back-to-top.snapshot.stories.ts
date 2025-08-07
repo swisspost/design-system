@@ -1,4 +1,4 @@
-import type { StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import type { StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import meta from './back-to-top.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';

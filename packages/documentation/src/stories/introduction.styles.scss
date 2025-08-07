@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/tokens/elements';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -17,7 +18,7 @@ tokens.$default-map: utilities.$post-spacing;
   justify-content: center;
   gap: tokens.get('utility-gap-32');
 
-  @include post.media-breakpoint-down(sm) {
+  @include post.max(sm) {
     gap: tokens.get('utility-gap-16');
   }
 }
@@ -33,7 +34,7 @@ tokens.$default-map: utilities.$post-spacing;
 
   .feature--content {
     .content--title {
-      font-size: post.$h6-font-size;
+      font-size: tokens.get('h6-font-size', elements.$post-heading);
       font-weight: post.$font-weight-bold;
     }
   }
