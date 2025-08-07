@@ -1,0 +1,9 @@
+@for (item of items; track item.id) {
+  <post-tooltip-trigger for="itemDetails" (postTriggered)="currentItem = item">
+    <button class="btn btn-secondary">{{ item.title }}</button>
+  </post-tooltip-trigger>
+}
+
+<post-tooltip id="itemDetails">
+  <p><strong>{{ currentItem?.title }} status:</strong> {{ currentItem?.shippingInfo }}</p>
+</post-tooltip>
