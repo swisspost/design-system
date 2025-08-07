@@ -122,6 +122,7 @@
 .local-header {
   display: flex;
   position: sticky;
+  inset-block-start: var(--post-local-header-top);
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
@@ -146,7 +147,6 @@
 
   @include media.min(lg) {
     z-index: 3;
-    inset-block-start: var(--post-local-header-top);
     padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
     transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
@@ -154,7 +154,6 @@
 
   @include media.max(lg) {
     z-index: 3;
-    inset-block-start: var(--post-global-header-height);
     padding-block: 8px;
 
     flex-wrap: wrap;

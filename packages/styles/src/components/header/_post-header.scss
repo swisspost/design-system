@@ -33,6 +33,7 @@ tokens.$default-map: elements.$post-link;
   // microsite
   &:has(post-header post-mainnavigation) {
     --post-global-header-expanded-height: 4rem;
+    --post-local-header-reduced-height: 0rem; /* stylelint-disable-line length-zero-no-unit */ // needed for calculation
 
     @include media.only(mobile) {
       --post-local-header-expanded-min-height: 3rem;
