@@ -33,8 +33,8 @@
     box-shadow: elevation.$elevation-300;
     width: max-content;
     max-width: 100%;
-    color: var(--post-current-palette-fg);
-    background-color: var(--post-current-palette-bg);
+    color: var(--post-current-fg);
+    background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
 
     &.animate-pop-in {
