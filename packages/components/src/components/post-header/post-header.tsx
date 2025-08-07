@@ -370,7 +370,9 @@ export class PostHeader {
             </div>
           </div>
           <div class="global-sub">
-            {!this.hasMobileMenu && <slot name="meta-navigation"></slot>}
+            {!this.hasMobileMenu && (
+              <slot name="meta-navigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
+            )}
             <slot name="global-controls"></slot>
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
             {this.hasNavigation && (
