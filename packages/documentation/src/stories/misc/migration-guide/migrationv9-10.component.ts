@@ -51,23 +51,6 @@ export class MigrationV99Component extends LitElement {
             <section>
               <h4>Styles</h4>
 
-              <h5>Spinner</h5>
-              <ul>
-                <li class="mb-16">
-                  <p>
-                    Removed loader classes
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                  <li><code>.loader-xs</code></li>
-                  <li><code>.loader-sm</code></li>
-                  </ul>
-                  <p class="info">
-                    Instead, use classes <code>.loader-16</code> and
-                    <code>.loader-40</code>.
-                  </p>
-                </li>
-
               <h5>Forms</h5>
               <ul>
                 <li class="mb-16">
@@ -593,7 +576,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed the dependency to ng-bootstrap as well as all of the components built on it:
+                    Removed the dependency to ng-bootstrap as well as all of the components built on
+                    it:
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
@@ -772,6 +756,23 @@ export class MigrationV99Component extends LitElement {
                     All classes and CSS variables related to the bootstrap
                     <code>navbar</code> component have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+              </ul>
+              <ul>
+                <li class="mb-16">
+                  <p>
+                    Depredated loader classes and related scss variables have been removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.loader-xs</code></li>
+                    <li><code>.loader-sm</code></li>
+                    <li><code>$spinner-size-xs</code></li>
+                    <li><code>$spinner-size-sm</code></li>
+                  </ul>
+                  <p class="info">
+                    Instead, use classes <code>.loader-16</code> and <code>.loader-40</code>.
                   </p>
                 </li>
               </ul>
