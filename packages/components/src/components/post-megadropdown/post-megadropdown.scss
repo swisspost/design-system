@@ -128,7 +128,8 @@
     }
   }
 
-  h2 {
+  h2,
+  .h2 {
     display: none;
     margin-block: 0 8px;
     font-weight: 900;
@@ -170,7 +171,8 @@
       flex-direction: column-reverse;
       height: 100%;
 
-      h3 {
+      h3,
+      .h3 {
         font-size: 20px;
         display: block;
         font-weight: 900;
