@@ -246,6 +246,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     font-size: 0.875rem;
   }
 
+  .docblock-argstable-body tr td div span div {
+    font-size: 0.875rem !important;
+  }
+
   .docblock-argstable-body td a,
   // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
