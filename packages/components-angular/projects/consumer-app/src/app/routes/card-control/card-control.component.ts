@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PostComponentsModule } from 'components';
+import { PostCardControl, PostCardControlCheckboxValueAccessorDirective, PostCardControlRadioValueAccessorDirective } from 'components';
 
 @Component({
-    selector: 'card-control-page',
-    templateUrl: './card-control.component.html',
-    imports: [CommonModule, ReactiveFormsModule, PostComponentsModule]
+  selector: 'card-control-page',
+  templateUrl: './card-control.component.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    PostCardControl,
+    PostCardControlCheckboxValueAccessorDirective,
+    PostCardControlRadioValueAccessorDirective
+  ]
 })
 export class CardControlComponent {
   public radioOptions = ['option_1', 'option_2', 'option_3', 'option_4', 'option_5'];
