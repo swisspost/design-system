@@ -94,7 +94,7 @@ function getText(args: Args) {
 function renderProductCard(args: Args) {
   return html`
     <a href="#" class="card product-card${args.cardClasses}">
-      <div class="card-body product-navigation">
+      <div class="p-16 product-navigation">
         ${getTitle(args)} ${getText(args)}
         <span class="link-icon">
           <post-icon name="3020" aria-hidden="true"></post-icon>
@@ -143,7 +143,7 @@ export const Multipart: Story = {
     <div class="row row-cols-md-2 border-gutters">
       <div class="col-12">
         <div class="card product-card">
-          <div class="card-body" data-sync-height-with="product-header">
+          <div class="p-16" data-sync-height-with="product-header">
             <div class="product-navigation">
               <div>
                 <h3>Affordable</h3>
@@ -162,7 +162,7 @@ export const Multipart: Story = {
             </div>
           </div>
 
-          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-1">
+          <div class="p-16 palette palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -174,7 +174,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body" data-sync-height-with="product-body-2">
+          <div class="p-16" data-sync-height-with="product-body-2">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16 align-items-stretch">
@@ -209,7 +209,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-3">
+          <div class="p-16 palette palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -224,7 +224,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette palette-alternate">
+          <div class="p-16 palette palette-alternate">
             <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>
@@ -238,7 +238,7 @@ export const Multipart: Story = {
 
       <div class="col-12">
         <div class="card product-card">
-          <div class="card-body" data-sync-height-with="product-header">
+          <div class="p-16" data-sync-height-with="product-header">
             <div class="product-navigation">
               <div>
                 <h3>Faster</h3>
@@ -258,7 +258,7 @@ export const Multipart: Story = {
             </div>
           </div>
 
-          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-1">
+          <div class="p-16 palette palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -273,7 +273,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body" data-sync-height-with="product-body-2">
+          <div class="p-16" data-sync-height-with="product-body-2">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16 align-items-stretch">
@@ -296,7 +296,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-3">
+          <div class="p-16 palette palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -311,7 +311,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette palette-alternate">
+          <div class="p-16 palette palette-alternate">
             <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>

@@ -93,9 +93,9 @@ export default function Home() {
       <h2>Linkarea</h2>
       <PostLinkarea>
         <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Titulum</h5>
-            <p className="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
+          <div className="p-16">
+            <h5>Titulum</h5>
+            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
             <a className="card-link" href="#test">
               Ligilo teksto
             </a>
