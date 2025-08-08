@@ -226,10 +226,23 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .docblock-argstable-head {
+    font-size: 0.875rem;
+  }
+
+  .docblock-argstable-body button {
+    font-size: 0.688rem;
+  }
+
+  .docblock-argstable-body span {
+    font-size: 0.875rem;
+  }
+
   .docblock-argstable-body td a,
   // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
     color: #0073bc;
+    font-size: 0.875rem;
   }
 
   @include media.max(sm) {
