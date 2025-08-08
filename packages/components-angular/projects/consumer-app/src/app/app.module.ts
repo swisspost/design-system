@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { providePostComponents } from '@swisspost/design-system-components-angular';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './routes/home/home.component';
 import { CardControlComponent } from './routes/card-control/card-control.component';
 
 @NgModule({
