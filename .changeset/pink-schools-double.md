@@ -3,5 +3,11 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Removed `.loader-xs` and `.loader-sm` classes from spinner stylesheet and documentation
-Removed deprecated `$spinner-size-xs` and `$spinner-size-sm` variables and related border-with from spinner stylesheet.
+Removed deprecated classes and SCSS variables for the spinner:
+
+- `.loader-xs`
+- `.loader-sm`
+- `$spinner-size-xs`
+- `$spinner-size-sm`
+- `$spinner-border-width-xs`
+- `$spinner-border-width-sm`
