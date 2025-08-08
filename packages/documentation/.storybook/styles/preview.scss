@@ -230,6 +230,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     font-size: 0.875rem;
   }
 
+  .docblock-argstable-body td label textarea {
+    font-size: 0.875rem;
+  }
+
   .docblock-argstable-body button {
     font-size: 0.688rem;
   }
