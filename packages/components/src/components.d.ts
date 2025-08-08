@@ -9,10 +9,12 @@ import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
+import { User } from "./components/post-user-menu/post-user-menu";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
+export { User } from "./components/post-user-menu/post-user-menu";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -536,6 +538,20 @@ export namespace Components {
          */
         "for": string;
     }
+    interface PostUserMenu {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
+          * An Object containing the personal data of the user currently logged-in.
+         */
+        "user"?: User;
+    }
 }
 export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -892,6 +908,12 @@ declare global {
         prototype: HTMLPostTooltipTriggerElement;
         new (): HTMLPostTooltipTriggerElement;
     };
+    interface HTMLPostUserMenuElement extends Components.PostUserMenu, HTMLStencilElement {
+    }
+    var HTMLPostUserMenuElement: {
+        prototype: HTMLPostUserMenuElement;
+        new (): HTMLPostUserMenuElement;
+    };
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
@@ -928,6 +950,7 @@ declare global {
         "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
         "post-tooltip-trigger": HTMLPostTooltipTriggerElement;
+        "post-user-menu": HTMLPostUserMenuElement;
     }
 }
 declare namespace LocalJSX {
@@ -1379,6 +1402,20 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostUserMenu {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
+          * An Object containing the personal data of the user currently logged-in.
+         */
+        "user"?: User;
+    }
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
@@ -1415,6 +1452,7 @@ declare namespace LocalJSX {
         "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
         "post-tooltip-trigger": PostTooltipTrigger;
+        "post-user-menu": PostUserMenu;
     }
 }
 export { LocalJSX as JSX };
@@ -1462,6 +1500,7 @@ declare module "@stencil/core" {
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
             "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;
+            "post-user-menu": LocalJSX.PostUserMenu & JSXBase.HTMLAttributes<HTMLPostUserMenuElement>;
         }
     }
 }
