@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {
   PostAccordion,
   PostAccordionItem,
+  PostAvatar,
+  PostBanner,
   PostCardControl,
   PostCollapsibleTrigger,
   PostCollapsible,
@@ -14,7 +16,6 @@ import {
   PostTabHeader,
   PostTabPanel,
   PostTooltipTrigger,
-  PostTooltip
 } from 'components';
 
 @Component({
@@ -24,6 +25,8 @@ import {
 imports: [
   PostAccordion,
   PostAccordionItem,
+  PostAvatar,
+  PostBanner,
   PostCardControl,
   PostCollapsibleTrigger,
   PostCollapsible,
@@ -36,7 +39,6 @@ imports: [
   PostTabHeader,
   PostTabPanel,
   PostTooltipTrigger,
-  PostTooltip
 ]})
 
 export class HomeComponent {
