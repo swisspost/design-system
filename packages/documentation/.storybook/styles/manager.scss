@@ -109,6 +109,18 @@
       background-color: rgba(post.$yellow, 0.4);
       color: post.$black;
     }
+
+    .label-with-icon {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      img {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+      }
+    }
   }
 
   #misc,

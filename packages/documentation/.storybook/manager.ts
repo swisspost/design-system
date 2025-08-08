@@ -9,6 +9,7 @@ import { API_HashEntry, API_PreparedIndexEntry, StatusByTypeId } from 'storybook
 const TECH_ICONS: Record<string, string> = {
   Styles: cssIcon,
   WebComponents: webComponentsIcon,
+  InternetHeader: webComponentsIcon,
 };
 
 definePostIcon();
@@ -25,7 +26,7 @@ document.documentElement.setAttribute('data-env', initialEnv);
 
 // Filter functions
 const excludeDevOnlyFilter = (
-  item: API_PreparedIndexEntry & { statuses: StatusByTypeId; },
+  item: API_PreparedIndexEntry & { statuses: StatusByTypeId },
 ): boolean => !(item.tags ?? []).includes('devOnly');
 const includeAllFilter = () => true;
 
@@ -54,7 +55,6 @@ const renderLabel = (item: API_HashEntry) => {
         React.createElement('img', {
           key: packageType,
           src: TECH_ICONS[packageType],
-          style: { width: '1em', height: '1em', flexShrink: 0 },
           alt: packageType,
         }),
       );
@@ -62,7 +62,7 @@ const renderLabel = (item: API_HashEntry) => {
     if (icons.length > 0) {
       return React.createElement(
         'span',
-        { style: { display: 'flex', alignItems: 'center', gap: '6px' } },
+        { className: 'label-with-icon' },
         React.createElement('span', null, item.name),
         ...icons,
       );
