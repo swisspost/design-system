@@ -8,29 +8,36 @@ const LONG_TEXT =
 
 export const COMBINATIONS = [
   {
-    title: true, // This property is true when a heading should be rendered above the story
-    label: `${SHORT_LABEL} - no Hint`,
+    title: 'No hint',
+    label: SHORT_LABEL,
     hint: null,
   },
   {
-    label: `${SHORT_LABEL} - short Hint`,
+    title: 'Short hint, optional',
+    label: SHORT_LABEL,
     hint: SHORT_HINT,
+    requiredOptional: 'optional',
   },
   {
-    label: `${SHORT_LABEL} - long - ${LONG_TEXT}`,
+    title: 'Long label, long hint',
+    label: LONG_TEXT,
     hint: LONG_HINT,
   },
   {
-    label: `${SHORT_LABEL} - Disabled`,
+    title: 'Disabled',
+    label: SHORT_LABEL,
     disabled: true,
   },
   {
-    label: `${SHORT_LABEL} - Valid`,
+    title: 'Valid',
+    label: SHORT_LABEL,
     validation: 'is-valid',
   },
   {
-    label: `${SHORT_LABEL} - Invalid`,
+    title: 'Invalid, required',
+    label: SHORT_LABEL,
     validation: 'is-invalid',
+    requiredOptional: 'required',
   },
 ];
 

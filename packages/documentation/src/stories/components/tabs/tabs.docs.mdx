@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as TabStories from './tabs.stories';
 import SampleTabChange from './tabs-tab-change.sample?raw';
 import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
@@ -8,12 +8,11 @@ import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
 <div className="docs-title">
   # Tabs
 
-  <link-design of={JSON.stringify(TabStories)}></link-design>
+<link-design of={JSON.stringify(TabStories)}></link-design>
+
 </div>
 
-<div className="lead">
-  Organize content across different sections that are shown one at a time.
-</div>
+<div className="lead">Organize content across different sections that are shown one at a time.</div>
 
 <Canvas sourceState="shown" of={TabStories.Default} />
 
@@ -29,20 +28,27 @@ use the `active-panel` property and assign it the name of the desired panel.
 
 <Canvas of={TabStories.ActivePanel} />
 
+### Full-width Tabs
+
+Setting the `full-width` property to `true` will allow the tabs container stretch across the full width of the screen, while the tabs and their content remain aligned with the main page content. Click the button below to view a full-screen example of the `post-tabs` component.
+
+<a
+  className="btn btn-primary"
+  target="_blank"
+  href={`?path=%2Fstory%2Fbb1291ca-4dbb-450c-a15f-596836d9f39e--full-width&full=true`}
+  rel="noreferrer"
+>
+  Full-width example
+</a>
+
 ### Tab Changes
 
 Use the `tabChange` event to run a function anytime a new tab gets activate.
 
-<Source
-  code={SampleTabChange}
-  language="typescript"
-/>
+<Source code={SampleTabChange} language="typescript" />
 
 ### Custom Trigger
 
 To trigger a tab change, use the `show()` method specifying the name of the panel that you want to show.
 
-<Source
-  code={SampleCustomTrigger}
-  language="typescript"
-/>
+<Source code={SampleCustomTrigger} language="typescript" />
