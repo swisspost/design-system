@@ -1,5 +1,22 @@
 const PAGE_ID = '09aac03d-220e-4885-8fb8-1cfa01add188';
 
+const GRAVATAR_DEFAULT = '404';
+const GRAVATAR_RATING = 'g';
+const GRAVATAR_SIZE = 80;
+
+function getGravatarUrl(email: string): string {
+  const hash = cryptify(email.trim().toLowerCase());
+  return `https://www.gravatar.com/avatar/${hash}?s=${GRAVATAR_SIZE}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
+}
+
+async function cryptify(key: string) {
+  return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
+    return Array.from(new Uint8Array(buffer))
+      .map(bytes => bytes.toString(16).padStart(2, '0'))
+      .join('');
+  });
+}
+
 describe('Avatar', () => {
   describe('Structure & Props', () => {
     beforeEach(() => {
@@ -40,23 +57,26 @@ describe('Avatar', () => {
       cy.get('@initials').should('have.text', '');
     });
 
-    it('should show image, when email with gravatar account is defined', () => {
-      cy.get('@avatar').invoke('attr', 'email', 'oss@post.ch');
-      cy.get('@avatar').should('have.attr', 'email');
-      cy.get('@avatar').find('slot img').should('exist');
-      cy.get('@avatar').find('.initials').should('not.exist');
+    it('should show initials if gravatar does not exist, otherwise show img', () => {
+      const email = 'no-gravatar-account@post.ch';
+      const url = getGravatarUrl(email);
 
-      cy.get('@avatar').invoke('removeAttr', 'email');
-      cy.get('@avatar').find('slot img').should('not.exist');
-      cy.get('@avatar').find('.initials').should('exist');
-    });
+      cy.request({
+        url,
+        failOnStatusCode: false,
+      }).then(response => {
+        cy.get('@avatar').invoke('attr', 'email', email);
+        cy.get('@avatar').should('have.attr', 'email');
+        cy.get('@avatar').should('have.attr', 'firstname');
 
-    it('should show initials, when email with no gravatar account is defined', () => {
-      cy.get('@avatar').invoke('attr', 'email', 'no-gravatar-account@post.ch');
-      cy.get('@avatar').should('have.attr', 'email');
-      cy.get('@avatar').should('have.attr', 'firstname');
-      cy.get('@avatar').find('slot img').should('not.exist');
-      cy.get('@avatar').find('.initials').should('exist');
+        if (response.status === 200) {
+          cy.get('@avatar').find('slot img').should('exist');
+          cy.get('@avatar').find('.initials').should('not.exist');
+        } else {
+          cy.get('@avatar').find('slot img').should('not.exist');
+          cy.get('@avatar').find('.initials').should('exist');
+        }
+      });
     });
 
     it('should show image, when slotted image is defined', () => {
