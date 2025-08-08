@@ -10,11 +10,9 @@ $post-icon-animations: (
 );
 
 :host {
-  --post-icon-size: 1rem;
-
   display: inline-block;
-  width: var(--post-icon-size);
-  height: var(--post-icon-size);
+  width: 1em;
+  height: 1em;
   vertical-align: -0.15em;
 }
 
