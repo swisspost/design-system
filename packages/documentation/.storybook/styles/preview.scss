@@ -287,6 +287,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     margin: 0 0 1rem;
   }
 
+  p small {
+    font-size: 0.875rem;
+  }
+
   .hide-col-default .docblock-argstable {
     th,
     td {
