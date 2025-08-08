@@ -23,6 +23,7 @@ body {
   #storybook-docs {
     :is(pre, .prismjs) {
       font-family: var(--post-docs-font-monospace);
+      font-size: 0.875rem !important;
     }
   }
 }

@@ -116,7 +116,7 @@ post-mainnavigation {
         padding-inline: 12px;
         height: var(--post-main-navigation-height);
         gap: 4px;
-        font-size: 16px;
+        font-size: 1rem;
         z-index: 4;
 
         @include media.max(lg) {
@@ -158,7 +158,7 @@ post-mainnavigation {
         }
 
         @include media.max(sm) {
-          font-size: 14px;
+          font-size: 1rem;
         }
       }
 

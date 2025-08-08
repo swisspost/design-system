@@ -4,8 +4,9 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
-.addon-label {
+button.addon-label {
   color: var(--post-current-fg) !important;
+  font-size: 0.875rem;
 }
 
 .addon-dropdown {
