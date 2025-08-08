@@ -435,3 +435,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 .sbdocs.sbdocs-preview.source-hidden > *:nth-child(2) {
   display: none !important;
 }
+
+.innerZoomElementWrapper .badge {
+  font-size: 0.875rem;
+}
