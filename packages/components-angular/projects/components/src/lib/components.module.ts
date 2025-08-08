@@ -6,12 +6,10 @@ import { PostCardControlRadioValueAccessorDirective } from './custom/value-acces
 
 export function providePostComponents(): EnvironmentProviders {
   return makeEnvironmentProviders([
-    // Import all directives and value accessors
     ...DIRECTIVES,
     PostCardControlCheckboxValueAccessorDirective,
     PostCardControlRadioValueAccessorDirective,
     
-    // Initialize custom elements
     provideEnvironmentInitializer(() => {
       const initializerFn = (() => () => {
         // Check if Post components are already defined, if so do nothing
