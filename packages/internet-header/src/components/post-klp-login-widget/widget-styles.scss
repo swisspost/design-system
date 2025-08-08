@@ -57,7 +57,7 @@
   overflow: hidden;
   color: black;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 0.938rem;
   font-style: normal;
   font-stretch: normal;
   line-height: 1;
@@ -71,7 +71,7 @@
 .klp-widget-authenticated-menu a {
   color: rgba(0, 0, 0, 0.6);
   font-weight: normal;
-  font-size: 17px;
+  font-size: 1.063rem;
   font-style: normal;
   font-stretch: normal;
   line-height: 17px;
@@ -130,7 +130,7 @@
   margin-left: 23px;
   padding: 2px 6px;
   color: white;
-  font-size: 13px;
+  font-size: 0.813rem;
   text-align: center;
   background-color: #a51728;
   border-radius: 10px;
@@ -160,7 +160,7 @@ li.name-and-surname {
 .initials-container {
   display: table-cell;
   font-weight: 300;
-  font-size: 17px;
+  font-size: 1.063rem;
   line-height: 1.65;
   letter-spacing: normal;
   text-align: center;
@@ -181,7 +181,7 @@ li.name-and-surname {
 .klp-widget-notification-link-text {
   overflow: hidden;
   font-weight: normal;
-  font-size: 17px;
+  font-size: 1.063rem;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -193,7 +193,7 @@ li.name-and-surname span.name {
   overflow: hidden;
   color: black;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 1.063rem;
   line-height: 24px;
 }
 
@@ -206,7 +206,7 @@ li.name-and-surname span.nameCentered {
   overflow: hidden;
   color: black;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 1.063rem;
   line-height: 24px;
 }
 
@@ -217,7 +217,7 @@ li.name-and-surname span.info {
   overflow: hidden;
   color: black;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 0.938rem;
   line-height: 22px;
 }
 
@@ -228,7 +228,7 @@ li.name-and-surname span.infoHidden {
   overflow: hidden;
   color: black;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 0.938rem;
   line-height: 22px;
 }
 
@@ -393,7 +393,7 @@ li.name-and-surname span.infoHidden {
     margin: 0;
     padding-right: 8px;
     overflow: visible;
-    font-size: 17px;
+    font-size: 1.063rem;
     clip: auto;
   }
 }
@@ -415,7 +415,7 @@ li.name-and-surname span.infoHidden {
   height: 32px;
   color: white;
   font-weight: normal;
-  font-size: 13px;
+  font-size: 0.813rem;
   line-height: 32px;
   letter-spacing: 1px;
   text-align: center;
@@ -426,7 +426,7 @@ li.name-and-surname span.infoHidden {
   @media (min-width: 1024px) {
     width: 40px;
     height: 40px;
-    font-size: 15px;
+    font-size: 0.938rem;
     line-height: 40px;
     border-radius: 40px;
   }
@@ -440,7 +440,7 @@ li.name-and-surname span.infoHidden {
   width: 15px;
   height: 15px;
   color: white;
-  font-size: 12px;
+  font-size: 0.75;
   line-height: 20px;
   text-align: center;
   background-color: #a51728;
@@ -595,7 +595,7 @@ li.name-and-surname span.infoHidden {
   right: 15px;
   color: #000;
   font-weight: lighter;
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 .close:hover,

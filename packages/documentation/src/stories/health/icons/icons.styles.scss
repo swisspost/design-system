@@ -60,7 +60,7 @@ section {
     }
 
     post-icon {
-      font-size: 32px;
+      font-size: 2rem;
       color: inherit;
     }
 
@@ -76,22 +76,22 @@ section {
   }
 
   post-icon.preview-icon {
-    font-size: 16px;
+    font-size: 1rem;
 
     &.size-24 {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
     &.size-32 {
-      font-size: 32px;
+      font-size: 2rem;
     }
     &.size-40 {
-      font-size: 40px;
+      font-size: 2.5;
     }
     &.size-48 {
-      font-size: 48px;
+      font-size: 3rem;
     }
     &.size-64 {
-      font-size: 64px;
+      font-size: 4rem;
     }
   }
 }

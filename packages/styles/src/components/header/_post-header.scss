@@ -90,7 +90,7 @@ post-header {
     @include media.max(sm) {
       a,
       button {
-        font-size: 14px;
+        font-size: 0.875rem;
       }
     }
   }
@@ -110,12 +110,12 @@ post-header {
     }
 
     @include media.min(lg) {
-      font-size: 28px;
+      font-size: 1.75;
       line-height: 34px;
     }
 
     @include media.max(lg) {
-      font-size: 20px;
+      font-size: 1.25rem;
       max-width: calc(100vw - 8px - 16px);
     }
   }
