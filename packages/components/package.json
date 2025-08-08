@@ -43,6 +43,10 @@
     "./components/*": {
       "default": "./dist/components/*"
     },
+    "./components": {
+      "types": "./dist/types/components.d.ts",
+      "default": "./dist/components/index.js"
+    },
     "./loader": {
       "types": "./loader/index.d.ts",
       "import": "./loader/index.js",

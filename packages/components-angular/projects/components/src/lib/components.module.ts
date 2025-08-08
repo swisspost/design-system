@@ -1,34 +1,38 @@
-import { CSP_NONCE, inject, NgModule, provideEnvironmentInitializer } from '@angular/core';
+import { CSP_NONCE, inject, EnvironmentProviders, makeEnvironmentProviders, provideEnvironmentInitializer } from '@angular/core';
 import { defineCustomElements, setNonce } from '@swisspost/design-system-components/loader';
-
 import { DIRECTIVES } from './stencil-generated';
 import { PostCardControlCheckboxValueAccessorDirective } from './custom/value-accessors/post-card-control-checkbox-value-accessor';
 import { PostCardControlRadioValueAccessorDirective } from './custom/value-accessors/post-card-control-radio-value-accessor';
 
-const DECLARATIONS = [
-  ...DIRECTIVES,
-  PostCardControlCheckboxValueAccessorDirective,
-  PostCardControlRadioValueAccessorDirective,
-];
-
-@NgModule({
-  imports: DECLARATIONS,
-  exports: DECLARATIONS,
-  providers: [
+export function providePostComponents(): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    // Import all directives and value accessors
+    ...DIRECTIVES,
+    PostCardControlCheckboxValueAccessorDirective,
+    PostCardControlRadioValueAccessorDirective,
+    
+    // Initialize custom elements
     provideEnvironmentInitializer(() => {
       const initializerFn = (() => () => {
         // Check if Post components are already defined, if so do nothing
         if (typeof customElements.get('post-icon') !== 'undefined') return;
-
+        
         // Set a "nonce" attribute on all scripts/styles if the host application has one configured
-        const nonce = inject(CSP_NONCE);
+        const nonce = inject(CSP_NONCE, { optional: true });
         if (nonce) setNonce(nonce);
-
+        
         // Define Post components
         defineCustomElements();
       })();
+      
       return initializerFn();
     }),
-  ],
-})
-export class PostComponentsModule {}
+  ]);
+}
+
+// Export individual components/directives for selective imports in standalone components
+export const POST_COMPONENTS = [
+  ...DIRECTIVES,
+  PostCardControlCheckboxValueAccessorDirective,
+  PostCardControlRadioValueAccessorDirective,
+] as const;

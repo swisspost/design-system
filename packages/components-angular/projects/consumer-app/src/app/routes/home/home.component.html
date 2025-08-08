@@ -1,6 +1,6 @@
-<div class="my-24">
+<div class="my-4">
   <h2>Post Accordion</h2>
-  <post-accordion [headingLevel]="3">
+  <post-accordion>
     <post-accordion-item>
       <span slot="header">Titulum 1</span>
       <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
@@ -18,47 +18,37 @@
   </post-accordion>
 </div>
 
-<div class="my-24">
-  <h2>Post Banner</h2>
-  <post-banner><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-banner>
-</div>
-
 <div class="my-4">
-  <h2>Post Avatar</h2>
-  <post-avatar firstname="Firstname"></post-avatar>
-</div>
-
-<div class="my-24">
   <h2>Post Card-Control</h2>
   <post-card-control type="checkbox" label="label"></post-card-control>
 </div>
 
-<div class="my-24">
+<div class="my-4">
   <h2>Post Collapsible</h2>
   <post-collapsible-trigger for="angular-collapsible">
-    <button class="btn btn-secondary mb-8">Toggle</button>
+    <button class="btn btn-secondary mb-mini">Toggle</button>
   </post-collapsible-trigger>
   <post-collapsible id="angular-collapsible">
     <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
   </post-collapsible>
 </div>
 
-<div class="my-24">
+<div class="my-4">
   <h2>Post Icon</h2>
   <post-icon name="1001"></post-icon>
 </div>
 
-<div class="my-24">
+<div class="my-4">
   <h2>Post Logo</h2>
   <post-logo url="https://www.post.ch/en">Logo of the Post, To the homepage</post-logo>
 </div>
 
-<div class="my-24">
+<div class="my-4">
   <h2>Post Popover</h2>
   <button class="btn btn-secondary btn-large" data-popover-target="popover-one">
     Click here to see a popover
   </button>
-  <post-popover id="popover-one" placement="top" arrow="">
+  <post-popover closeButtonCaption="Close" id="popover-one" placement="top" arrow="">
     <h2 class="h6">Optional title</h2>
 
     <p class="mb-0">
@@ -69,17 +59,17 @@
   </post-popover>
 </div>
 
-<div class="my-24">
+<div class="my-4">
   <h2>Post Popovercontainer</h2>
   <post-popovercontainer></post-popovercontainer>
 </div>
 
-<div class="my-24">
+<div class="my-4">
   <h2>Post Rating</h2>
   <post-rating></post-rating>
 </div>
 
-<div class="my-24">
+<div class="my-4">
   <h2>Post Tabs</h2>
   <post-tabs>
     <post-tab-header panel="unua">Unua langeto</post-tab-header>
@@ -103,4 +93,5 @@
   <post-tooltip-trigger for="tooltip-one">
     <button class="btn btn-secondary btn-large">Button</button>
   </post-tooltip-trigger>
+  <post-tooltip id="tooltip-one"> My tooltip </post-tooltip>
 </div>

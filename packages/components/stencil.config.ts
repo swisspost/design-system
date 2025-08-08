@@ -63,7 +63,7 @@ export const config: Config = {
     }),
     angularOutputTarget({
       componentCorePackage: '@swisspost/design-system-components',
-      outputType: 'component',
+      outputType: 'standalone',
       directivesProxyFile:
         '../components-angular/projects/components/src/lib/stencil-generated/components.ts',
       directivesArrayFile:
