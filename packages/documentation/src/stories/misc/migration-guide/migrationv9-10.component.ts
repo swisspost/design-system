@@ -766,8 +766,6 @@ export class MigrationV99Component extends LitElement {
                   <ul>
                     <li><code>.loader-xs</code></li>
                     <li><code>.loader-sm</code></li>
-                    <li><code>$spinner-size-xs</code></li>
-                    <li><code>$spinner-size-sm</code></li>
                   </ul>
                   <p class="info">
                     Instead, use classes <code>.loader-16</code> and <code>.loader-40</code>.
