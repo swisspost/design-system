@@ -760,7 +760,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Depredated loader classes and related scss variables have been removed
+                    Deprecated loader classes and related scss variables have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
