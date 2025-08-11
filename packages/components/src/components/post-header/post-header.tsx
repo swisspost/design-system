@@ -343,7 +343,7 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <slot name="post-mainnavigation"></slot>
+          <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
 
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
@@ -371,7 +371,7 @@ export class PostHeader {
           </div>
           <div class="global-sub">
             {!this.hasMobileMenu && (
-              <slot name="meta-navigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
+              <slot name="meta-navigation"></slot>
             )}
             <slot name="global-controls"></slot>
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}

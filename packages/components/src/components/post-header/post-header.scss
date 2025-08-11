@@ -29,13 +29,15 @@
     0px
   );
 
-  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
-  &:has(.global-sub > *:not(.logo):focus-within),
-  &:has(.local-sub:focus-within) {
-    --post-global-header-top: 0;
-    --post-local-header-top: var(--post-global-header-expanded-height);
-    --post-logo-height: var(--post-global-header-expanded-height);
-    --post-global-controls-top: 0;
+  @include media.only(desktop) {
+    // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
+    &:has(.global-sub > *:not(.logo):focus-within),
+    &:has(.local-sub:focus-within) {
+      --post-global-header-top: 0;
+      --post-local-header-top: var(--post-global-header-expanded-height);
+      --post-logo-height: var(--post-global-header-expanded-height);
+      --post-global-controls-top: 0;
+    }
   }
 }
 
