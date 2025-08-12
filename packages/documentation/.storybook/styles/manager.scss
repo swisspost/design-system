@@ -34,7 +34,6 @@
 
     button {
       letter-spacing: 0.1em;
-      font-size: 0.75rem;
 
       &:focus,
       &:hover {
@@ -51,7 +50,7 @@
   .sidebar-item {
     position: relative;
     border-radius: 0;
-    overflow: visible !important;
+    overflow: visible!important;
 
     &:before,
     &:after {

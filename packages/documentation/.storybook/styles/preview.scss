@@ -214,7 +214,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       background: transparent;
 
       button {
-        font-size: 0.875rem;
         &:hover {
           background-color: rgba(0, 115, 188, 0.08);
         }
@@ -226,35 +225,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
-  .docblock-argstable-head {
-    font-size: 0.875rem;
-  }
-
-  .docblock-argstable-body td label textarea {
-    font-size: 0.875rem;
-  }
-
-  .docblock-argstable-body tr td div p {
-    font-size: 0.875rem;
-  }
-
-  .docblock-argstable-body button {
-    font-size: 0.688rem;
-  }
-
-  .docblock-argstable-body span {
-    font-size: 0.875rem;
-  }
-
-  .docblock-argstable-body tr td div span div {
-    font-size: 0.875rem !important;
-  }
-
   .docblock-argstable-body td a,
   // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
     color: #0073bc;
-    font-size: 0.875rem;
   }
 
   @include media.max(sm) {
@@ -297,10 +271,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   .docblock-source {
     margin: 0 0 1rem;
-  }
-
-  p small {
-    font-size: 0.875rem;
   }
 
   .hide-col-default .docblock-argstable {
@@ -434,8 +404,4 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 .sbdocs.sbdocs-preview.source-hidden > *:nth-child(2) {
   display: none !important;
-}
-
-.innerZoomElementWrapper .badge {
-  font-size: 0.875rem;
 }

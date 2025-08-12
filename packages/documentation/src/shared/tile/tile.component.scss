@@ -41,7 +41,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       background-color: post.$yellow;
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
-      font-size: max(0.875rem, calc($tile-size * 0.1));
+      font-size: max(12px, calc($tile-size * 0.1));
       font-weight: post.$font-weight-bold;
       color: post.$black;
       z-index: 1;
@@ -71,7 +71,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       }
 
       ::slotted(span) {
-        font-size: 0.75rem;
+        font-size: 0.6875em;
         color: post.$gray-60;
       }
     }
