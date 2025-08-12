@@ -2,12 +2,13 @@ import { throttle } from 'throttle-debounce';
 import { IS_SERVER } from '@/utils/environment';
 
 export type Device = 'desktop' | 'tablet' | 'mobile';
-export type Key = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export type BreakpointKey = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export type BreakpointMinWidth = 1280 | 1024 | 780 | 600 | 0;
 
 interface BreakpointDefinition {
   device: Device;
-  key: Key;
-  minWidth: number;
+  key: BreakpointKey;
+  minWidth: BreakpointMinWidth;
 }
 
 type BreakpointProperty = keyof BreakpointDefinition;
