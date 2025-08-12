@@ -1,10 +1,12 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '68699b2c-ec1f-467d-81ae-8b3f48d7c595',
   title: 'Components/Card Teaser',
+  decorators: [clickBlocker],
   tags: ['package:HTML'],
   parameters: {
     design: {
@@ -93,9 +95,7 @@ export function renderTeaserSectionHeader(size?: string) {
   return html` <div class="d-flex align-items-end justify-content-between gap-24">
     <div class="d-flex flex-column gap-8">
       <h2 class="m-0">Teaser section ${size}</h2>
-      <p class="m-0">
-        This is a sample description for the teaser section component.
-      </p>
+      <p class="m-0">This is a sample description for the teaser section component.</p>
     </div>
     <a href="#" class="flex-shrink-0 btn btn-primary"
       >Let's go <post-icon name="arrowright"></post-icon
@@ -105,7 +105,7 @@ export function renderTeaserSectionHeader(size?: string) {
 
 export const Default: Story = {
   render: renderTeaserCard,
-  decorators: [story => html`<div style="max-width: 400px;">${story()}</div>`],
+  decorators: [story => html`<div style="max-width: 400px;">${story()}</div>`, clickBlocker],
 };
 
 export const Section: Story = {
