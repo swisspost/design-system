@@ -5,5 +5,4 @@
 '@swisspost/design-system-styles': major
 ---
 
-Changed minimum font-size to 14px for accessibility. 
-Updated font-size px to rem.
+Improved accessibility by updating minimum font-size to 14px and converting font-size units from px to rem.
