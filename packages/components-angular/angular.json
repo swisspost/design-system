@@ -176,7 +176,8 @@
     "schematicCollections": [
       "@cypress/schematic",
       "@schematics/angular"
-    ]  
+    ],
+    "analytics": false
   },
   "schematics": {
     "@schematics/angular:component": {

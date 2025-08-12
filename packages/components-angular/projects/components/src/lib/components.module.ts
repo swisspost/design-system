@@ -27,10 +27,3 @@ export function providePostComponents(): EnvironmentProviders {
     }),
   ]);
 }
-
-// Export individual components/directives for selective imports in standalone components
-export const POST_COMPONENTS = [
-  ...DIRECTIVES,
-  PostCardControlCheckboxValueAccessorDirective,
-  PostCardControlRadioValueAccessorDirective,
-] as const;
