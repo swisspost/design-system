@@ -27,10 +27,49 @@ export function providePostComponents(): EnvironmentProviders {
     }),
   ]);
 }
+import { Component } from '@angular/core';
+import {
+  PostAccordion,
+  PostAccordionItem,
+  PostAvatar,
+  PostBanner,
+  PostCardControl,
+  PostCollapsibleTrigger,
+  PostCollapsible,
+  PostIcon,
+  PostLogo,
+  PostPopover,
+  PostPopovercontainer,
+  PostRating,
+  PostTabs,
+  PostTabHeader,
+  PostTabPanel,
+  PostTooltipTrigger,
+} from 'components';
 
-// Export individual components/directives for selective imports in standalone components
-export const POST_COMPONENTS = [
-  ...DIRECTIVES,
-  PostCardControlCheckboxValueAccessorDirective,
-  PostCardControlRadioValueAccessorDirective,
-] as const;
+@Component({
+  selector: 'home-page',
+  templateUrl: './home.component.html',
+  standalone: true,
+imports: [
+  PostAccordion,
+  PostAccordionItem,
+  PostAvatar,
+  PostBanner,
+  PostCardControl,
+  PostCollapsibleTrigger,
+  PostCollapsible,
+  PostIcon,
+  PostLogo,
+  PostPopover,
+  PostPopovercontainer,
+  PostRating,
+  PostTabs,
+  PostTabHeader,
+  PostTabPanel,
+  PostTooltipTrigger,
+]})
+
+export class HomeComponent {
+  isCollapsed = false;
+}
