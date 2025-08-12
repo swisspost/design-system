@@ -21,7 +21,7 @@ class Breakpoint {
     {key: 'sm', device: 'tablet', minWidth: 600},
     {key: 'xs', device: 'mobile', minWidth: 0},
   ];
-  private currentBreakpoint: BreakpointDefinition = this.breakpoints[0];
+  private currentBreakpoint: BreakpointDefinition;
 
   constructor() {
     if (IS_SERVER) return;
