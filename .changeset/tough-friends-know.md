@@ -2,5 +2,4 @@
 '@swisspost/design-system-components-angular': major
 ---
 
-Updated Angular components to output as standalone components instead of module-based. This modernizes the package to align with Angular's current best practices and provides better tree-shaking support. Users need to replace `PostComponentsModule` imports with `providePostComponents()` in their app providers and import individual components (e.g., `import { PostIcon, PostButton } from '@swisspost/design-system-components-angular'`) 
 Updated Angular components to output as standalone components to align with Angular 20's default approach where components are standalone by default, eliminating the need to declare them within NgModules. Developers using our components should replace `PostComponentsModule` imports with `providePostComponents()` in their app providers and import individual components (e.g., `import { PostIcon, PostButton } from '@swisspost/design-system-components-angular'`) for standalone use.
