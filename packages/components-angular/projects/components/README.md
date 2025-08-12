@@ -28,8 +28,6 @@ import { providePostComponents } from '@swisspost/design-system-components-angul
 export class AppModule {}
 ```
 
-### Using components in standalone components
-
 Import the components you need directly into your standalone component:
 
 ```typescript
