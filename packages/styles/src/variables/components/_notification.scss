@@ -38,15 +38,6 @@ $notification-padding-y-map: map.merge(
   )
 );
 
-$notification-font-size-map: () !default;
-$notification-font-size-map: map.merge(
-  $notification-font-size-map,
-  (
-    'banner': type.$font-size-base,
-    'toast': 0.75rem,
-  )
-);
-
 $notification-hr-margin-block-map: () !default;
 $notification-hr-margin-block-map: map.merge(
   $notification-hr-margin-block-map,
