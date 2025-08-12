@@ -74,7 +74,7 @@
 
   @include media.min(lg) {
     z-index: 5;
-    padding-inline-end: 12px;
+    padding-inline-end: 8px;
     inset-block-start: var(--post-global-header-top);
     transition: inset-block-start 0.2s ease-in-out;
   }
@@ -187,7 +187,7 @@
 }
 
 .local-sub {
-  margin-inline-end: 8px;
+  margin-inline-end: 16px;
 
   @include media.max(lg) {
     margin-inline-end: 4px;
