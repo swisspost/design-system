@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
   title: 'Components/Card Control',
   component: 'post-card-control',
-  tags: ['package:WebComponents'],
+  tags: ['package:Styles', 'package:WebComponents'],
   parameters: {
     badges: [],
     design: {
