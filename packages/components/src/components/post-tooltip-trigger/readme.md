@@ -13,6 +13,13 @@
 | `for` _(required)_ | `for`     | ID of the tooltip element that this trigger is linked to. | `string` | `undefined` |
 
 
+## Events
+
+| Event           | Description                                       | Type                |
+| --------------- | ------------------------------------------------- | ------------------- |
+| `postTriggered` | An event emitted when the component is triggered. | `CustomEvent<void>` |
+
+
 ## Slots
 
 | Slot        | Description                                                                                                |
