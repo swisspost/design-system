@@ -76,9 +76,8 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
-    } else {
-      this.animationClass = 'slide-in';
     }
+    this.animationClass = 'slide-in';
 
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
