@@ -2,7 +2,7 @@ import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
-import { breakpoint } from '../../utils/breakpoints';
+import { breakpoint, Device } from '@/utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
@@ -55,7 +55,7 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: string = breakpoint.get('device');
+  @State() device: Device = breakpoint.get('device');
   @State() mobileMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -90,7 +90,7 @@ export class PostHeader {
     if (this.device === 'desktop' && this.mobileMenuExtended) {
       this.closeMobileMenu();
     }
-    
+
     if (this.device !== 'desktop') {
       Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
         dropdown.hide(false, true);
@@ -252,7 +252,7 @@ export class PostHeader {
 
   private updateLocalHeaderHeight() {
     const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
-    
+
     if (localHeaderElement) {
       document.documentElement.style.setProperty(
         '--post-local-header-height',
