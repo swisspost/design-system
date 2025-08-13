@@ -184,13 +184,13 @@ export class PostHeader {
       this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
 
       if (this.mobileMenuExtended === false) {
-        this.closeAllMegadropdowns()
+        this.closeAllMegadropdowns();
       }
     } else {
       this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
       // If opening, close any open megadropdowns immediately
       if (this.megadropdownOpen) {
-        this.closeAllMegadropdowns()
+        this.closeAllMegadropdowns();
       }
     }
   }
