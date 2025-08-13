@@ -70,7 +70,7 @@ describe('Header', () => {
       // Check if animation class is present
       cy.get('post-megadropdown .megadropdown-container')
         .should('be.visible')
-        .should('have.class', 'slide-in')
+        .should('have.class', 'slide-in');
     });
   });
 });
