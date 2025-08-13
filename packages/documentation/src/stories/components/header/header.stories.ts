@@ -17,7 +17,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    title: '[Your Application Title]',
+    title: '[Title]',
     mainNavigation: true,
     metaNavigation: true,
     customControls: true,
