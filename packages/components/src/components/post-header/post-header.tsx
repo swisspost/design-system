@@ -184,19 +184,13 @@ export class PostHeader {
       this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
 
       if (this.mobileMenuExtended === false) {
-        Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
-          dropdown.hide(false, true);
-        });
-        this.megadropdownOpen = false;
+        this.closeAllMegadropdowns()
       }
     } else {
       this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
       // If opening, close any open megadropdowns immediately
       if (this.megadropdownOpen) {
-        Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
-          dropdown.hide(false, true);
-        });
-        this.megadropdownOpen = false;
+        this.closeAllMegadropdowns()
       }
     }
   }
@@ -249,6 +243,13 @@ export class PostHeader {
         this.firstFocusableEl.focus();
       }
     }
+  }
+
+  private closeAllMegadropdowns() {
+    Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+      dropdown.hide(false, true);
+    });
+    this.megadropdownOpen = false;
   }
 
   private handleScrollEvent() {
