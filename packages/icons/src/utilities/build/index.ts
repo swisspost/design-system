@@ -1,7 +1,8 @@
 import path from 'path';
 import { setup } from './setup';
 import { getIconSetGroups } from './iconSetGroups';
-import { createFiles } from './createFiles';
+import { createSvgs } from './createSvgs';
+import { createScss } from './createScss';
 import { writeReport } from './report';
 import { coloredLogMessage } from '../shared';
 import { OUTPUT_PATH, OUTPUT_PATH_ICONS } from '../constants';
@@ -15,7 +16,9 @@ export default function buildSVGs() {
   setup(iconOutputDirectory, reportOutputDirectory);
 
   const iconSetGroups = getIconSetGroups();
-  createFiles(iconOutputDirectory, iconSetGroups);
+  createSvgs(iconOutputDirectory, iconSetGroups);
+  createScss(iconOutputDirectory);
+
   const report = writeReport(reportOutputDirectory, iconSetGroups);
 
   console.log(
