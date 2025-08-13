@@ -1,9 +1,12 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as toggleButtonStories from './togglebutton.stories';
+import meta, * as toggleButtonStories from './togglebutton.stories';
+import PackageTag from '@/shared/package-tag.mdx';
 
 <Meta of={toggleButtonStories} />
 
 # Button Toggle
+
+<PackageTag meta={meta}/>
 
 <p className="lead">A toggle button component to switch between two states and display different content based on the current state.</p>
 
