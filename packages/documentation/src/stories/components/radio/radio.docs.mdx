@@ -1,5 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as StepperStories from './radio.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag.mdx';
 
 import * as RadioStories from './radio.stories';
 
@@ -10,6 +12,8 @@ import * as RadioStories from './radio.stories';
 
   <link-design of={JSON.stringify(RadioStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Customize the native <code>&lt;input type="radio"&gt;</code> with CSS that changes the element’s

@@ -1,7 +1,8 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as HeaderStories from './header.stories';
+import meta, * as HeaderStories from './header.stories';
 import './header.styles.scss';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag.mdx';
 
 <Meta of={HeaderStories} />
 
@@ -10,6 +11,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
   <link-design of={JSON.stringify(HeaderStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">The header of the Post.</div>
 
