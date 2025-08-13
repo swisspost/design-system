@@ -36,6 +36,7 @@ import { PostIcon } from '@swisspost/design-system-components-angular';
 
 @Component({
   standalone: true,
+  selector: 'my-component',
   template: `<post-icon></post-icon>`,
   imports: [PostIcon]
 })
@@ -46,6 +47,7 @@ import { PostIcon, PostButton } from '@swisspost/design-system-components-angula
 
 @Component({
   standalone: true,
+  selector: 'my-other-component',
   template: `<post-icon></post-icon><post-button></post-button>`,
   imports: [PostIcon, PostButton]
 })
