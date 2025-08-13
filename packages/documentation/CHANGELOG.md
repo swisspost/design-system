@@ -1,5 +1,21 @@
 # @swisspost/design-system-documentation
 
+## 5.8.0
+
+### Minor Changes
+
+- Added Nattaya's photo and info on the documentation footer. (by [@bucknatt](https://github.com/bucknatt) with [#5938](https://github.com/swisspost/design-system/pull/5938))
+
+### Patch Changes
+
+- Added documentation for dynamic tooltips in Angular. (by [@leagrdv](https://github.com/leagrdv) with [#5642](https://github.com/swisspost/design-system/pull/5642))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.1.0
+  - @swisspost/design-system-components-react@9.1.0
+  - @swisspost/design-system-styles@9.1.0
+  - @swisspost/design-system-icons@9.1.0
+  - @swisspost/internet-header@1.15.18
+
 ## 5.7.0
 
 ### Minor Changes
