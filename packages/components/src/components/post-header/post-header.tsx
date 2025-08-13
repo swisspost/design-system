@@ -2,7 +2,7 @@ import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
-import { breakpoint } from '../../utils/breakpoints';
+import { breakpoint, Device } from '@/utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
@@ -60,7 +60,7 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: string = breakpoint.get('device');
+  @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
   @State() mobileMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
