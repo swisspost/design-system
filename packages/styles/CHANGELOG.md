@@ -8,7 +8,8 @@
 
 - Renamed the `chip-filter` to `chip-selectable` and removed the `chip-sm` variant. (by [@leagrdv](https://github.com/leagrdv) with [#5755](https://github.com/swisspost/design-system/pull/5755))
 
-- Renamed the following CSS custom properties and Sass variables: - `--post-breakpoint-widths` → `--post-grid-breakpoint-widths`
+- Renamed the following CSS custom properties and Sass variables:
+  - `--post-breakpoint-widths` → `--post-grid-breakpoint-widths`
   - `--post-breakpoint-keys` → `--post-grid-breakpoint-keys`
   - `--post-breakpoint-names` → `--post-grid-breakpoint-devices`
   - `$grid-breakpoints-key-name-map` → `$grid-breakpoint-to-device` (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
