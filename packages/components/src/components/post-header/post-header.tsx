@@ -170,13 +170,6 @@ export class PostHeader {
   @Method()
   async toggleMobileMenu(force?: boolean) {
     if (this.device === 'desktop') return;
-    if (this.megadropdownOpen) {
-      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
-        dropdown.hide(false, true);
-      });
-      this.megadropdownOpen = false;
-    }
-
     this.mobileMenuAnimation = this.mobileMenuExtended
       ? slideUp(this.mobileMenu)
       : slideDown(this.mobileMenu);
@@ -185,14 +178,26 @@ export class PostHeader {
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
     menuButton.toggled = force ?? !this.mobileMenuExtended;
 
-    // Toggle menu visibility before it slides down and after it slides back up
-    if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
-    this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+    if (this.mobileMenuExtended) {
+      // Wait for the close animation to finish before hiding megadropdowns
+      await this.mobileMenuAnimation.finished;
+      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
 
-    if (this.mobileMenuExtended === false) {
-      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
-        dropdown.hide(false, true);
-      });
+      if (this.mobileMenuExtended === false) {
+        Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+          dropdown.hide(false, true);
+        });
+        this.megadropdownOpen = false;
+      }
+    } else {
+      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+      // If opening, close any open megadropdowns immediately
+      if (this.megadropdownOpen) {
+        Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+          dropdown.hide(false, true);
+        });
+        this.megadropdownOpen = false;
+      }
     }
   }
 
