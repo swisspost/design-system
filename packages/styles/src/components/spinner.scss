@@ -38,15 +38,6 @@
     }
   }
 
-  // Deprecated sizes
-  &.loader-sm {
-    font-size: spinners.$spinner-size-sm;
-  }
-
-  &.loader-xs {
-    font-size: spinners.$spinner-size-xs;
-  }
-
   &::before,
   &::after {
     content: '';
