@@ -30,7 +30,8 @@ let delayMs = 100;
   shadow: true,
 })
 export class PostAvatar {
-  private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/{userid}.png';
+  private static readonly INTERNAL_USERID_IMAGE_SRC =
+    'https://web.post.ch/UserProfileImage/{userid}.png';
 
   @Element() host: HTMLPostAvatarElement;
 
@@ -65,6 +66,7 @@ export class PostAvatar {
 
   private async updateStorageKey() {
     // Combine relevant props into a single string.
+    console.log('this.storageKey', this.storageKey);
     this.storageKey = `${this.userid || ''}_${this.email || ''}`;
   }
 
@@ -106,11 +108,15 @@ export class PostAvatar {
       let imageLoaded = false;
 
       if (this.userid) {
-        imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
+        imageLoaded = await this.getImageByProp(
+          this.userid,
+          this.fetchImageByUserId.bind(this),
+          'userid',
+        );
       }
 
       if (!imageLoaded && this.email) {
-        await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
+        await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this), 'email');
       }
     }
   }
@@ -121,12 +127,19 @@ export class PostAvatar {
     this.avatarType = AvatarType.Image;
   }
 
-  private async getImageByProp(prop: string, fetchImage: () => Promise<Response>) {
+  private async getImageByProp(
+    prop: string,
+    fetchImage: () => Promise<Response>,
+    type: 'userid' | 'email',
+  ) {
     if (!prop) return false;
 
     const cachedImageRes = await this.getStorageItem(this.storageKey);
-    if (cachedImageRes?.failed) return false;
 
+    // If this specific type has failed before, skip
+    if (cachedImageRes?.[`${type}ImageFailed`]) return false;
+
+    // If we already have a cached OK image, use it
     if (cachedImageRes?.ok && cachedImageRes.url) {
       this.setupImage(cachedImageRes);
       return true;
@@ -141,35 +154,46 @@ export class PostAvatar {
 
           await this.setStorageItem(
             this.storageKey,
-            JSON.stringify({ ok: true, url: response.url, failed: false }),
+            JSON.stringify({
+              ...cachedImageRes,
+              [`${type}ImageFailed`]: false,
+              ok: true,
+              url: response.url,
+            }),
           );
           return true;
         } else {
-          // If it's a 404 set as failed
           if (response.status === 404) {
-            await this.setStorageItem(this.storageKey, JSON.stringify({ failed: true }));
-            console.info('Avatar not found (404).');
+            await this.setStorageItem(
+              this.storageKey,
+              JSON.stringify({
+                ...cachedImageRes,
+                [`${type}ImageFailed`]: true,
+              }),
+            );
+            console.info(`Avatar not found for ${type} (404).`);
             return false;
           }
-
-          // For other HTTP errors retry
-          console.info(`Attempt ${attempt}: Loading avatar failed with status ${response.status}.`);
+          console.info(`Attempt ${attempt}: ${type} fetch failed with ${response.status}.`);
         }
       } catch (error) {
-        console.info(`Attempt ${attempt}: Network error or fetch failed.`, error);
+        console.info(`Attempt ${attempt}: Network error for ${type}`, error);
       }
 
       if (attempt < maxRetries) {
         await timeout(delayMs);
-        delayMs *= 3; // exponential backoff (3 attempts)
+        delayMs *= 3;
       }
     }
 
-    // After retries exhausted, mark as failed
-    await this.setStorageItem(this.storageKey, JSON.stringify({ failed: true }));
-    console.info(
-      `Loading avatar by type "${AvatarType.Image}" failed after ${maxRetries} attempts.`,
+    await this.setStorageItem(
+      this.storageKey,
+      JSON.stringify({
+        ...cachedImageRes,
+        [`${type}ImageFailed`]: true,
+      }),
     );
+    console.info(`Loading ${type} image failed after ${maxRetries} attempts.`);
     return false;
   }
 
@@ -229,6 +253,8 @@ export class PostAvatar {
     this.slottedImage = this.host.querySelector('img');
     this.getAvatar();
   }
+
+  connectedCallback() {}
 
   componentWillRender() {
     this.slottedImage = this.host.querySelector('img');
