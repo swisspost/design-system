@@ -1,3 +1,9 @@
-<div className={'tag tag-sm mb-24 tag-' + (props.meta.tags.includes('package:HTML') ? "" : "yellow")}>
-  <div className="tag-text">@swisspost/design-system-{props.meta.tags[0] == 'package:HTML' ? "styles" : "components"}</div>
-</div>
+export default function PackageTag(props) {
+  return (
+    <div className={'tag tag-sm mb-24 tag-' + (props.meta.tags.includes('package:HTML') ? "" : "yellow")}>
+      <div className="tag-text">
+        @swisspost/design-system-{props.meta.tags[0] == 'package:HTML' ? "styles" : "components"}
+      </div>
+    </div>
+  );
+}
