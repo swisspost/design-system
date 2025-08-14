@@ -1,6 +1,3 @@
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/button-group' as bg;
-
 @use './../mixins/utilities' as utilities-mx;
 @use './../variables/color';
 @use './../variables/spacing';
@@ -15,6 +12,38 @@
   flex-wrap: wrap;
   row-gap: tokens.get('utility-gap-4', utilities.$post-spacing);
   padding-inline-start: button.$btn-border-width;
+  border-radius: var(--post-device-border-radius-round);
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+
+  > :not(.btn-check:first-child) + .btn,
+  > .btn-group:not(:first-child) {
+    margin-left: calc(2px * -1);
+  }
+
+  > .btn:not(:last-child):not(.dropdown-toggle),
+  > .btn.dropdown-toggle-split:first-child,
+  > .btn-group:not(:last-child) > .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  > .btn:nth-child(n + 3),
+  > :not(.btn-check) + .btn,
+  > .btn-group:not(:first-child) > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  > .btn-check:checked + .btn,
+  > .btn-check:focus + .btn,
+  > .btn:hover,
+  > .btn:focus,
+  > .btn:active,
+  > .btn.active {
+    z-index: 1;
+  }
 
   > .btn {
     white-space: normal;

@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { fakeContent } from '@/utils';
@@ -20,6 +20,7 @@ const meta: MetaComponent = {
     title: 'Application title',
     metaNavigation: true,
     customControls: true,
+    targetGroup: false,
   },
   argTypes: {
     title: {
@@ -35,6 +36,16 @@ const meta: MetaComponent = {
     metaNavigation: {
       name: 'Meta navigation',
       description: 'Whether or not the meta navigation is displayed ("about us" and "jobs").',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    targetGroup: {
+      name: 'Target group',
+      description: 'Whether or not the target group buttons are visible.',
       control: {
         type: 'boolean',
       },
@@ -65,8 +76,8 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  render: args => {
+const Template = {
+  render: (args: Args) => {
     return html`<post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
@@ -108,6 +119,21 @@ export const Default: Story = {
             <h1 slot="title">${args.title}</h1>
           `
         : ''}
+      ${args.targetGroup
+        ? html`
+            <ul slot="target-group" class="target-group">
+              <li>
+                <a href="#" class="active">Private customers</a>
+              </li>
+              <li>
+                <a href="#">Business customers</a>
+              </li>
+              <li>
+                <a href="#">Authorities</a>
+              </li>
+            </ul>
+          `
+        : ''}
       ${args.customControls
         ? html`
             <!-- Custom content (optional) -->
@@ -130,9 +156,6 @@ export const Default: Story = {
 
       <!-- Main navigation -->
       <post-mainnavigation caption="Main navigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
-        </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
@@ -218,4 +241,16 @@ export const Default: Story = {
       </post-mainnavigation>
     </post-header>`;
   },
+};
+
+export const Default: Story = {
+  ...Template,
+};
+
+// Used in target group documentation
+export const WithTargetGroup: Story = {
+  args: {
+    targetGroup: true,
+  },
+  ...Template,
 };

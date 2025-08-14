@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
 import { getLabelText, getValidationMessages } from '@/utils/form-elements';
@@ -12,7 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Form Input',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: render,
   parameters: {
     badges: [],

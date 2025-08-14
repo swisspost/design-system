@@ -9,7 +9,7 @@ tokens.$default-map: utilities.$post-spacing;
   align-items: center;
   grid-template-columns: auto;
 
-  @include post.media-breakpoint-up(md) {
+  @include post.min(md) {
     grid-template-columns: max-content min-content max-content;
     gap: tokens.get('utility-gap-16');
     margin-bottom: tokens.get('utility-gap-16');
@@ -46,7 +46,7 @@ tokens.$default-map: utilities.$post-spacing;
     }
   }
 
-  @include post.media-breakpoint-up(md) {
+  @include post.min(md) {
     .sb-fontface__typo {
       font-size: 3.5rem;
     }

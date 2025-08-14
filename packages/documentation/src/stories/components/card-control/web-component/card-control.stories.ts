@@ -1,5 +1,5 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { useArgs } from '@storybook/preview-api';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+import { useArgs } from 'storybook/preview-api';
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
   title: 'Components/Card Control',
   component: 'post-card-control',
-  tags: ['package:WebComponents'],
+  tags: ['package:Styles', 'package:WebComponents'],
   parameters: {
     badges: [],
     design: {

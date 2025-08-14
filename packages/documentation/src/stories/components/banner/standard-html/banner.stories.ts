@@ -1,4 +1,4 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getBannerClasses } from './getBannerClasses';
@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'package:WebComponents'],
   render: renderBanner,
   parameters: {
     badges: [],
@@ -20,7 +20,8 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    content: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    content:
+      '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     show: true,
     action: true,
     noIcon: false,
@@ -171,21 +172,21 @@ function renderBanner(args: Args) {
   `;
 
   const body = html`
-  ${args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing}
-  ${args.action ? html` <div class="banner-content">${content}</div> ` : content}
-  ${args.action
-    ? html`
-        <div class="banner-buttons">
-          <button class="btn btn-primary">
-            <span>Accept</span>
-          </button>
-          <button class="btn btn-secondary">
-            <span>Cancel</span>
-          </button>
-        </div>
-      `
-    : null}
-`;
+    ${args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing}
+    ${args.action ? html` <div class="banner-content">${content}</div> ` : content}
+    ${args.action
+      ? html`
+          <div class="banner-buttons">
+            <button class="btn btn-primary">
+              <span>Accept</span>
+            </button>
+            <button class="btn btn-secondary">
+              <span>Cancel</span>
+            </button>
+          </div>
+        `
+      : null}
+  `;
 
   if (args.dialog) {
     return html`<dialog class="banner-container" open="${args.open || nothing}">

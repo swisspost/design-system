@@ -1,5 +1,5 @@
-import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
@@ -9,7 +9,7 @@ import { getLabelText } from '@/utils/form-elements';
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Form Checkbox',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderCheckbox,
   parameters: {
     badges: [],

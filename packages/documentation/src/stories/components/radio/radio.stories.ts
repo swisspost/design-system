@@ -1,5 +1,5 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { useArgs } from '@storybook/preview-api';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+import { useArgs } from 'storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -14,7 +14,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: '151242aa-a074-4a55-a81c-db597c83cdad',
   title: 'Components/Form Radio Button',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     controls: {
       exclude: ['Hidden Legend'],
