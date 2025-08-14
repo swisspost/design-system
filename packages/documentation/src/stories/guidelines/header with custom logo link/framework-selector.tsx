@@ -54,9 +54,6 @@ const code = `
 
   <!-- Main navigation -->
   <post-mainnavigation caption="Hauptnavigation">
-    <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-      <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
-    </button>
     <post-list title-hidden="">
       <h2>Main Navigation</h2>
       <!-- Link only level 1 -->

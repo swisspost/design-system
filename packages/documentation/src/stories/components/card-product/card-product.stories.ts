@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'b4800d9e-4837-4476-a327-bb4586eb7e97',
   title: 'Components/Card Product',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   decorators: [paddedContainer, clickBlocker],
   parameters: {
     badges: [],
@@ -149,7 +149,8 @@ export const Multipart: Story = {
                 <h3>Affordable</h3>
                 <h4 class="mb-16">Sample Product</h4>
                 <p class="lead">
-                  With SAMPLE PRODUCT, your letters arrive at their destination cost-effectively and reliably.
+                  With SAMPLE PRODUCT, your letters arrive at their destination cost-effectively and
+                  reliably.
                 </p>
               </div>
               <div>
@@ -161,7 +162,7 @@ export const Multipart: Story = {
             </div>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-1">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -208,7 +209,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-3">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -223,7 +224,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate">
+          <div class="card-body palette palette-alternate">
             <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>
@@ -243,7 +244,9 @@ export const Multipart: Story = {
                 <h3>Faster</h3>
                 <h4 class="mb-16">Sample Product</h4>
                 <p class="lead">
-                  This is a sample description with more detailed information about the product features and benefits. It demonstrates the layout and structure of the product card component.
+                  This is a sample description with more detailed information about the product
+                  features and benefits. It demonstrates the layout and structure of the product
+                  card component.
                 </p>
               </div>
               <div>
@@ -255,7 +258,7 @@ export const Multipart: Story = {
             </div>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-1">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -293,7 +296,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate" data-sync-height-with="product-body-3">
+          <div class="card-body palette palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -308,7 +311,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body palette-alternate">
+          <div class="card-body palette palette-alternate">
             <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>

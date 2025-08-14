@@ -61,7 +61,7 @@
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
     "postbuild": "pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
-    "clean": "rimraf dist hydrate loader loaders www src/styles/generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
+    "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "unit:updatesnapshot": "stencil test --spec --updateSnapshot",
@@ -76,7 +76,7 @@
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.7.2",
+    "@floating-ui/dom": "1.7.3",
     "@oddbird/popover-polyfill": "0.6.0",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.42",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.42",
@@ -110,7 +110,7 @@
     "mock-fs": "5.5.0",
     "rimraf": "6.0.1",
     "rollup-plugin-postcss": "4.0.2",
-    "sass": "1.78.0",
+    "sass": "1.89.2",
     "throttle-debounce": "5.0.2",
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
