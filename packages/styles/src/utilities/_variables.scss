@@ -445,20 +445,22 @@ $utilities: (
     property: position,
     values: static relative absolute fixed sticky,
   ),
-  'inset-block-start': (
+  'top': (
     property: inset-block-start,
+    class: top,
     values: $position-values,
   ),
-  'inset-block-end': (
+  'bottom': (
     property: inset-block-end,
+    class: bottom,
     values: $position-values,
   ),
-  'inset-inline-start': (
+  'start': (
     property: inset-inline-start,
     class: start,
     values: $position-values,
   ),
-  'inset-inline-end': (
+  'end': (
     property: inset-inline-end,
     class: end,
     values: $position-values,

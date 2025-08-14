@@ -24,7 +24,7 @@ import * as PositionStories from './position.stories';
 Here are the different positioning methods available for elements.
 
 - `position-static` (default) positions the element according to the flow of the page.
-- `position-relative` positions the element according to the flow of the page, but you can offset it relatively to itself by settings values for `inset-block-start`, `inset-block-end`, `inset-inline-start` and `inset-inline-end`.
+- `position-relative` positions the element according to the flow of the page, but you can offset it relatively to itself by settings values for `top`, `bottom`, `start` and `end`.
 - `position-absolute` removes the element from the flow of the page and positions it relatively to its closest positioned element.
 - `position-fixed` removes the element from the flow of the page and positions it relatively to the viewport.
 - `position-sticky` positions the element according to the flow of the page but "sticks" it in place in the case of a scrolling container.
@@ -33,10 +33,10 @@ Here are the different positioning methods available for elements.
 
 Some utility classes are here to define the position from the edges of the container more easily.
 
-- `inset-block-start-{0|50|100}` to set the position of the element from the top of the container by 0, 50% or 100%.
-- `inset-block-end-{0|50|100}` to set the position of the element from the bottom of the container by 0, 50% or 100%.
-- `inset-inline-start-{0|50|100}` to set the position of the element from the start of the container (left in LTR) by 0, 50% or 100%.
-- `inset-inline-start-{0|50|100}` to set the position of the element from the end of the container (right in LTR) by 0, 50% or 100%.
+- `top-{0|50|100}` to set the position of the element from the top of the container by 0, 50% or 100%.
+- `bottom-{0|50|100}` to set the position of the element from the bottom of the container by 0, 50% or 100%.
+- `start-{0|50|100}` to set the position of the element from the start of the container (left in LTR) by 0, 50% or 100%.
+- `end-{0|50|100}` to set the position of the element from the end of the container (right in LTR) by 0, 50% or 100%.
 
 ### Translate-middle
 
