@@ -2,7 +2,7 @@ import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
-import { breakpoint } from '../../utils/breakpoints';
+import { breakpoint, Device } from '@/utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
@@ -55,7 +55,7 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: string = breakpoint.get('device');
+  @State() device: Device = breakpoint.get('device');
   @State() mobileMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -90,7 +90,7 @@ export class PostHeader {
     if (this.device === 'desktop' && this.mobileMenuExtended) {
       this.closeMobileMenu();
     }
-    
+
     if (this.device !== 'desktop') {
       Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
         dropdown.hide(false, true);
@@ -170,11 +170,6 @@ export class PostHeader {
   @Method()
   async toggleMobileMenu(force?: boolean) {
     if (this.device === 'desktop') return;
-    if (this.megadropdownOpen) {
-      this.megadropdownOpen = false;
-      return;
-    }
-
     this.mobileMenuAnimation = this.mobileMenuExtended
       ? slideUp(this.mobileMenu)
       : slideDown(this.mobileMenu);
@@ -183,14 +178,20 @@ export class PostHeader {
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
     menuButton.toggled = force ?? !this.mobileMenuExtended;
 
-    // Toggle menu visibility before it slides down and after it slides back up
-    if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
-    this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+    if (this.mobileMenuExtended) {
+      // Wait for the close animation to finish before hiding megadropdowns
+      await this.mobileMenuAnimation.finished;
+      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
 
-    if (this.mobileMenuExtended === false) {
-      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
-        dropdown.hide(false, true);
-      });
+      if (this.mobileMenuExtended === false) {
+        this.closeAllMegadropdowns();
+      }
+    } else {
+      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+      // If opening, close any open megadropdowns immediately
+      if (this.megadropdownOpen) {
+        this.closeAllMegadropdowns();
+      }
     }
   }
 
@@ -244,6 +245,13 @@ export class PostHeader {
     }
   }
 
+  private closeAllMegadropdowns() {
+    Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+      dropdown.hide(false, true);
+    });
+    this.megadropdownOpen = false;
+  }
+
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
@@ -252,7 +260,7 @@ export class PostHeader {
 
   private updateLocalHeaderHeight() {
     const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
-    
+
     if (localHeaderElement) {
       document.documentElement.style.setProperty(
         '--post-local-header-height',
