@@ -26016,6 +26016,66 @@
       "modifiedAt": "2025-07-24T06:05:03.467Z"
     },
     {
+      "uuid": "221d8740-7915-11f0-80d2-005056873709",
+      "id": 5865070,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5865070/storage/MDA1ODY1MDcwLzAvbWFzdGVy",
+        "keywords": [
+          "Add storage space",
+          "Stellplatz hinzufügen",
+          "Ajouter un emplacement",
+          "Aggiungere punto di posizionamento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2696.svg",
+        "basename": "2696",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-14T13:46:52.000Z",
+      "modifiedAt": "2025-08-14T14:05:09.734Z"
+    },
+    {
+      "uuid": "a98dec10-7915-11f0-80d2-005056873709",
+      "id": 5865096,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5865096/storage/MDA1ODY1MDk2LzAvbWFzdGVy",
+        "keywords": [
+          "Remove storage space",
+          "Stellplatz entfernen",
+          "Supprimer l’emplacement",
+          "Rimuovere il punto di posizionamento"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2697.svg",
+        "basename": "2697",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-14T13:50:39.000Z",
+      "modifiedAt": "2025-08-14T14:05:09.734Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -39254,13 +39314,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1027,
+    "success": 1029,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-08-06T12:03:32.217Z",
+  "created": "2025-08-14T14:13:17.124Z",
   "version": "10.0.0-next.42"
 }
