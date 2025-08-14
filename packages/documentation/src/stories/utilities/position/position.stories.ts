@@ -134,7 +134,9 @@ export const Default: Story = {
             ${story()}
             ${bombArgs({
               start: ['0', '50', '100'],
+              bottom: ['0', '50', '100'],
               top: ['0', '50', '100'],
+              end: ['0', '50', '100'],
             }).map(
               args => html` <div class="pos-element top-${args.top} start-${args.start}"></div> `,
             )}
