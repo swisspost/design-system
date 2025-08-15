@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './toast.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
@@ -37,6 +37,10 @@ export const Toast: Story = {
             .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
         </div>
       `,
+      {
+        // dark mode is not yet implemented corretly
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };

@@ -212,7 +212,7 @@ export class Search extends React.Component {
     const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
 
     return (
-      <post-popovercontainer id="icon-panel" class="palette-default icon-panel">
+      <post-popovercontainer id="icon-panel" class="palette palette-default icon-panel">
         <div className="icon-panel-content">
           <div>
             <div className="resizer-container">
@@ -400,7 +400,7 @@ export class Search extends React.Component {
       <div className="container">
         <div className="search-form">{this.searchForm()}</div>
         <div className="search-results">
-          <a href="#results-top"></a>
+          <a href="#results-top" aria-hidden="true" tabindex="-1"></a>
           {this.paging()}
           {this.resultsList()}
           {this.paging()}

@@ -38,6 +38,12 @@ export class PostTabs {
   @Prop() readonly activePanel?: HTMLPostTabPanelElement['name'];
 
   /**
+   * When set to true, this property allows the tabs container to span the
+   * full width of the screen, from edge to edge.
+   */
+  @Prop({ reflect: true }) fullWidth: boolean = false;
+
+  /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
    * The payload is the name of the newly shown panel.
    */

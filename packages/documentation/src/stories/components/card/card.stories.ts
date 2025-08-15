@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { choose } from 'lit/directives/choose.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   decorators: [clickBlocker],
   parameters: {
     badges: [],
@@ -346,7 +346,7 @@ export const Palette: Story = {
   },
   render: () =>
     html`
-      <div class="palette-default">
+      <div class="palette palette-default">
         <div class="container py-32">
           <div class="row gy-16">
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
@@ -354,7 +354,7 @@ export const Palette: Story = {
           </div>
         </div>
       </div>
-      <div class="palette-alternate">
+      <div class="palette palette-alternate">
         <div class="container py-32">
           <div class="row gy-16">
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>

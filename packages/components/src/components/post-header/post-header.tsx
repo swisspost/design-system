@@ -1,19 +1,11 @@
-import {
-  Component,
-  h,
-  Host,
-  State,
-  Element,
-  Method,
-  Watch,
-} from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
-import { breakpoint } from '../../utils/breakpoints';
+import { breakpoint, Device } from '@/utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { eventGuard } from '@/utils/event-guard';
+import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -23,6 +15,7 @@ import { eventGuard } from '@/utils/event-guard';
  * @slot title - Holds the application title.
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
+ * @slot target-group - Holds the list of buttons to choose the target group.
  */
 
 @Component({
@@ -38,6 +31,11 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+
+  private get hasMobileMenu(): boolean {
+    return this.device !== 'desktop' && this.hasNavigation;
+  }
+
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
@@ -62,7 +60,8 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: string = breakpoint.get('name');
+  @State() device: Device = breakpoint.get('device');
+  @State() hasNavigation: boolean = false;
   @State() mobileMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -97,6 +96,13 @@ export class PostHeader {
     if (this.device === 'desktop' && this.mobileMenuExtended) {
       this.closeMobileMenu();
     }
+
+    if (this.device !== 'desktop') {
+      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+        dropdown.hide(false, true);
+      });
+      this.megadropdownOpen = false;
+    }
   };
 
   connectedCallback() {
@@ -109,10 +115,11 @@ export class PostHeader {
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
-    window.addEventListener('postBreakpoint:name', this.breakpointChange);
+    window.addEventListener('postBreakpoint:device', this.breakpointChange);
+
+    this.checkNavigationExistence();
     this.switchLanguageSwitchMode();
 
-    this.updateLocalHeaderHeight();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
@@ -126,11 +133,15 @@ export class PostHeader {
     this.handleLocalHeaderResize();
   }
 
+  componentDidLoad() {
+    this.updateLocalHeaderHeight();
+  }
+
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
     scrollParent.removeEventListener('scroll', this.handleScrollEvent);
@@ -150,6 +161,10 @@ export class PostHeader {
     this.mobileMenuExtended = false;
   }
 
+  private checkNavigationExistence(): void {
+    this.hasNavigation = this.host.querySelectorAll('post-mainnavigation').length > 0;
+  }
+
   private async closeMobileMenu() {
     this.mobileMenuAnimation.finish();
 
@@ -167,7 +182,6 @@ export class PostHeader {
   @Method()
   async toggleMobileMenu(force?: boolean) {
     if (this.device === 'desktop') return;
-
     this.mobileMenuAnimation = this.mobileMenuExtended
       ? slideUp(this.mobileMenu)
       : slideDown(this.mobileMenu);
@@ -176,30 +190,27 @@ export class PostHeader {
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
     menuButton.toggled = force ?? !this.mobileMenuExtended;
 
-    // Toggle menu visibility before it slides down and after it slides back up
-    if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
-    this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+    if (this.mobileMenuExtended) {
+      // Wait for the close animation to finish before hiding megadropdowns
+      await this.mobileMenuAnimation.finished;
+      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
 
-    if (this.mobileMenuExtended === false) {
-      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
-        dropdown.hide(false, true);
-      });
+      if (this.mobileMenuExtended === false) {
+        this.closeAllMegadropdowns();
+      }
+    } else {
+      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+      // If opening, close any open megadropdowns immediately
+      if (this.megadropdownOpen) {
+        this.closeAllMegadropdowns();
+      }
     }
   }
 
+  @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-    eventGuard(
-      this.host,
-      event,
-      {
-        targetLocalName: 'post-megadropdown',
-        delegatorSelector: 'post-header',
-      },
-      () => {
-        this.megadropdownOpen = event.detail.isVisible;
-      },
-    );
-  };
+      this.megadropdownOpen = event.detail.isVisible;
+    };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -208,7 +219,7 @@ export class PostHeader {
       ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="meta-navigation"]) > li')),
       ...Array.from(
         this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-mainnavigation > .back-button, post-megadropdown-trigger',
+          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
         ),
       ),
       ...Array.from(
@@ -246,6 +257,13 @@ export class PostHeader {
     }
   }
 
+  private closeAllMegadropdowns() {
+    Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+      dropdown.hide(false, true);
+    });
+    this.megadropdownOpen = false;
+  }
+
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
@@ -253,12 +271,14 @@ export class PostHeader {
   }
 
   private updateLocalHeaderHeight() {
-    const localHeaderHeight =
-      this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    document.documentElement.style.setProperty(
-      '--post-local-header-height',
-      `${localHeaderHeight}px`,
-    );
+    const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
+
+    if (localHeaderElement) {
+      document.documentElement.style.setProperty(
+        '--post-local-header-expanded-height',
+        `${localHeaderElement.clientHeight}px`,
+      );
+    }
   }
 
   private updateScrollParentHeight() {
@@ -307,7 +327,7 @@ export class PostHeader {
   }
 
   private switchLanguageSwitchMode() {
-    const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
+    const variant: SwitchVariant = this.hasMobileMenu ? 'list' : 'menu';
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
       languageSwitch?.setAttribute('variant', variant);
     });
@@ -332,8 +352,12 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <slot name="post-mainnavigation"></slot>
-
+          <div class="navigation-target-group">
+            {(this.device === 'mobile' || this.device === 'tablet') && (
+              <slot name="target-group"></slot>
+            )}
+          </div>
+          <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
@@ -346,8 +370,12 @@ export class PostHeader {
   }
 
   render() {
+    const localHeaderClasses = ['local-header'];
+    if (this.mobileMenuExtended) localHeaderClasses.push('local-header-mobile-extended');
+    if (!this.hasNavigation) localHeaderClasses.push('no-navigation');
+
     return (
-      <Host data-version={version}>
+      <Host data-version={version} data-color-scheme="light">
         <div class="global-header">
           <div class="global-sub">
             <div class="logo">
@@ -355,17 +383,22 @@ export class PostHeader {
             </div>
           </div>
           <div class="global-sub">
-            {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
+            {this.device === 'desktop' && <slot name="target-group"></slot>}
+          </div>
+          <div class="global-sub">
+            {!this.hasMobileMenu && (
+              <slot name="meta-navigation"></slot>
+            )}
             <slot name="global-controls"></slot>
-            {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
-            <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
-              <slot name="post-togglebutton"></slot>
-            </div>
+            {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
+            {this.hasNavigation && (
+              <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
+                <slot name="post-togglebutton"></slot>
+              </div>
+            )}
           </div>
         </div>
-        <div
-          class={'local-header ' + (this.mobileMenuExtended ? 'local-header-mobile-extended' : '')}
-        >
+        <div class={localHeaderClasses.join(' ')}>
           <slot name="title"></slot>
           <div class="local-sub">
             <slot name="local-controls"></slot>

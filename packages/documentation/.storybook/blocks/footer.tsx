@@ -45,12 +45,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     githubUsername: 'alionazherdetska',
   },
   {
-    name: 'Tim Schär',
-    title: 'UI Developer',
-    githubImageId: '59233938',
-    githubUsername: 'schaertim',
-  },
-  {
     name: 'Rouven Steiger',
     title: 'Art Guy EDK',
     githubImageId: '104423005',
@@ -73,6 +67,12 @@ const TEAM_MEMBERS: TeamMember[] = [
     title: 'UI Developer',
     githubImageId: '170833805',
     githubUsername: 'hugomslv',
+  },
+  {
+    name: 'Nattaya Buck',
+    title: 'Whitespace Warrior',
+    githubImageId: '166115007',
+    githubUsername: 'bucknatt',
   },
 ];
 

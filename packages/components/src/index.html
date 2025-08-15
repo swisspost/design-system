@@ -11,11 +11,11 @@
 
     <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
     <link id="tokens" rel="stylesheet" href="/assets/css/post-tokens-default.css" />
-    <link id="palette" rel="stylesheet" href="/assets/css/post-palettes.css" />
     <link rel="stylesheet" href="/assets/css/index.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
   </head>
+
   <body style="min-height: 200vh">
     <post-header>
       <!-- Logo -->
@@ -51,6 +51,19 @@
       <!-- Application title (optional) -->
       <h1 slot="title">Application title</h1>
 
+      <!-- Target group -->
+      <ul slot="target-group" class="target-group">
+        <li>
+          <a href="#" class="active">Private customers</a>
+        </li>
+        <li>
+          <a href="#">Business customers</a>
+        </li>
+        <li>
+          <a href="#">Authorities</a>
+        </li>
+      </ul>
+
       <!-- Custom content (optional) -->
       <ul class="list-inline">
         <li>
@@ -69,16 +82,20 @@
 
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
-        </button>
-
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
 
           <!-- Link only level 1 -->
-          <post-list-item slot="post-list-item"><a href="/briefe">Briefe</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/pakete">Pakete</a></post-list-item>
+          <post-list-item slot="post-list-item"
+            ><a href="/briefe"
+              ><post-mainnavigation-toplevel-item>Briefe</post-mainnavigation-toplevel-item></a
+            ></post-list-item
+          >
+          <post-list-item slot="post-list-item"
+            ><a href="/pakete"
+              ><post-mainnavigation-toplevel-item>Pakete</post-mainnavigation-toplevel-item></a
+            ></post-list-item
+          >
 
           <!-- Level 1 with megadropdown -->
           <post-list-item slot="post-list-item">

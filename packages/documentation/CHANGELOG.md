@@ -1,5 +1,100 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.44
+
+### Major Changes
+
+- Removed the slider (form range) component - as it was depending on bootstrap - which will be replaced by a web component in the future. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed the bootstrap dependency. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed the `post-tag` component. The `tag` component can be used instead. (by [@schaertim](https://github.com/schaertim) with [#5764](https://github.com/swisspost/design-system/pull/5764))
+
+- Removed the `ng-bootstrap` dependency as well as all of the components built on it:
+  - datepicker
+  - timepicker
+  - pagination
+  - typeahead
+  - dropdown
+  - datatable
+  - progressbar (by [@leagrdv](https://github.com/leagrdv) with [#5830](https://github.com/swisspost/design-system/pull/5830))
+
+### Minor Changes
+
+- Added a `full-width` property to the `post-tabs` component to allow the tabs container to span the full screen width. (by [@myrta2302](https://github.com/myrta2302) with [#5736](https://github.com/swisspost/design-system/pull/5736))
+
+- Added Nattaya's photo and info on the documentation footer. (by [@bucknatt](https://github.com/bucknatt) with [#5935](https://github.com/swisspost/design-system/pull/5935))
+
+- Removed deprecated classes and SCSS variables for the spinner:
+
+  - `.loader-xs`
+  - `.loader-sm`
+  - `$spinner-size-xs`
+  - `$spinner-size-sm`
+  - `$spinner-border-width-xs`
+  - `$spinner-border-width-sm` (by [@bucknatt](https://github.com/bucknatt) with [#5951](https://github.com/swisspost/design-system/pull/5951))
+
+- Added the `target group` css component within the `post-header` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5687](https://github.com/swisspost/design-system/pull/5687))
+
+- Internalized bootstrap interactions utilities (pointer-events and user-select) into the design system. (by [@leagrdv](https://github.com/leagrdv) with [#5868](https://github.com/swisspost/design-system/pull/5868))
+
+### Patch Changes
+
+- Updated `post-tooltip` and `post-popover` components: added `.palette` class in the documentation examples and overrode default `popovercontainer` styles in both components. (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
+
+- The `back-button` slot has been completely removed from the `<post-mainnavigation>` in the `<post-header>` component. If you currently have a `back-button` inside `<post-mainnavigation>`, you must remove it entirely as this is no longer supported. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5899](https://github.com/swisspost/design-system/pull/5899))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.43
+  - @swisspost/design-system-components@10.0.0-next.43
+  - @swisspost/design-system-styles@10.0.0-next.43
+  - @swisspost/design-system-tokens@10.0.0-next.43
+  - @swisspost/internet-header@10.0.0-next.43
+  - @swisspost/design-system-components-react@10.0.0-next.43
+
+## 6.0.0-next.43
+
+### Patch Changes
+
+- Added the `components-react` package to the Getting started guide for developers. (by [@leagrdv](https://github.com/leagrdv) with [#5831](https://github.com/swisspost/design-system/pull/5831))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.42
+  - @swisspost/design-system-components-react@10.0.0-next.42
+  - @swisspost/design-system-styles@10.0.0-next.42
+  - @swisspost/design-system-tokens@10.0.0-next.42
+  - @swisspost/design-system-icons@10.0.0-next.42
+  - @swisspost/internet-header@2.0.0-next.42
+
+## 6.0.0-next.42
+
+### Minor Changes
+
+- Renamed the `chip-filter` to `chip-selectable` and removed the `chip-sm` variant. (by [@leagrdv](https://github.com/leagrdv) with [#5755](https://github.com/swisspost/design-system/pull/5755))
+
+### Patch Changes
+
+- Added an info banner to the styles for PrimeNG package documentation to clearly communicate that `@swisspost/design-system-styles-primeng` only provides styling for PrimeNG datatables. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5752](https://github.com/swisspost/design-system/pull/5752))
+
+- Added documentation for required and optional fields on form elements. (by [@leagrdv](https://github.com/leagrdv) with [#5622](https://github.com/swisspost/design-system/pull/5622))
+
+- Updated Design System Team members displayed in the documentation footer. (by [@schaertim](https://github.com/schaertim) with [#5778](https://github.com/swisspost/design-system/pull/5778))
+
+- Add accessibility note in the Language Switch page to highlight the requirement for clear accessible `names` on language selection options. (by [@myrta2302](https://github.com/myrta2302) with [#5350](https://github.com/swisspost/design-system/pull/5350))
+
+- Fixed the missing `aria-describedby` connection between the slider input and its valid/invalid feedback in the design system documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5622](https://github.com/swisspost/design-system/pull/5622))
+
+- Fixed styling and contents of `Available bundles` table on the styles package page. (by [@schaertim](https://github.com/schaertim) with [#5673](https://github.com/swisspost/design-system/pull/5673))
+
+- Reorganized `story action` buttons and added corresponding icons to improve user experience. Updated "Copy link" button label to "Copy deep link" for better clarity. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5598](https://github.com/swisspost/design-system/pull/5598))
+
+- Made the scroll-to anchor on the icons search page unfocusable and hid it for screenreaders, since we only need it for our custom search-icons.block javascript logic. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5715](https://github.com/swisspost/design-system/pull/5715))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.41
+  - @swisspost/design-system-components@10.0.0-next.41
+  - @swisspost/design-system-styles@10.0.0-next.41
+  - @swisspost/design-system-components-react@10.0.0-next.41
+  - @swisspost/internet-header@2.0.0-next.41
+  - @swisspost/design-system-tokens@10.0.0-next.41
+
 ## 6.0.0-next.41
 
 ### Minor Changes

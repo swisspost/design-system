@@ -39,8 +39,8 @@
       "matchPackageNames": [
         "*",
         "!typescript",
-        "!bootstrap",
         "!@storybook/*",
+        "!storybook",
         "!@angular/*",
         "!@stencil/*",
         "!tailwindcss",

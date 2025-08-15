@@ -1,5 +1,5 @@
-import type { Args } from '@storybook/web-components';
-import { useArgs, useState } from '@storybook/preview-api';
+import type { Args } from '@storybook/web-components-vite';
+import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -11,7 +11,7 @@ type useStateFn = typeof useState;
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Form Card Control',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {

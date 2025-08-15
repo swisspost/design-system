@@ -1,8 +1,5 @@
 @use 'sass:map';
 @use 'sass:list';
-@use './../color';
-@use './../commons';
-@use './../spacing';
 @use './../type';
 @use '../../tokens/components';
 @use '../../tokens/utilities';
@@ -38,15 +35,6 @@ $notification-padding-y-map: map.merge(
   (
     'banner': tokens.get('banner-padding'),
     'toast': tokens.get('toast-spacing-padding-block', components.$post-toast),
-  )
-);
-
-$notification-font-size-map: () !default;
-$notification-font-size-map: map.merge(
-  $notification-font-size-map,
-  (
-    'banner': type.$font-size-base,
-    'toast': 0.75rem,
   )
 );
 

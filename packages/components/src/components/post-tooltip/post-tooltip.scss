@@ -28,6 +28,8 @@ post-popovercontainer {
   }
 
   & > div {
+    color: var(--post-current-fg);
+    background-color: var(--post-current-bg);
     padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
     max-width: 280px;
     min-height: 32px;
