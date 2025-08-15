@@ -137,21 +137,24 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private handlePostToggle = (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.toggleMenu.emit(this.isVisible);
+    this.isVisible = event.detail;
+    this.toggleMenu.emit(this.isVisible);
 
-      requestAnimationFrame(() => {
-        if (this.isVisible) {
-          this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-          const menuItems = this.getSlottedItems();
-          if (menuItems.length > 0) {
-            (menuItems[0] as HTMLElement).focus();
-          }
-        } else if (this.lastFocusedElement) {
-          this.lastFocusedElement.focus();
+    requestAnimationFrame(() => {
+      if (this.isVisible) {
+        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+        const menuItems = this.getSlottedItems();
+        if (menuItems.length > 0) {
+          (menuItems[0] as HTMLElement).focus();
+          menuItems.forEach(item => {
+            item.setAttribute('role', 'menuitem');
+          });
         }
-      });
-    };
+      } else if (this.lastFocusedElement) {
+        this.lastFocusedElement.focus();
+      }
+    });
+  };
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -217,9 +220,9 @@ export class PostMenu {
 
   render() {
     return (
-      <Host data-version={version} role="menu">
+      <Host data-version={version}>
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
-          <div part="menu">
+          <div part="menu" role="menu">
             <slot></slot>
           </div>
         </post-popovercontainer>
