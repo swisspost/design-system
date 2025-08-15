@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.45
+
+### Patch Changes
+
+- Enabled use of the `post-header` component without requiring a `post-mainnavigation`. (by [@alizedebray](https://github.com/alizedebray) with [#5933](https://github.com/swisspost/design-system/pull/5933))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.44
+  - @swisspost/design-system-components@10.0.0-next.44
+  - @swisspost/design-system-styles@10.0.0-next.44
+  - @swisspost/design-system-components-react@10.0.0-next.44
+  - @swisspost/internet-header@10.0.0-next.44
+  - @swisspost/design-system-tokens@10.0.0-next.44
+
 ## 6.0.0-next.44
 
 ### Major Changes

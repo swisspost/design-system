@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.44
+
+### Major Changes
+
+- Renamed the following CSS custom properties: - `--post-global-header-height` → `--post-global-header-expanded-height`
+  - `--post-local-header-height` → `--post-local-header-expanded-height`
+  - `--post-local-header-min-height` → `--post-local-header-expanded-min-height` (by [@alizedebray](https://github.com/alizedebray) with [#5933](https://github.com/swisspost/design-system/pull/5933))
+
 ## 10.0.0-next.43
 
 ### Major Changes
