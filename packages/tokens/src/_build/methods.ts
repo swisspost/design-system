@@ -5,7 +5,6 @@ import StyleDictionary, {
   type TransformedToken,
 } from 'style-dictionary';
 
-import { ConfigWithMeta } from './types.js';
 import { usesReferences } from 'style-dictionary/utils';
 import {
   SOURCE_PATH,
@@ -18,7 +17,15 @@ import {
   TOKENSET_PREFIX,
 } from './constants.js';
 
-import { CliOptions, RawTokenJson, TokenDefinition, TokenSets, TokenProperty } from './types.js';
+import {
+  CliOptions,
+  RawTokenJson,
+  TokenDefinition,
+  TokenSets,
+  TokenProperty,
+  ConfigWithMeta,
+} from './types.js';
+
 import { objectDeepmerge } from './utils/index.js';
 import { LocalOptions } from 'style-dictionary/types';
 
