@@ -1,5 +1,14 @@
 # @swisspost/design-system-components-angular-workspace
 
+## 1.1.10-next.43
+
+### Patch Changes
+
+- Removed the `post-tag` component. The `tag` component can be used instead. (by [@schaertim](https://github.com/schaertim) with [#5764](https://github.com/swisspost/design-system/pull/5764))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.43
+  - @swisspost/design-system-styles@10.0.0-next.43
+
 ## 1.1.10-next.42
 
 ### Patch Changes
