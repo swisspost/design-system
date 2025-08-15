@@ -1,5 +1,6 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as BreadcrumbsStories from './breadcrumbs.stories';
+import meta, * as BreadcrumbsStories from './breadcrumbs.stories';
+import PackageTag from '@/shared/package-tag.mdx';
 
 <Meta of={BreadcrumbsStories} />
 
@@ -8,6 +9,8 @@ import * as BreadcrumbsStories from './breadcrumbs.stories';
 
   <link-design of={JSON.stringify(BreadcrumbsStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
     The breadcrumbs is a secondary navigation pattern that helps users understand the hierarchy among levels and navigate back through them.
