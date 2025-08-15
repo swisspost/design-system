@@ -5,6 +5,7 @@ import StyleDictionary, {
   type TransformedToken,
 } from 'style-dictionary';
 
+import { ConfigWithMeta } from './types.js';
 import { usesReferences } from 'style-dictionary/utils';
 import {
   SOURCE_PATH,
@@ -27,8 +28,7 @@ let tokenSets: TokenSets;
 
 let registeredConfigMethods: Array<
   (tokenSets: TokenSets, options: { sourcePath: string; buildPath: string }) => Config[]
->;
-registeredConfigMethods = [];
+> = [];
 
 export async function setup(): Promise<void> {
   CLI_OPTIONS = createCliOptions();
@@ -237,7 +237,9 @@ export async function createOutputFiles(): Promise<void> {
           ],
         });
 
-        config.platforms = Object.entries(config.platforms || {}).reduce(
+        if (!config.platforms) return {};
+
+        config.platforms = Object.entries(config.platforms).reduce(
           (platforms, [name, platform]) => ({
             ...platforms,
             [name]: objectDeepmerge(platform, {
@@ -333,7 +335,7 @@ export function getSetName(_options: Config, setName: string): string {
  */
 
 export function getSet(
-  options: Config & LocalOptions,
+  options: ConfigWithMeta & LocalOptions,
   dictionary: Dictionary,
   currentSetName: string,
 ) {
@@ -341,18 +343,16 @@ export function getSet(
 
   let tokenSet: TransformedToken[] = [];
 
-  if (meta.layer === 'semantic') {
+  if (meta?.layer === 'semantic') {
     const baseSetName = meta.setNames[0];
-    const overrideSetNameIndex = meta.setNames.findIndex(
-      (setName: string) => setName === currentSetName,
-    );
+    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName);
     const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex + 1);
 
     tokenSet = dictionary.allTokens
       .filter(token => token.path[0] === baseSetName)
       .map(normalizeToken);
 
-    overrideSetNames.forEach((overrideSetName: string) => {
+    overrideSetNames.forEach(overrideSetName => {
       const overrideTokenSet = dictionary.allTokens
         .filter(token => token.path[0] === overrideSetName)
         .map(normalizeToken);

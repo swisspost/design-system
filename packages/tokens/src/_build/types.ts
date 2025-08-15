@@ -27,7 +27,7 @@ export interface TokenDefinition {
 }
 
 export interface ConfigWithMeta extends Config {
-  meta: TokenMeta;
+  meta?: TokenMeta;
 }
 
 export interface TokenSets {
@@ -39,4 +39,12 @@ export interface TokenSets {
 
 export type TokenGroup = {
   [key: string]: TokenProperty | TokenGroup;
+};
+
+export type UtilityAttributes = {
+  category: string;
+  type: string;
+  item: string;
+  subitem: string;
+  state: string;
 };

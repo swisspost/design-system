@@ -61,7 +61,7 @@ StyleDictionary.registerFilter({
   name: 'swisspost/scss-filter',
   filter: (token, options) => {
     const configOptions = options as ConfigWithMeta;
-    return token.filePath.includes(`/output/${configOptions.meta.filePath}`);
+    return token.filePath.includes(`/output/${configOptions.meta?.filePath}`);
   },
 });
 
@@ -86,7 +86,7 @@ StyleDictionary.registerFormat({
 
     return (
       header +
-      meta.setNames
+      meta?.setNames
         .map(setName => {
           const tokenSetName = getSetName(options, setName);
           const tokenSet = getSet(options, dictionary, setName)

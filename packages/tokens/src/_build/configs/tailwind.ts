@@ -67,7 +67,7 @@ StyleDictionary.registerFormat({
 
         const cssVarName = `--${tokenPath.join('-')}`;
 
-        const tokenValue: TokenProperty = getTokenValue(options, token);
+        const tokenValue = getTokenValue(options, token);
 
         allTokens[cssVarName] = tokenValue;
         return allTokens;
