@@ -1,5 +1,70 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.43
+
+### Major Changes
+
+- Removed the slider (form range) component - as it was depending on bootstrap - which will be replaced by a web component in the future. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Updated color palettes to use the `light-dark()` CSS function for setting component color schemes on supporting browsers. A fallback solution is included for unsupported browsers.
+
+  Palettes now require adding the `.palette` class in addition to existing palette classes (e.g., `.palette-default`, `.palette-brand`).
+
+  BEFORE:
+
+  ```html
+  <div class="palette-brand">Content</div>
+  ```
+
+  AFTER:
+
+  ```html
+  <div class="palette palette-brand">Content</div>
+  ```
+
+  Also renamed the following CSS custom properties:
+
+  - `--post-current-palette-fg` → `--post-current-fg`
+  - `--post-current-palette-bg` → `--post-current-bg` (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
+
+- Removed the bootstrap dependency. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed all of the overrides of SCSS variables and classes of Bootstrap. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed deprecated classes and SCSS variables for the spinner:
+
+  - `.loader-xs`
+  - `.loader-sm`
+  - `$spinner-size-xs`
+  - `$spinner-size-sm`
+  - `$spinner-border-width-xs`
+  - `$spinner-border-width-sm` (by [@bucknatt](https://github.com/bucknatt) with [#5951](https://github.com/swisspost/design-system/pull/5951))
+
+- Deleted SCSS map variable `$notification-font-size-map`. (by [@bucknatt](https://github.com/bucknatt) with [#5942](https://github.com/swisspost/design-system/pull/5942))
+
+- Removed the `ng-bootstrap` dependency as well as all of the components built on it:
+  - datepicker
+  - timepicker
+  - pagination
+  - typeahead
+  - dropdown
+  - datatable
+  - progressbar (by [@leagrdv](https://github.com/leagrdv) with [#5830](https://github.com/swisspost/design-system/pull/5830))
+
+### Minor Changes
+
+- Added the `target group` css component within the `post-header` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5687](https://github.com/swisspost/design-system/pull/5687))
+
+- Add modern text wrapping properties to headings and paragraphs (by [@gfellerph](https://github.com/gfellerph) with [#5902](https://github.com/swisspost/design-system/pull/5902))
+
+### Patch Changes
+
+- Changed Tailwind token generation output format to meet the Tailwind v4 configuration requirements. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5812](https://github.com/swisspost/design-system/pull/5812))
+
+- Internalized bootstrap interactions utilities (pointer-events and user-select) into the design system. (by [@leagrdv](https://github.com/leagrdv) with [#5868](https://github.com/swisspost/design-system/pull/5868))
+
+- Add caption-side style to the table component. This will place the caption correctly for projects not using the resets.css (by [@gfellerph](https://github.com/gfellerph) with [#5900](https://github.com/swisspost/design-system/pull/5900))
+
 ## 10.0.0-next.42
 
 ## 10.0.0-next.41
@@ -8,7 +73,8 @@
 
 - Renamed the `chip-filter` to `chip-selectable` and removed the `chip-sm` variant. (by [@leagrdv](https://github.com/leagrdv) with [#5755](https://github.com/swisspost/design-system/pull/5755))
 
-- Renamed the following CSS custom properties and Sass variables: - `--post-breakpoint-widths` → `--post-grid-breakpoint-widths`
+- Renamed the following CSS custom properties and Sass variables:
+  - `--post-breakpoint-widths` → `--post-grid-breakpoint-widths`
   - `--post-breakpoint-keys` → `--post-grid-breakpoint-keys`
   - `--post-breakpoint-names` → `--post-grid-breakpoint-devices`
   - `$grid-breakpoints-key-name-map` → `$grid-breakpoint-to-device` (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
