@@ -61,8 +61,8 @@
 
     .my-element {
       background: post.$yellow;
-      width: 2rem;
-      height: 2rem;
+      min-width: 2rem;
+      min-height: 2rem;
       border-radius: post.$border-radius;
     }
   }
