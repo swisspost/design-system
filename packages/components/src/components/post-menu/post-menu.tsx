@@ -145,10 +145,10 @@ export class PostMenu {
         this.lastFocusedElement = this.root?.activeElement as HTMLElement;
         const menuItems = this.getSlottedItems();
         if (menuItems.length > 0) {
-          (menuItems[0] as HTMLElement).focus();
           menuItems.forEach(item => {
             item.setAttribute('role', 'menuitem');
           });
+          (menuItems[0] as HTMLElement).focus();
         }
       } else if (this.lastFocusedElement) {
         this.lastFocusedElement.focus();
@@ -220,9 +220,9 @@ export class PostMenu {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} role="menu">
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
-          <div part="menu" role="menu">
+          <div part="menu">
             <slot></slot>
           </div>
         </post-popovercontainer>
