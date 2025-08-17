@@ -17,11 +17,11 @@ import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
 
 @Component({
-  tag: 'post-menu',
-  styleUrl: 'post-menu.scss',
+  tag: 'post-menu-2',
+  styleUrl: 'post-menu-2.scss',
   shadow: true,
 })
-export class PostMenu {
+export class PostMenu2 {
   private popoverRef: HTMLPostPopovercontainerElement;
   private lastFocusedElement: HTMLElement | null = null;
 
@@ -36,7 +36,7 @@ export class PostMenu {
     ESCAPE: 'Escape',
   };
 
-  @Element() host: HTMLPostMenuElement;
+  @Element() host: HTMLPostMenu2Element;
 
   /**
    * Defines the position of the menu relative to its trigger.

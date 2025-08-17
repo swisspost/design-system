@@ -14,6 +14,90 @@
     <link rel="stylesheet" href="/assets/css/index.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
+    <style>
+      .menu-button-actions {
+        margin: 0;
+        padding: 0;
+      }
+
+      .menu-button-actions button {
+        margin: 0;
+        padding: 6px;
+        display: inline-block;
+        position: relative;
+        background-color: #034575;
+        border: 1px solid #034575;
+        font-size: 0.9em;
+        color: white;
+        border-radius: 5px;
+      }
+
+      .menu-button-actions [role='menu'] {
+        display: none;
+        position: absolute;
+        margin: 0;
+        padding: 7px 4px;
+        border: 2px solid #034575;
+        border-radius: 5px;
+        background-color: #eee;
+      }
+
+      .menu-button-actions [role='menuitem'],
+      .menu-button-actions [role='separator'] {
+        margin: 0;
+        padding: 6px;
+        display: block;
+        width: 4em;
+        background-color: #eee;
+        color: black;
+        border-radius: 5px;
+      }
+
+      .menu-button-actions [role='separator'] {
+        padding-top: 3px;
+        background-image: url('../images/separator.svg');
+        background-position: center;
+        background-repeat: repeat-x;
+      }
+
+      .menu-button-actions button svg.down {
+        padding-left: 0.125em;
+        fill: currentcolor;
+        stroke: currentcolor;
+      }
+
+      .menu-button-actions button[aria-expanded='true'] svg.down {
+        transform: rotate(180deg);
+      }
+
+      /* focus styling */
+
+      .menu-button-actions button:hover,
+      .menu-button-actions button:focus,
+      .menu-button-actions button[aria-expanded='true'] {
+        padding: 4px;
+        border: 3px solid #034575;
+        background: #eee;
+        color: #222;
+        outline: none;
+        margin: 0;
+      }
+
+      .menu-button-actions [role='menuitem'].focus,
+      .menu-button-actions [role='menuitem']:focus {
+        padding: 4px;
+        border: 2px solid #034575;
+        background: #034575;
+        color: #fff;
+        outline: none;
+        margin: 0;
+      }
+
+      input.action:focus {
+        outline: 2px solid #034575;
+        background: #def;
+      }
+    </style>
   </head>
 
   <body style="min-height: 200vh">
@@ -176,25 +260,442 @@
       </post-mainnavigation>
     </post-header>
 
-    <h1>Components package playground</h1>
-    <p class="mb-4">
-      Use this playground for quickly developing Stencil web-components. Run
-      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
-        >pnpm components:start</code
+    <h1>Accessible Menu Example</h1>
+
+    <div class="menu-button-actions">
+      <button
+        type="button"
+        id="menubutton1"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="menu1"
       >
-      to get going.
+        Actions
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="down"
+          width="12"
+          height="9"
+          viewBox="0 0 12 9"
+        >
+          <polygon points="1 0, 11 0, 6 8"></polygon>
+        </svg>
+      </button>
+
+      <ul id="menu1" role="menu" aria-labelledby="menubutton1">
+        <li role="menuitem">Action 1</li>
+        <li role="menuitem">Action 2</li>
+        <li role="menuitem">Action 3</li>
+        <li role="menuitem">Action 4</li>
+      </ul>
+    </div>
+    <p>
+      <label>Last Action: <input class="action" id="action_output" type="text" value="" /></label>
     </p>
-    <label for="tokens-select">Select tokens package: </label>
-    <select
-      name="tokens"
-      id="tokens-select"
-      value="default"
-      class="mb-4"
-      onchange="if (['default', 'compact'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
-    >
-      <option value="default">Post default</option>
-      <option value="compact">Post compact</option>
-    </select>
-    <hr />
+
+    <!-- ARIA-ACTIVEDESCENDANT-->
+
+    <p style="margin-top: 10rem">ARIA-ACTIVEDESCENDANT</p>
+    <div class="menu-button-actions">
+      <button
+        type="button"
+        id="menubutton1"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="menu1"
+      >
+        Actions
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="down"
+          width="12"
+          height="9"
+          viewBox="0 0 12 9"
+        >
+          <polygon points="1 0, 11 0, 6 8"></polygon>
+        </svg>
+      </button>
+      <ul
+        id="menu1"
+        role="menu"
+        tabindex="-1"
+        aria-labelledby="menubutton1"
+        aria-activedescendant="mi1"
+      >
+        <li id="mi1" role="menuitem">Action 1</li>
+        <li id="mi2" role="menuitem">Action 2</li>
+        <li id="mi3" role="menuitem">Action 3</li>
+        <li id="mi4" role="menuitem">Action 4</li>
+      </ul>
+    </div>
+    <p>
+      <label>Last Action: <input class="action" id="action_output" type="text" value="" /></label>
+    </p>
+
+    <!-- WEB COMPONENT -->
+
+    <p style="margin-top: 10rem">WEB COMPONENT</p>
+    <post-menu-trigger for="menu_id">
+      <button type="button" id="menu_trigger_id" class="btn btn-primary">Menu button</button>
+    </post-menu-trigger>
+    <post-menu id="menu_id" placement="bottom">
+      <post-menu-item><button type="button">Example 1</button></post-menu-item>
+      <post-menu-item><a href="#">Example 2</a></post-menu-item>
+    </post-menu>
+
+    <!-- WEB COMPONENT ACTIVEDESCENDANT-->
+
+    <p style="margin-top: 10rem">WEB COMPONENT ACTIVEDESCENDANT</p>
+    <post-menu-trigger for="menu_id2">
+      <button type="button" id="menu_trigger_id2" class="btn btn-primary">Menu button</button>
+    </post-menu-trigger>
+    <post-menu-2 id="menu_id2" placement="bottom" aria-activedescendant="item1">
+      <post-menu-item id="item1"><button type="button">Example 1</button></post-menu-item>
+      <post-menu-item id="item2"><a href="#">Example 2</a></post-menu-item>
+    </post-menu-2>
+
+    <script>
+      /*
+       *   This content is licensed according to the W3C Software License at
+       *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+       *
+       *   File:   menu-button-actions.js
+       *
+       *   Desc:   Creates a menu button that opens a menu of actions
+       */
+
+      'use strict';
+
+      class MenuButtonActions {
+        constructor(domNode, performMenuAction) {
+          this.domNode = domNode;
+          this.performMenuAction = performMenuAction;
+          this.buttonNode = domNode.querySelector('button');
+          this.menuNode = domNode.querySelector('[role="menu"]');
+          this.menuitemNodes = [];
+          this.firstMenuitem = false;
+          this.lastMenuitem = false;
+          this.firstChars = [];
+
+          this.buttonNode.addEventListener('keydown', this.onButtonKeydown.bind(this));
+          this.buttonNode.addEventListener('click', this.onButtonClick.bind(this));
+
+          var nodes = domNode.querySelectorAll('[role="menuitem"]');
+
+          for (var i = 0; i < nodes.length; i++) {
+            var menuitem = nodes[i];
+            this.menuitemNodes.push(menuitem);
+            menuitem.tabIndex = -1;
+            this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
+
+            menuitem.addEventListener('keydown', this.onMenuitemKeydown.bind(this));
+
+            menuitem.addEventListener('click', this.onMenuitemClick.bind(this));
+
+            menuitem.addEventListener('mouseover', this.onMenuitemMouseover.bind(this));
+
+            if (!this.firstMenuitem) {
+              this.firstMenuitem = menuitem;
+            }
+            this.lastMenuitem = menuitem;
+          }
+
+          domNode.addEventListener('focusin', this.onFocusin.bind(this));
+          domNode.addEventListener('focusout', this.onFocusout.bind(this));
+
+          window.addEventListener('mousedown', this.onBackgroundMousedown.bind(this), true);
+        }
+
+        setFocusToMenuitem(newMenuitem) {
+          this.menuitemNodes.forEach(function (item) {
+            if (item === newMenuitem) {
+              item.tabIndex = 0;
+              newMenuitem.focus();
+            } else {
+              item.tabIndex = -1;
+            }
+          });
+        }
+
+        setFocusToFirstMenuitem() {
+          this.setFocusToMenuitem(this.firstMenuitem);
+        }
+
+        setFocusToLastMenuitem() {
+          this.setFocusToMenuitem(this.lastMenuitem);
+        }
+
+        setFocusToPreviousMenuitem(currentMenuitem) {
+          var newMenuitem, index;
+
+          if (currentMenuitem === this.firstMenuitem) {
+            newMenuitem = this.lastMenuitem;
+          } else {
+            index = this.menuitemNodes.indexOf(currentMenuitem);
+            newMenuitem = this.menuitemNodes[index - 1];
+          }
+
+          this.setFocusToMenuitem(newMenuitem);
+
+          return newMenuitem;
+        }
+
+        setFocusToNextMenuitem(currentMenuitem) {
+          var newMenuitem, index;
+
+          if (currentMenuitem === this.lastMenuitem) {
+            newMenuitem = this.firstMenuitem;
+          } else {
+            index = this.menuitemNodes.indexOf(currentMenuitem);
+            newMenuitem = this.menuitemNodes[index + 1];
+          }
+          this.setFocusToMenuitem(newMenuitem);
+
+          return newMenuitem;
+        }
+
+        setFocusByFirstCharacter(currentMenuitem, char) {
+          var start, index;
+
+          if (char.length > 1) {
+            return;
+          }
+
+          char = char.toLowerCase();
+
+          // Get start index for search based on position of currentItem
+          start = this.menuitemNodes.indexOf(currentMenuitem) + 1;
+          if (start >= this.menuitemNodes.length) {
+            start = 0;
+          }
+
+          // Check remaining slots in the menu
+          index = this.firstChars.indexOf(char, start);
+
+          // If not found in remaining slots, check from beginning
+          if (index === -1) {
+            index = this.firstChars.indexOf(char, 0);
+          }
+
+          // If match was found...
+          if (index > -1) {
+            this.setFocusToMenuitem(this.menuitemNodes[index]);
+          }
+        }
+
+        // Utilities
+
+        getIndexFirstChars(startIndex, char) {
+          for (var i = startIndex; i < this.firstChars.length; i++) {
+            if (char === this.firstChars[i]) {
+              return i;
+            }
+          }
+          return -1;
+        }
+
+        // Popup menu methods
+
+        openPopup() {
+          this.menuNode.style.display = 'block';
+          this.buttonNode.setAttribute('aria-expanded', 'true');
+        }
+
+        closePopup() {
+          if (this.isOpen()) {
+            this.buttonNode.setAttribute('aria-expanded', 'false');
+            this.menuNode.style.display = 'none';
+          }
+        }
+
+        isOpen() {
+          return this.buttonNode.getAttribute('aria-expanded') === 'true';
+        }
+
+        // Menu event handlers
+
+        onFocusin() {
+          this.domNode.classList.add('focus');
+        }
+
+        onFocusout() {
+          this.domNode.classList.remove('focus');
+        }
+
+        onButtonKeydown(event) {
+          var key = event.key,
+            flag = false;
+
+          switch (key) {
+            case ' ':
+            case 'Enter':
+            case 'ArrowDown':
+            case 'Down':
+              this.openPopup();
+              this.setFocusToFirstMenuitem();
+              flag = true;
+              break;
+
+            case 'Esc':
+            case 'Escape':
+              this.closePopup();
+              flag = true;
+              break;
+
+            case 'Up':
+            case 'ArrowUp':
+              this.openPopup();
+              this.setFocusToLastMenuitem();
+              flag = true;
+              break;
+
+            default:
+              break;
+          }
+
+          if (flag) {
+            event.stopPropagation();
+            event.preventDefault();
+          }
+        }
+
+        onButtonClick(event) {
+          if (this.isOpen()) {
+            this.closePopup();
+            this.buttonNode.focus();
+          } else {
+            this.openPopup();
+            this.setFocusToFirstMenuitem();
+          }
+
+          event.stopPropagation();
+          event.preventDefault();
+        }
+
+        onMenuitemKeydown(event) {
+          var tgt = event.currentTarget,
+            key = event.key,
+            flag = false;
+
+          function isPrintableCharacter(str) {
+            return str.length === 1 && str.match(/\S/);
+          }
+
+          if (event.ctrlKey || event.altKey || event.metaKey) {
+            return;
+          }
+
+          if (event.shiftKey) {
+            if (isPrintableCharacter(key)) {
+              this.setFocusByFirstCharacter(tgt, key);
+              flag = true;
+            }
+
+            if (event.key === 'Tab') {
+              this.buttonNode.focus();
+              this.closePopup();
+              flag = true;
+            }
+          } else {
+            switch (key) {
+              case ' ':
+              case 'Enter':
+                this.closePopup();
+                this.performMenuAction(tgt);
+                this.buttonNode.focus();
+                flag = true;
+                break;
+
+              case 'Esc':
+              case 'Escape':
+                this.closePopup();
+                this.buttonNode.focus();
+                flag = true;
+                break;
+
+              case 'Up':
+              case 'ArrowUp':
+                this.setFocusToPreviousMenuitem(tgt);
+                flag = true;
+                break;
+
+              case 'ArrowDown':
+              case 'Down':
+                this.setFocusToNextMenuitem(tgt);
+                flag = true;
+                break;
+
+              case 'Home':
+              case 'PageUp':
+                this.setFocusToFirstMenuitem();
+                flag = true;
+                break;
+
+              case 'End':
+              case 'PageDown':
+                this.setFocusToLastMenuitem();
+                flag = true;
+                break;
+
+              case 'Tab':
+                this.closePopup();
+                break;
+
+              default:
+                if (isPrintableCharacter(key)) {
+                  this.setFocusByFirstCharacter(tgt, key);
+                  flag = true;
+                }
+                break;
+            }
+          }
+
+          if (flag) {
+            event.stopPropagation();
+            event.preventDefault();
+          }
+        }
+
+        onMenuitemClick(event) {
+          var tgt = event.currentTarget;
+          this.closePopup();
+          this.buttonNode.focus();
+          this.performMenuAction(tgt);
+        }
+
+        onMenuitemMouseover(event) {
+          var tgt = event.currentTarget;
+          tgt.focus();
+        }
+
+        onBackgroundMousedown(event) {
+          if (!this.domNode.contains(event.target)) {
+            if (this.isOpen()) {
+              this.closePopup();
+              this.buttonNode.focus();
+            }
+          }
+        }
+      }
+
+      // Initialize menu buttons
+      window.addEventListener('load', function () {
+        const output = document.getElementById('action_output');
+        if (output) {
+          output.value = 'none';
+        }
+
+        function performMenuAction(node) {
+          if (output) {
+            output.value = node.textContent.trim();
+          }
+        }
+
+        var menuButtons = document.querySelectorAll('.menu-button-actions');
+        for (var i = 0; i < menuButtons.length; i++) {
+          new MenuButtonActions(menuButtons[i], performMenuAction);
+        }
+      });
+    </script>
   </body>
 </html>

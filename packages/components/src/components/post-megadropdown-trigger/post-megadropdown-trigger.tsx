@@ -67,23 +67,25 @@ export class PostMegadropdownTrigger {
   };
 
   @EventFrom('post-megadropdown', { ignoreNestedComponents: false })
-  private handleToggleMegadropdown = (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) => {
-      if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
-        this.ariaExpanded = event.detail.isVisible;
+  private handleToggleMegadropdown = (
+    event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>,
+  ) => {
+    if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
+      this.ariaExpanded = event.detail.isVisible;
 
-        // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
-        if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
-          setTimeout(() => {
-            this.slottedButton?.focus();
-          }, 100);
-        }
-        this.wasExpanded = this.ariaExpanded;
-
-        if (this.slottedButton) {
-          this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
-        }
+      // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
+      if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
+        setTimeout(() => {
+          this.slottedButton?.focus();
+        }, 100);
       }
-    };
+      this.wasExpanded = this.ariaExpanded;
+
+      if (this.slottedButton) {
+        this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
+      }
+    }
+  };
 
   componentDidLoad() {
     this.validateControlFor();
@@ -93,7 +95,7 @@ export class PostMegadropdownTrigger {
 
     this.slottedButton = this.host.querySelector('button');
     if (this.slottedButton) {
-      this.slottedButton.setAttribute('aria-haspopup', 'menu');
+      this.slottedButton.setAttribute('aria-haspopup', 'true');
       this.slottedButton.addEventListener('click', () => {
         this.handleToggle();
       });
@@ -109,7 +111,7 @@ export class PostMegadropdownTrigger {
 
   render() {
     return (
-      <Host data-version={version} tab-index="-1">
+      <Host data-version={version} tab-index="-1" aria-expanded="false" aria-controls={this.for}>
         <button>
           <slot></slot>
         </button>
