@@ -4,5 +4,5 @@
 @use './../mixins/tokens';
 
 :root {
-  @include tokens.from(themes.$post-theme);
+  @include tokens.from(themes.$post-post);
 }
