@@ -23,7 +23,7 @@ export const TOKENSET_NAMES = {
   Components: 'components',
 };
 
-/* Setting that to `['components']` is currently not working, because we used component tokens in the semantic layer. */
+/* Setting EXPLICIT_COMPONENT_LAYER_GROUPNAMES to `['components']` is currently not working, because we used component tokens in the semantic layer. */
 export const EXPLICIT_COMPONENT_LAYER_GROUPNAMES = [];
 export const EXPLICIT_FIGMAONLY_GROUPNAMES = ['figmaonly'];
 export const EXPLICIT_FIGMAONLY_SETNAMES = ['figmaonly'];
