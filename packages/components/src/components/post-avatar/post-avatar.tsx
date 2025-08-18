@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, checkEmptyOrPattern, checkEmptyOrType, timeout } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrPattern, checkEmptyOrType } from '@/utils';
 
 // https://docs.gravatar.com/api/avatars/images/
 const GRAVATAR_DEFAULT = '404';
@@ -18,8 +18,13 @@ enum AvatarType {
   Null = null,
 }
 
-const maxRetries = 3;
-let delayMs = 100;
+interface AvatarStorage {
+  url: string;
+  useridImageFailed: boolean;
+  useridImageFailedReason: string;
+  emailImageFailed: boolean;
+  emailImageFailedReason: string;
+}
 
 /**
  * @slot default - Slot for inserting a custom image as avatar.
@@ -62,13 +67,7 @@ export class PostAvatar {
   @State() initials = '';
 
   // To handle email or userid updates and reset the storage item
-  @State() private storageKey: string = '';
-
-  private async updateStorageKey() {
-    // Combine relevant props into a single string.
-    console.log('this.storageKey', this.storageKey);
-    this.storageKey = `${this.userid || ''}_${this.email || ''}`;
-  }
+  @State() storageKey: string = '';
 
   @Watch('firstname')
   validateFirstname() {
@@ -90,21 +89,46 @@ export class PostAvatar {
     if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
   }
 
-  @Watch('storageKey')
-  async onStorageKeyChanged(newValue: string, oldValue: string) {
-    if (newValue !== oldValue) {
-      await this.removeStorageItem(oldValue);
-      this.getAvatar(); // Fetch avatar for the new key
+  @Watch('email')
+  @Watch('userid')
+  async keyChanged() {
+    this.storageKey = `${this.userid || ''}_${this.email || ''}`;
+
+    // Reset previous avatar
+    this.imageUrl = '';
+    this.imageAlt = '';
+    this.avatarType = AvatarType.Initials;
+    await this.setInitialStorage();
+    this.getAvatar();
+  }
+
+  private async setInitialStorage() {
+    const key = await this.cryptify(this.storageKey);
+    const cached = sessionStorage.getItem(key);
+    if (!cached) {
+      const initial: AvatarStorage = {
+        url: null,
+        useridImageFailed: null,
+        useridImageFailedReason: null,
+        emailImageFailed: null,
+        emailImageFailedReason: null,
+      };
+      sessionStorage.setItem(key, JSON.stringify(initial));
     }
+  }
+
+  private async updateStorage(partialUpdate: Partial<AvatarStorage>) {
+    const key = await this.cryptify(this.storageKey);
+    const cached = sessionStorage.getItem(key);
+    const existing: AvatarStorage = cached ? JSON.parse(cached) : ({} as AvatarStorage);
+    const updated: AvatarStorage = { ...existing, ...partialUpdate };
+    sessionStorage.setItem(key, JSON.stringify(updated));
   }
 
   private async getAvatar() {
     if (this.slottedImage !== null) {
       this.avatarType = AvatarType.Slotted;
     } else {
-      // Immediately set to initials
-      this.getAvatarByInitials();
-
       let imageLoaded = false;
 
       if (this.userid) {
@@ -116,13 +140,18 @@ export class PostAvatar {
       }
 
       if (!imageLoaded && this.email) {
-        await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this), 'email');
+        const emailLoaded = await this.getImageByProp(
+          this.email,
+          this.fetchImageByEmail.bind(this),
+          'email',
+        );
+        if (!emailLoaded) this.getAvatarByInitials();
       }
     }
   }
 
-  private setupImage(imageResponse: Response) {
-    this.imageUrl = imageResponse.url;
+  private setupImage(imageResponseURL: Response['url']) {
+    this.imageUrl = imageResponseURL;
     this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
     this.avatarType = AvatarType.Image;
   }
@@ -134,67 +163,44 @@ export class PostAvatar {
   ) {
     if (!prop) return false;
 
-    const cachedImageRes = await this.getStorageItem(this.storageKey);
+    const key = await this.cryptify(this.storageKey);
+    const cached = sessionStorage.getItem(key);
+    const existing: AvatarStorage = cached ? JSON.parse(cached) : null;
 
-    // If this specific type has failed before, skip
-    if (cachedImageRes?.[`${type}ImageFailed`]) return false;
-
-    // If we already have a cached OK image, use it
-    if (cachedImageRes?.ok && cachedImageRes.url) {
-      this.setupImage(cachedImageRes);
+    // Skip the fetch if an image exists for this combination
+    if (existing?.url) {
+      this.setupImage(existing?.url);
       return true;
     }
 
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-      try {
-        const response = await fetchImage();
+    try {
+      const response = await fetchImage();
 
-        if (response.ok) {
-          this.setupImage(response);
-
-          await this.setStorageItem(
-            this.storageKey,
-            JSON.stringify({
-              ...cachedImageRes,
-              [`${type}ImageFailed`]: false,
-              ok: true,
-              url: response.url,
-            }),
-          );
-          return true;
-        } else {
-          if (response.status === 404) {
-            await this.setStorageItem(
-              this.storageKey,
-              JSON.stringify({
-                ...cachedImageRes,
-                [`${type}ImageFailed`]: true,
-              }),
-            );
-            console.info(`Avatar not found for ${type} (404).`);
-            return false;
-          }
-          console.info(`Attempt ${attempt}: ${type} fetch failed with ${response.status}.`);
-        }
-      } catch (error) {
-        console.info(`Attempt ${attempt}: Network error for ${type}`, error);
+      if (response.ok) {
+        this.setupImage(response.url);
+        await this.updateStorage({
+          url: response.url,
+          [`${type}ImageFailed`]: false,
+          [`${type}ImageFailedReason`]: '',
+        });
+        return true;
+      } else {
+        const reason = `Fetch failed with status ${response.status}`;
+        await this.updateStorage({
+          [`${type}ImageFailed`]: true,
+          [`${type}ImageFailedReason`]: reason,
+        });
+        return false;
       }
-
-      if (attempt < maxRetries) {
-        await timeout(delayMs);
-        delayMs *= 3;
-      }
-    }
-
-    await this.setStorageItem(
-      this.storageKey,
-      JSON.stringify({
-        ...cachedImageRes,
+    } catch (error) {
+      const reason = (error as Error).message;
+      console.info(`Network error for ${type}`, error);
+      this.updateStorage({
         [`${type}ImageFailed`]: true,
-      }),
-    );
-    console.info(`Loading ${type} image failed after ${maxRetries} attempts.`);
-    return false;
+        [`${type}ImageFailedReason`]: reason,
+      });
+      return false;
+    }
   }
 
   private async fetchImageByUserId() {
@@ -225,22 +231,6 @@ export class PostAvatar {
       .trim();
   }
 
-  private async getStorageItem(keyToken: string) {
-    const key = await this.cryptify(keyToken);
-    const value = window?.sessionStorage?.getItem(key);
-    return value ? JSON.parse(value) : null;
-  }
-
-  private async setStorageItem(keyToken: string, value: string) {
-    const key = await this.cryptify(keyToken);
-    window?.sessionStorage?.setItem(key, value);
-  }
-
-  private async removeStorageItem(keyToken: string) {
-    const key = await this.cryptify(keyToken);
-    window?.sessionStorage?.removeItem(key);
-  }
-
   private async cryptify(key: string) {
     return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
       return Array.from(new Uint8Array(buffer))
@@ -251,21 +241,25 @@ export class PostAvatar {
 
   private onSlotDefaultChange() {
     this.slottedImage = this.host.querySelector('img');
-    this.getAvatar();
+    if (this.slottedImage) {
+      this.avatarType = AvatarType.Slotted;
+    } else {
+      this.avatarType = AvatarType.Initials;
+      this.getAvatar();
+    }
   }
-
-  connectedCallback() {}
 
   componentWillRender() {
     this.slottedImage = this.host.querySelector('img');
   }
 
   componentWillLoad() {
+    // Immediately set to initials
+    this.getAvatarByInitials();
     this.validateFirstname();
     this.validateLastname();
     this.validateUserid();
     this.validateEmail();
-    this.updateStorageKey();
   }
 
   render() {
