@@ -2,7 +2,7 @@ import { fileHeader } from 'style-dictionary/utils';
 import { TOKENSET_LAYERS, TOKENSET_NAMES, TOKENSET_PREFIX } from '../constants.js';
 import StyleDictionary from '../style-dictionary.js';
 import { registerConfigMethod, getTokenValue } from '../methods.js';
-
+import { TokenProperty } from '_build/types.js';
 const TAILWIND_TOKENSET_NAMES = [TOKENSET_NAMES.Utilities, TOKENSET_NAMES.Helpers];
 
 /**
@@ -60,17 +60,20 @@ StyleDictionary.registerFormat({
   name: 'swisspost/tailwind-v4-format',
   format: async ({ dictionary, options, file }) => {
     const header = await fileHeader({ file, commentStyle: 'long' }); // CSS comments
-    
-    const themeVariables = dictionary.allTokens.reduce((allTokens, token) => {
-      const tokenPath = token.path.slice(token.path.indexOf(TOKENSET_PREFIX) + 1);
-      
-      const cssVarName = `--${tokenPath.join('-')}`;
-      
-      const tokenValue = getTokenValue(options, token);
-      
-      allTokens[cssVarName] = tokenValue;
-      return allTokens;
-    }, {});
+
+    const themeVariables = dictionary.allTokens.reduce<Record<string, TokenProperty>>(
+      (allTokens, token) => {
+        const tokenPath = token.path.slice(token.path.indexOf(TOKENSET_PREFIX) + 1);
+
+        const cssVarName = `--${tokenPath.join('-')}`;
+
+        const tokenValue = getTokenValue(options, token);
+
+        allTokens[cssVarName] = tokenValue;
+        return allTokens;
+      },
+      {},
+    );
 
     const themeCSS = Object.entries(themeVariables)
       .map(([name, value]) => `  ${name}: ${value};`)
