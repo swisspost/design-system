@@ -1,5 +1,4 @@
-import React from 'react';
-import versionsData from '../../../../../public/assets/versions.json';
+import React, { useEffect, useState } from 'react';
 
 interface VersionEntry {
   title: string;
@@ -12,8 +11,28 @@ interface VersionEntry {
   };
 }
 
+const VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
+
 const DependenciesTable: React.FC = () => {
-  const versions = versionsData as VersionEntry[];
+  const [versions, setVersions] = useState<VersionEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(VERSIONS_URL)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch versions.json');
+        return res.json();
+      })
+      .then(data => {
+        setVersions(data as VersionEntry[]);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
 
   const formatVersion = (version: string | undefined, majorOnly = false): string => {
     if (!version) return 'N/A';
@@ -37,6 +56,9 @@ const DependenciesTable: React.FC = () => {
     const match = version.match(/^(\d+)\./);
     return match ? `${match[1]}.x` : version;
   };
+
+  if (loading) return <div>Loading versions...</div>;
+  if (error) return <div>Error loading versions: {error}</div>;
 
   return (
     <div className="table-responsive table-fit-content text-start">
