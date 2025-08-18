@@ -1,50 +1,47 @@
 import { throttle } from 'throttle-debounce';
 import { IS_SERVER } from '@/utils/environment';
 
+export type Device = 'desktop' | 'tablet' | 'mobile';
+export type BreakpointKey = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export type BreakpointMinWidth = 1280 | 1024 | 780 | 600 | 0;
+
 interface BreakpointDefinition {
-  key: string;
-  device: string;
-  minWidth: number;
+  device: Device;
+  key: BreakpointKey;
+  minWidth: BreakpointMinWidth;
 }
 
 type BreakpointProperty = keyof BreakpointDefinition;
 
 class Breakpoint {
-  private readonly breakpoints: BreakpointDefinition[];
+  private readonly breakpoints: BreakpointDefinition[] = [
+    {key: 'xl', device: 'desktop', minWidth: 1280},
+    {key: 'lg', device: 'desktop', minWidth: 1024},
+    {key: 'md', device: 'tablet', minWidth: 780},
+    {key: 'sm', device: 'tablet', minWidth: 600},
+    {key: 'xs', device: 'mobile', minWidth: 0},
+  ];
   private currentBreakpoint: BreakpointDefinition;
 
   constructor() {
-    if (IS_SERVER || !!this.breakpoints) return;
-
-    const keys = this.getValues('--post-grid-breakpoint-keys');
-    const devices = this.getValues('--post-grid-breakpoint-devices');
-    const widths = this.getValues('--post-grid-breakpoint-widths');
-
-    this.breakpoints = widths
-      .map((width, i): BreakpointDefinition => ({
-        key: keys[i],
-        device: devices[i],
-        minWidth: Number(width),
-      }))
-      .sort((a, b) => b.minWidth - a.minWidth);
+    if (IS_SERVER) return;
 
     this.updateCurrentBreakpoint({ emitEvents: false });
     window.addEventListener('resize', () => this.updateCurrentBreakpoint(), { passive: true });
   }
 
-  private getValues(cssCustomProperty: string): string[] {
-    const values = getComputedStyle(document.documentElement).getPropertyValue(cssCustomProperty);
-    return values ? values.split(',').map(v => v.trim()) : [];
-  }
-
   private updateCurrentBreakpoint = throttle(50,
     (options: { emitEvents: boolean } = { emitEvents: true }) => {
       const previousBreakpoint = this.currentBreakpoint;
-      this.currentBreakpoint = this.breakpoints.find(breakpoint => {
+      const newBreakpoint = this.breakpoints.find(breakpoint => {
         return breakpoint.minWidth <= innerWidth;
       });
 
-      if (!this.currentBreakpoint || !options.emitEvents) return;
+      if (!newBreakpoint) return;
+
+      this.currentBreakpoint = newBreakpoint;
+
+      if (!options.emitEvents) return;
 
       Object.keys(this.currentBreakpoint)
         .filter(key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key])
