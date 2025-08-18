@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import * as packageJson from '../../../../../package.json';
+import { getVersion } from '@/utils/version';
+
+const STYLES_VERSION = packageJson.dependencies['@swisspost/design-system-styles'] ?? '';
+const CURRENT_VERSION = Number(getVersion(STYLES_VERSION, 'major') ?? '');
 
 interface VersionEntry {
   title: string;
@@ -25,11 +30,15 @@ const DependenciesTable: React.FC = () => {
         return res.json();
       })
       .then(data => {
-        setVersions(data as VersionEntry[]);
-        setLoading(false);
+        const filtered = (data as VersionEntry[]).filter(
+          entry => Number(getVersion(entry.version, 'major') ?? '') <= CURRENT_VERSION,
+        );
+        setVersions(filtered);
       })
       .catch(err => {
         setError(err.message);
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, []);
