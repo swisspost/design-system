@@ -50,10 +50,10 @@ StyleDictionary.registerFilter({
  */
 StyleDictionary.registerFormat({
   name: 'swisspost/scss-format',
-  format: ({ dictionary, file }) => {
-    const MULTIVALUE_SEPARATOR_RULES = [
-      { previousKey: 'fontSize', currentKey: 'lineHeight', separator: '/' },
-    ];
+  format: ({ dictionary, file, options }) => {
+    // const MULTIVALUE_SEPARATOR_RULES = [
+    //   { previousKey: 'fontSize', currentKey: 'lineHeight', separator: '/' },
+    // ];
 
     const fileName = file.destination.replace(/\.scss$/, '');
     const isCore = fileName === 'core';
@@ -79,20 +79,9 @@ StyleDictionary.registerFormat({
                 : token.name;
               let tokenValue = token.value;
 
-              if (usesReferences(token.original.value)) {
+              if (options.outputReferences && usesReferences(token.original.value)) {
                 try {
-                  if (token.type === 'typography') {
-                    tokenValue = Object.entries(token.original.value).reduce(
-                      (values, [key, value], i) =>
-                        `${values}${getSeparator(
-                          Object.keys(token.original.value)[i - 1],
-                          key,
-                        )}${getReference(value)}`,
-                      '',
-                    );
-                  } else {
-                    tokenValue = getReference(token.original.value);
-                  }
+                  tokenValue = replaceAllReferences(tokenValue);
                 } catch (error) {
                   console.error(
                     `\x1b[31mError: While processing the token \x1b[33m"${tokenName}"\x1b[31m within the tokenset \x1b[33m"${dataSetName}"\x1b[31m, the following error occurred:\n"${
@@ -113,20 +102,27 @@ StyleDictionary.registerFormat({
         .join('\n')
     );
 
-    function getReference(value = '') {
-      return value.replace(
-        /{[^}]+}/g,
-        match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
-      );
+    function replaceAllReferences(value) {
+      if (typeof value === 'string') {
+        return replaceReferences(value);
+      }
+
+      if (typeof value === 'object') {
+        for (const key in value) {
+          if (Object.hasOwn(value, key)) {
+            if (typeof value[key] === 'string') value[key] = replaceReferences(value[key]);
+            if (typeof value[key] === 'object') value[key] = replaceAllReferences(value[key]);
+          }
+        }
+
+        return Object.values(value).join(' ');
+      }
     }
 
-    function getSeparator(pKey = '', cKey = '') {
-      if (pKey === '') return '';
-
-      return (
-        MULTIVALUE_SEPARATOR_RULES.find(
-          rule => rule.previousKey === pKey && rule.currentKey === cKey,
-        )?.separator ?? ' '
+    function replaceReferences(value) {
+      return value.replace(
+        /{[0-9a-zA-Z-._]+}/g,
+        match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
       );
     }
   },
