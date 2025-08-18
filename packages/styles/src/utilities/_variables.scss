@@ -3,6 +3,7 @@
 
 @use '../variables/sizing' as *;
 @use '../variables/type';
+@use '../variables/commons';
 
 /*
   Utilities are generated with our utility API using bellow $utilities map.
@@ -579,12 +580,6 @@ $utilities: (
   'z-index': (
     property: z-index,
     class: z,
-    values: (
-      n1: -1,
-      0: 0,
-      1: 1,
-      2: 2,
-      3: 3,
-    ),
+    values: map.merge(commons.$zindex-map, commons.$named-zindex-map),
   ),
 );
