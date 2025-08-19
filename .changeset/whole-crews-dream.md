@@ -3,3 +3,7 @@
 ---
 
 Updated `<post-menu>` and `<post-menu-item>` to prevent accessibility roles from being announced before the menu content is visible, and to ensure correct focus behavior on menu items during keyboard navigation when NVDA is running.
+
+Removed the obsolete `role="menuitem"` from `<post-language-switch>. `<post-language-option>` now assigns `role="listitem"` in case of `variant="list"`, to ensure a correct reference relationship.
+
+Removed an `aria-label` that caused an accessibility error, and added `role="none"` to the menu trigger wrapper `<div>` to reflect its presentational purpose.
