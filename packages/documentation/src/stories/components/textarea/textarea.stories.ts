@@ -13,7 +13,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: '152b7268-cce0-43d7-b931-41a57370f9a0',
   title: 'Components/Form Textarea',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderTextarea,
   parameters: {
     badges: [],

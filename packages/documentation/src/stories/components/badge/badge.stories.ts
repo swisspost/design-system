@@ -7,7 +7,7 @@ import chipMeta from '@/stories/components/chip/chip.stories';
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
   title: 'Components/Badge',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Experimental'],
   render: renderBadge,
   parameters: {
     badges: [],

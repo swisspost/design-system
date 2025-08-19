@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '9a636763-de2d-4f72-bc81-98daf10871f7',
   title: 'Components/Popover',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-popover',
   parameters: {
     badges: [],

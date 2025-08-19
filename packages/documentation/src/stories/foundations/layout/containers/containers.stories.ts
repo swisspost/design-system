@@ -7,7 +7,7 @@ import './containers.styles.scss';
 const meta: MetaExtended = {
   id: 'a4ca9660-bb4a-4cc7-adfd-84767382ac03',
   title: 'Foundations/Layout/Containers',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   render: (args: Args) => html`
     <div class=${args.containerClass}>
       <!-- Content goes here -->

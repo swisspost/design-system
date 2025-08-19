@@ -6,7 +6,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap> = {
   id: '4d1b4185-e04d-494a-ab38-2b56c1778b0b',
   title: 'Components/Accordion',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Stable'],
   component: 'post-accordion',
   render: renderAccordion(),
   parameters: {
@@ -51,7 +51,10 @@ function getAccordionItemContent(position: number | string, headingLevel?: numbe
   return html`
     <span slot="header">Title ${position}${level}</span>
     <div>
-      <p>Example content for accordion item ${position}. This is a sample text demonstrating how the accordion component works.</p>
+      <p>
+        Example content for accordion item ${position}. This is a sample text demonstrating how the
+        accordion component works.
+      </p>
     </div>
   `;
 }

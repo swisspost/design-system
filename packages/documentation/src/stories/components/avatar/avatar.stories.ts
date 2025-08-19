@@ -11,7 +11,7 @@ const meta: MetaComponent = {
   id: '09aac03d-220e-4885-8fb8-1cfa01add188',
   title: 'Components/Avatar',
   component: 'post-avatar',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
     design: {
       type: 'figma',
@@ -60,18 +60,19 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => html`<post-avatar
-    firstname="${args.firstname || nothing}"
-    lastname="${args.lastname || nothing}"
-    userid="${args.userid || nothing}"
-    email="${args.email || nothing}"
-    >${args.imageSrc
-      ? html`<img
-          src="${args.imageSrc}"
-          alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
-        />`
-      : nothing}</post-avatar
-  >`,
+  render: (args: Args) =>
+    html`<post-avatar
+      firstname="${args.firstname || nothing}"
+      lastname="${args.lastname || nothing}"
+      userid="${args.userid || nothing}"
+      email="${args.email || nothing}"
+      >${args.imageSrc
+        ? html`<img
+            src="${args.imageSrc}"
+            alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
+          />`
+        : nothing}</post-avatar
+    >`,
 };
 
 export const AnchorWrapped: Story = {

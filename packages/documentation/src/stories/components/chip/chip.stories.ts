@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
   title: 'Components/Chip',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   render: renderChip,
   parameters: {
     controls: {

@@ -6,7 +6,7 @@ import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 const meta: MetaComponent<HTMLPostLanguageOptionElement> = {
   id: '3753ab83-a659-47b5-a2f2-ac452ec97916',
   title: 'Raw Components/Language Option',
-  tags: ['package:WebComponents', 'devOnly'],
+  tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
   component: 'post-language-option',
   render: renderLanguageOption,
   decorators: [listContainer],

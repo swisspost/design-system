@@ -5,6 +5,7 @@ import { MetaExtended } from '@root/types';
 const meta: MetaExtended = {
   id: '4b511e58-849e-4e2e-b2b4-2a90656553f4',
   title: 'Utilities/Interactions',
+  tags: ['status:InProgress'],
   argTypes: {
     pointerEvents: {
       name: 'Pointer events',

@@ -8,7 +8,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'cd684d90-e7a7-41a9-8923-b1b72ad9b384',
   title: 'Components/Tooltip',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-tooltip',
   parameters: {
     badges: [],

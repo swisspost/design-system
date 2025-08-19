@@ -6,7 +6,7 @@ import { fakeContent } from '@/utils';
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
   title: 'Components/Header',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-header',
   parameters: {
     layout: 'fullscreen',
@@ -164,7 +164,6 @@ const Template = {
             </ul>
           `
         : ''}
-
       ${args.mainNavigation
         ? html`
             <!-- Main navigation -->
@@ -172,8 +171,12 @@ const Template = {
               <post-list title-hidden="">
                 <h2>Main Navigation</h2>
                 <!-- Link only level 1 -->
-                <post-list-item slot="post-list-item"><a href="/letters">Letters</a></post-list-item>
-                <post-list-item slot="post-list-item"><a href="/packages">Packages</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="/letters">Letters</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/packages">Packages</a></post-list-item
+                >
 
                 <!-- Level 1 with megadropdown -->
                 <post-list-item slot="post-list-item">
@@ -193,7 +196,9 @@ const Template = {
                       <post-list-item slot="post-list-item"
                         ><a href="/kl">Small items abroad</a></post-list-item
                       >
-                      <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
+                      <post-list-item slot="post-list-item"
+                        ><a href="">Goods abroad</a></post-list-item
+                      >
                       <post-list-item slot="post-list-item"
                         ><a href="">Express and courier</a></post-list-item
                       >
@@ -206,7 +211,9 @@ const Template = {
                       <post-list-item slot="post-list-item"
                         ><a href="/kl">Small items abroad</a></post-list-item
                       >
-                      <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
+                      <post-list-item slot="post-list-item"
+                        ><a href="">Goods abroad</a></post-list-item
+                      >
                       <post-list-item slot="post-list-item"
                         ><a href="">Express and courier</a></post-list-item
                       >
@@ -230,7 +237,9 @@ const Template = {
                       <post-list-item slot="post-list-item"
                         ><a href="/kl">Small items abroad</a></post-list-item
                       >
-                      <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
+                      <post-list-item slot="post-list-item"
+                        ><a href="">Goods abroad</a></post-list-item
+                      >
                       <post-list-item slot="post-list-item"
                         ><a href="">Express and courier</a></post-list-item
                       >
@@ -243,7 +252,9 @@ const Template = {
                       <post-list-item slot="post-list-item"
                         ><a href="/kl">Small items abroad</a></post-list-item
                       >
-                      <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
+                      <post-list-item slot="post-list-item"
+                        ><a href="">Goods abroad</a></post-list-item
+                      >
                       <post-list-item slot="post-list-item"
                         ><a href="">Express and courier</a></post-list-item
                       >

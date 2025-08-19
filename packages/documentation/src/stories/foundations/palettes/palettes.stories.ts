@@ -4,7 +4,7 @@ import { html } from 'lit';
 const meta: Meta = {
   id: '43481535-5b39-40b5-a273-478b07dc3b31',
   title: 'Foundations/Palettes',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Experimental'],
   render: renderPalette,
   parameters: {
     palettes: [],

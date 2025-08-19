@@ -7,6 +7,7 @@ import { bombArgs } from '@/utils';
 const meta: MetaExtended = {
   id: '803a58e8-c734-4ad7-80a8-62da1bb29d4b',
   title: 'Utilities/Position',
+  tags: ['status:Stable'],
   args: {
     position: 'absolute',
     start: '50',
@@ -124,23 +125,20 @@ type Story = StoryObj;
 
 export const Default: Story = {
   decorators: [
-    (story, context) =>
-      html`
-        <div class="position-outer-container position-outer-container-${context.args.position}">
-          ${context.args.position === 'fixed'
-            ? html`<img src="../images/browser-bg-top.png" />`
-            : ''}
-          <div class="position-container position-relative">
-            ${story()}
-            ${bombArgs({
-              start: ['0', '50', '100'],
-              top: ['0', '50', '100'],
-            }).map(
-              args => html` <div class="pos-element top-${args.top} start-${args.start}"></div> `,
-            )}
-          </div>
+    (story, context) => html`
+      <div class="position-outer-container position-outer-container-${context.args.position}">
+        ${context.args.position === 'fixed' ? html`<img src="../images/browser-bg-top.png" />` : ''}
+        <div class="position-container position-relative">
+          ${story()}
+          ${bombArgs({
+            start: ['0', '50', '100'],
+            top: ['0', '50', '100'],
+          }).map(
+            args => html` <div class="pos-element top-${args.top} start-${args.start}"></div> `,
+          )}
         </div>
-      `,
+      </div>
+    `,
   ],
 };
 

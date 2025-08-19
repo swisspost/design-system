@@ -12,6 +12,13 @@ const TECH_ICONS: Record<string, string> = {
   InternetHeader: webComponentsIcon,
 };
 
+const STATUS_ICONS: Record<string, string> = {
+  InProgress: '⏳', // U+23F3
+  Experimental: '🆕', // U+1F195
+  Stable: '✅', // 	U+2705
+  Deprecated: '⛔', // U+26D4
+};
+
 definePostIcon();
 
 const storedDevMode = localStorage.getItem('devModeEnabled');
@@ -39,13 +46,23 @@ const renderLabel = (item: API_HashEntry) => {
     return item.name;
   }
 
-  // Only show icons in development mode
-  if (document.documentElement.getAttribute('data-env') !== 'development') {
-    return item.name;
+  const tags = item.tags || [];
+
+  // Logic to get the status
+  const statusTags = tags.filter(tag => tag.startsWith('status:'));
+  console.log('tag', statusTags, tags);
+  let statusIcon = '';
+  if (statusTags.length !== 0) {
+    statusIcon = STATUS_ICONS ? STATUS_ICONS[statusTags[0].substring(7).trim()] + ' ' : '';
+    console.log(statusIcon, 'icon');
   }
 
-  const tags = item.tags || [];
   const packageTags = tags.filter(tag => tag.startsWith('package:'));
+
+  // Only show icons in development mode
+  if (document.documentElement.getAttribute('data-env') !== 'development') {
+    return /*statusIcon*/ +item.name;
+  }
 
   if (packageTags.length > 0) {
     const icons = packageTags
@@ -63,13 +80,13 @@ const renderLabel = (item: API_HashEntry) => {
       return React.createElement(
         'span',
         { className: 'label-with-icon' },
-        React.createElement('span', null, item.name),
+        React.createElement('span', null, statusIcon + item.name),
         ...icons,
       );
     }
   }
 
-  return item.name;
+  return statusIcon + item.name;
 };
 
 // Function to update filters in the Storybook sidebar configuration

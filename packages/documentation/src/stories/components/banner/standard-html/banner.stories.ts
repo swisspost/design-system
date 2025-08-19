@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
-  tags: ['package:Styles', 'package:WebComponents'],
+  tags: ['package:Styles', 'package:WebComponents', 'status:Stable'],
   render: renderBanner,
   parameters: {
     badges: [],

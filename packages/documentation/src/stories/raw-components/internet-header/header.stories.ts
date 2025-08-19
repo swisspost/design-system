@@ -1,4 +1,9 @@
-import { Args, StoryContext, StoryObj, WebComponentsRenderer } from '@storybook/web-components-vite';
+import {
+  Args,
+  StoryContext,
+  StoryObj,
+  WebComponentsRenderer,
+} from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { fakeContent, spreadArgs } from '@/utils';
 import customConfig from './config/custom-config';
@@ -9,7 +14,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
   title: 'Raw Components/Internet Header',
-  tags: ['package:InternetHeader', 'devOnly'],
+  tags: ['package:InternetHeader', 'status:Deprecated', 'devOnly'],
   component: 'swisspost-internet-header',
   parameters: {
     badges: [],
@@ -158,15 +163,14 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story =>
-      html`
-        <div
-          class="header-story-wrapper"
-          style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
-        >
-          ${story()} ${fakeContent()}
-        </div>
-      `,
+    story => html`
+      <div
+        class="header-story-wrapper"
+        style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
+      >
+        ${story()} ${fakeContent()}
+      </div>
+    `,
   ],
 };
 
