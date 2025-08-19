@@ -14,10 +14,23 @@ const TECH_ICONS: Record<string, string> = {
 
 definePostIcon();
 
+// checks if there is a parameter `?devModeEnabled=true` in URL for devMode set
+// e.g. http://localhost:9000/?path=/docs/introduction--docs&devModeEnabled=true
+const params = new URLSearchParams(window.location.search);
+
+const devModeFromUrl = params.get('devModeEnabled') === 'true';
+
+if (devModeFromUrl) {
+  localStorage.setItem('devModeEnabled', 'true');
+}
+
+// if yes, devModeEnabled-key is set in localStorage
 const storedDevMode = localStorage.getItem('devModeEnabled');
 
+// read initialEnv from localStorage
 let initialEnv = process.env.NODE_ENV || 'production';
 
+// set data-env to development or production mode
 if (storedDevMode !== null) {
   initialEnv = JSON.parse(storedDevMode) ? 'development' : 'production';
 }
