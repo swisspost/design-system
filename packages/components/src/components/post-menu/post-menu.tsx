@@ -58,6 +58,11 @@ export class PostMenu {
   @State() isVisible: boolean = false;
 
   /**
+   * Holds the current focusable children
+   */
+  @State() focusableChildren: Element[];
+
+  /**
    * Emits when the menu is shown or hidden.
    * The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
    **/
@@ -144,7 +149,12 @@ export class PostMenu {
       if (this.isVisible) {
         this.lastFocusedElement = this.root?.activeElement as HTMLElement;
         const menuItems = this.getSlottedItems();
+        this.focusableChildren = menuItems;
+
         if (menuItems.length > 0) {
+          // Add role="menu" to the popovercontainer
+          this.host.setAttribute('role', 'menu');
+          // Add role="menuitem" to the focusable elements
           menuItems.forEach(item => {
             item.setAttribute('role', 'menuitem');
           });
@@ -222,9 +232,9 @@ export class PostMenu {
     return (
       <Host data-version={version}>
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
-          <ul part="menu" role="menu" aria-labelledby="menu_trigger_id">
+          <div part="menu">
             <slot></slot>
-          </ul>
+          </div>
         </post-popovercontainer>
       </Host>
     );

@@ -8,10 +8,8 @@ import { version } from '@root/package.json';
 export class PostMenuItem {
   render() {
     return (
-      <Host data-version={version} role="menuitem">
-        <li role="none">
-          <slot></slot>
-        </li>
+      <Host data-version={version}>
+        <slot></slot>
       </Host>
     );
   }
