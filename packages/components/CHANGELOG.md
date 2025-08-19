@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 9.1.0
+
+### Minor Changes
+
+- Added the custom event `postTriggered` to the `<post-tooltip-trigger>` that emits whenever the component is triggered. (by [@leagrdv](https://github.com/leagrdv) with [#5642](https://github.com/swisspost/design-system/pull/5642))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.1.0
+
 ## 9.0.3
 
 ### Patch Changes
