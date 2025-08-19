@@ -80,7 +80,6 @@ Type: `Promise<boolean>`
 ### Used by
 
  - [post-menu](../post-menu)
- - [post-menu-2](../post-menu-2)
  - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)
 
@@ -88,7 +87,6 @@ Type: `Promise<boolean>`
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
-  post-menu-2 --> post-popovercontainer
   post-popover --> post-popovercontainer
   post-tooltip --> post-popovercontainer
   style post-popovercontainer fill:#f9f,stroke:#333,stroke-width:4px
