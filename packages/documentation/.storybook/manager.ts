@@ -59,7 +59,7 @@ const renderLabel = (item: API_HashEntry) => {
 
   // Only show icons in development mode
   if (document.documentElement.getAttribute('data-env') !== 'development') {
-    return /*statusIcon*/ +item.name;
+    return statusIcon + item.name;
   }
 
   if (packageTags.length > 0) {
