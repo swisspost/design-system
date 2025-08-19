@@ -119,7 +119,7 @@ export class PostLanguageOption {
 
   render() {
     const lang = this.code.toLowerCase();
-    const role = this.variant === 'menu' ? 'menuitem' : undefined;
+    const role = this.variant === 'menu' ? 'menuitem' : 'listitem';
     const emitOnKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         this.emitChange();

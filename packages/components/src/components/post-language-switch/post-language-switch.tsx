@@ -103,7 +103,6 @@ export class PostLanguageSwitch {
   private updateChildrenVariant() {
     this.languageOptions.forEach(el => {
       el.setAttribute('variant', this.variant);
-      el.setAttribute('role', this.variant == 'menu' ? 'menuitem' : 'listitem');
     });
   }
 
