@@ -3,7 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Replaced `top`, `bottom`, `right` and `left` with
-`inset-block-start`, `inset-block-end`, `inset-inline-start` and `inset-inline-end`.
-Added controls for `bottom` and for `end` property for position compo in utilities.
-Added classes for `bottom` and for `end` property for position compo in styles.
+Added missing `bottom` and `end` controls to position utilities for complete configuration. Replaced empty label option with `unset` for better clarity across all position controls (`top`, `bottom`, `start`, `end`).
