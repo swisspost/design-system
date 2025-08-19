@@ -4,10 +4,12 @@ import { getIconSetGroups } from './iconSetGroups';
 import { createSvgs } from './createSvgs';
 import { writeReport } from './report';
 import { coloredLogMessage } from '../shared';
-import { OUTPUT_PATH, OUTPUT_PATH_ICONS } from '../constants';
+import { OUTPUT_PATH, OUTPUT_PATH_ICONS, OUTPUT_PATH_SCSS } from '../constants';
+import { createScssFiles } from './createSCSSfiles';
 
 const iconOutputDirectory = path.resolve(OUTPUT_PATH_ICONS);
 const reportOutputDirectory = path.resolve(OUTPUT_PATH);
+const scssOutputDirectory = path.resolve(OUTPUT_PATH_SCSS);
 
 export default function buildSVGs() {
   console.log(coloredLogMessage('<blue>Building icons...</blue>'));
@@ -16,7 +18,8 @@ export default function buildSVGs() {
 
   const iconSetGroups = getIconSetGroups();
   createSvgs(iconOutputDirectory, iconSetGroups);
-
+  createScssFiles(iconOutputDirectory, scssOutputDirectory);
+  
   const report = writeReport(reportOutputDirectory, iconSetGroups);
 
   console.log(

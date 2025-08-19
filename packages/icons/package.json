@@ -18,13 +18,14 @@
     "linkDirectory": true
   },
   "files": [
-    "public"
+    "public",
+    "dist"
   ],
   "scripts": {
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
     "build": "pnpm clean && ts-node src/build.ts",
-    "clean": "rimraf public/post-icons public/report.json",
+    "clean": "rimraf public/post-icons public/report.json dist",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "unit:updatesnapshots": "jest -u",
@@ -63,6 +64,8 @@
     "icons",
     "design-system",
     "ui",
-    "frontend"
+    "frontend",
+    "scss",
+    "css"
   ]
 }
