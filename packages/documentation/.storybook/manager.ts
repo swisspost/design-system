@@ -50,11 +50,9 @@ const renderLabel = (item: API_HashEntry) => {
 
   // Logic to get the status
   const statusTags = tags.filter(tag => tag.startsWith('status:'));
-  console.log('tag', statusTags, tags);
   let statusIcon = '';
   if (statusTags.length !== 0) {
     statusIcon = STATUS_ICONS ? STATUS_ICONS[statusTags[0].substring(7).trim()] + ' ' : '';
-    console.log(statusIcon, 'icon');
   }
 
   const packageTags = tags.filter(tag => tag.startsWith('package:'));
