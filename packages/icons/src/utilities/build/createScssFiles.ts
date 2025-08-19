@@ -25,8 +25,7 @@ export function createScssFiles(iconOutputDirectory: string, scssOutputDirectory
   const removedCount = removeExistingScssFiles(scssOutputDirectory);
 
   const svgFiles = fs.readdirSync(iconOutputDirectory)
-    .filter(f => f.endsWith('.svg'))
-    .sort();
+    .filter(f => f.endsWith('.svg'));
 
   let createdCount = 0;
 
