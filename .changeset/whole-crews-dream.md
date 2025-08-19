@@ -6,4 +6,4 @@ Updated `<post-menu>` and `<post-menu-item>` to prevent accessibility roles from
 
 Removed the obsolete `role="menuitem"` from `<post-language-switch>. `<post-language-option>` now assigns `role="listitem"` in case of `variant="list"`, to ensure a correct reference relationship.
 
-Removed an `aria-label` that caused an accessibility error, and added `role="none"` to the menu trigger wrapper `<div>` to reflect its presentational purpose.
+Updated the `<post-breadcrumbs>` component by removing an `aria-label` set on the menu trigger wrapper `<div>`, which was causing an accessibility error. Also added `role="none"` to the wrapper div to reflect its presentational purpose.
