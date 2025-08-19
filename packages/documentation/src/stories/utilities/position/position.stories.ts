@@ -10,9 +10,9 @@ const meta: MetaExtended = {
   args: {
     position: 'absolute',
     top: '0',
-    bottom: '',
+    bottom: 'unset',
     start: '50',
-    end: '',
+    end: 'unset',
     translateMiddle: 'both',
   },
   argTypes: {
@@ -33,7 +33,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['undefined', '0', '50', '100'],
+      options: ['unset', '0', '50', '100'],
       table: {
         category: 'General',
       },
@@ -44,7 +44,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['undefined', '0', '50', '100'],
+      options: ['unset', '0', '50', '100'],
       table: {
         category: 'General',
       },
@@ -55,7 +55,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['undefined', '0', '50', '100'],
+      options: ['unset', '0', '50', '100'],
       table: {
         category: 'General',
       },
@@ -66,7 +66,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['undefined', '0', '50', '100'],
+      options: ['unset', '0', '50', '100'],
       table: {
         category: 'General',
       },
@@ -85,19 +85,19 @@ const meta: MetaExtended = {
   },
   render: (args: Args) => {
     let classes = '';
-    if (args.start !== 'undefined') {
+    if (args.start !== 'unset') {
       classes += ' start-' + args.start;
     }
 
-    if (args.end !== 'undefined') {
+    if (args.end !== 'unset') {
       classes += ' end-' + args.end;
     }
 
-    if (args.top !== 'undefined') {
+    if (args.top !== 'unset') {
       classes += ' top-' + args.top;
     }
 
-    if (args.bottom !== 'undefined') {
+    if (args.bottom !== 'unset') {
       classes += ' bottom-' + args.bottom;
     }
 
