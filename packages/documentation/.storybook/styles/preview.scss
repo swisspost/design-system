@@ -144,6 +144,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  small {
+    font-size: 90%;
+  }
+
   code {
     display: inline-block;
     position: relative;
@@ -225,10 +229,27 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .docblock-argstable-head tr th span {
+    font-size: 14px;
+  }
+
   .docblock-argstable-body td a,
   // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
     color: #0073bc;
+    font-size: 14px;
+  }
+
+  .docblock-argstable-body tr td span {
+    font-size: 14px;
+  }
+
+  .docblock-argstable-body tr td textarea {
+    font-size: 14px;
+  }
+
+  .docblock-argstable-body tr td select {
+    font-size: 14px;
   }
 
   @include media.max(sm) {
