@@ -66,9 +66,9 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part     | Description |
-| -------- | ----------- |
-| `"menu"` |             |
+| Part     | Description                                                                               |
+| -------- | ----------------------------------------------------------------------------------------- |
+| `"menu"` | The pseudo-element, used to override styles on the component’s internal `menu` container. |
 
 
 ## Dependencies

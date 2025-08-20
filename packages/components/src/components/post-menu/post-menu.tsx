@@ -16,6 +16,10 @@ import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
 
+/**
+ * @part menu - The pseudo-element, used to override styles on the component’s internal `menu` container.
+*/
+
 @Component({
   tag: 'post-menu',
   styleUrl: 'post-menu.scss',
