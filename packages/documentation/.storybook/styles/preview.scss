@@ -252,6 +252,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     font-size: 14px;
   }
 
+  .docblock-argstable-body tr td button {
+    font-size: 14px;
+  }
+
   @include media.max(sm) {
     .docs-story > div:first-child {
       padding-bottom: 3rem;
