@@ -6,8 +6,8 @@ import { componentOnReady } from '@/utils';
 /**
  * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
  * @slot default - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
- * @part tabs - The pseudo-element, used to override styles on the component’s internal `header` container.
- * @part content - The pseudo-element, used to override styles on the component’s internal `panel` container.
+ * @part tabs - The pseudo-element, used to override styles on the component’s internal `tab headers` container.
+ * @part content - The pseudo-element, used to override styles on the component’s internal `tab panels` container.
  */
 
 @Component({
