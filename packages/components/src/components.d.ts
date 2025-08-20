@@ -83,21 +83,13 @@ export namespace Components {
          */
         "dismiss": () => Promise<void>;
         /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
           * @default false
          */
         "dismissible": boolean;
         /**
-          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
-         */
-        "icon"?: string;
-        /**
           * The type of the banner.
-          * @default 'neutral'
+          * @default 'info'
          */
         "type": BannerType;
     }
@@ -980,25 +972,17 @@ declare namespace LocalJSX {
     }
     interface PostBanner {
         /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
           * @default false
          */
         "dismissible"?: boolean;
-        /**
-          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
-         */
-        "icon"?: string;
         /**
           * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
          */
         "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
         /**
           * The type of the banner.
-          * @default 'neutral'
+          * @default 'info'
          */
         "type"?: BannerType;
     }
