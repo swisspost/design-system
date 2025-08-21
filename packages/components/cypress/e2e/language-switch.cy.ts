@@ -99,11 +99,12 @@ describe('post-language-switch', () => {
     });
 
     it('should have correct ARIA roles', () => {
+      cy.get('@trigger').find('button').click();
       cy.get('@language-switch').find('post-menu').should('have.attr', 'role', 'menu');
       cy.get('@language-switch')
         .find('post-language-option')
         .find('button[role="menuitem"]')
-        .should('have.length', 3);
+        .should('have.length', 2);
     });
   });
 
