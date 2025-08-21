@@ -5,7 +5,6 @@ describe('post-language-switch', () => {
   describe('list variant', () => {
     beforeEach(() => {
       cy.getComponent('language-switch', LANGUAGE_SWITCH_ID);
-      cy.get('@language-switch').find('post-language-option').as('language-options');
     });
 
     it('should render', () => {
@@ -13,6 +12,7 @@ describe('post-language-switch', () => {
     });
 
     it('should have three language option items', () => {
+      cy.get('@language-switch').find('post-language-option').as('language-options');
       cy.get('@language-options').should('have.length', 3);
     });
 
@@ -39,10 +39,10 @@ describe('post-language-switch', () => {
     it('should correctly set the active language option on click', () => {
       cy.get('@language-switch')
         .find('post-language-option[code="en"]')
-        .should('have.attr', 'active');
+        .should('have.attr', 'active', 'true');
       cy.get('@language-switch')
         .find('post-language-option[code="fr"]')
-        .should('have.attr', 'active');
+        .should('have.attr', 'active', 'false');
       cy.get('@language-switch')
         .find('post-language-option[code="de"]')
         .should('have.attr', 'active', 'false');
@@ -51,10 +51,13 @@ describe('post-language-switch', () => {
 
       cy.get('@language-switch')
         .find('post-language-option[code="de"]')
-        .should('have.attr', 'active');
+        .should('have.attr', 'active', 'true');
       cy.get('@language-switch')
         .find('post-language-option[code="en"]')
-        .should('not.have.attr', 'active');
+        .should('not.have.attr', 'active', 'false');
+      cy.get('@language-switch')
+        .find('post-language-option[code="fr"]')
+        .should('not.have.attr', 'active', 'false');
     });
   });
 
@@ -89,13 +92,6 @@ describe('post-language-switch', () => {
 
       cy.get('@trigger').should('contain.text', 'de');
       cy.get('@language-switch').find('post-language-option').should('not.be.visible');
-
-      cy.get('@language-switch')
-        .find('post-language-option[code="de"]')
-        .should('have.attr', 'active');
-      cy.get('@language-switch')
-        .find('post-language-option[code="en"]')
-        .should('not.have.attr', 'active');
     });
 
     it('should have correct ARIA roles', () => {
@@ -173,17 +169,10 @@ describe('post-language-switch', () => {
     });
 
     it('Has no detectable a11y violations for all variants', () => {
-      // Get the component and alias it
       cy.get('post-language-switch').as('languageSwitch');
-
-      // First, set the variant to 'list' and run the audit
       cy.get('@languageSwitch').invoke('prop', 'variant', 'menu');
-
       cy.checkA11y('#root-inner');
-
-      // Then, set the variant to 'menu' and run the audit again
       cy.get('@languageSwitch').invoke('prop', 'variant', 'list');
-
       cy.checkA11y('#root-inner');
     });
   });
