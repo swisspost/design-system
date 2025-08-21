@@ -10,7 +10,9 @@
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
 
-tokens.$default-map: utilities.$post-color;
+tokens.$default-map: utilities.$post-color
+
+;
 
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
@@ -72,6 +74,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
         padding-inline: 2rem;
       }
     }
+  }
+
+  migration-global-state .info {
+    font-size: 15px;
   }
 
   .sbdocs-content .container {
@@ -225,6 +231,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
         &:nth-of-type(2) {
           border-top-left-radius: 4px;
         }
+
         font-size: 14px;
       }
     }
@@ -235,7 +242,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   }
 
   .docblock-argstable-body td a,
-  // targets only the visible buttons
+    // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
     color: #0073bc;
     font-size: 14px;
@@ -353,6 +360,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
         color: inherit;
       }
     }
+
+    .docs-story + div button {
+      font-size: 14px;
+    }
   }
 
   &[data-color-scheme='light'] {
@@ -391,10 +402,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(
-    rgb(230, 230, 230),
-    rgb(230, 230, 230) 1rem,
-    transparent 1rem,
-    transparent 1.6rem
+      rgb(230, 230, 230),
+      rgb(230, 230, 230) 1rem,
+      transparent 1rem,
+      transparent 1.6rem
   );
 
   &::after {

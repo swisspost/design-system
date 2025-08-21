@@ -20,7 +20,7 @@ $post-docs-banner-line-height-sm: 1.25;
   &:not(.banner-action) {
     > :only-child:not(code),
     > :first-child:not(code) + :last-child:not(code) {
-      font-size: inherit;
+      font-size: 15px;
     }
   }
 
@@ -52,7 +52,7 @@ $post-docs-banner-line-height-sm: 1.25;
 
   &.banner-sm {
     padding: $post-docs-banner-padding-sm;
-    font-size: 0.875rem;
+    font-size: 0.938rem;
     font-weight: 400;
     line-height: $post-docs-banner-line-height-sm;
 
@@ -65,7 +65,7 @@ $post-docs-banner-line-height-sm: 1.25;
     }
 
     code {
-      font-size: 0.833333em;
+      font-size: 0.95em;
     }
   }
 
