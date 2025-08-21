@@ -17,7 +17,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['', 'auto', 'hidden', 'scroll', 'visible'],
+      options: ['unset', 'auto', 'hidden', 'scroll', 'visible'],
       table: {
         category: 'General',
       },
@@ -28,7 +28,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['', 'auto', 'hidden', 'scroll', 'visible'],
+      options: ['unset', 'auto', 'hidden', 'scroll', 'visible'],
       table: {
         category: 'General',
       },
@@ -39,7 +39,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['', 'auto', 'hidden', 'scroll', 'visible'],
+      options: ['unset', 'auto', 'hidden', 'scroll', 'visible'],
       table: {
         category: 'General',
       },
@@ -48,9 +48,9 @@ const meta: MetaExtended = {
   render: (args: Args) => {
     return html`
       <div
-        class="my-container ${args.overflow ? 'overflow-' + args.overflow : ''}${args.overflowX
+        class="my-container ${args.overflow && args.overflow !== 'unset' ? 'overflow-' + args.overflow : ''}${args.overflowX && args.overflowX !== 'unset'
           ? ' overflow-x-' + args.overflowX
-          : ''}${args.overflowY ? ' overflow-y-' + args.overflowY : ''}"
+          : ''}${args.overflowY && args.overflowY !== 'unset' ? ' overflow-y-' + args.overflowY : ''}"
       >
         <div class="content">
           This is a long text content that demonstrates how the overflow property works. This

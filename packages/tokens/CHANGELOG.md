@@ -1,5 +1,11 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Reverted Tailwind token generation format change introduced for Tailwind v4 compatibility. This restores the previous format compatible with Tailwind v3. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6059](https://github.com/swisspost/design-system/pull/6059))
+
 ## 10.0.0-next.44
 
 ## 10.0.0-next.43
