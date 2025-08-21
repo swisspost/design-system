@@ -63,7 +63,6 @@ export default meta;
 function externalControl(story: StoryFn, context: StoryContext) {
   const { args, canvasElement } = context;
 
-  // If not dismissible, render ONLY the banner container—no reset button element is created.
   if (!args.dismissible) {
     return html`<div class="banner-container">${story(args, context)}</div>`;
   }
