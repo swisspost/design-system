@@ -57,11 +57,11 @@ const meta: MetaComponent = {
         labels: {
           'toast-info': 'Info',
           'toast-success': 'Success',
-          'toast-danger': 'Danger',
+          'toast-error': 'Error',
           'toast-warning': 'Warning',
         },
       },
-      options: ['toast-info', 'toast-success', 'toast-danger', 'toast-warning'],
+      options: ['toast-info', 'toast-success', 'toast-error', 'toast-warning'],
       table: {
         category: 'General',
       },

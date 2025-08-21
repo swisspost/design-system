@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property      | Attribute     | Description                                                                             | Type                                           | Default  |
-| ------------- | ------------- | --------------------------------------------------------------------------------------- | ---------------------------------------------- | -------- |
-| `dismissible` | `dismissible` | If `true`, a close button (×) is displayed and the banner can be dismissed by the user. | `boolean`                                      | `false`  |
-| `type`        | `type`        | The type of the banner.                                                                 | `"danger" \| "info" \| "success" \| "warning"` | `'info'` |
+| Property       | Attribute       | Description                                                                             | Type                                          | Default     |
+| -------------- | --------------- | --------------------------------------------------------------------------------------- | --------------------------------------------- | ----------- |
+| `dismissLabel` | `dismiss-label` | The label to use for the close button of a dismissible banner.                          | `string`                                      | `undefined` |
+| `dismissible`  | `dismissible`   | If `true`, a close button (×) is displayed and the banner can be dismissed by the user. | `boolean`                                     | `false`     |
+| `type`         | `type`          | The type of the banner.                                                                 | `"error" \| "info" \| "success" \| "warning"` | `'info'`    |
 
 
 ## Events

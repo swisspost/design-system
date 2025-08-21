@@ -83,6 +83,10 @@ export namespace Components {
          */
         "dismiss": () => Promise<void>;
         /**
+          * The label to use for the close button of a dismissible banner.
+         */
+        "dismissLabel"?: string;
+        /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
           * @default false
          */
@@ -971,6 +975,10 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PostBanner {
+        /**
+          * The label to use for the close button of a dismissible banner.
+         */
+        "dismissLabel"?: string;
         /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
           * @default false
