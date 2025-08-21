@@ -105,11 +105,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
   });
 
   return html`
-    <a
-      class="btn btn-secondary banner-button"
-      href="#"
-      @click=${(e: Event) => toggleBanner(e)}
-    >
+    <a class="btn btn-secondary banner-button" href="#" @click="${(e: Event) => toggleBanner(e)}">
       <span>Reset Banner</span>
     </a>
     <div class="banner-container">${story(args, context)}</div>
