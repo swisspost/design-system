@@ -12,9 +12,8 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
-import { checkRequiredAndType, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
-import { nanoid } from 'nanoid';
 
 /**
  * @slot heading - Slot for placing custom content within the banner's heading.
@@ -28,18 +27,16 @@ import { nanoid } from 'nanoid';
   shadow: true,
 })
 export class PostBanner {
+  private mutationObserver = new MutationObserver(this.checkContent.bind(this));
+
   @Element() host: HTMLPostBannerElement;
 
-  @State() bannerId = `p${nanoid(6)}`;
-  @State() classes: string;
-  @State() hasActions: boolean;
-  @State() hasHeading: boolean;
-  @State() onDismissButtonClick = () => this.dismiss();
+  @State() hasActions = false;
 
   /**
    * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
    */
-  @Prop() readonly dismissible: boolean = false;
+  @Prop({reflect: true}) readonly dismissible: boolean = false;
 
   @Watch('dismissible')
   checkDismissible() {
@@ -51,9 +48,14 @@ export class PostBanner {
   }
 
   /**
+   * The label to use for the close button of a dismissible banner.
+   */
+  @Prop() readonly dismissLabel?: string;
+
+  /**
    * The type of the banner.
    */
-  @Prop() readonly type: BannerType = 'info';
+  @Prop({reflect: true}) readonly type: BannerType = 'info';
 
   @Watch('type')
   validateType() {
@@ -66,19 +68,18 @@ export class PostBanner {
    */
   @Event() postDismissed: EventEmitter<void>;
 
+  connectedCallback() {
+    this.mutationObserver.observe(this.host, { childList: true });
+  }
+
   componentDidLoad() {
+    this.checkContent();
     this.checkDismissible();
-    this.validateIcon();
     this.validateType();
   }
 
-  componentWillRender() {
-    this.hasHeading = this.host.querySelectorAll('[slot=heading]').length > 0;
-    this.hasActions = this.host.querySelectorAll('[slot=actions]').length > 0;
-
-    this.classes = `banner ${this.type ? 'banner-' + this.type : ''}`;
-    if (this.dismissible) this.classes += ' banner-dismissible';
-    if (this.hasActions) this.classes += ' banner-action';
+  disconnectedCallback() {
+    this.mutationObserver.disconnect();
   }
 
   /**
@@ -94,36 +95,29 @@ export class PostBanner {
     this.postDismissed.emit();
   }
 
+  private checkContent() {
+    this.hasActions = this.host.querySelectorAll('[slot="actions"]').length > 0;
+  }
+
   render() {
-    const defaultBannerContent = [
-      this.hasHeading && (
-        <div key={`${this.bannerId}-heading`} class="banner-heading">
-          <slot name="heading" />
-        </div>
-      ),
-      <slot key={`${this.bannerId}-message`} />,
-    ];
-
-    const actionBannerContent = [
-      <div key={`${this.bannerId}-content`} class="banner-content">
-        {defaultBannerContent}
-      </div>,
-      <div key={`${this.bannerId}-buttons`} class="banner-buttons">
-        <slot name="actions" />
-      </div>,
-    ];
-
     return (
-      <Host data-version={version}>
-        <div role="alert" class={this.classes} part={this.classes}>
-          {this.dismissible && (
-            <button class="btn-close" onClick={this.onDismissButtonClick}>
-              <span class="visually-hidden">{this.dismissLabel}</span>
-            </button>
-          )}
+      <Host data-version={version} role="alert">
+        {this.dismissible && (
+          <button class="btn-close" onClick={() => this.dismiss()}>
+            <span>{this.dismissLabel}</span>
+          </button>
+        )}
 
-          {this.hasActions ? actionBannerContent : defaultBannerContent}
-        </div>
+
+        <slot name="heading" />
+
+        <slot />
+
+        {this.hasActions && (
+          <div class="actions">
+            <slot name="actions" />
+          </div>
+        )}
       </Host>
     );
   }
