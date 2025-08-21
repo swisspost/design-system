@@ -130,7 +130,7 @@ export class PostLanguageOption {
       <Host data-version={version}>
         {this.url ? (
           <a
-            role={role}
+            // role={role}
             aria-current={this.active ? 'page' : undefined}
             href={this.url}
             hrefLang={lang}
@@ -143,7 +143,7 @@ export class PostLanguageOption {
           </a>
         ) : (
           <button
-            role={role}
+            // role={role}
             aria-current={this.active ? 'true' : undefined}
             lang={lang}
             onClick={() => this.emitChange()}
