@@ -13,10 +13,10 @@ const TECH_ICONS: Record<string, string> = {
 };
 
 const STATUS_ICONS: Record<string, string> = {
-  InProgress: '⏳', // U+23F3
-  Experimental: '🆕', // U+1F195
-  Stable: '✅', // 	U+2705
-  Deprecated: '⛔', // U+26D4
+  InProgress: '⏳',
+  Experimental: '🧪',
+  Stable: '✅',
+  Deprecated: '⛔',
 };
 
 definePostIcon();
