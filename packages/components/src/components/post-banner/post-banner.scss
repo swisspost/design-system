@@ -1,13 +1,14 @@
 @use '@swisspost/design-system-styles/components/close';
-@use '@swisspost/design-system-styles/core' as post;
 
-@use '@swisspost/design-system-styles/tokens/components';
-@use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/icons';
 @use '@swisspost/design-system-styles/mixins/media';
+
 @use '@swisspost/design-system-styles/variables/components/notification';
 @use '@swisspost/design-system-styles/variables/spacing';
+
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
 
 tokens.$default-map: components.$post-banner;
 
@@ -61,7 +62,7 @@ tokens.$default-map: components.$post-banner;
 
   > .btn-close {
     position: absolute;
-    inset-block-start: spacing.$spacer; // TODO: check that
+    inset-block-start: spacing.$spacer;
     inset-inline-end: tokens.get('banner-padding');
 
     > span {
