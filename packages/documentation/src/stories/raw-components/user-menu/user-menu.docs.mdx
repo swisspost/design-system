@@ -1,0 +1,21 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as userMenuStories from './user-menu.stories';
+
+<Meta of={userMenuStories} />
+
+<div className="docs-title">
+  # User Menu
+
+  <link-design of={JSON.stringify(userMenuStories)}></link-design>
+</div>
+
+<p className="lead">Allows users to access their profile, manage account settings, and sign out through a dynamic dropdown interface.</p>
+
+<Canvas sourceState="shown" of={userMenuStories.Default} />
+
+<Controls of={userMenuStories.Default} />
+
+## Installation
+
+The `<post-user-menu>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).

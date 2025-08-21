@@ -22,6 +22,19 @@
 | `"default"` | Slot for inserting a custom image as avatar. |
 
 
+## Dependencies
+
+### Used by
+
+ - [post-user-menu](../post-user-menu)
+
+### Graph
+```mermaid
+graph TD;
+  post-user-menu --> post-avatar
+  style post-avatar fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

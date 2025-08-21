@@ -1,0 +1,48 @@
+@use '@swisspost/design-system-styles/components/avatar';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+button {
+  cursor: pointer;
+}
+
+post-menu::part(menu) {
+  padding-block-start: 0;
+}
+
+.user-profile {
+  min-width: 20rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding-inline: 1rem;
+  border-block-end: 1px solid #050400;
+
+  @include media.only(mobile) {
+    height: 3rem;
+    font-size: 14px;
+  }
+
+  @include media.only(tablet) {
+    height: 4rem;
+    font-size: 16px;
+  }
+
+  @include media.only(desktop) {
+    height: 4.5rem;
+    font-size: 20px;
+  }
+
+  post-avatar {
+    --post-avatar-size: 2.25rem;
+  }
+
+  .user-name {
+    font-weight: 700;
+  }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
+}
