@@ -47,9 +47,6 @@ tokens.$default-map: components.$post-banner;
   &::before {
     content: '';
     display: block;
-  }
-
-  &::before {
     position: absolute;
     height: $icon-size;
     width: $icon-size;

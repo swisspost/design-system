@@ -12,7 +12,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
-import { checkRequiredAndType, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 import { nanoid } from 'nanoid';
 
@@ -51,6 +51,11 @@ export class PostBanner {
   }
 
   /**
+   * The label to use for the close button of a dismissible banner.
+   */
+  @Prop() readonly dismissLabel?: string;
+
+  /**
    * The type of the banner.
    */
   @Prop() readonly type: BannerType = 'info';
@@ -68,7 +73,6 @@ export class PostBanner {
 
   componentDidLoad() {
     this.checkDismissible();
-    this.validateIcon();
     this.validateType();
   }
 
