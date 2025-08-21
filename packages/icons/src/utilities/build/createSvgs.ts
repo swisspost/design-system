@@ -14,7 +14,7 @@ import {
   UI_ICON_TEMPLATE,
 } from '../constants';
 
-export function createFiles(iconOutputDirectory: string, iconSetGroups: IconSetGroups[]) {
+export function createSvgs(iconOutputDirectory: string, iconSetGroups: IconSetGroups[]) {
   iconSetGroups.forEach(iconSet => {
     Object.entries(iconSet.groups).forEach(([name, items]) => {
       const isSingleFile = items.length === 1;
