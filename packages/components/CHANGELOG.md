@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.45
+  - @swisspost/design-system-styles@10.0.0-next.45
+
 ## 10.0.0-next.44
 
 ### Minor Changes
