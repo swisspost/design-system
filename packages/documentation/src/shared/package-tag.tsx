@@ -6,14 +6,12 @@ type PackageTagProps = {
 
 export default function PackageTag({ meta }: PackageTagProps) {
   let packageName = '';
-  let tagColor = '';
+  const tagColor = '';
 
   if (meta.tags.includes('package:Styles')) {
     packageName = '@swisspost/design-system-styles';
-    tagColor = '';
   } else if (meta.tags.includes('package:WebComponents')) {
     packageName = '@swisspost/design-system-components';
-    tagColor = 'yellow';
   }
 
   return (
