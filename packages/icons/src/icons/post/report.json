@@ -25959,6 +25959,123 @@
       "modifiedAt": "2025-06-12T11:05:32.000Z"
     },
     {
+      "uuid": "41adffd1-678c-11f0-ad2d-005056873709",
+      "id": 5623270,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5623270/storage/MDA1NjIzMjcwLzAvbWFzdGVy",
+        "keywords": [
+          "Télécharger",
+          "Download",
+          "Herunterladen",
+          "Scaricare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2694.svg",
+        "basename": "2694",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-07-23T06:14:14.000Z",
+      "modifiedAt": "2025-07-23T06:19:33.000Z"
+    },
+    {
+      "uuid": "1041c204-678d-11f0-ad2d-005056873709",
+      "id": 5623329,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5623329/storage/MDA1NjIzMzI5LzAvbWFzdGVy",
+        "keywords": [
+          "ZIP",
+          "Télécharger",
+          "Download",
+          "Herunterladen",
+          "Scaricare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2695.svg",
+        "basename": "2695",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-07-23T06:20:00.000Z",
+      "modifiedAt": "2025-07-24T06:05:03.467Z"
+    },
+    {
+      "uuid": "221d8740-7915-11f0-80d2-005056873709",
+      "id": 5865070,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5865070/storage/MDA1ODY1MDcwLzAvbWFzdGVy",
+        "keywords": [
+          "Add storage space",
+          "Stellplatz hinzufügen",
+          "Ajouter un emplacement",
+          "Aggiungere punto di posizionamento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2696.svg",
+        "basename": "2696",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-14T13:46:52.000Z",
+      "modifiedAt": "2025-08-15T09:05:04.361Z"
+    },
+    {
+      "uuid": "a98dec10-7915-11f0-80d2-005056873709",
+      "id": 5865096,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5865096/storage/MDA1ODY1MDk2LzAvbWFzdGVy",
+        "keywords": [
+          "Remove storage space",
+          "Stellplatz entfernen",
+          "Supprimer l’emplacement",
+          "Rimuovere il punto di posizionamento"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2697.svg",
+        "basename": "2697",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-14T13:50:39.000Z",
+      "modifiedAt": "2025-08-15T09:05:04.361Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -39197,13 +39314,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1025,
+    "success": 1029,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-07-22T08:35:44.400Z",
-  "version": "10.0.0-next.42"
+  "created": "2025-08-15T09:17:57.627Z",
+  "version": "10.0.0-next.43"
 }

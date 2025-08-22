@@ -1,11 +1,11 @@
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'd0e645d0-3bf2-4b00-967a-5a1343107f60',
   title: 'Components/Spinner',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render,
   decorators: [(story, context) => generateDecorators(story, context)],
   parameters: {
@@ -82,9 +82,10 @@ export const BlockSection: Story = {
         </div>
       </div>
       <p>
-        There is some continuous text here as an example. This text demonstrates how content flows within this component. 
-        The words continue to fill the available space to show text wrapping and spacing behavior. 
-        This sample text helps designers and developers visualize how actual content will appear when the component is implemented.
+        There is some continuous text here as an example. This text demonstrates how content flows
+        within this component. The words continue to fill the available space to show text wrapping
+        and spacing behavior. This sample text helps designers and developers visualize how actual
+        content will appear when the component is implemented.
       </p>
     </div>`,
 };

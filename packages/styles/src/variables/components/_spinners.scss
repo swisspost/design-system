@@ -1,6 +1,5 @@
 @use 'sass:math';
 @use './../color';
-@use './../spacing';
 
 @use './../../functions/tokens';
 @use './../../tokens/utilities';
@@ -28,9 +27,3 @@ $spinner-size-map: (
   80: 5rem,
 );
 
-// DEPRECATED
-$spinner-size-sm: 2.5rem !default;
-$spinner-border-width-sm: tokens.get('utility-gap-4') !default;
-
-$spinner-size-xs: 1rem !default;
-$spinner-border-width-xs: tokens.get('utility-gap-2') !default;

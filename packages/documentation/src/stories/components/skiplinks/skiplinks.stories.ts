@@ -1,11 +1,11 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
   id: '2fc3b456-19ba-4ede-b1bc-499518f829b1',
   title: 'Components/Skiplinks',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderSkiplinks,
 };
 

@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '81799516-470c-446b-a049-54946b6ccfca',
   title: 'Components/Table',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderTable,
   parameters: {
     badges: [],

@@ -569,7 +569,15 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
-                    Removed the dependency to ng-bootstrap as well as all of the components built on it:
+                    Removed the dependency to bootstrap as well as all of the overrides of its SCSS
+                    variables and classes.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the dependency to ng-bootstrap as well as all of the components built on
+                    it:
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
@@ -748,6 +756,19 @@ export class MigrationV99Component extends LitElement {
                     All classes and CSS variables related to the bootstrap
                     <code>navbar</code> component have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Deprecated loader classes and related scss variables have been removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.loader-xs</code></li>
+                    <li><code>.loader-sm</code></li>
+                  </ul>
+                  <p class="info">
+                    Instead, use classes <code>.loader-16</code> and <code>.loader-40</code>.
                   </p>
                 </li>
               </ul>

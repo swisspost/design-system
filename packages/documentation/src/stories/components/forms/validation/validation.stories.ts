@@ -1,4 +1,4 @@
-import { Args, StoryObj, StoryContext } from '@storybook/web-components';
+import { Args, StoryObj, StoryContext } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -59,7 +59,7 @@ function renderFeedback(validFeedbackId: string | symbol, invalidFeedbackId: str
 const meta: MetaComponent = {
   id: '1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472',
   title: 'Components/Form Validation',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
@@ -124,7 +124,8 @@ export const Input: Story = {
       <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
       ${feedbackTemplate}
       <p class="form-hint" id="Input_1-form-hint${props.validationState}${props.scheme}">
-        This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.
+        This is helpful text that provides guidance or additional information to assist the user in
+        filling out this field correctly.
       </p>
     </div> `;
   },
@@ -242,7 +243,8 @@ export const Select: Story = {
       </label>
       ${feedbackTemplate}
       <p class="form-hint" id="Select_1-form-hint${props.validationState}${props.scheme}">
-        This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.
+        This is helpful text that provides guidance or additional information to assist the user in
+        filling out this field correctly.
       </p>
     </div>`;
   },
@@ -303,7 +305,8 @@ export const TextArea: Story = {
       >
       ${feedbackTemplate}
       <p class="form-hint" id="TextArea_1-form-hint${props.validationState}${props.scheme}">
-        This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.
+        This is helpful text that provides guidance or additional information to assist the user in
+        filling out this field correctly.
       </p>
     </div>`;
   },
