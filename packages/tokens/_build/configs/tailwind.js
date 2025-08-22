@@ -2,6 +2,7 @@ import { fileHeader } from 'style-dictionary/utils';
 import { TOKENSET_LAYERS, TOKENSET_NAMES, TOKENSET_PREFIX } from '../constants.js';
 import StyleDictionary from '../style-dictionary.js';
 import { registerConfigMethod, getTokenValue } from '../methods.js';
+import { objectDeepmerge, objectTextoutput } from '../utils/index.js';
 
 const TAILWIND_TOKENSET_NAMES = [TOKENSET_NAMES.Utilities, TOKENSET_NAMES.Helpers];
 
@@ -30,9 +31,9 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
             buildPath: `${buildPath}tailwind/`,
             files: [
               {
-                destination: `${name}.tailwind.css`,
+                destination: `${name}.tailwind.js`,
                 filter: 'swisspost/source-tokens-filter',
-                format: 'swisspost/tailwind-v4-format',
+                format: 'swisspost/tailwind-format',
                 options: {
                   outputReferences: true,
                 },
@@ -53,35 +54,22 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
  *   format: (dictionary: Dictionary, file: File, options: Config & LocalOptions, platform: PlatformConfig) => string
  * }
  *
- * swisspost/tailwind-v4-format:
+ * swisspost/tailwind-format:
  * Used to declare the format of the tailwind output files.
  */
 StyleDictionary.registerFormat({
-  name: 'swisspost/tailwind-v4-format',
+  name: 'swisspost/tailwind-format',
   format: async ({ dictionary, options, file }) => {
-    const header = await fileHeader({ file, commentStyle: 'long' }); // CSS comments
-    
-    const themeVariables = dictionary.allTokens.reduce((allTokens, token) => {
-      const tokenPath = token.path.slice(token.path.indexOf(TOKENSET_PREFIX) + 1);
-      
-      const cssVarName = `--${tokenPath.join('-')}`;
-      
-      const tokenValue = getTokenValue(options, token);
-      
-      allTokens[cssVarName] = tokenValue;
-      return allTokens;
+    const header = await fileHeader({ file, commentStyle: 'short' });
+    const tailwindTokensObject = dictionary.allTokens.reduce((allTokens, token) => {
+      const tokenObj = token.path
+        .slice(token.path.indexOf(TOKENSET_PREFIX) + 1)
+        .reverse()
+        .reduce((res, p) => ({ [p]: res }), getTokenValue(options, token));
+
+      return objectDeepmerge(allTokens, tokenObj);
     }, {});
 
-    const themeCSS = Object.entries(themeVariables)
-      .map(([name, value]) => `  ${name}: ${value};`)
-      .join('\n');
-
-    return `${header}
-@import "tailwindcss";
-
-@theme {
-${themeCSS}
-}
-`;
+    return header + `export default {${objectTextoutput(tailwindTokensObject)}\n};\n`;
   },
 });

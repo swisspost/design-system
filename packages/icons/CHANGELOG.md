@@ -1,5 +1,25 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.45
+
+### Minor Changes
+
+- Added generated SCSS files that expose each icon as a CSS custom property (data URL). These SCSS files are included in the published package and can be imported into projects using Sass. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6039](https://github.com/swisspost/design-system/pull/6039))
+
+## 10.0.0-next.44
+
+### Minor Changes
+
+- Added icons: `2696` and `2697` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5993](https://github.com/swisspost/design-system/pull/5993))
+
+### Patch Changes
+
+- Updated icons:
+  - `help` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `info` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `success` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `warning` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6005](https://github.com/swisspost/design-system/pull/6005))
+
 ## 10.0.0-next.43
 
 ### Major Changes
