@@ -75,7 +75,7 @@ export class PostUserMenu3 {
             <span class="visually-hidden">{this.caption}</span>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} aria-label={this.caption}>
+        <post-menu role="menu" id={this.menuId} aria-label={this.caption}>
           <p class="user-profile">
             {this.renderAvatar()}
             <span class="user-name">

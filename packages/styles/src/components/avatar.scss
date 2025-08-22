@@ -5,7 +5,9 @@
 
 tokens.$default-map: components.$post-avatar;
 
-post-avatar {
+post-avatar,
+post-avatar2,
+post-avatar3 {
   @at-root :has(> &):not(:has(> :not(.visually-hidden) ~ &, > & ~ :not(.visually-hidden))) {
     a:where(&) {
       display: inline-block;
@@ -14,7 +16,9 @@ post-avatar {
     button:where(&) {
       @include button.reset-button;
 
-      &:hover > post-avatar {
+      &:hover > post-avatar,
+      &:hover > post-avatar2,
+      &:hover > post-avatar3 {
         @include utilities.high-contrast-mode() {
           --post-avatar-bg: Highlight !important;
         }
@@ -22,7 +26,9 @@ post-avatar {
     }
 
     :is(a, button):where(&) {
-      &:hover > post-avatar {
+      &:hover > post-avatar,
+      &:hover > post-avatar2,
+      &:hover > post-avatar3 {
         --post-avatar-bg: #{tokens.get('avatar-hover-bg')};
         --post-avatar-fg: #{tokens.get('avatar-hover-fg')};
 

@@ -143,6 +143,7 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private handlePostToggle = (event: CustomEvent<boolean>) => {
+    console.log(event);
     this.isVisible = event.detail;
     this.toggleMenu.emit(this.isVisible);
 

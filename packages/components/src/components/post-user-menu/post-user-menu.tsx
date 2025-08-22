@@ -14,7 +14,7 @@ export interface User {
   styleUrl: 'post-user-menu.scss',
   shadow: true,
 })
-export class PostUserMenu {
+export class PostUserMenu2 {
   private readonly menuId = `p${nanoid(11)}`;
 
   @Element() host: HTMLPostUserMenuElement;
@@ -75,7 +75,7 @@ export class PostUserMenu {
             <span class="visually-hidden">{this.caption}</span>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} aria-label={this.caption}>
+        <post-menu role="menu" id={this.menuId} aria-label={this.caption}>
           <p class="user-profile">
             {this.renderAvatar()}
             <span class="user-name">

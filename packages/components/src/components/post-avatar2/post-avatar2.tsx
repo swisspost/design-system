@@ -26,7 +26,7 @@ enum AvatarType {
   styleUrl: 'post-avatar2.scss',
   shadow: true,
 })
-export class PostAvatar {
+export class PostAvatar2 {
   private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/{userid}.png';
 
   @Element() host: HTMLPostAvatar2Element;
@@ -81,16 +81,15 @@ export class PostAvatar {
     if (this.slottedImage !== null) {
       this.avatarType = AvatarType.Slotted;
     } else {
-      // let imageLoaded = false;
+      let imageLoaded = false;
 
-      // if (!imageLoaded && this.userid)
-      //   imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
+      if (!imageLoaded && this.userid)
+        imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
 
-      // if (!imageLoaded && this.email)
-      //   imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
+      if (imageLoaded && this.email)
+        imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
 
-      // if (!imageLoaded)
-      this.getAvatarByInitials();
+      if (!imageLoaded) this.getAvatarByInitials();
     }
   }
 
@@ -122,7 +121,7 @@ export class PostAvatar {
 
   private async fetchImageByUserId() {
     return await fetch(
-      PostAvatar.INTERNAL_USERID_IMAGE_SRC.replace('{userid}', encodeURIComponent(this.userid)),
+      PostAvatar2.INTERNAL_USERID_IMAGE_SRC.replace('{userid}', encodeURIComponent(this.userid)),
     );
   }
 
