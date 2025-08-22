@@ -66,7 +66,7 @@ tokens.$default-map: components.$post-banner;
     inset-inline-end: tokens.get('banner-padding');
 
     > span {
-      @include post.visuallyhidden();
+      @include utilities.visuallyhidden();
     }
   }
 }
