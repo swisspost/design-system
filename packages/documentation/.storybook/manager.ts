@@ -51,17 +51,26 @@ const renderLabel = (item: API_HashEntry) => {
   // Logic to get the status
   const statusTags = tags.filter(tag => tag.startsWith('status:'));
   let statusIcon = '';
-  if (statusTags.length !== 0) {
-    statusIcon = STATUS_ICONS ? STATUS_ICONS[statusTags[0].substring(7).trim()] + ' ' : '';
+  let statusName = '';
+  if (statusTags.length > 0) {
+    statusName = statusTags[0].substring(7).trim();
+    statusIcon = STATUS_ICONS ? STATUS_ICONS[statusName] + ' ' : '';
   }
 
+  // Logic to get the package
   const packageTags = tags.filter(tag => tag.startsWith('package:'));
 
-  // Only show icons in development mode
+  // Production Mode: show StatusIcon + Name
   if (document.documentElement.getAttribute('data-env') !== 'development') {
-    return statusIcon + item.name;
+    return React.createElement(
+      'span',
+      null,
+      statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+      item.name,
+    );
   }
 
+  // Development Mode: show optional package icons
   if (packageTags.length > 0) {
     const icons = packageTags
       .map(tag => tag.substring(8))
@@ -74,16 +83,23 @@ const renderLabel = (item: API_HashEntry) => {
         }),
       );
 
+    // StatusIcons with Tooltip for status
     if (icons.length > 0) {
       return React.createElement(
         'span',
         { className: 'label-with-icon' },
-        React.createElement('span', null, statusIcon + item.name),
+        React.createElement(
+          'span',
+          null,
+          // show StatusIcon with HTML title Attribute as Tooltip
+          statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+          item.name,
+        ),
         ...icons,
       );
     }
   }
-
+  // Fallback where there is no package icon
   return statusIcon + item.name;
 };
 
