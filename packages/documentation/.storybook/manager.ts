@@ -21,6 +21,16 @@ const STATUS_ICONS: Record<string, string> = {
 
 definePostIcon();
 
+// get param from URL
+const urlParams = new URLSearchParams(window.location.search);
+const devModeParam = urlParams.get('devModeEnabled');
+
+// first check URL param and store in local storage
+if (devModeParam !== null) {
+  localStorage.setItem('devModeEnabled', devModeParam);
+}
+
+// get mode from local storage
 const storedDevMode = localStorage.getItem('devModeEnabled');
 
 let initialEnv = process.env.NODE_ENV || 'production';
@@ -54,7 +64,8 @@ const renderLabel = (item: API_HashEntry) => {
   let statusName = '';
   if (statusTags.length > 0) {
     statusName = statusTags[0].substring(7).trim();
-    statusIcon = STATUS_ICONS ? STATUS_ICONS[statusName] + ' ' : '';
+    statusIcon =
+      statusName !== 'Stable' && STATUS_ICONS[statusName] ? ' ' + STATUS_ICONS[statusName] : '';
   }
 
   // Logic to get the package
@@ -65,8 +76,8 @@ const renderLabel = (item: API_HashEntry) => {
     return React.createElement(
       'span',
       null,
-      statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
       item.name,
+      statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
     );
   }
 
@@ -91,16 +102,21 @@ const renderLabel = (item: API_HashEntry) => {
         React.createElement(
           'span',
           null,
+          item.name,
           // show StatusIcon with HTML title Attribute as Tooltip
           statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
-          item.name,
         ),
         ...icons,
       );
     }
   }
   // Fallback where there is no package icon
-  return statusIcon + item.name;
+  return React.createElement(
+    'span',
+    null,
+    item.name,
+    statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+  );
 };
 
 // Function to update filters in the Storybook sidebar configuration
