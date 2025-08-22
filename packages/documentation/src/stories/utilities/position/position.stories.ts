@@ -77,7 +77,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['', 'both', 'x', 'y'],
+      options: ['unset', 'both', 'x', 'y'],
       table: {
         category: 'General',
       },
