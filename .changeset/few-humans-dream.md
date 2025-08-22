@@ -6,4 +6,8 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Removed the `icon` property and `neutral` type from the banner and toast components. They now default to type `info`, and their icons are no longer configurable.
+Simplified the banner and toast components:
+
+- Removed the `icon` property; icons are no longer configurable
+- Removed the `neutral` variant; the default is now `info`
+- Renamed the `danger` variant to `error`
