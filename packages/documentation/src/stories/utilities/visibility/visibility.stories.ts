@@ -19,12 +19,15 @@ const meta: MetaExtended = {
       options: visibilityOptions,
     },
   },
+  decorators: [
+    (story: StoryFn, { args, context }: StoryContext) => html`
+      <div class="visibility-example">${story(args, context)}</div>
+    `,
+  ],
   render: (args: Args) => {
     return html`
-      <div class="visibility-example">
-        <div class="visibility-box ${args.visibility}">Box 1</div>
-        <div class="visibility-box">Box 2</div>
-      </div>
+      <div class="${args.visibility}">Box 1</div>
+      <div>Box 2</div>
     `;
   },
 };
