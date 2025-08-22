@@ -17,184 +17,92 @@
   </head>
 
   <body style="min-height: 200vh">
-    <post-header>
-      <!-- Logo -->
-      <post-logo slot="post-logo">Homepage</post-logo>
-
-      <!-- Meta navigation -->
-      <ul class="list-inline" slot="meta-navigation">
-        <li><a href="">Jobs</a></li>
-        <li><a href="">Über uns</a></li>
-      </ul>
-
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-      </post-togglebutton>
-
-      <!-- Language switch -->
-      <post-language-switch
-        caption="Change the language"
-        description="The currently selected language is English."
-        name="language-switch-example"
-        slot="post-language-switch"
-        variant="menu"
-      >
-        <post-language-option code="de" name="Deutsch">DE</post-language-option>
-        <post-language-option code="fr" name="French">FR</post-language-option>
-        <post-language-option code="it" name="Italiano">IT</post-language-option>
-        <post-language-option active code="en" name="English">EN</post-language-option>
-      </post-language-switch>
-
-      <!-- Application title (optional) -->
-      <h1 slot="title">Application title</h1>
-
-      <!-- Target group -->
-      <ul slot="target-group" class="target-group">
-        <li>
-          <a href="#" class="active">Private customers</a>
-        </li>
-        <li>
-          <a href="#">Business customers</a>
-        </li>
-        <li>
-          <a href="#">Authorities</a>
-        </li>
-      </ul>
-
-      <!-- Custom content (optional) -->
-      <ul class="list-inline">
-        <li>
-          <a href="#">
-            <span class="visually-hidden-sm">Search</span>
-            <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="visually-hidden-sm">Login</span>
-            <post-icon aria-hidden="true" name="login"></post-icon>
-          </a>
-        </li>
-      </ul>
-
-      <!-- Main navigation -->
-      <post-mainnavigation caption="Hauptnavigation">
-        <post-list title-hidden="">
-          <h2>Main Navigation</h2>
-
-          <!-- Link only level 1 -->
-          <post-list-item slot="post-list-item"
-            ><a href="/briefe"
-              ><post-mainnavigation-toplevel-item>Briefe</post-mainnavigation-toplevel-item></a
-            ></post-list-item
-          >
-          <post-list-item slot="post-list-item"
-            ><a href="/pakete"
-              ><post-mainnavigation-toplevel-item>Pakete</post-mainnavigation-toplevel-item></a
-            ></post-list-item
-          >
-
-          <!-- Level 1 with megadropdown -->
-          <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-            <post-megadropdown id="briefe">
-              <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowleft"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Briefe title</h2>
-              <post-list>
-                <h3>Briefe senden</h3>
-                <post-list-item slot="post-list-item"
-                  ><a href="/sch">Briefe Schweiz</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item slot="post-list-item"
-                  ><a href="">Express und Kurier</a></post-list-item
-                >
-              </post-list>
-              <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-                <post-list-item slot="post-list-item"
-                  ><a href="/sch">Pakete Schweiz</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item slot="post-list-item"
-                  ><a href="">Express und Kurier</a></post-list-item
-                >
-              </post-list>
-            </post-megadropdown>
-          </post-list-item>
-          <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-            <post-megadropdown id="pakete">
-              <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowleft"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Pakete title</h2>
-              <post-list>
-                <h3>Pakete senden</h3>
-                <post-list-item slot="post-list-item"
-                  ><a href="/sch">Pakete Schweiz</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item slot="post-list-item"
-                  ><a href="">Express und Kurier</a></post-list-item
-                >
-              </post-list>
-              <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-                <post-list-item slot="post-list-item"
-                  ><a href="/sch">Pakete Schweiz</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item slot="post-list-item"
-                  ><a href="">Express und Kurier</a></post-list-item
-                >
-              </post-list>
-            </post-megadropdown>
-          </post-list-item>
-        </post-list>
-      </post-mainnavigation>
-    </post-header>
-
     <h1>Components package playground</h1>
-    <p class="mb-4">
-      Use this playground for quickly developing Stencil web-components. Run
-      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
-        >pnpm components:start</code
-      >
-      to get going.
-    </p>
-    <label for="tokens-select">Select tokens package: </label>
-    <select
-      name="tokens"
-      id="tokens-select"
-      value="default"
-      class="mb-4"
-      onchange="if (['default', 'compact'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
+    <br />
+    <h3>1. Menu button</h3>
+    <h5>❌ role='menuitem' set on the host of the items</h5>
+    <post-menu-trigger for="menu-one">
+      <button class="btn btn-primary">Menu button 1</button>
+    </post-menu-trigger>
+    <post-menu id="menu-one" role="menu">
+      <post-menu-item role="menuitem"><button>Example 1</button></post-menu-item>
+      <post-menu-item role="menuitem"><a href="#">Example 2</a></post-menu-item>
+    </post-menu>
+    <h5>✔️ role='menuitem' set on the focusable elements (button, a) inside the items</h5>
+    <post-menu-trigger for="menu-two">
+      <button class="btn btn-primary">Menu button 2</button>
+    </post-menu-trigger>
+    <post-menu id="menu-two" role="menu">
+      <post-menu-item><button role="menuitem">Example 1</button></post-menu-item>
+      <post-menu-item><a role="menuitem" href="#">Example 2</a></post-menu-item>
+    </post-menu>
+    <br />
+    <br />
+    <hr />
+    <h3>2. Post user menu</h3>
+    <h5>❌ avatar component containing div with text inside button</h5>
+    <post-user-menu
+      caption="Access user links"
+      description="You are currently logged in as John Doe."
+      user='{"name":"John","surname":"Doe"}'
     >
-      <option value="default">Post default</option>
-      <option value="compact">Post compact</option>
-    </select>
+      <post-menu-item>
+        <a href="#">
+          <post-icon aria-hidden="true" name="profile"></post-icon>
+          My Profile
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <a href="#">
+          <post-icon aria-hidden="true" name="letter"></post-icon>
+          Messages
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <a href="#">
+          <post-icon aria-hidden="true" name="gear"></post-icon>
+          Setting
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <button type="button">
+          <post-icon aria-hidden="true" name="logout"></post-icon>
+          Logout
+        </button>
+      </post-menu-item>
+    </post-user-menu>
+
+    <h5>❌ avatar component containing div with text inside button</h5>
+    <post-user-menu2
+      caption="Access user links"
+      description="You are currently logged in as John Doe."
+      user='{"name":"John","surname":"Doe"}'
+    >
+      <post-menu-item>
+        <a href="#">
+          <post-icon aria-hidden="true" name="profile"></post-icon>
+          My Profile
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <a href="#">
+          <post-icon aria-hidden="true" name="letter"></post-icon>
+          Messages
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <a href="#">
+          <post-icon aria-hidden="true" name="gear"></post-icon>
+          Setting
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <button type="button">
+          <post-icon aria-hidden="true" name="logout"></post-icon>
+          Logout
+        </button>
+      </post-menu-item>
+    </post-user-menu2>
     <hr />
   </body>
 </html>

@@ -22,14 +22,14 @@ enum AvatarType {
  * @slot default - Slot for inserting a custom image as avatar.
  */
 @Component({
-  tag: 'post-avatar',
-  styleUrl: 'post-avatar.scss',
+  tag: 'post-avatar3',
+  styleUrl: 'post-avatar3.scss',
   shadow: true,
 })
-export class PostAvatar {
+export class PostAvatar3 {
   private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/{userid}.png';
 
-  @Element() host: HTMLPostAvatarElement;
+  @Element() host: HTMLPostAvatar3Element;
 
   /**
    * Defines the users firstname.
@@ -202,7 +202,11 @@ export class PostAvatar {
       <Host data-version={version}>
         <slot onSlotchange={this.onSlotDefaultChange.bind(this)}>
           {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
-          {this.avatarType === 'initials' && <div class="initials">{initials}</div>}
+          {this.avatarType === 'initials' && (
+            <div role="none" class="initials">
+              {initials}
+            </div>
+          )}
         </slot>
       </Host>
     );

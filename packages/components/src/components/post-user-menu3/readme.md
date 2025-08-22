@@ -18,18 +18,18 @@
 
 ### Depends on
 
-- [post-avatar](../post-avatar)
+- [post-avatar3](../post-avatar3)
 - [post-menu-trigger](../post-menu-trigger)
 - [post-menu](../post-menu)
 
 ### Graph
 ```mermaid
 graph TD;
-  post-user-menu --> post-avatar
-  post-user-menu --> post-menu-trigger
-  post-user-menu --> post-menu
+  post-user-menu3 --> post-avatar3
+  post-user-menu3 --> post-menu-trigger
+  post-user-menu3 --> post-menu
   post-menu --> post-popovercontainer
-  style post-user-menu fill:#f9f,stroke:#333,stroke-width:4px
+  style post-user-menu3 fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

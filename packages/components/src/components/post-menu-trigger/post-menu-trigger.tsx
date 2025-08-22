@@ -52,6 +52,7 @@ export class PostMenuTrigger {
   private readonly handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
+      console.log('Keyboard event:', e);
       this.handleToggle();
     }
   };

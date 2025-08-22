@@ -129,6 +129,7 @@ export class PostMenu {
 
   private handleKeyDown = (e: KeyboardEvent) => {
     e.stopPropagation();
+    console.log(e);
 
     if (e.key === this.KEYCODES.ESCAPE) {
       this.toggle(this.host);
@@ -142,29 +143,29 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private handlePostToggle = (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.toggleMenu.emit(this.isVisible);
+    this.isVisible = event.detail;
+    this.toggleMenu.emit(this.isVisible);
 
-      requestAnimationFrame(() => {
-        if (this.isVisible) {
-          this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-          const menuItems = this.getSlottedItems();
-          this.focusableChildren = menuItems;
+    requestAnimationFrame(() => {
+      if (this.isVisible) {
+        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+        const menuItems = this.getSlottedItems();
+        this.focusableChildren = menuItems;
 
-          if (menuItems.length > 0) {
-            // Add role="menu" to the popovercontainer
-            this.host.setAttribute('role', 'menu');
-            // Add role="menuitem" to the focusable elements
-            menuItems.forEach(item => {
-              item.setAttribute('role', 'menuitem');
-            });
-            (menuItems[0] as HTMLElement).focus();
-          }
-        } else if (this.lastFocusedElement) {
-          this.lastFocusedElement.focus();
+        if (menuItems.length > 0) {
+          // // Add role="menu" to the popovercontainer
+          // this.host.setAttribute('role', 'menu');
+          // // Add role="menuitem" to the focusable elements
+          // menuItems.forEach(item => {
+          //   item.setAttribute('role', 'menuitem');
+          // });
+          (menuItems[0] as HTMLElement).focus();
         }
-      });
-    };
+      } else if (this.lastFocusedElement) {
+        this.lastFocusedElement.focus();
+      }
+    });
+  };
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;

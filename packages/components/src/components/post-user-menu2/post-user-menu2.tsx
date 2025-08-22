@@ -10,14 +10,14 @@ export interface User {
 }
 
 @Component({
-  tag: 'post-user-menu',
-  styleUrl: 'post-user-menu.scss',
+  tag: 'post-user-menu2',
+  styleUrl: 'post-user-menu2.scss',
   shadow: true,
 })
-export class PostUserMenu {
+export class PostUserMenu2 {
   private readonly menuId = `p${nanoid(11)}`;
 
-  @Element() host: HTMLPostUserMenuElement;
+  @Element() host: HTMLPostUserMenu2Element;
 
   /**
    * A title for the user menu
@@ -57,11 +57,11 @@ export class PostUserMenu {
 
   private renderAvatar() {
     return (
-      <post-avatar
+      <post-avatar2
         firstname={this.user.name}
         lastname={this.user.surname}
         email={this.user.email}
-      ></post-avatar>
+      ></post-avatar2>
     );
   }
 
