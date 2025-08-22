@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.45
+
+### Minor Changes
+
+- Added generated SCSS files that expose each icon as a CSS custom property (data URL). These SCSS files are included in the published package and can be imported into projects using Sass. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6039](https://github.com/swisspost/design-system/pull/6039))
+
 ## 10.0.0-next.44
 
 ### Minor Changes
