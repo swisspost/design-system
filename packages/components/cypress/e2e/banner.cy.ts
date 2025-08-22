@@ -3,7 +3,7 @@ const BANNER_ID = '8fd36823-966e-46a8-8432-a4439f6e208f';
 describe('banner', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('post-banner', BANNER_ID);
+      cy.getComponent('banner', BANNER_ID);
     });
 
     it('should render', () => {
@@ -17,7 +17,7 @@ describe('banner', () => {
 
   describe('dismissible', () => {
     beforeEach(() => {
-      cy.getComponent('post-banner', BANNER_ID, 'dismissible');
+      cy.getComponent('banner', BANNER_ID, 'dismissible');
     });
 
     it('should have a close button', () => {
@@ -33,7 +33,7 @@ describe('banner', () => {
 
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
-    cy.getSnapshots('post-banner');
+    cy.getSnapshots('banner');
     cy.checkA11y('#root-inner');
   });
 });

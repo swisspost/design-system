@@ -62,7 +62,7 @@ tokens.$default-map: components.$post-banner;
 
   > .btn-close {
     position: absolute;
-    inset-block-start: spacing.$spacer;
+    inset-block-start: tokens.get('banner-padding');
     inset-inline-end: tokens.get('banner-padding');
 
     > span {

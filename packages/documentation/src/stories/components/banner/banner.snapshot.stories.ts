@@ -2,7 +2,7 @@ import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
-import bannerMeta from './post-banner.stories';
+import bannerMeta from './banner.stories';
 
 const { id, ...metaWithoutId } = bannerMeta;
 
