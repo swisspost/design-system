@@ -40,13 +40,6 @@ Type: `Promise<boolean>`
 | `"header"`  | Slot for placing custom content within the accordion item's header. |
 
 
-## Shadow Parts
-
-| Part               | Description |
-| ------------------ | ----------- |
-| `"accordion-item"` |             |
-
-
 ## Dependencies
 
 ### Depends on
