@@ -22,24 +22,25 @@ import {
   selector: 'home-page',
   templateUrl: './home.component.html',
   standalone: true,
-imports: [
-  PostAccordion,
-  PostAccordionItem,
-  PostAvatar,
-  PostBanner,
-  PostCardControl,
-  PostCollapsibleTrigger,
-  PostCollapsible,
-  PostIcon,
-  PostLogo,
-  PostPopover,
-  PostPopovercontainer,
-  PostRating,
-  PostTabs,
-  PostTabHeader,
-  PostTabPanel,
-  PostTooltipTrigger,
-]})
+  imports: [
+    PostAccordion,
+    PostAccordionItem,
+    PostAvatar,
+    PostBanner,
+    PostCardControl,
+    PostCollapsibleTrigger,
+    PostCollapsible,
+    PostIcon,
+    PostLogo,
+    PostPopover,
+    PostPopovercontainer,
+    PostRating,
+    PostTabs,
+    PostTabHeader,
+    PostTabPanel,
+    PostTooltipTrigger,
+  ]
+})
 
 export class HomeComponent {
   isCollapsed = false;
