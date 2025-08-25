@@ -32,6 +32,7 @@ $caret-width: 0.3em !default;
 $zindex-spinner: 990 !default; // Design System only
 $zindex-header: 1020 !default;
 $zindex-toast: 1080 !default;
+$zindex-fixed: 1030 !default;
 
 $zindex-map: (
   n1: -1,
@@ -45,6 +46,7 @@ $named-zindex-map: (
   'spinner': $zindex-spinner,
   'header': $zindex-header,
   'toast': $zindex-toast,
+  'fixed': $zindex-fixed,
 );
 
 // Z-index
