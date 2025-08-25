@@ -30,26 +30,30 @@ $caret-width: 0.3em !default;
 // of components dependent on the z-axis and are designed to all work together.
 
 $zindex-spinner: 990 !default; // Design System only
-$zindex-dropdown: 1000 !default;
 $zindex-header: 1020 !default;
+$zindex-toast: 1080 !default;
+$zindex-fixed: 1030 !default;
+
+$zindex-map: (
+  n1: -1,
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+);
+
+$named-zindex-map: (
+  'spinner': $zindex-spinner,
+  'header': $zindex-header,
+  'toast': $zindex-toast,
+  'fixed': $zindex-fixed,
+);
 
 // Z-index
 
 $z-indexes: (
-  hero: (
-    img,
-    brandframe,
-  ),
-  productcard: (
-    card,
-  ),
   subnavigation: (
     underscore-root,
     underscore-link,
   ),
 ) !default;
-
-// Utilities
-$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex !default;
-$overflows: auto, hidden !default;
-$positions: static, relative, absolute, fixed, sticky !default;
