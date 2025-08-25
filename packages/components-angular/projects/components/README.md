@@ -54,11 +54,6 @@ import { PostIcon, PostButton } from '@swisspost/design-system-components-angula
 export class MyOtherComponent {}
 ```
 
-You can now use the components in your templates:
-
-```html
-<post-icon></post-icon>
-<post-button></post-button>
 ```
 
 ## Contribute
