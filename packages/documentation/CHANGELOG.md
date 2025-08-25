@@ -1,5 +1,35 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.46
+
+### Patch Changes
+
+- Replaced empty label option for overflow utilities with `unset` for better clarity across all overflow controls (`overflow`, `overflowX`, `overflowY`). (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6049](https://github.com/swisspost/design-system/pull/6049))
+- Updated dependencies:
+  - @swisspost/design-system-tokens@10.0.0-next.45
+  - @swisspost/design-system-icons@10.0.0-next.45
+  - @swisspost/design-system-styles@10.0.0-next.45
+  - @swisspost/design-system-components@10.0.0-next.45
+  - @swisspost/design-system-components-react@10.0.0-next.45
+  - @swisspost/internet-header@10.0.0-next.45
+
+## 6.0.0-next.45
+
+### Minor Changes
+
+- Internalized bootstrap z-index utilities. (by [@hugomslv](https://github.com/hugomslv) with [#5741](https://github.com/swisspost/design-system/pull/5741))
+
+### Patch Changes
+
+- Enabled use of the `post-header` component without requiring a `post-mainnavigation`. (by [@alizedebray](https://github.com/alizedebray) with [#5933](https://github.com/swisspost/design-system/pull/5933))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.44
+  - @swisspost/design-system-components@10.0.0-next.44
+  - @swisspost/design-system-styles@10.0.0-next.44
+  - @swisspost/design-system-components-react@10.0.0-next.44
+  - @swisspost/internet-header@10.0.0-next.44
+  - @swisspost/design-system-tokens@10.0.0-next.44
+
 ## 6.0.0-next.44
 
 ### Major Changes
