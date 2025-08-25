@@ -1,5 +1,20 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.46
+
+### Major Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+
+### Minor Changes
+
+- Added missing `bottom` and `end` controls to position utilities for complete configuration. Replaced empty label option with `unset` for better clarity across all position controls (`top`, `bottom`, `start`, `end`).
+  Position utilities now use logical CSS inset properties (inset-block-start, inset-block-end, inset-inline-start, inset-inline-end).
+  This means `start` and `end` follow the writing direction — left in LTR and right in RTL. (by [@bucknatt](https://github.com/bucknatt) with [#6002](https://github.com/swisspost/design-system/pull/6002))
+
 ## 10.0.0-next.45
 
 ## 10.0.0-next.44
