@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '8ca2bd70-56e6-4da9-b1fd-4e55388dca88',
   title: 'Raw Components/Menu Button',
-  tags: ['package:WebComponents', 'devOnly'],
+  tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
   component: 'post-menu',
   parameters: {
     design: {},

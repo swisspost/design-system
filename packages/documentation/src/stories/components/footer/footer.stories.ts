@@ -9,7 +9,7 @@ const meta: MetaComponent = {
   id: 'd97528b3-a9ef-4201-bf28-9caf6e8997dc',
   title: 'Components/Footer',
   component: 'post-footer',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   parameters: {
     layout: 'fullscreen',
     badges: [],

@@ -5,6 +5,7 @@ import { MetaExtended } from '@root/types';
 const meta: MetaExtended = {
   id: '83fd4b10-9010-435a-be42-c1e7236068cc',
   title: 'Utilities/Text Truncation',
+  tags: ['status:Stable'],
   argTypes: {
     truncateWidth: {
       name: 'max-width',

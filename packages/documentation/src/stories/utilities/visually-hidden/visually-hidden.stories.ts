@@ -5,6 +5,7 @@ import { MetaExtended } from '@root/types';
 const meta: MetaExtended = {
   id: 'e8d66106-1c50-4edd-a52c-985a3625f0be',
   title: 'Utilities/Visually Hidden',
+  tags: ['status:Stable'],
   render: () => {
     return html`
       <div class="visually-hidden">Hidden from the screen, available to screen readers.</div>

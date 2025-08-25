@@ -11,7 +11,7 @@ export interface PostLinkarea {
 const meta: MetaComponent<PostLinkarea> = {
   id: '1d52b794-768b-464e-90eb-4fd15774aa90',
   title: 'Components/Link Area',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   render: renderLinkarea,
   component: 'post-linkarea',
   parameters: {
@@ -65,9 +65,12 @@ function renderLinkarea(args: Args) {
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Title</h5>
-          
-          <p class="card-text">This card demonstrates the link area functionality. Click anywhere to navigate to the first link, unless a specific link is marked with data-link.</p>
-          
+
+          <p class="card-text">
+            This card demonstrates the link area functionality. Click anywhere to navigate to the
+            first link, unless a specific link is marked with data-link.
+          </p>
+
           <a class="card-link" href="${args.anchorDefaultLink}">Link text</a>
           <a
             class="card-link"
