@@ -18,6 +18,14 @@ enum AvatarType {
   Null = null,
 }
 
+interface AvatarStorage {
+  url: string;
+  useridImageFailed: boolean;
+  useridImageFailedReason: string;
+  emailImageFailed: boolean;
+  emailImageFailedReason: string;
+}
+
 /**
  * @slot default - Slot for inserting a custom image as avatar.
  */
@@ -27,7 +35,8 @@ enum AvatarType {
   shadow: true,
 })
 export class PostAvatar {
-  private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/{userid}.png';
+  private static readonly INTERNAL_USERID_IMAGE_SRC =
+    'https://web.post.ch/UserProfileImage/{userid}.png';
 
   @Element() host: HTMLPostAvatarElement;
 
@@ -57,6 +66,9 @@ export class PostAvatar {
   @State() imageAlt = '';
   @State() initials = '';
 
+  // To handle email or userid updates and reset the storage item
+  @State() storageKey: string = '';
+
   @Watch('firstname')
   validateFirstname() {
     checkRequiredAndType(this, 'firstname', 'string');
@@ -77,46 +89,118 @@ export class PostAvatar {
     if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
   }
 
+  @Watch('email')
+  @Watch('userid')
+  async keyChanged() {
+    this.storageKey = `${this.userid || ''}_${this.email || ''}`;
+
+    // Reset previous avatar
+    this.imageUrl = '';
+    this.imageAlt = '';
+    this.avatarType = AvatarType.Initials;
+    await this.setInitialStorage();
+    this.getAvatar();
+  }
+
+  private async setInitialStorage() {
+    const key = await this.cryptify(this.storageKey);
+    const cached = sessionStorage.getItem(key);
+    if (!cached) {
+      const initial: AvatarStorage = {
+        url: null,
+        useridImageFailed: null,
+        useridImageFailedReason: null,
+        emailImageFailed: null,
+        emailImageFailedReason: null,
+      };
+      sessionStorage.setItem(key, JSON.stringify(initial));
+    }
+  }
+
+  private async updateStorage(partialUpdate: Partial<AvatarStorage>) {
+    const key = await this.cryptify(this.storageKey);
+    const cached = sessionStorage.getItem(key);
+    const existing: AvatarStorage = cached ? JSON.parse(cached) : ({} as AvatarStorage);
+    const updated: AvatarStorage = { ...existing, ...partialUpdate };
+    sessionStorage.setItem(key, JSON.stringify(updated));
+  }
+
   private async getAvatar() {
     if (this.slottedImage !== null) {
       this.avatarType = AvatarType.Slotted;
     } else {
       let imageLoaded = false;
 
-      if (!imageLoaded && this.userid)
-        imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
+      if (this.userid) {
+        imageLoaded = await this.getImageByProp(
+          this.userid,
+          this.fetchImageByUserId.bind(this),
+          'userid',
+        );
+      }
 
-      if (!imageLoaded && this.email)
-        imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
-
-      if (!imageLoaded) this.getAvatarByInitials();
+      if (!imageLoaded && this.email) {
+        const emailLoaded = await this.getImageByProp(
+          this.email,
+          this.fetchImageByEmail.bind(this),
+          'email',
+        );
+        if (!emailLoaded) this.getAvatarByInitials();
+      }
     }
   }
 
-  private async getImageByProp(prop: string, fetchImage: () => Promise<Response>) {
+  private setupImage(imageResponseURL: Response['url']) {
+    this.imageUrl = imageResponseURL;
+    this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+    this.avatarType = AvatarType.Image;
+  }
+
+  private async getImageByProp(
+    prop: string,
+    fetchImage: () => Promise<Response>,
+    type: 'userid' | 'email',
+  ) {
     if (!prop) return false;
 
-    const imageResponse = (await this.getStorageItem(prop)) ?? { ok: false, url: '' };
+    const key = await this.cryptify(this.storageKey);
+    const cached = sessionStorage.getItem(key);
+    const existing: AvatarStorage = cached ? JSON.parse(cached) : null;
 
-    if (!imageResponse.ok) {
-      try {
-        const r = await fetchImage();
-
-        imageResponse.ok = r.ok;
-        imageResponse.url = r.url;
-
-        this.imageUrl = imageResponse.url;
-        this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
-        this.avatarType = AvatarType.Image;
-
-        this.setStorageItem(this.userid, JSON.stringify(imageResponse));
-      } catch (error) {
-        this.removeStorageItem(prop);
-        console.info(`Loading avatar by type "${AvatarType.Image}" failed.`);
-      }
+    // Skip the fetch if an image exists for this combination
+    if (existing?.url) {
+      this.setupImage(existing?.url);
+      return true;
     }
 
-    return imageResponse.ok;
+    try {
+      const response = await fetchImage();
+
+      if (response.ok) {
+        this.setupImage(response.url);
+        await this.updateStorage({
+          url: response.url,
+          [`${type}ImageFailed`]: false,
+          [`${type}ImageFailedReason`]: '',
+        });
+        return true;
+      } else {
+        const reason = `Fetch failed with status ${response.status}`;
+        await this.updateStorage({
+          [`${type}ImageFailed`]: true,
+          [`${type}ImageFailedReason`]: reason,
+        });
+        return false;
+      }
+    } catch (error) {
+      const reason = (error as Error).message;
+      console.info(`Network error for ${type}`, error);
+      this.updateStorage({
+        [`${type}ImageFailed`]: true,
+        [`${type}ImageFailedReason`]: reason,
+      });
+      return false;
+    }
   }
 
   private async fetchImageByUserId() {
@@ -147,22 +231,6 @@ export class PostAvatar {
       .trim();
   }
 
-  private async getStorageItem(keyToken: string) {
-    const key = await this.cryptify(keyToken);
-    const value = window?.sessionStorage?.getItem(key);
-    return value ? JSON.parse(value) : null;
-  }
-
-  private async setStorageItem(keyToken: string, value: string) {
-    const key = await this.cryptify(keyToken);
-    window?.sessionStorage?.setItem(key, value);
-  }
-
-  private async removeStorageItem(keyToken: string) {
-    const key = await this.cryptify(keyToken);
-    window?.sessionStorage?.removeItem(key);
-  }
-
   private async cryptify(key: string) {
     return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
       return Array.from(new Uint8Array(buffer))
@@ -173,15 +241,21 @@ export class PostAvatar {
 
   private onSlotDefaultChange() {
     this.slottedImage = this.host.querySelector('img');
-    this.getAvatar();
+    if (this.slottedImage) {
+      this.avatarType = AvatarType.Slotted;
+    } else {
+      this.avatarType = AvatarType.Initials;
+      this.getAvatar();
+    }
   }
 
   componentWillRender() {
     this.slottedImage = this.host.querySelector('img');
-    this.getAvatar();
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
+    // Immediately set to initials
+    this.getAvatarByInitials();
     this.validateFirstname();
     this.validateLastname();
     this.validateUserid();
