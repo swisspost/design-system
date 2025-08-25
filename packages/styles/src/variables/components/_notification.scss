@@ -67,23 +67,17 @@ $notification-icon-size-map: map.merge(
   )
 );
 
-//TODO: Note that primary, and gray have been deleted (.banner by default is now neutral) and that danger is back to error
 $notification-variants: () !default;
 $notification-variants: list.join(
   $notification-variants,
   (
-    'neutral' tokens.get('banner-neutral-bg') 2201 tokens.get('banner-neutral-border-color')
-      tokens.get('banner-neutral-icon-color') tokens.get('post-banner-neutral-bg-scheme'),
+    'info' tokens.get('banner-info-bg') 2106 tokens.get('banner-info-border-color')
+      tokens.get('banner-info-icon-color') tokens.get('post-banner-info-bg-scheme'),
     'success' tokens.get('banner-success-bg') 2105 tokens.get('banner-success-border-color')
       tokens.get('banner-success-icon-color') tokens.get('post-banner-success-bg-scheme'),
     'warning' tokens.get('banner-warning-bg') 2104 tokens.get('banner-warning-border-color')
       tokens.get('banner-warning-icon-color') tokens.get('post-banner-warning-bg-scheme'),
     'error' tokens.get('banner-error-bg') 2104 tokens.get('banner-error-border-color')
-      tokens.get('banner-error-icon-color') tokens.get('post-banner-error-bg-scheme'),
-    'info' tokens.get('banner-info-bg') 2106 tokens.get('banner-info-border-color')
-      tokens.get('banner-info-icon-color') tokens.get('post-banner-info-bg-scheme'),
-    // duplicate
-    'danger' tokens.get('banner-error-bg') 2104 tokens.get('banner-error-border-color')
       tokens.get('banner-error-icon-color') tokens.get('post-banner-error-bg-scheme')
   )
 );
