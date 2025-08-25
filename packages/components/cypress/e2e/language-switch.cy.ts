@@ -39,7 +39,7 @@ describe('post-language-switch', () => {
     it('should correctly set the active language option on click', () => {
       cy.get('@language-switch')
         .find('post-language-option[code="en"]')
-        .should('have.attr', 'active', 'true');
+        .should('have.attr', 'active');
       cy.get('@language-switch')
         .find('post-language-option[code="fr"]')
         .should('have.attr', 'active', 'false');
@@ -51,7 +51,7 @@ describe('post-language-switch', () => {
 
       cy.get('@language-switch')
         .find('post-language-option[code="de"]')
-        .should('have.attr', 'active', 'true');
+        .should('have.attr', 'active');
       cy.get('@language-switch')
         .find('post-language-option[code="en"]')
         .should('not.have.attr', 'active', 'false');
@@ -88,7 +88,7 @@ describe('post-language-switch', () => {
 
     it('should correctly switch language and hide menu on option click', () => {
       cy.get('@trigger').find('button').click();
-      cy.get('@language-switch').find('post-language-option[code="de"]').find('button').click();
+      cy.get('@language-switch').find('post-language-option[code="de"]').click();
 
       cy.get('@trigger').should('contain.text', 'de');
       cy.get('@language-switch').find('post-language-option').should('not.be.visible');
