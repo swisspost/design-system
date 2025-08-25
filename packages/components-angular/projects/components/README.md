@@ -48,7 +48,11 @@ import { PostIcon, PostButton } from '@swisspost/design-system-components-angula
 @Component({
   standalone: true,
   selector: 'my-other-component',
-  template: `<post-icon></post-icon><post-button></post-button>`,
+  template: `
+    <post-button>
+      <post-icon></post-icon>
+    </post-button>
+  `,
   imports: [PostIcon, PostButton]
 })
 export class MyOtherComponent {}
