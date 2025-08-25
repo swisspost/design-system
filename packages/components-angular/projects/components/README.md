@@ -16,7 +16,7 @@ Install the package in your Angular project:
 npm install @swisspost/design-system-components-angular
 ```
 
-In your `app.module.ts`, add the provider:
+In your `main.ts` file (or `app.module.ts`), add the provider:
 
 ```typescript
 // Other imports ....
