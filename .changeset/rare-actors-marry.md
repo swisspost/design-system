@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Added missing CSS shadow part documentation for `<post-accordion-item>` and `<post-tabs>` components.
+Documented CSS shadow part for the `<post-accordion-item>` and `<post-tabs>` components.
