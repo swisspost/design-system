@@ -51,6 +51,11 @@ export class PostAvatar {
    */
   @Prop() readonly email?: string;
 
+  /**
+   * Provides a custom description for the avatar, used for accessibility purposes.
+   */
+  @Prop() readonly description?: string;
+
   @State() slottedImage: HTMLImageElement;
   @State() avatarType: AvatarType = null;
   @State() imageUrl = '';
@@ -189,19 +194,23 @@ export class PostAvatar {
   }
 
   render() {
-    const initials = this.getNames().reduce((acc, n, i) => {
-      if (i > 0) acc.push(<span> </span>);
-      acc.push(n.charAt(0));
-      acc.push(<span>{n.slice(1)}</span>);
-      // eslint-disable-next-line @stencil-community/render-returns-host
-      return acc;
-    }, []);
+    console.log(this.getNames());
+    const names = this.getNames();
+    const fullname = names.join(' ');
+    const initials = names
+      .map(name => name.charAt(0)) // get the first letter of each name
+      .join('');
 
     return (
       <Host data-version={version}>
         <slot onSlotchange={this.onSlotDefaultChange.bind(this)}>
           {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
-          {this.avatarType === 'initials' && <div class="initials">{initials}</div>}
+          {this.avatarType === 'initials' && (
+            <span class="initials">
+              {initials}
+              <span>{this.description || `The current user is ${fullname}`}</span>
+            </span>
+          )}
         </slot>
       </Host>
     );
