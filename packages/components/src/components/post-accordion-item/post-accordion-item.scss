@@ -3,6 +3,7 @@
 
 :host {
   display: block;
+  @include accordion-mx.background-color;
 }
 
 .accordion-button {
@@ -11,10 +12,6 @@
   > ::slotted(.text-truncate) {
     display: block;
   }
-}
-
-post-accordion-item::part(accordion-item) {
-  @include accordion-mx.background-color;
 }
 
 :host(:not(:first-of-type)) .accordion-item {

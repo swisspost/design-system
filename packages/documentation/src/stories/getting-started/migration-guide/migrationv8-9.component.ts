@@ -93,6 +93,17 @@ export class MigrationV89Component extends LitElement {
                   <code>arrow="true"</code> property on the component.
                 </p>
               </li>
+              <li class="mb-16">
+                <p>
+                  Removed the <code>accordion-item</code> shadow part from the 
+                  <code>post-accordion-item<code> component.
+                  <span class="tag tag-sm tag-danger">breaking</span>
+                </p>
+                <p class="info">
+                  If you were styling the component using the <code>::part(accordion-item)<code>
+                  selector, this will no longer work since the shadow part has been removed.
+                </p>
+              </li>
               ${this.angular
                 ? html`
                     <li class="mb-16">
