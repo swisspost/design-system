@@ -14,10 +14,6 @@
   }
 }
 
-post-accordion-item::part(accordion-item) {
-  @include accordion-mx.background-color;
-}
-
 :host(:not(:first-of-type)) .accordion-item {
   border-block-start: 0;
 }
