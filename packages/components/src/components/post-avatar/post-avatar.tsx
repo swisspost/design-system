@@ -194,7 +194,6 @@ export class PostAvatar {
   }
 
   render() {
-    console.log(this.getNames());
     const names = this.getNames();
     const fullname = names.join(' ');
     const initials = names
