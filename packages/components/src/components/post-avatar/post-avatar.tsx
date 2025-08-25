@@ -196,9 +196,7 @@ export class PostAvatar {
   render() {
     const names = this.getNames();
     const fullname = names.join(' ');
-    const initials = names
-      .map(name => name.charAt(0)) // get the first letter of each name
-      .join('');
+    const initials = names.map(name => name.charAt(0)).join('');
 
     return (
       <Host data-version={version}>
