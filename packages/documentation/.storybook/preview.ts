@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/web-components-vite';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout/layout';
+import Page from './blocks/page';
 import {
   fullScreenUrlDecorator,
   openFullScreenDemo,
@@ -18,6 +19,9 @@ import './styles/preview.scss';
 
 import { SyntaxHighlighter } from 'storybook/internal/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
+import { html } from 'lit';
+
+
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
@@ -103,6 +107,7 @@ const preview: Preview = {
       components: resetComponents,
       extractArgTypes,
       extractComponentDescription,
+      page: Page,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
