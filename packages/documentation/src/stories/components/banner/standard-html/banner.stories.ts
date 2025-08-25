@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'package:WebComponents'],
   render: renderBanner,
   parameters: {
     badges: [],
@@ -20,12 +20,11 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    content: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    content:
+      '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     show: true,
     action: true,
-    noIcon: false,
-    icon: undefined,
-    type: 'banner-neutral',
+    type: 'banner-info',
     dialog: false,
     dismissible: false,
     dismissLabel: 'Dismiss',
@@ -101,43 +100,6 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    noIcon: {
-      name: 'No Icon',
-      description: 'If `true`, no icon is displayed on the left side of the banner.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
-    icon: {
-      name: 'Icon',
-      description:
-        'The icon to display in the banner. By default, the icon depends on the banner type.' +
-        '<span className="mt-8 banner banner-info banner-sm">' +
-        '<span>To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
-        '.</span></span>',
-      if: {
-        arg: 'noIcon',
-        truthy: false,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          '1001': '1001 (Envelope)',
-          '2023': '2023 (Cog)',
-          '2025': '2025 (Send)',
-          '2035': '2035 (Home)',
-          '2101': '2101 (Bubble)',
-        },
-      },
-      options: ['1001', '2023', '2025', '2035', '2101'],
-      table: {
-        category: 'Content',
-      },
-    },
     type: {
       name: 'Type',
       description: 'The type of the banner.',
@@ -145,7 +107,6 @@ const meta: MetaComponent = {
         type: 'select',
       },
       options: [
-        'banner-neutral',
         'banner-info',
         'banner-success',
         'banner-error',
@@ -171,21 +132,20 @@ function renderBanner(args: Args) {
   `;
 
   const body = html`
-  ${args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing}
-  ${args.action ? html` <div class="banner-content">${content}</div> ` : content}
-  ${args.action
-    ? html`
-        <div class="banner-buttons">
-          <button class="btn btn-primary">
-            <span>Accept</span>
-          </button>
-          <button class="btn btn-secondary">
-            <span>Cancel</span>
-          </button>
-        </div>
-      `
-    : null}
-`;
+    ${args.action ? html` <div class="banner-content">${content}</div> ` : content}
+    ${args.action
+      ? html`
+          <div class="banner-buttons">
+            <button class="btn btn-primary">
+              <span>Accept</span>
+            </button>
+            <button class="btn btn-secondary">
+              <span>Cancel</span>
+            </button>
+          </div>
+        `
+      : null}
+  `;
 
   if (args.dialog) {
     return html`<dialog class="banner-container" open="${args.open || nothing}">
@@ -219,18 +179,6 @@ export const AdditionalContent: Story = {
   </ul>
 <hr />
 <p>Additional content follows the separator to provide further context or instructions as needed.</p>`,
-  },
-};
-
-export const CustomIcon: Story = {
-  args: {
-    icon: '1001',
-  },
-};
-
-export const NoIcon: Story = {
-  args: {
-    noIcon: true,
   },
 };
 

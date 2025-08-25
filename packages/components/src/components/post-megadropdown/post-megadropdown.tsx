@@ -1,7 +1,7 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { version } from '@root/package.json';
-import { breakpoint } from '../../utils/breakpoints';
+import { breakpoint, Device } from '@/utils/breakpoints';
 
 @Component({
   tag: 'post-megadropdown',
@@ -12,7 +12,7 @@ export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
 
-  @State() device: string = breakpoint.get('device');
+  @State() device: Device = breakpoint.get('device');
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -76,9 +76,8 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
-    } else {
-      this.animationClass = 'slide-in';
     }
+    this.animationClass = 'slide-in';
 
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;

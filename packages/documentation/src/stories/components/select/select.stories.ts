@@ -14,7 +14,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
   title: 'Components/Form Select',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
@@ -106,7 +106,7 @@ const meta: MetaComponent = {
     multipleSize: {
       name: 'Multiple Size',
       description:
-        'When set to a number larger than 0, will set the number of display option rows.<div class="banner banner-sm banner-danger">Note: not all browser will respect this setting.</div>',
+        'When set to a number larger than 0, will set the number of display option rows.<div class="banner banner-sm banner-error">Note: not all browser will respect this setting.</div>',
       if: {
         arg: 'multiple',
       },
