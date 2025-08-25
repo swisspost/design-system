@@ -6,7 +6,6 @@ import { checkEmptyOrOneOf } from '@/utils';
 /**
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
- * @part accordion-item - The pseudo-element, used to override styles on the component’s internal `wrapper` element..
  */
 
 @Component({

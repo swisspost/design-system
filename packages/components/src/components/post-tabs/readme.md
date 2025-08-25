@@ -49,10 +49,10 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part        | Description                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------------- |
-| `"content"` | The pseudo-element, used to override styles on the component’s internal `panel` container.  |
-| `"tabs"`    | The pseudo-element, used to override styles on the component’s internal `header` container. |
+| Part        | Description                                                                                      |
+| ----------- | ------------------------------------------------------------------------------------------------ |
+| `"content"` | The pseudo-element, used to override styles on the component’s internal `tab panels` container.  |
+| `"tabs"`    | The pseudo-element, used to override styles on the component’s internal `tab headers` container. |
 
 
 ----------------------------------------------

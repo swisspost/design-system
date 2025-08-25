@@ -3,6 +3,7 @@
 
 :host {
   display: block;
+  @include accordion-mx.background-color;
 }
 
 .accordion-button {

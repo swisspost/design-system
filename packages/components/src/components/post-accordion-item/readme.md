@@ -42,9 +42,9 @@ Type: `Promise<boolean>`
 
 ## Shadow Parts
 
-| Part               | Description                                                                                |
-| ------------------ | ------------------------------------------------------------------------------------------ |
-| `"accordion-item"` | The pseudo-element, used to override styles on the component’s internal container element. |
+| Part               | Description |
+| ------------------ | ----------- |
+| `"accordion-item"` |             |
 
 
 ## Dependencies
