@@ -16,22 +16,48 @@ Install the package in your Angular project:
 npm install @swisspost/design-system-components-angular
 ```
 
-In your `app.module.ts`, add the components to your imports:
+In your `main.ts` file or `app.module.ts`, add the provider:
 
 ```typescript
 // Other imports ....
-import { PostComponentsModule } from '@swisspost/design-system-components-angular';
+import { providePostComponents } from '@swisspost/design-system-components-angular';
 
 @NgModule({
-  imports: [PostComponentsModule],
+  providers: [providePostComponents()],
 })
 export class AppModule {}
 ```
 
-In your templates, the components are available as:
+Import the components you need directly into your standalone component:
 
-```html
-<post-icon></post-icon>
+```typescript
+// Example: Importing a single component
+import { PostIcon } from '@swisspost/design-system-components-angular';
+
+@Component({
+  standalone: true,
+  selector: 'my-component',
+  template: `<post-icon></post-icon>`,
+  imports: [PostIcon]
+})
+export class MyComponent {}
+
+// Example: Importing multiple components
+import { PostIcon, PostButton } from '@swisspost/design-system-components-angular';
+
+@Component({
+  standalone: true,
+  selector: 'my-other-component',
+  template: `
+    <post-button>
+      <post-icon></post-icon>
+    </post-button>
+  `,
+  imports: [PostIcon, PostButton]
+})
+export class MyOtherComponent {}
+```
+
 ```
 
 ## Contribute
