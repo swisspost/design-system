@@ -1,4 +1,4 @@
-const BANNER_ID = '8fd36823-966e-46a8-8432-a4439f6e208f';
+const BANNER_ID = '105e67d8-31e9-4d0b-87ff-685aba31fd4c';
 
 describe('banner', () => {
   describe('default', () => {
