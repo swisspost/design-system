@@ -81,14 +81,3 @@ $notification-variants: list.join(
       tokens.get('banner-error-icon-color') tokens.get('post-banner-error-bg-scheme')
   )
 );
-
-$notification-icons: () !default;
-$notification-icons: list.join(
-  $notification-icons,
-  (
-    'info': 2106,
-    'success': 2105,
-    'warning': 2104,
-    'error': 2104,
-  )
-);
