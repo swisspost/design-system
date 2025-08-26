@@ -28,16 +28,16 @@ describe('Avatar', () => {
       cy.get('@avatar').find('img').should('not.exist');
 
       cy.get('@avatar').invoke('attr', 'firstname', 'Open');
-      cy.get('@initials').should('have.text', 'Open');
+      cy.get('@initials').should('have.text', 'OThe current user is Open');
 
       cy.get('@avatar').invoke('attr', 'lastname', 'Source');
-      cy.get('@initials').and('have.text', 'Open Source');
+      cy.get('@initials').and('have.text', 'OSThe current user is Open Source');
 
       cy.get('@avatar').invoke('removeAttr', 'lastname');
-      cy.get('@initials').should('have.text', 'Open');
+      cy.get('@initials').should('have.text', 'OThe current user is Open');
 
-      cy.get('@avatar').invoke('removeAttr', 'firstname');
-      cy.get('@initials').should('have.text', '');
+      cy.get('@avatar').invoke('removeAttr', 'firstname').invoke('removeAttr', 'lastname');
+      cy.get('@initials').should('not.have.text');
     });
 
     it('should show image, when email with gravatar account is defined', () => {

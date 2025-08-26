@@ -205,7 +205,9 @@ export class PostAvatar {
           {this.avatarType === 'initials' && (
             <span class="initials">
               {initials}
-              <span>{this.description || `The current user is ${fullname}`}</span>
+              <span>
+                {fullname.trim() != '' ? this.description || `The current user is ${fullname}` : ''}
+              </span>
             </span>
           )}
         </slot>
