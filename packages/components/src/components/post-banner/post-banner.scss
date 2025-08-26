@@ -3,6 +3,7 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/icons';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/color-scheme';
 
 @use '@swisspost/design-system-styles/variables/components/notification';
 @use '@swisspost/design-system-styles/variables/spacing';
@@ -43,15 +44,14 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
-@each $name, $icon in notification.$notification-icons {
+@each $name in 'info', 'success', 'warning', 'error' {
   :host([type="#{$name}"]) {
     background-color: tokens.get('banner-#{$name}-bg');
     border-color: tokens.get('banner-#{$name}-border-color');
-    color-scheme: tokens.get('post-banner-#{$name}-bg-scheme');
+    @include color-scheme.set(tokens.get('post-banner-#{$name}-bg-scheme'));
 
     &::before {
-      @include icons.icon($icon);
-      color: tokens.get('banner-#{$name}-icon-color');
+      background-image: var(--post-signal-icon-#{$name});
     }
   }
 }
