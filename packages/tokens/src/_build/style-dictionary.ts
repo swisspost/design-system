@@ -40,11 +40,8 @@ StyleDictionary.registerTransform({
   filter: token => {
     const usesDtcg = token.$type && token.$value;
     let transformType = false;
-    if (token.$type) {
-      const typeToCheck = usesDtcg ? token.$type : (token.type as string);
-      transformType = NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES.includes(typeToCheck);
-    }
-
+    const typeToCheck = usesDtcg ? (token.$type as string) : (token.type as string);
+    transformType = NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES.includes(typeToCheck);
     if (transformType) {
       return token[usesDtcg ? '$value' : 'value'] === '0';
     } else {
