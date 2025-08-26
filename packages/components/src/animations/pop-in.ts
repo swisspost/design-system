@@ -13,7 +13,7 @@ export function popIn(el: Element) {
     {
       duration,
       easing,
-      fill: FILL_MODE,
+      fill: 'forwards',
     },
   );
 }
