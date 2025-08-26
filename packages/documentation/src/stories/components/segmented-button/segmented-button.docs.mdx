@@ -19,17 +19,21 @@ It allows users to toggle between two or more content sections within the same a
   overflowing or word breaks.
 </div>
 
-<Canvas of={SegmentedButtonStories.TextExample} sourceState="shown" />
-<Controls of={SegmentedButtonStories.TextExample} />
+<Canvas of={SegmentedButtonStories.Default} sourceState="shown" />
+<Controls of={SegmentedButtonStories.Default} />
+
+<StylesPackageImport components={['segmented-button']} />
 
 ## Segmented icon button
 
-<Canvas of={SegmentedButtonStories.IconExample} sourceState="shown" />
-<Controls of={SegmentedButtonStories.IconExample} />
+Use only an icon for quick recognition when text is not needed.
+
+<Canvas of={SegmentedButtonStories.Icon} />
 
 ## Segmented text and icon button
 
-<Canvas of={SegmentedButtonStories.TextAndIconExample} sourceState="shown" />
-<Controls of={SegmentedButtonStories.TextAndIconExample} />
+Combine label and icon with quick visual recognition. Useful when options benefit from both wording and imagery.
 
-<StylesPackageImport components={['segmented-button']} />
+<Canvas of={SegmentedButtonStories.TextAndIcon} />
+
+

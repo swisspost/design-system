@@ -1,6 +1,6 @@
-import { Args, StoryObj } from '@storybook/web-components-vite';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
+import type { MetaComponent } from '@root/types';
 
 const MAX_LABELS = 8;
 
@@ -17,12 +17,21 @@ const meta: MetaComponent = {
   },
   args: {
     labelCount: 4,
+    mode: 'text',
   },
   argTypes: {
     labelCount: {
       name: 'Number of segments',
-      description: `Defines the number of segments for the segmented button. The maximum number of supported segments is 8. If you need more options, please refer to the select component.`,
+      description:
+        'Defines the number of segments for the segmented button. The maximum number of supported segments is 8. If you need more options, please refer to the select component.',
       control: { type: 'number', min: 1, max: MAX_LABELS },
+      table: { category: 'Content' },
+    },
+    mode: {
+      name: 'Content mode',
+      description: 'Choose how each segment renders its content.',
+      control: { type: 'inline-radio' },
+      options: ['text', 'icon', 'text+icon'],
       table: { category: 'Content' },
     },
   },
@@ -32,21 +41,25 @@ export default meta;
 
 type Story = StoryObj;
 
-export const TextExample: Story = {
+const Template = {
   render: (args: Args) => {
+    const mode = args.mode || 'text';
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
-    const labelsArray = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
-    const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
+    const labels = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
+    const name = `segmented-button-${crypto.randomUUID().replace(/-/g, '').slice(-6)}`;
 
     return html`
       <div class="segmented-button-container">
         <fieldset class="segmented-button">
           <legend>Choose one of the options</legend>
-          ${labelsArray.map(
+          ${labels.map(
             (label, index) => html`
               <label class="segmented-button-label">
-                <input name="${name}" type="radio" checked="${index === 0 ? '' : nothing}" />
-                ${label}
+                <input type="radio" name="${name}" ?checked=${index === 0} />
+                ${mode === 'icon' || mode === 'text+icon'
+                  ? html`<post-icon name="${1000 + index}"></post-icon>`
+                  : nothing}
+                ${mode === 'text' || mode === 'text+icon' ? label : nothing}
               </label>
             `,
           )}
@@ -56,51 +69,16 @@ export const TextExample: Story = {
   },
 };
 
-export const IconExample: Story = {
-  render: (args: Args) => {
-    const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
-    const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
-
-    return html`
-      <div class="segmented-button-container">
-        <fieldset class="segmented-button">
-          <legend>Choose one of the options</legend>
-          ${Array.from(
-            { length: labelCount },
-            (_undefined, index) => html`
-              <label class="segmented-button-label">
-                <input type="radio" name="${name}" checked="${index === 0 ? '' : nothing}" />
-                <post-icon name="${1000 + index}" />
-              </label>
-            `,
-          )}
-        </fieldset>
-      </div>
-    `;
-  },
+export const Default: Story = {
+  ...Template,
 };
 
-export const TextAndIconExample: Story = {
-  render: (args: Args) => {
-    const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
-    const labelsArray = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
-    const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
+export const Icon: Story = {
+  ...Template,
+  args: { mode: 'icon' },
+};
 
-    return html`
-      <div class="segmented-button-container">
-        <fieldset class="segmented-button">
-          <legend>Choose one of the options</legend>
-          ${labelsArray.map(
-            (label, index) => html`
-              <label class="segmented-button-label">
-                <input type="radio" name="${name}" checked="${index === 0 ? '' : nothing}" />
-                <post-icon name="${1000 + index}"></post-icon>
-                ${label}
-              </label>
-            `,
-          )}
-        </fieldset>
-      </div>
-    `;
-  },
+export const TextAndIcon: Story = {
+  ...Template,
+  args: { mode: 'text+icon' },
 };

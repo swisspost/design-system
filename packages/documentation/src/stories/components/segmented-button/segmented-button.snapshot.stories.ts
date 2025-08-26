@@ -34,24 +34,18 @@ export const SegmentedButton: Story = {
                     `,
                   )}
                 </fieldset>
+                <fieldset class="segmented-button">
+                  ${labels.map(
+                    (label, index) => html`
+                      <label class="segmented-button-label">
+                        <input type="radio" name="text-icon-${count}-${scheme}" />
+                        <post-icon name="${1000 + index}"></post-icon>
+                        ${label}
+                      </label>
+                    `,
+                  )}
+                </fieldset>
               </div>
-            `;
-          })}
-          ${labelCounts.map(count => {
-            const labels = Array.from({ length: count }, (_, i) => `Label ${i + 1}`);
-            const name = `text-icon-${count}-${scheme}`;
-            return html`
-              <fieldset class="segmented-button">
-                ${labels.map(
-                  (label, index) => html`
-                    <label class="segmented-button-label">
-                      <input type="radio" name="${name}" />
-                      <post-icon name="${1000 + index}"></post-icon>
-                      ${label}
-                    </label>
-                  `,
-                )}
-              </fieldset>
             `;
           })}
         </div>
