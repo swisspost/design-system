@@ -3,12 +3,12 @@
 '@swisspost/design-system-documentation': major
 ---
 
-Removed the Standard HTML Alert component (`.alert`, `.alert-*`) in favor of the `post-banner` component.
+Removed the Standard HTML Banner component (`.banner`, `.banner-*`) in favor of the `post-banner` web component.
 
 BEFORE:
 
 ```html
-<div role="alert" class="alert alert-success">
+<div role="alert" class="banner banner-success">
   <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
 </div>
 ```
