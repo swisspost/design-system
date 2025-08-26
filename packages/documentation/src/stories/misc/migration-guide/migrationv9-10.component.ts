@@ -771,6 +771,16 @@ export class MigrationV99Component extends LitElement {
                     Instead, use classes <code>.loader-16</code> and <code>.loader-40</code>.
                   </p>
                 </li>
+
+                <li class="mb-16">
+                  <p>
+                    Removed the Standard HTML Alert component (<code>.alert</code>, <code>.alert-*</code>).
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    Replaced by the <code>post-banner</code> component.
+                  </p>
+                </li>
               </ul>
             </section>
 
