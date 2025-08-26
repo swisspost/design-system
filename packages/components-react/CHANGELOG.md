@@ -1,5 +1,19 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.45
+
+## 10.0.0-next.44
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.44
+
 ## 10.0.0-next.43
 
 ### Patch Changes
