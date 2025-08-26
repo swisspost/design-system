@@ -1,13 +1,13 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as PostBannerStories from './banner.stories';
+import * as BannerStories from './banner.stories';
 import BannerDismissSample from './banner-dismiss.sample?raw';
 
-<Meta of={PostBannerStories} />
+<Meta of={BannerStories} />
 
 <div className="docs-title">
   # Banner
 
-<link-design of={JSON.stringify(PostBannerStories)}></link-design>
+<link-design of={JSON.stringify(BannerStories)}></link-design>
 
 </div>
 
@@ -15,9 +15,9 @@ import BannerDismissSample from './banner-dismiss.sample?raw';
   A banner shows general notifications for a product or system, not a specific task and should therefore not require the user to take immediate action. Banners can persist across multiple sessions.
 </div>
 
-<Canvas sourceState="shown" of={PostBannerStories.Default} />
+<Canvas sourceState="shown" of={BannerStories.Default} />
 
-<Controls of={PostBannerStories.Default} />
+<Controls of={BannerStories.Default} />
 
 ## Installation
 
@@ -34,7 +34,7 @@ By default all children of the `<post-banner>` are placed in the body.
 Use the `heading` slot to place a child in the heading, and the `actions` slot for action buttons.
 Learn more about <a rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots#adding_flexibility_with_slots">slots in the mdn web docs</a>.
 
-<Canvas of={PostBannerStories.Contents} />
+<Canvas of={BannerStories.Contents} />
 
 ### Dismissal
 
@@ -43,7 +43,7 @@ When present, it specifies that the banner should contain a dismiss button,
 and you must provide a label for this button using the `dismiss-label` property.
 Although the label remains hidden from view, it is essential for ensuring accessibility for users of assistive technologies.
 
-<Canvas of={PostBannerStories.Dismissible} />
+<Canvas of={BannerStories.Dismissible} />
 
 Alternatively, you can use any button, including action buttons within the banner, as a trigger for dismissing the banner using the `.dismiss()` method.
 This method operates asynchronously and returns a promise that resolves once the fade-out animation has finished.
