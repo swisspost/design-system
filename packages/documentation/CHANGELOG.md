@@ -1,5 +1,57 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.47
+
+### Minor Changes
+
+- Added missing `bottom` and `end` controls to position utilities for complete configuration. Replaced empty label option with `unset` for better clarity across all position controls (`top`, `bottom`, `start`, `end`).
+  Position utilities now use logical CSS inset properties (inset-block-start, inset-block-end, inset-inline-start, inset-inline-end).
+  This means `start` and `end` follow the writing direction — left in LTR and right in RTL. (by [@bucknatt](https://github.com/bucknatt) with [#6002](https://github.com/swisspost/design-system/pull/6002))
+
+### Patch Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.46
+  - @swisspost/design-system-components-react@10.0.0-next.46
+  - @swisspost/design-system-styles@10.0.0-next.46
+  - @swisspost/design-system-components@10.0.0-next.46
+  - @swisspost/internet-header@10.0.0-next.46
+  - @swisspost/design-system-tokens@10.0.0-next.46
+
+## 6.0.0-next.46
+
+### Patch Changes
+
+- Replaced empty label option for overflow utilities with `unset` for better clarity across all overflow controls (`overflow`, `overflowX`, `overflowY`). (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6049](https://github.com/swisspost/design-system/pull/6049))
+- Updated dependencies:
+  - @swisspost/design-system-tokens@10.0.0-next.45
+  - @swisspost/design-system-icons@10.0.0-next.45
+  - @swisspost/design-system-styles@10.0.0-next.45
+  - @swisspost/design-system-components@10.0.0-next.45
+  - @swisspost/design-system-components-react@10.0.0-next.45
+  - @swisspost/internet-header@10.0.0-next.45
+
+## 6.0.0-next.45
+
+### Minor Changes
+
+- Internalized bootstrap z-index utilities. (by [@hugomslv](https://github.com/hugomslv) with [#5741](https://github.com/swisspost/design-system/pull/5741))
+
+### Patch Changes
+
+- Enabled use of the `post-header` component without requiring a `post-mainnavigation`. (by [@alizedebray](https://github.com/alizedebray) with [#5933](https://github.com/swisspost/design-system/pull/5933))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.44
+  - @swisspost/design-system-components@10.0.0-next.44
+  - @swisspost/design-system-styles@10.0.0-next.44
+  - @swisspost/design-system-components-react@10.0.0-next.44
+  - @swisspost/internet-header@10.0.0-next.44
+  - @swisspost/design-system-tokens@10.0.0-next.44
+
 ## 6.0.0-next.44
 
 ### Major Changes

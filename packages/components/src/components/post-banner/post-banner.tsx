@@ -12,7 +12,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
-import { checkRequiredAndType, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 import { nanoid } from 'nanoid';
 
@@ -54,22 +54,11 @@ export class PostBanner {
    * The label to use for the close button of a dismissible banner.
    */
   @Prop() readonly dismissLabel?: string;
-  /**
-   * The icon to display in the banner. By default, the icon depends on the banner type.
-   *
-   * If `none`, no icon is displayed.
-   */
-  @Prop() readonly icon?: string;
-
-  @Watch('icon')
-  validateIcon() {
-    checkEmptyOrType(this, 'icon', 'string');
-  }
 
   /**
    * The type of the banner.
    */
-  @Prop() readonly type: BannerType = 'neutral';
+  @Prop() readonly type: BannerType = 'info';
 
   @Watch('type')
   validateType() {
@@ -84,7 +73,6 @@ export class PostBanner {
 
   componentDidLoad() {
     this.checkDismissible();
-    this.validateIcon();
     this.validateType();
   }
 
@@ -95,7 +83,6 @@ export class PostBanner {
     this.classes = `banner ${this.type ? 'banner-' + this.type : ''}`;
     if (this.dismissible) this.classes += ' banner-dismissible';
     if (this.hasActions) this.classes += ' banner-action';
-    if (this.icon === 'none') this.classes += ' no-icon';
   }
 
   /**
@@ -137,10 +124,6 @@ export class PostBanner {
             <button class="btn-close" onClick={this.onDismissButtonClick}>
               <span class="visually-hidden">{this.dismissLabel}</span>
             </button>
-          )}
-
-          {this.icon && this.icon !== 'none' && (
-            <post-icon key={`${this.bannerId}-icon`} name={this.icon} />
           )}
 
           {this.hasActions ? actionBannerContent : defaultBannerContent}
