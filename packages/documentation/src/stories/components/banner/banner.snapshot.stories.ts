@@ -24,14 +24,10 @@ export const Banner: Story = {
         <div class="d-flex flex-column gap-16 flex-wrap">
           ${bombArgs({
             type: bannerMeta?.argTypes?.type?.options,
-            icon: ['no-icon', undefined, '1001'],
             action: [true, false],
             dismissible: [true, false],
           })
             .map(args => {
-              if (args.icon === 'no-icon') {
-                args.noIcon = true;
-              }
               return { ...args, show: true } as Args;
             })
             .map(
@@ -42,15 +38,6 @@ export const Banner: Story = {
                         <button class="btn-close">
                           <span class="visually-hidden">Close</span>
                         </button>
-                      `
-                    : null}
-                  ${args.icon && !args.noIcon
-                    ? html`
-                        <post-icon
-                          aria-hidden="true"
-                          class="banner-icon"
-                          name="${args.icon}"
-                        ></post-icon>
                       `
                     : null}
                   ${args.action
@@ -103,15 +90,13 @@ export const PostBanner: Story = {
       () => html`
         <div class="d-flex flex-column gap-16 flex-wrap">
           ${bombArgs({
-            type: ['neutral', 'success', 'error', 'warning', 'info'],
-            icon: ['none', undefined, '1001'],
+            type: ['success', 'error', 'warning', 'info'],
             dismissible: [true, false],
             hasButtons: [true, false],
           }).map(
             args => html`
               <post-banner
                 type=${args.type}
-                icon=${args.icon}
                 dismissible=${args.dismissible}
                 dismiss-label="${args.dismissible ? 'Dismiss' : undefined}"
               >
