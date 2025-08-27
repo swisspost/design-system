@@ -67,7 +67,7 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<post-banner type="warning" data-size="sm">Can only be used on post.ch domains!</post-banner>
          */
         "userid"?: string;
     }
@@ -970,7 +970,7 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<post-banner type="warning" data-size="sm">Can only be used on post.ch domains!</post-banner>
          */
         "userid"?: string;
     }
