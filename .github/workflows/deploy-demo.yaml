@@ -57,7 +57,7 @@ jobs:
               core.setFailed('Invalid issue number - must be a positive integer');
               return;
             }
-            
+
             core.setOutput('safe_id', rawId);
             core.setOutput('issue_number', issueNumber);
 
@@ -78,15 +78,15 @@ jobs:
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         with:
           github-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          env:
-            ISSUE_NUMBER: ${{ steps.validate.outputs.issue_number }}
-            PREVIEW_URL: ${{ steps.deploy.outputs.preview-url }}
-          script: |
-            const issueNumber = Number(process.env.ISSUE_NUMBER);
-            const previewUrl = process.env.PREVIEW_URL;
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-              body: `✅ Preview deployment is ready!\n\n[Preview URL](${previewUrl})`
-            });
+        env:
+          ISSUE_NUMBER: ${{ steps.validate.outputs.issue_number }}
+          PREVIEW_URL: ${{ steps.deploy.outputs.preview-url }}
+        script: |
+          const issueNumber = Number(process.env.ISSUE_NUMBER);
+          const previewUrl = process.env.PREVIEW_URL;
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            body: `✅ Preview deployment is ready!\n\n[Preview URL](${previewUrl})`
+          });
