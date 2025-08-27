@@ -14,16 +14,16 @@ export const breakpoints = Object.values(SpacingStories.SCSS_VARIABLES.breakpoin
 
 ## Margin and Padding
 
-<div className="banner banner-info">
-  <p className="banner-heading my-0">
+<post-banner>
+  <h3 className="h5" slot="heading">
     Avoid applying spacing classes to grid elements (e.g. `.row`, `.col`, `.col-*`).
-  </p>
-  <div>
+  </h3>
+  <p>
     The grid system uses negative margins and positive padding along the horizontal axis, and
     applying additional spacing classes can affect the layout unless done with careful
     consideration.
-  </div>
-</div>
+  </p>
+</post-banner>
 
 The naming convention for spacing utilities follows this pattern:
 

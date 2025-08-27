@@ -115,10 +115,10 @@ const meta: MetaComponent = {
       name: 'Icon',
       description:
         'Defines a custom icon.' +
-        '<span className="mt-8 banner banner-info banner-sm">' +
+        '<post-banner data-size="sm">' +
         '<span>To use a custom icon, you must first ' +
         '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
-        '.</span></span>',
+        '.</span></post-banner>',
       if: {
         arg: 'tag',
         neq: 'input',
@@ -175,7 +175,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
+        'When set to `true`, makes the component appear inactive and disables its functionality.<post-banner data-size="sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</post-banner>',
       control: {
         type: 'boolean',
       },
