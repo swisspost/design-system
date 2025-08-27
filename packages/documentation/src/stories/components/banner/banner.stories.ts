@@ -4,9 +4,9 @@ import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostBannerElement> = {
-  id: '8fd36823-966e-46a8-8432-a4439f6e208f',
+  id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
-  tags: ['package:WebComponents', 'redirect:105e67d8-31e9-4d0b-87ff-685aba31fd4c'],
+  tags: ['package:WebComponents'],
   component: 'post-banner',
   render: renderBanner,
   decorators: [externalControl],
@@ -14,11 +14,12 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1447-8848&node-type=instance&t=NVtE44T0sX5wsag9-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=1447-8848',
     },
   },
   args: {
     innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    type: 'info',
     dismissible: false,
     dismissLabel: 'Dismiss',
   },
@@ -31,19 +32,6 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
         name: 'string',
         required: true,
       },
-    },
-    icon: {
-      control: {
-        type: 'select',
-        labels: {
-          '1001': '1001 (Envelope)',
-          '2023': '2023 (Cog)',
-          '2025': '2025 (Send)',
-          '2035': '2035 (Home)',
-          '2101': '2101 (Bubble)',
-        },
-      },
-      options: ['none', '1001', '2023', '2025', '2035', '2101'],
     },
     innerHTML: {
       description: 'Defines the HTML markup contained in the banner.',
@@ -115,22 +103,10 @@ export const Contents: Story = {
       '<li class="d-flex gap-8"><post-icon name="1027"></post-icon>An example list item</li>' +
       '<li class="d-flex gap-8"><post-icon name="1028"></post-icon>Another example list item</li>' +
       '</ul>' +
-      '<hr/>' +
+      '<hr class="w-full"/>' +
       '<p>This is the banner content that provides important information to the user.</p>' +
       '<button slot="actions" class="btn btn-secondary"><span>Cancel</span></button>' +
       '<button slot="actions" class="btn btn-primary"><span>Accept</span></button>',
-  },
-};
-
-export const CustomIcon: Story = {
-  args: {
-    icon: '1001',
-  },
-};
-
-export const NoIcon: Story = {
-  args: {
-    icon: 'none',
   },
 };
 
