@@ -63,7 +63,7 @@ function renderLinkarea(args: Args) {
   return html`
     <post-linkarea>
       <div class="card">
-        <div class="p-16">
+        <div class="card-body">
           <h5>Title</h5>
           <p>This card demonstrates the link area functionality. Click anywhere to navigate to the first link, unless a specific link is marked with data-link.</p>
           <a class="card-link" href="${args.anchorDefaultLink}">Link text</a>
