@@ -59,7 +59,7 @@ post-linkarea:has(> .card) {
   }
 
   .card-body {
-    padding: 1rem; //TODOLEA: Tokenize
+    padding: tokens.get('card-padding-1');
   }
 
   .list-interactive {
