@@ -1,6 +1,8 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as TooltipStories from './tooltip.stories';
 import * as TooltipTriggerStories from './tooltip-trigger.stories';
+import SampleDynamicTooltipCode from './dynamic-tooltip-code.sample.html?raw';
+import SampleDynamicTooltipData from './dynamic-tooltip-data.sample.ts?raw';
 
 <Meta of={TooltipStories} />
 
@@ -42,3 +44,17 @@ If you assign a tooltip to a non-focusable element, the component will add `tabi
 The same tooltip can be displayed on multiple elements. This reduces the amount of markup necessary.
 
 <Canvas of={TooltipStories.Multiple} />
+
+### Dynamic tooltips
+
+To generate a list of items with unique tooltips, use Angular's `@for` to create triggers dynamically.
+Loop through your elements to render each `<post-tooltip-trigger>`, and use a single `<post-tooltip>` component whose content updates based on the active trigger.
+You can achieve this by listening to the custom `postTriggered` event – emited on hover – and setting the active item accordingly.
+
+#### Data
+
+<Source code={SampleDynamicTooltipData} language="typescript" />
+
+#### Template integration
+
+<Source code={SampleDynamicTooltipCode} language="html" />

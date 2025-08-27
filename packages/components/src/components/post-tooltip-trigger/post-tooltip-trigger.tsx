@@ -1,4 +1,4 @@
-import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch, Event, EventEmitter } from '@stencil/core';
 import { checkType } from '@/utils';
 import 'long-press-event';
 import { version } from '@root/package.json';
@@ -26,6 +26,11 @@ export class PostTooltipTrigger {
    * Delay (in milliseconds) before the tooltip is shown.
    */
   @Prop() delay: number = 0;
+
+  /**
+   * An event emitted when the component is triggered.
+   */
+  @Event() postTriggered: EventEmitter<void>;
 
   /**
    * Reference to the element inside the host that will act as the trigger.
@@ -202,9 +207,11 @@ export class PostTooltipTrigger {
         this.delayTimeout = window.setTimeout(() => {
           this.tooltip?.show(this.trigger);
           this.delayTimeout = null;
+          this.postTriggered.emit();
         }, this.delay);
       } else {
         this.tooltip?.show(this.trigger);
+        this.postTriggered.emit();
       }
     }
   }
