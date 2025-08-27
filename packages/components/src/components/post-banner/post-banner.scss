@@ -1,5 +1,3 @@
-@use '@swisspost/design-system-styles/components/close';
-
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/icons';
 @use '@swisspost/design-system-styles/mixins/media';
@@ -38,10 +36,6 @@ tokens.$default-map: components.$post-banner;
     inset-block-start: tokens.get('banner-padding');
     inset-inline-start: tokens.get('banner-padding');
   }
-
-  ::slotted(*) {
-    margin-block: 0 !important;
-  }
 }
 
 @each $name in 'info', 'success', 'warning', 'error' {
@@ -52,21 +46,6 @@ tokens.$default-map: components.$post-banner;
 
     &::before {
       background-image: var(--post-signal-icon-#{$name});
-    }
-  }
-}
-
-:host([dismissible]) {
-  pointer-events: auto;
-  position: relative;
-
-  > .btn-close {
-    position: absolute;
-    inset-block-start: tokens.get('banner-padding');
-    inset-inline-end: tokens.get('banner-padding');
-
-    > span {
-      @include utilities.visuallyhidden();
     }
   }
 }
@@ -83,6 +62,16 @@ tokens.$default-map: components.$post-banner;
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+::slotted(*) {
+  margin-block: 0 !important;
+}
+
+::slotted(post-closebutton) {
+  position: absolute;
+  inset-block-start: tokens.get('banner-padding');
+  inset-inline-end: tokens.get('banner-padding');
 }
 
 @include utilities.high-contrast-mode {

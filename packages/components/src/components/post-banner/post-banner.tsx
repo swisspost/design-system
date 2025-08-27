@@ -5,6 +5,7 @@ import {
   EventEmitter,
   Host,
   h,
+  Listen,
   Method,
   Prop,
   State,
@@ -12,12 +13,13 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
-import { checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
+import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 
 /**
  * @slot heading - Slot for placing custom content within the banner's heading.
  * @slot actions - Slot for placing custom actions (buttons, links, etc.) within the banner.
+ * @slot close-button - Slot for placing a `post-closebutton` component to make the banner dismissible.
  * @slot default - Slot for placing the main content/message of the banner.
  */
 
@@ -32,25 +34,6 @@ export class PostBanner {
   @Element() host: HTMLPostBannerElement;
 
   @State() hasActions = false;
-
-  /**
-   * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-   */
-  @Prop({reflect: true}) readonly dismissible: boolean = false;
-
-  @Watch('dismissible')
-  checkDismissible() {
-    if (this.dismissible) {
-      setTimeout(() => {
-        checkRequiredAndType(this, 'dismissLabel', 'string');
-      });
-    }
-  }
-
-  /**
-   * The label to use for the close button of a dismissible banner.
-   */
-  @Prop() readonly dismissLabel?: string;
 
   /**
    * The type of the banner.
@@ -74,7 +57,6 @@ export class PostBanner {
 
   componentDidLoad() {
     this.checkContent();
-    this.checkDismissible();
     this.validateType();
   }
 
@@ -95,6 +77,12 @@ export class PostBanner {
     this.postDismissed.emit();
   }
 
+  @Listen('postClick')
+  @EventFrom('post-closebutton')
+  onCloseButtonClick(): void {
+    void this.dismiss();
+  }
+
   private checkContent() {
     this.hasActions = this.host.querySelectorAll('[slot="actions"]').length > 0;
   }
@@ -102,12 +90,7 @@ export class PostBanner {
   render() {
     return (
       <Host data-version={version} role="alert">
-        {this.dismissible && (
-          <button class="btn-close" onClick={() => this.dismiss()}>
-            <span>{this.dismissLabel}</span>
-          </button>
-        )}
-
+        <slot name="close-button" />
 
         <slot name="heading" />
 

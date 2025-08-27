@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 import bannerMeta from './banner.stories';
@@ -27,11 +27,11 @@ export const Banner: Story = {
             hasButtons: [true, false],
           }).map(
             args => html`
-              <post-banner
-                type=${args.type}
-                dismissible=${args.dismissible}
-                dismiss-label="${args.dismissible ? 'Dismiss' : undefined}"
-              >
+              <post-banner type=${args.type}>
+                ${args.dismissible ? html`
+                  <post-closebutton slot="close-button">Close</post-closebutton>
+                ` : nothing}
+
                 <h4 slot="heading">Heading</h4>
                 <p>
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis temporibus
