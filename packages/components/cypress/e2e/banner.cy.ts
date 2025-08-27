@@ -11,7 +11,7 @@ describe('banner', () => {
     });
 
     it('should not have a close button', () => {
-      cy.get('@banner').find('.btn-close').should('not.exist');
+      cy.get('@banner').find('post-closebutton').should('not.exist');
     });
   });
 
@@ -21,11 +21,11 @@ describe('banner', () => {
     });
 
     it('should have a close button', () => {
-      cy.get('@banner').find('.btn-close').should('be.visible');
+      cy.get('@banner').find('post-closebutton').should('be.visible');
     });
 
     it('should be removed after the dismiss button is clicked', () => {
-      cy.get('@banner').find('.btn-close').click();
+      cy.get('@banner').find('post-closebutton').click();
       cy.get('@banner').should('not.exist');
     });
   });
