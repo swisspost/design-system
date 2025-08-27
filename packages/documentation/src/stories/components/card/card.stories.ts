@@ -19,7 +19,7 @@ const meta: MetaComponent = {
   args: {
     showImage: false,
     imagePosition: 'top',
-    content: '<h5>This is my card\'s title</h5><p>This is my card\'s content.</p>',
+    content: "<h5>This is my card's title</h5><p>This is my card's content.</p>",
     action: 'button',
   },
   argTypes: {
@@ -114,7 +114,7 @@ function getCardButton() {
 
 function getCardContent({ content, action }: Args) {
   return html`
-    <div class="p-16">
+    <div class="card-body">
       ${unsafeHTML(content)}
       ${choose(
         action,
@@ -129,9 +129,7 @@ function getCardContent({ content, action }: Args) {
 }
 
 function getCardImage() {
-  return html`
-    <img src="https://picsum.photos/id/38/500/300" alt="" />
-  `;
+  return html` <img src="https://picsum.photos/id/38/500/300" alt="" /> `;
 }
 
 function renderCard(args: Args) {
@@ -139,8 +137,7 @@ function renderCard(args: Args) {
 
   return html`
     <div class="card">
-      ${showImage && imagePosition === 'top' ? getCardImage() : nothing}
-      ${getCardContent(args)}
+      ${showImage && imagePosition === 'top' ? getCardImage() : nothing} ${getCardContent(args)}
       ${showImage && imagePosition === 'bottom' ? getCardImage() : nothing}
     </div>
   `;
@@ -152,8 +149,10 @@ function renderCardWithInteractiveContainer(args: Args) {
 
 const renderSimpleInteractiveCard = html`
   <post-linkarea>
-    <div class="card p-16">
-      <p><a href="http://google.com">Interactive card</a></p>
+    <div class="card">
+      <div class="card-body">
+        <p><a href="http://google.com">Interactive card</a></p>
+      </div>
     </div>
   </post-linkarea>
 `;
@@ -170,8 +169,10 @@ export const Default: Story = {
 export const Foundation: Story = {
   decorators: [(story: StoryFn) => html`<div class="d-flex gap-16">${story()}</div>`],
   render: () => html`
-    <div class="card p-16">
-      <p>Non-interactive card</p>
+    <div class="card">
+      <div class="card-body">
+        <p>Non-interactive card</p>
+      </div>
     </div>
     ${renderSimpleInteractiveCard}
   `,
@@ -253,23 +254,5 @@ export const CustomContent: Story = {
         </div>
       </div>
     `;
-  },
-};
-
-export const BackgroundImage: Story = {
-  decorators: [gridContainer],
-  render: () => {
-    return html` <div class="card position-relative">
-      <img src="https://picsum.photos/id/38/500/500" alt="" />
-      <div class="p-16 position-absolute">
-        <h5>Card Title</h5>
-
-        <p>This is the card content that can contain various types of information.</p>
-
-        <button class="btn btn-primary">
-          <span>Button Text</span>
-        </button>
-      </div>
-    </div>`;
   },
 };

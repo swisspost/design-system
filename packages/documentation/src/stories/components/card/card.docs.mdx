@@ -7,12 +7,11 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="docs-title">
   # Card
 
-  <link-design of={JSON.stringify(CardStories)}></link-design>
+<link-design of={JSON.stringify(CardStories)}></link-design>
+
 </div>
 
-<div className="lead">
-  Cards provide a flexible and extensible content container.
-</div>
+<div className="lead">Cards provide a flexible and extensible content container.</div>
 
 Built with flexbox, they offer easy alignment and mix well with other components.
 
@@ -58,12 +57,3 @@ A card is simply a box which can contain a wide variety of content, including im
 Create lists of content in a card by simply using a list interactive in place of the card body.
 
 <Canvas of={CardStories.ListGroup} />
-
-### Bad example
-
-<div className="banner banner-error mb-16">
-  Never use text with a background image because you can't ensure it is readable by everyone for all
-  languages and browser sizes.
-</div>
-
-<Canvas of={CardStories.BackgroundImage} />

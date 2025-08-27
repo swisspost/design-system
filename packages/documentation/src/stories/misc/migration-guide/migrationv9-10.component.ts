@@ -599,7 +599,6 @@ export class MigrationV99Component extends LitElement {
                     Some elements of the card component and their corresponding classes have been removed. <span class="tag tag-sm tag-danger">breaking</span>
                     <ul>
                       <li><code>.card-header</code></li>
-                      <li><code>.card-body</code></li>
                       <li><code>.card-footer</code></li>
                       <li><code>.card-img</code></li>
                       <li><code>.card-img-top</code></li>

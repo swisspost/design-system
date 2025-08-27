@@ -58,6 +58,10 @@ post-linkarea:has(> .card) {
     border-end-end-radius: tokens.get('card-border-radius');
   }
 
+  .card-body {
+    padding: 1rem; //TODOLEA: Tokenize
+  }
+
   .list-interactive {
     margin-block: 0 !important;
   }
