@@ -106,7 +106,7 @@ const meta: MetaComponent = {
     multipleSize: {
       name: 'Multiple Size',
       description:
-        'When set to a number larger than 0, will set the number of display option rows.<div class="banner banner-sm banner-error">Note: not all browser will respect this setting.</div>',
+        'When set to a number larger than 0, will set the number of display option rows.<post-banner type="error" data-size="sm">Note: not all browser will respect this setting.</post-banner>',
       if: {
         arg: 'multiple',
       },

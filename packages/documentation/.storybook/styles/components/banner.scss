@@ -14,27 +14,15 @@ $post-docs-banner-icon-size-sm: 1.4em;
 $post-docs-banner-line-height-md: 1.35;
 $post-docs-banner-line-height-sm: 1.25;
 
-@include mixins.style-docs-only-guard('.banner') {
+@include mixins.style-docs-only-guard('post-banner') {
   font-size: 1rem;
-
-  &:not(.banner-action) {
-    > :only-child:not(code),
-    > :first-child:not(code) + :last-child:not(code) {
-      font-size: inherit;
-    }
-  }
 
   &:last-child {
     margin-bottom: 0;
   }
 
-  .banner-heading {
-    font-size: 1.0625rem;
-    font-weight: tokens.get('utility-font-weight-black', utilities.$post-typo);
-  }
-
-  &.banner-sm,
-  &.banner-md {
+  &[data-size="sm"],
+  &[data-size="md"] {
     display: block;
     min-height: 0;
     font-family: inherit;
@@ -50,7 +38,7 @@ $post-docs-banner-line-height-sm: 1.25;
     }
   }
 
-  &.banner-sm {
+  &[data-size="sm"] {
     padding: $post-docs-banner-padding-sm;
     font-size: 0.75rem;
     font-weight: 400;
@@ -69,7 +57,7 @@ $post-docs-banner-line-height-sm: 1.25;
     }
   }
 
-  &.banner-md {
+  &[data-size="md"] {
     padding: $post-docs-banner-padding-md;
     font-size: 0.9rem;
     line-height: $post-docs-banner-line-height-md;
@@ -81,12 +69,5 @@ $post-docs-banner-line-height-sm: 1.25;
       width: $post-docs-banner-icon-size-md;
       height: $post-docs-banner-icon-size-md;
     }
-  }
-}
-
-@include mixins.style-docs-only-guard('post-banner') {
-  &::part(banner) {
-    font-size: 1rem;
-    font-weight: 400;
   }
 }
