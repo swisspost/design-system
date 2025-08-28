@@ -49,44 +49,58 @@ export default meta;
 
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
-  const { args, canvasElement } = context;
+  const { canvasElement } = context;
 
-  // Hard-hide the button at first paint to avoid flashes.
-  const tpl = html`
-    <a class="btn btn-secondary banner-button" href="#" style="display:none" aria-hidden="true">
+  // Render: button hard-hidden to avoid initial flash
+  const view = html`
+    <a class="btn btn-secondary banner-button" href="#" hidden style="display:none">
       <span>Reset Banner</span>
     </a>
-    <div class="banner-container">${story(args, context)}</div>
+    <div class="banner-container">${story({}, context)}</div>
   `;
 
   queueMicrotask(() => {
-    // cleanup any previous wires
+    // Clean up any old wires on re-render
     (canvasElement as any).__cleanup__?.();
 
     const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement | null;
-    const container = canvasElement.querySelector('.banner-container') as HTMLElement | null;
     const btn = canvasElement.querySelector('.banner-button') as HTMLButtonElement | null;
+    const container = canvasElement.querySelector('.banner-container') as HTMLElement | null;
     if (!banner || !btn || !container) return;
 
-    const isDismissible = () =>
-      banner.hasAttribute('dismissible') && banner.getAttribute('dismissible') !== 'false';
-    const hide = () => { btn.style.display = 'none'; btn.setAttribute('aria-hidden', 'true'); };
-    const showIfAllowed = () => { if (isDismissible()) { btn.style.display = ''; btn.removeAttribute('aria-hidden'); btn.focus(); } };
+    const hideBtn = () => { btn.hidden = true; btn.style.display = 'none'; };
+    const showBtnIfDismissible = () => {
+      // Boolean attributes in Stencil/Lit: presence means true unless explicitly "false"
+      const a = banner.getAttribute('dismissible');
+      const isDismissible = banner.hasAttribute('dismissible') && a !== 'false';
+      if (isDismissible) {
+        btn.hidden = false;
+        btn.style.display = '';
+        btn.focus();
+      }
+    };
 
-    hide(); // start hidden
+    hideBtn(); // start hidden
 
-    // Show only after REAL dismissal
-    const onDismiss = () => showIfAllowed();
+    // Show after real dismiss
+    const onDismiss = () => showBtnIfDismissible();
     banner.addEventListener('postDismissed', onDismiss);
 
-    // Turning dismissible off must hide the button
-    const mo = new MutationObserver(() => { if (!isDismissible()) hide(); });
+    // Hide if Controls turn dismissible off
+    const mo = new MutationObserver(() => {
+      const a = banner.getAttribute('dismissible');
+      const isDismissible = banner.hasAttribute('dismissible') && a !== 'false';
+      if (!isDismissible) hideBtn();
+    });
     mo.observe(banner, { attributes: true, attributeFilter: ['dismissible'] });
 
-    // Reset: only when currently dismissed (not in DOM)
+    // Reset only when banner is currently dismissed (i.e., not in DOM)
     const onClick = (e: Event) => {
       e.preventDefault();
-      if (!banner.parentNode) { container.appendChild(banner); hide(); }
+      if (!banner.parentNode) {
+        container.appendChild(banner);
+        hideBtn();
+      }
     };
     btn.addEventListener('click', onClick);
 
@@ -97,7 +111,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
     };
   });
 
-  return tpl;
+  return view;
 }
 
 // RENDERER
