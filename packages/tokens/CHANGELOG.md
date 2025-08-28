@@ -1,5 +1,7 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.46
+
 ## 10.0.0-next.45
 
 ### Patch Changes

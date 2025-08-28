@@ -19,6 +19,7 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
   },
   args: {
     innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    type: 'info',
     dismissible: false,
     dismissLabel: 'Dismiss',
   },
@@ -31,19 +32,6 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
         name: 'string',
         required: true,
       },
-    },
-    icon: {
-      control: {
-        type: 'select',
-        labels: {
-          '1001': '1001 (Envelope)',
-          '2023': '2023 (Cog)',
-          '2025': '2025 (Send)',
-          '2035': '2035 (Home)',
-          '2101': '2101 (Bubble)',
-        },
-      },
-      options: ['none', '1001', '2023', '2025', '2035', '2101'],
     },
     innerHTML: {
       description: 'Defines the HTML markup contained in the banner.',
@@ -134,18 +122,6 @@ export const Contents: Story = {
       '<p>This is the banner content that provides important information to the user.</p>' +
       '<button slot="actions" class="btn btn-secondary"><span>Cancel</span></button>' +
       '<button slot="actions" class="btn btn-primary"><span>Accept</span></button>',
-  },
-};
-
-export const CustomIcon: Story = {
-  args: {
-    icon: '1001',
-  },
-};
-
-export const NoIcon: Story = {
-  args: {
-    icon: 'none',
   },
 };
 
