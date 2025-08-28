@@ -51,7 +51,6 @@ export default meta;
 function externalControl(story: StoryFn, context: StoryContext) {
   const { canvasElement } = context;
 
-  // Render: button hard-hidden to avoid initial flash
   const view = html`
     <a class="btn btn-secondary banner-button" href="#" hidden style="display:none">
       <span>Reset Banner</span>
@@ -60,7 +59,6 @@ function externalControl(story: StoryFn, context: StoryContext) {
   `;
 
   queueMicrotask(() => {
-    // Clean up any old wires on re-render
     (canvasElement as any).__cleanup__?.();
 
     const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement | null;
@@ -70,9 +68,9 @@ function externalControl(story: StoryFn, context: StoryContext) {
 
     const hideBtn = () => { btn.hidden = true; btn.style.display = 'none'; };
     const showBtnIfDismissible = () => {
-      // Boolean attributes in Stencil/Lit: presence means true unless explicitly "false"
-      const a = banner.getAttribute('dismissible');
-      const isDismissible = banner.hasAttribute('dismissible') && a !== 'false';
+      const isDismissible =
+        banner.hasAttribute('dismissible') &&
+        banner.getAttribute('dismissible') !== 'false';
       if (isDismissible) {
         btn.hidden = false;
         btn.style.display = '';
@@ -80,21 +78,19 @@ function externalControl(story: StoryFn, context: StoryContext) {
       }
     };
 
-    hideBtn(); // start hidden
+    hideBtn();
 
-    // Show after real dismiss
     const onDismiss = () => showBtnIfDismissible();
     banner.addEventListener('postDismissed', onDismiss);
 
-    // Hide if Controls turn dismissible off
     const mo = new MutationObserver(() => {
-      const a = banner.getAttribute('dismissible');
-      const isDismissible = banner.hasAttribute('dismissible') && a !== 'false';
+      const isDismissible =
+        banner.hasAttribute('dismissible') &&
+        banner.getAttribute('dismissible') !== 'false';
       if (!isDismissible) hideBtn();
     });
     mo.observe(banner, { attributes: true, attributeFilter: ['dismissible'] });
 
-    // Reset only when banner is currently dismissed (i.e., not in DOM)
     const onClick = (e: Event) => {
       e.preventDefault();
       if (!banner.parentNode) {
