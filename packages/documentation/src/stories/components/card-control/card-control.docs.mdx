@@ -18,7 +18,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
 <p className="lead">For a more specialized visualization of checkbox and radio elements.</p>
 
-<post-banner type="info">
+<post-banner>
   <p slot="heading">There are various methods to integrate this component into your project.</p>
   <p>
     We advise opting for the "Standard HTML" approach for when you need full access to the input
@@ -92,7 +92,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
     You can use our built-in icons by just adding the `icon` property with the name of the desired icon.<br/>
     If this is not enough, you can also use the named `icon` slot and add your very own custom icon.
 
-    <post-banner data-size="md">
+    <post-banner>
       Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.
     </post-banner>
 
@@ -102,8 +102,8 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
     If you need to add other content to the component, you can use the default slot to do so.
 
-    <post-banner type="warning" data-size="md">
-      <p class="fw-bold" slot="heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</h4>
+    <post-banner type="warning">
+      <p slot="heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</p>
       <p>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured. More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
     </post-banner>
 

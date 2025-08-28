@@ -15,28 +15,23 @@ $post-docs-banner-line-height-md: 1.35;
 $post-docs-banner-line-height-sm: 1.25;
 
 @include mixins.style-docs-only-guard('post-banner') {
-  font-size: 1rem;
-  margin-block-end: 1rem;
+  min-height: 0;
+  font-family: inherit;
+  padding: $post-docs-banner-padding-md;
+  font-size: 0.9rem;
+  line-height: $post-docs-banner-line-height-md;
+  margin-block-end: 0.5rem;
+
+  &::before {
+    top: list.nth($post-docs-banner-padding-md, 1) +
+        (($post-docs-banner-line-height-md - $post-docs-banner-icon-size-md) * 0.5);
+    left: (list.nth($post-docs-banner-padding-md, 4) - $post-docs-banner-icon-size-md) * 0.5;
+    width: $post-docs-banner-icon-size-md;
+    height: $post-docs-banner-icon-size-md;
+  }
 
   &:last-child {
     margin-bottom: 0;
-  }
-
-  &[data-size="sm"],
-  &[data-size="md"] {
-    display: block;
-    min-height: 0;
-    font-family: inherit;
-
-    a {
-      font-size: inherit;
-      font-weight: inherit;
-      color: var(--post-current-fg);
-
-      &:hover {
-        color: black;
-      }
-    }
   }
 
   &[data-size="sm"] {
@@ -59,18 +54,17 @@ $post-docs-banner-line-height-sm: 1.25;
     }
   }
 
-  &[data-size="md"] {
-    padding: $post-docs-banner-padding-md;
-    font-size: 0.9rem;
-    line-height: $post-docs-banner-line-height-md;
-    margin-block-end: 0.5rem;
+  [slot="heading"] {
+    font-weight: bold;
+  }
 
-    &::before {
-      top: list.nth($post-docs-banner-padding-md, 1) +
-        (($post-docs-banner-line-height-md - $post-docs-banner-icon-size-md) * 0.5);
-      left: (list.nth($post-docs-banner-padding-md, 4) - $post-docs-banner-icon-size-md) * 0.5;
-      width: $post-docs-banner-icon-size-md;
-      height: $post-docs-banner-icon-size-md;
+  a {
+    font-size: inherit;
+    font-weight: inherit;
+    color: var(--post-current-fg);
+
+    &:hover {
+      color: black;
     }
   }
 }

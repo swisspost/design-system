@@ -216,7 +216,7 @@ export const StatusBlock: React.FC = () => {
 
       <hr className="my-32" />
 
-      <post-banner data-size="md" className="my-16">
+      <post-banner className="my-16">
         The amount of source files can be higher than the amount of output files, because one output
         file can contain multiple source files.
       </post-banner>
