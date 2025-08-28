@@ -147,38 +147,38 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private handlePostToggle = (event: CustomEvent<boolean>) => {
-    this.isVisible = event.detail;
-    this.toggleMenu.emit(this.isVisible);
+      this.isVisible = event.detail;
+      this.toggleMenu.emit(this.isVisible);
 
-    requestAnimationFrame(() => {
-      if (this.isVisible) {
-        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+      requestAnimationFrame(() => {
+        if (this.isVisible) {
+          this.lastFocusedElement = this.root?.activeElement as HTMLElement;
 
-        const menuItems = this.getSlottedItems();
-        this.focusableChildren = menuItems;
+          const menuItems = this.getSlottedItems();
+          this.focusableChildren = menuItems;
 
-        if (!this.popovercontainerRendered) {
-          // Only for the first time that the popovercontainer is rendered
-          if (menuItems.length > 0) {
-            // Add role="menu" to the popovercontainer
-            this.host.setAttribute('role', 'menu');
+          if (!this.popovercontainerRendered) {
+            // Only for the first time that the popovercontainer is rendered
+            if (menuItems.length > 0) {
+              // Add role="menu" to the popovercontainer
+              this.host.setAttribute('role', 'menu');
 
-            // Add role="menuitem" to the focusable elements
-            menuItems.forEach(item => {
-              item.setAttribute('role', 'menuitem');
-            });
-            this.popovercontainerRendered = true;
+              // Add role="menuitem" to the focusable elements
+              menuItems.forEach(item => {
+                item.setAttribute('role', 'menuitem');
+              });
+              this.popovercontainerRendered = true;
+            }
           }
+          (menuItems[0] as HTMLElement).focus();
+        } else if (this.lastFocusedElement) {
+          setTimeout(() => {
+            // This timeout is added for NVDA to announce the menu as collapsed
+            this.lastFocusedElement.focus();
+          }, 0);
         }
-        (menuItems[0] as HTMLElement).focus();
-      } else if (this.lastFocusedElement) {
-        setTimeout(() => {
-          // This timeout is added for NVDA to announce the menu as collapsed
-          this.lastFocusedElement.focus();
-        }, 0);
-      }
-    });
-  };
+      });
+    };
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;

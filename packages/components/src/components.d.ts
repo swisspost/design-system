@@ -326,10 +326,6 @@ export namespace Components {
     }
     interface PostMenu {
         /**
-          * The caption describes the purpose of the menu. It is used as the content for the <post-menu> aria-label for accessibility.
-         */
-        "caption"?: string;
-        /**
           * Hides the popover menu and restores focus to the previously focused element.
          */
         "hide": () => Promise<void>;
@@ -1210,10 +1206,6 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostMenu {
-        /**
-          * The caption describes the purpose of the menu. It is used as the content for the <post-menu> aria-label for accessibility.
-         */
-        "caption"?: string;
         /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
