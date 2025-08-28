@@ -18,14 +18,6 @@ enum AvatarType {
   Null = null,
 }
 
-interface AvatarStorage {
-  url: string;
-  useridImageFailed: boolean;
-  useridImageFailedReason: string;
-  emailImageFailed: boolean;
-  emailImageFailedReason: string;
-}
-
 /**
  * @slot default - Slot for inserting a custom image as avatar.
  */
@@ -82,125 +74,52 @@ export class PostAvatar {
   @Watch('userid')
   validateUserid() {
     checkEmptyOrType(this, 'userid', 'string');
+    this.getAvatarImage();
   }
 
   @Watch('email')
   validateEmail() {
     if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
+    this.getAvatarImage();
   }
 
-  @Watch('email')
-  @Watch('userid')
-  async keyChanged() {
-    this.storageKey = `${this.userid || ''}_${this.email || ''}`;
-
-    // Reset previous avatar
-    this.imageUrl = '';
-    this.imageAlt = '';
-    this.avatarType = AvatarType.Initials;
-    await this.setInitialStorage();
-    this.getAvatar();
-  }
-
-  private async setInitialStorage() {
-    const key = await this.cryptify(this.storageKey);
-    const cached = sessionStorage.getItem(key);
-    if (!cached) {
-      const initial: AvatarStorage = {
-        url: null,
-        useridImageFailed: null,
-        useridImageFailedReason: null,
-        emailImageFailed: null,
-        emailImageFailedReason: null,
-      };
-      sessionStorage.setItem(key, JSON.stringify(initial));
-    }
-  }
-
-  private async updateStorage(partialUpdate: Partial<AvatarStorage>) {
-    const key = await this.cryptify(this.storageKey);
-    const cached = sessionStorage.getItem(key);
-    const existing: AvatarStorage = cached ? JSON.parse(cached) : ({} as AvatarStorage);
-    const updated: AvatarStorage = { ...existing, ...partialUpdate };
-    sessionStorage.setItem(key, JSON.stringify(updated));
-  }
-
-  private async getAvatar() {
-    if (this.slottedImage !== null) {
+  private async getAvatarImage() {
+    if (this.slottedImage) {
+      this.slottedImage = this.host.querySelector('img');
       this.avatarType = AvatarType.Slotted;
-    } else {
-      let imageLoaded = false;
+      return;
+    }
 
-      if (this.userid) {
-        imageLoaded = await this.getImageByProp(
-          this.userid,
-          this.fetchImageByUserId.bind(this),
-          'userid',
-        );
-      }
+    let imageLoaded = false;
+    if (this.userid) {
+      imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
+    }
 
-      if (!imageLoaded && this.email) {
-        const emailLoaded = await this.getImageByProp(
-          this.email,
-          this.fetchImageByEmail.bind(this),
-          'email',
-        );
-        if (!emailLoaded) this.getAvatarByInitials();
-      }
+    if (!imageLoaded && emailPattern.exec(this.email ?? '') !== null) {
+      imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
+    }
+
+    if (!imageLoaded) {
+      // fallback to initials if all fail
+      this.avatarType = AvatarType.Initials;
     }
   }
 
-  private setupImage(imageResponseURL: Response['url']) {
-    this.imageUrl = imageResponseURL;
-    this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
-    this.avatarType = AvatarType.Image;
-  }
-
-  private async getImageByProp(
-    prop: string,
-    fetchImage: () => Promise<Response>,
-    type: 'userid' | 'email',
-  ) {
+  private async getImageByProp(prop: string, fetchImage: () => Promise<Response>) {
     if (!prop) return false;
-
-    const key = await this.cryptify(this.storageKey);
-    const cached = sessionStorage.getItem(key);
-    const existing: AvatarStorage = cached ? JSON.parse(cached) : null;
-
-    // Skip the fetch if an image exists for this combination
-    if (existing?.url) {
-      this.setupImage(existing?.url);
-      return true;
-    }
-
+    let imageResponse: Response;
     try {
-      const response = await fetchImage();
-
-      if (response.ok) {
-        this.setupImage(response.url);
-        await this.updateStorage({
-          url: response.url,
-          [`${type}ImageFailed`]: false,
-          [`${type}ImageFailedReason`]: '',
-        });
-        return true;
-      } else {
-        const reason = `Fetch failed with status ${response.status}`;
-        await this.updateStorage({
-          [`${type}ImageFailed`]: true,
-          [`${type}ImageFailedReason`]: reason,
-        });
-        return false;
-      }
+      imageResponse = await fetchImage();
     } catch (error) {
-      const reason = (error as Error).message;
-      console.info(`Network error for ${type}`, error);
-      this.updateStorage({
-        [`${type}ImageFailed`]: true,
-        [`${type}ImageFailedReason`]: reason,
-      });
-      return false;
+      console.info(`Loading avatar by type "${AvatarType.Image}" failed.`, error);
     }
+    if (!imageResponse?.ok) return false;
+    if (imageResponse.ok) {
+      this.imageUrl = imageResponse.url;
+      this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+      this.avatarType = AvatarType.Image;
+    }
+    return imageResponse.ok;
   }
 
   private async fetchImageByUserId() {
@@ -215,7 +134,7 @@ export class PostAvatar {
     return await fetch(imageUrl);
   }
 
-  private getAvatarByInitials() {
+  private getAvatarInitials() {
     this.initials = this.getInitials();
     this.avatarType = AvatarType.Initials;
   }
@@ -239,23 +158,12 @@ export class PostAvatar {
     });
   }
 
-  private onSlotDefaultChange() {
-    this.slottedImage = this.host.querySelector('img');
-    if (this.slottedImage) {
-      this.avatarType = AvatarType.Slotted;
-    } else {
-      this.avatarType = AvatarType.Initials;
-      this.getAvatar();
-    }
-  }
-
-  componentWillRender() {
-    this.slottedImage = this.host.querySelector('img');
+  connectedCallback() {
+    this.getAvatarInitials();
+    this.getAvatarImage();
   }
 
   componentWillLoad() {
-    // Immediately set to initials
-    this.getAvatarByInitials();
     this.validateFirstname();
     this.validateLastname();
     this.validateUserid();
@@ -273,10 +181,11 @@ export class PostAvatar {
 
     return (
       <Host data-version={version}>
-        <slot onSlotchange={this.onSlotDefaultChange.bind(this)}>
-          {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
-          {this.avatarType === 'initials' && <div class="initials">{initials}</div>}
-        </slot>
+        <span class={this.avatarType === 'slotted' ? '' : 'd-none'}>
+          <slot onSlotchange={this.getAvatarImage.bind(this)}></slot>
+        </span>
+        {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
+        {this.avatarType === 'initials' && <div class="initials">{initials}</div>}
       </Host>
     );
   }
