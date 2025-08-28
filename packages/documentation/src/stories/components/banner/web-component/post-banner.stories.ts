@@ -62,17 +62,11 @@ export default meta;
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
   const { args, canvasElement } = context;
-
-  if (!args.dismissible) {
-    return html`<div class="banner-container">${story(args, context)}</div>`;
-  }
-
-  let banner: HTMLPostBannerElement | null = null;
-  let button: HTMLButtonElement | null = null;
+  let banner: HTMLPostBannerElement;
+  let button: HTMLButtonElement;
 
   const toggleBanner = async (e: Event) => {
     e.preventDefault();
-    if (!banner || !button) return;
 
     const bannerContainer = canvasElement.querySelector('.banner-container') as HTMLElement;
 
@@ -85,22 +79,14 @@ function externalControl(story: StoryFn, context: StoryContext) {
   };
 
   setTimeout(() => {
-    banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement | null;
-    button = canvasElement.querySelector('.banner-button') as HTMLButtonElement | null;
+    banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement;
+    button = canvasElement.querySelector('.banner-button') as HTMLButtonElement;
 
-    if (!button) return;
-
-    button.hidden = !!banner?.parentNode;
-
-    banner?.addEventListener(
-      'postDismissed',
-      () => {
-        if (!button) return;
-        button.hidden = false;
-        button.focus();
-      },
-      { once: false }
-    );
+    button.hidden = true;
+    banner.addEventListener('postDismissed', () => {
+      button.hidden = false;
+      button.focus();
+    });
   });
 
   return html`
