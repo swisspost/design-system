@@ -1,6 +1,6 @@
 ---
 '@swisspost/design-system-documentation': patch
-'@swisspost/design-system-components': patch
+'@swisspost/design-system-components': major
 ---
 
 Removed the `dismissible` and `dismissLabel` properties from the `post-banner` component.
