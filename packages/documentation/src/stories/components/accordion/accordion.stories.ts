@@ -35,7 +35,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
     logoSrc: {
       control: 'text',
       description:
-        'Define an image `src` to insert a custom image.<div className="mt-8 banner banner-info banner-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
+        'Define an image `src` to insert a custom image.<post-banner data-size="sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</post-banner>',
       table: {
         category: 'Content',
       },
