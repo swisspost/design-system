@@ -62,39 +62,54 @@ export default meta;
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
   const { args, canvasElement } = context;
-  let banner: HTMLPostBannerElement;
-  let button: HTMLButtonElement;
 
-  const toggleBanner = async (e: Event) => {
-    e.preventDefault();
-
-    const bannerContainer = canvasElement.querySelector('.banner-container') as HTMLElement;
-
-    if (banner.parentNode) {
-      await banner.dismiss();
-    } else {
-      bannerContainer.appendChild(banner);
-      button.hidden = true;
-    }
-  };
-
-  setTimeout(() => {
-    banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement;
-    button = canvasElement.querySelector('.banner-button') as HTMLButtonElement;
-
-    button.hidden = true;
-    banner.addEventListener('postDismissed', () => {
-      button.hidden = false;
-      button.focus();
-    });
-  });
-
-  return html`
-    <a class="btn btn-secondary banner-button" href="#" @click="${(e: Event) => toggleBanner(e)}">
+  // Hard-hide the button at first paint to avoid flashes.
+  const tpl = html`
+    <a class="btn btn-secondary banner-button" href="#" style="display:none" aria-hidden="true">
       <span>Reset Banner</span>
     </a>
     <div class="banner-container">${story(args, context)}</div>
   `;
+
+  queueMicrotask(() => {
+    // cleanup any previous wires
+    (canvasElement as any).__cleanup__?.();
+
+    const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement | null;
+    const container = canvasElement.querySelector('.banner-container') as HTMLElement | null;
+    const btn = canvasElement.querySelector('.banner-button') as HTMLButtonElement | null;
+    if (!banner || !btn || !container) return;
+
+    const isDismissible = () =>
+      banner.hasAttribute('dismissible') && banner.getAttribute('dismissible') !== 'false';
+    const hide = () => { btn.style.display = 'none'; btn.setAttribute('aria-hidden', 'true'); };
+    const showIfAllowed = () => { if (isDismissible()) { btn.style.display = ''; btn.removeAttribute('aria-hidden'); btn.focus(); } };
+
+    hide(); // start hidden
+
+    // Show only after REAL dismissal
+    const onDismiss = () => showIfAllowed();
+    banner.addEventListener('postDismissed', onDismiss);
+
+    // Turning dismissible off must hide the button
+    const mo = new MutationObserver(() => { if (!isDismissible()) hide(); });
+    mo.observe(banner, { attributes: true, attributeFilter: ['dismissible'] });
+
+    // Reset: only when currently dismissed (not in DOM)
+    const onClick = (e: Event) => {
+      e.preventDefault();
+      if (!banner.parentNode) { container.appendChild(banner); hide(); }
+    };
+    btn.addEventListener('click', onClick);
+
+    (canvasElement as any).__cleanup__ = () => {
+      banner.removeEventListener('postDismissed', onDismiss);
+      btn.removeEventListener('click', onClick);
+      mo.disconnect();
+    };
+  });
+
+  return tpl;
 }
 
 // RENDERER
