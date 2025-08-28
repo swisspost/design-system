@@ -1,9 +1,12 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-const meta: MetaComponent<HTMLPostBannerElement> = {
+type PostBannerControls = Partial<HTMLPostBannerElement> & {dismissible: boolean};
+
+const meta: MetaComponent<PostBannerControls> = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
   tags: ['package:WebComponents'],
@@ -21,16 +24,15 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
     innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     type: 'info',
     dismissible: false,
-    dismissLabel: 'Dismiss',
   },
   argTypes: {
-    dismissLabel: {
-      if: {
-        arg: 'dismissible',
-      },
-      type: {
-        name: 'string',
-        required: true,
+    dismissible: {
+      description: 'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
+      table: {
+        category: 'content',
+        type: {
+          summary: 'boolean',
+        },
       },
     },
     innerHTML: {
@@ -86,8 +88,15 @@ function externalControl(story: StoryFn, context: StoryContext) {
 }
 
 // RENDERER
-function renderBanner(args: Partial<HTMLPostBannerElement>) {
-  return html` <post-banner ${spreadArgs(args)}></post-banner> `;
+function renderBanner({ innerHTML, dismissible, ...args }: PostBannerControls) {
+  return html`
+    <post-banner ${spreadArgs(args)}>
+      ${dismissible ? html`
+        <post-closebutton slot="close-button">Close</post-closebutton>
+      ` : nothing}
+      ${unsafeHTML(innerHTML)}
+    </post-banner>
+  `;
 }
 
 // STORIES
