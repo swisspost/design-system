@@ -39,6 +39,12 @@ export class PostMenu {
   @Element() host: HTMLPostMenuElement;
 
   /**
+   * The caption describes the purpose of the menu.
+   * It is used as the content for the <post-menu> aria-label for accessibility.
+   **/
+  @Prop() caption?: string;
+
+  /**
    * Defines the position of the menu relative to its trigger.
    * Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
@@ -61,6 +67,11 @@ export class PostMenu {
    * Holds the current focusable children
    */
   @State() focusableChildren: Element[];
+
+  /**
+   * A flag to know when popovercontainer has been rendered for the first time.
+   */
+  @State() popovercontainerRendered: boolean = false;
 
   /**
    * Emits when the menu is shown or hidden.
@@ -148,20 +159,29 @@ export class PostMenu {
       requestAnimationFrame(() => {
         if (this.isVisible) {
           this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+
           const menuItems = this.getSlottedItems();
           this.focusableChildren = menuItems;
 
-          if (menuItems.length > 0) {
-            // Add role="menu" to the popovercontainer
-            this.host.setAttribute('role', 'menu');
-            // Add role="menuitem" to the focusable elements
-            menuItems.forEach(item => {
-              item.setAttribute('role', 'menuitem');
-            });
-            (menuItems[0] as HTMLElement).focus();
+          if (!this.popovercontainerRendered) {
+            // Only for the first time that the popovercontainer is rendered
+            if (menuItems.length > 0) {
+              // Add role="menu" and "aria-label" to the popovercontainer
+              this.host.setAttribute('role', 'menu');
+              this.host.setAttribute('aria-label', this.caption);
+
+              // Add role="menuitem" to the focusable elements
+              menuItems.forEach(item => {
+                item.setAttribute('role', 'menuitem');
+              });
+              this.popovercontainerRendered = true;
+            }
           }
+          (menuItems[0] as HTMLElement).focus();
         } else if (this.lastFocusedElement) {
-          this.lastFocusedElement.focus();
+          setTimeout(() => { // This timeout is added for NVDA to announce the menu as collapsed
+            this.lastFocusedElement.focus();
+          }, 0);
         }
       });
     };
