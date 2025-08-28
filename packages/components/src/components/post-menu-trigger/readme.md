@@ -18,12 +18,18 @@
 
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-language-switch](../post-language-switch)
+ - [post-user-menu](../post-user-menu)
+ - [post-user-menu2](../post-user-menu2)
+ - [post-user-menu3](../post-user-menu3)
 
 ### Graph
 ```mermaid
 graph TD;
   post-breadcrumbs --> post-menu-trigger
   post-language-switch --> post-menu-trigger
+  post-user-menu --> post-menu-trigger
+  post-user-menu2 --> post-menu-trigger
+  post-user-menu3 --> post-menu-trigger
   style post-menu-trigger fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

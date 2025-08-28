@@ -9,10 +9,16 @@ import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
+import { User } from "./components/post-user-menu/post-user-menu";
+import { User as User1 } from "./components/post-user-menu2/post-user-menu2";
+import { User as User2 } from "./components/post-user-menu3/post-user-menu3";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
+export { User } from "./components/post-user-menu/post-user-menu";
+export { User as User1 } from "./components/post-user-menu2/post-user-menu2";
+export { User as User2 } from "./components/post-user-menu3/post-user-menu3";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -54,6 +60,42 @@ export namespace Components {
         "toggle": (force?: boolean) => Promise<boolean>;
     }
     interface PostAvatar {
+        /**
+          * Defines the users email address associated with a gravatar profile picture.
+         */
+        "email"?: string;
+        /**
+          * Defines the users firstname.
+         */
+        "firstname": string;
+        /**
+          * Defines the users lastname.
+         */
+        "lastname"?: string;
+        /**
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
+    }
+    interface PostAvatar2 {
+        /**
+          * Defines the users email address associated with a gravatar profile picture.
+         */
+        "email"?: string;
+        /**
+          * Defines the users firstname.
+         */
+        "firstname": string;
+        /**
+          * Defines the users lastname.
+         */
+        "lastname"?: string;
+        /**
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
+    }
+    interface PostAvatar3 {
         /**
           * Defines the users email address associated with a gravatar profile picture.
          */
@@ -523,6 +565,51 @@ export namespace Components {
          */
         "for": string;
     }
+    interface PostUserMenu {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
+          * An Object containing the personal data of the user currently logged-in.
+          * @default { name: ' John', surname: 'Do', email: 'jdo@mail.com' }
+         */
+        "user": User;
+    }
+    interface PostUserMenu2 {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
+          * An Object containing the personal data of the user currently logged-in.
+          * @default { name: ' John', surname: 'Do', email: 'jdo@mail.com' }
+         */
+        "user": User1;
+    }
+    interface PostUserMenu3 {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
+          * An Object containing the personal data of the user currently logged-in.
+          * @default { name: ' John', surname: 'Do', email: 'jdo@mail.com' }
+         */
+        "user": User2;
+    }
 }
 export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -582,6 +669,18 @@ declare global {
     var HTMLPostAvatarElement: {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
+    };
+    interface HTMLPostAvatar2Element extends Components.PostAvatar2, HTMLStencilElement {
+    }
+    var HTMLPostAvatar2Element: {
+        prototype: HTMLPostAvatar2Element;
+        new (): HTMLPostAvatar2Element;
+    };
+    interface HTMLPostAvatar3Element extends Components.PostAvatar3, HTMLStencilElement {
+    }
+    var HTMLPostAvatar3Element: {
+        prototype: HTMLPostAvatar3Element;
+        new (): HTMLPostAvatar3Element;
     };
     interface HTMLPostBackToTopElement extends Components.PostBackToTop, HTMLStencilElement {
     }
@@ -894,10 +993,30 @@ declare global {
         prototype: HTMLPostTooltipTriggerElement;
         new (): HTMLPostTooltipTriggerElement;
     };
+    interface HTMLPostUserMenuElement extends Components.PostUserMenu, HTMLStencilElement {
+    }
+    var HTMLPostUserMenuElement: {
+        prototype: HTMLPostUserMenuElement;
+        new (): HTMLPostUserMenuElement;
+    };
+    interface HTMLPostUserMenu2Element extends Components.PostUserMenu2, HTMLStencilElement {
+    }
+    var HTMLPostUserMenu2Element: {
+        prototype: HTMLPostUserMenu2Element;
+        new (): HTMLPostUserMenu2Element;
+    };
+    interface HTMLPostUserMenu3Element extends Components.PostUserMenu3, HTMLStencilElement {
+    }
+    var HTMLPostUserMenu3Element: {
+        prototype: HTMLPostUserMenu3Element;
+        new (): HTMLPostUserMenu3Element;
+    };
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-avatar2": HTMLPostAvatar2Element;
+        "post-avatar3": HTMLPostAvatar3Element;
         "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
@@ -930,6 +1049,9 @@ declare global {
         "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
         "post-tooltip-trigger": HTMLPostTooltipTriggerElement;
+        "post-user-menu": HTMLPostUserMenuElement;
+        "post-user-menu2": HTMLPostUserMenu2Element;
+        "post-user-menu3": HTMLPostUserMenu3Element;
     }
 }
 declare namespace LocalJSX {
@@ -957,6 +1079,42 @@ declare namespace LocalJSX {
         "headingLevel"?: HeadingLevel;
     }
     interface PostAvatar {
+        /**
+          * Defines the users email address associated with a gravatar profile picture.
+         */
+        "email"?: string;
+        /**
+          * Defines the users firstname.
+         */
+        "firstname": string;
+        /**
+          * Defines the users lastname.
+         */
+        "lastname"?: string;
+        /**
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
+    }
+    interface PostAvatar2 {
+        /**
+          * Defines the users email address associated with a gravatar profile picture.
+         */
+        "email"?: string;
+        /**
+          * Defines the users firstname.
+         */
+        "firstname": string;
+        /**
+          * Defines the users lastname.
+         */
+        "lastname"?: string;
+        /**
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
+    }
+    interface PostAvatar3 {
         /**
           * Defines the users email address associated with a gravatar profile picture.
          */
@@ -1372,10 +1530,57 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostUserMenu {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
+          * An Object containing the personal data of the user currently logged-in.
+          * @default { name: ' John', surname: 'Do', email: 'jdo@mail.com' }
+         */
+        "user"?: User;
+    }
+    interface PostUserMenu2 {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
+          * An Object containing the personal data of the user currently logged-in.
+          * @default { name: ' John', surname: 'Do', email: 'jdo@mail.com' }
+         */
+        "user"?: User1;
+    }
+    interface PostUserMenu3 {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
+          * An Object containing the personal data of the user currently logged-in.
+          * @default { name: ' John', surname: 'Do', email: 'jdo@mail.com' }
+         */
+        "user"?: User2;
+    }
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-avatar": PostAvatar;
+        "post-avatar2": PostAvatar2;
+        "post-avatar3": PostAvatar3;
         "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
         "post-breadcrumb-item": PostBreadcrumbItem;
@@ -1408,6 +1613,9 @@ declare namespace LocalJSX {
         "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
         "post-tooltip-trigger": PostTooltipTrigger;
+        "post-user-menu": PostUserMenu;
+        "post-user-menu2": PostUserMenu2;
+        "post-user-menu3": PostUserMenu3;
     }
 }
 export { LocalJSX as JSX };
@@ -1417,6 +1625,8 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-avatar2": LocalJSX.PostAvatar2 & JSXBase.HTMLAttributes<HTMLPostAvatar2Element>;
+            "post-avatar3": LocalJSX.PostAvatar3 & JSXBase.HTMLAttributes<HTMLPostAvatar3Element>;
             "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
@@ -1455,6 +1665,9 @@ declare module "@stencil/core" {
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
             "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;
+            "post-user-menu": LocalJSX.PostUserMenu & JSXBase.HTMLAttributes<HTMLPostUserMenuElement>;
+            "post-user-menu2": LocalJSX.PostUserMenu2 & JSXBase.HTMLAttributes<HTMLPostUserMenu2Element>;
+            "post-user-menu3": LocalJSX.PostUserMenu3 & JSXBase.HTMLAttributes<HTMLPostUserMenu3Element>;
         }
     }
 }

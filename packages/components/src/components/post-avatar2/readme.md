@@ -26,13 +26,13 @@
 
 ### Used by
 
- - [post-user-menu](../post-user-menu)
+ - [post-user-menu2](../post-user-menu2)
 
 ### Graph
 ```mermaid
 graph TD;
-  post-user-menu --> post-avatar
-  style post-avatar fill:#f9f,stroke:#333,stroke-width:4px
+  post-user-menu2 --> post-avatar2
+  style post-avatar2 fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
