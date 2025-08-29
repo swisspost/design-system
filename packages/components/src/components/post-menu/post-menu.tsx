@@ -17,7 +17,7 @@ import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
 
 /**
- * @part menu - The pseudo-element, used to override styles on the component’s internal `menu` container.
+ * @part menu - The container element that holds the list of menu items.
 */
 
 @Component({
