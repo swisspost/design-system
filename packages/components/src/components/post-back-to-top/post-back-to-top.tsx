@@ -103,6 +103,8 @@ export class PostBackToTop {
     this.animateButton();
 
     this.validateLabel();
+
+    document.body.style.overscrollBehavior = 'none';
   }
 
   disconnectedCallback() {
