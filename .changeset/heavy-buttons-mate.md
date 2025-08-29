@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Improved CSS shadow parts descriptions for `<post-tab>` component.
+Provided clearer and user-friendly descriptions for CSS shadow parts in `post-accordion-item` and `post-tabs` components.  
