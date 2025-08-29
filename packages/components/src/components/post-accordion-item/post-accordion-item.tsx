@@ -5,7 +5,7 @@ import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
- * @part button - The container element that toggles the accordion item (header button).
+ * @part button - The element that toggles the accordion item (header button).
  * @part body - The container element that holds the accordion item's content.
  * @slot logo - Slot for placing a logo before the header.
  * @slot header - Slot for placing custom content within the accordion item's header.

@@ -43,11 +43,11 @@ Type: `Promise<boolean>`
 
 ## Shadow Parts
 
-| Part               | Description                                                            |
-| ------------------ | ---------------------------------------------------------------------- |
-| `"accordion-item"` |                                                                        |
-| `"body"`           | The container element that holds the accordion item's content.         |
-| `"button"`         | The container element that toggles the accordion item (header button). |
+| Part               | Description                                                    |
+| ------------------ | -------------------------------------------------------------- |
+| `"accordion-item"` |                                                                |
+| `"body"`           | The container element that holds the accordion item's content. |
+| `"button"`         | The element that toggles the accordion item (header button).   |
 
 
 ## Dependencies
