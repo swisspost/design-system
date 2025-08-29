@@ -28,11 +28,13 @@ export class DemoTarget extends HTMLElement {
 
   private setupAriaLabelledBy() {
     if (!this.internalEl) return;
-
+    // Version #1
     if (this.targetVersion === '1') {
       const labelEl = document.querySelector(`[for="${this.ariaLabelledbyId}"]`);
       this.internalEl.ariaLabelledByElements =
         this.workaround === 'ariaLabelledByElements' && labelEl ? [labelEl] : [];
+
+      // Version #2
     } else if (this.targetVersion === '2') {
       if (this.slotEl && this.workaround === 'ariaLabelledByElements') {
         const assignedElements = this.slotEl.assignedElements({ flatten: true });
@@ -41,16 +43,18 @@ export class DemoTarget extends HTMLElement {
       } else {
         this.internalEl.ariaLabelledByElements = [];
       }
-    } else if (this.targetVersion === '3') {
-      // Target3 doesn't have an input; just make div focusable
-      // this.setAttribute('tabindex', '0');
-      // this.setAttribute('role', 'textbox');
+    } // Version #3
+    else if (this.targetVersion === '3') {
+      console.log(this.ariaLabelledbyId);
+      const labelEl = document.querySelector(`#${this.ariaLabelledbyId}`);
+      console.log(labelEl);
+      this.internalEl.ariaLabelledByElements = labelEl ? [labelEl] : [];
     }
   }
 
   private render() {
     if (!this.shadowRoot) return;
-
+    //Version #2
     if (this.targetVersion === '2') {
       this.shadowRoot.innerHTML = `
         <slot name="label-slot"></slot>
@@ -59,14 +63,13 @@ export class DemoTarget extends HTMLElement {
       this.slotEl = this.shadowRoot.querySelector('slot[name="label-slot"]') as HTMLSlotElement;
       this.internalEl = this.shadowRoot.querySelector('#internal') as HTMLElement;
     } else if (this.targetVersion === '3') {
+      // Version #3
       this.shadowRoot.innerHTML = `
-        <slot name="label-slot"></slot>
         <input id="internal">
-        </input>
       `;
       this.internalEl = this.shadowRoot.querySelector('#internal') as HTMLElement;
     } else {
-      // default to target1
+      // Version #1
       this.shadowRoot.innerHTML = `
         <input id="internal">
         <slot></slot>

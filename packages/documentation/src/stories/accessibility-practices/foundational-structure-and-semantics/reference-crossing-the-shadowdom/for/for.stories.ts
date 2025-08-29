@@ -72,26 +72,8 @@ export const Example3: Story = {
   `,
 };
 
-// Case: Referencing from Shadow Dom to Light DOM workaround with aria-labelledby directly set on host
-export const Example4: Story = {
-  render: () => html`
-    <demo-target target-version="3" aria-labelledby="id_3">
-      <label id="id_3" slot="label-slot">My Text</label>
-    </demo-target>
-  `,
-};
-
-// Case: Referencing from Shadow Dom to Slotted Content (Light) DOM workaround with aria-labelledby directly set on host
-export const Example5: Story = {
-  render: () => html`
-    <post-test-target4 aria-labelledby="id_5">
-      <label id="id_5" slot="label-slot">My Text</label>
-    </post-test-target4>
-  `,
-};
-
 // Case: Standard Light DOM to Shadow DOM workaround
-export const Example6: Story = {
+export const Example4: Story = {
   argTypes: {
     workaround: {
       name: 'Workaround',
@@ -104,17 +86,21 @@ export const Example6: Story = {
   args: {
     workaround: 'none',
   },
-  render: (args: Args) => html`
-    <post-test-label workaround="${args.workaround}" id="id_6"> </post-test-label>
-    <input aria-labelledby="id_6"></input>
+  render: () => html`
+    <demo-label id="id_2"> </demo-label>
+    <input aria-labelledby="id_2"></input>
   `,
 };
 
 // Case: Shadow DOM to other Shadow Dom workaround
 
-export const Example7: Story = {
+export const Example5: Story = {
   render: () => html`
-    <post-test-label id="id_7"></post-test-label>
-    <post-test-target3 aria-labelledby="id_7"></post-test-target3>
+    <demo-label id="id_3"></demo-label>
+    <demo-target
+      target-version="3"
+      aria-labelledby-id="id_3"
+      workaround="ariaLabelledByElements"
+    ></demo-target>
   `,
 };

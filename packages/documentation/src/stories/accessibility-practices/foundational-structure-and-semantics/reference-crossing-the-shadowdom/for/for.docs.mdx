@@ -7,9 +7,9 @@ import * as CCR from './for.stories';
 
 ##
 
-<div className="lead">The native HTML `for`/`id` relationship is a fundamental way to connect a `<label>` element to a form control (such as `<input>`, `<select>`, `<textarea>`, etc. or even to a custom form-associated control) within the same document structure (same DOM tree).</div>
+<div className="lead">The native HTML `for`/`id` relationship is a fundamental way to connect a `<label>` element to a form control, such as `<input>`, `<select>`, `<textarea>`, etc. or even to a custom form-associated control within the same DOM.</div>
 
-<div>This connection is established by setting the for attribute on the `<label>` to match the `id` attribute of the form control it describes. This relationship is crucial for accessibility, as it allows assistive technologies like screen readers to correctly associate and announce the label text when focus is placed on the associated input field, thereby making forms understandable and navigable.</div>
+<div>This connection is established by setting the for attribute on the `<label>` to match the `id` attribute of the form control it describes. This relationship is crucial for accessibility, as it allows assistive technologies like screen readers to correctly associate and announce the label text when focus is placed on the associated input field.</div>
 
 ### I. Referencing Within the Same DOM Tree ✔️
 
@@ -26,7 +26,7 @@ import * as CCR from './for.stories';
 
 ##### Possible Workarounds
 
-###### 1. `Element:ariaLabelledByElements`
+###### `Element:ariaLabelledByElements`
 
 Defines programmatically the `ariaLabelledByElements` property of the element: `this.internalEl.ariaLabelledByElements = [labelEl]`. This solution creates the relationship without the use of an `id`.
 
@@ -42,19 +42,34 @@ Defines programmatically the `ariaLabelledByElements` property of the element: `
   <Controls of={CCR.Example3} />
 </div>
 
-###### 2. Set `aria-labelledby`on the host (for SSR Components) TO START EDIT THAT AND CHECK WITH FOCUS AND INPUT!!!
+### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
 
-This solution involves setting the `aria-labelledby` directly on the host. In order for this solution to work, the host must have a set `role=""` along with `tabindex="0"`.
-This defines the label text as the Accessible Name of the component, but NVDA does not announce it when an interactive element (e.g. an `<input>`) exists inside the component.
+<ul>
+  <li>Shadow DOM → Light DOM</li>
+  <li>Shadow DOM → Slotted Content</li>
+</ul>
+<p>
+  A `for` attribute on an element inside a Shadow DOM{' '}
+  <b>cannot be used to reference the id of an element outside that Shadow DOM</b> (in the Light DOM
+  or an ancestor Shadow DOM). The way the HTML for attribute resolves an id is strictly limited to
+  the element's shadow-including tree.
+</p>
 
-Directly setting `aria-labelledby` on the host.
+##### Possible Workaround
+
+A possible workaround is to set directly an `id` on the host of the referencing element and an `aria-labelledby`on the target element.
 
 <Canvas of={CCR.Example4} sourceState="shown" />
-<div className="hide-col-default">
-  <Controls of={CCR.Example4} />
-</div>
 
-Setting `aria-labelledby` via `ElementInternals`.
+### IV.Referencing From a Shadow DOM Out to another Shadow DOM ❌
+
+<ul>
+  <li>Shadow DOM → Other Shadow DOM</li>
+</ul>
+
+##### Possible Workaround
+
+A workaround for this case combines approaches II and III: using `Element.ariaLabelledByElements` to set an `aria-labelledby` attribute on the Shadow DOM `input`, linking it to an ID defined on the host element of the `label` component.
 
 <Canvas of={CCR.Example5} sourceState="shown" />
 <div className="hide-col-default">
