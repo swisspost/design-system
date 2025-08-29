@@ -1,0 +1,20 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.visibility-example {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  > div {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: post.$yellow;
+    border: post.$white 2px solid  ;
+    border-radius: 0.5rem;
+  }
+}
+
+

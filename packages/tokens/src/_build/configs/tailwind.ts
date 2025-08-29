@@ -2,6 +2,7 @@ import { fileHeader } from 'style-dictionary/utils';
 import { TOKENSET_LAYERS, TOKENSET_NAMES, TOKENSET_PREFIX } from '../constants.js';
 import StyleDictionary from '../style-dictionary.js';
 import { registerConfigMethod, getTokenValue } from '../methods.js';
+import { TokenProperty } from '_build/types.js';
 import { objectDeepmerge, objectTextoutput } from '../utils/index.js';
 
 const TAILWIND_TOKENSET_NAMES = [TOKENSET_NAMES.Utilities, TOKENSET_NAMES.Helpers];
@@ -61,14 +62,18 @@ StyleDictionary.registerFormat({
   name: 'swisspost/tailwind-format',
   format: async ({ dictionary, options, file }) => {
     const header = await fileHeader({ file, commentStyle: 'short' });
-    const tailwindTokensObject = dictionary.allTokens.reduce((allTokens, token) => {
-      const tokenObj = token.path
-        .slice(token.path.indexOf(TOKENSET_PREFIX) + 1)
-        .reverse()
-        .reduce((res, p) => ({ [p]: res }), getTokenValue(options, token));
-
-      return objectDeepmerge(allTokens, tokenObj);
-    }, {});
+    const tailwindTokensObject = dictionary.allTokens.reduce<Record<string, TokenProperty>>(
+      (allTokens, token) => {
+        const tokenObj = token.path
+          .slice(token.path.indexOf(TOKENSET_PREFIX) + 1)
+          .reverse()
+          .reduce((res, p) => ({ [p]: res }), getTokenValue(options, token)) as {
+          [key: string]: TokenProperty;
+        };
+        return objectDeepmerge(allTokens, tokenObj);
+      },
+      {},
+    );
 
     return header + `export default {${objectTextoutput(tailwindTokensObject)}\n};\n`;
   },

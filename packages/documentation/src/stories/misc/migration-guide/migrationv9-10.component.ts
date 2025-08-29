@@ -581,14 +581,30 @@ export class MigrationV99Component extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
-                    <li>datepicker</li>
-                    <li>timepicker</li>
-                    <li>pagination</li>
-                    <li>typeahead</li>
-                    <li>dropdown</li>
+                    <li>carousel</li>
+                    <li>custom select</li>
                     <li>datatable</li>
+                    <li>datepicker</li>
+                    <li>dropdown</li>
+                    <li>modal</li>
+                    <li>notification overlay</li>
+                    <li>pagination</li>
                     <li>progressbar</li>
+                    <li>timepicker</li>
+                    <li>typeahead</li>
                   </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Some elements of the card component and their corresponding classes have been removed. <span class="tag tag-sm tag-danger">breaking</span>
+                    <ul>
+                      <li><code>.card-header</code></li>
+                      <li><code>.card-footer</code></li>
+                      <li><code>.card-img</code></li>
+                      <li><code>.card-img-top</code></li>
+                      <li><code>.card-img-bottom</code></li>
+                    </ul>
+                  </p>
                 </li>
                 <li class="mb-16">
                   <p>
@@ -636,31 +652,6 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     The <code>topic-teaser</code> component and all of its related classes have been
                     removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The ng-bootstrap <code>notification overlay</code> component has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The ng-bootstrap <code>custom select</code> has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The ng-bootstrap <code>carousel</code> component has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The ng-bootstrap <code>modal</code> component has been removed as well as all of
-                    its classes and scss variables
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                 </li>
@@ -769,6 +760,16 @@ export class MigrationV99Component extends LitElement {
                   </ul>
                   <p class="info">
                     Instead, use classes <code>.loader-16</code> and <code>.loader-40</code>.
+                  </p>
+                </li>
+
+                <li class="mb-16">
+                  <p>
+                    Removed the Standard HTML Alert component (<code>.alert</code>, <code>.alert-*</code>).
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    Replaced by the <code>post-banner</code> component.
                   </p>
                 </li>
               </ul>

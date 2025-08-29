@@ -4,6 +4,7 @@
 @use './../placeholders/close' as close-ph;
 
 @use './../variables/spacing';
+@use './../variables/commons';
 @use './../variables/components/notification';
 @use './../tokens/components';
 @use './../functions/tokens';
@@ -46,7 +47,7 @@ tokens.$default-map: components.$post-banner;
 // Positioning
 .toast-container {
   position: fixed;
-  z-index: 1080;
+  z-index: commons.$zindex-toast;
   display: flex;
   flex-direction: column;
 
