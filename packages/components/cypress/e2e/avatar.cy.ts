@@ -86,9 +86,23 @@ describe('Avatar', () => {
       );
       cy.get('@avatar').find('slot img').should('not.exist');
       cy.get('@avatar').find('.initials').should('not.exist');
+    });
 
-      cy.get('@avatar').find('> img').invoke('remove');
+    it('should not show image, when slotted image is not defined', () => {
+      cy.get('@avatar').invoke(
+        'append',
+        '<img src="/assets/images/logo-swisspost.svg" alt="Swiss Post Logo" />',
+      );
+      cy.get('@avatar').find('img').invoke('remove');
       cy.get('@avatar').find('img').should('not.exist');
+      cy.get('@avatar').find('.initials').should('exist');
+    });
+
+    it('should not show image bur fallback to initials, when slotted image is invalid', () => {
+      cy.get('@avatar').invoke(
+        'append',
+        '<img src="/assets/images/invalid-image.svg" alt="Invalid image" />',
+      );
       cy.get('@avatar').find('.initials').should('exist');
     });
   });
