@@ -207,8 +207,6 @@ input.form-control {
     @include icon-mx.post-icon(
       $name: 'success-solid',
       $color: tokens.get('post-validation-success', components.$post-validation),
-      $width: tokens.get('input-sizing-icon'),
-      $height: tokens.get('input-sizing-icon')
     );
   }
 
@@ -224,8 +222,6 @@ input.form-control {
     @include icon-mx.post-icon(
       $name: 'warning-solid',
       $color: tokens.get('post-validation-error', components.$post-validation),
-      $width: tokens.get('input-sizing-icon'),
-      $height: tokens.get('input-sizing-icon')
     );
   }
 

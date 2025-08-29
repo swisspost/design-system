@@ -1,12 +1,26 @@
 @use 'sass:map';
 @use 'sass:meta';
+@use 'sass:list';
 
 @use './../variables/type';
 @use './../variables/color';
 @use './../variables/components/button';
 @use './../functions/icons' as icon-fn;
 @use './../mixins/utilities';
-@use './../utilities/env-variables' as icon-version;
+
+
+$loaded-icons: () !default;
+
+/// Loads the icon CSS only once per icon name.
+@mixin load-icon-css($name, $path: '@swisspost/design-system-icons/dist/css-variables') {
+  @if list.index($loaded-icons, $name) == null {
+    $loaded-icons: list.append($loaded-icons, $name) !global;
+    @at-root {
+      @include meta.load-css("#{$path}/#{$name}");
+    }
+  }
+}
+
 
 @mixin icon($name) {
   $icon: icon-fn.get-svg-url($name);
@@ -17,31 +31,27 @@
 }
 
 @mixin post-icon(
-  $base:
-    'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
   $name,
   $color: inherit,
   $width: 1em,
-  $height: 1em
+  $height: 1em,
+  $path: '@swisspost/design-system-icons/dist/css-variables'
 ) {
   display: inline-block;
-  width: $width;
-  height: $height;
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: url('#{$base}/#{$name}.svg');
-  mask-image: url('#{$base}/#{$name}.svg');
-  /* stylelint-disable-next-line property-no-vendor-prefix */
+  mask-image: var(--post-icon-#{$name});
+  -webkit-mask-image: var(--post-icon-#{$name});
   -webkit-mask-position: center center;
   mask-position: center center;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: 100%;
   mask-size: 100%;
+  width: $width;
+  height: $height;
+  @include load-icon-css($name, $path);
 }
 
 @mixin remove-icon() {

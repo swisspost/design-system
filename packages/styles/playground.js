@@ -21,3 +21,4 @@ document.getElementById('theme-select').addEventListener('change', handleThemeAp
 document.getElementById('scheme-select').addEventListener('change', e => {
   document.body.setAttribute('data-color-scheme', e.target.value);
 });
+
