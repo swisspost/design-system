@@ -1,5 +1,14 @@
 # @swisspost/design-system-components-angular-workspace
 
+## 1.1.10-next.47
+
+### Patch Changes
+
+- Updated peer dependencies for `@angular/core`, `@angular/common` and `@angular/forms` to "^20.0.0". (by [@myrta2302](https://github.com/myrta2302) with [#5836](https://github.com/swisspost/design-system/pull/5836))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.47
+  - @swisspost/design-system-styles@10.0.0-next.47
+
 ## 1.1.10-next.46
 
 ### Patch Changes

@@ -1,5 +1,52 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.48
+
+### Major Changes
+
+- Removed the Standard HTML Banner component (`.banner`, `.banner-*`) in favor of the `post-banner` web component.  
+  BEFORE:
+
+  ```html
+  <div role="alert" class="banner banner-success">
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </div>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-banner type="success">
+    <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
+  </post-banner>
+  ``` (by [@alizedebray](https://github.com/alizedebray) with
+  [#6078](https://github.com/swisspost/design-system/pull/6078))
+  ````
+
+### Minor Changes
+
+- Internalized bootstrap visibility utilities. (by [@hugomslv](https://github.com/hugomslv) with [#6079](https://github.com/swisspost/design-system/pull/6079))
+
+- Added the `.z-header`, `.z-spinner`, `.z-toast` and `.z-fixed` z-index utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6012](https://github.com/swisspost/design-system/pull/6012))
+
+- Removed classes for the card CSS component, following the removal of bootstrap:
+  - `.card-header`
+  - `.card-footer`
+  - `.card-img`
+  - `.card-img-top`
+  - `.card-img-bottom` (by [@leagrdv](https://github.com/leagrdv) with [#5966](https://github.com/swisspost/design-system/pull/5966))
+
+### Patch Changes
+
+- Removed the `dismissible` and `dismissLabel` properties from the `post-banner` component. Dismiss functionality now only requires assigning a `post-closebutton` to the new `close-button` slot. (by [@alizedebray](https://github.com/alizedebray) with [#6108](https://github.com/swisspost/design-system/pull/6108))
+- Updated dependencies:
+  - @swisspost/design-system-tokens@10.0.0-next.47
+  - @swisspost/design-system-components@10.0.0-next.47
+  - @swisspost/design-system-components-react@10.0.0-next.47
+  - @swisspost/design-system-styles@10.0.0-next.47
+  - @swisspost/internet-header@10.0.0-next.47
+  - @swisspost/design-system-icons@10.0.0-next.47
+
 ## 6.0.0-next.47
 
 ### Minor Changes
