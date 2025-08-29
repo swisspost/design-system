@@ -66,9 +66,9 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part     | Description |
-| -------- | ----------- |
-| `"menu"` |             |
+| Part     | Description                                              |
+| -------- | -------------------------------------------------------- |
+| `"menu"` | The container element that holds the list of menu items. |
 
 
 ## Dependencies
