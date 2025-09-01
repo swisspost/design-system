@@ -4,7 +4,7 @@ import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-type PostBannerControls = Partial<HTMLPostBannerElement> & {dismissible: boolean};
+type PostBannerControls = Partial<HTMLPostBannerElement> & { dismissible: boolean };
 
 const meta: MetaComponent<PostBannerControls> = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
@@ -21,13 +21,15 @@ const meta: MetaComponent<PostBannerControls> = {
     },
   },
   args: {
-    innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    innerHTML:
+      '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     type: 'info',
     dismissible: false,
   },
   argTypes: {
     dismissible: {
-      description: 'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
+      description:
+        'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
       table: {
         category: 'content',
         type: {
@@ -64,7 +66,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
       await banner.dismiss();
     } else {
       bannerContainer.appendChild(banner);
-      button.hidden = true;
+      button.style.display = 'none';
     }
   };
 
@@ -72,9 +74,9 @@ function externalControl(story: StoryFn, context: StoryContext) {
     banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement;
     button = canvasElement.querySelector('.banner-button') as HTMLButtonElement;
 
-    button.hidden = true;
+    button.style.display = 'none';
     banner.addEventListener('postDismissed', () => {
-      button.hidden = false;
+      button.style.display = '';
       button.focus();
     });
   });
@@ -91,9 +93,9 @@ function externalControl(story: StoryFn, context: StoryContext) {
 function renderBanner({ innerHTML, dismissible, ...args }: PostBannerControls) {
   return html`
     <post-banner ${spreadArgs(args)}>
-      ${dismissible ? html`
-        <post-closebutton slot="close-button">Close</post-closebutton>
-      ` : nothing}
+      ${dismissible
+        ? html` <post-closebutton slot="close-button">Close</post-closebutton> `
+        : nothing}
       ${unsafeHTML(innerHTML)}
     </post-banner>
   `;
