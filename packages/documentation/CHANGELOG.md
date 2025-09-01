@@ -1,5 +1,108 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.47
+
+### Minor Changes
+
+- Added missing `bottom` and `end` controls to position utilities for complete configuration. Replaced empty label option with `unset` for better clarity across all position controls (`top`, `bottom`, `start`, `end`).
+  Position utilities now use logical CSS inset properties (inset-block-start, inset-block-end, inset-inline-start, inset-inline-end).
+  This means `start` and `end` follow the writing direction — left in LTR and right in RTL. (by [@bucknatt](https://github.com/bucknatt) with [#6002](https://github.com/swisspost/design-system/pull/6002))
+
+### Patch Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.46
+  - @swisspost/design-system-components-react@10.0.0-next.46
+  - @swisspost/design-system-styles@10.0.0-next.46
+  - @swisspost/design-system-components@10.0.0-next.46
+  - @swisspost/internet-header@10.0.0-next.46
+  - @swisspost/design-system-tokens@10.0.0-next.46
+
+## 6.0.0-next.46
+
+### Patch Changes
+
+- Replaced empty label option for overflow utilities with `unset` for better clarity across all overflow controls (`overflow`, `overflowX`, `overflowY`). (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6049](https://github.com/swisspost/design-system/pull/6049))
+- Updated dependencies:
+  - @swisspost/design-system-tokens@10.0.0-next.45
+  - @swisspost/design-system-icons@10.0.0-next.45
+  - @swisspost/design-system-styles@10.0.0-next.45
+  - @swisspost/design-system-components@10.0.0-next.45
+  - @swisspost/design-system-components-react@10.0.0-next.45
+  - @swisspost/internet-header@10.0.0-next.45
+
+## 6.0.0-next.45
+
+### Minor Changes
+
+- Internalized bootstrap z-index utilities. (by [@hugomslv](https://github.com/hugomslv) with [#5741](https://github.com/swisspost/design-system/pull/5741))
+
+### Patch Changes
+
+- Enabled use of the `post-header` component without requiring a `post-mainnavigation`. (by [@alizedebray](https://github.com/alizedebray) with [#5933](https://github.com/swisspost/design-system/pull/5933))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.44
+  - @swisspost/design-system-components@10.0.0-next.44
+  - @swisspost/design-system-styles@10.0.0-next.44
+  - @swisspost/design-system-components-react@10.0.0-next.44
+  - @swisspost/internet-header@10.0.0-next.44
+  - @swisspost/design-system-tokens@10.0.0-next.44
+
+## 6.0.0-next.44
+
+### Major Changes
+
+- Removed the slider (form range) component - as it was depending on bootstrap - which will be replaced by a web component in the future. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed the bootstrap dependency. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed the `post-tag` component. The `tag` component can be used instead. (by [@schaertim](https://github.com/schaertim) with [#5764](https://github.com/swisspost/design-system/pull/5764))
+
+- Removed the `ng-bootstrap` dependency as well as all of the components built on it:
+  - datepicker
+  - timepicker
+  - pagination
+  - typeahead
+  - dropdown
+  - datatable
+  - progressbar (by [@leagrdv](https://github.com/leagrdv) with [#5830](https://github.com/swisspost/design-system/pull/5830))
+
+### Minor Changes
+
+- Added a `full-width` property to the `post-tabs` component to allow the tabs container to span the full screen width. (by [@myrta2302](https://github.com/myrta2302) with [#5736](https://github.com/swisspost/design-system/pull/5736))
+
+- Added Nattaya's photo and info on the documentation footer. (by [@bucknatt](https://github.com/bucknatt) with [#5935](https://github.com/swisspost/design-system/pull/5935))
+
+- Removed deprecated classes and SCSS variables for the spinner:
+
+  - `.loader-xs`
+  - `.loader-sm`
+  - `$spinner-size-xs`
+  - `$spinner-size-sm`
+  - `$spinner-border-width-xs`
+  - `$spinner-border-width-sm` (by [@bucknatt](https://github.com/bucknatt) with [#5951](https://github.com/swisspost/design-system/pull/5951))
+
+- Added the `target group` css component within the `post-header` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5687](https://github.com/swisspost/design-system/pull/5687))
+
+- Internalized bootstrap interactions utilities (pointer-events and user-select) into the design system. (by [@leagrdv](https://github.com/leagrdv) with [#5868](https://github.com/swisspost/design-system/pull/5868))
+
+### Patch Changes
+
+- Updated `post-tooltip` and `post-popover` components: added `.palette` class in the documentation examples and overrode default `popovercontainer` styles in both components. (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
+
+- The `back-button` slot has been completely removed from the `<post-mainnavigation>` in the `<post-header>` component. If you currently have a `back-button` inside `<post-mainnavigation>`, you must remove it entirely as this is no longer supported. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5899](https://github.com/swisspost/design-system/pull/5899))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.43
+  - @swisspost/design-system-components@10.0.0-next.43
+  - @swisspost/design-system-styles@10.0.0-next.43
+  - @swisspost/design-system-tokens@10.0.0-next.43
+  - @swisspost/internet-header@10.0.0-next.43
+  - @swisspost/design-system-components-react@10.0.0-next.43
+
 ## 6.0.0-next.43
 
 ### Patch Changes

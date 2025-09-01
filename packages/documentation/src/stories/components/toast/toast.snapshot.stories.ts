@@ -26,7 +26,6 @@ export const Toast: Story = {
             title: ['Title', shortText],
             content: [shortText, longText],
             variant: context.argTypes.variant.options,
-            noIcon: [false, true],
             dismissible: [false, true],
           })
             .filter(

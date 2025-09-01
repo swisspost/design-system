@@ -31,6 +31,11 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+
+  private get hasMobileMenu(): boolean {
+    return this.device !== 'desktop' && this.hasNavigation;
+  }
+
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
@@ -56,6 +61,7 @@ export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: Device = breakpoint.get('device');
+  @State() hasNavigation: boolean = false;
   @State() mobileMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -110,6 +116,8 @@ export class PostHeader {
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
+
+    this.checkNavigationExistence();
     this.switchLanguageSwitchMode();
 
     this.handleScrollParentResize();
@@ -151,6 +159,10 @@ export class PostHeader {
     }
 
     this.mobileMenuExtended = false;
+  }
+
+  private checkNavigationExistence(): void {
+    this.hasNavigation = this.host.querySelectorAll('post-mainnavigation').length > 0;
   }
 
   private async closeMobileMenu() {
@@ -263,7 +275,7 @@ export class PostHeader {
 
     if (localHeaderElement) {
       document.documentElement.style.setProperty(
-        '--post-local-header-height',
+        '--post-local-header-expanded-height',
         `${localHeaderElement.clientHeight}px`,
       );
     }
@@ -315,7 +327,7 @@ export class PostHeader {
   }
 
   private switchLanguageSwitchMode() {
-    const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
+    const variant: SwitchVariant = this.hasMobileMenu ? 'list' : 'menu';
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
       languageSwitch?.setAttribute('variant', variant);
     });
@@ -345,7 +357,7 @@ export class PostHeader {
               <slot name="target-group"></slot>
             )}
           </div>
-          <slot name="post-mainnavigation"></slot>
+          <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
@@ -358,6 +370,10 @@ export class PostHeader {
   }
 
   render() {
+    const localHeaderClasses = ['local-header'];
+    if (this.mobileMenuExtended) localHeaderClasses.push('local-header-mobile-extended');
+    if (!this.hasNavigation) localHeaderClasses.push('no-navigation');
+
     return (
       <Host data-version={version} data-color-scheme="light">
         <div class="global-header">
@@ -370,17 +386,19 @@ export class PostHeader {
             {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
-            {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
+            {!this.hasMobileMenu && (
+              <slot name="meta-navigation"></slot>
+            )}
             <slot name="global-controls"></slot>
-            {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
-            <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
-              <slot name="post-togglebutton"></slot>
-            </div>
+            {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
+            {this.hasNavigation && (
+              <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
+                <slot name="post-togglebutton"></slot>
+              </div>
+            )}
           </div>
         </div>
-        <div
-          class={'local-header ' + (this.mobileMenuExtended ? 'local-header-mobile-extended' : '')}
-        >
+        <div class={localHeaderClasses.join(' ')}>
           <slot name="title"></slot>
           <div class="local-sub">
             <slot name="local-controls"></slot>
