@@ -3,9 +3,9 @@ import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 
 const meta: MetaExtended = {
-  id: '76ade552-2c03-4d6d-9dce-28daa3401234',
+  id: '76ade552-2c03-4d6d-9dce-28daa3405678',
   title:
-    'Accessibility Practices/Foundational Structure And Semantics/Reference Crossing The Shadowdom/for',
+    'Accessibility Practices/Foundational Structure And Semantics/Reference Crossing The Shadowdom/aria-labelledby',
   parameters: {
     badges: [],
   },
@@ -20,9 +20,10 @@ type Story = StoryObj;
 // Case: Standard Light DOM to Light DOM
 export const ExampleHTML: Story = {
   render: () => html`
-  
-    <label for="id_0">My Text</label>
-    <input id="id_0"></input>
+    <span id="id_1">My Text</span>
+    <div class="btn btn-primary" aria-labelledby="id_1" role="button" tabindex="0">
+      <post-icon name="1022"></post-icon>
+    </div>
   `,
 };
 
@@ -41,17 +42,16 @@ export const Example2: Story = {
     workaround: 'none',
   },
   render: (args: Args) => html`
-    <label for="id_1">My Text</label>
-    <demo-target
-      target-version="1"
+    <span id="id_2">My Text</span>
+    <demo-button
+      button-version="1"
+      aria-labelledby-id="id_2"
       workaround="${args.workaround}"
-      aria-labelledby-id="id_1"
-    ></demo-target>
+    ></demo-button>
   `,
 };
 
 // Case: Referencing from Shadow DOM (Host Attribute) to Slotted Content (Element) workaround setting programmatically the relevant Element property
-
 export const Example3: Story = {
   argTypes: {
     workaround: {
@@ -66,41 +66,43 @@ export const Example3: Story = {
     workaround: 'none',
   },
   render: (args: Args) => html`
-    <demo-target target-version="2" workaround="${args.workaround}">
-      <label slot="label-slot">My Text</label></demo-target
+    <demo-button button-version="2" workaround="${args.workaround}"
+      ><span slot="label-slot">My Text</span></demo-button
     >
   `,
 };
 
 // Case: Standard Light DOM to Shadow DOM workaround
 export const Example4: Story = {
-  argTypes: {
-    workaround: {
-      name: 'Workaround',
-      control: {
-        type: 'radio',
-      },
-      options: ['none', 'ariaLabelledByElements (not working)'],
-    },
-  },
-  args: {
-    workaround: 'none',
-  },
   render: () => html`
-    <demo-label id="id_2"> </demo-label>
-    <input aria-labelledby="id_2"></input>
+    <demo-span id="id_6"></demo-span>
+    <div class="btn btn-primary" aria-labelledby="id_6" role="button" tabindex="0">
+      <post-icon name="1022"></post-icon>
+    </div>
+  `,
+};
+
+// Case: Referencing from Shadow Dom to the Light DOM workaround with aria-labelledby directly set on host
+export const Example6: Story = {
+  render: () => html`
+    <span id="id_4">My Text</span>
+    <post-test-button aria-labelledby-id="id_4"></post-test-button>
+  `,
+};
+
+// Case: Referencing from Shadow Dom to Slotted Content (Light) DOM workaround with aria-labelledby directly set on host
+export const Example5: Story = {
+  render: () => html`
+    <post-test-button aria-labelledby-id="id_5"
+      ><span slot="label-slot" id="id_5">My Text</span></post-test-button
+    >
   `,
 };
 
 // Case: Shadow DOM to other Shadow Dom workaround
-
-export const Example5: Story = {
+export const Example7: Story = {
   render: () => html`
-    <demo-label id="id_3"></demo-label>
-    <demo-target
-      target-version="3"
-      aria-labelledby-id="id_3"
-      workaround="ariaLabelledByElements"
-    ></demo-target>
+    <post-test-span id="id_7"></post-test-span>
+    <post-test-button aria-labelledby="id_7"></post-test-button>
   `,
 };
