@@ -18,7 +18,8 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
     },
   },
   args: {
-    innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    innerHTML:
+      '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     type: 'info',
     dismissible: false,
     dismissLabel: 'Dismiss',
@@ -50,7 +51,6 @@ export default meta;
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
   const { canvasElement } = context;
-
   const view = html`
     <a class="btn btn-secondary banner-button" href="#" hidden style="display:none">
       <span>Reset Banner</span>
@@ -58,19 +58,23 @@ function externalControl(story: StoryFn, context: StoryContext) {
     <div class="banner-container">${story({}, context)}</div>
   `;
 
-  queueMicrotask(() => {
+  requestAnimationFrame(() => {
+    console.log('requestanimation');
     (canvasElement as any).__cleanup__?.();
 
     const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement | null;
     const btn = canvasElement.querySelector('.banner-button') as HTMLButtonElement | null;
     const container = canvasElement.querySelector('.banner-container') as HTMLElement | null;
+
     if (!banner || !btn || !container) return;
 
-    const hideBtn = () => { btn.hidden = true; btn.style.display = 'none'; };
+    const hideBtn = () => {
+      btn.hidden = true;
+      btn.style.display = 'none';
+    };
     const showBtnIfDismissible = () => {
       const isDismissible =
-        banner.hasAttribute('dismissible') &&
-        banner.getAttribute('dismissible') !== 'false';
+        banner.hasAttribute('dismissible') && banner.getAttribute('dismissible') !== 'false';
       if (isDismissible) {
         btn.hidden = false;
         btn.style.display = '';
@@ -85,8 +89,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
 
     const mo = new MutationObserver(() => {
       const isDismissible =
-        banner.hasAttribute('dismissible') &&
-        banner.getAttribute('dismissible') !== 'false';
+        banner.hasAttribute('dismissible') && banner.getAttribute('dismissible') !== 'false';
       if (!isDismissible) hideBtn();
     });
     mo.observe(banner, { attributes: true, attributeFilter: ['dismissible'] });
