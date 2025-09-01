@@ -4,7 +4,6 @@ import {
   createOutputFiles,
   removeTokenSetFiles,
 } from './_build/methods.js';
-
 import './_build/configs/index.js';
 
 /**
