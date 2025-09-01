@@ -1,0 +1,56 @@
+import { Meta, Canvas, Source, Controls } from '@storybook/addon-docs/blocks';
+import * as CCR from './aria-labelledby.stories';
+
+<Meta of={CCR} />
+
+# aria-labelledby
+
+<div className="lead">
+  In the Light DOM, the `aria-labelledby` attribute assigns an accessible name to an element by
+  referencing the ID of one or more elements that provide the descriptive text.
+</div>
+<div>
+  This is particularly useful when a simple text label isn’t directly linked to the element, or when
+  the accessible name needs to be composed from multiple pieces of text.
+</div>
+### I. Referencing Within the Same DOM Tree ✔️
+
+<Canvas of={CCR.ExampleHTML} sourceState="shown" />
+### II. Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
+
+<ul>
+  <li>Light DOM → Shadow DOM</li>
+  <li>Slotted Content → Shadow DOM</li>
+</ul>
+
+Standard `aria-labelledby` cannot reference elements inside a Shadow DOM from outside it, because IDs within a Shadow DOM are encapsulated and inaccessible to the Light DOM or other Shadow DOMs.
+
+##### Possible Workarounds
+
+###### 1. `Element:ariaLabelledByElements`
+
+<b>Light DOM → Shadow DOM Example</b>
+<Canvas of={CCR.Example2} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example2} />
+</div>
+
+<b>Slotted Content → Shadow DOM Example</b>
+<Canvas of={CCR.Example3} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example3} />
+</div>
+### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
+
+<ul>
+  <li>Shadow DOM → Light DOM</li>
+  <li>Shadow DOM → Slotted Content</li>
+</ul>
+
+Referencing an element in the light DOM from within the Shadow DOM using standard `aria-labelledby` is not possible.
+
+##### Possible Workaround
+
+An option is to set the `id` directly on the host of the labeling component. Please note that, in this case all the visible text inside the referencing component will be assigned as the Accessible Name of the target element.
+
+<Canvas of={CCR.Example4} sourceState="shown" />
