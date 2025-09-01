@@ -1,21 +1,18 @@
 import { createRule } from '../../../utils/create-rule';
 import { HtmlNode } from '../../../parsers/html/html-node';
 
-export const name = 'no-unnumbered-border-radius';
+export const name = 'no-deprecated-font-weights';
 
 const classesMap = [
-  { old: 'rounded', new: 'rounded-4' },
-  { old: 'rounded-top', new: 'rounded-top-4' },
-  { old: 'rounded-bottom', new: 'rounded-bottom-4' },
-  { old: 'rounded-start', new: 'rounded-start-4' },
-  { old: 'rounded-end', new: 'rounded-end-4' },
+  { old: 'bold', new: 'fw-bold' },
+  { old: 'regular', new: 'fw-regular' },
 ];
 
-function getRemovedRoundedClassMsgs(): Record<string, string> {
+function getChangedFontWeightClassMsgs(): Record<string, string> {
   return classesMap.reduce(
     (o, key) =>
       Object.assign(o, {
-        [key.old]: `The "${key.old}" class has been deleted. Please remove it or replace it with "${key.new}".`,
+        [key.old]: `The "${key.old}" class has been deleted. Please replace it with "${key.new}".`,
       }),
     {},
   );
@@ -27,9 +24,9 @@ export default createRule({
     docs: {
       dir: 'html',
       description:
-        'Flags "rounded", "rounded-*" (top, bottom, start, end) classes and replaces them with "rounded-4" and "rounded-4-*".',
+        'Flags "bold" and "regular" classes and replaces them with "fw-bold" and "fw-regular".',
     },
-    messages: getRemovedRoundedClassMsgs(),
+    messages: getChangedFontWeightClassMsgs(),
     type: 'problem',
     fixable: 'code',
     schema: [],
