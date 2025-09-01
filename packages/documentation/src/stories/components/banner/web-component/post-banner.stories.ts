@@ -51,6 +51,7 @@ export default meta;
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
   const { canvasElement } = context;
+
   const view = html`
     <a class="btn btn-secondary banner-button" href="#" hidden style="display:none">
       <span>Reset Banner</span>
@@ -59,19 +60,23 @@ function externalControl(story: StoryFn, context: StoryContext) {
   `;
 
   queueMicrotask(() => {
-    console.log('now microtask');
+    console.log('on microtask start');
     (canvasElement as any).__cleanup__?.();
 
     const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement | null;
     const btn = canvasElement.querySelector('.banner-button') as HTMLButtonElement | null;
     const container = canvasElement.querySelector('.banner-container') as HTMLElement | null;
+
+    console.log(banner, btn, container);
     if (!banner || !btn || !container) return;
 
     const hideBtn = () => {
+      console.log('hideBtn');
       btn.hidden = true;
       btn.style.display = 'none';
     };
     const showBtnIfDismissible = () => {
+      console.log('switch btn if dismissible');
       const isDismissible =
         banner.hasAttribute('dismissible') && banner.getAttribute('dismissible') !== 'false';
       if (isDismissible) {
