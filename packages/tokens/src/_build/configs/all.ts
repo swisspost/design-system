@@ -1,8 +1,8 @@
 import { fileHeader } from 'style-dictionary/utils';
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
-import StyleDictionary from '../style-dictionary.js';
+import StyleDictionary from 'style-dictionary';
 import { getSetName, getSet, getTokenValue, registerConfigMethod } from '../methods.js';
-
+import { ConfigWithMeta } from '_build/types.js';
 /**
  * Registers a config getter method to generate output files for all code relevant tokens in the tokens.json.
  */
@@ -19,7 +19,11 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
       include: [`${sourcePath}_temp/source/**/*.json`],
       platforms: {
         scss: {
-          transforms: ['name/kebab', 'swisspost/scss-no-unitless-zero-values', 'swisspost/px-to-rem'],
+          transforms: [
+            'name/kebab',
+            'swisspost/scss-no-unitless-zero-values',
+            'swisspost/px-to-rem',
+          ],
           buildPath,
           expand: {
             include: ['typography'],
@@ -55,8 +59,9 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
  */
 StyleDictionary.registerFilter({
   name: 'swisspost/scss-filter',
-  filter: (token, { meta }) => {
-    return token.filePath.includes(`/output/${meta.filePath}`);
+  filter: (token, options) => {
+    const configOptions = options as ConfigWithMeta;
+    return token.filePath.includes(`/output/${configOptions.meta?.filePath}`);
   },
 });
 
@@ -75,12 +80,13 @@ StyleDictionary.registerFilter({
 StyleDictionary.registerFormat({
   name: 'swisspost/scss-format',
   format: async ({ dictionary, options, file }) => {
-    const { meta } = options;
+    const { meta } = options as ConfigWithMeta;
+
     const header = await fileHeader({ file, commentStyle: 'short' });
 
     return (
       header +
-      meta.setNames
+      meta?.setNames
         .map(setName => {
           const tokenSetName = getSetName(options, setName);
           const tokenSet = getSet(options, dictionary, setName)
@@ -92,7 +98,6 @@ StyleDictionary.registerFormat({
                 : `  ${token.name}: ${tokenValue},`;
             })
             .join('\n');
-
           return meta.layer === 'core'
             ? `:root {\n${tokenSet}\n}\n`
             : `$${tokenSetName}: (\n${tokenSet}\n);\n`;

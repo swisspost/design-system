@@ -83,15 +83,6 @@ export namespace Components {
          */
         "dismiss": () => Promise<void>;
         /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-          * @default false
-         */
-        "dismissible": boolean;
-        /**
           * The type of the banner.
           * @default 'info'
          */
@@ -541,6 +532,10 @@ export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCardControlElement;
 }
+export interface PostClosebuttonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostClosebuttonElement;
+}
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
@@ -644,7 +639,18 @@ declare global {
         prototype: HTMLPostCardControlElement;
         new (): HTMLPostCardControlElement;
     };
+    interface HTMLPostClosebuttonElementEventMap {
+        "postClick": void;
+    }
     interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostClosebuttonElementEventMap>(type: K, listener: (this: HTMLPostClosebuttonElement, ev: PostClosebuttonCustomEvent<HTMLPostClosebuttonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostClosebuttonElementEventMap>(type: K, listener: (this: HTMLPostClosebuttonElement, ev: PostClosebuttonCustomEvent<HTMLPostClosebuttonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostClosebuttonElement: {
         prototype: HTMLPostClosebuttonElement;
@@ -976,15 +982,6 @@ declare namespace LocalJSX {
     }
     interface PostBanner {
         /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-          * @default false
-         */
-        "dismissible"?: boolean;
-        /**
           * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
          */
         "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
@@ -1063,6 +1060,10 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * An event emitted when the close button is clicked. It has no payload.
+         */
+        "onPostClick"?: (event: PostClosebuttonCustomEvent<void>) => void;
     }
     interface PostCollapsible {
         /**

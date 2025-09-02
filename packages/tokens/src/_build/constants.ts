@@ -36,11 +36,13 @@ export const EXPLICIT_COMPONENT_LAYER_GROUPNAMES = [
 ];
 export const EXPLICIT_FIGMAONLY_GROUPNAMES = ['figmaonly'];
 export const EXPLICIT_FIGMAONLY_SETNAMES = ['figmaonly'];
-export const TOKENSET_LAYERS = {
-  core: 'core',
-  semantic: 'semantic',
-  component: 'component',
-};
+
+export enum TOKENSET_LAYERS {
+  core = 'core',
+  component = 'component',
+  semantic = 'semantic',
+}
+
 export const TOKENSET_PREFIX = 'post';
 export const CUSTOM_FORMAT_INDENT = '  ';
 
