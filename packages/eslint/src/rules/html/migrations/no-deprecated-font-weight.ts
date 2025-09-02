@@ -3,21 +3,6 @@ import { HtmlNode } from '../../../parsers/html/html-node';
 
 export const name = 'no-deprecated-font-weights';
 
-const classesMap = [
-  { old: 'bold', new: 'fw-bold' },
-  { old: 'regular', new: 'fw-regular' },
-];
-
-function getChangedFontWeightClassMsgs(): Record<string, string> {
-  return classesMap.reduce(
-    (o, key) =>
-      Object.assign(o, {
-        [key.old]: `The "${key.old}" class has been deleted. Please replace it with "${key.new}".`,
-      }),
-    {},
-  );
-}
-
 export default createRule({
   name,
   meta: {
@@ -26,7 +11,11 @@ export default createRule({
       description:
         'Flags "bold" and "regular" classes and replaces them with "fw-bold" and "fw-regular".',
     },
-    messages: getChangedFontWeightClassMsgs(),
+    messages: {
+      deprecatedRegular:
+        'The "regular" class has been deleted. Please replace it with "fw-regular".',
+      deprecatedBold: 'The "bold" class has been deleted. Please replace it with "fw-bold".',
+    },
     type: 'problem',
     fixable: 'code',
     schema: [],
@@ -38,18 +27,27 @@ export default createRule({
         if (node.name) {
           const $node = node.toCheerio();
 
-          classesMap.forEach(classMapEl => {
-            if ($node.hasClass(classMapEl.old)) {
-              context.report({
-                messageId: classMapEl.old,
-                loc: node.loc,
-                fix(fixer) {
-                  const fixedNode = $node.removeClass(classMapEl.old).addClass(classMapEl.new);
-                  return fixer.replaceTextRange(node.range, fixedNode.toString());
-                },
-              });
-            }
-          });
+          if ($node.hasClass('regular')) {
+            context.report({
+              messageId: 'deprecatedRegular',
+              loc: node.loc,
+              fix(fixer) {
+                const fixedNode = $node.removeClass('regular').addClass('fw-regular');
+                return fixer.replaceTextRange(node.range, fixedNode.toString());
+              },
+            });
+          }
+
+          if ($node.hasClass('bold')) {
+            context.report({
+              messageId: 'deprecatedBold',
+              loc: node.loc,
+              fix(fixer) {
+                const fixedNode = $node.removeClass('bold').addClass('fw-bold');
+                return fixer.replaceTextRange(node.range, fixedNode.toString());
+              },
+            });
+          }
         }
       },
     };
