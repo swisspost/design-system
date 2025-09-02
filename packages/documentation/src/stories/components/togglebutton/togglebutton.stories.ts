@@ -48,19 +48,19 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       ...buttonMeta.argTypes?.size,
       description:
         'Sets the size of the component.' +
-        '<post-banner data-size="sm">' +
+        '<post-banner data-size="sm"><p>' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
-        '.</post-banner>',
+        '.</p></post-banner>',
     },
     variant: {
       ...buttonMeta.argTypes?.variant,
       description:
         'Defines a style variant.' +
-        '<post-banner data-size="sm">' +
+        '<post-banner data-size="sm"><p>' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
-        '.</post-banner>',
+        '.</p></post-banner>',
     },
   },
 };

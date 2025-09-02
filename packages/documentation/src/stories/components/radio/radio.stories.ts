@@ -58,7 +58,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<post-banner data-size="sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</post-banner>',
+        'Renders the component with or without a visible label.<post-banner data-size="sm"><p>There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</p></post-banner>',
       control: {
         type: 'boolean',
       },
@@ -79,7 +79,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<post-banner data-size="sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</post-banner>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
       control: {
         type: 'boolean',
       },
@@ -90,7 +90,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the radio button and controls the display of the corresponding return message. <post-banner data-size="sm">Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#radio-button">validation guidelines here</a>.</post-banner> ',
+        'Defines the validation state of the radio button and controls the display of the corresponding return message. <post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#radio-button">validation guidelines here</a>.</p></post-banner> ',
       control: {
         type: 'radio',
         labels: {
