@@ -156,15 +156,3 @@ footer {
   display: none;
 }
 
-post-accordion-item {
-  // make sure the first visible accordion item has a border top
-  &.d-none + & {
-    --post-accordion-button-border-top-width: unset;
-  }
-
-  // remove the border top if the accordion item is not the first visible or if it is the only visible
-  &:not(.d-none) ~ &,
-  &:not(&:not(.d-none) ~ *):not(:has(~ #{&}:not(.d-none))) {
-    --post-accordion-button-border-top-width: 0;
-  }
-}
