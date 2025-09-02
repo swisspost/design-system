@@ -1,6 +1,6 @@
 # `no-unnumbered-border-radius`
 
-Flags `rounded`, `rounded-*` (top, bottom, start, end) classes and replaces them with `rounded-4` and `rounded-4-*`.
+Flags `rounded` and `rounded-{top|bottom|start|end}` classes and replaces them with `rounded-4` and `rounded-{top|bottom|start|end}-4`, respectively.
 
 - Type: problem
 - 🔧 Supports autofix (--fix)
