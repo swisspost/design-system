@@ -640,7 +640,7 @@ declare global {
         new (): HTMLPostCardControlElement;
     };
     interface HTMLPostClosebuttonElementEventMap {
-        "postClick": void;
+        "click": void;
     }
     interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostClosebuttonElementEventMap>(type: K, listener: (this: HTMLPostClosebuttonElement, ev: PostClosebuttonCustomEvent<HTMLPostClosebuttonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1063,7 +1063,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the close button is clicked. It has no payload.
          */
-        "onPostClick"?: (event: PostClosebuttonCustomEvent<void>) => void;
+        "onclick"?: (event: PostClosebuttonCustomEvent<void>) => void;
     }
     interface PostCollapsible {
         /**
