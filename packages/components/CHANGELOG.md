@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.46
+
+### Major Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.46
+  - @swisspost/design-system-styles@10.0.0-next.46
+
 ## 10.0.0-next.45
 
 ### Patch Changes
