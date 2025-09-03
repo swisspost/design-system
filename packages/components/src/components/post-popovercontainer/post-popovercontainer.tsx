@@ -252,7 +252,7 @@ export class PostPopovercontainer {
         Object.assign(this.arrowRef.style, {
           left: arrowX ? `${arrowX}px` : '',
           top: arrowY ? `${arrowY}px` : '',
-          [staticSide]: '-7px',
+          [staticSide]: '-5px',
         });
       }
     }
