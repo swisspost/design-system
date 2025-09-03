@@ -16,6 +16,10 @@ import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
 
+/**
+ * @part menu - The container element that holds the list of menu items.
+*/
+
 @Component({
   tag: 'post-menu',
   styleUrl: 'post-menu.scss',
