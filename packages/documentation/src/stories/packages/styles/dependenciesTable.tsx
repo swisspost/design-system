@@ -65,8 +65,8 @@ const DependenciesTable: React.FC = () => {
     return match ? `${match[1]}.x` : version;
   };
 
-  if (loading) return <div>Loading versions...</div>;
-  if (error) return <div>Error loading versions: {error}</div>;
+  if (loading) return <p>Loading versions...</p>;
+  if (error) return <p>Error loading versions: {error}</p>;
 
   return (
     <div className="table-responsive table-fit-content text-start">
