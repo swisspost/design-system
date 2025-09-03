@@ -96,6 +96,7 @@ export default [
       'semi': ['error', 'always'],
       'react/jsx-no-bind': 'off',
       '@stencil-community/strict-boolean-conditions': 'off',
+      '@stencil-community/prefer-vdom-listener': 'off',
       '@stencil-community/required-prefix': ['error', ['post-']],
       '@stencil-community/class-pattern': [
         'error',
