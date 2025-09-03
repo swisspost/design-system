@@ -113,10 +113,6 @@ const meta: Meta = {
 
 export default meta;
 
-const getHeader = (text: string) => {
-  return html`<h2>${text}</h2>`;
-};
-
 const getCloseButton = () => {
   return html`<button class="btn btn-close">
     <span class="visually-hidden">Close</span>
@@ -130,9 +126,6 @@ const getControls = () => {
 
 const Template = {
   render: (args: Args) => {
-    const header = getHeader(args.title);
-    const body = html`${args.content}`;
-    const controls = getControls();
     const postDialogIcon =
       args.icon && args.icon !== 'none'
         ? html`<post-icon name="${args.icon}"></post-icon>`
@@ -155,9 +148,9 @@ const Template = {
       >
         <form method="dialog" class="dialog-grid">
           ${postDialogIcon}
-          <h3 class="dialog-header">${header}</h3>
-          <div class="dialog-body">${body}</div>
-          <div class="dialog-controls">${controls}</div>
+          <h3 class="dialog-header">${args.title}</h3>
+          <div class="dialog-body">${args.content}</div>
+          <div class="dialog-controls">${getControls()}</div>
           ${postDialogCloseButton}
         </form>
       </dialog>
