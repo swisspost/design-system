@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 5.7.1
+
+### Patch Changes
+
+- Corrected nested heading in the dialog main example. (by [@leagrdv](https://github.com/leagrdv) with [#6159](https://github.com/swisspost/design-system/pull/6159))
+
 ## 5.7.0
 
 ### Minor Changes
