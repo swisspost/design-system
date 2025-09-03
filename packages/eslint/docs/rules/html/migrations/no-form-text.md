@@ -1,6 +1,6 @@
 # `no-form-text`
 
-'Replaces deprecated `form-text` class on form elements with the updated `form-hint` class.
+Replaces deprecated `form-text` class on form elements with the `form-hint` class.
 
 - Type: problem
 - 🔧 Supports autofix (--fix)
