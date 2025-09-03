@@ -25,7 +25,7 @@ const DependenciesTable: React.FC = () => {
   useEffect(() => {
     fetch(VERSIONS_URL)
       .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch versions.json');
+        if (!res.ok) setError('Failed to fetch versions.json.');
         return res.json();
       })
       .then(data => {
