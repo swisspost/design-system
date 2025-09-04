@@ -1,21 +1,6 @@
+import { getGravatarUrl } from '../../src/components/post-avatar/avatar-utils';
+
 const PAGE_ID = '09aac03d-220e-4885-8fb8-1cfa01add188';
-
-const GRAVATAR_DEFAULT = '404';
-const GRAVATAR_RATING = 'g';
-const GRAVATAR_SIZE = 80;
-
-function getGravatarUrl(email: string): string {
-  const hash = cryptify(email.trim().toLowerCase());
-  return `https://www.gravatar.com/avatar/${hash}?s=${GRAVATAR_SIZE}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
-}
-
-async function cryptify(key: string) {
-  return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
-    return Array.from(new Uint8Array(buffer))
-      .map(bytes => bytes.toString(16).padStart(2, '0'))
-      .join('');
-  });
-}
 
 describe('Avatar', () => {
   describe('Structure & Props', () => {
@@ -93,17 +78,27 @@ describe('Avatar', () => {
         'append',
         '<img src="/assets/images/logo-swisspost.svg" alt="Swiss Post Logo" />',
       );
+
       cy.get('@avatar').find('img').invoke('remove');
       cy.get('@avatar').find('img').should('not.exist');
       cy.get('@avatar').find('.initials').should('exist');
     });
 
-    it('should not show image bur fallback to initials, when slotted image is invalid', () => {
+    it('should not show image but fallback to initials, when slotted image is invalid', () => {
       cy.get('@avatar').invoke(
         'append',
         '<img src="/assets/images/invalid-image.svg" alt="Invalid image" />',
       );
       cy.get('@avatar').find('.initials').should('exist');
+    });
+
+    it('should show initials, when image is not visible', () => {
+      cy.get('@avatar').invoke(
+        'append',
+        '<img src="/assets/images/logo-swisspost.svg" alt="Swiss Post Logo" />',
+      );
+      cy.get('@avatar').find('img').invoke('css', 'display', 'none');
+      cy.get('@avatar').find('.initials').should('be.visible');
     });
   });
 
