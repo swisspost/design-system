@@ -1,0 +1,58 @@
+@use '@swisspost/design-system-styles/basics.scss';
+// @use '@swisspost/design-system-styles/components/form-select.scss';
+@use '@swisspost/design-system-styles/components/validation.scss';
+@use '@swisspost/design-system-styles/components/form-input.scss';
+
+:host::part(button) {
+  order: 2;
+}
+
+:host::part(container) {
+  background-color: white;
+}
+
+:host::part(datepicker) {
+  width: 300px;
+}
+
+:host {
+  display: block;
+  width: 300px;
+}
+
+// :host::part(table) {
+//   background-color: hsl(0, 0%, 80%) !important;
+// }
+
+:host::part(range-inner) {
+  border-radius: 0;
+  background-color: #ffcc00;
+}
+
+:host::part(range-start) {
+  border-radius: 50px;
+}
+
+:host::part(range-end) {
+  border-radius: 50px;
+}
+
+:host::part(range-start range-end) {
+  border-radius: 3px;
+}
+
+calendar-month {
+  width: 100%;
+  --color-accent: black;
+
+  &::part(heading) {
+    display: none;
+  }
+}
+
+:host::part(header) {
+  background: rgb(188, 188, 188);
+}
+
+:host::part(heading) {
+}

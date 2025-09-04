@@ -7,34 +7,49 @@
 
     <!-- Styles -->
     <link rel="stylesheet" id="styles" href="src/post-default.scss" />
-
+    <script type="module" src="https://unpkg.com/cally"></script>
     <script src="playground.js" defer></script>
   </head>
   <body>
-    <aside class="palette palette-brand p-16">
-      <h1>Styles package playground</h1>
-      <fieldset id="token-selects" class="mt-16">
-        <legend class="my-8">Select tokens</legend>
-        <label for="theme-select">Theme</label>
-        <select name="theme" id="theme-select" value="post" class="mb-4 me-8">
-          <option value="post">Post</option>
-          <option value="cargo">Cargo</option>
-        </select>
-        <label for="tokens-select">Appearance</label>
-        <select name="appearance" id="appearance-select" value="default" class="mb-4 me-8">
-          <option value="default">Default</option>
-          <option value="compact">Compact</option>
-        </select>
-        <label for="scheme-select">Color scheme</label>
-        <select name="scheme" id="scheme-select" value="light" class="mb-4">
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </fieldset>
-    </aside>
-
     <main class="p-16">
-      <!-- Place your component markup here -->
+      <style>
+        .grid {
+          display: flex;
+          gap: 1em;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      </style>
+      <calendar-date months="1">
+        <!-- Next Slot -->
+
+        <!-- Header Slot -->
+        <slot name="header">
+          <!-- Previous Slot -->
+          <slot name="next">NEXT SLOT</slot>
+          <div class="form-floating">
+            <select
+              id="bc251cd0-5173-463b-8729-586bb1bf1e1a--default"
+              class="form-select"
+              aria-describedby="form-hint-bc251cd0-5173-463b-8729-586bb1bf1e1a--default"
+            >
+              <option>Choose an option...</option>
+              <option value="value_1">Option 2</option>
+              <option value="value_2">Option 3</option>
+              <option value="value_3">Option 4</option>
+              <option value="value_4">Option 5</option>
+            </select>
+            <label class="form-label" for="bc251cd0-5173-463b-8729-586bb1bf1e1a--default"
+              >Label</label
+            >
+            <p class="form-hint" id="form-hint-bc251cd0-5173-463b-8729-586bb1bf1e1a--default">
+              This is helpful text that provides guidance or additional information to assist the
+              user in filling out this field correctly.
+            </p>
+          </div>
+        </slot>
+        <calendar-month></calendar-month>
+      </calendar-date>
     </main>
   </body>
 </html>

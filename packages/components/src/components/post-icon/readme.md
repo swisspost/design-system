@@ -28,6 +28,7 @@ some content
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
+ - [post-datepicker](../post-datepicker)
  - [post-language-switch](../post-language-switch)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-rating](../post-rating)
@@ -41,6 +42,7 @@ graph TD;
   post-breadcrumbs --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
+  post-datepicker --> post-icon
   post-language-switch --> post-icon
   post-mainnavigation --> post-icon
   post-rating --> post-icon

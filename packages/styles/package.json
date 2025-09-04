@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
+    "cally": "0.8.0",
     "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
