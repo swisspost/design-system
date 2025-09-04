@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Moved the `post-logo` component into `Raw components`.
+Removed documentation for the `post-logo` component, as it is not intended for standalone use outside the header.
