@@ -21,9 +21,9 @@ const meta: MetaComponent = {
     type: 'button',
     variant: 'btn-primary',
     size: 'null',
-    icon: 'null',
-    iconOnly: false,
-    iconPosition: 'start',
+    iconPosition: 'iconBeforeText',
+    icon: '2069',
+    secondIcon: '2069',
     disabled: false,
   },
   argTypes: {
@@ -35,10 +35,6 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'Content',
-      },
-      if: {
-        arg: 'iconOnly',
-        truthy: false,
       },
     },
     tag: {
@@ -111,6 +107,28 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    iconPosition: {
+      name: 'Icon position',
+      description: 'Defines the icon position.',
+      if: {
+        arg: 'tag',
+        neq: 'input',
+      },
+      control: {
+        type: 'inline-radio',
+        labels: {
+          textOnly: 'Text only',
+          iconOnly: 'Icon only',
+          iconBeforeText: 'Icon before text',
+          iconAfterText: 'Icon after text',
+          iconBothSides: 'Icon on both sides',
+        },
+      },
+      options: ['textOnly', 'iconOnly', 'iconBeforeText', 'iconAfterText', 'iconBothSides'],
+      table: {
+        category: 'Icon',
+      },
+    },
     icon: {
       name: 'Icon',
       description:
@@ -139,35 +157,25 @@ const meta: MetaComponent = {
         category: 'Icon',
       },
     },
-    iconOnly: {
-      name: 'Icon only',
-      description: "When set to `true`, hides the component's text.",
+    secondIcon: {
+      name: 'Second icon',
+      description: 'Defines a custom second icon',
       if: {
-        arg: 'tag',
-        neq: 'input',
+        arg: 'iconPosition',
+        eq: 'iconBothSides',
       },
       control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Icon',
-      },
-    },
-    iconPosition: {
-      name: 'Icon position',
-      description: 'Defines the icon position.',
-      if: {
-        arg: 'tag',
-        neq: 'input',
-      },
-      control: {
-        type: 'inline-radio',
+        type: 'select',
         labels: {
-          start: 'Start',
-          end: 'End',
+          'null': 'None',
+          '2069': 'Search (2069)',
+          '3193': 'Edit (3193)',
+          '2059': 'Save (2059)',
+          '2015': 'Remove (2015)',
+          '2286': 'Like (2286)',
         },
       },
-      options: ['start', 'end'],
+      options: ['null', '2069', '3193', '2059', '2015', '2286'],
       table: {
         category: 'Icon',
       },
@@ -194,19 +202,29 @@ const Template = {
   render: (args: Args) => {
     const tagName = unsafeStatic(args.tag);
     const props = createProps(args);
-
     if (args.tag === 'input') {
       return html` <${tagName} ${spread(props)} /> `;
     } else {
       const icon = html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `;
+      const secondIcon = html`
+        <post-icon aria-hidden="true" name="${args.secondIcon}"></post-icon>
+      `;
       const iconOnlyContent = html` <span class="visually-hidden">${args.text}</span> `;
       const text = html` ${args.text} `;
 
       return html`
         <${tagName} ${spread(props)}>
-          ${args.icon !== 'null' && args.iconPosition === 'start' ? icon : null}
-          ${(args.iconOnly && iconOnlyContent) || text}
-          ${args.icon !== 'null' && args.iconPosition === 'end' ? icon : null}
+          ${
+            args.icon !== 'null' &&
+            (args.iconPosition === 'iconOnly' ||
+              args.iconPosition === 'iconBeforeText' ||
+              args.iconPosition === 'iconBothSides')
+              ? icon
+              : null
+          }
+          ${(args.iconPosition === 'iconOnly' && iconOnlyContent) || text}
+          ${args.icon !== 'null' && args.iconPosition === 'iconAfterText' ? icon : null}
+          ${args.secondIcon !== 'null' && args.iconPosition === 'iconBothSides' ? secondIcon : null}
         </${tagName}>
       `;
     }
@@ -216,7 +234,13 @@ const Template = {
 function createProps(args: Args) {
   const additionalClasses = args.additionalClasses ?? [];
   return {
-    class: ['btn', args.variant, args.size, args.iconOnly && 'btn-icon', ...additionalClasses]
+    class: [
+      'btn',
+      args.variant,
+      args.size,
+      args.iconPosition === 'iconOnly' && 'btn-icon',
+      ...additionalClasses,
+    ]
       .filter(c => c && c !== 'null')
       .join(' '),
     href: args.tag === 'a' ? '#' : null,
