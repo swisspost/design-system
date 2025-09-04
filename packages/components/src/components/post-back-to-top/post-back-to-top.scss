@@ -8,6 +8,7 @@
 tokens.$default-map: components.$post-floating-button;
 
 :host {
+  opacity: 0;
   --post-floating-button-position-top: #{tokens.get('floating-button-position-top')};
   --post-back-to-top-position-top: calc(
     var(--post-header-height) + var(--post-floating-button-position-top)
@@ -16,7 +17,7 @@ tokens.$default-map: components.$post-floating-button;
   position: fixed;
   inset-block-start: var(--post-back-to-top-position-top);
   inset-inline-end: tokens.get('floating-button-position-right');
-  
+
   .back-to-top {
     @include button-mx.reset-button;
     @include utilities.focus-style;
