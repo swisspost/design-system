@@ -10,7 +10,7 @@
 // prefered root color-scheme
 :root {
   @include supports.light-dark(true) {
-    color-scheme: light dark;
+    color-scheme: light;
   }
 
   @media (prefers-color-scheme: light) {
