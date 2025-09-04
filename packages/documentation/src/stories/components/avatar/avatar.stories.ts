@@ -29,12 +29,12 @@ const meta: MetaComponent = {
     'userid': {
       description: `${
         USERID_ARGTYPE?.docs ?? ''
-      }<div className="banner banner-info banner-sm">Do you need an example userid? Try it out with the username of your own post account.</div>`,
+      }<post-banner data-size="sm"><p>Do you need an example userid? Try it out with the username of your own post account.</p></post-banner>`,
     },
     'email': {
       description: `${
         EMAIL_ARGTYPE?.docs ?? ''
-      } <div className="banner banner-info banner-sm">Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</div>`,
+      } <post-banner data-size="sm"><p>Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</p></post-banner>`,
     },
     'slots-default': {
       name: 'default',
@@ -47,7 +47,7 @@ const meta: MetaComponent = {
     'imageSrc': {
       control: 'text',
       description:
-        'Define an image `src` to insert a custom image.<div className="banner banner-info banner-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
+        'Define an image `src` to insert a custom image.<post-banner data-size="sm"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</p></post-banner>',
       table: {
         category: 'Content',
       },

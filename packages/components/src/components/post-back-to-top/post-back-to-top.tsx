@@ -1,5 +1,5 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
-import { slideUp, slideDown } from '@/animations/slide';
+import { slideUpAndFadeOut, slideDownAndFadeIn } from '@/animations/slide-and-fade';
 import { version } from '@root/package.json';
 import { checkRequiredAndType } from '@/utils';
 
@@ -38,9 +38,9 @@ export class PostBackToTop {
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
-      slideDown(this.host, this.translateY);
+      slideDownAndFadeIn(this.host, this.translateY);
     } else {
-      slideUp(this.host, this.translateY);
+      slideUpAndFadeOut(this.host, this.translateY);
     }
   }
 
@@ -84,7 +84,7 @@ export class PostBackToTop {
       ) + 'px';
 
     if (this.belowFold) {
-      slideDown(this.host, this.translateY);
+      slideDownAndFadeIn(this.host, this.translateY);
     }
 
     if (!this.belowFold) {
