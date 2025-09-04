@@ -1,11 +1,15 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks';
 import * as PackageStories from './components.stories';
-import SampleCdnBareComponent from './components-cdn-bare-component-all.sample.html?raw';
-import SampleCdnLazyLoadedAll from './components-cdn-lazy-loaded-all.sample.html?raw';
-import SampleCdnLazyLoadedSpecific from './components-cdn-lazy-loaded-specific.sample.html?raw';
-import SampleJsAll from './components-js-all.sample?raw';
-import SampleJsSpecific from './components-js-specific.sample?raw';
-import SampleCssGlobal from './components-css-global.sample.css?raw';
+
+import SampleCss from './components-css.sample.css?raw';
+import SampleLibraryJs from './components-library-js.sample.js?raw';
+import SampleLibraryWithNonce from './components-library-with-nonce.sample.js?raw';
+import SampleLibraryCdnJsdelivr from './components-library-cdn-jsdelivr.sample.html?raw';
+import SampleLibraryCdnUnpkg from './components-library-cdn-unpkg.sample.html?raw';
+import SampleStandaloneJs from './components-standalone-js.sample.js?raw';
+import SampleStandaloneCdnJsdelivr from './components-standalone-cdn-jsdelivr.sample.html?raw';
+import SampleStandaloneCdnUnpkg from './components-standalone-cdn-unpkg.sample.html?raw';
+
 import changelog from '@/../../components/CHANGELOG.md?raw';
 import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
@@ -14,71 +18,120 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 # @swisspost/design-system-components
 
 <div className="npm-package-link">
-  [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components)
+  [![npm
+  version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components)
 </div>
 
-<div className='lead'>
-  A set of standard Web Components for easy integration with every framework or no framework at all.<br/>
+<div className="lead">
+  A set of standard Web Components for easy integration with every framework or no framework at all.
+  <br />
   Depending on your project setup, there are different ways available to integrate our components.
 </div>
 
 <PackageDocs changelog={changelog}>
   ## Installation
 
-  {/* https://stenciljs.com/docs/custom-elements#consuming-custom-elements */}
-
   <Source code={`npm install @swisspost/design-system-components`} language="bash" />
 
   ## Usage
 
-  Import the packages global styles. They are required for the components to work properly.
-
-  <Source
-    code={SampleCssGlobal}
-    language="scss"
-  />
-
-  Import all or only specific components into your entry file (e.g. `main.js`, `app.js`, ...).
-
-  <Source
-    code={SampleJsAll}
-    language="javascript"
-  />
-
-  <Source
-    code={SampleJsSpecific}
-    language="javascript"
-  />
-
-  Use the imported components in your html:
-
-  <Source
-    code={`<post-icon name="1000"></post-icon>`}
-    language="html"
-  />
-
-  ## Include from a CDN
-
-  If you are not using any bundler or don't want to install from npm, you can load our components from a CDN. <a href="https://en.wikipedia.org/wiki/Content_delivery_network" rel="noopener">(More on CDNs)</a><br/>
-  Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
-
-  Available CDNs:
-
-  - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/design-system-components](https://cdn.jsdelivr.net/npm/@swisspost/design-system-components).
-  - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/design-system-components](https://unpkg.com/@swisspost/design-system-components).
+  There are different ways how to consume our web-components, and it depends on your project setup, which one is best suited.
 
   <post-tabs>
-    <post-tab-header panel="lazy-loaded">Lazy-Loaded</post-tab-header>
-    <post-tab-panel name="lazy-loaded">
-      Load all components at once
-      <Source code={SampleCdnLazyLoadedAll} language="html" />
-      Load specific components only
-      <Source code={SampleCdnLazyLoadedSpecific} language="html" />
+    <post-tab-header panel="library">Component Library</post-tab-header>
+    <post-tab-panel name="library">
+      ### The Library approach
+
+      Best, if you don't want to handle lazy-loading yourself.
+
+      - Single and lightweight entry point
+      - Every Component is lazy-loaded and self-defining in the [custom element registry](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry)
+      - Tree-shakable
+
+      #### Usage with a bundler
+      {/* stencil dist output-target */}
+
+      Use the following import statements in your main entry files. The required global styles and a minimal JavaScript function will be added to your bundle, while components will automatically lazy-load and self-define themself on demand. With that, you're ready to use our components anywhere in your HTML.
+
+      <Source code={SampleCss} language="scss" />
+      <Source code={SampleLibraryJs} language="js" />
+
+      #### Usage with a bundler paired with nonce for CSP
+      {/* stencil dist output-target /loader */}
+
+      Instead of using the default JS import from above, you can get some additional helper functions, using our `/loader` entry point.
+      This way you can pass your server-generated `nonce` value. Afterwards you need to call `defineCustomElements` manually.<br/>
+      The CSS import remains unchanged.
+
+      <Source code={SampleLibraryWithNonce} language="js" />
+
+      Read more about the `nonce` topic and when to use it on the [Stencil documentstion](https://stenciljs.com/docs/csp-nonce).
+
+      #### Usage with a CDN
+
+      You can also get our component library from a <a href="https://en.wikipedia.org/wiki/Content_delivery_network" rel="noopener">CDN</a>. See the examples below to know how to set it up.
+
+      <post-tabs>
+        <post-tab-header panel="jsdelivr">jsDelivr</post-tab-header>
+        <post-tab-panel name="jsdelivr">
+          <Source code={SampleLibraryCdnJsdelivr} language="html" />
+        </post-tab-panel>
+
+        <post-tab-header panel="unpkg">unpkg</post-tab-header>
+        <post-tab-panel name="unpkg">
+          <Source code={SampleLibraryCdnUnpkg} language="html" />
+        </post-tab-panel>
+      </post-tabs>
+
+      <post-banner type="info">
+        <p>Make sure to replace `{tag|version}` with the tag/version you want to, or remove `@{tag|version}` to use the latest version.</p>
+      </post-banner>
     </post-tab-panel>
 
-    <post-tab-header panel="bare-component">Bare component</post-tab-header>
-    <post-tab-panel name="bare-component">
-      <Source code={SampleCdnBareComponent} language="html" />
+    <post-tab-header panel="standalone">Standalone Components</post-tab-header>
+    <post-tab-panel name="standalone">
+        ### The Standalone approach
+        {/* stencil dist-custom-elements output-target */}
+
+        Best, if you want to have full control over bundling, chunking, lazy-loading, etc.
+
+        - Single entry point
+        - Only import the components you really need
+
+        #### Usage with a bundler
+
+        Use the following import statement to import the global styles.
+
+        <Source code={SampleCss} language="scss" />
+
+        Use the following import statements whereever you need them. Afterwards you can start using the imported components in your HTML.
+
+        <Source code={SampleStandaloneJs} language="js" />
+
+        #### Usage with a CDN
+
+        You can also get our standalone components from a <a href="https://en.wikipedia.org/wiki/Content_delivery_network" rel="noopener">CDN</a>. See the examples below to know how to set it up.
+
+        <post-banner type="warning">
+          <h5>Not recommended!</h5>
+          <p>There is currently no fallback for browsers without esm support, therefore we do not recommend the standalone approach by using a CDN.</p>
+        </post-banner>
+
+        <post-tabs>
+          <post-tab-header panel="jsdelivr">jsDelivr</post-tab-header>
+          <post-tab-panel name="jsdelivr">
+            <Source code={SampleStandaloneCdnJsdelivr} language="html" />
+          </post-tab-panel>
+
+          <post-tab-header panel="unpkg">unpkg</post-tab-header>
+          <post-tab-panel name="unpkg">
+            <Source code={SampleStandaloneCdnUnpkg} language="html" />
+          </post-tab-panel>
+        </post-tabs>
+
+        <post-banner type="info">
+          <p>Make sure to replace `{tag|version}` with the tag/version you want to, or remove `@{tag|version}` to use the latest version.</p>
+        </post-banner>
     </post-tab-panel>
   </post-tabs>
 </PackageDocs>
