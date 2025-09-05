@@ -192,10 +192,19 @@ export namespace Components {
     }
     interface PostDatepicker2 {
         /**
-          * Locale prop to handle translations
+          * Hides the popover calendar and restores focus to the previously focused element.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Locale prop to set translations
           * @default 'en'
          */
         "locale": string;
+        /**
+          * Displays the popover calendar, focusing the first calendar item.
+          * @param target - The HTML element relative to which the popover calendar should be displayed.
+         */
+        "show": (target: HTMLElement) => Promise<void>;
     }
     interface PostFooter {
         /**
@@ -562,6 +571,10 @@ export interface PostDatepickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostDatepickerElement;
 }
+export interface PostDatepicker2CustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostDatepicker2Element;
+}
 export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
@@ -718,7 +731,18 @@ declare global {
         prototype: HTMLPostDatepickerElement;
         new (): HTMLPostDatepickerElement;
     };
+    interface HTMLPostDatepicker2ElementEventMap {
+        "toggleCalendar": boolean;
+    }
     interface HTMLPostDatepicker2Element extends Components.PostDatepicker2, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostDatepicker2ElementEventMap>(type: K, listener: (this: HTMLPostDatepicker2Element, ev: PostDatepicker2CustomEvent<HTMLPostDatepicker2ElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostDatepicker2ElementEventMap>(type: K, listener: (this: HTMLPostDatepicker2Element, ev: PostDatepicker2CustomEvent<HTMLPostDatepicker2ElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostDatepicker2Element: {
         prototype: HTMLPostDatepicker2Element;
@@ -1137,10 +1161,14 @@ declare namespace LocalJSX {
     }
     interface PostDatepicker2 {
         /**
-          * Locale prop to handle translations
+          * Locale prop to set translations
           * @default 'en'
          */
         "locale"?: string;
+        /**
+          * Emits when the calendar is shown or hidden. The event payload is a boolean: `true` when the calendar was opened, `false` when it was closed.
+         */
+        "onToggleCalendar"?: (event: PostDatepicker2CustomEvent<boolean>) => void;
     }
     interface PostFooter {
         /**

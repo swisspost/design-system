@@ -1,3 +1,41 @@
 @use '@swisspost/design-system-styles/basics.scss';
 @use '@swisspost/design-system-styles/components/validation.scss';
 @use '@swisspost/design-system-styles/components/form-input.scss';
+
+@use 'air-datepicker/air-datepicker.css';
+
+.air-datepicker {
+}
+
+:host {
+  --adp-cell-background-color-selected: #ffcc00;
+  --adp-color-current-date: #ffcc00;
+  .calendar {
+    max-width: 250px;
+  }
+}
+
+.air-datepicker-nav {
+  background: #e0e0e0;
+  .air-datepicker-nav--action {
+    order: 2;
+  }
+}
+
+.-day-.-other-month- {
+  pointer-events: none;
+}
+
+.air-datepicker--content {
+  padding: 0 !important;
+  .air-datepicker-body--day-names {
+    background: #e0e0e0;
+    margin: 0;
+    padding: 8px 0 3px;
+    .air-datepicker-body--day-name {
+      text-transform: capitalize;
+      color: black;
+      font-weight: bold;
+    }
+  }
+}

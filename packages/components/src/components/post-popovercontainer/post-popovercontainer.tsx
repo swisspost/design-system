@@ -289,7 +289,6 @@ export class PostPopovercontainer {
     if (this.arrow) {
       middleware.push(arrow({ element: this.arrowRef, padding: gap }));
     }
-
     return computePosition(this.eventTarget, this.host, {
       placement: this.placement || 'top',
       strategy: 'fixed',
