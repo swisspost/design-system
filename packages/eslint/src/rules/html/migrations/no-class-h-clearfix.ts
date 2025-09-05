@@ -14,7 +14,7 @@ export default createRule({
     },
     messages: {
       noClassHClearfix:
-        'The "h-clearfix" class is deprecated. Please remove it or replace it with "clearfix".',
+        'The "h-clearfix" class is deprecated. Please replace it with "clearfix".',
     },
     type: 'suggestion',
     fixable: 'code',
