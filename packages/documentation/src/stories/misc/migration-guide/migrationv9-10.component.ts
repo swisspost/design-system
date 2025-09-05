@@ -86,7 +86,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     The <code>.form-text</code> class has been renamed to <code>.form-hint</code>
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span><span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
                 <li class="mb-16">
@@ -363,6 +363,16 @@ export class MigrationV99Component extends LitElement {
                     </li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Renamed border radius classes
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                  </p>
+                  <ul>
+                    <li><code>.rounded</code> is now <code>.rounded-4</code></li>
+                    <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
+                  </ul>
+                </li>
               </ul>
 
               <h5>Helpers</h5>
@@ -494,7 +504,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     Renamed font-weight utility classes
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.bold</code> is now <code>.fw-bold</code></li>
@@ -618,7 +628,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     The <code>.btn-rg</code> class has been removed. Buttons using this class will
                     now fall back to the default <code>btn-md</code>
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
                 <li class="mb-16">
