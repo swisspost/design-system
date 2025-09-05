@@ -16,7 +16,7 @@ export default createRule({
       noClassHClearfix:
         'The "h-clearfix" class is deprecated. Please replace it with "clearfix".',
     },
-    type: 'suggestion',
+    type: 'problem',
     fixable: 'code',
     schema: [],
   },
