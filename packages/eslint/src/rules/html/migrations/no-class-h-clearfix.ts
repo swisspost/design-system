@@ -10,7 +10,7 @@ export default createRule({
     docs: {
       dir: 'html',
       description:
-        'Flags deprecated "h-clearfix" class and suggests removal or replacement with "clearfix".',
+        'Flags deprecated "h-clearfix" class and replaces it with "clearfix".',
     },
     messages: {
       noClassHClearfix:
