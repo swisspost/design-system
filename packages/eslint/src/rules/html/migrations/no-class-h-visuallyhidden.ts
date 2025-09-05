@@ -14,7 +14,7 @@ export default createRule({
     },
     messages: {
       noClassHVisuallyhidden:
-        'The "h-visuallyhidden" class is deprecated. Please remove it or replace it with "visually-hidden".',
+        'The "h-visuallyhidden" class is deprecated. Please replace it with "visually-hidden".',
     },
     type: 'suggestion',
     fixable: 'code',
