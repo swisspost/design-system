@@ -22,9 +22,3 @@ This rule does not have any configuration options.
 ```html
 <button class="visually-hidden">Invisible text</button>
 ```
-
-Or simply remove the `h-visuallyhidden` class:
-
-```html
-<div>Visible text</div>
-```
