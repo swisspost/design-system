@@ -2,7 +2,7 @@
 
 Flags deprecated `h-clearfix` class and suggests removal or replacement with `clearfix`.
 
-- Type: suggestion
+- Type: problem
 - 🔧 Supports autofix (--fix)
 
 ## Rule Options
