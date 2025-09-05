@@ -1,5 +1,11 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.47
+
+### Patch Changes
+
+- Updated tokens package to use TypeScript. (by [@myrta2302](https://github.com/myrta2302) with [#5557](https://github.com/swisspost/design-system/pull/5557))
+
 ## 10.0.0-next.46
 
 ## 10.0.0-next.45
