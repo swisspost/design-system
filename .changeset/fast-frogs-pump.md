@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed accordion to always show top border on all items.
+Updated the `<post-accordion-item>` component to enforce a top border in all use cases.
