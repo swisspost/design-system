@@ -2,7 +2,7 @@
 
 Flags deprecated `h-visuallyhidden` class and suggests removal or replacement with `visually-hidden`.
 
-- Type: suggestion
+- Type: problem
 - 🔧 Supports autofix (--fix)
 
 ## Rule Options
