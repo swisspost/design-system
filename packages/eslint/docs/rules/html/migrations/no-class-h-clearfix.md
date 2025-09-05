@@ -22,9 +22,3 @@ This rule does not have any configuration options.
 ```html
 <button class="clearfix">Content</button>
 ```
-
-Or simply remove the `h-clearfix` class:
-
-```html
-<div>Content</div>
-```
