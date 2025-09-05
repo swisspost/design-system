@@ -190,6 +190,13 @@ export namespace Components {
          */
         "show": (target: HTMLElement) => Promise<void>;
     }
+    interface PostDatepicker2 {
+        /**
+          * Locale prop to handle translations
+          * @default 'en'
+         */
+        "locale": string;
+    }
     interface PostFooter {
         /**
           * The label to add to the footer (visually hidden).
@@ -711,6 +718,12 @@ declare global {
         prototype: HTMLPostDatepickerElement;
         new (): HTMLPostDatepickerElement;
     };
+    interface HTMLPostDatepicker2Element extends Components.PostDatepicker2, HTMLStencilElement {
+    }
+    var HTMLPostDatepicker2Element: {
+        prototype: HTMLPostDatepicker2Element;
+        new (): HTMLPostDatepicker2Element;
+    };
     interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
     }
     var HTMLPostFooterElement: {
@@ -939,6 +952,7 @@ declare global {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-datepicker": HTMLPostDatepickerElement;
+        "post-datepicker2": HTMLPostDatepicker2Element;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
@@ -1120,6 +1134,13 @@ declare namespace LocalJSX {
           * Emits when the calendar is shown or hidden. The event payload is a boolean: `true` when the calendar was opened, `false` when it was closed.
          */
         "onToggleCalendar"?: (event: PostDatepickerCustomEvent<boolean>) => void;
+    }
+    interface PostDatepicker2 {
+        /**
+          * Locale prop to handle translations
+          * @default 'en'
+         */
+        "locale"?: string;
     }
     interface PostFooter {
         /**
@@ -1424,6 +1445,7 @@ declare namespace LocalJSX {
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-datepicker": PostDatepicker;
+        "post-datepicker2": PostDatepicker2;
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
@@ -1469,6 +1491,7 @@ declare module "@stencil/core" {
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
             "post-datepicker": LocalJSX.PostDatepicker & JSXBase.HTMLAttributes<HTMLPostDatepickerElement>;
+            "post-datepicker2": LocalJSX.PostDatepicker2 & JSXBase.HTMLAttributes<HTMLPostDatepicker2Element>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
