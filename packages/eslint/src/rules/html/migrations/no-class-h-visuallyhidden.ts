@@ -10,7 +10,7 @@ export default createRule({
     docs: {
       dir: 'html',
       description:
-        'Flags deprecated "h-visuallyhidden" class and suggests removal or replacement with "visually-hidden".',
+        'Flags deprecated "h-visuallyhidden" class and replaces it with "visually-hidden".',
     },
     messages: {
       noClassHVisuallyhidden:
