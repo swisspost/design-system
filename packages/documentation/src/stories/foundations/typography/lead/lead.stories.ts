@@ -22,9 +22,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => html`
     <p class="lead">
-      It helps readers quickly understand what to expect. This component is styled to stand out
-      slightly from regular text while maintaining readability. Use it for introductory summaries in
-      articles, sections, or announcements.
+      It helps readers quickly understand what to expect.
+      This component is styled to stand out slightly from regular text while maintaining readability.
+      Use it for introductory summaries in articles, sections, or announcements.
     </p>
   `,
 };

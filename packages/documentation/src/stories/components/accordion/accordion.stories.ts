@@ -51,10 +51,7 @@ function getAccordionItemContent(position: number | string, headingLevel?: numbe
   return html`
     <span slot="header">Title ${position}${level}</span>
     <div>
-      <p>
-        Example content for accordion item ${position}. This is a sample text demonstrating how the
-        accordion component works.
-      </p>
+      <p>Example content for accordion item ${position}. This is a sample text demonstrating how the accordion component works.</p>
     </div>
   `;
 }

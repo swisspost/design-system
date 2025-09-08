@@ -76,8 +76,7 @@ export const TextWrapping: Story = {
     </div>
     <div class="my-container w-half text-nowrap">
       <p class="text-wrap">
-        This text should wrap, showing how text naturally breaks into multiple lines when wrapping
-        is enabled.
+        This text should wrap, showing how text naturally breaks into multiple lines when wrapping is enabled.
       </p>
     </div>
   `,

@@ -53,11 +53,7 @@ const meta: MetaExtended = {
           : ''}${args.overflowY && args.overflowY !== 'unset' ? ' overflow-y-' + args.overflowY : ''}"
       >
         <div class="content">
-          This is a long text content that demonstrates how the overflow property works. This
-          paragraph contains several sentences that will help show the different overflow behaviors
-          when the container is too small to contain all the text. It's useful for testing different
-          overflow settings and seeing how they affect the layout and scrolling capabilities of the
-          container element.
+          This is a long text content that demonstrates how the overflow property works. This paragraph contains several sentences that will help show the different overflow behaviors when the container is too small to contain all the text. It's useful for testing different overflow settings and seeing how they affect the layout and scrolling capabilities of the container element.
         </div>
       </div>
     `;

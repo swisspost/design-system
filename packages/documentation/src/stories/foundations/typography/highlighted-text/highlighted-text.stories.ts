@@ -22,9 +22,7 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => html`
     <p class="text-highlighted">
-      Use this component when you need to emphasize important information or make a section more
-      noticeable to readers. The highlighted style helps the content break away from the normal text
-      flow.
+      Use this component when you need to emphasize important information or make a section more noticeable to readers. The highlighted style helps the content break away from the normal text flow.
     </p>
   `,
 };
