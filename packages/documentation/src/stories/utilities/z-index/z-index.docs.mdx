@@ -6,15 +6,27 @@ import * as ZIndexStories from './z-index.stories';
 # Z-Index
 
 <div className="lead">
-  Use our <code>{".z-{value}"}</code> utility classes to control element stacking. Each element must have a non-static position (e.g. <code>relative</code>, <code>absolute</code> or <code>fixed</code>) for the z-index to take effect.
+  Use our <code>{'.z-{value}'}</code> utility classes to control element stacking. Each element must
+  have a non-static position (e.g. <code>relative</code>, <code>absolute</code> or{' '}
+  <code>fixed</code>) for the z-index to take effect.
 </div>
 
-**Available classes:**
+**Available default classes:**
+
 - <code>.z-n1</code>
 - <code>.z-0</code>
 - <code>.z-1</code>
 - <code>.z-2</code>
 - <code>.z-3</code>
+
+**Available named classes:**
+
+- <code>.z-header</code> for the header
+- <code>.z-spinner</code> for spinners
+- <code>.z-toast</code> for toasts
+- <code>.z-fixed</code> for fixed positioned elements
+
+The named classes are to be used on the intended components in order to have them stacked correctly.
 
 ## Example
 

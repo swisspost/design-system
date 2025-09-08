@@ -27,10 +27,10 @@ export default createRule({
     docs: {
       dir: 'html',
       description:
-        'Flags "rounded", "rounded-*" (top, bottom, start, end) classes and suggests replacement with "rounded-4" and "rounded-4-*".',
+        'Flags "rounded" and "rounded-{top|bottom|start|end}" classes and replaces them with "rounded-4" and "rounded-{top|bottom|start|end}-4", respectively.',
     },
     messages: getRemovedRoundedClassMsgs(),
-    type: 'suggestion',
+    type: 'problem',
     fixable: 'code',
     schema: [],
   },
