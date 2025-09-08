@@ -65,10 +65,10 @@ importers:
         specifier: 0.6.0
         version: 0.6.0
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -108,7 +108,7 @@ importers:
         specifier: 3.0.12
         version: 3.0.12(@stencil/core@4.35.0)
       '@swisspost/design-system-eslint':
-        specifier: workspace:1.0.1-next.0
+        specifier: workspace:1.0.1-next.1
         version: link:../eslint
       '@types/jest':
         specifier: 29.5.14
@@ -166,7 +166,7 @@ importers:
         version: 5.0.2
       ts-jest:
         specifier: 29.2.5
-        version: 29.2.5(@babel/core@7.26.10)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.10))(jest@29.7.0)(typescript@5.8.3)
+        version: 29.2.5(@babel/core@7.26.10)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.10))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.10.5)(typescript@5.8.3)
@@ -204,10 +204,10 @@ importers:
         specifier: 19.2.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.2
@@ -221,7 +221,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 19.2.15
-        version: 19.2.15(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@22.10.5)(chokidar@4.0.1)(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@22.10.5))(jiti@2.4.2)(karma@6.4.4)(lightningcss@1.30.1)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(tailwindcss@4.1.11)(tslib@2.8.1)(typescript@5.8.3))(sass-embedded@1.89.2)(tailwindcss@4.1.11)(typescript@5.8.3)(vite@6.2.7(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
+        version: 19.2.15(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@22.10.5)(chokidar@4.0.1)(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(jiti@2.4.2)(karma@6.4.4)(lightningcss@1.30.1)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(tailwindcss@4.1.11)(tslib@2.8.1)(typescript@5.8.3))(sass-embedded@1.89.2)(tailwindcss@4.1.11)(typescript@5.8.3)(vite@6.2.7(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@angular/cli':
         specifier: 19.2.0
         version: 19.2.0(@types/node@22.10.5)(chokidar@4.0.1)
@@ -235,7 +235,7 @@ importers:
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:dist/components
       angular-eslint:
         specifier: 19.1.0
@@ -283,16 +283,16 @@ importers:
   packages/components-angular/projects/components:
     dependencies:
       '@angular/common':
-        specifier: ^20.0.0
-        version: 20.2.2(@angular/core@20.2.2(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+        specifier: '>=19.0.0 <21.0.0'
+        version: 19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core':
-        specifier: ^20.0.0
-        version: 20.2.2(rxjs@7.8.2)(zone.js@0.15.1)
+        specifier: '>=19.0.0 <21.0.0'
+        version: 19.2.0(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/forms':
-        specifier: ^20.0.0
-        version: 20.2.2(@angular/common@20.2.2(@angular/core@20.2.2(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.2.2(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@20.2.2(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.2.2(@angular/core@20.2.2(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.2.2(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+        specifier: '>=19.0.0 <21.0.0'
+        version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -308,7 +308,7 @@ importers:
         specifier: 0.1.1
         version: 0.1.1(next@15.3.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(vite@6.3.5(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.39.0)(yaml@2.7.0))(webpack@5.98.0)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../components
     devDependencies:
       '@eslint/js':
@@ -354,22 +354,22 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../internet-header
     devDependencies:
       '@eslint/js':
@@ -400,7 +400,7 @@ importers:
         specifier: 9.0.18
         version: 9.0.18(lit@3.3.1)(storybook@9.0.18(@testing-library/dom@10.4.0)(prettier@2.8.8))(vite@6.3.5(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.78.0)(sass@1.89.2)(terser@5.39.0)(yaml@2.7.0))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../components-angular/dist/components
       '@types/css-modules':
         specifier: 1.0.5
@@ -537,7 +537,7 @@ importers:
         version: 6.0.1
       ts-jest:
         specifier: 29.2.5
-        version: 29.2.5(@babel/core@7.26.10)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.10))(jest@29.7.0)(typescript@5.8.3)
+        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -612,7 +612,7 @@ importers:
         version: 3.3.2
       ts-jest:
         specifier: 29.2.5
-        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
+        version: 29.2.5(@babel/core@7.26.10)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.10))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.10.5)(typescript@5.8.3)
@@ -626,7 +626,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -712,7 +712,7 @@ importers:
         version: 4.2.0(eslint@9.18.0(jiti@2.4.2))
       eslint-plugin-jest:
         specifier: 28.11.0
-        version: 28.11.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(jest@29.7.0(@types/node@22.10.5))(typescript@5.8.3)
+        version: 28.11.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@9.18.0(jiti@2.4.2))
@@ -762,13 +762,13 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../internet-header
       next:
         specifier: 15.3.3
@@ -839,10 +839,10 @@ importers:
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../tokens/dist
       '@types/node':
         specifier: 22.10.5
@@ -936,7 +936,7 @@ importers:
         specifier: 19.0.9
         version: 19.0.9
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../styles/dist
       primeng:
         specifier: 19.0.9
@@ -953,7 +953,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 19.2.15
-        version: 19.2.15(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@22.10.5)(chokidar@4.0.1)(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@22.10.5))(jiti@2.4.2)(karma@6.4.4)(lightningcss@1.30.1)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(tailwindcss@4.1.11)(tslib@2.8.1)(typescript@5.8.3))(sass-embedded@1.89.2)(tailwindcss@4.1.11)(typescript@5.8.3)(vite@6.3.5(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
+        version: 19.2.15(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@22.10.5)(chokidar@4.0.1)(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(jiti@2.4.2)(karma@6.4.4)(lightningcss@1.30.1)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(tailwindcss@4.1.11)(tslib@2.8.1)(typescript@5.8.3))(sass-embedded@1.89.2)(tailwindcss@4.1.11)(typescript@5.8.3)(vite@6.3.5(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@angular/cli':
         specifier: 19.2.0
         version: 19.2.0(@types/node@22.10.5)(chokidar@4.0.1)
@@ -1024,7 +1024,7 @@ importers:
   packages/styles-primeng-workspace/projects/styles-primeng:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.46
+        specifier: workspace:10.0.0-next.47
         version: link:../../../styles/dist
       primeng:
         specifier: ^19.0.0
@@ -6181,12 +6181,14 @@ packages:
   eslint-plugin-markdown@3.0.1:
     resolution: {integrity: sha512-8rqoc148DWdGdmYF6WSQFT3uQ6PO7zXYgeBpHAOAakX/zpq+NvFYbDA/H7PYzHajwtmaOzAwfxyl++x0g1/N9A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: Please use @eslint/markdown instead
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
 
   eslint-plugin-markdown@5.1.0:
     resolution: {integrity: sha512-SJeyKko1K6GwI0AN6xeCDToXDkfKZfXcexA6B+O2Wr2btUS9GrC+YgwSyVli5DJnctUHjFXcQ2cqTaAmVoLi2A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: Please use @eslint/markdown instead
     peerDependencies:
       eslint: '>=8'
 
@@ -11784,7 +11786,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@19.2.15(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@22.10.5)(chokidar@4.0.1)(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@22.10.5))(jiti@2.4.2)(karma@6.4.4)(lightningcss@1.30.1)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(tailwindcss@4.1.11)(tslib@2.8.1)(typescript@5.8.3))(sass-embedded@1.89.2)(tailwindcss@4.1.11)(typescript@5.8.3)(vite@6.2.7(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)':
+  '@angular-devkit/build-angular@19.2.15(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@22.10.5)(chokidar@4.0.1)(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(jiti@2.4.2)(karma@6.4.4)(lightningcss@1.30.1)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(tailwindcss@4.1.11)(tslib@2.8.1)(typescript@5.8.3))(sass-embedded@1.89.2)(tailwindcss@4.1.11)(typescript@5.8.3)(vite@6.2.7(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.15(chokidar@4.0.1)
@@ -11873,7 +11875,7 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@angular-devkit/build-angular@19.2.15(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@22.10.5)(chokidar@4.0.1)(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@22.10.5))(jiti@2.4.2)(karma@6.4.4)(lightningcss@1.30.1)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(tailwindcss@4.1.11)(tslib@2.8.1)(typescript@5.8.3))(sass-embedded@1.89.2)(tailwindcss@4.1.11)(typescript@5.8.3)(vite@6.3.5(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)':
+  '@angular-devkit/build-angular@19.2.15(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@22.10.5)(chokidar@4.0.1)(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(jiti@2.4.2)(karma@6.4.4)(lightningcss@1.30.1)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(typescript@5.8.3))(tailwindcss@4.1.11)(tslib@2.8.1)(typescript@5.8.3))(sass-embedded@1.89.2)(tailwindcss@4.1.11)(typescript@5.8.3)(vite@6.3.5(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.15(chokidar@4.0.1)
@@ -17950,7 +17952,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(jest@29.7.0(@types/node@22.10.5))(typescript@5.8.3):
+  eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/utils': 8.22.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.18.0(jiti@2.4.2)
@@ -23779,7 +23781,7 @@ snapshots:
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.26.0)
 
-  ts-jest@29.2.5(@babel/core@7.26.10)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.10))(jest@29.7.0)(typescript@5.8.3):
+  ts-jest@29.2.5(@babel/core@7.26.10)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.10))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       bs-logger: 0.2.6
       ejs: 3.1.10
