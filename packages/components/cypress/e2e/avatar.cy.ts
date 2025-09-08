@@ -89,6 +89,7 @@ describe('Avatar', () => {
         'append',
         '<img src="/assets/images/invalid-image.svg" alt="Invalid image" />',
       );
+      cy.get('@avatar').find('img').should('be.not.visible');
       cy.get('@avatar').find('.initials').should('exist');
     });
 

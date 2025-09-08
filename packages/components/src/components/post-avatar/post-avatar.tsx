@@ -96,7 +96,7 @@ export class PostAvatar {
       if (this.userid) {
         imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
       }
-      if (!imageLoaded && emailPattern.exec(this.email ?? '') !== null) {
+      if (!imageLoaded && this.email?.match(emailPattern)) {
         imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
       }
       if (!imageLoaded) {
