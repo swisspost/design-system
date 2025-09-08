@@ -1,0 +1,60 @@
+import { Meta, Canvas, Source, Controls } from '@storybook/addon-docs/blocks';
+import * as CCR from './aria-role-list.stories';
+
+<Meta of={CCR} />
+
+# role="list"
+
+<div className="lead">
+  The `role="list"` attribute identifies an element as a list for assistive technologies, signaling
+  it contains related items marked with `role="listitem"`.
+</div>
+
+<div>
+While native elements like `<ul>` have this role implicitly, adding `role="list"` to non-semantic elements (e.g., `<div>`) ensures custom components are recognized as lists by screen readers.
+</div>
+
+### I. All Within the Same DOM Tree ✔️
+
+<ul>
+  <li>Basic HTML Example</li>
+</ul>
+<Canvas of={CCR.ExampleHTML} sourceState="shown" />
+<ul>
+  <li>Light DOM → Component with Slotted Children</li>
+</ul>
+<Canvas of={CCR.Example1a} sourceState="shown" />
+
+<ul>
+  <li> Component host → Same Component Slotted Children</li>
+</ul>
+<Canvas of={CCR.Example1b} sourceState="shown" />
+
+### II. Parent in the Light DOM - Children Into The Shadow DOM
+
+<ul>
+  <li>Light DOM → Shadow DOM ❓</li>
+  <Canvas of={CCR.Example2a} sourceState="shown" />
+</ul>
+<ul>
+  <li>Slotted Parent → Shadow DOM ❌</li>
+  <Canvas of={CCR.Example2b} sourceState="shown" />
+</ul>
+Light DOM elements with an ARIA parent role cannot be associated to children elements with the
+respective ARIA child roles across the Shadow DOM.
+
+### III. Parent in the Shadow DOM - Children Out to the Light DOM ✔️
+
+<ul>
+  <li>Shadow DOM → Light DOM </li>
+</ul>
+
+<Canvas of={CCR.Example3} sourceState="shown" />
+
+### IV. Referencing From One Shadow DOM To Another Shadow DOM ✔️
+
+<ul>
+  <li>Shadow DOM → Other nested Shadow DOM</li>
+</ul>
+
+<Canvas of={CCR.Example4} sourceState="shown" />

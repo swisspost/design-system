@@ -1,0 +1,71 @@
+import { Meta, Canvas, Source, Controls } from '@storybook/addon-docs/blocks';
+import * as CCR from './aria-describedby.stories';
+
+<Meta of={CCR} />
+
+# aria-describedby
+
+<div className="lead">
+  In the Light DOM, `aria-describedby` is used to give an element a description by referencing the
+  ID of another element or multiple elements that contain the desired text.
+</div>
+<div>
+  This is useful when a simple text label isn't enough or when the description needs to be combined
+  from different pieces of text.
+</div>
+### I. Referencing Within the Same DOM Tree ✔️
+
+<Canvas of={CCR.ExampleHTML} sourceState="shown" />
+### II. Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
+
+<ul>
+  <li>Light DOM → Shadow DOM</li>
+  <li>Slotted Content → Shadow DOM</li>
+</ul>
+
+Standard `aria-describedby` cannot reference elements located inside a Shadow DOM from outside of it. This is because IDs inside a Shadow DOM are encapsulated and not accessible from the Light DOM or other Shadow DOMs.
+
+##### Possible Workarounds
+
+###### 1. `Element:ariaDescribedByElements`
+
+<b>Light DOM → Shadow DOM Example</b>
+<Canvas of={CCR.Example2} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example2} />
+</div>
+
+<b>Slotted Content → Shadow DOM Example</b>
+<Canvas of={CCR.Example3} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example3} />
+</div>
+
+### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
+
+<ul>
+  <li>Shadow DOM → Light DOM</li>
+  <li>Shadow DOM → Slotted Content</li>
+</ul>
+
+Referencing an element in the light DOM from within the Shadow DOM using standard `aria-describedeby` is not possible.
+
+##### Possible Workaround
+
+An option is to set the `id` directly on the host of the referencing element. In this case all the visible text inside the referencing component will be assigned as the Accessible Description of the target element.
+
+<Canvas of={CCR.Example4} sourceState="shown" />
+
+### IV. Referencing From One Shadow DOM To Another Shadow DOM ❌
+
+<ul>
+  <li>Shadow DOM → Other Shadow DOM</li>
+</ul>
+
+##### Possible Workaround
+
+A workaround for this case combines approaches II and III: using Element.ariaDescribedByElements to set an aria-describedby attribute on the Shadow DOM button, linking it to an ID defined on the host element of the labeling component.
+
+⚠️ In contrast to the respective `aria-labelledby` example, <b>NVDA does not announce</b> the accessible description in this scenario.
+
+<Canvas of={CCR.Example5} sourceState="shown" />

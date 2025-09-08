@@ -2,7 +2,7 @@ export class DemoButton extends HTMLElement {
   static get observedAttributes() {
     return ['button-version', 'workaround', 'aria-labelledby-id', 'aria-describedby-id'];
   }
-  private buttonVersion?: '1' | '2' | '3';
+  private buttonVersion?: '1' | '2' | '3' | '4';
   private workaround?: string;
   private internalButton?: HTMLElement;
   private ariaLabelledbyId?: string;
@@ -41,6 +41,25 @@ export class DemoButton extends HTMLElement {
         const labelEl = assignedElements.find(el => el.tagName === 'SPAN');
         if (this.internalButton)
           this.internalButton.ariaLabelledByElements = labelEl ? [labelEl] : [];
+      }
+    }
+
+    if (this.buttonVersion == '3') {
+      if (this.workaround === 'ariaDescribedByElements') {
+        const labelEl = document.querySelector(`#${this.ariaDescribedbyId}`);
+        console.log('version 3', labelEl);
+        if (this.internalButton)
+          this.internalButton.ariaDescribedByElements = labelEl ? [labelEl] : [];
+      }
+    }
+
+    if (this.buttonVersion == '4') {
+      if (this.workaround === 'ariaDescribedByElements' && this.slotEl) {
+        const assignedElements = this.slotEl.assignedElements({ flatten: true });
+
+        const labelEl = assignedElements.find(el => el.tagName === 'SPAN');
+        if (this.internalButton)
+          this.internalButton.ariaDescribedByElements = labelEl ? [labelEl] : [];
       }
     }
   }

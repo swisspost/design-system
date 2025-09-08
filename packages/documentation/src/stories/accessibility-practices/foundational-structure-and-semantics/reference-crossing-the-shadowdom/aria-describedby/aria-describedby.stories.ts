@@ -3,9 +3,9 @@ import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 
 const meta: MetaExtended = {
-  id: '76ade552-2c03-4d6d-9dce-28daa3405678',
+  id: '76ade552-2c03-4d6d-9dce-28daa3405910',
   title:
-    'Accessibility Practices/Foundational Structure And Semantics/Reference Crossing The Shadowdom/aria-labelledby',
+    'Accessibility Practices/Foundational Structure And Semantics/Reference Crossing The Shadowdom/aria-describedby',
   parameters: {
     badges: [],
   },
@@ -20,10 +20,10 @@ type Story = StoryObj;
 // Case: Standard Light DOM to Light DOM
 export const ExampleHTML: Story = {
   render: () => html`
-    <span id="id_1">My Text</span>
-    <div class="btn btn-primary" aria-labelledby="id_1" role="button" tabindex="0">
+    <div class="btn btn-primary" aria-describedby="id_1" role="button" tabindex="0">
       <post-icon name="1022"></post-icon>
     </div>
+    <span id="id_1">My Description</span>
   `,
 };
 
@@ -35,19 +35,19 @@ export const Example2: Story = {
       control: {
         type: 'radio',
       },
-      options: ['none', 'ariaLabelledByElements'],
+      options: ['none', 'ariaDescribedByElements'],
     },
   },
   args: {
     workaround: 'none',
   },
   render: (args: Args) => html`
-    <span id="id_2">My Text</span>
     <demo-button
-      button-version="1"
-      aria-labelledby-id="id_2"
+      button-version="3"
+      aria-describedby-id="id_1"
       workaround="${args.workaround}"
     ></demo-button>
+    <span id="id_1">My Description</span>
   `,
 };
 
@@ -59,15 +59,15 @@ export const Example3: Story = {
       control: {
         type: 'radio',
       },
-      options: ['none', 'ariaLabelledByElements'],
+      options: ['none', 'ariaDescribedByElements'],
     },
   },
   args: {
     workaround: 'none',
   },
   render: (args: Args) => html`
-    <demo-button button-version="2" workaround="${args.workaround}"
-      ><span slot="label-slot">My Text</span></demo-button
+    <demo-button button-version="4" workaround="${args.workaround}"
+      ><span slot="label-slot">My Description</span></demo-button
     >
   `,
 };
@@ -75,21 +75,21 @@ export const Example3: Story = {
 // Case: Standard Light DOM to Shadow DOM workaround
 export const Example4: Story = {
   render: () => html`
-    <demo-span id="id_3">My Text</demo-span>
-    <div class="btn btn-primary" aria-labelledby="id_3" role="button" tabindex="0">
+    <div class="btn btn-primary" aria-describedby="id_2" role="button" tabindex="0">
       <post-icon name="1022"></post-icon>
     </div>
+    <demo-span id="id_2">My description</demo-span>
   `,
 };
 
 // Case: Shadow DOM to other Shadow Dom workaround
 export const Example5: Story = {
   render: () => html`
-    <demo-span id="id_4">My Text</demo-span>
     <demo-button
-      button-version="1"
-      aria-labelledby-id="id_4"
-      workaround="ariaLabelledByElements"
+      button-version="3"
+      workaround="ariaDescribedByElements"
+      aria-describedby="id_3"
     ></demo-button>
+    <demo-span id="id_3">My description</demo-span>
   `,
 };

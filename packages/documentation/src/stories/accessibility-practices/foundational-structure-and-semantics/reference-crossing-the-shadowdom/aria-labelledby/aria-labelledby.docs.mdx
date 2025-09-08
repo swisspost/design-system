@@ -51,6 +51,18 @@ Referencing an element in the light DOM from within the Shadow DOM using standar
 
 ##### Possible Workaround
 
-An option is to set the `id` directly on the host of the labeling component. Please note that, in this case all the visible text inside the referencing component will be assigned as the Accessible Name of the target element.
+An option is to set the `id` directly on the host of the labeling component. In this case all the visible text inside the referencing component will be assigned as the Accessible Name of the target element.
 
 <Canvas of={CCR.Example4} sourceState="shown" />
+
+##### IV. Referencing From One Shadow DOM To Another Shadow DOM
+
+<ul>
+  <li>Shadow DOM → Other Shadow DOM</li>
+</ul>
+
+##### Possible Workaround
+
+A workaround for this case combines approaches II and III: using `Element.ariaLabelledByElements` to set an `aria-labelledby` attribute on the Shadow DOM `button`, linking it to an ID defined on the host element of the labeling component.
+
+<Canvas of={CCR.Example5} sourceState="shown" />
