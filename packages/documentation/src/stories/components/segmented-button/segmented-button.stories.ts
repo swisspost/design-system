@@ -31,19 +31,15 @@ const meta: MetaComponent = {
       name: 'Content type',
       description: 'Defines the type of content displayed in the buttons.',
       control: { type: 'inline-radio' },
-      options: ['text', 'icon', 'text+icon'],
+      options: ['Text only', 'Icons only', 'Text and icons'],
       table: { category: 'Content' },
     },
   },
 };
 
-export default meta;
-
-type Story = StoryObj;
-
-const Template = {
+export const Default: Story = {
   render: (args: Args) => {
-    const mode = args.mode || 'text';
+    const mode = args.mode || 'Text only';
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
     const labels = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
     const name = `segmented-button-${crypto.randomUUID().replace(/-/g, '').slice(-6)}`;
@@ -56,10 +52,13 @@ const Template = {
             (label, index) => html`
               <label class="segmented-button-label">
                 <input type="radio" name="${name}" ?checked=${index === 0} />
-                ${mode === 'icon' || mode === 'text+icon'
+                ${mode === 'Icons only'
+                  ? html`<span class="visually-hidden">${label}</span>`
+                  : nothing}
+                ${mode === 'Icons only"' || mode === 'Text and icons'
                   ? html`<post-icon name="${1000 + index}"></post-icon>`
                   : nothing}
-                ${mode === 'text' || mode === 'text+icon' ? label : nothing}
+                ${mode === 'Text only' || mode === 'Text and icons' ? label : nothing}
               </label>
             `,
           )}
@@ -69,16 +68,14 @@ const Template = {
   },
 };
 
-export const Default: Story = {
-  ...Template,
-};
+export default meta;
+
+type Story = StoryObj;
 
 export const Icon: Story = {
-  ...Template,
-  args: { mode: 'icon' },
+  args: { mode: 'Icons only' },
 };
 
 export const TextAndIcon: Story = {
-  ...Template,
-  args: { mode: 'text+icon' },
+  args: { mode: 'Text and icons' },
 };
