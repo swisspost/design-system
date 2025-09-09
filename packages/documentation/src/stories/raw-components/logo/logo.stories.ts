@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostLogoElement> = {
   id: '73066e1c-0720-4a9b-8f81-a29d4250872a',
-  title: 'Foundations/Logo',
+  title: 'Raw Components/Logo',
   tags: ['package:WebComponents'],
   component: 'post-logo',
   parameters: {
