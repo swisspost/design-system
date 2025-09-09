@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Events
+
+| Event       | Description                                                           | Type                |
+| ----------- | --------------------------------------------------------------------- | ------------------- |
+| `postClick` | An event emitted when the close button is clicked. It has no payload. | `CustomEvent<void>` |
+
+
 ## Slots
 
 | Slot        | Description                                                 |

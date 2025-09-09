@@ -1,5 +1,34 @@
 # @swisspost/design-system-components-angular
 
+## 10.0.0-next.47
+
+### Patch Changes
+
+- Updated peer dependencies `@angular/core`, `@angular/common` and `@angular/forms` of the package. (by [@myrta2302](https://github.com/myrta2302) with [#5836](https://github.com/swisspost/design-system/pull/5836))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.47
+
+## 10.0.0-next.46
+
+### Major Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.46
+
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.45
+
 ## 10.0.0-next.44
 
 ### Patch Changes
