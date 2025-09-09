@@ -1,9 +1,6 @@
 # post-avatar
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -15,14 +12,12 @@
 | `lastname`               | `lastname`    | Defines the users lastname.                                                                                                          | `string` | `undefined` |
 | `userid`                 | `userid`      | Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div> | `string` | `undefined` |
 
-
 ## Slots
 
 | Slot        | Description                                  |
 | ----------- | -------------------------------------------- |
 | `"default"` | Slot for inserting a custom image as avatar. |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

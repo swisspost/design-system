@@ -71,7 +71,7 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
          */
         "userid"?: string;
     }
@@ -86,15 +86,6 @@ export namespace Components {
           * Triggers banner dismissal programmatically (same as clicking on the close button (×)).
          */
         "dismiss": () => Promise<void>;
-        /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-          * @default false
-         */
-        "dismissible": boolean;
         /**
           * The type of the banner.
           * @default 'info'
@@ -141,7 +132,7 @@ export namespace Components {
          */
         "groupReset": () => Promise<void>;
         /**
-          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <post-banner data-size="sm"><p>If not set the icon will not show up.</p></post-banner>
          */
         "icon"?: string;
         /**
@@ -149,7 +140,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</p></post-banner> <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "name"?: string;
         /**
@@ -165,7 +156,7 @@ export namespace Components {
          */
         "validity"?: boolean;
         /**
-          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "value"?: string;
     }
@@ -545,6 +536,10 @@ export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCardControlElement;
 }
+export interface PostClosebuttonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostClosebuttonElement;
+}
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
@@ -648,7 +643,18 @@ declare global {
         prototype: HTMLPostCardControlElement;
         new (): HTMLPostCardControlElement;
     };
+    interface HTMLPostClosebuttonElementEventMap {
+        "postClick": void;
+    }
     interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostClosebuttonElementEventMap>(type: K, listener: (this: HTMLPostClosebuttonElement, ev: PostClosebuttonCustomEvent<HTMLPostClosebuttonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostClosebuttonElementEventMap>(type: K, listener: (this: HTMLPostClosebuttonElement, ev: PostClosebuttonCustomEvent<HTMLPostClosebuttonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostClosebuttonElement: {
         prototype: HTMLPostClosebuttonElement;
@@ -972,7 +978,7 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
          */
         "userid"?: string;
     }
@@ -983,15 +989,6 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PostBanner {
-        /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-          * @default false
-         */
-        "dismissible"?: boolean;
         /**
           * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
          */
@@ -1038,7 +1035,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <post-banner data-size="sm"><p>If not set the icon will not show up.</p></post-banner>
          */
         "icon"?: string;
         /**
@@ -1046,11 +1043,11 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</p></post-banner> <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "name"?: string;
         /**
-          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="banner banner-sm banner-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <post-banner data-size="sm"><p>If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</p></post-banner>
          */
         "onPostChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
@@ -1066,11 +1063,15 @@ declare namespace LocalJSX {
          */
         "validity"?: boolean;
         /**
-          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * An event emitted when the close button is clicked. It has no payload.
+         */
+        "onPostClick"?: (event: PostClosebuttonCustomEvent<void>) => void;
     }
     interface PostCollapsible {
         /**
