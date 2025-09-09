@@ -14,7 +14,7 @@
   height: 100%;
 }
 
-.loading-modal {
+.spinner-modal {
   display: inline-flex;
   position: absolute;
   z-index: commons.$zindex-spinner;
@@ -33,7 +33,7 @@
 
   // Sizes
   @each $key, $font-size in spinners.$spinner-size-map {
-    &.loader-#{$key} {
+    &.spinner-#{$key} {
       font-size: $font-size;
     }
   }
