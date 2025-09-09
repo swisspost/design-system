@@ -24,6 +24,18 @@ describe('Avatar', () => {
     });
 
     it('should show initials when, firstname or firstname and lastname is defined', () => {
+      // const errorPromise = new Promise(resolve => {
+      //   Cypress.on('uncaught:exception', err => {
+
+      //     expect(err.message).to.include(
+      //       'The prop `firstname` of the `post-avatar` component is not defined.',
+      //     );
+      //     resolve(true);
+      //     // Returning false prevents the test from failing on this uncaught exception.
+      //     return false;
+      //   });
+      // });
+
       cy.get('@avatar').find('.initials').as('initials');
 
       cy.get('@initials').should('exist');
@@ -40,6 +52,9 @@ describe('Avatar', () => {
 
       cy.get('@avatar').invoke('removeAttr', 'firstname').invoke('removeAttr', 'lastname');
       cy.get('@initials').should('not.have.text');
+
+      // // Wait for the error promise to resolve before ending the test.
+      // cy.wrap(errorPromise);
     });
 
     it('should show initials if gravatar does not exist, otherwise show img', () => {
