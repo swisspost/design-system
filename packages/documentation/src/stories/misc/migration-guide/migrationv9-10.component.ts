@@ -86,7 +86,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     The <code>.form-text</code> class has been renamed to <code>.form-hint</code>
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span><span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
                 <li class="mb-16">
@@ -362,6 +362,16 @@ export class MigrationV99Component extends LitElement {
                     </li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Renamed border radius classes
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                  </p>
+                  <ul>
+                    <li><code>.rounded</code> is now <code>.rounded-4</code></li>
+                    <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
+                  </ul>
+                </li>
               </ul>
 
               <h5>Helpers</h5>
@@ -455,7 +465,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed deprecated line-height variables
+                    Removed deprecated line-height SCSS variables and CSS classes
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
@@ -471,7 +481,28 @@ export class MigrationV99Component extends LitElement {
                     <li><code>$line-height-bigger-big</code></li>
                     <li><code>$line-height-small-huge</code></li>
                     <li><code>$line-height-huge</code></li>
+                    <li><code>.lh-base</code></li>
+                    <li><code>.lh-hair</code></li>
+                    <li><code>.lh-line</code></li>
+                    <li><code>.lh-micro</code></li>
+                    <li><code>.lh-mini</code></li>
+                    <li><code>.lh-small-regular</code></li>
+                    <li><code>.lh-regular</code></li>
+                    <li><code>.lh-small-large</code></li>
+                    <li><code>.lh-large</code></li>
+                    <li><code>.lh-big</code></li>
+                    <li><code>.lh-bigger-big</code></li>
+                    <li><code>.lh-small-huge</code></li>
+                    <li><code>.lh-huge</code></li>
+                    <li><code>.lh-small-giant</code></li>
+                    <li><code>.lh-giant</code></li>
+                    <li><code>.lh-bigger-giant</code></li>
                   </ul>
+                  <p class="info">
+                    You can now use the following classes: <code>.lh-1</code>, <code>.lh-sm</code> and <code>.lh-lg</code> which are documented in the <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
+                      >text utilities</a
+                    >.
+                  </p>
                 </li>
                 <li class="mb-16">
                   <p>
@@ -493,7 +524,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     Renamed font-weight utility classes
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.bold</code> is now <code>.fw-bold</code></li>
@@ -536,12 +567,6 @@ export class MigrationV99Component extends LitElement {
                     The line height is now set to a default value for both paragraph elements and
                     headings. If a different value is needed, we recommend using the line height
                     text utility classes.
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The <code>.lh-base</code> class has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                 </li>
                 <li class="mb-16">
@@ -617,7 +642,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     The <code>.btn-rg</code> class has been removed. Buttons using this class will
                     now fall back to the default <code>btn-md</code>
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
                 <li class="mb-16">
