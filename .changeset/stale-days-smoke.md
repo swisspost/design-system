@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added a version with an icon to the segmented button.
+Enabled having icons in the segmented button.
