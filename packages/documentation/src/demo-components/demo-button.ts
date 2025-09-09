@@ -27,40 +27,29 @@ export class DemoButton extends HTMLElement {
   }
 
   private setupAria() {
-    if (this.buttonVersion == '1') {
-      if (this.workaround === 'ariaLabelledByElements') {
-        const labelEl = document.querySelector(`#${this.arialabelledbyId}`);
-        if (this.internalButton)
-          this.internalButton.ariaLabelledByElements = labelEl ? [labelEl] : [];
-      }
+    const isLabelled = this.workaround === 'ariaLabelledByElements';
+    const isDescribed = this.workaround === 'ariaDescribedByElements';
+
+    if (!this.internalButton || (!isLabelled && !isDescribed)) {
+      return;
     }
 
-    if (this.buttonVersion == '2') {
-      if (this.workaround === 'ariaLabelledByElements' && this.slotEl) {
+    let elementToLink: Element | null = null;
+
+    if (this.buttonVersion === '1' || this.buttonVersion === '3') {
+      const id = isLabelled ? this.arialabelledbyId : this.ariadescribedbyId;
+      if (id) {
+        elementToLink = document.querySelector(`#${id}`);
+      }
+    } else if (this.buttonVersion === '2' || this.buttonVersion === '4') {
+      if (this.slotEl) {
         const assignedElements = this.slotEl.assignedElements({ flatten: true });
-        const labelEl = assignedElements.find(el => el.tagName === 'SPAN');
-        if (this.internalButton)
-          this.internalButton.ariaLabelledByElements = labelEl ? [labelEl] : [];
+        elementToLink = assignedElements.find(el => el.tagName === 'SPAN') || null;
       }
     }
 
-    if (this.buttonVersion == '3') {
-      if (this.workaround === 'ariaDescribedByElements') {
-        const labelEl = document.querySelector(`#${this.ariadescribedbyId}`);
-        if (this.internalButton)
-          this.internalButton.ariaDescribedByElements = labelEl ? [labelEl] : [];
-      }
-    }
-
-    if (this.buttonVersion == '4') {
-      if (this.workaround === 'ariaDescribedByElements' && this.slotEl) {
-        const assignedElements = this.slotEl.assignedElements({ flatten: true });
-
-        const labelEl = assignedElements.find(el => el.tagName === 'SPAN');
-        if (this.internalButton)
-          this.internalButton.ariaDescribedByElements = labelEl ? [labelEl] : [];
-      }
-    }
+    const ariaPropertyName = isLabelled ? 'ariaLabelledByElements' : 'ariaDescribedByElements';
+    this.internalButton[ariaPropertyName] = elementToLink ? [elementToLink] : [];
   }
 
   private render() {
