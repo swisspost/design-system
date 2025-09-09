@@ -1,5 +1,89 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.47
+
+### Major Changes
+
+- Removed the `dismissible` and `dismissLabel` properties from the `post-banner` component. Dismiss functionality now only requires assigning a `post-closebutton` to the new `close-button` slot. (by [@alizedebray](https://github.com/alizedebray) with [#6108](https://github.com/swisspost/design-system/pull/6108))
+
+### Minor Changes
+
+- Added a `postClick` event and accessibility checks to the `post-closebutton` component. (by [@alizedebray](https://github.com/alizedebray) with [#6108](https://github.com/swisspost/design-system/pull/6108))
+
+### Patch Changes
+
+- Updated the `post-banner` icons. (by [@alizedebray](https://github.com/alizedebray) with [#6078](https://github.com/swisspost/design-system/pull/6078))
+
+- Updated `post-back-to-top` button to not be visible during browser overscroll bounce effect. (by [@myrta2302](https://github.com/myrta2302) with [#6105](https://github.com/swisspost/design-system/pull/6105))
+
+- Updated the arrow placement of the `<post-tooltip>` to fix the layout issue. (by [@leagrdv](https://github.com/leagrdv) with [#6157](https://github.com/swisspost/design-system/pull/6157))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.47
+  - @swisspost/design-system-icons@10.0.0-next.47
+
+## 10.0.0-next.46
+
+### Major Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.46
+  - @swisspost/design-system-styles@10.0.0-next.46
+
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.45
+  - @swisspost/design-system-styles@10.0.0-next.45
+
+## 10.0.0-next.44
+
+### Minor Changes
+
+- Enabled use of the `post-header` component without requiring a `post-mainnavigation`. (by [@alizedebray](https://github.com/alizedebray) with [#5933](https://github.com/swisspost/design-system/pull/5933))
+
+### Patch Changes
+
+- Updated `<post-tooltip>` by moving the `role` attribute from the `<post-tooltip>` to the nested `<post-popovercontainer>` component to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#5551](https://github.com/swisspost/design-system/pull/5551))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.44
+  - @swisspost/design-system-styles@10.0.0-next.44
+
+## 10.0.0-next.43
+
+### Major Changes
+
+- The `back-button` slot has been completely removed from the `<post-mainnavigation>` in the `<post-header>` component. If you currently have a `back-button` inside `<post-mainnavigation>`, you must remove it entirely as this is no longer supported. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5899](https://github.com/swisspost/design-system/pull/5899))
+
+- Removed the `post-tag` component. The `tag` component can be used instead. (by [@schaertim](https://github.com/schaertim) with [#5764](https://github.com/swisspost/design-system/pull/5764))
+
+### Minor Changes
+
+- Added a `full-width` property to the `post-tabs` component to allow the tabs container to span the full screen width. (by [@myrta2302](https://github.com/myrta2302) with [#5736](https://github.com/swisspost/design-system/pull/5736))
+
+- Added the `target group` css component within the `post-header` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5687](https://github.com/swisspost/design-system/pull/5687))
+
+### Patch Changes
+
+- Updated `post-tooltip` and `post-popover` components: added `.palette` class in the documentation examples and overrode default `popovercontainer` styles in both components. (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
+
+- Updated `<post-header>` component styles to align with design specifications. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5903](https://github.com/swisspost/design-system/pull/5903))
+
+- Fixed a bug where `<post-megadropdown>` component retained its expanded state inside `<post-header>` when switching from desktop to mobile view. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5747](https://github.com/swisspost/design-system/pull/5747))
+
+- Fixed a regression causing breakpoint-related errors in the `post-header`, `post-footer` and `post-megadropdown` components. (by [@alizedebray](https://github.com/alizedebray) with [#5965](https://github.com/swisspost/design-system/pull/5965))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.43
+  - @swisspost/design-system-styles@10.0.0-next.43
+
 ## 10.0.0-next.42
 
 ### Patch Changes
