@@ -28,8 +28,8 @@ const meta: MetaComponent = {
       table: { category: 'Content' },
     },
     mode: {
-      name: 'Content mode',
-      description: 'Choose how each segment renders its content.',
+      name: 'Content type',
+      description: 'Defines the type of content displayed in the buttons.',
       control: { type: 'inline-radio' },
       options: ['text', 'icon', 'text+icon'],
       table: { category: 'Content' },
