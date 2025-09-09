@@ -14,25 +14,40 @@ const TECH_ICONS: Record<string, string> = {
 
 definePostIcon();
 
-// checks if there is a parameter `?devModeEnabled=true` in URL for devMode set
-// e.g. http://localhost:9000/?path=/docs/introduction--docs&devModeEnabled=true
+// Get existing URL params
 const params = new URLSearchParams(window.location.search);
 
-const devModeFromUrl = params.get('devModeEnabled') === 'true';
+// Get value, that states if URL devMode is enabled (String 'true' or 'false', or null if the item is not specified in URL)
+const devModeFromUrl = params.get('devModeEnabled');
 
-if (devModeFromUrl) {
-  localStorage.setItem('devModeEnabled', 'true');
-}
-
-// if yes, devModeEnabled-key is set in localStorage
+// Get value, that states if localStorage devMode is enabled (String 'true' or 'false', or null if the item is not specified in localStorage)
 const storedDevMode = localStorage.getItem('devModeEnabled');
 
-// read initialEnv from localStorage
+// Get initial mode (e.g. `development` or `production` from environment variable), sets fallback to 'production')
 let initialEnv = process.env.NODE_ENV || 'production';
 
-// set data-env to development or production mode
-if (storedDevMode !== null) {
-  initialEnv = JSON.parse(storedDevMode) ? 'development' : 'production';
+// Override initialEnv by priority (url param is more important than the stored state)
+if (devModeFromUrl !== null) {
+  // Set devMode in localStorage based on URL parameter
+  localStorage.setItem('devModeEnabled', devModeFromUrl);
+  initialEnv = JSON.parse(devModeFromUrl) ? 'development' : 'production';
+} else {
+  // If no URL param, check if there's a stored devMode
+  if (storedDevMode !== null) {
+    // If the stored devModeEnabled is 'true', reset to 'production'
+    localStorage.removeItem('devModeEnabled');
+  }
+
+  // Default to 'production' if no URL param and no stored value
+  initialEnv = 'production';
+}
+
+// In case of no URL parameter, reset localStorage value (fallback)
+if (devModeFromUrl === null) {
+  // We clear only localStorage if it's set to 'development' (to reset it when switching back to production)
+  if (storedDevMode === 'true') {
+    localStorage.removeItem('devModeEnabled');
+  }
 }
 
 document.documentElement.setAttribute('data-env', initialEnv);
