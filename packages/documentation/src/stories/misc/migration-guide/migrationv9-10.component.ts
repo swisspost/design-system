@@ -797,6 +797,16 @@ export class MigrationV99Component extends LitElement {
                     Replaced by the <code>post-banner</code> component.
                   </p>
                 </li>
+
+                <li class="mb-16">
+                  <p>
+                    Renamed loader classes and related scss variables (<code>.loading-modal</code>, <code>.loader</code>).
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    Replaced by the <code>.spinner-modal</code> and <code>.spinner</code> classes.
+                  </p>
+                </li>
               </ul>
             </section>
 
