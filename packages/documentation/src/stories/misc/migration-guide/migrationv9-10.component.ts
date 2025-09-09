@@ -784,7 +784,7 @@ export class MigrationV99Component extends LitElement {
                     <li><code>.loader-sm</code></li>
                   </ul>
                   <p class="info">
-                    Instead, use classes <code>.loader-16</code> and <code>.loader-40</code>.
+                    Instead, use classes <code>.spinner-16</code> and <code>.spinner-40</code>.
                   </p>
                 </li>
 
