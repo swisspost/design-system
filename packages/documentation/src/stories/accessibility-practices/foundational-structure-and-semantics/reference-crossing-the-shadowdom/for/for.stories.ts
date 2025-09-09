@@ -45,7 +45,7 @@ export const Example2: Story = {
     <demo-target
       target-version="1"
       workaround="${args.workaround}"
-      aria-labelledby-id="id_1"
+      arialabelledby-id="id_1"
     ></demo-target>
   `,
 };
@@ -99,7 +99,7 @@ export const Example5: Story = {
     <demo-label id="id_3"></demo-label>
     <demo-target
       target-version="3"
-      aria-labelledby-id="id_3"
+      arialabelledby-id="id_3"
       workaround="ariaLabelledByElements"
     ></demo-target>
   `,

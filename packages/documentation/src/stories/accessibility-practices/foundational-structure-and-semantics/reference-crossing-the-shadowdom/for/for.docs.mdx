@@ -42,6 +42,8 @@ Defines programmatically the `ariaLabelledByElements` property of the element: `
   <Controls of={CCR.Example3} />
 </div>
 
+⚠️ In the above scenarios, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but fails on Siteimprove and Accessibility Insights tools.
+
 ### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
 
 <ul>
@@ -75,3 +77,5 @@ A workaround for this case combines approaches II and III: using `Element.ariaLa
 <div className="hide-col-default">
   <Controls of={CCR.Example5} />
 </div>
+
+⚠️ In the above scenario, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but fails on Siteimprove and Accessibility Insights tools.

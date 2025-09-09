@@ -40,6 +40,9 @@ Standard `aria-labelledby` cannot reference elements inside a Shadow DOM from ou
 <div className="hide-col-default">
   <Controls of={CCR.Example3} />
 </div>
+
+⚠️ In the above scenarios, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but fails on Siteimprove and Accessibility Insights tools.
+
 ### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
 
 <ul>
@@ -55,7 +58,7 @@ An option is to set the `id` directly on the host of the labeling component. In 
 
 <Canvas of={CCR.Example4} sourceState="shown" />
 
-##### IV. Referencing From One Shadow DOM To Another Shadow DOM
+### IV. Referencing From One Shadow DOM To Another Shadow DOM
 
 <ul>
   <li>Shadow DOM → Other Shadow DOM</li>
@@ -66,3 +69,5 @@ An option is to set the `id` directly on the host of the labeling component. In 
 A workaround for this case combines approaches II and III: using `Element.ariaLabelledByElements` to set an `aria-labelledby` attribute on the Shadow DOM `button`, linking it to an ID defined on the host element of the labeling component.
 
 <Canvas of={CCR.Example5} sourceState="shown" />
+
+⚠️ In the above scenario, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but fails on Siteimprove and Accessibility Insights tools.

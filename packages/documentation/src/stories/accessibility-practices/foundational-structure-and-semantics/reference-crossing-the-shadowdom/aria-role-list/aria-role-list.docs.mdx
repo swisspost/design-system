@@ -33,15 +33,16 @@ While native elements like `<ul>` have this role implicitly, adding `role="list"
 ### II. Parent in the Light DOM - Children Into The Shadow DOM
 
 <ul>
-  <li>Light DOM → Shadow DOM ❓</li>
-  <Canvas of={CCR.Example2a} sourceState="shown" />
+  <li>Light DOM → Shadow DOM ✔️</li>
+
 </ul>
+  <Canvas of={CCR.Example2a} sourceState="shown" />
+
 <ul>
   <li>Slotted Parent → Shadow DOM ❌</li>
-  <Canvas of={CCR.Example2b} sourceState="shown" />
+
 </ul>
-Light DOM elements with an ARIA parent role cannot be associated to children elements with the
-respective ARIA child roles across the Shadow DOM.
+  <Canvas of={CCR.Example2b} sourceState="shown" />
 
 ### III. Parent in the Shadow DOM - Children Out to the Light DOM ✔️
 

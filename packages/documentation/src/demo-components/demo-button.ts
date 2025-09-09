@@ -1,12 +1,12 @@
 export class DemoButton extends HTMLElement {
   static get observedAttributes() {
-    return ['button-version', 'workaround', 'aria-labelledby-id', 'aria-describedby-id'];
+    return ['button-version', 'workaround', 'arialabelledby-id', 'ariadescribedby-id'];
   }
   private buttonVersion?: '1' | '2' | '3' | '4';
   private workaround?: string;
   private internalButton?: HTMLElement;
-  private ariaLabelledbyId?: string;
-  private ariaDescribedbyId?: string;
+  private arialabelledbyId?: string;
+  private ariadescribedbyId?: string;
   private slotEl?: HTMLSlotElement;
 
   constructor() {
@@ -20,8 +20,8 @@ export class DemoButton extends HTMLElement {
 
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
     if (name === 'workaround') this.workaround = newValue;
-    if (name === 'aria-labelledby-id') this.ariaLabelledbyId = newValue;
-    if (name === 'aria-describedby-id') this.ariaDescribedbyId = newValue;
+    if (name === 'arialabelledby-id') this.arialabelledbyId = newValue;
+    if (name === 'ariadescribedby-id') this.ariadescribedbyId = newValue;
     if (name === 'button-version') this.buttonVersion = newValue as '1' | '2' | '3';
     this.render();
   }
@@ -29,7 +29,7 @@ export class DemoButton extends HTMLElement {
   private setupAria() {
     if (this.buttonVersion == '1') {
       if (this.workaround === 'ariaLabelledByElements') {
-        const labelEl = document.querySelector(`#${this.ariaLabelledbyId}`);
+        const labelEl = document.querySelector(`#${this.arialabelledbyId}`);
         if (this.internalButton)
           this.internalButton.ariaLabelledByElements = labelEl ? [labelEl] : [];
       }
@@ -46,8 +46,7 @@ export class DemoButton extends HTMLElement {
 
     if (this.buttonVersion == '3') {
       if (this.workaround === 'ariaDescribedByElements') {
-        const labelEl = document.querySelector(`#${this.ariaDescribedbyId}`);
-        console.log('version 3', labelEl);
+        const labelEl = document.querySelector(`#${this.ariadescribedbyId}`);
         if (this.internalButton)
           this.internalButton.ariaDescribedByElements = labelEl ? [labelEl] : [];
       }

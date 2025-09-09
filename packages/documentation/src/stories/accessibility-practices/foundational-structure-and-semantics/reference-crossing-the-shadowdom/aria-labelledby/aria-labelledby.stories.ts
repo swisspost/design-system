@@ -45,7 +45,7 @@ export const Example2: Story = {
     <span id="id_2">My Text</span>
     <demo-button
       button-version="1"
-      aria-labelledby-id="id_2"
+      arialabelledby-id="id_2"
       workaround="${args.workaround}"
     ></demo-button>
   `,
@@ -88,7 +88,7 @@ export const Example5: Story = {
     <demo-span id="id_4">My Text</demo-span>
     <demo-button
       button-version="1"
-      aria-labelledby-id="id_4"
+      arialabelledby-id="id_4"
       workaround="ariaLabelledByElements"
     ></demo-button>
   `,

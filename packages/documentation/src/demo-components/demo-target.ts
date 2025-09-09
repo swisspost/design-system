@@ -1,10 +1,10 @@
 export class DemoTarget extends HTMLElement {
   static get observedAttributes() {
-    return ['workaround', 'aria-labelledby-id', 'target-version'];
+    return ['workaround', 'arialabelledby-id', 'target-version'];
   }
 
   private workaround?: string;
-  private ariaLabelledbyId?: string;
+  private arialabelledbyId?: string;
   private targetVersion?: '1' | '2' | '3';
   private internalEl?: HTMLElement;
   private slotEl?: HTMLSlotElement;
@@ -20,7 +20,7 @@ export class DemoTarget extends HTMLElement {
 
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
     if (name === 'workaround') this.workaround = newValue;
-    if (name === 'aria-labelledby-id') this.ariaLabelledbyId = newValue;
+    if (name === 'arialabelledby-id') this.arialabelledbyId = newValue;
     if (name === 'target-version') this.targetVersion = newValue as '1' | '2' | '3';
 
     this.render();
@@ -30,7 +30,7 @@ export class DemoTarget extends HTMLElement {
     if (!this.internalEl) return;
     // Version #1
     if (this.targetVersion === '1') {
-      const labelEl = document.querySelector(`[for="${this.ariaLabelledbyId}"]`);
+      const labelEl = document.querySelector(`[for="${this.arialabelledbyId}"]`);
       this.internalEl.ariaLabelledByElements =
         this.workaround === 'ariaLabelledByElements' && labelEl ? [labelEl] : [];
 
@@ -45,9 +45,7 @@ export class DemoTarget extends HTMLElement {
       }
     } // Version #3
     else if (this.targetVersion === '3') {
-      console.log(this.ariaLabelledbyId);
-      const labelEl = document.querySelector(`#${this.ariaLabelledbyId}`);
-      console.log(labelEl);
+      const labelEl = document.querySelector(`#${this.arialabelledbyId}`);
       this.internalEl.ariaLabelledByElements = labelEl ? [labelEl] : [];
     }
   }

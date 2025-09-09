@@ -44,7 +44,7 @@ export const Example2: Story = {
   render: (args: Args) => html`
     <demo-button
       button-version="3"
-      aria-describedby-id="id_1"
+      ariadescribedby-id="id_1"
       workaround="${args.workaround}"
     ></demo-button>
     <span id="id_1">My Description</span>

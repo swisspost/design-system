@@ -64,22 +64,26 @@ export const Example2a: Story = {
 export const Example2b: Story = {
   render: () =>
     html`<demo-list-item-group list-group-version="2" tabindex="0">
-      <div slot="list-parent" role="list"></div>
+      <div role="list" tabindex="0" slot="list-parent"></div>
     </demo-list-item-group>`,
 };
 
 // Case: Parent in the Shadow - Children in the Light
 export const Example3: Story = {
   render: () => html`
-    <demo-list role="list" list-version="1" tabindex="0">
-      <div role="listitem" slot="demo-list-item">item 1</div>
-      <div role="listitem" slot="demo-list-item">item 2</div>
-      <div role="listitem" slot="demo-list-item">item 3</div>
+    <demo-list role="list" tabindex="0" list-version="1">
+      <div role="listitem">item 1</div>
+      <div role="listitem">item 2</div>
+      <div role="listitem">item 3</div>
     </demo-list>
   `,
 };
 
 // Case: Referencing from Shadow DOM (Host Attribute) to Slotted Content (Element)
 export const Example4: Story = {
-  render: () => html`<demo-list list-version="1"></demo-list>`,
+  render: () => html`<demo-list list-version="2">
+    <demo-list-item>item 1</demo-list-item>
+    <demo-list-item>item 2</demo-list-item>
+    <demo-list-item>item 3</demo-list-item>
+  </demo-list>`,
 };

@@ -17,7 +17,6 @@ export class DemoListItemGroup extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log(this.listGroupVersion);
     this.render();
   }
 

@@ -16,25 +16,24 @@ export class DemoList extends HTMLElement {
 
   attributeChangedCallback(name: string, _oldValue: number, newValue: number) {
     if (name === 'list-version') this.listVersion = newValue;
+
     this.render();
   }
 
   private render() {
-    console.log(this.listVersion);
     if (!this.shadowRoot) return;
-
-    if (this.listVersion === 1) {
+    if (this.listVersion == 1) {
       this.shadowRoot.innerHTML = `
         <div>
-          <slot name="demo-list-item"></slot>
+          <slot></slot>
         </div>
     `;
-    } else if (this.listVersion === 2) {
-      this.shadowRoot.innerHTML = `<div role="list" tabindex="0">
-          <demo-list-item>item 1</demo-list-item>
-          <demo-list-item>item 2</demo-list-item>
-          <demo-list-item>item 3</demo-list-item>
-        </div>`;
+    } else if (this.listVersion == 2) {
+      this.shadowRoot.innerHTML = `
+        <div role="list" tabindex="0">
+          <slot></slot>
+        </div>
+    `;
     }
   }
 }
