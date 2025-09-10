@@ -149,6 +149,16 @@ input.form-control {
       }
     }
 
+    &.is-valid,
+    &.is-invalid {
+      &::file-selector-button {
+        padding-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} + #{tokens.get(
+            'input-validation-icon-position-inline-end'
+          )} + #{tokens.get('input-sizing-icon')});
+      }
+    }
+
     &:not(:disabled):not([readonly]) {
       cursor: pointer;
     }
@@ -299,7 +309,8 @@ input.form-control {
     &[type='file'] {
       &:focus,
       &:not(:placeholder-shown) {
-        padding-block-start: calc(#{tokens.get('input-padding-block-start')} * 1.33);
+        padding-inline-start: tokens.get('input-label-empty-padding-inline-start');
+        padding-inline-end: tokens.get('input-label-empty-padding-inline-end');
       }
     }
   }
