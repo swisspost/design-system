@@ -114,6 +114,7 @@ export class PostTooltipTrigger {
     if (this.trigger) {
       if (!isFocusable(this.trigger)) {
         this.trigger.setAttribute('tabindex', '0');
+        this.trigger.setAttribute('role', 'button');
       }
 
       const describedBy = this.trigger.getAttribute('aria-describedby') || '';
