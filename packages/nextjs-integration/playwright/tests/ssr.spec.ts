@@ -26,6 +26,6 @@ test.describe('SSR compatibility', () => {
 
     // wait for page hydration
     await page.waitForSelector('[data-hydrated]', { state: 'attached' });
-    await expect(errorMsg.length).toBe(0);
+    expect(errorMsg.length).toBe(0);
   });
 });

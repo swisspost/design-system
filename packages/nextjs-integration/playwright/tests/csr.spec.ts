@@ -25,6 +25,6 @@ test.describe('CSR compatibility', () => {
 
     // wait for page hydration
     await page.waitForSelector('[data-hydrated]', { state: 'attached', timeout: 10000 });
-    await expect(errorMsg.length).toBe(0);
+    expect(errorMsg.length).toBe(0);
   });
 });
