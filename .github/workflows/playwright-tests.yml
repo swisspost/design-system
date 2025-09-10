@@ -24,10 +24,10 @@ jobs:
         uses: ./.github/actions/setup-pnpm
 
       - name: Install & build dependencies
-        run: pnpm install && pnpm -r build
+        run: pnpm install && pnpm --filter design-system-nextjs-integration^... build
 
       - name: Install Playwright Browsers
-        run: pnpm --filter design-system-nextjs-integration exec playwright install --with-deps
+        run: pnpm --filter design-system-nextjs-integration exec playwright install --with-deps chromium
 
       - name: Run tests
         run: pnpm --filter design-system-nextjs-integration e2e
