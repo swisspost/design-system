@@ -17,15 +17,15 @@ test.describe('SSR compatibility', () => {
   // This means that after an error in one component has been fixed, another one may occur.
   // Make sure you're not hunting ghosts!
   test('should render without hydration errors', async ({ page }) => {
-    const errorMsg: string[] = [];
+    const hydrationErrors: string[] = [];
     page.on('pageerror', error => {
       if (error.name === 'Error' && error.message.startsWith('Hydration failed')) {
-        errorMsg.push(error.message);
+        hydrationErrors.push(error.message);
       }
     });
 
     // wait for page hydration
     await page.waitForSelector('[data-hydrated]', { state: 'attached' });
-    expect(errorMsg.length).toBe(0);
+    expect(hydrationErrors.length).toBe(0);
   });
 });

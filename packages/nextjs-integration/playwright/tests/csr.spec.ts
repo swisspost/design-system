@@ -16,15 +16,15 @@ test.describe('CSR compatibility', () => {
   // Hydration errors should, if at all, only occur on the /ssr route.
   // If a hydration error occurs on the /csr route, something is wrongly implemented in general!
   test('should render without hydration errors', async ({ page }) => {
-    const errorMsg: string[] = [];
+    const hydrationErrors: string[] = [];
     page.on('pageerror', error => {
       if (error.name === 'Error' && error.message.startsWith('Hydration failed')) {
-        errorMsg.push(error.message);
+        hydrationErrors.push(error.message);
       }
     });
 
     // wait for page hydration
     await page.waitForSelector('[data-hydrated]', { state: 'attached', timeout: 10000 });
-    expect(errorMsg.length).toBe(0);
+    expect(hydrationErrors.length).toBe(0);
   });
 });
