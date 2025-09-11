@@ -50,10 +50,10 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part        | Description                                     |
-| ----------- | ----------------------------------------------- |
-| `"content"` | Add custom styles for the tab panel container.  |
-| `"tabs"`    | Add custom styles for the tab header container. |
+| Part        | Description                                                                  |
+| ----------- | ---------------------------------------------------------------------------- |
+| `"content"` | The container element that displays the content of the currently active tab. |
+| `"tabs"`    | The container element that holds the set of tabs.                            |
 
 
 ----------------------------------------------
