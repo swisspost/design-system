@@ -828,6 +828,20 @@ export class MigrationV99Component extends LitElement {
                     use the new attribute selector.
                   </p>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the <code>accordion-item</code> shadow part from the 
+                    <code>post-accordion-item</code> component and introduced two new shadow parts:
+                    <code>button</code> and <code>body</code>.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    If you were styling the component using the <code>::part(accordion-item)</code> selector,
+                    this will no longer work. Update your styles to use 
+                    <code>::part(button)</code> for the header trigger and 
+                    <code>::part(body)</code> for the content area instead.
+                  </p>
+                </li>
               </ul>
             </section>
           </li>
