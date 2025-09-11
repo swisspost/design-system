@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property      | Attribute      | Description                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                 | Default     |
@@ -14,13 +13,11 @@
 | `placement`   | `placement`    | Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
 | `safeSpace`   | `safe-space`   | Enables a safespace through which the cursor can be moved without the popover being disabled                                                                                                                                                                                                                                                | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
 
-
 ## Events
 
 | Event        | Description                                                                                                   | Type                   |
 | ------------ | ------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `postToggle` | Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean | `CustomEvent<boolean>` |
-
 
 ## Methods
 
@@ -32,23 +29,19 @@ Programmatically hide the popovercontainer
 
 Type: `Promise<void>`
 
-
-
 ### `show(target: HTMLElement) => Promise<void>`
 
 Programmatically display the popovercontainer
 
 #### Parameters
 
-| Name     | Type          | Description                                                         |
-| -------- | ------------- | ------------------------------------------------------------------- |
-| `target` | `HTMLElement` | A <post-popover-trigger> element that controls the popovercontainer |
+| Name     | Type          | Description                                                  |
+| -------- | ------------- | ------------------------------------------------------------ |
+| `target` | `HTMLElement` | A <post-popover-trigger> component that controls the popover |
 
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<boolean>`
 
@@ -56,17 +49,14 @@ Toggle popovercontainer display
 
 #### Parameters
 
-| Name     | Type          | Description                                                         |
-| -------- | ------------- | ------------------------------------------------------------------- |
-| `target` | `HTMLElement` | A <post-popover-trigger> element that controls the popovercontainer |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                    |
+| Name     | Type          | Description                                                  |
+| -------- | ------------- | ------------------------------------------------------------ |
+| `target` | `HTMLElement` | A <post-popover-trigger> component that controls the popover |
+| `force`  | `boolean`     | Pass true to always show or false to always hide             |
 
 #### Returns
 
 Type: `Promise<boolean>`
-
-
-
 
 ## Slots
 
@@ -74,16 +64,16 @@ Type: `Promise<boolean>`
 | ---- | ------------------------------------------------------------- |
 |      | Default slot for placing content inside the popovercontainer. |
 
-
 ## Dependencies
 
 ### Used by
 
- - [post-menu](../post-menu)
- - [post-popover](../post-popover)
- - [post-tooltip](../post-tooltip)
+- [post-menu](../post-menu)
+- [post-popover](../post-popover)
+- [post-tooltip](../post-tooltip)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
@@ -92,6 +82,6 @@ graph TD;
   style post-popovercontainer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
