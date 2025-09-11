@@ -800,7 +800,7 @@ export class MigrationV99Component extends LitElement {
 
                 <li class="mb-16">
                   <p>
-                    Renamed loader classes and related scss variables (<code>.loading-modal</code>, <code>.loader</code>).
+                    Renamed loader classes (<code>.loading-modal</code>, <code>.loader</code>).
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">
