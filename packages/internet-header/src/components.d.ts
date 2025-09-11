@@ -29,9 +29,13 @@ export namespace Components {
     }
     interface PostKlpLoginWidget {
         /**
-          * Override the logout-url provided by the portal config.
+          * Overrides the logout-url provided by the portal config.
          */
         "logoutUrl"?: string;
+        /**
+          * Overrides the self-admin origin for menu links.
+         */
+        "selfAdminOrigin"?: string;
         /**
           * Sets the focus on the login button
          */
@@ -154,7 +158,7 @@ export namespace Components {
          */
         "login": boolean;
         /**
-          * Override the logout-url provided by the portal config.
+          * Overrides the logout-url provided by the portal config.
          */
         "logoutUrl"?: string;
         /**
@@ -173,6 +177,10 @@ export namespace Components {
           * Toggle the search button.
          */
         "search": boolean;
+        /**
+          * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default. The selfadmin url is used in the KLP login widget to set the user menu links.
+         */
+        "selfAdminOrigin"?: string;
         /**
           * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
          */
@@ -342,9 +350,13 @@ declare namespace LocalJSX {
     }
     interface PostKlpLoginWidget {
         /**
-          * Override the logout-url provided by the portal config.
+          * Overrides the logout-url provided by the portal config.
          */
         "logoutUrl"?: string;
+        /**
+          * Overrides the self-admin origin for menu links.
+         */
+        "selfAdminOrigin"?: string;
     }
     interface PostLanguageSwitch {
         /**
@@ -442,7 +454,7 @@ declare namespace LocalJSX {
          */
         "login"?: boolean;
         /**
-          * Override the logout-url provided by the portal config.
+          * Overrides the logout-url provided by the portal config.
          */
         "logoutUrl"?: string;
         /**
@@ -465,6 +477,10 @@ declare namespace LocalJSX {
           * Toggle the search button.
          */
         "search"?: boolean;
+        /**
+          * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default. The selfadmin url is used in the KLP login widget to set the user menu links.
+         */
+        "selfAdminOrigin"?: string;
         /**
           * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
          */

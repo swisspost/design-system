@@ -104,9 +104,15 @@ export class PostInternetHeader {
   @Prop() languageLocalStorageKey?: string = 'swisspost-internet-header-language';
 
   /**
-   * Override the logout-url provided by the portal config.
+   * Overrides the logout-url provided by the portal config.
    */
   @Prop() logoutUrl?: string;
+
+  /**
+   * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default.
+   * The selfadmin url is used in the KLP login widget to set the user menu links.
+   */
+  @Prop() selfAdminOrigin?: string;
 
   /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
@@ -528,7 +534,10 @@ export class PostInternetHeader {
                 <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
               </If>
               <If condition={!!renderLogin}>
-                <post-klp-login-widget logout-url={this.logoutUrl}>
+                <post-klp-login-widget
+                  logout-url={this.logoutUrl}
+                  self-admin-origin={this.selfAdminOrigin}
+                >
                   <slot name="login-widget"></slot>
                 </post-klp-login-widget>
               </If>
