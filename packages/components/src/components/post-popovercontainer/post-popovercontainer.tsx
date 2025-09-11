@@ -170,13 +170,13 @@ export class PostPopovercontainer {
   @Method()
   async hide() {
     if (!this.toggleTimeoutId) {
-      const focusableChildren = getFocusableChildren(this.eventTarget);
-
-      // find first focusable element
-      const firstFocusable = focusableChildren[0];
-      console.log(firstFocusable);
-      if (firstFocusable) {
-        firstFocusable.focus();
+      if (this.eventTarget && this.eventTarget instanceof HTMLElement) {
+        const focusableChildren = getFocusableChildren(this.eventTarget);
+        // find first focusable element
+        const firstFocusable = focusableChildren[0];
+        if (firstFocusable) {
+          firstFocusable.focus();
+        }
       }
       this.eventTarget = null;
       this.host.hidePopover();
@@ -220,7 +220,7 @@ export class PostPopovercontainer {
       if (this.eventTarget && this.eventTarget instanceof HTMLElement) {
         const focusableInTrigger = getFocusableChildren(this.eventTarget);
 
-        if (focusableInTrigger) {
+        if (focusableInTrigger.length != 0) {
           focusableInTrigger[0].focus();
         } else {
           this.eventTarget.focus();
