@@ -116,9 +116,9 @@ function externalControl(story: StoryFn, context: StoryContext) {
 function renderBanner({ innerHTML, dismissible, ...args }: PostBannerControls) {
   return html`
     <post-banner ${spreadArgs(args)}>
-      ${dismissible
-        ? html`<post-closebutton slot="close-button">Close</post-closebutton>`
-        : nothing}
+      ${dismissible ? html`
+        <post-closebutton slot="close-button">Close</post-closebutton>
+      ` : nothing}
       ${unsafeHTML(innerHTML)}
     </post-banner>
   `;
