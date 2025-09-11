@@ -6,9 +6,7 @@
 @use './../mixins/icons' as icon-mx;
 @use './../variables/components/forms';
 
-tokens.$default-map: components.$post-text-input
-
-;
+tokens.$default-map: components.$post-text-input;
 
 input.form-control {
   display: block;
@@ -194,13 +192,11 @@ input.form-control {
 &.is-invalid {
   &:not(:disabled) {
     padding-inline-end: calc(
-      #{tokens.get('input-padding-inline-end')} + #{tokens.get(
-            'input-validation-icon-position-inline-end'
-          )} + #{tokens.get('input-sizing-icon')}
+      #{tokens.get('input-padding-inline-end')} +
+      #{tokens.get('input-validation-icon-position-inline-end')} +
+      #{tokens.get('input-sizing-icon')}
     );
   }
-}
-
 }
 
 .form-label:has(+ input.form-control[disabled]) {
@@ -264,8 +260,7 @@ input.form-control {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: padding-block-start 0.2s ease-in-out,
-    font-size 0.2s ease-in-out;
+    transition: padding-block-start 0.2s ease-in-out, font-size 0.2s ease-in-out;
     background-color: tokens.get('input-color-enabled-bg');
   }
 
