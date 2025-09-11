@@ -110,6 +110,7 @@ export class PostInternetHeader {
 
   /**
    * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default.
+   * The selfadmin url is used in the KLP login widget to set the user menu links.
    */
   @Prop() selfAdminOrigin?: string;
 
