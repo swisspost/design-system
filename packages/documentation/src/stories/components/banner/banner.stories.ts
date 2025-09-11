@@ -1,4 +1,4 @@
-import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
@@ -12,7 +12,7 @@ const meta: MetaComponent<PostBannerControls> = {
   tags: ['package:WebComponents'],
   component: 'post-banner',
   render: renderBanner,
-  decorators: [externalControl],
+  decorators: [],
   parameters: {
     badges: [],
     design: {
@@ -49,85 +49,21 @@ const meta: MetaComponent<PostBannerControls> = {
 
 export default meta;
 
-interface CleanupHTMLElement extends HTMLElement {
-  __cleanup__?: () => void;
-}
-
-// DECORATORS
-function externalControl(story: StoryFn, context: StoryContext) {
-  const { canvasElement, args } = context;
-
-  const view = html`
-    <a class="btn btn-secondary banner-button" href="#" style="display:none">
-      <span>Reset Banner</span>
-    </a>
-    <div class="banner-container">${story({}, context)}</div>
-  `;
-
-  queueMicrotask(() => {
-    const element = canvasElement as CleanupHTMLElement;
-    element.__cleanup__?.();
-
-    const banner = element.querySelector('post-banner') as HTMLPostBannerElement;
-    const btn = element.querySelector('.banner-button') as HTMLButtonElement;
-    const container = element.querySelector('.banner-container') as HTMLElement;
-
-    if (!banner || !btn || !container) return;
-
-    let hasBeenDismissed = false;
-
-    const updateButton = () => {
-      if (!args.dismissible) {
-        btn.style.display = 'none';
-        return;
-      }
-
-      const shouldShow = hasBeenDismissed;
-      btn.style.display = shouldShow ? '' : 'none';
-      if (shouldShow) btn.focus();
-    };
-
-    // Initial state
-    updateButton();
-
-    // Handle dismiss event
-    const onDismiss = () => {
-      hasBeenDismissed = true;
-      updateButton();
-    };
-
-    const onReset = (e: Event) => {
-      e.preventDefault();
-      if (!banner.parentNode) {
-        container.appendChild(banner);
-        hasBeenDismissed = false;
-        updateButton();
-      }
-    };
-
-    banner.addEventListener('postDismissed', onDismiss);
-    btn.addEventListener('click', onReset);
-
-    element.__cleanup__ = () => {
-      banner.removeEventListener('postDismissed', onDismiss);
-      btn.removeEventListener('click', onReset);
-    };
-  });
-
-  return view;
-}
-
 // RENDERER
 function renderBanner({ innerHTML, dismissible, ...args }: PostBannerControls) {
   return html`
-    <post-banner ${spreadArgs(args)}>
-      ${dismissible ? html`
-        <post-closebutton slot="close-button">Close</post-closebutton>
-      ` : nothing}
+    <post-banner
+      ${spreadArgs(args)}
+      data-key=${dismissible ? 'with-close' : 'no-close'}
+    >
+      ${dismissible
+        ? html`<post-closebutton slot="close-button">Close</post-closebutton>`
+        : nothing}
       ${unsafeHTML(innerHTML)}
     </post-banner>
   `;
 }
+
 
 // STORIES
 type Story = StoryObj<HTMLPostBannerElement>;
