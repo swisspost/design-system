@@ -51,7 +51,7 @@ export default meta;
 
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
-  const { canvasElement } = context;
+  const { canvasElement, args } = context;
 
   const view = html`
     <a class="btn btn-secondary banner-button" href="#" hidden style="display:none">
@@ -69,11 +69,14 @@ function externalControl(story: StoryFn, context: StoryContext) {
     if (!banner || !btn || !container) return;
 
     const hideBtn = () => { btn.hidden = true; btn.style.display = 'none'; };
+    
+    // Track if banner was dismissed to prevent premature button showing
+    let hasBeenDismissed = false;
+    let currentDismissible = args.dismissible;
+    
     const showBtnIfDismissible = () => {
-      const isDismissible =
-        banner.hasAttribute('dismissible') &&
-        banner.getAttribute('dismissible') !== 'false';
-      if (isDismissible) {
+      // Check if currently dismissible from args and if banner was actually dismissed
+      if (currentDismissible && hasBeenDismissed) {
         btn.hidden = false;
         btn.style.display = '';
         btn.focus();
@@ -82,22 +85,34 @@ function externalControl(story: StoryFn, context: StoryContext) {
 
     hideBtn();
 
-    const onDismiss = () => showBtnIfDismissible();
+    const onDismiss = () => {
+      hasBeenDismissed = true;
+      showBtnIfDismissible();
+    };
     banner.addEventListener('postDismissed', onDismiss);
 
+    // Watch for story re-renders (when controls change)
     const mo = new MutationObserver(() => {
-      const isDismissible =
-        banner.hasAttribute('dismissible') &&
-        banner.getAttribute('dismissible') !== 'false';
-      if (!isDismissible) hideBtn();
+      const newDismissible = context.args?.dismissible;
+      if (newDismissible !== currentDismissible) {
+        currentDismissible = newDismissible;
+        if (!currentDismissible) {
+          hideBtn();
+          hasBeenDismissed = false; // Reset dismissed state when no longer dismissible
+        } else {
+          // Only show if it was already dismissed
+          showBtnIfDismissible();
+        }
+      }
     });
-    mo.observe(banner, { attributes: true, attributeFilter: ['dismissible'] });
+    mo.observe(container, { childList: true, subtree: true });
 
     const onClick = (e: Event) => {
       e.preventDefault();
       if (!banner.parentNode) {
         container.appendChild(banner);
         hideBtn();
+        hasBeenDismissed = false; // Reset dismissed state when banner is restored
       }
     };
     btn.addEventListener('click', onClick);
