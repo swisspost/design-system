@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 /**
  * @part button - The element that toggles the accordion item (header button).
  * @part body - The container element that holds the accordion item's content.
- * @slot logo - Slot for placing a logo before the header.
+ * @slot logo - Slot for placing a logo in the accordion item’s header, before the content.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
  */
