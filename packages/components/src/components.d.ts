@@ -364,19 +364,19 @@ export namespace Components {
         "placement"?: Placement;
         /**
           * Programmatically display the popover
-          * @param target An element with [data-popover-target="id"] where the popover should be shown
+          * @param target A <post-popover-trigger> element that controls the popovercontainer
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popover display
-          * @param target An element with [data-popover-target="id"] where the popover should be anchored to
+          * @param target A <post-popover-trigger> element that controls the popovercontainer
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
     interface PostPopoverTrigger {
         /**
-          * ID of the menu element that this trigger is linked to. Used to open and close the popover.
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
         "for": string;
     }
@@ -416,12 +416,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A <post-popover-trigger> element that controls the popovercontainer
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A <post-popover-trigger> element that controls the popovercontainer
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -1256,7 +1256,7 @@ declare namespace LocalJSX {
     }
     interface PostPopoverTrigger {
         /**
-          * ID of the menu element that this trigger is linked to. Used to open and close the popover.
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
         "for": string;
     }

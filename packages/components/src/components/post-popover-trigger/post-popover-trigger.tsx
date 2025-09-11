@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, Watch, Element } from '@stencil/core';
+import { Component, h, Host, Prop, Watch, Element, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 import { checkRequiredAndType } from '@/utils';
@@ -8,48 +8,102 @@ import { checkRequiredAndType } from '@/utils';
   styleUrl: 'post-popover-trigger.scss',
   shadow: true,
 })
-export class PostPopover {
+export class PostPopoverTrigger {
   @Element() host: HTMLPostPopoverTriggerElement;
 
   /**
    * Reference to the element inside the host that will act as the trigger.
    */
-  private popoverTrigger: HTMLElement;
+  private trigger: HTMLElement;
 
   /**
-   * ID of the menu element that this trigger is linked to. Used to open and close the popover.
+   * ID of the popover element that this trigger is linked to. Used to open and close the popover.
    */
   @Prop({ reflect: true }) for!: string;
+
+  /**
+   * Manages the accessibility attribute `aria-expanded` to indicate whether the associated popover is expanded or collapsed.
+   */
+  @State() ariaExpanded: boolean = false;
 
   /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
    * @param forValue - The new value of the `for` property.
    */
   @Watch('for')
-  validateControlFor() {
+  validateFor() {
     checkRequiredAndType(this, 'for', 'string');
   }
 
-  private handleSlotChange() {
-    // this.cleanupTrigger();
-    this.setupPopoverTrigger();
+  //this gets the associated popover element to the trigger based on 'for'
+  private get popover(): HTMLPostPopoverElement | null {
+    const ref = document.getElementById(this.for);
+    return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
   }
 
-  private setupPopoverTrigger() {
-    this.popoverTrigger = this.host.querySelector('*');
+  private handleToggle() {
+    if (this.popover) {
+      this.popover.toggle(this.host);
+      if (this.ariaExpanded === false) {
+        this.trigger.focus();
+      }
+    } else {
+      console.warn(`No post-popover found with ID: ${this.for}`);
+    }
+  }
+
+  private readonly handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.handleToggle();
+    }
+  };
+
+  // when the content of the trigger changes
+  private handleSlotChange() {
+    this.setupTrigger();
+  }
+
+  // setup the trigger to get the correct aria attributes
+  private setupTrigger() {
+    this.trigger = this.host.querySelector('*');
 
     // check if its not focusable and add aria role and tabindex
-    if (!isFocusable(this.popoverTrigger)) {
-      this.popoverTrigger.setAttribute('tabindex', '0');
-      this.popoverTrigger.setAttribute('role', 'button');
-    } else {
-      console.log('its already focusable');
+    if (!isFocusable(this.trigger)) {
+      this.trigger.setAttribute('tabindex', '0');
+      this.trigger.setAttribute('role', 'button');
     }
 
     // set aria attributes
-    this.popoverTrigger.setAttribute('ariahaspopup', 'true');
-    this.popoverTrigger.setAttribute('ariaexpanded', 'false');
-    this.popoverTrigger.setAttribute('ariacontrols', this.for);
+    this.trigger.setAttribute('ariahaspopup', 'true');
+
+    this.trigger.setAttribute('ariacontrols', this.for);
+
+    // add event listeners for click and keydown
+    this.trigger.addEventListener('click', () => {
+      this.handleToggle();
+    });
+    this.trigger.addEventListener('keydown', this.handleKeyDown);
+
+    // Listen to the `toggle` event emitted by the `post-popover` component
+    if (this.popover && this.trigger) {
+      this.popover.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
+        this.ariaExpanded = event.detail;
+        this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
+      });
+    }
+  }
+
+  componentDidLoad() {
+    this.validateFor();
+  }
+
+  disconnectedCallback() {
+    // remove event listeners
+    this.trigger.removeEventListener('click', () => {
+      this.handleToggle();
+    });
+    this.trigger.removeEventListener('keydown', this.handleKeyDown);
   }
 
   render() {

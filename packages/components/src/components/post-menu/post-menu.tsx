@@ -58,6 +58,16 @@ export class PostMenu {
   @State() isVisible: boolean = false;
 
   /**
+   * Holds the current focusable children
+   */
+  @State() focusableChildren: Element[];
+
+  /**
+   * A flag to know when popovercontainer has been rendered for the first time.
+   */
+  @State() popovercontainerRendered: boolean = false;
+
+  /**
    * Emits when the menu is shown or hidden.
    * The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
    **/
@@ -137,21 +147,38 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private handlePostToggle = (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.toggleMenu.emit(this.isVisible);
+    this.isVisible = event.detail;
+    this.toggleMenu.emit(this.isVisible);
 
-      requestAnimationFrame(() => {
-        if (this.isVisible) {
-          this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-          const menuItems = this.getSlottedItems();
+    requestAnimationFrame(() => {
+      if (this.isVisible) {
+        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+
+        const menuItems = this.getSlottedItems();
+        this.focusableChildren = menuItems;
+
+        if (!this.popovercontainerRendered) {
+          // Only for the first time that the popovercontainer is rendered
           if (menuItems.length > 0) {
-            (menuItems[0] as HTMLElement).focus();
+            // Add role="menu" to the popovercontainer
+            this.host.setAttribute('role', 'menu');
+
+            // Add role="menuitem" to the focusable elements
+            menuItems.forEach(item => {
+              item.setAttribute('role', 'menuitem');
+            });
+            this.popovercontainerRendered = true;
           }
-        } else if (this.lastFocusedElement) {
-          this.lastFocusedElement.focus();
         }
-      });
-    };
+        (menuItems[0] as HTMLElement).focus();
+      } else if (this.lastFocusedElement) {
+        setTimeout(() => {
+          // This timeout is added for NVDA to announce the menu as collapsed
+          this.lastFocusedElement.focus();
+        }, 0);
+      }
+    });
+  };
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -217,7 +244,7 @@ export class PostMenu {
 
   render() {
     return (
-      <Host data-version={version} role="menu">
+      <Host data-version={version}>
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
           <div part="menu">
             <slot></slot>
