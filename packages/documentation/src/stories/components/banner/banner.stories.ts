@@ -1,10 +1,14 @@
 import { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { useArgs } from 'storybook/preview-api';
 
-type PostBannerControls = Partial<HTMLPostBannerElement> & { dismissible: boolean };
+// Story controls for banner. We manage a local `dismissed` state to let users restore the banner after closing it.
+export type PostBannerControls = Partial<HTMLPostBannerElement> & {
+  dismissible: boolean; // show a close button via <post-closebutton>
+  dismissed?: boolean; // internal helper: when true, show a reset button instead of the banner
+};
 
 const meta: MetaComponent<PostBannerControls> = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
@@ -19,54 +23,82 @@ const meta: MetaComponent<PostBannerControls> = {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=1447-8848',
     },
+    controls: {
+      exclude: ['dismissed'],
+    },
   },
   args: {
-    innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    innerHTML:
+      '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     type: 'info',
     dismissible: false,
+    dismissed: false,
   },
   argTypes: {
     dismissible: {
-      description: 'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
+      description:
+        'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
       table: {
         category: 'content',
-        type: {
-          summary: 'boolean',
-        },
+        type: { summary: 'boolean' },
       },
     },
     innerHTML: {
       description: 'Defines the HTML markup contained in the banner.',
       table: {
         category: 'content',
-        type: {
-          summary: 'string',
-        },
+        type: { summary: 'string' },
       },
+    },
+    dismissed: {
+      table: { disable: true },
+      control: { disable: true },
     },
   },
 };
 
 export default meta;
 
-// RENDERER
-function renderBanner({ innerHTML, dismissible, ...args }: PostBannerControls) {
+// Renderer
+let prevDismissible: boolean | undefined;
+function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
+  const [, updateArgs] = useArgs();
+
+  // If user changes the dismissible control while the banner is dismissed,
+  // automatically restore the banner.
+  if (dismissed && prevDismissible !== undefined && prevDismissible !== dismissible) {
+    prevDismissible = dismissible;
+    updateArgs({ dismissed: false });
+    return html``;
+  }
+
+  prevDismissible = dismissible;
+
+  if (dismissed) {
+    return html`
+      <button class="btn btn-tertiary" @click=${() => updateArgs({ dismissed: false })}>
+        Show banner again
+      </button>`;
+  }
+
   return html`
-    <post-banner
-      ${spreadArgs(args)}
-      data-key=${dismissible ? 'with-close' : 'no-close'}
-    >
+  <post-banner .type=${type} @postDismissed=${() => updateArgs({ dismissed: true })}>
       ${dismissible
-        ? html`<post-closebutton slot="close-button">Close</post-closebutton>`
+        ? html`
+            <post-closebutton
+              slot="close-button"
+            >
+              Close
+            </post-closebutton>
+          `
         : nothing}
-      ${unsafeHTML(innerHTML)}
+      ${unsafeHTML(innerHTML ?? '')}
     </post-banner>
   `;
 }
 
-
-// STORIES
-type Story = StoryObj<HTMLPostBannerElement>;
+// Stories
+type Story = StoryObj<PostBannerControls>;
 
 export const Default: Story = {};
 
@@ -86,7 +118,5 @@ export const Contents: Story = {
 };
 
 export const Dismissible: Story = {
-  args: {
-    dismissible: true,
-  },
+  args: { dismissible: true },
 };
