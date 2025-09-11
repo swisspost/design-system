@@ -14,7 +14,8 @@ input.form-control {
   font-family: inherit;
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
-  border: tokens.get('input-border-width') tokens.get('input-border-style-default') tokens.get('input-color-enabled-border');
+  border: tokens.get('input-border-width') tokens.get('input-border-style-default')
+    tokens.get('input-color-enabled-border');
   position: relative;
   border-radius: tokens.get('input-border-radius-surface');
   background-color: tokens.get('input-color-enabled-bg');
@@ -153,9 +154,9 @@ input.form-control {
     &.is-invalid {
       &::file-selector-button {
         padding-inline-end: calc(
-          #{tokens.get('input-padding-inline-end')} +
-          #{tokens.get('input-validation-icon-position-inline-end')} +
-          #{tokens.get('input-sizing-icon')}
+          #{tokens.get('input-padding-inline-end')} + #{tokens.get(
+              'input-validation-icon-position-inline-end'
+            )} + #{tokens.get('input-sizing-icon')}
         );
       }
     }
@@ -192,9 +193,9 @@ input.form-control {
 &.is-invalid {
   &:not(:disabled) {
     padding-inline-end: calc(
-      #{tokens.get('input-padding-inline-end')} +
-      #{tokens.get('input-validation-icon-position-inline-end')} +
-      #{tokens.get('input-sizing-icon')}
+      #{tokens.get('input-padding-inline-end')} + #{tokens.get(
+          'input-validation-icon-position-inline-end'
+        )} + #{tokens.get('input-sizing-icon')}
     );
   }
 }
@@ -210,7 +211,7 @@ input.form-control {
   &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
     position: absolute;
-    top: calc(tokens.get('input-sizing-height') / 2);
+    top: calc(#{tokens.get('input-sizing-height')} / 2);
     transform: translateY(-50%);
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 2;
@@ -227,7 +228,7 @@ input.form-control {
   &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
     content: '';
     position: absolute;
-    top: calc(tokens.get('input-sizing-height') / 2);
+    top: calc(#{tokens.get('input-sizing-height')} / 2);
     transform: translateY(-50%);
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 1;
@@ -260,7 +261,9 @@ input.form-control {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: padding-block-start 0.2s ease-in-out, font-size 0.2s ease-in-out;
+    transition:
+      padding-block-start 0.2s ease-in-out,
+      font-size 0.2s ease-in-out;
     background-color: tokens.get('input-color-enabled-bg');
   }
 
