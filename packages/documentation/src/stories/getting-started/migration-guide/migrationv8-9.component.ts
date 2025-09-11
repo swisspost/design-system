@@ -93,6 +93,15 @@ export class MigrationV89Component extends LitElement {
                   <code>arrow="true"</code> property on the component.
                 </p>
               </li>
+              <li class="mb-16">
+                <p>
+                  The <code>post-tooltip</code> component now has a restricted <code>maximum width</code> of
+                  <code>280px</code>, instead of taking the full available width.
+                </p>
+                <p class="info">
+                  If you want to accomodate more content, we recommend switching to the <code>post-popover</code> component.
+                </p>
+              </li>
               ${this.angular
                 ? html`
                     <li class="mb-16">
