@@ -77,7 +77,12 @@ function externalControl(story: StoryFn, context: StoryContext) {
     let hasBeenDismissed = false;
 
     const updateButton = () => {
-      const shouldShow = args.dismissible && hasBeenDismissed;
+      if (!args.dismissible) {
+        btn.style.display = 'none';
+        return;
+      }
+
+      const shouldShow = hasBeenDismissed;
       btn.style.display = shouldShow ? '' : 'none';
       if (shouldShow) btn.focus();
     };
