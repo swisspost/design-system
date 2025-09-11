@@ -165,23 +165,23 @@ input.form-control {
   &:not(:disabled):not([readonly]) {
     cursor: pointer;
   }
-}
-
-&::placeholder {
-  color: tokens.get('input-color-enabled-fg');
-  opacity: 1;
-}
-
-&:disabled {
-  color: tokens.get('input-color-disabled-fg');
-  background-color: tokens.get('input-color-disabled-bg');
-  border-color: tokens.get('input-color-disabled-border');
-  border-style: tokens.get('input-border-style-disabled');
-  opacity: 1;
 
   &::placeholder {
-    color: tokens.get('input-color-disabled-fg');
+    color: tokens.get('input-color-enabled-fg');
     opacity: 1;
+  }
+
+  &:disabled {
+    color: tokens.get('input-color-disabled-fg');
+    background-color: tokens.get('input-color-disabled-bg');
+    border-color: tokens.get('input-color-disabled-border');
+    border-style: tokens.get('input-border-style-disabled');
+    opacity: 1;
+
+    &::placeholder {
+      color: tokens.get('input-color-disabled-fg');
+      opacity: 1;
+    }
   }
 }
 
