@@ -25,7 +25,7 @@
     @include schemes.dark-variables;
 
     @include supports.light-dark(false) {
-      --post-fallback-prefers-light: initial;
+      --post-fallback-prefers-light: ;
     }
   }
 }
@@ -44,6 +44,7 @@
     }
 
     @include supports.light-dark(false) {
+      // this should be set back to "initial" once we allow for automatic dark scheme again
       --post-fallback-prefers-light: ;
     }
   }
@@ -57,7 +58,8 @@
     }
 
     @include supports.light-dark(false) {
-      --post-fallback-prefers-light: initial;
+      // this should be set back to "initial" once we allow for automatic dark scheme again
+      --post-fallback-prefers-light: ;
     }
   }
 }
