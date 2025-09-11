@@ -1,6 +1,6 @@
-# `no-class-h-visuallyhidden`
+# `no-deprecated-h-visuallyhidden`
 
-Flags deprecated `h-visuallyhidden` class and suggests removal or replacement with `visually-hidden`.
+Flags deprecated `h-visuallyhidden` class and replaces it with `visually-hidden`.
 
 - Type: problem
 - 🔧 Supports autofix (--fix)

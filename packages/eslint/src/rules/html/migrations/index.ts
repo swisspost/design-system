@@ -9,9 +9,9 @@ import noDeprecatedFontWeightRule, {
 import noDeprecatedHClearfix, {
   name as noDeprecatedHClearfixName,
 } from './no-deprecated-h-clearfix';
-import noClassHVisuallyhiddenRule, {
-  name as noClassHVisuallyhiddenRuleName,
-} from './no-class-h-visuallyhidden';
+import noDeprecatedHVisuallyhiddenRule, {
+  name as noDeprecatedHVisuallyhiddenRuleName,
+} from './no-deprecated-h-visuallyhidden';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
@@ -19,5 +19,5 @@ export const htmlMigrationRules = {
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
-  [noClassHVisuallyhiddenRuleName]: noClassHVisuallyhiddenRule,
+  [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
 };
