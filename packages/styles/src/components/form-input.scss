@@ -183,20 +183,20 @@ input.form-control {
       opacity: 1;
     }
   }
-}
 
-&:hover:not(:disabled):not([readonly])::file-selector-button {
-  background-color: tokens.get('input-color-hover-bg');
-}
+  &:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: tokens.get('input-color-hover-bg');
+  }
 
-&.is-valid,
-&.is-invalid {
-  &:not(:disabled) {
-    padding-inline-end: calc(
-      #{tokens.get('input-padding-inline-end')} + #{tokens.get(
-          'input-validation-icon-position-inline-end'
-        )} + #{tokens.get('input-sizing-icon')}
-    );
+  &.is-valid,
+  &.is-invalid {
+    &:not(:disabled) {
+      padding-inline-end: calc(
+        #{tokens.get('input-padding-inline-end')} + #{tokens.get(
+            'input-validation-icon-position-inline-end'
+          )} + #{tokens.get('input-sizing-icon')}
+      );
+    }
   }
 }
 
