@@ -54,7 +54,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
   const { canvasElement, args } = context;
 
   const view = html`
-    <a class="btn btn-secondary banner-button" href="#" hidden style="display:none">
+    <a class="btn btn-secondary banner-button" href="#" style="display:none">
       <span>Reset Banner</span>
     </a>
     <div class="banner-container">${story({}, context)}</div>
@@ -66,14 +66,13 @@ function externalControl(story: StoryFn, context: StoryContext) {
     const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement;
     const btn = canvasElement.querySelector('.banner-button') as HTMLButtonElement;
     const container = canvasElement.querySelector('.banner-container') as HTMLElement;
-    
+
     if (!banner || !btn || !container) return;
 
     let hasBeenDismissed = false;
-    
+
     const updateButton = () => {
       const shouldShow = args.dismissible && hasBeenDismissed;
-      btn.hidden = !shouldShow;
       btn.style.display = shouldShow ? '' : 'none';
       if (shouldShow) btn.focus();
     };
@@ -86,7 +85,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
       hasBeenDismissed = true;
       updateButton();
     };
-    
+
     const onReset = (e: Event) => {
       e.preventDefault();
       if (!banner.parentNode) {
@@ -96,20 +95,12 @@ function externalControl(story: StoryFn, context: StoryContext) {
       }
     };
 
-    // Watch for control changes
-    const mo = new MutationObserver(() => {
-      if (!args.dismissible) hasBeenDismissed = false;
-      updateButton();
-    });
-
     banner.addEventListener('postDismissed', onDismiss);
     btn.addEventListener('click', onReset);
-    mo.observe(container, { childList: true, subtree: true });
 
     (canvasElement as any).__cleanup__ = () => {
       banner.removeEventListener('postDismissed', onDismiss);
       btn.removeEventListener('click', onReset);
-      mo.disconnect();
     };
   });
 
