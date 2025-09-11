@@ -4,7 +4,7 @@ import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-type PostBannerControls = Partial<HTMLPostBannerElement> & {dismissible: boolean};
+type PostBannerControls = Partial<HTMLPostBannerElement> & { dismissible: boolean };
 
 const meta: MetaComponent<PostBannerControls> = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
@@ -49,6 +49,10 @@ const meta: MetaComponent<PostBannerControls> = {
 
 export default meta;
 
+interface CleanupHTMLElement extends HTMLElement {
+  __cleanup__?: () => void;
+}
+
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
   const { canvasElement, args } = context;
@@ -61,11 +65,12 @@ function externalControl(story: StoryFn, context: StoryContext) {
   `;
 
   queueMicrotask(() => {
-    (canvasElement as any).__cleanup__?.();
+    const element = canvasElement as CleanupHTMLElement;
+    element.__cleanup__?.();
 
-    const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement;
-    const btn = canvasElement.querySelector('.banner-button') as HTMLButtonElement;
-    const container = canvasElement.querySelector('.banner-container') as HTMLElement;
+    const banner = element.querySelector('post-banner') as HTMLPostBannerElement;
+    const btn = element.querySelector('.banner-button') as HTMLButtonElement;
+    const container = element.querySelector('.banner-container') as HTMLElement;
 
     if (!banner || !btn || !container) return;
 
@@ -98,7 +103,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
     banner.addEventListener('postDismissed', onDismiss);
     btn.addEventListener('click', onReset);
 
-    (canvasElement as any).__cleanup__ = () => {
+    element.__cleanup__ = () => {
       banner.removeEventListener('postDismissed', onDismiss);
       btn.removeEventListener('click', onReset);
     };
@@ -111,9 +116,9 @@ function externalControl(story: StoryFn, context: StoryContext) {
 function renderBanner({ innerHTML, dismissible, ...args }: PostBannerControls) {
   return html`
     <post-banner ${spreadArgs(args)}>
-      ${dismissible ? html`
-        <post-closebutton slot="close-button">Close</post-closebutton>
-      ` : nothing}
+      ${dismissible
+        ? html`<post-closebutton slot="close-button">Close</post-closebutton>`
+        : nothing}
       ${unsafeHTML(innerHTML)}
     </post-banner>
   `;
