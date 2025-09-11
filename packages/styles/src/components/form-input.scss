@@ -6,7 +6,9 @@
 @use './../mixins/icons' as icon-mx;
 @use './../variables/components/forms';
 
-tokens.$default-map: components.$post-text-input;
+tokens.$default-map: components.$post-text-input
+
+;
 
 input.form-control {
   display: block;
@@ -14,8 +16,7 @@ input.form-control {
   font-family: inherit;
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
-  border: tokens.get('input-border-width') tokens.get('input-border-style-default')
-    tokens.get('input-color-enabled-border');
+  border: tokens.get('input-border-width') tokens.get('input-border-style-default') tokens.get('input-color-enabled-border');
   position: relative;
   border-radius: tokens.get('input-border-radius-surface');
   background-color: tokens.get('input-color-enabled-bg');
@@ -70,6 +71,7 @@ input.form-control {
         border-color: GrayText;
       }
     }
+
     // File input buttons theming
     &::file-selector-button {
       padding-block: tokens.get('input-standalone-padding-block');
@@ -153,50 +155,52 @@ input.form-control {
     &.is-invalid {
       &::file-selector-button {
         padding-inline-end: calc(
-          #{tokens.get('input-padding-inline-end')} + #{tokens.get(
-          'input-validation-icon-position-inline-end'
-          )} + #{tokens.get('input-sizing-icon')}
+          #{tokens.get('input-padding-inline-end')} +
+          #{tokens.get('input-validation-icon-position-inline-end')} +
+          #{tokens.get('input-sizing-icon')}
         );
       }
     }
-
-    &:not(:disabled):not([readonly]) {
-      cursor: pointer;
-    }
   }
+
+  &:not(:disabled):not([readonly]) {
+    cursor: pointer;
+  }
+}
+
+&::placeholder {
+  color: tokens.get('input-color-enabled-fg');
+  opacity: 1;
+}
+
+&:disabled {
+  color: tokens.get('input-color-disabled-fg');
+  background-color: tokens.get('input-color-disabled-bg');
+  border-color: tokens.get('input-color-disabled-border');
+  border-style: tokens.get('input-border-style-disabled');
+  opacity: 1;
 
   &::placeholder {
-    color: tokens.get('input-color-enabled-fg');
-    opacity: 1;
-  }
-
-  &:disabled {
     color: tokens.get('input-color-disabled-fg');
-    background-color: tokens.get('input-color-disabled-bg');
-    border-color: tokens.get('input-color-disabled-border');
-    border-style: tokens.get('input-border-style-disabled');
     opacity: 1;
-
-    &::placeholder {
-      color: tokens.get('input-color-disabled-fg');
-      opacity: 1;
-    }
   }
+}
 
-  &:hover:not(:disabled):not([readonly])::file-selector-button {
-    background-color: tokens.get('input-color-hover-bg');
-  }
+&:hover:not(:disabled):not([readonly])::file-selector-button {
+  background-color: tokens.get('input-color-hover-bg');
+}
 
-  &.is-valid,
-  &.is-invalid {
-    &:not(:disabled) {
-      padding-inline-end: calc(
-        #{tokens.get('input-padding-inline-end')} + #{tokens.get(
+&.is-valid,
+&.is-invalid {
+  &:not(:disabled) {
+    padding-inline-end: calc(
+      #{tokens.get('input-padding-inline-end')} + #{tokens.get(
             'input-validation-icon-position-inline-end'
           )} + #{tokens.get('input-sizing-icon')}
-      );
-    }
+    );
   }
+}
+
 }
 
 .form-label:has(+ input.form-control[disabled]) {
@@ -260,9 +264,8 @@ input.form-control {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition:
-      padding-block-start 0.2s ease-in-out,
-      font-size 0.2s ease-in-out;
+    transition: padding-block-start 0.2s ease-in-out,
+    font-size 0.2s ease-in-out;
     background-color: tokens.get('input-color-enabled-bg');
   }
 
