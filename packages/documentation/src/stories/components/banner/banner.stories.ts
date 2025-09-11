@@ -63,63 +63,52 @@ function externalControl(story: StoryFn, context: StoryContext) {
   queueMicrotask(() => {
     (canvasElement as any).__cleanup__?.();
 
-    const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement | null;
-    const btn = canvasElement.querySelector('.banner-button') as HTMLButtonElement | null;
-    const container = canvasElement.querySelector('.banner-container') as HTMLElement | null;
+    const banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement;
+    const btn = canvasElement.querySelector('.banner-button') as HTMLButtonElement;
+    const container = canvasElement.querySelector('.banner-container') as HTMLElement;
+    
     if (!banner || !btn || !container) return;
 
-    const hideBtn = () => { btn.hidden = true; btn.style.display = 'none'; };
-    
-    // Track if banner was dismissed to prevent premature button showing
     let hasBeenDismissed = false;
-    let currentDismissible = args.dismissible;
     
-    const showBtnIfDismissible = () => {
-      // Check if currently dismissible from args and if banner was actually dismissed
-      if (currentDismissible && hasBeenDismissed) {
-        btn.hidden = false;
-        btn.style.display = '';
-        btn.focus();
-      }
+    const updateButton = () => {
+      const shouldShow = args.dismissible && hasBeenDismissed;
+      btn.hidden = !shouldShow;
+      btn.style.display = shouldShow ? '' : 'none';
+      if (shouldShow) btn.focus();
     };
 
-    hideBtn();
+    // Initial state
+    updateButton();
 
+    // Handle dismiss event
     const onDismiss = () => {
       hasBeenDismissed = true;
-      showBtnIfDismissible();
+      updateButton();
     };
-    banner.addEventListener('postDismissed', onDismiss);
-
-    // Watch for story re-renders (when controls change)
-    const mo = new MutationObserver(() => {
-      const newDismissible = context.args?.dismissible;
-      if (newDismissible !== currentDismissible) {
-        currentDismissible = newDismissible;
-        if (!currentDismissible) {
-          hideBtn();
-          hasBeenDismissed = false; // Reset dismissed state when no longer dismissible
-        } else {
-          // Only show if it was already dismissed
-          showBtnIfDismissible();
-        }
-      }
-    });
-    mo.observe(container, { childList: true, subtree: true });
-
-    const onClick = (e: Event) => {
+    
+    const onReset = (e: Event) => {
       e.preventDefault();
       if (!banner.parentNode) {
         container.appendChild(banner);
-        hideBtn();
-        hasBeenDismissed = false; // Reset dismissed state when banner is restored
+        hasBeenDismissed = false;
+        updateButton();
       }
     };
-    btn.addEventListener('click', onClick);
+
+    // Watch for control changes
+    const mo = new MutationObserver(() => {
+      if (!args.dismissible) hasBeenDismissed = false;
+      updateButton();
+    });
+
+    banner.addEventListener('postDismissed', onDismiss);
+    btn.addEventListener('click', onReset);
+    mo.observe(container, { childList: true, subtree: true });
 
     (canvasElement as any).__cleanup__ = () => {
       banner.removeEventListener('postDismissed', onDismiss);
-      btn.removeEventListener('click', onClick);
+      btn.removeEventListener('click', onReset);
       mo.disconnect();
     };
   });
