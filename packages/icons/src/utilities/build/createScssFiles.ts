@@ -11,18 +11,18 @@ function svgToDataUrl(svgContent: string): string {
   return `data:image/svg+xml;base64,${base64}`;
 }
 
-function removeExistingScssFiles(dir: string): number {
+function removeExistingCssFiles(dir: string): number {
   if (!fs.existsSync(dir)) return 0;
 
-  const existingFiles = fs.readdirSync(dir).filter(f => f.endsWith('.scss'));
+  const existingFiles = fs.readdirSync(dir).filter(f => f.endsWith('.css'));
   existingFiles.forEach(file => fs.unlinkSync(path.join(dir, file)));
   return existingFiles.length;
 }
 
-export function createScssFiles(iconOutputDirectory: string, scssOutputDirectory: string): void {
-  fs.mkdirSync(scssOutputDirectory, { recursive: true });
+export function createCssFiles(iconOutputDirectory: string, cssOutputDirectory: string): void {
+  fs.mkdirSync(cssOutputDirectory, { recursive: true });
 
-  const removedCount = removeExistingScssFiles(scssOutputDirectory);
+  const removedCount = removeExistingCssFiles(cssOutputDirectory);
 
   const svgFiles = fs.readdirSync(iconOutputDirectory)
     .filter(f => f.endsWith('.svg'));
@@ -34,18 +34,18 @@ export function createScssFiles(iconOutputDirectory: string, scssOutputDirectory
     const baseName = sanitizeForCSSVariable(path.parse(file).name);
     const svgContent = fs.readFileSync(filePath, 'utf8');
 
-    const scssContent = `:root {
+    const cssContent = `:root {
   --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}");
 }
 `;
 
-    fs.writeFileSync(path.join(scssOutputDirectory, `${baseName}.scss`), scssContent);
+    fs.writeFileSync(path.join(cssOutputDirectory, `${baseName}.css`), cssContent);
     createdCount++;
   });
 
   console.log(
     coloredLogMessage(
-      `<green>[createSCSSFiles]</green> Created ${createdCount} SCSS files (removed <red>${removedCount}</red> old files)`
+      `<green>[createCSSFiles]</green> Created ${createdCount} CSS files (removed <red>${removedCount}</red> old files)`
     )
   );
 }
