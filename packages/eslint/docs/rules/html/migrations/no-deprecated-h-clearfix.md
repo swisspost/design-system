@@ -1,6 +1,6 @@
-# `no-class-h-clearfix`
+# `no-deprecated-h-clearfix`
 
-Flags deprecated `h-clearfix` class and suggests removal or replacement with `clearfix`.
+Flags deprecated `h-clearfix` class and repalces it with `clearfix`.
 
 - Type: problem
 - 🔧 Supports autofix (--fix)
