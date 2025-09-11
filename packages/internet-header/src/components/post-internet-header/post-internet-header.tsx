@@ -188,7 +188,6 @@ export class PostInternetHeader {
     try {
       state.projectId = this.project;
       state.stickyness = this.stickyness;
-      state.selfAdminOrigin = this.selfAdminOrigin;
       state.environment = this.environment.toLocaleLowerCase() as Environment;
       if (this.language !== undefined) state.currentLanguage = this.language;
       state.languageSwitchOverrides =

@@ -41,7 +41,7 @@ export class PostKlpLoginWidget implements IsFocusable {
     initializeKLPLoginWidget('post-klp-login-widget', {
       ...widgetOptions,
       environment: state.environment,
-      { platform },
+      platform,
     });
   }
 
