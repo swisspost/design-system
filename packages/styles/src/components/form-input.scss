@@ -152,10 +152,7 @@ input.form-control {
     &.is-valid,
     &.is-invalid {
       &::file-selector-button {
-        padding-inline-end: calc(
-          #{tokens.get('input-padding-inline-end')} + #{tokens.get(
-            'input-validation-icon-position-inline-end'
-          )} + #{tokens.get('input-sizing-icon')});
+        padding-inline-end: calc(#{tokens.get('input-padding-inline-end')} + #{tokens.get('input-validation-icon-position-inline-end')} + #{tokens.get('input-sizing-icon')});
       }
     }
 
