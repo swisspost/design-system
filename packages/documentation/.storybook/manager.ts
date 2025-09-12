@@ -1,5 +1,5 @@
 import { addons } from 'storybook/manager-api';
-import { defineCustomElement as definePostIcon } from '@swisspost/design-system-components/dist/components/post-icon.js';
+import { defineCustomElementPostIcon } from '@swisspost/design-system-components/components';
 import themes from './styles/themes';
 import cssIcon from '../public/assets/images/sidebar-icons/css.svg';
 import webComponentsIcon from '../public/assets/images/sidebar-icons/web_component.svg';
