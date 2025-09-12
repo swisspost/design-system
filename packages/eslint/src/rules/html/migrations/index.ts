@@ -6,10 +6,18 @@ import noFormTextRule, { name as noFormTextRuleName } from './no-form-text';
 import noDeprecatedFontWeightRule, {
   name as noDeprecatedFontWeightRuleName,
 } from './no-deprecated-font-weight';
+import noDeprecatedHClearfix, {
+  name as noDeprecatedHClearfixName,
+} from './no-deprecated-h-clearfix';
+import noDeprecatedHVisuallyhiddenRule, {
+  name as noDeprecatedHVisuallyhiddenRuleName,
+} from './no-deprecated-h-visuallyhidden';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
   [noUnnumberedBorderRadiusRuleName]: noUnnumberedBorderRadiusRule,
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
+  [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
+  [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
 };
