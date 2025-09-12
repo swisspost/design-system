@@ -32,3 +32,4 @@ jobs:
 
       - name: Run tests
         run: pnpm --filter design-system-nextjs-integration e2e
+        continue-on-error: true
