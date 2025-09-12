@@ -61,17 +61,13 @@ const meta: MetaComponent<PostBannerControls> = {
 export default meta;
 
 // Renderer
-let prevDismissible: boolean | undefined;
 function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
   const [, updateArgs] = useArgs();
 
-  if (dismissed && prevDismissible !== undefined && prevDismissible !== dismissible) {
-    prevDismissible = dismissible;
+  if (dismissed && !dismissible) {
     updateArgs({ dismissed: false });
     return html``;
   }
-
-  prevDismissible = dismissible;
 
   if (dismissed) {
     return html`
