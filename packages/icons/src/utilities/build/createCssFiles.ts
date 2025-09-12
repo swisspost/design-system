@@ -39,10 +39,7 @@ export function createCssFiles(
     const baseName = sanitizeForCSSVariable(path.parse(file).name);
     const svgContent = fs.readFileSync(filePath, 'utf8');
 
-    let cssContent = `:root {
-      --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}");
-    }
-    `;
+    let cssContent = `:root { --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}"); }`;
 
     cssContent = format(cssContent, { parser: 'css' });
 
