@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'sass:meta';
+@use 'sass:list';
 
 @use './../variables/type';
 @use './../variables/color';
@@ -14,6 +15,12 @@
   background-color: currentColor;
   color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
   forced-color-adjust: preserve-parent-color;
+}
+
+@mixin load-icon-css($name, $path: '@swisspost/design-system-icons/dist/custom-properties') {
+  @at-root {
+    @include meta.load-css("#{$path}/#{$name}.css");
+  }
 }
 
 @mixin post-icon(

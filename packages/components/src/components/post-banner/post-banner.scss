@@ -10,6 +10,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 
 tokens.$default-map: components.$post-banner;
+@include icons.load-icon-css('1004');
 
 :host {
   position: relative;
@@ -35,6 +36,10 @@ tokens.$default-map: components.$post-banner;
     width: tokens.get('banner-icon-size');
     inset-block-start: tokens.get('banner-padding');
     inset-inline-start: tokens.get('banner-padding');
+
+    background-image: var(--post-icon-1004);
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 }
 
