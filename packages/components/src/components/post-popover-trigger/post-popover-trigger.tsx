@@ -67,6 +67,7 @@ export class PostPopoverTrigger {
   // setup the trigger to get the correct aria attributes
   private setupTrigger() {
     this.trigger = this.host.querySelector('*');
+    this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
 
     // check if its not focusable and add aria role and tabindex
     if (!isFocusable(this.trigger)) {
@@ -96,6 +97,7 @@ export class PostPopoverTrigger {
 
   componentDidLoad() {
     this.validateFor();
+    console.log('component loaded');
   }
 
   disconnectedCallback() {
