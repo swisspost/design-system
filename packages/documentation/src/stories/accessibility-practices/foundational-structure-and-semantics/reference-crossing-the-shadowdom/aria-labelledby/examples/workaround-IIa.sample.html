@@ -1,0 +1,10 @@
+<!-- This is a label element in the "light DOM" -->
+<span id="labelId">My Text</span>
+
+<!-- This is a custom component -->
+<custom-component>
+  <!-- #shadow-root -->
+  <div part="button" role="button" tabindex="0" aria-labelledby="labelId">
+    <icon></icon>
+  </div>
+</custom-component>

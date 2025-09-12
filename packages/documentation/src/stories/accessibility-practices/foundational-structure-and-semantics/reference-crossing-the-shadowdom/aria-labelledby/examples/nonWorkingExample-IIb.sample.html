@@ -1,0 +1,11 @@
+<!-- This is a custom component -->
+<custom-component>
+  <!-- #shadow-root -->
+  <slot name="label-slot"> </slot>
+  <div part="button" role="button" tabindex="0" aria-labelledby="labelId">
+    <icon></icon>
+  </div>
+
+  <!-- This is the sloted label element -->
+  <span slot="label-slot" id="labelId">My Text</span>
+</custom-component>

@@ -1,0 +1,29 @@
+<!-- This is a custom web component -->
+<custom-component>
+  <!-- #shadow-root -->
+
+  <!-- Slot for passing in a label from the light DOM -->
+  <slot name="label-slot"></slot>
+
+  <!-- Target element inside shadow DOM -->
+  <div ref="targetRef" part="button" role="button" tabindex="0" aria-labelledby>
+    <!--The aria-labelledby attribute is set automatically by the browser -->
+    <icon></icon>
+  </div>
+
+  <!-- This is the slotted label element provided from the light DOM -->
+  <span slot="label-slot" id="labelId">My Text</span>
+</custom-component>
+
+<script>
+  // Get the slot element inside shadow DOM
+  const slotContent = this.shadowRoot
+    .querySelector('slot[name="label-slot"]')
+    .assignedElements({ flatten: true });
+
+  // Identify the element that contains text
+  const label = slotContent.find(el => el.textContent.trim().length > 0);
+
+  // Assign the slotted element(s) as labels for the target using ariaLabelledByElements
+  this.targetRef.ariaLabelledByElements = [label];
+</script>

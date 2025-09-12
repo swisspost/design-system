@@ -32,6 +32,7 @@ export const Example2: Story = {
   argTypes: {
     workaround: {
       name: 'Workaround',
+      description: 'Toggles the workaround solution',
       control: {
         type: 'radio',
       },
