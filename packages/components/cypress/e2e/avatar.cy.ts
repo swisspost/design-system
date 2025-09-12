@@ -24,22 +24,30 @@ describe('Avatar', () => {
     });
 
     it('should show initials when, firstname or firstname and lastname is defined', () => {
+      cy.window().then(win => {
+        cy.spy(win.console, 'error').as('consoleError');
+      });
       cy.get('@avatar').find('.initials').as('initials');
 
       cy.get('@initials').should('exist');
       cy.get('@avatar').find('img').should('not.exist');
 
       cy.get('@avatar').invoke('attr', 'firstname', 'Open');
-      cy.get('@initials').should('have.text', 'Open');
+      cy.get('@avatar').invoke('removeAttr', 'decription');
+      cy.get('@avatar').invoke('attr', 'description', 'The current user is Open');
+      cy.get('@initials').should('have.text', 'OThe current user is Open');
 
       cy.get('@avatar').invoke('attr', 'lastname', 'Source');
-      cy.get('@initials').and('have.text', 'Open Source');
+      cy.get('@avatar').invoke('attr', 'description', 'The current user is Open Source');
+      cy.get('@initials').and('have.text', 'OSThe current user is Open Source');
 
       cy.get('@avatar').invoke('removeAttr', 'lastname');
-      cy.get('@initials').should('have.text', 'Open');
+      cy.get('@avatar').invoke('attr', 'description', 'The current user is Open');
+      cy.get('@initials').should('have.text', 'OThe current user is Open');
 
-      cy.get('@avatar').invoke('removeAttr', 'firstname');
-      cy.get('@initials').should('have.text', '');
+      cy.get('@avatar').invoke('removeAttr', 'firstname').invoke('removeAttr', 'lastname');
+      cy.get('@consoleError').should('be.called');
+      cy.get('@initials').should('not.have.text');
     });
 
     it('should show initials if gravatar does not exist, otherwise show img', () => {
