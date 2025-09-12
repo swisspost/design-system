@@ -44,7 +44,6 @@ export function createCssFiles(
     }
     `;
 
-    // Format with Prettier
     cssContent = format(cssContent, { parser: 'css' });
 
     fs.writeFileSync(
