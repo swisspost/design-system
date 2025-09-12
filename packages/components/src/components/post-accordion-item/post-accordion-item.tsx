@@ -4,6 +4,8 @@ import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
 
 /**
+ * @part accordion-item - The container element that wraps the entire accordion item.
+ * @part body - The container element that holds the accordion item's content.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
  */
@@ -86,7 +88,7 @@ export class PostAccordionItem {
             collapsed={this.collapsed}
             ref={el => (this.collapsible = el)}
           >
-            <div class="accordion-body">
+            <div class="accordion-body" part="body">
               <slot />
             </div>
           </post-collapsible>
