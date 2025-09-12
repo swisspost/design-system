@@ -21,6 +21,7 @@ import {
 export default function Layout({ children }: { readonly children: React.ReactNode }) {
   return (
     <>
+      {/* Throws Hydration Errors */}
       <PostHeader>
         <PostLogo slot="post-logo" url="/">
           Homepage
@@ -78,7 +79,9 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           </li>
         </ul>
 
+        {/* Throws Hydration Errors */}
         <PostMainnavigation>
+          {/* Throws Hydration Errors */}
           <PostList title-hidden="">
             <h2>Main Navigation</h2>
             <PostListItem slot="post-list-item">
@@ -90,6 +93,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
             <PostListItem slot="post-list-item">
               <PostMegadropdownTrigger for="briefe">Briefe</PostMegadropdownTrigger>
+              {/* Throws Hydration Errors */}
               <PostMegadropdown id="briefe">
                 <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
                   <PostIcon name="arrowright"></PostIcon>
