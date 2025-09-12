@@ -1,15 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`prebuild should read out component folders 1`] = `
+"{
+  "componentNames": [
+    "folder_name_with_different_notation",
+    "post-123-component",
+    "post-accordion",
+    "post-avatar",
+    "post-back-to-tlop",
+    "post-breadcrumbs",
+    "post-breadcrumbs-item",
+    "some-other-folder"
+  ]
+}
+"
+`;
+
+exports[`prebuild should read out component folders 2`] = `
 "$component-names: (
-  folder_name_with_different_notation,
-  post-123-component,
-  post-accordion,
-  post-avatar,
-  post-back-to-tlop,
-  post-breadcrumbs,
-  post-breadcrumbs-item,
-  some-other-folder
+  "folder_name_with_different_notation",
+  "post-123-component",
+  "post-accordion",
+  "post-avatar",
+  "post-back-to-tlop",
+  "post-breadcrumbs",
+  "post-breadcrumbs-item",
+  "some-other-folder"
 );
 "
 `;

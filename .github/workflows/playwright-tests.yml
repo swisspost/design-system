@@ -1,0 +1,36 @@
+name: Playwright e2e tests
+on:
+  pull_request:
+    paths:
+      - 'packages/tokens/tokensstudio-generated/tokens.json'
+      - 'packages/styles/**'
+      - 'packages/components/**'
+      - 'packages/components-react/**'
+      - 'packages/nextjs-integration/**'
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install & build dependencies
+        run: pnpm install && pnpm --filter design-system-nextjs-integration^... build
+
+      - name: Install Playwright Browsers
+        run: pnpm --filter design-system-nextjs-integration exec playwright install --with-deps chromium
+
+      - name: Run tests
+        run: pnpm --filter design-system-nextjs-integration e2e
+        # Remove "continue-on-error: true" as soon as the components are fully ssr compatible!
+        continue-on-error: true
