@@ -1,0 +1,23 @@
+<!-- This is a label element in the light DOM -->
+<span id="labelId">My Text</span>
+
+<!-- 
+  This is a custom web component. 
+  We pass the labelId as a prop to associate the label with an element inside its shadow DOM.
+-->
+<custom-component labelId="labelId">
+  <!-- #shadow-root -->
+  <div ref="targetRef" part="button" role="button" tabindex="0" aria-labelledby>
+    <!--The aria-labelledby attribute is set automatically by the browser -->
+    <icon></icon>
+  </div>
+</custom-component>
+
+<script>
+  // Get the label element from the light DOM
+  const label = document.getElementById('labelId');
+
+  // Assign the label element directly to the component's internal target element
+  // using ariaLabelledByElements to establish the accessible name
+  this.targetRef.ariaLabelledByElements = [label];
+</script>
