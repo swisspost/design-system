@@ -70,6 +70,7 @@ input.form-control {
         border-color: GrayText;
       }
     }
+
     // File input buttons theming
     &::file-selector-button {
       padding-block: tokens.get('input-standalone-padding-block');
@@ -149,6 +150,17 @@ input.form-control {
       }
     }
 
+    &.is-valid,
+    &.is-invalid {
+      &::file-selector-button {
+        padding-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} + #{tokens.get(
+              'input-validation-icon-position-inline-end'
+            )} + #{tokens.get('input-sizing-icon')}
+        );
+      }
+    }
+
     &:not(:disabled):not([readonly]) {
       cursor: pointer;
     }
@@ -199,7 +211,7 @@ input.form-control {
   &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
     position: absolute;
-    top: calc(tokens.get('input-sizing-height') / 2);
+    top: calc(#{tokens.get('input-sizing-height')} / 2);
     transform: translateY(-50%);
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 2;
@@ -216,7 +228,7 @@ input.form-control {
   &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
     content: '';
     position: absolute;
-    top: calc(tokens.get('input-sizing-height') / 2);
+    top: calc(#{tokens.get('input-sizing-height')} / 2);
     transform: translateY(-50%);
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 1;
@@ -299,7 +311,8 @@ input.form-control {
     &[type='file'] {
       &:focus,
       &:not(:placeholder-shown) {
-        padding-block-start: calc(#{tokens.get('input-padding-block-start')} * 1.33);
+        padding-inline-start: tokens.get('input-label-empty-padding-inline-start');
+        padding-inline-end: tokens.get('input-label-empty-padding-inline-end');
       }
     }
   }
