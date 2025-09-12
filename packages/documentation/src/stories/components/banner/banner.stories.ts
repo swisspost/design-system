@@ -4,10 +4,9 @@ import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from 'storybook/preview-api';
 
-// Story controls for banner. We manage a local `dismissed` state to let users restore the banner after closing it.
 export type PostBannerControls = Partial<HTMLPostBannerElement> & {
-  dismissible: boolean; // show a close button via <post-closebutton>
-  dismissed?: boolean; // internal helper: when true, show a reset button instead of the banner
+  dismissible: boolean;
+  dismissed?: boolean;
 };
 
 const meta: MetaComponent<PostBannerControls> = {
@@ -28,26 +27,28 @@ const meta: MetaComponent<PostBannerControls> = {
     },
   },
   args: {
-    innerHTML:
-      '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     type: 'info',
     dismissible: false,
     dismissed: false,
   },
   argTypes: {
     dismissible: {
-      description:
-        'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
+      description: 'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
       table: {
         category: 'content',
-        type: { summary: 'boolean' },
+        type: {
+          summary: 'boolean',
+        },
       },
     },
     innerHTML: {
       description: 'Defines the HTML markup contained in the banner.',
       table: {
         category: 'content',
-        type: { summary: 'string' },
+        type: {
+          summary: 'string',
+        },
       },
     },
     dismissed: {
@@ -64,8 +65,6 @@ let prevDismissible: boolean | undefined;
 function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
   const [, updateArgs] = useArgs();
 
-  // If user changes the dismissible control while the banner is dismissed,
-  // automatically restore the banner.
   if (dismissed && prevDismissible !== undefined && prevDismissible !== dismissible) {
     prevDismissible = dismissible;
     updateArgs({ dismissed: false });
@@ -97,7 +96,7 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
   `;
 }
 
-// Stories
+// STORIES
 type Story = StoryObj<PostBannerControls>;
 
 export const Default: Story = {};
@@ -118,5 +117,7 @@ export const Contents: Story = {
 };
 
 export const Dismissible: Story = {
-  args: { dismissible: true },
+  args: {
+    dismissible: true,
+  },
 };
