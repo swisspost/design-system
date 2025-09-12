@@ -69,7 +69,7 @@ tokens.$default-map: components.$post-banner;
 }
 
 ::slotted(:not(post-closebutton):not([slot="heading"])) {
-padding-right: tokens.get('close-size', components.$post-close);
+  padding-right: tokens.get('close-size', components.$post-close);
 }
 
 ::slotted(post-closebutton) {
