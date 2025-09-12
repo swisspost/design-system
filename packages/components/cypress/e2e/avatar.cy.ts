@@ -2,6 +2,15 @@ import { getGravatarUrl } from '../../src/components/post-avatar/avatar-utils';
 
 const PAGE_ID = '09aac03d-220e-4885-8fb8-1cfa01add188';
 
+interface StoryStore {
+  args: Record<string, unknown>;
+}
+
+// Extend the Window type to include Storybook store
+interface StorybookWindow extends Window {
+  __STORYBOOK_STORY_STORE__?: StoryStore;
+}
+
 describe('Avatar', () => {
   describe('Structure & Props', () => {
     beforeEach(() => {
@@ -24,37 +33,30 @@ describe('Avatar', () => {
     });
 
     it('should show initials when, firstname or firstname and lastname is defined', () => {
-      // const errorPromise = new Promise(resolve => {
-      //   Cypress.on('uncaught:exception', err => {
-
-      //     expect(err.message).to.include(
-      //       'The prop `firstname` of the `post-avatar` component is not defined.',
-      //     );
-      //     resolve(true);
-      //     // Returning false prevents the test from failing on this uncaught exception.
-      //     return false;
-      //   });
-      // });
-
+      cy.window().then(win => {
+        cy.spy(win.console, 'error').as('consoleError');
+      });
       cy.get('@avatar').find('.initials').as('initials');
 
       cy.get('@initials').should('exist');
       cy.get('@avatar').find('img').should('not.exist');
 
       cy.get('@avatar').invoke('attr', 'firstname', 'Open');
+      cy.get('@avatar').invoke('removeAttr', 'decription');
+      cy.get('@avatar').invoke('attr', 'description', 'The current user is Open');
       cy.get('@initials').should('have.text', 'OThe current user is Open');
 
       cy.get('@avatar').invoke('attr', 'lastname', 'Source');
+      cy.get('@avatar').invoke('attr', 'description', 'The current user is Open Source');
       cy.get('@initials').and('have.text', 'OSThe current user is Open Source');
 
       cy.get('@avatar').invoke('removeAttr', 'lastname');
+      cy.get('@avatar').invoke('attr', 'description', 'The current user is Open');
       cy.get('@initials').should('have.text', 'OThe current user is Open');
 
       cy.get('@avatar').invoke('removeAttr', 'firstname').invoke('removeAttr', 'lastname');
+      cy.get('@consoleError').should('be.called');
       cy.get('@initials').should('not.have.text');
-
-      // // Wait for the error promise to resolve before ending the test.
-      // cy.wrap(errorPromise);
     });
 
     it('should show initials if gravatar does not exist, otherwise show img', () => {
