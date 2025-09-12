@@ -2,15 +2,6 @@ import { getGravatarUrl } from '../../src/components/post-avatar/avatar-utils';
 
 const PAGE_ID = '09aac03d-220e-4885-8fb8-1cfa01add188';
 
-interface StoryStore {
-  args: Record<string, unknown>;
-}
-
-// Extend the Window type to include Storybook store
-interface StorybookWindow extends Window {
-  __STORYBOOK_STORY_STORE__?: StoryStore;
-}
-
 describe('Avatar', () => {
   describe('Structure & Props', () => {
     beforeEach(() => {
