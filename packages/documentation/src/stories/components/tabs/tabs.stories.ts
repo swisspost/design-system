@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-tabs',
   render: renderTabs,
   parameters: {

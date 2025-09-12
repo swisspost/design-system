@@ -8,6 +8,7 @@ const alignOptions = ['baseline', 'top', 'middle', 'bottom', 'text-bottom', 'tex
 const meta: MetaExtended = {
   id: 'cf01f6d1-970f-444e-aaa9-8a96c25cc8b2',
   title: 'Utilities/Vertical Align',
+  tags: ['status:Stable'],
   args: {
     align: '',
   },

@@ -6,6 +6,7 @@ import './overflow.styles.scss';
 const meta: MetaExtended = {
   id: '4b505a3e-f4ce-48ce-8fae-6aa8158d66e8',
   title: 'Utilities/Overflow',
+  tags: ['status:Stable'],
   args: {
     overflow: 'visible',
   },
