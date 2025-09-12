@@ -5,7 +5,7 @@ import { writeReport } from './report';
 import { coloredLogMessage } from '../shared';
 import { OUTPUT_PATH, OUTPUT_PATH_ICONS, OUTPUT_PATH_CSS } from '../constants';
 import { createSvgs } from './createSvgs';
-import { createCssFiles } from './createScssFiles';
+import { createCssFiles } from './createCssFiles';
 
 const iconOutputDirectory = path.resolve(OUTPUT_PATH_ICONS);
 const reportOutputDirectory = path.resolve(OUTPUT_PATH);

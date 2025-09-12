@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { format } from 'prettier';
 import { coloredLogMessage } from '../shared';
 
 function sanitizeForCSSVariable(name: string): string {
@@ -19,12 +20,16 @@ function removeExistingCssFiles(dir: string): number {
   return existingFiles.length;
 }
 
-export function createCssFiles(iconOutputDirectory: string, cssOutputDirectory: string): void {
+export function createCssFiles(
+  iconOutputDirectory: string,
+  cssOutputDirectory: string
+): void {
   fs.mkdirSync(cssOutputDirectory, { recursive: true });
 
   const removedCount = removeExistingCssFiles(cssOutputDirectory);
 
-  const svgFiles = fs.readdirSync(iconOutputDirectory)
+  const svgFiles = fs
+    .readdirSync(iconOutputDirectory)
     .filter(f => f.endsWith('.svg'));
 
   let createdCount = 0;
@@ -34,12 +39,18 @@ export function createCssFiles(iconOutputDirectory: string, cssOutputDirectory: 
     const baseName = sanitizeForCSSVariable(path.parse(file).name);
     const svgContent = fs.readFileSync(filePath, 'utf8');
 
-    const cssContent = `:root {
-  --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}");
-}
-`;
+    let cssContent = `:root {
+      --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}");
+    }
+    `;
 
-    fs.writeFileSync(path.join(cssOutputDirectory, `${baseName}.css`), cssContent);
+    // Format with Prettier
+    cssContent = format(cssContent, { parser: 'css' });
+
+    fs.writeFileSync(
+      path.join(cssOutputDirectory, `${baseName}.css`),
+      cssContent
+    );
     createdCount++;
   });
 
