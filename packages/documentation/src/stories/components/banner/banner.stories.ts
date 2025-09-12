@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from 'storybook/preview-api';
 
-export type PostBannerControls = Partial<HTMLPostBannerElement> & {
+type PostBannerControls = Partial<HTMLPostBannerElement> & {
   dismissible: boolean;
   dismissed?: boolean;
 };
@@ -75,7 +75,7 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
 
   if (dismissed) {
     return html`
-      <button class="btn btn-tertiary" @click=${() => updateArgs({ dismissed: false })}>
+      <button class="btn btn-secondary" @click=${() => updateArgs({ dismissed: false })}>
         Show banner again
       </button>`;
   }
