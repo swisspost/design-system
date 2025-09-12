@@ -8,7 +8,7 @@ node_modules
 public/post-icons
 public/report.json
 public/report.min.json
-dist/css-variables/
+dist/custom-properties/
 
 icons-optimized
 icons.json
