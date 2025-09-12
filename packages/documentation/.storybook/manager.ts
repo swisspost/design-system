@@ -15,7 +15,6 @@ const TECH_ICONS: Record<string, string> = {
 const STATUS_ICONS: Record<string, string> = {
   InProgress: '⏳',
   Experimental: '🧪',
-  Stable: '✅',
   Deprecated: '⛔',
 };
 
