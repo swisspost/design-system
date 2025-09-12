@@ -160,10 +160,10 @@ input.form-control {
         );
       }
     }
-  }
 
-  &:not(:disabled):not([readonly]) {
-    cursor: pointer;
+    &:not(:disabled):not([readonly]) {
+      cursor: pointer;
+    }
   }
 
   &::placeholder {
