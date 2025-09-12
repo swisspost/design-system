@@ -26,7 +26,7 @@
     "@swisspost/design-system-components-react": "workspace:10.0.0-next.47",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.47",
     "@swisspost/internet-header": "workspace:10.0.0-next.47",
-    "next": "15.3.3",
+    "next": "15.4.7",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },
