@@ -7,8 +7,17 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-popover[data-hydrated]');
 
       // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
-      cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
+      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+        .children()
+        .first()
+        .as('trigger');
       cy.get('#testtext').as('popover');
+    });
+
+    it('should contain an HTML element inside the trigger, not just plain text', () => {
+      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+        .children()
+        .should('have.length.at.least', 1);
     });
 
     it('should show up on click', () => {
@@ -119,7 +128,8 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-popover[data-hydrated]');
 
       // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
-      cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
+
+      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]').as('trigger');
 
       cy.injectAxe();
     });
