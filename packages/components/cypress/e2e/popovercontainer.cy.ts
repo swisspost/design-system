@@ -36,7 +36,6 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
           cy.get('@container').should('be.visible');
           cy.get(selector).should('exist');
           await container.hide();
-          cy.wait(1000);
           cy.get('@container').should('not.be.visible');
           cy.get(selector).should('not.exist');
           await container.toggle(trigger);
