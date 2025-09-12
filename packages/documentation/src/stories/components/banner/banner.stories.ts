@@ -76,7 +76,7 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
   if (dismissed) {
     return html`
       <button class="btn btn-secondary" @click=${() => updateArgs({ dismissed: false })}>
-        Show banner again
+        Reset Banner
       </button>`;
   }
 
