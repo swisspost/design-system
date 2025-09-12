@@ -32,4 +32,5 @@ jobs:
 
       - name: Run tests
         run: pnpm --filter design-system-nextjs-integration e2e
+        # Remove "continue-on-error: true" as soon as the components are fully ssr compatible!
         continue-on-error: true
