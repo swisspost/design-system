@@ -1,5 +1,20 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.48
+
+### Major Changes
+
+- Renamed the loader classes from `loader-*` to `spinner-*`. (by [@bucknatt](https://github.com/bucknatt) with [#6194](https://github.com/swisspost/design-system/pull/6194))
+
+- Changed the `fonts.scss` import location from `src/elements/body.scss` to `src/components/_index.scss`.  
+  This way, we can keep it in the bundled output files, but also allow projects who want to import only specific SASS/CSS files, to self-host their fonts and implement their own `@font-face` definitions.
+
+  Since the usage of the `body.{scss|css}` file is mandatory, this was not possible before. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6188](https://github.com/swisspost/design-system/pull/6188))
+
+### Patch Changes
+
+- Fixed file input alignment and prevented validation icon from overlapping the selector button on valid/invalid states. (by [@bucknatt](https://github.com/bucknatt) with [#6198](https://github.com/swisspost/design-system/pull/6198))
+
 ## 10.0.0-next.47
 
 ### Major Changes
