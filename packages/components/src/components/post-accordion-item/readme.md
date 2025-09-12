@@ -34,11 +34,11 @@ Type: `Promise<boolean>`
 
 ## Slots
 
-| Slot        | Description                                                         |
-| ----------- | ------------------------------------------------------------------- |
-| `"default"` | Slot for placing content within the accordion item's body.          |
-| `"header"`  | Slot for placing custom content within the accordion item's header. |
-| `"logo"`    | Slot for placing a logo before the header.                          |
+| Slot        | Description                                                                 |
+| ----------- | --------------------------------------------------------------------------- |
+| `"default"` | Slot for placing content within the accordion item's body.                  |
+| `"header"`  | Slot for placing custom content within the accordion item's header.         |
+| `"logo"`    | Slot for placing a logo in the accordion item’s header, before the content. |
 
 
 ## Shadow Parts
