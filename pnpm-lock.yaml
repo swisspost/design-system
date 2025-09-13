@@ -671,9 +671,6 @@ importers:
       '@stencil/store':
         specifier: 2.0.16
         version: 2.0.16(@stencil/core@4.19.2)
-      '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.47
-        version: link:../icons
       '@types/body-scroll-lock':
         specifier: 3.1.2
         version: 3.1.2
