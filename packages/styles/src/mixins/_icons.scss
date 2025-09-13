@@ -9,6 +9,40 @@
 @use './../mixins/utilities';
 @use './../utilities/env-variables' as icon-version;
 
+$loaded-icons: () !default;
+
+@mixin load-icon-css($name, $path: '@swisspost/design-system-icons/dist/custom-properties') {
+  @if list.index($loaded-icons, $name) == null {
+    $loaded-icons: list.append($loaded-icons, $name) !global;
+    @at-root {
+      @include meta.load-css("#{$path}/#{$name}");
+    }
+  }
+}
+
+@mixin post-icon-load(
+  $name,
+  $color: inherit,
+  $width: 1em,
+  $height: 1em,
+) {
+  display: inline-block;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  color: $color;
+  mask-image: var(--post-icon-#{$name});
+  -webkit-mask-image: var(--post-icon-#{$name});
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+  width: $width;
+  height: $height;
+  @include load-icon-css($name);
+}
+
 @mixin icon($name) {
   $icon: icon-fn.get-svg-url($name);
   mask-image: url('#{$icon}');
