@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-components': minor
+'@swisspost/design-system-components': patch
 ---
 
-Added a `postClick` event and accessibility checks to the `post-closebutton` component.
+Added accessibility checks to the `post-closebutton` component.
