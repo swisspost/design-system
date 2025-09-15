@@ -282,7 +282,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Removed some spacing utilities' classes (margin and padding
                     <code>{m/p}{x/y/s/e/t/b}-*</code>)
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-small-large</code></li>
@@ -293,7 +293,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Changed the spacing utilities' classes (margin and padding
                     <code>{m/p}{x/y/s/e/t/b}-*</code>) naming to pixel-based names
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-hair</code> is now <code>*-1</code></li>
