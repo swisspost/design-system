@@ -233,10 +233,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       &::before {
         content: '';
         margin-right: 0.5rem;
-        width: 1em;
-        height: 1em;
-        display: inline-block;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s ease;        
         @include post.post-icon-load($name: '2052');
       }
 
@@ -251,9 +248,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       &::before {
         content: '';
         margin-right: 0.5rem;
-        width: 1em;
-        height: 1em;
-        display: inline-block;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         @include post.post-icon-load($name: 'resizeexpand');
       }
@@ -261,9 +255,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       + button::before {
         content: '';
         margin-right: 0.5rem;
-        width: 1em;
-        height: 1em;
-        display: inline-block;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         @include post.post-icon-load($name: 'link');
       }
@@ -271,9 +262,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       + button + button::before {
         content: '';
         margin-right: 0.5rem;
-        width: 1em;
-        height: 1em;
-        display: inline-block;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         @include post.post-icon-load($name: 'code');
       }
