@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.8.1
+
+### Patch Changes
+
+- Corrected nested heading in the dialog main example. (by [@leagrdv](https://github.com/leagrdv) with [#6158](https://github.com/swisspost/design-system/pull/6158))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.2.0
+  - @swisspost/design-system-components@9.2.0
+  - @swisspost/design-system-styles@9.2.0
+  - @swisspost/design-system-components-react@9.2.0
+  - @swisspost/internet-header@1.15.19
+
 ## 5.8.0
 
 ### Minor Changes
