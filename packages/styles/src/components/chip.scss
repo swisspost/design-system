@@ -104,7 +104,7 @@ button.chip-dismissible {
           content: '';
           position: absolute;
           left: tokens.get('chip-selectable-padding-inline');
-          
+
           @include utilities.high-contrast-mode() {
             background-color: Highlight;
           }
