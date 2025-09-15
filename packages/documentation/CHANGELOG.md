@@ -1,5 +1,26 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.49
+
+### Minor Changes
+
+- Added the `/components` entry point, which can be used to consume standalone, none lazy-loading components. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6140](https://github.com/swisspost/design-system/pull/6140))
+
+- Renamed the loader classes from `loader-*` to `spinner-*`. (by [@bucknatt](https://github.com/bucknatt) with [#6194](https://github.com/swisspost/design-system/pull/6194))
+
+### Patch Changes
+
+- Fixed the "Copy deep link" feature so that the full URL is now copied correctly. (by [@alizedebray](https://github.com/alizedebray) with [#6163](https://github.com/swisspost/design-system/pull/6163))
+
+- Provided more meaningful and user-friendly descriptions for CSS shadow parts in `post-menu`, `post-accordion-item` and `post-tabs` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6062](https://github.com/swisspost/design-system/pull/6062))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.48
+  - @swisspost/design-system-icons@10.0.0-next.48
+  - @swisspost/design-system-styles@10.0.0-next.48
+  - @swisspost/design-system-components-react@10.0.0-next.48
+  - @swisspost/internet-header@10.0.0-next.48
+  - @swisspost/design-system-tokens@10.0.0-next.48
+
 ## 6.0.0-next.48
 
 ### Major Changes
