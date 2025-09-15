@@ -51,12 +51,6 @@ $loaded-icons: () !default;
   forced-color-adjust: preserve-parent-color;
 }
 
-@mixin load-icon-css($name, $path: '@swisspost/design-system-icons/dist/custom-properties') {
-  @at-root {
-    @include meta.load-css("#{$path}/#{$name}.css");
-  }
-}
-
 @mixin post-icon(
   $base:
     'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
