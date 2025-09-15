@@ -2,7 +2,6 @@
 
 These contribution guidelines apply to this repository in general and describe how to set up and maintain the repository. You can find dedicated guidelines in each package.
 
-- [Angular Demo](./packages/demo/README.md)
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
 - [Intranet Header Component](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
 
@@ -17,7 +16,6 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 | Command                           | Description                                                                                  |
 | --------------------------------- | -------------------------------------------------------------------------------------------- |
 | `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
-| `pnpm demo:start`                 | starts the demo Angular application and the `start` scripts of all dependencies              |
 | `pnpm intranet-header:start`      | starts the intranet header demo application                                                  |
 | `pnpm styles:start`               | starts the sass compiler                                                                     |
 | `pnpm components:start`           | starts the stencil compiler                                                                  |
@@ -386,7 +384,6 @@ These are technologies that seem interesting because they could support our core
 
 For good reasons, these are technologies that we're no longer planning to use in the future.
 
-- Angular (Demo App): Our demo app is custom built on Angular and would need serious investment to provide similar functionality compared to Storybook, an industry standard, which is cheaper to adopt and maintain than a custom solution.
 - ngBootstrap: not every product team is using Angular. In order to provide a future proof solution, we're implementing web standard components as direct replacement for ngBootstrap components. Wrappers for Angular will be provided for those in order to increase interoperability.
 - Bootstrap: Frequent, disruptive updates make it hard to adapt our heavily customized styles to the new versions. Also, the Bootstrap component variants don't match with components in the Design. This gap makes it hard for us to follow the Design Guidelines while still supporting all features of Bootstrap so devs who are familiar with it can use their knowledge. For large, custom Design Systems, it's cheaper to document what's possible with the Design Guidelines instead of trying to merge these two worlds. On the technical side, our components can be imported individually. Making this work with Bootstrap brings a lot of complexity to the codebase.
 
