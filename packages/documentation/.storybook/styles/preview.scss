@@ -248,21 +248,18 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       &::before {
         content: '';
         margin-right: 0.5rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         @include post.post-icon-load($name: 'resizeexpand');
       }
 
       + button::before {
         content: '';
         margin-right: 0.5rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         @include post.post-icon-load($name: 'link');
       }
 
       + button + button::before {
         content: '';
         margin-right: 0.5rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         @include post.post-icon-load($name: 'code');
       }
     }
