@@ -177,7 +177,7 @@ export class PostMegadropdown {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
 
-    // cehck if the focusable children list contains a .selected (active) item
+    // Check if the focusable children list contains a `.selected` (active) item
     if (focusableChildren.some(el => el.classList.contains('selected'))) {
       if (this.host.getAttribute('id')) {
         // Select the trigger element by its "for" attribute, locate the contained button, and mark it as selected
