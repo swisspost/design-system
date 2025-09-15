@@ -109,16 +109,24 @@ dialog > .dialog-grid {
 }
 
 .dialog-header {
-  grid-area: header;
+  grid-area: 1 / icon / 2 / header;
   margin-top: 0;
+
+  post-icon ~ & {
+    grid-area: header;
+  }
 }
 
 .dialog-body {
-  grid-area: body;
+  grid-area: 2 / icon / 3 / body;
   margin-bottom: 0;
 
   > *:last-child {
     margin-bottom: 0;
+  }
+
+  post-icon ~ & {
+    grid-area: body;
   }
 }
 
