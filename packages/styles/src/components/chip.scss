@@ -109,7 +109,9 @@ button.chip-dismissible {
             background-color: Highlight;
           }
           @include icons-mx.post-icon-load(
-            $name: 'checkmark'
+            $name: 'checkmark',
+            $width: tokens.get('chip-selectable-icon'),
+            $height: tokens.get('chip-selectable-icon')
           );
         }
 
