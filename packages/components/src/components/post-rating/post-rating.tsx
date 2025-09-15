@@ -169,8 +169,8 @@ export class PostRating {
               onMouseEnter={e => this.hoverHandler(i, e)}
               onMouseLeave={e => this.hoverHandler(i, e)}
             >
-              <post-icon name="2062" class="stroke"></post-icon>
-              <post-icon name="2574" class="fill"></post-icon>
+              <post-icon name="favoritestar" class="stroke"></post-icon>
+              <post-icon name="favoritestar-solid" class="fill"></post-icon>
             </div>
           ))}
         </div>

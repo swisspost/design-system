@@ -16,12 +16,9 @@
     border-radius: commons.$border-radius;
   }
 
-  &::before {
-    @include icons.icon(2043);
+    &::before {
     content: '';
-    display: block;
-    height: close.$close-size;
-    width: close.$close-size;
+    @include icons.post-icon-load('closex', $width: close.$close-size, $height: close.$close-size);
   }
 
   @include utilities.not-disabled-focus-hover() {

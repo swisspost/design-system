@@ -108,11 +108,8 @@ post-linkarea:has(> .card) {
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mx.icon(3020);
       content: '';
-      display: inline-block;
-      width: icons.$icon-size-default;
-      height: icons.$icon-size-default;
+      @include icons-mx.post-icon-load('arrowright', $width: icons.$icon-size-default, $height: icons.$icon-size-default);
     }
   }
 }
