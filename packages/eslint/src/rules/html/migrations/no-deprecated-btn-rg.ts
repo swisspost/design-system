@@ -2,7 +2,6 @@ import { createClassUpdateRule } from '../../../utils/create-class-update-rule';
 
 export const name = 'no-deprecated-btn-rg';
 
-// Type: RuleModule<"uppercase", ...>
 export default createClassUpdateRule({
   name,
   type:'suggestion',
@@ -11,6 +10,6 @@ export default createClassUpdateRule({
     deprecatedBtnRg: 'The "btn-rg" class is deprecated. Please remove it or replace it with "btn-sm".',
   },
   mutations: {
-    deprecatedBtnRg: ['btn-rg']
+    deprecatedBtnRg: ['btn-rg', 'btn-sm']
   },
 });
