@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components-vite';
+import type { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import type { MetaComponent } from '@root/types';
 
@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   args: {
     labelCount: 4,
-    mode: 'text',
+    mode: 'Text only',
   },
   argTypes: {
     labelCount: {
@@ -35,9 +35,6 @@ const meta: MetaComponent = {
       table: { category: 'Content' },
     },
   },
-};
-
-export const Default: Story = {
   render: (args: Args) => {
     const mode = args.mode || 'Text only';
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
@@ -55,7 +52,7 @@ export const Default: Story = {
                 ${mode === 'Icons only'
                   ? html`<span class="visually-hidden">${label}</span>`
                   : nothing}
-                ${mode === 'Icons only"' || mode === 'Text and icons'
+                ${mode === 'Icons only' || mode === 'Text and icons'
                   ? html`<post-icon name="${1000 + index}"></post-icon>`
                   : nothing}
                 ${mode === 'Text only' || mode === 'Text and icons' ? label : nothing}
@@ -69,13 +66,6 @@ export const Default: Story = {
 };
 
 export default meta;
-
-type Story = StoryObj;
-
-export const Icon: Story = {
-  args: { mode: 'Icons only' },
-};
-
-export const TextAndIcon: Story = {
-  args: { mode: 'Text and icons' },
-};
+export const Default = {};
+export const Icon = { args: { mode: 'Icons only' } };
+export const TextAndIcon = { args: { mode: 'Text and icons' } };
