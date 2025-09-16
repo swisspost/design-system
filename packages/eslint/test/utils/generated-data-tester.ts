@@ -17,7 +17,6 @@ export function generatedDataTester(
 
   const validData = validClasses.map(cls => ({ code: `<div class="${cls}">Content</div>` }));
 
-  console.log(validData, invalidData);
   htmlRuleTester.run(name, rule, {
     valid: validData,
     invalid: invalidData,
