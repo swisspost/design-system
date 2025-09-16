@@ -224,10 +224,10 @@ export const CustomContent: Story = {
     return html`
       <div class="card">
         <div class="d-flex px-16 py-32 gap-16 align-items-center">
-          <post-icon aria-hidden="true" scale="2" name="3217"></post-icon>
+          <post-icon aria-hidden="true" scale="2" name="profile"></post-icon>
           <h3 class="fw-bold my-0 me-auto">User Details</h3>
           <a href="#" aria-labelledby="details-title">
-            <post-icon aria-hidden="true" scale="1.5" name="3020"></post-icon>
+            <post-icon aria-hidden="true" name="arrowright"></post-icon>
             <span class="visually-hidden">Account Management</span>
           </a>
         </div>
@@ -237,14 +237,14 @@ export const CustomContent: Story = {
               Mr<br />First Name Last Name<br />Street 1<br />1234 City
             </address>
             <a href="#">
-              <post-icon aria-label="Edit Address" scale="1.5" name="3193"></post-icon>
+              <post-icon aria-label="Edit Address" name="edit"></post-icon>
               <span class="visually-hidden">Edit Address</span>
             </a>
           </li>
           <li class="list-interactive-item d-flex align-items-center justify-content-between">
             <p class="mb-0">Language: <span class="fw-bold">English</span></p>
             <a href="#">
-              <post-icon aria-label="Edit Language" scale="1.5" name="3193"></post-icon>
+              <post-icon aria-label="Edit Language" name="edit"></post-icon>
               <span class="visually-hidden">Edit Language</span>
             </a>
           </li>
