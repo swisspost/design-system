@@ -57,7 +57,7 @@ export namespace Components {
         /**
           * Provides a custom description for the avatar, used for accessibility purposes.
          */
-        "description": string;
+        "description"?: string;
         /**
           * Defines the users email address associated with a gravatar profile picture.
          */
@@ -964,7 +964,7 @@ declare namespace LocalJSX {
         /**
           * Provides a custom description for the avatar, used for accessibility purposes.
          */
-        "description": string;
+        "description"?: string;
         /**
           * Defines the users email address associated with a gravatar profile picture.
          */

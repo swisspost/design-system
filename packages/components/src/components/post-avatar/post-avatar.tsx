@@ -51,7 +51,7 @@ export class PostAvatar {
   /**
    * Provides a custom description for the avatar, used for accessibility purposes.
    */
-  @Prop() description!: string;
+  @Prop() description?: string;
 
   @State() slottedImage: HTMLImageElement;
   @State() avatarType: AvatarType = null;
@@ -86,7 +86,7 @@ export class PostAvatar {
 
   @Watch('description')
   validateDescription() {
-    checkRequiredAndType(this, 'description', 'string');
+    checkEmptyOrType(this, 'description', 'string');
   }
 
   private validateUserId() {
@@ -215,7 +215,9 @@ export class PostAvatar {
       .map(n => n.charAt(0))
       .join('')
       .trim();
-    const description = this.description;
+
+    const fullname = [this.firstname, this.lastname].join(' ');
+
     return (
       <Host data-version={version}>
         <span class={this.avatarType === 'slotted' ? '' : 'd-none'}>
@@ -225,7 +227,7 @@ export class PostAvatar {
         {this.avatarType === 'initials' && (
           <span class="initials">
             {initials}
-            <span>{description}</span>
+            <span>{this.description ?? fullname}</span>
           </span>
         )}
       </Host>

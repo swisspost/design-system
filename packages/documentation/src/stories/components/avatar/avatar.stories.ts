@@ -24,7 +24,7 @@ const meta: MetaComponent = {
     userid: '',
     email: '',
     imageSrc: '',
-    description: 'The current user is ',
+    description: 'The current user is Firstname',
   },
   argTypes: {
     'userid': {
@@ -66,15 +66,12 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => {
-    // Construct the description by combining the base and the firstname
-    const fullDescription = `${args.description || ''}${args.firstname || ''}`;
-
     return html`<post-avatar
       firstname="${args.firstname || nothing}"
       lastname="${args.lastname || nothing}"
       userid="${args.userid || nothing}"
       email="${args.email || nothing}"
-      description="${fullDescription || nothing}"
+      description="${args.description || nothing}"
       >${args.imageSrc
         ? html`<img
             src="${args.imageSrc}"
