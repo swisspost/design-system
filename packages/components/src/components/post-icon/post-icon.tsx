@@ -91,7 +91,6 @@ export class PostIcon {
    * Construct the icon URL according to the following rules:
    * - If this.base prop is set -> if absolute: [this.base]/[fileName] / if relative: [baseHref][this.base]/[fileName]
    * - Else if meta[name="design-system-settings"] -> if absolute: [data-post-icon-base]/[fileName] / if relative: [baseHref][data-post-icon-base]/[fileName]
-   * - Else if base[href] -> if absolute: [baseHref]/[fileName] / if relative: [currentDomain][baseHref][fileName]
    * - Else use CDN ->[CDN][filename] */
 
   private getUrl(): string {
@@ -109,7 +108,9 @@ export class PostIcon {
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
     const metaIconBase = IS_BROWSER
-      ? document.querySelector('meta[name="design-system-settings"]')?.getAttribute('data-post-icon-base') || ''
+      ? document
+          .querySelector('meta[name="design-system-settings"]')
+          ?.getAttribute('data-post-icon-base') || ''
       : '';
 
     // Function to build the URL based on baseHref
@@ -138,11 +139,6 @@ export class PostIcon {
       return `${buildUrlWithBase(metaIconBase)}${fileName}`.replace(/([^:])\/\//g, '$1/');
     }
 
-    // Third Priority is base[Href]
-    if (baseHref) {
-      return `${buildUrlWithBase('')}${fileName}`.replace(/([^:])\/\//g, '$1/');
-    }
-
     // Final Fallback to CDN
     return `${CDN_URL}${fileName}`.replace(/([^:])\/\//g, '$1/');
   }
@@ -162,8 +158,8 @@ export class PostIcon {
   }
 
   componentDidLoad() {
-    this.validateName();
     this.validateBase();
+    this.validateName();
     this.validateScale();
     this.validateRotate();
     this.validateAnimation();
