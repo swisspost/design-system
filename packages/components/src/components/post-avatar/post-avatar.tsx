@@ -86,7 +86,6 @@ export class PostAvatar {
 
   @Watch('description')
   validateDescription() {
-    console.log(this.description);
     checkRequiredAndType(this, 'description', 'string');
   }
 
