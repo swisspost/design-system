@@ -7,7 +7,7 @@ export const DOWNLOAD_PAGE_DELAY = 2000;
 export const SOURCE_PATH = 'src/icons';
 export const OUTPUT_PATH = 'public';
 export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
-export const OUTPUT_PATH_SCSS = 'dist/css-variables';
+export const OUTPUT_PATH_CSS = 'dist/custom-properties';
 
 export const SOURCE_REPORT: SourceReport = {
   icons: [],

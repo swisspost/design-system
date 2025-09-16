@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "10.0.0-next.46",
+  "version": "10.0.0-next.48",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -40,6 +40,7 @@
     "@types/mock-fs": "4.13.4",
     "@types/node": "22.10.5",
     "@types/node-fetch": "2.6.13",
+    "@types/prettier": "2.7.3",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "dotenv": "16.5.0",
@@ -53,6 +54,7 @@
     "node-fetch": "2.7.0",
     "node-html-parser": "7.0.1",
     "nodemon": "3.1.10",
+    "prettier": "2.8.8",
     "rimraf": "6.0.1",
     "svgo": "3.3.2",
     "ts-jest": "29.2.5",
@@ -65,7 +67,6 @@
     "design-system",
     "ui",
     "frontend",
-    "scss",
     "css"
   ]
 }
