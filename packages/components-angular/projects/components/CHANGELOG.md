@@ -1,5 +1,20 @@
 # @swisspost/design-system-components-angular
 
+## 10.0.0-next.48
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.48
+
+## 10.0.0-next.47
+
+### Patch Changes
+
+- Updated peer dependencies `@angular/core`, `@angular/common` and `@angular/forms` of the package. (by [@myrta2302](https://github.com/myrta2302) with [#5836](https://github.com/swisspost/design-system/pull/5836))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.47
+
 ## 10.0.0-next.46
 
 ### Major Changes

@@ -86,7 +86,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     The <code>.form-text</code> class has been renamed to <code>.form-hint</code>
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span><span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
                 <li class="mb-16">
@@ -362,6 +362,16 @@ export class MigrationV99Component extends LitElement {
                     </li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Renamed border radius classes
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                  </p>
+                  <ul>
+                    <li><code>.rounded</code> is now <code>.rounded-4</code></li>
+                    <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
+                  </ul>
+                </li>
               </ul>
 
               <h5>Helpers</h5>
@@ -455,7 +465,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed deprecated line-height variables
+                    Removed deprecated line-height SCSS variables and CSS classes
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
@@ -471,7 +481,28 @@ export class MigrationV99Component extends LitElement {
                     <li><code>$line-height-bigger-big</code></li>
                     <li><code>$line-height-small-huge</code></li>
                     <li><code>$line-height-huge</code></li>
+                    <li><code>.lh-base</code></li>
+                    <li><code>.lh-hair</code></li>
+                    <li><code>.lh-line</code></li>
+                    <li><code>.lh-micro</code></li>
+                    <li><code>.lh-mini</code></li>
+                    <li><code>.lh-small-regular</code></li>
+                    <li><code>.lh-regular</code></li>
+                    <li><code>.lh-small-large</code></li>
+                    <li><code>.lh-large</code></li>
+                    <li><code>.lh-big</code></li>
+                    <li><code>.lh-bigger-big</code></li>
+                    <li><code>.lh-small-huge</code></li>
+                    <li><code>.lh-huge</code></li>
+                    <li><code>.lh-small-giant</code></li>
+                    <li><code>.lh-giant</code></li>
+                    <li><code>.lh-bigger-giant</code></li>
                   </ul>
+                  <p class="info">
+                    You can now use the following classes: <code>.lh-1</code>, <code>.lh-sm</code> and <code>.lh-lg</code> which are documented in the <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
+                      >text utilities</a
+                    >.
+                  </p>
                 </li>
                 <li class="mb-16">
                   <p>
@@ -493,7 +524,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     Renamed font-weight utility classes
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.bold</code> is now <code>.fw-bold</code></li>
@@ -540,12 +571,6 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    The <code>.lh-base</code> class has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
                     The <code>.font-monospace</code> class has been removed along with the
                     <code>$font-family-monospace</code> scss variable.
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -581,14 +606,30 @@ export class MigrationV99Component extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
-                    <li>datepicker</li>
-                    <li>timepicker</li>
-                    <li>pagination</li>
-                    <li>typeahead</li>
-                    <li>dropdown</li>
+                    <li>carousel</li>
+                    <li>custom select</li>
                     <li>datatable</li>
+                    <li>datepicker</li>
+                    <li>dropdown</li>
+                    <li>modal</li>
+                    <li>notification overlay</li>
+                    <li>pagination</li>
                     <li>progressbar</li>
+                    <li>timepicker</li>
+                    <li>typeahead</li>
                   </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Some elements of the card component and their corresponding classes have been removed. <span class="tag tag-sm tag-danger">breaking</span>
+                    <ul>
+                      <li><code>.card-header</code></li>
+                      <li><code>.card-footer</code></li>
+                      <li><code>.card-img</code></li>
+                      <li><code>.card-img-top</code></li>
+                      <li><code>.card-img-bottom</code></li>
+                    </ul>
+                  </p>
                 </li>
                 <li class="mb-16">
                   <p>
@@ -601,7 +642,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     The <code>.btn-rg</code> class has been removed. Buttons using this class will
                     now fall back to the default <code>btn-md</code>
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
                 <li class="mb-16">
@@ -636,31 +677,6 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     The <code>topic-teaser</code> component and all of its related classes have been
                     removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The ng-bootstrap <code>notification overlay</code> component has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The ng-bootstrap <code>custom select</code> has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The ng-bootstrap <code>carousel</code> component has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The ng-bootstrap <code>modal</code> component has been removed as well as all of
-                    its classes and scss variables
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                 </li>
@@ -762,14 +778,37 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Deprecated loader classes and related scss variables have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.loader-xs</code></li>
                     <li><code>.loader-sm</code></li>
                   </ul>
                   <p class="info">
-                    Instead, use classes <code>.loader-16</code> and <code>.loader-40</code>.
+                    Instead, use classes <code>.spinner-16</code> and <code>.spinner-40</code>.
                   </p>
+                </li>
+
+                <li class="mb-16">
+                  <p>
+                    Removed the Standard HTML Alert component (<code>.alert</code>, <code>.alert-*</code>).
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    Replaced by the <code>post-banner</code> component.
+                  </p>
+                </li>
+
+                <li class="mb-16">
+                  <p>
+                    The following spinner classes have been renamed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.loading-modal</code> is now <code>.spinner-modal</code></li>
+                    <li><code>.loader</code> is now <code>.spinner</code></li>
+                    <li><code>.loader-*</code> are now <code>.spinner-*</code></li>
+                  </ul>
                 </li>
               </ul>
             </section>
@@ -800,6 +839,20 @@ export class MigrationV99Component extends LitElement {
                   <p class="info">
                     If your tests related on the class being present, please rewrite the selector to
                     use the new attribute selector.
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the <code>accordion-item</code> shadow part from the
+                    <code>post-accordion-item</code> component and introduced two new shadow parts:
+                    <code>button</code> and <code>body</code>.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    If you were styling the component using the <code>::part(accordion-item)</code> selector,
+                    this will no longer work. Update your styles to use
+                    <code>::part(button)</code> for the header trigger and
+                    <code>::part(body)</code> for the content area instead.
                   </p>
                 </li>
               </ul>
