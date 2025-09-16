@@ -16,7 +16,7 @@
     border-radius: commons.$border-radius;
   }
 
-    &::before {
+  &::before {
     content: '';
     @include icons.post-icon-load('closex', $width: close.$close-size, $height: close.$close-size);
   }

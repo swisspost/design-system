@@ -81,6 +81,12 @@ footer {
   }
 }
 
+&[name="facebook"],
+    &[name="youtube"] {
+      width: tokens.get('icon-button-#{$actual-size}-icon-socialmedia');
+      height: tokens.get('icon-button-#{$actual-size}-icon-socialmedia');
+    }
+
 .visually-hidden {
   @include utilities.visuallyhidden();
 }
