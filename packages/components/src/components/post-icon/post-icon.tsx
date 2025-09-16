@@ -87,11 +87,13 @@ export class PostIcon {
     checkEmptyOrType(this, 'scale', 'number');
   }
 
-  // Construct the icon URL according to the following rules:
-  // - If this.base prop is set -> [this.base]/[fileName]
-  // - Else if meta[name="design-system-settings"] -> if absolute: [data-post-icon-base]/[fileName] / if relative: [baseHref][data-post-icon-base]/[fileName]
-  // - Else if base[href] -> if absolute: [baseHref]/[fileName] / if relative: [currentDomain][baseHref][fileName]
-  // - Else use CDN ->[CDN][filename]
+  /**
+   * Construct the icon URL according to the following rules:
+   * - If this.base prop is set -> if absolute: [this.base]/[fileName] / if relative: [baseHref][this.base]/[fileName]
+   * - Else if meta[name="design-system-settings"] -> if absolute: [data-post-icon-base]/[fileName] / if relative: [baseHref][data-post-icon-base]/[fileName]
+   * - Else if base[href] -> if absolute: [baseHref]/[fileName] / if relative: [currentDomain][baseHref][fileName]
+   * - Else use CDN ->[CDN][filename] */
+
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
 
@@ -123,7 +125,6 @@ export class PostIcon {
     // Highest Priority is this.base
     if (this.base) {
       if (isAbsolute(this.base)) {
-
         return `${normalizeUrl(this.base)}${fileName}`.replace(/([^:])\/\//g, '$1/');
       }
       return `${buildUrlWithBase(this.base)}${fileName}`.replace(/([^:])\/\//g, '$1/');
