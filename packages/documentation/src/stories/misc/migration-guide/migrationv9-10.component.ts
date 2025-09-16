@@ -583,13 +583,14 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Deprecated loader classes and related scss variables have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.loader-xs</code></li>
                     <li><code>.loader-sm</code></li>
                   </ul>
                   <p class="info">
-                    Instead, use classes <code>.loader-16</code> and <code>.loader-40</code>.
+                    Instead, use classes <code>.spinner-16</code> and <code>.spinner-40</code>.
                   </p>
                 </li>
 
@@ -601,6 +602,18 @@ export class MigrationV99Component extends LitElement {
                   <p class="info">
                     Replaced by the <code>post-banner</code> component.
                   </p>
+                </li>
+
+                <li class="mb-16">
+                  <p>
+                    The following spinner classes have been renamed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.loading-modal</code> is now <code>.spinner-modal</code></li>
+                    <li><code>.loader</code> is now <code>.spinner</code></li>
+                    <li><code>.loader-*</code> are now <code>.spinner-*</code></li>
+                  </ul>
                 </li>
               </ul>
             </section>
