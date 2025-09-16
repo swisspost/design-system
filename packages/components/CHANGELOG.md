@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 9.2.0
+
+### Minor Changes
+
+- Added the `part="body"` attribute to the `post-accordion-item .accordion-body` shadowdom element, so it is possible to override the implemented styles. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6205](https://github.com/swisspost/design-system/pull/6205))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.2.0
+
 ## 9.1.0
 
 ### Minor Changes

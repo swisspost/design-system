@@ -42,9 +42,10 @@ Type: `Promise<boolean>`
 
 ## Shadow Parts
 
-| Part               | Description |
-| ------------------ | ----------- |
-| `"accordion-item"` |             |
+| Part               | Description                                                    |
+| ------------------ | -------------------------------------------------------------- |
+| `"accordion-item"` | The container element that wraps the entire accordion item.    |
+| `"body"`           | The container element that holds the accordion item's content. |
 
 
 ## Dependencies

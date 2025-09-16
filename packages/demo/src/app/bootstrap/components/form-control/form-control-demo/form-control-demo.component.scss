@@ -1,6 +1,0 @@
-@use '@swisspost/design-system-styles/core' as post;
-
-.form-floating + .form-control,
-.form-control + .form-control {
-  margin-top: post.$size-regular;
-}
