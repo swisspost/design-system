@@ -60,9 +60,9 @@ export class MigrationV99Component extends LitElement {
                 If you encounter any broken styles or issues after upgrading, you have two options:
               </p>
               <ul>
-                <li>Install Bootstrap as a dependency in your own project</li>
                 <li>Internalize the specific mixins or utilities you still rely on
                 </li>
+                <li>If issues persist, open a <a href="https://github.com/swisspost/design-system/issues">GitHub issue</a></li>
               </ul>
               <p>Please review your components and styles to ensure compatibility.
               </p><br/>
