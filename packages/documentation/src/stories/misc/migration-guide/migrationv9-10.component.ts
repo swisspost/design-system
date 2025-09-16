@@ -197,7 +197,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Changed the percentage sizing utility classes (<code>w-*</code>,
                     <code>h-*</code>, <code>mh-*</code>, <code>mw-*</code>) naming
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-25</code> is now <code>*-quarter</code></li>
@@ -210,7 +210,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Removed some pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
                     <code>mh-*</code>, <code>mw-*</code>).
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-small-large</code></li>
@@ -221,7 +221,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Changed the pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
                     <code>mh-*</code>, <code>mw-*</code>) to pixel-based names
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-hair</code> is now <code>*-1</code></li>
@@ -242,7 +242,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     Changed the sizing utility classes max-height and max-width naming
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>mh-*</code> is now <code>max-h-*</code></li>
