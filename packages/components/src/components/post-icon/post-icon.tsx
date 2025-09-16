@@ -107,9 +107,7 @@ export class PostIcon {
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
     const metaIconBase = IS_BROWSER
-      ? document
-          .querySelector('meta[name="design-system-settings"]')
-          ?.getAttribute('data-post-icon-base') || ''
+      ? document.querySelector('meta[name="design-system-settings"]')?.getAttribute('data-post-icon-base') || ''
       : '';
 
     // Function to build the URL based on baseHref
@@ -122,35 +120,29 @@ export class PostIcon {
       return `${currentDomain}${normalizedHref}${normalizedRelative}`;
     };
 
-    // Rule 1: Highest Priority is this.base
+    // Highest Priority is this.base
     if (this.base) {
       if (isAbsolute(this.base)) {
-        console.log('this.base absolute');
+
         return `${normalizeUrl(this.base)}${fileName}`.replace(/([^:])\/\//g, '$1/');
       }
-      console.log('this.base relative');
-
       return `${buildUrlWithBase(this.base)}${fileName}`.replace(/([^:])\/\//g, '$1/');
     }
 
-    // Rule 2: Second Priority is metaIconBase
+    // Second Priority is metaIconBase
     if (metaIconBase) {
       if (isAbsolute(metaIconBase)) {
-        console.log('meta absolute');
         return `${normalizeUrl(metaIconBase)}${fileName}`.replace(/([^:])\/\//g, '$1/');
       }
-      console.log('meta relative');
       return `${buildUrlWithBase(metaIconBase)}${fileName}`.replace(/([^:])\/\//g, '$1/');
     }
 
-    // Rule 3: Third Priority is base[Href]
+    // Third Priority is base[Href]
     if (baseHref) {
-      console.log('basehref only');
       return `${buildUrlWithBase('')}${fileName}`.replace(/([^:])\/\//g, '$1/');
     }
-    console.log('cdn only');
-    // Rule 4: Final Fallback to CDN
-    console.log(baseHref);
+
+    // Final Fallback to CDN
     return `${CDN_URL}${fileName}`.replace(/([^:])\/\//g, '$1/');
   }
 
