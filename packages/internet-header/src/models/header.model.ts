@@ -52,6 +52,7 @@ export interface ILoginWidgetOptions {
     logoutURL: string;
     keepAliveURL: string;
     autoLoginURL: string;
+    selfAdminOrigin?: string;
   };
 }
 

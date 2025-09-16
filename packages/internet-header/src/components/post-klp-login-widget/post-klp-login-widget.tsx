@@ -14,9 +14,14 @@ export class PostKlpLoginWidget implements IsFocusable {
   @Element() host: HTMLPostKlpLoginWidgetElement;
 
   /**
-   * Override the logout-url provided by the portal config.
+   * Overrides the logout-url provided by the portal config.
    */
   @Prop() logoutUrl?: string;
+
+  /**
+   * Overrides the self-admin origin for menu links.
+   */
+  @Prop() selfAdminOrigin?: string;
 
   async componentDidLoad() {
     if (
@@ -25,13 +30,18 @@ export class PostKlpLoginWidget implements IsFocusable {
     )
       return;
     const { initializeKLPLoginWidget } = await import('./klp-widget.controller.js');
-    const { platform, ...widgetOptions } = state.localizedConfig.header.loginWidgetOptions;
+    let { platform, ...widgetOptions } = state.localizedConfig.header.loginWidgetOptions;
+    if (this.logoutUrl !== undefined) {
+      platform = { ...platform, logoutURL: this.logoutUrl };
+    }
+    if (this.selfAdminOrigin !== undefined) {
+      platform = { ...platform, selfAdminOrigin: this.selfAdminOrigin };
+    }
+
     initializeKLPLoginWidget('post-klp-login-widget', {
       ...widgetOptions,
       environment: state.environment,
-      ...(this.logoutUrl !== undefined
-        ? { platform: { ...platform, logoutURL: this.logoutUrl } }
-        : { platform }),
+      ...{ platform },
     });
   }
 

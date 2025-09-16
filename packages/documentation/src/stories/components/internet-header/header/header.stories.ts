@@ -132,6 +132,15 @@ const meta: MetaComponent = {
         },
       },
     },
+    selfAdminOrigin: {
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Optional props',
+        subcategory: 'Overrides',
+      },
+    },
     languageSwitchOverrides: {
       control: {
         type: 'object',

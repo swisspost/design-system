@@ -16,6 +16,8 @@ export interface HeaderState {
   localizedCustomConfig?: ILocalizedCustomConfig;
   osFlyoutOverrides?: NavMainEntity;
   stickyness: StickynessOptions;
+  logoutUrl: string | undefined;
+  selfAdminOrigin: string | undefined;
 }
 
 export const { state, reset, dispose } = createStore<HeaderState>({
@@ -27,4 +29,6 @@ export const { state, reset, dispose } = createStore<HeaderState>({
   login: true,
   meta: true,
   stickyness: 'minimal',
+  logoutUrl: undefined,
+  selfAdminOrigin: undefined,
 });
