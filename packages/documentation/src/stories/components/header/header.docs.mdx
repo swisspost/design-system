@@ -20,10 +20,12 @@ import HeaderSelectedClass from './header-selected-class.sample.html?raw';
   <Controls of={HeaderStories.Default} />
 </div>
 
-## `.selected` Class
+## Styling Active Navigation Items with `.selected`
 
-<p><b>The `.selected` class highlights the active navigation item.</b> 
-It should be applied by application logic to the `<a>` or `<button>` element inside the active `<post-list-item>` of the `<post-mainnavigation>`, as shown in the example below.</p>
+<p>
+<b>The `.selected` class highlights the active navigation items.</b>
+It should be applied by application logic to the `<a>` or `<button>` element inside the active `<post-list-item>` of the `<post-mainnavigation>`. Once an item has the `.selected` class, its hierarchical parent items will automatically inherit the same styling.
+</p>
 
 ### Example
 
