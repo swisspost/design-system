@@ -23,9 +23,6 @@ const classNames = [
   'pe-',
 ];
 
-// Empty string means no middle part
-const breakpoints = ['sm-', 'md-', 'lg-', 'xl-', ''];
-
 // Previous values mapped to the new values
 const classValuesMap: Record<string, number> = {
   '1': 4,
@@ -52,7 +49,6 @@ const classValuesMap: Record<string, number> = {
 
 export const data: TwoPhasesData = setUpClassesMutations(
   arrayToMap(classNames),
-  breakpoints,
   classValuesMap,
   'deprecatedSpacingUtilities',
 );

@@ -5,6 +5,9 @@ export interface TwoPhasesData {
   mutationsPhase2: Record<string, [string, string]>;
 }
 
+// Empty string means no middle part
+const breakpoints = ['sm-', 'md-', 'lg-', 'xl-', ''];
+
 export function arrayToMap(array: Array<string | number>): Record<string, string | number> {
   return array.reduce((obj, val: string | number) => {
     obj[val.toString()] = val;
@@ -22,7 +25,6 @@ export function arrayToMap(array: Array<string | number>): Record<string, string
  */
 export function setUpClassesMutations(
   classNamesMap: Record<string, string | number>,
-  breakpoints: Array<string>,
   classValuesMap: Record<string, string | number>,
   messageId: string,
 ): TwoPhasesData {
