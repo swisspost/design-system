@@ -306,7 +306,7 @@ importers:
         specifier: workspace:9.2.0
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.15.19
+        specifier: workspace:1.15.20
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -813,7 +813,7 @@ importers:
         specifier: workspace:9.2.0
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.15.19
+        specifier: workspace:1.15.20
         version: link:../internet-header
       next:
         specifier: 14.2.5
