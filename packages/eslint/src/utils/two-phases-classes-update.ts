@@ -5,6 +5,13 @@ export interface TwoPhasesData {
   mutationsPhase2: Record<string, [string, string]>;
 }
 
+export function arrayToMap(array: Array<string | number>): Record<string, string | number> {
+  return array.reduce((obj, val: string | number) => {
+    obj[val.toString()] = val;
+    return obj;
+  }, {} as Record<string, string | number>);
+}
+
 /**
  * Since some classes are identical between before and after the migration but with different values,
  * we have to do the migration in two phase:
@@ -14,9 +21,9 @@ export interface TwoPhasesData {
  * This ensures that we don't get any deprecation errors when running the tests on those identical classes
  */
 export function setUpClassesMutations(
-  classNames: Array<string>,
+  classNamesMap: Record<string, string | number>,
   breakpoints: Array<string>,
-  classValuesMap: { [key: string]: number },
+  classValuesMap: Record<string, string | number>,
   messageId: string,
 ): TwoPhasesData {
   const returnData: TwoPhasesData = {
@@ -32,11 +39,11 @@ export function setUpClassesMutations(
   const tempPrefix = '_tmp-';
 
   // Generate all the possible classes based on the class names, breakpoint and class values
-  for (const className of classNames) {
+  for (const className in classNamesMap) {
     for (const bp of breakpoints) {
       for (const classValue in classValuesMap) {
         const oldClass = className + bp + classValue;
-        const finalNewClass = className + bp + classValuesMap[classValue];
+        const finalNewClass = classNamesMap[className] + bp + classValuesMap[classValue];
 
         // Add the index to the tempClass to avoid issues with having the wrong error msg when running tests
         const tempClass = tempPrefix + index + finalNewClass;

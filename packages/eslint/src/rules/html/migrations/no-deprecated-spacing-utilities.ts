@@ -1,5 +1,9 @@
 import { createClassUpdateRule } from '../../../utils/create-class-update-rule';
-import { setUpClassesMutations, TwoPhasesData } from '../../../utils/two-phases-classes-update';
+import {
+  arrayToMap,
+  setUpClassesMutations,
+  TwoPhasesData,
+} from '../../../utils/two-phases-classes-update';
 
 // Class names
 const classNames = [
@@ -23,7 +27,7 @@ const classNames = [
 const breakpoints = ['sm-', 'md-', 'lg-', 'xl-', ''];
 
 // Previous values mapped to the new values
-const classValuesMap: { [key: string]: number } = {
+const classValuesMap: Record<string, number> = {
   '1': 4,
   '2': 8,
   '4': 24,
@@ -47,7 +51,7 @@ const classValuesMap: { [key: string]: number } = {
 };
 
 export const data: TwoPhasesData = setUpClassesMutations(
-  classNames,
+  arrayToMap(classNames),
   breakpoints,
   classValuesMap,
   'deprecatedSpacingUtilities',
