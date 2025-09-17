@@ -240,7 +240,7 @@ $toolbar-icons: (
         &::before {
           content: '';
           margin-right: 0.5rem;
-          @include post.post-icon-load($name: $icon-name);
+          @include post.post-icon($name: $icon-name);
         }
       }
     }
