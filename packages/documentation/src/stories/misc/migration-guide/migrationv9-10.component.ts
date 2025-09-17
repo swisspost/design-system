@@ -166,7 +166,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     The gutter classes naming (<code>g-*</code>, <code>gx-*</code>,
                     <code>gy-*</code>) has changed to pixel-based names
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-1</code> is now <code>*-4</code></li>

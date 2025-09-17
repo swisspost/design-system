@@ -9,6 +9,12 @@ import {
   namePhase1 as noDeprecatedSpacingUtilitiesRulePhase1Name,
   namePhase2 as noDeprecatedSpacingUtilitiesRulePhase2Name,
 } from './no-deprecated-spacing-utilities';
+import {
+  rulePhase1 as noDeprecatedGutterUtilitiesRulePhase1,
+  rulePhase2 as noDeprecatedGutterUtilitiesRulePhase2,
+  namePhase1 as noDeprecatedGutterUtilitiesRulePhase1Name,
+  namePhase2 as noDeprecatedGutterUtilitiesRulePhase2Name,
+} from './no-deprecated-gutter-utilities';
 
 import {
   rulePhase1 as noDeprecatedSizingUtilitiesRulePhase1,
@@ -31,4 +37,6 @@ export const htmlMigrationRules = {
   [noDeprecatedSizingUtilitiesRulePhase2Name]: noDeprecatedSizingUtilitiesRulePhase2,
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
+  [noDeprecatedGutterUtilitiesRulePhase1Name]: noDeprecatedGutterUtilitiesRulePhase1,
+  [noDeprecatedGutterUtilitiesRulePhase2Name]: noDeprecatedGutterUtilitiesRulePhase2,
 };
