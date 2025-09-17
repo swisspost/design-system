@@ -20,7 +20,7 @@ if (postComponentsDocJson && internetHeaderDocJson) {
   allComponents.forEach(component => {
     component.props.forEach(prop => {
       if (prop.deprecation) {
-        const deprecationAlert = `<span className="mb-4 banner banner-warning banner-sm">**Deprecated:** ${prop.deprecation}</span>`;
+        const deprecationAlert = `<post-banner type="warning" data-size="sm">**Deprecated:** ${prop.deprecation}</post-banner>`;
         prop.docs = `${prop.deprecation ? deprecationAlert : ''}${prop.docs}`;
       }
     });
