@@ -11,7 +11,7 @@
 
 $loaded-icons: () !default;
 
-@mixin load-icon-css($name, $path: './icons/temp') {
+@mixin load-icon-css($name, $path: '../icons/temp') {
   @if list.index($loaded-icons, $name) == null {
     $loaded-icons: list.append($loaded-icons, $name) !global;
     @at-root {
