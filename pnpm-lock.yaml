@@ -359,6 +359,9 @@ importers:
       '@swisspost/design-system-components-react':
         specifier: workspace:10.0.0-next.47
         version: link:../components-react
+      '@swisspost/design-system-icons':
+        specifier: workspace:10.0.0-next.47
+        version: link:../icons
       '@swisspost/design-system-styles':
         specifier: workspace:10.0.0-next.47
         version: link:../styles/dist
@@ -399,9 +402,6 @@ importers:
       '@swisspost/design-system-components-angular':
         specifier: workspace:10.0.0-next.47
         version: link:../components-angular/dist/components
-      '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.47
-        version: link:../icons
       '@types/css-modules':
         specifier: 1.0.5
         version: 1.0.5
@@ -625,9 +625,6 @@ importers:
 
   packages/internet-header:
     dependencies:
-      '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.47
-        version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
         version: 4.0.0-beta.0
@@ -671,6 +668,9 @@ importers:
       '@stencil/store':
         specifier: 2.0.16
         version: 2.0.16(@stencil/core@4.19.2)
+      '@swisspost/design-system-styles':
+        specifier: workspace:10.0.0-next.47
+        version: link:../styles/dist
       '@types/body-scroll-lock':
         specifier: 3.1.2
         version: 3.1.2
@@ -15614,7 +15614,7 @@ snapshots:
       next: 15.3.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2)
       recast: 0.23.9
       vite: 6.3.6(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.39.0)(yaml@2.7.0)
-      webpack: 5.98.0(esbuild@0.25.4)
+      webpack: 5.98.0
 
   '@stencil/store@2.0.16(@stencil/core@4.19.2)':
     dependencies:
@@ -16885,7 +16885,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.0
       find-up: 5.0.0
-      webpack: 5.98.0(esbuild@0.25.4)
+      webpack: 5.98.0
 
   babel-loader@9.2.1(@babel/core@7.26.10)(webpack@5.98.0(esbuild@0.25.4)):
     dependencies:
@@ -19614,7 +19614,7 @@ snapshots:
     dependencies:
       source-map-js: 1.2.1
       strip-comments: 2.0.1
-      webpack: 5.98.0(esbuild@0.25.4)
+      webpack: 5.98.0
 
   imurmurhash@0.1.4: {}
 
@@ -24103,6 +24103,15 @@ snapshots:
     optionalDependencies:
       esbuild: 0.25.4
 
+  terser-webpack-plugin@5.3.14(webpack@5.98.0):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.25
+      jest-worker: 27.5.1
+      schema-utils: 4.3.0
+      serialize-javascript: 6.0.2
+      terser: 5.39.0
+      webpack: 5.98.0
+
   terser@5.39.0:
     dependencies:
       '@jridgewell/source-map': 0.3.3
@@ -24901,6 +24910,36 @@ snapshots:
       webpack: 5.98.0(esbuild@0.25.4)
 
   webpack-virtual-modules@0.6.2: {}
+
+  webpack@5.98.0:
+    dependencies:
+      '@types/eslint-scope': 3.7.7
+      '@types/estree': 1.0.7
+      '@webassemblyjs/ast': 1.14.1
+      '@webassemblyjs/wasm-edit': 1.14.1
+      '@webassemblyjs/wasm-parser': 1.14.1
+      acorn: 8.14.1
+      browserslist: 4.25.0
+      chrome-trace-event: 1.0.3
+      enhanced-resolve: 5.18.2
+      es-module-lexer: 1.5.3
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.11
+      json-parse-even-better-errors: 2.3.1
+      loader-runner: 4.3.0
+      mime-types: 2.1.35
+      neo-async: 2.6.2
+      schema-utils: 4.3.0
+      tapable: 2.2.1
+      terser-webpack-plugin: 5.3.14(webpack@5.98.0)
+      watchpack: 2.4.2
+      webpack-sources: 3.2.3
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
 
   webpack@5.98.0(esbuild@0.25.4):
     dependencies:
