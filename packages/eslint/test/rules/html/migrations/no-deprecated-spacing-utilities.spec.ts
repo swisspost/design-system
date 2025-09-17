@@ -1,4 +1,5 @@
-import { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
+import { TSESLint } from '@typescript-eslint/utils';
+
 import {
   rulePhase1,
   namePhase1,
@@ -11,7 +12,7 @@ import { RuleDocs } from '../../../../src/utils/create-rule';
 
 function runTests(
   name: string,
-  rule: RuleModule<string, [], RuleDocs, RuleListener>,
+  rule: TSESLint.RuleModule<string, [], RuleDocs>,
   data: Record<string, [string, string]>,
 ) {
   // Generate all of the invalid use cases
