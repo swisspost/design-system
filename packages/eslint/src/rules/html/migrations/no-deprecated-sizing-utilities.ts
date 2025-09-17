@@ -1,5 +1,8 @@
-import { createClassUpdateRule } from '../../../utils/create-class-update-rule';
-import { setUpClassesMutations, TwoPhasesData } from '../../../utils/two-phases-classes-update';
+import {
+  createTwoPhasesRules,
+  setUpClassesMutations,
+  TwoPhasesData,
+} from '../../../utils/two-phases-classes-update';
 
 // Class names
 const classNamesMap: Record<string, string> = {
@@ -42,23 +45,9 @@ export const data: TwoPhasesData = setUpClassesMutations(
   'deprecatedSizingUtilities',
 );
 
-export const namePhase1 = 'no-deprecated-sizing-utilities-phase-1';
-export const namePhase2 = 'no-deprecated-sizing-utilities-phase-2';
-
-export const rulePhase1 = createClassUpdateRule({
-  name: namePhase1,
-  type: 'problem',
-  description:
-    'Flags deprecated sizing utility classes and replaces them with the new ones with a temporary name (phase 1).',
-  messages: data.messagesPhase1,
-  mutations: data.mutationsPhase1,
-});
-
-export const rulePhase2 = createClassUpdateRule({
-  name: namePhase2,
-  type: 'problem',
-  description:
-    'Flags deprecated sizing utility classes and replaces the temporary class names with the final ones.',
-  messages: data.messagesPhase2,
-  mutations: data.mutationsPhase2,
-});
+export const rules = createTwoPhasesRules(
+  data,
+  'no-deprecated-sizing-utilities',
+  'Flags deprecated sizing utility classes and replaces them with the new ones with a temporary name (phase 1).',
+  'Flags deprecated sizing utility classes and replaces the temporary class names with the final ones.',
+);
