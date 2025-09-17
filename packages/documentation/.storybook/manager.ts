@@ -1,5 +1,5 @@
 import { addons } from 'storybook/manager-api';
-import { definePostIcon } from '@swisspost/design-system-components/components';
+import { defineCustomElementPostIcon } from '@swisspost/design-system-components/components';
 import themes from './styles/themes';
 import cssIcon from '../public/assets/images/sidebar-icons/css.svg';
 import webComponentsIcon from '../public/assets/images/sidebar-icons/web_component.svg';
@@ -18,7 +18,7 @@ const STATUS_ICONS: Record<string, string> = {
   Deprecated: '⛔',
 };
 
-definePostIcon();
+defineCustomElementPostIcon();
 
 // get param from URL
 const urlParams = new URLSearchParams(window.location.search);
