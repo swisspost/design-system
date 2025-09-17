@@ -31,6 +31,7 @@
   "dependencies": {
     "@swisspost/design-system-components": "workspace:10.0.0-next.47",
     "@swisspost/design-system-components-react": "workspace:10.0.0-next.47",
+    "@swisspost/design-system-icons": "workspace:10.0.0-next.47",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.47",
     "@swisspost/design-system-tokens": "workspace:10.0.0-next.47",
     "@swisspost/internet-header": "workspace:10.0.0-next.47"
@@ -46,7 +47,6 @@
     "@storybook/addon-links": "9.0.18",
     "@storybook/web-components-vite": "9.0.18",
     "@swisspost/design-system-components-angular": "workspace:10.0.0-next.47",
-    "@swisspost/design-system-icons": "workspace:10.0.0-next.47",
     "@types/css-modules": "1.0.5",
     "@types/mdx": "2.0.13",
     "@types/react": "18.3.23",
