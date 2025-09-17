@@ -39,6 +39,13 @@ gulp.task('temporarily-copy-icon-files', () => {
 });
 
 /**
+ * Copy icon CSS files to dist folder
+ */
+gulp.task('copy-icon-files-to-dist', () => {
+  return gulp.src(['./src/icons/temp/**/*.css']).pipe(gulp.dest(`${options.outputDir}/icons`));
+});
+
+/**
  * Autoprefix SCSS files
  */
 gulp.task('autoprefixer', function () {
@@ -204,5 +211,6 @@ exports.default = gulp.task(
       gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
       gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', 'sass'),
     ),
+    'copy-icon-files-to-dist',
   ),
 );
