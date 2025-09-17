@@ -20,7 +20,7 @@ $loaded-icons: () !default;
   }
 }
 
-@mixin post-icon-load($name, $color: inherit, $width: 1em, $height: 1em) {
+@mixin post-icon($name, $color: inherit, $width: 1em, $height: 1em) {
   display: inline-block;
   vertical-align: -0.15em;
   background-color: currentColor;

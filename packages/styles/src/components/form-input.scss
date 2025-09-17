@@ -216,7 +216,7 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 2;
     pointer-events: none;
-    @include icon-mx.post-icon-load(
+    @include icon-mx.post-icon(
       $name: 'success-solid',
       $color: tokens.get('post-validation-success', components.$post-validation),
       $width: tokens.get('input-sizing-icon'),
@@ -233,7 +233,7 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 1;
     pointer-events: none;
-    @include icon-mx.post-icon-load(
+    @include icon-mx.post-icon(
       $name: 'warning-solid',
       $color: tokens.get('post-validation-error', components.$post-validation),
       $width: tokens.get('input-sizing-icon'),

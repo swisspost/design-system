@@ -1,7 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-icon {
-  @include post.post-icon-load(
+  @include post.post-icon(
     $name: 'accessibility',
     // optional
     $color: '#fc0'

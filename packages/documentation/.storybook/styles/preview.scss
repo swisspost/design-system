@@ -234,7 +234,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
         content: '';
         margin-right: 0.5rem;
         transition: all 0.3s ease;        
-        @include post.post-icon-load($name: '2052');
+        @include post.post-icon($name: '2052');
       }
 
       &--expanded::before {
@@ -248,19 +248,19 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       &::before {
         content: '';
         margin-right: 0.5rem;
-        @include post.post-icon-load($name: 'resizeexpand');
+        @include post.post-icon($name: 'resizeexpand');
       }
 
       + button::before {
         content: '';
         margin-right: 0.5rem;
-        @include post.post-icon-load($name: 'link');
+        @include post.post-icon($name: 'link');
       }
 
       + button + button::before {
         content: '';
         margin-right: 0.5rem;
-        @include post.post-icon-load($name: 'code');
+        @include post.post-icon($name: 'code');
       }
     }
   }

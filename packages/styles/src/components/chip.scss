@@ -46,7 +46,7 @@ button.chip-dismissible {
     @include utilities.high-contrast-mode() {
       background-color: ButtonText;
     }
-    @include icons-mx.post-icon-load($name: 'closex');
+    @include icons-mx.post-icon($name: 'closex');
   }
 
   &:hover::after {
@@ -108,7 +108,7 @@ button.chip-dismissible {
           @include utilities.high-contrast-mode() {
             background-color: Highlight;
           }
-          @include icons-mx.post-icon-load(
+          @include icons-mx.post-icon(
             $name: 'checkmark',
             $width: tokens.get('chip-selectable-icon'),
             $height: tokens.get('chip-selectable-icon')
