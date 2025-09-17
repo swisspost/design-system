@@ -31,6 +31,14 @@ gulp.task('temporarily-copy-token-files', () => {
 });
 
 /**
+ * Temporary task to copy icon CSS files from icons package to the styles package since
+ * pnpm does not correctly install dependencies of dependencies for workspace packages.
+ */
+gulp.task('temporarily-copy-icon-files', () => {
+  return gulp.src(['../icons/dist/custom-properties/**/*.css']).pipe(gulp.dest('./src/icons/temp'));
+});
+
+/**
  * Autoprefix SCSS files
  */
 gulp.task('autoprefixer', function () {
@@ -165,7 +173,7 @@ gulp.task('sass:dev', () => {
  */
 gulp.task(
   'sass:tests',
-  gulp.series('temporarily-copy-token-files', () => {
+  gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', () => {
     return gulp.src('./tests/**/*.scss').pipe(
       gulpSass.sync({
         loadPaths: [...options.loadPaths, './'],
@@ -180,7 +188,7 @@ gulp.task(
  */
 gulp.task(
   'watch',
-  gulp.series('temporarily-copy-token-files', () => {
+  gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', () => {
     return gulp.watch('./src/**/*.scss', gulp.series('copy', 'sass:dev'));
   }),
 );
@@ -194,7 +202,7 @@ exports.default = gulp.task(
     'prebuild-env-vars',
     gulp.parallel(
       gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
-      gulp.series('temporarily-copy-token-files', 'sass'),
+      gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', 'sass'),
     ),
   ),
 );

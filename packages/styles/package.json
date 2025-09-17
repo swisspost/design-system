@@ -23,7 +23,7 @@
     "start": "gulp watch",
     "build": "pnpm turbo run build:force",
     "build:force": "pnpm clean && gulp build",
-    "clean": "rimraf dist src/tokens/temp",
+    "clean": "rimraf dist src/tokens/temp src/icons/temp",
     "unit": "gulp sass:tests",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
