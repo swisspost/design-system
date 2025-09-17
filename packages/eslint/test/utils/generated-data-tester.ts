@@ -1,10 +1,10 @@
-import { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
+import { TSESLint } from '@typescript-eslint/utils';
 import { RuleDocs } from '../../src/utils/create-rule';
 import { htmlRuleTester } from './html-rule-tester';
 
 export function generatedDataTester(
   name: string,
-  rule: RuleModule<string, [], RuleDocs, RuleListener>,
+  rule: TSESLint.RuleModule<string, [], RuleDocs>,
   data: Record<string, [string, string]>,
   validClasses: Array<string>,
 ) {

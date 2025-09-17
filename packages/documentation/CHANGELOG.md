@@ -1,5 +1,86 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.49
+
+### Minor Changes
+
+- Added the `/components` entry point, which can be used to consume standalone, none lazy-loading components. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6140](https://github.com/swisspost/design-system/pull/6140))
+
+- Renamed the loader classes from `loader-*` to `spinner-*`. (by [@bucknatt](https://github.com/bucknatt) with [#6194](https://github.com/swisspost/design-system/pull/6194))
+
+### Patch Changes
+
+- Fixed the "Copy deep link" feature so that the full URL is now copied correctly. (by [@alizedebray](https://github.com/alizedebray) with [#6163](https://github.com/swisspost/design-system/pull/6163))
+
+- Provided more meaningful and user-friendly descriptions for CSS shadow parts in `post-menu`, `post-accordion-item` and `post-tabs` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6062](https://github.com/swisspost/design-system/pull/6062))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.48
+  - @swisspost/design-system-icons@10.0.0-next.48
+  - @swisspost/design-system-styles@10.0.0-next.48
+  - @swisspost/design-system-components-react@10.0.0-next.48
+  - @swisspost/internet-header@10.0.0-next.48
+  - @swisspost/design-system-tokens@10.0.0-next.48
+
+## 6.0.0-next.48
+
+### Major Changes
+
+- Removed the Standard HTML Banner component (`.banner`, `.banner-*`) in favor of the `post-banner` web component.  
+  BEFORE:
+
+  ```html
+  <div role="alert" class="banner banner-success">
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </div>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-banner type="success">
+    <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
+  </post-banner>
+  ``` (by [@alizedebray](https://github.com/alizedebray) with
+  [#6078](https://github.com/swisspost/design-system/pull/6078))
+  ````
+
+### Minor Changes
+
+- Internalized bootstrap visibility utilities. (by [@hugomslv](https://github.com/hugomslv) with [#6079](https://github.com/swisspost/design-system/pull/6079))
+
+- Added the `.z-header`, `.z-spinner`, `.z-toast` and `.z-fixed` z-index utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6012](https://github.com/swisspost/design-system/pull/6012))
+
+- Removed classes for the card CSS component, following the removal of bootstrap:
+
+  - `.card-header`
+  - `.card-footer`
+  - `.card-img`
+  - `.card-img-top`
+  - `.card-img-bottom` (by [@leagrdv](https://github.com/leagrdv) with [#5966](https://github.com/swisspost/design-system/pull/5966))
+
+- Removed documentation for the `post-logo` component, as it is not intended for standalone use outside the header. (by [@leagrdv](https://github.com/leagrdv) with [#6165](https://github.com/swisspost/design-system/pull/6165))
+
+### Patch Changes
+
+- Removed the `dismissible` and `dismissLabel` properties from the `post-banner` component. Dismiss functionality now only requires assigning a `post-closebutton` to the new `close-button` slot. (by [@alizedebray](https://github.com/alizedebray) with [#6108](https://github.com/swisspost/design-system/pull/6108))
+
+- Corrected nested heading in the dialog main example. (by [@leagrdv](https://github.com/leagrdv) with [#6149](https://github.com/swisspost/design-system/pull/6149))
+
+- Updated the button controls to allow placing an icon on both sides of the text. (by [@leagrdv](https://github.com/leagrdv) with [#6171](https://github.com/swisspost/design-system/pull/6171))
+
+- Added information in the migration guide regarding the update on the `rounded` border radius classes. (by [@leagrdv](https://github.com/leagrdv) with [#6143](https://github.com/swisspost/design-system/pull/6143))
+
+- Added information in the migration guide regarding the removal of the line height utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6175](https://github.com/swisspost/design-system/pull/6175))
+
+- Added a migration rule to replace deprecated `form-text` class with the updated `form-hint` class. (by [@myrta2302](https://github.com/myrta2302) with [#6142](https://github.com/swisspost/design-system/pull/6142))
+- Updated dependencies:
+  - @swisspost/design-system-tokens@10.0.0-next.47
+  - @swisspost/design-system-components@10.0.0-next.47
+  - @swisspost/design-system-components-react@10.0.0-next.47
+  - @swisspost/design-system-styles@10.0.0-next.47
+  - @swisspost/internet-header@10.0.0-next.47
+  - @swisspost/design-system-icons@10.0.0-next.47
+
 ## 6.0.0-next.47
 
 ### Minor Changes

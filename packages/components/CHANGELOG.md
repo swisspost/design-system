@@ -1,5 +1,39 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.48
+
+### Minor Changes
+
+- Added the `/components` entry point, which can be used to consume standalone, none lazy-loading components. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6140](https://github.com/swisspost/design-system/pull/6140))
+
+### Patch Changes
+
+- Updated `<post-avatar>` to handle errors if no Gravatar is found. (by [@myrta2302](https://github.com/myrta2302) with [#5860](https://github.com/swisspost/design-system/pull/5860))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.48
+  - @swisspost/design-system-styles@10.0.0-next.48
+
+## 10.0.0-next.47
+
+### Major Changes
+
+- Removed the `dismissible` and `dismissLabel` properties from the `post-banner` component. Dismiss functionality now only requires assigning a `post-closebutton` to the new `close-button` slot. (by [@alizedebray](https://github.com/alizedebray) with [#6108](https://github.com/swisspost/design-system/pull/6108))
+
+### Minor Changes
+
+- Added a `postClick` event and accessibility checks to the `post-closebutton` component. (by [@alizedebray](https://github.com/alizedebray) with [#6108](https://github.com/swisspost/design-system/pull/6108))
+
+### Patch Changes
+
+- Updated the `post-banner` icons. (by [@alizedebray](https://github.com/alizedebray) with [#6078](https://github.com/swisspost/design-system/pull/6078))
+
+- Updated `post-back-to-top` button to not be visible during browser overscroll bounce effect. (by [@myrta2302](https://github.com/myrta2302) with [#6105](https://github.com/swisspost/design-system/pull/6105))
+
+- Updated the arrow placement of the `<post-tooltip>` to fix the layout issue. (by [@leagrdv](https://github.com/leagrdv) with [#6157](https://github.com/swisspost/design-system/pull/6157))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.47
+  - @swisspost/design-system-icons@10.0.0-next.47
+
 ## 10.0.0-next.46
 
 ### Major Changes

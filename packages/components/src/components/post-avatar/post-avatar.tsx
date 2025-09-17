@@ -1,13 +1,7 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndType, checkEmptyOrPattern, checkEmptyOrType } from '@/utils';
-
-// https://docs.gravatar.com/api/avatars/images/
-const GRAVATAR_DEFAULT = '404';
-const GRAVATAR_RATING = 'g';
-const GRAVATAR_SIZE = 80;
-
-const GRAVATAR_BASE_URL = `https://www.gravatar.com/avatar/{email}?s=${GRAVATAR_SIZE}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
+import { GRAVATAR_BASE_URL } from './avatar-utils';
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -27,7 +21,10 @@ enum AvatarType {
   shadow: true,
 })
 export class PostAvatar {
-  private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/{userid}.png';
+  private static readonly INTERNAL_USERID_IMAGE_SRC =
+    'https://web.post.ch/UserProfileImage/{userid}.png';
+
+  private slottedImageObserver: MutationObserver; // To watch the slotted image src.
 
   @Element() host: HTMLPostAvatarElement;
 
@@ -42,7 +39,7 @@ export class PostAvatar {
   @Prop() readonly lastname?: string;
 
   /**
-   * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+   * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
    */
   @Prop() readonly userid?: string;
 
@@ -57,6 +54,9 @@ export class PostAvatar {
   @State() imageAlt = '';
   @State() initials = '';
 
+  // To handle email or userid updates and reset the storage item
+  @State() storageKey: string = '';
+
   @Watch('firstname')
   validateFirstname() {
     checkRequiredAndType(this, 'firstname', 'string');
@@ -68,55 +68,74 @@ export class PostAvatar {
   }
 
   @Watch('userid')
-  validateUserid() {
-    checkEmptyOrType(this, 'userid', 'string');
+  updateUserid() {
+    this.validateUserId();
+    this.getAvatarImage();
   }
 
   @Watch('email')
-  validateEmail() {
+  updateEmail() {
+    this.validateEmail();
+    this.getAvatarImage();
+  }
+
+  private validateUserId() {
+    checkEmptyOrType(this, 'userid', 'string');
+  }
+
+  private validateEmail() {
     if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
   }
 
-  private async getAvatar() {
-    if (this.slottedImage !== null) {
-      this.avatarType = AvatarType.Slotted;
-    } else {
-      let imageLoaded = false;
+  private async getAvatarImage() {
+    let imageLoaded = false;
+    this.slottedImage = this.host.querySelector('img');
+    const imageUrl = this.slottedImage?.getAttribute('src');
 
-      if (!imageLoaded && this.userid)
+    if (!imageUrl) {
+      if (this.userid) {
         imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
-
-      if (!imageLoaded && this.email)
+      }
+      if (!imageLoaded && this.email?.match(emailPattern)) {
         imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
+      }
+      if (!imageLoaded) {
+        this.getAvatarInitials();
+      }
+    } else {
+      const slottedImageLoaded = await this.getImageByProp(
+        imageUrl,
+        this.fetchSlottedImage.bind(this),
+      );
 
-      if (!imageLoaded) this.getAvatarByInitials();
+      if (!slottedImageLoaded) {
+        this.slottedImage.style.display = 'none';
+        this.getAvatarInitials();
+      } else {
+        this.slottedImage.style.display = 'block';
+      }
     }
   }
 
-  private async getImageByProp(prop: string, fetchImage: () => Promise<Response>) {
+  private async getImageByProp(prop: string, fetchImage: (prop?: string) => Promise<Response>) {
     if (!prop) return false;
+    let imageResponse: Response;
 
-    const imageResponse = (await this.getStorageItem(prop)) ?? { ok: false, url: '' };
-
-    if (!imageResponse.ok) {
-      try {
-        const r = await fetchImage();
-
-        imageResponse.ok = r.ok;
-        imageResponse.url = r.url;
-
-        this.imageUrl = imageResponse.url;
-        this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
-        this.avatarType = AvatarType.Image;
-
-        this.setStorageItem(this.userid, JSON.stringify(imageResponse));
-      } catch (error) {
-        this.removeStorageItem(prop);
-        console.info(`Loading avatar by type "${AvatarType.Image}" failed.`);
-      }
+    try {
+      imageResponse = await fetchImage(prop);
+    } catch (error) {
+      console.info('Loading avatar image failed.', error);
+      return false;
     }
 
-    return imageResponse.ok;
+    if (!imageResponse?.ok) {
+      return false;
+    } else {
+      this.imageUrl = imageResponse.url;
+      this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+      this.avatarType = AvatarType.Image;
+      return true;
+    }
   }
 
   private async fetchImageByUserId() {
@@ -131,7 +150,11 @@ export class PostAvatar {
     return await fetch(imageUrl);
   }
 
-  private getAvatarByInitials() {
+  private async fetchSlottedImage(imageUrl: string) {
+    return await fetch(imageUrl, { method: 'HEAD' });
+  }
+
+  private getAvatarInitials() {
     this.initials = this.getInitials();
     this.avatarType = AvatarType.Initials;
   }
@@ -147,22 +170,6 @@ export class PostAvatar {
       .trim();
   }
 
-  private async getStorageItem(keyToken: string) {
-    const key = await this.cryptify(keyToken);
-    const value = window?.sessionStorage?.getItem(key);
-    return value ? JSON.parse(value) : null;
-  }
-
-  private async setStorageItem(keyToken: string, value: string) {
-    const key = await this.cryptify(keyToken);
-    window?.sessionStorage?.setItem(key, value);
-  }
-
-  private async removeStorageItem(keyToken: string) {
-    const key = await this.cryptify(keyToken);
-    window?.sessionStorage?.removeItem(key);
-  }
-
   private async cryptify(key: string) {
     return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
       return Array.from(new Uint8Array(buffer))
@@ -171,20 +178,47 @@ export class PostAvatar {
     });
   }
 
-  private onSlotDefaultChange() {
-    this.slottedImage = this.host.querySelector('img');
-    this.getAvatar();
+  private slotChanged() {
+    const slot = this.host.shadowRoot.querySelector('slot');
+    const assignedNodes = slot?.assignedNodes({ flatten: true }) || [];
+
+    assignedNodes.forEach(node => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node as Element;
+        if (el.tagName === 'IMG') {
+          this.observeImageSrcChanges(el as HTMLImageElement);
+        }
+      }
+    });
+
+    this.getAvatarImage();
   }
 
-  componentWillRender() {
-    this.slottedImage = this.host.querySelector('img');
-    this.getAvatar();
+  // Observe the Slotted image src attribute and update the image
+  private observeImageSrcChanges(img: HTMLImageElement) {
+    if (this.slottedImageObserver) {
+      this.slottedImageObserver.disconnect();
+    }
+    this.slottedImageObserver = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+          this.getAvatarImage();
+        }
+      });
+    });
+    this.slottedImageObserver.observe(img, { attributes: true, attributeFilter: ['src'] });
+  }
+
+  connectedCallback() {
+    //This provides a fallback by showing the initials while the image is still loading or delayed.
+    this.getAvatarInitials();
+    this.getAvatarImage();
   }
 
   componentDidLoad() {
     this.validateFirstname();
     this.validateLastname();
-    this.validateUserid();
+    this.validateUserId();
     this.validateEmail();
   }
 
@@ -199,10 +233,11 @@ export class PostAvatar {
 
     return (
       <Host data-version={version}>
-        <slot onSlotchange={this.onSlotDefaultChange.bind(this)}>
-          {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
-          {this.avatarType === 'initials' && <div class="initials">{initials}</div>}
-        </slot>
+        <span class={this.avatarType === 'slotted' ? '' : 'd-none'}>
+          <slot onSlotchange={this.slotChanged.bind(this)}></slot>
+        </span>
+        {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
+        {this.avatarType === 'initials' && <div class="initials">{initials}</div>}
       </Host>
     );
   }
