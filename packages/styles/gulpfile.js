@@ -42,7 +42,7 @@ gulp.task('temporarily-copy-icon-files', () => {
  * Copy icon CSS files to dist folder
  */
 gulp.task('copy-icon-files-to-dist', () => {
-  return gulp.src(['./src/icons/temp/**/*.css']).pipe(gulp.dest(`${options.outputDir}/icons`));
+  return gulp.src(['./src/icons/temp/**/*.css']).pipe(gulp.dest(`${options.outputDir}/icons/temp`));
 });
 
 /**
