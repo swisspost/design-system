@@ -30,6 +30,8 @@ $loaded-icons: () !default;
 
 @mixin post-icon($name, $color: inherit, $width: 1em, $height: 1em) {
   display: inline-block;
+  width: $width;
+  height: $height;
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
@@ -45,8 +47,6 @@ $loaded-icons: () !default;
   mask-size: 100%;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: 100%;
-  width: $width;
-  height: $height;
   @include load-icon-css($name);
 }
 
