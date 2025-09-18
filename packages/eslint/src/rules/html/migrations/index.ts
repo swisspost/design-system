@@ -23,6 +23,9 @@ import noDeprecatedFontWeightRule, {
 import noDeprecatedShadowUtilitiesRule, {
   name as noDeprecatedShadowUtilitiesRuleName,
 } from './no-deprecated-shadow-utilities';
+import noDeprecatedElevationUtilitiesRule, {
+  name as noDeprecatedElevationUtilitiesRuleName,
+} from './no-deprecated-elevation-utilities';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
@@ -35,4 +38,5 @@ export const htmlMigrationRules = {
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedShadowUtilitiesRuleName]: noDeprecatedShadowUtilitiesRule,
+  [noDeprecatedElevationUtilitiesRuleName]: noDeprecatedElevationUtilitiesRule,
 };
