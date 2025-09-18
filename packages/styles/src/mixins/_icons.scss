@@ -9,9 +9,17 @@
 @use './../mixins/utilities';
 @use './../utilities/env-variables' as icon-version;
 
+@mixin icon($name) {
+  $icon: icon-fn.get-svg-url($name);
+  mask-image: url('#{$icon}');
+  background-color: currentColor;
+  color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
+  forced-color-adjust: preserve-parent-color;
+}
+
 $loaded-icons: () !default;
 
-@mixin load-icon-css($name, $path: '@swisspost/design-system-icons/dist/custom-properties') {
+@mixin load-icon-css($name, $path: '../icons/temp') {
   @if list.index($loaded-icons, $name) == null {
     $loaded-icons: list.append($loaded-icons, $name) !global;
     @at-root {
@@ -22,60 +30,24 @@ $loaded-icons: () !default;
 
 @mixin post-icon($name, $color: inherit, $width: 1em, $height: 1em) {
   display: inline-block;
+  width: $width;
+  height: $height;
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
-  mask-image: var(--post-icon-#{$name});
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-image: var(--post-icon-#{$name});
-  mask-position: center center;
+  mask-image: var(--post-icon-#{$name});
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-position: center center;
-  mask-repeat: no-repeat;
+  mask-position: center center;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-repeat: no-repeat;
-  mask-size: 100%;
+  mask-repeat: no-repeat;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: 100%;
-  width: $width;
-  height: $height;
+  mask-size: 100%;
   @include load-icon-css($name);
-}
-
-@mixin icon($name) {
-  $icon: icon-fn.get-svg-url($name);
-  mask-image: url('#{$icon}');
-  background-color: currentColor;
-  color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
-  forced-color-adjust: preserve-parent-color;
-}
-
-@mixin post-icon(
-  $base:
-    'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
-  $name,
-  $color: inherit,
-  $width: 1em,
-  $height: 1em
-) {
-  display: inline-block;
-  width: $width;
-  height: $height;
-  vertical-align: -0.15em;
-  background-color: currentColor;
-  color: $color;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: url('#{$base}/#{$name}.svg');
-  mask-image: url('#{$base}/#{$name}.svg');
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-position: center center;
-  mask-position: center center;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-size: 100%;
-  mask-size: 100%;
 }
 
 @mixin remove-icon() {

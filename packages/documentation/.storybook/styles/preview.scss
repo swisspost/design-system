@@ -13,6 +13,15 @@
 tokens.$default-map: utilities.$post-color;
 
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+// Mixin for toolbar button icons
+$toolbar-icons: (
+  '.docblock-code-toggle': '2052',
+  '.docblock-code-toggle + button': 'resizeexpand',
+  '.docblock-code-toggle + button + button': 'link',
+  '.docblock-code-toggle + button + button + button': 'code'
+);
+
 #storybook-root,
 #storybook-docs {
   .sbdocs-content *:not(.section) > .container >,
@@ -225,42 +234,29 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  @each $selector, $icon-name in $toolbar-icons {
+    #{$selector} {
+      @include media.min(md) {
+        &::before {
+          content: '';
+          margin-right: 0.5rem;
+          @include post.post-icon($name: $icon-name);
+        }
+      }
+    }
+  }
+
   .docblock-code-toggle {
     margin-right: auto;
     border-radius: 0 4px 0 0;
 
     @include media.min(md) {
       &::before {
-        content: '';
-        margin-right: 0.5rem;
-        transition: all 0.3s ease;        
-        @include post.post-icon($name: '2052');
+        transition: all 0.3s ease;
       }
 
       &--expanded::before {
         transform: rotate(180deg);
-      }
-    }
-  }
-
-  .docblock-code-toggle + button {
-    @include media.min(md) {
-      &::before {
-        content: '';
-        margin-right: 0.5rem;
-        @include post.post-icon($name: 'resizeexpand');
-      }
-
-      + button::before {
-        content: '';
-        margin-right: 0.5rem;
-        @include post.post-icon($name: 'link');
-      }
-
-      + button + button::before {
-        content: '';
-        margin-right: 0.5rem;
-        @include post.post-icon($name: 'code');
       }
     }
   }

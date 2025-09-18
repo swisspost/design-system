@@ -34,7 +34,3 @@ $resizer-max-width: 64px;
 .my-accessibility-icon {
   @include post.post-icon($name: 'accessibility');
 }
-
-.my-handvictory-icon {
-  @include post.post-icon($name: 'handvictory', $color: #666666);
-}
