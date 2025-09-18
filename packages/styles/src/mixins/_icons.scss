@@ -47,7 +47,6 @@ $loaded-icons: () !default;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: 100%;
   mask-size: 100%;
-  
   @include load-icon-css($name);
 }
 
