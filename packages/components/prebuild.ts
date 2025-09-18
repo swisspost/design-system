@@ -11,14 +11,14 @@ interface ComponentNameOutputOptions {
   formatParser: 'json' | 'scss' | null;
 }
 
-const DEFAULT_OUTPUT_OPTIONS: IComponentNameOutputOptions = {
+const DEFAULT_OUTPUT_OPTIONS: ComponentNameOutputOptions = {
   type: 'json',
   template: '{{names}}',
   lineSeparator: ',',
   formatParser: null,
 };
 
-export const componentNameOutputOptions: Partial<IComponentNameOutputOptions>[] = [
+export const componentNameOutputOptions: Partial<ComponentNameOutputOptions>[] = [
   {
     template: '{ componentNames: [{{names}}] }',
   },
@@ -29,7 +29,7 @@ export const componentNameOutputOptions: Partial<IComponentNameOutputOptions>[] 
 ];
 
 export async function createComponentNameOutput(
-  outputOptionsArray: Partial<IComponentNameOutputOptions>[],
+  outputOptionsArray: Partial<ComponentNameOutputOptions>[],
 ) {
   // Define the source and output paths
   const SOURCE_PATH: string[] = [path.resolve('src/components')];
@@ -52,7 +52,7 @@ export async function createComponentNameOutput(
 
   await Promise.all(
     outputOptionsArray.map(async (outputOptions = {}) => {
-      const options: IComponentNameOutputOptions = { ...DEFAULT_OUTPUT_OPTIONS, ...outputOptions };
+      const options: ComponentNameOutputOptions = { ...DEFAULT_OUTPUT_OPTIONS, ...outputOptions };
       const names = componentNames.map(n => `'${n}'`).join(options.lineSeparator);
       const template = options.template.replace('{{names}}', names);
       const output = await format(template, { parser: options.formatParser || options.type });
