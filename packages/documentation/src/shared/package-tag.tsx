@@ -1,7 +1,7 @@
+import { MetaComponent } from '@root/types';
+
 type PackageTagProps = {
-  meta: {
-    tags: string[];
-  };
+  meta: MetaComponent;
 };
 
 export default function PackageTag({ meta }: PackageTagProps) {
