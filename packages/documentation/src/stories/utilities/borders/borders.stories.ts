@@ -6,13 +6,15 @@ import './borders.styles.scss';
 const meta: MetaExtended = {
   id: 'cbee1b5e-c98b-4818-8b88-b3c9989796d8',
   title: 'Utilities/Borders',
+  tags: ['status:Stable'],
 
   decorators: [
-    story => html` <div class="border-example">
-      <div class="d-flex p-2 gap-2" style="height: auto">
-        <div class="flex-fill">${story()}</div>
-      </div>
-    </div>`,
+    story =>
+      html` <div class="border-example">
+        <div class="d-flex p-2 gap-2" style="height: auto">
+          <div class="flex-fill">${story()}</div>
+        </div>
+      </div>`,
   ],
 };
 

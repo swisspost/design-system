@@ -11,7 +11,7 @@ export interface PostLinkarea {
 const meta: MetaComponent<PostLinkarea> = {
   id: '1d52b794-768b-464e-90eb-4fd15774aa90',
   title: 'Components/Link Area',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   render: renderLinkarea,
   component: 'post-linkarea',
   parameters: {

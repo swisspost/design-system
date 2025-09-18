@@ -10,14 +10,17 @@ import './spacing.styles.scss';
 export const SCSS_VARIABLES: any = parse(scss);
 
 const properties = ['margin', 'padding', 'gap'];
-const sizes = properties.reduce((options, property) => {
-  return {
-    ...options,
-    [property]: Object.keys(SCSS_VARIABLES.spacing)
-      .filter((key: string) => key.startsWith(`post-utility-${property}-`))
-      .map((key: string) => key.replace(`post-utility-${property}-`, '')),
-  };
-}, {} as { [property: string]: string[] });
+const sizes = properties.reduce(
+  (options, property) => {
+    return {
+      ...options,
+      [property]: Object.keys(SCSS_VARIABLES.spacing)
+        .filter((key: string) => key.startsWith(`post-utility-${property}-`))
+        .map((key: string) => key.replace(`post-utility-${property}-`, '')),
+    };
+  },
+  {} as { [property: string]: string[] },
+);
 
 const sides = {
   null: 'All sides',
@@ -32,6 +35,7 @@ const sides = {
 const meta: MetaExtended = {
   id: 'facaacfd-18f1-49b4-80f1-a96680730fa0',
   title: 'Utilities/Spacing',
+  tags: ['status:Stable'],
 };
 
 export default meta;
