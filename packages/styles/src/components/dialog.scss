@@ -75,13 +75,13 @@ dialog {
 }
 
 dialog > .dialog-grid {
-  margin: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0 tokens.get('utility-gap-16');
+  padding: tokens.get('utility-gap-16');
   display: grid;
   column-gap: tokens.get('utility-gap-16');
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     'icon header close-button'
-    'icon body close-button'
+    'icon body body'
     'controls controls controls';
 
   // Propagate bg color to the controls
@@ -92,33 +92,66 @@ dialog > .dialog-grid {
   display: none;
 }
 
-.dialog-grid > post-icon {
-  grid-area: icon;
-  display: block;
+.dialog-grid {
+  > post-icon {
+    grid-area: icon;
+    display: block;
 
-  width: tokens.get('utility-gap-32');
-  height: tokens.get('utility-gap-32');
+    width: tokens.get('utility-gap-32');
+    height: tokens.get('utility-gap-32');
 
-  // Larger icon for bigger notification dialogs
-  dialog:not([size='small']) & {
-    @include media.min(sm) {
-      width: tokens.get('utility-gap-48');
-      height: tokens.get('utility-gap-48');
+    // Larger icon for bigger notification dialogs
+    dialog:not([size='small']) & {
+      @include media.min(sm) {
+        width: tokens.get('utility-gap-48');
+        height: tokens.get('utility-gap-48');
+      }
     }
   }
-}
 
-.dialog-header {
-  grid-area: header;
-  margin-top: 0;
-}
+  .dialog-header {
+    grid-area: header;
+    margin-top: 0;
+  }
 
-.dialog-body {
-  grid-area: body;
-  margin-bottom: 0;
-
-  > *:last-child {
+  .dialog-body {
+    grid-area: body;
     margin-bottom: 0;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  > .btn-close {
+    position: sticky;
+    top: 0;
+    grid-area: close-button;
+    width: tokens.get('utility-gap-24');
+    height: tokens.get('utility-gap-24');
+    min-height: 0;
+  }
+
+  &:not(:has(> post-icon)) {
+    .dialog-header {
+      grid-area: 1 / icon / 1 / header;
+    }
+
+    .dialog-body {
+      grid-area: 2 / icon / 2 / body;
+    }
+  }
+
+  &:not(:has(> .btn-close)) {
+    .dialog-header {
+      grid-area: 1 / header / 1 / close-button;
+    }
+  }
+
+  &:not(:has(> post-icon, > .btn-close)) {
+    .dialog-header {
+      grid-area: 1 / icon / 1 / close-button;
+    }
   }
 }
 
@@ -126,7 +159,7 @@ dialog > .dialog-grid {
   grid-area: controls;
   position: sticky;
   bottom: 0;
-  padding-block: tokens.get('utility-gap-16');
+  padding-top: tokens.get('utility-gap-16');
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -138,15 +171,6 @@ dialog > .dialog-grid {
       width: 100%;
     }
   }
-}
-
-.dialog-grid > .btn-close {
-  position: sticky;
-  top: 0;
-  grid-area: close-button;
-  width: tokens.get('utility-gap-24');
-  height: tokens.get('utility-gap-24');
-  min-height: 0;
 }
 
 // Animations
