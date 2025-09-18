@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { format } from 'prettier';
 
-interface IComponentNameOutputOptions {
+interface ComponentNameOutputOptions {
   type: 'json' | 'scss';
   template: string;
   lineSeparator: string;
