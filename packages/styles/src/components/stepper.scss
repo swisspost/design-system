@@ -178,9 +178,7 @@ tokens.$default-map: utilities.$post-spacing;
   transition: stepper.$stepper-indicator-transition;
 
   .stepper-item:first-child > & {
-    left: calc(
-      (#{stepper.$stepper-indicator-size} - stepper.$stepper-indicator-check-size) / 2
-    );
+    left: calc((#{stepper.$stepper-indicator-size} - stepper.$stepper-indicator-check-size) / 2);
   }
 
   .stepper-item:not(:first-child, :last-child) > & {
