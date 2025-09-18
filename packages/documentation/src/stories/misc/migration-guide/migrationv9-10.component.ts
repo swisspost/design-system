@@ -48,6 +48,45 @@ export class MigrationV99Component extends LitElement {
           <li>
             <h3>Component Migration 🤓</h3>
 
+            <post-banner type="warning">
+              <h4 slot="heading">Notice: Bootstrap & Ng-Bootstrap removed</h4>
+              <p>
+                As part of the latest migration, Bootstrap and Ng-Bootstrap have been fully removed from the design system. This means that any variables, classes, mixins, or utilities originating from Bootstrap and all components from Ng-Bootstrap are no longer available.
+              </p>
+              <p>
+                However, <span class="fw-bold">many commonly used features from Bootstrap — such as the grid system (columns) and most utility classes — have been internalized into the design system</span>. You can continue using them through the design system without needing Bootstrap.<br/>
+              </p>
+              <p>
+                If you encounter any broken styles or issues after upgrading, you have two options:
+              </p>
+              <ul>
+                <li>Internalize the specific mixins or utilities you still rely on
+                </li>
+                <li>If issues persist, open a <a href="https://github.com/swisspost/design-system/issues">GitHub issue</a></li>
+              </ul>
+              <p>Please review your components and styles to ensure compatibility.
+              </p><br/>
+
+            </post-banner>
+
+            <section>
+              <h4>Ng-Bootstrap</h4>
+              <p>Removed the following Ng-Bootstrap components:</p>
+              <ul>
+                <li>carousel</li>
+                <li>custom select</li>
+                <li>datatable</li>
+                <li>datepicker</li>
+                <li>dropdown</li>
+                <li>modal</li>
+                <li>notification overlay</li>
+                <li>pagination</li>
+                <li>progressbar</li>
+                <li>timepicker</li>
+                <li>typeahead</li>
+              </ul>
+            </section>
+
             <section>
               <h4>Styles</h4>
 
@@ -86,59 +125,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     The <code>.form-text</code> class has been renamed to <code>.form-hint</code>
-                    <span class="tag tag-sm tag-danger">breaking</span><span class="tag tag-sm tag-info">🪄 migration rule</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    Some <code>form-check</code> scss variables have been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li><code>$form-check-inline-margin-left</code></li>
-                    <li><code>$form-check-input-width</code></li>
-                    <li><code>$form-check-min-height</code></li>
-                    <li><code>$form-check-padding-start</code></li>
-                    <li><code>$form-check-input-color</code></li>
-                    <li><code>$form-check-input-bg</code></li>
-                    <li><code>$form-check-input-border</code></li>
-                    <li><code>$form-check-input-border-radius</code></li>
-                    <li><code>$form-check-radio-border-radius</code></li>
-                    <li><code>$form-check-input-focus-border</code></li>
-                    <li><code>$form-check-input-focus-width</code></li>
-                    <li><code>$form-check-input-focus-box-shadow</code></li>
-                    <li><code>$form-check-input-active-filter</code></li>
-                    <li><code>$form-check-input-hover-color</code></li>
-                    <li><code>$form-check-input-checked-color</code></li>
-                    <li><code>$form-check-input-checked-bg-color</code></li>
-                    <li><code>$form-check-input-checked-border-color</code></li>
-                    <li><code>$form-check-input-checked-bg-icon</code></li>
-                    <li><code>$form-check-input-checked-bg-image</code></li>
-                    <li><code>$form-check-radio-checked-bg-icon</code></li>
-                    <li><code>$form-check-radio-checked-bg-image</code></li>
-                    <li><code>$form-check-input-indeterminate-color</code></li>
-                    <li><code>$form-check-input-indeterminate-bg-color</code></li>
-                    <li><code>$form-check-input-indeterminate-border-color</code></li>
-                    <li><code>$form-check-input-indeterminate-bg-icon</code></li>
-                    <li><code>$form-check-input-indeterminate-bg-image</code></li>
-                    <li><code>$form-check-inline-margin-end</code></li>
-                    <li><code>$form-check-label-cursor</code></li>
-                    <li><code>$form-check-label-color</code></li>
-                    <li><code>$form-check-label-padding-x</code></li>
-                    <li><code>$form-check-label-padding-top</code></li>
-                    <li><code>$form-check-label-padding-start</code></li>
-                    <li><code>$form-check-label-padding-end</code></li>
-                    <li><code>$form-check-feedback-margin-top</code></li>
-                  </ul>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    Removed the <code>@mixin placeholder()</code>
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <p class="info">
-                    The CSS selector <code>::placeholder</code> can be used instead as it is now
-                    widely available.
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
               </ul>
@@ -282,7 +269,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Removed some spacing utilities' classes (margin and padding
                     <code>{m/p}{x/y/s/e/t/b}-*</code>)
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-small-large</code></li>
@@ -293,7 +280,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Changed the spacing utilities' classes (margin and padding
                     <code>{m/p}{x/y/s/e/t/b}-*</code>) naming to pixel-based names
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-hair</code> is now <code>*-1</code></li>
@@ -320,27 +307,10 @@ export class MigrationV99Component extends LitElement {
                   </p>
                 </li>
                 <li class="mb-16">
-                  <p>Removed utility mixins <span class="tag tag-sm tag-danger">breaking</span></p>
-                  <ul>
-                    <li>
-                      <code>@mixin responsive-size</code>
-                    </li>
-                    <li>
-                      <code>@mixin generate-utility-class()</code>
-                    </li>
-                    <li>
-                      <code>@mixin bezel-small()</code>, <code>@mixin bezel-small-regular()</code>,
-                      <code>@mixin bezel-regular()</code>,
-                      <code>@mixin bezel-bigger-regular()</code>,
-                      <code>@mixin bezel-medium()</code>, <code>@mixin bezel-large()</code>,
-                      <code>@mixin bezel-big()</code>
-                    </li>
-                  </ul>
-                </li>
-                <li class="mb-16">
                   <p>
                     Renamed some utility classes
                     <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.h-visuallyhidden</code> is now <code>.visually-hidden</code></li>
@@ -370,30 +340,6 @@ export class MigrationV99Component extends LitElement {
                   <ul>
                     <li><code>.rounded</code> is now <code>.rounded-4</code></li>
                     <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
-                  </ul>
-                </li>
-              </ul>
-
-              <h5>Helpers</h5>
-              <ul>
-                <li class="mb-16">
-                  <p>
-                    The following bootstrap helper classes have been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li>
-                      Figures: <code>.figure</code>, <code>.figure-img</code> and
-                      <code>.figure-caption</code>
-                    </li>
-                    <li>Vertical rule: <code>.vr</code></li>
-                    <li>Colored background: <code>.text-bg-*</code></li>
-                    <li>Colored links: <code>.link-*</code></li>
-                    <li>Visually hidden: <code>.visually-hidden-focusable</code></li>
-                    <li>Stretched link: <code>.stretched-link</code></li>
-                    <li>Stacks: <code>.vstack</code> and <code>.hstack</code></li>
-                    <li>Ratios: <code>.ratio</code> and <code>.ratio-*x*</code></li>
-                    <li>Icon link: <code>.icon-link</code> and <code>.icon-link-hover</code></li>
                   </ul>
                 </li>
               </ul>
@@ -456,16 +402,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed font curve mixin
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li><code>@mixin font-curve</code></li>
-                  </ul>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    Removed deprecated line-height SCSS variables and CSS classes
+                    Removed deprecated line-height variables
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
@@ -533,40 +470,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed the following display SCSS variables
+                    The <code>.lh-base</code> class has been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li><code>$display1-weight</code></li>
-                    <li><code>$display2-weight</code></li>
-                    <li><code>$display3-weight</code></li>
-                    <li><code>$display4-weight</code></li>
-                    <li><code>$display-line-height</code></li>
-                  </ul>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The display sizes scss variables have been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li><code>$display{1/2/3/4/5/6}-size</code> variables no longer exist</li>
-                  </ul>
-                  <p class="info">
-                    We recommend using the heading classes to replace their usage, either by using
-                    the standard html tags (e.g. <code>h1</code>) or the css classes (e.g.
-                    <code>.h1</code>).
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The <code>@function line-height-calc($val)</code> has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <p class="info">
-                    The line height is now set to a default value for both paragraph elements and
-                    headings. If a different value is needed, we recommend using the line height
-                    text utility classes.
                   </p>
                 </li>
                 <li class="mb-16">
@@ -576,49 +481,10 @@ export class MigrationV99Component extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                 </li>
-                <li class="mb-16">
-                  <p>
-                    Some text placeholder have been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li><code>%list-adjustement</code></li>
-                    <li><code>%module-container</code></li>
-                    <li><code>%default-module-spacer</code></li>
-                    <li><code>%text-container</code></li>
-                  </ul>
-                </li>
               </ul>
 
               <h5>Other styles</h5>
               <ul>
-                <li class="mb-16">
-                  <p>
-                    Removed the dependency to bootstrap as well as all of the overrides of its SCSS
-                    variables and classes.
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    Removed the dependency to ng-bootstrap as well as all of the components built on
-                    it:
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li>carousel</li>
-                    <li>custom select</li>
-                    <li>datatable</li>
-                    <li>datepicker</li>
-                    <li>dropdown</li>
-                    <li>modal</li>
-                    <li>notification overlay</li>
-                    <li>pagination</li>
-                    <li>progressbar</li>
-                    <li>timepicker</li>
-                    <li>typeahead</li>
-                  </ul>
-                </li>
                 <li class="mb-16">
                   <p>
                     Some elements of the card component and their corresponding classes have been removed. <span class="tag tag-sm tag-danger">breaking</span>
@@ -628,20 +494,22 @@ export class MigrationV99Component extends LitElement {
                       <li><code>.card-img</code></li>
                       <li><code>.card-img-top</code></li>
                       <li><code>.card-img-bottom</code></li>
+                      <li><code>.card-button</code></li>
+                      <li><code>.card-buttons</code></li>
                     </ul>
                   </p>
                 </li>
                 <li class="mb-16">
                   <p>
-                    The card button CSS component has been removed.The <code>.card-button</code> and
-                    <code>.card-buttons</code> are therefore no longer available.
+                    The <code>.card-group</code> class has been removed.
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
+                  <p class="info">Card elements should be set inside a grid container.</p>
                 </li>
                 <li class="mb-16">
                   <p>
                     The <code>.btn-rg</code> class has been removed. Buttons using this class will
-                    now fall back to the default <code>btn-md</code>
+                    now fall back to the default size.
                     <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
@@ -682,66 +550,11 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    The <code>@mixin scroll-shadows-y</code> has been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The <code>.card-group</code> class has been removed.
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <p class="info">Card elements should be set inside a grid container.</p>
-                </li>
-                <li class="mb-16">
-                  <p>
                     The <code>.chip-filter</code> has been renamed to
                     <code>.chip-selectable</code> and the small variant of the chip
                     <code>.chip-sm</code> has been removed.
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    Some datatable scss variables have been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li><code>$datatable-sort-asc-icon</code></li>
-                    <li><code>$datatable-sort-desc-icon</code></li>
-                    <li><code>$datatable-sort-unset-icon</code></li>
-                    <li><code>$datatable-sort-editable-icon</code></li>
-                  </ul>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    Some stepper scss variables have been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li><code>$stepper-link-hover-color</code></li>
-                    <li><code>$stepper-indicator-hover-outline</code></li>
-                    <li><code>$stepper-indicator-font-size</code></li>
-                    <li><code>$stepper-link-current-font-size</code></li>
-                    <li><code>$stepper-indicator-hover-check-icon</code></li>
-                    <li><code>$stepper-indicator-height</code></li>
-                  </ul>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    The following z-index scss variables have been removed, as they were set on
-                    elements that are now using popover which place them in the top layer.
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                  <ul>
-                    <li><code>$zindex-sticky</code></li>
-                    <li><code>$zindex-fixed</code></li>
-                    <li><code>$zindex-modal-backdrop</code></li>
-                    <li><code>$zindex-modal</code></li>
-                    <li><code>$zindex-popover</code></li>
-                    <li><code>$zindex-tooltip</code></li>
-                    <li><code>$zindex-alert</code></li>
-                  </ul>
                 </li>
                 <li class="mb-16">
                   <p>
@@ -769,15 +582,9 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    All classes and CSS variables related to the bootstrap
-                    <code>navbar</code> component have been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
                     Deprecated loader classes and related scss variables have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.loader-xs</code></li>

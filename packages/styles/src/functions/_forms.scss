@@ -50,7 +50,7 @@
   );
 
   @if ($state) {
-    $icon: icons.get-colored-svg-url('chevrondown', map.get($arrow-color-map, '#{$state}-#{$mode}'));
+    $icon: icons.get-colored-svg-url('2052', map.get($arrow-color-map, '#{$state}-#{$mode}'));
     $state: url('#{$icon}');
   }
 

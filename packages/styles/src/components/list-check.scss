@@ -71,7 +71,7 @@ ul.list-check {
         margin-block: tokens.get('list-check-icon-container-block');
         padding-inline: tokens.get('list-check-icon-container-inline');
       }
-      @include icon-mixin.post-icon-load(
+      @include icon-mixin.post-icon(
         'checkmark',
         $width: tokens.get('list-check-sizing-icon'),
         $height: tokens.get('list-check-sizing-icon'),

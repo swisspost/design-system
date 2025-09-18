@@ -65,7 +65,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['none', 'mailboxprivate', 'letter', 'onlineservice'],
+      options: ['none', '1000', '1001', '2000'],
       table: {
         category: 'General',
       },

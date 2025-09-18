@@ -28,13 +28,9 @@ $resizer-max-width: 64px;
 }
 
 .my-1022-icon {
-  @include post.post-icon-load($name: '1022');
+  @include post.post-icon($name: '1022');
 }
 
 .my-accessibility-icon {
-  @include post.post-icon-load($name: 'accessibility');
-}
-
-.my-handvictory-icon {
-  @include post.post-icon-load($name: 'handvictory', $color: #666666);
+  @include post.post-icon($name: 'accessibility');
 }

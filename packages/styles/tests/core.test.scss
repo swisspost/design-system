@@ -7,8 +7,8 @@
  * packages. Extend these tests at your convenience.
  */
 .test {
-  background-image: url(post.get-colored-svg-url('heart', #ff0080));
-  background-image: url(post.get-colored-svg-url('heart', post.$white));
+  background-image: url(post.get-colored-svg-url('success', #ff0080));
+  background-image: url(post.get-colored-svg-url('success', post.$white));
 
   @include jest.equal(post.strip-unit(12px), 12);
 }

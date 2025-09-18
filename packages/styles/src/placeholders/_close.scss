@@ -18,7 +18,7 @@
 
   &::before {
     content: '';
-    @include icons.post-icon-load('closex', $width: close.$close-size, $height: close.$close-size);
+    @include icons.post-icon('closex', $width: close.$close-size, $height: close.$close-size);
   }
 
   @include utilities.not-disabled-focus-hover() {

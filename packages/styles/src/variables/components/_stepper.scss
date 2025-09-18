@@ -29,7 +29,7 @@ $stepper-indicator-hover-bg: color.$black;
 
 $stepper-indicator-future-bg: color.$gray-60;
 $stepper-indicator-future-color: color.$white;
-$_stepper-indicator-check-icon: icon-fn.get-colored-svg-url('checkmark', $stepper-indicator-color);
+$_stepper-indicator-check-icon: icon-fn.get-colored-svg-url('2105', $stepper-indicator-color);
 $stepper-indicator-check-icon: url('#{$_stepper-indicator-check-icon}');
 $stepper-indicator-check-icon-size: $stepper-indicator-check-size;
 

@@ -47,7 +47,7 @@ post-mainnavigation {
   post-megadropdown-trigger button {
     &::after {
       content: '';
-      @include icons.post-icon-load(
+      @include icons.post-icon(
         $name: 'chevrondown',
         $width: 24px,
         $height: 24px
