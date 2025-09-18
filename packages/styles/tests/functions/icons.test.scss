@@ -17,7 +17,7 @@ $expected-add-stroke-color-output: "data:image/svg+xml,%3Csvg viewBox='0 0 32 32
 
 // add-stroke-color
 @include jest.equal(
-  icons.add-stroke-color(icons.get-colored-svg-url('letter', #000), #fff, 2px),
+  icons.add-stroke-color(icons.get-colored-svg-url('warning', #000), #fff, 2px),
   $expected-add-stroke-color-output
 );
 
