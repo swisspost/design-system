@@ -1,6 +1,6 @@
-import { Args, StoryObj } from '@storybook/web-components-vite';
+import type { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
+import type { MetaComponent } from '@root/types';
 
 const MAX_LABELS = 8;
 
@@ -17,65 +17,55 @@ const meta: MetaComponent = {
   },
   args: {
     labelCount: 4,
+    mode: 'Text only',
   },
   argTypes: {
     labelCount: {
       name: 'Number of segments',
-      description: `Defines the number of segments for the segmented button. The maximum number of supported segments is 8. If you need more options, please refer to the select component.`,
+      description:
+        'Defines the number of segments for the segmented button. The maximum number of supported segments is 8. If you need more options, please refer to the select component.',
       control: { type: 'number', min: 1, max: MAX_LABELS },
       table: { category: 'Content' },
     },
+    mode: {
+      name: 'Content type',
+      description: 'Defines the type of content displayed in the buttons.',
+      control: { type: 'inline-radio' },
+      options: ['Text only', 'Icons only', 'Text and icons'],
+      table: { category: 'Content' },
+    },
+  },
+  render: (args: Args) => {
+    const mode = args.mode || 'Text only';
+    const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
+    const labels = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
+    const name = `segmented-button-${crypto.randomUUID().replace(/-/g, '').slice(-6)}`;
+
+    return html`
+      <div class="segmented-button-container">
+        <fieldset class="segmented-button">
+          <legend>Choose one of the options</legend>
+          ${labels.map(
+            (label, index) => html`
+              <label class="segmented-button-label">
+                <input type="radio" name="${name}" ?checked=${index === 0} />
+                ${mode === 'Icons only'
+                  ? html`<span class="visually-hidden">${label}</span>`
+                  : nothing}
+                ${mode === 'Icons only' || mode === 'Text and icons'
+                  ? html`<post-icon name="${1000 + index}"></post-icon>`
+                  : nothing}
+                ${mode === 'Text only' || mode === 'Text and icons' ? label : nothing}
+              </label>
+            `,
+          )}
+        </fieldset>
+      </div>
+    `;
   },
 };
 
 export default meta;
-
-type Story = StoryObj;
-
-export const TextExample: Story = {
-  render: (args: Args) => {
-    const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
-    const labelsArray = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
-    const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
-
-    return html`
-      <div class="segmented-button-container">
-        <fieldset class="segmented-button">
-          <legend>Choose one of the options</legend>
-          ${labelsArray.map(
-            (label, index) => html`
-              <label class="segmented-button-label">
-                <input name="${name}" type="radio" checked="${index === 0 ? '' : nothing}" />
-                ${label}
-              </label>
-            `,
-          )}
-        </fieldset>
-      </div>
-    `;
-  },
-};
-
-export const IconExample: Story = {
-  render: (args: Args) => {
-    const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
-    const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
-
-    return html`
-      <div class="segmented-button-container">
-        <fieldset class="segmented-button">
-          <legend>Choose one of the options</legend>
-          ${Array.from(
-            { length: labelCount },
-            (_undefined, index) => html`
-              <label class="segmented-button-label">
-                <input type="radio" name="${name}" checked="${index === 0 ? '' : nothing}" />
-                <post-icon name="${1000 + index}" />
-              </label>
-            `,
-          )}
-        </fieldset>
-      </div>
-    `;
-  },
-};
+export const Default = {};
+export const Icon = { args: { mode: 'Icons only' } };
+export const TextAndIcon = { args: { mode: 'Text and icons' } };
