@@ -24,7 +24,7 @@ const meta: MetaComponent = {
     userid: '',
     email: '',
     imageSrc: '',
-    description: 'The current user is Firstname',
+    description: 'The current user is Firstname.',
   },
   argTypes: {
     'userid': {

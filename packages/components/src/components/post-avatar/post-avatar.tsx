@@ -210,13 +210,12 @@ export class PostAvatar {
   }
 
   render() {
-    const initials = [this.firstname, this.lastname]
-      .filter(n => n)
+    const names = [this.firstname, this.lastname].filter(n => n).map(n => n.trim());
+    const initials = names
       .map(n => n.charAt(0))
       .join('')
       .trim();
-
-    const fullname = [this.firstname, this.lastname].join(' ');
+    const fullname = names.join(' ');
 
     return (
       <Host data-version={version}>
