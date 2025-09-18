@@ -12,16 +12,6 @@ const { globSync } = require('glob');
 const options = require('./package.json').sass;
 
 /**
- * Copy task
- */
-gulp.task('copy', () => {
-  return gulp
-    .src(['./LICENSE', './README.md', './package.json', './src/**/*.scss'])
-    .pipe(newer(options.outputDir))
-    .pipe(gulp.dest(options.outputDir));
-});
-
-/**
  * Temporary task to copy token files from tokens package to the styles package since
  * pnpm does not correctly install dependencies of dependencies for workspace packages.
  * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
@@ -44,6 +34,18 @@ gulp.task('temporarily-copy-icon-files', () => {
 gulp.task('copy-icon-files-to-dist', () => {
   return gulp.src(['./src/icons/temp/**/*.css']).pipe(gulp.dest(`${options.outputDir}/icons/temp`));
 });
+
+/**
+ * Copy task
+ */
+gulp.task('copy', 
+  gulp.series('copy-icon-files-to-dist', () => {
+    return gulp
+      .src(['./LICENSE', './README.md', './package.json', './src/**/*.scss'])
+      .pipe(newer(options.outputDir))
+      .pipe(gulp.dest(options.outputDir));
+  })
+);
 
 /**
  * Autoprefix SCSS files
@@ -208,9 +210,8 @@ exports.default = gulp.task(
   gulp.series(
     'prebuild-env-vars',
     gulp.parallel(
-      gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
-      gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', 'sass'),
+      'map-icons',
+      gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', 'copy', 'transform-package-json', 'autoprefixer', 'sass'),
     ),
-    'copy-icon-files-to-dist',
   ),
 );

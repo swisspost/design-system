@@ -35,18 +35,23 @@ $loaded-icons: () !default;
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
-  mask-image: var(--post-icon-#{$name});
+  
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-image: var(--post-icon-#{$name});
-  mask-position: center center;
+  mask-image: var(--post-icon-#{$name});
+  
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-position: center center;
-  mask-repeat: no-repeat;
+  mask-position: center center;
+  
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-repeat: no-repeat;
-  mask-size: 100%;
+  mask-repeat: no-repeat;
+  
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: 100%;
+  mask-size: 100%;
+  
   @include load-icon-css($name);
 }
 
