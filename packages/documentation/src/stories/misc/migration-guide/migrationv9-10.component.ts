@@ -238,8 +238,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Some Bootstrap utility classes have been removed
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    Shadow utility classes have been removed
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li>
