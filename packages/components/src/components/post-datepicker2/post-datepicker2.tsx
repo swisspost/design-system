@@ -100,6 +100,8 @@ export class PostDatepicker2 {
           days: '<strong>MMMM yyyy</strong>',
           months: '<strong>yyyy</strong>',
         },
+        prevHtml:
+          '<button aria-label="previous"><svg><path d="M 17,12 l -5,5 l 5,5"></path></svg></button>',
         range: true,
         inline: true,
         autoClose: true,
