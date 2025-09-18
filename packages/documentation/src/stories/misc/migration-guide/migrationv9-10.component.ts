@@ -310,6 +310,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Renamed some utility classes
                     <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.h-visuallyhidden</code> is now <code>.visually-hidden</code></li>
