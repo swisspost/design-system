@@ -64,7 +64,7 @@ export class PostIcon {
 
   @Watch('name')
   validateName() {
-    checkRequiredAndType(this, 'name', 'string');
+    if (this.name) checkRequiredAndType(this, 'name', 'string');
   }
 
   /**
@@ -87,10 +87,12 @@ export class PostIcon {
     checkEmptyOrType(this, 'scale', 'number');
   }
 
-  // Construct the icon URL according to the following rules:
-  // - URL = current domain + base[href] + meta[data-post-icon-base] (or component base)
-  // - If base[href] is not relative, it's used instead of current domain + base[href]
-  // - If meta[data-post-icon-base] (or component base) is not relative, it's used as is
+  /**
+   * Construct the icon URL according to the following rules:
+   * - If this.base prop is set -> if absolute: [this.base]/[fileName] / if relative: [baseHref][this.base]/[fileName]
+   * - Else if meta[name="design-system-settings"] -> if absolute: [data-post-icon-base]/[fileName] / if relative: [baseHref][data-post-icon-base]/[fileName]
+   * - Else use CDN ->[CDN][filename] */
+
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
 
@@ -98,46 +100,47 @@ export class PostIcon {
       return `${CDN_URL}${fileName}`;
     }
 
-    const currentDomain = IS_BROWSER ? window.location.origin : '';
+    const isAbsolute = (url: string) => /^https?:\/\//.test(url);
+    const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
 
+    const currentDomain = IS_BROWSER ? window.location.origin : '';
     const baseHref = IS_BROWSER
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
-    const isBaseHrefAbsolute = /^https?:\/\//.test(baseHref);
     const metaIconBase = IS_BROWSER
       ? document
-        .querySelector('meta[name="design-system-settings"]')
-        ?.getAttribute('data-post-icon-base') || ''
+          .querySelector('meta[name="design-system-settings"]')
+          ?.getAttribute('data-post-icon-base') || ''
       : '';
-    const iconBase = this.base || metaIconBase;
 
-    const isIconBaseAbsolute = /^https?:\/\//.test(iconBase);
+    // Function to build the URL based on baseHref
+    const buildUrlWithBase = (relativeUrl: string) => {
+      const normalizedHref = normalizeUrl(baseHref);
+      const normalizedRelative = normalizeUrl(relativeUrl);
+      if (isAbsolute(normalizedHref)) {
+        return `${normalizedHref}${normalizedRelative}`;
+      }
+      return `${currentDomain}${normalizedHref}${normalizedRelative}`;
+    };
 
-    const normalizedBaseHref = normalizeUrl(baseHref);
-    const normalizedIconBase = normalizeUrl(iconBase);
-
-    function normalizeUrl(url: string) {
-      if (!url) return '';
-      return url.endsWith('/') ? url : `${url}/`;
+    // Highest Priority is this.base
+    if (this.base) {
+      if (isAbsolute(this.base)) {
+        return `${normalizeUrl(this.base)}${fileName}`.replace(/([^:])\/\//g, '$1/');
+      }
+      return `${buildUrlWithBase(this.base)}${fileName}`.replace(/([^:])\/\//g, '$1/');
     }
 
-    let url: string;
-
-    if (isIconBaseAbsolute) {
-      // If icon base is absolute, use it as is
-      url = `${normalizedIconBase}${fileName}`;
-    } else if (isBaseHrefAbsolute) {
-      // If baseHref is absolute, don't use current domain
-      url = `${normalizedBaseHref}${normalizedIconBase}${fileName}`;
-    } else if (iconBase || baseHref) {
-      // Standard case: domain + baseHref + iconBase
-      url = `${currentDomain}${normalizedBaseHref}${normalizedIconBase}${fileName}`;
-    } else {
-      // Fallback to CDN if no paths are specified
-      url = `${CDN_URL}${fileName}`;
+    // Second Priority is metaIconBase
+    if (metaIconBase) {
+      if (isAbsolute(metaIconBase)) {
+        return `${normalizeUrl(metaIconBase)}${fileName}`.replace(/([^:])\/\//g, '$1/');
+      }
+      return `${buildUrlWithBase(metaIconBase)}${fileName}`.replace(/([^:])\/\//g, '$1/');
     }
 
-    return url.replace(/([^:])\/\//g, '$1/');
+    // Final Fallback to CDN
+    return `${CDN_URL}${fileName}`.replace(/([^:])\/\//g, '$1/');
   }
 
   private getStyles() {
