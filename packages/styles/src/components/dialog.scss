@@ -129,7 +129,7 @@ dialog > .dialog-grid {
   padding-block: tokens.get('utility-gap-16');
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row-reverse;
+  flex-direction: column;
   gap: tokens.get('utility-gap-16');
   background-color: inherit;
 
