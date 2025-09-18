@@ -255,7 +255,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     The following elevation utility classes have been renamed
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.elevation-1</code> is now <code>.elevation-100</code></li>
