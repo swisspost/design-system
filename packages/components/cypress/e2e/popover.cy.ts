@@ -76,8 +76,8 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@popover').should('not.be.visible');
       cy.get('@trigger').focus().type('{enter}');
       cy.get('@popover').should('be.visible');
-      cy.get('@trigger').type('{escape}');
-      cy.get('@popover').should('be.visible');
+      cy.get('@trigger').focus().type('{esc}');
+      cy.get('@popover').should('not.be.visible');
     });
 
     it('should open and close with the API', () => {
