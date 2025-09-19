@@ -24,6 +24,7 @@ const meta: MetaComponent = {
     userid: '',
     email: '',
     imageSrc: '',
+    description: 'The current user is Firstname.',
   },
   argTypes: {
     'userid': {
@@ -52,6 +53,10 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    'description': {
+      control: 'text',
+      description: 'Set the text for the custom description.',
+    },
   },
 };
 
@@ -60,18 +65,21 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => html`<post-avatar
-    firstname="${args.firstname || nothing}"
-    lastname="${args.lastname || nothing}"
-    userid="${args.userid || nothing}"
-    email="${args.email || nothing}"
-    >${args.imageSrc
-      ? html`<img
-          src="${args.imageSrc}"
-          alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
-        />`
-      : nothing}</post-avatar
-  >`,
+  render: (args: Args) => {
+    return html`<post-avatar
+      firstname="${args.firstname || nothing}"
+      lastname="${args.lastname || nothing}"
+      userid="${args.userid || nothing}"
+      email="${args.email || nothing}"
+      description="${args.description || nothing}"
+      >${args.imageSrc
+        ? html`<img
+            src="${args.imageSrc}"
+            alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
+          />`
+        : nothing}</post-avatar
+    >`;
+  },
 };
 
 export const AnchorWrapped: Story = {
