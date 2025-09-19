@@ -46,6 +46,7 @@ Type: `Promise<boolean>`
 | ------------------ | -------------------------------------------------------------- |
 | `"accordion-item"` | The container element that wraps the entire accordion item.    |
 | `"body"`           | The container element that holds the accordion item's content. |
+| `"button"`         | The element that toggles the accordion item (header button).   |
 
 
 ## Dependencies
