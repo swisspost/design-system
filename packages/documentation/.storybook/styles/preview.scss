@@ -10,7 +10,9 @@
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
 
-tokens.$default-map: utilities.$post-color;
+tokens.$default-map: utilities.$post-color
+
+;
 
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
@@ -69,6 +71,10 @@ $toolbar-icons: (
         padding-inline: 2rem;
       }
     }
+  }
+
+  migration-global-state .info {
+    font-size: 15px;
   }
 
   .sbdocs-content .container {
@@ -133,12 +139,16 @@ $toolbar-icons: (
   }
 
   pre {
-    font-size: 100%;
+    font-size: 14px;
 
     .token.comment,
     .token.doctype {
       color: #888;
     }
+  }
+
+  small {
+    font-size: 90%;
   }
 
   code {
@@ -151,7 +161,7 @@ $toolbar-icons: (
     border: 1px solid rgba(#000, 0.3);
     border-radius: 0.2em;
     font-family: $monospace;
-    font-size: 0.75em;
+    font-size: 0.975em;
     white-space: nowrap;
     line-height: 1;
 
@@ -218,14 +228,41 @@ $toolbar-icons: (
         &:nth-of-type(2) {
           border-top-left-radius: 4px;
         }
+
+        font-size: 14px;
       }
     }
   }
 
+  .docblock-argstable-head tr th span {
+    font-size: 14px;
+  }
+
   .docblock-argstable-body td a,
-  // targets only the visible buttons
+    // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
     color: #0073bc;
+    font-size: 14px;
+  }
+
+  .docblock-argstable-body tr td span {
+    font-size: 15px;
+  }
+
+  .docblock-argstable-body tr td textarea {
+    font-size: 14px;
+  }
+
+  .docblock-argstable-body tr td select {
+    font-size: 14px;
+  }
+
+  .docblock-argstable-body tr td button {
+    font-size: 14px;
+  }
+
+  .docblock-argstable-body tr td p {
+    font-size: 15px;
   }
 
   @include media.max(sm) {
@@ -249,6 +286,7 @@ $toolbar-icons: (
   .docblock-code-toggle {
     margin-right: auto;
     border-radius: 0 4px 0 0;
+    font-size: 14px;
 
     @include media.min(md) {
       &::before {
@@ -314,6 +352,10 @@ $toolbar-icons: (
         color: inherit;
       }
     }
+
+    .docs-story + div button {
+      font-size: 14px;
+    }
   }
 
   &[data-color-scheme='light'] {
@@ -352,10 +394,10 @@ $toolbar-icons: (
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(
-    rgb(230, 230, 230),
-    rgb(230, 230, 230) 1rem,
-    transparent 1rem,
-    transparent 1.6rem
+      rgb(230, 230, 230),
+      rgb(230, 230, 230) 1rem,
+      transparent 1rem,
+      transparent 1.6rem
   );
 
   &::after {
