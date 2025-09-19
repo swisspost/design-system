@@ -17,7 +17,7 @@ $stepper-indicator-border-color: rgb(var(--post-bg-rgb, 255 255 255));
 $stepper-indicator-font-weight: type.$font-weight-bold;
 $stepper-indicator-bg: color.$yellow;
 $stepper-indicator-color: color.$black;
-$stepper-indicator-check-size: tokens.get('utility-gap-24');
+$stepper-indicator-check-icon-size: tokens.get('utility-gap-24');
 $stepper-indicator-transition:
   color animation.$transition-base-timing,
   background-color animation.$transition-base-timing;
