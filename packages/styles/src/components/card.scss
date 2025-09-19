@@ -109,7 +109,11 @@ post-linkarea:has(> .card) {
 
     &::before {
       content: '';
-      @include icons-mx.post-icon('arrowright', $width: icons.$icon-size-default, $height: icons.$icon-size-default);
+      @include icons-mx.post-icon(
+        'arrowright',
+        $width: icons.$icon-size-default,
+        $height: icons.$icon-size-default
+      );
     }
   }
 }

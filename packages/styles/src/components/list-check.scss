@@ -74,7 +74,7 @@ ul.list-check {
       @include icon-mixin.post-icon(
         'checkmark',
         $width: tokens.get('list-check-sizing-icon'),
-        $height: tokens.get('list-check-sizing-icon'),
+        $height: tokens.get('list-check-sizing-icon')
       );
     }
   }
