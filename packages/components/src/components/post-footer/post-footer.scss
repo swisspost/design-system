@@ -130,11 +130,6 @@ footer {
 
 .footer-socialmedia {
   margin-block-end: var(--post-footer-socialmedia-margin-block-end);
-
-  ::slotted(post-list post-list-item a post-icon:not([name="letter"])) {
-    width: 20px;
-    height: 20px;
-  }
 }
 
 .footer-app {
