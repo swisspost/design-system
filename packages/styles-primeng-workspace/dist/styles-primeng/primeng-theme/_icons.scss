@@ -1,0 +1,60 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+@mixin custom-icon($icon) {
+  @include post.icon($icon);
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+
+  > * {
+    display: none;
+  }
+}
+
+plusicon {
+  @include custom-icon(2040);
+}
+
+trashicon {
+  @include custom-icon(2015);
+}
+
+chevrondownicon {
+  @include custom-icon(2113);
+}
+
+filtericon {
+  @include custom-icon(2060);
+}
+
+sortalticon {
+  @include custom-icon(2127);
+}
+
+sortamountupalticon {
+  @include custom-icon(2112);
+}
+
+sortamountdownicon {
+  @include custom-icon(2113);
+}
+
+arrowupicon {
+  @include custom-icon(3026);
+}
+
+arrowdownicon {
+  @include custom-icon(3022);
+}
+
+checkicon {
+  @include custom-icon(3035);
+}
+
+timesicon {
+  @include custom-icon(2043);
+}
+
+.p-datatable-reorderablerow-handle {
+  @include custom-icon(2070);
+}

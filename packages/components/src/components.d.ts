@@ -9,10 +9,12 @@ export namespace Components {
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
+          * @default 2
          */
         "headingLevel"?: number;
         /**
@@ -79,10 +81,12 @@ declare namespace LocalJSX {
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
+          * @default 2
          */
         "headingLevel"?: number;
     }
