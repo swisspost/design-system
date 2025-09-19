@@ -97,7 +97,7 @@ function renderProductCard(args: Args) {
       <div class="card-body product-navigation">
         ${getTitle(args)} ${getText(args)}
         <span class="link-icon">
-          <post-icon name="3020" aria-hidden="true"></post-icon>
+          <post-icon name="arrowright" aria-hidden="true"></post-icon>
           <span>Learn more</span>
         </span>
       </div>
@@ -155,7 +155,7 @@ export const Multipart: Story = {
               </div>
               <div>
                 <a href="#" class="link-icon">
-                  <post-icon name="3020" aria-hidden="true"></post-icon>
+                  <post-icon name="arrowright" aria-hidden="true"></post-icon>
                   <span>Learn more</span>
                 </a>
               </div>
@@ -251,7 +251,7 @@ export const Multipart: Story = {
               </div>
               <div>
                 <a href="#" class="link-icon">
-                  <post-icon name="3020" aria-hidden="true"></post-icon>
+                  <post-icon name="arrowright" aria-hidden="true"></post-icon>
                   <span>Learn more</span>
                 </a>
               </div>
