@@ -13,11 +13,11 @@ $expected-add-fill-color-output: "data:image/svg+xml,%3Csvg xmlns='http://www.w3
   $expected-add-fill-color-output
 );
 
-$expected-add-stroke-color-output: "data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-width='2px' stroke='%23ffffff' opacity='1' fill='%23000000' d='M32 14 19.8 1.7l-.4-.4-18 18 .4.4L6 24H0v5.3h11.3L10 28H1.3v-2.7h6L14 32l2.6-2.6H32V24H22zM18.5 4.1l.3 13.2c0 .4-.1.7-.4 1s-.6.4-1 .4h-.1l-13.2-.2zM14.9 20h2.4c1.5 0 2.8-1.3 2.7-2.9l-.1-3 9.5.3-14.2 14.5zm14.5-6.7-9.4-.4-.2-9.3zM13.6 20l.3 10.1L3.7 19.8zm17.1 5.4V28H18l2.7-2.7h10z'/%3E%3C/svg%3E";
+$expected-add-stroke-color-output: "data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-width='2px' stroke='%23ffffff' opacity='1' fill='%23000000' d='M26.34 6.91a5 5 0 0 1-.63-.37 8.8 8.8 0 0 1-1.61-1.37c-1.2-1.38-1.65-2.77-1.82-3.75-.14-.81-.08-1.34-.07-1.34h-5.48v21.2c0 .28 0 .57-.01.84v.15c-.12 1.56-1 2.94-2.34 3.71-.69.39-1.47.6-2.27.6-2.55 0-4.62-2.08-4.62-4.65s2.07-4.65 4.62-4.65c.48 0 .96.08 1.42.23v-5.58c-2.81-.36-5.66.47-7.84 2.3-.94.82-1.74 1.8-2.35 2.89-.23.4-1.1 2-1.21 4.6-.07 1.48.38 3.01.59 3.64.13.39.65 1.66 1.49 2.73.68.86 1.48 1.61 2.37 2.24s.01 0 .01 0c2.65 1.8 5.6 1.68 5.6 1.68.51-.02 2.22 0 4.15-.92 2.15-1.02 3.37-2.53 3.37-2.53.78-.91 1.4-1.94 1.84-3.05.5-1.3.66-2.87.66-3.49V10.77c.07.04.95.63.95.63s1.28.82 3.27 1.35c1.43.38 3.35.46 3.35.46V7.77c-.67.07-2.04-.14-3.45-.84 Z'/%3E%3C/svg%3E";
 
 // add-stroke-color
 @include jest.equal(
-  icons.add-stroke-color(icons.get-colored-svg-url('warning', #000), #fff, 2px),
+  icons.add-stroke-color(icons.get-colored-svg-url('1000', #000), #fff, 2px),
   $expected-add-stroke-color-output
 );
 
