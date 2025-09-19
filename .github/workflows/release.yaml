@@ -16,6 +16,7 @@ jobs:
   changeset-magic:
     name: Set up Changeset PR or Release Packages
     runs-on: ubuntu-latest
+    environment: npm-release
     steps:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
@@ -50,7 +51,6 @@ jobs:
         uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           title: 'chore(changesets): 🦋📦 publish packages (${{ github.ref_name }})'
           commit: 'chore(changesets): publish packages'
