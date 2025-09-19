@@ -72,7 +72,7 @@ describe('Popover', () => {
     cy.get('@trigger').focus().type('{enter}');
     cy.get('@popoverContent').should('be.visible');
 
-    cy.get('@trigger').focus().type('{esc}'); // does not simulate an Enter
+    cy.get('@trigger').focus().type('{esc}'); // does not simulate an Escape
 
     cy.get('@popoverContent').should('not.be.visible');
   });
