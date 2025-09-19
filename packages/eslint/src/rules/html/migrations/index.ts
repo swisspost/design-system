@@ -9,6 +9,13 @@ import {
   namePhase1 as noDeprecatedSpacingUtilitiesRulePhase1Name,
   namePhase2 as noDeprecatedSpacingUtilitiesRulePhase2Name,
 } from './no-deprecated-spacing-utilities';
+
+import {
+  rulePhase1 as noDeprecatedSizingUtilitiesRulePhase1,
+  rulePhase2 as noDeprecatedSizingUtilitiesRulePhase2,
+  namePhase1 as noDeprecatedSizingUtilitiesRulePhase1Name,
+  namePhase2 as noDeprecatedSizingUtilitiesRulePhase2Name,
+} from './no-deprecated-sizing-utilities';
 import noFormTextRule, { name as noFormTextRuleName } from './no-form-text';
 import noDeprecatedFontWeightRule, {
   name as noDeprecatedFontWeightRuleName,
@@ -26,6 +33,8 @@ export const htmlMigrationRules = {
   [noUnnumberedBorderRadiusRuleName]: noUnnumberedBorderRadiusRule,
   [noDeprecatedSpacingUtilitiesRulePhase1Name]: noDeprecatedSpacingUtilitiesRulePhase1,
   [noDeprecatedSpacingUtilitiesRulePhase2Name]: noDeprecatedSpacingUtilitiesRulePhase2,
+  [noDeprecatedSizingUtilitiesRulePhase1Name]: noDeprecatedSizingUtilitiesRulePhase1,
+  [noDeprecatedSizingUtilitiesRulePhase2Name]: noDeprecatedSizingUtilitiesRulePhase2,
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
