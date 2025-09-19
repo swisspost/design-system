@@ -6,6 +6,7 @@ export class SetupComponent extends LitElement {
   @property({ type: Number }) currentVersion?: number;
   @property({ type: String }) environment?: string;
   @property({ type: Boolean }) angular?: boolean;
+  @property({ type: Boolean }) hideAutoMigration?: boolean;
 
   createRenderRoot() {
     /**
@@ -49,6 +50,22 @@ export class SetupComponent extends LitElement {
             <div class="form-hint">
               This information can be found in the <code>package.json</code> file in the root of
               your application.
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-check mb-0">
+              <input
+                id="hide-auto-migration"
+                type="checkbox"
+                class="form-check-input"
+                name="hide-auto-migration"
+                value="true"
+                @change="${this._onAutoMigrationChange}"
+                ?checked="${this.hideAutoMigration}"
+              />
+              <label for="hide-auto-migration" class="form-check-label">
+                Hide changes covered by automatic migration
+              </label>
             </div>
           </div>
           <div class="col-12">
@@ -114,6 +131,22 @@ export class SetupComponent extends LitElement {
         </div>
       </section>
     `;
+  }
+
+  private _onAutoMigrationChange(
+    event: Event & {
+      target: HTMLInputElement;
+    },
+  ) {
+    // Hide all lines that have the auto migration tag
+    this.hideAutoMigration = event.target.checked;
+    document
+      .querySelectorAll('[data-info="automigration"]')
+      ?.forEach(item =>
+        this.hideAutoMigration
+          ? item.closest('li')?.classList.add('d-none')
+          : item.closest('li')?.classList.remove('d-none'),
+      );
   }
 
   private _onCurrentVersionChange(
