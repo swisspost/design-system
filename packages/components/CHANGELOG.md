@@ -1,5 +1,22 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.49
+
+### Minor Changes
+
+- Added a new component-names.json file, which contains a list of all components the package is outputting. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6199](https://github.com/swisspost/design-system/pull/6199))
+
+### Patch Changes
+
+- Added logic to automatically apply the `selected` class to the respective `post-megadropdown-trigger` when one of the items inside the corresponding `post-megadropdown` is marked as selected. (by [@myrta2302](https://github.com/myrta2302) with [#6216](https://github.com/swisspost/design-system/pull/6216))
+
+- Fixed the `post-header` component to consistently omit the title container when no title is defined across all configurations. (by [@alizedebray](https://github.com/alizedebray) with [#6244](https://github.com/swisspost/design-system/pull/6244))
+
+- Improved `<post-avatar>` markup and added a `description` prop to allow users to provide additional context to the component. (by [@myrta2302](https://github.com/myrta2302) with [#6092](https://github.com/swisspost/design-system/pull/6092))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.49
+  - @swisspost/design-system-icons@10.0.0-next.49
+
 ## 10.0.0-next.48
 
 ### Minor Changes
