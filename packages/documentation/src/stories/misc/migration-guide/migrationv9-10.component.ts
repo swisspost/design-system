@@ -608,7 +608,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     The following spinner classes have been renamed
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.loading-modal</code> is now <code>.spinner-modal</code></li>
