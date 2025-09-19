@@ -107,6 +107,7 @@ export default function Home() {
       </PostLinkarea>
 
       <h2>Menu</h2>
+      {/* Throws Hydration Errors */}
       <PostMenuTrigger for="menu-one">
         <button className="btn btn-primary">Menu button</button>
       </PostMenuTrigger>
