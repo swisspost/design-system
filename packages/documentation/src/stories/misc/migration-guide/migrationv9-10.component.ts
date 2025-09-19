@@ -125,7 +125,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     The <code>.form-text</code> class has been renamed to <code>.form-hint</code>
-                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
               </ul>
@@ -269,7 +269,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Removed some spacing utilities' classes (margin and padding
                     <code>{m/p}{x/y/s/e/t/b}-*</code>)
-                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-small-large</code></li>
@@ -280,7 +280,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Changed the spacing utilities' classes (margin and padding
                     <code>{m/p}{x/y/s/e/t/b}-*</code>) naming to pixel-based names
-                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-hair</code> is now <code>*-1</code></li>
@@ -310,7 +310,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Renamed some utility classes
                     <span class="tag tag-sm tag-danger">breaking</span>
-                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.h-visuallyhidden</code> is now <code>.visually-hidden</code></li>
@@ -335,7 +335,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     Renamed border radius classes
-                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.rounded</code> is now <code>.rounded-4</code></li>
@@ -461,7 +461,7 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     Renamed font-weight utility classes
-                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.bold</code> is now <code>.fw-bold</code></li>
@@ -510,7 +510,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     The <code>.btn-rg</code> class has been removed. Buttons using this class will
                     now fall back to the default size.
-                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <span class="tag tag-sm tag-danger">breaking</span> <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
                 <li class="mb-16">
@@ -584,7 +584,7 @@ export class MigrationV99Component extends LitElement {
                   <p>
                     Deprecated loader classes and related scss variables have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
-                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.loader-xs</code></li>
