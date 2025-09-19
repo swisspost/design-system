@@ -1,3 +1,4 @@
+import { bootstrapSizeMap } from '../../../utils/common-data';
 import {
   arrayToMap,
   createTwoPhasesRules,
@@ -8,18 +9,9 @@ import {
 // Class names
 const classNames = ['g-', 'gx-', 'gy-'];
 
-// Previous values mapped to the new values
-const classValuesMap: Record<string, number> = {
-  '1': 4,
-  '2': 8,
-  '4': 24,
-  '3': 16,
-  '5': 48,
-};
-
 export const data: TwoPhasesData = setUpClassesMutations(
   arrayToMap(classNames),
-  classValuesMap,
+  bootstrapSizeMap,
   'deprecatedGutterUtilities',
 );
 

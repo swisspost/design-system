@@ -1,3 +1,4 @@
+import { bootstrapSizeMap } from '../../../utils/common-data';
 import {
   createTwoPhasesRules,
   setUpClassesMutations,
@@ -14,11 +15,7 @@ const classNamesMap: Record<string, string> = {
 
 // Previous values mapped to the new values
 const classValuesMap: Record<string, string | number> = {
-  '1': 4,
-  '2': 8,
-  '4': 24,
-  '3': 16,
-  '5': 48,
+  ...bootstrapSizeMap,
   'hair': 1,
   'line': 2,
   'micro': 4,
