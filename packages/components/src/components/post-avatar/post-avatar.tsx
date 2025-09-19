@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndType, checkEmptyOrPattern, checkEmptyOrType } from '@/utils';
-import { GRAVATAR_BASE_URL } from './avatar-utils';
+import { GRAVATAR_BASE_URL, cryptify } from './avatar-utils';
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -48,6 +48,11 @@ export class PostAvatar {
    */
   @Prop() readonly email?: string;
 
+  /**
+   * Provides a custom description for the avatar, used for accessibility purposes.
+   */
+  @Prop() description?: string;
+
   @State() slottedImage: HTMLImageElement;
   @State() avatarType: AvatarType = null;
   @State() imageUrl = '';
@@ -79,6 +84,11 @@ export class PostAvatar {
     this.getAvatarImage();
   }
 
+  @Watch('description')
+  validateDescription() {
+    checkEmptyOrType(this, 'description', 'string');
+  }
+
   private validateUserId() {
     checkEmptyOrType(this, 'userid', 'string');
   }
@@ -100,7 +110,7 @@ export class PostAvatar {
         imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
       }
       if (!imageLoaded) {
-        this.getAvatarInitials();
+        this.avatarType = AvatarType.Initials;
       }
     } else {
       const slottedImageLoaded = await this.getImageByProp(
@@ -110,7 +120,7 @@ export class PostAvatar {
 
       if (!slottedImageLoaded) {
         this.slottedImage.style.display = 'none';
-        this.getAvatarInitials();
+        this.avatarType = AvatarType.Initials;
       } else {
         this.slottedImage.style.display = 'block';
       }
@@ -145,37 +155,13 @@ export class PostAvatar {
   }
 
   private async fetchImageByEmail() {
-    const email = await this.cryptify(this.email);
+    const email = await cryptify(this.email);
     const imageUrl = GRAVATAR_BASE_URL.replace('{email}', email);
     return await fetch(imageUrl);
   }
 
   private async fetchSlottedImage(imageUrl: string) {
     return await fetch(imageUrl, { method: 'HEAD' });
-  }
-
-  private getAvatarInitials() {
-    this.initials = this.getInitials();
-    this.avatarType = AvatarType.Initials;
-  }
-
-  private getNames() {
-    return [this.firstname, this.lastname].filter(n => n);
-  }
-
-  private getInitials() {
-    return this.getNames()
-      .map(n => n.charAt(0))
-      .join('')
-      .trim();
-  }
-
-  private async cryptify(key: string) {
-    return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
-      return Array.from(new Uint8Array(buffer))
-        .map(bytes => bytes.toString(16).padStart(2, '0'))
-        .join('');
-    });
   }
 
   private slotChanged() {
@@ -211,25 +197,25 @@ export class PostAvatar {
 
   connectedCallback() {
     //This provides a fallback by showing the initials while the image is still loading or delayed.
-    this.getAvatarInitials();
+    this.avatarType = AvatarType.Initials;
     this.getAvatarImage();
   }
 
   componentDidLoad() {
     this.validateFirstname();
     this.validateLastname();
+    this.validateDescription();
     this.validateUserId();
     this.validateEmail();
   }
 
   render() {
-    const initials = this.getNames().reduce((acc, n, i) => {
-      if (i > 0) acc.push(<span> </span>);
-      acc.push(n.charAt(0));
-      acc.push(<span>{n.slice(1)}</span>);
-      // eslint-disable-next-line @stencil-community/render-returns-host
-      return acc;
-    }, []);
+    const names = [this.firstname, this.lastname].filter(n => n).map(n => n.trim());
+    const initials = names
+      .map(n => n.charAt(0))
+      .join('')
+      .trim();
+    const fullname = names.join(' ');
 
     return (
       <Host data-version={version}>
@@ -237,7 +223,12 @@ export class PostAvatar {
           <slot onSlotchange={this.slotChanged.bind(this)}></slot>
         </span>
         {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
-        {this.avatarType === 'initials' && <div class="initials">{initials}</div>}
+        {this.avatarType === 'initials' && (
+          <span class="initials">
+            {initials}
+            <span>{this.description ?? fullname}</span>
+          </span>
+        )}
       </Host>
     );
   }
