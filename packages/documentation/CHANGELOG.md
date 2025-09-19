@@ -1,5 +1,29 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.50
+
+### Minor Changes
+
+- Updated the migration guide:
+  - Added information regarding the removal of bootstrap and ng-bootstrap in one place
+  - Cleaned up scattered informations regarding bootstrap removal in the rest of the page
+  - Removed all informations of removed elements that were never previously documented (by [@leagrdv](https://github.com/leagrdv) with [#6208](https://github.com/swisspost/design-system/pull/6208))
+
+### Patch Changes
+
+- Added information in the migration guide regarding the update on the spacing utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6219](https://github.com/swisspost/design-system/pull/6219))
+
+- Fixed `<post-banner>` Web Component example so the `Reset Banner` button is hidden initially and only appears after the banner has been dismissed. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6076](https://github.com/swisspost/design-system/pull/6076))
+
+- Added documentation on styling active navigation items in `<post-header>` using the `.selected` class. (by [@myrta2302](https://github.com/myrta2302) with [#6216](https://github.com/swisspost/design-system/pull/6216))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.49
+  - @swisspost/design-system-styles@10.0.0-next.49
+  - @swisspost/design-system-components-react@10.0.0-next.49
+  - @swisspost/internet-header@10.0.0-next.49
+  - @swisspost/design-system-tokens@10.0.0-next.49
+  - @swisspost/design-system-icons@10.0.0-next.49
+
 ## 6.0.0-next.49
 
 ### Minor Changes
