@@ -31602,6 +31602,63 @@
       "modifiedAt": "2025-08-23T07:05:05.336Z"
     },
     {
+      "uuid": "fe60da00-92c8-11f0-9719-005056873709",
+      "id": 6251979,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6251979/storage/MDA2MjUxOTc4LzAvbWFzdGVy",
+        "keywords": [
+          "Interdit",
+          "Proibito",
+          "Verboten",
+          "Forbidden",
+          "prohibition",
+          "Verbot",
+          "Interdiction",
+          "Divieto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2714.svg",
+        "basename": "2714",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-09-16T06:47:20.000Z",
+      "modifiedAt": "2025-09-17T06:05:03.771Z"
+    },
+    {
+      "uuid": "a91ae800-92c9-11f0-9719-005056873709",
+      "id": 6252011,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6252011/storage/MDA2MjUyMDEwLzAvbWFzdGVy",
+        "keywords": [
+          "PubliCar"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2715.svg",
+        "basename": "2715",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-09-16T06:52:07.000Z",
+      "modifiedAt": "2025-09-16T06:57:29.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -44213,11 +44270,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2025-09-07T02:16:24.217Z",
+  "created": "2025-09-21T02:19:41.613Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1044
+    "success": 1046
   },
-  "version": "9.1.0"
+  "version": "9.2.0"
 }
