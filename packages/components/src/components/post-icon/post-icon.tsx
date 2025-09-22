@@ -89,9 +89,15 @@ export class PostIcon {
 
   /**
    * Construct the icon URL according to the following rules:
-   * - If this.base prop is set -> if absolute: [this.base]/[fileName] / if relative: [baseHref][this.base]/[fileName]
-   * - Else if meta[name="design-system-settings"] -> if absolute: [data-post-icon-base]/[fileName] / if relative: [baseHref][data-post-icon-base]/[fileName]
-   * - Else use CDN ->[CDN][filename] */
+   * 1. `@base` (absolute URL) → use directly.
+   * 2. `@base` (relative URL) → resolve with `base href` and/or `origin`
+   *  - If `base href` is absolute → use just that.
+   *  - If `base href` is relative → prepend with `origin`.
+   *  - If `base href` does not exist → use only `origin`.
+   * 3. `@meta` (absolute URL) → use directly.
+   * 4. `@meta` (relative URL) → resolve with `base href` and/or `origin`. (same as above)
+   * 5. `CDN_URL` fallback → `https://unpkg.com/...`.
+   **/
 
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
@@ -102,6 +108,7 @@ export class PostIcon {
 
     const isAbsolute = (url: string) => /^https?:\/\//.test(url);
     const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
+    const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
 
     const currentDomain = IS_BROWSER ? window.location.origin : '';
     const baseHref = IS_BROWSER
@@ -109,11 +116,11 @@ export class PostIcon {
       : '';
     const metaIconBase = IS_BROWSER
       ? document
-          .querySelector('meta[name="design-system-settings"]')
-          ?.getAttribute('data-post-icon-base') || ''
+        .querySelector('meta[name="design-system-settings"]')
+        ?.getAttribute('data-post-icon-base') || ''
       : '';
 
-    // Function to build the URL based on baseHref
+    // Function to build the first part of the URL when 'this.base' or 'metaIconBase' are relative
     const buildUrlWithBase = (relativeUrl: string) => {
       const normalizedHref = normalizeUrl(baseHref);
       const normalizedRelative = normalizeUrl(relativeUrl);
@@ -123,24 +130,26 @@ export class PostIcon {
       return `${currentDomain}${normalizedHref}${normalizedRelative}`;
     };
 
+    let url: string;
+
     // Highest Priority is this.base
     if (this.base) {
-      if (isAbsolute(this.base)) {
-        return `${normalizeUrl(this.base)}${fileName}`.replace(/([^:])\/\//g, '$1/');
-      }
-      return `${buildUrlWithBase(this.base)}${fileName}`.replace(/([^:])\/\//g, '$1/');
+      url = isAbsolute(this.base)
+        ? `${normalizeUrl(this.base)}${fileName}`
+        : `${buildUrlWithBase(this.base)}${fileName}`;
+      return cleanUrl(url);
     }
 
     // Second Priority is metaIconBase
     if (metaIconBase) {
-      if (isAbsolute(metaIconBase)) {
-        return `${normalizeUrl(metaIconBase)}${fileName}`.replace(/([^:])\/\//g, '$1/');
-      }
-      return `${buildUrlWithBase(metaIconBase)}${fileName}`.replace(/([^:])\/\//g, '$1/');
+      url = isAbsolute(metaIconBase)
+        ? `${normalizeUrl(metaIconBase)}${fileName}`
+        : `${buildUrlWithBase(metaIconBase)}${fileName}`;
+      return cleanUrl(url);
     }
 
     // Final Fallback to CDN
-    return `${CDN_URL}${fileName}`.replace(/([^:])\/\//g, '$1/');
+    return cleanUrl(`${CDN_URL}${fileName}`);
   }
 
   private getStyles() {
