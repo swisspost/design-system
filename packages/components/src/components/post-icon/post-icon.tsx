@@ -116,8 +116,8 @@ export class PostIcon {
       : '';
     const metaIconBase = IS_BROWSER
       ? document
-          .querySelector('meta[name="design-system-settings"]')
-          ?.getAttribute('data-post-icon-base') || ''
+        .querySelector('meta[name="design-system-settings"]')
+        ?.getAttribute('data-post-icon-base') || ''
       : '';
 
     // Function to build the first part of the URL when 'this.base' or 'metaIconBase' are relative
@@ -127,7 +127,6 @@ export class PostIcon {
       if (isAbsolute(normalizedHref)) {
         return `${normalizedHref}${normalizedRelative}`;
       }
-      console.log(`${currentDomain}${normalizedHref}${normalizedRelative}`);
       return `${currentDomain}${normalizedHref}${normalizedRelative}`;
     };
 
