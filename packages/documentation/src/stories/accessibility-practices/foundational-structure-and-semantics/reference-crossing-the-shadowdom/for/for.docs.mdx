@@ -1,5 +1,17 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
 import * as CCR from './for.stories';
+import DefaultExample from './examples/defaultExample.sample.html?raw';
+import DefaultExample2 from './examples/defaultExample2.sample.html?raw';
+import ArialabelledbyElementsPropertyHTML from './examples/arialabelledbyElementsProperty.sample.html?raw';
+import ArialabelledbyElementsProperty from './examples/arialabelledbyElementsProperty.sample.js?raw';
+import NonWorkingExampleIIa from './examples/nonWorkingExample-IIa.sample.html?raw';
+import NonWorkingExampleIIb from './examples/nonWorkingExample-IIb.sample.html?raw';
+import WorkingExampleIIa from './examples/workingExample-IIa.sample.html?raw';
+import WorkingExampleIIb from './examples/workingExample-IIb.sample.html?raw';
+import NonWorkingExampleIII from './examples/nonWorkingExample-III.sample.html?raw';
+import WorkingExampleIII from './examples/workingExample-III.sample.html?raw';
+import NonWorkingExampleIV from './examples/nonWorkingExample-IV.sample.html?raw';
+import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 
 <Meta of={CCR} />
 
@@ -9,40 +21,110 @@ import * as CCR from './for.stories';
 
 <div className="lead">The native HTML `for`/`id` relationship is a fundamental way to connect a `<label>` element to a form control, such as `<input>`, `<select>`, `<textarea>`, etc. or even to a custom form-associated control within the same DOM.</div>
 
-<div>This connection is established by setting the for attribute on the `<label>` to match the `id` attribute of the form control it describes. This relationship is crucial for accessibility, as it allows assistive technologies like screen readers to correctly associate and announce the label text when focus is placed on the associated input field.</div>
+<p>
+  This relationship is important for accessibility, as it allows assistive technologies to correctly
+  associate and announce the label text when focus is placed on the respective input field.
+</p>
 
-### I. Referencing Within the Same DOM Tree ✔️
+### I. Referencing Within the Same DOM Tree
 
-<Canvas of={CCR.ExampleHTML} sourceState="shown" />
+• <b>Both elements in Light DOM</b> ✔️
 
-### II. Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
+<Source language="html" dark code={DefaultExample}></Source>
 
-<ul>
-  <li>Light DOM → Shadow DOM</li>
-  <li>Slotted Content → Shadow DOM</li>
-</ul>
+• <b>Both elements in same Shadow DOM</b> ✔️
 
-<p>When the referencing element (e.g. `<label for="...">`) is in the Light DOM and the target element is inside a Shadow DOM, the `for` attribute <b>cannot reference elements inside the Shadow DOM</b> using the standard id mechanism.</p>
+<Source language="html" dark code={DefaultExample2}></Source>
+<p>
+  <b>
+    The above relationships are valid because in both cases the label and its associated input
+    element are part of the same tree.
+  </b>
+</p>
 
-##### Possible Workarounds
+<p>
+  Below is a working example of a `for`/`id` relationship within the shadowDom of a custom
+  component. You can <b>test it with NVDA</b> to confirm the correct label announcement.
+</p>
 
-###### `Element:ariaLabelledByElements`
+<Canvas of={CCR.ExampleHTML} sourceState="hide" />
+### II. Referencing From Outside a Shadow DOM Into That Shadow DOM
 
-Defines programmatically the `ariaLabelledByElements` property of the element: `this.internalEl.ariaLabelledByElements = [labelEl]`. This solution creates the relationship without the use of an `id`.
+• <b>Light DOM → Shadow DOM</b> ❌
 
-<b>Light DOM → Shadow DOM Example</b>
-<Canvas of={CCR.Example2} sourceState="shown" />
+<Source language="html" dark code={NonWorkingExampleIIa}></Source>
+
+• <b>Slotted Content → Shadow DOM</b> ❌
+
+<Source language="html" dark code={NonWorkingExampleIIb}></Source>
+
+<p>
+  The above examples do not work across shadow DOM boundaries when setting the `for` / `id`
+  attributes directly.
+</p>
+<p>
+  <b>
+    Attribute element references can only point to elements in the same DOM or shadow DOM, because
+    IDs are only valid within their own scope.
+  </b>
+</p>
+
+#### Workaround: `Element:ariaLabelledByElements`
+
+<p>
+  `ariaLabelledByElements` is a property of the Element interface that returns an array of elements
+  labeling the element. It provides direct references to these elements rather than just their ID
+  strings.
+  <a
+    target="blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaLabelledByElements"
+  >
+    🔗ariaLabelledByElements
+  </a>
+</p>
+
+<div className="lead">Basic usage of `ariaLabelledByElements` </div>
+<Source language="html" dark code={ArialabelledbyElementsPropertyHTML}></Source>
+<p>
+  Instead of adding the `aria-labelledby` attribute on the element, we can set it using the
+  `ariaLabelledByElements` property.
+</p>
+<Source language="js" dark code={ArialabelledbyElementsProperty}></Source>
+<p>
+  The following examples demonstrate how the `ariaLabelledByElements` property can be used to
+  establish relationships <b>across the shadow DOM</b>.
+</p>
+
+<p>
+  <b>• Light DOM → Shadow DOM Example</b> ✔️
+</p>
+<p>
+  In this case a label element in the light DOM is directly assigned to a target element inside a
+  custom component’s shadow DOM using `ariaLabelledByElements`.
+</p>
+
+<Source language="html" dark code={WorkingExampleIIa}></Source>
+<p>Use the control below to toggle the `ariaLabelledByElements` workaround implementation.</p>
+<Canvas of={CCR.Example2} sourceState="hide" />
 <div className="hide-col-default">
   <Controls of={CCR.Example2} />
 </div>
 
-<b>Slotted Content → Shadow DOM Example</b>
-<Canvas of={CCR.Example3} sourceState="shown" />
+<p>
+  <b>• Slotted Content → Shadow DOM Example</b> ✔️
+</p>
+<p>
+  In this case a label element provided via a light DOM slot is automatically assigned to a target
+  element inside a custom component’s shadow DOM using `ariaLabelledByElements`.
+</p>
+<Source language="html" dark code={WorkingExampleIIb}></Source>
+<p>Use the control below to toggle the `ariaLabelledByElements` workaround implementation.</p>
+<Canvas of={CCR.Example3} sourceState="hide<p>" />
 <div className="hide-col-default">
   <Controls of={CCR.Example3} />
 </div>
 
-⚠️ In the above scenarios, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but fails on Siteimprove and Accessibility Insights tools.
+⚠️ In the above scenarios, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.
 
 ### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
 

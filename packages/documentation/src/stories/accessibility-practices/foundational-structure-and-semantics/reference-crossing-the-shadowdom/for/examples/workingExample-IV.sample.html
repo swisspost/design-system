@@ -1,13 +1,11 @@
 <custom-label id="labelId">
   ⏷ #shadow-root (open)
-    <span>My Text</span>
+    <label for="inputId">My Text</label>
 </custom-label>
 
 <custom-button>
   ⏷ #shadow-root (open)
-    <div role="button" tabindex="0" aria-labelledby>
-      <custom-icon />
-    </div>
+  <input id="inputId" aria-labelledby="labelId" />
 </custom-button>
 
 <script>

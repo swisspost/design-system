@@ -1,6 +1,7 @@
 import { StoryObj, Args } from '@storybook/web-components-vite';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
+import './aria-describedby.styles.scss';
 
 const meta: MetaExtended = {
   id: '76ade552-2c03-4d6d-9dce-28daa3405910',
@@ -67,7 +68,7 @@ export const Example3: Story = {
   },
   render: (args: Args) => html`
     <demo-button button-version="4" workaround="${args.workaround}"
-      ><span slot="label-slot">My Description</span></demo-button
+      ><span slot="aria-slot">My Description</span></demo-button
     >
   `,
 };
@@ -78,7 +79,7 @@ export const Example4: Story = {
     <div class="btn btn-primary" aria-describedby="id_2" role="button" tabindex="0">
       <post-icon name="1022"></post-icon>
     </div>
-    <demo-span id="id_2">My description</demo-span>
+    <demo-span content="My Description" id="id_2"></demo-span>
   `,
 };
 
@@ -88,8 +89,8 @@ export const Example5: Story = {
     <demo-button
       button-version="3"
       workaround="ariaDescribedByElements"
-      aria-describedby="id_3"
+      ariadescribedby-id="id_3"
     ></demo-button>
-    <demo-span id="id_3">My description</demo-span>
+    <demo-span content="My Description" id="id_3"></demo-span>
   `,
 };

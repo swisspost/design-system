@@ -1,6 +1,7 @@
 import { StoryObj, Args } from '@storybook/web-components-vite';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
+import './aria-labelledby.styles.scss';
 
 const meta: MetaExtended = {
   id: '76ade552-2c03-4d6d-9dce-28daa3405678',
@@ -19,12 +20,7 @@ type Story = StoryObj;
 
 // Case: Standard Light DOM to Light DOM
 export const ExampleHTML: Story = {
-  render: () => html`
-    <span id="id_1">My Text</span>
-    <div class="btn btn-primary" aria-labelledby="id_1" role="button" tabindex="0">
-      <post-icon name="1022"></post-icon>
-    </div>
-  `,
+  render: () => html` <demo-button> </demo-button> `,
 };
 
 // Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element) workaround setting programmatically the relevant Element property
@@ -68,7 +64,7 @@ export const Example3: Story = {
   },
   render: (args: Args) => html`
     <demo-button button-version="2" workaround="${args.workaround}"
-      ><span slot="label-slot">My Text</span></demo-button
+      ><span slot="aria-slot">My Text</span></demo-button
     >
   `,
 };

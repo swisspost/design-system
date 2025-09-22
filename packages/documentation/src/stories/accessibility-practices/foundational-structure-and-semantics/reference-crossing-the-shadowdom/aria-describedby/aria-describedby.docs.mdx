@@ -1,5 +1,17 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
 import * as CCR from './aria-describedby.stories';
+import DefaultExample from './examples/defaultExample.sample.html?raw';
+import DefaultExample2 from './examples/defaultExample2.sample.html?raw';
+import AriaDescribedbyElementsPropertyHTML from './examples/ariadescribedbyElementsProperty.sample.html?raw';
+import AriaDescribedbyElementsProperty from './examples/ariadescribedbyElementsProperty.sample.js?raw';
+import NonWorkingExampleIIa from './examples/nonWorkingExample-IIa.sample.html?raw';
+import NonWorkingExampleIIb from './examples/nonWorkingExample-IIb.sample.html?raw';
+import WorkingExampleIIa from './examples/workingExample-IIa.sample.html?raw';
+import WorkingExampleIIb from './examples/workingExample-IIb.sample.html?raw';
+import NonWorkingExampleIII from './examples/nonWorkingExample-III.sample.html?raw';
+import WorkingExampleIII from './examples/workingExample-III.sample.html?raw';
+import NonWorkingExampleIV from './examples/nonWorkingExample-IV.sample.html?raw';
+import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 
 <Meta of={CCR} />
 
@@ -9,63 +21,151 @@ import * as CCR from './aria-describedby.stories';
   In the Light DOM, `aria-describedby` is used to give an element a description by referencing the
   ID of another element or multiple elements that contain the desired text.
 </div>
-<div>
+<p>
   This is useful when a simple text label isn't enough or when the description needs to be combined
   from different pieces of text.
-</div>
-### I. Referencing Within the Same DOM Tree ✔️
+</p>
 
-<Canvas of={CCR.ExampleHTML} sourceState="shown" />
-### II. Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
+### I. Referencing Within the Same DOM Tree
 
-<ul>
-  <li>Light DOM → Shadow DOM</li>
-  <li>Slotted Content → Shadow DOM</li>
-</ul>
+• <b>Both elements in Light DOM</b> ✔️
 
-Standard `aria-describedby` cannot reference elements located inside a Shadow DOM from outside of it. This is because IDs inside a Shadow DOM are encapsulated and not accessible from the Light DOM or other Shadow DOMs.
+<Source language="html" dark code={DefaultExample}></Source>
 
-##### Possible Workarounds
+• <b>Both elements in same Shadow DOM</b> ✔️
 
-###### 1. `Element:ariaDescribedByElements`
+<Source language="html" dark code={DefaultExample2}></Source>
+<p>
+  <b>
+    The above relationships are valid because in both cases the target element and its description
+    are part of the same tree.
+  </b>
+</p>
 
-<b>Light DOM → Shadow DOM Example</b>
-<Canvas of={CCR.Example2} sourceState="shown" />
+<p>
+  Below is a working example of an `aria-describedby`/`id` relationship within the shadowDom of a
+  custom button component. You can <b>test it with NVDA</b> to confirm the correct description
+  announcement.
+</p>
+<Canvas of={CCR.ExampleHTML} sourceState="hide" />
+
+
+### II. Referencing From Outside a Shadow DOM Into That Shadow DOM
+
+• <b>Light DOM → Shadow DOM</b> ❌
+
+<Source language="html" dark code={NonWorkingExampleIIa}></Source>
+
+• <b>Slotted Content → Shadow DOM</b> ❌
+
+<Source language="html" dark code={NonWorkingExampleIIb}></Source>
+
+<p>
+  The above examples do not work across shadow DOM boundaries when setting the aria-describedby
+  attribute directly.
+</p>
+<p>
+  <b>
+    Attribute element references can only point to elements in the same DOM or shadow DOM, because
+    IDs are only valid within their own scope.
+  </b>
+</p>
+
+#### Workaround: `Element:ariaDescribedByElements`
+
+<p>
+  `ariaDescribedByElements` is a property of the Element interface that returns an array of elements
+  describing the element. It provides direct references to these elements rather than just their ID
+  strings.
+  <a
+    target="blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaDescribedByElements"
+  >
+    🔗ariaDescribedByElements
+  </a>
+</p>
+
+<div className="lead">Basic usage of `ariaDescribedByElements` </div>
+<Source language="html" dark code={AriaDescribedbyElementsPropertyHTML}></Source>
+<p>
+  Instead of adding the `aria-describedby` attribute on the element, we can set it using the
+  `ariaDescribedByElements` property.
+</p>
+<Source language="js" dark code={AriaDescribedbyElementsProperty}></Source>
+<p>
+  The following examples demonstrate how the `ariaDescribedByElements` property can be used to
+  establish relationships <b>across the shadow DOM</b>.
+</p>
+
+<p>
+  <b>• Light DOM → Shadow DOM Example</b> ✔️
+</p>
+<p>
+  In this case a description element in the light DOM is directly assigned to a target element inside a
+  custom component’s shadow DOM using `ariaDescribedByElements`.
+</p>
+
+<Source language="html" dark code={WorkingExampleIIa}></Source>
+<p>Use the control below to toggle the `ariaDescribedByElements` workaround implementation.</p>
+<Canvas of={CCR.Example2} sourceState="hide" />
 <div className="hide-col-default">
   <Controls of={CCR.Example2} />
 </div>
 
-<b>Slotted Content → Shadow DOM Example</b>
-<Canvas of={CCR.Example3} sourceState="shown" />
+<p>
+  <b>• Slotted Content → Shadow DOM Example</b> ✔️
+</p>
+<p>
+  In this case a description element provided via a light DOM slot is automatically assigned to a target
+  element inside a custom component’s shadow DOM using `ariaDescribedByElements`.
+</p>
+<Source language="html" dark code={WorkingExampleIIb}></Source>
+<p>Use the control below to toggle the `ariaDescribedByElements` workaround implementation.</p>
+<Canvas of={CCR.Example3} sourceState="hide<p>" />
 <div className="hide-col-default">
   <Controls of={CCR.Example3} />
 </div>
 
-### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
+⚠️ In the above scenarios, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.
 
-<ul>
-  <li>Shadow DOM → Light DOM</li>
-  <li>Shadow DOM → Slotted Content</li>
-</ul>
+### III. Referencing From Inside a Shadow DOM Out to the Light DOM
 
-Referencing an element in the light DOM from within the Shadow DOM using standard `aria-describedeby` is not possible.
+<p>
+  <b>• Shadow DOM → Light DOM (or Shadow DOM → Slotted Content)</b>❌
+</p>
 
-##### Possible Workaround
+<p>
+  Referencing an element in the light DOM from within a shadow DOM using the standard
+  `aria-describedby` is not possible. The `ariaDescribedByElements` property neither works in this
+  case because, for it to work, the description element must be in the same DOM or in a parent DOM of the
+  target element.
+</p>
+<Source language="html" dark code={NonWorkingExampleIII}></Source>
 
-An option is to set the `id` directly on the host of the referencing element. In this case all the visible text inside the referencing component will be assigned as the Accessible Description of the target element.
+##### Working Solution: Set the `id`on the description component host
 
-<Canvas of={CCR.Example4} sourceState="shown" />
+<p>
+  The only option here is to <b>set the `id` directly on the host</b> of the description component. In
+  this case <b>all the visible text inside this component will be assigned as the Accessible Description</b>  of the target element.
+</p>
+<Source language="html" dark code={WorkingExampleIII}></Source>
+<Canvas of={CCR.Example4} sourceState="hide" />
 
-### IV. Referencing From One Shadow DOM To Another Shadow DOM ❌
+### IV. Referencing From One Shadow DOM To Another Shadow DOM
 
-<ul>
-  <li>Shadow DOM → Other Shadow DOM</li>
-</ul>
+Shadow DOM → Other Shadow DOM ❌
 
-##### Possible Workaround
+<Source language="html" dark code={NonWorkingExampleIV}></Source>
+<p>
+  This relationship is not valid because both `id` and `aria-describedby` attributes are scoped only within
+  their individual shadowDoms.
+</p>
 
-A workaround for this case combines approaches II and III: using Element.ariaDescribedByElements to set an aria-describedby attribute on the Shadow DOM button, linking it to an ID defined on the host element of the labeling component.
+##### Working Solution
 
-⚠️ In contrast to the respective `aria-labelledby` example, <b>NVDA does not announce</b> the accessible description in this scenario.
+A working solution for this case combines approaches II and III: setting the description component’s `id` directly on the host element (III), and using `Element.ariaDescribedByElements` to assign the description to the target component.
 
+<Source language="html" dark code={WorkingExampleIV}></Source>
 <Canvas of={CCR.Example5} sourceState="shown" />
+
+⚠️ In the above scenario, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.

@@ -54,18 +54,28 @@ export class DemoButton extends HTMLElement {
 
   private render() {
     if (!this.shadowRoot) return;
-    this.shadowRoot.innerHTML = `
-      <slot name="label-slot"></slot>
+
+    if (this.buttonVersion) {
+      this.shadowRoot.innerHTML = `
+      <slot name="aria-slot"></slot>
       <div part="button"
-        class="btn btn-primary"
         role="button"
         tabindex="0"
       > <post-icon name="1022"></post-icon>
       </div>
     `;
+    } else {
+      this.shadowRoot.innerHTML = `
+      <span id="example">My Text</span>
+      <div part="button"
+      role="button" tabindex="0" aria-labelledby="example">
+        <post-icon name="1022"></post-icon>
+      </div>
+   `;
+    }
 
     this.internalButton = this.shadowRoot.querySelector('div[role="button"]') as HTMLElement;
-    this.slotEl = this.shadowRoot.querySelector('slot[name="label-slot"]') as HTMLSlotElement;
+    this.slotEl = this.shadowRoot.querySelector('slot[name="aria-slot"]') as HTMLSlotElement;
     this.setupAria();
   }
 }

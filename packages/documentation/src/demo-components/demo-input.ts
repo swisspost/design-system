@@ -1,4 +1,4 @@
-export class DemoTarget extends HTMLElement {
+export class DemoInput extends HTMLElement {
   static get observedAttributes() {
     return ['workaround', 'arialabelledby-id', 'target-version'];
   }
@@ -57,10 +57,10 @@ export class DemoTarget extends HTMLElement {
     //Version #2
     if (this.targetVersion === '2') {
       this.shadowRoot.innerHTML = `
-        <slot name="label-slot"></slot>
+        <slot name="aria-slot"></slot>
         <input id="internal">
       `;
-      this.slotEl = this.shadowRoot.querySelector('slot[name="label-slot"]') as HTMLSlotElement;
+      this.slotEl = this.shadowRoot.querySelector('slot[name="aria-slot"]') as HTMLSlotElement;
       this.internalEl = this.shadowRoot.querySelector('#internal') as HTMLElement;
     } else if (this.targetVersion === '3') {
       // Version #3
@@ -68,17 +68,23 @@ export class DemoTarget extends HTMLElement {
         <input id="internal">
       `;
       this.internalEl = this.shadowRoot.querySelector('#internal') as HTMLElement;
-    } else {
+    } else if (this.targetVersion === '1') {
       // Version #1
       this.shadowRoot.innerHTML = `
         <input id="internal">
         <slot></slot>
       `;
       this.internalEl = this.shadowRoot.querySelector('#internal') as HTMLElement;
+    } else {
+      // Version default
+      this.shadowRoot.innerHTML = `
+        <label for="example">My Text</label>
+        <input id="example">
+      `;
     }
 
     this.setupAriaLabelledBy();
   }
 }
 
-customElements.define('demo-target', DemoTarget);
+customElements.define('demo-input', DemoInput);

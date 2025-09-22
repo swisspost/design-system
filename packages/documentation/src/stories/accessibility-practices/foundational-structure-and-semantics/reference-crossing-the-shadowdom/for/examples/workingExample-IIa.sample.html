@@ -1,15 +1,15 @@
-<span id="labelId">My Text</span>
+<label for="inputId">My Text</label>
 
-<custom-component labelId="labelId">
+<custom-input labelId="labelId">
   ⏷ #shadow-root (open)
-    <div ref="targetRef" role="button" tabindex="0" aria-labelledby>
+    <input ref="targetRef" id="inputId" aria-labelledby>
       <!--The aria-labelledby attribute is set automatically by the browser -->
         <custom-icon />
     </div>
-</custom-component>
+</custom-input>
 
 <script>
-  const label = document.getElementById('labelId');
+  const label = document.getElementById('for[inputId]');
   // Assign the label element directly to the component's internal target element
   // using ariaLabelledByElements to establish the accessible name
   this.targetRef.ariaLabelledByElements = [label];

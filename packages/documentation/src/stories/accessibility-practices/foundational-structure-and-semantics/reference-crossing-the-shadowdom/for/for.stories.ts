@@ -19,11 +19,7 @@ type Story = StoryObj;
 
 // Case: Standard Light DOM to Light DOM
 export const ExampleHTML: Story = {
-  render: () => html`
-  
-    <label for="id_0">My Text</label>
-    <input id="id_0"></input>
-  `,
+  render: () => html` <demo-input></demo-input> `,
 };
 
 // Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element) workaround setting programmatically the relevant Element property
@@ -42,11 +38,11 @@ export const Example2: Story = {
   },
   render: (args: Args) => html`
     <label for="id_1">My Text</label>
-    <demo-target
+    <demo-input
       target-version="1"
       workaround="${args.workaround}"
       arialabelledby-id="id_1"
-    ></demo-target>
+    ></demo-input>
   `,
 };
 
@@ -66,8 +62,8 @@ export const Example3: Story = {
     workaround: 'none',
   },
   render: (args: Args) => html`
-    <demo-target target-version="2" workaround="${args.workaround}">
-      <label slot="label-slot">My Text</label></demo-target
+    <demo-input target-version="2" workaround="${args.workaround}">
+      <label slot="aria-slot">My Text</label></demo-input
     >
   `,
 };
@@ -97,10 +93,10 @@ export const Example4: Story = {
 export const Example5: Story = {
   render: () => html`
     <demo-label id="id_3"></demo-label>
-    <demo-target
+    <demo-input
       target-version="3"
       arialabelledby-id="id_3"
       workaround="ariaLabelledByElements"
-    ></demo-target>
+    ></demo-input>
   `,
 };

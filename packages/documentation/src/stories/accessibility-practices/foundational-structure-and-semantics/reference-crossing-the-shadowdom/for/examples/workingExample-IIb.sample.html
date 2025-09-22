@@ -1,18 +1,16 @@
 <custom-component>
   ⏷ #shadow-root (open)
-  <slot name="aria-slot"></slot>
-  <div ref="targetRef" role="button" tabindex="0" aria-labelledby>
+  <slot name="label-slot"></slot>
+  <input ref="targetRef" aria-labelledby>
     <!--The aria-labelledby attribute is set automatically by the browser -->
-    <custom-icon />
-  </div>
   <!-- slotted label element -->
-  <span slot="aria-slot">My Text</span>
+  <label slot="label-slot">My Text</label>
 </custom-component>
 
 <script>
   // Assign the slotted element(s) as label for the target using ariaLabelledByElements
   const slotContent = this.shadowRoot
-    .querySelector('slot[name="aria-slot"]')
+    .querySelector('slot[name="label-slot"]')
     .assignedElements({ flatten: true });
   const label = slotContent.find(el => el.textContent.trim().length > 0);
   this.targetRef.ariaLabelledByElements = [label];

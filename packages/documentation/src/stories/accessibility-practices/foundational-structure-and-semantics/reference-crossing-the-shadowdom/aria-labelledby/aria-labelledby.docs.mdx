@@ -19,15 +19,13 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 
 <div className="lead">
   In the Light DOM, the `aria-labelledby` attribute assigns an accessible name to an element by
-  referencing the ID of one or more elements that provide the descriptive text.
+  referencing the ID of one or more elements that provide the labeling text.
 </div>
 <p>
   This is particularly useful when a simple text label isn’t directly linked to the element, or when
   the accessible name needs to be composed from multiple pieces of text.
 </p>
 ### I. Referencing Within the Same DOM Tree
-
-<Canvas of={CCR.ExampleHTML} sourceState="hide" />
 
 • <b>Both elements in Light DOM</b> ✔️
 
@@ -42,6 +40,14 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
     element are part of the same tree.
   </b>
 </p>
+
+<p>
+  Below is a working example of an `aria-labelledby`/`id` relationship within the shadowDom of a
+  custom button component. You can <b>test it with NVDA</b> to confirm the correct label
+  announcement.
+</p>
+
+<Canvas of={CCR.ExampleHTML} sourceState="hide" />
 
 ### II. Referencing From Outside a Shadow DOM Into That Shadow DOM
 
@@ -94,8 +100,8 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
   <b>• Light DOM → Shadow DOM Example</b> ✔️
 </p>
 <p>
-  In this case a label element in the light DOM is directly assigned to a target element inside a custom
-  component’s shadow DOM using `ariaLabelledByElements`.
+  In this case a label element in the light DOM is directly assigned to a target element inside a
+  custom component’s shadow DOM using `ariaLabelledByElements`.
 </p>
 
 <Source language="html" dark code={WorkingExampleIIa}></Source>
@@ -129,9 +135,9 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 
 <p>
   Referencing an element in the light DOM from within a shadow DOM using the standard
-  `aria-labelledby` is not possible. The `ariaLabelledByElements` property neither works
-  in this case because, for it to work, the label element must be in the same DOM or in a parent DOM
-  of the target element.
+  `aria-labelledby` is not possible. The `ariaLabelledByElements` property neither works in this
+  case because, for it to work, the label element must be in the same DOM or in a parent DOM of the
+  target element.
 </p>
 <Source language="html" dark code={NonWorkingExampleIII}></Source>
 
@@ -139,7 +145,11 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 
 <p>
   The only option here is to <b>set the `id` directly on the host</b> of the labeling component. In
-  this case <b>all the visible text inside the referencing component will be assigned as the Accessible Name</b> of the target element.
+  this case{' '}
+  <b>
+    all the visible text inside the referencing component will be assigned as the Accessible Name
+  </b>{' '}
+  of the target element.
 </p>
 <Source language="html" dark code={WorkingExampleIII}></Source>
 <Canvas of={CCR.Example4} sourceState="hide" />
@@ -149,12 +159,16 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 Shadow DOM → Other Shadow DOM ❌
 
 <Source language="html" dark code={NonWorkingExampleIV}></Source>
-<p> This relationship is not valid because both `id` and `aria-labelledby` attributes are scoped only within their individual shadowDoms.</p>
+<p>
+  {' '}
+  This relationship is not valid because both `id` and `aria-labelledby` attributes are scoped only within
+  their individual shadowDoms.
+</p>
 ##### Working Solution
 
 A working solution for this case combines approaches II and III: setting the label component’s `id` directly on the host element (III), and using `Element.ariaLabelledByElements` to assign the label to the target component.
 
 <Source language="html" dark code={WorkingExampleIV}></Source>
-<Canvas of={CCR.Example5} sourceState="shown" />
+<Canvas of={CCR.Example5} sourceState="hide" />
 
 ⚠️ In the above scenario, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.

@@ -1,8 +1,8 @@
 <custom-component>
   ⏷ #shadow-root (open)
-    <slot name="label-slot"> </slot>
-    <div part="button" role="button" tabindex="0" aria-labelledby="labelId">
-      <custom-icon />
-    </div>
-    <span slot="label-slot" id="labelId">My Text</span>
+  <slot name="aria-slot"> </slot>
+  <div role="button" tabindex="0" aria-labelledby="labelId">
+    <custom-icon />
+  </div>
+  <span slot="aria-slot" id="labelId">My Text</span>
 </custom-component>
