@@ -4,6 +4,7 @@ import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
 
 /**
+ * @part button - The element that toggles the accordion item (header button).
  * @part accordion-item - The container element that wraps the entire accordion item.
  * @part body - The container element that holds the accordion item's content.
  * @slot header - Slot for placing custom content within the accordion item's header.
@@ -77,7 +78,11 @@ export class PostAccordionItem {
         <div part="accordion-item" class="accordion-item">
           <post-collapsible-trigger for={`${this.id}--collapse`}>
             <HeadingTag class="accordion-header" id={`${this.id}--header`}>
-              <button type="button" class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}>
+              <button
+                type="button"
+                class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
+                part="button"
+              >
                 <slot name="header" />
               </button>
             </HeadingTag>
