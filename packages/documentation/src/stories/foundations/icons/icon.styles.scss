@@ -28,7 +28,7 @@ $resizer-max-width: 64px;
 }
 
 .my-1022-icon {
-  @include post.post-icon($name: '1022');
+  @include post.post-icon($name: 'letter');
 }
 
 .my-accessibility-icon {

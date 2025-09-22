@@ -19,7 +19,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    name: '1022',
+    name: 'stampapostplus',
     base: '',
     flipH: false,
     flipV: false,
