@@ -66,13 +66,13 @@ ul.list-check {
       top: tokens.get('list-check-padding-icon');
       left: tokens.get('list-check-padding-icon');
       content: '';
-      color: tokens.get('list-check-color-icon-fg');
       @include media.max(sm) {
         margin-block: tokens.get('list-check-icon-container-block');
         padding-inline: tokens.get('list-check-icon-container-inline');
       }
       @include icon-mixin.post-icon(
         'checkmark',
+        $color: tokens.get('list-check-color-icon-fg'),
         $width: tokens.get('list-check-sizing-icon'),
         $height: tokens.get('list-check-sizing-icon')
       );
