@@ -1,5 +1,56 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.48
+
+### Major Changes
+
+- Renamed the loader classes from `loader-*` to `spinner-*`. (by [@bucknatt](https://github.com/bucknatt) with [#6194](https://github.com/swisspost/design-system/pull/6194))
+
+- Changed the `fonts.scss` import location from `src/elements/body.scss` to `src/components/_index.scss`.  
+  This way, we can keep it in the bundled output files, but also allow projects who want to import only specific SASS/CSS files, to self-host their fonts and implement their own `@font-face` definitions.
+
+  Since the usage of the `body.{scss|css}` file is mandatory, this was not possible before. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6188](https://github.com/swisspost/design-system/pull/6188))
+
+### Patch Changes
+
+- Fixed file input alignment and prevented validation icon from overlapping the selector button on valid/invalid states. (by [@bucknatt](https://github.com/bucknatt) with [#6198](https://github.com/swisspost/design-system/pull/6198))
+
+## 10.0.0-next.47
+
+### Major Changes
+
+- Removed the Standard HTML Banner component (`.banner`, `.banner-*`) in favor of the `post-banner` web component.  
+  BEFORE:
+
+  ```html
+  <div role="alert" class="banner banner-success">
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </div>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-banner type="success">
+    <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
+  </post-banner>
+  ``` (by [@alizedebray](https://github.com/alizedebray) with
+  [#6078](https://github.com/swisspost/design-system/pull/6078))
+  ````
+
+- Removed classes for the card CSS component, following the removal of bootstrap:
+  - `.card-header`
+  - `.card-footer`
+  - `.card-img`
+  - `.card-img-top`
+  - `.card-img-bottom` (by [@leagrdv](https://github.com/leagrdv) with [#5966](https://github.com/swisspost/design-system/pull/5966))
+
+### Minor Changes
+
+- Internalized bootstrap visibility utilities. (by [@hugomslv](https://github.com/hugomslv) with [#6079](https://github.com/swisspost/design-system/pull/6079))
+
+- Added the `.z-header`, `.z-spinner`, `.z-toast` and `.z-fixed` z-index utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6012](https://github.com/swisspost/design-system/pull/6012))
+
 ## 10.0.0-next.46
 
 ### Major Changes

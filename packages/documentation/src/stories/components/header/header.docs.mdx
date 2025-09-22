@@ -1,14 +1,16 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as HeaderStories from './header.stories';
 import './header.styles.scss';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import HeaderSelectedClass from './header-selected-class.sample.html?raw';
 
 <Meta of={HeaderStories} />
 
 <div className="docs-title">
   # Header
 
-  <link-design of={JSON.stringify(HeaderStories)}></link-design>
+<link-design of={JSON.stringify(HeaderStories)}></link-design>
+
 </div>
 
 <div className="lead">
@@ -26,6 +28,17 @@ It is divided into two sections:
 <div className="hide-col-default">
   <Controls of={HeaderStories.Default} />
 </div>
+
+## Styling Active Navigation Items with `.selected`
+
+<p>
+<b>The `.selected` class highlights the active navigation items.</b>
+It should be applied by application logic to the `<a>` or `<button>` element inside the active `<post-list-item>` of the `<post-mainnavigation>`. Once an item has the `.selected` class, its hierarchical parent items will automatically inherit the same styling.
+</p>
+
+### Example
+
+<Source code={HeaderSelectedClass} language="html" />
 
 ## CSS Properties
 
