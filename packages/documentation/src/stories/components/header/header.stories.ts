@@ -15,13 +15,19 @@ const meta: MetaComponent = {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=558-7012&t=ywmfJhyvd2euoiGI-1',
     },
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 300
+      }
+    }
   },
   args: {
-    title: '[Title]',
+    title: '',
     mainNavigation: true,
     metaNavigation: true,
-    customControls: true,
-    targetGroup: false,
+    targetGroup: true,
+    customControls: false,
   },
   argTypes: {
     title: {
@@ -81,27 +87,20 @@ const meta: MetaComponent = {
         <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>`,
   ],
-};
-
-export default meta;
-
-type Story = StoryObj;
-
-const Template = {
   render: (args: Args) => {
     return html`<post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
       ${args.metaNavigation
-        ? html`
+      ? html`
             <!-- Meta navigation -->
             <ul class="list-inline" slot="meta-navigation">
               <li><a href="">Jobs</a></li>
               <li><a href="">About us</a></li>
             </ul>
           `
-        : ''}
+      : ''}
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
@@ -125,13 +124,13 @@ const Template = {
       </post-language-switch>
 
       ${args.title !== ''
-        ? html`
+      ? html`
             <!-- Application title (optional) -->
             <h1 slot="title">${args.title}</h1>
           `
-        : ''}
+      : ''}
       ${args.targetGroup
-        ? html`
+      ? html`
             <ul slot="target-group" class="target-group">
               <li>
                 <a href="#" class="active">Private customers</a>
@@ -144,9 +143,9 @@ const Template = {
               </li>
             </ul>
           `
-        : ''}
+      : ''}
       ${args.customControls
-        ? html`
+      ? html`
             <!-- Custom content (optional) -->
             <ul class="list-inline">
               <li>
@@ -163,10 +162,10 @@ const Template = {
               </li>
             </ul>
           `
-        : ''}
+      : ''}
 
       ${args.mainNavigation
-        ? html`
+      ? html`
             <!-- Main navigation -->
             <post-mainnavigation caption="Main navigation">
               <post-list title-hidden="">
@@ -253,19 +252,51 @@ const Template = {
               </post-list>
             </post-mainnavigation>
           `
-        : ''}
+      : ''}
     </post-header>`;
   },
 };
 
+export default meta;
+
+type Story = StoryObj;
+
 export const Default: Story = {
-  ...Template,
+  parameters: {
+    docs: {
+      story: {
+        inline: true
+      }
+    }
+  },
 };
+
+export const Portal: Story = {};
+
+export const Microsite: Story = {
+  args: {
+    title: '[Microsite Title]',
+    mainNavigation: true,
+    metaNavigation: false,
+    customControls: true,
+    targetGroup: false,
+  }
+};
+
+export const OnePager: Story = {
+  args: {
+    title: '[One Pager Title]',
+    mainNavigation: false,
+    metaNavigation: false,
+    customControls: false,
+    targetGroup: false,
+  }
+};
+
 
 // Used in target group documentation
 export const WithTargetGroup: Story = {
   args: {
     targetGroup: true,
-  },
-  ...Template,
+  }
 };

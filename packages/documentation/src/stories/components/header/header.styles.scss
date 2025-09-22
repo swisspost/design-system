@@ -1,8 +1,13 @@
 #storybook-docs {
   .header-story-wrapper {
     .virtual-body {
-      height: 500px;
+      height: 300px;
       overflow-y: auto;
     }
+  }
+
+  .docs-story + div {
+    height: 300px;
+    resize: vertical;
   }
 }
