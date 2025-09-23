@@ -87,21 +87,19 @@ export const PercentageSizing: StoryObj = {
 export const PercentageVpSizing: StoryObj = {
   render() {
     return schemes(
-      () => {
-        return html`
+      () => html`
+        <div class="sizing-example">
           <div class="grid">
-            ${samples.map(sample => {
-              return html`
-                <div class="grid-item">
-                  <div class="sizing-example snapshot">
-                    <div class="${generateClassNames(sample, true)}"></div>
-                  </div>
+            ${samples.map(
+              sample => html`
+                <div class="grid-item snapshot">
+                  <div class="${generateClassNames(sample, true)}"></div>
                 </div>
-              `;
-            })}
+              `,
+            )}
           </div>
-        `;
-      },
+        </div>
+      `,
       { filter: scheme => scheme === COLOR_SCHEMES.light },
     );
   },
