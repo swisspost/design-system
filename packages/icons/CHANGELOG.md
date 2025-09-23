@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.48
+
+### Major Changes
+
+- Migrated icon output from SCSS to CSS files for more flexibility. Each icon is exposed as a CSS custom property and included in the published package for direct import into projects. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6202](https://github.com/swisspost/design-system/pull/6202))
+
 ## 10.0.0-next.47
 
 ## 10.0.0-next.46

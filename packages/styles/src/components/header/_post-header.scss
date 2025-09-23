@@ -52,10 +52,6 @@ tokens.$default-map: elements.$post-link;
       --post-local-header-reduced-height: 3.5rem;
       --post-main-navigation-height: var(--post-local-header-reduced-height);
     }
-
-    &:not(:has(post-header [slot='title'])) {
-      --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0);
-    }
   }
 
   // one pager
@@ -67,6 +63,11 @@ tokens.$default-map: elements.$post-link;
       --post-global-header-expanded-height: 4.5rem;
       --post-local-header-expanded-min-height: 4rem;
     }
+  }
+
+  // no title
+  &:not(:has(post-header [slot='title'])) {
+    --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0);
   }
 }
 
