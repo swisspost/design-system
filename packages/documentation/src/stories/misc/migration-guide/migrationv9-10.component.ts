@@ -426,11 +426,6 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed font-size class <code>.small</code>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
                     The following classes have been removed as the new Swiss Post font does not
                     provide a light font weight (300)
                   </p>
