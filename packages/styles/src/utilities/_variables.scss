@@ -194,42 +194,42 @@ $utilities: (
     responsive: true,
     property: width,
     class: vw,
-    values: map.merge(utilities_formatted.$gap, $post-viewport-width-sizes),
+    values: $post-viewport-width-sizes,
   ),
 
   'viewport-height': (
     responsive: true,
     property: height,
     class: vh,
-    values: map.merge(utilities_formatted.$gap, $post-viewport-height-sizes),
+    values: $post-viewport-height-sizes,
   ),
 
   'min-viewport-width': (
     responsive: true,
     property: min-width,
     class: min-vw,
-    values: map.merge(utilities_formatted.$gap, $post-viewport-width-sizes),
+    values: $post-viewport-width-sizes,
   ),
 
   'min-viewport-height': (
     responsive: true,
     property: min-height,
     class: min-vh,
-    values: map.merge(utilities_formatted.$gap, $post-viewport-height-sizes),
+    values: $post-viewport-height-sizes,
   ),
 
   'max-viewport-width': (
     responsive: true,
     property: max-width,
     class: max-vw,
-    values: map.merge(utilities_formatted.$gap, $post-viewport-width-sizes),
+    values: $post-viewport-width-sizes,
   ),
 
   'max-viewport-height': (
     responsive: true,
     property: max-height,
     class: max-vh,
-    values: map.merge(utilities_formatted.$gap, $post-viewport-height-sizes),
+    values: $post-viewport-height-sizes,
   ),
   'align': (
     property: vertical-align,

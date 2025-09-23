@@ -26,21 +26,6 @@ const samples = [
   { w: 'full', h: 'half', maxW: 'full', minW: 'third', maxH: 'auto', minH: 'auto' },
 ];
 
-const vpSamples = [
-  { w: '33', h: '100', maxvW: '33', minvW: '100', maxvH: '50', minvH: '66' },
-  { w: '50', h: '50', maxvW: '25', minvW: '50', maxvH: '100', minvH: '25' },
-  { w: '50', h: '25', maxvW: '50', minvW: '25', maxvH: '66', minvH: '33' },
-  {
-    w: '75',
-    h: '25',
-    maxvW: '75',
-    minvW: '25',
-    maxvH: '50',
-    minvH: '25',
-  },
-  { w: '100', h: '50', maxvW: '100', minvW: '33', maxvH: 'auto', minvH: 'auto' },
-];
-
 const pxSamples = [
   { w: '12', h: '16', maxW: '32', minW: '12', maxH: '48', minH: '16' },
   { w: '24', h: '32', maxW: '32', minW: '12', maxH: '40', minH: '24' },
@@ -105,7 +90,7 @@ export const PercentageVpSizing: StoryObj = {
       () => {
         return html`
           <div class="grid">
-            ${vpSamples.map(sample => {
+            ${samples.map(sample => {
               return html`
                 <div class="grid-item">
                   <div class="sizing-example snapshot">
