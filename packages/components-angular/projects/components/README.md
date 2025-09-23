@@ -16,17 +16,17 @@ Install the package in your Angular project:
 npm install @swisspost/design-system-components-angular
 ```
 
-In your `main.ts` file or `app.module.ts`, add the provider:
+In your `app.config.ts` file, add the provider:
 
 ```typescript
 // Other imports ....
 import { providePostComponents } from '@swisspost/design-system-components-angular';
 
-@NgModule({
-  providers: [providePostComponents()],
-})
-export class AppModule {}
-```
+export const appConfig: ApplicationConfig = {
+  providers: [
+    providePostComponents(),
+  ]
+};
 
 Import the components you need directly into your standalone component:
 
