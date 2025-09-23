@@ -31,23 +31,11 @@ export class AppModule {}
 Import the components you need directly into your standalone component:
 
 ```typescript
-// Example: Importing a single component
-import { PostIcon } from '@swisspost/design-system-components-angular';
-
-@Component({
-  standalone: true,
-  selector: 'my-component',
-  template: `<post-icon></post-icon>`,
-  imports: [PostIcon]
-})
-export class MyComponent {}
-
-// Example: Importing multiple components
 import { PostIcon, PostButton } from '@swisspost/design-system-components-angular';
 
 @Component({
   standalone: true,
-  selector: 'my-other-component',
+  selector: 'my-component',
   template: `
     <post-button>
       <post-icon></post-icon>
@@ -55,7 +43,7 @@ import { PostIcon, PostButton } from '@swisspost/design-system-components-angula
   `,
   imports: [PostIcon, PostButton]
 })
-export class MyOtherComponent {}
+export class MyComponent {}
 ```
 
 ```
