@@ -105,7 +105,6 @@ export const config: Config = {
      */
     angularOutputTarget({
       customElementsDir: 'components',
-      outputType: 'component',
       componentCorePackage: '@swisspost/design-system-components',
       outputType: 'standalone',
       directivesProxyFile:
