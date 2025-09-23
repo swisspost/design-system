@@ -7,7 +7,7 @@
 tokens.$default-map: utilities.$post-spacing;
 
 $tile-size: var(--post-docs-tile-size, 120px);
-$tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
+$tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size));
 
 :host {
   a {
