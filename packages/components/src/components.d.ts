@@ -55,6 +55,10 @@ export namespace Components {
     }
     interface PostAvatar {
         /**
+          * Provides a custom description for the avatar, used for accessibility purposes.
+         */
+        "description"?: string;
+        /**
           * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
@@ -532,10 +536,6 @@ export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCardControlElement;
 }
-export interface PostClosebuttonCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostClosebuttonElement;
-}
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
@@ -639,18 +639,7 @@ declare global {
         prototype: HTMLPostCardControlElement;
         new (): HTMLPostCardControlElement;
     };
-    interface HTMLPostClosebuttonElementEventMap {
-        "postClick": void;
-    }
     interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostClosebuttonElementEventMap>(type: K, listener: (this: HTMLPostClosebuttonElement, ev: PostClosebuttonCustomEvent<HTMLPostClosebuttonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostClosebuttonElementEventMap>(type: K, listener: (this: HTMLPostClosebuttonElement, ev: PostClosebuttonCustomEvent<HTMLPostClosebuttonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostClosebuttonElement: {
         prototype: HTMLPostClosebuttonElement;
@@ -958,6 +947,10 @@ declare namespace LocalJSX {
     }
     interface PostAvatar {
         /**
+          * Provides a custom description for the avatar, used for accessibility purposes.
+         */
+        "description"?: string;
+        /**
           * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
@@ -1060,10 +1053,6 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface PostClosebutton {
-        /**
-          * An event emitted when the close button is clicked. It has no payload.
-         */
-        "onPostClick"?: (event: PostClosebuttonCustomEvent<void>) => void;
     }
     interface PostCollapsible {
         /**
