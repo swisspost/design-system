@@ -47,11 +47,9 @@ post-mainnavigation {
   post-megadropdown-trigger button {
     &::after {
       content: '';
-      @include icons.post-icon(
-        $name: 'chevrondown',
-        $width: 24px,
-        $height: 24px
-      );
+      @include icons.icon(2113);
+      height: 24px;
+      width: 24px;
     }
 
     @include utilities.high-contrast-mode() {
