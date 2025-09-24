@@ -15,8 +15,10 @@ export default function PackageTag({ meta }: PackageTagProps) {
     tagColor = 'yellow';
   }
 
+  const tagClass = `tag tag-sm mb-24${tagColor ? ` tag-${tagColor}` : ''}`;
+
   return (
-    <div className={`tag tag-sm mb-24 tag-${tagColor}`}>
+    <div className={tagClass}>
       <div className="tag-text">{packageName}</div>
     </div>
   );
