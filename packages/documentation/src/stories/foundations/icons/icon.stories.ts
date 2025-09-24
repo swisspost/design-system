@@ -146,7 +146,7 @@ export const Size: Story = {
     ]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-column'),
+      generateDecorators(story, context, 'd-flex flex-column gap-4'),
   ],
 };
 
