@@ -22,18 +22,31 @@ export class DemoList extends HTMLElement {
 
   private render() {
     if (!this.shadowRoot) return;
-    if (this.listVersion == 1) {
+    if (this.listVersion == 0) {
       this.shadowRoot.innerHTML = `
-        <div>
-          <slot></slot>
+        <div role="list" tabindex="0">
         </div>
+    `;
+    } else if (this.listVersion == 1) {
+      this.shadowRoot.innerHTML = `
+          <slot></slot>
     `;
     } else if (this.listVersion == 2) {
       this.shadowRoot.innerHTML = `
         <div role="list" tabindex="0">
-          <slot></slot>
+          <div role="listitem">item 1</div>
+          <div role="listitem">item 2</div>
+          <div role="listitem">item 3</div>
         </div>
     `;
+    } else if (this.listVersion == 3) {
+      this.shadowRoot.innerHTML = `
+        <div role="list" tabindex="0">
+            <slot></slot>
+        </div>
+    `;
+    } else if (this.listVersion == 4) {
+      this.shadowRoot.innerHTML = `<demo-list-item-group list-group-version="3"></demo-list-item-group>`;
     }
   }
 }

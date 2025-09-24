@@ -30,25 +30,21 @@ export const ExampleHTML: Story = {
 
 // Case: Light Dom to child components with Slotted content
 export const Example1a: Story = {
-  render: () => html`
-    <div role="list" tabindex="0">
-      <demo-list-item-group list-group-version="1">
-        <div slot="demo-list-item" role="listitem">item 1</div>
-        <div slot="demo-list-item" role="listitem">item 2</div>
-        <div slot="demo-list-item" role="listitem">item 3</div>
-      </demo-list-item-group>
-    </div>
-  `,
+  render: () => html` <demo-list list-version="2">
+    <div role="listitem">item 1</div>
+    <div role="listitem">item 2</div>
+    <div role="listitem">item 3</div>
+  </demo-list>`,
 };
 
 // Case: Parent in the Light - children with Slotted content same component
 export const Example1b: Story = {
   render: () => html`
-    <demo-list-item-group list-group-version="1" role="list" tabindex="0">
-      <div slot="demo-list-item" role="listitem">item 1</div>
-      <div slot="demo-list-item" role="listitem">item 2</div>
-      <div slot="demo-list-item" role="listitem">item 3</div>
-    </demo-list-item-group>
+    <demo-list role="list" tabindex="0" list-version="1">
+      <div role="listitem">item 1</div>
+      <div role="listitem">item 2</div>
+      <div role="listitem">item 3</div>
+    </demo-list>
   `,
 };
 
@@ -69,9 +65,19 @@ export const Example2b: Story = {
 };
 
 // Case: Parent in the Shadow - Children in the Light
-export const Example3: Story = {
+export const Example3a: Story = {
   render: () => html`
-    <demo-list role="list" tabindex="0" list-version="1">
+    <demo-list list-version="0"></demo-list>
+    <div role="listitem">item 1</div>
+    <div role="listitem">item 2</div>
+    <div role="listitem">item 3</div>
+  `,
+};
+
+// Case: Parent in the Shadow - Children Slotted
+export const Example3b: Story = {
+  render: () => html`
+    <demo-list list-version="3">
       <div role="listitem">item 1</div>
       <div role="listitem">item 2</div>
       <div role="listitem">item 3</div>
@@ -79,11 +85,27 @@ export const Example3: Story = {
   `,
 };
 
-// Case: Referencing from Shadow DOM (Host Attribute) to Slotted Content (Element)
-export const Example4: Story = {
-  render: () => html`<demo-list list-version="2">
+// Case: Referencing from Shadow DOM to embedded Shadow DOM
+export const Example4a: Story = {
+  render: () => html` <demo-list list-version="4" role="list" tabindex="0"> </demo-list>`,
+};
+
+// Case: Referencing from Shadow DOM with slotted children in different embedded shadow DOMs
+export const Example4b: Story = {
+  render: () => html`<demo-list list-version="3">
     <demo-list-item>item 1</demo-list-item>
     <demo-list-item>item 2</demo-list-item>
     <demo-list-item>item 3</demo-list-item>
+  </demo-list>`,
+};
+
+// Case: Parent in the Shadow > custom-component > childrent components
+export const Example4c: Story = {
+  render: () => html`<demo-list list-version="3">
+    <demo-list-item-group list-group-version="4" role="presentation">
+      <demo-list-item>item 1</demo-list-item>
+      <demo-list-item>item 2</demo-list-item>
+      <demo-list-item>item 3</demo-list-item>
+    </demo-list-item-group>
   </demo-list>`,
 };

@@ -24,13 +24,22 @@ export class DemoListItemGroup extends HTMLElement {
     if (!this.shadowRoot) return;
     if (this.listGroupVersion == 1) {
       this.shadowRoot.innerHTML = `
-        <slot name="demo-list-item"></slot>
+        <slot name="list-item"></slot>
       `;
     } else if (this.listGroupVersion == 2) {
       this.shadowRoot.innerHTML = `<slot name="list-parent"></slot>
         <div role="listitem">item 1</div>
         <div role="listitem">item 2</div>
         <div role="listitem">item 3</div>`;
+    } else if (this.listGroupVersion == 3) {
+      this.shadowRoot.innerHTML = `
+        <div role="listitem">item 1</div>
+        <div role="listitem">item 2</div>
+        <div role="listitem">item 3</div>`;
+    } else if (this.listGroupVersion == 4) {
+      this.shadowRoot.innerHTML = `
+        <slot></slot>
+      `;
     }
   }
 }

@@ -126,38 +126,45 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 
 ⚠️ In the above scenarios, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.
 
-### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
+### III. Referencing From Inside a Shadow DOM Out to the Light DOM
 
-<ul>
-  <li>Shadow DOM → Light DOM</li>
-  <li>Shadow DOM → Slotted Content</li>
-</ul>
 <p>
-  A `for` attribute on an element inside a Shadow DOM{' '}
-  <b>cannot be used to reference the id of an element outside that Shadow DOM</b> (in the Light DOM
-  or an ancestor Shadow DOM). The way the HTML for attribute resolves an id is strictly limited to
-  the element's shadow-including tree.
+  <b>• Shadow DOM → Light DOM (or Shadow DOM → Slotted Content)</b>❌
 </p>
 
-##### Possible Workaround
+<p>
+ A `for` attribute on an element inside a Shadow DOM <b>cannot reference the id of an element outside that Shadow DOM</b>. The `ariaLabelledByElements` property neither works in this case because, for it to work, the label element must be in the same DOM or in a parent DOM of the target element.
+</p>
 
-A possible workaround is to set directly an `id` on the host of the referencing element and an `aria-labelledby`on the target element.
+<Source language="html" dark code={NonWorkingExampleIII}></Source>
 
-<Canvas of={CCR.Example4} sourceState="shown" />
+##### Working Solution: Set the `id`on the label component host
 
-### IV.Referencing From a Shadow DOM Out to another Shadow DOM ❌
+<p>
+  The only option here is to <b>set the `id` directly on the host</b> of the labeling component. In
+  this case{' '}
+  <b>
+    all the visible text inside the referencing component will be assigned as the Accessible Name
+  </b>{' '}
+  of the target element.
+</p>
+<Source language="html" dark code={WorkingExampleIII}></Source>
+<Canvas of={CCR.Example4} sourceState="hide" />
 
-<ul>
-  <li>Shadow DOM → Other Shadow DOM</li>
-</ul>
+### IV. Referencing From One Shadow DOM To Another Shadow DOM
 
-##### Possible Workaround
+Shadow DOM → Other Shadow DOM ❌
 
-A workaround for this case combines approaches II and III: using `Element.ariaLabelledByElements` to set an `aria-labelledby` attribute on the Shadow DOM `input`, linking it to an ID defined on the host element of the `label` component.
+<Source language="html" dark code={NonWorkingExampleIV}></Source>
+<p>
+  This relationship is not valid because both `for` and `id` attributes are scoped only within
+  their individual shadowDoms.
+</p>
+##### Working Solution
 
-<Canvas of={CCR.Example5} sourceState="shown" />
-<div className="hide-col-default">
-  <Controls of={CCR.Example5} />
-</div>
+A working solution for this case combines approaches II and III: setting the label component’s `id` directly on the host element (III), and using `Element.ariaLabelledByElements` to assign the label to the target component (II).
 
-⚠️ In the above scenario, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but fails on Siteimprove and Accessibility Insights tools.
+<Source language="html" dark code={WorkingExampleIV}></Source>
+<Canvas of={CCR.Example5} sourceState="hide" />
+
+⚠️ In the above scenario, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.

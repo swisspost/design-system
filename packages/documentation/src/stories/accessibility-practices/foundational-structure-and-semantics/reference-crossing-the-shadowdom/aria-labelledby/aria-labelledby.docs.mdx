@@ -19,7 +19,7 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 
 <div className="lead">
   In the Light DOM, the `aria-labelledby` attribute assigns an accessible name to an element by
-  referencing the ID of one or more elements that provide the labeling text.
+  referencing the ID of one or more elements that provide the descriptive text.
 </div>
 <p>
   This is particularly useful when a simple text label isn’t directly linked to the element, or when
@@ -160,7 +160,6 @@ Shadow DOM → Other Shadow DOM ❌
 
 <Source language="html" dark code={NonWorkingExampleIV}></Source>
 <p>
-  {' '}
   This relationship is not valid because both `id` and `aria-labelledby` attributes are scoped only within
   their individual shadowDoms.
 </p>
