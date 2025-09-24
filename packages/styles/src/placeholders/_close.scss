@@ -17,8 +17,11 @@
   }
 
   &::before {
+    @include icons.icon(2043);
     content: '';
-    @include icons.post-icon('closex', $width: close.$close-size, $height: close.$close-size);
+    display: block;
+    height: close.$close-size;
+    width: close.$close-size;
   }
 
   @include utilities.not-disabled-focus-hover() {

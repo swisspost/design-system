@@ -172,10 +172,15 @@ tokens.$default-map: utilities.$post-spacing;
 
 // check icon
 .stepper-link::after {
+  @include icons-mx.icon(2105);
+  display: block;
   position: absolute;
   top: calc((stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size) / 2);
   z-index: 1;
+  height: stepper.$stepper-indicator-check-icon-size;
+  width: stepper.$stepper-indicator-check-icon-size;
   transition: stepper.$stepper-indicator-transition;
+  color: stepper.$stepper-indicator-color;
 
   .stepper-item:first-child > & {
     left: calc(
@@ -195,12 +200,6 @@ tokens.$default-map: utilities.$post-spacing;
   .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
     content: '';
   }
-  @include icons-mx.post-icon(
-    'checkmark',
-    stepper.$stepper-indicator-color,
-    stepper.$stepper-indicator-check-icon-size,
-    stepper.$stepper-indicator-check-icon-size
-  );
 }
 
 // hover/focus state
