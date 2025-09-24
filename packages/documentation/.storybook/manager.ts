@@ -24,33 +24,15 @@ const devModeFromUrl = params.get('devModeEnabled');
 const storedDevMode = localStorage.getItem('devModeEnabled');
 
 // Default fallback: always 'production'
-let initialEnv = 'production';
+let initialEnv = process.env.NODE_ENV || 'production';
 
 // Override initialEnv by priority (url param is more important than the stored state)
 if (devModeFromUrl !== null) {
-  // Set devMode in localStorage based on URL parameter
-  localStorage.setItem('devModeEnabled', devModeFromUrl);
   initialEnv = JSON.parse(devModeFromUrl) ? 'development' : 'production';
-} else {
-  // If no URL param, check if there's a stored devMode
-  if (storedDevMode !== null) {
-    // If the stored devModeEnabled is 'true', reset to 'production'
-    localStorage.removeItem('devModeEnabled');
-  }
-  // Default to 'production' if no URL param and no stored value
-  initialEnv = 'production';
+} else if (storedDevMode !== null) {
+  initialEnv = JSON.parse(storedDevMode) ? 'development' : 'production';
 }
-
-// TODO: Delete this code-block as it is REDUNDANT with the above logic
-// // In case of no URL parameter, reset localStorage value (fallback)
-// // -->Always intial load page (without URL parameter) should begin in production mode
-// // Or remove this code-block, and 1) delete devModeEnabled from localStorage manually 2) force F5
-// if (devModeFromUrl === null) {
-//   // We clear only localStorage if it's set to 'development' (to reset it when switching back to production)
-//   if (storedDevMode === 'true') {
-//     localStorage.removeItem('devModeEnabled');
-//   }
-// }
+localStorage.setItem('devModeEnabled', initialEnv);
 
 document.documentElement.setAttribute('data-env', initialEnv);
 
