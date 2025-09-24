@@ -10,9 +10,7 @@
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
 
-tokens.$default-map: utilities.$post-color
-
-;
+tokens.$default-map: utilities.$post-color;
 
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
@@ -245,22 +243,13 @@ $toolbar-icons: (
     font-size: 14px;
   }
 
-  .docblock-argstable-body tr td span {
-    font-size: 15px;
-  }
-
-  .docblock-argstable-body tr td textarea {
-    font-size: 14px;
-  }
-
-  .docblock-argstable-body tr td select {
-    font-size: 14px;
-  }
-
+  .docblock-argstable-body tr td textarea,
+  .docblock-argstable-body tr td select,
   .docblock-argstable-body tr td button {
     font-size: 14px;
   }
 
+  .docblock-argstable-body tr td span,
   .docblock-argstable-body tr td p {
     font-size: 15px;
   }
@@ -394,10 +383,10 @@ $toolbar-icons: (
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(
-      rgb(230, 230, 230),
-      rgb(230, 230, 230) 1rem,
-      transparent 1rem,
-      transparent 1.6rem
+    rgb(230, 230, 230),
+    rgb(230, 230, 230) 1rem,
+    transparent 1rem,
+    transparent 1.6rem
   );
 
   &::after {
