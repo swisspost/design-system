@@ -15,6 +15,3 @@ tokens.$default-map: components.$post-accordion;
   margin-block-start: calc(tokens.get('accordion-group-border-top-width') * -1);
 }
 
-::slotted(post-accordion-item:where(:only-of-type, :not(:first-of-type))) {
-  --post-accordion-button-border-top-width: 0;
-}
