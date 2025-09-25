@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'sass:meta';
+@use 'sass:list';
 
 @use './../variables/type';
 @use './../variables/color';
@@ -16,14 +17,18 @@
   forced-color-adjust: preserve-parent-color;
 }
 
-@mixin post-icon(
-  $base:
-    'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
-  $name,
-  $color: inherit,
-  $width: 1em,
-  $height: 1em
-) {
+$loaded-icons: () !default;
+
+@mixin load-icon-css($name, $path: '../icons/temp') {
+  @if list.index($loaded-icons, $name) == null {
+    $loaded-icons: list.append($loaded-icons, $name) !global;
+    @at-root {
+      @include meta.load-css('#{$path}/#{$name}');
+    }
+  }
+}
+
+@mixin post-icon($name, $color: inherit, $width: 1em, $height: 1em) {
   display: inline-block;
   width: $width;
   height: $height;
@@ -31,8 +36,8 @@
   background-color: currentColor;
   color: $color;
   /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: url('#{$base}/#{$name}.svg');
-  mask-image: url('#{$base}/#{$name}.svg');
+  -webkit-mask-image: var(--post-icon-#{$name});
+  mask-image: var(--post-icon-#{$name});
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-position: center center;
   mask-position: center center;
@@ -42,6 +47,7 @@
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: 100%;
   mask-size: 100%;
+  @include load-icon-css($name);
 }
 
 @mixin remove-icon() {
