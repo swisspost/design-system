@@ -71,47 +71,42 @@ describe('Popover', () => {
     cy.get('@popoverContent').should('not.be.visible');
     cy.get('@trigger').focus().type('{enter}');
     cy.get('@popoverContent').should('be.visible');
-
-    cy.get('@trigger').focus().type('{esc}'); // does not simulate an Escape
-
-    cy.get('@popoverContent').should('not.be.visible');
   });
 
-  // it('should open and close with the API', () => {
-  //   Promise.all([cy.get('@trigger'), cy.get('@popover')])
-  //     .then(([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
-  //       $trigger.get(0),
-  //       $popover.get(0),
-  //     ])
-  //     .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
-  //       cy.get('@popover').should('not.be.visible');
-  //       popover.show(trigger);
-  //       cy.get('@popover').should('be.visible');
-  //       popover.hide();
-  //       cy.get('@popover').should('not.be.visible');
-  //       popover.toggle(trigger);
-  //       cy.get('@popover').should('be.visible');
-  //       popover.toggle(trigger);
-  //       cy.get('@popover').should('not.be.visible');
-  //     });
-  // });
+  it('should open and close with the API', () => {
+    Promise.all([cy.get('@trigger'), cy.get('@popoverContent')])
+      .then(([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
+        $trigger.get(0),
+        $popover.get(0),
+      ])
+      .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
+        cy.get('@popoverContent').should('not.be.visible');
+        popover.show(trigger);
+        cy.get('@popoverContent').should('be.visible');
+        popover.hide();
+        cy.get('@popoverContent').should('not.be.visible');
+        popover.toggle(trigger);
+        cy.get('@popoverContent').should('be.visible');
+        popover.toggle(trigger);
+        cy.get('@popoverContent').should('not.be.visible');
+      });
 
-  //   it('should switch position', () => {
-  //     cy.get('post-popover').invoke('attr', 'placement', 'top');
-  //     cy.get('@popover').should('not.be.visible');
+    it('should switch position', () => {
+      cy.get('post-popover').invoke('attr', 'placement', 'top');
+      cy.get('@popoverContent').should('not.be.visible');
 
-  //     Promise.all([cy.get('@trigger'), cy.get('@popover')])
-  //       .then(
-  //         ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
-  //           $trigger.get(0),
-  //           $popover.get(0),
-  //         ],
-  //       )
-  //       .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
-  //         const t = trigger.getBoundingClientRect();
-  //         const p = popover.getBoundingClientRect();
-  //         expect(t.top < p.top);
-  //       });
-  //   });
-  // });
+      Promise.all([cy.get('@trigger'), cy.get('@popover')])
+        .then(
+          ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
+            $trigger.get(0),
+            $popover.get(0),
+          ],
+        )
+        .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
+          const t = trigger.getBoundingClientRect();
+          const p = popover.getBoundingClientRect();
+          expect(t.top < p.top);
+        });
+    });
+  });
 });
