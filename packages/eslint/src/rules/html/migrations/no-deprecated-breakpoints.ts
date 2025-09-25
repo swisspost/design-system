@@ -1,13 +1,13 @@
 import { createClassUpdateRule } from '../../../utils/create-class-update-rule';
 
-interface classesConfig {
+interface ClassesConfig {
   [key: string]: {
     prefix: Array<string | number>;
     suffix: Array<string | number>;
   };
 }
 
-const classesConfig: classesConfig = {
+const classesConfig: ClassesConfig = {
   // Grid
   gridCol: {
     prefix: ['col'],
