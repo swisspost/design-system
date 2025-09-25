@@ -19,6 +19,8 @@ import './styles/preview.scss';
 import { SyntaxHighlighter } from 'storybook/internal/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 
+import '../src/demo-components';
+
 SyntaxHighlighter.registerLanguage('scss', scss);
 
 export const SourceDarkScheme = true;
