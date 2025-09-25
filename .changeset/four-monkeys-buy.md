@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Added `<p>`-tag around dialog content in stories, required for accessibility.
+Improved `dialog` component accessibility by adding proper paragraph markup around text content.
