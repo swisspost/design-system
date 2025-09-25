@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as megadropdownStories from './megadropdown.stories';
+import meta, * as megadropdownStories from './megadropdown.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={megadropdownStories} />
 
@@ -8,6 +9,8 @@ import * as megadropdownStories from './megadropdown.stories';
 
   <link-design of={JSON.stringify(megadropdownStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <p className="lead">
   The megadropdown is used within the `post-header` main navigation to display submenus.

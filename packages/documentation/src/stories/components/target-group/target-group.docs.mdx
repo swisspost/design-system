@@ -1,7 +1,8 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as TargetGroup from './target-group.stories';
+import meta, * as TargetGroup from './target-group.stories';
 import * as Header from './../header/header.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={TargetGroup} />
 
@@ -11,6 +12,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <link-design of={JSON.stringify(TargetGroup)}></link-design>
 
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   The target group component is a group of buttons which enables users to easily navigate to content
