@@ -14,13 +14,25 @@ const TECH_ICONS: Record<string, string> = {
 
 defineCustomElementPostIcon();
 
+// Get existing URL params
+const params = new URLSearchParams(window.location.search);
+
+// Get value, that states if URL devMode is enabled (String 'true' or 'false', or null if the item is not specified in URL)
+const devModeFromUrl = params.get('devModeEnabled');
+
+// Get value, that states if localStorage devMode is enabled (String 'true' or 'false', or null if the item is not specified in localStorage)
 const storedDevMode = localStorage.getItem('devModeEnabled');
 
+// Default fallback: always 'production'
 let initialEnv = process.env.NODE_ENV || 'production';
 
-if (storedDevMode !== null) {
+// Override initialEnv by priority (url param is more important than the stored state)
+if (devModeFromUrl !== null) {
+  initialEnv = JSON.parse(devModeFromUrl) ? 'development' : 'production';
+} else if (storedDevMode !== null) {
   initialEnv = JSON.parse(storedDevMode) ? 'development' : 'production';
 }
+localStorage.setItem('devModeEnabled', initialEnv);
 
 document.documentElement.setAttribute('data-env', initialEnv);
 
