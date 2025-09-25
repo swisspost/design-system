@@ -1,5 +1,5 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 export interface PostLinkarea {
