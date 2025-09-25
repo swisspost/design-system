@@ -27,6 +27,13 @@ import noDeprecatedHVisuallyhiddenRule, {
   name as noDeprecatedHVisuallyhiddenRuleName,
 } from './no-deprecated-h-visuallyhidden';
 
+import {
+  rulePhase1 as noDeprecatedBreakpointsRulePhase1,
+  rulePhase2 as noDeprecatedBreakpointsRulePhase2,
+  namePhase1 as noDeprecatedBreakpointsRulePhase1Name,
+  namePhase2 as noDeprecatedBreakpointsRulePhase2Name,
+} from './no-deprecated-breakpoints';
+
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
   [noDeprecatedLoaderRuleName]: noDeprecatedLoaderRule,
@@ -39,4 +46,6 @@ export const htmlMigrationRules = {
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
+  [noDeprecatedBreakpointsRulePhase1Name]: noDeprecatedBreakpointsRulePhase1,
+  [noDeprecatedBreakpointsRulePhase2Name]: noDeprecatedBreakpointsRulePhase2,
 };

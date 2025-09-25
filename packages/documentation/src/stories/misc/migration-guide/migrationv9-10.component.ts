@@ -149,6 +149,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                     The <code>rg</code> and <code>xxl</code> breakpoints have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
