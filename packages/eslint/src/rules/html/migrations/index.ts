@@ -35,6 +35,8 @@ import {
 } from './no-deprecated-breakpoints';
 
 export const htmlMigrationRules = {
+  [noDeprecatedBreakpointsRulePhase1Name]: noDeprecatedBreakpointsRulePhase1,
+  [noDeprecatedBreakpointsRulePhase2Name]: noDeprecatedBreakpointsRulePhase2,
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
   [noDeprecatedLoaderRuleName]: noDeprecatedLoaderRule,
   [noUnnumberedBorderRadiusRuleName]: noUnnumberedBorderRadiusRule,
@@ -46,6 +48,4 @@ export const htmlMigrationRules = {
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
-  [noDeprecatedBreakpointsRulePhase1Name]: noDeprecatedBreakpointsRulePhase1,
-  [noDeprecatedBreakpointsRulePhase2Name]: noDeprecatedBreakpointsRulePhase2,
 };
