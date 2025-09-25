@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   parameters: {
     badges: [],
     design: {

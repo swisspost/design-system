@@ -8,6 +8,7 @@ const options: Array<string> = ['n1', '0', '1', '2', '3', 'header', 'spinner', '
 const meta: MetaExtended = {
   id: 'd4b7f8a2-1c3e-4b5d-9f1a-2e6b0c7a9f3d',
   title: 'Utilities/Z-Index',
+  tags: ['status:InProgress'],
   args: {
     zIndex1: '0',
     zIndex2: '1',

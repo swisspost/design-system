@@ -9,7 +9,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f',
   title: 'Foundations/Icons',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Stable'],
   component: 'post-icon',
   parameters: {
     badges: [],
