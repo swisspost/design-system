@@ -4,8 +4,6 @@ import { version } from '@root/package.json';
 const INTERACTIVE_ELEMENTS = ['a'].join(',');
 const INTERACTIVE_ELEMENTS_SELECTOR = `:where(${INTERACTIVE_ELEMENTS})`;
 
-type InteractiveElement = HTMLAnchorElement;
-
 @Component({
   tag: 'post-linkarea',
   styleUrl: 'post-linkarea.scss',
@@ -15,19 +13,25 @@ export class PostLinkarea {
   @Element() host: HTMLPostLinkareaElement;
 
   private dispatchClick({ ctrlKey, shiftKey, altKey, metaKey }: MouseEvent) {
-    const interactiveElement: InteractiveElement =
-      this.host.querySelector(`[data-link]${INTERACTIVE_ELEMENTS_SELECTOR}`) ??
-      this.host.querySelector(INTERACTIVE_ELEMENTS_SELECTOR);
+    this.host
+      .querySelector(INTERACTIVE_ELEMENTS_SELECTOR)
+      .dispatchEvent(new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }));
+  }
 
-    if (!interactiveElement) {
+  componentDidLoad() {
+    const interactiveElements = this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR);
+    console.log('interactive elements', interactiveElements);
+    if (!interactiveElements.length) {
       throw new Error(
         `The \`post-linkarea\` component must contain an interactive element. Possible elements are: ${INTERACTIVE_ELEMENTS}.`,
       );
     }
 
-    interactiveElement.dispatchEvent(
-      new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
-    );
+    if (interactiveElements.length > 1) {
+      throw new Error(
+        `The \`post-linkarea\` currently contains ${interactiveElements.length} interactive elements when it should contain only one.`,
+      );
+    }
   }
 
   render() {
