@@ -20,7 +20,7 @@ export class PostLinkarea {
 
   componentDidLoad() {
     const interactiveElements = this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR);
-    console.log('interactive elements', interactiveElements);
+
     if (!interactiveElements.length) {
       throw new Error(
         `The \`post-linkarea\` component must contain an interactive element. Possible elements are: ${INTERACTIVE_ELEMENTS}.`,
