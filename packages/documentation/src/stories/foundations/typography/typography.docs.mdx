@@ -1,5 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks';
-import * as TypographyStories from './typography.stories';
+import meta, * as TypographyStories from './typography.stories';
 import {
   FontFace,
   FontFaceWrapper,
@@ -11,10 +11,13 @@ import {
 } from './typography.blocks';
 import './typography.styles.scss';
 import SampleStandalone from './typography-standalone.sample.css?raw';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={TypographyStories} />
 
 # Typography
+
+<PackageTag meta={meta}/>
 
 This page describes the typography basics of the design system.<br/>
 If you want to know how to adjust font-families, font-sizes, etc. in your code,

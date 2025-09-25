@@ -1,6 +1,7 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import * as HighlightedTextStories from './highlighted-text.stories';
+import meta, * as HighlightedTextStories from './highlighted-text.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={HighlightedTextStories} />
 
@@ -9,6 +10,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
   <link-design of={JSON.stringify(HighlightedTextStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   The Highlighted Text can be used when a certain paragraph needs a higher attention than the other
