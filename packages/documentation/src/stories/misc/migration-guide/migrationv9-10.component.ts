@@ -263,7 +263,6 @@ export class MigrationV99Component extends LitElement {
                     We recommend using the <code>.elevation-*</code> classes instead.
                   </p>
                 </li>
-
                 <li class="mb-16">
                   <p>
                     The following elevation utility classes have been renamed
@@ -348,6 +347,18 @@ export class MigrationV99Component extends LitElement {
                   <ul>
                     <li><code>.rounded</code> is now <code>.rounded-4</code></li>
                     <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
+                    Removed some position helper classes that can be replaced with a combination of other utilities
+                  </p>
+                  <ul>
+                    <li><code>fixed-top</code> is now <code>position-fixed top-0 start-0 end-0 z-fixed</code></li>
+                    <li><code>fixed-bottom</code> is now <code>position-fixed bottom-0 start-0 end-0 z-fixed</code></li>
+                    <li><code>sticky-top</code> is now <code>position-sticky top-0 z-header</code></li>
+                    <li><code>sticky-bottom</code> is now <code>position-sticky bottom-0 z-header</code></li>
                   </ul>
                 </li>
               </ul>
