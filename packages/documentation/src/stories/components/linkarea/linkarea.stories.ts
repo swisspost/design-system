@@ -18,7 +18,7 @@ const meta: MetaComponent<PostLinkarea> = {
     design: {},
   },
   args: {
-    linkUrl: 'www.post.ch',
+    linkUrl: 'https://post.ch',
   },
   argTypes: {
     linkUrl: {
@@ -38,15 +38,13 @@ export default meta;
 
 function renderLinkarea(args: Args) {
   return html`
-    <post-linkarea>
-      <div class="palette palette-alternate p-32 rounded-8">
-        <h5>My clickable element</h5>
-        <p>
-          Clicking anywhere within this <code>post-linkarea</code> will click on the link that is
-          placed within the component.
-        </p>
-        <a traget="_blank" href="${args.linkUrl}">Link text</a>
-      </div>
+    <post-linkarea class="palette palette-alternate p-32 rounded-8">
+      <h5>My clickable element</h5>
+      <p>
+        Clicking anywhere within this <code>post-linkarea</code> will click on the link that is
+        placed within the component.
+      </p>
+      <a target="_blank" href="${args.linkUrl}">Link text</a>
     </post-linkarea>
   `;
 }

@@ -1,4 +1,4 @@
-import { Component, Element, h, Host } from '@stencil/core';
+import { Component, Element, h, Host, State } from '@stencil/core';
 import { version } from '@root/package.json';
 
 const INTERACTIVE_ELEMENTS = ['a'].join(',');
@@ -10,28 +10,44 @@ const INTERACTIVE_ELEMENTS_SELECTOR = `:where(${INTERACTIVE_ELEMENTS})`;
   shadow: true,
 })
 export class PostLinkarea {
+  private mutationObserver = new MutationObserver(this.checkInteractiveElements.bind(this));
+
   @Element() host: HTMLPostLinkareaElement;
 
+  @State() interactiveElements: NodeListOf<HTMLAnchorElement>;
+
   private dispatchClick({ ctrlKey, shiftKey, altKey, metaKey }: MouseEvent) {
-    this.host
-      .querySelector(INTERACTIVE_ELEMENTS_SELECTOR)
-      .dispatchEvent(new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }));
+    this.interactiveElements[0].dispatchEvent(
+      new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
+    );
   }
 
-  componentDidLoad() {
-    const interactiveElements = this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR);
+  private checkInteractiveElements() {
+    this.interactiveElements = this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR);
 
-    if (!interactiveElements.length) {
+    if (!this.interactiveElements.length) {
       throw new Error(
         `The \`post-linkarea\` component must contain an interactive element. Possible elements are: ${INTERACTIVE_ELEMENTS}.`,
       );
     }
 
-    if (interactiveElements.length > 1) {
+    if (this.interactiveElements.length > 1) {
       throw new Error(
-        `The \`post-linkarea\` currently contains ${interactiveElements.length} interactive elements when it should contain only one.`,
+        `The \`post-linkarea\` currently contains ${this.interactiveElements.length} interactive elements when it should contain only one.`,
       );
     }
+  }
+
+  connectedCallback() {
+    this.mutationObserver.observe(this.host, { childList: true });
+  }
+
+  componentWillLoad() {
+    this.checkInteractiveElements();
+  }
+
+  disconnectedCallback() {
+    this.mutationObserver.disconnect();
   }
 
   render() {
