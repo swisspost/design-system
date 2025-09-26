@@ -18,7 +18,7 @@ import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
 
 /**
  * @part menu - The container element that holds the list of menu items.
-*/
+ */
 
 @Component({
   tag: 'post-menu',
@@ -55,6 +55,11 @@ export class PostMenu {
   }
 
   /**
+   * Required label providing an accessible name for the menu.
+   */
+  @Prop() readonly label?: string;
+
+  /**
    * Holds the current visibility state of the menu.
    * This state is internally managed to track whether the menu is open (`true`) or closed (`false`),
    * and updates automatically when the menu is toggled.
@@ -65,11 +70,6 @@ export class PostMenu {
    * Holds the current focusable children
    */
   @State() focusableChildren: Element[];
-
-  /**
-   * A flag to know when popovercontainer has been rendered for the first time.
-   */
-  @State() popovercontainerRendered: boolean = false;
 
   /**
    * Emits when the menu is shown or hidden.
@@ -151,38 +151,38 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private handlePostToggle = (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.toggleMenu.emit(this.isVisible);
+    this.isVisible = event.detail;
+    this.toggleMenu.emit(this.isVisible);
 
-      requestAnimationFrame(() => {
-        if (this.isVisible) {
-          this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+    requestAnimationFrame(() => {
+      if (this.isVisible) {
+        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
 
-          const menuItems = this.getSlottedItems();
-          this.focusableChildren = menuItems;
+        const menuItems = this.getSlottedItems();
+        this.focusableChildren = menuItems;
 
-          if (!this.popovercontainerRendered) {
-            // Only for the first time that the popovercontainer is rendered
-            if (menuItems.length > 0) {
-              // Add role="menu" to the popovercontainer
-              this.host.setAttribute('role', 'menu');
+        if (menuItems.length > 0) {
+          // Add role="menu" to the popovercontainer
+          this.host.setAttribute('role', 'menu');
 
-              // Add role="menuitem" to the focusable elements
-              menuItems.forEach(item => {
-                item.setAttribute('role', 'menuitem');
-              });
-              this.popovercontainerRendered = true;
-            }
-          }
-          (menuItems[0] as HTMLElement).focus();
-        } else if (this.lastFocusedElement) {
-          setTimeout(() => {
-            // This timeout is added for NVDA to announce the menu as collapsed
-            this.lastFocusedElement.focus();
-          }, 0);
+          // Add role="menuitem" to the focusable elements
+          menuItems.forEach(item => {
+            item.setAttribute('role', 'menuitem');
+          });
+
+          // Add aria-label to the menu
+          this.host.setAttribute('aria-label', this.label);
         }
-      });
-    };
+
+        (menuItems[0] as HTMLElement).focus();
+      } else if (this.lastFocusedElement) {
+        setTimeout(() => {
+          // This timeout is added for NVDA to announce the menu as collapsed
+          this.lastFocusedElement.focus();
+        }, 0);
+      }
+    });
+  };
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
