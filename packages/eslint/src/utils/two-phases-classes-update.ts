@@ -1,3 +1,7 @@
+import { TSESLint } from '@typescript-eslint/utils';
+import { RuleDocs } from './create-rule';
+import { createClassUpdateRule } from './create-class-update-rule';
+
 export interface TwoPhasesData {
   messagesPhase1: Record<string, string>;
   mutationsPhase1: Record<string, [string, string]>;
@@ -72,4 +76,37 @@ export function setUpClassesMutations(
   }
 
   return returnData;
+}
+
+export function createTwoPhasesRules(
+  data: TwoPhasesData,
+  name: string,
+  descriptionPhase1: string,
+  descriptionPhase2: string,
+): {
+  namePhase1: string;
+  namePhase2: string;
+  rulePhase1: TSESLint.RuleModule<string, [], RuleDocs, TSESLint.RuleListener>;
+  rulePhase2: TSESLint.RuleModule<string, [], RuleDocs, TSESLint.RuleListener>;
+} {
+  const namePhase1 = `${name}-phase-1`;
+  const namePhase2 = `${name}-phase-2`;
+
+  const rulePhase1 = createClassUpdateRule({
+    name: namePhase1,
+    type: 'problem',
+    description: descriptionPhase1,
+    messages: data.messagesPhase1,
+    mutations: data.mutationsPhase1,
+  });
+
+  const rulePhase2 = createClassUpdateRule({
+    name: namePhase2,
+    type: 'problem',
+    description: descriptionPhase2,
+    messages: data.messagesPhase2,
+    mutations: data.mutationsPhase2,
+  });
+
+  return { namePhase1, namePhase2, rulePhase1, rulePhase2 };
 }
