@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components-vite';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { fakeContent } from '@/utils';
@@ -14,12 +14,6 @@ const meta: MetaComponent = {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=558-7012&t=ywmfJhyvd2euoiGI-1',
-    },
-    docs: {
-      story: {
-        inline: false,
-        iframeHeight: 300
-      }
     }
   },
   args: {
@@ -87,20 +81,23 @@ const meta: MetaComponent = {
         <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>`,
   ],
-  render: (args: Args) => {
-    return html`<post-header>
+  render: getHeaderRenderer(),
+};
+
+function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
+  return (args: Args) => html`<post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
       ${args.metaNavigation
-      ? html`
+    ? html`
             <!-- Meta navigation -->
             <ul class="list-inline" slot="meta-navigation">
               <li><a href="">Jobs</a></li>
               <li><a href="">About us</a></li>
             </ul>
           `
-      : ''}
+    : ''}
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
@@ -124,13 +121,13 @@ const meta: MetaComponent = {
       </post-language-switch>
 
       ${args.title !== ''
-      ? html`
+    ? html`
             <!-- Application title (optional) -->
             <h1 slot="title">${args.title}</h1>
           `
-      : ''}
+    : ''}
       ${args.targetGroup
-      ? html`
+    ? html`
             <ul slot="target-group" class="target-group">
               <li>
                 <a href="#" class="active">Private customers</a>
@@ -143,9 +140,9 @@ const meta: MetaComponent = {
               </li>
             </ul>
           `
-      : ''}
+    : ''}
       ${args.customControls
-      ? html`
+    ? html`
             <!-- Custom content (optional) -->
             <ul class="list-inline">
               <li>
@@ -162,129 +159,163 @@ const meta: MetaComponent = {
               </li>
             </ul>
           `
-        : ''}
-      ${args.mainNavigation
-      ? html`
-            <!-- Main navigation -->
-            <post-mainnavigation caption="Main navigation">
-              <post-list title-hidden="">
-                <h2>Main Navigation</h2>
-                <!-- Link only level 1 -->
-                <post-list-item slot="post-list-item"
-                  ><a href="/letters">Letters</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/packages">Packages</a></post-list-item
-                >
-
-                <!-- Level 1 with megadropdown -->
-                <post-list-item slot="post-list-item">
-                  <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-                  <post-megadropdown id="letters">
-                    <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                      <post-icon name="arrowleft"></post-icon>
-                      Back
-                    </button>
-                    <post-closebutton slot="close-button">Close</post-closebutton>
-                    <h2 slot="megadropdown-title">Letters title</h2>
-                    <post-list>
-                      <h3>Send letters</h3>
-                      <post-list-item slot="post-list-item"
-                        ><a href="/sch">Letters Switzerland</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="/kl">Small items abroad</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="">Goods abroad</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="">Express and courier</a></post-list-item
-                      >
-                    </post-list>
-                    <post-list>
-                      <h3><a href="/step-by-step">Step by step</a></h3>
-                      <post-list-item slot="post-list-item"
-                        ><a href="/sch">Packages Switzerland</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="/kl">Small items abroad</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="">Goods abroad</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="">Express and courier</a></post-list-item
-                      >
-                    </post-list>
-                  </post-megadropdown>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-                  <post-megadropdown id="packages">
-                    <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                      <post-icon name="arrowleft"></post-icon>
-                      Back
-                    </button>
-                    <post-closebutton slot="close-button">Close</post-closebutton>
-                    <h2 slot="megadropdown-title">Packages title</h2>
-                    <post-list>
-                      <h3>Send packages</h3>
-                      <post-list-item slot="post-list-item"
-                        ><a href="/sch">Packages Switzerland</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="/kl">Small items abroad</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="">Goods abroad</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="">Express and courier</a></post-list-item
-                      >
-                    </post-list>
-                    <post-list>
-                      <h3><a href="/step-by-step">Step by step</a></h3>
-                      <post-list-item slot="post-list-item"
-                        ><a href="/sch">Packages Switzerland</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="/kl">Small items abroad</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a href="">Goods abroad</a></post-list-item
-                      >
-                      <post-list-item slot="post-list-item"
-                        ><a class="selected" href="">Express and courier</a></post-list-item
-                      >
-                    </post-list>
-                  </post-megadropdown>
-                </post-list-item>
-              </post-list>
-            </post-mainnavigation>
-          `
-      : ''}
+    : ''}
+      ${args.mainNavigation ? mainnavigation : ''}
     </post-header>`;
-  },
-};
+}
+
+function renderMainnavigation() {
+  return html`
+    <!-- Main navigation -->
+    <post-mainnavigation caption="Main navigation">
+      <post-list title-hidden="">
+        <h2>Main Navigation</h2>
+        <!-- Link only level 1 -->
+        <post-list-item slot="post-list-item"
+        ><a href="/letters">Letters</a></post-list-item
+        >
+        <post-list-item slot="post-list-item"
+        ><a href="/packages">Packages</a></post-list-item
+        >
+
+        <!-- Level 1 with megadropdown -->
+        <post-list-item slot="post-list-item">
+          <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
+          <post-megadropdown id="letters">
+            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+              <post-icon name="arrowleft"></post-icon>
+              Back
+            </button>
+            <post-closebutton slot="close-button">Close</post-closebutton>
+            <h2 slot="megadropdown-title">Letters title</h2>
+            <post-list>
+              <h3>Send letters</h3>
+              <post-list-item slot="post-list-item"
+              ><a href="/sch">Letters Switzerland</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="/kl">Small items abroad</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="">Goods abroad</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="">Express and courier</a></post-list-item
+              >
+            </post-list>
+            <post-list>
+              <h3><a href="/step-by-step">Step by step</a></h3>
+              <post-list-item slot="post-list-item"
+              ><a href="/sch">Packages Switzerland</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="/kl">Small items abroad</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="">Goods abroad</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="">Express and courier</a></post-list-item
+              >
+            </post-list>
+          </post-megadropdown>
+        </post-list-item>
+        <post-list-item slot="post-list-item">
+          <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
+          <post-megadropdown id="packages">
+            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+              <post-icon name="arrowleft"></post-icon>
+              Back
+            </button>
+            <post-closebutton slot="close-button">Close</post-closebutton>
+            <h2 slot="megadropdown-title">Packages title</h2>
+            <post-list>
+              <h3>Send packages</h3>
+              <post-list-item slot="post-list-item"
+              ><a href="/sch">Packages Switzerland</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="/kl">Small items abroad</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="">Goods abroad</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="">Express and courier</a></post-list-item
+              >
+            </post-list>
+            <post-list>
+              <h3><a href="/step-by-step">Step by step</a></h3>
+              <post-list-item slot="post-list-item"
+              ><a href="/sch">Packages Switzerland</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="/kl">Small items abroad</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="">Goods abroad</a></post-list-item
+              >
+              <post-list-item slot="post-list-item"
+              ><a href="">Express and courier</a></post-list-item
+              >
+            </post-list>
+          </post-megadropdown>
+        </post-list-item>
+      </post-list>
+    </post-mainnavigation>
+  `;
+}
+
+function getIframeParameters(iframeHeight: number) {
+  return {
+    parameters: {
+      docs: {
+        story: {
+          inline: false,
+          iframeHeight
+        }
+      }
+    }
+  };
+}
 
 export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  parameters: {
-    docs: {
-      story: {
-        inline: true
-      }
-    }
-  },
+export const Default: Story = {};
+
+export const ActiveNavigationItem: Story = {
+  ...getIframeParameters(250),
+  decorators: [(story: StoryFn, context: StoryContext) => {
+    const renderHeader = getHeaderRenderer(html`
+      ${story(context.args, context)}
+    `);
+    return renderHeader(context.args);
+  }],
+  render: () => html`
+    <post-mainnavigation caption="Main navigation">
+      <post-list title-hidden="">
+        <h2>Main Navigation</h2>
+
+        <!-- A standard item -->
+        <post-list-item slot="post-list-item"><a href="/letters">Letters</a></post-list-item>
+
+        <!-- The active item must have the \`.selected\` class applied to its contained <a> or <button> to ensure correct styling. -->
+        <post-list-item slot="post-list-item"
+        ><a href="/packages" class="selected">Packages</a></post-list-item
+        >
+      </post-list>
+    </post-mainnavigation>
+  `
 };
 
-export const Portal: Story = {};
+export const Portal: Story = {
+  ...getIframeParameters(500),
+};
 
 export const Microsite: Story = {
+  ...getIframeParameters(550),
   args: {
     title: '[Microsite Title]',
     mainNavigation: true,
@@ -295,6 +326,7 @@ export const Microsite: Story = {
 };
 
 export const OnePager: Story = {
+  ...getIframeParameters(250),
   args: {
     title: '[One Pager Title]',
     mainNavigation: false,
