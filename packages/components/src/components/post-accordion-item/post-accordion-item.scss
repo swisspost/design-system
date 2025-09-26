@@ -59,8 +59,7 @@ tokens.$default-map: components.$post-accordion;
     inset: 0;
     inset-block-end: auto;
 
-    // if needed the border can be added or removed by setting the custom property respectively to "unset" or "0"
-    border-block-start-width: var(--post-accordion-button-border-top-width, #{tokens.get('accordion-group-border-top-width')});
+    border-block-start-width: tokens.get('accordion-group-border-top-width');
     border-block-start-style: tokens.get('accordion-border-top-style');
     border-block-start-color: tokens.get('accordion-enabled-border');
   }

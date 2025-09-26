@@ -66,13 +66,13 @@ const meta: Meta = {
         type: 'select',
         labels: {
           none: 'None',
-          1034: '1034 (Info)',
-          2104: '2104 (Danger)',
-          2106: '2106 (Warning)',
-          2105: '2105 (Success)',
+          info: 'Info',
+          error: 'Error',
+          warning: 'Warning',
+          success: 'Success',
         },
       },
-      options: ['none', '1034', '2105', '2104', '2106'],
+      options: ['none', 'info', 'success', 'error', 'warning'],
       table: { category: 'Content' },
     },
     palette: {
