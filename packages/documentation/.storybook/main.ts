@@ -37,7 +37,7 @@ const config: StorybookConfig = {
                   content: {
                     type: 'element',
                     tagName: 'post-icon',
-                    properties: { name: 2037 },
+                    properties: { name: 'link' },
                   },
                   headingProperties: { className: 'docs-autolink' },
                   behavior: 'append',
