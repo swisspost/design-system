@@ -45,7 +45,7 @@ function renderLinkarea(args: Args) {
           Clicking anywhere within this <code>post-linkarea</code> will click on the link that is
           placed within the component.
         </p>
-        <a href="${args.linkUrl}">Link text</a>
+        <a traget="_blank" href="${args.linkUrl}">Link text</a>
       </div>
     </post-linkarea>
   `;
