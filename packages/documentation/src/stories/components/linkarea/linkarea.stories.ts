@@ -18,7 +18,7 @@ const meta: MetaComponent<PostLinkarea> = {
     design: {},
   },
   args: {
-    linkUrl: '#',
+    linkUrl: 'www.post.ch',
   },
   argTypes: {
     linkUrl: {
