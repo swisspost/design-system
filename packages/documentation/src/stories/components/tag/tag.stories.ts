@@ -23,7 +23,7 @@ const meta: MetaComponent = {
     variant: 'null',
     size: 'null',
     showIcon: false,
-    icon: 1001,
+    icon: "letter",
     markup: 'Tag',
   },
   argTypes: {

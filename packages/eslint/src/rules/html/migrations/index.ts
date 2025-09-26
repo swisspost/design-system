@@ -23,6 +23,12 @@ import noDeprecatedFontWeightRule, {
 import noDeprecatedShadowUtilitiesRule, {
   name as noDeprecatedShadowUtilitiesRuleName,
 } from './no-deprecated-shadow-utilities';
+import noDeprecatedHClearfix, {
+  name as noDeprecatedHClearfixName,
+} from './no-deprecated-h-clearfix';
+import noDeprecatedHVisuallyhiddenRule, {
+  name as noDeprecatedHVisuallyhiddenRuleName,
+} from './no-deprecated-h-visuallyhidden';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
@@ -35,4 +41,6 @@ export const htmlMigrationRules = {
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedShadowUtilitiesRuleName]: noDeprecatedShadowUtilitiesRule,
+  [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
+  [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
 };
