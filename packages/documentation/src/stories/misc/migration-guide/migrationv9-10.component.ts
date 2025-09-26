@@ -194,6 +194,7 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Changed the percentage sizing utility classes (<code>w-*</code>,
                     <code>h-*</code>, <code>mh-*</code>, <code>mw-*</code>) naming
                   </p>
@@ -206,6 +207,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Removed some pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
                     <code>mh-*</code>, <code>mw-*</code>)
                   </p>
@@ -216,6 +218,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Changed the pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
                     <code>mh-*</code>, <code>mw-*</code>) to pixel-based names
                   </p>
@@ -237,6 +240,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Changed the sizing utility classes max-height and max-width naming
                   </p>
                   <ul>
