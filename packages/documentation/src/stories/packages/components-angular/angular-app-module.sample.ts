@@ -1,11 +1,11 @@
 // app.module.ts
 
 import { NgModule } from '@angular/core';
-import { PostComponentsModule } from '@swisspost/design-system-components-angular';
+import { providePostComponents } from '@swisspost/design-system-components-angular';
 
 @NgModule({
   // ...
-  imports: [PostComponentsModule],
-  // ...
+  providers: [providePostComponents()],
+  /// ...
 })
 export class AppModule {}
