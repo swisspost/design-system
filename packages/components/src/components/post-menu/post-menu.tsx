@@ -67,11 +67,6 @@ export class PostMenu {
   @State() isVisible: boolean = false;
 
   /**
-   * Holds the current focusable children
-   */
-  @State() focusableChildren: Element[];
-
-  /**
    * Emits when the menu is shown or hidden.
    * The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
    **/
@@ -150,39 +145,40 @@ export class PostMenu {
   };
 
   @EventFrom('post-popovercontainer')
-  private handlePostToggle = (event: CustomEvent<boolean>) => {
-    this.isVisible = event.detail;
-    this.toggleMenu.emit(this.isVisible);
+  private handlePostToggle = (event: CustomEvent<{ isOpen: boolean; first: boolean }>) => {
+      this.isVisible = event.detail.isOpen;
+      this.toggleMenu.emit(this.isVisible);
 
-    requestAnimationFrame(() => {
-      if (this.isVisible) {
-        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+      requestAnimationFrame(() => {
+        if (this.isVisible) {
+          this.lastFocusedElement = this.root?.activeElement as HTMLElement;
 
-        const menuItems = this.getSlottedItems();
-        this.focusableChildren = menuItems;
+          const menuItems = this.getSlottedItems();
 
-        if (menuItems.length > 0) {
-          // Add role="menu" to the popovercontainer
-          this.host.setAttribute('role', 'menu');
+          if (event.detail.first) {
+            if (menuItems.length > 0) {
+              // Add role="menu" to the popovercontainer
+              this.host.setAttribute('role', 'menu');
 
-          // Add role="menuitem" to the focusable elements
-          menuItems.forEach(item => {
-            item.setAttribute('role', 'menuitem');
-          });
+              // Add role="menuitem" to the focusable elements
+              menuItems.forEach(item => {
+                item.setAttribute('role', 'menuitem');
+              });
 
-          // Add aria-label to the menu
-          this.host.setAttribute('aria-label', this.label);
+              // Add aria-label to the menu
+              this.host.setAttribute('aria-label', this.label);
+            }
+          }
+
+          (menuItems[0] as HTMLElement).focus();
+        } else if (this.lastFocusedElement) {
+          setTimeout(() => {
+            // This timeout is added for NVDA to announce the menu as collapsed
+            this.lastFocusedElement.focus();
+          }, 0);
         }
-
-        (menuItems[0] as HTMLElement).focus();
-      } else if (this.lastFocusedElement) {
-        setTimeout(() => {
-          // This timeout is added for NVDA to announce the menu as collapsed
-          this.lastFocusedElement.focus();
-        }, 0);
-      }
-    });
-  };
+      });
+    };
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
