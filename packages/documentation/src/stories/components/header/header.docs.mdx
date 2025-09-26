@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as HeaderStories from './header.stories';
 import './header.styles.scss';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
@@ -23,7 +23,7 @@ It is divided into two sections:
 1. **Global Header** (Yellow Background): provides navigation links and information that are global to the entire organization.
 2. **Application Header** (White Background): displays navigation links and information specific to the current application.
 
-<div class="main-story">
+<div className="main-story">
   <Canvas sourceState="shown" of={HeaderStories.Default} />
 </div>
 <div className="hide-col-default">
@@ -50,11 +50,11 @@ This ensures that when using scroll navigation (e.g. jumping to anchors), conten
 
 ## Active Navigation Items
 
-**A `.selected` class must be applied by your application logic to indicate the active page.**
+<p>
+<b>The `.selected` class highlights the active navigation items.</b>
+It should be applied by application logic to the `<a>` or `<button>` element inside the active `<post-list-item>` of the `<post-mainnavigation>`. Once an item has the `.selected` class, its hierarchical parent items will automatically inherit the same styling.
+</p>
 
-This class is not added automatically;
-it must be applied directly to the `<a>` element inside `<post-mainnavigation>` that represents the page currently being viewed.
-Once applied, the parent items in the hierarchy automatically inherit the correct selected styling.
 <Canvas sourceState="shown" of={HeaderStories.ActiveNavigationItem} />
 
 ## Examples
@@ -63,7 +63,7 @@ Once applied, the parent items in the hierarchy automatically inherit the correc
 
 The Header for the Post Portal (post.ch) is a consistently available interface element that provides a consistent navigation experience across the whole Post Portal and other portals.
 
-It not only contains globally available key elements (such as Search, Login or Language), it also provides a first content selection via the target group buttons. They define the further navigation.
+It not only contains globally available key elements (such as Language), it also provides a first content selection via the target group buttons. They define the further navigation.
 
 <Canvas of={HeaderStories.Portal} inline="false" />
 

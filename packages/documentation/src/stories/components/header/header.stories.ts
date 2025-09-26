@@ -171,12 +171,12 @@ function renderMainnavigation() {
       <post-list title-hidden="">
         <h2>Main Navigation</h2>
         <!-- Link only level 1 -->
-        <post-list-item slot="post-list-item"
-        ><a href="/letters">Letters</a></post-list-item
-        >
-        <post-list-item slot="post-list-item"
-        ><a href="/packages">Packages</a></post-list-item
-        >
+        <post-list-item slot="post-list-item">
+          <a href="/letters">Letters</a>
+        </post-list-item>
+        <post-list-item slot="post-list-item">
+          <a href="/packages">Packages</a>
+        </post-list-item>
 
         <!-- Level 1 with megadropdown -->
         <post-list-item slot="post-list-item">
@@ -190,33 +190,33 @@ function renderMainnavigation() {
             <h2 slot="megadropdown-title">Letters title</h2>
             <post-list>
               <h3>Send letters</h3>
-              <post-list-item slot="post-list-item"
-              ><a href="/sch">Letters Switzerland</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="/kl">Small items abroad</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="">Goods abroad</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="">Express and courier</a></post-list-item
-              >
+              <post-list-item slot="post-list-item">
+                <a href="/sch">Letters Switzerland</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="/kl">Small items abroad</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="">Goods abroad</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="">Express and courier</a>
+              </post-list-item>
             </post-list>
             <post-list>
               <h3><a href="/step-by-step">Step by step</a></h3>
-              <post-list-item slot="post-list-item"
-              ><a href="/sch">Packages Switzerland</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="/kl">Small items abroad</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="">Goods abroad</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="">Express and courier</a></post-list-item
-              >
+              <post-list-item slot="post-list-item">
+                <a href="/sch">Packages Switzerland</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="/kl">Small items abroad</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="">Goods abroad</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="">Express and courier</a>
+              </post-list-item>
             </post-list>
           </post-megadropdown>
         </post-list-item>
@@ -231,33 +231,33 @@ function renderMainnavigation() {
             <h2 slot="megadropdown-title">Packages title</h2>
             <post-list>
               <h3>Send packages</h3>
-              <post-list-item slot="post-list-item"
-              ><a href="/sch">Packages Switzerland</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="/kl">Small items abroad</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="">Goods abroad</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="">Express and courier</a></post-list-item
-              >
+              <post-list-item slot="post-list-item">
+                <a href="/sch">Packages Switzerland</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="/kl">Small items abroad</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="">Goods abroad</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="">Express and courier</a>
+              </post-list-item>
             </post-list>
             <post-list>
               <h3><a href="/step-by-step">Step by step</a></h3>
-              <post-list-item slot="post-list-item"
-              ><a href="/sch">Packages Switzerland</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="/kl">Small items abroad</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="">Goods abroad</a></post-list-item
-              >
-              <post-list-item slot="post-list-item"
-              ><a href="">Express and courier</a></post-list-item
-              >
+              <post-list-item slot="post-list-item">
+                <a href="/sch">Packages Switzerland</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="/kl">Small items abroad</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="">Goods abroad</a>
+              </post-list-item>
+              <post-list-item slot="post-list-item">
+                <a href="">Express and courier</a>
+              </post-list-item>
             </post-list>
           </post-megadropdown>
         </post-list-item>
@@ -297,14 +297,14 @@ export const ActiveNavigationItem: Story = {
     <post-mainnavigation caption="Main navigation">
       <post-list title-hidden="">
         <h2>Main Navigation</h2>
+        <post-list-item slot="post-list-item">
+          <a href="/letters">Letters</a>
+        </post-list-item>
 
-        <!-- A standard item -->
-        <post-list-item slot="post-list-item"><a href="/letters">Letters</a></post-list-item>
-
-        <!-- The active item must have the \`.selected\` class applied to its contained <a> or <button> to ensure correct styling. -->
-        <post-list-item slot="post-list-item"
-        ><a href="/packages" class="selected">Packages</a></post-list-item
-        >
+        <post-list-item slot="post-list-item">
+          <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
+          <a href="/packages" class="selected">Packages</a>
+        </post-list-item>
       </post-list>
     </post-mainnavigation>
   `
