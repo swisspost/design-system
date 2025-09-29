@@ -448,30 +448,30 @@ export namespace Components {
     }
     interface PostTabHeader {
         /**
-          * The name of the panel controlled by the tab header.
-         */
-        "panel": string;
-    }
-    interface PostTabPanel {
-        /**
-          * The name of the panel, used to associate it with a tab header.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Changing this value after initialization has no effect.**
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
           * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth": boolean;
         /**
-          * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
+          * Shows the panel with the given name and selects its associated tab. In navigation mode, only updates the active tab state. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
-        "show": (panelName: string) => Promise<void>;
+        "show": (tabName: string) => Promise<void>;
     }
     interface PostTogglebutton {
         /**
@@ -1297,28 +1297,28 @@ declare namespace LocalJSX {
     }
     interface PostTabHeader {
         /**
-          * The name of the panel controlled by the tab header.
-         */
-        "panel": string;
-    }
-    interface PostTabPanel {
-        /**
-          * The name of the panel, used to associate it with a tab header.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Changing this value after initialization has no effect.**
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
           * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth"?: boolean;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }

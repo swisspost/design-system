@@ -7,16 +7,16 @@
 
 ## Properties
 
-| Property             | Attribute | Description                                         | Type     | Default     |
-| -------------------- | --------- | --------------------------------------------------- | -------- | ----------- |
-| `panel` _(required)_ | `panel`   | The name of the panel controlled by the tab header. | `string` | `undefined` |
+| Property            | Attribute | Description                                                                                               | Type     | Default     |
+| ------------------- | --------- | --------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `name` _(required)_ | `name`    | The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode. | `string` | `undefined` |
 
 
 ## Slots
 
-| Slot        | Description                             |
-| ----------- | --------------------------------------- |
-| `"default"` | Slot for the content of the tab header. |
+| Slot        | Description                                                                                     |
+| ----------- | ----------------------------------------------------------------------------------------------- |
+| `"default"` | Slot for the content of the tab header. Can contain text or an <a> element for navigation mode. |
 
 
 ----------------------------------------------

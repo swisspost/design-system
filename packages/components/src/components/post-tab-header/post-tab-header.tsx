@@ -4,7 +4,7 @@ import { checkRequiredAndType } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
- * @slot default - Slot for the content of the tab header.
+ * @slot default - Slot for the content of the tab header. Can contain text or an <a> element for navigation mode.
  */
 
 @Component({
@@ -16,29 +16,46 @@ export class PostTabHeader {
   @Element() host: HTMLPostTabHeaderElement;
 
   @State() tabId: string;
+  @State() isNavigationMode = false;
 
   /**
-   * The name of the panel controlled by the tab header.
+   * The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode.
    */
-  @Prop({ reflect: true }) readonly panel!: string;
+  @Prop({ reflect: true }) readonly name!: string;
 
-  @Watch('panel')
-  validateFor() {
-    checkRequiredAndType(this, 'panel', 'string');
+  @Watch('name')
+  validateName() {
+    checkRequiredAndType(this, 'name', 'string');
   }
 
   componentWillLoad() {
+    this.validateName();
     this.tabId = `tab-${this.host.id || nanoid(6)}`;
+    this.checkNavigationMode();
+  }
+
+  componentDidLoad() {
+    // Re-check navigation mode after content is loaded
+    this.checkNavigationMode();
+  }
+
+  private checkNavigationMode() {
+    const hasAnchor = this.host.querySelector('a') !== null;
+    this.isNavigationMode = hasAnchor;
   }
 
   render() {
+    const role = this.isNavigationMode ? undefined : 'tab';
+    const ariaSelected = this.isNavigationMode ? undefined : 'false';
+    const tabindex = this.isNavigationMode ? undefined : '-1';
+
     return (
       <Host
         id={this.tabId}
-        role="tab"
+        role={role}
         data-version={version}
-        aria-selected="false"
-        tabindex="-1"
+        aria-selected={ariaSelected}
+        tabindex={tabindex}
         class="tab-title"
         slot="tabs"
       >

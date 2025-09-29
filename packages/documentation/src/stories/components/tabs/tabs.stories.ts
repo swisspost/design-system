@@ -17,8 +17,8 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
     },
   },
   argTypes: {
-    activePanel: {
-      name: 'active-panel',
+    activeTab: {
+      name: 'active-tab',
       control: 'select',
       options: ['first', 'second', 'third'],
     },
@@ -31,20 +31,20 @@ export default meta;
 function renderTabs(args: Partial<HTMLPostTabsElement>) {
   return html`
     <post-tabs
-      active-panel="${ifDefined(args.activePanel)}"
+      active-panel="${ifDefined(args.activeTab)}"
       full-width="${args.fullWidth ? true : nothing}"
     >
-      <post-tab-header panel="first">First tab</post-tab-header>
-      <post-tab-header panel="second">Second tab</post-tab-header>
-      <post-tab-header panel="third">Third tab</post-tab-header>
+      <post-tab-header name="first">First tab</post-tab-header>
+      <post-tab-header name="second">Second tab</post-tab-header>
+      <post-tab-header name="third">Third tab</post-tab-header>
 
-      <post-tab-panel name="first">
+      <post-tab-panel for="first">
         This is the content of the first tab. By default it is shown initially.
       </post-tab-panel>
-      <post-tab-panel name="second">
+      <post-tab-panel for="second">
         This is the content of the second tab. By default it is hidden initially.
       </post-tab-panel>
-      <post-tab-panel name="third">
+      <post-tab-panel for="third">
         This is the content of the third tab. By default it is also hidden initially.
       </post-tab-panel>
     </post-tabs>
@@ -62,7 +62,7 @@ export const Default: Story = {
 
 export const ActivePanel: Story = {
   args: {
-    activePanel: 'third',
+    activeTab: 'third',
   },
 };
 
@@ -83,8 +83,8 @@ export const Async: Story = {
 
         tabIndex++;
         const newTab = `
-          <post-tab-header panel="panel-${tabIndex}">New tab ${tabIndex}</post-tab-header>
-          <post-tab-panel name="panel-${tabIndex}">This is the content of the new tab ${tabIndex}.</post-tab-panel>
+          <post-tab-header name="name-${tabIndex}">New tab ${tabIndex}</post-tab-header>
+          <post-tab-panel for="for-${tabIndex}">This is the content of the new tab ${tabIndex}.</post-tab-panel>
         `;
 
         tabs?.insertAdjacentHTML('beforeend', newTab);
@@ -100,7 +100,7 @@ export const Async: Story = {
         activeHeader?.remove();
 
         const activePanel: HTMLPostTabPanelElement | null =
-          document.querySelector(`post-tab-panel[name=${activeHeader?.panel}]`) ?? null;
+          document.querySelector(`post-tab-panel[name=${activeHeader?.name}]`) ?? null;
         activePanel?.remove();
       };
 
