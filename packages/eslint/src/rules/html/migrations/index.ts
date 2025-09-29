@@ -29,6 +29,9 @@ import noDeprecatedHClearfix, {
 import noDeprecatedHVisuallyhiddenRule, {
   name as noDeprecatedHVisuallyhiddenRuleName,
 } from './no-deprecated-h-visuallyhidden';
+import noDeprecatedFontCurvesRule, {
+  name as noDeprecatedFontCurvesRuleName,
+} from './no-deprecated-font-curves';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
@@ -43,4 +46,5 @@ export const htmlMigrationRules = {
   [noDeprecatedShadowUtilitiesRuleName]: noDeprecatedShadowUtilitiesRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
+  [noDeprecatedFontCurvesRuleName]: noDeprecatedFontCurvesRule,
 };
