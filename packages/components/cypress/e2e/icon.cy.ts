@@ -16,13 +16,10 @@ describe('Icon', () => {
       cy.get('@icon').should('exist');
     });
 
-    // Check that the <meta> tag is present and contains the correct value
-
     it('should have "meta[design-system-settings]" tag in head that contains an attribute "data-post-icon-base" with value "/post-icons"', () => {
       cy.get('@meta').should('exist').should('have.attr', 'data-post-icon-base', '/post-icons');
     });
 
-    // Check that the "name" of the icon is correctly set
     it('should set the icon name according to the "name" property', () => {
       cy.get('@inner').should(
         'have.css',
@@ -37,7 +34,6 @@ describe('Icon', () => {
       );
     });
 
-    // Check that if "@base" prop is absolute, it is used as is
     it('should use absolute "base" property as is', () => {
       cy.get('@icon')
         .invoke('attr', 'base', 'https://base.prop.ch')
@@ -45,8 +41,7 @@ describe('Icon', () => {
       cy.get('@inner').should('have.css', 'mask-image', 'url("https://base.prop.ch/1000.svg")');
     });
 
-    // Check that if "@base" prop is relative and no base href is set, it is combined with current domain
-    it('should combine base href (or current domain) with relative "base" property', () => {
+    it('should combine relative "base" property with current domain, when no base[href] is set', () => {
       cy.get('@icon')
         .invoke('attr', 'base', '/base/path')
         .should('have.attr', 'base', '/base/path');
@@ -57,8 +52,7 @@ describe('Icon', () => {
       );
     });
 
-    // Check that "@base" prop is prioritized over meta icon path
-    it('should use component "base" property over meta settings', () => {
+    it('should use component "base" property over meta icon path', () => {
       cy.get('@icon')
         .invoke('attr', 'base', '/base/path')
         .should('have.attr', 'base', '/base/path');
@@ -72,7 +66,6 @@ describe('Icon', () => {
       );
     });
 
-    // Check that when no "@base" prop is set and the meta icon path is absolute, it is used as is
     it('should use absolute "meta" property as is, when no base prop is set', () => {
       cy.get('@icon').invoke('attr', 'base', null);
       cy.get('@meta')
@@ -81,7 +74,6 @@ describe('Icon', () => {
       cy.get('@inner').should('have.css', 'mask-image', 'url("https://meta.path.ch/1000.svg")');
     });
 
-    // Check that when no "@base" prop is set, the meta icon path is relative and no base href is set, it is combined with current domain
     it('should combine base href (or current domain) with relative "meta", when no base prop is set', () => {
       cy.get('@icon').invoke('attr', 'base', null);
       cy.get('@meta')
@@ -95,7 +87,6 @@ describe('Icon', () => {
       );
     });
 
-    // If "basehref" is absolute then it is used as is, without prepending the current domain
     it('should use absolute base[href] instead of current domain', () => {
       cy.get('@icon').invoke('attr', 'base', '/post-icons');
       cy.get('head').invoke('append', '<base href="https://href.base.ch" />');
@@ -109,8 +100,6 @@ describe('Icon', () => {
         'url("https://href.base.ch/post-icons/1000.svg")',
       );
     });
-
-    // If "basehref" is relative then it should be appended to the current domain
 
     it('should combine current domain with relative base[href]', () => {
       cy.get('head').invoke('append', '<base href="/base" />');
@@ -127,8 +116,7 @@ describe('Icon', () => {
       );
     });
 
-    // If all "@base" prop, meta icon path and base href are present and absolute, then the @base prop should be prioritized first
-    it('should use absolute component base over base[href]', () => {
+    it('should use absolute component base over absolute meta path and base[href]', () => {
       cy.get('@icon')
         .invoke('attr', 'base', 'https://comp.base.ch')
         .should('have.attr', 'base', 'https://comp.base.ch');
@@ -146,9 +134,7 @@ describe('Icon', () => {
       cy.get('@inner').should('have.css', 'mask-image', 'url("https://comp.base.ch/1000.svg")');
     });
 
-    // Check that if "@base" prop is set as relative, it is combined with an absolute base href
-
-    it('should combine absolute base[href] with relative component base', () => {
+    it('should combine relative component base with absolute base[href]', () => {
       cy.get('@icon')
         .invoke('attr', 'base', '/base/path')
         .should('have.attr', 'base', '/base/path');
@@ -167,9 +153,7 @@ describe('Icon', () => {
       );
     });
 
-    // Check that if both "@base" prop and base href are present and relative, they are combined with the curent domain
-
-    it('should combine relative base[href] with relative component base', () => {
+    it('should combine relative component base with relative base[href] and current domain', () => {
       cy.get('@icon')
         .invoke('attr', 'base', '/base/path')
         .should('have.attr', 'base', '/base/path');
@@ -185,7 +169,6 @@ describe('Icon', () => {
       );
     });
 
-    // Check that if there is no "@base" prop, an absolute meta icon path and a relative base href are set, then the meta path should be prioiritized
     it('should prioritize absolute meta path over relative base[href]', () => {
       cy.get('@meta')
         .invoke('attr', 'data-post-icon-base', 'https://meta.path.ch')
@@ -198,7 +181,6 @@ describe('Icon', () => {
       cy.get('@inner').should('have.css', 'mask-image', 'url("https://meta.path.ch/1000.svg")');
     });
 
-    // Handle multiple levels
     it('should handle multiple levels of paths correctly', () => {
       cy.get('head').invoke('append', '<base href="/level1/level2" />');
       cy.get('head base[href]')
@@ -215,7 +197,6 @@ describe('Icon', () => {
       );
     });
 
-    // When not @base prop or meta icon path are specified, cdn fallback should be used
     it('should use CDN fallback if no @base prop or meta icon path are specified', () => {
       cy.get('@inner').invoke('removeAttr', 'base').should('not.have.attr', 'base');
       cy.get('@meta')
@@ -231,7 +212,6 @@ describe('Icon', () => {
       );
     });
 
-    // CHekc that it handles path normalization correctly
     it('should handle path normalization correctly (removing double slashes)', () => {
       cy.get('head').invoke('append', '<base href="/basehref/path/" />');
       cy.get('head base[href]')

@@ -64,7 +64,7 @@ export class PostIcon {
 
   @Watch('name')
   validateName() {
-    if (this.name) checkRequiredAndType(this, 'name', 'string');
+    checkRequiredAndType(this, 'name', 'string');
   }
 
   /**
@@ -116,8 +116,8 @@ export class PostIcon {
       : '';
     const metaIconBase = IS_BROWSER
       ? document
-        .querySelector('meta[name="design-system-settings"]')
-        ?.getAttribute('data-post-icon-base') || ''
+          .querySelector('meta[name="design-system-settings"]')
+          ?.getAttribute('data-post-icon-base') || ''
       : '';
 
     // Function to build the first part of the URL when 'this.base' or 'metaIconBase' are relative
