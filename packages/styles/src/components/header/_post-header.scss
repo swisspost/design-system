@@ -179,7 +179,7 @@ post-header {
       }
     }
   }
-  a.selected,
+
   a[aria-current='page'],
   post-togglebutton[aria-pressed='true']:not(post-mainnavigation *) {
     color: color.$white;
