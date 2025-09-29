@@ -1,15 +1,9 @@
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/variables/color';
 
 post-megadropdown-trigger {
   width: 100%;
   position: relative;
   z-index: 3;
-
-  button.selected {
-    color: color.$white;
-    background: #050400 !important;
-  }
 
   @include media.max(lg) {
     z-index: 4;
