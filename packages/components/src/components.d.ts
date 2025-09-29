@@ -806,7 +806,7 @@ declare global {
         new (): HTMLPostPopoverElement;
     };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postToggle": boolean;
+        "postToggle": { isOpen: boolean; first?: boolean };
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1260,9 +1260,9 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
+          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was * closed, and `first`, which is true if it was opened for the first time.
          */
-        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
+        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'

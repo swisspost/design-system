@@ -145,7 +145,7 @@ export class PostMenu {
   };
 
   @EventFrom('post-popovercontainer')
-  private handlePostToggle = (event: CustomEvent<{ isOpen: boolean; first: boolean }>) => {
+  private handlePostToggle = (event: CustomEvent<{ isOpen: boolean; first?: boolean }>) => {
       this.isVisible = event.detail.isOpen;
       this.toggleMenu.emit(this.isVisible);
 
@@ -166,7 +166,7 @@ export class PostMenu {
               });
 
               // Add aria-label to the menu
-              this.host.setAttribute('aria-label', this.label);
+              if (this.label) this.host.setAttribute('aria-label', this.label);
             }
           }
 
