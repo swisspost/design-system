@@ -1,6 +1,6 @@
 /* Components rendered on the client-side only, need to be invisible, as long as they match the css selector :not(:defined), so they are not showing up, before they got hydrated. */
 @use 'sass:list';
-@use '../generated/component-names' as *;
+@use '../../_generated/component-names.scss' as *;
 
 :where(#{$component-names}):not([data-hydrated], :defined) {
   visibility: hidden;
