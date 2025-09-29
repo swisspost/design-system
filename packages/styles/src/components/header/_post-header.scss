@@ -180,12 +180,16 @@ post-header {
     }
   }
 
-  a.selected,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
       color: color.$white;
       background: #050400;
     }
+  }
+
+  a[aria-current='page'] {
+    color: color.$white;
+    background: #050400 !important;
   }
 
   post-togglebutton {
