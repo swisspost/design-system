@@ -61,7 +61,7 @@ export class PostTabs {
     this.detectMode();
     this.enableTabs();
 
-    const initiallyActiveTab = this.activeTab || this.tabs[0]?.getAttribute('name');
+    const initiallyActiveTab = this.activeTab || this.tabs[0]?.name;
     void this.show(initiallyActiveTab);
 
     this.isLoaded = true;
@@ -101,7 +101,7 @@ export class PostTabs {
     }
 
     // do nothing if the tab is already active
-    if (tabName === this.activeTabElement?.getAttribute('name')) {
+    if (tabName === this.activeTabElement?.name) {
       return;
     }
 
@@ -118,7 +118,7 @@ export class PostTabs {
     }
 
     // hide the currently visible panel only if no other animation is running
-    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.getAttribute('name'));
+    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
 
     // wait for any hiding animation to complete before showing the selected tab
     if (this.hiding) await this.hiding.finished;
@@ -128,7 +128,7 @@ export class PostTabs {
     // wait for any display animation to complete for the returned promise to fully resolve
     if (this.showing) await this.showing.finished;
 
-    if (this.isLoaded) this.postChange.emit(this.activeTabElement.getAttribute('name'));
+    if (this.isLoaded) this.postChange.emit(this.activeTabElement.name);
   }
 
   private moveMisplacedTabs() {
@@ -159,7 +159,7 @@ export class PostTabs {
 
     // if the currently active tab was removed from the DOM then select the first one
     if (this.activeTabElement && !this.activeTabElement.isConnected) {
-      void this.show(this.tabs[0]?.getAttribute('name'));
+      void this.show(this.tabs[0]?.name);
     }
   }
 
@@ -172,7 +172,7 @@ export class PostTabs {
     // The consumer handles routing, we just manage the active state
     
     tab.addEventListener('click', () => {
-      this.setActiveTab(tab.getAttribute('name'));
+      this.setActiveTab(tab.name);
     });
 
     // Remove panel-related attributes for navigation mode
@@ -187,20 +187,20 @@ export class PostTabs {
     // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
     if (tab.getAttribute('aria-controls')) return;
 
-    const tabPanel = this.getPanel(tab.getAttribute('name'));
+    const tabPanel = this.getPanel(tab.name);
     if (tabPanel) {
       tab.setAttribute('aria-controls', tabPanel.id);
       tabPanel.setAttribute('aria-labelledby', tab.id);
     }
 
     tab.addEventListener('click', () => {
-      void this.show(tab.getAttribute('name'));
+      void this.show(tab.name);
     });
 
     tab.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        void this.show(tab.getAttribute('name'));
+        void this.show(tab.name);
       }
     });
   }
@@ -262,7 +262,7 @@ export class PostTabs {
   }
 
   private showSelectedPanel() {
-    const panel = this.getPanel(this.activeTabElement.getAttribute('name'));
+    const panel = this.getPanel(this.activeTabElement.name);
     if (!panel) return;
     
     panel.style.display = 'block';
