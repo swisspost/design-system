@@ -180,7 +180,7 @@ post-header {
     }
   }
 
-  a[aria-current='page'],
+  post-megadropdown a[aria-current='page'],
   post-togglebutton[aria-pressed='true']:not(post-mainnavigation *) {
     color: color.$white;
     background: #050400 !important;
