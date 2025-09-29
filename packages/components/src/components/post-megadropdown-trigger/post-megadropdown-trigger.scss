@@ -6,7 +6,7 @@ post-megadropdown-trigger {
   position: relative;
   z-index: 3;
 
-  button[aria-current='page'] {
+  button.selected {
     color: color.$white;
     background: #050400 !important;
   }

@@ -177,17 +177,16 @@ export class PostMegadropdown {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
 
+    const hostId = this.host.getAttribute('id');
+
     // Proceed if the host has an ID and one of its focusable children is marked as the current page (`aria-current="page"`)
-    if (
-      this.host.getAttribute('id') &&
-      focusableChildren.some(el => el.getAttribute('aria-current') === 'page')
-    ) {
+    if (hostId && focusableChildren.some(el => el.getAttribute('aria-current') === 'page')) {
       // Find the trigger element via its "for" attribute, then locate its button and set `aria-current="page"`
       const triggerFor = this.host.getAttribute('id');
       document
         .querySelector(`[for="${triggerFor}"]`)
         .querySelector('button')
-        .setAttribute('aria-current', 'page');
+        .classList.add('selected');
     }
 
     this.firstFocusableEl = focusableChildren[0];

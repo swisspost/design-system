@@ -1,5 +1,6 @@
 ---
 '@swisspost/design-system-components': patch
+'@swisspost/design-system-styles': patch
 ---
 
-Added logic to automatically apply the `[aria-current='page']` attribute to the respective `post-megadropdown-trigger` when one of the items inside the corresponding `post-megadropdown` has the `[aria-current='page']` attribute.
+Added styles to highlight the current navigation item marked with `aria-current="page"` and its potential parent item in the header main navigation.
