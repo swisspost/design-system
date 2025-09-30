@@ -77,9 +77,34 @@ export class PostPopovercontainer {
   private firstOpen: boolean = true;
 
   /**
-   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was * closed, and `first`, which is true if it was opened for the first time.
+   * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
    */
-  @Event() postToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
+  @Event() postBeforeShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+   */
+  @Event() postAfterShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is about to be hidden, passing in event.detail a `first` boolean, which is true if it is to be hidden for the first time.
+   */
+  @Event() postBeforeHide: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is hidden, passing in event.detail a `first` boolean, which is true if it is hidden for the first time.
+   */
+  @Event() postAfterHide: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail an object containing two booleans: `willOpen`, which is true if the popovercontainer is about to be opened and false if it is about to be closed, and `first`, which is true if it is to be opened for the first time.
+   */
+  @Event() postBeforeToggle: EventEmitter<{ willOpen: boolean; first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
+   */
+  @Event() postAfterToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
 
   /**
    * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -211,7 +236,7 @@ export class PostPopovercontainer {
 
       // Emit event with `first` flag only true on the first open
       if (this.firstOpen) {
-        this.postToggle.emit({ isOpen, first: this.firstOpen });
+        this.postAfterToggle.emit({ isOpen, first: this.firstOpen });
         this.firstOpen = false;
         return;
       }
@@ -220,7 +245,7 @@ export class PostPopovercontainer {
       if (this.safeSpace)
         window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
-    this.postToggle.emit({ isOpen: isOpen, first: false });
+    this.postAfterToggle.emit({ isOpen: isOpen, first: false });
   }
 
   /**

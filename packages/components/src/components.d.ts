@@ -325,10 +325,6 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Required label providing an accessible name for the menu.
-         */
-        "label"?: string;
-        /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
          */
@@ -806,7 +802,12 @@ declare global {
         new (): HTMLPostPopoverElement;
     };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postToggle": { isOpen: boolean; first?: boolean };
+        "postBeforeShow": { first?: boolean };
+        "postAfterShow": { first?: boolean };
+        "postBeforeHide": { first?: boolean };
+        "postAfterHide": { first?: boolean };
+        "postBeforeToggle": { willOpen: boolean; first?: boolean };
+        "postAfterToggle": { isOpen: boolean; first?: boolean };
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1201,10 +1202,6 @@ declare namespace LocalJSX {
     }
     interface PostMenu {
         /**
-          * Required label providing an accessible name for the menu.
-         */
-        "label"?: string;
-        /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
@@ -1260,9 +1257,29 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was * closed, and `first`, which is true if it was opened for the first time.
+          * Fires whenever the popovercontainer is hidden, passing in event.detail a `first` boolean, which is true if it is hidden for the first time.
          */
-        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) => void;
+        "onPostAfterHide"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+         */
+        "onPostAfterShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
+         */
+        "onPostAfterToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is about to be hidden, passing in event.detail a `first` boolean, which is true if it is to be hidden for the first time.
+         */
+        "onPostBeforeHide"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
+         */
+        "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail an object containing two booleans: `willOpen`, which is true if the popovercontainer is about to be opened and false if it is about to be closed, and `first`, which is true if it is to be opened for the first time.
+         */
+        "onPostBeforeToggle"?: (event: PostPopovercontainerCustomEvent<{ willOpen: boolean; first?: boolean }>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
