@@ -32,7 +32,7 @@
   }
 
   &.selected,
-  &:where(a)[aria-current='page'],
+  &[aria-current='page'],
   &[aria-expanded='true'] {
     background-color: #050400;
     color: #fff;
