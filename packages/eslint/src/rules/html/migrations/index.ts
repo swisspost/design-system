@@ -26,6 +26,9 @@ import noDeprecatedHClearfix, {
 import noDeprecatedHVisuallyhiddenRule, {
   name as noDeprecatedHVisuallyhiddenRuleName,
 } from './no-deprecated-h-visuallyhidden';
+import noDeprecatedFontSizesRule, {
+  name as noDeprecatedFontSizesRuleName,
+} from './no-deprecated-font-sizes';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
@@ -39,4 +42,5 @@ export const htmlMigrationRules = {
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
+  [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
 };
