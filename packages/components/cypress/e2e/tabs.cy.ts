@@ -4,7 +4,7 @@ describe('tabs', () => {
   describe('default', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID);
-      cy.get('post-tab-header').as('headers');
+      cy.get('post-tab-item').as('headers');
     });
 
     it('should render', () => {
@@ -16,7 +16,7 @@ describe('tabs', () => {
     });
 
     it('should only show the first tab header as active', () => {
-      cy.get('post-tab-header.active').each(($header, index) => {
+        cy.get('post-tab-item.active').each(($header, index) => {
         cy.wrap($header).should(index === 0 ? 'exist' : 'not.exist');
       });
     });
@@ -59,7 +59,7 @@ describe('tabs', () => {
   describe('active panel', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'active-panel');
-      cy.get('post-tab-header').as('headers');
+      cy.get('post-tab-item').as('headers');
       cy.get('post-tab-panel:visible').as('panel');
     });
 
@@ -92,7 +92,7 @@ describe('tabs', () => {
   describe('async', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'async');
-      cy.get('post-tab-header').as('headers');
+      cy.get('post-tab-item').as('headers');
     });
 
     it('should add a tab header', () => {
@@ -116,7 +116,7 @@ describe('tabs', () => {
     it('should activate the newly added tab header after clicking on it', () => {
       cy.get('#add-tab').click();
 
-      cy.get('post-tab-header').as('headers');
+      cy.get('post-tab-item').as('headers');
       cy.get('@headers').last().click();
 
       cy.get('@headers').first().should('not.have.class', 'active');
@@ -126,7 +126,7 @@ describe('tabs', () => {
     it('should display the tab panel associated with the newly added tab after clicking on it', () => {
       cy.get('#add-tab').click();
 
-      cy.get('post-tab-header').last().as('new-panel');
+      cy.get('post-tab-item').last().as('new-panel');
       cy.get('@new-panel').click();
 
       // wait for the fade out animation to complete
