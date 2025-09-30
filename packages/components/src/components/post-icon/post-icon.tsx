@@ -115,9 +115,7 @@ export class PostIcon {
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
     const metaIconBase = IS_BROWSER
-      ? document
-          .querySelector('meta[name="design-system-settings"]')
-          ?.getAttribute('data-post-icon-base') || ''
+      ? document.querySelector('meta[name="design-system-settings"]')?.getAttribute('data-post-icon-base') || ''
       : '';
 
     // Function to build the first part of the URL when 'this.base' or 'metaIconBase' are relative
