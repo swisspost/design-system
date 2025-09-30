@@ -1,5 +1,7 @@
-import rule, { name } from '../../../../src/rules/html/migrations/no-deprecated-font-sizes';
-import { classesMap } from '../../../../src/rules/html/migrations/no-deprecated-font-sizes';
+import rule, {
+  name,
+  classesMap,
+} from '../../../../src/rules/html/migrations/no-deprecated-font-sizes';
 import { htmlRuleTester } from '../../../utils/html-rule-tester';
 
 htmlRuleTester.run(name, rule, {
