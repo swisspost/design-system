@@ -79,7 +79,8 @@ export const TextWrapping: Story = {
     </div>
     <div class="my-container w-half text-nowrap">
       <p class="text-wrap">
-        This text should wrap, showing how text naturally breaks into multiple lines when wrapping is enabled.
+        This text should wrap, showing how text naturally breaks into multiple lines when wrapping
+        is enabled.
       </p>
     </div>
   `,
@@ -106,5 +107,13 @@ export const TextDecoration: Story = {
     <p class="text-decoration-underline">This text has a line underneath it.</p>
     <p class="text-decoration-line-through">This text has a line going through it.</p>
     <a href="#" class="text-decoration-none">This link has its text decoration removed.</a>
+  `,
+};
+
+export const TextTruncation: Story = {
+  render: () => html`
+    <p class="text-truncate" style="max-width: 200px">
+      This is a long text that should be truncated when it exceeds the defined max-width.
+    </p>
   `,
 };
