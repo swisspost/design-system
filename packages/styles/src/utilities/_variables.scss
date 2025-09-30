@@ -592,4 +592,11 @@ $utilities: (
     class: z,
     values: map.merge(commons.$zindex-map, commons.$named-zindex-map),
   ),
+  'small': (
+    property: font-size,
+    class: null,
+    values: (
+      small: 80%,
+    ),
+  ),
 );
