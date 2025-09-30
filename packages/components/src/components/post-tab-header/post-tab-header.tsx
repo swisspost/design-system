@@ -29,7 +29,6 @@ export class PostTabHeader {
   }
 
   componentWillLoad() {
-    this.validateName();
     this.tabId = `tab-${this.host.id || nanoid(6)}`;
     this.checkNavigationMode();
   }
