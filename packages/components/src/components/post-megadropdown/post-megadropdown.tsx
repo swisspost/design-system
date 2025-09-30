@@ -182,7 +182,9 @@ export class PostMegadropdown {
     // Proceed if the host has an ID and one of its focusable children is marked as the current page (`aria-current="page"`)
     if (hostId && focusableChildren.some(el => el.getAttribute('aria-current') === 'page')) {
       // Find the trigger element via its "for" attribute, then locate its button and set `aria-current="page"`
-      document.querySelector(`[for="${hostId}"]`).querySelector('button').classList.add('selected');
+      document
+        .querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
+        .classList.add('selected');
     }
 
     this.firstFocusableEl = focusableChildren[0];
