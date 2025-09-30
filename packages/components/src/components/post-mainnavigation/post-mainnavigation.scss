@@ -211,10 +211,6 @@ post-mainnavigation {
           display: none;
         }
       }
-      > a[aria-current='page'] {
-        background-color: #050400;
-        color: #fff;
-      }
     }
 
     // styles specific to for the mega-dropdown buttons

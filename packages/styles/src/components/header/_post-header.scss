@@ -180,10 +180,12 @@ post-header {
     }
   }
 
-  post-megadropdown a[aria-current='page'],
-  post-togglebutton[aria-pressed='true']:not(post-mainnavigation *) {
-    color: color.$white;
-    background: #050400 !important;
+  a.selected,
+  post-togglebutton[aria-pressed='true'] {
+    &:not(post-mainnavigation *) {
+      color: color.$white;
+      background: #050400;
+    }
   }
 
   post-togglebutton {
