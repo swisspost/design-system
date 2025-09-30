@@ -113,5 +113,6 @@ export const SmallText: StoryObj = {
   render: () => html`
     <p>This is normal text</p>
     <p class="small">This is small text (80% of parent font size)</p>
+    <h2>This is a title with <span class="small">smaller text inside</span></h2>
   `,
 };
