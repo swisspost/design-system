@@ -42,12 +42,10 @@ export class PostTabItem {
     const hasAnchor = this.host.querySelector('a') !== null;
     this.isNavigationMode = hasAnchor;
     
-    // Expose mode to parent post-tabs via data-attribute (as per requirements)
     this.host.setAttribute('data-navigation-mode', this.isNavigationMode.toString());
   }
 
   render() {
-    // Only set ARIA attributes and tabindex in panel mode
     const isPanelMode = !this.isNavigationMode;
     return (
       <Host

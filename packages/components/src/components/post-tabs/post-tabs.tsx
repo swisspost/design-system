@@ -58,21 +58,21 @@ export class PostTabs {
   @Event() postChange: EventEmitter<string>;
 
   componentDidLoad() {
-  this.detectMode();
-  this.moveMisplacedTabs();
-  this.isLoaded = true;
-  this.enableTabs();
+    this.detectMode();
+    this.moveMisplacedTabs();
+    this.isLoaded = true;
+    this.enableTabs();
 
-  if (this.isNavigationMode) {
-    const activeTab = this.findActiveNavigationTab();
-    if (activeTab) {
-      void this.show(activeTab.name);
+    if (this.isNavigationMode) {
+      const activeTab = this.findActiveNavigationTab();
+      if (activeTab) {
+        void this.show(activeTab.name);
+      }
+    } else {
+      const initiallyActiveTab = this.activeTab || this.tabs[0]?.name;
+      void this.show(initiallyActiveTab);
     }
-  } else {
-    const initiallyActiveTab = this.activeTab || this.tabs[0]?.name;
-    void this.show(initiallyActiveTab);
   }
-}
 
   private detectMode() {    
     const hasNavigationTabs = this.tabs.some(tab => {
