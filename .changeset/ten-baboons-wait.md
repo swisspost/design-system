@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Updated icon path logic to ensure correct priority when multiple sources as present.
+Refactored icon path to improve readability and maintain correct handling of multiple sources.
