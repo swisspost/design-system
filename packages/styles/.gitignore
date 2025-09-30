@@ -17,3 +17,4 @@ src/utilities/_env-variables.scss
 
 # Temporary files
 src/tokens/temp/
+src/icons/temp/
