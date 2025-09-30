@@ -206,7 +206,7 @@ export class PostTabs {
     }
   }
 
-  private async activateTab(tab: HTMLPostTabHeaderElement) {
+  private activateTab(tab: HTMLPostTabHeaderElement) {
     // Deactivate previous tab
     if (this.currentActiveTab) {
       this.currentActiveTab.setAttribute('aria-selected', 'false');
