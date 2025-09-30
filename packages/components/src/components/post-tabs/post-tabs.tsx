@@ -127,7 +127,6 @@ export class PostTabs {
       return;
     }
 
-    // Panel mode logic
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
     if (this.showing) {
       this.showing.effect['target'].style.display = 'none';
