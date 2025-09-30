@@ -60,7 +60,7 @@ export class PostTabs {
   componentDidLoad() {
   this.detectMode();
   this.moveMisplacedTabs();
-  this.isLoaded = true; // <-- Set isLoaded before enabling tabs
+  this.isLoaded = true;
   this.enableTabs();
 
   if (this.isNavigationMode) {
@@ -80,10 +80,8 @@ export class PostTabs {
       return navMode;
     });
     
-    // Check if there are any panels
     const hasPanels = this.panels.length > 0;
     
-    // Validate for mixed mode (error condition)
     if (hasNavigationTabs && hasPanels) {
       console.error('PostTabs: Mixed mode detected. Cannot use both navigation mode (anchor elements) and panel mode (post-tab-panel elements) at the same time.');
       return;
@@ -93,7 +91,6 @@ export class PostTabs {
   }
 
   private findActiveNavigationTab(): HTMLPostTabItemElement | null {
-    // Find the tab that contains an anchor with aria-current="page"
     return this.tabs.find(tab => {
       const anchor = tab.querySelector('a[aria-current="page"]');
       return anchor !== null;
