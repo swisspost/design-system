@@ -66,12 +66,12 @@ export class PostTabs {
       // In navigation mode, find the tab with aria-current="page"
       const activeTab = this.findActiveNavigationTab();
       if (activeTab) {
-        void this.show(activeTab.getAttribute('name'));
+        void this.show(activeTab.name);
       }
       // If no aria-current="page" found, don't show any active tab
     } else {
       // Panel mode: use existing logic
-      const initiallyActiveTab = this.activeTab || this.tabs[0]?.getAttribute('name');
+      const initiallyActiveTab = this.activeTab || this.tabs[0]?.name;
       void this.show(initiallyActiveTab);
     }
 
@@ -112,7 +112,7 @@ export class PostTabs {
   @Method()
   async show(tabName: string) {
     // do nothing if the tab is already active
-    if (tabName === this.currentActiveTab?.getAttribute('name')) {
+    if (tabName === this.currentActiveTab?.name) {
       return;
     }
 
@@ -130,7 +130,7 @@ export class PostTabs {
 
     // In navigation mode, we don't need to handle panels
     if (this.isNavigationMode) {
-      if (this.isLoaded) this.postChange.emit(this.currentActiveTab.getAttribute('name'));
+      if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
       return;
     }
 
@@ -142,7 +142,7 @@ export class PostTabs {
     }
 
     // hide the currently visible panel only if no other animation is running
-    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.getAttribute('name'));
+    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
 
     // wait for any hiding animation to complete before showing the selected tab
     if (this.hiding) await this.hiding.finished;
@@ -152,7 +152,7 @@ export class PostTabs {
     // wait for any display animation to complete for the returned promise to fully resolve
     if (this.showing) await this.showing.finished;
 
-    if (this.isLoaded) this.postChange.emit(this.currentActiveTab.getAttribute('name'));
+    if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
   }
 
   private moveMisplacedTabs() {
@@ -179,20 +179,20 @@ export class PostTabs {
       // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
       if (tab.getAttribute('aria-controls')) return;
 
-      const tabPanel = this.getPanel(tab.getAttribute('name'));
+      const tabPanel = this.getPanel(tab.name);
       if (tabPanel) {
         tab.setAttribute('aria-controls', tabPanel.id);
         tabPanel.setAttribute('aria-labelledby', tab.id);
       }
 
       tab.addEventListener('click', () => {
-        void this.show(tab.getAttribute('name'));
+        void this.show(tab.name);
       });
 
       tab.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          void this.show(tab.getAttribute('name'));
+          void this.show(tab.name);
         }
       });
 
@@ -203,7 +203,7 @@ export class PostTabs {
 
     // if the currently active tab was removed from the DOM then select the first one
     if (this.currentActiveTab && !this.currentActiveTab.isConnected) {
-      void this.show(this.tabs[0]?.getAttribute('name'));
+      void this.show(this.tabs[0]?.name);
     }
   }
 
@@ -223,7 +223,7 @@ export class PostTabs {
     this.currentActiveTab = tab;
   }
 
-  private hidePanel(panelName: HTMLPostTabPanelElement['name']) {
+  private hidePanel(panelName: HTMLPostTabPanelElement['for']) {
     const previousPanel = this.getPanel(panelName);
 
     if (!previousPanel) return;
@@ -236,7 +236,7 @@ export class PostTabs {
   }
 
   private showSelectedPanel() {
-    const panel = this.getPanel(this.currentActiveTab.getAttribute('name'));
+    const panel = this.getPanel(this.currentActiveTab.name);
     panel.style.display = 'block';
 
     // prevent the initially selected panel from fading in

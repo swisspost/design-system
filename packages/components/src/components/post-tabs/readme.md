@@ -7,31 +7,32 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                                                                                                                                           | Type      | Default     |
-| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `activePanel` | `active-panel` | The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.** | `string`  | `undefined` |
-| `fullWidth`   | `full-width`   | When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.                                                                    | `boolean` | `false`     |
+| Property    | Attribute    | Description                                                                                                                                                | Type      | Default     |
+| ----------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `activeTab` | `active-tab` | The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Changing this value after initialization has no effect.** | `string`  | `undefined` |
+| `fullWidth` | `full-width` | When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.                                         | `boolean` | `false`     |
 
 
 ## Events
 
-| Event        | Description                                                                                                                                                       | Type                  |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `postChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel. | `CustomEvent<string>` |
+| Event        | Description                                                                                                                                                      | Type                  |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `postChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. | `CustomEvent<string>` |
 
 
 ## Methods
 
-### `show(panelName: string) => Promise<void>`
+### `show(tabName: string) => Promise<void>`
 
 Shows the panel with the given name and selects its associated tab.
+In navigation mode, only updates the active tab state.
 Any other panel that was previously shown becomes hidden and its associated tab is unselected.
 
 #### Parameters
 
-| Name        | Type     | Description |
-| ----------- | -------- | ----------- |
-| `panelName` | `string` |             |
+| Name      | Type     | Description |
+| --------- | -------- | ----------- |
+| `tabName` | `string` |             |
 
 #### Returns
 
