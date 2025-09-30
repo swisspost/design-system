@@ -264,19 +264,14 @@ export class PostTabs {
   render() {
     const tabsRole = this.isNavigationMode ? undefined : 'tablist';
     const ariaLabel = this.isNavigationMode ? 'Tabs navigation' : undefined;
+    const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
 
     return (
       <Host data-version={version}>
         <div class="tabs-wrapper" part="tabs">
-          {this.isNavigationMode ? (
-            <nav class="tabs" role={tabsRole} aria-label={ariaLabel}>
-              <slot name="tabs" onSlotchange={() => this.enableTabs()} />
-            </nav>
-          ) : (
-            <div class="tabs" role={tabsRole} aria-label={ariaLabel}>
-              <slot name="tabs" onSlotchange={() => this.enableTabs()} />
-            </div>
-          )}
+          <TabsContainer class="tabs" role={tabsRole} aria-label={ariaLabel}>
+            <slot name="tabs" onSlotchange={() => this.enableTabs()} />
+          </TabsContainer>
         </div>
         {!this.isNavigationMode && (
           <div class="tab-content" part="content">
