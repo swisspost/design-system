@@ -42,7 +42,7 @@ export class PostTabs {
    *
    * **Changing this value after initialization has no effect.**
    */
-  @Prop() readonly activeTab?: string;
+  @Prop() readonly activeTab?: HTMLPostTabHeaderElement['name'];
 
   /**
    * When set to true, this property allows the tabs container to span the
