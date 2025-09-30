@@ -78,11 +78,11 @@ export class PostTabs {
     this.isLoaded = true;
   }
 
-  private detectMode() {
-    // Check if any tab headers contain anchor elements (via data-attribute exposure)
-    const hasNavigationTabs = this.tabs.some(tab => 
-      tab.getAttribute('data-navigation-mode') === 'true'
-    );
+  private detectMode() {    
+    const hasNavigationTabs = this.tabs.some(tab => {
+      const navMode = tab.getAttribute('data-navigation-mode') === 'true';
+      return navMode;
+    });
     
     // Check if there are any panels
     const hasPanels = this.panels.length > 0;
@@ -165,18 +165,18 @@ export class PostTabs {
   }
 
   private enableTabs() {
+    // Prevent early call before detectMode()
+    if (!this.isLoaded) return;
+
     if (!this.tabs) return;
 
     this.tabs.forEach(async tab => {
       await componentOnReady(tab);
 
-      // In navigation mode, do not add any event listeners or panel relationships; let anchors handle navigation natively
       if (this.isNavigationMode) {
         return;
       }
 
-      // Panel mode: set up tab-panel relationships
-      // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
       if (tab.getAttribute('aria-controls')) return;
 
       const tabPanel = this.getPanel(tab.name);
@@ -200,7 +200,6 @@ export class PostTabs {
         if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') this.navigateTabs(tab, e.key);
       });
     });
-
     // if the currently active tab was removed from the DOM then select the first one
     if (this.currentActiveTab && !this.currentActiveTab.isConnected) {
       void this.show(this.tabs[0]?.name);
