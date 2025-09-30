@@ -201,7 +201,6 @@ export class PostTabs {
   }
 
   private activateTab(tab: HTMLPostTabItemElement) {
-    // Deactivate previous tab
     if (this.currentActiveTab) {
       this.currentActiveTab.setAttribute('aria-selected', 'false');
       if (!this.isNavigationMode) {
@@ -212,7 +211,6 @@ export class PostTabs {
       this.currentActiveTab.classList.remove('active');
     }
 
-    // Activate new tab
     tab.setAttribute('aria-selected', 'true');
     if (!this.isNavigationMode) {
       tab.setAttribute('tabindex', '0');
