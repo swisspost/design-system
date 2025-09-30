@@ -170,7 +170,7 @@ export class PostTabs {
     this.tabs.forEach(async tab => {
       await componentOnReady(tab);
 
-      // Skip tab setup in navigation mode - anchors handle their own navigation
+      // In navigation mode, do not add any event listeners or panel relationships; let anchors handle navigation natively
       if (this.isNavigationMode) {
         return;
       }
@@ -211,13 +211,21 @@ export class PostTabs {
     // Deactivate previous tab
     if (this.currentActiveTab) {
       this.currentActiveTab.setAttribute('aria-selected', 'false');
-      this.currentActiveTab.setAttribute('tabindex', '-1');
+      if (!this.isNavigationMode) {
+        this.currentActiveTab.setAttribute('tabindex', '-1');
+      } else {
+        this.currentActiveTab.removeAttribute('tabindex');
+      }
       this.currentActiveTab.classList.remove('active');
     }
 
     // Activate new tab
     tab.setAttribute('aria-selected', 'true');
-    tab.setAttribute('tabindex', '0');
+    if (!this.isNavigationMode) {
+      tab.setAttribute('tabindex', '0');
+    } else {
+      tab.removeAttribute('tabindex');
+    }
     tab.classList.add('active');
 
     this.currentActiveTab = tab;

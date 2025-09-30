@@ -35,13 +35,13 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
       full-width="${args.fullWidth ? true : nothing}"
     >
       <post-tab-header name="first">
-          <a href="/first">First page</a>
+          <a href="https://www.google.com/">First page</a>
 </post-tab-header>
       <post-tab-header name="second">
-      <a href="/second">Second page</a>
+      <a href="https://www.google.com/">Second page</a>
       </post-tab-header>
       <post-tab-header name="third">
-      <a href="/third">Third page</a>
+      <a href="https://www.google.com/">Third page</a>
       </post-tab-header>
 
     </post-tabs>

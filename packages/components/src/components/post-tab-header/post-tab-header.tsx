@@ -47,17 +47,15 @@ export class PostTabHeader {
   }
 
   render() {
-    const role = this.isNavigationMode ? undefined : 'tab';
-    const ariaSelected = this.isNavigationMode ? undefined : 'false';
-    const tabindex = this.isNavigationMode ? undefined : '-1';
-    
+    // Only set ARIA attributes and tabindex in panel mode
+    const isPanelMode = !this.isNavigationMode;
     return (
       <Host
         id={this.tabId}
-        role={role}
+        role={isPanelMode ? 'tab' : undefined}
         data-version={version}
-        aria-selected={ariaSelected}
-        tabindex={tabindex}
+        aria-selected={isPanelMode ? 'false' : undefined}
+        tabindex={isPanelMode ? '-1' : undefined}
         class="tab-title"
         slot="tabs"
       >
