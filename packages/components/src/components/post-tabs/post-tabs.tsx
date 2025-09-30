@@ -62,8 +62,18 @@ export class PostTabs {
     this.moveMisplacedTabs();
     this.enableTabs();
 
-    const initiallyActiveTab = this.activeTab || this.tabs[0]?.getAttribute('name');
-    void this.show(initiallyActiveTab);
+    if (this.isNavigationMode) {
+      // In navigation mode, find the tab with aria-current="page"
+      const activeTab = this.findActiveNavigationTab();
+      if (activeTab) {
+        void this.show(activeTab.getAttribute('name'));
+      }
+      // If no aria-current="page" found, don't show any active tab
+    } else {
+      // Panel mode: use existing logic
+      const initiallyActiveTab = this.activeTab || this.tabs[0]?.getAttribute('name');
+      void this.show(initiallyActiveTab);
+    }
 
     this.isLoaded = true;
   }
@@ -84,6 +94,14 @@ export class PostTabs {
     }
     
     this.isNavigationMode = hasNavigationTabs;
+  }
+
+  private findActiveNavigationTab(): HTMLPostTabHeaderElement | null {
+    // Find the tab that contains an anchor with aria-current="page"
+    return this.tabs.find(tab => {
+      const anchor = tab.querySelector('a[aria-current="page"]');
+      return anchor !== null;
+    }) || null;
   }
 
   /**
@@ -195,24 +213,12 @@ export class PostTabs {
       this.currentActiveTab.setAttribute('aria-selected', 'false');
       this.currentActiveTab.setAttribute('tabindex', '-1');
       this.currentActiveTab.classList.remove('active');
-      
-      // Remove aria-current from previous tab's anchor (navigation mode)
-      const previousAnchor = this.currentActiveTab.querySelector('a');
-      if (previousAnchor) {
-        previousAnchor.removeAttribute('aria-current');
-      }
     }
 
     // Activate new tab
     tab.setAttribute('aria-selected', 'true');
     tab.setAttribute('tabindex', '0');
     tab.classList.add('active');
-    
-    // Set aria-current on new tab's anchor (navigation mode)
-    const newAnchor = tab.querySelector('a');
-    if (newAnchor) {
-      newAnchor.setAttribute('aria-current', 'page');
-    }
 
     this.currentActiveTab = tab;
   }
