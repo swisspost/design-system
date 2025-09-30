@@ -34,15 +34,15 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
       active-tab="${ifDefined(args.activeTab)}"
       full-width="${args.fullWidth ? true : nothing}"
     >
-      <post-tab-header name="first">
+      <post-tab-item name="first">
           <a href="https://www.google.com/">First page</a>
-</post-tab-header>
-      <post-tab-header name="second">
+</post-tab-item>
+      <post-tab-item name="second">
       <a href="https://www.google.com/">Second page</a>
-      </post-tab-header>
-      <post-tab-header name="third">
+      </post-tab-item>
+      <post-tab-item name="third">
       <a href="https://www.google.com/">Third page</a>
-      </post-tab-header>
+      </post-tab-item>
 
     </post-tabs>
   `;
@@ -80,7 +80,7 @@ export const Async: Story = {
 
         tabIndex++;
         const newTab = `
-          <post-tab-header name="name-${tabIndex}">New tab ${tabIndex}</post-tab-header>
+          <post-tab-item name="name-${tabIndex}">New tab ${tabIndex}</post-tab-item>
           <post-tab-panel for="for-${tabIndex}">This is the content of the new tab ${tabIndex}.</post-tab-panel>
         `;
 
@@ -88,16 +88,16 @@ export const Async: Story = {
       };
 
       const removeActiveTab = () => {
-        const headers: NodeListOf<HTMLPostTabHeaderElement> | undefined =
-          document.querySelectorAll('post-tab-header');
+        const items: NodeListOf<HTMLPostTabItemElement> | undefined =
+          document.querySelectorAll('post-tab-item');
 
-        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers ?? []).find(
-          () => document.querySelectorAll('post-tab-header.active'),
+        const activeItem: HTMLPostTabItemElement | undefined = Array.from(items ?? []).find(
+          () => document.querySelectorAll('post-tab-item.active'),
         );
-        activeHeader?.remove();
+        activeItem?.remove();
 
         const activePanel: HTMLPostTabPanelElement | null =
-          document.querySelector(`post-tab-panel[name=${activeHeader?.name}]`) ?? null;
+          document.querySelector(`post-tab-panel[name=${activeItem?.name}]`) ?? null;
         activePanel?.remove();
       };
 

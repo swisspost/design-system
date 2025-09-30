@@ -446,7 +446,7 @@ export namespace Components {
          */
         "stars": number;
     }
-    interface PostTabHeader {
+    interface PostTabItem {
         /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode.
          */
@@ -836,11 +836,11 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
-    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    interface HTMLPostTabItemElement extends Components.PostTabItem, HTMLStencilElement {
     }
-    var HTMLPostTabHeaderElement: {
-        prototype: HTMLPostTabHeaderElement;
-        new (): HTMLPostTabHeaderElement;
+    var HTMLPostTabItemElement: {
+        prototype: HTMLPostTabItemElement;
+        new (): HTMLPostTabItemElement;
     };
     interface HTMLPostTabPanelElement extends Components.PostTabPanel, HTMLStencilElement {
     }
@@ -913,7 +913,7 @@ declare global {
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
-        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-tab-item": HTMLPostTabItemElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
@@ -1295,7 +1295,7 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
-    interface PostTabHeader {
+    interface PostTabItem {
         /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode.
          */
@@ -1391,7 +1391,7 @@ declare namespace LocalJSX {
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
-        "post-tab-header": PostTabHeader;
+        "post-tab-item": PostTabItem;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-togglebutton": PostTogglebutton;
@@ -1438,7 +1438,7 @@ declare module "@stencil/core" {
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
-            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;

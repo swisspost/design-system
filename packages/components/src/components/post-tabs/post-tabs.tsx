@@ -4,7 +4,7 @@ import { fadeIn, fadeOut } from '@/animations';
 import { componentOnReady } from '@/utils';
 
 /**
- * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
+ * @slot tabs - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
  * @slot default - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
  * @part tabs - The container element that holds the set of tabs.
  * @part content - The container element that displays the content of the currently active tab.
@@ -16,16 +16,16 @@ import { componentOnReady } from '@/utils';
   shadow: true,
 })
 export class PostTabs {
-  private currentActiveTab: HTMLPostTabHeaderElement;
+  private currentActiveTab: HTMLPostTabItemElement;
   private showing: Animation;
   private hiding: Animation;
   private isLoaded = false;
 
   @State() isNavigationMode: boolean = false;
 
-  private get tabs(): HTMLPostTabHeaderElement[] {
+  private get tabs(): HTMLPostTabItemElement[] {
     return Array.from(
-      this.host.querySelectorAll<HTMLPostTabHeaderElement>('post-tab-header'),
+      this.host.querySelectorAll<HTMLPostTabItemElement>('post-tab-item'),
     ).filter(tab => tab.closest('post-tabs') === this.host);
   }
 
@@ -96,7 +96,7 @@ export class PostTabs {
     this.isNavigationMode = hasNavigationTabs;
   }
 
-  private findActiveNavigationTab(): HTMLPostTabHeaderElement | null {
+  private findActiveNavigationTab(): HTMLPostTabItemElement | null {
     // Find the tab that contains an anchor with aria-current="page"
     return this.tabs.find(tab => {
       const anchor = tab.querySelector('a[aria-current="page"]');
@@ -117,8 +117,8 @@ export class PostTabs {
     }
 
     const previousTab = this.currentActiveTab;
-    const newTab: HTMLPostTabHeaderElement = this.host.querySelector(
-      `post-tab-header[name=${tabName}]`,
+    const newTab: HTMLPostTabItemElement = this.host.querySelector(
+      `post-tab-item[name=${tabName}]`,
     );
     
     if (!newTab) {
@@ -206,7 +206,7 @@ export class PostTabs {
     }
   }
 
-  private activateTab(tab: HTMLPostTabHeaderElement) {
+  private activateTab(tab: HTMLPostTabItemElement) {
     // Deactivate previous tab
     if (this.currentActiveTab) {
       this.currentActiveTab.setAttribute('aria-selected', 'false');
@@ -259,10 +259,10 @@ export class PostTabs {
     return this.host.querySelector(`post-tab-panel[for=${name}]`);
   }
 
-  private navigateTabs(tab: HTMLPostTabHeaderElement, key: 'ArrowRight' | 'ArrowLeft') {
+  private navigateTabs(tab: HTMLPostTabItemElement, key: 'ArrowRight' | 'ArrowLeft') {
     const activeTabIndex = Array.from(this.tabs).indexOf(tab);
 
-    let nextTab: HTMLPostTabHeaderElement;
+    let nextTab: HTMLPostTabItemElement;
     if (key === 'ArrowRight') {
       nextTab = this.tabs[activeTabIndex + 1] || this.tabs[0];
     } else {

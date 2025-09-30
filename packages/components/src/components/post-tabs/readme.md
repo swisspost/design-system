@@ -43,10 +43,10 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot        | Description                                                                          |
-| ----------- | ------------------------------------------------------------------------------------ |
-| `"default"` | Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.    |
-| `"tabs"`    | Slot for placing tab headers. Each tab header should be a <post-tab-header> element. |
+| Slot        | Description                                                                       |
+| ----------- | --------------------------------------------------------------------------------- |
+| `"default"` | Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element. |
+| `"tabs"`    | Slot for placing tab items. Each tab item should be a <post-tab-item> element.    |
 
 
 ## Shadow Parts

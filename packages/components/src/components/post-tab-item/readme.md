@@ -14,9 +14,9 @@
 
 ## Slots
 
-| Slot        | Description                                                                                     |
-| ----------- | ----------------------------------------------------------------------------------------------- |
-| `"default"` | Slot for the content of the tab header. Can contain text or an <a> element for navigation mode. |
+| Slot        | Description                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------- |
+| `"default"` | Slot for the content of the tab item. Can contain text or an <a> element for navigation mode. |
 
 
 ----------------------------------------------

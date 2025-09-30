@@ -4,16 +4,16 @@ import { checkRequiredAndType } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
- * @slot default - Slot for the content of the tab header. Can contain text or an <a> element for navigation mode.
+ * @slot default - Slot for the content of the tab item. Can contain text or an <a> element for navigation mode.
  */
 
 @Component({
-  tag: 'post-tab-header',
-  styleUrl: 'post-tab-header.scss',
+  tag: 'post-tab-item',
+  styleUrl: 'post-tab-item.scss',
   shadow: true,
 })
-export class PostTabHeader {
-  @Element() host: HTMLPostTabHeaderElement;
+export class PostTabItem {
+  @Element() host: HTMLPostTabItemElement;
 
   @State() tabId: string;
   @State() isNavigationMode = false;
