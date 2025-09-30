@@ -179,8 +179,7 @@ export class PostTabs {
     tab.removeAttribute('aria-controls');
     tab.removeAttribute('role');
     
-    // The anchor should handle focus, not the tab
-    tab.setAttribute('tabindex', '-1');
+    tab.removeAttribute('tabindex');
   }
 
   private enablePanelTab(tab: HTMLPostTabHeaderElement) {
