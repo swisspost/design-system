@@ -58,25 +58,21 @@ export class PostTabs {
   @Event() postChange: EventEmitter<string>;
 
   componentDidLoad() {
-    this.detectMode();
-    this.moveMisplacedTabs();
-    this.enableTabs();
+  this.detectMode();
+  this.moveMisplacedTabs();
+  this.isLoaded = true; // <-- Set isLoaded before enabling tabs
+  this.enableTabs();
 
-    if (this.isNavigationMode) {
-      // In navigation mode, find the tab with aria-current="page"
-      const activeTab = this.findActiveNavigationTab();
-      if (activeTab) {
-        void this.show(activeTab.name);
-      }
-      // If no aria-current="page" found, don't show any active tab
-    } else {
-      // Panel mode: use existing logic
-      const initiallyActiveTab = this.activeTab || this.tabs[0]?.name;
-      void this.show(initiallyActiveTab);
+  if (this.isNavigationMode) {
+    const activeTab = this.findActiveNavigationTab();
+    if (activeTab) {
+      void this.show(activeTab.name);
     }
-
-    this.isLoaded = true;
+  } else {
+    const initiallyActiveTab = this.activeTab || this.tabs[0]?.name;
+    void this.show(initiallyActiveTab);
   }
+}
 
   private detectMode() {    
     const hasNavigationTabs = this.tabs.some(tab => {
@@ -147,7 +143,9 @@ export class PostTabs {
     // wait for any hiding animation to complete before showing the selected tab
     if (this.hiding) await this.hiding.finished;
 
-    this.showSelectedPanel();
+    if (!this.isNavigationMode) {
+      this.showSelectedPanel();
+    }
 
     // wait for any display animation to complete for the returned promise to fully resolve
     if (this.showing) await this.showing.finished;
