@@ -21,12 +21,8 @@ tokens.$default-map: components.$post-banner;
 .toast-dismissible {
   $padding-x: map.get(notification.$notification-padding-x-map, toast);
   $gap: map.get(notification.$notification-gap-map, toast);
-
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-  & {
-    pointer-events: auto;
-    position: relative;
-  }
+  pointer-events: auto;
+  position: relative;
 
   &:not(.alert-action) {
     padding-inline-end: calc(
