@@ -153,8 +153,10 @@ export class PostTabs {
     if (!this.tabs) return;
 
     this.tabs.forEach(tab => {
-      if (tab.getAttribute('slot') === 'tabs') return;
-      tab.setAttribute('slot', 'tabs');
+      // Tab items should go in the default slot, so remove any slot attribute
+      if (tab.getAttribute('slot')) {
+        tab.removeAttribute('slot');
+      }
     });
   }
 
@@ -275,12 +277,12 @@ export class PostTabs {
       <Host data-version={version}>
         <div class="tabs-wrapper" part="tabs">
           <TabsContainer class="tabs" role={tabsRole} aria-label={ariaLabel}>
-            <slot name="tabs" onSlotchange={() => this.enableTabs()} />
+            <slot onSlotchange={() => this.enableTabs()} />
           </TabsContainer>
         </div>
         {!this.isNavigationMode && (
           <div class="tab-content" part="content">
-            <slot onSlotchange={() => this.moveMisplacedTabs()} />
+            <slot name="panels" onSlotchange={() => this.moveMisplacedTabs()} />
           </div>
         )}
       </Host>

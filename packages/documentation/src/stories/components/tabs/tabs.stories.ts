@@ -48,7 +48,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
     },
     'slots-default': {
       name: 'default',
-      description: 'Slot for complete tab content (both tab items and panels). Only available in panels variant. Takes precedence over slots-tabs if both are provided.',
+      description: 'Slot for complete tab content (both tab items and panels). Only available in panels variant. Takes precedence over slots-panels if both are provided.',
       control: {
         type: 'text',
       },
@@ -144,9 +144,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
         <post-tab-item name="second">Second tab</post-tab-item>
         <post-tab-item name="third">Third tab</post-tab-item>
         
-        <div slot="panels">
-          ${unsafeHTML(args['slots-panels'])}
-        </div>
+        ${unsafeHTML(args['slots-panels'])}
       </post-tabs>
     `;
   }
