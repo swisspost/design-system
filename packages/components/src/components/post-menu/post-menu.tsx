@@ -55,6 +55,11 @@ export class PostMenu {
   }
 
   /**
+   * Required label providing an accessible name for the menu.
+   */
+  @Prop() readonly label?: string;
+
+  /**
    * Holds the current visibility state of the menu.
    * This state is internally managed to track whether the menu is open (`true`) or closed (`false`),
    * and updates automatically when the menu is toggled.
@@ -115,7 +120,11 @@ export class PostMenu {
    */
   @Method()
   async hide() {
-    await this.popoverRef.hide();
+    if (this.popoverRef) {
+      await this.popoverRef.hide();
+    } else {
+      console.error('hide: popoverRef is null or undefined');
+    }
   }
 
   private readonly handleKeyDown = (e: KeyboardEvent) => {
@@ -139,9 +148,21 @@ export class PostMenu {
 
     if (this.isVisible) {
       this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+
       const menuItems = this.getSlottedItems();
       if (menuItems.length > 0) {
         (menuItems[0] as HTMLElement).focus();
+
+        // Only for the first open
+        if (event.detail.first) {
+          // Add "menu" and "menuitem" aria roles and aria-label
+          this.host.setAttribute('role', 'menu');
+          menuItems.forEach(item => {
+            item.setAttribute('role', 'menuitem');
+          });
+
+          if (this.label) this.host.setAttribute('aria-label', this.label);
+        }
       }
     } else if (this.lastFocusedElement) {
       this.lastFocusedElement.focus();

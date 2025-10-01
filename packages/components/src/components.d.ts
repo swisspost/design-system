@@ -325,6 +325,10 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Required label providing an accessible name for the menu.
+         */
+        "label"?: string;
+        /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
          */
@@ -1200,6 +1204,10 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostMenu {
+        /**
+          * Required label providing an accessible name for the menu.
+         */
+        "label"?: string;
         /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
