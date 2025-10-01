@@ -102,7 +102,6 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string; 'slots-d
       `;
     }
     
-    // Default navigation mode content
     return html`
       <post-tabs
         active-tab="${ifDefined(args.activeTab)}"
@@ -158,7 +157,6 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string; 'slots-d
     `;
   }
   
-  // Default panels mode content
   return html`
     <post-tabs
       active-tab="${ifDefined(args.activeTab)}"
