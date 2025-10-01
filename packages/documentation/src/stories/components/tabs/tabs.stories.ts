@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
-const meta: MetaComponent<HTMLPostTabsElement & { mode: string; 'slots-default': string; 'slots-tabs': string }> = {
+const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-tabs': string }> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
   tags: ['package:WebComponents'],
@@ -18,13 +18,13 @@ const meta: MetaComponent<HTMLPostTabsElement & { mode: string; 'slots-default':
     },
   },
   argTypes: {
-    mode: {
-      name: 'mode',
-      description: 'Select between panels mode (content sections) or navigation mode (page navigation)',
+    variant: {
+      name: 'variant',
+      description: 'Select between panels variant (content sections) or navigation variant (page navigation)',
       control: 'radio',
       options: ['panels', 'navigation'],
       table: {
-        category: 'Component Mode',
+        category: 'Component Variant',
         defaultValue: { summary: 'panels' },
       },
     },
@@ -33,7 +33,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { mode: string; 'slots-default':
       description: 'The name of the initially active tab',
       control: 'select',
       options: ['first', 'second', 'third'],
-      if: { arg: 'mode' },
+      if: { arg: 'variant' },
       table: {
         category: 'Properties',
       },
@@ -48,11 +48,11 @@ const meta: MetaComponent<HTMLPostTabsElement & { mode: string; 'slots-default':
     },
     'slots-default': {
       name: 'default',
-      description: 'Slot for complete tab content (both tab items and panels). Only available in panels mode. Takes precedence over slots-tabs if both are provided.',
+      description: 'Slot for complete tab content (both tab items and panels). Only available in panels variant. Takes precedence over slots-tabs if both are provided.',
       control: {
         type: 'text',
       },
-      if: { arg: 'mode', eq: 'panels' },
+      if: { arg: 'variant', eq: 'panels' },
       table: {
         category: 'Slots',
         type: {
@@ -62,7 +62,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { mode: string; 'slots-default':
     },
     'slots-tabs': {
       name: 'tabs',
-      description: 'Slot for tab items content. Available in both modes for customizing tab items.',
+      description: 'Slot for tab items content. Available in both variants for customizing tab items.',
       control: {
         type: 'text',
       },
@@ -76,7 +76,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { mode: string; 'slots-default':
 
   },
   args: { 
-    mode: 'panels',
+    variant: 'panels',
     fullWidth: false,
     'slots-default': '',
     'slots-tabs': '',
@@ -85,11 +85,11 @@ const meta: MetaComponent<HTMLPostTabsElement & { mode: string; 'slots-default':
 
 export default meta;
 
-// Unified render function that switches based on mode
-function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string; 'slots-default': string; 'slots-tabs': string }>) {
-  const mode = args.mode || 'panels';
+// Unified render function that switches based on variant
+function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-tabs': string }>) {
+  const variant = args.variant || 'panels';
   
-  if (mode === 'navigation') {
+  if (variant === 'navigation') {
     // Use custom tabs content if provided
     if (args['slots-tabs']) {
       return html`
@@ -120,9 +120,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string; 'slots-d
     `;
   }
   
-  // Panels mode (default)
   if (args['slots-default']) {
-    // Use custom slot content if provided (complete custom content)
     return html`
       <post-tabs
         active-tab="${ifDefined(args.activeTab)}"
@@ -134,7 +132,6 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string; 'slots-d
   }
   
   if (args['slots-tabs']) {
-    // Use custom tabs content with default panels
     return html`
       <post-tabs
         active-tab="${ifDefined(args.activeTab)}"
@@ -181,43 +178,43 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string; 'slots-d
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostTabsElement & { mode: string; 'slots-default': string; 'slots-tabs': string }>;
+type Story = StoryObj<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-tabs': string }>;
 
 export const Default: Story = {
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Use the **Mode** control above to switch between panels mode (default) and navigation mode. The component automatically detects the mode based on whether tab items contain anchor links.',
+        story: 'Use the **Variant** control above to switch between panels variant (default) and navigation variant. The component automatically detects the variant based on whether tab items contain anchor links.',
       },
     },
   },
 };
 
-export const PanelsMode: Story = {
+export const PanelsVariant: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Panels mode displays tabbed content sections. Each tab shows its associated panel when clicked. Use this for organizing content on the same page.',
+        story: 'Panels variant displays tabbed content sections. Each tab shows its associated panel when clicked. Use this for organizing content on the same page.',
       },
     },
   },
   args: {
-    mode: 'panels',
+    variant: 'panels',
   },
 };
 
-export const NavigationMode: Story = {
+export const NavigationVariant: Story = {
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Navigation mode is for page navigation. When tab items contain `<a>` elements, the component renders as semantic navigation. Perfect for sub-navigation menus.',
+        story: 'Navigation variant is for page navigation. When tab items contain `<a>` elements, the component renders as semantic navigation. Perfect for sub-navigation menus.',
       },
     },
   },
   args: {
-    mode: 'navigation',
+    variant: 'navigation',
   },
 };
 
@@ -225,12 +222,12 @@ export const ActiveTab: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Set which tab is initially active using the `active-tab` property. Works in both modes.',
+        story: 'Set which tab is initially active using the `active-tab` property. Works in both variants.',
       },
     },
   },
   args: {
-    mode: 'panels',
+    variant: 'panels',
     activeTab: 'third',
   },
 };
@@ -245,7 +242,7 @@ export const FullWidth: Story = {
     },
   },
   args: { 
-    mode: 'panels',
+    variant: 'panels',
     fullWidth: true 
   },
   decorators: [story => html`<div class="container">${story()}</div>`],
@@ -278,22 +275,6 @@ export const NavigationWithRouting: Story = {
           <a href="/contact">Contact</a>
         </post-tab-item>
       </post-tabs>
-      
-      <div class="container mt-3">
-        <div class="alert alert-info">
-          <strong>Integration tip:</strong> Connect the <code>active-tab</code> property to your router's current route.
-          The tabs will persist across page navigations while highlighting the active page.
-        </div>
-        <pre class="bg-light p-3 rounded"><code>// React Router example
-const location = useLocation();
-const activeTab = location.pathname.split('/').pop();
-
-&lt;post-tabs active-tab={activeTab}&gt;
-  &lt;post-tab-item name="home"&gt;
-    &lt;a href="/home"&gt;Home&lt;/a&gt;
-  &lt;/post-tab-item&gt;
-&lt;/post-tabs&gt;</code></pre>
-      </div>
     `;
   },
   args: {
@@ -310,7 +291,7 @@ export const Async: Story = {
     },
   },
   args: {
-    mode: 'panels',
+    variant: 'panels',
   },
   decorators: [
     story => {
