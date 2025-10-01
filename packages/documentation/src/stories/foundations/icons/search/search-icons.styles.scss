@@ -76,6 +76,7 @@ tokens.$default-map: utilities.$post-spacing;
         display: block;
         margin-block-start: tokens.get('utility-gap-16');
         font-weight: bold;
+        font-size: 0.875rem;
         text-align: center;
         hyphens: auto;
       }
