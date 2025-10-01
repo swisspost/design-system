@@ -228,11 +228,11 @@ describe('tabs', () => {
     });
   });
 });
-  describe('Accessibility', () => {
-    it('Has no detectable a11y violations on load for all variants', () => {
-      cy.getSnapshots('tabs');
-      cy.checkA11y('#root-inner');
-    });
+describe('Accessibility', () => {
+  it('Has no detectable a11y violations on load for all variants', () => {
+    cy.getSnapshots('tabs');
+    cy.checkA11y('#root-inner');
+  });
 
   describe('panels mode ARIA attributes', () => {
     beforeEach(() => {
