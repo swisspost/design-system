@@ -18,32 +18,6 @@ import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
 
 <Controls of={TabStories.Default} />
 
-### Panels Mode
-
-Use panels mode to organize content into switchable sections within the same page.
-
-<Canvas of={TabStories.PanelsMode} />
-
-**How it works:**
-- Each `<post-tab-item>` contains only text (no anchor links)
-- Each `<post-tab-panel>` references its tab using the `for` attribute
-- Clicking a tab shows its associated panel
-
-### Navigation Mode
-
-Use navigation mode to create a tab-style navigation menu for routing between pages.
-
-<Canvas of={TabStories.NavigationMode} />
-
-**How it works:**
-- Each `<post-tab-item>` contains an `<a>` element — this automatically activates navigation mode
-- No `<post-tab-panel>` elements are used
-- The component renders as semantic `<nav>` with proper ARIA attributes
-
-<div className="alert alert-warning">
-  <strong>Important:</strong> Don't mix modes! If you include anchor links, don't add panels. The component will log an error if you try to mix both.
-</div>
-
 ## Examples
 
 ### Initially Active Tab
