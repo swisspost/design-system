@@ -65,11 +65,14 @@ Type: `Promise<void>`
 ### Depends on
 
 - [post-popovercontainer](../post-popovercontainer)
+- [post-closebutton](../post-closebutton)
 
 ### Graph
 ```mermaid
 graph TD;
   post-popover --> post-popovercontainer
+  post-popover --> post-closebutton
+  post-closebutton --> post-icon
   style post-popover fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

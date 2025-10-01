@@ -306,9 +306,7 @@ function killAutoHideTimeout(timeoutStore: ReturnType<typeof setTimeout>[], args
 }
 
 function getDismissButton(args: Args, isFixed: boolean) {
-  return args.dismissible || isFixed
-    ? html` <button type="button" class="toast-close-button" aria-label="close"></button> `
-    : null;
+  return args.dismissible || isFixed ? html` <post-closebutton>Close</post-closebutton> ` : null;
 }
 
 function render(args: Args, context: StoryContext) {
@@ -321,11 +319,7 @@ function render(args: Args, context: StoryContext) {
 
   const isFixed = args.position === 'fixed';
 
-  const classes = [
-    'toast',
-    args.variant,
-    (args.dismissible || isFixed) && 'toast-dismissible',
-  ]
+  const classes = ['toast', args.variant, (args.dismissible || isFixed) && 'toast-dismissible']
     .filter(c => c && c !== 'null')
     .join(' ');
 

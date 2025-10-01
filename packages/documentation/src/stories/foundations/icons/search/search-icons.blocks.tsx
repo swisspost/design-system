@@ -246,9 +246,7 @@ export class Search extends React.Component {
               </dd>
             </dl>
           </div>
-          <button className="btn btn-close" onClick={() => popover.hidePopover()}>
-            <span className="visually-hidden">Close</span>
-          </button>
+          <post-closebutton onClick={() => popover.hidePopover()}>Close</post-closebutton>
         </div>
       </post-popovercontainer>
     );

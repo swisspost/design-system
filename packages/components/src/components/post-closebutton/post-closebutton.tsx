@@ -1,4 +1,4 @@
-import { Component, Element, h, Host } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { version } from '@root/package.json';
 
 /**
@@ -7,16 +7,23 @@ import { version } from '@root/package.json';
 @Component({
   tag: 'post-closebutton',
   styleUrl: 'post-closebutton.scss',
-  shadow: true,
+  shadow: false,
 })
 export class PostClosebutton {
   @Element() host: HTMLPostClosebuttonElement;
+
+  /**
+   * Overrides the close button's type ("button" by default)
+   */
+  @Prop() buttonType: HTMLButtonElement['type'] = 'button';
 
   componentDidLoad() {
     this.checkHiddenLabel();
   }
 
-  private checkHiddenLabel(slot: HTMLSlotElement = this.host.shadowRoot.querySelector('.visually-hidden slot')) {
+  private checkHiddenLabel(
+    slot: HTMLSlotElement = this.host.shadowRoot.querySelector('.visually-hidden slot'),
+  ) {
     if (slot.assignedNodes().length === 0) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
@@ -25,7 +32,7 @@ export class PostClosebutton {
   render() {
     return (
       <Host data-version={version}>
-        <button class="btn btn-icon-close" type="button">
+        <button class="btn btn-icon-close" type={this.buttonType}>
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
             <slot onSlotchange={() => this.checkHiddenLabel()}></slot>
