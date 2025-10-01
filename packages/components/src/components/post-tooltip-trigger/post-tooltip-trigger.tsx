@@ -66,7 +66,6 @@ export class PostTooltipTrigger {
   }
 
   componentDidLoad() {
-    this.setupTrigger();
     this.attachListeners();
     this.attachTooltipListeners();
   }
@@ -84,7 +83,6 @@ export class PostTooltipTrigger {
 
   private handleSlotChange() {
     this.cleanupTrigger();
-
     this.setupTrigger();
   }
 
