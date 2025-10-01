@@ -48,11 +48,10 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
     },
     'slots-default': {
       name: 'default',
-      description: 'Slot for complete tab content (both tab items and panels). Only available in panels variant. Takes precedence over slots-panels if both are provided.',
+      description: 'Slot for tab items. Available in both variants - for tab navigation buttons in both panels and navigation modes.',
       control: {
         type: 'text',
       },
-      if: { arg: 'variant', eq: 'panels' },
       table: {
         category: 'Slots',
         type: {
@@ -179,7 +178,7 @@ export const Default: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Use the **Variant** control above to switch between panels variant (default) and navigation variant. The component automatically detects the variant based on whether tab items contain anchor links.',
+        story: 'Use the **Variant** control above to switch between panels variant (default) and navigation variant. The component automatically detects the variant based on whether tab items contain anchor links.\n\n**Note**: The `content` CSS Shadow Part is only available in panels mode, while the `tabs` part is available in both modes.',
       },
     },
   },
