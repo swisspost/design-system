@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
-const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-tabs': string }> = {
+const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
   tags: ['package:WebComponents'],
@@ -60,12 +60,13 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
         },
       },
     },
-    'slots-tabs': {
-      name: 'tabs',
-      description: 'Slot for tab items content. Available in both variants for customizing tab items.',
+    'slots-panels': {
+      name: 'panels',
+      description: 'Slot for tab panels content. Only available in panels variant for customizing panel content.',
       control: {
         type: 'text',
       },
+      if: { arg: 'variant', eq: 'panels' },
       table: {
         category: 'Slots',
         type: {
@@ -79,25 +80,25 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
     variant: 'panels',
     fullWidth: false,
     'slots-default': '',
-    'slots-tabs': '',
+    'slots-panels': '',
   },
 };
 
 export default meta;
 
 // Unified render function that switches based on variant
-function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-tabs': string }>) {
+function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }>) {
   const variant = args.variant || 'panels';
   
   if (variant === 'navigation') {
     // Use custom tabs content if provided
-    if (args['slots-tabs']) {
+    if (args['slots-default']) {
       return html`
         <post-tabs
           active-tab="${ifDefined(args.activeTab)}"
           full-width="${args.fullWidth ? true : nothing}"
         >
-          ${unsafeHTML(args['slots-tabs'])}
+          ${unsafeHTML(args['slots-default'])}
         </post-tabs>
       `;
     }
@@ -120,7 +121,9 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
     `;
   }
   
+  // Panels variant (default)
   if (args['slots-default']) {
+    // Use custom slot content if provided (complete custom content)
     return html`
       <post-tabs
         active-tab="${ifDefined(args.activeTab)}"
@@ -131,25 +134,19 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
     `;
   }
   
-  if (args['slots-tabs']) {
+  if (args['slots-panels']) {
     return html`
       <post-tabs
         active-tab="${ifDefined(args.activeTab)}"
         full-width="${args.fullWidth ? true : nothing}"
       >
-        ${unsafeHTML(args['slots-tabs'])}
+        <post-tab-item name="first">First tab</post-tab-item>
+        <post-tab-item name="second">Second tab</post-tab-item>
+        <post-tab-item name="third">Third tab</post-tab-item>
         
-        <post-tab-panel for="first">
-          <p>This is the content of the first tab.</p>
-        </post-tab-panel>
-
-        <post-tab-panel for="second">
-          <p>This is the content of the second tab.</p>
-        </post-tab-panel>
-
-        <post-tab-panel for="third">
-          <p>This is the content of the third tab.</p>
-        </post-tab-panel>
+        <div slot="panels">
+          ${unsafeHTML(args['slots-panels'])}
+        </div>
       </post-tabs>
     `;
   }
@@ -160,17 +157,16 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
       full-width="${args.fullWidth ? true : nothing}"
     >
       <post-tab-item name="first">First tab</post-tab-item>
-      <post-tab-panel for="first">
+      <post-tab-item name="second">Second tab</post-tab-item>
+      <post-tab-item name="third">Third tab</post-tab-item>
+      
+      <post-tab-panel for="first" slot="panels">
         <p>This is the content of the first tab.</p>
       </post-tab-panel>
-
-      <post-tab-item name="second">Second tab</post-tab-item>
-      <post-tab-panel for="second">
+      <post-tab-panel for="second" slot="panels">
         <p>This is the content of the second tab.</p>
       </post-tab-panel>
-
-      <post-tab-item name="third">Third tab</post-tab-item>
-      <post-tab-panel for="third">
+      <post-tab-panel for="third" slot="panels">
         <p>This is the content of the third tab.</p>
       </post-tab-panel>
     </post-tabs>
@@ -178,7 +174,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-tabs': string }>;
+type Story = StoryObj<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }>;
 
 export const Default: Story = {
   parameters: {
