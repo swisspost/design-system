@@ -804,8 +804,7 @@ declare global {
     interface HTMLPostPopovercontainerElementEventMap {
         "postBeforeShow": { first?: boolean };
         "postAfterShow": { first?: boolean };
-        "postBeforeHide": { first?: boolean };
-        "postAfterHide": { first?: boolean };
+        "postHide": { first?: boolean };
         "postBeforeToggle": { willOpen: boolean; first?: boolean };
         "postAfterToggle": { isOpen: boolean; first?: boolean };
     }
@@ -1257,10 +1256,6 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popovercontainer is hidden, passing in event.detail a `first` boolean, which is true if it is hidden for the first time.
-         */
-        "onPostAfterHide"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
-        /**
           * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
          */
         "onPostAfterShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
@@ -1269,10 +1264,6 @@ declare namespace LocalJSX {
          */
         "onPostAfterToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) => void;
         /**
-          * Fires whenever the popovercontainer is about to be hidden, passing in event.detail a `first` boolean, which is true if it is to be hidden for the first time.
-         */
-        "onPostBeforeHide"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
-        /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
         "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
@@ -1280,6 +1271,10 @@ declare namespace LocalJSX {
           * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail an object containing two booleans: `willOpen`, which is true if the popovercontainer is about to be opened and false if it is about to be closed, and `first`, which is true if it is to be opened for the first time.
          */
         "onPostBeforeToggle"?: (event: PostPopovercontainerCustomEvent<{ willOpen: boolean; first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is hidden, passing in event.detail a `first` boolean, which is true if it is hidden for the first time.
+         */
+        "onPostHide"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'

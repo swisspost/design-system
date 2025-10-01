@@ -115,14 +115,10 @@ export class PostMenu {
    */
   @Method()
   async hide() {
-    if (this.popoverRef) {
-      await this.popoverRef.hide();
-    } else {
-      console.error('hide: popoverRef is null or undefined');
-    }
+    await this.popoverRef.hide();
   }
 
-  private handleKeyDown = (e: KeyboardEvent) => {
+  private readonly handleKeyDown = (e: KeyboardEvent) => {
     e.stopPropagation();
 
     if (e.key === this.KEYCODES.ESCAPE) {
@@ -135,23 +131,21 @@ export class PostMenu {
     }
   };
 
-  private readonly handlePostToggle = (
+  private readonly handlePostToggled = (
     event: CustomEvent<{ isOpen: boolean; first?: boolean }>,
   ) => {
     this.isVisible = event.detail.isOpen;
     this.toggleMenu.emit(this.isVisible);
 
-    requestAnimationFrame(() => {
-      if (this.isVisible) {
-        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-        const menuItems = this.getSlottedItems();
-        if (menuItems.length > 0) {
-          (menuItems[0] as HTMLElement).focus();
-        }
-      } else if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
+    if (this.isVisible) {
+      this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+      const menuItems = this.getSlottedItems();
+      if (menuItems.length > 0) {
+        (menuItems[0] as HTMLElement).focus();
       }
-    });
+    } else if (this.lastFocusedElement) {
+      this.lastFocusedElement.focus();
+    }
   };
 
   private readonly handleClick = (e: MouseEvent) => {
@@ -220,7 +214,7 @@ export class PostMenu {
     return (
       <Host data-version={version} role="menu">
         <post-popovercontainer
-          onPostAfterToggle={this.handlePostToggle}
+          onPostAfterToggle={this.handlePostToggled}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
         >
