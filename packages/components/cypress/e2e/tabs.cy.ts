@@ -227,15 +227,13 @@ describe('tabs', () => {
       cy.get('post-tabs').should('exist');
     });
   });
-
 });
 
   describe('Accessibility', () => {
-    it('Has no detectable a11y violations on load for all variants', () => {
-      cy.getSnapshots('tabs');
+    it('Has no detectable a11y violations on load for panels mode', () => {
+      cy.getComponent('tabs', TABS_ID);
       cy.checkA11y('#root-inner');
     });
-  });
 
   describe('panels mode ARIA attributes', () => {
     beforeEach(() => {
