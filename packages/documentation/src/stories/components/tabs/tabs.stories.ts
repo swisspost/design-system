@@ -212,6 +212,20 @@ export const NavigationVariant: Story = {
   },
 };
 
+export const NavigationMode: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Navigation mode for Cypress testing. When tab items contain `<a>` elements, the component renders as semantic navigation.',
+      },
+    },
+  },
+  args: {
+    variant: 'navigation',
+  },
+};
+
 export const ActiveTab: Story = {
   parameters: {
     docs: {
@@ -340,4 +354,71 @@ export const Async: Story = {
       `;
     },
   ],
+};
+
+export const NavigationWithCurrent: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Navigation mode with aria-current="page" for detecting active tab.',
+      },
+    },
+  },
+  render: (args: Partial<HTMLPostTabsElement>) => {
+    return html`
+      <post-tabs
+        active-tab="${ifDefined(args.activeTab)}"
+        full-width="${args.fullWidth ? true : nothing}"
+      >
+        <post-tab-item name="first">
+          <a href="#first">First page</a>
+        </post-tab-item>
+        <post-tab-item name="second">
+          <a href="#second" aria-current="page">Second page</a>
+        </post-tab-item>
+        <post-tab-item name="third">
+          <a href="#third">Third page</a>
+        </post-tab-item>
+      </post-tabs>
+    `;
+  },
+  args: {
+    variant: 'navigation',
+  },
+};
+
+export const MixedMode: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Mixed mode example that demonstrates error handling when both navigation and panel elements are present.',
+      },
+    },
+  },
+  render: (args: Partial<HTMLPostTabsElement>) => {
+    return html`
+      <post-tabs
+        active-tab="${ifDefined(args.activeTab)}"
+        full-width="${args.fullWidth ? true : nothing}"
+      >
+        <post-tab-item name="first">
+          <a href="#first">First page</a>
+        </post-tab-item>
+        <post-tab-item name="second">Second tab</post-tab-item>
+        <post-tab-item name="third">Third tab</post-tab-item>
+        
+        <post-tab-panel for="second" slot="panels">
+          <p>This is the content of the second tab.</p>
+        </post-tab-panel>
+        <post-tab-panel for="third" slot="panels">
+          <p>This is the content of the third tab.</p>
+        </post-tab-panel>
+      </post-tabs>
+    `;
+  },
+  args: {
+    variant: 'panels',
+  },
 };
