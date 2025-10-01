@@ -72,7 +72,7 @@ $toolbar-icons: (
   }
 
   migration-global-state .info {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .sbdocs-content .container {
@@ -137,7 +137,7 @@ $toolbar-icons: (
   }
 
   pre {
-    font-size: 14px;
+    font-size: 0.875rem;
 
     .token.comment,
     .token.doctype {
@@ -227,31 +227,31 @@ $toolbar-icons: (
           border-top-left-radius: 4px;
         }
 
-        font-size: 14px;
+        font-size: 0.875rem;
       }
     }
   }
 
   .docblock-argstable-head tr th span {
-    font-size: 14px;
+    font-size: 0.875rem !important;
   }
 
   .docblock-argstable-body td a,
     // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
     color: #0073bc;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .docblock-argstable-body tr td textarea,
   .docblock-argstable-body tr td select,
   .docblock-argstable-body tr td button {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .docblock-argstable-body tr td span,
   .docblock-argstable-body tr td p {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   @include media.max(sm) {
@@ -275,7 +275,7 @@ $toolbar-icons: (
   .docblock-code-toggle {
     margin-right: auto;
     border-radius: 0 4px 0 0;
-    font-size: 14px;
+    font-size: 0.875rem;
 
     @include media.min(md) {
       &::before {
@@ -343,7 +343,7 @@ $toolbar-icons: (
     }
 
     .docs-story + div button {
-      font-size: 14px;
+      font-size: 0.875rem;
     }
   }
 
