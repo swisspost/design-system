@@ -330,7 +330,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed all text utility classes (<code>.text-*</code>)
+                    Removed all text color utility classes (<code>.text-*</code>)
                   </p>
                   <ul>
                     <li><code>.text-primary</code></li>
