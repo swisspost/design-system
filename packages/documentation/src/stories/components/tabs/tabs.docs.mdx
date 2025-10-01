@@ -16,10 +16,6 @@ import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
 
 <Canvas sourceState="shown" of={TabStories.Default} />
 
-<div className="alert alert-info mt-3">
-  <strong>Try it:</strong> Use the <strong>Mode</strong> control above to switch between panels and navigation modes and see how the component adapts!
-</div>
-
 <Controls of={TabStories.Default} />
 
 ### Panels Mode
@@ -33,20 +29,6 @@ Use panels mode to organize content into switchable sections within the same pag
 - Each `<post-tab-panel>` references its tab using the `for` attribute
 - Clicking a tab shows its associated panel
 
-```html
-<post-tabs active-tab="first">
-  <post-tab-item name="first">First tab</post-tab-item>
-  <post-tab-panel for="first">
-    <p>Content for the first tab.</p>
-  </post-tab-panel>
-
-  <post-tab-item name="second">Second tab</post-tab-item>
-  <post-tab-panel for="second">
-    <p>Content for the second tab.</p>
-  </post-tab-panel>
-</post-tabs>
-```
-
 ### Navigation Mode
 
 Use navigation mode to create a tab-style navigation menu for routing between pages.
@@ -57,17 +39,6 @@ Use navigation mode to create a tab-style navigation menu for routing between pa
 - Each `<post-tab-item>` contains an `<a>` element — this automatically activates navigation mode
 - No `<post-tab-panel>` elements are used
 - The component renders as semantic `<nav>` with proper ARIA attributes
-
-```html
-<post-tabs active-tab="first">
-  <post-tab-item name="first">
-    <a href="/first">First page</a>
-  </post-tab-item>
-  <post-tab-item name="second">
-    <a href="/second">Second page</a>
-  </post-tab-item>
-</post-tabs>
-```
 
 <div className="alert alert-warning">
   <strong>Important:</strong> Don't mix modes! If you include anchor links, don't add panels. The component will log an error if you try to mix both.

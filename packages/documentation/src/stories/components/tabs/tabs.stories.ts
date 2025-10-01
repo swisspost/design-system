@@ -1,9 +1,10 @@
 import { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
-const meta: MetaComponent<HTMLPostTabsElement> = {
+const meta: MetaComponent<HTMLPostTabsElement & { mode: string; 'slots-default': string; 'slots-tabs': string }> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
   tags: ['package:WebComponents'],
@@ -18,7 +19,7 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
   },
   argTypes: {
     mode: {
-      name: 'Mode',
+      name: 'mode',
       description: 'Select between panels mode (content sections) or navigation mode (page navigation)',
       control: 'radio',
       options: ['panels', 'navigation'],
@@ -45,20 +46,63 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
         category: 'Properties',
       },
     },
+    'slots-default': {
+      name: 'default',
+      description: 'Slot for complete tab content (both tab items and panels). Only available in panels mode. Takes precedence over slots-tabs if both are provided.',
+      control: {
+        type: 'text',
+      },
+      if: { arg: 'mode', eq: 'panels' },
+      table: {
+        category: 'Slots',
+        type: {
+          summary: 'HTML',
+        },
+      },
+    },
+    'slots-tabs': {
+      name: 'tabs',
+      description: 'Slot for tab items content. Available in both modes for customizing tab items.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Slots',
+        type: {
+          summary: 'HTML',
+        },
+      },
+    },
+
   },
   args: { 
     mode: 'panels',
-    fullWidth: false 
+    fullWidth: false,
+    'slots-default': '',
+    'slots-tabs': '',
   },
 };
 
 export default meta;
 
 // Unified render function that switches based on mode
-function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string }>) {
+function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string; 'slots-default': string; 'slots-tabs': string }>) {
   const mode = args.mode || 'panels';
   
   if (mode === 'navigation') {
+    // Use custom tabs content if provided
+    if (args['slots-tabs']) {
+      return html`
+        <post-tabs
+          active-tab="${ifDefined(args.activeTab)}"
+          full-width="${args.fullWidth ? true : nothing}"
+        >
+          ${unsafeHTML(args['slots-tabs'])}
+        </post-tabs>
+      `;
+    }
+    
+    // Default navigation mode content
     return html`
       <post-tabs
         active-tab="${ifDefined(args.activeTab)}"
@@ -78,6 +122,43 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string }>) {
   }
   
   // Panels mode (default)
+  if (args['slots-default']) {
+    // Use custom slot content if provided (complete custom content)
+    return html`
+      <post-tabs
+        active-tab="${ifDefined(args.activeTab)}"
+        full-width="${args.fullWidth ? true : nothing}"
+      >
+        ${unsafeHTML(args['slots-default'])}
+      </post-tabs>
+    `;
+  }
+  
+  if (args['slots-tabs']) {
+    // Use custom tabs content with default panels
+    return html`
+      <post-tabs
+        active-tab="${ifDefined(args.activeTab)}"
+        full-width="${args.fullWidth ? true : nothing}"
+      >
+        ${unsafeHTML(args['slots-tabs'])}
+        
+        <post-tab-panel for="first">
+          <p>This is the content of the first tab.</p>
+        </post-tab-panel>
+
+        <post-tab-panel for="second">
+          <p>This is the content of the second tab.</p>
+        </post-tab-panel>
+
+        <post-tab-panel for="third">
+          <p>This is the content of the third tab.</p>
+        </post-tab-panel>
+      </post-tabs>
+    `;
+  }
+  
+  // Default panels mode content
   return html`
     <post-tabs
       active-tab="${ifDefined(args.activeTab)}"
@@ -102,7 +183,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string }>) {
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostTabsElement & { mode: string }>;
+type Story = StoryObj<HTMLPostTabsElement & { mode: string; 'slots-default': string; 'slots-tabs': string }>;
 
 export const Default: Story = {
   parameters: {
