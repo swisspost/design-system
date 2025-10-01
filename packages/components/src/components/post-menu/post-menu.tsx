@@ -143,7 +143,6 @@ export class PostMenu {
   private readonly handlePostToggled = (
     event: CustomEvent<{ isOpen: boolean; first?: boolean }>,
   ) => {
-    console.log(event.detail);
     this.isVisible = event.detail.isOpen;
     this.toggleMenu.emit(this.isVisible);
 
@@ -153,16 +152,15 @@ export class PostMenu {
       const menuItems = this.getSlottedItems();
       if (menuItems.length > 0) {
         (menuItems[0] as HTMLElement).focus();
-        console.log(event.detail.first);
+
         // Only for the first open
         if (event.detail.first) {
-          console.log('first time');
           // Add "menu" and "menuitem" aria roles and aria-label
           this.host.setAttribute('role', 'menu');
           menuItems.forEach(item => {
             item.setAttribute('role', 'menuitem');
           });
-          console.log(this.label);
+
           if (this.label) this.host.setAttribute('aria-label', this.label);
         }
       }
