@@ -16,21 +16,76 @@ import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
 
 <Canvas sourceState="shown" of={TabStories.Default} />
 
+<div className="alert alert-info mt-3">
+  <strong>Try it:</strong> Use the <strong>Mode</strong> control above to switch between panels and navigation modes and see how the component adapts!
+</div>
+
 <Controls of={TabStories.Default} />
+
+### Panels Mode
+
+Use panels mode to organize content into switchable sections within the same page.
+
+<Canvas of={TabStories.PanelsMode} />
+
+**How it works:**
+- Each `<post-tab-item>` contains only text (no anchor links)
+- Each `<post-tab-panel>` references its tab using the `for` attribute
+- Clicking a tab shows its associated panel
+
+```html
+<post-tabs active-tab="first">
+  <post-tab-item name="first">First tab</post-tab-item>
+  <post-tab-panel for="first">
+    <p>Content for the first tab.</p>
+  </post-tab-panel>
+
+  <post-tab-item name="second">Second tab</post-tab-item>
+  <post-tab-panel for="second">
+    <p>Content for the second tab.</p>
+  </post-tab-panel>
+</post-tabs>
+```
+
+### Navigation Mode
+
+Use navigation mode to create a tab-style navigation menu for routing between pages.
+
+<Canvas of={TabStories.NavigationMode} />
+
+**How it works:**
+- Each `<post-tab-item>` contains an `<a>` element — this automatically activates navigation mode
+- No `<post-tab-panel>` elements are used
+- The component renders as semantic `<nav>` with proper ARIA attributes
+
+```html
+<post-tabs active-tab="first">
+  <post-tab-item name="first">
+    <a href="/first">First page</a>
+  </post-tab-item>
+  <post-tab-item name="second">
+    <a href="/second">Second page</a>
+  </post-tab-item>
+</post-tabs>
+```
+
+<div className="alert alert-warning">
+  <strong>Important:</strong> Don't mix modes! If you include anchor links, don't add panels. The component will log an error if you try to mix both.
+</div>
 
 ## Examples
 
 ### Initially Active Tab
 
-The initial selection is set to the first tab by default, displaying its associated panel.
-To have a different panel displayed initially,
-use the `active-panel` property and assign it the name of the desired panel.
+The initial selection is set to the first tab by default. To have a different tab active initially, use the `active-tab` property and assign it the name of the desired tab.
 
-<Canvas of={TabStories.ActivePanel} />
+<Canvas of={TabStories.ActiveTab} />
 
 ### Full-width Tabs
 
-Setting the `full-width` property to `true` will allow the tabs container stretch across the full width of the screen, while the tabs and their content remain aligned with the main page content. Click the button below to view a full-screen example of the `post-tabs` component.
+Setting the `full-width` property to `true` will allow the tabs container stretch across the full width of the screen, while the tabs and their content remain aligned with the main page content.
+
+<Canvas of={TabStories.FullWidth} />
 
 <a
   className="btn btn-primary"
@@ -43,12 +98,12 @@ Setting the `full-width` property to `true` will allow the tabs container stretc
 
 ### Tab Changes
 
-Use the `tabChange` event to run a function anytime a new tab gets activate.
+Use the `postChange` event to run a function anytime a new tab gets activated.
 
 <Source code={SampleTabChange} language="typescript" />
 
 ### Custom Trigger
 
-To trigger a tab change, use the `show()` method specifying the name of the panel that you want to show.
+To trigger a tab change, use the `show()` method specifying the name of the tab that you want to show.
 
 <Source code={SampleCustomTrigger} language="typescript" />

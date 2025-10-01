@@ -17,47 +17,141 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
     },
   },
   argTypes: {
+    mode: {
+      name: 'Mode',
+      description: 'Select between panels mode (content sections) or navigation mode (page navigation)',
+      control: 'radio',
+      options: ['panels', 'navigation'],
+      table: {
+        category: 'Component Mode',
+        defaultValue: { summary: 'panels' },
+      },
+    },
     activeTab: {
       name: 'active-tab',
+      description: 'The name of the initially active tab',
       control: 'select',
       options: ['first', 'second', 'third'],
+      if: { arg: 'mode' },
+      table: {
+        category: 'Properties',
+      },
+    },
+    fullWidth: {
+      name: 'full-width',
+      description: 'Stretch tabs container to full screen width',
+      control: 'boolean',
+      table: {
+        category: 'Properties',
+      },
     },
   },
-  args: { fullWidth: false },
+  args: { 
+    mode: 'panels',
+    fullWidth: false 
+  },
 };
 
 export default meta;
 
-function renderTabs(args: Partial<HTMLPostTabsElement>) {
+// Unified render function that switches based on mode
+function renderTabs(args: Partial<HTMLPostTabsElement & { mode: string }>) {
+  const mode = args.mode || 'panels';
+  
+  if (mode === 'navigation') {
+    return html`
+      <post-tabs
+        active-tab="${ifDefined(args.activeTab)}"
+        full-width="${args.fullWidth ? true : nothing}"
+      >
+        <post-tab-item name="first">
+          <a href="#first">First page</a>
+        </post-tab-item>
+        <post-tab-item name="second">
+          <a href="#second">Second page</a>
+        </post-tab-item>
+        <post-tab-item name="third">
+          <a href="#third">Third page</a>
+        </post-tab-item>
+      </post-tabs>
+    `;
+  }
+  
+  // Panels mode (default)
   return html`
     <post-tabs
       active-tab="${ifDefined(args.activeTab)}"
       full-width="${args.fullWidth ? true : nothing}"
     >
-      <post-tab-item name="first">
-        <a href="https://www.google.com/">First page</a>
-      </post-tab-item>
-      <post-tab-item name="second">
-        <a href="https://www.google.com/">Second page</a>
-      </post-tab-item>
-      <post-tab-item name="third">
-        <a href="https://www.google.com/">Third page</a>
-      </post-tab-item>
+      <post-tab-item name="first">First tab</post-tab-item>
+      <post-tab-panel for="first">
+        <p>This is the content of the first tab.</p>
+      </post-tab-panel>
+
+      <post-tab-item name="second">Second tab</post-tab-item>
+      <post-tab-panel for="second">
+        <p>This is the content of the second tab.</p>
+      </post-tab-panel>
+
+      <post-tab-item name="third">Third tab</post-tab-item>
+      <post-tab-panel for="third">
+        <p>This is the content of the third tab.</p>
+      </post-tab-panel>
     </post-tabs>
   `;
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostTabsElement>;
+type Story = StoryObj<HTMLPostTabsElement & { mode: string }>;
 
 export const Default: Story = {
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Use the **Mode** control above to switch between panels mode (default) and navigation mode. The component automatically detects the mode based on whether tab items contain anchor links.',
+      },
+    },
   },
 };
 
-export const ActivePanel: Story = {
+export const PanelsMode: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Panels mode displays tabbed content sections. Each tab shows its associated panel when clicked. Use this for organizing content on the same page.',
+      },
+    },
+  },
   args: {
+    mode: 'panels',
+  },
+};
+
+export const NavigationMode: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Navigation mode is for page navigation. When tab items contain `<a>` elements, the component renders as semantic navigation. Perfect for sub-navigation menus.',
+      },
+    },
+  },
+  args: {
+    mode: 'navigation',
+  },
+};
+
+export const ActiveTab: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Set which tab is initially active using the `active-tab` property. Works in both modes.',
+      },
+    },
+  },
+  args: {
+    mode: 'panels',
     activeTab: 'third',
   },
 };
@@ -65,12 +159,80 @@ export const ActivePanel: Story = {
 export const FullWidth: Story = {
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Full-width mode stretches the tabs container across the full screen width while keeping content aligned. Available in both modes.',
+      },
+    },
   },
-  args: { fullWidth: true },
+  args: { 
+    mode: 'panels',
+    fullWidth: true 
+  },
   decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
+export const NavigationWithRouting: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Example showing navigation mode with realistic routing URLs. In a real app, these would connect to your routing framework (React Router, Angular Router, etc.).',
+      },
+    },
+  },
+  render: (args: Partial<HTMLPostTabsElement>) => {
+    return html`
+      <post-tabs
+        active-tab="${ifDefined(args.activeTab)}"
+        full-width="${args.fullWidth ? true : nothing}"
+      >
+        <post-tab-item name="home">
+          <a href="/home">Home</a>
+        </post-tab-item>
+        <post-tab-item name="products">
+          <a href="/products">Products</a>
+        </post-tab-item>
+        <post-tab-item name="about">
+          <a href="/about">About</a>
+        </post-tab-item>
+        <post-tab-item name="contact">
+          <a href="/contact">Contact</a>
+        </post-tab-item>
+      </post-tabs>
+      
+      <div class="container mt-3">
+        <div class="alert alert-info">
+          <strong>Integration tip:</strong> Connect the <code>active-tab</code> property to your router's current route.
+          The tabs will persist across page navigations while highlighting the active page.
+        </div>
+        <pre class="bg-light p-3 rounded"><code>// React Router example
+const location = useLocation();
+const activeTab = location.pathname.split('/').pop();
+
+&lt;post-tabs active-tab={activeTab}&gt;
+  &lt;post-tab-item name="home"&gt;
+    &lt;a href="/home"&gt;Home&lt;/a&gt;
+  &lt;/post-tab-item&gt;
+&lt;/post-tabs&gt;</code></pre>
+      </div>
+    `;
+  },
+  args: {
+    activeTab: 'home',
+  },
+};
+
 export const Async: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tabs can be dynamically added or removed. This example shows panels mode with dynamic tab management.',
+      },
+    },
+  },
+  args: {
+    mode: 'panels',
+  },
   decorators: [
     story => {
       let tabIndex = 0;
@@ -79,8 +241,8 @@ export const Async: Story = {
 
         tabIndex++;
         const newTab = `
-          <post-tab-item name="name-${tabIndex}">New tab ${tabIndex}</post-tab-item>
-          <post-tab-panel for="for-${tabIndex}">This is the content of the new tab ${tabIndex}.</post-tab-panel>
+          <post-tab-item name="tab-${tabIndex}">New tab ${tabIndex}</post-tab-item>
+          <post-tab-panel for="tab-${tabIndex}">This is the content of the new tab ${tabIndex}.</post-tab-panel>
         `;
 
         tabs?.insertAdjacentHTML('beforeend', newTab);
@@ -91,12 +253,15 @@ export const Async: Story = {
           document.querySelectorAll('post-tab-item');
 
         const activeItem: HTMLPostTabItemElement | undefined = Array.from(items ?? []).find(
-          () => document.querySelectorAll('post-tab-item.active'),
+          item => item.classList.contains('active'),
         );
-        activeItem?.remove();
+        
+        if (!activeItem) return;
 
         const activePanel: HTMLPostTabPanelElement | null =
-          document.querySelector(`post-tab-panel[name=${activeItem?.name}]`) ?? null;
+          document.querySelector(`post-tab-panel[for="${activeItem.name}"]`) ?? null;
+        
+        activeItem?.remove();
         activePanel?.remove();
       };
 
