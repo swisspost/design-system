@@ -33,10 +33,6 @@ tokens.$default-map: components.$post-select;
     background-color: tokens.get('select-color-disabled-bg');
     border-color: tokens.get('select-color-disabled-border');
     border-style: tokens.get('select-border-style-disabled');
-
-    &:not([multiple]) {
-      background-image: forms-fx.select-arrow-icon('disabled');
-    }
   }
 
   &:not(:disabled) {
@@ -61,18 +57,6 @@ tokens.$default-map: components.$post-select;
       background-color: tokens.get('select-color-hover-bg');
       color: tokens.get('select-color-enabled-fg');
       border-color: tokens.get('select-color-hover-border');
-
-      &:not([multiple]) {
-        background-image: forms-fx.select-arrow-icon('hover');
-
-        @include utilities.high-contrast-mode-light() {
-          background-image: forms-fx.select-arrow-icon('hover-hcm', $mode: light);
-        }
-
-        @include utilities.high-contrast-mode-dark() {
-          background-image: forms-fx.select-arrow-icon('hover-hcm', $mode: dark);
-        }
-      }
 
       @include utilities.high-contrast-mode {
         border-color: Highlight;
@@ -116,13 +100,11 @@ tokens.$default-map: components.$post-select;
     }
 
     &:hover {
-      &:not([multiple]) {
-        background-image: forms-fx.select-arrow-icon('hover'), forms-fx.success-icon();
-      }
+      background-image: forms-fx.select-arrow-icon('hover'), forms-fx.success-icon();
     }
 
     &,
-    &:hover:not([multiple]),
+    &:hover,
     &:focus {
       @include utilities.high-contrast-mode-dark() {
         background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.success-icon(#e0e0e0);
@@ -142,13 +124,11 @@ tokens.$default-map: components.$post-select;
     }
 
     &:hover {
-      &:not([multiple]) {
-        background-image: forms-fx.select-arrow-icon('hover'), forms-fx.warning-icon();
-      }
+      background-image: forms-fx.select-arrow-icon('hover'), forms-fx.warning-icon();
     }
 
     &,
-    &:hover:not([multiple]),
+    &:hover,
     &:focus {
       @include utilities.high-contrast-mode-dark() {
         background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.warning-icon(#e0e0e0);
@@ -158,18 +138,6 @@ tokens.$default-map: components.$post-select;
         background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.warning-icon(#333);
       }
     }
-  }
-
-  &[multiple],
-  &[size]:not([size='1']) {
-    background-image: none;
-
-    &.is-valid,
-    &.is-invalid {
-      background-position: center right tokens.get('select-validation-icon-position-inline-end');
-    }
-
-    @include forms-mx.validation-icons();
   }
 }
 
@@ -227,40 +195,11 @@ tokens.$default-map: components.$post-select;
         font-size: unset;
       }
     }
-
-    &[multiple] {
-      padding-block-end: 0;
-      height: auto;
-
-      option {
-        color: tokens.get('select-color-enabled-fg');
-      }
-
-      ~ label {
-        // Add some distance on the right to leave space for the scrollbar
-        width: calc(100% - (#{tokens.get('select-padding-inline-end')} * 2));
-      }
-
-      &:disabled option {
-        color: tokens.get('select-color-disabled-fg');
-      }
-
-      &:empty {
-        ~ label {
-          padding-block: tokens.get('select-standalone-padding-block');
-          width: calc(
-            100% - (#{tokens.get('select-border-width')} * 2) - #{tokens.get(
-                'select-label-empty-padding-inline-start'
-              )}
-          );
-        }
-      }
-    }
   }
 }
 
 [data-color-scheme='dark'] {
-  .form-select:not([multiple]) {
+  .form-select {
     background-image: forms-fx.select-arrow-icon('enabled', 'dark');
 
     &:disabled {
