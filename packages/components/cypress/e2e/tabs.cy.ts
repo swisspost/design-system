@@ -26,9 +26,9 @@ describe('tabs', () => {
       cy.get('@panel').should('have.length', 1);
       cy.get('@headers')
         .first()
-        .invoke('attr', 'panel')
-        .then(panel => {
-          cy.get('@panel').invoke('attr', 'name').should('equal', panel);
+        .invoke('attr', 'name')
+        .then(tabName => {
+          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
         });
     });
 
@@ -49,16 +49,16 @@ describe('tabs', () => {
       cy.get('@panel').should('have.length', 1);
       cy.get('@headers')
         .last()
-        .invoke('attr', 'panel')
-        .then(panel => {
-          cy.get('@panel').invoke('attr', 'name').should('equal', panel);
+        .invoke('attr', 'name')
+        .then(tabName => {
+          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
         });
     });
   });
 
   describe('active panel', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', TABS_ID, 'active-panel');
+      cy.getComponent('tabs', TABS_ID, 'active-tab');
       cy.get('post-tab-item').as('headers');
       cy.get('post-tab-panel:visible').as('panel');
     });
@@ -66,22 +66,22 @@ describe('tabs', () => {
     it('should only show the requested active tab panel', () => {
       cy.get('@panel').should('have.length', 1);
       cy.get('@tabs')
-        .invoke('attr', 'active-panel')
-        .then(activePanel => {
-          cy.get('@panel').invoke('attr', 'name').should('equal', activePanel);
+        .invoke('attr', 'active-tab')
+        .then(activeTab => {
+          cy.get('@panel').invoke('attr', 'for').should('equal', activeTab);
         });
     });
 
     it('should show as active only the tab header associated with the requested active tab panel', () => {
       cy.get('@tabs')
-        .invoke('attr', 'active-panel')
-        .then(activePanel => {
+        .invoke('attr', 'active-tab')
+        .then(activeTab => {
           cy.get('@headers').each($header => {
             cy.wrap($header)
-              .invoke('attr', 'panel')
-              .then(panel => {
+              .invoke('attr', 'name')
+              .then(tabName => {
                 cy.wrap($header.filter('.active')).should(
-                  panel === activePanel ? 'exist' : 'not.exist',
+                  tabName === activeTab ? 'exist' : 'not.exist',
                 );
               });
           });
@@ -107,9 +107,9 @@ describe('tabs', () => {
       cy.get('@panel').should('have.length', 1);
       cy.get('@headers')
         .first()
-        .invoke('attr', 'panel')
-        .then(panel => {
-          cy.get('@panel').invoke('attr', 'name').should('equal', panel);
+        .invoke('attr', 'name')
+        .then(tabName => {
+          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
         });
     });
 
@@ -135,9 +135,9 @@ describe('tabs', () => {
       cy.get('post-tab-panel:visible').as('panel');
       cy.get('@panel').should('have.length', 1);
       cy.get('@new-panel')
-        .invoke('attr', 'panel')
-        .then(panel => {
-          cy.get('@panel').invoke('attr', 'name').should('equal', panel);
+        .invoke('attr', 'name')
+        .then(tabName => {
+          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
         });
     });
 
@@ -162,11 +162,148 @@ describe('tabs', () => {
       });
     });
   });
+
+  describe('navigation mode', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'navigation-mode');
+      cy.get('post-tab-item').as('tabItems');
+    });
+
+    it('should render as navigation when tabs contain anchor elements', () => {
+      cy.get('@tabs').should('exist');
+      cy.get('@tabItems').should('have.length', 3);
+      cy.get('@tabItems').each($item => {
+        cy.wrap($item).find('a').should('exist');
+      });
+    });
+
+    it('should not render tab panels in navigation mode', () => {
+      cy.get('post-tab-panel').should('not.exist');
+      cy.get('@tabs').find('[part="content"]').should('not.exist');
+    });
+
+    it('should render the tabs container as nav element', () => {
+      cy.get('@tabs').find('nav[role="navigation"], nav').should('exist');
+    });
+
+    it('should set proper ARIA attributes for navigation', () => {
+      cy.get('@tabs').find('nav').should('have.attr', 'aria-label', 'Tabs navigation');
+    });
+
+    it('should emit postChange event when tab is activated', () => {
+      cy.get('@tabs').then($tabs => {
+        const tabsElement = $tabs[0] as any;
+        tabsElement.addEventListener('postChange', cy.stub().as('postChangeEvent'));
+      });
+
+      cy.get('@tabItems').last().click();
+      cy.get('@postChangeEvent').should('have.been.calledWith', 
+        Cypress.sinon.match.has('detail', 'third')
+      );
+    });
+
+    it('should support programmatic tab activation via show() method', () => {
+      cy.get('@tabs').then($tabs => {
+        const tabsElement = $tabs[0] as any;
+        tabsElement.show('second');
+      });
+      cy.get('@tabItems').eq(1).should('have.class', 'active');
+    });
+
+    it('should detect active tab based on aria-current="page"', () => {
+      cy.getComponent('tabs', TABS_ID, 'navigation-with-current');
+      cy.get('post-tab-item').as('tabItems');
+      
+      cy.get('@tabItems').eq(1).should('have.class', 'active');
+    });
+  });
+
+  describe('mode detection', () => {
+    it('should detect panels mode when no anchor elements are present', () => {
+      cy.getComponent('tabs', TABS_ID, 'default');
+      cy.get('post-tabs').should('exist');
+      cy.get('post-tab-panel').should('exist');
+      cy.get('post-tabs').find('[part="content"]').should('exist');
+    });
+
+    it('should detect navigation mode when anchor elements are present', () => {
+      cy.getComponent('tabs', TABS_ID, 'navigation-mode');
+      cy.get('post-tabs').should('exist');
+      cy.get('post-tab-panel').should('not.exist');
+      cy.get('post-tabs').find('nav').should('exist');
+    });
+
+    it('should warn about mixed mode usage', () => {
+      cy.getComponent('tabs', TABS_ID, 'mixed-mode');
+      
+      cy.get('post-tabs').should('exist');
+    });
+  });
+
 });
 
 describe('Accessibility', () => {
-  it('Has no detectable a11y violations on load for all variants', () => {
+  it('Has no detectable a11y violations on load for panels mode', () => {
+    cy.getComponent('tabs', TABS_ID, 'default');
+    cy.checkA11y('#root-inner');
+  });
+
+  it('Has no detectable a11y violations on load for navigation mode', () => {
+    cy.getComponent('tabs', TABS_ID, 'navigation-mode');
+    cy.checkA11y('#root-inner');
+  });
+
+  it('Has no detectable a11y violations for all variants', () => {
     cy.getSnapshots('tabs');
     cy.checkA11y('#root-inner');
+  });
+
+  describe('panels mode ARIA attributes', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'default');
+    });
+
+    it('should have proper ARIA attributes for panels mode', () => {
+      cy.get('post-tabs').find('[role="tablist"]').should('exist');
+      cy.get('post-tab-item').should('have.attr', 'role', 'tab');
+      cy.get('post-tab-item').should('have.attr', 'aria-selected');
+      cy.get('post-tab-item').first().should('have.attr', 'aria-selected', 'true');
+      cy.get('post-tab-item').not(':first').should('have.attr', 'aria-selected', 'false');
+    });
+
+    it('should link tabs to panels with aria-controls and aria-labelledby', () => {
+      cy.get('post-tab-item').first().then($tab => {
+        const tabId = $tab.attr('id');
+        const ariaControls = $tab.attr('aria-controls');
+        
+        cy.get(`post-tab-panel[id="${ariaControls}"]`).should('exist');
+        cy.get(`post-tab-panel[id="${ariaControls}"]`).should('have.attr', 'aria-labelledby', tabId);
+      });
+    });
+
+    it('should manage tabindex properly', () => {
+      cy.get('post-tab-item').first().should('have.attr', 'tabindex', '0');
+      cy.get('post-tab-item').not(':first').should('have.attr', 'tabindex', '-1');
+      
+      cy.get('post-tab-item').last().click();
+      cy.get('post-tab-item').last().should('have.attr', 'tabindex', '0');
+      cy.get('post-tab-item').not(':last').should('have.attr', 'tabindex', '-1');
+    });
+  });
+
+  describe('navigation mode ARIA attributes', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'navigation-mode');
+    });
+
+    it('should have proper ARIA attributes for navigation mode', () => {
+      cy.get('post-tabs').find('nav').should('have.attr', 'aria-label', 'Tabs navigation');
+      cy.get('post-tab-item').should('not.have.attr', 'role');
+      cy.get('post-tab-item').should('not.have.attr', 'tabindex');
+    });
+
+    it('should not have tablist role in navigation mode', () => {
+      cy.get('post-tabs').find('[role="tablist"]').should('not.exist');
+    });
   });
 });
