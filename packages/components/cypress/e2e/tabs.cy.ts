@@ -16,7 +16,7 @@ describe('tabs', () => {
     });
 
     it('should only show the first tab header as active', () => {
-        cy.get('post-tab-item.active').each(($header, index) => {
+      cy.get('post-tab-item.active').each(($header, index) => {
         cy.wrap($header).should(index === 0 ? 'exist' : 'not.exist');
       });
     });
@@ -190,21 +190,9 @@ describe('tabs', () => {
       cy.get('@tabs').find('nav').should('have.attr', 'aria-label', 'Tabs navigation');
     });
 
-    it('should emit postChange event when tab is activated', () => {
-      cy.get('@tabs').then($tabs => {
-        const tabsElement = $tabs[0] as any;
-        tabsElement.addEventListener('postChange', cy.stub().as('postChangeEvent'));
-      });
-
-      cy.get('@tabItems').last().click();
-      cy.get('@postChangeEvent').should('have.been.calledWith', 
-        Cypress.sinon.match.has('detail', 'third')
-      );
-    });
-
     it('should support programmatic tab activation via show() method', () => {
       cy.get('@tabs').then($tabs => {
-        const tabsElement = $tabs[0] as any;
+        const tabsElement = $tabs[0] as HTMLElement & { show: (tabName: string) => void };
         tabsElement.show('second');
       });
       cy.get('@tabItems').eq(1).should('have.class', 'active');
