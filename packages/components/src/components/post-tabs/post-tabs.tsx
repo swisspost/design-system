@@ -119,7 +119,7 @@ export class PostTabs {
       return;
     }
     
-    await this.activateTab(newTab);
+    this.activateTab(newTab);
 
     // In navigation mode, we don't need to handle panels
     if (this.isNavigationMode) {
