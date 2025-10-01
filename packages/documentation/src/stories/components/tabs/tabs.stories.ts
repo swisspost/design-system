@@ -298,7 +298,7 @@ export const Async: Story = {
         tabIndex++;
         const newTab = `
           <post-tab-item name="tab-${tabIndex}">New tab ${tabIndex}</post-tab-item>
-          <post-tab-panel for="tab-${tabIndex}">This is the content of the new tab ${tabIndex}.</post-tab-panel>
+          <post-tab-panel for="tab-${tabIndex}" slot="panels">This is the content of the new tab ${tabIndex}.</post-tab-panel>
         `;
 
         tabs?.insertAdjacentHTML('beforeend', newTab);
