@@ -228,10 +228,9 @@ describe('tabs', () => {
     });
   });
 });
-
   describe('Accessibility', () => {
-    it('Has no detectable a11y violations on load for panels mode', () => {
-      cy.getComponent('tabs', TABS_ID);
+    it('Has no detectable a11y violations on load for all variants', () => {
+      cy.getSnapshots('tabs');
       cy.checkA11y('#root-inner');
     });
 
