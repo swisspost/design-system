@@ -226,6 +226,7 @@ export class PostPopovercontainer {
 
     const isOpen = e.newState === 'open';
     if (isOpen) {
+      console.log('handleOpen');
       this.handleOpen();
     } else {
       this.handleClose();
@@ -247,9 +248,9 @@ export class PostPopovercontainer {
       animation?.finished.then(() => {
         this.postAfterToggle.emit({ isOpen: true, first: this.first });
         this.postAfterShow.emit({ first: this.first });
-      });
 
-      if (this.first) this.first = false;
+        if (this.first) this.first = false;
+      });
     }
 
     if (this.safeSpace) {
