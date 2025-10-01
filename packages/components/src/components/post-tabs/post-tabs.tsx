@@ -4,8 +4,8 @@ import { fadeIn, fadeOut } from '@/animations';
 import { componentOnReady } from '@/utils';
 
 /**
- * @slot tabs - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
- * @slot default - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
+ * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
+ * @slot panels - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
  * @part tabs - The container element that holds the set of tabs.
  * @part content - The container element that displays the content of the currently active tab. Only available in panels mode.
  */

@@ -55,7 +55,6 @@ export class PostTabItem {
         aria-selected={isPanelMode ? 'false' : undefined}
         tabindex={isPanelMode ? '-1' : undefined}
         class="tab-title"
-        slot="tabs"
       >
         <slot />
       </Host>

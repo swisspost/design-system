@@ -34,7 +34,7 @@ export class PostTabPanel {
 
   render() {
     return (
-      <Host data-version={version} id={this.panelId} role="tabpanel">
+      <Host data-version={version} id={this.panelId} role="tabpanel" slot="panels">
         <slot />
       </Host>
     );
