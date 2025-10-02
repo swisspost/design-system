@@ -5,6 +5,20 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property     | Attribute     | Description                                             | Type                              | Default    |
+| ------------ | ------------- | ------------------------------------------------------- | --------------------------------- | ---------- |
+| `buttonType` | `button-type` | Overrides the close button's type ("button" by default) | `"button" \| "reset" \| "submit"` | `'button'` |
+
+
+## Events
+
+| Event       | Description                                | Type                |
+| ----------- | ------------------------------------------ | ------------------- |
+| `postClose` | Emits whenever the close button is clicked | `CustomEvent<void>` |
+
+
 ## Slots
 
 | Slot        | Description                                                 |
@@ -14,6 +28,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [post-popover](../post-popover)
+
 ### Depends on
 
 - [post-icon](../post-icon)
@@ -22,6 +40,7 @@
 ```mermaid
 graph TD;
   post-closebutton --> post-icon
+  post-popover --> post-closebutton
   style post-closebutton fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

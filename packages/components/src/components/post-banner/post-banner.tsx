@@ -38,7 +38,7 @@ export class PostBanner {
   /**
    * The type of the banner.
    */
-  @Prop({reflect: true}) readonly type: BannerType = 'info';
+  @Prop({ reflect: true }) readonly type: BannerType = 'info';
 
   @Watch('type')
   validateType() {
@@ -77,7 +77,7 @@ export class PostBanner {
     this.postDismissed.emit();
   }
 
-  @Listen('click')
+  @Listen('postClose')
   @EventFrom('post-closebutton')
   onCloseButtonClick(): void {
     void this.dismiss();

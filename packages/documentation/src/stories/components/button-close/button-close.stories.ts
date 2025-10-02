@@ -34,6 +34,10 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => {
-    return html`<post-closebutton>${unsafeHTML(args['slots-default'])}</post-closebutton> `;
+    return args.buttonType
+      ? html`<post-closebutton button-type=${args.buttonType}
+          >${unsafeHTML(args['slots-default'])}</post-closebutton
+        > `
+      : html`<post-closebutton>${unsafeHTML(args['slots-default'])}</post-closebutton> `;
   },
 };

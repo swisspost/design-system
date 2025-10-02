@@ -114,9 +114,7 @@ const meta: Meta = {
 export default meta;
 
 const getCloseButton = () => {
-  return html`<button class="btn btn-close">
-    <span class="visually-hidden">Close</span>
-  </button>`;
+  return html` <post-closebutton button-type="submit">Close</post-closebutton>`;
 };
 
 const getControls = () => {
