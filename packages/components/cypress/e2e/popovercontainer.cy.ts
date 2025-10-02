@@ -3,9 +3,17 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
     const selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
 
     beforeEach(() => {
-      // There is no dedicated docs page for the popovercontainer
       cy.visit('./cypress/fixtures/post-popover.test.html');
-      cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
+
+      // Ensure the component is hydrated, which is necessary to ensure the component is ready for interaction
+      cy.get('post-popover[data-hydrated]');
+
+      // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
+      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+        .children()
+        .first()
+        .as('trigger');
+
       cy.get('#testtext').as('container');
     });
 
