@@ -14,7 +14,7 @@ import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
+import { getRoot, checkEmptyOrOneOf } from '@/utils';
 
 /**
  * @part menu - The container element that holds the list of menu items.
@@ -83,14 +83,10 @@ export class PostMenu {
   disconnectedCallback() {
     this.host.removeEventListener('keydown', this.handleKeyDown);
     this.host.removeEventListener('click', this.handleClick);
-    this.popoverRef?.removeEventListener('postToggle', this.handlePostToggle);
   }
 
   componentDidLoad() {
     this.validatePlacement();
-    if (this.popoverRef) {
-      this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
-    }
   }
 
   /**
@@ -131,7 +127,7 @@ export class PostMenu {
     }
   }
 
-  private handleKeyDown = (e: KeyboardEvent) => {
+  private readonly handleKeyDown = (e: KeyboardEvent) => {
     e.stopPropagation();
 
     if (e.key === this.KEYCODES.ESCAPE) {
@@ -144,43 +140,36 @@ export class PostMenu {
     }
   };
 
-  @EventFrom('post-popovercontainer')
-  private handlePostToggle = (event: CustomEvent<{ isOpen: boolean; first?: boolean }>) => {
-      this.isVisible = event.detail.isOpen;
-      this.toggleMenu.emit(this.isVisible);
+  private readonly handlePostToggled = (
+    event: CustomEvent<{ isOpen: boolean; first?: boolean }>,
+  ) => {
+    this.isVisible = event.detail.isOpen;
+    this.toggleMenu.emit(this.isVisible);
 
-      requestAnimationFrame(() => {
-        if (this.isVisible) {
-          this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+    if (this.isVisible) {
+      this.lastFocusedElement = this.root?.activeElement as HTMLElement;
 
-          const menuItems = this.getSlottedItems();
+      const menuItems = this.getSlottedItems();
+      if (menuItems.length > 0) {
+        (menuItems[0] as HTMLElement).focus();
 
-          if (event.detail.first) {
-            if (menuItems.length > 0) {
-              // Add role="menu" to the popovercontainer
-              this.host.setAttribute('role', 'menu');
+        // Only for the first open
+        if (event.detail.first) {
+          // Add "menu" and "menuitem" aria roles and aria-label
+          this.host.setAttribute('role', 'menu');
+          menuItems.forEach(item => {
+            item.setAttribute('role', 'menuitem');
+          });
 
-              // Add role="menuitem" to the focusable elements
-              menuItems.forEach(item => {
-                item.setAttribute('role', 'menuitem');
-              });
-
-              // Add aria-label to the menu
-              if (this.label) this.host.setAttribute('aria-label', this.label);
-            }
-          }
-
-          (menuItems[0] as HTMLElement).focus();
-        } else if (this.lastFocusedElement) {
-          setTimeout(() => {
-            // This timeout is added for NVDA to announce the menu as collapsed
-            this.lastFocusedElement.focus();
-          }, 0);
+          if (this.label) this.host.setAttribute('aria-label', this.label);
         }
-      });
-    };
+      }
+    } else if (this.lastFocusedElement) {
+      this.lastFocusedElement.focus();
+    }
+  };
 
-  private handleClick = (e: MouseEvent) => {
+  private readonly handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
     if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
       this.toggle(this.host);
@@ -245,7 +234,11 @@ export class PostMenu {
   render() {
     return (
       <Host data-version={version}>
-        <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
+        <post-popovercontainer
+          onPostAfterToggle={this.handlePostToggled}
+          placement={this.placement}
+          ref={e => (this.popoverRef = e)}
+        >
           <div part="menu">
             <slot></slot>
           </div>

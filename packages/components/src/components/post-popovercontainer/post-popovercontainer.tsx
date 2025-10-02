@@ -29,6 +29,7 @@ import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+import { popIn } from '@/animations/pop-in';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -74,12 +75,32 @@ export class PostPopovercontainer {
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
   private toggleTimeoutId: number;
-  private firstOpen: boolean = true;
+  private first: boolean = true;
 
   /**
-   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was * closed, and `first`, which is true if it was opened for the first time.
+   * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
    */
-  @Event() postToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
+  @Event() postBeforeShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+   */
+  @Event() postAfterShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is hidden, passing in event.detail a `first` boolean, which is true if it is hidden for the first time.
+   */
+  @Event() postHide: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail an object containing two booleans: `willOpen`, which is true if the popovercontainer is about to be opened and false if it is about to be closed, and `first`, which is true if it is to be opened for the first time.
+   */
+  @Event() postBeforeToggle: EventEmitter<{ willOpen: boolean; first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
+   */
+  @Event() postAfterToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
 
   /**
    * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -160,7 +181,6 @@ export class PostPopovercontainer {
   @Method()
   async show(target: HTMLElement) {
     if (this.toggleTimeoutId) return;
-
     this.eventTarget = target;
     this.calculatePosition();
     this.host.showPopover();
@@ -174,6 +194,7 @@ export class PostPopovercontainer {
     if (!this.toggleTimeoutId) {
       this.eventTarget = null;
       this.host.hidePopover();
+      this.postHide.emit();
     }
   }
 
@@ -205,22 +226,48 @@ export class PostPopovercontainer {
 
     const isOpen = e.newState === 'open';
     if (isOpen) {
-      this.startAutoupdates();
-      if (this.safeSpace)
-        window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
-
-      // Emit event with `first` flag only true on the first open
-      if (this.firstOpen) {
-        this.postToggle.emit({ isOpen, first: this.firstOpen });
-        this.firstOpen = false;
-        return;
-      }
+      this.handleOpen();
     } else {
-      if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-      if (this.safeSpace)
-        window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      this.handleClose();
     }
-    this.postToggle.emit({ isOpen: isOpen, first: false });
+  }
+
+  private handleOpen() {
+    const content = this.host.querySelector('.popover-content');
+    this.startAutoupdates();
+
+    if (content) {
+      const animation = popIn(content);
+
+      if (animation?.playState === 'running') {
+        this.postBeforeToggle.emit({ willOpen: true, first: this.first });
+        this.postBeforeShow.emit({ first: this.first });
+      }
+
+      animation?.finished.then(() => {
+        this.postAfterToggle.emit({ isOpen: true, first: this.first });
+        this.postAfterShow.emit({ first: this.first });
+
+        if (this.first) this.first = false;
+      });
+    }
+
+    if (this.safeSpace) {
+      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+  }
+
+  private handleClose() {
+    if (typeof this.clearAutoUpdate === 'function') {
+      this.clearAutoUpdate();
+    }
+
+    if (this.safeSpace) {
+      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+
+    this.postAfterToggle.emit({ isOpen: false, first: this.first });
+    this.postHide.emit({ first: this.first });
   }
 
   /**
@@ -383,11 +430,9 @@ export class PostPopovercontainer {
   }
 
   render() {
-    const animationClass = this.animation ? `animate-${this.animation}` : '';
-
     return (
       <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
-        <div class={animationClass}>
+        <div class="popover-content">
           {this.arrow && (
             <span
               class="arrow"
