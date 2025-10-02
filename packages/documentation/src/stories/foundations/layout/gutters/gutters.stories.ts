@@ -14,7 +14,7 @@ const sizes = Object.keys(SCSS_VARIABLES.spacing)
 const meta: MetaExtended = {
   id: '64b63483-79fa-4e9f-9441-f7d6b2eabae2',
   title: 'Foundations/Layout/Gutters',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   decorators: [
     (story: StoryFn, context: StoryContext) => {
       const storyTemplate = html`<div class="gutters-example">

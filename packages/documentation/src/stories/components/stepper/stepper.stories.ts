@@ -9,7 +9,7 @@ const defaultSteps = ['Sender', 'Product', 'Other details', 'Order summary'];
 const meta: MetaComponent = {
   id: '7dc546d9-e248-4d06-befe-3ad62fcd310f',
   title: 'Components/Stepper',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderStepper,
   parameters: {
     badges: [],
