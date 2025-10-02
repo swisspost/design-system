@@ -233,7 +233,7 @@ export class PostMenu {
 
   render() {
     return (
-      <Host data-version={version} role="menu">
+      <Host data-version={version}>
         <post-popovercontainer
           onPostAfterToggle={this.handlePostToggled}
           placement={this.placement}
