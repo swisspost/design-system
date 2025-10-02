@@ -370,6 +370,7 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Removed deprecated font size variables and classes
                   </p>
                   <ul>
@@ -386,15 +387,16 @@ export class MigrationV99Component extends LitElement {
                     <li><code>$font-size-56</code> and <code>.font-size-56</code></li>
                   </ul>
                   <p class="info">
-                    You can now use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
+                    You can now either use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
                     are documented in the
                     <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
                       >text utilities</a
-                    >.
+                    > for text content, or the <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs">sizing utility classes</a> for sizing <code>post-icon</code> components.
                   </p>
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Removed deprecated font curve variables and classes
                   </p>
                   <ul>
@@ -413,11 +415,11 @@ export class MigrationV99Component extends LitElement {
                     <li><code>$font-size-huge</code> and <code>.fs-huge</code></li>
                   </ul>
                   <p class="info">
-                    You can now use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
+                    You can now either use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
                     are documented in the
                     <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
                       >text utilities</a
-                    >.
+                    > for text content, or the <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs">sizing utility classes</a> for sizing <code>post-icon</code> components.
                   </p>
                 </li>
                 <li class="mb-16">
