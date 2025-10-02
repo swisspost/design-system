@@ -349,6 +349,21 @@ export class MigrationV99Component extends LitElement {
                     <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Removed all text color utility classes (<code>.text-*</code>)
+                  </p>
+                  <ul>
+                    <li><code>.text-primary</code></li>
+                    <li><code>.text-secondary</code></li>
+                    <li><code>.text-light</code></li>
+                    <li><code>.text-dark</code></li>
+                    <li><code>.text-success</code></li>
+                    <li><code>.text-warning</code></li>
+                    <li><code>.text-error</code></li>
+                    <li><code>.text-info</code></li>
+                  </ul>
+                </li>
               </ul>
 
               <h5>Typography</h5>
