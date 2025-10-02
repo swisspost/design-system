@@ -100,7 +100,7 @@ const meta: MetaComponent = {
         type: 'boolean',
       },
       table: {
-        category: 'General',
+        disable: true,
       },
     },
     multipleSize: {
@@ -117,7 +117,7 @@ const meta: MetaComponent = {
         step: 1,
       },
       table: {
-        category: 'General',
+        disable: true,
       },
     },
     hint: {
