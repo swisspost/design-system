@@ -90,8 +90,8 @@ export const ContentVisibility: StoryObj<PostTogglebuttonProps> = {
     return html`
       <post-togglebutton class="btn btn-primary">
         Menu
-        <span data-showwhen="untoggled"><post-icon name="2070"></post-icon></span>
-        <span data-showwhen="toggled"><post-icon name="2043"></post-icon></span>
+        <span data-showwhen="untoggled"><post-icon name="burger"></post-icon></span>
+        <span data-showwhen="toggled"><post-icon name="closex"></post-icon></span>
       </post-togglebutton>
     `;
   },

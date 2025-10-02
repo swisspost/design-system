@@ -256,7 +256,7 @@ const Template = {
                         ><a href="">Goods abroad</a></post-list-item
                       >
                       <post-list-item slot="post-list-item"
-                        ><a class="selected" href="">Express and courier</a></post-list-item
+                        ><a aria-current="page" href="">Express and courier</a></post-list-item
                       >
                     </post-list>
                   </post-megadropdown>
