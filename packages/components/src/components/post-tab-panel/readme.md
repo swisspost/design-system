@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property            | Attribute | Description                                                    | Type     | Default     |
-| ------------------- | --------- | -------------------------------------------------------------- | -------- | ----------- |
-| `name` _(required)_ | `name`    | The name of the panel, used to associate it with a tab header. | `string` | `undefined` |
+| Property           | Attribute | Description                                             | Type     | Default     |
+| ------------------ | --------- | ------------------------------------------------------- | -------- | ----------- |
+| `for` _(required)_ | `for`     | The name of the tab that this panel is associated with. | `string` | `undefined` |
 
 
 ## Slots
