@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, Event, h, Host, Prop, EventEmitter } from '@stencil/core';
 import { version } from '@root/package.json';
 
 /**
@@ -10,6 +10,8 @@ import { version } from '@root/package.json';
   shadow: false,
 })
 export class PostClosebutton {
+  private mutationObserver = new MutationObserver(this.checkHiddenLabel.bind(this));
+
   @Element() host: HTMLPostClosebuttonElement;
 
   /**
@@ -17,25 +19,42 @@ export class PostClosebutton {
    */
   @Prop() buttonType: HTMLButtonElement['type'] = 'button';
 
+  /**
+   * Emits whenever the close button is clicked
+   */
+  @Event() postClose: EventEmitter<void>;
+
   componentDidLoad() {
     this.checkHiddenLabel();
   }
 
-  private checkHiddenLabel(
-    slot: HTMLSlotElement = this.host.shadowRoot.querySelector('.visually-hidden slot'),
-  ) {
-    if (slot.assignedNodes().length === 0) {
+  connectedCallback() {
+    this.mutationObserver.observe(this.host, { childList: true });
+  }
+
+  disconnectedCallback() {
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
+  }
+
+  private checkHiddenLabel() {
+    if (!this.host.querySelector('.visually-hidden').textContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
   }
 
+  private handleClick = () => {
+    this.postClose.emit();
+  };
+
   render() {
     return (
       <Host data-version={version}>
-        <button class="btn btn-icon-close" type={this.buttonType}>
+        <button class="btn btn-icon-close" type={this.buttonType} onClick={this.handleClick}>
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
-            <slot onSlotchange={() => this.checkHiddenLabel()}></slot>
+            <slot></slot>
           </span>
         </button>
       </Host>

@@ -12,6 +12,13 @@
 | `buttonType` | `button-type` | Overrides the close button's type ("button" by default) | `"button" \| "reset" \| "submit"` | `'button'` |
 
 
+## Events
+
+| Event       | Description                                | Type                |
+| ----------- | ------------------------------------------ | ------------------- |
+| `postClose` | Emits whenever the close button is clicked | `CustomEvent<void>` |
+
+
 ## Slots
 
 | Slot        | Description                                                 |
