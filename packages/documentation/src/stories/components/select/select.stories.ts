@@ -226,6 +226,8 @@ const Template: Story = {
       <select
         id="${context.id}"
         class="${classes}"
+        ?multiple="${args.multiple}"
+        size="${args.multipleSize ?? nothing}"
         ?disabled="${args.disabled}"
         aria-label="${useAriaLabel ? args.label : nothing}"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
