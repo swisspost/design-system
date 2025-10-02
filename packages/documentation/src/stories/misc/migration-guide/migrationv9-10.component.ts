@@ -555,6 +555,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The <code>.chip-filter</code> has been renamed to
                     <code>.chip-selectable</code> and the small variant of the chip
                     <code>.chip-sm</code> has been removed
