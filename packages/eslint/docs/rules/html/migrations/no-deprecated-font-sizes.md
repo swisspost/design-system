@@ -28,6 +28,6 @@ This rule does not have any configuration options.
 <post-icon name="save" class="w-24 h-24"></post-icon>
 <post-icon name="save" class="w-48 h-48"></post-icon>
 <p class="fs-6">Text content</p>
-<p class="fw-bold">My bold text</p>
-<p class="fw-regular">My regular text</p>
+<p class="fs-4">Text content</p>
+<p class="fs-1">Text content</p>
 ```
