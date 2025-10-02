@@ -1,9 +1,9 @@
 # `no-deprecated-loader`
 
-Flags deprecated `loader-xs` and `loader-sm` classes and replaces them with `loader-16` and `loader-40` respectively.
+Flags deprecated `loader` and `loader-*` classes and replace them with `spinner` and `spinner-*` classes. Sizes `loader-xs` and `loader-sm` are being replaced with `spinner-16` and `spinner-40` respectively.
+
 - Type: problem
 - 🔧 Supports autofix (--fix)
-
 
 ## Rule Options
 
@@ -22,7 +22,7 @@ This rule does not have any configuration options.
 ### ✅ Valid Code
 
 ```html
-<div role="status" aria-live="polite" class="loader loader-16">
+<div role="status" aria-live="polite" class="spinner spinner-16">
   <span class="visually-hidden">Loading…</span>
 </div>
 ```
