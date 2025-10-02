@@ -28,6 +28,8 @@ const meta: MetaComponent = {
     hiddenLabel: false,
     value: undefined,
     options: 5,
+    multiple: false,
+    multipleSize: 4,
     hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
@@ -89,6 +91,33 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'General',
+      },
+    },
+    multiple: {
+      name: 'Multiple',
+      description: 'When set, allows multiple options to be selected (multi-select).',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        disable: true,
+      },
+    },
+    multipleSize: {
+      name: 'Multiple Size',
+      description:
+        'When set to a number larger than 0, will set the number of display option rows.<post-banner type="error" data-size="sm"><p>Note: not all browser will respect this setting.</p></post-banner>',
+      if: {
+        arg: 'multiple',
+      },
+      control: {
+        type: 'number',
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      table: {
+        disable: true,
       },
     },
     hint: {
@@ -241,7 +270,7 @@ export const FloatingLabel: Story = {
   ...Template,
   parameters: {
     controls: {
-      exclude: ['Hidden Label', 'Options', 'Helper Text', 'Disabled', 'Validation'],
+      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -254,7 +283,7 @@ export const FloatingLabelPlaceholder: Story = {
   ...Template,
   parameters: {
     controls: {
-      exclude: ['Hidden Label', 'Options', 'Helper Text', 'Disabled', 'Validation'],
+      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -273,6 +302,7 @@ export const Validation: Story = {
         'Floating Label',
         'Hidden Label',
         'Options',
+        'Multiple',
         'Helper Text',
         'Disabled',
       ],
