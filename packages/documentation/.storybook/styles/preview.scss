@@ -341,10 +341,11 @@ $toolbar-icons: (
         color: inherit;
       }
     }
+  }
 
-    .docs-story + div button {
-      font-size: 0.875rem;
-    }
+  // targets the Copy button
+  .docs-story + div button {
+    font-size: 0.875rem;
   }
 
   &[data-color-scheme='light'] {
