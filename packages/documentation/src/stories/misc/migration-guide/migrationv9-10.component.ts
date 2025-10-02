@@ -6,6 +6,7 @@ export class MigrationV99Component extends LitElement {
   @property({ type: Number }) currentVersion?: number;
   @property({ type: String }) environment?: string;
   @property({ type: Boolean }) angular?: boolean;
+  @property({ type: Boolean }) hideAutoMigration?: boolean;
 
   createRenderRoot() {
     /**
@@ -28,6 +29,7 @@ export class MigrationV99Component extends LitElement {
           <post-icon name="link"></post-icon>
         </a>
       </h2>
+
       <section>
         <ol class="bubble-tea">
           <li>
@@ -47,7 +49,22 @@ export class MigrationV99Component extends LitElement {
           </li>
           <li>
             <h3>Component Migration 🤓</h3>
-
+            <div class="my-16">
+              <div class="form-check">
+                <input
+                  id="hide-auto-migration"
+                  type="checkbox"
+                  class="form-check-input"
+                  name="hide-auto-migration"
+                  value="true"
+                  @change="${this._onAutoMigrationChange}"
+                  ?checked="${this.hideAutoMigration}"
+                />
+                <label for="hide-auto-migration" class="form-check-label">
+                  Hide changes covered by the automatic <span class="tag tag-sm tag-info">🪄 migration rules</span>
+                </label>
+              </div>
+            </div>
             <post-banner type="warning">
               <h4 slot="heading">Notice: Bootstrap & Ng-Bootstrap removed</h4>
               <p>
@@ -122,8 +139,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The <code>.form-text</code> class has been renamed to <code>.form-hint</code>
-                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
               </ul>
@@ -177,6 +194,7 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Changed the percentage sizing utility classes (<code>w-*</code>,
                     <code>h-*</code>, <code>mh-*</code>, <code>mw-*</code>) naming
                   </p>
@@ -189,6 +207,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Removed some pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
                     <code>mh-*</code>, <code>mw-*</code>)
                   </p>
@@ -199,6 +218,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Changed the pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
                     <code>mh-*</code>, <code>mw-*</code>) to pixel-based names
                   </p>
@@ -220,6 +240,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Changed the sizing utility classes max-height and max-width naming
                   </p>
                   <ul>
@@ -256,8 +277,9 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Removed some spacing utilities' classes (margin and padding
-                    <code>{m/p}{x/y/s/e/t/b}-*</code>) <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                    <code>{m/p}{x/y/s/e/t/b}-*</code>)
                   </p>
                   <ul>
                     <li><code>*-small-large</code></li>
@@ -266,9 +288,9 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Changed the spacing utilities' classes (margin and padding
                     <code>{m/p}{x/y/s/e/t/b}-*</code>) naming to pixel-based names
-                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-hair</code> is now <code>*-1</code></li>
@@ -295,9 +317,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Renamed some utility classes
-
-                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.h-visuallyhidden</code> is now <code>.visually-hidden</code></li>
@@ -320,12 +341,27 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Renamed border radius classes
-                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.rounded</code> is now <code>.rounded-4</code></li>
                     <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed all text color utility classes (<code>.text-*</code>)
+                  </p>
+                  <ul>
+                    <li><code>.text-primary</code></li>
+                    <li><code>.text-secondary</code></li>
+                    <li><code>.text-light</code></li>
+                    <li><code>.text-dark</code></li>
+                    <li><code>.text-success</code></li>
+                    <li><code>.text-warning</code></li>
+                    <li><code>.text-error</code></li>
+                    <li><code>.text-info</code></li>
                   </ul>
                 </li>
               </ul>
@@ -426,11 +462,6 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed font-size class <code>.small</code>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
                     The following classes have been removed as the new Swiss Post font does not
                     provide a light font weight (300)
                   </p>
@@ -441,8 +472,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Renamed font-weight utility classes
-                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.bold</code> is now <code>.fw-bold</code></li>
@@ -487,9 +518,9 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The <code>.btn-rg</code> class has been removed. Buttons using this class will
                     now fall back to the default size
-                     <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                 </li>
                 <li class="mb-16">
@@ -554,8 +585,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Deprecated loader classes and related scss variables have been removed
-                    <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>.loader-xs</code></li>
@@ -577,6 +608,7 @@ export class MigrationV99Component extends LitElement {
 
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The following spinner classes have been renamed
                   </p>
                   <ul>
@@ -632,5 +664,21 @@ export class MigrationV99Component extends LitElement {
         </ol>
       </section>
     `;
+  }
+
+  private _onAutoMigrationChange(
+    event: Event & {
+      target: HTMLInputElement;
+    },
+  ) {
+    // Hide all lines that have the auto migration tag
+    this.hideAutoMigration = event.target.checked;
+    document
+      .querySelectorAll('[data-info="automigration"]')
+      ?.forEach(item =>
+        this.hideAutoMigration
+          ? item.closest('li')?.classList.add('d-none')
+          : item.closest('li')?.classList.remove('d-none'),
+      );
   }
 }
