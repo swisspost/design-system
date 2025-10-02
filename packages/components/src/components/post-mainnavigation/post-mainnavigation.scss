@@ -138,6 +138,7 @@ post-mainnavigation {
         }
 
         &.selected,
+        &[aria-current='page']:not(post-megadropdown *),
         &[aria-expanded='true'] {
           background-color: #050400;
           color: #fff;
@@ -176,7 +177,6 @@ post-mainnavigation {
           transition: transform animation.$transition-base-timing;
         }
 
-        &.selected::after,
         &[aria-expanded='true']::after {
           transform: rotate(180deg);
         }

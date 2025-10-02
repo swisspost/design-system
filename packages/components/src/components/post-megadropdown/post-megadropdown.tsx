@@ -33,6 +33,8 @@ export class PostMegadropdown {
    */
   @State() isVisible: boolean = false;
 
+  @State() trigger: boolean = false;
+
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
@@ -52,7 +54,7 @@ export class PostMegadropdown {
     }
   }
 
-  componentWillRender() {
+  componentDidRender() {
     this.getFocusableElements();
   }
 
@@ -149,6 +151,7 @@ export class PostMegadropdown {
 
       if (trigger) {
         const targetDropdownId = trigger.getAttribute('for');
+
         if (targetDropdownId !== this.host.id) {
           return;
         }
@@ -173,6 +176,17 @@ export class PostMegadropdown {
   private getFocusableElements() {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
+
+    const hostId = this.host.getAttribute('id');
+
+    // Proceed if the host has an ID and one of its focusable children is marked as the current page (`aria-current="page"`)
+    if (hostId && focusableChildren.some(el => el.getAttribute('aria-current') === 'page')) {
+      // Find the trigger element via its "for" attribute, then locate its button and set `aria-current="page"`
+      document
+        .querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
+        .classList.add('selected');
+    }
+
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
   }

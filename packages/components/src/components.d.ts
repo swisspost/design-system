@@ -55,6 +55,10 @@ export namespace Components {
     }
     interface PostAvatar {
         /**
+          * Provides a custom description for the avatar, used for accessibility purposes.
+         */
+        "description"?: string;
+        /**
           * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
@@ -942,6 +946,10 @@ declare namespace LocalJSX {
         "headingLevel"?: HeadingLevel;
     }
     interface PostAvatar {
+        /**
+          * Provides a custom description for the avatar, used for accessibility purposes.
+         */
+        "description"?: string;
         /**
           * Defines the users email address associated with a gravatar profile picture.
          */
