@@ -77,7 +77,7 @@ export class PostPopovercontainer {
   private firstOpen: boolean = true;
 
   /**
-   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was * closed, and `first`, which is true if it was opened for the first time.
+   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
    */
   @Event() postToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
 
