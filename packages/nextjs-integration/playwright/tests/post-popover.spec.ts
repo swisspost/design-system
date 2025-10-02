@@ -1,20 +1,22 @@
-import { test, expect, Locator } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
-test.describe('Popover', () => {
-  let popover: Locator;
-
+test.describe('CSR compatibility', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/csr');
-
-    // Locate the hydrated popover component
-    popover = page.locator('post-popover[data-hydrated]');
-
-    // Wait until it exists
-    await popover.waitFor();
   });
 
-  test('should exist on the page', async () => {
-    await expect(popover).toHaveCount(1);
-    await expect(popover).toBeVisible();
+  // Hydration errors should, if at all, only occur on the /ssr route.
+  // If a hydration error occurs on the /csr route, something is wrongly implemented in general!
+  test('should render without hydration errors', async ({ page }) => {
+    const hydrationErrors: string[] = [];
+    page.on('pageerror', error => {
+      if (error.name === 'Error' && error.message.startsWith('Hydration failed')) {
+        hydrationErrors.push(error.message);
+      }
+    });
+
+    // wait for page hydration
+    await page.waitForSelector('[data-hydrated]', { state: 'attached', timeout: 10000 });
+    expect(hydrationErrors.length).toBe(0);
   });
 });
