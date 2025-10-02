@@ -29,6 +29,9 @@ import noDeprecatedHVisuallyhiddenRule, {
 import noDeprecatedFontSizesRule, {
   name as noDeprecatedFontSizesRuleName,
 } from './no-deprecated-font-sizes';
+import noDeprecatedChipFilter, {
+  name as noDeprecatedChipFilterName,
+} from './no-deprecated-chip-filter';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
@@ -43,4 +46,5 @@ export const htmlMigrationRules = {
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
   [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
+  [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
 };

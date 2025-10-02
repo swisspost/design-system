@@ -349,6 +349,21 @@ export class MigrationV99Component extends LitElement {
                     <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Removed all text color utility classes (<code>.text-*</code>)
+                  </p>
+                  <ul>
+                    <li><code>.text-primary</code></li>
+                    <li><code>.text-secondary</code></li>
+                    <li><code>.text-light</code></li>
+                    <li><code>.text-dark</code></li>
+                    <li><code>.text-success</code></li>
+                    <li><code>.text-warning</code></li>
+                    <li><code>.text-error</code></li>
+                    <li><code>.text-info</code></li>
+                  </ul>
+                </li>
               </ul>
 
               <h5>Typography</h5>
@@ -449,11 +464,6 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Removed font-size class <code>.small</code>
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
                     The following classes have been removed as the new Swiss Post font does not
                     provide a light font weight (300)
                   </p>
@@ -547,6 +557,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The <code>.chip-filter</code> has been renamed to
                     <code>.chip-selectable</code> and the small variant of the chip
                     <code>.chip-sm</code> has been removed
