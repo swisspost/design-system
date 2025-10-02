@@ -134,6 +134,20 @@ input.form-control {
           content: 'Scegli file';
         }
       }
+
+      &[multiple] {
+        &::after {
+          content: 'Choose Files';
+
+          [lang='de'] & {
+            content: 'Dateien auswählen';
+          }
+
+          [lang='fr'] & {
+            content: 'Choisir des fichiers';
+          }
+        }
+      }
     }
 
     &.is-valid,
