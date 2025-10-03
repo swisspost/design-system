@@ -1,5 +1,6 @@
 ---
 '@swisspost/design-system-components': patch
+'@swisspost/design-system-styles': patch
 ---
 
-Added logic to automatically apply the `selected` class to the respective `post-megadropdown-trigger` when one of the items inside the corresponding `post-megadropdown` is marked as selected.
+Added styles to highlight the current navigation item marked with `aria-current="page"` and its potential parent item in the header main navigation.

@@ -50,11 +50,11 @@ This ensures that when using scroll navigation (e.g. jumping to anchors), conten
 
 ## Active Navigation Items
 
-**An `aria-current="page"` attribute must be applied by your application logic to indicate the active page.**
+**The `aria-current="page"` attribute highlights the active navigation items**
 
 This attribute is not added automatically,
-it must be applied directly to the `<a>` element inside `<post-mainnavigation>` that represents the page currently being viewed.
-Once applied, potential parent items in the navigation automatically inherit the correct selected styling.
+it must be applied by your application logic to the `<a>` element of the `<post-mainnavigation>` that represents the page currently being viewed.
+Once applied, parent items in the navigation automatically inherit the correct selected styling.
 
 <Canvas sourceState="shown" of={HeaderStories.ActiveNavigationItem} />
 
