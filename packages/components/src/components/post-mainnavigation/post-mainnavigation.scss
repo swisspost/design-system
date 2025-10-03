@@ -138,6 +138,7 @@ post-mainnavigation {
         }
 
         &.selected,
+        &[aria-current='page']:not(post-megadropdown *),
         &[aria-expanded='true'] {
           background-color: #050400;
           color: #fff;
