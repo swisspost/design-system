@@ -265,7 +265,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Some Bootstrap utility classes have been removed
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
+                    Shadow utility classes have been removed
                   </p>
                   <ul>
                     <li>

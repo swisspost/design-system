@@ -1,5 +1,5 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 export interface PostLinkarea {
@@ -18,35 +18,12 @@ const meta: MetaComponent<PostLinkarea> = {
     design: {},
   },
   args: {
-    dataLink: false,
-    anchorDefaultLink: '#',
-    anchorSpecifiedLink: '#',
+    linkUrl: 'https://post.ch',
   },
   argTypes: {
-    dataLink: {
-      name: 'Custom selector',
-      description:
-        'If `false`, clicking the card redirects to the first link. If `true`, a `data-link` attribute is added to the second link, which is used instead, overriding the default behavior.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    anchorDefaultLink: {
-      name: 'First link URL',
-      description: 'This is the URL used for the first link in the card.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Links',
-      },
-    },
-    anchorSpecifiedLink: {
-      name: 'Second link URL',
-      description: 'This is the URL used for the second link in the card.',
+    linkUrl: {
+      name: 'Link URL',
+      description: 'This is the URL used in the link within the component.',
       control: {
         type: 'text',
       },
@@ -61,28 +38,15 @@ export default meta;
 
 function renderLinkarea(args: Args) {
   return html`
-    <post-linkarea>
-      <div class="card">
-        <div class="card-body">
-          <h5>Title</h5>
-          <p>This card demonstrates the link area functionality. Click anywhere to navigate to the first link, unless a specific link is marked with data-link.</p>
-          <a class="card-link" href="${args.anchorDefaultLink}">Link text</a>
-          <a
-            class="card-link"
-            href="${args.anchorSpecifiedLink}"
-            data-link=${args.dataLink ? '' : nothing}
-            >More links</a
-          >
-        </div>
-      </div>
+    <post-linkarea class="palette palette-alternate p-32 rounded-8">
+      <h5>My clickable element</h5>
+      <p>
+        Clicking anywhere within this <code>post-linkarea</code> will click on the link that is
+        placed within the component.
+      </p>
+      <a target="_blank" href="${args.linkUrl}">Link text</a>
     </post-linkarea>
   `;
 }
 
 export const Default: StoryObj<PostLinkarea> = {};
-
-export const InitiallySpecified: StoryObj<PostLinkarea> = {
-  args: {
-    dataLink: true,
-  },
-};
