@@ -75,11 +75,12 @@ export class PostPopovercontainer {
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
   private toggleTimeoutId: number;
+  private firstOpen: boolean = true;
 
   /**
-   * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
+   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
    */
-  @Event() postToggle: EventEmitter<boolean>;
+  @Event() postToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
 
   /**
    * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -213,12 +214,19 @@ export class PostPopovercontainer {
 
       if (this.safeSpace)
         window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+
+      // Emit event with `first` flag only true on the first open
+      if (this.firstOpen) {
+        this.postToggle.emit({ isOpen, first: this.firstOpen });
+        this.firstOpen = false;
+        return;
+      }
     } else {
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
       if (this.safeSpace)
         window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
-    this.postToggle.emit(isOpen);
+    this.postToggle.emit({ isOpen: isOpen, first: false });
   }
 
   /**
