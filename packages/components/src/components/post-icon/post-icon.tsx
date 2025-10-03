@@ -87,10 +87,18 @@ export class PostIcon {
     checkEmptyOrType(this, 'scale', 'number');
   }
 
-  // Construct the icon URL according to the following rules:
-  // - URL = current domain + base[href] + meta[data-post-icon-base] (or component base)
-  // - If base[href] is not relative, it's used instead of current domain + base[href]
-  // - If meta[data-post-icon-base] (or component base) is not relative, it's used as is
+  /**
+   * Construct the icon URL according to the following rules:
+   * 1. `@base` (absolute URL) → use directly.
+   * 2. `@base` (relative URL) → resolve with `base href` and/or `origin`
+   *  - If `base href` is absolute → use just that.
+   *  - If `base href` is relative → prepend with `origin`.
+   *  - If `base href` does not exist → use only `origin`.
+   * 3. `@meta` (absolute URL) → use directly.
+   * 4. `@meta` (relative URL) → resolve with `base href` and/or `origin`. (same as above)
+   * 5. `CDN_URL` fallback → `https://unpkg.com/...`.
+   **/
+
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
 
@@ -98,46 +106,48 @@ export class PostIcon {
       return `${CDN_URL}${fileName}`;
     }
 
-    const currentDomain = IS_BROWSER ? window.location.origin : '';
+    const isAbsolute = (url: string) => /^https?:\/\//.test(url);
+    const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
+    const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
 
+    const currentDomain = IS_BROWSER ? window.location.origin : '';
     const baseHref = IS_BROWSER
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
-    const isBaseHrefAbsolute = /^https?:\/\//.test(baseHref);
     const metaIconBase = IS_BROWSER
-      ? document
-        .querySelector('meta[name="design-system-settings"]')
-        ?.getAttribute('data-post-icon-base') || ''
+      ? document.querySelector('meta[name="design-system-settings"]')?.getAttribute('data-post-icon-base') || ''
       : '';
-    const iconBase = this.base || metaIconBase;
 
-    const isIconBaseAbsolute = /^https?:\/\//.test(iconBase);
-
-    const normalizedBaseHref = normalizeUrl(baseHref);
-    const normalizedIconBase = normalizeUrl(iconBase);
-
-    function normalizeUrl(url: string) {
-      if (!url) return '';
-      return url.endsWith('/') ? url : `${url}/`;
-    }
+    // Function to build the first part of the URL when 'this.base' or 'metaIconBase' are relative
+    const buildUrlWithBase = (relativeUrl: string) => {
+      const normalizedHref = normalizeUrl(baseHref);
+      const normalizedRelative = normalizeUrl(relativeUrl);
+      if (isAbsolute(normalizedHref)) {
+        return `${normalizedHref}${normalizedRelative}`;
+      }
+      return `${currentDomain}${normalizedHref}${normalizedRelative}`;
+    };
 
     let url: string;
 
-    if (isIconBaseAbsolute) {
-      // If icon base is absolute, use it as is
-      url = `${normalizedIconBase}${fileName}`;
-    } else if (isBaseHrefAbsolute) {
-      // If baseHref is absolute, don't use current domain
-      url = `${normalizedBaseHref}${normalizedIconBase}${fileName}`;
-    } else if (iconBase || baseHref) {
-      // Standard case: domain + baseHref + iconBase
-      url = `${currentDomain}${normalizedBaseHref}${normalizedIconBase}${fileName}`;
-    } else {
-      // Fallback to CDN if no paths are specified
-      url = `${CDN_URL}${fileName}`;
+    // Highest Priority is this.base
+    if (this.base) {
+      url = isAbsolute(this.base)
+        ? `${normalizeUrl(this.base)}${fileName}`
+        : `${buildUrlWithBase(this.base)}${fileName}`;
+      return cleanUrl(url);
     }
 
-    return url.replace(/([^:])\/\//g, '$1/');
+    // Second Priority is metaIconBase
+    if (metaIconBase) {
+      url = isAbsolute(metaIconBase)
+        ? `${normalizeUrl(metaIconBase)}${fileName}`
+        : `${buildUrlWithBase(metaIconBase)}${fileName}`;
+      return cleanUrl(url);
+    }
+
+    // Fallback to CDN
+    return cleanUrl(`${CDN_URL}${fileName}`);
   }
 
   private getStyles() {
