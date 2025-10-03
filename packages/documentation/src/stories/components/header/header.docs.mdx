@@ -50,10 +50,11 @@ This ensures that when using scroll navigation (e.g. jumping to anchors), conten
 
 ## Active Navigation Items
 
-<p>
-<b>The `.selected` class highlights the active navigation items.</b>
-It should be applied by application logic to the `<a>` or `<button>` element inside the active `<post-list-item>` of the `<post-mainnavigation>`. Once an item has the `.selected` class, its hierarchical parent items will automatically inherit the same styling.
-</p>
+**An `aria-current="page"` attribute must be applied by your application logic to indicate the active page.**
+
+This attribute is not added automatically,
+it must be applied directly to the `<a>` element inside `<post-mainnavigation>` that represents the page currently being viewed.
+Once applied, potential parent items in the navigation automatically inherit the correct selected styling.
 
 <Canvas sourceState="shown" of={HeaderStories.ActiveNavigationItem} />
 

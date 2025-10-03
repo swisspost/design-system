@@ -14,7 +14,7 @@ const meta: MetaComponent = {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=558-7012&t=ywmfJhyvd2euoiGI-1',
-    }
+    },
   },
   args: {
     title: '',
@@ -86,82 +86,82 @@ const meta: MetaComponent = {
 
 function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
   return (args: Args) => html`<post-header>
-      <!-- Logo -->
-      <post-logo slot="post-logo" url="/">Homepage</post-logo>
+    <!-- Logo -->
+    <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-      ${args.metaNavigation
-    ? html`
-            <!-- Meta navigation -->
-            <ul class="list-inline" slot="meta-navigation">
-              <li><a href="">Jobs</a></li>
-              <li><a href="">About us</a></li>
-            </ul>
-          `
-    : ''}
+    ${args.metaNavigation
+      ? html`
+          <!-- Meta navigation -->
+          <ul class="list-inline" slot="meta-navigation">
+            <li><a href="">Jobs</a></li>
+            <li><a href="">About us</a></li>
+          </ul>
+        `
+      : ''}
 
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-      </post-togglebutton>
+    <!-- Menu button for mobile -->
+    <post-togglebutton slot="post-togglebutton">
+      <span class="visually-hidden-sm">Menu</span>
+      <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+      <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+    </post-togglebutton>
 
-      <!-- Language switch -->
-      <post-language-switch
-        caption="Change the language"
-        description="The currently selected language is English."
-        variant="list"
-        name="language-switch-example"
-        slot="post-language-switch"
-      >
-        <post-language-option active="false" code="de" name="German">de</post-language-option>
-        <post-language-option active="false" code="fr" name="French">fr</post-language-option>
-        <post-language-option active="false" code="it" name="Italian">it</post-language-option>
-        <post-language-option active="true" code="en" name="English">en</post-language-option>
-      </post-language-switch>
+    <!-- Language switch -->
+    <post-language-switch
+      caption="Change the language"
+      description="The currently selected language is English."
+      variant="list"
+      name="language-switch-example"
+      slot="post-language-switch"
+    >
+      <post-language-option code="de" name="German">de</post-language-option>
+      <post-language-option code="fr" name="French">fr</post-language-option>
+      <post-language-option code="it" name="Italian">it</post-language-option>
+      <post-language-option active="true" code="en" name="English">en</post-language-option>
+    </post-language-switch>
 
-      ${args.title !== ''
-    ? html`
-            <!-- Application title (optional) -->
-            <h1 slot="title">${args.title}</h1>
-          `
-    : ''}
-      ${args.targetGroup
-    ? html`
-            <ul slot="target-group" class="target-group">
-              <li>
-                <a href="#" class="active">Private customers</a>
-              </li>
-              <li>
-                <a href="#">Business customers</a>
-              </li>
-              <li>
-                <a href="#">Authorities</a>
-              </li>
-            </ul>
-          `
-    : ''}
-      ${args.customControls
-    ? html`
-            <!-- Custom content (optional) -->
-            <ul class="list-inline">
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Search</span>
-                  <post-icon aria-hidden="true" name="search"></post-icon>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Login</span>
-                  <post-icon aria-hidden="true" name="login"></post-icon>
-                </a>
-              </li>
-            </ul>
-          `
-    : ''}
-      ${args.mainNavigation ? mainnavigation : ''}
-    </post-header>`;
+    ${args.title !== ''
+      ? html`
+          <!-- Application title (optional) -->
+          <h1 slot="title">${args.title}</h1>
+        `
+      : ''}
+    ${args.targetGroup
+      ? html`
+          <ul slot="target-group" class="target-group">
+            <li>
+              <a href="#" class="active">Private customers</a>
+            </li>
+            <li>
+              <a href="#">Business customers</a>
+            </li>
+            <li>
+              <a href="#">Authorities</a>
+            </li>
+          </ul>
+        `
+      : ''}
+    ${args.customControls
+      ? html`
+          <!-- Custom content (optional) -->
+          <ul class="list-inline">
+            <li>
+              <a href="#">
+                <span class="visually-hidden-sm">Search</span>
+                <post-icon aria-hidden="true" name="search"></post-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="visually-hidden-sm">Login</span>
+                <post-icon aria-hidden="true" name="login"></post-icon>
+              </a>
+            </li>
+          </ul>
+        `
+      : ''}
+    ${args.mainNavigation ? mainnavigation : ''}
+  </post-header>`;
 }
 
 function renderMainnavigation() {
@@ -272,10 +272,10 @@ function getIframeParameters(iframeHeight: number) {
       docs: {
         story: {
           inline: false,
-          iframeHeight
-        }
-      }
-    }
+          iframeHeight,
+        },
+      },
+    },
   };
 }
 
@@ -287,12 +287,12 @@ export const Default: Story = {};
 
 export const ActiveNavigationItem: Story = {
   ...getIframeParameters(250),
-  decorators: [(story: StoryFn, context: StoryContext) => {
-    const renderHeader = getHeaderRenderer(html`
-      ${story(context.args, context)}
-    `);
-    return renderHeader(context.args);
-  }],
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer(html` ${story(context.args, context)} `);
+      return renderHeader(context.args);
+    },
+  ],
   render: () => html`
     <post-mainnavigation caption="Main navigation">
       <post-list title-hidden="">
@@ -303,11 +303,11 @@ export const ActiveNavigationItem: Story = {
 
         <post-list-item slot="post-list-item">
           <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
-          <a href="/packages" class="selected">Packages</a>
+          <a href="/packages" aria-current="page">Packages</a>
         </post-list-item>
       </post-list>
     </post-mainnavigation>
-  `
+  `,
 };
 
 export const Portal: Story = {
@@ -322,7 +322,7 @@ export const Microsite: Story = {
     metaNavigation: false,
     customControls: true,
     targetGroup: false,
-  }
+  },
 };
 
 export const OnePager: Story = {
@@ -333,13 +333,12 @@ export const OnePager: Story = {
     metaNavigation: false,
     customControls: false,
     targetGroup: false,
-  }
+  },
 };
-
 
 // Used in target group documentation
 export const WithTargetGroup: Story = {
   args: {
     targetGroup: true,
-  }
+  },
 };
