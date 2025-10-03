@@ -17,19 +17,13 @@ export class PostLinkarea {
   @State() interactiveElements: NodeListOf<HTMLAnchorElement>;
 
   private dispatchClick({ ctrlKey, shiftKey, altKey, metaKey }: MouseEvent) {
-    this.interactiveElements[0].dispatchEvent(
+    this.interactiveElements[0]?.dispatchEvent(
       new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
     );
   }
 
   private checkInteractiveElements() {
     this.interactiveElements = this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR);
-
-    if (!this.interactiveElements.length) {
-      throw new Error(
-        `The \`post-linkarea\` component must contain an interactive element. Possible elements are: ${INTERACTIVE_ELEMENTS}.`,
-      );
-    }
 
     if (this.interactiveElements.length > 1) {
       console.error(
