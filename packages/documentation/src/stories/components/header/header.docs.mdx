@@ -1,14 +1,16 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as HeaderStories from './header.stories';
 import './header.styles.scss';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import HeaderSelectedClass from './header-selected-class.sample.html?raw';
 
 <Meta of={HeaderStories} />
 
 <div className="docs-title">
   # Header
 
-  <link-design of={JSON.stringify(HeaderStories)}></link-design>
+<link-design of={JSON.stringify(HeaderStories)}></link-design>
+
 </div>
 
 <div className="lead">The header of the Post.</div>
@@ -17,6 +19,14 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="hide-col-default">
   <Controls of={HeaderStories.Default} />
 </div>
+
+## Styling Active Navigation Items with `aria-current="page"`
+
+<p><b>The `aria-current="page"` attribute highlights the active navigation items.</b> It should be applied by application logic to the `<a>` element inside the active `<post-list-item>` of the `<post-mainnavigation>`. Once an element has `aria-current="page"`, its hierarchical parent will also inherit the same styling automatically.</p>
+
+### Example
+
+<Source code={HeaderSelectedClass} language="html" />
 
 ## CSS Properties
 

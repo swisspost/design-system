@@ -1,6 +1,6 @@
 import { bootstrapSizeMap } from '../../../utils/common-data';
 import {
-  createTwoPhasesRules,
+  createTwoPhasesClassUpdateRule,
   setUpClassesMutations,
   TwoPhasesData,
 } from '../../../utils/two-phases-classes-update';
@@ -42,9 +42,18 @@ export const data: TwoPhasesData = setUpClassesMutations(
   'deprecatedSizingUtilities',
 );
 
-export const rules = createTwoPhasesRules(
-  data,
-  'no-deprecated-sizing-utilities',
-  'Flags deprecated sizing utility classes and replaces them with the new ones with a temporary name (phase 1).',
-  'Flags deprecated sizing utility classes and replaces the temporary class names with the final ones.',
-);
+export const rules = createTwoPhasesClassUpdateRule({
+  name: 'no-deprecated-sizing-utilities',
+  phases: [
+    {
+      ...data.phases[0],
+      description:
+        'Flags deprecated sizing utility classes and replaces them with the new ones with a temporary name (phase 1).',
+    },
+    {
+      ...data.phases[1],
+      description:
+        'Flags deprecated sizing utility classes and replaces the temporary class names with the final ones.',
+    },
+  ],
+});

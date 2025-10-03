@@ -1,7 +1,7 @@
 import { rules, data } from '../../../../src/rules/html/migrations/no-deprecated-sizing-utilities';
 import { generatedDataTester } from '../../../utils/generated-data-tester';
 
-const validData = ['w-sm-16', 'h-md-48', 'h-md-three-quarters'];
+const validClasses = ['w-sm-16', 'h-md-48', 'h-md-three-quarters'];
 
-generatedDataTester(rules.namePhase1, rules.rulePhase1, data.mutationsPhase1, validData);
-generatedDataTester(rules.namePhase2, rules.rulePhase2, data.mutationsPhase2, validData);
+generatedDataTester(rules[0].name, rules[0].rule, data.phases[0].mutations, validClasses);
+generatedDataTester(rules[1].name, rules[1].rule, data.phases[1].mutations, validClasses);

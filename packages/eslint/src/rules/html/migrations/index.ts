@@ -11,19 +11,35 @@ import noFormTextRule, { name as noFormTextRuleName } from './no-form-text';
 import noDeprecatedFontWeightRule, {
   name as noDeprecatedFontWeightRuleName,
 } from './no-deprecated-font-weight';
+import noDeprecatedHClearfix, {
+  name as noDeprecatedHClearfixName,
+} from './no-deprecated-h-clearfix';
+import noDeprecatedHVisuallyhiddenRule, {
+  name as noDeprecatedHVisuallyhiddenRuleName,
+} from './no-deprecated-h-visuallyhidden';
+import noDeprecatedFontSizesRule, {
+  name as noDeprecatedFontSizesRuleName,
+} from './no-deprecated-font-sizes';
+import noDeprecatedChipFilter, {
+  name as noDeprecatedChipFilterName,
+} from './no-deprecated-chip-filter';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
   [noDeprecatedLoaderRuleName]: noDeprecatedLoaderRule,
   [noUnnumberedBorderRadiusRuleName]: noUnnumberedBorderRadiusRule,
-  [noDeprecatedSpacingUtilities.namePhase1]: noDeprecatedSpacingUtilities.rulePhase1,
-  [noDeprecatedSpacingUtilities.namePhase2]: noDeprecatedSpacingUtilities.rulePhase2,
-  [noDeprecatedSizingUtilities.namePhase1]: noDeprecatedSizingUtilities.rulePhase1,
-  [noDeprecatedSizingUtilities.namePhase1]: noDeprecatedSizingUtilities.rulePhase2,
+  [noDeprecatedSpacingUtilities[0].name]: noDeprecatedSpacingUtilities[0].rule,
+  [noDeprecatedSpacingUtilities[1].name]: noDeprecatedSpacingUtilities[1].rule,
+  [noDeprecatedSizingUtilities[0].name]: noDeprecatedSizingUtilities[0].rule,
+  [noDeprecatedSizingUtilities[0].name]: noDeprecatedSizingUtilities[1].rule,
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
-  [noDeprecatedGutterUtilities.namePhase1]: noDeprecatedGutterUtilities.rulePhase1,
-  [noDeprecatedGutterUtilities.namePhase2]: noDeprecatedGutterUtilities.rulePhase2,
-  [noDeprecatedGapUtilities.namePhase1]: noDeprecatedGapUtilities.rulePhase1,
-  [noDeprecatedGapUtilities.namePhase2]: noDeprecatedGapUtilities.rulePhase2,
+  [noDeprecatedGutterUtilities[0].name]: noDeprecatedGutterUtilities[0].rule,
+  [noDeprecatedGutterUtilities[1].name]: noDeprecatedGutterUtilities[1].rule,
+  [noDeprecatedGapUtilities[0].name]: noDeprecatedGapUtilities[0].rule,
+  [noDeprecatedGapUtilities[1].name]: noDeprecatedGapUtilities[1].rule,
+  [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
+  [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
+  [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
+  [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
 };
