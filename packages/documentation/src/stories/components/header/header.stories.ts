@@ -311,7 +311,7 @@ export const ActiveNavigationItem: Story = {
 };
 
 export const Portal: Story = {
-  ...getIframeParameters(500),
+  ...getIframeParameters(550),
 };
 
 export const Microsite: Story = {
