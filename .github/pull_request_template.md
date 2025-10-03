@@ -8,6 +8,11 @@ If applicable, please add a screenshot or video to illustrate the changes.
 
 ---
 
+## 🔮 Design review
+
+- [ ] Design review done
+- [ ] No design review needed
+
 ## 📝 Checklist
 
 - ✅ My code follows the style guidelines of this project
