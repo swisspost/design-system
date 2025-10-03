@@ -32,7 +32,7 @@ export class PostLinkarea {
     }
 
     if (this.interactiveElements.length > 1) {
-      throw new Error(
+      console.error(
         `The \`post-linkarea\` currently contains ${this.interactiveElements.length} interactive elements when it should contain only one.`,
       );
     }
