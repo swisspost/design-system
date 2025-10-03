@@ -120,7 +120,7 @@ const getCloseButton = () => {
 };
 
 const getControls = () => {
-  return html`<button class="btn btn-primary">OK</button>
+  return html`<button class="btn btn-primary">OK</button><br />
     <button class="btn btn-secondary">Cancel</button>`;
 };
 
@@ -148,7 +148,7 @@ const Template = {
         <form method="dialog" class="dialog-grid">
           ${postDialogIcon}
           <h3 class="dialog-header">${args.title}</h3>
-          <div class="dialog-body">${args.content}</div>
+          <div class="dialog-body"><p>${args.content}</p></div>
           <div class="dialog-controls">${getControls()}</div>
           ${postDialogCloseButton}
         </form>
