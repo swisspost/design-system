@@ -10,6 +10,9 @@ import noFormTextRule, { name as noFormTextRuleName } from './no-form-text';
 import noDeprecatedFontWeightRule, {
   name as noDeprecatedFontWeightRuleName,
 } from './no-deprecated-font-weight';
+import noDeprecatedShadowUtilitiesRule, {
+  name as noDeprecatedShadowUtilitiesRuleName,
+} from './no-deprecated-shadow-utilities';
 import noDeprecatedHClearfix, {
   name as noDeprecatedHClearfixName,
 } from './no-deprecated-h-clearfix';
@@ -35,6 +38,7 @@ export const htmlMigrationRules = {
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedGutterUtilities[0].name]: noDeprecatedGutterUtilities[0].rule,
   [noDeprecatedGutterUtilities[1].name]: noDeprecatedGutterUtilities[1].rule,
+  [noDeprecatedShadowUtilitiesRuleName]: noDeprecatedShadowUtilitiesRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
   [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
