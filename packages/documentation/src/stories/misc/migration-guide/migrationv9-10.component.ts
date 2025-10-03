@@ -282,6 +282,7 @@ export class MigrationV99Component extends LitElement {
 
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The following elevation utility classes have been renamed
                   </p>
                   <ul>
