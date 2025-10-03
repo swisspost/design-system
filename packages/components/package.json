@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "10.0.0-next.48",
+  "version": "10.0.0-next.49",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -90,8 +90,8 @@
   "dependencies": {
     "@floating-ui/dom": "1.7.3",
     "@oddbird/popover-polyfill": "0.6.0",
-    "@swisspost/design-system-icons": "workspace:10.0.0-next.48",
-    "@swisspost/design-system-styles": "workspace:10.0.0-next.48",
+    "@swisspost/design-system-icons": "workspace:10.0.0-next.49",
+    "@swisspost/design-system-styles": "workspace:10.0.0-next.49",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0",
     "nanoid": "5.1.5"
@@ -106,7 +106,7 @@
     "@stencil/core": "4.35.0",
     "@stencil/react-output-target": "=0.8.2",
     "@stencil/sass": "3.0.12",
-    "@swisspost/design-system-eslint": "workspace:1.0.1-next.1",
+    "@swisspost/design-system-eslint": "workspace:1.1.0-next.2",
     "@types/jest": "29.5.14",
     "@types/mock-fs": "4.13.4",
     "@types/node": "22.10.5",
