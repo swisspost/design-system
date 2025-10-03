@@ -10,12 +10,6 @@
 
 tokens.$default-map: components.$post-cards;
 
-post-linkarea:has(> .card) {
-  border-radius: tokens.get('card-border-radius');
-  display: block;
-  @include utilities-mx.focus-style();
-}
-
 .card {
   display: flex;
   flex-direction: column;
@@ -27,7 +21,7 @@ post-linkarea:has(> .card) {
   @include color-scheme.set(tokens.get('card-scheme'));
 
   // Add an elevation only if card is interactive
-  post-linkarea > & {
+  &:is(post-linkarea) {
     border: 0;
     box-shadow: tokens.get('card-interactive-elevation');
 
