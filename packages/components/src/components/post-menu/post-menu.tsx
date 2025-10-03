@@ -18,7 +18,7 @@ import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
 
 /**
  * @part menu - The container element that holds the list of menu items.
-*/
+ */
 
 @Component({
   tag: 'post-menu',
@@ -53,6 +53,11 @@ export class PostMenu {
   validatePlacement() {
     checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
   }
+
+  /**
+   * An accessible name for the menu.
+   */
+  @Prop() readonly label?: string;
 
   /**
    * Holds the current visibility state of the menu.
@@ -140,19 +145,37 @@ export class PostMenu {
   };
 
   @EventFrom('post-popovercontainer')
-  private handlePostToggle = (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
+  private handlePostToggle = (event: CustomEvent<{ isOpen: boolean; first?: boolean }>) => {
+      this.isVisible = event.detail.isOpen;
       this.toggleMenu.emit(this.isVisible);
 
       requestAnimationFrame(() => {
         if (this.isVisible) {
           this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+
           const menuItems = this.getSlottedItems();
-          if (menuItems.length > 0) {
-            (menuItems[0] as HTMLElement).focus();
+
+          if (event.detail.first) {
+            if (menuItems.length > 0) {
+              // Add role="menu" to the popovercontainer
+              this.host.setAttribute('role', 'menu');
+
+              // Add role="menuitem" to the focusable elements
+              menuItems.forEach(item => {
+                item.setAttribute('role', 'menuitem');
+              });
+
+              // Add aria-label to the menu
+              if (this.label) this.host.setAttribute('aria-label', this.label);
+            }
           }
+
+          (menuItems[0] as HTMLElement).focus();
         } else if (this.lastFocusedElement) {
-          this.lastFocusedElement.focus();
+          setTimeout(() => {
+            // This timeout is added for NVDA to announce the menu as collapsed
+            this.lastFocusedElement.focus();
+          }, 0);
         }
       });
     };
@@ -221,7 +244,7 @@ export class PostMenu {
 
   render() {
     return (
-      <Host data-version={version} role="menu">
+      <Host data-version={version}>
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
           <div part="menu">
             <slot></slot>

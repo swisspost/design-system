@@ -1,8 +1,19 @@
 #storybook-docs {
   .header-story-wrapper {
     .virtual-body {
-      height: 500px;
+      height: 550px;
       overflow-y: auto;
+    }
+  }
+
+  .docs-story {
+    &:not(:where(.main-story *)) > :first-child {
+      overflow: hidden;
+    }
+
+    &:where(.main-story *) + div {
+      height: 550px;
+      resize: vertical;
     }
   }
 }
