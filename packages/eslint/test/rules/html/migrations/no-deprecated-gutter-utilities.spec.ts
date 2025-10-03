@@ -3,5 +3,5 @@ import { generatedDataTester } from '../../../utils/generated-data-tester';
 
 const validClasses = ['g-sm-16', 'gx-md-48', 'gy-md-24'];
 
-generatedDataTester(rules.namePhase1, rules.rulePhase1, data.mutationsPhase1, validClasses);
-generatedDataTester(rules.namePhase2, rules.rulePhase2, data.mutationsPhase2, validClasses);
+generatedDataTester(rules[0].name, rules[0].rule, data.phases[0].mutations, validClasses);
+generatedDataTester(rules[1].name, rules[1].rule, data.phases[1].mutations, validClasses);

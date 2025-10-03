@@ -1,7 +1,7 @@
 import { bootstrapSizeMap } from '../../../utils/common-data';
 import {
   arrayToMap,
-  createTwoPhasesRules,
+  createTwoPhasesClassUpdateRule,
   setUpClassesMutations,
   TwoPhasesData,
 } from '../../../utils/two-phases-classes-update';
@@ -50,9 +50,18 @@ export const data: TwoPhasesData = setUpClassesMutations(
   'deprecatedSpacingUtilities',
 );
 
-export const rules = createTwoPhasesRules(
-  data,
-  'no-deprecated-spacing-utilities',
-  'Flags deprecated named and numbered spacing utility classes and replaces them with pixel ones with a temporary name (phase 1).',
-  'Flags deprecated named and numbered spacing utility classes and replaces the temporary class names with the final ones.',
-);
+export const rules = createTwoPhasesClassUpdateRule({
+  name: 'no-deprecated-spacing-utilities',
+  phases: [
+    {
+      ...data.phases[0],
+      description:
+        'Flags deprecated named and numbered spacing utility classes and replaces them with pixel ones with a temporary name (phase 1).',
+    },
+    {
+      ...data.phases[1],
+      description:
+        'Flags deprecated named and numbered spacing utility classes and replaces the temporary class names with the final ones.',
+    },
+  ],
+});
