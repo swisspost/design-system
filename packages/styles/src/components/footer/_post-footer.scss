@@ -83,21 +83,6 @@ post-footer {
 
     &[slot='socialmedia'] > [role='list'] {
       gap: var(--post-footer-socialmedia-list-item-gap);
-
-      post-list-item a post-icon:not([name='letter']) {
-        width: 26px;
-        height: 26px;
-
-        @include media.max(md) {
-          width: 24px;
-          height: 24px;
-        }
-
-        @include media.max(sm) {
-          width: 22px;
-          height: 22px;
-        }
-      }
     }
 
     &[slot='app'] > [role='list'] {
@@ -111,6 +96,21 @@ post-footer {
     &[slot='meta'] > [role='list'] {
       row-gap: 0;
       column-gap: var(--post-footer-meta-list-item-gap);
+    }
+  }
+
+  post-list[slot='socialmedia'] post-list-item a post-icon:not([name='letter']) {
+    width: 26px;
+    height: 26px;
+
+    @include media.max(md) {
+      width: 24px;
+      height: 24px;
+    }
+
+    @include media.max(sm) {
+      width: 22px;
+      height: 22px;
     }
   }
 }
