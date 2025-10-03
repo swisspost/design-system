@@ -1,11 +1,16 @@
-export interface TwoPhasesData {
-  messagesPhase1: Record<string, string>;
-  mutationsPhase1: Record<string, [string, string]>;
-  messagesPhase2: Record<string, string>;
-  mutationsPhase2: Record<string, [string, string]>;
+import { createClassUpdateRule, PhaseConfig, RuleConfigBase } from './create-class-update-rule';
+
+type RuleMessages = Record<string, string>;
+
+interface TwoPhaseRuleConfig<T, U> extends RuleConfigBase {
+  phases: [PhaseConfig<T>, PhaseConfig<U>];
 }
 
-// Empty string means no middle part
+export interface TwoPhasesData {
+  phases: [PhaseConfig<Record<string, string>>, PhaseConfig<Record<string, string>>];
+}
+
+// Empty string means no breakpoint
 const breakpoints = ['sm-', 'md-', 'lg-', 'xl-', ''];
 
 export function arrayToMap(array: Array<string | number>): Record<string, string | number> {
@@ -28,12 +33,10 @@ export function setUpClassesMutations(
   classValuesMap: Record<string, string | number>,
   messageId: string,
 ): TwoPhasesData {
-  const returnData: TwoPhasesData = {
-    messagesPhase1: {},
-    mutationsPhase1: {},
-    messagesPhase2: {},
-    mutationsPhase2: {},
-  };
+  const messagesPhase1: Record<string, string> = {};
+  const mutationsPhase1: Record<string, [string, string]> = {};
+  const messagesPhase2: Record<string, string> = {};
+  const mutationsPhase2: Record<string, [string, string]> = {};
 
   let index = 0;
 
@@ -52,24 +55,56 @@ export function setUpClassesMutations(
 
         const keyPhase1 = `${messageId}Phase1_${index}`;
 
-        returnData.messagesPhase1[
+        messagesPhase1[
           keyPhase1
         ] = `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
         // Mutate from `oldClass` to `_tmp-newClass`
-        returnData.mutationsPhase1[keyPhase1] = [oldClass, tempClass];
+        mutationsPhase1[keyPhase1] = [oldClass, tempClass];
 
         const keyPhase2 = `${messageId}Phase2_${index}`;
 
-        returnData.messagesPhase2[
+        messagesPhase2[
           keyPhase2
         ] = `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
         // Mutate from `_tmp-newClass` to `newClass`
-        returnData.mutationsPhase2[keyPhase2] = [tempClass, finalNewClass];
+        mutationsPhase2[keyPhase2] = [tempClass, finalNewClass];
 
         index++;
       }
     }
   }
-
-  return returnData;
+  return {
+    phases: [
+      {
+        description: '',
+        messages: messagesPhase1,
+        mutations: mutationsPhase1,
+      },
+      {
+        description: '',
+        messages: messagesPhase2,
+        mutations: mutationsPhase2,
+      },
+    ],
+  };
 }
+
+export const createTwoPhasesClassUpdateRule = <T extends RuleMessages, U extends RuleMessages>(
+  config: TwoPhaseRuleConfig<T, U>,
+) => {
+  const makePhaseRule = (phaseIndex: 0 | 1) => {
+    const phase = config.phases[phaseIndex];
+    return createClassUpdateRule({
+      name: `${config.name}-phase-${phaseIndex + 1}`,
+      type: config.type || 'problem',
+      description: phase.description,
+      messages: phase.messages,
+      mutations: phase.mutations,
+    });
+  };
+
+  return [
+    { name: `${config.name}-phase-1`, rule: makePhaseRule(0) },
+    { name: `${config.name}-phase-2`, rule: makePhaseRule(1) },
+  ];
+};

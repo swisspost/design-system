@@ -140,8 +140,8 @@ export class PostBreadcrumbs {
             {/* Conditionally render concatenated menu or individual breadcrumb items */}
             {this.isConcatenated ? (
               <div
+                role="none"
                 class="menu-trigger-wrapper"
-                aria-label="More breadcrumbs"
                 onKeyDown={e => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
