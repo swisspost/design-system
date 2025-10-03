@@ -6,6 +6,7 @@ import noUnnumberedBorderRadiusRule, {
 import { rules as noDeprecatedSpacingUtilities } from './no-deprecated-spacing-utilities';
 import { rules as noDeprecatedGutterUtilities } from './no-deprecated-gutter-utilities';
 import { rules as noDeprecatedSizingUtilities } from './no-deprecated-sizing-utilities';
+import { rules as noDeprecatedGapUtilities } from './no-deprecated-gap-utilities';
 import noFormTextRule, { name as noFormTextRuleName } from './no-form-text';
 import noDeprecatedFontWeightRule, {
   name as noDeprecatedFontWeightRuleName,
@@ -39,6 +40,8 @@ export const htmlMigrationRules = {
   [noDeprecatedSizingUtilities[0].name]: noDeprecatedSizingUtilities[1].rule,
   [noDeprecatedGutterUtilities[0].name]: noDeprecatedGutterUtilities[0].rule,
   [noDeprecatedGutterUtilities[1].name]: noDeprecatedGutterUtilities[1].rule,
+  [noDeprecatedGapUtilities[0].name]: noDeprecatedGapUtilities[0].rule,
+  [noDeprecatedGapUtilities[1].name]: noDeprecatedGapUtilities[1].rule,
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedShadowUtilitiesRuleName]: noDeprecatedShadowUtilitiesRule,
