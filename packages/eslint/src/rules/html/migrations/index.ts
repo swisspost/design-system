@@ -27,7 +27,16 @@ import noDeprecatedChipFilter, {
   name as noDeprecatedChipFilterName,
 } from './no-deprecated-chip-filter';
 
+import {
+  rulePhase1 as noDeprecatedBreakpointsRulePhase1,
+  rulePhase2 as noDeprecatedBreakpointsRulePhase2,
+  namePhase1 as noDeprecatedBreakpointsRulePhase1Name,
+  namePhase2 as noDeprecatedBreakpointsRulePhase2Name,
+} from './no-deprecated-breakpoints';
+
 export const htmlMigrationRules = {
+  [noDeprecatedBreakpointsRulePhase1Name]: noDeprecatedBreakpointsRulePhase1,
+  [noDeprecatedBreakpointsRulePhase2Name]: noDeprecatedBreakpointsRulePhase2,
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
   [noDeprecatedLoaderRuleName]: noDeprecatedLoaderRule,
   [noUnnumberedBorderRadiusRuleName]: noUnnumberedBorderRadiusRule,
