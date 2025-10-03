@@ -20,12 +20,21 @@ import noFormTextRule, { name as noFormTextRuleName } from './no-form-text';
 import noDeprecatedFontWeightRule, {
   name as noDeprecatedFontWeightRuleName,
 } from './no-deprecated-font-weight';
+import noDeprecatedShadowUtilitiesRule, {
+  name as noDeprecatedShadowUtilitiesRuleName,
+} from './no-deprecated-shadow-utilities';
 import noDeprecatedHClearfix, {
   name as noDeprecatedHClearfixName,
 } from './no-deprecated-h-clearfix';
 import noDeprecatedHVisuallyhiddenRule, {
   name as noDeprecatedHVisuallyhiddenRuleName,
 } from './no-deprecated-h-visuallyhidden';
+import noDeprecatedFontSizesRule, {
+  name as noDeprecatedFontSizesRuleName,
+} from './no-deprecated-font-sizes';
+import noDeprecatedChipFilter, {
+  name as noDeprecatedChipFilterName,
+} from './no-deprecated-chip-filter';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
@@ -37,6 +46,9 @@ export const htmlMigrationRules = {
   [noDeprecatedSizingUtilitiesRulePhase2Name]: noDeprecatedSizingUtilitiesRulePhase2,
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
+  [noDeprecatedShadowUtilitiesRuleName]: noDeprecatedShadowUtilitiesRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
+  [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
+  [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
 };
