@@ -46,7 +46,8 @@ const meta: MetaComponent = {
     },
     metaNavigation: {
       name: 'Meta navigation',
-      description: 'Whether or not the meta navigation is displayed ("about us" and "jobs").',
+      description:
+        'Whether or not the meta navigation is displayed ("jobs" and "create an account").',
       control: {
         type: 'boolean',
       },
@@ -94,7 +95,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
           <!-- Meta navigation -->
           <ul class="list-inline" slot="meta-navigation">
             <li><a href="">Jobs</a></li>
-            <li><a href="">About us</a></li>
+            <li><a href="">Create an account</a></li>
           </ul>
         `
       : ''}
@@ -134,9 +135,6 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
             </li>
             <li>
               <a href="#">Business customers</a>
-            </li>
-            <li>
-              <a href="#">Authorities</a>
             </li>
           </ul>
         `
