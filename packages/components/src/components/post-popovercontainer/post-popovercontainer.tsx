@@ -207,7 +207,7 @@ export class PostPopovercontainer {
     if (isOpen) {
       const content = this.host.querySelector('.popover-content');
       this.startAutoupdates();
-      if (content && this.animation === `animate-${this.animation}`) {
+      if (content && this.animation === 'pop-in') {
         popIn(content);
       }
 
