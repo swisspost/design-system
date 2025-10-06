@@ -79,7 +79,8 @@ export const TextWrapping: Story = {
     </div>
     <div class="my-container w-half text-nowrap">
       <p class="text-wrap">
-        This text should wrap, showing how text naturally breaks into multiple lines when wrapping is enabled.
+        This text should wrap, showing how text naturally breaks into multiple lines when wrapping
+        is enabled.
       </p>
     </div>
   `,
@@ -106,5 +107,12 @@ export const TextDecoration: Story = {
     <p class="text-decoration-underline">This text has a line underneath it.</p>
     <p class="text-decoration-line-through">This text has a line going through it.</p>
     <a href="#" class="text-decoration-none">This link has its text decoration removed.</a>
+  `,
+};
+export const SmallText: StoryObj = {
+  render: () => html`
+    <p>This is normal text</p>
+    <p class="small">This is small text (80% of parent font size)</p>
+    <h2>This is a title with <span class="small">smaller text inside</span></h2>
   `,
 };
