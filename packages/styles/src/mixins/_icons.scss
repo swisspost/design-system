@@ -9,7 +9,7 @@
 @use './../mixins/utilities';
 @use './../utilities/env-variables' as icon-version;
 
-@mixin icon($name) {
+@mixin mask-image($name) {
   $icon: icon-fn.get-svg-url($name);
   mask-image: url('#{$icon}');
   background-color: currentColor;
@@ -17,11 +17,11 @@
   forced-color-adjust: preserve-parent-color;
 }
 
-$loaded-icons: () !default;
+$loaded-custom-properties: () !default;
 
-@mixin load-icon-css($name, $path: '../icons/temp') {
-  @if list.index($loaded-icons, $name) == null {
-    $loaded-icons: list.append($loaded-icons, $name) !global;
+@mixin custom-property($name, $path: '../icons/temp') {
+  @if list.index($loaded-custom-properties, $name) == null {
+    $loaded-custom-properties: list.append($loaded-custom-properties, $name) !global;
     @at-root {
       @include meta.load-css('#{$path}/#{$name}');
     }
@@ -47,7 +47,7 @@ $loaded-icons: () !default;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: 100%;
   mask-size: 100%;
-  @include load-icon-css($name);
+  @include custom-property($name);
 }
 
 @mixin remove-icon() {

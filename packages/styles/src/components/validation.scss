@@ -111,10 +111,10 @@ input[type='radio'],
   }
 
   ~ .invalid-feedback::before {
-    @include icon-mixin.icon('warning');
+    @include icon-mixin.mask-image('warning');
   }
 
   ~ .valid-feedback::before {
-    @include icon-mixin.icon('success');
+    @include icon-mixin.mask-image('success');
   }
 }

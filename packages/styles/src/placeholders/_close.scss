@@ -17,7 +17,7 @@
   }
 
   &::before {
-    @include icons.icon(2043);
+    @include icons.mask-image(2043);
     content: '';
     display: block;
     height: close.$close-size;

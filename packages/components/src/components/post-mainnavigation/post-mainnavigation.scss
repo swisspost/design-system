@@ -47,7 +47,7 @@ post-mainnavigation {
   post-megadropdown-trigger button {
     &::after {
       content: '';
-      @include icons.icon(2113);
+      @include icons.mask-image(2113);
       height: 24px;
       width: 24px;
     }

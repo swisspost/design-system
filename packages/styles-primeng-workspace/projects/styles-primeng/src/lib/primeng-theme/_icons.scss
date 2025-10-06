@@ -1,7 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 @mixin custom-icon($icon) {
-  @include post.icon($icon);
+  @include post.mask-image($icon);
   display: inline-block;
   height: 1rem;
   width: 1rem;

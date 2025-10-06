@@ -102,7 +102,7 @@ tokens.$default-map: components.$post-cards;
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mx.icon(3020);
+      @include icons-mx.mask-image(3020);
       content: '';
       display: inline-block;
       width: icons.$icon-size-default;
