@@ -141,7 +141,7 @@ function renderCardContent(args: Args) {
   `;
 }
 
-function renderUninteractiveCard(args: Args) {
+function renderNoninteractiveCard(args: Args) {
   return html` <div class="card">${renderCardContent(args)}</div> `;
 }
 
