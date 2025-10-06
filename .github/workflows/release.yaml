@@ -38,6 +38,7 @@ jobs:
         uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
         with:
           title: 'chore(changesets): 🦋📦 publish packages (${{ github.ref_name }})'
           commit: 'chore(changesets): publish packages'
