@@ -28,9 +28,17 @@ $resizer-max-width: 64px;
 }
 
 .my-accessibility-icon {
-  @include post.post-icon($name: 'accessibility');
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  @include post.mask-image('accessibility');
 }
 
 .letter-icon {
-  @include post.post-icon($name: 'letter');
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  @include post.mask-image('letter');
 }

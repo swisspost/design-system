@@ -240,7 +240,11 @@ $toolbar-icons: (
         &::before {
           content: '';
           margin-right: 0.5rem;
-          @include post.post-icon($name: $icon-name);
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          vertical-align: -0.15em;
+          @include post.mask-image($icon-name);
         }
       }
     }

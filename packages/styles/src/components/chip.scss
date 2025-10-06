@@ -46,7 +46,13 @@ button.chip-dismissible {
     @include utilities.high-contrast-mode() {
       background-color: ButtonText;
     }
-    @include icons-mx.post-icon($name: 'closex', $height: $icon-size, $width: $icon-size);
+    
+    display: inline-block;
+    width: $icon-size;
+    height: $icon-size;
+    vertical-align: -0.15em;
+    background-color: currentColor;
+    @include icons-mx.mask-image('closex');
   }
 
   &:hover::after {
@@ -108,11 +114,13 @@ button.chip-dismissible {
           @include utilities.high-contrast-mode() {
             background-color: Highlight;
           }
-          @include icons-mx.post-icon(
-            $name: 'checkmark',
-            $width: tokens.get('chip-selectable-icon'),
-            $height: tokens.get('chip-selectable-icon')
-          );
+          
+          display: inline-block;
+          width: tokens.get('chip-selectable-icon');
+          height: tokens.get('chip-selectable-icon');
+          vertical-align: -0.15em;
+          background-color: currentColor;
+          @include icons-mx.mask-image('checkmark');
         }
 
         .badge {

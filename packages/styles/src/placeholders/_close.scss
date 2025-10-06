@@ -17,11 +17,11 @@
   }
 
   &::before {
-    @include icons.mask-image(2043);
     content: '';
     display: block;
     height: close.$close-size;
     width: close.$close-size;
+    @include icons.mask-image(2043);
   }
 
   @include utilities.not-disabled-focus-hover() {
