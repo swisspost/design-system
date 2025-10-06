@@ -141,7 +141,6 @@ export class PostBreadcrumbs {
             {this.isConcatenated ? (
               <li
                 class="menu-trigger-wrapper"
-                aria-label="More breadcrumbs"
                 onKeyDown={e => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();

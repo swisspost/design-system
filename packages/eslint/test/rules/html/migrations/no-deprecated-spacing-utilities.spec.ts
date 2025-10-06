@@ -1,39 +1,7 @@
-import { TSESLint } from '@typescript-eslint/utils';
+import { rules, data } from '../../../../src/rules/html/migrations/no-deprecated-spacing-utilities';
+import { generatedDataTester } from '../../../utils/generated-data-tester';
 
-import {
-  rulePhase1,
-  namePhase1,
-  rulePhase2,
-  namePhase2,
-  data,
-} from '../../../../src/rules/html/migrations/no-deprecated-spacing-utilities';
-import { htmlRuleTester } from '../../../utils/html-rule-tester';
-import { RuleDocs } from '../../../../src/utils/create-rule';
+const validClasses = ['mt-sm-16', 'pb-md-48'];
 
-function runTests(
-  name: string,
-  rule: TSESLint.RuleModule<string, [], RuleDocs>,
-  data: Record<string, [string, string]>,
-) {
-  // Generate all of the invalid use cases
-  const invalidData = Object.entries(data).map(([key, [oldClass, newClass]]) => ({
-    code: `<div class="${oldClass}">Content</div>`,
-    output: `<div class="${newClass}">Content</div>`,
-    errors: [{ messageId: key }],
-  }));
-
-  htmlRuleTester.run(name, rule, {
-    valid: [
-      {
-        code: '<div class="mt-sm-16">Content</div>',
-      },
-      {
-        code: '<div class="pb-md-48">Content</div>',
-      },
-    ],
-    invalid: invalidData,
-  });
-}
-
-runTests(namePhase1, rulePhase1, data.mutationsPhase1);
-runTests(namePhase2, rulePhase2, data.mutationsPhase2);
+generatedDataTester(rules[0].name, rules[0].rule, data.phases[0].mutations, validClasses);
+generatedDataTester(rules[1].name, rules[1].rule, data.phases[1].mutations, validClasses);
