@@ -37,10 +37,6 @@
     background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
 
-    &.animate-pop-in {
-      @include animation.pop-in-animation(0.25s);
-    }
-
     @include utilities.high-contrast-mode {
       border: 2px solid transparent; // border is needed in HCM because the shadow is not visible
     }
