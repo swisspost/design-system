@@ -1,38 +1,5 @@
 # @swisspost/design-system-components
 
-## 10.0.0-next.49
-
-### Major Changes
-
-- Removed support for multiple links in the `post-linkarea` component; it now throws an error if more than one link is detected in the slotted content. (by [@leagrdv](https://github.com/leagrdv) with [#6324](https://github.com/swisspost/design-system/pull/6324))
-
-### Minor Changes
-
-- Added a new component-names.json file, which contains a list of all components the package is outputting. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6199](https://github.com/swisspost/design-system/pull/6199))
-
-### Patch Changes
-
-- Added styles to highlight the current navigation item marked with `aria-current="page"` and its potential parent item in the header main navigation. (by [@myrta2302](https://github.com/myrta2302) with [#6216](https://github.com/swisspost/design-system/pull/6216))
-
-- Updated the `<post-accordion-item>` component to enforce a top border in all use cases. (by [@hugomslv](https://github.com/hugomslv) with [#6151](https://github.com/swisspost/design-system/pull/6151))
-
-- Fixed accessibility issue in the `<post-breadcrumbs>` component by wrapping breadcrumb items in `<li>` elements. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6294](https://github.com/swisspost/design-system/pull/6294))
-
-- Fixed the `post-header` component to consistently omit the title container when no title is defined across all configurations. (by [@alizedebray](https://github.com/alizedebray) with [#6244](https://github.com/swisspost/design-system/pull/6244))
-
-- Refactored icon path to improve readability and maintain correct handling of multiple sources. (by [@myrta2302](https://github.com/myrta2302) with [#6220](https://github.com/swisspost/design-system/pull/6220))
-
-- Improved `<post-avatar>` markup and added a `description` prop to allow users to provide additional context to the component. (by [@myrta2302](https://github.com/myrta2302) with [#6092](https://github.com/swisspost/design-system/pull/6092))
-
-- Updated `<post-menu>` and `<post-menu-item>` to prevent accessibility roles from being announced before the menu content is visible, and to ensure correct focus behavior on menu items during keyboard navigation when NVDA is running.  
-  Removed the obsolete `role="menuitem"` from `<post-language-switch>. `<post-language-option>`now assigns`role="listitem"`in case of`variant="list"`, to ensure a correct reference relationship.
-
-  Updated the `<post-breadcrumbs>` component by removing an `aria-label` set on the trigger wrapper `<div>`, which was causing an accessibility error. Also added `role="none"` to the wrapper div to reflect its presentational purpose. (by [@myrta2302](https://github.com/myrta2302) with [#6042](https://github.com/swisspost/design-system/pull/6042))
-
-- Updated dependencies:
-  - @swisspost/design-system-icons@10.0.0-next.49
-  - @swisspost/design-system-styles@10.0.0-next.49
-
 ## 10.0.0-next.48
 
 ### Minor Changes
