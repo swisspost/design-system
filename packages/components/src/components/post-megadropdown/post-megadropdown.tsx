@@ -46,16 +46,56 @@ export class PostMegadropdown {
    **/
   @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
+  private defaultSlotObserver: MutationObserver;
+
+  private checkInitialAriaCurrent() {
+    const currentEl = this.host.querySelector('[aria-current="page"]');
+    if (!currentEl) return;
+
+    const hostId = this.host.getAttribute('id');
+    if (!hostId) return;
+
+    const triggerButton = document.querySelector(
+      `post-megadropdown-trigger[for="${hostId}"] > button`,
+    );
+
+    if (triggerButton) {
+      triggerButton.classList.add('selected');
+    }
+  }
+
+  private setupObserver() {
+    if (this.defaultSlotObserver) return;
+
+    const config: MutationObserverInit = {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['aria-current'],
+    };
+
+    this.defaultSlotObserver = new MutationObserver(this.handleAriaCurrentChange.bind(this));
+    this.defaultSlotObserver.observe(this.host, config);
+  }
+
   disconnectedCallback() {
     this.removeListeners();
     window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
+    if (this.defaultSlotObserver) {
+      this.defaultSlotObserver.disconnect();
+    }
   }
 
   componentDidRender() {
     this.getFocusableElements();
+  }
+
+  componentDidLoad() {
+    this.checkInitialAriaCurrent();
+    this.setupObserver();
+    this.handleAriaCurrentChange([]);
   }
 
   /**
@@ -137,7 +177,7 @@ export class PostMegadropdown {
     }
   }
 
-  private handleClickOutside = (event: MouseEvent) => {
+  private readonly handleClickOutside = (event: MouseEvent) => {
     if (this.device !== 'desktop') return;
 
     const target = event.target as Node;
@@ -177,16 +217,6 @@ export class PostMegadropdown {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
 
-    const hostId = this.host.getAttribute('id');
-
-    // Proceed if the host has an ID and one of its focusable children is marked as the current page (`aria-current="page"`)
-    if (hostId && focusableChildren.some(el => el.getAttribute('aria-current') === 'page')) {
-      // Find the trigger element via its "for" attribute, then locate its button and set `aria-current="page"`
-      document
-        .querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
-        .classList.add('selected');
-    }
-
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
   }
@@ -211,6 +241,27 @@ export class PostMegadropdown {
       if (!this.host.contains(e.target as Node)) {
         this.hide(false);
       }
+    }
+  }
+
+  private handleAriaCurrentChange(mutations: MutationRecord[]) {
+    if (!mutations.length) return;
+
+    const el = mutations[0].target as HTMLElement;
+    const newValue = el.getAttribute('aria-current');
+    const oldValue = mutations[0].oldValue;
+    const hostId = this.host.getAttribute('id');
+
+    const megadropdownTrigger = document.querySelector(
+      `post-megadropdown-trigger[for="${hostId}"] > button`,
+    );
+
+    if (!megadropdownTrigger) return;
+
+    if (oldValue === null && newValue !== null) {
+      megadropdownTrigger.classList.add('selected');
+    } else {
+      megadropdownTrigger.classList.remove('selected');
     }
   }
 
