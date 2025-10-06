@@ -207,11 +207,7 @@ input.form-control {
 .form-floating {
   position: relative;
 
-  // Shared icon styling for validation icons
-  &:has(> input.form-control.is-valid:not(:disabled))::after,
-  &:has(> input.form-control:-webkit-autofill.is-valid)::after,
-  &:has(> input.form-control.is-invalid:not(:disabled))::after,
-  &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
+  &::after {
     display: inline-block;
     width: tokens.get('input-sizing-icon');
     height: tokens.get('input-sizing-icon');
