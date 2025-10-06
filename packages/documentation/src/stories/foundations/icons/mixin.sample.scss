@@ -1,5 +1,11 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-icon {
+  // Add common icon properties
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  
   @include post.mask-image('accessibility');
 }
