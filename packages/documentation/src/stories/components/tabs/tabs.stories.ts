@@ -171,7 +171,11 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }>;
+type Story = StoryObj<HTMLPostTabsElement & { 
+  variant: string; 
+  'slots-default': string; 
+  'slots-panels': string;
+}>;
 
 export const Default: Story = {
   parameters: {
