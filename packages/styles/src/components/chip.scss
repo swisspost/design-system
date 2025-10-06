@@ -55,7 +55,6 @@ button.chip-dismissible {
     @include utilities.high-contrast-mode() {
       background-color: ButtonText;
     }
-    
     @include icons-mx.mask-image('closex');
   }
 
