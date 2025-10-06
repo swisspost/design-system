@@ -30,28 +30,6 @@ $loaded-custom-properties: () !default;
   }
 }
 
-@mixin post-icon($name, $color: inherit, $width: 1em, $height: 1em) {
-  display: inline-block;
-  width: $width;
-  height: $height;
-  vertical-align: -0.15em;
-  background-color: currentColor;
-  color: $color;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: var(--post-icon-#{$name});
-  mask-image: var(--post-icon-#{$name});
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-position: center center;
-  mask-position: center center;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-size: 100%;
-  mask-size: 100%;
-  @include custom-property($name);
-}
-
 @mixin remove-icon() {
   mask-image: none;
 }
