@@ -51,7 +51,6 @@ button.chip-dismissible {
     width: $icon-size;
     height: $icon-size;
     vertical-align: -0.15em;
-    background-color: currentColor;
     @include icons-mx.mask-image('closex');
   }
 
@@ -119,7 +118,6 @@ button.chip-dismissible {
           width: tokens.get('chip-selectable-icon');
           height: tokens.get('chip-selectable-icon');
           vertical-align: -0.15em;
-          background-color: currentColor;
           @include icons-mx.mask-image('checkmark');
         }
 
