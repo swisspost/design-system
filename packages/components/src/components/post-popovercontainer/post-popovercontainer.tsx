@@ -88,7 +88,7 @@ export class PostPopovercontainer {
   @Event() postShow: EventEmitter<{ first?: boolean }>;
 
   /**
-   * Fires whenever the popovercontainer is hidden
+   * Fires whenever the popovercontainer is hidden.
    */
   @Event() postHide: EventEmitter;
 
