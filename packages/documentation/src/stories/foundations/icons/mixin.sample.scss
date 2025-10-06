@@ -1,8 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
   @include post.mask-image('accessibility');
 }
