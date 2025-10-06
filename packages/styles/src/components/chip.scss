@@ -6,7 +6,6 @@
 
 tokens.$default-map: components.$post-chip;
 
-// Common icon styles
 button.chip-dismissible::after,
 .chip-selectable input:checked + label::before {
   display: inline-block;
