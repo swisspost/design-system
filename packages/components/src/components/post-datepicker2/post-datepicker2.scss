@@ -1,25 +1,87 @@
 @use '@swisspost/design-system-styles/basics.scss';
 @use '@swisspost/design-system-styles/components/validation.scss';
 @use '@swisspost/design-system-styles/components/form-input.scss';
+@use '@swisspost/design-system-styles/mixins/button' as button-mx;
 
 @use 'air-datepicker/air-datepicker.css';
 
-.air-datepicker {
+:host {
 }
 
-:host {
-  --adp-cell-background-color-selected: #ffcc00;
-  --adp-color-current-date: #ffcc00;
-  .calendar {
-    max-width: 250px;
-  }
+.air-datepicker {
+  --hover-color: #504f4b;
+  --font-weight: 700;
+  --adp-padding: 8px;
+  --adp-font-family: var(--post-device-font-family-default);
+  --adp-font-size: 16px;
+  --adp-width: 296px;
+  --adp-color: #050400;
+  --adp-day-name-color: var(--adp-color);
+  --adp-accent-color: #ffcc00;
+  --adp-color-current-date: #050400;
+  --adp-color-disabled: #696864;
+  --adp-color-disabled-in-range: #939393;
+  --adp-color-current-date: #050400;
+  --adp-border-color: #050400;
+  --adp-nav-height: 24px;
+  --adp-nav-arrow-color: var(--adp-color);
+  --adp-nav-action-size: 40px;
+  --adp-nav-color-secondary: var(--adp-color-secondary);
+  --adp-day-name-color: var(--adp-color);
+  --adp-day-name-color-hover: white;
+  --adp-day-cell-width: 40px;
+  --adp-day-cell-height: 40px;
+  --adp-month-cell-height: 40px;
+  --adp-year-cell-height: 40px;
+  --adp-cell-border-radius: 100px;
+  --adp-cell-background-color-hover: var(--hover-color);
+  --adp-cell-background-color-selected: #050400;
+  --adp-cell-background-color-selected-hover: var(--hover-color);
+  --adp-cell-background-color-in-range: #ffcc00;
+  --adp-cell-background-color-in-range-hover: #050400;
+
+  --adp-btn-color: var(--adp-accent-color);
+  --adp-btn-color-hover: var(--adp-color);
+  --adp-btn-border-radius: var(--adp-border-radius);
+  --adp-btn-background-color-hover: var(--adp-background-color-hover);
+  --adp-btn-background-color-active: var(--adp-background-color-active);
+  border: none;
+  font-weight: 700;
+}
+
+.air-datepicker-cell.-in-range- {
+  // post.datepicker.day.range.grid.cell.highlight.border.block.color
+  border-block: 2px solid var(--adp-border-color) !important;
+}
+
+.air-datepicker-cell.-range-from- {
+  border: 2px solid var(--adp-border-color);
+  border-inline-end: none;
+  border-radius: var(--adp-cell-border-radius) 0 0 var(--adp-cell-border-radius);
+}
+
+.air-datepicker-cell.-range-to- {
+  border: 2px solid var(--adp-border-color);
+  border-inline-start: none;
+  border-radius: 0 var(--adp-cell-border-radius) var(--adp-cell-border-radius) 0;
 }
 
 .air-datepicker-nav {
-  background: #e0e0e0;
+  border-bottom: none;
+  background: #e1e0dc;
+
   .air-datepicker-nav--action {
     order: 2;
+    font-size: var(--adp-font-size);
+
+    button {
+      @include button-mx.reset-button;
+    }
   }
+}
+
+.air-datepicker-cell:not(.-range-from-):not(.-range-to-):hover {
+  color: white;
 }
 
 .-day-.-other-month- {
@@ -31,11 +93,25 @@
   .air-datepicker-body--day-names {
     background: #e0e0e0;
     margin: 0;
-    padding: 8px 0 3px;
-    .air-datepicker-body--day-name {
-      text-transform: capitalize;
-      color: black;
-      font-weight: bold;
-    }
+    padding: 0 8px 16px;
   }
+}
+
+.air-datepicker-cell.-day-.-current- {
+  border: 2px solid var(--adp-border-color);
+}
+.air-datepicker-body--day-names {
+  padding-inline: var(--adp-padding);
+}
+.air-datepicker-body--day-name {
+  text-transform: capitalize;
+  font-size: var(--adp-font-size);
+}
+
+.air-datepicker-body--cells.-days- {
+  padding: var(--adp-padding);
+}
+
+.air-datepicker-cell.-current-:not(.-range-from-):not(.-range-to-):hover {
+  color: white;
 }
