@@ -1,6 +1,7 @@
-import { createClassUpdateRule } from '../../../utils/create-class-update-rule';
+import { bootstrapSizeMap } from '../../../utils/common-data';
 import {
   arrayToMap,
+  createTwoPhasesClassUpdateRule,
   setUpClassesMutations,
   TwoPhasesData,
 } from '../../../utils/two-phases-classes-update';
@@ -25,11 +26,7 @@ const classNames = [
 
 // Previous values mapped to the new values
 const classValuesMap: Record<string, number> = {
-  '1': 4,
-  '2': 8,
-  '4': 24,
-  '3': 16,
-  '5': 48,
+  ...bootstrapSizeMap,
   'hair': 1,
   'line': 2,
   'micro': 4,
@@ -53,23 +50,18 @@ export const data: TwoPhasesData = setUpClassesMutations(
   'deprecatedSpacingUtilities',
 );
 
-export const namePhase1 = 'no-deprecated-spacing-utilities-phase-1';
-export const namePhase2 = 'no-deprecated-spacing-utilities-phase-2';
-
-export const rulePhase1 = createClassUpdateRule({
-  name: namePhase1,
-  type: 'problem',
-  description:
-    'Flags deprecated named and numbered spacing utility classes and replaces them with pixel ones with a temporary name (phase 1).',
-  messages: data.messagesPhase1,
-  mutations: data.mutationsPhase1,
-});
-
-export const rulePhase2 = createClassUpdateRule({
-  name: namePhase2,
-  type: 'problem',
-  description:
-    'Flags deprecated named and numbered spacing utility classes and replaces the temporary class names with the final ones.',
-  messages: data.messagesPhase2,
-  mutations: data.mutationsPhase2,
+export const rules = createTwoPhasesClassUpdateRule({
+  name: 'no-deprecated-spacing-utilities',
+  phases: [
+    {
+      ...data.phases[0],
+      description:
+        'Flags deprecated named and numbered spacing utility classes and replaces them with pixel ones with a temporary name (phase 1).',
+    },
+    {
+      ...data.phases[1],
+      description:
+        'Flags deprecated named and numbered spacing utility classes and replaces the temporary class names with the final ones.',
+    },
+  ],
 });

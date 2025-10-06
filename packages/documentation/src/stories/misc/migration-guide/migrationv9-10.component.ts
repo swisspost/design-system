@@ -163,6 +163,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The <code>rg</code> and <code>xxl</code> breakpoints have been removed
                   </p>
                   <ul>
@@ -177,8 +178,23 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The gutter classes naming (<code>g-*</code>, <code>gx-*</code>,
                     <code>gy-*</code>) has changed to pixel-based names
+                  </p>
+                  <ul>
+                    <li><code>*-1</code> is now <code>*-4</code></li>
+                    <li><code>*-2</code> is now <code>*-8</code></li>
+                    <li><code>*-3</code> is now <code>*-16</code></li>
+                    <li><code>*-4</code> is now <code>*-24</code></li>
+                    <li><code>*-5</code> is now <code>*-48</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The gap classes naming (<code>gap-*</code>, <code>row-gap-*</code>,
+                    <code>column-gap-*</code>) has changed to pixel-based names
+                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-1</code> is now <code>*-4</code></li>
@@ -250,7 +266,8 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Some Bootstrap utility classes have been removed
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
+                    Shadow utility classes have been removed
                   </p>
                   <ul>
                     <li>
@@ -265,6 +282,7 @@ export class MigrationV99Component extends LitElement {
 
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The following elevation utility classes have been renamed
                   </p>
                   <ul>
@@ -349,12 +367,28 @@ export class MigrationV99Component extends LitElement {
                     <li><code>.rounded-{top/bottom/start/end}</code> are now <code>.rounded-{top/bottom/start/end}-4</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Removed all text color utility classes (<code>.text-*</code>)
+                  </p>
+                  <ul>
+                    <li><code>.text-primary</code></li>
+                    <li><code>.text-secondary</code></li>
+                    <li><code>.text-light</code></li>
+                    <li><code>.text-dark</code></li>
+                    <li><code>.text-success</code></li>
+                    <li><code>.text-warning</code></li>
+                    <li><code>.text-error</code></li>
+                    <li><code>.text-info</code></li>
+                  </ul>
+                </li>
               </ul>
 
               <h5>Typography</h5>
               <ul>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Removed deprecated font size variables and classes
                   </p>
                   <ul>
@@ -371,15 +405,16 @@ export class MigrationV99Component extends LitElement {
                     <li><code>$font-size-56</code> and <code>.font-size-56</code></li>
                   </ul>
                   <p class="info">
-                    You can now use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
+                    You can now either use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
                     are documented in the
                     <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
                       >text utilities</a
-                    >.
+                    > for text content, or the <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs">sizing utility classes</a> for sizing <code>post-icon</code> components.
                   </p>
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Removed deprecated font curve variables and classes
                   </p>
                   <ul>
@@ -398,11 +433,11 @@ export class MigrationV99Component extends LitElement {
                     <li><code>$font-size-huge</code> and <code>.fs-huge</code></li>
                   </ul>
                   <p class="info">
-                    You can now use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
+                    You can now either use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
                     are documented in the
                     <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
                       >text utilities</a
-                    >.
+                    > for text content, or the <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs">sizing utility classes</a> for sizing <code>post-icon</code> components.
                   </p>
                 </li>
                 <li class="mb-16">
@@ -443,11 +478,6 @@ export class MigrationV99Component extends LitElement {
                     You can now use the following classes: <code>.lh-1</code>, <code>.lh-sm</code> and <code>.lh-lg</code> which are documented in the <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
                       >text utilities</a
                     >.
-                  </p>
-                </li>
-                <li class="mb-16">
-                  <p>
-                    Removed font-size class <code>.small</code>
                   </p>
                 </li>
                 <li class="mb-16">
@@ -545,6 +575,7 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The <code>.chip-filter</code> has been renamed to
                     <code>.chip-selectable</code> and the small variant of the chip
                     <code>.chip-sm</code> has been removed

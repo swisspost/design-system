@@ -55,7 +55,7 @@ export class PostMenu {
   }
 
   /**
-   * Required label providing an accessible name for the menu.
+   * An accessible name for the menu.
    */
   @Prop() readonly label?: string;
 
