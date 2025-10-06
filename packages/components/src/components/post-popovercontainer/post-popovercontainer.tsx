@@ -88,9 +88,9 @@ export class PostPopovercontainer {
   @Event() postShow: EventEmitter<{ first?: boolean }>;
 
   /**
-   * Fires whenever the popovercontainer is hidden, passing in event.detail a `first` boolean, which is true if it is hidden for the first time.
+   * Fires whenever the popovercontainer is hidden
    */
-  @Event() postHide: EventEmitter<{ first?: boolean }>;
+  @Event() postHide: EventEmitter;
 
   /**
    * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail an object containing two booleans: `willOpen`, which is true if the popovercontainer is about to be opened and false if it is about to be closed, and `first`, which is true if it is to be opened for the first time.
