@@ -100,7 +100,7 @@ export class PostTooltip {
           arrow={this.arrow}
           animation={this.animation}
           placement={this.placement}
-          onPostAfterToggle={e => this.handleToggle(e)}
+          onPostToggle={e => this.handleToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
           <slot></slot>

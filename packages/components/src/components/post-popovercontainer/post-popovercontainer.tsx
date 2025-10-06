@@ -85,7 +85,7 @@ export class PostPopovercontainer {
   /**
    * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
    */
-  @Event() postAfterShow: EventEmitter<{ first?: boolean }>;
+  @Event() postShow: EventEmitter<{ first?: boolean }>;
 
   /**
    * Fires whenever the popovercontainer is hidden, passing in event.detail a `first` boolean, which is true if it is hidden for the first time.
@@ -100,7 +100,7 @@ export class PostPopovercontainer {
   /**
    * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
    */
-  @Event() postAfterToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
+  @Event() postToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
 
   /**
    * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -245,8 +245,8 @@ export class PostPopovercontainer {
       }
 
       animation?.finished.then(() => {
-        this.postAfterToggle.emit({ isOpen: true, first: this.first });
-        this.postAfterShow.emit({ first: this.first });
+        this.postToggle.emit({ isOpen: true, first: this.first });
+        this.postShow.emit({ first: this.first });
 
         if (this.first) this.first = false;
       });
@@ -266,7 +266,7 @@ export class PostPopovercontainer {
       window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
 
-    this.postAfterToggle.emit({ isOpen: false, first: this.first });
+    this.postToggle.emit({ isOpen: false, first: this.first });
     this.postHide.emit({ first: this.first });
   }
 

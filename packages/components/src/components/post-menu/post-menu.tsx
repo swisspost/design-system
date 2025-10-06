@@ -235,7 +235,7 @@ export class PostMenu {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-          onPostAfterToggle={this.handlePostToggled}
+          onPostToggle={this.handlePostToggled}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
         >
