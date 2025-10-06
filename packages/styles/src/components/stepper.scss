@@ -180,26 +180,26 @@ tokens.$default-map: utilities.$post-spacing;
   width: stepper.$stepper-indicator-check-icon-size;
   transition: stepper.$stepper-indicator-transition;
   color: stepper.$stepper-indicator-color;
-  
+
   .stepper-item:first-child > & {
     left: calc(
       (#{stepper.$stepper-indicator-size} - stepper.$stepper-indicator-check-icon-size) / 2
-      );
-    }
-    
-    .stepper-item:not(:first-child, :last-child) > & {
-      left: calc(50% - (stepper.$stepper-indicator-check-icon-size / 2));
-    }
-    
-    .stepper-item:last-child > & {
-      right: calc((stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size) / 2);
-    }
-    
-    // show only for completed steps
-    .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
-      content: '';
-    }
-    @include icons-mx.mask-image('2105');
+    );
+  }
+
+  .stepper-item:not(:first-child, :last-child) > & {
+    left: calc(50% - (stepper.$stepper-indicator-check-icon-size / 2));
+  }
+
+  .stepper-item:last-child > & {
+    right: calc((stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size) / 2);
+  }
+
+  // show only for completed steps
+  .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
+    content: '';
+  }
+  @include icons-mx.mask-image('2105');
 }
 
 // hover/focus state

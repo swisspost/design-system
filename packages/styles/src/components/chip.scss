@@ -53,7 +53,7 @@ button.chip-dismissible {
     @include utilities.high-contrast-mode() {
       background-color: ButtonText;
     }
-    
+
     @include icons-mx.mask-image('closex');
   }
 
@@ -116,7 +116,7 @@ button.chip-dismissible {
           @include utilities.high-contrast-mode() {
             background-color: Highlight;
           }
-          
+
           @include icons-mx.mask-image('checkmark');
         }
 
