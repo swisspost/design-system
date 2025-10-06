@@ -27,18 +27,18 @@ $resizer-max-width: 64px;
   background-color: post.$info;
 }
 
-.my-accessibility-icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  @include post.mask-image('accessibility');
-}
-
+.my-accessibility-icon,
 .letter-icon {
   display: inline-block;
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
+}
+
+.my-accessibility-icon {
+  @include post.mask-image('accessibility');
+}
+
+.letter-icon {
   @include post.mask-image('letter');
 }
