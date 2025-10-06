@@ -6,6 +6,14 @@
 
 tokens.$default-map: components.$post-chip;
 
+// Common icon styles
+button.chip-dismissible::after,
+.chip-selectable input:checked + label::before {
+  display: inline-block;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+}
+
 button.chip-dismissible {
   $button-size: tokens.get('close-size', components.$post-close);
   $icon-size: tokens.get('close-icon-size', components.$post-close);
@@ -47,10 +55,6 @@ button.chip-dismissible {
       background-color: ButtonText;
     }
     
-    display: inline-block;
-    width: $icon-size;
-    height: $icon-size;
-    vertical-align: -0.15em;
     @include icons-mx.mask-image('closex');
   }
 
@@ -114,10 +118,6 @@ button.chip-dismissible {
             background-color: Highlight;
           }
           
-          display: inline-block;
-          width: tokens.get('chip-selectable-icon');
-          height: tokens.get('chip-selectable-icon');
-          vertical-align: -0.15em;
           @include icons-mx.mask-image('checkmark');
         }
 

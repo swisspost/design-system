@@ -207,6 +207,17 @@ input.form-control {
 .form-floating {
   position: relative;
 
+  // Shared icon styling for validation icons
+  &:has(> input.form-control.is-valid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-valid)::after,
+  &:has(> input.form-control.is-invalid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
+    display: inline-block;
+    width: tokens.get('input-sizing-icon');
+    height: tokens.get('input-sizing-icon');
+    vertical-align: -0.15em;
+  }
+
   &:has(> input.form-control.is-valid:not(:disabled))::after,
   &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
@@ -217,12 +228,8 @@ input.form-control {
     z-index: 2;
     pointer-events: none;
     
-    display: inline-block;
-    width: tokens.get('input-sizing-icon');
-    height: tokens.get('input-sizing-icon');
-    vertical-align: -0.15em;
     color: tokens.get('post-validation-success', components.$post-validation);
-    @include icon-mx.mask-image('success-solid');
+    @include icons-mx.mask-image('success-solid');
   }
 
   &:has(> input.form-control.is-invalid:not(:disabled))::after,
@@ -235,12 +242,8 @@ input.form-control {
     z-index: 1;
     pointer-events: none;
     
-    display: inline-block;
-    width: tokens.get('input-sizing-icon');
-    height: tokens.get('input-sizing-icon');
-    vertical-align: -0.15em;
     color: tokens.get('post-validation-error', components.$post-validation);
-    @include icon-mx.mask-image('warning-solid');
+    @include icons-mx.mask-image('warning-solid');
   }
 
   > input.form-control ~ label {
