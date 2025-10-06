@@ -163,7 +163,7 @@ type Story = StoryObj;
 export const Default: Story = {
   decorators: [gridContainer],
   render: (args: Args) =>
-    html`${args.action === 'button' ? renderInteractiveCard(args) : renderUninteractiveCard(args)}`,
+    html`${args.action === 'button' ? renderInteractiveCard(args) : renderNoninteractiveCard(args)}`,
 };
 
 export const Foundation: Story = {
