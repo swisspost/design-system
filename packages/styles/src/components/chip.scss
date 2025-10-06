@@ -49,11 +49,13 @@ button.chip-dismissible {
   &::after {
     content: '';
     margin-left: calc((#{$button-size} - #{$icon-size}) / 2);
+    width: tokens.get('close-icon-size', components.$post-close);
+    height: tokens.get('close-icon-size', components.$post-close);
 
     @include utilities.high-contrast-mode() {
       background-color: ButtonText;
     }
-
+    
     @include icons-mx.mask-image('closex');
   }
 
@@ -116,7 +118,8 @@ button.chip-dismissible {
           @include utilities.high-contrast-mode() {
             background-color: Highlight;
           }
-
+          width: tokens.get('chip-selectable-icon');
+          height: tokens.get('chip-selectable-icon');
           @include icons-mx.mask-image('checkmark');
         }
 
