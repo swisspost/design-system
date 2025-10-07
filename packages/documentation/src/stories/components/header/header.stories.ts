@@ -109,91 +109,90 @@ const meta: MetaComponent = {
 };
 
 function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = getUserMenu()) {
-  return (args: Args) => html`<post-header>
-    <!-- Logo -->
-    <post-logo slot="post-logo" url="/">Homepage</post-logo>
+  return (args: Args) => {
+    const loginInGlobalHeader = args.isLoggedIn
+      ? userMenu
+      : html` <a href="" slot="user">Login <post-icon name="login"></post-icon></a> `;
 
-    ${args.metaNavigation
-      ? html`
-          <!-- Meta navigation -->
-          <ul class="list-inline" slot="meta-navigation">
-            <li><a href="">Jobs</a></li>
-            <li><a href="">Create an account</a></li>
-          </ul>
-        `
-      : ''}
-    ${args.userMenuLocation === 'globalHeader'
-      ? args.isLoggedIn
-        ? userMenu
-        : html` <a href="" slot="user">Login <post-icon name="login"></post-icon></a> `
-      : nothing}
+    const loginInLocalHeader = args.isLoggedIn
+      ? userMenu
+      : html`
+          <a href="">
+            <span class="visually-hidden-sm">Login</span>
+            <post-icon name="login"></post-icon>
+          </a>
+        `;
+    return html`<post-header>
+      <!-- Logo -->
+      <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-    <!-- Menu button for mobile -->
-    <post-togglebutton slot="post-togglebutton">
-      <span class="visually-hidden-sm">Menu</span>
-      <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-      <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-    </post-togglebutton>
+      ${args.metaNavigation
+        ? html`
+            <!-- Meta navigation -->
+            <ul class="list-inline" slot="meta-navigation">
+              <li><a href="">Jobs</a></li>
+              <li><a href="">Create an account</a></li>
+            </ul>
+          `
+        : ''}
+      ${args.userMenuLocation === 'globalHeader' ? loginInGlobalHeader : nothing}
 
-    <!-- Language switch -->
-    <post-language-switch
-      caption="Change the language"
-      description="The currently selected language is English."
-      variant="list"
-      name="language-switch-example"
-      slot="post-language-switch"
-    >
-      <post-language-option code="de" name="German">de</post-language-option>
-      <post-language-option code="fr" name="French">fr</post-language-option>
-      <post-language-option code="it" name="Italian">it</post-language-option>
-      <post-language-option active="true" code="en" name="English">en</post-language-option>
-    </post-language-switch>
+      <!-- Menu button for mobile -->
+      <post-togglebutton slot="post-togglebutton">
+        <span class="visually-hidden-sm">Menu</span>
+        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+      </post-togglebutton>
 
-    ${args.title !== ''
-      ? html`
-          <!-- Application title (optional) -->
-          <h1 slot="title">${args.title}</h1>
-        `
-      : ''}
-    ${args.targetGroup
-      ? html`
-          <ul slot="target-group" class="target-group">
-            <li>
-              <a href="#" class="active">Private customers</a>
-            </li>
-            <li>
-              <a href="#">Business customers</a>
-            </li>
-          </ul>
-        `
-      : ''}
-    ${args.customControls
-      ? html`
-          <!-- Custom content (optional) -->
-          <ul class="list-inline">
-            <li>
-              <a href="#">
-                <span class="visually-hidden-sm">Search</span>
-                <post-icon aria-hidden="true" name="search"></post-icon>
-              </a>
-            </li>
-            <li>
-              ${args.userMenuLocation === 'localHeader'
-                ? args.isLoggedIn
-                  ? userMenu
-                  : html`
-                      <a href="">
-                        <span class="visually-hidden-sm">Login</span>
-                        <post-icon name="login"></post-icon>
-                      </a>
-                    `
-                : nothing}
-            </li>
-          </ul>
-        `
-      : ''}
-    ${args.mainNavigation ? mainnavigation : ''}
-  </post-header>`;
+      <!-- Language switch -->
+      <post-language-switch
+        caption="Change the language"
+        description="The currently selected language is English."
+        variant="list"
+        name="language-switch-example"
+        slot="post-language-switch"
+      >
+        <post-language-option code="de" name="German">de</post-language-option>
+        <post-language-option code="fr" name="French">fr</post-language-option>
+        <post-language-option code="it" name="Italian">it</post-language-option>
+        <post-language-option active="true" code="en" name="English">en</post-language-option>
+      </post-language-switch>
+
+      ${args.title !== ''
+        ? html`
+            <!-- Application title (optional) -->
+            <h1 slot="title">${args.title}</h1>
+          `
+        : ''}
+      ${args.targetGroup
+        ? html`
+            <ul slot="target-group" class="target-group">
+              <li>
+                <a href="#" class="active">Private customers</a>
+              </li>
+              <li>
+                <a href="#">Business customers</a>
+              </li>
+            </ul>
+          `
+        : ''}
+      ${args.customControls
+        ? html`
+            <!-- Custom content (optional) -->
+            <ul class="list-inline">
+              <li>
+                <a href="#">
+                  <span class="visually-hidden-sm">Search</span>
+                  <post-icon aria-hidden="true" name="search"></post-icon>
+                </a>
+              </li>
+              <li>${args.userMenuLocation === 'localHeader' ? loginInLocalHeader : nothing}</li>
+            </ul>
+          `
+        : ''}
+      ${args.mainNavigation ? mainnavigation : ''}
+    </post-header>`;
+  };
 }
 
 function renderMainnavigation() {
