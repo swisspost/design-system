@@ -85,12 +85,10 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
 
 export default meta;
 
-// Unified render function that switches based on variant
 function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }>) {
   const variant = args.variant || 'panels';
   
   if (variant === 'navigation') {
-    // Use custom tabs content if provided
     if (args['slots-default']) {
       return html`
         <post-tabs
@@ -158,13 +156,13 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
       <post-tab-item name="third">Third tab</post-tab-item>
       
       <post-tab-panel for="first" slot="panels">
-        <p>This is the content of the first tab.</p>
+        This is the content of the first tab. By default it is shown initially.
       </post-tab-panel>
       <post-tab-panel for="second" slot="panels">
-        <p>This is the content of the second tab.</p>
+        This is the content of the second tab. By default it is hidden initially.
       </post-tab-panel>
       <post-tab-panel for="third" slot="panels">
-        <p>This is the content of the third tab.</p>
+        This is the content of the third tab. By default it is also hidden initially.
       </post-tab-panel>
     </post-tabs>
   `;
