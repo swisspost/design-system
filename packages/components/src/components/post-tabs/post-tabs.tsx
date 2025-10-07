@@ -20,6 +20,7 @@ export class PostTabs {
   private showing: Animation;
   private hiding: Animation;
   private isLoaded = false;
+  private contentObserver: MutationObserver;
 
   @State() isNavigationMode: boolean = false;
 
@@ -62,6 +63,7 @@ export class PostTabs {
     this.moveMisplacedTabs();
     this.isLoaded = true;
     this.enableTabs();
+    this.setupContentObserver();
 
     if (this.isNavigationMode) {
       const activeTab = this.findActiveNavigationTab();
@@ -83,6 +85,47 @@ export class PostTabs {
       this.hiding.cancel();
       this.hiding = null;
     }
+
+    // Clean up content observer
+    this.contentObserver.disconnect();
+  }
+
+  private setupContentObserver() {
+    const config: MutationObserverInit = {
+      childList: true,        // Watch for child elements being added/removed
+      subtree: true,          // Watch all descendants
+      attributes: true,       // Watch for attribute changes
+      attributeFilter: ['data-navigation-mode']  // Only watch navigation mode changes
+    };
+
+    this.contentObserver = new MutationObserver(this.handleContentChange.bind(this));
+    this.contentObserver.observe(this.host, config);
+  }
+
+  private handleContentChange(mutations: MutationRecord[]) {
+    // Check if any mutations affect navigation mode
+    const shouldRedetect = mutations.some(mutation => {
+      // Child nodes added/removed (new tab items or anchor elements)
+      if (mutation.type === 'childList') {
+        return mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0;
+      }
+      // Navigation mode attribute changed
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-navigation-mode') {
+        return true;
+      }
+      return false;
+    });
+
+    if (shouldRedetect) {
+      // Re-detect mode and re-enable tabs if needed
+      const previousMode = this.isNavigationMode;
+      this.detectMode();
+      
+      // If mode changed, re-initialize
+      if (previousMode !== this.isNavigationMode) {
+        this.enableTabs();
+      }
+    }
   }
 
   private detectMode() {    
@@ -94,8 +137,7 @@ export class PostTabs {
     const hasPanels = this.panels.length > 0;
     
     if (hasNavigationTabs && hasPanels) {
-      console.error('PostTabs: Mixed mode detected. Cannot use both navigation mode (anchor elements) and panel mode (post-tab-panel elements) at the same time.');
-      return;
+      throw new Error('PostTabs: Mixed mode detected. Cannot use both navigation mode (anchor elements) and panel mode (post-tab-panel elements) at the same time.');
     }
     
     this.isNavigationMode = hasNavigationTabs;
