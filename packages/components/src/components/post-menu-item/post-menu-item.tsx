@@ -8,7 +8,7 @@ import { version } from '@root/package.json';
 export class PostMenuItem {
   render() {
     return (
-      <Host role="menuitem" data-version={version}>
+      <Host data-version={version}>
         <slot></slot>
       </Host>
     );

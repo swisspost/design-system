@@ -139,9 +139,9 @@ export class PostBreadcrumbs {
 
             {/* Conditionally render concatenated menu or individual breadcrumb items */}
             {this.isConcatenated ? (
-              <div
+              <li
+                role="none"
                 class="menu-trigger-wrapper"
-                aria-label="More breadcrumbs"
                 onKeyDown={e => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -174,19 +174,23 @@ export class PostBreadcrumbs {
                     ))}
                   </post-menu>
                 </div>
-              </div>
+              </li>
             ) : (
               visibleItems.map(item => (
-                <post-breadcrumb-item url={item.url} key={item.url || item.text}>
-                  {item.text}
-                </post-breadcrumb-item>
+                <li>
+                  <post-breadcrumb-item url={item.url} key={item.url || item.text}>
+                    {item.text}
+                  </post-breadcrumb-item>
+                </li>
               ))
             )}
 
             {this.lastItem && (
-              <post-breadcrumb-item url={this.lastItem.url} aria-current="page" tabindex={-1}>
-                {this.lastItem.text}
-              </post-breadcrumb-item>
+              <li aria-current="page">
+                <post-breadcrumb-item url={this.lastItem.url} tabindex={-1}>
+                  {this.lastItem.text}
+                </post-breadcrumb-item>
+              </li>
             )}
           </ol>
 
