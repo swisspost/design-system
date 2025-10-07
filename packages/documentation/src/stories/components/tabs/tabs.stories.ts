@@ -213,20 +213,6 @@ export const NavigationVariant: Story = {
   },
 };
 
-export const NavigationMode: Story = {
-  parameters: {
-    layout: 'fullscreen',
-    docs: {
-      description: {
-        story: 'Navigation mode for Cypress testing. When tab items contain `<a>` elements, the component renders as semantic navigation.',
-      },
-    },
-  },
-  args: {
-    variant: 'navigation',
-  },
-};
-
 export const ActiveTab: Story = {
   parameters: {
     docs: {
@@ -255,40 +241,6 @@ export const FullWidth: Story = {
     fullWidth: true 
   },
   decorators: [story => html`<div class="container">${story()}</div>`],
-};
-
-export const NavigationWithRouting: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: 'Example showing navigation mode with realistic routing URLs. In a real app, these would connect to your routing framework (React Router, Angular Router, etc.).',
-      },
-    },
-  },
-  render: (args: Partial<HTMLPostTabsElement>) => {
-    return html`
-      <post-tabs
-        active-tab="${ifDefined(args.activeTab)}"
-        full-width="${args.fullWidth ? true : nothing}"
-      >
-        <post-tab-item name="home">
-          <a href="/home">Home</a>
-        </post-tab-item>
-        <post-tab-item name="products">
-          <a href="/products">Products</a>
-        </post-tab-item>
-        <post-tab-item name="about">
-          <a href="/about">About</a>
-        </post-tab-item>
-        <post-tab-item name="contact">
-          <a href="/contact">Contact</a>
-        </post-tab-item>
-      </post-tabs>
-    `;
-  },
-  args: {
-    activeTab: 'home',
-  },
 };
 
 export const Async: Story = {
