@@ -122,6 +122,18 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
             <post-icon name="login"></post-icon>
           </a>
         `;
+
+    const customControls = html` <!-- Custom content (optional) -->
+      <ul class="list-inline">
+        <li>
+          <a href="#">
+            <span class="visually-hidden-sm">Search</span>
+            <post-icon aria-hidden="true" name="search"></post-icon>
+          </a>
+        </li>
+        <li>${args.userMenuLocation === 'localHeader' ? loginInLocalHeader : nothing}</li>
+      </ul>`;
+
     return html`<post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
@@ -176,21 +188,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
             </ul>
           `
         : ''}
-      ${args.customControls
-        ? html`
-            <!-- Custom content (optional) -->
-            <ul class="list-inline">
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Search</span>
-                  <post-icon aria-hidden="true" name="search"></post-icon>
-                </a>
-              </li>
-              <li>${args.userMenuLocation === 'localHeader' ? loginInLocalHeader : nothing}</li>
-            </ul>
-          `
-        : ''}
-      ${args.mainNavigation ? mainnavigation : ''}
+      ${args.customControls ? customControls : ''} ${args.mainNavigation ? mainnavigation : ''}
     </post-header>`;
   };
 }
