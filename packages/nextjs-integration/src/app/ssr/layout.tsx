@@ -82,7 +82,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         {/* Throws Hydration Errors */}
         <PostMainnavigation>
           {/* Throws Hydration Errors */}
-          <PostList title-hidden="">
+          <PostList title-hidden="" title="list title">
             <h2>Main Navigation</h2>
             <PostListItem slot="post-list-item">
               <a href="/briefe">Briefe</a>

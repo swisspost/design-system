@@ -13,6 +13,7 @@ import {
   PostMenuItem,
   PostMenuTrigger,
   PostPopover,
+  PostPopoverTrigger,
   PostRating,
   PostTabs,
   PostTabHeader,
@@ -124,16 +125,11 @@ export default function Home() {
       </PostMenu>
 
       <h2>Popover</h2>
-      <div className="d-flex justify-content-center">
-        {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
-        <button
-          className="btn btn-secondary btn-large"
-          data-popover-target="popover-one"
-          aria-expanded="false"
-        >
-          Click here to see a popover
+      <PostPopoverTrigger for="popover-one">
+        <button type="button" className="btn btn-secondary">
+          Popover Trigger
         </button>
-      </div>
+      </PostPopoverTrigger>
       <PostPopover
         className="palette palette-alternate"
         id="popover-one"
@@ -141,11 +137,13 @@ export default function Home() {
         closeButtonCaption="Close Popover"
         arrow={true}
       >
-        <h2 className="h6">Optional title</h2>
-        <p className="mb-0">
-          A longer message that needs more time to read. <a href="#test">Links</a> are also
-          possible.
-        </p>
+        <div id="popovertest">
+          <h2 className="h6">Optional title</h2>
+          <p className="mb-0">
+            A longer message that needs more time to read. <a href="#popovertest">Links</a> are also
+            possible.
+          </p>
+        </div>
       </PostPopover>
 
       <h2>Rating</h2>
