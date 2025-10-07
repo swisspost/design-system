@@ -74,6 +74,17 @@ export class PostTabs {
     }
   }
 
+  disconnectedCallback() {
+    if (this.showing) {
+      this.showing.cancel();
+      this.showing = null;
+    }
+    if (this.hiding) {
+      this.hiding.cancel();
+      this.hiding = null;
+    }
+  }
+
   private detectMode() {    
     const hasNavigationTabs = this.tabs.some(tab => {
       const navMode = tab.getAttribute('data-navigation-mode') === 'true';
