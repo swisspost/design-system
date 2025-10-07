@@ -96,7 +96,7 @@ const meta: MetaComponent = {
 function render(args: Args) {
   return html`
     <post-popover-trigger for="${args.id}">
-      <div role="button" class="btn btn-secondary">Popover Trigger</div>
+      <button role="button" class="btn btn-secondary">Popover Trigger</button>
     </post-popover-trigger>
     <post-popover
       class="palette ${args.palette}"

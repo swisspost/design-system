@@ -89,10 +89,14 @@ export class PostPopoverTrigger {
 
       // Listen to the `toggle` event emitted by the `post-popover` component
       if (this.popover && this.trigger) {
-        this.popover.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-          this.ariaExpanded = event.detail;
-          this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
-        });
+        this.popover.addEventListener(
+          'postToggle',
+          (event: CustomEvent<{ isOpen: boolean; first: boolean }>) => {
+            this.ariaExpanded = event.detail.isOpen;
+            console.log(event);
+            this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
+          },
+        );
       }
     } else {
       console.warn(
