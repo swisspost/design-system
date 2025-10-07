@@ -211,41 +211,41 @@ export class PostPopovercontainer {
    */
   private handleToggle(e: ToggleEvent) {
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
-
     const isOpen = e.newState === 'open';
+    const content = this.host.querySelector('.popover-content');
+
     if (isOpen) {
-      const content = this.host.querySelector('.popover-content');
       this.startAutoupdates();
+
       if (content && this.animation === 'pop-in') {
         popIn(content);
       }
 
-      if (this.safeSpace)
+      if (this.safeSpace) {
         window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      }
 
       // Emit event with `first` flag only true on the first open
       if (this.firstOpen) {
-        this.postToggle.emit({ isOpen, first: this.firstOpen });
+        this.postToggle.emit({ isOpen: true, first: true });
         this.firstOpen = false;
         return;
       }
     } else {
       // Return focus to the trigger on close
-      if (this.eventTarget && this.eventTarget instanceof HTMLElement) {
-        const focusableInTrigger = getFocusableChildren(this.eventTarget);
-
-        if (focusableInTrigger.length != 0) {
-          focusableInTrigger[0].focus();
-        } else {
-          this.eventTarget.focus();
-        }
+      if (this.eventTarget instanceof HTMLElement) {
+        const focusable = getFocusableChildren(this.eventTarget);
+        (focusable[0] || this.eventTarget).focus();
       }
 
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-      if (this.safeSpace)
+
+      if (this.safeSpace) {
         window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      }
     }
-    this.postToggle.emit({ isOpen: isOpen, first: false });
+
+    this.postToggle.emit({ isOpen, first: false });
   }
 
   /**

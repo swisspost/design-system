@@ -93,7 +93,6 @@ export class PostPopoverTrigger {
           'postToggle',
           (event: CustomEvent<{ isOpen: boolean; first: boolean }>) => {
             this.ariaExpanded = event.detail.isOpen;
-            console.log(event);
             this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
           },
         );
