@@ -1,13 +1,11 @@
 name: Release
 on:
-  pull_request:
+  push:
     branches:
       - main
       - release/v*
-    types:
-      - closed
 
-concurrency: ${{ github.workflow }}-${{ github.event.pull_request.base.ref }}
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
   contents: write
@@ -19,7 +17,6 @@ jobs:
     name: Set up Changeset PR or Release Packages
     runs-on: ubuntu-latest
     environment: npm-release
-    if: github.event.pull_request.merged == true
     steps:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
@@ -45,18 +42,18 @@ jobs:
         run: pnpm -r publish --dry-run
 
       # The changeset action will behave differently based on whether there are
-      # new changesets on the github.event.pull_request.base.ref branch:
+      # new changesets on the github.ref branch:
       #
       #  - new changesets: create a preview PR with the new version bumps and changelogs
-      #  - no new changesets (the preview PR got merged into github.event.pull_request.base.ref branch): publish packages
+      #  - no new changesets (the preview PR got merged into github.ref branch): publish packages
       - name: Changeset Magic
         id: changesets
         uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         env:
-          GITHUB_TOKEN: ${{ startsWith(github.event.pull_request.head.ref, 'changeset-release/') && secrets.GITHUB_TOKEN || secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
         with:
-          title: 'chore(changesets): 🦋📦 publish packages (${{ github.event.pull_request.base.ref }})'
+          title: 'chore(changesets): 🦋📦 publish packages (${{ github.ref_name }})'
           commit: 'chore(changesets): publish packages'
           publish: pnpm changeset:publish
           version: pnpm changeset:version
@@ -84,7 +81,7 @@ jobs:
     name: Collect Release Data
     runs-on: ubuntu-latest
     needs: changeset-magic
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    if: github.ref_name == 'main'
     outputs:
       release-data: ${{ steps.release-data.outputs.result }}
       changeset-branch-exists: ${{ steps.changeset-branch-exists.outputs.exists }}
@@ -212,7 +209,7 @@ jobs:
         id: summary
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
-          REF_NAME: ${{ github.event.pull_request.base.ref }}
+          REF_NAME: ${{ github.ref_name }}
           RELEASE_DATA: ${{ steps.release-data.outputs.result }}
           CHANGESET_BRANCH_EXISTS: ${{ steps.changeset-branch-exists.outputs.exists }}
           RELEASE_BRANCH_EXISTS: ${{ steps.release-branch-exists.outputs.exists }}
@@ -242,7 +239,7 @@ jobs:
     name: Update changeset-release/{main,release/v*} Branch
     runs-on: ubuntu-latest
     needs: collect-release-data
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && needs.collect-release-data.outputs.changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null
+    if: github.ref_name == 'main' && needs.collect-release-data.outputs.changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null
     steps:
       # Checkout the changeset Branch
       - name: Checkout
@@ -326,7 +323,7 @@ jobs:
         id: summary
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
-          REF_NAME: ${{ github.event.pull_request.base.ref }}
+          REF_NAME: ${{ github.ref_name }}
           RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
           RELEASE_BRANCH_EXISTS: ${{ needs.collect-release-data.outputs.release-branch-exists }}
         with:
@@ -352,7 +349,7 @@ jobs:
     name: Create release/v* Branch
     runs-on: ubuntu-latest
     needs: collect-release-data
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && needs.collect-release-data.outputs.release-branch-exists == 'false' && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
+    if: github.ref_name == 'main' && needs.collect-release-data.outputs.release-branch-exists == 'false' && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
     steps:
       # Checkout the commit with the release.old.version tag (e.g. @swisspost/design-system-styles@5.3.2)
       - name: Checkout
@@ -485,7 +482,7 @@ jobs:
     name: Remove release/v* Branch
     runs-on: ubuntu-latest
     needs: collect-release-data
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
+    if: github.ref_name == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
     steps:
       - name: Checkout
         uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
