@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { CustomContent, Default, ListGroup } from './card.stories';
+import meta, { Default } from './card.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -19,8 +19,6 @@ export const Card: Story = {
     const defaultTemplateVariants =
       // Layout related combinations
       bombArgs({
-        showImage: [false, true],
-        imagePosition: meta.argTypes?.imagePosition?.options,
         action: ['none', 'button', 'links'],
       })
         .filter(args => !(!args.showImage && args.imagePosition === 'bottom'))
@@ -33,21 +31,6 @@ export const Card: Story = {
           `,
         );
 
-    // Define custom template variant
-    const customTemplateVariant = html`
-      <div class="p-16 col-6">
-        ${CustomContent.render &&
-        CustomContent.render({ ...meta.args, ...CustomContent.args }, context)}
-      </div>
-    `;
-
-    // Define list group variant
-    const listGroupVariant = html`
-      <div class="p-16 col-6">
-        ${ListGroup.render && ListGroup.render({ ...meta.args, ...ListGroup.args }, context)}
-      </div>
-    `;
-
     return schemes(
       () =>
         html`
@@ -55,10 +38,6 @@ export const Card: Story = {
             <h1>Cards</h1>
             <h2 class="mt-32">Default template variants cards</h2>
             ${defaultTemplateVariants}
-            <h2 class="mt-32">Custom template variants cards</h2>
-            ${customTemplateVariant}
-            <h2 class="mt-32">Custom template variants cards</h2>
-            ${listGroupVariant}
           </div>
         `,
       {
