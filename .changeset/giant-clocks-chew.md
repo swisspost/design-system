@@ -26,7 +26,10 @@ AFTER:
   height: 1em;
   vertical-align: -0.15em;
   
-  // Use mask-image mixin with optional color parameter
-  @include post.mask-image('accessibility', '#fc0');
+  @include post.mask-image(
+    $name: 'accessibility',
+    // optional
+    $color: '#fc0',
+  );
 }
 ```
