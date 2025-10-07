@@ -10,7 +10,6 @@ button.chip-dismissible::after,
 .chip-selectable input:checked + label::before {
   display: inline-block;
   vertical-align: -0.15em;
-  background-color: currentColor;
 }
 
 button.chip-dismissible {
