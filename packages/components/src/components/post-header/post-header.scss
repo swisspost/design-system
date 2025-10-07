@@ -41,16 +41,6 @@
   }
 }
 
-:host(:not(:has([slot='title']))) {
-  .local-header {
-    padding-block-start: 0;
-  }
-
-  .local-sub {
-    display: none;
-  }
-}
-
 .d-flex {
   display: flex;
 }
@@ -77,6 +67,10 @@
     padding-inline-end: 8px;
     inset-block-start: var(--post-global-header-top);
     transition: inset-block-start 0.2s ease-in-out;
+  }
+
+  &:has(+ .local-header.no-navigation.no-title) {
+    box-shadow: elevation.$elevation-300;
   }
 }
 
@@ -154,9 +148,12 @@
 
   @include media.min(lg) {
     z-index: 3;
-    padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
     transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
+
+    &:not(.no-title) {
+      padding-block-start: 18px;
+    }
   }
 
   @include media.max(lg) {
@@ -183,6 +180,10 @@
     .navigation {
       display: none;
     }
+  }
+
+  &.no-navigation.no-title {
+    display: none;
   }
 }
 

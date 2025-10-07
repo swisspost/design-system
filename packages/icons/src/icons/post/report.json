@@ -26585,6 +26585,63 @@
       "modifiedAt": "2025-08-23T07:05:05.336Z"
     },
     {
+      "uuid": "fd893eb0-92c8-11f0-9719-005056873709",
+      "id": 6251978,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6251978/storage/MDA2MjUxOTc4LzAvbWFzdGVy",
+        "keywords": [
+          "Interdit",
+          "Proibito",
+          "Verboten",
+          "Forbidden",
+          "prohibition",
+          "Verbot",
+          "Interdiction",
+          "Divieto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2714.svg",
+        "basename": "2714",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-09-16T06:47:19.000Z",
+      "modifiedAt": "2025-09-17T06:05:03.771Z"
+    },
+    {
+      "uuid": "a8dd90e0-92c9-11f0-9719-005056873709",
+      "id": 6252010,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6252010/storage/MDA2MjUyMDEwLzAvbWFzdGVy",
+        "keywords": [
+          "PubliCar"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2715.svg",
+        "basename": "2715",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-09-16T06:52:06.000Z",
+      "modifiedAt": "2025-09-16T06:56:10.000Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -39823,13 +39880,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1045,
+    "success": 1047,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-08-24T02:24:07.005Z",
-  "version": "10.0.0-next.45"
+  "created": "2025-10-01T08:18:50.959Z",
+  "version": "10.0.0-next.48"
 }

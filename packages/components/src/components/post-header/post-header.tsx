@@ -62,6 +62,7 @@ export class PostHeader {
 
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
+  @State() hasTitle: boolean = false;
   @State() mobileMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -118,6 +119,7 @@ export class PostHeader {
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.checkNavigationExistence();
+    this.checkTitleExistence();
     this.switchLanguageSwitchMode();
 
     this.handleScrollParentResize();
@@ -163,6 +165,10 @@ export class PostHeader {
 
   private checkNavigationExistence(): void {
     this.hasNavigation = this.host.querySelectorAll('post-mainnavigation').length > 0;
+  }
+
+  private checkTitleExistence(): void {
+    this.hasTitle = this.host.querySelectorAll('[slot="title"]').length > 0;
   }
 
   private async closeMobileMenu() {
@@ -372,7 +378,8 @@ export class PostHeader {
   render() {
     const localHeaderClasses = ['local-header'];
     if (this.mobileMenuExtended) localHeaderClasses.push('local-header-mobile-extended');
-    if (!this.hasNavigation) localHeaderClasses.push('no-navigation');
+    if (this.device !== 'desktop' || !this.hasNavigation) localHeaderClasses.push('no-navigation');
+    if (!this.hasTitle) localHeaderClasses.push('no-title');
 
     return (
       <Host data-version={version} data-color-scheme="light">
@@ -399,11 +406,13 @@ export class PostHeader {
           </div>
         </div>
         <div class={localHeaderClasses.join(' ')}>
-          <slot name="title"></slot>
-          <div class="local-sub">
-            <slot name="local-controls"></slot>
-            <slot></slot>
-          </div>
+          <slot name="title" onSlotchange={() => this.checkTitleExistence()}></slot>
+          {this.hasTitle &&
+            (<div class="local-sub">
+              <slot name="local-controls"></slot>
+              <slot></slot>
+            </div>)
+          }
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}
