@@ -74,7 +74,7 @@ ul.list-check {
         margin-block: tokens.get('list-check-icon-container-block');
         padding-inline: tokens.get('list-check-icon-container-inline');
       }
-      @include icon-mixin.mask-image('3035');
+      @include icon-mixin.mask-image('3035', tokens.get('list-check-color-icon-fg'));
     }
   }
 }
