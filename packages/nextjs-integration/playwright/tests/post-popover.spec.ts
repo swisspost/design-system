@@ -1,15 +1,23 @@
 import { test, expect, Locator } from '@playwright/test';
+import { PostPopover } from '@swisspost/design-system-components/dist/components/react/post-popover.js';
+import AxeBuilder from '@axe-core/playwright';
 
 test.describe('popover', () => {
   let trigger: Locator;
   let popover: Locator;
+  let popoverContent: Locator;
+  let triggerButton: Locator;
+  let closeButton: Locator;
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/ssr');
 
     // Assign locators using the page instance
     trigger = page.locator('post-popover-trigger[data-hydrated][for="popover-one"]');
-    popover = page.locator('#popovertest');
+    popover = page.locator('post-popover');
+    popoverContent = page.locator('#popovertest');
+    triggerButton = page.locator('post-popover-trigger[data-hydrated][for="popover-one"] button');
+    closeButton = popover.locator('.btn-close');
   });
 
   test('should contain an HTML element inside the trigger, not just plain text', async () => {
@@ -18,34 +26,34 @@ test.describe('popover', () => {
   });
 
   test('should show up on click', async () => {
-    await expect(popover).toBeHidden();
-    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(popoverContent).toBeHidden();
+    await expect(triggerButton).toHaveAttribute('aria-expanded', 'false');
 
-    await trigger.click();
-    await expect(popover).toBeVisible();
-    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    await triggerButton.click();
+    await expect(popoverContent).toBeVisible();
+    await expect(triggerButton).toHaveAttribute('aria-expanded', 'true');
   });
 
   test('should show up when clicking on a nested element inside the trigger', async () => {
-    await trigger.evaluate(el => {
+    await triggerButton.evaluate(el => {
       const originalText = el.textContent;
       el.innerHTML = `<span class="nested-element">${originalText}</span>`;
     });
 
-    await expect(popover).toBeHidden();
-    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(popoverContent).toBeHidden();
+    await expect(triggerButton).toHaveAttribute('aria-expanded', 'false');
 
     await trigger.locator('.nested-element').click();
-    await expect(popover).toBeVisible();
-    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(popoverContent).toBeVisible();
+    await expect(triggerButton).toHaveAttribute('aria-expanded', 'true');
 
-    // await page.locator('.btn-close').click();
-    await expect(popover).toBeHidden();
-    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await closeButton.click();
+    await expect(popoverContent).toBeHidden();
+    await expect(triggerButton).toHaveAttribute('aria-expanded', 'false');
   });
 
   test('should show up when clicking on a deeply nested element inside the trigger', async () => {
-    await trigger.evaluate(el => {
+    await triggerButton.evaluate(el => {
       const originalText = el.textContent;
       el.innerHTML = `
           <div class="level-1">
@@ -56,62 +64,87 @@ test.describe('popover', () => {
         `;
     });
 
-    await expect(popover).toBeHidden();
-    await page.locator('.level-3').click();
-    await expect(popover).toBeVisible();
-    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(popoverContent).toBeHidden();
+    await trigger.locator('.level-3').click();
+    await expect(popoverContent).toBeVisible();
+    await expect(triggerButton).toHaveAttribute('aria-expanded', 'true');
   });
 
   test('should close on X click', async () => {
-    await trigger.click();
-    await expect(popover).toBeVisible();
-    await page.locator('.btn-close').click();
-    await expect(popover).toBeHidden();
+    await triggerButton.click();
+    await expect(popoverContent).toBeVisible();
+    await closeButton.click();
+    await expect(popoverContent).toBeHidden();
   });
 
   test('should open on enter', async () => {
-    await expect(popover).toBeHidden();
-    await trigger.focus();
-    await trigger.press('Enter');
-    await expect(popover).toBeVisible();
+    await expect(popoverContent).toBeHidden();
+    await triggerButton.focus();
+    await triggerButton.press('Enter');
+    await expect(popoverContent).toBeVisible();
   });
 
-  test('should open and close with the API', async ({ page }) => {
-    await expect(popover).toBeHidden();
+  test('should open and close with the API', async () => {
+    const triggerEl = await trigger.elementHandle();
+    const popoverEl = await popover.elementHandle();
 
-    await page.evaluate(
-      ([triggerEl, popoverEl]) => (popoverEl as any).show(triggerEl),
-      [await trigger.elementHandle(), await popover.elementHandle()],
-    );
-    await expect(popover).toBeVisible();
+    await expect(popoverContent).toBeHidden();
 
-    await page.evaluate(popoverEl => (popoverEl as any).hide(), await popover.elementHandle());
-    await expect(popover).toBeHidden();
+    if (triggerEl && popoverEl) {
+      await popoverEl.evaluate((el, trigger) => {
+        (el as PostPopover).show(trigger as HTMLElement);
+      }, triggerEl);
+    }
 
-    await page.evaluate(
-      ([triggerEl, popoverEl]) => (popoverEl as any).toggle(triggerEl),
-      [await trigger.elementHandle(), await popover.elementHandle()],
-    );
-    await expect(popover).toBeVisible();
+    await expect(popoverContent).toBeVisible();
 
-    await page.evaluate(
-      ([triggerEl, popoverEl]) => (popoverEl as any).toggle(triggerEl),
-      [await trigger.elementHandle(), await popover.elementHandle()],
-    );
-    await expect(popover).toBeHidden();
+    if (triggerEl && popoverEl) {
+      await popoverEl.evaluate(el => {
+        (el as PostPopover).hide();
+      }, triggerEl);
+    }
+
+    await expect(popoverContent).toBeHidden();
+
+    if (triggerEl && popoverEl) {
+      await popoverEl.evaluate((el, trigger) => {
+        (el as PostPopover).toggle(trigger as HTMLElement);
+      }, triggerEl);
+    }
+
+    await expect(popoverContent).toBeVisible();
+
+    if (triggerEl && popoverEl) {
+      await popoverEl.evaluate((el, trigger) => {
+        (el as PostPopover).toggle(trigger as HTMLElement);
+      }, triggerEl);
+    }
+    await expect(popoverContent).toBeHidden();
   });
 
   test('should switch position', async () => {
-    const popoverEl = page.locator('post-popover');
-    await popoverEl.evaluate(el => el.setAttribute('placement', 'top'));
+    const popoverEl = await popover.elementHandle();
+
+    if (popoverEl) await popoverEl.evaluate(el => el.setAttribute('placement', 'top'));
+
     await expect(popover).toBeHidden();
 
     const [triggerBox, popoverBox] = await Promise.all([
       trigger.boundingBox(),
       popover.boundingBox(),
     ]);
+
     if (triggerBox && popoverBox) {
       expect(triggerBox.y).toBeLessThan(popoverBox.y);
     }
+  });
+
+  // Accessibility check
+  test('should not have any automatically detectable accessibility issues', async ({ page }) => {
+    await page.goto('/ssr');
+
+    const popoverAccessibility = await new AxeBuilder({ page }).include('post-popover').analyze();
+
+    expect(popoverAccessibility.violations).toEqual([]);
   });
 });

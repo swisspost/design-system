@@ -126,7 +126,9 @@ export default function Home() {
 
       <h2>Popover</h2>
       <PostPopoverTrigger for="popover-one">
-        <button className="btn btn-secondary">Popover Trigger</button>
+        <button type="button" className="btn btn-secondary">
+          Popover Trigger
+        </button>
       </PostPopoverTrigger>
       <PostPopover
         className="palette palette-alternate"
@@ -135,11 +137,13 @@ export default function Home() {
         closeButtonCaption="Close Popover"
         arrow={true}
       >
-        <h2 className="h6">Optional title</h2>
-        <p className="mb-0">
-          A longer message that needs more time to read. <a href="#popovertest">Links</a> are also
-          possible.
-        </p>
+        <div id="popovertest">
+          <h2 className="h6">Optional title</h2>
+          <p className="mb-0">
+            A longer message that needs more time to read. <a href="#popovertest">Links</a> are also
+            possible.
+          </p>
+        </div>
       </PostPopover>
 
       <h2>Rating</h2>
