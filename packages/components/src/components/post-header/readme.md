@@ -36,6 +36,7 @@ Type: `Promise<void>`
 | `"post-togglebutton"`    | Holds the mobile menu toggler.                                                |
 | `"target-group"`         | Holds the list of buttons to choose the target group.                         |
 | `"title"`                | Holds the application title.                                                  |
+| `"user"`                 | Holds the user menu or login button.                                          |
 
 
 ----------------------------------------------

@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { fakeContent } from '@/utils';
 
 const meta: MetaComponent = {
@@ -22,6 +22,8 @@ const meta: MetaComponent = {
     metaNavigation: true,
     targetGroup: true,
     customControls: false,
+    isLoggedIn: false,
+    userMenuLocation: 'globalHeader',
   },
   argTypes: {
     title: {
@@ -75,6 +77,27 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    isLoggedIn: {
+      name: 'Is logged in',
+      description: 'Whether the user is logged in or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'state' },
+    },
+    userMenuLocation: {
+      name: 'User menu location',
+      description: 'Where the login/user menu should be placed.',
+      control: {
+        type: 'radio',
+        labels: {
+          globalHeader: 'Global header',
+          localHeader: 'Local header',
+        },
+      },
+      options: ['globalHeader', 'localHeader'],
+      table: { disable: true },
+    },
   },
   decorators: [
     story =>
@@ -85,7 +108,7 @@ const meta: MetaComponent = {
   render: getHeaderRenderer(),
 };
 
-function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
+function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = getUserMenu()) {
   return (args: Args) => html`<post-header>
     <!-- Logo -->
     <post-logo slot="post-logo" url="/">Homepage</post-logo>
@@ -99,6 +122,11 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
           </ul>
         `
       : ''}
+    ${args.userMenuLocation === 'globalHeader'
+      ? args.isLoggedIn
+        ? userMenu
+        : html` <a href="" slot="user">Login <post-icon name="login"></post-icon></a> `
+      : nothing}
 
     <!-- Menu button for mobile -->
     <post-togglebutton slot="post-togglebutton">
@@ -150,10 +178,16 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
               </a>
             </li>
             <li>
-              <a href="#">
-                <span class="visually-hidden-sm">Login</span>
-                <post-icon aria-hidden="true" name="login"></post-icon>
-              </a>
+              ${args.userMenuLocation === 'localHeader'
+                ? args.isLoggedIn
+                  ? userMenu
+                  : html`
+                      <a href="">
+                        <span class="visually-hidden-sm">Login</span>
+                        <post-icon name="login"></post-icon>
+                      </a>
+                    `
+                : nothing}
             </li>
           </ul>
         `
@@ -308,6 +342,53 @@ export const ActiveNavigationItem: Story = {
   `,
 };
 
+function getUserMenu() {
+  return html`
+    <div slot="user">
+      <post-menu-trigger for="user-menu">
+        <button class="btn btn-link" type="button">
+          <post-avatar
+            firstname="John"
+            lastname="Doe"
+            description="Current user is John Doe."
+          ></post-avatar>
+          <span class="visually-hidden">Access user links.</span>
+        </button>
+      </post-menu-trigger>
+      <post-menu id="user-menu" label="User links">
+        <div slot="header">
+          <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
+          John Doe
+        </div>
+        <post-menu-item>
+          <a href="">
+            <post-icon aria-hidden="true" name="profile"></post-icon>
+            My Profile
+          </a>
+        </post-menu-item>
+        <post-menu-item>
+          <a href="">
+            <post-icon aria-hidden="true" name="letter"></post-icon>
+            Messages
+          </a>
+        </post-menu-item>
+        <post-menu-item>
+          <a href="">
+            <post-icon aria-hidden="true" name="gear"></post-icon>
+            Setting
+          </a>
+        </post-menu-item>
+        <post-menu-item>
+          <button type="button">
+            <post-icon aria-hidden="true" name="logout"></post-icon>
+            Logout
+          </button>
+        </post-menu-item>
+      </post-menu>
+    </div>
+  `;
+}
+
 export const Portal: Story = {
   ...getIframeParameters(550),
 };
@@ -338,5 +419,32 @@ export const OnePager: Story = {
 export const WithTargetGroup: Story = {
   args: {
     targetGroup: true,
+  },
+};
+
+// User is logged in
+export const LoggedIn: Story = {
+  ...getIframeParameters(400),
+  args: {
+    isLoggedIn: true,
+    customControls: true,
+    mainNavigation: true,
+    metaNavigation: false,
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer(undefined, html` ${story(context.args, context)} `);
+      return renderHeader({ ...context.args, customControls: true });
+    },
+  ],
+  render: () => getUserMenu(),
+};
+
+// User is logged out
+export const LoggedOut: Story = {
+  ...getIframeParameters(200),
+  args: {
+    isLoggedIn: false,
+    loginInGlobalHeader: true,
   },
 };

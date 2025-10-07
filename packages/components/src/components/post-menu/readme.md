@@ -65,6 +65,13 @@ Type: `Promise<void>`
 
 
 
+## Slots
+
+| Slot       | Description                        |
+| ---------- | ---------------------------------- |
+| `"header"` | Holds the header part of the menu. |
+
+
 ## Shadow Parts
 
 | Part     | Description                                              |
