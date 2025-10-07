@@ -41,8 +41,6 @@ export class PostTabItem {
   private checkNavigationMode() {
     const hasAnchor = this.host.querySelector('a') !== null;
     this.isNavigationMode = hasAnchor;
-    
-    this.host.setAttribute('data-navigation-mode', this.isNavigationMode.toString());
   }
 
   render() {
@@ -52,6 +50,7 @@ export class PostTabItem {
         id={this.tabId}
         role={isPanelMode ? 'tab' : undefined}
         data-version={version}
+        data-navigation-mode={this.isNavigationMode.toString()}
         aria-selected={isPanelMode ? 'false' : undefined}
         tabindex={isPanelMode ? '-1' : undefined}
         class="tab-title"

@@ -26,6 +26,7 @@ export class PostTabPanel {
   validateFor() {
     checkRequiredAndType(this, 'for', 'string');
   }
+  
   componentWillLoad() {
     this.validateFor();
     // get the id set on the host element or use a random id by default
