@@ -1,5 +1,6 @@
 ---
 '@swisspost/design-system-styles': major
+'@swisspost/design-system-icons': major
 ---
 
 The `post-icon` mixin has been removed and replaced with more flexible `mask-image` mixin.
