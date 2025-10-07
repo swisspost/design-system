@@ -120,8 +120,10 @@ const getCloseButton = () => {
 };
 
 const getControls = () => {
-  return html`<button class="btn btn-primary">OK</button><br />
-    <button class="btn btn-secondary">Cancel</button>`;
+  return html`
+    <button class="btn btn-primary">OK</button>
+    <button class="btn btn-secondary">Cancel</button>
+  `;
 };
 
 const Template = {
