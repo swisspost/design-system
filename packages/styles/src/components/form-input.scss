@@ -223,8 +223,7 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 2;
     pointer-events: none;
-    color: tokens.get('post-validation-success', components.$post-validation);
-    @include icons-mx.mask-image('success-solid');
+    @include icons-mx.mask-image('success-solid', tokens.get('post-validation-success', components.$post-validation));
   }
 
   &:has(> input.form-control.is-invalid:not(:disabled))::after,
@@ -236,8 +235,7 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 1;
     pointer-events: none;
-    color: tokens.get('post-validation-error', components.$post-validation);
-    @include icons-mx.mask-image('warning-solid');
+    @include icons-mx.mask-image('warning-solid', tokens.get('post-validation-success', components.$post-validation));
   }
 
   > input.form-control ~ label {
