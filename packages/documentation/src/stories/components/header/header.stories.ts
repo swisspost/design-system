@@ -189,7 +189,7 @@ function renderMainnavigation() {
             <post-list>
               <h3>Send letters</h3>
               <post-list-item slot="post-list-item">
-                <a href="/sch">Letters Switzerland</a>
+                <a href="/sch" aria-current="page">Letters Switzerland</a>
               </post-list-item>
               <post-list-item slot="post-list-item">
                 <a href="/kl">Small items abroad</a>
