@@ -8,6 +8,7 @@ import { PostComponentsModule } from '@swisspost/design-system-components-angula
 import { AppComponent } from './app.component';
 import { HomeComponent } from './routes/home/home.component';
 import { CardControlComponent } from './routes/card-control/card-control.component';
+import { TabsComponent } from './routes/tabs/tabs.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { CardControlComponent } from './routes/card-control/card-control.compone
     FormsModule,
     PostComponentsModule,
     CardControlComponent,
+    TabsComponent,
   ],
   declarations: [AppComponent, HomeComponent],
   providers: [],
