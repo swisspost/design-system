@@ -15,6 +15,7 @@ BEFORE:
     $height: 1em
   );
 }
+```
 
 AFTER:
 ```scss
@@ -28,3 +29,4 @@ AFTER:
   // Use mask-image mixin with optional color parameter
   @include post.mask-image('accessibility', '#fc0');
 }
+```
