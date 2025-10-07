@@ -42,16 +42,14 @@ describe('tabs', () => {
     it('should show the panel associated with a clicked tab header and hide the panel that was previously shown', () => {
       cy.get('@tabItems').last().click();
 
-      // wait for the fade out animation to complete
-      cy.wait(200);
-
-      cy.get('post-tab-panel:visible').as('panel');
-      cy.get('@panel').should('have.length', 1);
+      // Wait for transition to complete
+      cy.get('post-tab-panel:visible').should('have.length', 1);
+      
       cy.get('@tabItems')
         .last()
         .invoke('attr', 'name')
         .then(tabName => {
-          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
+          cy.get('post-tab-panel:visible').invoke('attr', 'for').should('equal', tabName);
         });
     });
   });
@@ -129,15 +127,12 @@ describe('tabs', () => {
       cy.get('post-tab-item').last().as('new-tab');
       cy.get('@new-tab').click();
 
-      // wait for the fade out animation to complete
-      cy.wait(200);
-
-      cy.get('post-tab-panel:visible').as('panel');
-      cy.get('@panel').should('have.length', 1);
+      cy.get('post-tab-panel:visible').should('have.length', 1);
+      
       cy.get('@new-tab')
         .invoke('attr', 'name')
         .then(tabName => {
-          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
+          cy.get('post-tab-panel:visible').invoke('attr', 'for').should('equal', tabName);
         });
     });
 
@@ -200,9 +195,8 @@ describe('tabs', () => {
 
     it('should detect active tab based on aria-current="page"', () => {
       cy.getComponent('tabs', TABS_ID, 'navigation-with-current');
-      cy.get('post-tab-item').as('tabItems');
       
-      cy.get('@tabItems').eq(1).should('have.class', 'active');
+      cy.get('post-tab-item').eq(1).should('have.class', 'active');
     });
   });
 
@@ -221,14 +215,16 @@ describe('tabs', () => {
       cy.get('post-tabs').find('nav').should('exist');
     });
 
-    it('should warn about mixed mode usage', () => {
+    it('should handle mixed mode usage', () => {
       cy.getComponent('tabs', TABS_ID, 'mixed-mode');
       
       cy.get('post-tabs').should('exist');
+      cy.get('post-tab-item').should('exist');
     });
   });
 });
-describe('Accessibility', () => {
+
+  describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('tabs');
     cy.checkA11y('#root-inner');
