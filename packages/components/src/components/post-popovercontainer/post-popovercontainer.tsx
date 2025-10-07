@@ -29,6 +29,7 @@ import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+import { popIn } from '@/animations/pop-in';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -74,11 +75,12 @@ export class PostPopovercontainer {
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
   private toggleTimeoutId: number;
+  private firstOpen: boolean = true;
 
   /**
-   * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
+   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
    */
-  @Event() postToggle: EventEmitter<boolean>;
+  @Event() postToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
 
   /**
    * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -212,9 +214,21 @@ export class PostPopovercontainer {
 
     const isOpen = e.newState === 'open';
     if (isOpen) {
+      const content = this.host.querySelector('.popover-content');
       this.startAutoupdates();
+      if (content && this.animation === 'pop-in') {
+        popIn(content);
+      }
+
       if (this.safeSpace)
         window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+
+      // Emit event with `first` flag only true on the first open
+      if (this.firstOpen) {
+        this.postToggle.emit({ isOpen, first: this.firstOpen });
+        this.firstOpen = false;
+        return;
+      }
     } else {
       // Return focus to the trigger on close
       if (this.eventTarget && this.eventTarget instanceof HTMLElement) {
@@ -231,7 +245,7 @@ export class PostPopovercontainer {
       if (this.safeSpace)
         window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
-    this.postToggle.emit(isOpen);
+    this.postToggle.emit({ isOpen: isOpen, first: false });
   }
 
   /**
@@ -394,11 +408,9 @@ export class PostPopovercontainer {
   }
 
   render() {
-    const animationClass = this.animation ? `animate-${this.animation}` : '';
-
     return (
       <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
-        <div class={animationClass}>
+        <div class="popover-content">
           {this.arrow && (
             <span
               class="arrow"
