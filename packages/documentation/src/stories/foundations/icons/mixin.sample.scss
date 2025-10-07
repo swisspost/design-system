@@ -1,12 +1,15 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-icon {
-  // Add common icon properties
+  // Add common icon properties manually
   display: inline-block;
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
   
-  // Use mask-image mixin with icon name (e.g., 'accessibility', '2105')
-  @include post.mask-image('accessibility');
+  @include post.mask-image(
+    $name: 'accessibility',
+    // optional
+    $color: '#fc0',
+  );
 }
