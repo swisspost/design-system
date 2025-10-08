@@ -132,27 +132,27 @@ function getCardImage() {
   return html` <img src="https://picsum.photos/id/38/500/300" alt="" /> `;
 }
 
-function renderCard(args: Args) {
+function renderCardContent(args: Args) {
   const { showImage, imagePosition } = args;
 
   return html`
-    <div class="card">
-      ${showImage && imagePosition === 'top' ? getCardImage() : nothing} ${getCardContent(args)}
-      ${showImage && imagePosition === 'bottom' ? getCardImage() : nothing}
-    </div>
+    ${showImage && imagePosition === 'top' ? getCardImage() : nothing} ${getCardContent(args)}
+    ${showImage && imagePosition === 'bottom' ? getCardImage() : nothing}
   `;
 }
 
-function renderCardWithInteractiveContainer(args: Args) {
-  return html`<post-linkarea>${renderCard(args)}</post-linkarea>`;
+function renderNoninteractiveCard(args: Args) {
+  return html` <div class="card">${renderCardContent(args)}</div> `;
+}
+
+function renderInteractiveCard(args: Args) {
+  return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
 }
 
 const renderSimpleInteractiveCard = html`
-  <post-linkarea>
-    <div class="card">
-      <div class="card-body">
-        <p><a href="http://google.com">Interactive card</a></p>
-      </div>
+  <post-linkarea class="card">
+    <div class="card-body">
+      <p><a href="http://google.com">Interactive card</a></p>
     </div>
   </post-linkarea>
 `;
@@ -163,7 +163,7 @@ type Story = StoryObj;
 export const Default: Story = {
   decorators: [gridContainer],
   render: (args: Args) =>
-    html`${args.action === 'button' ? renderCardWithInteractiveContainer(args) : renderCard(args)}`,
+    html`${args.action === 'button' ? renderInteractiveCard(args) : renderNoninteractiveCard(args)}`,
 };
 
 export const Foundation: Story = {
