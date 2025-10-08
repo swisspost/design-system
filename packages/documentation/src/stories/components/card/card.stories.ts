@@ -72,14 +72,9 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 // RENDERER
 function getCardLinks() {
   return html`
-    ${['Link Text', 'More Link'].map(
-      label =>
-        html`
-          <a class="card-links" href="#"
-            >${label}<post-icon name="arrowright" aria-hidden="true"></post-icon
-          ></a>
-        `,
-    )}
+    <div class="card-links">
+      ${['Link Text', 'More Link'].map(label => html` <a href="#">${label}</a> `)}
+    </div>
   `;
 }
 

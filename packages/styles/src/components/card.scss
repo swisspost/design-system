@@ -72,6 +72,7 @@ tokens.$default-map: components.$post-cards;
 .card-links {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
   padding-inline: 0.5rem;
 
@@ -83,7 +84,7 @@ tokens.$default-map: components.$post-cards;
     text-decoration: none;
     -ms-flex-align: center;
 
-    &::before {
+    &::after {
       @include icons-mx.icon(3020);
       content: '';
       display: inline-block;
