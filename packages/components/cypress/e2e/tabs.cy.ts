@@ -160,7 +160,7 @@ describe('tabs', () => {
 
   describe('navigation mode', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', TABS_ID, 'navigation-mode');
+      cy.getComponent('tabs', TABS_ID, 'navigation-variant');
       cy.get('post-tab-item').as('tabItems');
     });
 
@@ -209,7 +209,7 @@ describe('tabs', () => {
     });
 
     it('should detect navigation mode when anchor elements are present', () => {
-      cy.getComponent('tabs', TABS_ID, 'navigation-mode');
+      cy.getComponent('tabs', TABS_ID, 'navigation-variant');
       cy.get('post-tabs').should('exist');
       cy.get('post-tab-panel').should('not.exist');
       cy.get('post-tabs').find('nav').should('exist');
@@ -265,7 +265,7 @@ describe('Accessibility', () => {
 
   describe('navigation mode ARIA attributes', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', TABS_ID, 'navigation-mode');
+      cy.getComponent('tabs', TABS_ID, 'navigation-variant');
     });
 
     it('should have proper ARIA attributes for navigation mode', () => {
