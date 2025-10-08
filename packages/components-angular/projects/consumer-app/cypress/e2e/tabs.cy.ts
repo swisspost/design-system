@@ -165,7 +165,6 @@ describe('Tabs', () => {
     it('should not have any automatically detectable accessibility issues in panels variant', () => {
       cy.get('@panelTabs').should('be.visible');
       cy.get('@panelTabs').find('post-tab-item').first().should('be.visible');
-      // Only check accessibility of the tab list, not the panel content
       cy.get('@panelTabs').find('[role="tablist"]').then($tablist => {
         cy.checkA11y($tablist[0]);
       });
