@@ -5,6 +5,8 @@
 @use './../variables/commons';
 @use './../variables/components/close';
 
+@include icons.custom-property(2043);
+
 %btn-close {
   @include button.reset-button;
   border-radius: close.$close-border-radius;

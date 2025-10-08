@@ -8,6 +8,9 @@
 
 tokens.$default-map: components.$post-text-input;
 
+@include icons-mx.custom-property('success-solid');
+@include icons-mx.custom-property('warning-solid');
+
 input.form-control {
   display: block;
   width: 100%;
@@ -224,8 +227,7 @@ input.form-control {
     z-index: 2;
     pointer-events: none;
     @include icons-mx.mask-image(
-      'success-solid',
-      tokens.get('post-validation-success', components.$post-validation)
+      'success-solid'
     );
   }
 
@@ -239,8 +241,7 @@ input.form-control {
     z-index: 1;
     pointer-events: none;
     @include icons-mx.mask-image(
-      'warning-solid',
-      tokens.get('post-validation-error', components.$post-validation)
+      'warning-solid'
     );
   }
 

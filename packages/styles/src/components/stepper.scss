@@ -12,6 +12,8 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
+@include icons-mx.custom-property(2105);
+
 // for backward compatibility
 .stepper-container {
   margin-bottom: 20px;
@@ -199,7 +201,7 @@ tokens.$default-map: utilities.$post-spacing;
   .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
     content: '';
   }
-  @include icons-mx.mask-image('2105', stepper.$stepper-indicator-color);
+  @include icons-mx.mask-image('2105');
 }
 
 // hover/focus state
@@ -220,11 +222,6 @@ tokens.$default-map: utilities.$post-spacing;
     .stepper-item[aria-current='step'] ~ .stepper-item > &::before {
       color: stepper.$stepper-indicator-hover-color;
       background-color: stepper.$stepper-indicator-hover-bg;
-    }
-
-    // check icon
-    &::after {
-      @include icons-mx.mask-image('2105', stepper.$stepper-indicator-hover-color);
     }
   }
 }

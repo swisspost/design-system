@@ -6,6 +6,8 @@
 
 tokens.$default-map: components.$post-listcheck;
 
+@include icon-mixin.custom-property('3035');
+
 ul.list-check {
   @include utilities.reset-list;
   display: flex;
@@ -74,7 +76,7 @@ ul.list-check {
         margin-block: tokens.get('list-check-icon-container-block');
         padding-inline: tokens.get('list-check-icon-container-inline');
       }
-      @include icon-mixin.mask-image('3035', tokens.get('list-check-color-icon-fg'));
+      @include icon-mixin.mask-image('3035');
     }
   }
 }

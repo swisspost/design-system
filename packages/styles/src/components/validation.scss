@@ -6,6 +6,9 @@
 
 tokens.$default-map: components.$post-validation;
 
+@include icon-mixin.custom-property('warning-solid');
+@include icon-mixin.custom-property('success-solid');
+
 /*
 Default feedback message classes
  */

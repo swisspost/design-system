@@ -9,21 +9,19 @@
 @use './../mixins/utilities';
 @use './../utilities/env-variables' as icon-version;
 
-@mixin mask-image($name, $color: currentColor) {
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: var(--post-icon-#{$name});
+@mixin mask-image($name) {
   mask-image: var(--post-icon-#{$name});
-  background-color: $color;
-  color: $color; // Required in this case with usage of forced-color-adjust: preserve-parent-color
+  background-color: currentColor;
+  color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
   forced-color-adjust: preserve-parent-color;
-  @include custom-property($name);
 }
 
-$loaded-custom-properties: () !default;
+
+$loaded-icons: () !default;
 
 @mixin custom-property($name, $path: '../icons/temp') {
-  @if list.index($loaded-custom-properties, $name) == null {
-    $loaded-custom-properties: list.append($loaded-custom-properties, $name) !global;
+  @if list.index($loaded-icons, $name) == null {
+    $loaded-icons: list.append($loaded-icons, $name) !global;
     @at-root {
       @include meta.load-css('#{$path}/#{$name}');
     }
