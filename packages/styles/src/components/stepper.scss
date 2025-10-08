@@ -12,6 +12,8 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
+@include icons-mx.load-icon-css(2105);
+
 // for backward compatibility
 .stepper-container {
   margin-bottom: 20px;
