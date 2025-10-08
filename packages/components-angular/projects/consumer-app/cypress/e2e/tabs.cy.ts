@@ -1,8 +1,9 @@
 describe('Tabs', () => {
   beforeEach(() => {
     cy.visit('/tabs');
-    cy.get('post-tabs[data-hydrated]').first().as('panelTabs');
-    cy.get('post-tabs[data-hydrated]').last().as('navTabs');
+    cy.injectAxe();
+    cy.get('post-tabs').first().as('panelTabs');
+    cy.get('post-tabs').last().as('navTabs');
   });
 
   describe('Panel Variant - Default', () => {
@@ -157,6 +158,25 @@ describe('Tabs', () => {
       cy.get('@navTabs').should('exist');
       cy.get('@navTabs').find('post-tab-panel').should('not.exist');
       cy.get('@navTabs').find('nav').should('exist');
+    });
+  });
+
+  describe('Accessibility Violations', () => {
+    it('should not have any automatically detectable accessibility issues in panels variant', () => {
+      cy.get('@panelTabs').should('be.visible');
+      cy.get('@panelTabs').find('post-tab-item').first().should('be.visible');
+      // Only check accessibility of the tab list, not the panel content
+      cy.get('@panelTabs').find('[role="tablist"]').then($tablist => {
+        cy.checkA11y($tablist[0]);
+      });
+    });
+
+    it('should not have any automatically detectable accessibility issues in navigation variant', () => {
+      cy.get('@navTabs').should('be.visible');
+      cy.get('@navTabs').find('post-tab-item').first().should('be.visible');
+      cy.get('@navTabs').then($el => {
+        cy.checkA11y($el[0]);
+      });
     });
   });
 });

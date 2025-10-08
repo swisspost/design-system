@@ -13,7 +13,7 @@ import {
   PostPopovercontainer,
   PostRating,
   PostTabs,
-  PostTabHeader,
+  PostTabItem,
   PostTabPanel,
   PostTooltipTrigger,
 } from 'components';
@@ -36,7 +36,7 @@ import {
     PostPopovercontainer,
     PostRating,
     PostTabs,
-    PostTabHeader,
+    PostTabItem,
     PostTabPanel,
     PostTooltipTrigger,
   ]
