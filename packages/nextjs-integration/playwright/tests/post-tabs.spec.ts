@@ -5,14 +5,12 @@ import AxeBuilder from '@axe-core/playwright';
 test.describe('tabs', () => {
   let tabs: Locator;
   let tabItems: Locator;
-  let tabPanels: Locator;
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/ssr');
 
     tabs = page.locator('post-tabs[data-hydrated]');
     tabItems = tabs.locator('post-tab-item');
-    tabPanels = tabs.locator('post-tab-panel');
   });
 
   test('should render the tabs component', async () => {
