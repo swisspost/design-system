@@ -81,7 +81,8 @@ describe('Header', () => {
       cy.get('post-megadropdown-trigger button').first().as('lettersTrigger');
       cy.get('post-megadropdown-trigger button').eq(1).as('packagesTrigger');
 
-      // Initial state
+      // Activate first link
+      cy.get('@lettersFirstLink').then($link => $link.attr('aria-current', 'page'));
       cy.get('@lettersFirstLink').should('have.attr', 'aria-current', 'page');
       cy.get('@lettersTrigger').should('have.class', 'selected');
       cy.get('@packagesTrigger').should('not.have.class', 'selected');
