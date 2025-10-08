@@ -12,19 +12,14 @@ export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
 
-  @State() device: Device = breakpoint.get('device');
-
-  @Element() host: HTMLPostMegadropdownElement;
-
   /** Tracks the currently active dropdown instance. */
   private static activeDropdown: PostMegadropdown | null = null;
 
-  private breakpointChange(e: CustomEvent) {
-    this.device = e.detail;
-    if (this.device === 'desktop' && this.isVisible) {
-      this.animationClass = null;
-    }
-  }
+  private defaultSlotObserver: MutationObserver;
+
+  @Element() host: HTMLPostMegadropdownElement;
+
+  @State() device: Device = breakpoint.get('device');
 
   /**
    * Holds the current visibility state of the dropdown.
@@ -46,46 +41,8 @@ export class PostMegadropdown {
    **/
   @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
-  private defaultSlotObserver: MutationObserver;
-
-  private checkInitialAriaCurrent() {
-    const currentEl = this.host.querySelector('[aria-current="page"]');
-    if (!currentEl) return;
-
-    const hostId = this.host.getAttribute('id');
-    if (!hostId) return;
-
-    const triggerButton = document.querySelector(
-      `post-megadropdown-trigger[for="${hostId}"] > button`,
-    );
-
-    if (triggerButton) {
-      triggerButton.classList.add('selected');
-    }
-  }
-
-  private setupObserver() {
-    if (this.defaultSlotObserver) return;
-
-    const config: MutationObserverInit = {
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['aria-current'],
-    };
-
-    this.defaultSlotObserver = new MutationObserver(this.handleAriaCurrentChange.bind(this));
-    this.defaultSlotObserver.observe(this.host, config);
-  }
-
-  disconnectedCallback() {
-    this.removeListeners();
-    window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
-    if (PostMegadropdown.activeDropdown === this) {
-      PostMegadropdown.activeDropdown = null;
-    }
-    if (this.defaultSlotObserver) {
-      this.defaultSlotObserver.disconnect();
-    }
+  connectedCallback() {
+    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
   }
 
   componentDidRender() {
@@ -96,6 +53,17 @@ export class PostMegadropdown {
     this.checkInitialAriaCurrent();
     this.setupObserver();
     this.handleAriaCurrentChange([]);
+  }
+
+  disconnectedCallback() {
+    this.removeListeners();
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+
+    if (PostMegadropdown.activeDropdown === this) {
+      PostMegadropdown.activeDropdown = null;
+    }
+
+    this.defaultSlotObserver.disconnect();
   }
 
   /**
@@ -154,10 +122,12 @@ export class PostMegadropdown {
     this.firstFocusableEl?.focus();
   }
 
-  connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
+    if (this.device === 'desktop' && this.isVisible) {
+      this.animationClass = null;
+    }
   }
-
   /**
    * Forces the dropdown to close without animation.
    */
@@ -244,25 +214,70 @@ export class PostMegadropdown {
     }
   }
 
+  /**
+   * Sets up a MutationObserver on the host to watch for changes
+   * in `aria-current` attributes.
+   */
+  private setupObserver() {
+    const config: MutationObserverInit = {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['aria-current'],
+    };
+
+    this.defaultSlotObserver = new MutationObserver(this.handleAriaCurrentChange.bind(this));
+    this.defaultSlotObserver.observe(this.host, config);
+  }
+
+  /**
+   * Adds or removes the 'selected' class on the megadropdown trigger button
+   * based on the active state.
+   *
+   * @param isActive - Whether the trigger should appear active
+   */
+  private setTriggerActive(isActive: boolean) {
+    const hostId = this.host.getAttribute('id');
+    if (!hostId) return;
+    const triggerButton = document.querySelector(
+      `post-megadropdown-trigger[for="${hostId}"] > button`,
+    );
+    if (isActive && triggerButton) {
+      triggerButton.classList.add('selected');
+    } else {
+      triggerButton.classList.remove('selected');
+    }
+  }
+
+  /**
+   * Updates the megadropdown trigger state when the megadropdown content changes.
+   * Checks if any element inside the megadropdown has `aria-current="page"`
+   * and sets the trigger as active accordingly.
+   */
   private handleAriaCurrentChange(mutations: MutationRecord[]) {
     if (!mutations.length) return;
 
-    const el = mutations[0].target as HTMLElement;
-    const newValue = el.getAttribute('aria-current');
-    const oldValue = mutations[0].oldValue;
     const hostId = this.host.getAttribute('id');
-
     const megadropdownTrigger = document.querySelector(
       `post-megadropdown-trigger[for="${hostId}"] > button`,
     );
 
     if (!megadropdownTrigger) return;
 
-    if (oldValue === null && newValue !== null) {
-      megadropdownTrigger.classList.add('selected');
-    } else {
-      megadropdownTrigger.classList.remove('selected');
-    }
+    const hasCurrentPage = mutations.some(
+      m => m.target instanceof HTMLElement && m.target.getAttribute('aria-current') === 'page',
+    );
+
+    this.setTriggerActive(hasCurrentPage);
+  }
+
+  /**
+   * Checks on initialization if any element inside the megadropdown
+   * has `aria-current="page"` and sets the trigger as active if so.
+   */
+  private checkInitialAriaCurrent() {
+    const currentEl = this.host.querySelector('[aria-current="page"]');
+    if (!currentEl) return;
+    this.setTriggerActive(true);
   }
 
   render() {
