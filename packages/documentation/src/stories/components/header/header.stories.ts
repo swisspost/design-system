@@ -19,7 +19,9 @@ const meta: MetaComponent = {
   args: {
     title: '',
     mainNavigation: true,
+    globalControls: true,
     metaNavigation: true,
+    globalLogin: true,
     targetGroup: true,
     customControls: false,
   },
@@ -44,10 +46,30 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    globalControls: {
+      name: 'Global controls',
+      description: 'Whether or not the global controls are displayed (Search).',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
     metaNavigation: {
       name: 'Meta navigation',
       description:
-        'Whether or not the meta navigation is displayed ("Search", "Jobs", and "Create Account").',
+        'Whether or not the meta navigation is displayed (Jobs).',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    globalLogin: {
+      name: 'Global login',
+      description: 'Whether or not the global login button is displayed.',
       control: {
         type: 'boolean',
       },
@@ -67,7 +89,7 @@ const meta: MetaComponent = {
     },
     customControls: {
       name: 'Custom controls',
-      description: 'Whether or not the custom controls are displayed ("search" and "login").',
+      description: 'Whether or not the legacy custom controls are displayed (deprecated).',
       control: {
         type: 'boolean',
       },
@@ -90,38 +112,33 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
     <!-- Logo -->
     <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-    ${args.metaNavigation
+    <!-- Global controls (Search) -->
+    ${args.globalControls
       ? html`
-          <!-- Meta navigation -->
-          <ul class="list-inline" slot="meta-navigation">
+          <ul class="list-inline" slot="global-controls">
             <li>
               <a href="">
-                Search
+                <span class="visually-hidden-sm">Search</span>
                 <post-icon name="search" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Jobs
-                <post-icon name="jobs" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Create Account
-                <post-icon name="adduser" aria-hidden="true"></post-icon>
               </a>
             </li>
           </ul>
         `
       : ''}
 
-    <!-- Menu button for mobile -->
-    <post-togglebutton slot="post-togglebutton">
-      <span class="visually-hidden-sm">Menu</span>
-      <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-      <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-    </post-togglebutton>
+    ${args.metaNavigation
+      ? html`
+          <!-- Meta navigation (Jobs) -->
+          <ul class="list-inline" slot="meta-navigation">
+            <li>
+              <a href="">
+                Jobs
+                <post-icon name="jobs" aria-hidden="true"></post-icon>
+              </a>
+            </li>
+          </ul>
+        `
+      : ''}
 
     <!-- Language switch -->
     <post-language-switch
@@ -136,6 +153,27 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
       <post-language-option code="it" name="Italian">it</post-language-option>
       <post-language-option active="true" code="en" name="English">en</post-language-option>
     </post-language-switch>
+
+    <!-- Global login -->
+    ${args.globalLogin
+      ? html`
+          <ul class="list-inline" slot="global-login">
+            <li>
+              <a href="">
+                <span class="visually-hidden-sm">Login</span>
+                <post-icon name="login" aria-hidden="true"></post-icon>
+              </a>
+            </li>
+          </ul>
+        `
+      : ''}
+
+    <!-- Menu button for mobile -->
+    <post-togglebutton slot="post-togglebutton">
+      <span class="visually-hidden-sm">Menu</span>
+      <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+      <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+    </post-togglebutton>
 
     ${args.title !== ''
       ? html`
@@ -333,9 +371,11 @@ export const Microsite: Story = {
   args: {
     title: '[Microsite Title]',
     mainNavigation: true,
+    globalControls: true,
     metaNavigation: false,
-    customControls: true,
+    globalLogin: true,
     targetGroup: false,
+    customControls: false,
   },
 };
 
@@ -344,9 +384,11 @@ export const OnePager: Story = {
   args: {
     title: '[One Pager Title]',
     mainNavigation: false,
+    globalControls: false,
     metaNavigation: false,
-    customControls: false,
+    globalLogin: false,
     targetGroup: false,
+    customControls: false,
   },
 };
 

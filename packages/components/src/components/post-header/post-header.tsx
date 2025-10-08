@@ -9,9 +9,11 @@ import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
+ * @slot global-controls - Holds global control elements like search functionality.
  * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
- * @slot post-togglebutton - Holds the mobile menu toggler.
  * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
+ * @slot global-login - Holds the login button or user menu component.
+ * @slot post-togglebutton - Holds the mobile menu toggler.
  * @slot title - Holds the application title.
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
@@ -368,6 +370,7 @@ export class PostHeader {
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
               <slot name="post-language-switch"></slot>
+              <slot name="global-login"></slot>
             </div>
           )}
         </div>
@@ -393,11 +396,12 @@ export class PostHeader {
             {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
+            <slot name="global-controls"></slot>
             {!this.hasMobileMenu && (
               <slot name="meta-navigation"></slot>
             )}
-            <slot name="global-controls"></slot>
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
+            <slot name="global-login"></slot>
             {this.hasNavigation && (
               <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
                 <slot name="post-togglebutton"></slot>
