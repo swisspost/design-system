@@ -92,11 +92,11 @@ export class PostMenu {
   }
 
   componentDidLoad() {
-      this.validatePlacement();
-      this.validateLabel();
-      if (this.popoverRef) {
-        this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
-      }
+    this.validateLabel();
+    this.validatePlacement();
+    if (this.popoverRef) {
+      this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
+    }
   }
 
   /**
