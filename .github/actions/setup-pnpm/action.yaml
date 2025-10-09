@@ -63,4 +63,5 @@ runs:
       run: |
         echo "Installed versions:"
         echo "- node: $(node -v)"
+        echo "- npm: $(npm -v)"
         echo "- pnpm: $(pnpm -v)"
