@@ -1,15 +1,16 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+// load icon CSS at the top of your file
 @include post.load-icon-css('accessibility');
 
 .my-icon {
-  // Add common icon properties manually
+  // add common icon properties manually
   display: inline-block;
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
   
   @include post.mask-image('accessibility');
-  // Set color separately - the mask will use currentColor
+  // optional
   color: #fc0;
 }
