@@ -54,10 +54,10 @@ export class PostMenu {
     checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
-  }
+    @Watch('label')
+    validateLabel() {
+      checkRequiredAndType(this, 'label', 'string');
+    }
 
   /**
    * An accessible name for the menu.
@@ -92,10 +92,11 @@ export class PostMenu {
   }
 
   componentDidLoad() {
-    this.validatePlacement();
-    if (this.popoverRef) {
-      this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
-    }
+      this.validatePlacement();
+      this.validateLabel();
+      if (this.popoverRef) {
+        this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
+      }
   }
 
   /**
