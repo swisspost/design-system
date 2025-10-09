@@ -33,7 +33,7 @@ export class PostMegadropdown {
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
-  get getMegadropdownTrigger(): Element {
+  get megadropdownTrigger(): Element {
     const hostId = this.host.getAttribute('id');
     const trigger = document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`);
     return trigger;
@@ -242,15 +242,13 @@ export class PostMegadropdown {
    * @param isActive - Whether the trigger should appear active
    */
   private setTriggerActive(isActive: boolean) {
-    const hostId = this.host.getAttribute('id');
-    if (!hostId) return;
-    const megadropdownTrigger = this.getMegadropdownTrigger;
-    if (!megadropdownTrigger) return;
+    const trigger = this.megadropdownTrigger;
+    if (!trigger) return;
 
     if (isActive) {
-      megadropdownTrigger.classList.add('selected');
+      trigger.classList.add('selected');
     } else {
-      megadropdownTrigger.classList.remove('selected');
+      trigger.classList.remove('selected');
     }
   }
 
@@ -261,15 +259,9 @@ export class PostMegadropdown {
    */
   private handleAriaCurrentChange(mutations: MutationRecord[]) {
     if (!mutations.length) return;
-
-    const megadropdownTrigger = this.getMegadropdownTrigger;
-
-    if (!megadropdownTrigger) return;
-
     const hasCurrentPage = mutations.some(
       m => m.target instanceof HTMLElement && m.target.getAttribute('aria-current') === 'page',
     );
-
     this.setTriggerActive(hasCurrentPage);
   }
 
