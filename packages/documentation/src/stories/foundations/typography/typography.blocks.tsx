@@ -118,10 +118,14 @@ export function Paragraphs() {
             </td>
             <td className="font-sans-serif">
               <p>
-                This is a sample paragraph showing how text will appear in your application. It demonstrates the font style, size, and spacing that will be used throughout your content.
+                This is a sample paragraph showing how text will appear in your application. It
+                demonstrates the font style, size, and spacing that will be used throughout your
+                content.
               </p>
               <p>
-                Another paragraph follows to illustrate how multiple paragraphs will look. Notice the spacing between paragraphs and how the text flows naturally from one line to the next.
+                Another paragraph follows to illustrate how multiple paragraphs will look. Notice
+                the spacing between paragraphs and how the text flows naturally from one line to the
+                next.
               </p>
             </td>
           </tr>
@@ -131,7 +135,8 @@ export function Paragraphs() {
             </td>
             <td className="font-sans-serif">
               <p className="m-0 lead">
-                This is a lead paragraph that stands out from regular text, typically used for introductory content.
+                This is a lead paragraph that stands out from regular text, typically used for
+                introductory content.
               </p>
             </td>
           </tr>
@@ -176,7 +181,8 @@ export function Links() {
             </td>
             <td className="font-sans-serif">
               <p>
-                This paragraph contains an inline <a href="#" onClick={e => e.preventDefault()}>
+                This paragraph contains an inline{' '}
+                <a href="#" onClick={e => e.preventDefault()}>
                   clickable link
                 </a>{' '}
                 that demonstrates how hyperlinks will appear within body text.
@@ -266,7 +272,8 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                This text contains an <abbr title="abbreviation">abbr</abbr> element for shortened forms.
+                This text contains an <abbr title="abbreviation">abbr</abbr> element for shortened
+                forms.
               </p>
             </td>
           </tr>
@@ -305,7 +312,7 @@ export function Inlines() {
     </div>
   );
 }
-
+// TODO: remove examples for List
 export function Lists() {
   return (
     <div className="sb-inlines table-responsive">
@@ -426,3 +433,42 @@ export function Lists() {
     </div>
   );
 }
+
+// TODO: add examples for Legend
+export function Legends() {
+  return (
+    <div className="sb-legends table-responsive">
+      <table className="table">
+        <thead>
+          <tr>
+            <th className="w-quarter">Tag</th>
+            <th>Visual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>&lt;legend&gt;&lt;/legend&gt;</code>
+            </td>
+            <td>
+              <fieldset>
+                <legend className="small">Default legend</legend>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>&lt;legend class="large"&gt;&lt;/legend&gt;</code>
+            </td>
+            <td>
+              <fieldset>
+                <legend className="large">Default legend</legend>
+              </fieldset>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+// TODO: add examples for Headings with Subheadings
