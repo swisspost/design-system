@@ -16,7 +16,6 @@
   forced-color-adjust: preserve-parent-color;
 }
 
-
 $loaded-icons: () !default;
 
 @mixin custom-property($name, $path: '../icons/temp') {
