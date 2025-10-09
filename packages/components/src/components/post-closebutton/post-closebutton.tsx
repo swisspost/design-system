@@ -1,4 +1,4 @@
-import { Component, Element, Event, h, Host, Prop, EventEmitter } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { version } from '@root/package.json';
 
 /**
@@ -18,11 +18,6 @@ export class PostClosebutton {
    * Overrides the close button's type ("button" by default)
    */
   @Prop() buttonType: HTMLButtonElement['type'] = 'button';
-
-  /**
-   * Emits whenever the close button is clicked
-   */
-  @Event() postClose: EventEmitter<void>;
 
   componentDidLoad() {
     this.checkHiddenLabel();
@@ -44,14 +39,10 @@ export class PostClosebutton {
     }
   }
 
-  private handleClick = () => {
-    this.postClose.emit();
-  };
-
   render() {
     return (
       <Host data-version={version}>
-        <button class="btn btn-icon-close" type={this.buttonType} onClick={this.handleClick}>
+        <button class="btn btn-icon-close" type={this.buttonType}>
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
             <slot></slot>

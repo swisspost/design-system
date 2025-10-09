@@ -77,7 +77,7 @@ export class PostBanner {
     this.postDismissed.emit();
   }
 
-  @Listen('postClose')
+  @Listen('click')
   @EventFrom('post-closebutton')
   onCloseButtonClick(): void {
     void this.dismiss();

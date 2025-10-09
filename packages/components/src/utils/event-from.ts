@@ -16,7 +16,8 @@ function shouldProcessEvent(
 
   const eventTarget = event.target;
 
-  if (eventTarget.localName !== tag) return false;
+  const origin = eventTarget.closest(tag);
+  if (!origin) return false;
 
   if (ignoreNestedComponents) {
     // Find the closest parent with the same tag as the host
