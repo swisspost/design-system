@@ -17,6 +17,7 @@ const meta: MetaComponent = {
   },
   args: {
     'slots-default': 'Close button',
+    'buttonType': '',
   },
   argTypes: {
     'slots-default': {
@@ -24,6 +25,17 @@ const meta: MetaComponent = {
       control: {
         type: 'text',
       },
+    },
+    'buttonType': {
+      control: {
+        type: 'radio',
+        labels: {
+          '': 'Button (default)',
+          'reset': 'Reset',
+          'submit': 'Submit',
+        },
+      },
+      options: ['', 'reset', 'submit'],
     },
   },
 };

@@ -7,10 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { ButtonType } from "./components/post-closebutton/button-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { ButtonType } from "./components/post-closebutton/button-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -165,7 +167,7 @@ export namespace Components {
           * Overrides the close button's type ("button" by default)
           * @default 'button'
          */
-        "buttonType": HTMLButtonElement['type'];
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -1062,7 +1064,7 @@ declare namespace LocalJSX {
           * Overrides the close button's type ("button" by default)
           * @default 'button'
          */
-        "buttonType"?: HTMLButtonElement['type'];
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**

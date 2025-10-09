@@ -8,7 +8,7 @@ tokens.$default-map: components.$post-close;
   @include utilities.visuallyhidden();
 }
 
-button {
+post-closebutton .btn {
   padding: 0;
   border: unset;
   min-height: unset;

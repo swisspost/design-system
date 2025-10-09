@@ -1,5 +1,7 @@
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
+import { checkEmptyOrOneOf } from '@/utils';
+import { BUTTON_TYPES, ButtonType } from './button-types';
 
 /**
  * @slot default - Slot for placing visually hidden label in the close button.
@@ -10,22 +12,30 @@ import { version } from '@root/package.json';
   shadow: false,
 })
 export class PostClosebutton {
-  private mutationObserver = new MutationObserver(this.checkHiddenLabel.bind(this));
+  private mutationObserver = new MutationObserver(this.checkContent.bind(this));
 
   @Element() host: HTMLPostClosebuttonElement;
 
   /**
    * Overrides the close button's type ("button" by default)
    */
-  @Prop() buttonType: HTMLButtonElement['type'] = 'button';
+  @Prop() buttonType?: ButtonType = 'button';
+
+  @Watch('buttonType')
+  validateButtonType() {
+    checkEmptyOrOneOf(this, 'buttonType', BUTTON_TYPES);
+  }
 
   componentDidLoad() {
-    this.checkHiddenLabel();
+    this.checkContent();
   }
 
   connectedCallback() {
-    this.mutationObserver.observe(this.host, { childList: true, characterData: true, subtree: true }
-);
+    this.mutationObserver.observe(this.host, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
   }
 
   disconnectedCallback() {
@@ -34,7 +44,8 @@ export class PostClosebutton {
     }
   }
 
-  private checkHiddenLabel() {
+  private checkContent() {
+    this.validateButtonType();
     if (!this.host.querySelector('.visually-hidden').textContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
@@ -43,7 +54,7 @@ export class PostClosebutton {
   render() {
     return (
       <Host data-version={version}>
-        <button class="btn btn-icon-close" type={this.buttonType}>
+        <button class="btn" type={this.buttonType}>
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
             <slot></slot>
