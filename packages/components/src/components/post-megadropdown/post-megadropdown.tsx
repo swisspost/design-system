@@ -33,6 +33,12 @@ export class PostMegadropdown {
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
+  get getMegadropdownTrigger(): Element {
+    const hostId = this.host.getAttribute('id');
+    const trigger = document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`);
+    return trigger;
+  }
+
   /**
    * Emits when the dropdown is shown or hidden.
    * The event payload is an object.
@@ -238,13 +244,13 @@ export class PostMegadropdown {
   private setTriggerActive(isActive: boolean) {
     const hostId = this.host.getAttribute('id');
     if (!hostId) return;
-    const triggerButton = document.querySelector(
-      `post-megadropdown-trigger[for="${hostId}"] > button`,
-    );
-    if (isActive && triggerButton) {
-      triggerButton.classList.add('selected');
+    const megadropdownTrigger = this.getMegadropdownTrigger;
+    if (!megadropdownTrigger) return;
+
+    if (isActive) {
+      megadropdownTrigger.classList.add('selected');
     } else {
-      triggerButton.classList.remove('selected');
+      megadropdownTrigger.classList.remove('selected');
     }
   }
 
@@ -256,10 +262,7 @@ export class PostMegadropdown {
   private handleAriaCurrentChange(mutations: MutationRecord[]) {
     if (!mutations.length) return;
 
-    const hostId = this.host.getAttribute('id');
-    const megadropdownTrigger = document.querySelector(
-      `post-megadropdown-trigger[for="${hostId}"] > button`,
-    );
+    const megadropdownTrigger = this.getMegadropdownTrigger;
 
     if (!megadropdownTrigger) return;
 
@@ -275,9 +278,8 @@ export class PostMegadropdown {
    * has `aria-current="page"` and sets the trigger as active if so.
    */
   private checkInitialAriaCurrent() {
-    const currentEl = this.host.querySelector('[aria-current="page"]');
-    if (!currentEl) return;
-    this.setTriggerActive(true);
+    const hasCurrentPage = this.host.querySelector('[aria-current="page"]');
+    if (hasCurrentPage) this.setTriggerActive(true);
   }
 
   render() {
