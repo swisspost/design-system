@@ -21,7 +21,7 @@ export class PostBreadcrumbs {
   @Prop() homeText: string = 'Home';
 
   /**
-   * The accessible label for the breadcrumb menu when items are concatenated.
+   * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
     */
   @Prop() menuLabel: string = 'More breadcrumb items';
 

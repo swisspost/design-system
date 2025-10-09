@@ -109,7 +109,7 @@ export namespace Components {
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb menu when items are concatenated.
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
           * @default 'More breadcrumb items'
          */
         "menuLabel": string;
@@ -1010,7 +1010,7 @@ declare namespace LocalJSX {
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb menu when items are concatenated.
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
           * @default 'More breadcrumb items'
          */
         "menuLabel"?: string;
