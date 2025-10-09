@@ -70,13 +70,13 @@ ul.list-check {
       width: tokens.get('list-check-sizing-icon');
       height: tokens.get('list-check-sizing-icon');
       content: '';
+      @include icon-mixin.mask-image('3035');
       color: tokens.get('list-check-color-icon-fg');
 
       @include media.max(sm) {
         margin-block: tokens.get('list-check-icon-container-block');
         padding-inline: tokens.get('list-check-icon-container-inline');
       }
-      @include icon-mixin.mask-image('3035');
     }
   }
 }
