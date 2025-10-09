@@ -1,5 +1,18 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+// Load all icon CSS files used in this component
+@include post.custom-property('2040');
+@include post.custom-property('2015');
+@include post.custom-property('2113');
+@include post.custom-property('2060');
+@include post.custom-property('2127');
+@include post.custom-property('2112');
+@include post.custom-property('3026');
+@include post.custom-property('3022');
+@include post.custom-property('3035');
+@include post.custom-property('2043');
+@include post.custom-property('2070');
+
 @mixin custom-icon($icon) {
   display: inline-block;
   height: 1rem;
