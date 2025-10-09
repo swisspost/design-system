@@ -20,7 +20,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
   argTypes: {
     variant: {
       name: 'variant',
-      description: 'Select between panels variant (content sections) or navigation variant (page navigation)',
+        description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt to mix both variants(anchors + panels), the component will throw an error.</p></post-banner>',
       control: 'radio',
       options: ['panels', 'navigation'],
       table: {
