@@ -1,15 +1,18 @@
 import { Canvas, Meta, Source } from '@storybook/addon-docs/blocks';
 import { parse } from '@/utils/sass-export';
 import scss from './grid.module.scss';
-import * as GridStories from './grid.stories';
+import meta, * as GridStories from './grid.stories';
 import './grid.styles.scss';
 import SampleContainer from './grid-container.sample.html?raw';
+import PackageTag from '@/shared/package-tag';
 
 export const SCSS_VARIABLES = parse(scss);
 
 <Meta of={GridStories} />
 
 # Grid system
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Use our powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a
