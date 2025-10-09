@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+@include post.load-icon-css('accessibility');
+
 .my-icon {
   // Add common icon properties manually
   display: inline-block;
@@ -7,9 +9,7 @@
   height: 1em;
   vertical-align: -0.15em;
   
-  @include post.mask-image(
-    $name: 'accessibility',
-    // optional
-    $color: '#fc0',
-  );
+  @include post.mask-image('accessibility');
+  // Set color separately - the mask will use currentColor
+  color: #fc0;
 }

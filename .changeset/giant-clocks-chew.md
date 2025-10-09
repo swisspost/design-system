@@ -3,7 +3,7 @@
 '@swisspost/design-system-icons': major
 ---
 
-The `post-icon` mixin has been removed and replaced with more flexible `mask-image` mixin.
+The `post-icon` mixin has been removed and replaced with the more flexible `mask-image` mixin. Icon CSS must now be loaded separately using the `custom-property` mixin at the top of the file.
 
 BEFORE:
 ```scss
@@ -20,6 +20,9 @@ BEFORE:
 
 AFTER:
 ```scss
+// load icon CSS at the top of your file
+@include post.custom-property('accessibility');
+
 .my-icon {
   // Add common icon properties manually
   display: inline-block;
@@ -27,10 +30,9 @@ AFTER:
   height: 1em;
   vertical-align: -0.15em;
   
-  @include post.mask-image(
-    $name: 'accessibility',
-    // optional
-    $color: '#fc0',
-  );
+  @include post.mask-image('accessibility');
+
+  // optional
+  color: #fc0;
 }
 ```

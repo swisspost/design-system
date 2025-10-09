@@ -1,5 +1,8 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+@include post.load-icon-css('accessibility');
+@include post.load-icon-css('letter');
+
 $resizer-padding: 1rem;
 $resizer-border-width: 1px;
 $resizer-border-color: #999;

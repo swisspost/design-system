@@ -12,6 +12,11 @@
 
 tokens.$default-map: utilities.$post-color;
 
+@include post.custom-property('chevrondown');
+@include post.custom-property('resizeexpand');
+@include post.custom-property('link');
+@include post.custom-property('code');
+
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 // Mixin for toolbar button icons
