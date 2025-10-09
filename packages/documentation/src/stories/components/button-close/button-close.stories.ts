@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   args: {
     'slots-default': 'Close button',
-    'buttonType': '',
+    'buttonType': 'button',
   },
   argTypes: {
     'slots-default': {
@@ -25,17 +25,6 @@ const meta: MetaComponent = {
       control: {
         type: 'text',
       },
-    },
-    'buttonType': {
-      control: {
-        type: 'radio',
-        labels: {
-          '': 'Button (default)',
-          'reset': 'Reset',
-          'submit': 'Submit',
-        },
-      },
-      options: ['', 'reset', 'submit'],
     },
   },
 };
@@ -46,7 +35,7 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => {
-    return args.buttonType
+    return args.buttonType !== 'button'
       ? html`<post-closebutton button-type=${args.buttonType}
           >${unsafeHTML(args['slots-default'])}</post-closebutton
         > `

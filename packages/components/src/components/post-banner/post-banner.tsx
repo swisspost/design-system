@@ -78,7 +78,7 @@ export class PostBanner {
   }
 
   @Listen('click')
-  @EventFrom('post-closebutton')
+  @EventFrom('post-closebutton', { allowDescendants: true })
   onCloseButtonClick(): void {
     void this.dismiss();
   }
