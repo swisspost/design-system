@@ -184,7 +184,7 @@ post-mainnavigation {
     }
 
     post-megadropdown {
-      button:not(.btn-icon-close),
+      button:not(:is(post-closebutton *)),
       a {
         @include header-mx.mobile-header-interactive;
       }
