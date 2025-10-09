@@ -196,5 +196,59 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+    <div>
+      <button
+        id="show-dialog-button"
+        class="btn btn-secondary"
+        onclick="this.nextElementSibling.showModal()"
+      >
+        Show dialog</button
+      ><!--?lit$966487211$-->
+      <dialog class="palette palette-default">
+        <form method="dialog" class="dialog-grid">
+          <!--?lit$966487211$-->
+          <h3 class="dialog-header"><!--?lit$966487211$-->Dialog</h3>
+          <div class="dialog-body"><!--?lit$966487211$-->This is a dialog</div>
+          <div class="dialog-controls">
+            <!--?lit$966487211$--><button class="btn btn-primary">OK</button>
+            <button class="btn btn-secondary">Cancel</button>
+          </div>
+          <!--?lit$966487211$--><button class="btn btn-close">
+            <span class="visually-hidden">Close</span>
+          </button>
+        </form>
+      </dialog>
+    </div>
+    <dialog class="palette palette-default">
+      <form method="dialog" class="dialog-grid">
+        <h3 class="dialog-header">Dialog</h3>
+        <div class="dialog-body">This is a dialog</div>
+        <div class="dialog-controls">
+          <button class="btn btn-primary">OK</button>{' '}
+          <button class="btn btn-secondary">Cancel</button>
+        </div>
+        <button class="btn btn-close">
+          <span class="visually-hidden">Close</span>
+        </button>
+      </form>
+    </dialog>
   </body>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const oldLink = document.querySelector('post-megadropdown#pakete post-list a[href="/sch"]');
+        const newLink = document.querySelector('post-megadropdown#briefe post-list a[href="/kl"]');
+
+        if (oldLink) {
+          oldLink.removeAttribute('aria-current'); // removeAttribute takes only the attribute name
+          console.log('Removed aria-current from:', oldLink);
+        }
+
+        if (newLink) {
+          newLink.setAttribute('aria-current', 'page');
+          console.log('Added aria-current to:', newLink);
+        }
+      }, 2000);
+    });
+  </script>
 </html>
