@@ -1,13 +1,13 @@
 @use 'sass:map';
 @use '../functions/tokens';
 @use '../functions/icons';
-@use './../mixins/icons' as icon-mixin;
+@use './../mixins/icons' as icons-mx;
 @use '../tokens/components';
 
 tokens.$default-map: components.$post-validation;
 
-@include icon-mixin.custom-property('warning-solid');
-@include icon-mixin.custom-property('success-solid');
+@include icons-mx.custom-property('warning-solid');
+@include icons-mx.custom-property('success-solid');
 
 /*
 Default feedback message classes
@@ -114,10 +114,10 @@ input[type='radio'],
   }
 
   ~ .invalid-feedback::before {
-    @include icon-mixin.mask-image('warning-solid');
+    @include icons-mx.mask-image('warning-solid');
   }
 
   ~ .valid-feedback::before {
-    @include icon-mixin.mask-image('success-solid');
+    @include icons-mx.mask-image('success-solid');
   }
 }
