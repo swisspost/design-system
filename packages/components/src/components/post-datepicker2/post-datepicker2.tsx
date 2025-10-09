@@ -97,18 +97,21 @@ export class PostDatepicker2 {
     if (this.datepickerEl && this.datepickerContainerEl) {
       const options: AirDatepickerCustomOptions = {
         navTitles: {
-          days: '<strong>MMMM yyyy</strong>',
-          months: '<strong>yyyy</strong>',
+          days: '<div class="month-nav"><div><strong>MMMM yyyy</strong></div><div><post-icon size="small" name="2052"></div></post-icon></div><div class="no-hover"></div>',
+          months: '<strong>yyyy</strong><post-icon size="small" name="2052"></post-icon>',
         },
-        prevHtml:
-          '<button aria-label="previous"><svg><path d="M 17,12 l -5,5 l 5,5"></path></svg></button>',
-        range: true,
+        prevHtml: '<post-icon size="small" name="2049" ></post-icon>',
+        nextHtml: '<post-icon size="small" name="2050" ></post-icon>',
+        range: false,
         inline: true,
         autoClose: true,
+        showOtherYears: true,
+        selectOtherYears: true,
         showOtherMonths: false,
         locale: localesMap[this.locale] || localesMap.en,
         dateFormat: (localesMap[this.locale] || localesMap.en).dateFormat,
         view: 'days',
+        // fixedHeight: true,
         onSelect: ({ formattedDate }) => {
           this.datepickerEl.value = Array.isArray(formattedDate)
             ? formattedDate.join(' - ')
@@ -134,6 +137,8 @@ export class PostDatepicker2 {
           });
         }
       }, 0);
+
+      this.datepickerInstance.disableDate('2025-10-10');
     }
   }
 
