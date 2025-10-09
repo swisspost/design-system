@@ -20,6 +20,11 @@ export class PostBreadcrumbs {
    */
   @Prop() homeText: string = 'Home';
 
+  /**
+   * The accessible label for the breadcrumb menu when items are concatenated.
+    */
+  @Prop() menuLabel: string = 'More breadcrumb items';
+
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
   @State() lastWindowWidth: number;
@@ -156,7 +161,7 @@ export class PostBreadcrumbs {
                       ...
                     </button>
                   </post-menu-trigger>
-                  <post-menu id="breadcrumb-menu">
+                  <post-menu id="breadcrumb-menu" label={this.menuLabel}>
                     {visibleItems.map(item => (
                       <post-menu-item
                         key={item.url || item.text}
