@@ -10,6 +10,8 @@
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/variables/color';
 
+@include icons.custom-property('2113');
+
 post-mainnavigation {
   // reset links and buttons
   post-list-item {
