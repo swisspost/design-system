@@ -65,9 +65,9 @@ export function renderListGroup(args: Args) {
   }
 
   function getContent(args: Args, itemsCount: number) {
-    const linkIcon = getIcon('3020');
-    const fileIcon = getIcon('3169');
-    const downloadIcon = getIcon('2066');
+    const linkIcon = getIcon('arrowright');
+    const fileIcon = getIcon('document');
+    const downloadIcon = getIcon('download');
 
     const isDoc = args.listType === 'document';
     const items = Array.from(Array(itemsCount).keys());

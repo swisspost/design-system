@@ -2,7 +2,6 @@
 @use 'sass:list';
 
 @use './color' as color-mx;
-@use './icons' as icons-mx;
 @use './utilities' as utilities-mx;
 @use './../functions/contrast' as contrast-fn;
 
@@ -90,12 +89,10 @@ tokens.$default-map: components.$post-banner;
   color-scheme: $scheme;
 
   &::before {
-    @include icons-mx.icon($icon);
-    color: $icon-color;
-
-    @include utilities-mx.high-contrast-mode {
-      color: CanvasText;
-    }
+    background-image: #{$icon};
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 

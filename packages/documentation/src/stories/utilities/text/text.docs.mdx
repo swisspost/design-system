@@ -36,6 +36,11 @@ The font sizes `.fs-1` to `.fs-5` are equivalent to ones defined for the heading
 </post-banner>
 <Canvas of={TextStories.FontSize} sourceState="shown" />
 
+Use the `.small` utility class to reduce the font size to 80% of the parent element.
+This is useful for secondary information or less prominent text.
+
+<Canvas of={TextStories.SmallText} sourceState="shown" />
+
 ### Font Weight
 
 The font weight classes available are `.fw-normal`, `.fw-bold` and `.fw-black`.
@@ -97,8 +102,16 @@ Transform text with the following text capitalization classes: `.text-lowercase`
 
 <Canvas of={TextStories.TextTransform} sourceState="shown" />
 
+
+
 ### Decorations
 
 Decorate text with the following text decoration classes: `text-decoration-underline`, `.text-decoration-line-through` and `.text-decoration-none`.
 
 <Canvas of={TextStories.TextDecoration} sourceState="shown" />
+
+### Text Truncation
+
+The `.text-truncate` class helps in truncating long text when it exceeds a specified width.
+
+<Canvas sourceState="shown" of={TextStories.TextTruncation} />

@@ -19,7 +19,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    name: '1022',
+    name: 'stampapostplus',
     base: '',
     flipH: false,
     flipV: false,
@@ -146,7 +146,7 @@ export const Size: Story = {
     ]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-column'),
+      generateDecorators(story, context, 'd-flex flex-column gap-4'),
   ],
 };
 
@@ -212,12 +212,12 @@ export const Animate: Story = {
   },
   render: args =>
     renderAnimateVariants(args, [
-      { name: '2253', animation: 'cylon' },
-      { name: '2252', animation: 'cylon-vertical' },
-      { name: '2041', animation: 'spin' },
-      { name: '2042', animation: 'spin-reverse' },
-      { name: '2151', animation: 'fade' },
-      { name: '2063', animation: 'throb' },
+      { name: 'dragleftright', animation: 'cylon' },
+      { name: 'dragupdown', animation: 'cylon-vertical' },
+      { name: 'reloadright', animation: 'spin' },
+      { name: 'reloadleft', animation: 'spin-reverse' },
+      { name: 'sun', animation: 'fade' },
+      { name: 'heart', animation: 'throb' },
     ]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
@@ -227,7 +227,7 @@ export const Animate: Story = {
 
 export const CSS_Default: Story = {
   render: () => {
-    return html`<div class="my-1022-icon"></div>`;
+    return html`<div class="letter-icon"></div>`;
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-2'),
@@ -236,7 +236,7 @@ export const CSS_Default: Story = {
 
 export const CSS_UI: Story = {
   render: () => {
-    return html`<div class="my-accessibility-icon"></div>`;
+    return html`<div class="letter-icon"></div>`;
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'resizer'),
@@ -245,7 +245,7 @@ export const CSS_UI: Story = {
 
 export const CSS_Color: Story = {
   render: () => {
-    return html`<div class="my-1022-icon" style="color: blue"></div>`;
+    return html`<div class="letter-icon" style="color: blue"></div>`;
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-2'),
@@ -254,7 +254,7 @@ export const CSS_Color: Story = {
 
 export const CSS_Size: Story = {
   render: () => {
-    return html`<div class="my-1022-icon" style="font-size: 3rem"></div>`;
+    return html`<div class="letter-icon" style="font-size: 3rem"></div>`;
   },
   decorators: [(story: StoryFn, context: StoryContext) => generateDecorators(story, context)],
 };

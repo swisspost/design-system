@@ -5,12 +5,12 @@ import { MetaComponent } from '@root/types';
 export const FooterArgs = {
   showPrimaryButton: true,
   primaryButtonText: 'Send',
-  primaryButtonIcon: '3020',
+  primaryButtonIcon: 'arrowright',
   showSecondaryButton: true,
   secondaryButtonText: 'Cancel',
   showTertiaryButton: true,
   tertiaryButtonText: 'Back',
-  tertiaryButtonIcon: '3024',
+  tertiaryButtonIcon: 'arrowleft',
 };
 
 const meta: MetaComponent = {
