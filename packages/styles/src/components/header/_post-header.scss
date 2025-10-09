@@ -120,11 +120,11 @@ post-header {
     }
   }
 
-  [slot='user'] {
+  [slot='user']:not(a) {
     height: tokens.get('avatar-size', components.$post-avatar);
     display: block;
 
-    button {
+    post-menu-trigger button {
       border-radius: 100%;
     }
   }
@@ -162,6 +162,23 @@ post-header {
     }
   }
 
+  // Hide link/button text on mobile in order to only have icon visible
+  post-togglebutton,
+  a[slot='user'],
+  > .list-inline:where(:not([slot])) a {
+    > span {
+      @include media.max(sm) {
+        @include utilities.visuallyhidden;
+      }
+    }
+  }
+
+  a[slot='user'] {
+    @include media.max(sm) {
+      padding: 10px !important;
+    }
+  }
+
   a,
   button,
   post-togglebutton {
@@ -175,10 +192,6 @@ post-header {
 
       @include media.max(sm) {
         padding: 8px;
-
-        .visually-hidden-sm {
-          @include utilities.visuallyhidden;
-        }
       }
     }
   }
@@ -196,20 +209,10 @@ post-header {
 
   #user-menu a,
   #user-menu button {
-    padding: 16px 12px 16px 8px;
-    gap: 16px;
     min-width: 327px;
 
     @include media.between(sm, md) {
       min-width: 300px;
-    }
-
-    @include media.max(md) {
-      padding-block: 13px;
-    }
-
-    @include media.max(sm) {
-      padding-block: 8px;
     }
   }
 
