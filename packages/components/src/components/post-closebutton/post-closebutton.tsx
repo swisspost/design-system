@@ -29,7 +29,8 @@ export class PostClosebutton {
   }
 
   connectedCallback() {
-    this.mutationObserver.observe(this.host, { childList: true });
+    this.mutationObserver.observe(this.host, { childList: true, characterData: true, subtree: true }
+);
   }
 
   disconnectedCallback() {
