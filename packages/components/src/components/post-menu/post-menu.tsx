@@ -57,7 +57,7 @@ export class PostMenu {
   /**
    * An accessible name for the menu.
    */
-  @Prop() readonly label?: string;
+  @Prop() readonly label!: string;
 
   /**
    * Holds the current visibility state of the menu.
