@@ -1,5 +1,8 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+@include post.custom-property('accessibility');
+@include post.custom-property('letter');
+
 $resizer-padding: 1rem;
 $resizer-border-width: 1px;
 $resizer-border-color: #999;
@@ -27,10 +30,18 @@ $resizer-max-width: 64px;
   background-color: post.$info;
 }
 
+.my-accessibility-icon,
+.letter-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+}
+
 .my-accessibility-icon {
-  @include post.post-icon($name: 'accessibility');
+  @include post.mask-image('accessibility');
 }
 
 .letter-icon {
-  @include post.post-icon($name: 'letter');
+  @include post.mask-image('letter');
 }

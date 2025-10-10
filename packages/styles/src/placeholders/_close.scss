@@ -5,6 +5,8 @@
 @use './../variables/commons';
 @use './../variables/components/close';
 
+@include icons.custom-property(2043);
+
 %btn-close {
   @include button.reset-button;
   border-radius: close.$close-border-radius;
@@ -17,11 +19,11 @@
   }
 
   &::before {
-    @include icons.icon(2043);
     content: '';
     display: block;
     height: close.$close-size;
     width: close.$close-size;
+    @include icons.mask-image(2043);
   }
 
   @include utilities.not-disabled-focus-hover() {
