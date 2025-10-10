@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.51
+
+### Patch Changes
+
+- Added icons to the header meta navigation links. (by [@alizedebray](https://github.com/alizedebray) with [#6413](https://github.com/swisspost/design-system/pull/6413))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.50
+  - @swisspost/design-system-components@10.0.0-next.50
+  - @swisspost/internet-header@10.0.0-next.50
+  - @swisspost/design-system-components-react@10.0.0-next.50
+  - @swisspost/design-system-tokens@10.0.0-next.50
+  - @swisspost/design-system-icons@10.0.0-next.50
+
 ## 6.0.0-next.50
 
 ### Minor Changes
