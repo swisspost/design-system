@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { fakeContent } from '@/utils';
 
 const meta: MetaComponent = {
@@ -20,6 +20,7 @@ const meta: MetaComponent = {
     title: '',
     mainNavigation: true,
     metaNavigation: true,
+    auxNavLinks: false,
     targetGroup: true,
     customControls: false,
   },
@@ -42,6 +43,18 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'Content',
+      },
+    },
+    auxNavLinks: {
+      name: 'Auxiliary navigation links',
+      description:
+        'Whether or not auxiliary navigation links are displayed on the right side of the main navigation.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+        disable: true,
       },
     },
     metaNavigation: {
@@ -86,96 +99,128 @@ const meta: MetaComponent = {
 };
 
 function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
-  return (args: Args) => html`<post-header>
-    <!-- Logo -->
-    <post-logo slot="post-logo" url="/">Homepage</post-logo>
+  return (args: Args) => {
+    const notJobsVersion = args.auxNavLinks ? nothing : true;
 
-    ${args.metaNavigation
-      ? html`
-          <!-- Meta navigation -->
-          <ul class="list-inline" slot="meta-navigation">
-            <li>
-              <a href="">
-                Search
-                <post-icon name="search" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Jobs
-                <post-icon name="jobs" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Create Account
-                <post-icon name="adduser" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-          </ul>
-        `
-      : ''}
+    return html`<post-header>
+      <!-- Logo -->
+      <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-    <!-- Menu button for mobile -->
-    <post-togglebutton slot="post-togglebutton">
-      <span class="visually-hidden-sm">Menu</span>
-      <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-      <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-    </post-togglebutton>
+      ${args.metaNavigation && !args.auxNavLinks
+        ? html`
+            <!-- Meta navigation -->
+            <ul class="list-inline" slot="meta-navigation">
+              <li>
+                <a href="">
+                  Search
+                  <post-icon name="search" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  Jobs
+                  <post-icon name="jobs" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  Create Account
+                  <post-icon name="adduser" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+            </ul>
+          `
+        : nothing}
+      ${args.metaNavigation && args.auxNavLinks
+        ? html`
+            <!-- Meta navigation -->
+            <ul class="list-inline" slot="meta-navigation">
+              <li>
+                <a class="selected" href="">
+                  Jobs
+                  <post-icon name="jobs" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+            </ul>
+          `
+        : nothing}
 
-    <!-- Language switch -->
-    <post-language-switch
-      caption="Change the language"
-      description="The currently selected language is English."
-      variant="list"
-      name="language-switch-example"
-      slot="post-language-switch"
-    >
-      <post-language-option code="de" name="German">de</post-language-option>
-      <post-language-option code="fr" name="French">fr</post-language-option>
-      <post-language-option code="it" name="Italian">it</post-language-option>
-      <post-language-option active="true" code="en" name="English">en</post-language-option>
-    </post-language-switch>
+      <!-- Menu button for mobile -->
+      <post-togglebutton slot="post-togglebutton">
+        <span class="visually-hidden-sm">Menu</span>
+        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+      </post-togglebutton>
 
-    ${args.title !== ''
-      ? html`
-          <!-- Application title (optional) -->
-          <h1 slot="title">${args.title}</h1>
-        `
-      : ''}
-    ${args.targetGroup
-      ? html`
-          <ul slot="target-group" class="target-group">
-            <li>
-              <a href="#" class="active">Private customers</a>
-            </li>
-            <li>
-              <a href="#">Business customers</a>
-            </li>
-          </ul>
-        `
-      : ''}
-    ${args.customControls
-      ? html`
-          <!-- Custom content (optional) -->
-          <ul class="list-inline">
-            <li>
-              <a href="#">
-                <span class="visually-hidden-sm">Search</span>
-                <post-icon aria-hidden="true" name="search"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="visually-hidden-sm">Login</span>
-                <post-icon aria-hidden="true" name="login"></post-icon>
-              </a>
-            </li>
-          </ul>
-        `
-      : ''}
-    ${args.mainNavigation ? mainnavigation : ''}
-  </post-header>`;
+      <!-- Language switch -->
+      <post-language-switch
+        caption="Change the language"
+        description="The currently selected language is English."
+        variant="list"
+        name="language-switch-example"
+        slot="post-language-switch"
+      >
+        <post-language-option code="de" name="German">de</post-language-option>
+        <post-language-option code="fr" name="French">fr</post-language-option>
+        <post-language-option code="it" name="Italian">it</post-language-option>
+        <post-language-option active="true" code="en" name="English">en</post-language-option>
+      </post-language-switch>
+
+      ${args.title !== ''
+        ? html`
+            <!-- Application title (optional) -->
+            <h1 slot="title">${args.title}</h1>
+          `
+        : ''}
+      ${args.targetGroup
+        ? html`
+            <ul slot="target-group" class="target-group">
+              <li>
+                <a href="#" class="${notJobsVersion ?? 'active'}">Private customers</a>
+              </li>
+              <li>
+                <a href="#">Business customers</a>
+              </li>
+            </ul>
+          `
+        : ''}
+      ${args.customControls
+        ? html`
+            <!-- Custom content (optional) -->
+            <ul class="list-inline">
+              <li>
+                <a href="#">
+                  <span class="visually-hidden-sm">Search</span>
+                  <post-icon aria-hidden="true" name="search"></post-icon>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="visually-hidden-sm">Login</span>
+                  <post-icon aria-hidden="true" name="login"></post-icon>
+                </a>
+              </li>
+            </ul>
+          `
+        : ''}
+      ${args.auxNavLinks
+        ? html`
+            <ul slot="aux-nav-links" class="list-inline">
+              <li>
+                <a href=""> Search<post-icon name="search" aria-hidden="true"></post-icon> </a>
+              </li>
+              <li>
+                <a href="">
+                  Jobs Login
+                  <post-icon name="login" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+            </ul>
+          `
+        : ''}
+      ${args.mainNavigation ? mainnavigation : ''}
+    </post-header>`;
+  };
 }
 
 function renderMainnavigation() {
@@ -326,6 +371,17 @@ export const ActiveNavigationItem: Story = {
 
 export const Portal: Story = {
   ...getIframeParameters(550),
+};
+
+export const Jobs: Story = {
+  ...getIframeParameters(550),
+  args: {
+    mainNavigation: true,
+    metaNavigation: true,
+    auxNavLinks: true,
+    customControls: false,
+    targetGroup: true,
+  },
 };
 
 export const Microsite: Story = {

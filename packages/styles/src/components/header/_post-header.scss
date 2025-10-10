@@ -87,6 +87,19 @@ post-header {
     display: block;
   }
 
+  .megadropdown-container {
+    width: 100vw;
+  }
+
+  ul[slot='aux-nav-links'] {
+    @include media.max(lg) {
+      height: 56px;
+      padding: 0 16px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
   ul[slot='meta-navigation'] {
     gap: 0 4px;
 
@@ -199,6 +212,7 @@ post-header {
     &:not(post-mainnavigation *) {
       color: color.$white;
       background: #050400;
+      border: 1px solid #050400;
     }
   }
 

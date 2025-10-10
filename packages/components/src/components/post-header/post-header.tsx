@@ -88,6 +88,7 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.updateAuxNavLinksWidth = this.updateAuxNavLinksWidth.bind(this);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
@@ -137,6 +138,7 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+    this.updateAuxNavLinksWidth();
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -215,8 +217,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -294,6 +296,15 @@ export class PostHeader {
     );
   }
 
+  private updateAuxNavLinksWidth() {
+    const auxNavLinks = this.host.querySelector('[slot="aux-nav-links"]');
+    if (auxNavLinks) {
+      const width =
+        auxNavLinks instanceof HTMLElement ? auxNavLinks.getBoundingClientRect().width : 0;
+      this.host.style.setProperty('--post-header-aux-nav-links-width', `${width}px`);
+    }
+  }
+
   private handleLinkClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
 
@@ -358,12 +369,32 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
+          {(this.device === 'mobile' || this.device === 'tablet') && (
+            <div class="mobile-aux-nav-links">
+              <slot name="aux-nav-links"></slot>
+            </div>
+          )}
           <div class="navigation-target-group">
             {(this.device === 'mobile' || this.device === 'tablet') && (
               <slot name="target-group"></slot>
             )}
           </div>
-          <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
+
+          {this.device === 'desktop' ? (
+            <div class="navigation-wrapper">
+              <slot
+                name="post-mainnavigation"
+                onSlotchange={() => this.checkNavigationExistence()}
+              ></slot>
+              <slot name="aux-nav-links"></slot>
+            </div>
+          ) : (
+            <slot
+              name="post-mainnavigation"
+              onSlotchange={() => this.checkNavigationExistence()}
+            ></slot>
+          )}
+
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
@@ -393,9 +424,7 @@ export class PostHeader {
             {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
-            {!this.hasMobileMenu && (
-              <slot name="meta-navigation"></slot>
-            )}
+            {!this.hasMobileMenu && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
             {this.hasNavigation && (
@@ -407,12 +436,12 @@ export class PostHeader {
         </div>
         <div class={localHeaderClasses.join(' ')}>
           <slot name="title" onSlotchange={() => this.checkTitleExistence()}></slot>
-          {this.hasTitle &&
-            (<div class="local-sub">
+          {this.hasTitle && (
+            <div class="local-sub">
               <slot name="local-controls"></slot>
               <slot></slot>
-            </div>)
-          }
+            </div>
+          )}
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}
