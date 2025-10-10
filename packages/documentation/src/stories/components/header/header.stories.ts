@@ -59,7 +59,7 @@ const meta: MetaComponent = {
     metaNavigation: {
       name: 'Meta navigation',
       description:
-        'Whether or not the meta navigation is displayed (Jobs).',
+        'Whether or not the meta navigation is displayed (Jobs, Create Account).',
       control: {
         type: 'boolean',
       },
@@ -128,23 +128,17 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
 
     ${args.metaNavigation
       ? html`
-          <!-- Meta navigation (Jobs) -->
+          <!-- Meta navigation (Jobs, Create Account) -->
           <ul class="list-inline" slot="meta-navigation">
             <li>
               <a href="">
-                Search
-                <post-icon name="search" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Jobs
+                <span class="visually-hidden-sm">Jobs</span>
                 <post-icon name="jobs" aria-hidden="true"></post-icon>
               </a>
             </li>
             <li>
               <a href="">
-                Create Account
+                <span class="visually-hidden-sm">Create Account</span>
                 <post-icon name="adduser" aria-hidden="true"></post-icon>
               </a>
             </li>
