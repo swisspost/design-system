@@ -10,7 +10,7 @@ import {
   Watch,
 } from '@stencil/core';
 
-import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType, getFocusableChildren } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -156,13 +156,12 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popovercontainer
-   * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+   * @param target A <post-popover-trigger> component that controls the popover
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.toggleTimeoutId) return;
-
     this.eventTarget = target;
+    if (this.toggleTimeoutId) return;
     this.calculatePosition();
     this.host.showPopover();
   }
@@ -173,6 +172,14 @@ export class PostPopovercontainer {
   @Method()
   async hide() {
     if (!this.toggleTimeoutId) {
+      if (this.eventTarget && this.eventTarget instanceof HTMLElement) {
+        const focusableChildren = getFocusableChildren(this.eventTarget);
+        // find first focusable element
+        const firstFocusable = focusableChildren[0];
+        if (firstFocusable) {
+          firstFocusable.focus();
+        }
+      }
       this.eventTarget = null;
       this.host.hidePopover();
     }
@@ -180,18 +187,19 @@ export class PostPopovercontainer {
 
   /**
    * Toggle popovercontainer display
-   * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+   * @param target A <post-popover-trigger> component that controls the popover
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    this.eventTarget = target;
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
       this.calculatePosition();
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
     }
+
     return this.host.matches(':where(:popover-open, .popover-open)');
   }
 
@@ -203,30 +211,41 @@ export class PostPopovercontainer {
    */
   private handleToggle(e: ToggleEvent) {
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
-
     const isOpen = e.newState === 'open';
+    const content = this.host.querySelector('.popover-content');
+
     if (isOpen) {
-      const content = this.host.querySelector('.popover-content');
       this.startAutoupdates();
+
       if (content && this.animation === 'pop-in') {
         popIn(content);
       }
 
-      if (this.safeSpace)
+      if (this.safeSpace) {
         window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      }
 
       // Emit event with `first` flag only true on the first open
       if (this.firstOpen) {
-        this.postToggle.emit({ isOpen, first: this.firstOpen });
+        this.postToggle.emit({ isOpen: true, first: true });
         this.firstOpen = false;
         return;
       }
     } else {
+      // Return focus to the trigger on close
+      if (this.eventTarget instanceof HTMLElement) {
+        const focusable = getFocusableChildren(this.eventTarget);
+        (focusable[0] || this.eventTarget).focus();
+      }
+
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-      if (this.safeSpace)
+
+      if (this.safeSpace) {
         window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      }
     }
-    this.postToggle.emit({ isOpen: isOpen, first: false });
+
+    this.postToggle.emit({ isOpen, first: false });
   }
 
   /**
