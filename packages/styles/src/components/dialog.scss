@@ -86,6 +86,10 @@ dialog > .dialog-grid {
 
   // Propagate bg color to the controls
   background-color: inherit;
+
+  &:not(:has(.dialog-controls)) {
+    padding-bottom: tokens.get('utility-gap-16');
+  }
 }
 
 :where(.dialog-icon, .dialog-header, .dialog-body, .dialog-controls, .dialog-close):empty {
