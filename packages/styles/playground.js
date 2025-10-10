@@ -20,8 +20,8 @@ document.getElementById('theme-select').addEventListener('change', handleThemeAp
 
 document.getElementById('scheme-select').addEventListener('change', e => {
   if (e.target.value) {
-    document.body.setAttribute('data-color-scheme', e.target.value);
+    document.body.dataset.colorScheme = e.target.value;
   } else {
-    document.body.removeAttribute('data-color-scheme');
+    delete document.body.dataset.colorScheme;
   }
 });
