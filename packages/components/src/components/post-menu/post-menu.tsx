@@ -49,15 +49,15 @@ export class PostMenu {
    */
   @Prop() readonly placement?: Placement = 'bottom';
 
-  /**
-   * An accessible name for the menu.
-   */
-  @Prop() readonly label!: string;
-
   @Watch('placement')
   validatePlacement() {
     checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
   }
+
+  /**
+   * An accessible name for the menu.
+   */
+  @Prop() readonly label?: string;
 
   /**
    * Holds the current visibility state of the menu.
