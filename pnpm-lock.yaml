@@ -130,7 +130,7 @@ importers:
         version: 14.3.2
       cypress-axe:
         specifier: 1.6.0
-        version: 1.6.0(axe-core@4.7.0)(cypress@14.3.2)
+        version: 1.6.0(axe-core@4.10.3)(cypress@14.3.2)
       cypress-storybook:
         specifier: 1.0.0
         version: 1.0.0(cypress@14.3.2)
@@ -249,6 +249,9 @@ importers:
       cypress:
         specifier: 14.3.2
         version: 14.3.2
+      cypress-axe:
+        specifier: 1.5.0
+        version: 1.5.0(axe-core@4.10.3)(cypress@14.3.2)
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -428,7 +431,7 @@ importers:
         version: 14.3.2
       cypress-axe:
         specifier: 1.6.0
-        version: 1.6.0(axe-core@4.7.0)(cypress@14.3.2)
+        version: 1.6.0(axe-core@4.10.3)(cypress@14.3.2)
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -786,6 +789,9 @@ importers:
         specifier: 19.1.1
         version: 19.1.1(react@19.1.1)
     devDependencies:
+      '@axe-core/playwright':
+        specifier: 4.10.2
+        version: 4.10.2(playwright-core@1.55.0)
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
@@ -1556,6 +1562,11 @@ packages:
 
   '@asamuzakjp/css-color@3.2.0':
     resolution: {integrity: sha512-K1A6z8tS3XsmCMM86xoWdn7Fkdn9m6RSVtocUrJYIwZnFVkng/PvkEoWtOWmP+Scc6saYWHWZYbndEEXxl24jw==}
+
+  '@axe-core/playwright@4.10.2':
+    resolution: {integrity: sha512-6/b5BJjG6hDaRNtgzLIfKr5DfwyiLHO4+ByTLB0cJgWSM8Ll7KqtdblIS6bEkwSF642/Ex91vNqIl3GLXGlceg==}
+    peerDependencies:
+      playwright-core: '>= 1.0.0'
 
   '@babel/code-frame@7.26.2':
     resolution: {integrity: sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==}
@@ -5964,8 +5975,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axe-core@4.7.0:
-    resolution: {integrity: sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==}
+  axe-core@4.10.3:
+    resolution: {integrity: sha512-Xm7bpRXnDSX2YE2YFfBk2FnF0ep6tmG7xPh8iHee8MIcrgq762Nkce856dYtJYLkuIoYZvGfTs/PbZhideTcEg==}
     engines: {node: '>=4'}
 
   axios@1.11.0:
@@ -6712,6 +6723,13 @@ packages:
 
   custom-event@1.0.1:
     resolution: {integrity: sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==}
+
+  cypress-axe@1.5.0:
+    resolution: {integrity: sha512-Hy/owCjfj+25KMsecvDgo4fC/781ccL+e8p+UUYoadGVM2ogZF9XIKbiM6KI8Y3cEaSreymdD6ZzccbI2bY0lQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      axe-core: ^3 || ^4
+      cypress: ^10 || ^11 || ^12 || ^13
 
   cypress-axe@1.6.0:
     resolution: {integrity: sha512-C/ij50G8eebBrl/WsGT7E+T/SFyIsRZ3Epx9cRTLrPL9Y1GcxlQGFoAVdtSFWRrHSCWXq9HC6iJQMaI89O9yvQ==}
@@ -13806,6 +13824,11 @@ snapshots:
       '@csstools/css-tokenizer': 3.0.4
       lru-cache: 10.4.3
 
+  '@axe-core/playwright@4.10.2(playwright-core@1.55.0)':
+    dependencies:
+      axe-core: 4.10.3
+      playwright-core: 1.55.0
+
   '@babel/code-frame@7.26.2':
     dependencies:
       '@babel/helper-validator-identifier': 7.25.9
@@ -18549,7 +18572,7 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axe-core@4.7.0: {}
+  axe-core@4.10.3: {}
 
   axios@1.11.0(debug@4.4.1):
     dependencies:
@@ -19478,9 +19501,14 @@ snapshots:
 
   custom-event@1.0.1: {}
 
-  cypress-axe@1.6.0(axe-core@4.7.0)(cypress@14.3.2):
+  cypress-axe@1.5.0(axe-core@4.10.3)(cypress@14.3.2):
     dependencies:
-      axe-core: 4.7.0
+      axe-core: 4.10.3
+      cypress: 14.3.2
+
+  cypress-axe@1.6.0(axe-core@4.10.3)(cypress@14.3.2):
+    dependencies:
+      axe-core: 4.10.3
       cypress: 14.3.2
 
   cypress-each@1.14.0: {}

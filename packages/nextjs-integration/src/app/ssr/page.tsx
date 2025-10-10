@@ -15,7 +15,7 @@ import {
   PostPopover,
   PostRating,
   PostTabs,
-  PostTabHeader,
+  PostTabItem,
   PostTabPanel,
   PostTooltipTrigger,
   PostTooltip,
@@ -153,17 +153,17 @@ export default function Home() {
 
       <h2>Tabs</h2>
       <PostTabs>
-        <PostTabHeader panel="unua">Unua langeto</PostTabHeader>
-        <PostTabHeader panel="dua">Dua langeto</PostTabHeader>
-        <PostTabHeader panel="tria">Tria langeto</PostTabHeader>
+        <PostTabItem name="unua">Unua langeto</PostTabItem>
+        <PostTabItem name="dua">Dua langeto</PostTabItem>
+        <PostTabItem name="tria">Tria langeto</PostTabItem>
 
-        <PostTabPanel name="unua">
+        <PostTabPanel for="unua">
           Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
         </PostTabPanel>
-        <PostTabPanel name="dua">
+        <PostTabPanel for="dua">
           Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
         </PostTabPanel>
-        <PostTabPanel name="tria">
+        <PostTabPanel for="tria">
           Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
         </PostTabPanel>
       </PostTabs>

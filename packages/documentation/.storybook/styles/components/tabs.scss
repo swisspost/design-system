@@ -14,7 +14,7 @@ tokens.$default-map: utilities.$post-spacing;
     position: relative;
   }
 
-  > post-tab-header {
+  > post-tab-item {
     border-top-left-radius: post.$border-radius;
     border-top-right-radius: post.$border-radius;
 
@@ -28,7 +28,7 @@ tokens.$default-map: utilities.$post-spacing;
       }
     }
 
-    ~ post-tab-header {
+    ~ post-tab-item {
       margin-left: 1px;
     }
   }
@@ -52,7 +52,7 @@ tokens.$default-map: utilities.$post-spacing;
   }
 
   &:not(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
-    > post-tab-header {
+    > post-tab-item {
       font-size: 0.875rem;
     }
 
