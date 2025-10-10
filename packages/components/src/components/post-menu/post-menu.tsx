@@ -59,11 +59,6 @@ export class PostMenu {
     checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
-  }
-
   /**
    * Holds the current visibility state of the menu.
    * This state is internally managed to track whether the menu is open (`true`) or closed (`false`),
@@ -92,7 +87,6 @@ export class PostMenu {
   }
 
   componentDidLoad() {
-    this.validateLabel();
     this.validatePlacement();
     if (this.popoverRef) {
       this.popoverRef.addEventListener('postToggle', this.handlePostToggle);

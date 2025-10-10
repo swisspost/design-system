@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property               | Attribute    | Description                                                               | Type     | Default                   |
-| ---------------------- | ------------ | ------------------------------------------------------------------------- | -------- | ------------------------- |
-| `homeText`             | `home-text`  | The text label for the home breadcrumb item.                              | `string` | `'Home'`                  |
-| `homeUrl` _(required)_ | `home-url`   | The URL for the home breadcrumb item.                                     | `string` | `undefined`               |
-| `menuLabel`            | `menu-label` | The accessible label for the breadcrumb menu when items are concatenated. | `string` | `'More breadcrumb items'` |
+| Property               | Attribute    | Description                                                                          | Type     | Default                   |
+| ---------------------- | ------------ | ------------------------------------------------------------------------------------ | -------- | ------------------------- |
+| `homeText`             | `home-text`  | The text label for the home breadcrumb item.                                         | `string` | `'Home'`                  |
+| `homeUrl` _(required)_ | `home-url`   | The URL for the home breadcrumb item.                                                | `string` | `undefined`               |
+| `menuLabel`            | `menu-label` | The accessible label for the breadcrumb menu when breadcrumb items are concatenated. | `string` | `'More breadcrumb items'` |
 
 
 ## Dependencies
