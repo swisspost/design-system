@@ -10,23 +10,18 @@
 // prefered root color-scheme
 :root {
   @include supports.light-dark(true) {
-    color-scheme: light dark;
+    color-scheme: light;
   }
 
-  @media (prefers-color-scheme: light) {
-    @include schemes.light-variables;
+  // This sets the light theme by default and does not take
+  // into account user's preferred colors
+  // Put back the @media (prefers-color-scheme: light/dark)
+  // queries to define which tokens to use depending on user's
+  // preferences once we allow for automatic dark scheme again
+  @include schemes.light-variables;
 
-    @include supports.light-dark(false) {
-      --post-fallback-prefers-light: ;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @include schemes.dark-variables;
-
-    @include supports.light-dark(false) {
-      --post-fallback-prefers-light: initial;
-    }
+  @include supports.light-dark(false) {
+    --post-fallback-prefers-light: ;
   }
 }
 
