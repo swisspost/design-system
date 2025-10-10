@@ -75,7 +75,7 @@ dialog {
 }
 
 dialog > .dialog-grid {
-  padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0 tokens.get('utility-gap-16');
+  padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0;
   display: grid;
   column-gap: tokens.get('utility-gap-16');
   grid-template-columns: auto 1fr auto;
