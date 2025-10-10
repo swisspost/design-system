@@ -207,7 +207,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
         ? html`
             <ul slot="aux-nav-links" class="list-inline">
               <li>
-                <a href=""> Search<post-icon name="search" aria-hidden="true"></post-icon> </a>
+                <a href="">Job Search<post-icon name="search" aria-hidden="true"></post-icon> </a>
               </li>
               <li>
                 <a href="">
