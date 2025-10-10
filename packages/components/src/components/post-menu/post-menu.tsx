@@ -14,7 +14,7 @@ import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkEmptyOrOneOf, EventFrom, checkRequiredAndType } from '@/utils';
+import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
 
 /**
  * @part menu - The container element that holds the list of menu items.
