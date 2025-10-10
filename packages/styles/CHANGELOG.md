@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.50
+
+### Patch Changes
+
+- Updated the signal icons. (by [@alizedebray](https://github.com/alizedebray) with [#6268](https://github.com/swisspost/design-system/pull/6268))
+
+- Fixed bottom margin for buttons inside `<dialog>` element when content becomes scrollable. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6414](https://github.com/swisspost/design-system/pull/6414))
+
+- Added icons to the header meta navigation links. (by [@alizedebray](https://github.com/alizedebray) with [#6413](https://github.com/swisspost/design-system/pull/6413))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.50
+
 ## 10.0.0-next.49
 
 ### Major Changes
