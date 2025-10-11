@@ -19,9 +19,11 @@ const meta: MetaComponent = {
   args: {
     title: '',
     mainNavigation: true,
+    globalControls: true,
     metaNavigation: true,
+    createAccount: true,
+    globalLogin: true,
     targetGroup: true,
-    customControls: false,
   },
   argTypes: {
     title: {
@@ -44,10 +46,40 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    globalControls: {
+      name: 'Global controls',
+      description: 'Whether or not the search is displayed.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
     metaNavigation: {
       name: 'Meta navigation',
       description:
-        'Whether or not the meta navigation is displayed ("Search", "Jobs", and "Create Account").',
+        'Whether or not the meta navigation is displayed ("jobs" and "create an account").',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    createAccount: {
+      name: 'Create Account',
+      description: 'Whether or not the Create Account button is displayed in meta navigation.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        disable: true,
+      },
+    },
+    globalLogin: {
+      name: 'Global login',
+      description: 'Whether or not the login button or user menu is displayed.',
       control: {
         type: 'boolean',
       },
@@ -58,16 +90,6 @@ const meta: MetaComponent = {
     targetGroup: {
       name: 'Target group',
       description: 'Whether or not the target group buttons are visible.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
-    customControls: {
-      name: 'Custom controls',
-      description: 'Whether or not the custom controls are displayed ("search" and "login").',
       control: {
         type: 'boolean',
       },
@@ -86,42 +108,51 @@ const meta: MetaComponent = {
 };
 
 function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
+  const renderMetaNavigation = (args: Args) => {
+    if (!args.metaNavigation) return '';
+    
+    return html`
+      <!-- Meta navigation (Jobs, Create Account) -->
+      <ul class="list-inline" slot="meta-navigation">
+        <li>
+          <a href="">
+            <span class="visually-hidden-sm">Jobs</span>
+            <post-icon name="jobs" aria-hidden="true"></post-icon>
+          </a>
+        </li>
+        ${args.createAccount
+          ? html`
+              <li>
+                <a href="">
+                  <span class="visually-hidden-sm">Create Account</span>
+                  <post-icon name="adduser" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+            `
+          : ''}
+      </ul>
+    `;
+  };
+
   return (args: Args) => html`<post-header>
     <!-- Logo -->
     <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-    ${args.metaNavigation
+    <!-- Global controls (Search) -->
+    ${args.globalControls
       ? html`
-          <!-- Meta navigation -->
-          <ul class="list-inline" slot="meta-navigation">
+          <ul class="list-inline" slot="global-controls">
             <li>
               <a href="">
-                Search
+                <span class="visually-hidden-sm">Search</span>
                 <post-icon name="search" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Jobs
-                <post-icon name="jobs" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Create Account
-                <post-icon name="adduser" aria-hidden="true"></post-icon>
               </a>
             </li>
           </ul>
         `
       : ''}
 
-    <!-- Menu button for mobile -->
-    <post-togglebutton slot="post-togglebutton">
-      <span class="visually-hidden-sm">Menu</span>
-      <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-      <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-    </post-togglebutton>
+    ${renderMetaNavigation(args)}
 
     <!-- Language switch -->
     <post-language-switch
@@ -137,6 +168,27 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
       <post-language-option active="true" code="en" name="English">en</post-language-option>
     </post-language-switch>
 
+    <!-- Global login -->
+    ${args.globalLogin
+      ? html`
+          <ul class="list-inline" slot="global-login">
+            <li>
+              <a href="">
+                <span class="visually-hidden-sm">Login</span>
+                <post-icon name="login" aria-hidden="true"></post-icon>
+              </a>
+            </li>
+          </ul>
+        `
+      : ''}
+
+    <!-- Menu button for mobile -->
+    <post-togglebutton slot="post-togglebutton">
+      <span class="visually-hidden-sm">Menu</span>
+      <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+      <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+    </post-togglebutton>
+
     ${args.title !== ''
       ? html`
           <!-- Application title (optional) -->
@@ -151,25 +203,6 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
             </li>
             <li>
               <a href="#">Business customers</a>
-            </li>
-          </ul>
-        `
-      : ''}
-    ${args.customControls
-      ? html`
-          <!-- Custom content (optional) -->
-          <ul class="list-inline">
-            <li>
-              <a href="#">
-                <span class="visually-hidden-sm">Search</span>
-                <post-icon aria-hidden="true" name="search"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="visually-hidden-sm">Login</span>
-                <post-icon aria-hidden="true" name="login"></post-icon>
-              </a>
             </li>
           </ul>
         `
@@ -326,6 +359,9 @@ export const ActiveNavigationItem: Story = {
 
 export const Portal: Story = {
   ...getIframeParameters(550),
+  args: {
+    createAccount: false,
+  },
 };
 
 export const Microsite: Story = {
@@ -333,8 +369,9 @@ export const Microsite: Story = {
   args: {
     title: '[Microsite Title]',
     mainNavigation: true,
+    globalControls: true,
     metaNavigation: false,
-    customControls: true,
+    globalLogin: true,
     targetGroup: false,
   },
 };
@@ -344,8 +381,9 @@ export const OnePager: Story = {
   args: {
     title: '[One Pager Title]',
     mainNavigation: false,
+    globalControls: false,
     metaNavigation: false,
-    customControls: false,
+    globalLogin: false,
     targetGroup: false,
   },
 };
