@@ -21,6 +21,7 @@ const meta: MetaComponent = {
     mainNavigation: true,
     globalControls: true,
     metaNavigation: true,
+    createAccount: true,
     globalLogin: true,
     targetGroup: true,
     customControls: false,
@@ -59,12 +60,22 @@ const meta: MetaComponent = {
     metaNavigation: {
       name: 'Meta navigation',
       description:
-        'Whether or not the meta navigation is displayed (Jobs, Create Account).',
+        'Whether or not the meta navigation is displayed (Jobs).',
       control: {
         type: 'boolean',
       },
       table: {
         category: 'Content',
+      },
+    },
+    createAccount: {
+      name: 'Create Account',
+      description: 'Whether or not the Create Account button is displayed in meta navigation.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        disable: true,
       },
     },
     globalLogin: {
@@ -136,12 +147,16 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
                 <post-icon name="jobs" aria-hidden="true"></post-icon>
               </a>
             </li>
-            <li>
-              <a href="">
-                <span class="visually-hidden-sm">Create Account</span>
-                <post-icon name="adduser" aria-hidden="true"></post-icon>
-              </a>
-            </li>
+            ${args.createAccount
+              ? html`
+                  <li>
+                    <a href="">
+                      <span class="visually-hidden-sm">Create Account</span>
+                      <post-icon name="adduser" aria-hidden="true"></post-icon>
+                    </a>
+                  </li>
+                `
+              : ''}
           </ul>
         `
       : ''}
@@ -370,6 +385,9 @@ export const ActiveNavigationItem: Story = {
 
 export const Portal: Story = {
   ...getIframeParameters(550),
+  args: {
+    createAccount: false,
+  },
 };
 
 export const Microsite: Story = {

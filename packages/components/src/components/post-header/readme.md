@@ -31,7 +31,7 @@ Type: `Promise<void>`
 | `"default"`              | Custom controls or content, right aligned in the local header.                |
 | `"global-controls"`      | Holds global control elements like search functionality.                      |
 | `"global-login"`         | Holds the login button or user menu component.                                |
-| `"meta-navigation"`      | Holds an `<ul>` with meta navigation links.                                   |
+| `"meta-navigation"`      | Holds an `<ul>` with meta navigation links (e.g., Jobs, Create Account).      |
 | `"post-language-switch"` | Should be used with the `<post-language-switch>` component.                   |
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
 | `"post-mainnavigation"`  | Has a default slot because it's only meant to be used in the `<post-header>`. |
