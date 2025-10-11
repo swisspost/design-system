@@ -24,7 +24,6 @@ const meta: MetaComponent = {
     createAccount: true,
     globalLogin: true,
     targetGroup: true,
-    customControls: false,
   },
   argTypes: {
     title: {
@@ -98,16 +97,6 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    customControls: {
-      name: 'Custom controls',
-      description: 'Whether or not the legacy custom controls are displayed (deprecated).',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
   },
   decorators: [
     story =>
@@ -119,6 +108,32 @@ const meta: MetaComponent = {
 };
 
 function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
+  const renderMetaNavigation = (args: Args) => {
+    if (!args.metaNavigation) return '';
+    
+    return html`
+      <!-- Meta navigation (Jobs, Create Account) -->
+      <ul class="list-inline" slot="meta-navigation">
+        <li>
+          <a href="">
+            <span class="visually-hidden-sm">Jobs</span>
+            <post-icon name="jobs" aria-hidden="true"></post-icon>
+          </a>
+        </li>
+        ${args.createAccount
+          ? html`
+              <li>
+                <a href="">
+                  <span class="visually-hidden-sm">Create Account</span>
+                  <post-icon name="adduser" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+            `
+          : ''}
+      </ul>
+    `;
+  };
+
   return (args: Args) => html`<post-header>
     <!-- Logo -->
     <post-logo slot="post-logo" url="/">Homepage</post-logo>
@@ -137,29 +152,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
         `
       : ''}
 
-    ${args.metaNavigation
-      ? html`
-          <!-- Meta navigation (Jobs, Create Account) -->
-          <ul class="list-inline" slot="meta-navigation">
-            <li>
-              <a href="">
-                <span class="visually-hidden-sm">Jobs</span>
-                <post-icon name="jobs" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            ${args.createAccount
-              ? html`
-                  <li>
-                    <a href="">
-                      <span class="visually-hidden-sm">Create Account</span>
-                      <post-icon name="adduser" aria-hidden="true"></post-icon>
-                    </a>
-                  </li>
-                `
-              : ''}
-          </ul>
-        `
-      : ''}
+    ${renderMetaNavigation(args)}
 
     <!-- Language switch -->
     <post-language-switch
@@ -210,25 +203,6 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
             </li>
             <li>
               <a href="#">Business customers</a>
-            </li>
-          </ul>
-        `
-      : ''}
-    ${args.customControls
-      ? html`
-          <!-- Custom content (optional) -->
-          <ul class="list-inline">
-            <li>
-              <a href="#">
-                <span class="visually-hidden-sm">Search</span>
-                <post-icon aria-hidden="true" name="search"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="visually-hidden-sm">Login</span>
-                <post-icon aria-hidden="true" name="login"></post-icon>
-              </a>
             </li>
           </ul>
         `
@@ -399,7 +373,6 @@ export const Microsite: Story = {
     metaNavigation: false,
     globalLogin: true,
     targetGroup: false,
-    customControls: false,
   },
 };
 
@@ -412,7 +385,6 @@ export const OnePager: Story = {
     metaNavigation: false,
     globalLogin: false,
     targetGroup: false,
-    customControls: false,
   },
 };
 
