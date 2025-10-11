@@ -10,7 +10,7 @@ import { EventFrom } from '@/utils/event-from';
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-controls - Holds global control elements like search functionality.
- * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
+ * @slot meta-navigation - Holds an `<ul>` with meta navigation links (e.g., Jobs, Create Account).
  * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
  * @slot global-login - Holds the login button or user menu component.
  * @slot post-togglebutton - Holds the mobile menu toggler.
