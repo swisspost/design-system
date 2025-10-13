@@ -12,9 +12,6 @@ import {
   PostPopover,
   PostPopovercontainer,
   PostRating,
-  PostTabs,
-  PostTabItem,
-  PostTabPanel,
   PostTooltipTrigger,
 } from 'components';
 
