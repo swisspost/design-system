@@ -31,12 +31,13 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+  private auxNavLinksResizeObserver: ResizeObserver;
 
   private get hasMobileMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
-  private get auxNavLinks(): HTMLSlotElement {
+  private get auxNavLinks(): HTMLElement | null {
     return this.host.querySelector('[slot="aux-nav-links"]');
   }
 
@@ -142,7 +143,7 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
-    this.updateAuxNavLinksWidth();
+    this.handleAuxNavLinksResize();
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -164,6 +165,11 @@ export class PostHeader {
     if (this.localHeaderResizeObserver) {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
+    }
+
+    if (this.auxNavLinksResizeObserver) {
+      this.auxNavLinksResizeObserver.disconnect();
+      this.auxNavLinksResizeObserver = null;
     }
 
     this.mobileMenuExtended = false;
@@ -221,8 +227,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -344,6 +350,14 @@ export class PostHeader {
     if (localHeader && !this.localHeaderResizeObserver) {
       this.localHeaderResizeObserver = new ResizeObserver(this.updateLocalHeaderHeight);
       this.localHeaderResizeObserver.observe(localHeader);
+    }
+  }
+
+  private handleAuxNavLinksResize() {
+    const el = this.auxNavLinks;
+    if (this.auxNavLinks && !this.auxNavLinksResizeObserver) {
+      this.auxNavLinksResizeObserver = new ResizeObserver(this.updateAuxNavLinksWidth);
+      this.auxNavLinksResizeObserver.observe(el);
     }
   }
 
