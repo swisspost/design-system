@@ -14,7 +14,8 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    homeUrl: '/'
+    homeUrl: '/',
+    homeText: 'Home'
   },
   argTypes: {
     homeUrl: {
@@ -45,8 +46,8 @@ type Story = StoryObj;
 export const Default: Story = {
   render: (args: Args) => {
     const attrs = [
-      args.homeUrl ? `home-url="${args.homeUrl}"` : '',
-      args.homeText ? `home-text="${args.homeText}"` : '',
+      `home-url="${args.homeUrl ?? ''}"`,
+      `home-text="${args.homeText ?? ''}"`,
       args.menuLabel ? `menu-label="${args.menuLabel}"` : ''
     ].filter(Boolean).join(' ');
     return html`
@@ -62,8 +63,8 @@ export const Default: Story = {
 export const Concatenated: Story = {
   render: (args: Args) => {
     const attrs = [
-      args.homeUrl ? `home-url="${args.homeUrl}"` : '',
-      args.homeText ? `home-text="${args.homeText}"` : '',
+      `home-url="${args.homeUrl ?? ''}"`,
+      `home-text="${args.homeText ?? ''}"`,
       args.menuLabel ? `menu-label="${args.menuLabel}"` : ''
     ].filter(Boolean).join(' ');
     return html`
