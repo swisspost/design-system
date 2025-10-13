@@ -52,7 +52,7 @@ export class PostPopover {
 
   /**
    * Programmatically display the popover
-   * @param target A <post-popover-trigger> component that controls the popover
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
    */
   @Method()
   async show(target: HTMLElement) {
@@ -69,7 +69,7 @@ export class PostPopover {
 
   /**
    * Toggle popover display
-   * @param target A <post-popover-trigger> component that controls the popover
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
    * @param force Pass true to always show or false to always hide
    */
   @Method()

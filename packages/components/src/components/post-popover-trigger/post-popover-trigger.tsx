@@ -105,6 +105,7 @@ export class PostPopoverTrigger {
   }
 
   componentDidLoad() {
+    this.setupTrigger();
     this.validateFor();
   }
 

@@ -66,6 +66,7 @@ export class PostTooltipTrigger {
   }
 
   componentDidLoad() {
+    this.setupTrigger();
     this.attachListeners();
     this.attachTooltipListeners();
   }

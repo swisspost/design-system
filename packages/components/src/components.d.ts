@@ -372,12 +372,12 @@ export namespace Components {
         "placement"?: Placement;
         /**
           * Programmatically display the popover
-          * @param target A <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popover display
-          * @param target A <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
@@ -424,12 +424,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target A <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target A <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
