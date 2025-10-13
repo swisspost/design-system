@@ -227,8 +227,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -387,7 +387,7 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          {(this.device === 'mobile' || this.device === 'tablet') && (
+          {(this.device === 'mobile' || this.device === 'tablet') && this.auxNavLinks && (
             <div class="mobile-aux-nav-links">
               <slot name="aux-nav-links"></slot>
             </div>
