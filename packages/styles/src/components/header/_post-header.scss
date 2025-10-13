@@ -65,19 +65,6 @@ tokens.$default-map: elements.$post-link;
     }
   }
 
-  // jobs
-  &:has(post-mainnavigation):has([slot='aux-nav-links']) .scroll-control.scroll-right::after {
-    // pseudo-element to hide the shadow
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -30px;
-    width: 30px;
-    height: 100%;
-    pointer-events: none;
-    background: white;
-  }
-
   // no title
   &:not(:has(post-header [slot='title'])) {
     --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0);
