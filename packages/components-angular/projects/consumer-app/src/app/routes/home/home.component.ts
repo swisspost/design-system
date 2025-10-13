@@ -35,9 +35,6 @@ import {
     PostPopover,
     PostPopovercontainer,
     PostRating,
-    PostTabs,
-    PostTabItem,
-    PostTabPanel,
     PostTooltipTrigger,
   ]
 })
