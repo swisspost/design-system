@@ -101,6 +101,7 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
+          * @default 'Home'
          */
         "homeText": string;
         /**
@@ -1000,6 +1001,7 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
+          * @default 'Home'
          */
         "homeText"?: string;
         /**
