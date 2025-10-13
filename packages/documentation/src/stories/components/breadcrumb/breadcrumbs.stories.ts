@@ -44,30 +44,36 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText} menu-label=${args.menuLabel}>
-      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-    </post-breadcrumbs>
-  `,
+  render: (args: Args) => {
+    const menuLabelAttr = args.menuLabel ? ` menu-label='${args.menuLabel}'` : '';
+    return html`
+      <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}${menuLabelAttr}>
+        <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+      </post-breadcrumbs>
+    `;
+  },
 };
 
 export const Concatenated: Story = {
-  render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText} menu-label=${args.menuLabel}>
-      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section5">Section 5</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section6">Section 6</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section7">Section 7</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section8">Section 8</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section9">Section 9</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section10">Section 10</post-breadcrumb-item>
-    </post-breadcrumbs>
-  `,
+  render: (args: Args) => {
+    const menuLabelAttr = args.menuLabel ? ` menu-label='${args.menuLabel}'` : '';
+    return html`
+      <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}${menuLabelAttr}>
+        <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section5">Section 5</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section6">Section 6</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section7">Section 7</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section8">Section 8</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section9">Section 9</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section10">Section 10</post-breadcrumb-item>
+      </post-breadcrumbs>
+    `;
+  },
 };
 
 export const BreadcrumbItem: Story = {
