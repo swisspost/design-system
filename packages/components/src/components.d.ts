@@ -101,7 +101,6 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
         "homeText": string;
         /**
@@ -110,7 +109,6 @@ export namespace Components {
         "homeUrl": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
-          * @default 'More breadcrumb items'
          */
         "menuLabel": string;
     }
@@ -1002,7 +1000,6 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
         "homeText"?: string;
         /**
@@ -1011,9 +1008,8 @@ declare namespace LocalJSX {
         "homeUrl": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
-          * @default 'More breadcrumb items'
          */
-        "menuLabel"?: string;
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component

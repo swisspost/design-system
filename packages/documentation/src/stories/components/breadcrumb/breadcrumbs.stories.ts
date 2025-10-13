@@ -14,19 +14,24 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    homeUrl: '/',
-    homeText: 'Home',
+    homeUrl: '/'
   },
   argTypes: {
     homeUrl: {
-      name: 'Home URL',
+      name: 'home-url',
       description: 'URL for the home breadcrumb link.',
       control: { type: 'text' },
       table: { category: 'Props' },
     },
     homeText: {
-      name: 'Home Text',
+      name: 'home-text',
       description: 'Text for the home breadcrumb link.',
+      control: { type: 'text' },
+      table: { category: 'Props' },
+    },
+    menuLabel: {
+      name: 'menu-label',
+      description: 'The accessible label for the breadcrumb menu when breadcrumb items are concatenated.',
       control: { type: 'text' },
       table: { category: 'Props' },
     },
@@ -38,30 +43,44 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}>
-      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-    </post-breadcrumbs>
-  `,
+  render: (args: Args) => {
+    const attrs = [
+      args.homeUrl ? `home-url="${args.homeUrl}"` : '',
+      args.homeText ? `home-text="${args.homeText}"` : '',
+      args.menuLabel ? `menu-label="${args.menuLabel}"` : ''
+    ].filter(Boolean).join(' ');
+    return html`
+      <post-breadcrumbs ${attrs}>
+        <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+      </post-breadcrumbs>
+    `;
+  },
 };
 
 export const Concatenated: Story = {
-  render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}>
-      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section5">Section 5</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section6">Section 6</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section7">Section 7</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section8">Section 8</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section9">Section 9</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section10">Section 10</post-breadcrumb-item>
-    </post-breadcrumbs>
-  `,
+  render: (args: Args) => {
+    const attrs = [
+      args.homeUrl ? `home-url="${args.homeUrl}"` : '',
+      args.homeText ? `home-text="${args.homeText}"` : '',
+      args.menuLabel ? `menu-label="${args.menuLabel}"` : ''
+    ].filter(Boolean).join(' ');
+    return html`
+      <post-breadcrumbs ${attrs}>
+        <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section5">Section 5</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section6">Section 6</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section7">Section 7</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section8">Section 8</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section9">Section 9</post-breadcrumb-item>
+        <post-breadcrumb-item url="/section10">Section 10</post-breadcrumb-item>
+      </post-breadcrumbs>
+    `;
+  },
 };
 
 export const BreadcrumbItem: Story = {
@@ -74,18 +93,19 @@ export const BreadcrumbItem: Story = {
   },
   argTypes: {
     url: {
-      name: 'URL',
+      name: 'url',
       description: 'The URL of the breadcrumb item.',
       control: { type: 'text' },
       table: { category: 'Props' },
     },
     content: {
-      name: 'Content',
+      name: 'content',
       description: 'The visible label of the breadcrumb item.',
       control: { type: 'text' },
       table: { category: 'Props' },
     },
     homeUrl: { table: { disable: true } },
     homeText: { table: { disable: true } },
+    menuLabel: { table: { disable: true } },
   },
 };

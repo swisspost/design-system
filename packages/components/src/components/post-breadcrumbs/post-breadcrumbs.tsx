@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, checkEmptyOrType, debounce } from '@/utils';
+import { checkRequiredAndUrl, checkEmptyOrType, debounce, checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -18,12 +18,12 @@ export class PostBreadcrumbs {
   /**
    * The text label for the home breadcrumb item.
    */
-  @Prop() homeText: string = 'Home';
+  @Prop() homeText: string;
 
   /**
    * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
     */
-  @Prop() menuLabel: string = 'More breadcrumb items';
+  @Prop() menuLabel!: string;
 
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
@@ -42,6 +42,11 @@ export class PostBreadcrumbs {
     checkEmptyOrType(this, 'homeUrl', 'string');
   }
 
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'menuLabel', 'string');
+  }
+
   componentWillLoad() {
     this.updateBreadcrumbItems();
   }
@@ -49,6 +54,7 @@ export class PostBreadcrumbs {
   componentDidLoad() {
     this.validateHomeUrl();
     this.validateHomeText();
+    this.validateLabel();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
   }

@@ -1,0 +1,5 @@
+---
+'@swisspost/design-system-components': patch
+---
+
+Added required `menu-label` property to the `<post-breadcrumbs>` component for accessibility compliance. This accessible label is used for the dropdown menu when breadcrumb items are concatenated.
