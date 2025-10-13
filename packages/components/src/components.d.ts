@@ -9,10 +9,12 @@ import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
+import { Orientation } from "./components/post-slider/orientation";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
+export { Orientation } from "./components/post-slider/orientation";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -450,6 +452,37 @@ export namespace Components {
          */
         "stars": number;
     }
+    interface PostSlider {
+        /**
+          * The greatest value in the range of permitted values.
+          * @default 100
+         */
+        "max": number;
+        /**
+          * The lowest value in the range of permitted values.
+          * @default 0
+         */
+        "min": number;
+        /**
+          * The orientation of the slider: "horizontal" or "vertical".
+          * @default 'horizontal'
+         */
+        "orient": Orientation;
+        /**
+          * If true, the slider has two thumbs allowing for range selection.
+          * @default false
+         */
+        "range": boolean;
+        /**
+          * The granularity that the value must adhere to.
+          * @default 1
+         */
+        "step": number | 'any';
+        /**
+          * The number or range initially selected.
+         */
+        "value"?: number | [number, number];
+    }
     interface PostTabHeader {
         /**
           * The name of the panel controlled by the tab header.
@@ -563,6 +596,10 @@ export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
 export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostRatingElement;
+}
+export interface PostSliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostSliderElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -840,6 +877,24 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
+    interface HTMLPostSliderElementEventMap {
+        "postInput": number | [number, number];
+        "postChange": number | [number, number];
+    }
+    interface HTMLPostSliderElement extends Components.PostSlider, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostSliderElementEventMap>(type: K, listener: (this: HTMLPostSliderElement, ev: PostSliderCustomEvent<HTMLPostSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostSliderElementEventMap>(type: K, listener: (this: HTMLPostSliderElement, ev: PostSliderCustomEvent<HTMLPostSliderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostSliderElement: {
+        prototype: HTMLPostSliderElement;
+        new (): HTMLPostSliderElement;
+    };
     interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
     }
     var HTMLPostTabHeaderElement: {
@@ -917,6 +972,7 @@ declare global {
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
+        "post-slider": HTMLPostSliderElement;
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
@@ -1303,6 +1359,45 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
+    interface PostSlider {
+        /**
+          * The greatest value in the range of permitted values.
+          * @default 100
+         */
+        "max"?: number;
+        /**
+          * The lowest value in the range of permitted values.
+          * @default 0
+         */
+        "min"?: number;
+        /**
+          * Event dispatched when a thumb is released after sliding, payload is the current value.
+         */
+        "onPostChange"?: (event: PostSliderCustomEvent<number | [number, number]>) => void;
+        /**
+          * Event dispatched while a thumb is sliding, payload is the current value.
+         */
+        "onPostInput"?: (event: PostSliderCustomEvent<number | [number, number]>) => void;
+        /**
+          * The orientation of the slider: "horizontal" or "vertical".
+          * @default 'horizontal'
+         */
+        "orient"?: Orientation;
+        /**
+          * If true, the slider has two thumbs allowing for range selection.
+          * @default false
+         */
+        "range"?: boolean;
+        /**
+          * The granularity that the value must adhere to.
+          * @default 1
+         */
+        "step"?: number | 'any';
+        /**
+          * The number or range initially selected.
+         */
+        "value"?: number | [number, number];
+    }
     interface PostTabHeader {
         /**
           * The name of the panel controlled by the tab header.
@@ -1399,6 +1494,7 @@ declare namespace LocalJSX {
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
+        "post-slider": PostSlider;
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
@@ -1446,6 +1542,7 @@ declare module "@stencil/core" {
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
+            "post-slider": LocalJSX.PostSlider & JSXBase.HTMLAttributes<HTMLPostSliderElement>;
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
