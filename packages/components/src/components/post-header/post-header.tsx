@@ -36,6 +36,10 @@ export class PostHeader {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
+  private get auxNavLinks(): HTMLSlotElement {
+    return this.host.querySelector('[slot="aux-nav-links"]');
+  }
+
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
@@ -217,8 +221,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -297,7 +301,7 @@ export class PostHeader {
   }
 
   private updateAuxNavLinksWidth() {
-    const auxNavLinks = this.host.querySelector('[slot="aux-nav-links"]');
+    const auxNavLinks = this.auxNavLinks;
     if (auxNavLinks) {
       const width =
         auxNavLinks instanceof HTMLElement ? auxNavLinks.getBoundingClientRect().width : 0;
@@ -380,7 +384,7 @@ export class PostHeader {
             )}
           </div>
 
-          {this.device === 'desktop' ? (
+          {this.device === 'desktop' && this.auxNavLinks ? (
             <div class="navigation-wrapper">
               <slot
                 name="post-mainnavigation"

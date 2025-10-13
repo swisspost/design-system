@@ -69,7 +69,6 @@ post-mainnavigation {
     height: var(--post-main-navigation-height, 0);
     background: color.$white;
     user-select: none;
-    max-width: calc(100% - (20px + var(--post-header-aux-nav-links-width)));
 
     nav {
       flex: 1 1 auto;
@@ -93,18 +92,6 @@ post-mainnavigation {
 
       &.scroll-right {
         inset-inline-end: 0;
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: -30px;
-          width: 32px;
-          height: 100%;
-          pointer-events: none;
-          background: white;
-          overflow: hidden;
-        }
       }
 
       &.d-none {
