@@ -42,7 +42,7 @@ export class PostBreadcrumbs {
     checkEmptyOrType(this, 'homeUrl', 'string');
   }
 
-  @Watch('label')
+  @Watch('menuLabel')
   validateLabel() {
     checkRequiredAndType(this, 'menuLabel', 'string');
   }
