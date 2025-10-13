@@ -29,6 +29,7 @@ import noDeprecatedFontSizesRule, {
 import noDeprecatedChipFilter, {
   name as noDeprecatedChipFilterName,
 } from './no-deprecated-chip-filter';
+import noDeprecatedAlert, { name as noDeprecatedAlertName } from './no-deprecated-alert';
 
 import {
   rulePhase1 as noDeprecatedBreakpointsRulePhase1,
@@ -59,4 +60,5 @@ export const htmlMigrationRules = {
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
   [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
   [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
+  [noDeprecatedAlertName]: noDeprecatedAlert,
 };

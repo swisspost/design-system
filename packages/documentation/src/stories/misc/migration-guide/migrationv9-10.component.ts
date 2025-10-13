@@ -647,6 +647,7 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The <code>post-alert</code> web component is now <code>post-banner</code>
                   </p>
                 </li>
