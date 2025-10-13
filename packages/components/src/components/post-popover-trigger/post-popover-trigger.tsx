@@ -79,7 +79,7 @@ export class PostPopoverTrigger {
       // set aria attributes
       this.trigger.setAttribute('ariahaspopup', 'true');
 
-      this.trigger.setAttribute('ariacontrols', this.for);
+      this.trigger.setAttribute('aria-controls', this.for);
 
       // add event listeners for click and keydown
       this.trigger.addEventListener('click', () => {
