@@ -1,5 +1,31 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.49
+
+### Major Changes
+
+- Updated interactive cards to have the `.card` class directly set on the `post-linkarea` component, reducing unnecessary DOM nesting. (by [@leagrdv](https://github.com/leagrdv) with [#6367](https://github.com/swisspost/design-system/pull/6367))
+
+### Minor Changes
+
+- Added back the `.small` utility class (font-size: 80%) for backwards compatibility. (by [@hugomslv](https://github.com/hugomslv) with [#6273](https://github.com/swisspost/design-system/pull/6273))
+
+### Patch Changes
+
+- Added styles to highlight the current navigation item marked with `aria-current="page"` and its potential parent item in the header main navigation. (by [@myrta2302](https://github.com/myrta2302) with [#6216](https://github.com/swisspost/design-system/pull/6216))
+
+- Fixed icon loading by replacing CDN-based icon URLs with `CSS custom properties` and dynamic CSS file loading. Components using the `post-icon mixin` now reliably display icons without external dependencies. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6214](https://github.com/swisspost/design-system/pull/6214))
+
+- Updated the `toast` component icons. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6315](https://github.com/swisspost/design-system/pull/6315))
+
+- Fixed the padding on the dialog component, when no action buttons are present. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6215](https://github.com/swisspost/design-system/pull/6215))
+
+- Fixed the `post-header` component to consistently omit the title container when no title is defined across all configurations. (by [@alizedebray](https://github.com/alizedebray) with [#6244](https://github.com/swisspost/design-system/pull/6244))
+
+- Fixed dialog grid-area implementation. `.dialog-header` and `.dialog-body` do now also span over the icon and/or close-button area, if they are not present. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6215](https://github.com/swisspost/design-system/pull/6215))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.49
+
 ## 10.0.0-next.48
 
 ### Major Changes
