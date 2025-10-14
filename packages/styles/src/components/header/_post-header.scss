@@ -134,7 +134,7 @@ post-header {
     }
   }
 
-  [slot='user']:not(a) {
+  [slot='global-login']:not(a) {
     height: tokens.get('avatar-size', components.$post-avatar);
     display: block;
 
@@ -168,7 +168,7 @@ post-header {
     }
   }
 
-  button:not(post-mainnavigation *, post-language-switch *, [slot='user'] *, #user-menu *) {
+  button:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
     @include button-mx.reset-button;
 
     &:hover {
@@ -178,7 +178,7 @@ post-header {
 
   // Hide link/button text on mobile in order to only have icon visible
   post-togglebutton,
-  a[slot='user'],
+  a[slot='global-login'],
   > .list-inline:where(:not([slot])) a {
     > span {
       @include media.max(sm) {
@@ -187,7 +187,7 @@ post-header {
     }
   }
 
-  a[slot='user'] {
+  a[slot='global-login'] {
     @include media.max(sm) {
       padding: 10px !important;
     }
@@ -196,7 +196,7 @@ post-header {
   a,
   button,
   post-togglebutton {
-    &:not(post-mainnavigation *, post-language-switch *, [slot='user'] *, #user-menu *) {
+    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
       @include subsidiary-header-interactive;
 
       post-icon {
@@ -212,7 +212,7 @@ post-header {
 
   button,
   a {
-    &:not(post-mainnavigation *, post-language-switch *, [slot='user'] *, #user-menu *) {
+    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
       display: flex;
 
       @include media.max(sm) {
