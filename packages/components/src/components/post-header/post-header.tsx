@@ -370,7 +370,6 @@ export class PostHeader {
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
               <slot name="post-language-switch"></slot>
-              <slot name="global-login"></slot>
             </div>
           )}
         </div>
