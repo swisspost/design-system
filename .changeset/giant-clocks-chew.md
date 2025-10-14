@@ -3,7 +3,7 @@
 '@swisspost/design-system-icons': major
 ---
 
-The `post-icon` mixin has been removed and replaced with more flexible `mask-image` mixin. Icons must now be loaded separately using the `custom-property` mixin at the top of the file.
+The `icon` and `post-icon` mixins have been removed and replaced with more flexible `mask-image` mixin. Icons must now be loaded separately using the `custom-property` mixin at the top of the file.
 
 BEFORE:
 ```scss
@@ -32,7 +32,7 @@ AFTER:
   
   @include post.mask-image('accessibility');
 
-  // optional
+  // optional, must be placed after the mixin
   color: #fc0;
 }
 ```
