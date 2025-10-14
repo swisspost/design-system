@@ -22,7 +22,7 @@ const meta: MetaComponent = {
     metaNavigation: true,
     globalControls: true,
     targetGroup: true,
-    globalLogin: true,
+    globalLogin: false,
     customControls: false,
   },
   argTypes: {
