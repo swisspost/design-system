@@ -434,7 +434,10 @@ export function Lists() {
   );
 }
 
-// TODO: add examples for Legend
+// TODO: add example for Legend
+// 1) Legend for small and large in Canvas (How to Canvas look for 'Text' Component as idea)
+// 2) Code snippets for small and large like in Docs, that means two <fieldset> with <legend>
+// 3) Table to test the small and large toggle
 export function Legends() {
   return (
     <div className="sb-legends table-responsive">
@@ -472,6 +475,9 @@ export function Legends() {
   );
 }
 // TODO: add examples for Headings with Subheadings
+// 1) Canvas with examples
+// 2) Code snippets like in Docs
+// 3) Table to test the h1-h6 with subheadings
 export function HeadingsWithSubheadings() {
   return (
     <div className="sb-headings-with-subheadings table-responsive">
