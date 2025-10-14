@@ -105,32 +105,31 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
     return html`<post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
+      <!-- Meta navigation -->
+      <ul class="list-inline" slot="meta-navigation">
+        ${args.metaNavigation && !args.auxNavLinks
+          ? html`<li>
+              <a href="">
+                Search
+                <post-icon name="search" aria-hidden="true"></post-icon>
+              </a>
+            </li>`
+          : nothing}
 
-      ${args.metaNavigation && !args.auxNavLinks
-        ? html`
-            <!-- Meta navigation -->
-            <ul class="list-inline" slot="meta-navigation">
-              <li>
-                <a href="">
-                  Search
-                  <post-icon name="search" aria-hidden="true"></post-icon>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  Jobs
-                  <post-icon name="jobs" aria-hidden="true"></post-icon>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  Create Account
-                  <post-icon name="adduser" aria-hidden="true"></post-icon>
-                </a>
-              </li>
-            </ul>
-          `
-        : nothing}
+        <li>
+          <a href="">
+            Jobs
+            <post-icon name="jobs" aria-hidden="true"></post-icon>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            Create Account
+            <post-icon name="adduser" aria-hidden="true"></post-icon>
+          </a>
+        </li>
+      </ul>
+
       ${args.metaNavigation && args.auxNavLinks
         ? html`
             <!-- Meta navigation -->
