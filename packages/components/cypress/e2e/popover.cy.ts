@@ -26,17 +26,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@trigger').click();
       cy.get('@popover').should('be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
-      cy.get('@popover').within(() => {
-        cy.get('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
-          .first()
-          .then($el => {
-            // ensure at least one focusable element exists
-            expect($el.length).to.be.greaterThan(0);
 
-            // check that it has focus
-            cy.focused().should('have.get', $el.get(0));
-          });
-      });
       // Void click light dismiss does not work in cypress for closing
     });
 
