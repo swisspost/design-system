@@ -167,16 +167,12 @@
       align-items: center;
       flex-wrap: nowrap;
 
-      .aux-nav-links {
+      .sub-nav-links {
         display: flex;
         align-items: center;
         z-index: 5;
         height: 56px;
         background: white;
-      }
-
-      ::slotted(post-mainnavigation) {
-        max-width: calc(100% - var(--post-header-aux-nav-links-width));
       }
     }
   }
@@ -271,7 +267,7 @@
   ::slotted(post-mainnavigation),
   .navigation-footer,
   .navigation-target-group,
-  .mobile-aux-nav-links {
+  .mobile-sub-nav-links {
     display: none;
     flex-direction: column;
 

@@ -31,14 +31,13 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
-  private auxNavLinksResizeObserver: ResizeObserver;
 
   private get hasMobileMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
-  private get auxNavLinks(): HTMLElement | null {
-    return this.host.querySelector('[slot="aux-nav-links"]');
+  private get subNavLinks(): HTMLElement | null {
+    return this.host.querySelector('[slot="sub-nav-links"]');
   }
 
   get scrollParent(): HTMLElement {
@@ -93,7 +92,6 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
-    this.updateAuxNavLinksWidth = this.updateAuxNavLinksWidth.bind(this);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
@@ -143,7 +141,6 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
-    this.handleAuxNavLinksResize();
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -165,11 +162,6 @@ export class PostHeader {
     if (this.localHeaderResizeObserver) {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
-    }
-
-    if (this.auxNavLinksResizeObserver) {
-      this.auxNavLinksResizeObserver.disconnect();
-      this.auxNavLinksResizeObserver = null;
     }
 
     this.mobileMenuExtended = false;
@@ -306,15 +298,6 @@ export class PostHeader {
     );
   }
 
-  private updateAuxNavLinksWidth() {
-    const auxNavLinks = this.auxNavLinks;
-    if (auxNavLinks) {
-      const width =
-        auxNavLinks instanceof HTMLElement ? auxNavLinks.getBoundingClientRect().width : 0;
-      this.host.style.setProperty('--post-header-aux-nav-links-width', `${width}px`);
-    }
-  }
-
   private handleLinkClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
 
@@ -353,14 +336,6 @@ export class PostHeader {
     }
   }
 
-  private handleAuxNavLinksResize() {
-    const el = this.auxNavLinks;
-    if (this.auxNavLinks && !this.auxNavLinksResizeObserver) {
-      this.auxNavLinksResizeObserver = new ResizeObserver(this.updateAuxNavLinksWidth);
-      this.auxNavLinksResizeObserver.observe(el);
-    }
-  }
-
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.hasMobileMenu ? 'list' : 'menu';
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
@@ -387,9 +362,9 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          {(this.device === 'mobile' || this.device === 'tablet') && this.auxNavLinks && (
-            <div class="mobile-aux-nav-links">
-              <slot name="aux-nav-links"></slot>
+          {(this.device === 'mobile' || this.device === 'tablet') && this.subNavLinks && (
+            <div class="mobile-sub-nav-links">
+              <slot name="sub-nav-links"></slot>
             </div>
           )}
           <div class="navigation-target-group">
@@ -398,15 +373,13 @@ export class PostHeader {
             )}
           </div>
 
-          {this.device === 'desktop' && this.auxNavLinks ? (
+          {this.device === 'desktop' && this.subNavLinks ? (
             <div class="navigation-wrapper">
               <slot
                 name="post-mainnavigation"
                 onSlotchange={() => this.checkNavigationExistence()}
               ></slot>
-              <div class="aux-nav-links">
-                <slot name="aux-nav-links"></slot>
-              </div>
+              <slot name="sub-nav-links"></slot>
             </div>
           ) : (
             <slot

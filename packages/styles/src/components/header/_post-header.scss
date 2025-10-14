@@ -91,7 +91,7 @@ post-header {
     width: 100vw;
   }
 
-  ul[slot='aux-nav-links'] {
+  ul[slot='sub-nav-links'] {
     @include media.max(lg) {
       height: 56px;
       padding: 0 16px;

@@ -11,6 +11,8 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
+  overflow: hidden;
+
   // reset links and buttons
   post-list-item {
     > a {
