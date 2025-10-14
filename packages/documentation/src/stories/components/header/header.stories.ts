@@ -389,7 +389,9 @@ export const OnePager: Story = {
     title: '[One Pager Title]',
     mainNavigation: false,
     metaNavigation: false,
+    globalControls: false,
     customControls: false,
+    globalLogin: false,
     targetGroup: false,
   },
 };
