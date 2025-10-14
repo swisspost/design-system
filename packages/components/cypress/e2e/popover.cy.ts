@@ -20,15 +20,16 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         .as('trigger2');
     });
 
-    it('should contain an HTML element inside the trigger and if not focusable it should have tabindes="0" and role="button"', () => {
-      cy.get('@trigger2')
-        .should('have.length.at.least', 1)
-        .then($child => {
-          const child = $child[0];
+    it('should contain an HTML element inside the trigger', () => {
+      cy.get('@trigger2').should('have.length.at.least', 1);
+    });
 
-          cy.wrap(child).should('have.attr', 'tabindex', '0');
-          cy.wrap(child).should('have.attr', 'role', 'button');
-        });
+    it('if the element inside the trigger is not interactive, it should at least have a set tabindex="0" and role="button"', () => {
+      cy.get('@trigger2').then($child => {
+        const child = $child[0];
+        cy.wrap(child).should('have.attr', 'tabindex', '0');
+        cy.wrap(child).should('have.attr', 'role', 'button');
+      });
     });
 
     it('should show up on click', () => {
