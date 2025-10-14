@@ -167,34 +167,6 @@ export const Validation: Story = {
         </div>
       </div>
 
-      <!-- Form Select Multiple-->
-      <div class="row mb-16">
-        <div class="col-md-6">
-          <div class="form-floating">
-            <select
-              id="FormSelectMultipleInvalid"
-              class="form-select is-invalid"
-              multiple
-              required
-            ></select>
-            <label class="form-label" for="FormSelectMultipleInvalid">
-              Invalid Select Multiple
-            </label>
-            <p class="invalid-feedback">Error message</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-floating">
-            <select id="FormSelectMultipleValid" class="form-select is-valid" multiple>
-              <option value="1">Value 1</option>
-              <option value="2">Value 2</option>
-            </select>
-            <label class="form-label" for="FormSelectMultipleValid">Valid Select Multiple</label>
-            <p class="valid-feedback">Success message (optional)</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Form File -->
       <div class="row mb-16">
         <div class="col-md-6">
