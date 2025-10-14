@@ -84,6 +84,7 @@ export class PostTooltipTrigger {
 
   private handleSlotChange() {
     this.cleanupTrigger();
+
     this.setupTrigger();
   }
 
