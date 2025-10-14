@@ -7,17 +7,9 @@ import { providePostComponents } from '@swisspost/design-system-components-angul
 
 import { AppComponent } from './app.component';
 import { CardControlComponent } from './routes/card-control/card-control.component';
-import { PopoverComponent } from './routes/popover/popover.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    CardControlComponent,
-    PopoverComponent,
-  ],
+  imports: [CommonModule, BrowserModule, AppRoutingModule, FormsModule, CardControlComponent],
   declarations: [AppComponent],
   providers: [providePostComponents()],
   bootstrap: [AppComponent],

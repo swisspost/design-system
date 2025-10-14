@@ -20,12 +20,23 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         .should('have.length.at.least', 1);
     });
 
-    it('should show up on click', () => {
+    it('should show up on click and first focusable element should be focused', () => {
       cy.get('@popover').should('not.be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
       cy.get('@trigger').click();
       cy.get('@popover').should('be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@popover').within(() => {
+        cy.get('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+          .first()
+          .then($el => {
+            // ensure at least one focusable element exists
+            expect($el.length).to.be.greaterThan(0);
+
+            // check that it has focus
+            cy.focused().should('have.get', $el.get(0));
+          });
+      });
       // Void click light dismiss does not work in cypress for closing
     });
 
@@ -51,12 +62,12 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@trigger').then($trigger => {
         const originalText = $trigger.text();
         $trigger.html(`
-          <div class="level-1">
-            <div class="level-2">
-              <span class="level-3">${originalText}</span>
+            <div class="level-1">
+              <div class="level-2">
+                <span class="level-3">${originalText}</span>
+              </div>
             </div>
-          </div>
-        `);
+          `);
       });
 
       cy.get('@popover').should('not.be.visible');

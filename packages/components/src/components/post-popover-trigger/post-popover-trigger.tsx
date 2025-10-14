@@ -43,7 +43,7 @@ export class PostPopoverTrigger {
 
   private handleToggle() {
     if (this.popover) {
-      this.popover.toggle(this.host);
+      this.popover.toggle(this.trigger);
       if (this.ariaExpanded === false) {
         this.trigger.focus();
       }
@@ -67,6 +67,7 @@ export class PostPopoverTrigger {
   // setup the trigger to get the correct aria attributes
   private setupTrigger() {
     this.trigger = this.host.querySelector('*');
+
     if (this.trigger) {
       this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
 
@@ -78,8 +79,7 @@ export class PostPopoverTrigger {
 
       // set aria attributes
       this.trigger.setAttribute('ariahaspopup', 'true');
-
-      this.trigger.setAttribute('ariacontrols', this.for);
+      this.trigger.setAttribute('aria-controls', this.for);
 
       // add event listeners for click and keydown
       this.trigger.addEventListener('click', () => {
@@ -105,15 +105,12 @@ export class PostPopoverTrigger {
   }
 
   componentDidLoad() {
-    this.setupTrigger();
     this.validateFor();
   }
 
   disconnectedCallback() {
     // remove event listeners
-    this.trigger.removeEventListener('click', () => {
-      this.handleToggle();
-    });
+    this.trigger.removeEventListener('click', this.handleToggle);
     this.trigger.removeEventListener('keydown', this.handleKeyDown);
   }
 
