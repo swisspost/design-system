@@ -110,6 +110,10 @@ export namespace Components {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -334,7 +338,7 @@ export namespace Components {
         /**
           * An accessible name for the menu.
          */
-        "label"?: string;
+        "label": string;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
@@ -1011,6 +1015,10 @@ declare namespace LocalJSX {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1215,7 +1223,7 @@ declare namespace LocalJSX {
         /**
           * An accessible name for the menu.
          */
-        "label"?: string;
+        "label": string;
         /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
