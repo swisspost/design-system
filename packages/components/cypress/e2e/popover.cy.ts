@@ -12,15 +12,26 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         .first()
         .as('trigger');
       cy.get('#testtext').as('popover');
-    });
 
-    it('should contain an HTML element inside the trigger, not just plain text', () => {
-      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+      // Alternative popover trigger with no interactive element.
+      cy.get('post-popover-trigger[data-hydrated][for="popover-two"]')
         .children()
-        .should('have.length.at.least', 1);
+        .first()
+        .as('trigger2');
     });
 
-    it('should show up on click and first focusable element should be focused', () => {
+    it('should contain an HTML element inside the trigger and if not focusable it should have tabindes="0" and role="button"', () => {
+      cy.get('@trigger2')
+        .should('have.length.at.least', 1)
+        .then($child => {
+          const child = $child[0];
+
+          cy.wrap(child).should('have.attr', 'tabindex', '0');
+          cy.wrap(child).should('have.attr', 'role', 'button');
+        });
+    });
+
+    it('should show up on click', () => {
       cy.get('@popover').should('not.be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
       cy.get('@trigger').click();
@@ -42,7 +53,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('.nested-element').click();
       cy.get('@popover').should('be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
-      cy.get('.btn-close').click();
+      cy.get('.btn-close').first().click();
       cy.get('@popover').should('not.be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
     });
@@ -69,14 +80,20 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     it('should close on X click', () => {
       cy.get('@trigger').click();
       cy.get('@popover').should('be.visible');
-      cy.get('.btn-close').click();
+      cy.get('.btn-close').first().click();
       cy.get('@popover').should('not.be.visible');
     });
 
-    it('should open on enter', () => {
+    it('should open on enter and first focusable element should be focused', () => {
       cy.get('@popover').should('not.be.visible');
       cy.get('@trigger').focus().type('{enter}');
       cy.get('@popover').should('be.visible');
+
+      // find the first focusable element (e.g., button, input, link, etc.)
+      cy.get('@popover')
+        .find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+        .first()
+        .should('have.focus');
     });
 
     it('should open and close with the API', () => {

@@ -104,12 +104,10 @@ describe('Popover', () => {
       cy.get('@popoverContent').should('not.be.visible');
 
       Promise.all([cy.get('@trigger'), cy.get('@popover')])
-        .then(
-          ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
-            $trigger.get(0),
-            $popover.get(0),
-          ],
-        )
+        .then(([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<PostPopover>]) => [
+          $trigger.get(0),
+          $popover.get(0),
+        ])
         .then(([trigger, popover]) => {
           const t = trigger.getBoundingClientRect();
           const p = popover.getBoundingClientRect();

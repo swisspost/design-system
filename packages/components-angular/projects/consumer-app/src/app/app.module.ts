@@ -9,7 +9,13 @@ import { AppComponent } from './app.component';
 import { CardControlComponent } from './routes/card-control/card-control.component';
 
 @NgModule({
-  imports: [CommonModule, BrowserModule, AppRoutingModule, FormsModule, CardControlComponent],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    CardControlComponent,
+  ],
   declarations: [AppComponent],
   providers: [providePostComponents()],
   bootstrap: [AppComponent],

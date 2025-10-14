@@ -66,13 +66,15 @@ export class PostPopoverTrigger {
       }
 
       // set aria attributes
-      this.trigger.setAttribute('ariahaspopup', 'true');
+      this.trigger.setAttribute('aria-haspopup', 'true');
       this.trigger.setAttribute('aria-controls', this.for);
 
       // add event listeners
       this.trigger.addEventListener('click', this.boundHandleToggle);
       this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
-      this.popover.addEventListener('postToggle', this.boundHandlePopoverPostToggle);
+      if (this.popover) {
+        this.popover.addEventListener('postToggle', this.boundHandlePopoverPostToggle);
+      }
     } else {
       console.warn(
         'No content found in the post-popover-trigger slot. Please insert a focusable element or content that can receive focus.',
