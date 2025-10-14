@@ -32,7 +32,7 @@ AFTER:
   
   @include post.mask-image('accessibility');
 
-  // optional
+  // optional, must be placed after the mixin
   color: #fc0;
 }
 ```
