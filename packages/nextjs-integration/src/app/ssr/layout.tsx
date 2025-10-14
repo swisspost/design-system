@@ -184,7 +184,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
       <main style={{ paddingBlock: '3rem' }}>
         <div className="container">
-          <PostBreadcrumbs home-url="/" home-text="Home">
+          <PostBreadcrumbs home-url="/" home-text="Home" menu-label='More breadcrumbs items'>
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>
