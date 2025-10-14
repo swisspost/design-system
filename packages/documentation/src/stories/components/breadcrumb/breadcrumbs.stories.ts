@@ -15,7 +15,8 @@ const meta: MetaComponent = {
   },
   args: {
     homeUrl: '/',
-    homeText: 'Home'
+    homeText: 'Home',
+    menuLabel: 'More breadcrumb items'
   },
   argTypes: {
     homeUrl: {
@@ -44,23 +45,19 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => {
-    const menuLabelAttr = args.menuLabel ? ` menu-label='${args.menuLabel}'` : '';
-    return html`
-      <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}${menuLabelAttr}>
-        <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-        <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
-        <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-      </post-breadcrumbs>
-    `;
-  },
+  render: (args: Args) => html`
+    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText} menu-label=${args.menuLabel}>
+      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+    </post-breadcrumbs>
+  `,
 };
 
 export const Concatenated: Story = {
   render: (args: Args) => {
-    const menuLabelAttr = args.menuLabel ? ` menu-label='${args.menuLabel}'` : '';
     return html`
-      <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}${menuLabelAttr}>
+      <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText} menuLabel=${args.menuLabel}>
         <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
         <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
         <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
@@ -99,5 +96,6 @@ export const BreadcrumbItem: Story = {
     },
     homeUrl: { table: { disable: true } },
     homeText: { table: { disable: true } },
+    menuLabel: { table: { disable: true } }
   },
 };
