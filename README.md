@@ -32,5 +32,5 @@ In order to keep our community open and inclusive, we expect you to read and fol
 ## License
 
 Software contained in this repository is published by the Swiss Post Ltd. under the [Apache 2.0 License](./LICENSE).
-
+ 
 © 2024 Swiss Post, Ltd.
