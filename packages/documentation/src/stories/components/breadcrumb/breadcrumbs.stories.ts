@@ -16,7 +16,7 @@ const meta: MetaComponent = {
   args: {
     homeUrl: '/',
     homeText: 'Home',
-    menuLabel: 'More breadcrumbs items'
+    menuLabel: 'More breadcrumb items'
   },
   argTypes: {
     homeUrl: {
