@@ -23,7 +23,6 @@ const meta: MetaComponent = {
     targetGroup: true,
     customControls: false,
     isLoggedIn: false,
-    userMenuLocation: 'globalHeader',
   },
   argTypes: {
     title: {
@@ -85,19 +84,6 @@ const meta: MetaComponent = {
       },
       table: { category: 'state' },
     },
-    userMenuLocation: {
-      name: 'User menu location',
-      description: 'Where the login/user menu should be placed.',
-      control: {
-        type: 'radio',
-        labels: {
-          globalHeader: 'Global header',
-          localHeader: 'Local header',
-        },
-      },
-      options: ['globalHeader', 'localHeader'],
-      table: { disable: true },
-    },
   },
   decorators: [
     story =>
@@ -112,7 +98,9 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
   return (args: Args) => {
     const loginInGlobalHeader = args.isLoggedIn
       ? userMenu
-      : html` <a href="" slot="user"><span>Login</span> <post-icon name="login"></post-icon></a> `;
+      : html`
+          <a href="" slot="global-login"><span>Login</span> <post-icon name="login"></post-icon></a>
+        `;
 
     const loginInLocalHeader = args.isLoggedIn
       ? userMenu
@@ -131,7 +119,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
             <post-icon aria-hidden="true" name="search"></post-icon>
           </a>
         </li>
-        <li>${args.userMenuLocation === 'localHeader' ? loginInLocalHeader : nothing}</li>
+        <li>${args.title && args.customControls ? loginInLocalHeader : nothing}</li>
       </ul>`;
 
     return html`<post-header>
@@ -163,7 +151,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
             </ul>
           `
         : ''}
-      ${args.userMenuLocation === 'globalHeader' ? loginInGlobalHeader : nothing}
+      ${!args.title ? loginInGlobalHeader : nothing}
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
@@ -357,7 +345,7 @@ export const ActiveNavigationItem: Story = {
 
 function getUserMenu() {
   return html`
-    <div slot="user">
+    <div slot="global-login">
       <post-menu-trigger for="user-menu">
         <button class="btn btn-link" type="button">
           <post-avatar
@@ -440,9 +428,6 @@ export const LoggedIn: Story = {
   ...getIframeParameters(400),
   args: {
     isLoggedIn: true,
-    customControls: true,
-    mainNavigation: true,
-    metaNavigation: false,
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
@@ -458,6 +443,5 @@ export const LoggedOut: Story = {
   ...getIframeParameters(200),
   args: {
     isLoggedIn: false,
-    loginInGlobalHeader: true,
   },
 };

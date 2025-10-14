@@ -399,7 +399,7 @@ export class PostHeader {
             )}
             <slot name="global-controls"></slot>
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
-            <slot name="user"></slot>
+            <slot name="global-login"></slot>
             {this.hasNavigation && (
               <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
                 <slot name="post-togglebutton"></slot>
