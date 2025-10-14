@@ -374,6 +374,7 @@ export const Microsite: Story = {
   ...getIframeParameters(550),
   args: {
     title: '[Microsite Title]',
+    mainNavigation: true,
     globalControls: false,
     metaNavigation: false,
     globalLogin: false,
