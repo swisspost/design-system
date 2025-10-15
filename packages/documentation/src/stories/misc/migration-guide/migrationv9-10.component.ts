@@ -192,9 +192,9 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     The gap classes naming (<code>gap-*</code>, <code>row-gap-*</code>,
                     <code>column-gap-*</code>) has changed to pixel-based names
-                    <span class="tag tag-sm tag-danger">breaking</span> <span class="tag tag-sm tag-info">🪄 migration rule</span>
                   </p>
                   <ul>
                     <li><code>*-1</code> is now <code>*-4</code></li>
@@ -210,7 +210,6 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
-                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
                     Changed the percentage sizing utility classes (<code>w-*</code>,
                     <code>h-*</code>, <code>mh-*</code>, <code>mw-*</code>) naming
                   </p>
@@ -279,7 +278,6 @@ export class MigrationV99Component extends LitElement {
                     We recommend using the <code>.elevation-*</code> classes instead.
                   </p>
                 </li>
-
                 <li class="mb-16">
                   <p>
                     <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
@@ -369,6 +367,18 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
+                    Removed some position helper classes that can be replaced with a combination of other utilities
+                  </p>
+                  <ul>
+                    <li><code>fixed-top</code> is now <code>position-fixed top-0 start-0 end-0 z-fixed</code></li>
+                    <li><code>fixed-bottom</code> is now <code>position-fixed bottom-0 start-0 end-0 z-fixed</code></li>
+                    <li><code>sticky-top</code> is now <code>position-sticky top-0 z-header</code></li>
+                    <li><code>sticky-bottom</code> is now <code>position-sticky bottom-0 z-header</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Removed all text color utility classes (<code>.text-*</code>)
                   </p>
                   <ul>
@@ -415,6 +425,20 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
+                    Removed deprecated font curve classes
+                  </p>
+                  <ul>
+                    <li><code>.font-curve-tiny</code> is now <code>.fs-9</code></li>
+                    <li><code>.font-curve-small</code> is now <code>.fs-7</code></li>
+                    <li><code>.font-curve-regular</code> is now <code>.fs-6</code></li>
+                    <li><code>.font-curve-bigger-regular</code> is now <code>.fs-5</code></li>
+                    <li><code>.font-curve-medium</code> is now <code>.fs-4</code></li>
+                    <li><code>.font-curve-large</code> is now <code>.fs-3</code></li>
+                    <li><code>.font-curve-big</code> is now <code>.fs-1</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Removed deprecated font curve variables and classes
                   </p>
                   <ul>

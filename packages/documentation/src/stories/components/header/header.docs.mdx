@@ -79,3 +79,16 @@ The Microsite Header is a consistently available interface element that provides
 The One Pager Header is a consistently available interface element that provides a consistent navigation experience across the whole One Pager.
 
 <Canvas of={HeaderStories.OnePager} inline="false" />
+
+## User menu
+
+The user menu is part of the global header, it is a menu containing information and links linked to the currently logged-in user.
+When no user is logged in, a login button is displayed instead.
+
+### Logged out
+
+<Canvas sourceState="hidden" of={HeaderStories.LoggedOut} />
+
+### Logged in
+
+<Canvas sourceState="shown" of={HeaderStories.LoggedIn} />

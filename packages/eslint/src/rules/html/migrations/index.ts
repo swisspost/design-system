@@ -23,6 +23,9 @@ import noDeprecatedHClearfix, {
 import noDeprecatedHVisuallyhiddenRule, {
   name as noDeprecatedHVisuallyhiddenRuleName,
 } from './no-deprecated-h-visuallyhidden';
+import noDeprecatedFontCurvesRule, {
+  name as noDeprecatedFontCurvesRuleName,
+} from './no-deprecated-font-curves';
 import noDeprecatedFontSizesRule, {
   name as noDeprecatedFontSizesRuleName,
 } from './no-deprecated-font-sizes';
@@ -30,6 +33,9 @@ import noDeprecatedChipFilter, {
   name as noDeprecatedChipFilterName,
 } from './no-deprecated-chip-filter';
 import noDeprecatedAlert, { name as noDeprecatedAlertName } from './no-deprecated-alert';
+import noDeprecatedPositionHelpersRule, {
+  name as noDeprecatedPositionHelpersRuleName,
+} from './no-deprecated-position-helpers';
 
 import {
   rulePhase1 as noDeprecatedBreakpointsRulePhase1,
@@ -55,9 +61,11 @@ export const htmlMigrationRules = {
   [noFormTextRuleName]: noFormTextRule,
   [noDeprecatedFontWeightRuleName]: noDeprecatedFontWeightRule,
   [noDeprecatedShadowUtilitiesRuleName]: noDeprecatedShadowUtilitiesRule,
-  [noDeprecatedElevationUtilitiesRuleName]: noDeprecatedElevationUtilitiesRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
+  [noDeprecatedFontCurvesRuleName]: noDeprecatedFontCurvesRule,
+  [noDeprecatedPositionHelpersRuleName]: noDeprecatedPositionHelpersRule,
+  [noDeprecatedElevationUtilitiesRuleName]: noDeprecatedElevationUtilitiesRule,
   [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
   [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
   [noDeprecatedAlertName]: noDeprecatedAlert,
