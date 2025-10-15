@@ -148,16 +148,23 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
+      <!-- Global controls (Search) -->
+      ${args.globalControls
+      ? html`
+          <ul class="list-inline" slot="global-controls">
+            <li>
+              <a href="#">
+                <span>Search</span>
+                <post-icon aria-hidden="true" name="search"></post-icon>
+              </a>
+            </li>
+          </ul>
+        `
+      : ''}
       ${args.metaNavigation
         ? html`
             <!-- Meta navigation -->
             <ul class="list-inline" slot="meta-navigation">
-              <li>
-                <a href="">
-                  Search
-                  <post-icon name="search" aria-hidden="true"></post-icon>
-                </a>
-              </li>
               <li>
                 <a href="">
                   Jobs
