@@ -188,7 +188,7 @@ const Template = {
         data-animation="${args.animation}"
         open="${args.open || nothing}"
         aria-labelledby="dialog-title"
-        aria-describedby="dialog-desc"
+        aria-describedby="dialog-description"
       >
         <form method="dialog" class="dialog-grid">
           ${postDialogIcon}
