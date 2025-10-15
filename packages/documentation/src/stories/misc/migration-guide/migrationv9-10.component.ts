@@ -359,7 +359,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.grid.gap}"
                       />
                       <label class="form-check-label" for="grid.gap">
-                        <span class="tag tag-sm tag-info">🪄 migration rule</span>
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         The gap classes naming (<code>gap-*</code>, <code>row-gap-*</code>,
                         <code>column-gap-*</code>) has changed to pixel-based names
                         <ul>
