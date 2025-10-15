@@ -24,14 +24,17 @@ Alerts are intended to attract the user's attention without interrupting their o
 <PostAlert type="info">
   <p slot="heading">There are various methods to integrate this component into your project.</p>
   <p>
-    We advise opting for the "Standard HTML" approach for alerts that remain static on the page and
-    using the "Web Component" method for dismissible alerts.
+    We advise using the "Web Component" method for all alert use cases.
+    The "Standard HTML" approach is deprecated and will be removed in the next major version.
   </p>
 </PostAlert>
 
 <PostTabs>
     <PostTabHeader panel="standardHTML">Standard HTML</PostTabHeader>
     <PostTabPanel name="standardHTML">
+      <PostAlert type="warning">
+        The "Standard HTML" alert is deprecated and will be removed in a future version.
+      </PostAlert>
       <Canvas sourceState="shown" of={AlertStories.Default} />
 
       <div className="hide-col-default">
