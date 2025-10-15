@@ -227,6 +227,12 @@ describe('tabs', () => {
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('tabs');
+    
+    cy.get('post-tabs').should('be.visible');
+    cy.get('post-tab-item').should('exist');
+    
+    cy.wait(100);
+    
     cy.checkA11y('#root-inner');
   });
 
