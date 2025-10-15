@@ -93,6 +93,7 @@ post-header {
 
     @include media.min(lg) {
       align-items: center;
+      flex-direction: row-reverse;
     }
 
     &:where(post-header:has(post-mainnavigation) > *) {
