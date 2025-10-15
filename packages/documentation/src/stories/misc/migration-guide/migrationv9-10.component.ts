@@ -425,6 +425,20 @@ export class MigrationV99Component extends LitElement {
                 <li class="mb-16">
                   <p>
                     <span data-info="automigration" class="tag tag-sm tag-info">🪄 migration rule</span>
+                    Removed deprecated font curve classes
+                  </p>
+                  <ul>
+                    <li><code>.font-curve-tiny</code> is now <code>.fs-9</code></li>
+                    <li><code>.font-curve-small</code> is now <code>.fs-7</code></li>
+                    <li><code>.font-curve-regular</code> is now <code>.fs-6</code></li>
+                    <li><code>.font-curve-bigger-regular</code> is now <code>.fs-5</code></li>
+                    <li><code>.font-curve-medium</code> is now <code>.fs-4</code></li>
+                    <li><code>.font-curve-large</code> is now <code>.fs-3</code></li>
+                    <li><code>.font-curve-big</code> is now <code>.fs-1</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Removed deprecated font curve variables and classes
                   </p>
                   <ul>

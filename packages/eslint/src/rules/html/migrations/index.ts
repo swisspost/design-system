@@ -23,6 +23,9 @@ import noDeprecatedHClearfix, {
 import noDeprecatedHVisuallyhiddenRule, {
   name as noDeprecatedHVisuallyhiddenRuleName,
 } from './no-deprecated-h-visuallyhidden';
+import noDeprecatedFontCurvesRule, {
+  name as noDeprecatedFontCurvesRuleName,
+} from './no-deprecated-font-curves';
 import noDeprecatedFontSizesRule, {
   name as noDeprecatedFontSizesRuleName,
 } from './no-deprecated-font-sizes';
@@ -59,6 +62,7 @@ export const htmlMigrationRules = {
   [noDeprecatedShadowUtilitiesRuleName]: noDeprecatedShadowUtilitiesRule,
   [noDeprecatedHClearfixName]: noDeprecatedHClearfix,
   [noDeprecatedHVisuallyhiddenRuleName]: noDeprecatedHVisuallyhiddenRule,
+  [noDeprecatedFontCurvesRuleName]: noDeprecatedFontCurvesRule,
   [noDeprecatedPositionHelpersRuleName]: noDeprecatedPositionHelpersRule,
   [noDeprecatedElevationUtilitiesRuleName]: noDeprecatedElevationUtilitiesRule,
   [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
