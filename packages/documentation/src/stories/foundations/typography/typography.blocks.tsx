@@ -440,171 +440,222 @@ export function Lists() {
 // 3) Table to test the small and large toggle
 export function Legends() {
   return (
-    <div className="sb-legends table-responsive">
-      <table className="table">
-        <thead>
-          <tr>
-            <th className="w-quarter">Tag</th>
-            <th>Visual</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <code>&lt;legend&gt;&lt;/legend&gt;</code>
-            </td>
-            <td>
-              <fieldset>
-                <legend className="small">Default legend</legend>
-              </fieldset>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code>&lt;legend class="large"&gt;&lt;/legend&gt;</code>
-            </td>
-            <td>
-              <fieldset>
-                <legend className="large">Default legend</legend>
-              </fieldset>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div>
+      <fieldset>
+        <legend>Default legend</legend>
+      </fieldset>
+
+      <fieldset>
+        <legend className="large">Default legend</legend>
+      </fieldset>
     </div>
   );
 }
+
+// export function Legends() {
+//   return (
+//     <div className="sb-legends table-responsive">
+//       <table className="table">
+//         <thead>
+//           <tr>
+//             <th className="w-quarter">Tag</th>
+//             <th>Visual</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr>
+//             <td>
+//               <code>&lt;legend&gt;&lt;/legend&gt;</code>
+//             </td>
+//             <td>
+//               <fieldset>
+//                 <legend className="small">Default legend</legend>
+//               </fieldset>
+//             </td>
+//           </tr>
+//           <tr>
+//             <td>
+//               <code>&lt;legend class="large"&gt;&lt;/legend&gt;</code>
+//             </td>
+//             <td>
+//               <fieldset>
+//                 <legend className="large">Default legend</legend>
+//               </fieldset>
+//             </td>
+//           </tr>
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+
 // TODO: add examples for Headings with Subheadings
 // 1) Canvas with examples
 // 2) Code snippets like in Docs
 // 3) Table to test the h1-h6 with subheadings
 export function HeadingsWithSubheadings() {
   return (
-    <div className="sb-headings-with-subheadings table-responsive">
-      <table className="table">
-        <thead>
-          <tr>
-            <th className="w-quarter">Tag</th>
-            <th>Visual</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <code>
-                &lt;h1&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
-                <br />
-                &lt;/h1&gt;
-              </code>
-            </td>
-            <td className="font-sans-serif">
-              <h1>
-                h1 Heading <br />
-                <span className="fw-normal d-block">h1 Subheading</span>
-              </h1>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code>
-                &lt;h2&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
-                <br />
-                &lt;/h2&gt;
-              </code>
-            </td>
-            <td className="font-sans-serif">
-              <h2>
-                h2 Heading <br />
-                <span className="fw-normal d-block">h2 Subheading</span>
-              </h2>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code>
-                &lt;h3&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
-                <br />
-                &lt;/h3&gt;
-              </code>
-            </td>
-            <td className="font-sans-serif">
-              <h3>
-                h3 Heading <br />
-                <span className="fw-normal d-block">h3 Subheading</span>
-              </h3>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code>
-                &lt;h4&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
-                <br />
-                &lt;/h4&gt;
-              </code>
-            </td>
-            <td className="font-sans-serif">
-              <h4>
-                h4 Heading <br />
-                <span className="fw-normal d-block">h4 Subheading</span>
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code>
-                &lt;h5&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
-                <br />
-                &lt;/h5&gt;
-              </code>
-            </td>
-            <td className="font-sans-serif">
-              <h5>
-                h5 Heading <br />
-                <span className="fw-normal d-block">h5 Subheading</span>
-              </h5>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code>
-                &lt;h6&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
-                <br />
-                &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
-                <br />
-                &lt;/h6&gt;
-              </code>
-            </td>
-            <td className="font-sans-serif">
-              <h6>
-                h6 Heading <br />
-                <span className="fw-normal d-block">h6 Subheading</span>
-              </h6>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div>
+      <h1>
+        <span className="d-block">h1 Heading</span>
+        <span className="fw-normal">h1 Subheading</span>
+      </h1>
+
+      <h2>
+        <span className="d-block">h2 Heading</span>
+        <span className="fw-normal">h2 Subheading</span>
+      </h2>
+
+      <h3>
+        <span className="d-block">h3 Heading</span>
+        <span className="fw-normal">h3 Subheading</span>
+      </h3>
+
+      <h4>
+        <span className="d-block">h4 Heading</span>
+        <span className="fw-normal">h4 Subheading</span>
+      </h4>
+
+      <h5>
+        <span className="d-block">h5 Heading</span>
+        <span className="fw-normal">h5 Subheading</span>
+      </h5>
+
+      <h6>
+        <span className="d-block">h6 Heading</span>
+        <span className="fw-normal">h6 Subheading</span>
+      </h6>
     </div>
   );
 }
+
+// export function HeadingsWithSubheadings() {
+//   return (
+//     <div className="sb-headings-with-subheadings table-responsive">
+//       <table className="table">
+//         <thead>
+//           <tr>
+//             <th className="w-quarter">Tag</th>
+//             <th>Visual</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr>
+//             <td>
+//               <code>
+//                 &lt;h1&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
+//                 <br />
+//                 &lt;/h1&gt;
+//               </code>
+//             </td>
+//             <td className="font-sans-serif">
+//               <h1>
+//                 h1 Heading <br />
+//                 <span className="fw-normal d-block">h1 Subheading</span>
+//               </h1>
+//             </td>
+//           </tr>
+//           <tr>
+//             <td>
+//               <code>
+//                 &lt;h2&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
+//                 <br />
+//                 &lt;/h2&gt;
+//               </code>
+//             </td>
+//             <td className="font-sans-serif">
+//               <h2>
+//                 h2 Heading <br />
+//                 <span className="fw-normal d-block">h2 Subheading</span>
+//               </h2>
+//             </td>
+//           </tr>
+//           <tr>
+//             <td>
+//               <code>
+//                 &lt;h3&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
+//                 <br />
+//                 &lt;/h3&gt;
+//               </code>
+//             </td>
+//             <td className="font-sans-serif">
+//               <h3>
+//                 h3 Heading <br />
+//                 <span className="fw-normal d-block">h3 Subheading</span>
+//               </h3>
+//             </td>
+//           </tr>
+//           <tr>
+//             <td>
+//               <code>
+//                 &lt;h4&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
+//                 <br />
+//                 &lt;/h4&gt;
+//               </code>
+//             </td>
+//             <td className="font-sans-serif">
+//               <h4>
+//                 h4 Heading <br />
+//                 <span className="fw-normal d-block">h4 Subheading</span>
+//               </h4>
+//             </td>
+//           </tr>
+//           <tr>
+//             <td>
+//               <code>
+//                 &lt;h5&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
+//                 <br />
+//                 &lt;/h5&gt;
+//               </code>
+//             </td>
+//             <td className="font-sans-serif">
+//               <h5>
+//                 h5 Heading <br />
+//                 <span className="fw-normal d-block">h5 Subheading</span>
+//               </h5>
+//             </td>
+//           </tr>
+//           <tr>
+//             <td>
+//               <code>
+//                 &lt;h6&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="d-block"&gt;&lt;/span&gt;
+//                 <br />
+//                 &nbsp;&nbsp;&lt;span class="fw-normal"&gt;&lt;/span&gt;
+//                 <br />
+//                 &lt;/h6&gt;
+//               </code>
+//             </td>
+//             <td className="font-sans-serif">
+//               <h6>
+//                 h6 Heading <br />
+//                 <span className="fw-normal d-block">h6 Subheading</span>
+//               </h6>
+//             </td>
+//           </tr>
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }

@@ -1,4 +1,4 @@
-import { Meta, Source } from '@storybook/addon-docs/blocks';
+import { Meta, Source, Canvas } from '@storybook/addon-docs/blocks';
 import * as TypographyStories from './typography.stories';
 import {
   FontFace,
@@ -7,7 +7,7 @@ import {
   Inlines,
   Links,
   Paragraphs,
-  Legends, HeadingsWithSubheadings,
+  Legends, HeadingsWithSubheadings
 } from './typography.blocks';
 import './typography.styles.scss';
 import SampleStandalone from './typography-standalone.sample.css?raw';
@@ -80,9 +80,9 @@ In those cases you can use the heading helper classes `.h1` through `.h6`.<br/>
 <Inlines />
 
 ### Legends
-
 <Legends />
+<Canvas of={TypographyStories.Legend} sourceState="shown" />
 
 ### Headings
-
 <HeadingsWithSubheadings />
+<Canvas of={TypographyStories.Heading} sourceState="shown" />
