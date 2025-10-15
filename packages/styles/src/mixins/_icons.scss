@@ -16,9 +16,11 @@
   forced-color-adjust: preserve-parent-color;
 }
 
-@mixin custom-property($name, $path: '../icons/temp') {
-  @at-root {
-    @include meta.load-css('#{$path}/#{$name}');
+@mixin custom-property($names...) {
+  @each $name in $names {
+    @at-root {
+      @include meta.load-css('../icons/temp/#{$name}');
+    }
   }
 }
 
