@@ -192,8 +192,8 @@ const Template = {
       >
         <form method="dialog" class="dialog-grid">
           ${postDialogIcon}
-          <h3 class="dialog-header">${args.title}</h3>
-          <div class="dialog-body"><p>${args.content}</p></div>
+          <h3 class="dialog-header" id="dialog-title">${args.title}</h3>
+          <div class="dialog-body"><p id="dialog-description">${args.content}</p></div>
           <div class="dialog-controls">${getControls()}</div>
           ${postDialogCloseButton}
         </form>
@@ -216,8 +216,8 @@ const FormTemplate = {
           class="dialog-grid"
           onsubmit="console.log(Object.fromEntries(new FormData(event.target)))"
         >
-          <h3 class="dialog-header">Form example</h3>
-          <div class="dialog-body">
+          <h3 class="dialog-header" id="example-dialog-title">Form example</h3>
+          <div class="dialog-body" id="example-dialog-desc">
             <div class="form-floating mt-16">
               <input
                 id="example-dialog-text-field"
@@ -250,10 +250,13 @@ const CustomContentTemplate = {
   ...Template,
   render: () => {
     return html`
-      <dialog>
+      <dialog
+        aria-labelledby="custom-dialog-title"
+        aria-describedby="custom-dialog-desc"
+      >
         <form method="dialog" onsubmit="console.log(event)" class="p-16">
-          <h2>Custom content</h2>
-          <p>This is some other content, just placed inside the dialog.</p>
+          <h2 id="custom-dialog-title">Custom content</h2>
+          <p id="custom-dialog-desc">This is some other content, just placed inside the dialog.</p>
           <button class="btn btn-primary">Ok</button>
         </form>
       </dialog>
