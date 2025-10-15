@@ -227,6 +227,8 @@ describe('tabs', () => {
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('tabs');
+
+    cy.wait(200);
     
     cy.get('post-tabs').should('be.visible');
     cy.get('post-tab-item').should('exist');
