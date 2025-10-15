@@ -20,7 +20,7 @@ export const BreadcrumbsSnapshots: Story = {
       {
         label: 'Long Text',
         story: html`
-          <post-breadcrumbs home-url="/" home-text="Home">
+          <post-breadcrumbs home-url="/" home-text="Home" menu-label="More breadcrumb items">
             <post-breadcrumb-item url="/section1">This is a very long breadcrumb item </post-breadcrumb-item>
             <post-breadcrumb-item url="/section2">Another long breadcrumb item</post-breadcrumb-item>
             <post-breadcrumb-item url="/section3">Yet another long item that tests wrapping behavior</post-breadcrumb-item>
