@@ -151,7 +151,7 @@ export default function Home() {
       <h2>Rating</h2>
       <PostRating></PostRating>
 
-      <h2>Tabs</h2>
+      <h2>Tabs - Panel Variant</h2>
       <PostTabs>
         <PostTabItem name="unua">Unua langeto</PostTabItem>
         <PostTabItem name="dua">Dua langeto</PostTabItem>
@@ -166,6 +166,19 @@ export default function Home() {
         <PostTabPanel for="tria">
           Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
         </PostTabPanel>
+      </PostTabs>
+
+      <h2>Tabs - Navigation Variant</h2>
+      <PostTabs>
+        <PostTabItem name="nav-first">
+          <a href="#first">First</a>
+        </PostTabItem>
+        <PostTabItem name="nav-second">
+          <a href="#second">Second</a>
+        </PostTabItem>
+        <PostTabItem name="nav-third">
+          <a href="#third">Third</a>
+        </PostTabItem>
       </PostTabs>
 
       <h2>Tag</h2>

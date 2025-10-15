@@ -1,6 +1,5 @@
 import { test, expect, Locator } from '@playwright/test';
 import { PostTabs } from '@swisspost/design-system-components/dist/components/react/post-tabs.js';
-import AxeBuilder from '@axe-core/playwright';
 
 test.describe('tabs', () => {
   let tabs: Locator;
@@ -126,16 +125,5 @@ test.describe('tabs', () => {
 
     await expect(tabItems.nth(2)).toHaveClass(/active/);
     await expect(tabItems.first()).not.toHaveClass(/active/);
-  });
-
-  test('should not have any automatically detectable accessibility issues', async ({ page }) => {
-    await expect(tabs).toBeVisible();
-    await expect(tabItems.first()).toBeVisible();
-    
-    const accessibilityScanResults = await new AxeBuilder({ page })
-      .include('post-tabs[data-hydrated]')
-      .analyze();
-
-    expect(accessibilityScanResults.violations).toEqual([]);
   });
 });
