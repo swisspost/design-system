@@ -46,6 +46,10 @@ describe('menu', () => {
       cy.get('@trigger').dblclick();
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
     });
+
+    it('should have a label attribute with a value', () => {
+      cy.get('@menu').should('have.attr', 'label').and('not.be.empty');
+    });
   });
 });
 

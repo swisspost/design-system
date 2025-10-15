@@ -8,7 +8,7 @@ describe('Close button', () => {
 
     it('should render with a close button and a11y label', () => {
       cy.get('@closebutton').should('exist');
-      cy.get('@closebutton').find('.btn-icon-close').should('exist');
+      cy.get('@closebutton').find('.btn').should('exist');
       cy.get('@closebutton').find('span.visually-hidden').should('exist');
     });
   });

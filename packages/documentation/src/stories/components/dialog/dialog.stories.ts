@@ -146,14 +146,14 @@ const meta: Meta = {
 export default meta;
 
 const getCloseButton = () => {
-  return html`<button class="btn btn-close">
-    <span class="visually-hidden">Close</span>
-  </button>`;
+  return html` <post-closebutton button-type="submit">Close</post-closebutton>`;
 };
 
 const getControls = () => {
-  return html`<button class="btn btn-primary">OK</button>
-    <button class="btn btn-secondary">Cancel</button>`;
+  return html`
+    <button class="btn btn-primary">OK</button>
+    <button class="btn btn-secondary">Cancel</button>
+  `;
 };
 
 const Template = {
@@ -182,8 +182,8 @@ const Template = {
       >
         <form method="dialog" class="dialog-grid">
           ${postDialogIcon}
-          <h3 id="dialog-title" class="dialog-header">${args.title}</h3>
-          <div id="dialog-desc" class="dialog-body">${args.content}</div>
+          <h3 class="dialog-header">${args.title}</h3>
+          <div class="dialog-body"><p>${args.content}</p></div>
           <div class="dialog-controls">${getControls()}</div>
           ${postDialogCloseButton}
         </form>
