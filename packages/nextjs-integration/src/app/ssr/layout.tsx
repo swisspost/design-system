@@ -37,7 +37,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </ul>
 
         <PostTogglebutton slot="post-togglebutton">
-          <span className="visually-hidden-sm">Menu</span>
+          <span>Menu</span>
           <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled"></PostIcon>
           <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled"></PostIcon>
         </PostTogglebutton>
@@ -67,13 +67,13 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <ul className="list-inline">
           <li>
             <a href="#test">
-              <span className="visually-hidden-sm">Search</span>
+              <span>Search</span>
               <PostIcon aria-hidden="true" name="search"></PostIcon>
             </a>
           </li>
           <li>
             <a href="#test">
-              <span className="visually-hidden-sm">Login</span>
+              <span>Login</span>
               <PostIcon aria-hidden="true" name="login"></PostIcon>
             </a>
           </li>
