@@ -17,6 +17,20 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
+export const Link: Story = {
+  render: () => html`
+    <div>
+      <a href="post.ch">Example Link</a>
+
+      <p>
+        This paragraph contains an inline
+        <a href="post.ch">clickable</a>
+        that demonstrates how hyperlinks will appear within body text.
+      </p>
+    </div>
+  `,
+};
+
 export const Legend: Story = {
   render: () => html`
     <div>
