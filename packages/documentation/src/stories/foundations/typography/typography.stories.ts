@@ -31,6 +31,27 @@ export const Link: Story = {
   `,
 };
 
+export const Paragraph: Story = {
+  render: () => html`
+    <div>
+      <p>
+        This is a sample paragraph showing how text will appear in your application. It demonstrates
+        the font style, size, and spacing that will be used throughout your content.
+      </p>
+
+      <p>
+        Another paragraph follows to illustrate how multiple paragraphs will look. Notice the
+        spacing between paragraphs and how the text flows naturally from one line to the next.
+      </p>
+
+      <p class="lead">
+        This is a lead paragraph that stands out from regular text, typically used for introductory
+        content.
+      </p>
+    </div>
+  `,
+};
+
 export const Legend: Story = {
   render: () => html`
     <div>
