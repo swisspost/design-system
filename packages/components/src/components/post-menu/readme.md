@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                                                                                         | Type                                                                                                                                                                 | Default     |
-| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `label`     | `label`     | Required label providing an accessible name for the menu.                                                                                                                                                                                                                                                                                                                           | `string`                                                                                                                                                             | `undefined` |
-| `placement` | `placement` | Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement). | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'bottom'`  |
+| Property             | Attribute   | Description                                                                                                                                                                                                                                                                                                                                                                         | Type                                                                                                                                                                 | Default     |
+| -------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `label` _(required)_ | `label`     | An accessible name for the menu.                                                                                                                                                                                                                                                                                                                                                    | `string`                                                                                                                                                             | `undefined` |
+| `placement`          | `placement` | Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement). | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'bottom'`  |
 
 
 ## Events
@@ -63,6 +63,13 @@ Toggles the menu visibility based on its current state.
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot       | Description                        |
+| ---------- | ---------------------------------- |
+| `"header"` | Holds the header part of the menu. |
 
 
 ## Shadow Parts

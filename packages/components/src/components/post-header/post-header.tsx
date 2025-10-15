@@ -16,6 +16,7 @@ import { EventFrom } from '@/utils/event-from';
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot target-group - Holds the list of buttons to choose the target group.
+ * @slot global-login - Holds the user menu or login button in the global header.
  */
 
 @Component({
@@ -398,6 +399,7 @@ export class PostHeader {
             )}
             <slot name="global-controls"></slot>
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
+            <slot name="global-login"></slot>
             {this.hasNavigation && (
               <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
                 <slot name="post-togglebutton"></slot>

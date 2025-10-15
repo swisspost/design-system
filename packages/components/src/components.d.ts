@@ -7,10 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { ButtonType } from "./components/post-closebutton/button-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { ButtonType } from "./components/post-closebutton/button-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -108,6 +110,10 @@ export namespace Components {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -161,6 +167,11 @@ export namespace Components {
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default 'button'
+         */
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -325,9 +336,9 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Required label providing an accessible name for the menu.
+          * An accessible name for the menu.
          */
-        "label"?: string;
+        "label": string;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
@@ -1004,6 +1015,10 @@ declare namespace LocalJSX {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1057,6 +1072,11 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default 'button'
+         */
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -1201,9 +1221,9 @@ declare namespace LocalJSX {
     }
     interface PostMenu {
         /**
-          * Required label providing an accessible name for the menu.
+          * An accessible name for the menu.
          */
-        "label"?: string;
+        "label": string;
         /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
@@ -1260,7 +1280,7 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was * closed, and `first`, which is true if it was opened for the first time.
+          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
          */
         "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) => void;
         /**
