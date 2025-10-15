@@ -12,10 +12,7 @@
 
 tokens.$default-map: utilities.$post-color;
 
-@include post.custom-property('chevrondown');
-@include post.custom-property('resizeexpand');
-@include post.custom-property('link');
-@include post.custom-property('code');
+@include post.custom-property('chevrondown', 'resizeexpand', 'link', 'code');
 
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
