@@ -101,7 +101,10 @@ const meta: Meta = {
       description:
         'Specifies the types of user actions that can be used to close the dialog.\n\nMore details on [MDN: closedby attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby)',
       control: { disable: true },
-      table: { category: 'props' },
+      table: { 
+        category: 'props',
+        type: { summary: 'string' }
+      },
     },
     show: {
       name: 'show()',
@@ -208,7 +211,7 @@ const FormTemplate = {
     return html`
       <dialog size="${args.size}"
         aria-labelledby="example-dialog-title"
-        aria-describedby="example-dialog-desc"
+        aria-describedby="example-dialog-description"
       >
         <form
           id="example-dialog-form"
@@ -217,7 +220,8 @@ const FormTemplate = {
           onsubmit="console.log(Object.fromEntries(new FormData(event.target)))"
         >
           <h3 class="dialog-header" id="example-dialog-title">Form example</h3>
-          <div class="dialog-body" id="example-dialog-desc">
+          <div class="dialog-body">
+            <p id="example-dialog-description">Please fill out the form below.</p>
             <div class="form-floating mt-16">
               <input
                 id="example-dialog-text-field"
@@ -252,11 +256,11 @@ const CustomContentTemplate = {
     return html`
       <dialog
         aria-labelledby="custom-dialog-title"
-        aria-describedby="custom-dialog-desc"
+        aria-describedby="custom-dialog-description"
       >
         <form method="dialog" onsubmit="console.log(event)" class="p-16">
           <h2 id="custom-dialog-title">Custom content</h2>
-          <p id="custom-dialog-desc">This is some other content, just placed inside the dialog.</p>
+          <p id="custom-dialog-description">This is some other content, just placed inside the dialog.</p>
           <button class="btn btn-primary">Ok</button>
         </form>
       </dialog>
