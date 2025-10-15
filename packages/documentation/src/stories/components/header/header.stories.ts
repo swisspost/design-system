@@ -49,7 +49,7 @@ const meta: MetaComponent = {
     },
     globalControls: {
       name: 'Global controls',
-      description: 'Whether or not the search is displayed.',
+      description: 'Whether or not the search button in the global header is displayed.',
       control: {
         type: 'boolean',
       },
@@ -59,7 +59,7 @@ const meta: MetaComponent = {
     },
     globalLogin: {
       name: 'Global login',
-      description: 'Whether or not the login button or user menu is displayed.',
+      description: 'Whether or not the user menu or login button in the global header is displayed',
       control: {
         type: 'boolean',
       },
