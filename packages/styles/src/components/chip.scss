@@ -6,8 +6,7 @@
 
 tokens.$default-map: components.$post-chip;
 
-@include icons-mx.custom-property('closex');
-@include icons-mx.custom-property('checkmark');
+@include icons-mx.custom-property('closex', 'checkmark');
 
 button.chip-dismissible::after,
 .chip-selectable input:checked + label::before {

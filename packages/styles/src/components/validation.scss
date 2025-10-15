@@ -6,8 +6,7 @@
 
 tokens.$default-map: components.$post-validation;
 
-@include icons-mx.custom-property('warning-solid');
-@include icons-mx.custom-property('success-solid');
+@include icons-mx.custom-property('warning-solid', 'success-solid');
 
 /*
 Default feedback message classes
