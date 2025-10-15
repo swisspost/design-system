@@ -174,7 +174,7 @@ export class MigrationV99Component extends LitElement {
             <div @change="${this._onChange}">
               <section>
                 <h4>Ng-Bootstrap</h4>
-                <ul>
+                <ul class="list-unstyled">
                   <li>
                     <div class="form-check">
                       <input
@@ -207,7 +207,7 @@ export class MigrationV99Component extends LitElement {
                 <h4>Styles</h4>
 
                 <h5>Forms</h5>
-                <ul>
+                <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -272,7 +272,7 @@ export class MigrationV99Component extends LitElement {
                 </ul>
 
                 <h5>Grid</h5>
-                <ul>
+                <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -377,7 +377,7 @@ export class MigrationV99Component extends LitElement {
                 </ul>
 
                 <h5>Utilities</h5>
-                <ul>
+                <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -726,7 +726,7 @@ export class MigrationV99Component extends LitElement {
                 </ul>
 
                 <h5>Typography</h5>
-                <ul>
+                <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -962,7 +962,7 @@ export class MigrationV99Component extends LitElement {
                 </ul>
 
                 <h5>Other styles</h5>
-                <ul>
+                <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -1211,7 +1211,7 @@ export class MigrationV99Component extends LitElement {
               <section>
                 <h4>Components</h4>
 
-                <ul>
+                <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
                       <input
