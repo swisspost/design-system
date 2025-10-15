@@ -82,29 +82,28 @@ const meta: Meta = {
     closedby: {
       name: 'closedby',
       description:
-        'Specifies the types of user actions that can be used to close the dialog.\n\nSee [MDN: `<dialog>` — closedby](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby)',
+        'Specifies the types of user actions that can be used to close the dialog.\n\nMore details on [MDN: closedby attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby)',
       control: { type: 'radio' },
-      options: ['any', 'closerequest', 'none'],
       table: { category: 'props' },
     },
     show: {
       name: 'show()',
       description:
-        'Open the the dialog non-modally; page stays interactive\n\nSee [MDN: HTMLDialogElement.show()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show)',
+        'Opens the dialog non-modally.\n\nMore details on [MDN: show() method docs](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show)',
       control: { disable: true },
       table: { category: 'methods', type: { summary: 'show(): void' } },
     },
     showModal: {
       name: 'showModal()',
       description:
-        'Open the dialog as a modal with a backdrop\n\nSee [MDN: HTMLDialogElement.showModal()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal)',
+        'Opens the dialog as a modal with a backdrop.\n\nMore details on [MDN: showModal() method docs](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal)',
       control: { disable: true },
       table: { category: 'methods', type: { summary: 'showModal(): void' } },
     },
     close: {
       name: 'close(result?)',
       description:
-        'Close the dialog programmatically. \n\nAn optional string may be passed as an argument, updating the `returnValue` of the dialog\n\nSee [MDN: HTMLDialogElement.close()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close).',
+        'Closes the dialog programmatically.\n\nMore details on [MDN: close() method docs](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close)',
       control: { disable: true },
       table: { category: 'methods', type: { summary: 'close(result?: string): void' } },
     },
@@ -112,14 +111,14 @@ const meta: Meta = {
     closeEvent: {
       name: 'close',
       description:
-        'Fires when the dialog has been closed\n\nSee [MDN: close event — Examples](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event#examples).',
+        'Fires after the dialog has been closed.\n\nExamples on [MDN: close event reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event#examples)',
       control: { disable: true },
       table: { category: 'events', type: { summary: 'Event' } },
     },
     submitEvent: {
       name: 'submit',
       description:
-        'Fires when a form inside the dialog is submitted\n\nSee [MDN: submit event — Examples](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event#examples).',
+        'Fires when a form inside the dialog is submitted.\n\nExamples on [MDN: submit event reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event#examples)',
       control: { disable: true },
       table: { category: 'events', type: { summary: 'SubmitEvent' } },
     },
