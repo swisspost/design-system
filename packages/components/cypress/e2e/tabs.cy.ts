@@ -230,9 +230,7 @@ describe('Accessibility', () => {
     
     cy.get('post-tabs').should('be.visible');
     cy.get('post-tab-item').should('exist');
-    
-    cy.wait(100);
-    
+
     cy.checkA11y('#root-inner');
   });
 
