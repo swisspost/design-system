@@ -20,19 +20,15 @@ BEFORE:
 
 AFTER:
 ```scss
-// load icon CSS at the top of your file
-@include post.custom-property('accessibility');
+// load icon at the top of your file
+@include post.custom-property('accessibility', './path/to/icon/folder');
 
 .my-icon {
-  // add common icon properties manually
-  display: inline-block;
+  @include post.mask-image('accessibility');
+  
+  // optionally add styles for the icon
+  color: #fc0;
   width: 1em;
   height: 1em;
-  vertical-align: -0.15em;
-  
-  @include post.mask-image('accessibility');
-
-  // optional, must be placed after the mixin
-  color: #fc0;
 }
 ```
