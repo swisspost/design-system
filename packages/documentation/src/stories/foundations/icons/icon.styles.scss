@@ -1,7 +1,6 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-@include post.custom-property('accessibility');
-@include post.custom-property('letter');
+@include post.custom-property('accessibility', 'letter');
 
 $resizer-padding: 1rem;
 $resizer-border-width: 1px;
