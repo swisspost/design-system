@@ -101,3 +101,31 @@ export const Heading: Story = {
     </div>
   `,
 };
+
+export const Inline: Story = {
+  render: () => html`
+    <div>
+      <p>This text contains <small>small inline text</small> for fine print or disclaimers.</p>
+
+      <p>This text shows <strong>strong emphasis</strong> for important words or phrases.</p>
+
+      <p>This text shows <em>emphasis through italics</em> for subtle highlighting.</p>
+
+      <p>This text contains <sub>subscript text</sub> for chemical formulas or footnotes.</p>
+
+      <p>This text contains <sup>superscript text</sup> for exponents or references.</p>
+
+      <p>This text <mark>highlights important information</mark> for visual scanning.</p>
+
+      <p>
+        This text contains an <abbr title="abbreviation">abbr</abbr> element for shortened forms.
+      </p>
+
+      <p>This text shows <code>inline code examples</code> for technical documentation.</p>
+
+      <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text to clipboard.</p>
+
+      <p>This shows <del>deleted text</del> for tracking changes or corrections.</p>
+    </div>
+  `,
+};
