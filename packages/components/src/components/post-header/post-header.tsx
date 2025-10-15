@@ -11,8 +11,8 @@ import { EventFrom } from '@/utils/event-from';
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-controls - Holds search button in the global header.
  * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
- * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
  * @slot post-togglebutton - Holds the mobile menu toggler.
+ * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
