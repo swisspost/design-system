@@ -8,68 +8,68 @@
 
 tokens.$default-map: components.$post-button;
 
-.target-group {
-  gap: 4px;
-  display: flex;
-  justify-content: center;
-  padding-inline-start: 56px;
-
-  li {
-    list-style: none;
-
-    @include media.max(lg) {
-      flex-grow: 1;
-    }
-  }
-
-  a {
-    @extend %btn;
-    border: unset;
-    font-weight: 400;
-    padding: 3px 16px 5px;
-    min-height: 0;
-    font-size: 1rem;
-
-    @include button-mx.button-variant-def('enabled', 'tertiary');
-
-    &:disabled {
-      @include button-mx.button-variant-def('disabled', 'tertiary');
-    }
-
-    @include utilities.not-disabled-hover() {
-      @include button-mx.button-variant-def('hover', 'tertiary');
-    }
-
-    @include media.max(lg) {
-      width: 100%;
-    }
-  }
-
-  a.active {
-    box-shadow: tokens.get('button-elevation');
-
-    @include button-mx.button-variant-def('enabled', 'primary');
-
-    &:disabled {
-      @include button-mx.button-variant-def('disabled', 'primary');
-    }
-
-    @include utilities.not-disabled-hover() {
-      @include button-mx.button-variant-def('hover', 'primary');
-    }
-  }
-
-  @include media.max(lg) {
-    padding: 40px 32px 24px;
-  }
-
-  @include media.max(sm) {
-    flex-direction: column;
-    gap: 8px;
-    padding: 24px 16px 0;
-
-    a {
-      width: 100%;
-    }
-  }
-}
+//.target-group {
+//  gap: 4px;
+//  display: flex;
+//  justify-content: center;
+//  padding-inline-start: 56px;
+//
+//  li {
+//    list-style: none;
+//
+//    @include media.max(lg) {
+//      flex-grow: 1;
+//    }
+//  }
+//
+//  a {
+//    @extend %btn;
+//    border: unset;
+//    font-weight: 400;
+//    padding: 3px 16px 5px;
+//    min-height: 0;
+//    font-size: 1rem;
+//
+//    @include button-mx.button-variant-def('enabled', 'tertiary');
+//
+//    &:disabled {
+//      @include button-mx.button-variant-def('disabled', 'tertiary');
+//    }
+//
+//    @include utilities.not-disabled-hover() {
+//      @include button-mx.button-variant-def('hover', 'tertiary');
+//    }
+//
+//    @include media.max(lg) {
+//      width: 100%;
+//    }
+//  }
+//
+//  a.active {
+//    box-shadow: tokens.get('button-elevation');
+//
+//    @include button-mx.button-variant-def('enabled', 'primary');
+//
+//    &:disabled {
+//      @include button-mx.button-variant-def('disabled', 'primary');
+//    }
+//
+//    @include utilities.not-disabled-hover() {
+//      @include button-mx.button-variant-def('hover', 'primary');
+//    }
+//  }
+//
+//  @include media.max(lg) {
+//    padding: 40px 32px 24px;
+//  }
+//
+//  @include media.max(sm) {
+//    flex-direction: column;
+//    gap: 8px;
+//    padding: 24px 16px 0;
+//
+//    a {
+//      width: 100%;
+//    }
+//  }
+//}

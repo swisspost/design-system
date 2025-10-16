@@ -134,7 +134,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
         `;
 
     const customControls = html` <!-- Custom content (optional) -->
-      <ul class="list-inline">
+      <ul>
         <li>
           <a href="#">
             <span>Search</span>
@@ -150,21 +150,21 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
 
       <!-- Global controls (Search) -->
       ${args.globalControls
-      ? html`
-          <ul class="list-inline" slot="global-controls">
-            <li>
-              <a href="">
-                <span>Search</span>
-                <post-icon aria-hidden="true" name="search"></post-icon>
-              </a>
-            </li>
-          </ul>
-        `
-      : ''}
+        ? html`
+            <ul slot="global-controls">
+              <li>
+                <a href="">
+                  <span>Search</span>
+                  <post-icon aria-hidden="true" name="search"></post-icon>
+                </a>
+              </li>
+            </ul>
+          `
+        : ''}
       ${args.metaNavigation
         ? html`
             <!-- Meta navigation -->
-            <ul class="list-inline" slot="meta-navigation">
+            <ul slot="meta-navigation">
               <li>
                 <a href="">
                   Create Account

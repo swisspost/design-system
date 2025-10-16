@@ -7,199 +7,197 @@
 @use '../../mixins/button' as button-mx;
 @use 'mixins' as *;
 
-tokens.$default-map: elements.$post-link;
-
-body:has(post-header) {
-  scroll-padding-top: var(--post-header-height);
-}
-
-[data-post-scroll-locked] {
-  overflow: hidden !important;
-}
-
-post-header {
-  height: var(--post-header-height);
-
-  &:not(:defined),
-  &:not([data-hydrated]) {
-    display: block;
-  }
-
-  ul[slot='meta-navigation'] {
-    gap: 0 4px;
-
-    @include media.min(lg) {
-      align-items: center;
-      flex-direction: row-reverse;
-    }
-
-    &:where(post-header:has(post-mainnavigation) > *) {
-      @include media.max(lg) {
-        flex-direction: column;
-
-        a,
-        button {
-          justify-content: space-between;
-          border-radius: 0;
-          @include mobile-header-interactive;
-
-          @include utilities.focus-style-custom {
-            border-radius: 4px;
-          }
-        }
-      }
-
-      @include media.max(lg) {
-        a,
-        button {
-          flex-direction: row-reverse;
-          justify-content: flex-end;
-        }
-      }
-
-      @include media.max(sm) {
-        a,
-        button {
-          font-size: 14px;
-          gap: 0.5rem;
-
-          > post-icon {
-            height: 1rem;
-            width: 1rem;
-          }
-        }
-      }
-    }
-  }
-
-  [slot='global-login']:not(a) {
-    height: tokens.get('avatar-size', components.$post-avatar);
-    display: block;
-
-    post-menu-trigger button {
-      border-radius: 100%;
-    }
-  }
-
-  [slot='title'] {
-    margin: 0;
-    flex-shrink: 10;
-    z-index: 3;
-    font-weight: 900;
-
-    @include media.min(sm) {
-      margin-inline-start: 12px;
-    }
-
-    @include media.max(sm) {
-      margin-inline-start: 8px;
-    }
-
-    @include media.min(lg) {
-      font-size: 28px;
-      line-height: 34px;
-    }
-
-    @include media.max(lg) {
-      font-size: 20px;
-      max-width: calc(100vw - 8px - 16px);
-    }
-  }
-
-  button:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
-    @include button-mx.reset-button;
-
-    &:hover {
-      color: tokens.get('link-hover-fg');
-    }
-  }
-
-  // Hide link/button text on mobile in order to only have icon visible
-  post-togglebutton,
-  a[slot='global-login'],
-  [slot='global-controls'] a,
-  > .list-inline:where(:not([slot])) a {
-    > span {
-      @include media.max(sm) {
-        @include utilities.visuallyhidden;
-      }
-    }
-  }
-
-  a[slot='global-login'] {
-    @include media.max(sm) {
-      padding: 10px !important;
-    }
-  }
-
-  a,
-  button,
-  post-togglebutton {
-    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
-      @include subsidiary-header-interactive;
-
-      post-icon {
-        height: 24px;
-        width: 24px;
-      }
-
-      @include media.max(sm) {
-        padding: 8px;
-      }
-    }
-  }
-
-  button,
-  a {
-    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
-      display: flex;
-
-      @include media.max(sm) {
-        padding: 4px 10px;
-      }
-    }
-  }
-
-  #user-menu a,
-  #user-menu button {
-    min-width: 327px;
-
-    @include media.between(sm, md) {
-      min-width: 300px;
-    }
-  }
-
-  a.selected,
-  post-togglebutton[aria-pressed='true'] {
-    &:not(post-mainnavigation *) {
-      color: color.$white;
-      background: #050400;
-    }
-  }
-
-  post-togglebutton {
-    @include utilities.high-contrast-mode() {
-      background-color: ButtonFace !important;
-      border: 1px solid ButtonBorder !important;
-      color: ButtonText !important;
-
-      &:hover {
-        background-color: Highlight !important;
-
-        post-icon {
-          color: HighlightText;
-        }
-      }
-    }
-  }
-
-  > .list-inline:where(:not([slot])) {
-    gap: 4px;
-    align-items: center;
-  }
-}
-
-// Added to prevent Back-to-top button from showing up before header is hydrated
-body:has(post-header:not([data-hydrated])) post-back-to-top {
-  visibility: hidden !important;
-}
+//body:has(post-header) {
+//  scroll-padding-top: var(--post-header-height);
+//}
+//
+//[data-post-scroll-locked] {
+//  overflow: hidden !important;
+//}
+//
+//post-header {
+//  height: var(--post-header-height);
+//
+//  &:not(:defined),
+//  &:not([data-hydrated]) {
+//    display: block;
+//  }
+//
+//  ul[slot='meta-navigation'] {
+//    gap: 0 4px;
+//
+//    @include media.min(lg) {
+//      align-items: center;
+//      flex-direction: row-reverse;
+//    }
+//
+//    &:where(post-header:has(post-mainnavigation) > *) {
+//      @include media.max(lg) {
+//        flex-direction: column;
+//
+//        a,
+//        button {
+//          justify-content: space-between;
+//          border-radius: 0;
+//          @include mobile-header-interactive;
+//
+//          @include utilities.focus-style-custom {
+//            border-radius: 4px;
+//          }
+//        }
+//      }
+//
+//      @include media.max(lg) {
+//        a,
+//        button {
+//          flex-direction: row-reverse;
+//          justify-content: flex-end;
+//        }
+//      }
+//
+//      @include media.max(sm) {
+//        a,
+//        button {
+//          font-size: 14px;
+//          gap: 0.5rem;
+//
+//          > post-icon {
+//            height: 1rem;
+//            width: 1rem;
+//          }
+//        }
+//      }
+//    }
+//  }
+//
+//  [slot='global-login']:not(a) {
+//    height: tokens.get('avatar-size', components.$post-avatar);
+//    display: block;
+//
+//    post-menu-trigger button {
+//      border-radius: 100%;
+//    }
+//  }
+//
+//  [slot='title'] {
+//    margin: 0;
+//    flex-shrink: 10;
+//    z-index: 3;
+//    font-weight: 900;
+//
+//    @include media.min(sm) {
+//      margin-inline-start: 12px;
+//    }
+//
+//    @include media.max(sm) {
+//      margin-inline-start: 8px;
+//    }
+//
+//    @include media.min(lg) {
+//      font-size: 28px;
+//      line-height: 34px;
+//    }
+//
+//    @include media.max(lg) {
+//      font-size: 20px;
+//      max-width: calc(100vw - 8px - 16px);
+//    }
+//  }
+//
+//  button:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+//    @include button-mx.reset-button;
+//
+//    &:hover {
+//      color: tokens.get('link-hover-fg', elements.$post-link);
+//    }
+//  }
+//
+//  // Hide link/button text on mobile in order to only have icon visible
+//  post-togglebutton,
+//  a[slot='global-login'],
+//  [slot='global-controls'] a,
+//  > .list-inline:where(:not([slot])) a {
+//    > span {
+//      @include media.max(sm) {
+//        @include utilities.visuallyhidden;
+//      }
+//    }
+//  }
+//
+//  a[slot='global-login'] {
+//    @include media.max(sm) {
+//      padding: 10px !important;
+//    }
+//  }
+//
+//  a,
+//  button,
+//  post-togglebutton {
+//    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+//      @include subsidiary-header-interactive;
+//
+//      post-icon {
+//        height: 24px;
+//        width: 24px;
+//      }
+//
+//      @include media.max(sm) {
+//        padding: 8px;
+//      }
+//    }
+//  }
+//
+//  button,
+//  a {
+//    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+//      display: flex;
+//
+//      @include media.max(sm) {
+//        padding: 4px 10px;
+//      }
+//    }
+//  }
+//
+//  #user-menu a,
+//  #user-menu button {
+//    min-width: 327px;
+//
+//    @include media.between(sm, md) {
+//      min-width: 300px;
+//    }
+//  }
+//
+//  a.selected,
+//  post-togglebutton[aria-pressed='true'] {
+//    &:not(post-mainnavigation *) {
+//      color: color.$white;
+//      background: #050400;
+//    }
+//  }
+//
+//  post-togglebutton {
+//    @include utilities.high-contrast-mode() {
+//      background-color: ButtonFace !important;
+//      border: 1px solid ButtonBorder !important;
+//      color: ButtonText !important;
+//
+//      &:hover {
+//        background-color: Highlight !important;
+//
+//        post-icon {
+//          color: HighlightText;
+//        }
+//      }
+//    }
+//  }
+//
+//  > .list-inline:where(:not([slot])) {
+//    gap: 4px;
+//    align-items: center;
+//  }
+//}
+//
+//// Added to prevent Back-to-top button from showing up before header is hydrated
+//body:has(post-header:not([data-hydrated])) post-back-to-top {
+//  visibility: hidden !important;
+//}
