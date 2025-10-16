@@ -16,22 +16,16 @@
   position: relative;
 
   // The following variables will affect the header to minimize it on scroll
-  --post-logo-height: calc(
-    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px)
-  );
+  --post-logo-height: calc(var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px));
   --post-global-header-top: calc(
     var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)
   );
   --post-local-header-top: calc(
-    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height) -
-      var(--post-local-header-expanded-height)
+    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height) - var(--post-local-header-expanded-height)
   );
   --post-global-controls-top: clamp(
-    1000 * var(--post-global-header-top),
-    /* 0 when header is static, large negative when header shrinks to enable offset */
-      calc(
-        -1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))
-      ),
+    1000 * var(--post-global-header-top), /* 0 when header is static, large negative when header shrinks to enable offset */
+    calc(-1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))),
     0px
   );
 
@@ -160,21 +154,6 @@
     &:not(.no-title) {
       padding-block-start: 18px;
     }
-
-    .navigation-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: nowrap;
-
-      .sub-nav-links {
-        display: flex;
-        align-items: center;
-        z-index: 5;
-        height: 56px;
-        background: white;
-      }
-    }
   }
 
   @include media.max(lg) {
@@ -232,6 +211,9 @@
   width: 100%;
 
   @include media.min(lg) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     inset-block-start: var(--post-global-header-reduced-height);
 
     &::before {
@@ -264,10 +246,9 @@
     padding-inline: 40px;
   }
 
+  .navigation-header,
   ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group,
-  .mobile-sub-nav-links {
+  .navigation-footer {
     display: none;
     flex-direction: column;
 

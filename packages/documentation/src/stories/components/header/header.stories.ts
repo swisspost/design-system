@@ -23,6 +23,7 @@ const meta: MetaComponent = {
     targetGroup: true,
     customControls: false,
     isLoggedIn: false,
+    jobs: false,
   },
   argTypes: {
     title: {
@@ -84,6 +85,14 @@ const meta: MetaComponent = {
       },
       table: { category: 'state' },
     },
+    jobs: {
+      name: 'Jobs',
+      description: 'Whether the jobs is active or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'state' },
+    },
   },
   decorators: [
     story =>
@@ -130,14 +139,18 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
         ? html`
             <!-- Meta navigation -->
             <ul class="list-inline" slot="meta-navigation">
+              ${args.jobs
+                ? nothing
+                : html`
+                    <li>
+                      <a href="">
+                        Search
+                        <post-icon name="search" aria-hidden="true"></post-icon>
+                      </a>
+                    </li>
+                  `}
               <li>
-                <a href="">
-                  Search
-                  <post-icon name="search" aria-hidden="true"></post-icon>
-                </a>
-              </li>
-              <li>
-                <a href="">
+                <a href="" class=${args.jobs ? 'active' : nothing}>
                   Jobs
                   <post-icon name="jobs" aria-hidden="true"></post-icon>
                 </a>
@@ -151,7 +164,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
             </ul>
           `
         : ''}
-      ${!args.title ? loginInGlobalHeader : nothing}
+      ${!args.title && !args.jobs ? loginInGlobalHeader : nothing}
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
@@ -184,7 +197,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
         ? html`
             <ul slot="target-group" class="target-group">
               <li>
-                <a href="#" class="active">Private customers</a>
+                <a href="#" class=${args.jobs ? nothing : 'active'}>Private customers</a>
               </li>
               <li>
                 <a href="#">Business customers</a>
@@ -193,6 +206,24 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
           `
         : ''}
       ${args.customControls ? customControls : ''} ${args.mainNavigation ? mainnavigation : ''}
+      ${args.jobs
+        ? html`
+            <ul slot="navigation-controls">
+              <li>
+                <a href="">
+                  Jobs Search
+                  <post-icon name="search" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  Jobs Login
+                  <post-icon name="login" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+            </ul>
+          `
+        : nothing}
     </post-header>`;
   };
 }
@@ -392,6 +423,13 @@ function getUserMenu() {
 
 export const Portal: Story = {
   ...getIframeParameters(550),
+};
+
+export const Jobs: Story = {
+  ...getIframeParameters(550),
+  args: {
+    jobs: true,
+  },
 };
 
 export const Microsite: Story = {

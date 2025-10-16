@@ -88,19 +88,6 @@ post-header {
     display: block;
   }
 
-  .megadropdown-container {
-    width: 100vw;
-  }
-
-  ul[slot='sub-nav-links'] {
-    @include media.max(lg) {
-      height: 56px;
-      padding: 0 16px;
-      align-items: center;
-      justify-content: flex-end;
-    }
-  }
-
   ul[slot='meta-navigation'] {
     gap: 0 4px;
 
@@ -181,7 +168,7 @@ post-header {
     }
   }
 
-  button:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+  button:where(:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *)) {
     @include button-mx.reset-button;
 
     &:hover {
@@ -209,7 +196,7 @@ post-header {
   a,
   button,
   post-togglebutton {
-    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+    &:where(:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *)) {
       @include subsidiary-header-interactive;
 
       post-icon {
@@ -225,7 +212,7 @@ post-header {
 
   button,
   a {
-    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+    &:where(:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *)) {
       display: flex;
 
       @include media.max(sm) {
@@ -243,12 +230,12 @@ post-header {
     }
   }
 
-  a.selected,
+  a.active,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
       color: color.$white;
       background: #050400;
-      border: 1px solid #050400;
+      box-shadow: var(--post-device-elevation-100);
     }
   }
 

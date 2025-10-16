@@ -11,8 +11,6 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
-  overflow: hidden;
-
   // reset links and buttons
   post-list-item {
     > a {
@@ -66,8 +64,8 @@ post-mainnavigation {
 
   // desktop styles
   @include media.min(lg) {
-    display: block;
-    position: relative;
+    display: flex;
+    overflow: hidden;
     height: var(--post-main-navigation-height, 0);
     background: color.$white;
     user-select: none;
@@ -79,21 +77,23 @@ post-mainnavigation {
     }
 
     .scroll-control {
+      $icon-size: 1rem;
+      $button-padding: 1rem;
+      $button-width: $icon-size + 2 * $button-padding;
+
       cursor: pointer;
-      position: absolute;
-      inset-block: 0;
       z-index: 5;
-      padding: 16px;
+      padding: $button-padding;
       background: color.$white;
       box-shadow: elevation.$elevation-500;
       line-height: 1;
 
       &.scroll-left {
-        inset-inline-start: 0;
+        margin-inline-end: -1 * $button-width;
       }
 
       &.scroll-right {
-        inset-inline-end: 0;
+        margin-inline-start: -1 * $button-width;
       }
 
       &.d-none {
@@ -101,7 +101,7 @@ post-mainnavigation {
       }
 
       post-icon {
-        font-size: 1rem;
+        font-size: $icon-size;
       }
     }
 
@@ -139,7 +139,7 @@ post-mainnavigation {
           inset-inline-start: 0;
         }
 
-        &.selected,
+        &.active,
         &[aria-current='page']:not(post-megadropdown *),
         &[aria-expanded='true'] {
           background-color: #050400;

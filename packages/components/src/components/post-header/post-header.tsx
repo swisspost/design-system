@@ -17,6 +17,7 @@ import { EventFrom } from '@/utils/event-from';
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot target-group - Holds the list of buttons to choose the target group.
  * @slot global-login - Holds the user menu or login button in the global header.
+ * @slot navigation-controls - Custom controls, right aligned with the main navigation.
  */
 
 @Component({
@@ -35,10 +36,6 @@ export class PostHeader {
 
   private get hasMobileMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
-  }
-
-  private get subNavLinks(): HTMLElement | null {
-    return this.host.querySelector('[slot="sub-nav-links"]');
   }
 
   get scrollParent(): HTMLElement {
@@ -220,8 +217,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -345,56 +342,34 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    const navigationClasses = ['navigation'];
+    const mainNavigation = (
+      <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
+    );
 
-    const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
-
-    if (this.mobileMenuExtended) {
-      navigationClasses.push('extended');
-    }
-
-    if (this.megadropdownOpen) {
-      navigationClasses.push('megadropdown-open');
+    if (this.device === 'desktop') {
+      return (
+        <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
+          {mainNavigation}
+          <slot name="navigation-controls"></slot>
+        </div>
+      );
     }
 
     return (
       <div
-        class={navigationClasses.join(' ')}
-        style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+        class={{ navigation: true, extended: this.mobileMenuExtended }}
+        style={{ '--post-header-navigation-current-inset': `${this.mobileMenu?.scrollTop ?? 0}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          {(this.device === 'mobile' || this.device === 'tablet') && this.subNavLinks && (
-            <div class="mobile-sub-nav-links">
-              <slot name="sub-nav-links"></slot>
-            </div>
-          )}
-          <div class="navigation-target-group">
-            {(this.device === 'mobile' || this.device === 'tablet') && (
-              <slot name="target-group"></slot>
-            )}
+          <div class="navigation-header">
+            <slot name="navigation-controls"></slot>
+            <slot name="target-group"></slot>
           </div>
-
-          {this.device === 'desktop' && this.subNavLinks ? (
-            <div class="navigation-wrapper">
-              <slot
-                name="post-mainnavigation"
-                onSlotchange={() => this.checkNavigationExistence()}
-              ></slot>
-              <slot name="sub-nav-links"></slot>
-            </div>
-          ) : (
-            <slot
-              name="post-mainnavigation"
-              onSlotchange={() => this.checkNavigationExistence()}
-            ></slot>
-          )}
-
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <div class="navigation-footer">
-              <slot name="meta-navigation"></slot>
-              <slot name="post-language-switch"></slot>
-            </div>
-          )}
+          {mainNavigation}
+          <div class="navigation-footer">
+            <slot name="meta-navigation"></slot>
+            <slot name="post-language-switch"></slot>
+          </div>
         </div>
       </div>
     );
