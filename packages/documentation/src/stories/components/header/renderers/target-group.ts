@@ -6,7 +6,7 @@ export function renderTargetGroup(args: Args) {
     <!-- Target Group -->
     <ul slot="target-group" class="target-group">
       <li>
-        <a href="#" class="active">Private customers</a>
+        <a href="#" class=${args.jobs ? nothing : 'active'}>Private customers</a>
       </li>
       <li>
         <a href="#">Business customers</a>

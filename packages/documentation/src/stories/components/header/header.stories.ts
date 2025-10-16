@@ -6,6 +6,7 @@ import { renderMetaNavigation } from '@/stories/components/header/renderers/meta
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
 import { renderCustomControls } from '@/stories/components/header/renderers/custom-controls';
+import { renderNavigationControls } from '@/stories/components/header/renderers/navigation-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 
 const meta: MetaComponent = {
@@ -28,6 +29,7 @@ const meta: MetaComponent = {
     targetGroup: true,
     customControls: false,
     isLoggedIn: false,
+    jobs: false,
   },
   argTypes: {
     title: {
@@ -89,6 +91,14 @@ const meta: MetaComponent = {
       },
       table: { category: 'state' },
     },
+    jobs: {
+      name: 'Jobs',
+      description: 'Whether the jobs is active or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'state' },
+    },
   },
   decorators: [
     story => html`
@@ -137,7 +147,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
         <post-language-option active="true" code="en" name="English">en</post-language-option>
       </post-language-switch>
 
-      ${!args.title
+      ${!args.title && !args.jobs
         ? html`
             <!-- Global header login/user menu -->
             ${globalLogin}
@@ -154,6 +164,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
       ${args.title !== '' ? title : nothing}
       ${args.customControls ? renderCustomControls(args) : ''}
       ${args.mainNavigation ? mainnavigation : ''}
+      ${args.jobs ? renderNavigationControls() : nothing}
     </post-header>`;
   };
 }
@@ -195,6 +206,13 @@ export const ActiveNavigationItem: Story = {
 
 export const Portal: Story = {
   ...getIframeParameters(550),
+};
+
+export const Jobs: Story = {
+  ...getIframeParameters(550),
+  args: {
+    jobs: true,
+  },
 };
 
 export const Microsite: Story = {
