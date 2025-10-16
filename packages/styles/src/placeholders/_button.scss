@@ -42,8 +42,6 @@ tokens.$default-map: components.$post-button;
     text-decoration: none;
   }
 
-  @include button-mx.button-size();
-
   &:disabled {
     border-style: tokens.get('button-border-style-disabled');
   }

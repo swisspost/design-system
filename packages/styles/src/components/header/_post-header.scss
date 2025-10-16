@@ -1,3 +1,4 @@
+@use '../../mixins/list';
 @use '../../mixins/media';
 @use '../../mixins/utilities';
 @use '../../variables/color';
@@ -6,6 +7,18 @@
 @use '../../tokens/components';
 @use '../../mixins/button' as button-mx;
 @use 'mixins' as *;
+
+tokens.$default-map: components.$post-button;
+
+post-header ul:where([slot]) {
+  @include list.list-inline;
+  gap: 4px;
+}
+
+post-header a[slot],
+post-header ul[slot] > li > a {
+  @include header-link;
+}
 
 //body:has(post-header) {
 //  scroll-padding-top: var(--post-header-height);

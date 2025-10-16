@@ -1,4 +1,53 @@
+@use '../../functions/tokens';
+@use '../../mixins/button';
 @use '../../mixins/icons';
+@use '../../mixins/media';
+@use '../../mixins/utilities';
+@use '../../placeholders/button' as button-ph;
+
+@mixin header-link() {
+  @extend %btn;
+  border: unset;
+  padding: 4px 10px;
+  gap: 6px;
+  vertical-align: -0.15em;
+  line-height: 1.5;
+  font-size: 1rem;
+  font-weight: 400;
+
+  > post-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  @include button.button-variant-def('enabled', 'tertiary');
+
+  &:disabled {
+    @include button.button-variant-def('disabled', 'tertiary');
+  }
+
+  @include utilities.not-disabled-hover() {
+    @include button.button-variant-def('hover', 'tertiary');
+  }
+
+  @include media.max(lg) {
+    width: 100%;
+  }
+
+  &:where(.active) {
+    box-shadow: tokens.get('button-elevation');
+
+    @include button.button-variant-def('enabled', 'primary');
+
+    &:disabled {
+      @include button.button-variant-def('disabled', 'primary');
+    }
+
+    @include utilities.not-disabled-hover() {
+      @include button.button-variant-def('hover', 'primary');
+    }
+  }
+}
 
 @mixin subsidiary-header-interactive() {
   text-decoration: none;
