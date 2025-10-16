@@ -130,8 +130,8 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-      ${args.targetGroup ? renderTargetGroup(args) : nothing}
-      ${args.metaNavigation ? renderMetaNavigation(args) : nothing}
+      ${args.targetGroup ? renderTargetGroup() : nothing}
+      ${args.metaNavigation ? renderMetaNavigation() : nothing}
 
       <!-- Language switch -->
       <post-language-switch

@@ -1,7 +1,6 @@
-import { Args } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 
-export function renderTargetGroup(args: Args) {
+export function renderTargetGroup() {
   return html`
     <!-- Target Group -->
     <ul slot="target-group" class="target-group">
