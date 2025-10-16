@@ -20,7 +20,9 @@ const meta: MetaComponent = {
     title: '',
     mainNavigation: true,
     metaNavigation: true,
+    globalControls: true,
     targetGroup: true,
+    globalLogin: true,
     customControls: false,
     isLoggedIn: false,
   },
@@ -45,10 +47,30 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    globalControls: {
+      name: 'Global controls',
+      description: 'Whether or not the search button in the global header is displayed.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    globalLogin: {
+      name: 'Global login',
+      description: 'Whether or not the user menu or login button in the global header is displayed',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
     metaNavigation: {
       name: 'Meta navigation',
       description:
-        'Whether or not the meta navigation is displayed ("Search", "Jobs", and "Create Account").',
+        'Whether or not the meta navigation is displayed ("jobs" and "create an account").',
       control: {
         type: 'boolean',
       },
@@ -126,16 +148,23 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
+      <!-- Global controls (Search) -->
+      ${args.globalControls
+      ? html`
+          <ul class="list-inline" slot="global-controls">
+            <li>
+              <a href="">
+                <span>Search</span>
+                <post-icon aria-hidden="true" name="search"></post-icon>
+              </a>
+            </li>
+          </ul>
+        `
+      : ''}
       ${args.metaNavigation
         ? html`
             <!-- Meta navigation -->
             <ul class="list-inline" slot="meta-navigation">
-              <li>
-                <a href="">
-                  Search
-                  <post-icon name="search" aria-hidden="true"></post-icon>
-                </a>
-              </li>
               <li>
                 <a href="">
                   Jobs
@@ -399,9 +428,11 @@ export const Microsite: Story = {
   args: {
     title: '[Microsite Title]',
     mainNavigation: true,
+    globalControls: false,
     metaNavigation: false,
-    customControls: true,
+    globalLogin: false,
     targetGroup: false,
+    customControls: true,
   },
 };
 
@@ -411,7 +442,9 @@ export const OnePager: Story = {
     title: '[One Pager Title]',
     mainNavigation: false,
     metaNavigation: false,
+    globalControls: false,
     customControls: false,
+    globalLogin: false,
     targetGroup: false,
   },
 };

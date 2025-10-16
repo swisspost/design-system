@@ -9,6 +9,7 @@ import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
+ * @slot global-controls - Holds search button in the global header.
  * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
  * @slot post-togglebutton - Holds the mobile menu toggler.
  * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
@@ -394,10 +395,10 @@ export class PostHeader {
             {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
+            <slot name="global-controls"></slot>
             {!this.hasMobileMenu && (
               <slot name="meta-navigation"></slot>
             )}
-            <slot name="global-controls"></slot>
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
             <slot name="global-login"></slot>
             {this.hasNavigation && (

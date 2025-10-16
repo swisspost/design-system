@@ -179,6 +179,7 @@ post-header {
   // Hide link/button text on mobile in order to only have icon visible
   post-togglebutton,
   a[slot='global-login'],
+  [slot='global-controls'] a,
   > .list-inline:where(:not([slot])) a {
     > span {
       @include media.max(sm) {
