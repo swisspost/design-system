@@ -154,7 +154,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = g
           <ul class="list-inline" slot="global-controls">
             <li>
               <a href="">
-                Search
+                <span>Search</span>
                 <post-icon aria-hidden="true" name="search"></post-icon>
               </a>
             </li>
