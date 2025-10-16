@@ -41,7 +41,7 @@ describe('checkArrayOf', () => {
         checkArrayOf(component, propName, type);
       };
 
-      it('should log an error is the value is not an array', () => {
+      it('should log an error if the value is not an array', () => {
         mockValues
           .filter(value => !Array.isArray(value))
           .forEach(value => {
@@ -50,12 +50,12 @@ describe('checkArrayOf', () => {
           });
       });
 
-      it('should log an error is the array contains some values that don\'t have the expected type', () => {
+      it('should log an error if the array contains some values that don\'t have the expected type', () => {
         runCheckForValue(mockValues);
         expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
       });
 
-      it('should not log an error if hte array contains only value with the expected type', () => {
+      it('should not log an error if the array contains only values with the expected type', () => {
         const validArray = mockValues.filter(value => typeof value === type);
         runCheckForValue(validArray);
         expect(consoleErrorSpy).not.toHaveBeenCalled();
