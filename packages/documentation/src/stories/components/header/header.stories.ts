@@ -20,9 +20,9 @@ const meta: MetaComponent = {
     title: '',
     mainNavigation: true,
     metaNavigation: true,
-    auxNavLinks: false,
     targetGroup: true,
     customControls: false,
+    isLoggedIn: false,
   },
   argTypes: {
     title: {
@@ -43,18 +43,6 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'Content',
-      },
-    },
-    auxNavLinks: {
-      name: 'Auxiliary navigation links',
-      description:
-        'Whether or not auxiliary navigation links are displayed on the right side of the main navigation.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Content',
-        disable: true,
       },
     },
     metaNavigation: {
@@ -88,6 +76,14 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    isLoggedIn: {
+      name: 'Is logged in',
+      description: 'Whether the user is logged in or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'state' },
+    },
   },
   decorators: [
     story =>
@@ -98,55 +94,68 @@ const meta: MetaComponent = {
   render: getHeaderRenderer(),
 };
 
-function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
+function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = getUserMenu()) {
   return (args: Args) => {
-    const notJobsVersion = args.auxNavLinks ? nothing : true;
+    const loginInGlobalHeader = args.isLoggedIn
+      ? userMenu
+      : html`
+          <a href="" slot="global-login"><span>Login</span> <post-icon name="login"></post-icon></a>
+        `;
+
+    const loginInLocalHeader = args.isLoggedIn
+      ? userMenu
+      : html`
+          <a href="">
+            <span>Login</span>
+            <post-icon name="login"></post-icon>
+          </a>
+        `;
+
+    const customControls = html` <!-- Custom content (optional) -->
+      <ul class="list-inline">
+        <li>
+          <a href="#">
+            <span>Search</span>
+            <post-icon aria-hidden="true" name="search"></post-icon>
+          </a>
+        </li>
+        <li>${args.title && args.customControls ? loginInLocalHeader : nothing}</li>
+      </ul>`;
 
     return html`<post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
-      <!-- Meta navigation -->
-      <ul class="list-inline" slot="meta-navigation">
-        ${args.metaNavigation && !args.auxNavLinks
-          ? html`<li>
-              <a href="">
-                Search
-                <post-icon name="search" aria-hidden="true"></post-icon>
-              </a>
-            </li>`
-          : nothing}
 
-        <li>
-          <a href="">
-            Jobs
-            <post-icon name="jobs" aria-hidden="true"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            Create Account
-            <post-icon name="adduser" aria-hidden="true"></post-icon>
-          </a>
-        </li>
-      </ul>
-
-      ${args.metaNavigation && args.auxNavLinks
+      ${args.metaNavigation
         ? html`
             <!-- Meta navigation -->
             <ul class="list-inline" slot="meta-navigation">
               <li>
-                <a class="selected" href="">
+                <a href="">
+                  Search
+                  <post-icon name="search" aria-hidden="true"></post-icon>
+                </a>
+              </li>
+              <li>
+                <a href="">
                   Jobs
                   <post-icon name="jobs" aria-hidden="true"></post-icon>
                 </a>
               </li>
+              <li>
+                <a href="">
+                  Create Account
+                  <post-icon name="adduser" aria-hidden="true"></post-icon>
+                </a>
+              </li>
             </ul>
           `
-        : nothing}
+        : ''}
+      ${!args.title ? loginInGlobalHeader : nothing}
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
+        <span>Menu</span>
         <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
         <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
       </post-togglebutton>
@@ -175,7 +184,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
         ? html`
             <ul slot="target-group" class="target-group">
               <li>
-                <a href="#" class="${notJobsVersion ?? 'active'}">Private customers</a>
+                <a href="#" class="active">Private customers</a>
               </li>
               <li>
                 <a href="#">Business customers</a>
@@ -183,41 +192,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation()) {
             </ul>
           `
         : ''}
-      ${args.customControls
-        ? html`
-            <!-- Custom content (optional) -->
-            <ul class="list-inline">
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Search</span>
-                  <post-icon aria-hidden="true" name="search"></post-icon>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Login</span>
-                  <post-icon aria-hidden="true" name="login"></post-icon>
-                </a>
-              </li>
-            </ul>
-          `
-        : ''}
-      ${args.auxNavLinks
-        ? html`
-            <ul slot="aux-nav-links" class="list-inline">
-              <li>
-                <a href="">Job Search<post-icon name="search" aria-hidden="true"></post-icon> </a>
-              </li>
-              <li>
-                <a href="">
-                  Jobs Login
-                  <post-icon name="login" aria-hidden="true"></post-icon>
-                </a>
-              </li>
-            </ul>
-          `
-        : ''}
-      ${args.mainNavigation ? mainnavigation : ''}
+      ${args.customControls ? customControls : ''} ${args.mainNavigation ? mainnavigation : ''}
     </post-header>`;
   };
 }
@@ -368,19 +343,55 @@ export const ActiveNavigationItem: Story = {
   `,
 };
 
+function getUserMenu() {
+  return html`
+    <div slot="global-login">
+      <post-menu-trigger for="user-menu">
+        <button class="btn btn-link" type="button">
+          <post-avatar
+            firstname="John"
+            lastname="Doe"
+            description="Current user is John Doe."
+          ></post-avatar>
+          <span class="visually-hidden">Access user links.</span>
+        </button>
+      </post-menu-trigger>
+      <post-menu id="user-menu" label="User links">
+        <div slot="header">
+          <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
+          John Doe
+        </div>
+        <post-menu-item>
+          <a href="">
+            <post-icon aria-hidden="true" name="profile"></post-icon>
+            My Profile
+          </a>
+        </post-menu-item>
+        <post-menu-item>
+          <a href="">
+            <post-icon aria-hidden="true" name="letter"></post-icon>
+            Messages
+          </a>
+        </post-menu-item>
+        <post-menu-item>
+          <a href="">
+            <post-icon aria-hidden="true" name="gear"></post-icon>
+            Setting
+          </a>
+        </post-menu-item>
+        <post-menu-item>
+          <button type="button">
+            <post-icon aria-hidden="true" name="logout"></post-icon>
+            Logout
+          </button>
+        </post-menu-item>
+      </post-menu>
+    </div>
+  `;
+}
+
 export const Portal: Story = {
   ...getIframeParameters(550),
-};
-
-export const Jobs: Story = {
-  ...getIframeParameters(550),
-  args: {
-    mainNavigation: true,
-    metaNavigation: true,
-    auxNavLinks: true,
-    customControls: false,
-    targetGroup: true,
-  },
 };
 
 export const Microsite: Story = {
@@ -409,5 +420,28 @@ export const OnePager: Story = {
 export const WithTargetGroup: Story = {
   args: {
     targetGroup: true,
+  },
+};
+
+// User is logged in
+export const LoggedIn: Story = {
+  ...getIframeParameters(400),
+  args: {
+    isLoggedIn: true,
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer(undefined, html` ${story(context.args, context)} `);
+      return renderHeader({ ...context.args, customControls: true });
+    },
+  ],
+  render: () => getUserMenu(),
+};
+
+// User is logged out
+export const LoggedOut: Story = {
+  ...getIframeParameters(200),
+  args: {
+    isLoggedIn: false,
   },
 };

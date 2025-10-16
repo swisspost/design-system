@@ -83,7 +83,7 @@
 .global-sub {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 4px;
 
   @include media.min(lg) {
     // targets the right links and language switch to hide them on scroll
