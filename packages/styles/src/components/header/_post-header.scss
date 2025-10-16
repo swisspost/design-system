@@ -134,12 +134,15 @@ post-header {
     }
   }
 
-  [slot='global-login']:not(a) {
-    height: tokens.get('avatar-size', components.$post-avatar);
-    display: block;
+  [slot='global-login'],
+  .local-login {
+    post-menu-trigger {
+      height: tokens.get('avatar-size', components.$post-avatar);
+      display: block;
 
-    post-menu-trigger button {
-      border-radius: 100%;
+      button {
+        border-radius: 100%;
+      }
     }
   }
 
@@ -168,7 +171,13 @@ post-header {
     }
   }
 
-  button:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+  button:not(
+      post-mainnavigation *,
+      post-language-switch *,
+      [slot='global-login'] *,
+      .local-login post-menu *,
+      .local-login post-menu-trigger *
+    ) {
     @include button-mx.reset-button;
 
     &:hover {
@@ -196,7 +205,13 @@ post-header {
   a,
   button,
   post-togglebutton {
-    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+    &:not(
+        post-mainnavigation *,
+        post-language-switch *,
+        [slot='global-login'] *,
+        .local-login post-menu *,
+        .local-login post-menu-trigger *
+      ) {
       @include subsidiary-header-interactive;
 
       post-icon {
@@ -212,7 +227,13 @@ post-header {
 
   button,
   a {
-    &:not(post-mainnavigation *, post-language-switch *, [slot='global-login'] *, #user-menu *) {
+    &:not(
+        post-mainnavigation *,
+        post-language-switch *,
+        [slot='global-login'] *,
+        .local-login post-menu *,
+        .local-login post-menu-trigger *
+      ) {
       display: flex;
 
       @include media.max(sm) {

@@ -108,7 +108,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
     `;
 
     const globalLogin = args.isLoggedIn
-      ? userMenu
+      ? html` <div slot="global-login">${userMenu}</div> `
       : html`
           <a href="" slot="global-login">
             <span>Login</span>
