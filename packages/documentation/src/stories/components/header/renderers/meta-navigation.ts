@@ -1,7 +1,6 @@
-import { Args } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 
-export function renderMetaNavigation(args: Args) {
+export function renderMetaNavigation() {
   return html`
     <!-- Meta navigation -->
     <ul class="list-inline" slot="meta-navigation">
