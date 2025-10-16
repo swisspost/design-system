@@ -9,8 +9,6 @@ tokens.$default-map: components.$post-button;
 
 :host {
   display: flex !important;
-  flex-wrap: wrap;
-  gap: 0.5rem;
 }
 
 .visually-hidden {
@@ -24,44 +22,19 @@ tokens.$default-map: components.$post-button;
 }
 
 .post-language-switch-trigger {
-  cursor: pointer;
+  @include header-mx.header-link;
   text-transform: uppercase;
+  cursor: pointer;
 
-  @include button-mx.reset-button;
-  @include header-mx.subsidiary-header-interactive;
-
-  @include utilities-mx.focus-style;
-  @include utilities-mx.not-disabled-hover() {
-    @include button-mx.button-variant-def('hover', 'tertiary');
-  }
-  
   post-icon {
-    height: 24px;
-    width: 24px;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &[aria-expanded='true'] {
-    background-color: #050400;
-    color: #fff;
+    @include header-mx.header-link-active;
 
     post-icon {
       transform: rotate(180deg);
-    }
-
-    &:hover {
-      background-color: #504f4b;
-      color: white;
-    }
-  }
-
-  @include utilities-mx.high-contrast-mode() {
-    border: 1px solid ButtonBorder;
-
-    &[aria-expanded='true'],
-    &:hover {
-      post-icon {
-        color: HighlightText;
-      }
     }
   }
 }

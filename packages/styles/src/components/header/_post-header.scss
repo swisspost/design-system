@@ -18,6 +18,10 @@ post-header ul:where([slot]) {
 post-header a[slot],
 post-header ul[slot] > li > a {
   @include header-link;
+
+  &.active {
+    @include header-link-active;
+  }
 }
 
 //body:has(post-header) {
