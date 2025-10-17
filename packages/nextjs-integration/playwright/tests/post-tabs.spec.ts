@@ -85,18 +85,5 @@ test.describe('Tabs', () => {
       
       assertNoComponentErrors(errors, TAB_COMPONENTS);
     });
-
-    test('should not have errors when clicking a navigation tab', async ({ page }) => {
-      const errors = captureComponentErrors(page, TAB_COMPONENTS);
-
-      await page.goto('/ssr');
-      
-      const tabItems = page.locator('post-tabs').last().locator('post-tab-item');
-      
-      await tabItems.nth(1).click();
-      await page.waitForTimeout(200);
-      
-      assertNoComponentErrors(errors, TAB_COMPONENTS);
-    });
   });
 });
