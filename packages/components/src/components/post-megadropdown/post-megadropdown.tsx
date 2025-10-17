@@ -184,7 +184,7 @@ export class PostMegadropdown {
       // Find the trigger element via its "for" attribute, then locate its button and set `aria-current="page"`
       document
         .querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
-        .classList.add('selected');
+        .classList.add('active');
     }
 
     this.firstFocusableEl = focusableChildren[0];
