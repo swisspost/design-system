@@ -15,6 +15,10 @@ post-header [slot] {
   &:where(ul) {
     @include list.list-inline;
     gap: 0.25rem;
+
+    > li {
+      flex: 1 0 auto !important;
+    }
   }
 
   // all slotted links and buttons
@@ -30,6 +34,14 @@ post-header [slot] {
   &:where([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
     @include all-slotted-controls {
       @include mobile-header-control;
+    }
+  }
+
+  // target group
+  &:where([slot='target-group']) {
+    @include media.only(mobile) {
+      flex-direction: column;
+      gap: 0.5rem;
     }
   }
 }
