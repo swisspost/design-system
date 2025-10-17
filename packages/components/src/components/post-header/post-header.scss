@@ -54,7 +54,7 @@
   display: flex;
   justify-content: space-between;
   position: sticky;
-  padding-inline: 4px;
+  padding-inline: 0.25rem 0.5rem;
   height: var(--post-global-header-expanded-height);
 
   @include media.max(lg) {
@@ -64,7 +64,6 @@
 
   @include media.min(lg) {
     z-index: 5;
-    padding-inline-end: 8px;
     inset-block-start: var(--post-global-header-top);
     transition: inset-block-start 0.2s ease-in-out;
   }

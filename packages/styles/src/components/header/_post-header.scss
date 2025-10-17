@@ -10,17 +10,27 @@
 
 tokens.$default-map: components.$post-button;
 
-post-header ul:where([slot]) {
-  @include list.list-inline;
-  gap: 4px;
-}
+post-header [slot] {
+  // all slotted lists
+  &:where(ul) {
+    @include list.list-inline;
+    gap: 0.25rem;
+  }
 
-post-header a[slot],
-post-header ul[slot] > li > a {
-  @include header-link;
+  // all slotted links and buttons
+  @include all-slotted-controls {
+    @include header-link;
 
-  &.active {
-    @include header-link-active;
+    &:where(.active, [aria-pressed='true']) {
+      @include header-link-active;
+    }
+  }
+
+  // links and buttons remaining in the global header on tablet and mobile
+  &:where([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
+    @include all-slotted-controls {
+      @include mobile-header-control;
+    }
   }
 }
 
