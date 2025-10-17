@@ -78,6 +78,59 @@
   }
 }
 
+/**
+ styles for list of controls on mobile and tablet
+ */
+@mixin mobile-control-list() {
+  @include media.max(desktop) {
+    flex-direction: column;
+
+    > li > a {
+      position: relative;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      border-radius: 0;
+
+      @include media.only(mobile) {
+        padding: 0.5rem;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+
+        > post-icon {
+          font-size: 1rem;
+        }
+      }
+
+      @include media.only(tablet) {
+        padding: 0.75rem 0.5rem;
+        gap: 1rem;
+
+        > post-icon {
+          font-size: 1.5rem;
+        }
+      }
+
+      &::after {
+        content: '';
+        background-color: currentColor;
+        position: absolute;
+        inset-inline: 0;
+        inset-block-end: 0;
+        height: 1px;
+      }
+
+      &:focus-visible {
+        border-radius: 0.5rem;
+        outline-offset: -1px !important;
+      }
+    }
+
+    > li:has(+ li:focus-within) > a::after {
+      background-color: transparent;
+    }
+  }
+}
+
 @mixin subsidiary-header-interactive() {
   text-decoration: none;
   display: inline-flex;

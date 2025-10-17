@@ -14,7 +14,7 @@ post-header {
   // all slotted lists
   > ul {
     @include list.list-inline;
-    gap: 0.25rem;
+    gap: 0 0.25rem;
 
     > li {
       flex: 1 0 auto !important;
@@ -33,20 +33,25 @@ post-header {
   }
 
   // links and buttons remaining in the global header on tablet and mobile
-  > :where([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
+  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
     @include controls-selector {
       @include mobile-header-control;
     }
   }
 
-  // target group
-  > [slot='target-group'] {
+  // target group on mobile
+  > ul[slot='target-group'] {
     @include media.only(mobile) {
       flex-direction: column;
       gap: 0.5rem;
     }
   }
+
+  > ul[slot='meta-navigation'] {
+    @include mobile-control-list;
+  }
 }
+
 
 //body:has(post-header) {
 //  scroll-padding-top: var(--post-header-height);
