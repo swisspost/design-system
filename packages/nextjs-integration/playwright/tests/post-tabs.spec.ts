@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { captureComponentErrors, assertNoComponentErrors } from '../support/component-error-capture';
+import { captureComponentErrors, assertNoComponentErrors } from '../support/component-error-filter';
 
 const TAB_COMPONENTS = ['post-tabs', 'post-tab-item', 'post-tab-panel'];
 
