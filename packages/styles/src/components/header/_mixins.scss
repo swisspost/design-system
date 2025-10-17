@@ -8,7 +8,7 @@
 /**
  selects all slotted controls
  */
-@mixin all-slotted-controls() {
+@mixin controls-selector() {
   &:where(ul) > li > a,
   &:where(a, post-togglebutton) {
     @content;

@@ -10,9 +10,9 @@
 
 tokens.$default-map: components.$post-button;
 
-post-header [slot] {
+post-header {
   // all slotted lists
-  &:where(ul) {
+  > ul {
     @include list.list-inline;
     gap: 0.25rem;
 
@@ -22,23 +22,25 @@ post-header [slot] {
   }
 
   // all slotted links and buttons
-  @include all-slotted-controls {
-    @include header-control;
+  > [slot] {
+    @include controls-selector {
+      @include header-control;
 
-    &:where(.active, [aria-pressed='true']) {
-      @include header-control-active;
+      &:where(.active, [aria-pressed='true']) {
+        @include header-control-active;
+      }
     }
   }
 
   // links and buttons remaining in the global header on tablet and mobile
-  &:where([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
-    @include all-slotted-controls {
+  > :where([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
+    @include controls-selector {
       @include mobile-header-control;
     }
   }
 
   // target group
-  &:where([slot='target-group']) {
+  > [slot='target-group'] {
     @include media.only(mobile) {
       flex-direction: column;
       gap: 0.5rem;
