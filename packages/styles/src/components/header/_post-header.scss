@@ -19,10 +19,10 @@ post-header [slot] {
 
   // all slotted links and buttons
   @include all-slotted-controls {
-    @include header-link;
+    @include header-control;
 
     &:where(.active, [aria-pressed='true']) {
-      @include header-link-active;
+      @include header-control-active;
     }
   }
 

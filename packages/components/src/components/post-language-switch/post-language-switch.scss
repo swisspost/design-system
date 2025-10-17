@@ -22,7 +22,7 @@ tokens.$default-map: components.$post-button;
 }
 
 .post-language-switch-trigger {
-  @include header-mx.header-link;
+  @include header-mx.header-control;
   text-transform: uppercase;
   cursor: pointer;
 
@@ -31,7 +31,7 @@ tokens.$default-map: components.$post-button;
   }
 
   &[aria-expanded='true'] {
-    @include header-mx.header-link-active;
+    @include header-mx.header-control-active;
 
     post-icon {
       transform: rotate(180deg);

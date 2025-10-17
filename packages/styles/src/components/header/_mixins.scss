@@ -18,7 +18,7 @@
 /**
  default styles for header controls
  */
-@mixin header-link() {
+@mixin header-control() {
   @extend %btn;
   display: flex;
   border: unset;
@@ -47,7 +47,7 @@
 /**
  active styles for header controls
  */
-@mixin header-link-active() {
+@mixin header-control-active() {
   box-shadow: tokens.get('button-elevation');
 
   @include button.button-variant-def('enabled', 'primary');
