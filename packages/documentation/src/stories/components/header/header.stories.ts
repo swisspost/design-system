@@ -131,7 +131,6 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
     const globalLogin = args.isLoggedIn
       ? html` <div slot="global-login">${userMenu}</div> `
       : html`
-          <!-- Global Login -->
           <a href="" slot="global-login">
             <span>Login</span>
             <post-icon name="login"></post-icon>
@@ -155,6 +154,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
+        ${args.targetGroup ? renderTargetGroup() : nothing}
         ${args.globalControls ? globalControls : nothing}
         ${args.metaNavigation ? renderMetaNavigation() : nothing}
 
@@ -172,7 +172,10 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
           <post-language-option active="true" code="en" name="English">en</post-language-option>
         </post-language-switch>
 
-        ${!args.title ? globalLogin : nothing}
+        ${!args.title ? html`
+          <!-- Global Login -->
+          ${globalLogin}
+        ` : nothing}
 
         <!-- Menu button for mobile -->
         <post-togglebutton slot="post-togglebutton">
@@ -181,7 +184,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
           <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
         </post-togglebutton>
 
-        ${args.title !== '' ? title : nothing} ${args.targetGroup ? renderTargetGroup() : nothing}
+        ${args.title !== '' ? title : nothing}
         ${args.customControls ? renderCustomControls(args) : nothing}
         ${args.mainNavigation ? mainnavigation : nothing}
       </post-header>
