@@ -6,12 +6,6 @@ export function renderMetaNavigation() {
     <ul class="list-inline" slot="meta-navigation">
       <li>
         <a href="">
-          Search
-          <post-icon name="search" aria-hidden="true"></post-icon>
-        </a>
-      </li>
-      <li>
-        <a href="">
           Jobs
           <post-icon name="jobs" aria-hidden="true"></post-icon>
         </a>
