@@ -159,47 +159,49 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
       </ul>
     `;
 
-    return html` <post-header>
-      <!-- Logo -->
-      <post-logo slot="post-logo" url="/">Homepage</post-logo>
+    return html`
+      <post-header>
+        <!-- Logo -->
+        <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-      ${args.targetGroup ? renderTargetGroup() : nothing}
-      ${args.globalControls && !args.jobs ? globalControls : nothing}
-      ${args.metaNavigation ? renderMetaNavigation() : nothing}
+        ${args.targetGroup ? renderTargetGroup() : nothing}
+        ${args.globalControls && !args.jobs ? globalControls : nothing}
+        ${args.metaNavigation ? renderMetaNavigation() : nothing}
 
-      <!-- Language switch -->
-      <post-language-switch
-        caption="Change the language"
-        description="The currently selected language is English."
-        variant="list"
-        name="language-switch-example"
-        slot="post-language-switch"
-      >
-        <post-language-option code="de" name="German">de</post-language-option>
-        <post-language-option code="fr" name="French">fr</post-language-option>
-        <post-language-option code="it" name="Italian">it</post-language-option>
-        <post-language-option active="true" code="en" name="English">en</post-language-option>
-      </post-language-switch>
+        <!-- Language switch -->
+        <post-language-switch
+          caption="Change the language"
+          description="The currently selected language is English."
+          variant="list"
+          name="language-switch-example"
+          slot="post-language-switch"
+        >
+          <post-language-option code="de" name="German">de</post-language-option>
+          <post-language-option code="fr" name="French">fr</post-language-option>
+          <post-language-option code="it" name="Italian">it</post-language-option>
+          <post-language-option active="true" code="en" name="English">en</post-language-option>
+        </post-language-switch>
 
-      ${!args.title && !args.jobs
-        ? html`
-            <!-- Global header login/user menu -->
-            ${globalLogin}
-          `
-        : nothing}
+        ${!args.title && !args.jobs
+          ? html`
+              <!-- Global header login/user menu -->
+              ${globalLogin}
+            `
+          : nothing}
 
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span>Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-      </post-togglebutton>
+        <!-- Menu button for mobile -->
+        <post-togglebutton slot="post-togglebutton">
+          <span>Menu</span>
+          <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+          <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+        </post-togglebutton>
 
-      ${args.title !== '' ? title : nothing}
-      ${args.customControls ? renderCustomControls(args) : nothing}
-      ${args.mainNavigation ? mainnavigation : nothing}
-      ${args.jobs ? renderNavigationControls() : nothing}
-    </post-header>`;
+        ${args.title !== '' ? title : nothing}
+        ${args.customControls ? renderCustomControls(args) : nothing}
+        ${args.mainNavigation ? mainnavigation : nothing}
+        ${args.jobs ? renderNavigationControls() : nothing}
+      </post-header>
+    `;
   };
 }
 
