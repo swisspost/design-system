@@ -2,8 +2,8 @@ import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { fakeContent } from '@/utils';
-import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
+import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
 import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
 import { renderCustomControls } from '@/stories/components/header/renderers/custom-controls';
 import { renderNavigationControls } from '@/stories/components/header/renderers/navigation-controls';
@@ -26,7 +26,9 @@ const meta: MetaComponent = {
     title: '',
     mainNavigation: true,
     metaNavigation: true,
+    globalControls: true,
     targetGroup: true,
+    globalLogin: true,
     customControls: false,
     isLoggedIn: false,
     jobs: false,
@@ -52,10 +54,30 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    globalControls: {
+      name: 'Global controls',
+      description: 'Whether or not the search button in the global header is displayed.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    globalLogin: {
+      name: 'Global login',
+      description: 'Whether or not the user menu or login button in the global header is displayed',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
     metaNavigation: {
       name: 'Meta navigation',
       description:
-        'Whether or not the meta navigation is displayed ("Search", "Jobs", and "Create Account").',
+        'Whether or not the meta navigation is displayed ("jobs" and "create an account").',
       control: {
         type: 'boolean',
       },
@@ -101,11 +123,10 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story => html`
-      <div class="header-story-wrapper">
+    story =>
+      html` <div class="header-story-wrapper">
         <div class="virtual-body">${story()} ${fakeContent()}</div>
-      </div>
-    `,
+      </div>`,
   ],
   render: getHeaderRenderer(),
 };
@@ -126,11 +147,24 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
           </a>
         `;
 
-    return html`<post-header>
+    const globalControls = html`
+      <!-- Global controls (Search) -->
+      <ul class="list-inline" slot="global-controls">
+        <li>
+          <a href="">
+            <span>Search</span>
+            <post-icon aria-hidden="true" name="search"></post-icon>
+          </a>
+        </li>
+      </ul>
+    `;
+
+    return html` <post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
       ${args.targetGroup ? renderTargetGroup() : nothing}
+      ${args.globalControls && !args.jobs ? globalControls : nothing}
       ${args.metaNavigation ? renderMetaNavigation() : nothing}
 
       <!-- Language switch -->
@@ -162,15 +196,24 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
       </post-togglebutton>
 
       ${args.title !== '' ? title : nothing}
-      ${args.customControls ? renderCustomControls(args) : ''}
-      ${args.mainNavigation ? mainnavigation : ''}
+      ${args.customControls ? renderCustomControls(args) : nothing}
+      ${args.mainNavigation ? mainnavigation : nothing}
       ${args.jobs ? renderNavigationControls() : nothing}
     </post-header>`;
   };
 }
 
 function getIframeParameters(iframeHeight: number) {
-  return { parameters: { docs: { story: { inline: false, iframeHeight } } } };
+  return {
+    parameters: {
+      docs: {
+        story: {
+          inline: false,
+          iframeHeight,
+        },
+      },
+    },
+  };
 }
 
 export default meta;
@@ -220,9 +263,11 @@ export const Microsite: Story = {
   args: {
     title: '[Microsite Title]',
     mainNavigation: true,
+    globalControls: false,
     metaNavigation: false,
-    customControls: true,
+    globalLogin: false,
     targetGroup: false,
+    customControls: true,
   },
 };
 
@@ -232,7 +277,9 @@ export const OnePager: Story = {
     title: '[One Pager Title]',
     mainNavigation: false,
     metaNavigation: false,
+    globalControls: false,
     customControls: false,
+    globalLogin: false,
     targetGroup: false,
   },
 };
