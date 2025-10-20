@@ -166,7 +166,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
 
         ${args.targetGroup ? renderTargetGroup(args) : nothing}
         ${args.globalControls && !args.jobs ? globalControls : nothing}
-        ${args.metaNavigation ? renderMetaNavigation() : nothing}
+        ${args.metaNavigation ? renderMetaNavigation(args) : nothing}
 
         <!-- Language switch -->
         <post-language-switch
