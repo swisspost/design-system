@@ -14,7 +14,7 @@ import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkEmptyOrOneOf, checkRequiredAndType } from '@/utils';
+import { getRoot, checkEmptyOrOneOf, checkRequiredAndType, EventFrom } from '@/utils';
 
 /**
  * @part menu - The container element that holds the list of menu items.
@@ -147,35 +147,37 @@ export class PostMenu {
     }
   };
 
+  @EventFrom('post-popovercontainer')
   private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
-    // Only for the first open
-    if (event.detail.first) {
-      // Add "menu" and "menuitem" aria roles and aria-label
-      this.host.setAttribute('role', 'menu');
+      // Only for the first open
+      if (event.detail.first) {
+        // Add "menu" and "menuitem" aria roles and aria-label
+        this.host.setAttribute('role', 'menu');
 
-      const menuItems = this.getSlottedItems();
-      for (const item of menuItems) {
-        item.setAttribute('role', 'menuitem');
+        const menuItems = this.getSlottedItems();
+        for (const item of menuItems) {
+          item.setAttribute('role', 'menuitem');
+        }
+
+        if (this.label) this.host.setAttribute('aria-label', this.label);
       }
+    };
 
-      if (this.label) this.host.setAttribute('aria-label', this.label);
-    }
-  };
-
+  @EventFrom('post-popovercontainer')
   private readonly handlePostToggled = (event: CustomEvent<{ isOpen: boolean }>) => {
-    this.isVisible = event.detail.isOpen;
-    this.toggleMenu.emit(this.isVisible);
+      this.isVisible = event.detail.isOpen;
+      this.toggleMenu.emit(this.isVisible);
 
-    if (this.isVisible) {
-      this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-      const menuItems = this.getSlottedItems();
-      if (menuItems.length > 0) {
-        (menuItems[0] as HTMLElement).focus();
+      if (this.isVisible) {
+        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+        const menuItems = this.getSlottedItems();
+        if (menuItems.length > 0) {
+          (menuItems[0] as HTMLElement).focus();
+        }
+      } else if (this.lastFocusedElement) {
+        this.lastFocusedElement.focus();
       }
-    } else if (this.lastFocusedElement) {
-      this.lastFocusedElement.focus();
-    }
-  };
+    };
 
   private readonly handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
