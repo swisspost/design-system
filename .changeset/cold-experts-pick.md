@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Fixed the code snippet in the `<post-banner>` component documentation to display the `type` attribute.
+Added the missing `type` property in the code snippet of the `<post-banner>` component documentation.
