@@ -54,6 +54,7 @@ post-header {
       flex-direction: column;
 
       > li > a {
+        flex-direction: row-reverse;
         @include header-control-navigation;
       }
     }

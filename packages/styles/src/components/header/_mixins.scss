@@ -79,13 +79,26 @@
  styles for list of controls on mobile and tablet
  */
 @mixin header-control-navigation() {
-  position: relative;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
   border-radius: 0;
+  padding: 0 0.75rem;
+
+  @include media.max(desktop) {
+    width: 100%;
+    justify-content: start;
+    position: relative;
+
+    &::before {
+      content: '';
+      background-color: currentColor;
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      height: 1px;
+    }
+  }
 
   @include media.only(mobile) {
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem calc(0.5rem - 1px) 0.5rem;
     gap: 0.5rem;
     font-size: 0.875rem;
 
@@ -95,7 +108,7 @@
   }
 
   @include media.only(tablet) {
-    padding: 0.75rem 0.5rem;
+    padding: 0.75rem 0.75rem calc(0.75rem - 1px) 0.5rem;
     gap: 1rem;
 
     > post-icon {
@@ -103,18 +116,12 @@
     }
   }
 
-  &::after {
-    content: '';
-    background-color: currentColor;
-    position: absolute;
-    inset-inline: 0;
-    inset-block-end: 0;
-    height: 1px;
+  @include utilities.not-disabled-hover() {
+    @include button.button-variant-def('hover', 'primary');
   }
 
   &:focus-visible {
     border-radius: 0.5rem;
-    outline-offset: -1px !important;
   }
 }
 
