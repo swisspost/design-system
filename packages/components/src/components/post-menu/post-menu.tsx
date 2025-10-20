@@ -148,7 +148,6 @@ export class PostMenu {
   };
 
   private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
-    console.log('post shown');
     // Only for the first open
     if (event.detail.first) {
       // Add "menu" and "menuitem" aria roles and aria-label
@@ -164,8 +163,6 @@ export class PostMenu {
   };
 
   private readonly handlePostToggled = (event: CustomEvent<{ isOpen: boolean }>) => {
-    console.log('post toggled');
-
     this.isVisible = event.detail.isOpen;
     this.toggleMenu.emit(this.isVisible);
 
