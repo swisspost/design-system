@@ -9,6 +9,7 @@ import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
+ * @slot global-controls - Holds search button in the global header.
  * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
  * @slot post-togglebutton - Holds the mobile menu toggler.
  * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
@@ -16,6 +17,7 @@ import { EventFrom } from '@/utils/event-from';
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot target-group - Holds the list of buttons to choose the target group.
+ * @slot global-login - Holds the user menu or login button in the global header.
  */
 
 @Component({
@@ -146,7 +148,7 @@ export class PostHeader {
     window.removeEventListener('postBreakpoint:device', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
-    scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     this.host.removeEventListener('click', this.handleLinkClick);
@@ -363,7 +365,10 @@ export class PostHeader {
               <slot name="target-group"></slot>
             )}
           </div>
-          <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
+          <slot
+            name="post-mainnavigation"
+            onSlotchange={() => this.checkNavigationExistence()}
+          ></slot>
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
@@ -393,11 +398,10 @@ export class PostHeader {
             {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
-            {!this.hasMobileMenu && (
-              <slot name="meta-navigation"></slot>
-            )}
             <slot name="global-controls"></slot>
+            {!this.hasMobileMenu && <slot name="meta-navigation"></slot>}
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
+            <slot name="global-login"></slot>
             {this.hasNavigation && (
               <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
                 <slot name="post-togglebutton"></slot>
@@ -407,12 +411,12 @@ export class PostHeader {
         </div>
         <div class={localHeaderClasses.join(' ')}>
           <slot name="title" onSlotchange={() => this.checkTitleExistence()}></slot>
-          {this.hasTitle &&
-            (<div class="local-sub">
+          {this.hasTitle && (
+            <div class="local-sub">
               <slot name="local-controls"></slot>
               <slot></slot>
-            </div>)
-          }
+            </div>
+          )}
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}
