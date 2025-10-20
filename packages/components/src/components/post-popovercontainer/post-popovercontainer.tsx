@@ -75,7 +75,7 @@ export class PostPopovercontainer {
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
   private toggleTimeoutId: number;
-  private first: boolean = true;
+  private hasOpenedOnce: boolean = true;
 
   /**
    * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
@@ -93,14 +93,14 @@ export class PostPopovercontainer {
   @Event() postHide: EventEmitter;
 
   /**
-   * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail an object containing two booleans: `willOpen`, which is true if the popovercontainer is about to be opened and false if it is about to be closed, and `first`, which is true if it is to be opened for the first time.
+   * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
    */
-  @Event() postBeforeToggle: EventEmitter<{ willOpen: boolean; first?: boolean }>;
+  @Event() postBeforeToggle: EventEmitter<{ willOpen: boolean }>;
 
   /**
-   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
+   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
    */
-  @Event() postToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
+  @Event() postToggle: EventEmitter<{ isOpen: boolean }>;
 
   /**
    * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -187,6 +187,52 @@ export class PostPopovercontainer {
   }
 
   /**
+   * Handles the popover opening process and emits related events.
+   */
+  @Method()
+  async open() {
+    const content = this.host.querySelector('.popover-content');
+    this.startAutoupdates();
+
+    if (content) {
+      const animation = popIn(content);
+
+      if (animation?.playState === 'running') {
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+      }
+
+      animation?.finished.then(() => {
+        this.postToggle.emit({ isOpen: true });
+        this.postShow.emit({ first: this.hasOpenedOnce });
+
+        if (this.hasOpenedOnce) this.hasOpenedOnce = false;
+      });
+    }
+
+    if (this.safeSpace) {
+      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+  }
+
+  /**
+   * Handles the popover closing process and emits related events.
+   */
+  @Method()
+  async close() {
+    if (typeof this.clearAutoUpdate === 'function') {
+      this.clearAutoUpdate();
+    }
+
+    if (this.safeSpace) {
+      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+
+    this.postToggle.emit({ isOpen: false });
+    this.postHide.emit();
+  }
+
+  /**
    * Programmatically hide the popovercontainer
    */
   @Method()
@@ -226,48 +272,10 @@ export class PostPopovercontainer {
 
     const isOpen = e.newState === 'open';
     if (isOpen) {
-      this.handleOpen();
+      this.open();
     } else {
-      this.handleClose();
+      this.close();
     }
-  }
-
-  private handleOpen() {
-    const content = this.host.querySelector('.popover-content');
-    this.startAutoupdates();
-
-    if (content) {
-      const animation = popIn(content);
-
-      if (animation?.playState === 'running') {
-        this.postBeforeToggle.emit({ willOpen: true, first: this.first });
-        this.postBeforeShow.emit({ first: this.first });
-      }
-
-      animation?.finished.then(() => {
-        this.postToggle.emit({ isOpen: true, first: this.first });
-        this.postShow.emit({ first: this.first });
-
-        if (this.first) this.first = false;
-      });
-    }
-
-    if (this.safeSpace) {
-      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
-    }
-  }
-
-  private handleClose() {
-    if (typeof this.clearAutoUpdate === 'function') {
-      this.clearAutoUpdate();
-    }
-
-    if (this.safeSpace) {
-      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
-    }
-
-    this.postToggle.emit({ isOpen: false, first: this.first });
-    this.postHide.emit({ first: this.first });
   }
 
   /**

@@ -140,29 +140,33 @@ export class PostMenu {
     }
   };
 
-  private readonly handlePostToggled = (
-    event: CustomEvent<{ isOpen: boolean; first?: boolean }>,
-  ) => {
+  private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
+    console.log('post shown');
+    // Only for the first open
+    if (event.detail.first) {
+      // Add "menu" and "menuitem" aria roles and aria-label
+      this.host.setAttribute('role', 'menu');
+
+      const menuItems = this.getSlottedItems();
+      for (const item of menuItems) {
+        item.setAttribute('role', 'menuitem');
+      }
+
+      if (this.label) this.host.setAttribute('aria-label', this.label);
+    }
+  };
+
+  private readonly handlePostToggled = (event: CustomEvent<{ isOpen: boolean }>) => {
+    console.log('post toggled');
+
     this.isVisible = event.detail.isOpen;
     this.toggleMenu.emit(this.isVisible);
 
     if (this.isVisible) {
       this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-
       const menuItems = this.getSlottedItems();
       if (menuItems.length > 0) {
         (menuItems[0] as HTMLElement).focus();
-
-        // Only for the first open
-        if (event.detail.first) {
-          // Add "menu" and "menuitem" aria roles and aria-label
-          this.host.setAttribute('role', 'menu');
-          menuItems.forEach(item => {
-            item.setAttribute('role', 'menuitem');
-          });
-
-          if (this.label) this.host.setAttribute('aria-label', this.label);
-        }
       }
     } else if (this.lastFocusedElement) {
       this.lastFocusedElement.focus();
@@ -235,6 +239,7 @@ export class PostMenu {
     return (
       <Host data-version={version}>
         <post-popovercontainer
+          onPostShow={this.handlePostShown}
           onPostToggle={this.handlePostToggled}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}

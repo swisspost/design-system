@@ -17,20 +17,40 @@
 
 ## Events
 
-| Event              | Description                                                                                                                                                                                                                                                                                                        | Type                                                   |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
-| `postBeforeShow`   | Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.                                                                                                                                                        | `CustomEvent<{ first?: boolean; }>`                    |
-| `postBeforeToggle` | Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail an object containing two booleans: `willOpen`, which is true if the popovercontainer is about to be opened and false if it is about to be closed, and `first`, which is true if it is to be opened for the first time. | `CustomEvent<{ willOpen: boolean; first?: boolean; }>` |
-| `postHide`         | Fires whenever the popovercontainer is hidden                                                                                                                                                                                                                                                                      | `CustomEvent<any>`                                     |
-| `postShow`         | Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.                                                                                                                                                                          | `CustomEvent<{ first?: boolean; }>`                    |
-| `postToggle`       | Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.                                        | `CustomEvent<{ isOpen: boolean; first?: boolean; }>`   |
+| Event              | Description                                                                                                                                                                                                          | Type                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| `postBeforeShow`   | Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.                                                          | `CustomEvent<{ first?: boolean; }>`   |
+| `postBeforeToggle` | Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed. | `CustomEvent<{ willOpen: boolean; }>` |
+| `postHide`         | Fires whenever the popovercontainer is hidden.                                                                                                                                                                       | `CustomEvent<any>`                    |
+| `postShow`         | Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.                                                                            | `CustomEvent<{ first?: boolean; }>`   |
+| `postToggle`       | Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.               | `CustomEvent<{ isOpen: boolean; }>`   |
 
 
 ## Methods
 
+### `close() => Promise<void>`
+
+Handles the popover closing process and emits related events.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `hide() => Promise<void>`
 
 Programmatically hide the popovercontainer
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `open() => Promise<void>`
+
+Handles the popover opening process and emits related events.
 
 #### Returns
 
