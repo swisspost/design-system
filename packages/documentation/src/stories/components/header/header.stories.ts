@@ -164,7 +164,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.targetGroup ? renderTargetGroup() : nothing}
+        ${args.targetGroup ? renderTargetGroup(args) : nothing}
         ${args.globalControls && !args.jobs ? globalControls : nothing}
         ${args.metaNavigation ? renderMetaNavigation() : nothing}
 
