@@ -33,10 +33,9 @@ export class PostMegadropdown {
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
-  get megadropdownTrigger(): Element {
+  private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
-    const trigger = document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`);
-    return trigger;
+    return hostId ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`) : null;
   }
 
   /**
