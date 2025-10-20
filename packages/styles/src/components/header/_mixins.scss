@@ -3,7 +3,6 @@
 @use '../../mixins/icons';
 @use '../../mixins/media';
 @use '../../mixins/utilities';
-@use '../../placeholders/button' as button-ph;
 
 /**
  selects all slotted controls
@@ -19,7 +18,7 @@
  default styles for header controls
  */
 @mixin header-control-base() {
-  @extend %btn;
+  @include button.button-base;
   display: flex;
   border: unset;
   padding: 0.25rem 0.625rem;
