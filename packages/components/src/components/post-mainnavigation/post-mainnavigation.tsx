@@ -7,7 +7,7 @@ const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar i
 @Component({
   tag: 'post-mainnavigation',
   styleUrl: './post-mainnavigation.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostMainnavigation {
   private navbar: HTMLElement;
@@ -90,10 +90,10 @@ export class PostMainnavigation {
    */
   private fixLayoutShift() {
     this.navigationItems
-      .filter(item => !item.matches(':has(.nav-el-active)'))
+      .filter(item => !item.matches(':has(.nav-el-inactive)'))
       .forEach(item => {
         item.innerHTML = `
-          <span class="nav-el-active">${item.innerHTML}</span>
+          ${item.innerHTML}
           <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
         `;
       });

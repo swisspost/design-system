@@ -1,0 +1,25 @@
+@use '../../mixins/media';
+@use './mixins' as *;
+
+post-mainnavigation {
+  [role='list']:not(post-megadropdown *) {
+    @include media.only(desktop) {
+      flex-direction: row;
+    }
+  }
+
+  :is(a, button):not(post-megadropdown *) {
+    @include header-control-base;
+    @include header-control-navigation;
+
+    &:where(.active, [aria-current='page'], [aria-expanded='true']) {
+      @include header-control-active;
+    }
+
+    @include media.only(desktop) {
+      z-index: 4;
+      height: var(--post-main-navigation-height, auto);
+      font-weight: 700;
+    }
+  }
+}
