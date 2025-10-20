@@ -29,6 +29,7 @@ Type: `Promise<void>`
 | Slot                     | Description                                                                   |
 | ------------------------ | ----------------------------------------------------------------------------- |
 | `"default"`              | Custom controls or content, right aligned in the local header.                |
+| `"global-controls"`      | Holds search button in the global header.                                     |
 | `"global-login"`         | Holds the user menu or login button in the global header.                     |
 | `"meta-navigation"`      | Holds an `<ul>` with meta navigation links.                                   |
 | `"post-language-switch"` | Should be used with the `<post-language-switch>` component.                   |
