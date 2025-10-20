@@ -1,5 +1,72 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.50
+
+### Minor Changes
+
+- Added back the `.small` utility class (font-size: 80%) for backwards compatibility. (by [@hugomslv](https://github.com/hugomslv) with [#6273](https://github.com/swisspost/design-system/pull/6273))
+
+- Added an auto migration filter to the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#6251](https://github.com/swisspost/design-system/pull/6251))
+
+- Updated the migration guide:
+
+  - Added information regarding the removal of bootstrap and ng-bootstrap in one place
+  - Cleaned up scattered informations regarding bootstrap removal in the rest of the page
+  - Removed all informations of removed elements that were never previously documented (by [@leagrdv](https://github.com/leagrdv) with [#6208](https://github.com/swisspost/design-system/pull/6208))
+
+- Added usage examples for the header component. (by [@alizedebray](https://github.com/alizedebray) with [#6270](https://github.com/swisspost/design-system/pull/6270))
+
+- The `Multiple` and `Multiple Size` controls have been removed from the Form Select documentation and the Form Creation guideline. (by [@bucknatt](https://github.com/bucknatt) with [#6359](https://github.com/swisspost/design-system/pull/6359))
+
+### Patch Changes
+
+- Added information in the migration guide regarding the update on the gutter utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6237](https://github.com/swisspost/design-system/pull/6237))
+
+- Added information in the migration guide regarding auto migration for the elevation utilities. (by [@leagrdv](https://github.com/leagrdv) with [#6241](https://github.com/swisspost/design-system/pull/6241))
+
+- Added the documentation about the removal of `.text-*` color utility classes in the migration guide. (by [@bucknatt](https://github.com/bucknatt) with [#6323](https://github.com/swisspost/design-system/pull/6323))
+
+- Added information in the migration guide regarding auto migration for the chip component. (by [@leagrdv](https://github.com/leagrdv) with [#6330](https://github.com/swisspost/design-system/pull/6330))
+
+- Added information in the migration guide regarding the update on the spacing utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6219](https://github.com/swisspost/design-system/pull/6219))
+
+- Updated Angular integration documentation to reflect the new standalone components approach, replacing `PostComponentsModule` with `providePostComponents()` pattern. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5968](https://github.com/swisspost/design-system/pull/5968))
+
+- Added information in the migration guide regarding the update on the sizing utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6225](https://github.com/swisspost/design-system/pull/6225))
+
+- Fixed `<post-banner>` Web Component example so the `Reset Banner` button is hidden initially and only appears after the banner has been dismissed. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6076](https://github.com/swisspost/design-system/pull/6076))
+
+- Updated the Figma link in the `<post-accordion>` component documentation to point to the current design specifications. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6266](https://github.com/swisspost/design-system/pull/6266))
+
+- Added documentation on styling active navigation items in `<post-header>` using the `[aria-current="page"]` attribute. (by [@myrta2302](https://github.com/myrta2302) with [#6216](https://github.com/swisspost/design-system/pull/6216))
+
+- Cleaned up the migration guide by removing redundant "breaking" tags in the "Migration from v9 to v10" section, since all listed changes are breaking. (by [@leagrdv](https://github.com/leagrdv) with [#6250](https://github.com/swisspost/design-system/pull/6250))
+
+- Added information in the migration guide regarding auto migration for the spinner. (by [@leagrdv](https://github.com/leagrdv) with [#6249](https://github.com/swisspost/design-system/pull/6249))
+
+- Grouped the text truncation documentation with other text utilities. (by [@hugomslv](https://github.com/hugomslv) with [#6349](https://github.com/swisspost/design-system/pull/6349))
+
+- Updated interactive cards to have the `.card` class directly set on the `post-linkarea` component, reducing unnecessary DOM nesting. (by [@leagrdv](https://github.com/leagrdv) with [#6367](https://github.com/swisspost/design-system/pull/6367))
+
+- Replaced `Post Icons` with their corresponding `UI Icon` equivalents across the documentation to align icon usage with the current design guidelines. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6308](https://github.com/swisspost/design-system/pull/6308))
+
+- Added information in the migration guide regarding auto migration for the shadows utilities. (by [@leagrdv](https://github.com/leagrdv) with [#6239](https://github.com/swisspost/design-system/pull/6239))
+
+- Removed support for multiple links in the `post-linkarea` component; it now throws an error if more than one link is detected in the slotted content. (by [@leagrdv](https://github.com/leagrdv) with [#6324](https://github.com/swisspost/design-system/pull/6324))
+
+- Added information in the migration guide regarding the update on the gap utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6247](https://github.com/swisspost/design-system/pull/6247))
+
+- Added information in the migration guide regarding the update of the font size classes. (by [@leagrdv](https://github.com/leagrdv) with [#6347](https://github.com/swisspost/design-system/pull/6347))
+
+- Added information in the migration guide regarding the update on the breakpoint classes. (by [@leagrdv](https://github.com/leagrdv) with [#6309](https://github.com/swisspost/design-system/pull/6309))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.49
+  - @swisspost/design-system-components@10.0.0-next.49
+  - @swisspost/design-system-styles@10.0.0-next.49
+  - @swisspost/design-system-components-react@10.0.0-next.49
+  - @swisspost/internet-header@10.0.0-next.49
+  - @swisspost/design-system-tokens@10.0.0-next.49
+
 ## 6.0.0-next.49
 
 ### Minor Changes

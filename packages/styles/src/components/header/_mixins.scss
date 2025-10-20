@@ -31,7 +31,8 @@
     left: 0;
   }
 
-  &.selected,
+  &.active,
+  &[aria-current='page'],
   &[aria-expanded='true'] {
     background-color: #050400;
     color: #fff;

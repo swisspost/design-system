@@ -14,11 +14,12 @@ import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
+import { getRoot, checkEmptyOrOneOf, EventFrom, checkRequiredAndType } from '@/utils';
 
 /**
  * @part menu - The container element that holds the list of menu items.
-*/
+ * @slot header - Holds the header part of the menu.
+ */
 
 @Component({
   tag: 'post-menu',
@@ -55,6 +56,16 @@ export class PostMenu {
   }
 
   /**
+   * An accessible name for the menu.
+   */
+  @Prop() readonly label!: string;
+  
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'label', 'string');
+  }
+
+  /**
    * Holds the current visibility state of the menu.
    * This state is internally managed to track whether the menu is open (`true`) or closed (`false`),
    * and updates automatically when the menu is toggled.
@@ -83,6 +94,7 @@ export class PostMenu {
 
   componentDidLoad() {
     this.validatePlacement();
+    this.validateLabel();
     if (this.popoverRef) {
       this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
     }
@@ -140,19 +152,37 @@ export class PostMenu {
   };
 
   @EventFrom('post-popovercontainer')
-  private handlePostToggle = (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
+  private handlePostToggle = (event: CustomEvent<{ isOpen: boolean; first?: boolean }>) => {
+      this.isVisible = event.detail.isOpen;
       this.toggleMenu.emit(this.isVisible);
 
       requestAnimationFrame(() => {
         if (this.isVisible) {
           this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+
           const menuItems = this.getSlottedItems();
-          if (menuItems.length > 0) {
-            (menuItems[0] as HTMLElement).focus();
+
+          if (event.detail.first) {
+            if (menuItems.length > 0) {
+              // Add role="menu" to the popovercontainer
+              this.host.setAttribute('role', 'menu');
+
+              // Add role="menuitem" to the focusable elements
+              menuItems.forEach(item => {
+                item.setAttribute('role', 'menuitem');
+              });
+
+              // Add aria-label to the menu
+              if (this.label) this.host.setAttribute('aria-label', this.label);
+            }
           }
+
+          (menuItems[0] as HTMLElement).focus();
         } else if (this.lastFocusedElement) {
-          this.lastFocusedElement.focus();
+          setTimeout(() => {
+            // This timeout is added for NVDA to announce the menu as collapsed
+            this.lastFocusedElement.focus();
+          }, 0);
         }
       });
     };
@@ -207,8 +237,9 @@ export class PostMenu {
   }
 
   private getSlottedItems(): Element[] {
-    const slot = this.host.shadowRoot.querySelector('slot');
-    const slottedElements = slot ? slot.assignedElements() : [];
+    const slot = this.host.shadowRoot.querySelectorAll('slot');
+    const slottedElements: Element[] = [];
+    slot.forEach(slotItem => slottedElements.push(...slotItem.assignedElements()));
 
     return (
       slottedElements
@@ -221,9 +252,10 @@ export class PostMenu {
 
   render() {
     return (
-      <Host data-version={version} role="menu">
+      <Host data-version={version}>
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
           <div part="menu">
+            <slot name="header"></slot>
             <slot></slot>
           </div>
         </post-popovercontainer>
