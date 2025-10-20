@@ -182,10 +182,12 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
           <post-language-option active="true" code="en" name="English">en</post-language-option>
         </post-language-switch>
 
-        ${!args.title ? html`
-          <!-- Global header login/user menu -->
-          ${globalLogin}
-        ` : nothing}
+        ${!args.title && !args.jobs
+          ? html`
+              <!-- Global header login/user menu -->
+              ${globalLogin}
+            `
+          : nothing}
 
         <!-- Menu button for mobile -->
         <post-togglebutton slot="post-togglebutton">
