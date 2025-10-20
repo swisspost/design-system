@@ -22,7 +22,7 @@ tokens.$default-map: components.$post-button;
 }
 
 .post-language-switch-trigger {
-  @include header-mx.header-control;
+  @include header-mx.header-control-base;
   text-transform: uppercase;
   cursor: pointer;
 
