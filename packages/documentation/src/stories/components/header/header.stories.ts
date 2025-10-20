@@ -139,7 +139,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
     `;
 
     const globalLogin = args.isLoggedIn
-      ? userMenu
+      ? html` <div slot="global-login">${userMenu}</div> `
       : html`
           <a href="" slot="global-login">
             <span>Login</span>
@@ -182,12 +182,10 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
           <post-language-option active="true" code="en" name="English">en</post-language-option>
         </post-language-switch>
 
-        ${!args.title && !args.jobs
-          ? html`
-              <!-- Global header login/user menu -->
-              ${globalLogin}
-            `
-          : nothing}
+        ${!args.title ? html`
+          <!-- Global header login/user menu -->
+          ${globalLogin}
+        ` : nothing}
 
         <!-- Menu button for mobile -->
         <post-togglebutton slot="post-togglebutton">
