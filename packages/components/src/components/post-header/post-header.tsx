@@ -9,6 +9,7 @@ import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
+ * @slot global-controls - Holds search button in the global header.
  * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
  * @slot post-togglebutton - Holds the mobile menu toggler.
  * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
@@ -16,6 +17,7 @@ import { EventFrom } from '@/utils/event-from';
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot target-group - Holds the list of buttons to choose the target group.
+ * @slot global-login - Holds the user menu or login button in the global header.
  */
 
 @Component({
@@ -215,8 +217,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -396,9 +398,10 @@ export class PostHeader {
             {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
-            {!this.hasMobileMenu && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
+            {!this.hasMobileMenu && <slot name="meta-navigation"></slot>}
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
+            <slot name="global-login"></slot>
             {this.hasNavigation && (
               <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
                 <slot name="post-togglebutton"></slot>
