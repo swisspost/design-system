@@ -1,3 +1,19 @@
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/mixins/media';
+
 post-megadropdown-trigger {
   width: 100%;
+
+  > button {
+    @include media.max(desktop) {
+      > post-icon {
+        margin-inline-start: auto;
+        transform: rotate(-90deg);
+      }
+    }
+
+    @include media.only(desktop) {
+      @include header-mx.header-control-icon-rotate;
+    }
+  }
 }

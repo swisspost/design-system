@@ -13,7 +13,6 @@ post-mainnavigation {
     @include header-control-navigation;
 
     @include media.only(desktop) {
-      @include header-control-icon-rotate;
       z-index: 4;
       height: var(--post-main-navigation-height, auto);
     }
