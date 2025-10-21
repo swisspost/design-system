@@ -3,17 +3,15 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
 
-      // Ensure the component is hydrated, which is necessary to ensure the component is ready for interaction
       cy.get('post-popover[data-hydrated]');
 
-      // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
       cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
         .children()
         .first()
         .as('trigger');
       cy.get('#testtext').as('popover');
 
-      // Alternative popover trigger with no interactive element.
+      // Alternative popover trigger with no interactive element
       cy.get('post-popover-trigger[data-hydrated][for="popover-two"]')
         .children()
         .first()
