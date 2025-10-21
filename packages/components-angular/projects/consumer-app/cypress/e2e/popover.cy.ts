@@ -1,10 +1,3 @@
-// 1. Component renders and exists in DOM
-// 2. Component is visible (not hidden by CSS)
-// 3. No errors originating from the tested component (not external sources) (Console errors
-// Runtime exceptions)
-// 4. Custom event bindings work correctly
-// 5. Matrix test components across different framework versions (e.g., Angular 15/16/17)
-
 describe('Popover', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -12,5 +5,53 @@ describe('Popover', () => {
     cy.get('post-popovercontainer.hydrated').as('popovercontainer');
     cy.get('#popoverContent').as('popoverContent');
     cy.get('post-popover-trigger.hydrated[for="popover-one"]').children().first().as('trigger');
+  });
+
+  // Existence
+  it('should render in the DOM', () => {
+    cy.get('@popover').should('exist');
+    cy.get('@popovercontainer').should('exist');
+    cy.get('@trigger').should('exist');
+  });
+
+  // Visibility
+  it('should be visible, except popovercontainer', () => {
+    cy.get('@popover').should('be.visible');
+    cy.get('@popovercontainer').should('not.be.visible');
+    cy.get('@trigger').should('be.visible');
+  });
+
+  // Custom Events
+  it('should emit postToggle event when popovercontainer opens and closes', () => {
+    cy.get('@popovercontainer')
+      .should('exist')
+      .then($popovercontainer => {
+        const popoverEl = $popovercontainer[0] as HTMLElement & {
+          toggle: (target: HTMLElement, force?: boolean) => Promise<boolean>;
+        };
+
+        const toggleSpy = cy.spy().as('toggleSpy');
+        popoverEl.addEventListener('postToggle', toggleSpy);
+
+        cy.get('@trigger').then(async $trigger => {
+          const triggerEl = $trigger[0];
+
+          const popovercontainerEl = $popovercontainer[0] as HTMLElement & {
+            toggle: (target: HTMLElement, force?: boolean) => Promise<boolean>;
+          };
+
+          await popovercontainerEl.toggle(triggerEl);
+          cy.get('@toggleSpy').should('have.been.calledWithMatch', {
+            detail: Cypress.sinon.match({ isOpen: true }),
+          });
+
+          await popovercontainerEl.toggle(triggerEl);
+          cy.get('@toggleSpy').should('have.been.calledWithMatch', {
+            detail: Cypress.sinon.match({ isOpen: false }),
+          });
+        });
+      });
+
+    // To be added: errors checking after errorfilter PR merge (#6471)
   });
 });

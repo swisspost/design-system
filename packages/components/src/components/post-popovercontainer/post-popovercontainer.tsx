@@ -209,8 +209,8 @@ export class PostPopovercontainer {
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
     const content = this.host.querySelector('.popover-content');
-
     if (isOpen) {
+      if (!this.eventTarget) return;
       this.startAutoupdates();
 
       if (content && this.animation === 'pop-in') {

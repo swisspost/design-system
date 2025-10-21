@@ -351,6 +351,37 @@ export namespace Components {
          */
         "for": string;
     }
+    interface PostPopover {
+        /**
+          * Show a little indicator arrow
+          * @default true
+         */
+        "arrow"?: boolean;
+        /**
+          * Define the caption of the close button for assistive technology
+         */
+        "closeButtonCaption": string;
+        /**
+          * Programmatically hide this popover
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
+         */
+        "placement"?: Placement;
+        /**
+          * Programmatically display the popover
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Toggle popover display
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param force Pass true to always show or false to always hide
+         */
+        "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
     interface PostPopoverTrigger {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
@@ -774,6 +805,12 @@ declare global {
         prototype: HTMLPostMenuTriggerElement;
         new (): HTMLPostMenuTriggerElement;
     };
+    interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
+    }
+    var HTMLPostPopoverElement: {
+        prototype: HTMLPostPopoverElement;
+        new (): HTMLPostPopoverElement;
+    };
     interface HTMLPostPopoverTriggerElement extends Components.PostPopoverTrigger, HTMLStencilElement {
     }
     var HTMLPostPopoverTriggerElement: {
@@ -889,6 +926,7 @@ declare global {
         "post-menu": HTMLPostMenuElement;
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
+        "post-popover": HTMLPostPopoverElement;
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
@@ -1197,6 +1235,22 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostPopover {
+        /**
+          * Show a little indicator arrow
+          * @default true
+         */
+        "arrow"?: boolean;
+        /**
+          * Define the caption of the close button for assistive technology
+         */
+        "closeButtonCaption": string;
+        /**
+          * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
+         */
+        "placement"?: Placement;
+    }
     interface PostPopoverTrigger {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
@@ -1361,6 +1415,7 @@ declare namespace LocalJSX {
         "post-menu": PostMenu;
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
+        "post-popover": PostPopover;
         "post-popover-trigger": PostPopoverTrigger;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
@@ -1408,6 +1463,7 @@ declare module "@stencil/core" {
             "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
+            "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
