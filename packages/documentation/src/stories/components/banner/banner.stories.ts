@@ -77,7 +77,7 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
   }
 
   return html`
-  <post-banner type=${type} @postDismissed=${() => updateArgs({ dismissed: true })}>
+  <post-banner type=${type === 'info' ? nothing : type} @postDismissed=${() => updateArgs({ dismissed: true })}>
       ${dismissible
         ? html`
             <post-closebutton
