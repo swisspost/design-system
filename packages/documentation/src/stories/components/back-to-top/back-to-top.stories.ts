@@ -67,7 +67,7 @@ const meta: MetaComponent = {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Hauptnavigation">
+      <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->

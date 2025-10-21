@@ -82,7 +82,6 @@ post-mainnavigation {
       $button-width: $icon-size + 2 * $button-padding;
 
       cursor: pointer;
-      z-index: 5;
       padding: $button-padding;
       background: color.$white;
       box-shadow: elevation.$elevation-500;
@@ -119,11 +118,6 @@ post-mainnavigation {
         height: var(--post-main-navigation-height, 0);
         gap: 4px;
         font-size: 16px;
-        z-index: 4;
-
-        @include media.max(lg) {
-          z-index: 5;
-        }
 
         .nav-el-active {
           font-weight: 700;
