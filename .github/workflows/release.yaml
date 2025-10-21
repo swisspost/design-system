@@ -7,6 +7,11 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
 jobs:
   changeset-magic:
     name: Set up Changeset PR or Release Packages
@@ -19,6 +24,12 @@ jobs:
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
+
+      # Trusted publishing requires npm 11.5.1 or later.
+      - name: Update NPM for trusted publishing
+        run: |
+          npm update -g npm
+          echo "npm: $(npm -v)"
 
       - name: Install & build Dependencies
         run: pnpm bootstrap
