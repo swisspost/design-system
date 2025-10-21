@@ -61,6 +61,7 @@ function render(args: Args) {
       style="${styles || nothing}"
       id="${args.id}"
       placement="${args.placement !== 'bottom' ? args.placement : nothing}"
+      label="Example menu"
     >
       <post-menu-item><button>Example 1</button></post-menu-item>
       <post-menu-item><a href="#">Example 2</a></post-menu-item>

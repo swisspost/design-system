@@ -1,5 +1,29 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.50
+
+### Major Changes
+
+- Removed the `.btn-close` and replaced it with the `post-closebutton` component in the dialog, toast and `post-popover` components. (by [@leagrdv](https://github.com/leagrdv) with [#6361](https://github.com/swisspost/design-system/pull/6361))
+
+### Minor Changes
+
+- Added the user menu for logged in users in the `post-header` component. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+
+- Updated the `<post-header>` component by adding a new slot for auxiliary navigation links on the right side of the main-navigation. (by [@myrta2302](https://github.com/myrta2302) with [#6421](https://github.com/swisspost/design-system/pull/6421))
+
+### Patch Changes
+
+- Disabled automatic browser detection of the dark color scheme. (by [@leagrdv](https://github.com/leagrdv) with [#6173](https://github.com/swisspost/design-system/pull/6173))
+
+- Updated the signal icons. (by [@alizedebray](https://github.com/alizedebray) with [#6268](https://github.com/swisspost/design-system/pull/6268))
+
+- Fixed bottom margin for buttons inside `<dialog>` element when content becomes scrollable. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6414](https://github.com/swisspost/design-system/pull/6414))
+
+- Added icons to the header meta navigation links. (by [@alizedebray](https://github.com/alizedebray) with [#6413](https://github.com/swisspost/design-system/pull/6413))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.50
+
 ## 10.0.0-next.49
 
 ### Major Changes
