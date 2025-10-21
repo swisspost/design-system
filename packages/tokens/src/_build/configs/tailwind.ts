@@ -3,7 +3,6 @@ import { TOKENSET_LAYERS, TOKENSET_NAMES, TOKENSET_PREFIX } from '../constants.j
 import StyleDictionary from '../style-dictionary.js';
 import { registerConfigMethod, getTokenValue } from '../methods.js';
 import { TokenProperty } from '_build/types.js';
-import { objectDeepmerge, objectTextoutput } from '../utils/index.js';
 
 const TAILWIND_TOKENSET_NAMES = [TOKENSET_NAMES.Utilities, TOKENSET_NAMES.Helpers];
 
@@ -32,9 +31,9 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
             buildPath: `${buildPath}tailwind/`,
             files: [
               {
-                destination: `${name}.tailwind.js`,
+                destination: `${name}.tailwind.css`,
                 filter: 'swisspost/source-tokens-filter',
-                format: 'swisspost/tailwind-format',
+                format: 'swisspost/tailwind-v4-format',
                 options: {
                   outputReferences: true,
                 },
@@ -55,26 +54,38 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
  *   format: (dictionary: Dictionary, file: File, options: Config & LocalOptions, platform: PlatformConfig) => string
  * }
  *
- * swisspost/tailwind-format:
+ * swisspost/tailwind-v4-format:
  * Used to declare the format of the tailwind output files.
  */
 StyleDictionary.registerFormat({
-  name: 'swisspost/tailwind-format',
+  name: 'swisspost/tailwind-v4-format',
   format: async ({ dictionary, options, file }) => {
-    const header = await fileHeader({ file, commentStyle: 'short' });
-    const tailwindTokensObject = dictionary.allTokens.reduce<Record<string, TokenProperty>>(
+    const header = await fileHeader({ file, commentStyle: 'long' }); // CSS comments
+    
+    const themeVariables = dictionary.allTokens.reduce<Record<string, TokenProperty>>(
       (allTokens, token) => {
-        const tokenObj = token.path
-          .slice(token.path.indexOf(TOKENSET_PREFIX) + 1)
-          .reverse()
-          .reduce((res, p) => ({ [p]: res }), getTokenValue(options, token)) as {
-          [key: string]: TokenProperty;
-        };
-        return objectDeepmerge(allTokens, tokenObj);
+        const tokenPath = token.path.slice(token.path.indexOf(TOKENSET_PREFIX) + 1);
+        
+        const cssVarName = `--${tokenPath.join('-')}`;
+        
+        const tokenValue = getTokenValue(options, token);
+        
+        allTokens[cssVarName] = tokenValue;
+        return allTokens;
       },
       {},
     );
 
-    return header + `export default {${objectTextoutput(tailwindTokensObject)}\n};\n`;
+    const themeCSS = Object.entries(themeVariables)
+      .map(([name, value]) => `  ${name}: ${value};`)
+      .join('\n');
+
+    return `${header}
+@import "tailwindcss";
+
+@theme {
+${themeCSS}
+}
+`;
   },
 });
