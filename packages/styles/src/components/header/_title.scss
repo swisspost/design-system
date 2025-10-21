@@ -1,0 +1,13 @@
+@use '../../mixins/media';
+
+[slot='title'] {
+  margin: 0;
+  z-index: 3;
+  font-size: 20px;
+  font-weight: 900;
+
+  @include media.only(desktop) {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}

@@ -1,3 +1,4 @@
+@use '../../mixins/list';
 @use '../../mixins/media';
 @use '../../mixins/utilities';
 @use '../../variables/color';
@@ -7,81 +8,15 @@
 @use '../../mixins/button' as button-mx;
 @use 'mixins' as *;
 
-tokens.$default-map: elements.$post-link;
-
-:root:has(post-header) {
-  // expanded height
-  --post-local-header-expanded-height: var(
-    --post-local-header-expanded-min-height
-  ); // default value later updated with JavaScript
-  --post-header-expanded-height: calc(
-    var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
-  );
-
-  // reduced height
-  --post-global-header-reduced-height: var(--post-global-header-expanded-height);
-  --post-local-header-reduced-height: var(--post-local-header-expanded-height);
-  --post-header-reduced-height: calc(
-    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height)
-  );
-
-  // total height (dynamic depending on the scroll position)
-  --post-global-header-height: max(
-    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px),
-    var(--post-global-header-reduced-height)
-  );
-  --post-local-header-height: max(
-    var(--post-local-header-expanded-height) - var(--post-header-scroll-top, 0px),
-    var(--post-local-header-reduced-height)
-  );
-  --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
-
-  // microsite
-  &:has(post-header post-mainnavigation) {
-    --post-global-header-expanded-height: 4rem;
-
-    /* stylelint-disable-next-line length-zero-no-unit */ // needed for calculation
-    --post-local-header-reduced-height: 0rem;
-
-    @include media.only(mobile) {
-      --post-local-header-expanded-min-height: 3rem;
-    }
-
-    @include media.only(tablet) {
-      --post-local-header-expanded-min-height: 3.5rem;
-    }
-
-    @include media.only(desktop) {
-      --post-global-header-expanded-height: 4.5rem;
-      --post-local-header-expanded-min-height: 7rem;
-
-      // header reducing on desktop
-      --post-global-header-reduced-height: 1.5rem;
-      --post-local-header-reduced-height: 3.5rem;
-      --post-main-navigation-height: var(--post-local-header-reduced-height);
-    }
-  }
-
-  // one pager
-  &:not(:has(post-header post-mainnavigation)) {
-    --post-global-header-expanded-height: 4rem;
-    --post-local-header-expanded-min-height: 3.5rem;
-
-    @include media.only(desktop) {
-      --post-global-header-expanded-height: 4.5rem;
-      --post-local-header-expanded-min-height: 4rem;
-    }
-  }
-
-  // portal
-  &:not(:has(post-header [slot='title'])) {
-    /* stylelint-disable-next-line length-zero-no-unit */ // needed for calculation
-    --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0rem);
-  }
-}
+tokens.$default-map: components.$post-button;
 
 body:has(post-header) {
   scroll-padding-top: var(--post-header-height);
+}
+
+// Added to prevent Back-to-top button from showing up before header is hydrated
+body:has(post-header:not([data-hydrated])) post-back-to-top {
+  visibility: hidden !important;
 }
 
 [data-post-scroll-locked] {
@@ -89,240 +24,64 @@ body:has(post-header) {
 }
 
 post-header {
-  // prevent layout shift by giving a height to the header before it gets hydrated
+  height: var(--post-header-height);
+
   &:not(:defined),
   &:not([data-hydrated]) {
-    height: var(--post-header-height);
     display: block;
   }
 
-  ul.list-inline {
-    margin: 0;
-    gap: 0.25rem;
+  // all header lists
+  > ul {
+    @include list.list-inline;
+    gap: 0 0.25rem;
 
-    &[slot='local-controls'] {
-      align-items: center;
+    > li {
+      flex: 1 0 auto !important;
     }
   }
 
-  ul[slot='meta-navigation'] {
-    gap: 0 4px;
-
-    @include media.min(lg) {
-      align-items: center;
-    }
-
-    &:where(post-header:has(post-mainnavigation) > *) {
-      @include media.max(lg) {
-        flex-direction: column;
-
-        a,
-        button {
-          justify-content: space-between;
-          border-radius: 0;
-          @include mobile-header-interactive;
-
-          @include utilities.focus-style-custom {
-            border-radius: 4px;
-          }
-        }
-      }
-
-      @include media.max(lg) {
-        a,
-        button {
-          flex-direction: row-reverse;
-          justify-content: flex-end;
-        }
-      }
-
-      @include media.max(sm) {
-        a,
-        button {
-          font-size: 14px;
-          gap: 0.5rem;
-
-          > post-icon {
-            height: 1rem;
-            width: 1rem;
-          }
-        }
-      }
+  // all slotted links and buttons
+  > [slot] {
+    @include slotted-controls {
+      @include header-control-base;
     }
   }
 
-  [slot='global-login'],
-  .local-login {
-    post-menu-trigger {
-      margin-block: -5px;
-      height: tokens.get('avatar-size', components.$post-avatar);
-      display: block;
-
-      button {
-        border-radius: 100%;
-      }
-    }
-  }
-
-  [slot='title'] {
-    margin: 0;
-    flex-shrink: 10;
-    font-weight: 900;
-
-    @include media.min(lg) {
-      font-size: 28px;
-      line-height: 34px;
-    }
-
-    @include media.max(lg) {
-      font-size: 20px;
-      max-width: calc(100vw - 8px - 16px);
-    }
-  }
-
-  button:where(
-      :not(
-          post-mainnavigation *,
-          post-language-switch *,
-          [slot='global-login'] *,
-          .local-login post-menu *,
-          .local-login post-menu-trigger *
-        )
-    ) {
-    @include button-mx.reset-button;
-
-    &:hover {
-      color: tokens.get('link-hover-fg');
-    }
-  }
-
-  // Hide link/button text on mobile in order to only have icon visible
-  post-togglebutton,
-  a[slot='global-login'],
-  [slot='global-controls'] a,
-  > .list-inline:where(:not([slot])) a {
-    > span {
-      @include media.max(sm) {
-        @include utilities.visuallyhidden;
-      }
-    }
-  }
-
-  a[slot='global-login'] {
-    @include media.max(sm) {
-      padding: 10px !important;
-    }
-  }
-
-  a,
-  button,
-  post-togglebutton {
-    &:where(
-        :not(
-            post-mainnavigation *,
-            post-language-switch *,
-            [slot='global-login'] *,
-            .local-login post-menu *,
-            .local-login post-menu-trigger *
-          )
-      ) {
-      @include subsidiary-header-interactive;
-
-      post-icon {
-        height: 24px;
-        width: 24px;
-      }
-
-      @include media.max(sm) {
-        padding: 8px;
-      }
-    }
-  }
-
-  button,
-  a {
-    &:where(
-        :not(
-            post-mainnavigation *,
-            post-language-switch *,
-            [slot='global-login'] *,
-            .local-login post-menu *,
-            .local-login post-menu-trigger *
-          )
-      ) {
-      display: flex;
-
-      @include media.max(sm) {
-        padding: 4px 10px;
-      }
-    }
-  }
-
-  #user-menu a,
-  #user-menu button {
-    min-width: 327px;
-
-    @include media.between(sm, md) {
-      min-width: 300px;
-    }
-  }
-
-  a[aria-current='location'],
-  a.active,
-  post-togglebutton[aria-pressed='true'] {
-    &:not(post-mainnavigation *) {
-      color: color.$white;
-      background: #050400;
-      box-shadow: var(--post-device-elevation-100);
-    }
-  }
-
-  post-togglebutton {
-    @include utilities.high-contrast-mode() {
-      background-color: ButtonFace !important;
-      border: 1px solid ButtonBorder !important;
-      color: ButtonText !important;
-
-      &:hover {
-        background-color: Highlight !important;
-
-        post-icon {
-          color: HighlightText;
-        }
-      }
-    }
-  }
-
-  > .list-inline:where(:not([slot])) {
-    gap: 4px;
-    align-items: center;
-  }
-
-  > :is(
-      [slot='global-controls'],
-      [slot='global-login'],
-      [slot='post-togglebutton'],
-      [slot='local-controls']
-    ) {
+  // links and buttons remaining in the global header on tablet and mobile
+  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
     @include media.only(mobile) {
-      &:where(ul) > li > a,
-      &:where(a, post-togglebutton) {
-        padding: 0.5rem;
-
-        > :not(post-icon) {
-          display: none;
-        }
-
-        > post-icon {
-          height: 1.5rem;
-          width: 1.5rem;
-        }
+      @include slotted-controls {
+        @include header-control-icon-only;
       }
     }
   }
-}
 
-// Added to prevent Back-to-top button from showing up before header is hydrated
-body:has(post-header:not([data-hydrated])) post-back-to-top {
-  visibility: hidden !important;
+  // links and buttons remaining in the global header on tablet and mobile
+  > :is([slot='local-controls']) {
+    @include media.only(desktop) {
+      @include slotted-controls {
+        z-index: 4;
+      }
+    }
+  }
+
+  // target group on mobile
+  > ul[slot='target-group'] {
+    @include media.only(mobile) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  > ul[slot='meta-navigation'] {
+    @include media.max(desktop) {
+      flex-direction: column;
+
+      > li > a {
+        flex-direction: row-reverse;
+        @include header-control-navigation;
+      }
+    }
+  }
 }
