@@ -9,11 +9,14 @@ import { Page } from '@playwright/test';
  */
 export function captureComponentErrors(page: Page, componentNames: string[]): string[] {
   const errors: string[] = [];
+  const lowerCaseComponentNames = componentNames.map(n => n.toLowerCase());
 
   page.on('console', (msg) => {
     if (msg.type() === 'error') {
       const text = msg.text();
-      if (componentNames.some(name => text.toLowerCase().includes(name.toLowerCase()))) {
+      const lowerCaseText = text.toLowerCase();
+     
+      if (lowerCaseComponentNames.some(n => lowerCaseText.includes(n))) {
         errors.push(text);
       }
     }
@@ -21,7 +24,9 @@ export function captureComponentErrors(page: Page, componentNames: string[]): st
 
   page.on('pageerror', (error) => {
     const message = error.message;
-    if (componentNames.some(name => message.toLowerCase().includes(name.toLowerCase()))) {
+    const lowerCaseMessage = message.toLowerCase();
+    
+    if (lowerCaseComponentNames.some(n => lowerCaseMessage.includes(n))) {
       errors.push(message);
     }
   });
