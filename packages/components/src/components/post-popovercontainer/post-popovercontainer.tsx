@@ -208,39 +208,48 @@ export class PostPopovercontainer {
   private handleToggle(e: ToggleEvent) {
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
-    const content = this.host.querySelector('.popover-content');
+
     if (isOpen) {
-      if (!this.eventTarget) return;
-      this.startAutoupdates();
+      this.handleOpen();
 
-      if (content && this.animation === 'pop-in') {
-        popIn(content);
-      }
-
-      if (this.safeSpace) {
-        window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
-      }
-
-      // Emit event with `first` flag only true on the first open
+      // Emit event with `first` flag only for the first open
       if (this.firstOpen) {
         this.postToggle.emit({ isOpen: true, first: true });
         this.firstOpen = false;
         return;
       }
     } else {
-      // Return focus to the trigger on close
-      if (this.eventTarget instanceof HTMLElement) {
-        this.eventTarget.focus();
-      }
-
-      if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-
-      if (this.safeSpace) {
-        window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
-      }
+      this.handleClose();
     }
 
     this.postToggle.emit({ isOpen, first: false });
+  }
+
+  private handleOpen() {
+    if (!this.eventTarget) return;
+    this.startAutoupdates();
+
+    const content = this.host.querySelector('.popover-content');
+    if (content && this.animation === 'pop-in') {
+      popIn(content);
+    }
+
+    if (this.safeSpace) {
+      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+  }
+
+  private handleClose() {
+    // Return focus to the trigger on close
+    if (this.eventTarget instanceof HTMLElement) {
+      this.eventTarget.focus();
+    }
+
+    if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
+
+    if (this.safeSpace) {
+      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
   }
 
   /**
