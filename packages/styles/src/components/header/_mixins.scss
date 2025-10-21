@@ -18,7 +18,7 @@
  selects active controls
  */
 @mixin active-state() {
-  &:where(.active, [aria-pressed='true'], [aria-expanded='true'], [aria-current='page']) {
+  &:is(.active, [aria-pressed='true'], [aria-expanded='true'], [aria-current='page']) {
     @content;
   }
 }

@@ -113,7 +113,9 @@ export class PostMegadropdownTrigger {
     return (
       <Host data-version={version} tab-index="-1">
         <button>
-          <slot></slot>
+          <span>
+            <slot></slot>
+          </span>
           <post-icon aria-hidden="true" name="chevrondown"></post-icon>
         </button>
       </Host>

@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Listen } from '@stencil/core';
+import { Component, Element, Host, h, State, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
@@ -10,6 +10,8 @@ const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar i
   shadow: true,
 })
 export class PostMainnavigation {
+  @Element() host: HTMLPostMainnavigationElement;
+
   private navbar: HTMLElement;
 
   private scrollRepeatInterval: ReturnType<typeof setInterval>;
@@ -82,7 +84,7 @@ export class PostMainnavigation {
   }
 
   private get navigationItems(): HTMLElement[] {
-    return Array.from(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
+    return Array.from(this.host.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
   }
 
   /**
@@ -90,11 +92,11 @@ export class PostMainnavigation {
    */
   private fixLayoutShift() {
     this.navigationItems
-      .filter(item => !item.matches(':has(.nav-el-inactive)'))
+      .filter(item => !item.matches(':has(.content-when-inactive)'))
       .forEach(item => {
         item.innerHTML = `
           ${item.innerHTML}
-          <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
+          <span class="content-when-inactive" aria-hidden="true">${item.innerHTML}</span>
         `;
       });
   }

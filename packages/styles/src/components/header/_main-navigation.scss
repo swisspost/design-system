@@ -12,9 +12,28 @@ post-mainnavigation {
     @include header-control-base;
     @include header-control-navigation;
 
+    @include active-state {
+      .content-when-inactive {
+        opacity: 0;
+      }
+    }
+
     @include media.only(desktop) {
       z-index: 4;
       height: var(--post-main-navigation-height, auto);
+      background-color: #fff;
+      font-weight: 700;
+    }
+  }
+
+  .content-when-inactive {
+    all: inherit;
+    font-weight: 400;
+    position: absolute;
+    inset: 0;
+
+    @include media.max(desktop) {
+      display: none;
     }
   }
 }
