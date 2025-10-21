@@ -242,6 +242,8 @@ $toolbar-icons: (
         &::before {
           content: '';
           margin-right: 0.5rem;
+          width: 1em;
+          height: 1em;
           @include post.icon($icon-name);
         }
       }
