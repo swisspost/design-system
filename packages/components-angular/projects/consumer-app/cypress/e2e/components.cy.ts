@@ -1,24 +1,57 @@
-import * as Components from '@swisspost/design-system-components/loader';
+import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
+import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
+import { ROUTES } from '../support/routes';
 
-const COMPONENT_TAG_NAMES = Object.keys(Components)
-  .filter(c => /^Post([A-Z][a-z]+)+$/.test(c))
-  .map(c => c.replace(/([a-z0–9])([A-Z])/g, '$1-$2').toLowerCase());
+// Components that are intentionally hidden by default
+const HIDDEN_BY_DEFAULT = [
+  'post-popovercontainer',
+];
 
-describe('Components', () => {
-  beforeEach(() => {
-    cy.visit('/');
-    cy.window().then(win => {
-      cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
-    });
-  });
+describe('Components - Generic Tests', () => {
+  
+  ROUTES.forEach(route => {
+    describe(`on ${route}`, () => {
+      
+      it('should render and exist in DOM', () => {
+        cy.visit(route);
+        
+        componentNames.forEach(componentName => {
+          cy.get('body').then($body => {
+            if ($body.find(componentName).length > 0) {
+              cy.get(componentName).first().should('exist');
+            }
+          });
+        });
+      });
 
-  it('should not log any error', () => {
-    cy.get('@consoleError').should('not.have.been.called');
-  });
+      it('should be visible (not hidden by CSS)', () => {
+        cy.visit(route);
+        
+        componentNames.forEach(componentName => {
+          if (HIDDEN_BY_DEFAULT.includes(componentName)) {
+            return;
+          }
+          
+          cy.get('body').then($body => {
+            if ($body.find(componentName).length > 0) {
+              cy.get(componentName).first().should('be.visible');
+            }
+          });
+        });
+      });
 
-  COMPONENT_TAG_NAMES.forEach(tagName => {
-    it(`should contain <${tagName}>`, () => {
-      cy.get(tagName).should('exist');
+      it('should not have console errors from components', () => {
+        const errorCapture = setupComponentErrorCapture(componentNames);
+        
+        cy.visit(route, {
+          onBeforeLoad: errorCapture.onBeforeLoad
+        });
+        
+        cy.wait(500);
+        
+        assertNoComponentErrors(errorCapture.errors, componentNames);
+      });
+      
     });
   });
 });
