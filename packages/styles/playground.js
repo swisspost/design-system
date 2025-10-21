@@ -19,5 +19,9 @@ document
 document.getElementById('theme-select').addEventListener('change', handleThemeAppearanceChange);
 
 document.getElementById('scheme-select').addEventListener('change', e => {
-  document.body.setAttribute('data-color-scheme', e.target.value);
+  if (e.target.value) {
+    document.body.dataset.colorScheme = e.target.value;
+  } else {
+    delete document.body.dataset.colorScheme;
+  }
 });
