@@ -18,6 +18,7 @@ import { EventFrom } from '@/utils/event-from';
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot target-group - Holds the list of buttons to choose the target group.
  * @slot global-login - Holds the user menu or login button in the global header.
+ * @slot navigation-controls - Custom controls, right aligned with the main navigation.
  */
 
 @Component({
@@ -148,7 +149,7 @@ export class PostHeader {
     window.removeEventListener('postBreakpoint:device', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
-    scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     this.host.removeEventListener('click', this.handleLinkClick);
@@ -342,36 +343,34 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    const navigationClasses = ['navigation'];
+    const mainNavigation = (
+      <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
+    );
 
-    const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
-
-    if (this.mobileMenuExtended) {
-      navigationClasses.push('extended');
-    }
-
-    if (this.megadropdownOpen) {
-      navigationClasses.push('megadropdown-open');
+    if (this.device === 'desktop') {
+      return (
+        <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
+          {mainNavigation}
+          <slot name="navigation-controls"></slot>
+        </div>
+      );
     }
 
     return (
       <div
-        class={navigationClasses.join(' ')}
-        style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+        class={{ navigation: true, extended: this.mobileMenuExtended }}
+        style={{ '--post-header-navigation-current-inset': `${this.mobileMenu?.scrollTop ?? 0}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <div class="navigation-target-group">
-            {(this.device === 'mobile' || this.device === 'tablet') && (
-              <slot name="target-group"></slot>
-            )}
+          <div class="navigation-header">
+            <slot name="navigation-controls"></slot>
+            <slot name="target-group"></slot>
           </div>
-          <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <div class="navigation-footer">
-              <slot name="meta-navigation"></slot>
-              <slot name="post-language-switch"></slot>
-            </div>
-          )}
+          {mainNavigation}
+          <div class="navigation-footer">
+            <slot name="meta-navigation"></slot>
+            <slot name="post-language-switch"></slot>
+          </div>
         </div>
       </div>
     );
@@ -396,9 +395,7 @@ export class PostHeader {
           </div>
           <div class="global-sub">
             <slot name="global-controls"></slot>
-            {!this.hasMobileMenu && (
-              <slot name="meta-navigation"></slot>
-            )}
+            {!this.hasMobileMenu && <slot name="meta-navigation"></slot>}
             {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
             <slot name="global-login"></slot>
             {this.hasNavigation && (
@@ -410,12 +407,12 @@ export class PostHeader {
         </div>
         <div class={localHeaderClasses.join(' ')}>
           <slot name="title" onSlotchange={() => this.checkTitleExistence()}></slot>
-          {this.hasTitle &&
-            (<div class="local-sub">
+          {this.hasTitle && (
+            <div class="local-sub">
               <slot name="local-controls"></slot>
               <slot></slot>
-            </div>)
-          }
+            </div>
+          )}
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}

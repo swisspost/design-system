@@ -1,11 +1,12 @@
-import { html } from 'lit';
+import { Args } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
 
-export function renderMetaNavigation() {
+export function renderMetaNavigation(args: Args) {
   return html`
     <!-- Meta navigation -->
     <ul class="list-inline" slot="meta-navigation">
       <li>
-        <a href="">
+        <a href="" class=${args.jobs ? 'active' : nothing}>
           Jobs
           <post-icon name="jobs" aria-hidden="true"></post-icon>
         </a>

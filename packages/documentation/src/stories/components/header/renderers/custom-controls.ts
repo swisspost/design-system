@@ -19,7 +19,7 @@ export function renderCustomControls(args: Args) {
           <post-icon aria-hidden="true" name="search"></post-icon>
         </a>
       </li>
-      <li>${args.isLoggedIn ? renderUserMenu() : loginButton}</li>
+      <li class="local-login">${args.isLoggedIn ? renderUserMenu() : loginButton}</li>
     </ul>
   `;
 }
