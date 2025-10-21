@@ -91,6 +91,10 @@ post-header {
     display: block;
   }
 
+  ul.list-inline {
+    margin: 0;
+  }
+
   ul[slot='meta-navigation'] {
     gap: 0 4px;
 
@@ -140,6 +144,7 @@ post-header {
   [slot='global-login'],
   .local-login {
     post-menu-trigger {
+      margin-block: -5px;
       height: tokens.get('avatar-size', components.$post-avatar);
       display: block;
 
@@ -152,16 +157,7 @@ post-header {
   [slot='title'] {
     margin: 0;
     flex-shrink: 10;
-    z-index: 3;
     font-weight: 900;
-
-    @include media.min(sm) {
-      margin-inline-start: 12px;
-    }
-
-    @include media.max(sm) {
-      margin-inline-start: 8px;
-    }
 
     @include media.min(lg) {
       font-size: 28px;

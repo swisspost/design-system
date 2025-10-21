@@ -233,7 +233,7 @@ export const ActiveNavigationItem: Story = {
     },
   ],
   render: () => html`
-    <post-mainnavigation caption="Main navigation">
+    <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
       <post-list title-hidden="">
         <h2>Main Navigation</h2>
         <post-list-item slot="post-list-item">

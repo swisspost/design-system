@@ -51,7 +51,6 @@
   position: absolute;
   background-color: #fafafa;
   border: none;
-  z-index: 1;
   width: 100%;
   inset-block-start: 100%;
   inset-inline-start: 0;
@@ -70,9 +69,9 @@
   }
 
   @include media.max(lg) {
-    z-index: 5;
-    position: fixed;
-    inset-block-start: var(--post-header-navigation-current-inset);
+    z-index: 1;
+    position: absolute;
+    inset-block-start: 0;
     inset-inline: 0;
 
     height: calc(
@@ -92,6 +91,7 @@
   }
 
   @include media.min(lg) {
+    z-index: -1;
     max-height: calc(100vh - var(--post-header-height) - 48px);
     overflow-y: auto;
   }

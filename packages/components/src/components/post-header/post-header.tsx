@@ -11,10 +11,10 @@ import { EventFrom } from '@/utils/event-from';
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-controls - Holds search button in the global header.
  * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
- * @slot post-togglebutton - Holds the mobile menu toggler.
+ * @slot post-togglebutton - Holds the burger menu toggler.
  * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
- * @slot default - Custom controls or content, right aligned in the local header.
+ * @slot local-controls - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot target-group - Holds the list of buttons to choose the target group.
  * @slot global-login - Holds the user menu or login button in the global header.
@@ -29,13 +29,13 @@ import { EventFrom } from '@/utils/event-from';
 export class PostHeader {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
-  private mobileMenu: HTMLElement;
-  private mobileMenuAnimation: Animation;
+  private burgerMenu: HTMLElement;
+  private burgerMenuAnimation: Animation;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
 
-  private get hasMobileMenu(): boolean {
+  private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
@@ -65,18 +65,19 @@ export class PostHeader {
 
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
+  @State() hasNavigationControls: boolean = false;
   @State() hasTitle: boolean = false;
-  @State() mobileMenuExtended: boolean = false;
+  @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
   @Watch('device')
-  @Watch('mobileMenuExtended')
+  @Watch('burgerMenuExtended')
   lockBody(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
     const scrollParent = this.scrollParent;
-    const mobileMenuExtended =
-      propName === 'mobileMenuExtended' ? newValue : this.mobileMenuExtended;
+    const burgerMenuExtended =
+      propName === 'burgerMenuExtended' ? newValue : this.burgerMenuExtended;
 
-    if (this.device !== 'desktop' && mobileMenuExtended) {
+    if (this.device !== 'desktop' && burgerMenuExtended) {
       scrollParent.setAttribute('data-post-scroll-locked', '');
       this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
@@ -97,8 +98,8 @@ export class PostHeader {
     this.device = e.detail;
     this.switchLanguageSwitchMode();
 
-    if (this.device === 'desktop' && this.mobileMenuExtended) {
-      this.closeMobileMenu();
+    if (this.device === 'desktop' && this.burgerMenuExtended) {
+      this.closeBurgerMenu();
     }
 
     if (this.device !== 'desktop') {
@@ -122,11 +123,12 @@ export class PostHeader {
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.checkNavigationExistence();
+    this.checkNavigationControlsExistence();
     this.checkTitleExistence();
     this.switchLanguageSwitchMode();
 
     this.handleScrollParentResize();
-    this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
+    this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
   }
 
   componentWillRender() {
@@ -163,52 +165,57 @@ export class PostHeader {
       this.localHeaderResizeObserver = null;
     }
 
-    this.mobileMenuExtended = false;
+    this.burgerMenuExtended = false;
   }
 
   private checkNavigationExistence(): void {
-    this.hasNavigation = this.host.querySelectorAll('post-mainnavigation').length > 0;
+    this.hasNavigation = this.host.querySelectorAll('[slot="post-mainnavigation"]').length > 0;
+  }
+
+  private checkNavigationControlsExistence(): void {
+    this.hasNavigationControls =
+      this.host.querySelectorAll('[slot="navigation-controls"]').length > 0;
   }
 
   private checkTitleExistence(): void {
     this.hasTitle = this.host.querySelectorAll('[slot="title"]').length > 0;
   }
 
-  private async closeMobileMenu() {
-    this.mobileMenuAnimation.finish();
+  private async closeBurgerMenu() {
+    this.burgerMenuAnimation.finish();
 
     const menuButton = this.getMenuButton();
     if (menuButton) {
       menuButton.toggled = false;
     }
 
-    this.mobileMenuExtended = false;
+    this.burgerMenuExtended = false;
   }
 
   /**
-   * Toggles the mobile navigation.
+   * Toggles the burger navigation menu.
    */
   @Method()
-  async toggleMobileMenu(force?: boolean) {
+  async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
-    this.mobileMenuAnimation = this.mobileMenuExtended
-      ? slideUp(this.mobileMenu)
-      : slideDown(this.mobileMenu);
+    this.burgerMenuAnimation = this.burgerMenuExtended
+      ? slideUp(this.burgerMenu)
+      : slideDown(this.burgerMenu);
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
-    menuButton.toggled = force ?? !this.mobileMenuExtended;
+    if (menuButton) menuButton.toggled = force ?? !this.burgerMenuExtended;
 
-    if (this.mobileMenuExtended) {
+    if (this.burgerMenuExtended) {
       // Wait for the close animation to finish before hiding megadropdowns
-      await this.mobileMenuAnimation.finished;
-      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+      await this.burgerMenuAnimation.finished;
+      this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
 
-      if (this.mobileMenuExtended === false) {
+      if (this.burgerMenuExtended === false) {
         this.closeAllMegadropdowns();
       }
     } else {
-      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+      this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
       // If opening, close any open megadropdowns immediately
       if (this.megadropdownOpen) {
         this.closeAllMegadropdowns();
@@ -218,10 +225,10 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
-  // Get all the focusable elements in the post-header mobile menu
+  // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
     // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
@@ -253,7 +260,7 @@ export class PostHeader {
   }
 
   private keyboardHandler(e: KeyboardEvent) {
-    if (e.key === 'Tab' && this.mobileMenuExtended) {
+    if (e.key === 'Tab' && this.burgerMenuExtended) {
       if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
         // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
         e.preventDefault();
@@ -307,8 +314,8 @@ export class PostHeader {
       return;
     }
 
-    if (this.mobileMenuExtended && (isLinkInMainNav || isLinkInMegadropdown)) {
-      this.toggleMobileMenu(false);
+    if (this.burgerMenuExtended && (isLinkInMainNav || isLinkInMegadropdown)) {
+      this.toggleBurgerMenu(false);
     }
 
     if (this.device === 'desktop' && isLinkInMegadropdown) {
@@ -336,7 +343,7 @@ export class PostHeader {
   }
 
   private switchLanguageSwitchMode() {
-    const variant: SwitchVariant = this.hasMobileMenu ? 'list' : 'menu';
+    const variant: SwitchVariant = this.hasBurgerMenu ? 'list' : 'menu';
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
       languageSwitch?.setAttribute('variant', variant);
     });
@@ -346,73 +353,78 @@ export class PostHeader {
     const mainNavigation = (
       <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
     );
+    const navigationControls = (
+      <slot
+        name="navigation-controls"
+        onSlotchange={() => this.checkNavigationControlsExistence()}
+      ></slot>
+    );
 
     if (this.device === 'desktop') {
       return (
         <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
           {mainNavigation}
-          <slot name="navigation-controls"></slot>
+          <div class="spacer"></div>
+          {navigationControls}
         </div>
       );
     }
 
     return (
       <div
-        class={{ navigation: true, extended: this.mobileMenuExtended }}
-        style={{ '--post-header-navigation-current-inset': `${this.mobileMenu?.scrollTop ?? 0}px` }}
+        class={{
+          'burger-menu': true,
+          'extended': this.burgerMenuExtended,
+          'no-navigation-controls': !this.hasNavigationControls,
+        }}
+        ref={el => (this.burgerMenu = el)}
       >
-        <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <div class="navigation-header">
-            <slot name="navigation-controls"></slot>
-            <slot name="target-group"></slot>
-          </div>
+        <div class="navigation-controls">{navigationControls}</div>
+        <div class="burger-menu-body">
+          <slot name="target-group"></slot>
           {mainNavigation}
-          <div class="navigation-footer">
-            <slot name="meta-navigation"></slot>
-            <slot name="post-language-switch"></slot>
-          </div>
+        </div>
+        <div class="burger-menu-footer">
+          <slot name="meta-navigation"></slot>
+          <slot name="post-language-switch"></slot>
         </div>
       </div>
     );
   }
 
   render() {
-    const localHeaderClasses = ['local-header'];
-    if (this.mobileMenuExtended) localHeaderClasses.push('local-header-mobile-extended');
-    if (this.device !== 'desktop' || !this.hasNavigation) localHeaderClasses.push('no-navigation');
-    if (!this.hasTitle) localHeaderClasses.push('no-title');
-
     return (
       <Host data-version={version} data-color-scheme="light">
         <div class="global-header">
-          <div class="global-sub">
-            <div class="logo">
-              <slot name="post-logo"></slot>
-            </div>
+          <div class="logo">
+            <slot name="post-logo"></slot>
           </div>
-          <div class="global-sub">
+          <div class="sliding-controls">
             {this.device === 'desktop' && <slot name="target-group"></slot>}
-          </div>
-          <div class="global-sub">
+            <div class="spacer"></div>
             <slot name="global-controls"></slot>
-            {!this.hasMobileMenu && <slot name="meta-navigation"></slot>}
-            {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
+            {!this.hasBurgerMenu && [
+              <slot name="meta-navigation"></slot>,
+              <slot name="post-language-switch"></slot>,
+            ]}
             <slot name="global-login"></slot>
-            {this.hasNavigation && (
-              <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
+            {this.hasNavigation && this.device !== 'desktop' && (
+              <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
                 <slot name="post-togglebutton"></slot>
               </div>
             )}
           </div>
         </div>
-        <div class={localHeaderClasses.join(' ')}>
+        <div
+          class={{
+            'local-header': true,
+            'no-title': !this.hasTitle,
+            'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
+            'no-navigation-controls': !this.hasNavigationControls,
+          }}
+        >
           <slot name="title" onSlotchange={() => this.checkTitleExistence()}></slot>
-          {this.hasTitle && (
-            <div class="local-sub">
-              <slot name="local-controls"></slot>
-              <slot></slot>
-            </div>
-          )}
+          {this.hasTitle && <slot name="local-controls"></slot>}
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}
