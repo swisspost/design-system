@@ -1,5 +1,16 @@
 # @swisspost/design-system-components-angular
 
+## 9.3.0
+
+### Minor Changes
+
+- Added a `button` part to the `post-accordion-item` component to enable custom styling of the accordion header button. (by [@myrta2302](https://github.com/myrta2302) with [#6248](https://github.com/swisspost/design-system/pull/6248))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.3.0
+
 ## 9.2.0
 
 ### Patch Changes
