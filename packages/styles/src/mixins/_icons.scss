@@ -9,7 +9,7 @@
 @use './../mixins/utilities';
 @use './../utilities/env-variables' as icon-version;
 
-@mixin mask-image($name) {
+@mixin icon($name) {
   mask-image: var(--post-icon-#{$name});
   background-color: currentColor;
   color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
@@ -22,6 +22,19 @@
       @include meta.load-css('../icons/temp/#{$name}');
     }
   }
+}
+
+@mixin post-icon($name, $color: inherit, $width: 1em, $height: 1em) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  color: $color;
+  mask-image: var(--post-icon-#{$name});
+  mask-position: center center;
+  mask-repeat: no-repeat;
+  mask-size: 100%;
 }
 
 @mixin remove-icon() {

@@ -12,7 +12,7 @@
     display: none;
   }
 
-  @include post.mask-image($icon);
+  @include post.icon($icon);
 }
 
 plusicon {

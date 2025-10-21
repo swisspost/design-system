@@ -225,7 +225,7 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 2;
     pointer-events: none;
-    @include icons-mx.mask-image('success-solid');
+    @include icons-mx.icon('success-solid');
     color: tokens.get('post-validation-success', components.$post-validation);
   }
 
@@ -238,7 +238,7 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 1;
     pointer-events: none;
-    @include icons-mx.mask-image('warning-solid');
+    @include icons-mx.icon('warning-solid');
     color: tokens.get('post-validation-error', components.$post-validation);
   }
 

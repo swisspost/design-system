@@ -38,9 +38,9 @@ $resizer-max-width: 64px;
 }
 
 .my-accessibility-icon {
-  @include post.mask-image('accessibility');
+  @include post.icon('accessibility');
 }
 
 .letter-icon {
-  @include post.mask-image('letter');
+  @include post.icon('letter');
 }

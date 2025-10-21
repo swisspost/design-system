@@ -113,10 +113,10 @@ input[type='radio'],
   }
 
   ~ .invalid-feedback::before {
-    @include icons-mx.mask-image('warning-solid');
+    @include icons-mx.icon('warning-solid');
   }
 
   ~ .valid-feedback::before {
-    @include icons-mx.mask-image('success-solid');
+    @include icons-mx.icon('success-solid');
   }
 }

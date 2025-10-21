@@ -56,7 +56,7 @@ button.chip-dismissible {
     @include utilities.high-contrast-mode() {
       background-color: ButtonText;
     }
-    @include icons-mx.mask-image('closex');
+    @include icons-mx.icon('closex');
   }
 
   &:hover::after {
@@ -120,7 +120,7 @@ button.chip-dismissible {
           }
           width: tokens.get('chip-selectable-icon');
           height: tokens.get('chip-selectable-icon');
-          @include icons-mx.mask-image('checkmark');
+          @include icons-mx.icon('checkmark');
         }
 
         .badge {
