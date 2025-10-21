@@ -24,7 +24,7 @@ AFTER:
 @include post.custom-property('accessibility', './path/to/icon/folder');
 
 .my-icon {
-  @include post.mask-image('accessibility');
+  @include post.post-icon('accessibility');
   
   // optionally add styles for the icon
   color: #fc0;
