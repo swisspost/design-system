@@ -10,7 +10,7 @@ import {
   Watch,
 } from '@stencil/core';
 
-import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType, getFocusableChildren } from '@/utils';
+import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -152,6 +152,7 @@ export class PostPopovercontainer {
     if (typeof this.clearAutoUpdate === 'function') {
       this.clearAutoUpdate();
     }
+    this.host.removeEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
   /**
@@ -173,12 +174,7 @@ export class PostPopovercontainer {
   async hide() {
     if (!this.toggleTimeoutId) {
       if (this.eventTarget && this.eventTarget instanceof HTMLElement) {
-        const focusableChildren = getFocusableChildren(this.eventTarget);
-        // find first focusable element
-        const firstFocusable = focusableChildren[0];
-        if (firstFocusable) {
-          firstFocusable.focus();
-        }
+        this.eventTarget.focus();
       }
       this.eventTarget = null;
       this.host.hidePopover();
@@ -234,8 +230,7 @@ export class PostPopovercontainer {
     } else {
       // Return focus to the trigger on close
       if (this.eventTarget instanceof HTMLElement) {
-        const focusable = getFocusableChildren(this.eventTarget);
-        (focusable[0] || this.eventTarget).focus();
+        this.eventTarget.focus();
       }
 
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();

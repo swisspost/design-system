@@ -22,6 +22,11 @@ export class PostPopoverTrigger {
   @State() ariaExpanded: boolean = false;
 
   /**
+   * It holds the state of the popover toggle
+   */
+  @State() private popoverOpen: boolean = false;
+
+  /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
    * @param forValue - The new value of the `for` property.
    */
@@ -37,19 +42,11 @@ export class PostPopoverTrigger {
 
   private readonly boundHandleToggle: (event: Event) => void;
   private readonly boundHandleKeyDown: (event: Event) => void;
-  private readonly boundHandlePopoverPostToggle: (
-    event: CustomEvent<{ isOpen: boolean; first: boolean }>,
-  ) => void;
 
   //this gets the associated popover element to the trigger based on 'for'
   private get popover(): HTMLPostPopoverElement | null {
     const ref = document.getElementById(this.for);
     return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
-  }
-
-  // when the content of the trigger changes
-  private handleSlotChange() {
-    this.setupTrigger();
   }
 
   // setup the trigger to get the correct aria attributes
@@ -72,9 +69,6 @@ export class PostPopoverTrigger {
       // add event listeners
       this.trigger.addEventListener('click', this.boundHandleToggle);
       this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
-      if (this.popover) {
-        this.popover.addEventListener('postToggle', this.boundHandlePopoverPostToggle);
-      }
     } else {
       console.warn(
         'No content found in the post-popover-trigger slot. Please insert a focusable element or content that can receive focus.',
@@ -83,9 +77,13 @@ export class PostPopoverTrigger {
   }
 
   private handleToggle() {
+    this.popoverOpen = !this.popoverOpen;
     const popoverEl = this.popover;
     if (popoverEl) {
       popoverEl.toggle(this.trigger);
+
+      this.trigger.setAttribute('aria-expanded', this.popoverOpen.toString());
+
       if (this.ariaExpanded === false) {
         this.trigger.focus();
       }
@@ -101,17 +99,9 @@ export class PostPopoverTrigger {
     }
   };
 
-  private readonly handlePopoverPostToggle = (
-    event: CustomEvent<{ isOpen: boolean; first: boolean }>,
-  ) => {
-    this.ariaExpanded = event.detail.isOpen;
-    this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
-  };
-
   constructor() {
     this.boundHandleToggle = this.handleToggle.bind(this);
     this.boundHandleKeyDown = this.handleKeyDown.bind(this);
-    this.boundHandlePopoverPostToggle = this.handlePopoverPostToggle.bind(this);
   }
 
   componentDidLoad() {
@@ -123,13 +113,12 @@ export class PostPopoverTrigger {
     // remove event listeners
     this.trigger.removeEventListener('click', this.boundHandleToggle);
     this.trigger.removeEventListener('keydown', this.boundHandleKeyDown);
-    this.popover.removeEventListener('postToggle', this.boundHandlePopoverPostToggle);
   }
 
   render() {
     return (
       <Host data-version={version}>
-        <slot onSlotchange={() => this.handleSlotChange()}></slot>
+        <slot onSlotchange={() => this.setupTrigger()}></slot>
       </Host>
     );
   }

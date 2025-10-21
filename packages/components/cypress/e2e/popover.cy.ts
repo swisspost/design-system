@@ -20,10 +20,6 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         .as('trigger2');
     });
 
-    it('should contain an HTML element inside the trigger', () => {
-      cy.get('@trigger2').should('have.length.at.least', 1);
-    });
-
     it('if the element inside the trigger is not interactive, it should at least have a set tabindex="0" and role="button"', () => {
       cy.get('@trigger2').then($child => {
         const child = $child[0];
