@@ -235,7 +235,7 @@ export class PostMegadropdown {
   }
 
   /**
-   * Adds or removes the 'selected' class on the megadropdown trigger button
+   * Adds or removes the 'active' class on the megadropdown trigger button
    * based on the active state.
    *
    * @param isActive - Whether the trigger should appear active
@@ -245,9 +245,9 @@ export class PostMegadropdown {
     if (!trigger) return;
 
     if (isActive) {
-      trigger.classList.add('selected');
+      trigger.classList.add('active');
     } else {
-      trigger.classList.remove('selected');
+      trigger.classList.remove('active');
     }
   }
 
