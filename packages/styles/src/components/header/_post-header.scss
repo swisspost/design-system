@@ -171,12 +171,14 @@ post-header {
     }
   }
 
-  button:not(
-      post-mainnavigation *,
-      post-language-switch *,
-      [slot='global-login'] *,
-      .local-login post-menu *,
-      .local-login post-menu-trigger *
+  button:where(
+      :not(
+          post-mainnavigation *,
+          post-language-switch *,
+          [slot='global-login'] *,
+          .local-login post-menu *,
+          .local-login post-menu-trigger *
+        )
     ) {
     @include button-mx.reset-button;
 
@@ -206,12 +208,14 @@ post-header {
   a,
   button,
   post-togglebutton {
-    &:not(
-        post-mainnavigation *,
-        post-language-switch *,
-        [slot='global-login'] *,
-        .local-login post-menu *,
-        .local-login post-menu-trigger *
+    &:where(
+        :not(
+            post-mainnavigation *,
+            post-language-switch *,
+            [slot='global-login'] *,
+            .local-login post-menu *,
+            .local-login post-menu-trigger *
+          )
       ) {
       @include subsidiary-header-interactive;
 
@@ -228,12 +232,14 @@ post-header {
 
   button,
   a {
-    &:not(
-        post-mainnavigation *,
-        post-language-switch *,
-        [slot='global-login'] *,
-        .local-login post-menu *,
-        .local-login post-menu-trigger *
+    &:where(
+        :not(
+            post-mainnavigation *,
+            post-language-switch *,
+            [slot='global-login'] *,
+            .local-login post-menu *,
+            .local-login post-menu-trigger *
+          )
       ) {
       display: flex;
 
@@ -252,11 +258,12 @@ post-header {
     }
   }
 
-  a.selected,
+  a.active,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
       color: color.$white;
       background: #050400;
+      box-shadow: var(--post-device-elevation-100);
     }
   }
 

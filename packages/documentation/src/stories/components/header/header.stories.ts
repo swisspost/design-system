@@ -2,10 +2,11 @@ import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { fakeContent } from '@/utils';
-import { renderCustomControls } from '@/stories/components/header/renderers/custom-controls';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
 import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
+import { renderCustomControls } from '@/stories/components/header/renderers/custom-controls';
+import { renderNavigationControls } from '@/stories/components/header/renderers/navigation-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 
 const meta: MetaComponent = {
@@ -30,6 +31,7 @@ const meta: MetaComponent = {
     globalLogin: true,
     customControls: false,
     isLoggedIn: false,
+    jobs: false,
   },
   argTypes: {
     title: {
@@ -111,6 +113,14 @@ const meta: MetaComponent = {
       },
       table: { category: 'state' },
     },
+    jobs: {
+      name: 'Jobs',
+      description: 'Whether the jobs is active or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'state' },
+    },
   },
   decorators: [
     story =>
@@ -154,9 +164,9 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.targetGroup ? renderTargetGroup() : nothing}
-        ${args.globalControls ? globalControls : nothing}
-        ${args.metaNavigation ? renderMetaNavigation() : nothing}
+        ${args.targetGroup ? renderTargetGroup(args) : nothing}
+        ${args.globalControls && !args.jobs ? globalControls : nothing}
+        ${args.metaNavigation ? renderMetaNavigation(args) : nothing}
 
         <!-- Language switch -->
         <post-language-switch
@@ -172,10 +182,12 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
           <post-language-option active="true" code="en" name="English">en</post-language-option>
         </post-language-switch>
 
-        ${!args.title ? html`
-          <!-- Global Login -->
-          ${globalLogin}
-        ` : nothing}
+        ${!args.title && !args.jobs
+          ? html`
+              <!-- Global header login/user menu -->
+              ${globalLogin}
+            `
+          : nothing}
 
         <!-- Menu button for mobile -->
         <post-togglebutton slot="post-togglebutton">
@@ -187,6 +199,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
         ${args.title !== '' ? title : nothing}
         ${args.customControls ? renderCustomControls(args) : nothing}
         ${args.mainNavigation ? mainnavigation : nothing}
+        ${args.jobs ? renderNavigationControls() : nothing}
       </post-header>
     `;
   };
@@ -238,6 +251,13 @@ export const ActiveNavigationItem: Story = {
 
 export const Portal: Story = {
   ...getIframeParameters(550),
+};
+
+export const Jobs: Story = {
+  ...getIframeParameters(550),
+  args: {
+    jobs: true,
+  },
 };
 
 export const Microsite: Story = {
