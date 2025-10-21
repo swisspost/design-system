@@ -6,6 +6,7 @@
  */
 export function setupComponentErrorCapture(componentNames: string[]) {
   const errors: string[] = [];
+  const lowerCaseComponentNames = componentNames.map(n => n.toLowerCase());
   
   const extractMessage = (arg: any): string => {
     if (typeof arg === 'string') return arg;
@@ -14,8 +15,10 @@ export function setupComponentErrorCapture(componentNames: string[]) {
     try { return JSON.stringify(arg); } catch { return String(arg); }
   };
   
-  const isRelevant = (message: string): boolean => 
-    componentNames.some(name => message.toLowerCase().includes(name.toLowerCase()));
+  const isRelevant = (message: string): boolean => {
+    const lowerCaseMessage = message.toLowerCase();
+    return lowerCaseComponentNames.some(n => lowerCaseMessage.includes(n));
+  }
   
   const capture = (message: string) => {
     if (isRelevant(message)) errors.push(message);
