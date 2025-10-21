@@ -32,6 +32,9 @@ jobs:
       - name: Install & build Dependencies
         run: pnpm bootstrap
 
+      - name: Configure GitHub User
+        uses: ./.github/actions/configure-github-user
+
       # This will fail the build if something in the publish setup is not correct
       # before changeset magic is starting to run
       - name: Test publish step

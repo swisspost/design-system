@@ -1,0 +1,11 @@
+name: Configure GitHub User
+description: Configure the GitHub user name and email to be the Swiss Post bot
+
+runs:
+  using: composite
+  steps:
+    - name: Configure GitHub User
+      shell: bash
+      run: |
+        git config user.name "Swiss Post Bot"
+        git config user.email "103635272+swisspost-bot@users.noreply.github.com"
