@@ -149,7 +149,7 @@ export class PostHeader {
     window.removeEventListener('postBreakpoint:device', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
-    scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     this.host.removeEventListener('click', this.handleLinkClick);
@@ -218,8 +218,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-    this.megadropdownOpen = event.detail.isVisible;
-  };
+      this.megadropdownOpen = event.detail.isVisible;
+    };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -362,12 +362,12 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${this.mobileMenu?.scrollTop ?? 0}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <div class="mobile-menu-body">
+          <div class="navigation-header">
             <slot name="navigation-controls"></slot>
             <slot name="target-group"></slot>
-            {mainNavigation}
           </div>
-          <div class="mobile-menu-footer">
+          {mainNavigation}
+          <div class="navigation-footer">
             <slot name="meta-navigation"></slot>
             <slot name="post-language-switch"></slot>
           </div>

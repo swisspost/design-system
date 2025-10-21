@@ -4,7 +4,7 @@ import { html, nothing } from 'lit';
 export function renderTargetGroup(args: Args) {
   return html`
     <!-- Target Group -->
-    <ul slot="target-group">
+    <ul slot="target-group" class="target-group">
       <li>
         <a href="#" class=${args.jobs ? nothing : 'active'}>Private customers</a>
       </li>

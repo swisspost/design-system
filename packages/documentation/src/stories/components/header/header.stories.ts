@@ -139,7 +139,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
     `;
 
     const globalLogin = args.isLoggedIn
-      ? userMenu
+      ? html` <div slot="global-login">${userMenu}</div> `
       : html`
           <a href="" slot="global-login">
             <span>Login</span>
@@ -149,10 +149,14 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
 
     const globalControls = html`
       <!-- Global controls (Search) -->
-      <a href="" slot="global-controls">
-        <span>Search</span>
-        <post-icon aria-hidden="true" name="search"></post-icon>
-      </a>
+      <ul slot="global-controls">
+        <li>
+          <a href="">
+            <span>Search</span>
+            <post-icon aria-hidden="true" name="search"></post-icon>
+          </a>
+        </li>
+      </ul>
     `;
 
     return html`
@@ -162,7 +166,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
 
         ${args.targetGroup ? renderTargetGroup(args) : nothing}
         ${args.globalControls && !args.jobs ? globalControls : nothing}
-        ${args.metaNavigation ? renderMetaNavigation() : nothing}
+        ${args.metaNavigation ? renderMetaNavigation(args) : nothing}
 
         <!-- Language switch -->
         <post-language-switch

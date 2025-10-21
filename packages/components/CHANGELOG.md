@@ -1,5 +1,34 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.50
+
+### Major Changes
+
+- The label property for `<post-menu>` component was made required for accessibility compliance. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6417](https://github.com/swisspost/design-system/pull/6417))
+
+- Added required `menu-label` property to the `<post-breadcrumbs>` component. This accessible label is used for the dropdown menu when breadcrumb items are concatenated. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6417](https://github.com/swisspost/design-system/pull/6417))
+
+- Reorganized Global Header structure: introduced `global-controls` and `global-login` slots. Search button must now be placed in the `global-controls` slot, login button or user menu component in the `global-login` slot. Updated documentation and Storybook examples to reflect the new structure. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6422](https://github.com/swisspost/design-system/pull/6422))
+
+### Minor Changes
+
+- Added the `button-type` property to the `post-closebutton` to allow users to override the default button type. (by [@leagrdv](https://github.com/leagrdv) with [#6361](https://github.com/swisspost/design-system/pull/6361))
+
+- Added the user menu for logged in users in the `post-header` component. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+
+- Updated the `<post-header>` component by adding a new slot for auxiliary navigation links on the right side of the main-navigation. (by [@myrta2302](https://github.com/myrta2302) with [#6421](https://github.com/swisspost/design-system/pull/6421))
+
+### Patch Changes
+
+- Updated styles of the `post-menu-item` component, which is used in both the new user menu and the `post-breadcrumbs` dropdown menu when breadcrumb items are concatenated. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+
+- Enhanced the header navigation behavior to keep parent item styles in sync when `aria-current="page"` changes dynamically after load. (by [@myrta2302](https://github.com/myrta2302) with [#6381](https://github.com/swisspost/design-system/pull/6381))
+
+- Removed the hover border color from `post-avatar` to maintain design consistency. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.50
+  - @swisspost/design-system-styles@10.0.0-next.50
+
 ## 10.0.0-next.49
 
 ### Major Changes
