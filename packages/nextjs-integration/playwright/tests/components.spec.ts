@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
 import { captureComponentErrors, assertNoComponentErrors } from '../support/component-error-filter';
 
-test.describe('Components - Generic Tests', () => {
+test.describe('Components', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/ssr');
   });

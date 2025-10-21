@@ -7,7 +7,7 @@ const HIDDEN_BY_DEFAULT = [
   'post-popovercontainer',
 ];
 
-describe('Components - Generic Tests', () => {
+describe('Components', () => {
   
   ROUTES.forEach(route => {
     describe(`on ${route}`, () => {
@@ -24,7 +24,7 @@ describe('Components - Generic Tests', () => {
         });
       });
 
-      it('should be visible (not hidden by CSS)', () => {
+      it('should be visible', () => {
         cy.visit(route);
         
         componentNames.forEach(componentName => {
