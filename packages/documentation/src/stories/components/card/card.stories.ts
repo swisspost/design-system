@@ -17,35 +17,74 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    content: "<h5>This is my card's title</h5><p>This is my card's content.</p>",
-    action: 'button',
+    title: "This is my card's title",
+    body: "This is my card's content.",
+    interactive: false,
+    action: 'buttons',
+    interactiveAction: 'button',
+    label: 'Button Text',
+    variant: 'btn-primary',
   },
   argTypes: {
-    content: {
-      name: 'Content',
+    title: {
+      name: 'Title',
+      control: { type: 'text' },
+      table: { category: 'Card Content' },
+    },
+    body: {
+      name: 'Body',
       description: 'The content within the card.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Card Content',
-      },
+      control: { type: 'text' },
+      table: { category: 'Card Content' },
+    },
+    label: {
+      name: 'label',
+      description: 'The content button',
+      control: { type: 'text' },
+      table: { category: 'Card Content' },
+    },
+    interactive: {
+      name: 'Interactive',
+      description: 'Wrap in <post-linkarea> and use Interactive Action.',
+      control: { type: 'boolean' },
+      table: { category: 'General' },
     },
     action: {
       name: 'Action',
-      description: 'Defines the call-to-action to show in the card.',
+      description: 'Non-interactive card action.',
+      control: {
+        type: 'inline-radio',
+        labels: { buttons: 'Buttons', link: 'Link', none: 'None' },
+      },
+      options: ['buttons', 'link', 'none'],
+      if: { arg: 'interactive', eq: false },
+      table: { category: 'Card Content' },
+    },
+    interactiveAction: {
+      name: 'Interactive Action',
+      description: 'Interactive card action.',
+      control: {
+        type: 'inline-radio',
+        labels: { button: 'Button', link: 'Link' },
+      },
+      options: ['button', 'link'],
+      if: { arg: 'interactive', eq: true },
+      table: { category: 'Card Content' },
+    },
+    variant: {
+      name: 'Variant',
+      description: 'Defines a style variant.',
       control: {
         type: 'inline-radio',
         labels: {
-          button: 'Button',
-          links: 'Links',
-          none: 'None',
+          'btn-primary': 'Primary',
+          'btn-secondary': 'Secondary',
+          'btn-tertiary': 'Tertiary',
         },
       },
-      options: ['button', 'links', 'none'],
-      table: {
-        category: 'Card Content',
-      },
+      options: ['btn-primary', 'btn-secondary', 'btn-tertiary'],
+      table: { category: 'Card Content' },
+      if: { arg: 'action', neq: 'link' },
     },
   },
 };
@@ -73,27 +112,28 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 function getCardLinks() {
   return html`
     <div class="card-links">
-      ${['Link Text', 'More Link'].map(label => html` <a href="#">${label}</a> `)}
+      <a href="#" class="btn-link px-0">Link Text</a>
     </div>
   `;
 }
 
-function getCardButton() {
+function getCardButton({ label, variant }: Args) {
   return html`
-    <button class="btn btn-primary ">
-      <span>Button Text</span>
+    <button class="btn ${variant}">
+      <span>${label}</span>
     </button>
   `;
 }
 
-function getCardContent({ content, action }: Args) {
+function getCardContent(args: Args) {
+  const { content, action } = args;
   return html`
     <div class="card-body">
       ${unsafeHTML(content)}
       ${choose(
         action,
         [
-          ['button', getCardButton],
+          ['button', () => getCardButton(args)],
           ['links', getCardLinks],
         ],
         () => html` ${nothing} `,
