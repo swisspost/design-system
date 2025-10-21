@@ -4,10 +4,11 @@
 @include post.custom-property('accessibility', './path/to/icon/folder');
 
 .my-icon {
-  @include post.post-icon('accessibility');
-  
-  // optionally add styles for the icon
-  color: #fc0;
-  width: 1em;
-  height: 1em;
+  @include post.post-icon(
+    $name: 'accessibility',
+    // optional
+    $color: '#fc0',
+    $width: 1em,
+    $height: 1em
+  );
 }

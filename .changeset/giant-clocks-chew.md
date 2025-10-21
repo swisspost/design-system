@@ -3,7 +3,7 @@
 '@swisspost/design-system-icons': major
 ---
 
-The `icon` and `post-icon` mixins have been removed and replaced with more flexible `mask-image` mixin. Icons must now be loaded separately using the `custom-property` mixin at the top of the file.
+The `post-icon` mixin has been refactored. Icons must now be loaded separately using the `custom-property` mixin at the top of the file.
 
 BEFORE:
 ```scss
@@ -24,11 +24,12 @@ AFTER:
 @include post.custom-property('accessibility', './path/to/icon/folder');
 
 .my-icon {
-  @include post.post-icon('accessibility');
-  
-  // optionally add styles for the icon
-  color: #fc0;
-  width: 1em;
-  height: 1em;
+  @include post.post-icon(
+    $name: 'accessibility',
+    // optional
+    $color: '#fc0',
+    $width: 1em,
+    $height: 1em
+  );
 }
 ```
