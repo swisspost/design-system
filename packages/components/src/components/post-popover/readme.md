@@ -1,7 +1,5 @@
 # post-popover
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -32,9 +30,9 @@ Programmatically display the popover
 
 #### Parameters
 
-| Name     | Type          | Description                                                                  |
-| -------- | ------------- | ---------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popover should be shown |
+| Name     | Type          | Description                                                                               |
+| -------- | ------------- | ----------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
 
 #### Returns
 
@@ -48,16 +46,23 @@ Toggle popover display
 
 #### Parameters
 
-| Name     | Type          | Description                                                                        |
-| -------- | ------------- | ---------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popover should be anchored to |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                                   |
+| Name     | Type          | Description                                                                               |
+| -------- | ------------- | ----------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                                          |
 
 #### Returns
 
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot        | Description                                  |
+| ----------- | -------------------------------------------- |
+| `"default"` | Slot for placing content inside the popover. |
 
 
 ## Dependencies

@@ -383,15 +383,21 @@ export namespace Components {
         "placement"?: Placement;
         /**
           * Programmatically display the popover
-          * @param target An element with [data-popover-target="id"] where the popover should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popover display
-          * @param target An element with [data-popover-target="id"] where the popover should be anchored to
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
+    interface PostPopoverTrigger {
+        /**
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
+         */
+        "for": string;
     }
     interface PostPopovercontainer {
         /**
@@ -437,12 +443,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -824,6 +830,12 @@ declare global {
         prototype: HTMLPostPopoverElement;
         new (): HTMLPostPopoverElement;
     };
+    interface HTMLPostPopoverTriggerElement extends Components.PostPopoverTrigger, HTMLStencilElement {
+    }
+    var HTMLPostPopoverTriggerElement: {
+        prototype: HTMLPostPopoverTriggerElement;
+        new (): HTMLPostPopoverTriggerElement;
+    };
     interface HTMLPostPopovercontainerElementEventMap {
         "postBeforeShow": { first?: boolean };
         "postShow": { first?: boolean };
@@ -938,6 +950,7 @@ declare global {
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
         "post-popover": HTMLPostPopoverElement;
+        "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
         "post-tab-header": HTMLPostTabHeaderElement;
@@ -1270,6 +1283,12 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement;
     }
+    interface PostPopoverTrigger {
+        /**
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
+         */
+        "for": string;
+    }
     interface PostPopovercontainer {
         /**
           * Animation style
@@ -1445,6 +1464,7 @@ declare namespace LocalJSX {
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
         "post-popover": PostPopover;
+        "post-popover-trigger": PostPopoverTrigger;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
         "post-tab-header": PostTabHeader;
@@ -1492,6 +1512,7 @@ declare module "@stencil/core" {
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
+            "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
