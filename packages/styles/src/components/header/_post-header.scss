@@ -25,10 +25,6 @@ post-header {
   > [slot] {
     @include slotted-controls {
       @include header-control-base;
-
-      &:where(.active, [aria-pressed='true']) {
-        @include header-control-active;
-      }
     }
   }
 

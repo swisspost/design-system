@@ -12,14 +12,10 @@ post-mainnavigation {
     @include header-control-base;
     @include header-control-navigation;
 
-    &:where(.active, [aria-current='page'], [aria-expanded='true']) {
-      @include header-control-active;
-    }
-
     @include media.only(desktop) {
+      @include header-control-icon-rotate;
       z-index: 4;
       height: var(--post-main-navigation-height, auto);
-      font-weight: 700;
     }
   }
 }

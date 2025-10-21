@@ -15,6 +15,15 @@
 }
 
 /**
+ selects active controls
+ */
+@mixin active-state() {
+  &:where(.active, [aria-pressed='true'], [aria-expanded='true'], [aria-current='page']) {
+    @content;
+  }
+}
+
+/**
  default styles for header controls
  */
 @mixin header-control-base() {
@@ -41,37 +50,19 @@
   @include utilities.not-disabled-hover() {
     @include button.button-variant-def('hover', 'tertiary');
   }
-}
 
-/**
- active styles for header controls
- */
-@mixin header-control-active() {
-  box-shadow: tokens.get('button-elevation');
+  @include active-state {
+    box-shadow: tokens.get('button-elevation');
 
-  @include button.button-variant-def('enabled', 'primary');
+    @include button.button-variant-def('enabled', 'primary');
 
-  &:disabled {
-    @include button.button-variant-def('disabled', 'primary');
-  }
+    &:disabled {
+      @include button.button-variant-def('disabled', 'primary');
+    }
 
-  @include utilities.not-disabled-hover() {
-    @include button.button-variant-def('hover', 'primary');
-  }
-}
-
-/**
- styles for controls that remain in the header on mobile and tablet
- */
-@mixin header-control-icon-only() {
-  padding: 0.5rem;
-
-  > :not(post-icon) {
-    display: none;
-  }
-
-  > post-icon {
-    font-size: 1.5rem;
+    @include utilities.not-disabled-hover() {
+      @include button.button-variant-def('hover', 'primary');
+    }
   }
 }
 
@@ -122,6 +113,36 @@
 
   &:focus-visible {
     border-radius: 0.5rem;
+  }
+}
+
+/**
+ styles for controls that remain in the header on mobile and tablet
+ */
+@mixin header-control-icon-only() {
+  padding: 0.5rem;
+
+  > :not(post-icon) {
+    display: none;
+  }
+
+  > post-icon {
+    font-size: 1.5rem;
+  }
+}
+
+/**
+ styles for controls with a rotating toggle arrow
+ */
+@mixin header-control-icon-rotate() {
+  post-icon {
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @include active-state {
+    post-icon {
+      transform: rotate(180deg);
+    }
   }
 }
 

@@ -23,20 +23,9 @@ tokens.$default-map: components.$post-button;
 
 .post-language-switch-trigger {
   @include header-mx.header-control-base;
+  @include header-mx.header-control-icon-rotate;
   text-transform: uppercase;
   cursor: pointer;
-
-  post-icon {
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  &[aria-expanded='true'] {
-    @include header-mx.header-control-active;
-
-    post-icon {
-      transform: rotate(180deg);
-    }
-  }
 }
 
 post-menu::part(menu) {
