@@ -26,21 +26,6 @@ const samples = [
   { w: 'full', h: 'half', maxW: 'full', minW: 'third', maxH: 'auto', minH: 'auto' },
 ];
 
-const vpSamples = [
-  { w: '33', h: '100', maxvW: '33', minvW: '100', maxvH: '50', minvH: '66' },
-  { w: '50', h: '50', maxvW: '25', minvW: '50', maxvH: '100', minvH: '25' },
-  { w: '50', h: '25', maxvW: '50', minvW: '25', maxvH: '66', minvH: '33' },
-  {
-    w: '75',
-    h: '25',
-    maxvW: '75',
-    minvW: '25',
-    maxvH: '50',
-    minvH: '25',
-  },
-  { w: '100', h: '50', maxvW: '100', minvW: '33', maxvH: 'auto', minvH: 'auto' },
-];
-
 const pxSamples = [
   { w: '12', h: '16', maxW: '32', minW: '12', maxH: '48', minH: '16' },
   { w: '24', h: '32', maxW: '32', minW: '12', maxH: '40', minH: '24' },
@@ -56,30 +41,27 @@ const pxSamples = [
 ];
 
 function generateClassNames(sample: Record<string, string>, isViewport = false) {
-  const prefix = isViewport ? 'v' : '';
+  const classes: string[] = ['content'];
 
-  const classNames = ['content'];
+  if (isViewport) {
+    if (sample.w) classes.push(`vw-${sample.w}`);
+    if (sample.h) classes.push(`vh-${sample.h}`);
 
-  classNames.push(prefix + 'h-' + sample.h);
-  classNames.push(prefix + 'w-' + sample.w);
+    if (sample.minvW) classes.push(`min-vw-${sample.minvW}`);
+    if (sample.maxvW) classes.push(`max-vw-${sample.maxvW}`);
+    if (sample.minvH) classes.push(`min-vh-${sample.minvH}`);
+    if (sample.maxvH) classes.push(`max-vh-${sample.maxvH}`);
+  } else {
+    if (sample.w) classes.push(`w-${sample.w}`);
+    if (sample.h) classes.push(`h-${sample.h}`);
 
-  if (sample['max' + prefix + 'H'] && sample['max' + prefix + 'H'] !== 'none') {
-    classNames.push('max-vh-' + sample['max' + prefix + 'H']);
+    if (sample.minW) classes.push(`min-w-${sample.minW}`);
+    if (sample.maxW) classes.push(`max-w-${sample.maxW}`);
+    if (sample.minH) classes.push(`min-h-${sample.minH}`);
+    if (sample.maxH) classes.push(`max-h-${sample.maxH}`);
   }
 
-  if (sample['max' + prefix + 'W'] && sample['max' + prefix + 'W'] !== 'none') {
-    classNames.push('max-vw-' + sample['max' + prefix + 'W']);
-  }
-
-  if (sample['min' + prefix + 'H'] && sample['min' + prefix + 'H'] !== 'none') {
-    classNames.push('min-vh-' + sample['min' + prefix + 'H']);
-  }
-
-  if (sample['min' + prefix + 'W'] && sample['min' + prefix + 'W'] !== 'none') {
-    classNames.push('min-vw-' + sample['min' + prefix + 'W']);
-  }
-
-  return classNames.filter(Boolean).join(' ');
+  return classes.join(' ');
 }
 
 export const PercentageSizing: StoryObj = {
@@ -102,21 +84,19 @@ export const PercentageSizing: StoryObj = {
 export const PercentageVpSizing: StoryObj = {
   render() {
     return schemes(
-      () => {
-        return html`
+      () => html`
+        <div class="sizing-example">
           <div class="grid">
-            ${vpSamples.map(sample => {
-              return html`
-                <div class="grid-item">
-                  <div class="sizing-example snapshot">
-                    <div class="${generateClassNames(sample, true)}"></div>
-                  </div>
+            ${samples.map(
+              sample => html`
+                <div class="grid-item snapshot">
+                  <div class="${generateClassNames(sample, true)}"></div>
                 </div>
-              `;
-            })}
+              `,
+            )}
           </div>
-        `;
-      },
+        </div>
+      `,
       { filter: scheme => scheme === COLOR_SCHEMES.light },
     );
   },
