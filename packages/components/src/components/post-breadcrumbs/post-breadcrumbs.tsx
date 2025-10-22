@@ -134,7 +134,7 @@ export class PostBreadcrumbs {
       const menuTrigger = this.host.shadowRoot
         ?.querySelector('.menu-trigger-wrapper')
         ?.querySelector('button');
-
+      console.log(menuTrigger);
       if (menuTrigger) {
         menuTrigger.click();
       }
@@ -164,17 +164,17 @@ export class PostBreadcrumbs {
               <li class="menu-trigger-wrapper">
                 <post-icon name="2111" class="breadcrumb-item-icon" />
                 <div class="actual-menu">
-                  <post-menu-trigger for="breadcrumb-menu" tabIndex={0}>
-                    <button
-                      onKeyDown={e => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          this.handleBreadcrumbItemClick();
-                        }
-                      }}
-                      class="btn"
-                      tabIndex={-1}
-                    >
+                  <post-menu-trigger
+                    for="breadcrumb-menu"
+                    tabIndex={0}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.handleBreadcrumbItemClick();
+                      }
+                    }}
+                  >
+                    <button class="btn" tabIndex={-1}>
                       ...
                     </button>
                   </post-menu-trigger>
