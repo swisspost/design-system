@@ -243,7 +243,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          ref: changeset-release/changeset-release/release/v9
+          ref: changeset-release/release/v9
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
