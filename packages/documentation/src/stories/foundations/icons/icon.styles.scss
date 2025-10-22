@@ -29,17 +29,8 @@ $resizer-max-width: 64px;
   background-color: post.$info;
 }
 
-%icon-size {
+.letter-icon {
   width: 1em;
   height: 1em;
-}
-
-.my-accessibility-icon {
-  @extend %icon-size;
-  @include post.icon('accessibility');
-}
-
-.letter-icon {
-  @extend %icon-size;
   @include post.icon('letter');
 }
