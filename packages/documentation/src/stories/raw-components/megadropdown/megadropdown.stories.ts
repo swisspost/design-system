@@ -36,7 +36,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
+        <span>Menu</span>
         <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
         <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
       </post-togglebutton>
@@ -62,13 +62,13 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <ul class="list-inline">
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Search</span>
+            <span>Search</span>
             <post-icon aria-hidden="true" name="search"></post-icon>
           </a>
         </li>
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Login</span>
+            <span>Login</span>
             <post-icon aria-hidden="true" name="login"></post-icon>
           </a>
         </li>
