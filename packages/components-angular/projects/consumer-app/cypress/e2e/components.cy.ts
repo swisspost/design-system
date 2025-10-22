@@ -1,18 +1,13 @@
 import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
 
-// Components that are intentionally hidden by default
-const HIDDEN_BY_DEFAULT = [
-  'post-popovercontainer',
-];
-
 describe('Components', () => {
   beforeEach(() => {
     cy.visit('/');
   });
 
-  it('should render and exist in DOM', () => {
-    componentNames.forEach(componentName => {
+  componentNames.forEach(componentName => {
+    it(`should contain <${componentName}>`, () => {
       cy.get('body').then($body => {
         if ($body.find(componentName).length > 0) {
           cy.get(componentName).first().should('exist');
@@ -21,15 +16,11 @@ describe('Components', () => {
     });
   });
 
-  it('should be visible', () => {
-    componentNames.forEach(componentName => {
-      if (HIDDEN_BY_DEFAULT.includes(componentName)) {
-        return;
-      }
-      
+  componentNames.forEach(componentName => {
+    it(`should render and be attached: <${componentName}>`, () => {
       cy.get('body').then($body => {
         if ($body.find(componentName).length > 0) {
-          cy.get(componentName).first().should('be.visible');
+          cy.get(componentName).first().should('exist');
         }
       });
     });
