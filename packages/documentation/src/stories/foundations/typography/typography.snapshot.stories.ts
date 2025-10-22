@@ -1,5 +1,6 @@
 import { html } from 'lit';
 import type { StoryObj } from '@storybook/web-components-vite';
+import { schemes } from '@/shared/snapshots/schemes';
 
 const meta = {
   title: 'Snapshots',
@@ -213,23 +214,26 @@ export const Typography: Story = {
       </section>
 
       <!-- Links -->
-      // TODO: light and dark mode snapshots
-      <section>
-        <h2>Links</h2>
-        <div class="d-flex flex-column gap-24">
-          <a href="https://example.com">Link Text</a>
-          <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
+      ${schemes(
+        () => html`
+          <section>
+            <h2>Links</h2>
+            <div class="d-flex flex-column gap-24">
+              <a href="https://example.com">Link Text</a>
+              <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
 
-          <p>
-            Inline link inside paragraph:
-            <a href="https://example.com">Example Link</a>
-          </p>
-          <p>
-            Another with longer text:
-            <a href="https://imgur.com/FKmX7dt">Click here for image</a>
-          </p>
-        </div>
-      </section>
+              <p>
+                Inline link inside paragraph:
+                <a href="https://example.com">Example Link</a>
+              </p>
+              <p>
+                Another with longer text:
+                <a href="https://imgur.com/FKmX7dt">Click here for image</a>
+              </p>
+            </div>
+          </section>
+        `,
+      )}
 
       <!-- Paragraphs -->
       <section>
@@ -275,11 +279,19 @@ export const Typography: Story = {
           <p>This is <strong>strong text</strong> to emphasize importance.</p>
           <p>This is <em>emphasized text</em> using italics.</p>
           <p>Here is <sub>subscript</sub> and <sup>superscript</sup>.</p>
-          <p>This is <mark>highlighted text</mark> for attention.</p>
+          <p>
+            This is
+            <mark>highlighted text</mark>
+            for attention.
+          </p>
           <p>This contains an <abbr title="abbreviation">abbr</abbr> element.</p>
           <p>Inline <code>code sample</code> for dev use.</p>
           <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>
-          <p>This shows <del>deleted text</del> for corrections.</p>
+          <p>
+            This shows
+            <del>deleted text</del>
+            for corrections.
+          </p>
         </div>
       </section>
     </div>
