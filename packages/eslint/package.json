@@ -1,12 +1,22 @@
 {
   "name": "@swisspost/design-system-eslint",
-  "private": true,
+  "private": false,
   "version": "1.1.0-next.2",
   "description": "A set of custom ESLint rules to help keeping projects using the Swiss Post Design System up-to-date.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "linkDirectory": "true"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system",

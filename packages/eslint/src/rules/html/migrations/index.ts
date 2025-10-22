@@ -32,6 +32,7 @@ import noDeprecatedFontSizesRule, {
 import noDeprecatedChipFilter, {
   name as noDeprecatedChipFilterName,
 } from './no-deprecated-chip-filter';
+import noDeprecatedAlert, { name as noDeprecatedAlertName } from './no-deprecated-alert';
 import noDeprecatedPositionHelpersRule, {
   name as noDeprecatedPositionHelpersRuleName,
 } from './no-deprecated-position-helpers';
@@ -67,4 +68,5 @@ export const htmlMigrationRules = {
   [noDeprecatedElevationUtilitiesRuleName]: noDeprecatedElevationUtilitiesRule,
   [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
   [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
+  [noDeprecatedAlertName]: noDeprecatedAlert,
 };
