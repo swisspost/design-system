@@ -31,7 +31,6 @@ test.describe('Components', () => {
     await page.goto('/ssr');
     await page.waitForLoadState('networkidle');
     
-    // This will now only report non-hydration errors
     assertNoComponentErrors(errors, componentNames);
   });
 });
