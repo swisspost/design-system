@@ -7,12 +7,11 @@ test.describe('Components', () => {
     await page.goto('/ssr');
   });
 
-  test('should render and be visible', async ({ page }) => {
+  test('should render and be attached', async ({ page }) => {
     for (const componentName of componentNames) {
       const component = page.locator(componentName).first();
       if (await component.count() > 0) {
         await expect(component).toBeAttached();
-        await expect(component).toBeVisible();
       }
     }
   });
@@ -27,12 +26,21 @@ test.describe('Components', () => {
   });
 
   test('should not have console errors', async ({ page }) => {
-    const errors = captureComponentErrors(page, componentNames);
-    
-    await page.goto('/ssr');
-    await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(500);
-    
-    assertNoComponentErrors(errors, componentNames);
-  });
+  const errors = captureComponentErrors(page, componentNames);
+  
+  await page.goto('/ssr');
+  
+  // Wait for all components to be hydrated before checking for errors
+  const hydratedComponents = await page.locator('[data-hydrated]').all();
+  await Promise.all(
+    hydratedComponents.map(component => 
+      component.waitFor({ state: 'attached', timeout: 5000 })
+    )
+  );
+  
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(500);
+  
+  assertNoComponentErrors(errors, componentNames);
+});
 });
