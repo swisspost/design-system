@@ -134,7 +134,6 @@ export class PostBreadcrumbs {
       const menuTrigger = this.host.shadowRoot
         ?.querySelector('.menu-trigger-wrapper')
         ?.querySelector('button');
-      console.log(menuTrigger);
       if (menuTrigger) {
         menuTrigger.click();
       }
