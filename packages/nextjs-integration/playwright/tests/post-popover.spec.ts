@@ -24,14 +24,14 @@ test.describe('popover', () => {
   let closeButton: Locator;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/ssr');
+    await page.goto('/csr');
 
     // Assign locators using the page instance
     trigger = page.locator('post-popover-trigger[data-hydrated][for="popover-one"]');
     popover = page.locator('post-popover');
     popoverContent = page.locator('#popovertest');
     triggerButton = page.locator('post-popover-trigger[data-hydrated][for="popover-one"] button');
-    closeButton = popover.locator('.btn-close');
+    closeButton = popover.locator('post-closebutton');
   });
 
   test('should exist', async () => {
