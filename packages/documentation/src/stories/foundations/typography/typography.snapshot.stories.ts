@@ -205,6 +205,7 @@ export const Typography: Story = {
       )}
 
       <!-- Links -->
+      // TODO:  update examples similar to Link Snapshots
       ${schemes(
         () => html`
           <section>
