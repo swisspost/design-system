@@ -7,7 +7,6 @@ import { providePostComponents } from '@swisspost/design-system-components-angul
 
 import { AppComponent } from './app.component';
 import { CardControlComponent } from './routes/card-control/card-control.component';
-import { TabsComponent } from './routes/tabs/tabs.component';
 
 @NgModule({
   imports: [
@@ -16,7 +15,6 @@ import { TabsComponent } from './routes/tabs/tabs.component';
     AppRoutingModule,
     FormsModule,
     CardControlComponent,
-    TabsComponent,
   ],
   declarations: [AppComponent],
   providers: [providePostComponents()],
