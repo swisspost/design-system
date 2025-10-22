@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.15.20
+
+### Patch Changes
+
+- Added a `selfAdminOrigin` prop to the `swisspost-internet-header` component in order to let users override the calculated URL that is currently based on the `logoutURL`. (by [@leagrdv](https://github.com/leagrdv) with [#5941](https://github.com/swisspost/design-system/pull/5941))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.3.0
+
 ## 1.15.19
 
 ### Patch Changes
