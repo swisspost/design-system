@@ -1,5 +1,11 @@
 # @swisspost/design-system-demo
 
+## 8.0.25
+
+### Patch Changes
+
+- TEST (by [@oliverschuerch](https://github.com/oliverschuerch) with [`2015cc6`](https://github.com/swisspost/design-system/commit/2015cc6028e209a18b355ba7a390f17a53db9e91))
+
 ## 8.0.24
 
 ### Patch Changes
