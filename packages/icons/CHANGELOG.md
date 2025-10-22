@@ -1,5 +1,96 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.50
+
+### Minor Changes
+
+- Added icons: `2716`, `2717`, `2718`, `2719`, `2720`, `2721`, `2722`, `2723`, `2724`, `2725`, `2726`, `2727`, `2728` and `2729` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6441](https://github.com/swisspost/design-system/pull/6441))
+
+- Added icons:
+
+  - `accountmanagement` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `autum` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `brush` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `crystal` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `daynight` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `diamond` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentupdate` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `etiquetteprinter` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `etiquette` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `locationsearch` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `palette` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `spring` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `summer` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `userblocked` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `winter` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6441](https://github.com/swisspost/design-system/pull/6441))
+
+- Added icons:
+  - `electricchargingstation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fuelstation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fuel` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `h2station` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6445](https://github.com/swisspost/design-system/pull/6445))
+
+### Patch Changes
+
+- Updated icons:
+  - `error` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `warning` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6441](https://github.com/swisspost/design-system/pull/6441))
+
+## 10.0.0-next.49
+
+### Minor Changes
+
+- Added icons: `2714` and `2715` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6260](https://github.com/swisspost/design-system/pull/6260))
+
+- Added icons:
+
+  - `audiospeaker` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bank` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bicycle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `branch` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `cookies` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `e` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `expiredauthorization` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `gendernonbinary` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `hospital` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `motorbike` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mypost24service` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `postfinance` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `postomat` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `reloadleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `router` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `server` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `software` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `subdepartment` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `turndocumentleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `turndocumentright` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `userexperience` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6260](https://github.com/swisspost/design-system/pull/6260))
+
+- Added icons:
+
+  - `alert` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `flipdocumenthorizontally` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `flipdocumentvertically` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `pocketlight` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6336](https://github.com/swisspost/design-system/pull/6336))
+
+- Added icons:
+  - `compare` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fulfilmentletter` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fulfilmentparcel` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `inactive` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `leaf` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `listview` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `process` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `prognosisletter` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `prognosisparcel` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `updown` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6356](https://github.com/swisspost/design-system/pull/6356))
+
+### Patch Changes
+
+- Updated icons:
+  - `error` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `snapchat` (line): 24 and 48px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6260](https://github.com/swisspost/design-system/pull/6260))
+
 ## 10.0.0-next.48
 
 ### Major Changes

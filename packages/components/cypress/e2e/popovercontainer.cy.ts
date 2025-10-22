@@ -24,7 +24,7 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@container').should('be.visible');
       cy.get(selector).should('exist');
       // Light dismiss does not work with cypress triggers
-      cy.get('.btn-close').click();
+      cy.get('post-closebutton').click();
       cy.get('@container').should('not.be.visible');
       cy.get(selector).should('not.exist');
     });

@@ -41,7 +41,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('.nested-element').click();
       cy.get('@popover').should('be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
-      cy.get('.btn-close').click();
+      cy.get('post-closebutton').click();
       cy.get('@popover').should('not.be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
     });
@@ -68,7 +68,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     it('should close on X click', () => {
       cy.get('@trigger').click();
       cy.get('@popover').should('be.visible');
-      cy.get('.btn-close').click();
+      cy.get('post-closebutton').click();
       cy.get('@popover').should('not.be.visible');
     });
 
