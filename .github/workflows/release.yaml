@@ -8,6 +8,8 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
+  contents: write
+  pull-requests: write
   id-token: write
 
 jobs:
@@ -71,7 +73,7 @@ jobs:
         run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
 
   # Only run this Job if:
-  # - Workflow runs on the 'main' Branch
+  # - Workflow runs on the 'release/v8' Branch
   collect-release-data:
     name: Collect Release Data
     runs-on: ubuntu-latest
@@ -143,7 +145,7 @@ jobs:
               tagPattern: `@swisspost/design-system-styles@${oldMajor}.*`
             }
 
-      - name: Check if changset-release/main Branch exists
+      - name: Check if changset-release/release/v8 Branch exists
         id: changeset-branch-exists
         uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
         with:
@@ -227,7 +229,7 @@ jobs:
         run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
 
   # Only run this Job if:
-  # - Workflow runs on the 'main' Branch
+  # - Workflow runs on the 'release/v8' Branch
   # - Release-Changeset Branch exists
   # - Release Data exists
   update-changeset-branch:
@@ -241,7 +243,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          ref: changeset-release/changeset-release/release/v8
+          ref: changeset-release/release/v8
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
