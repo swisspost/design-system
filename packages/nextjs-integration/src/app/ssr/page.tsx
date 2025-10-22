@@ -108,7 +108,7 @@ export default function Home() {
       <PostMenuTrigger for="menu-one">
         <button className="btn btn-primary">Menu button</button>
       </PostMenuTrigger>
-      <PostMenu id="menu-one">
+      <PostMenu id="menu-one" label="Demo menu">
         <PostMenuItem>
           <button>Example 1</button>
         </PostMenuItem>

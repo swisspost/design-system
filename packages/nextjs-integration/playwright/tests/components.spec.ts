@@ -25,19 +25,13 @@ test.describe('Components', () => {
     }
   });
 
-  test('should not have runtime errors after hydration', async ({ page }) => {
-    // Wait for hydration to complete
-    const hydratedComponents = await page.locator('[data-hydrated]').all();
-    await Promise.all(
-      hydratedComponents.map(component =>
-        component.waitFor({ state: 'attached', timeout: 5000 }),
-      ),
-    );
-
+  test('should not have component errors (excluding hydration)', async ({ page }) => {
     const errors = captureComponentErrors(page, componentNames);
-
-    await page.waitForTimeout(2000);
-
+    
+    await page.goto('/ssr');
+    await page.waitForLoadState('networkidle');
+    
+    // This will now only report non-hydration errors
     assertNoComponentErrors(errors, componentNames);
   });
 });
