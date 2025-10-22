@@ -18,6 +18,9 @@ post-closebutton .btn {
   border-radius: tokens.get('close-border-radius');
   background-color: tokens.get('close-enabled-bg');
   color: tokens.get('close-enabled-fg');
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   > post-icon {
     min-width: tokens.get('close-icon-size');
