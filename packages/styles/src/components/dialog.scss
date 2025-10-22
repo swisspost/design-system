@@ -127,7 +127,7 @@ dialog > .dialog-grid {
     }
   }
 
-  > .btn-close {
+  > post-closebutton {
     position: sticky;
     top: 0;
     grid-area: close-button;
@@ -146,13 +146,13 @@ dialog > .dialog-grid {
     }
   }
 
-  &:not(:has(> .btn-close)) {
+  &:not(:has(> post-closebutton)) {
     .dialog-header {
       grid-area: 1 / header / 1 / close-button;
     }
   }
 
-  &:not(:has(> post-icon, > .btn-close)) {
+  &:not(:has(> post-icon, > post-closebutton)) {
     .dialog-header {
       grid-area: 1 / icon / 1 / close-button;
     }

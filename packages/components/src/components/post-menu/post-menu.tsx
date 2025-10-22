@@ -14,10 +14,11 @@ import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
+import { getRoot, checkEmptyOrOneOf, EventFrom, checkRequiredAndType } from '@/utils';
 
 /**
  * @part menu - The container element that holds the list of menu items.
+ * @slot header - Holds the header part of the menu.
  */
 
 @Component({
@@ -57,7 +58,12 @@ export class PostMenu {
   /**
    * An accessible name for the menu.
    */
-  @Prop() readonly label?: string;
+  @Prop() readonly label!: string;
+  
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'label', 'string');
+  }
 
   /**
    * Holds the current visibility state of the menu.
@@ -88,6 +94,7 @@ export class PostMenu {
 
   componentDidLoad() {
     this.validatePlacement();
+    this.validateLabel();
     if (this.popoverRef) {
       this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
     }
@@ -230,8 +237,9 @@ export class PostMenu {
   }
 
   private getSlottedItems(): Element[] {
-    const slot = this.host.shadowRoot.querySelector('slot');
-    const slottedElements = slot ? slot.assignedElements() : [];
+    const slot = this.host.shadowRoot.querySelectorAll('slot');
+    const slottedElements: Element[] = [];
+    slot.forEach(slotItem => slottedElements.push(...slotItem.assignedElements()));
 
     return (
       slottedElements
@@ -247,6 +255,7 @@ export class PostMenu {
       <Host data-version={version}>
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
           <div part="menu">
+            <slot name="header"></slot>
             <slot></slot>
           </div>
         </post-popovercontainer>

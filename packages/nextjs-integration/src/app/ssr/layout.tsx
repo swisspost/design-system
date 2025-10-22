@@ -37,7 +37,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </ul>
 
         <PostTogglebutton slot="post-togglebutton">
-          <span className="visually-hidden-sm">Menu</span>
+          <span>Menu</span>
           <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled"></PostIcon>
           <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled"></PostIcon>
         </PostTogglebutton>
@@ -67,13 +67,13 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <ul className="list-inline">
           <li>
             <a href="#test">
-              <span className="visually-hidden-sm">Search</span>
+              <span>Search</span>
               <PostIcon aria-hidden="true" name="search"></PostIcon>
             </a>
           </li>
           <li>
             <a href="#test">
-              <span className="visually-hidden-sm">Login</span>
+              <span>Login</span>
               <PostIcon aria-hidden="true" name="login"></PostIcon>
             </a>
           </li>
@@ -184,7 +184,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
       <main style={{ paddingBlock: '3rem' }}>
         <div className="container">
-          <PostBreadcrumbs home-url="/" home-text="Home">
+          <PostBreadcrumbs home-url="/" home-text="Home" menu-label='More breadcrumb items'>
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>

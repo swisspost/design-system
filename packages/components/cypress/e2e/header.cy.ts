@@ -72,5 +72,35 @@ describe('Header', () => {
         .should('be.visible')
         .should('have.class', 'slide-in');
     });
+
+    it('should update active class when active link changes within the same or different megadropdown', () => {
+      cy.get('post-megadropdown#letters a[href="/sch"]').first().as('lettersFirstLink');
+      cy.get('post-megadropdown#letters a[href="/kl"]').first().as('lettersSecondLink');
+      cy.get('post-megadropdown#packages a[href="/sch"]').first().as('packagesLink');
+
+      cy.get('post-megadropdown-trigger button').first().as('lettersTrigger');
+      cy.get('post-megadropdown-trigger button').eq(1).as('packagesTrigger');
+
+      // Activate first link
+      cy.get('@lettersFirstLink').then($link => $link.attr('aria-current', 'page'));
+      cy.get('@lettersFirstLink').should('have.attr', 'aria-current', 'page');
+      cy.get('@lettersTrigger').should('have.class', 'active');
+      cy.get('@packagesTrigger').should('not.have.class', 'active');
+
+      // Move active link within the same megadropdown
+      cy.get('@lettersFirstLink').then($link => $link.removeAttr('aria-current'));
+      cy.get('@lettersSecondLink').then($link => $link.attr('aria-current', 'page'));
+
+      cy.get('@lettersTrigger').should('have.class', 'active');
+      cy.get('@packagesTrigger').should('not.have.class', 'active');
+
+      // Move active link to a different megadropdown
+      cy.log('Change active link to a different megadropdown');
+      cy.get('@lettersSecondLink').then($link => $link.removeAttr('aria-current'));
+      cy.get('@packagesLink').then($link => $link.attr('aria-current', 'page'));
+
+      cy.get('@lettersTrigger').should('not.have.class', 'active');
+      cy.get('@packagesTrigger').should('have.class', 'active');
+    });
   });
 });

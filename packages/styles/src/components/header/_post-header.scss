@@ -3,6 +3,7 @@
 @use '../../variables/color';
 @use '../../functions/tokens';
 @use '../../tokens/elements';
+@use '../../tokens/components';
 @use '../../mixins/button' as button-mx;
 @use 'mixins' as *;
 
@@ -90,6 +91,10 @@ post-header {
   ul[slot='meta-navigation'] {
     gap: 0 4px;
 
+    @include media.min(lg) {
+      align-items: center;
+    }
+
     &:where(post-header:has(post-mainnavigation) > *) {
       @include media.max(lg) {
         flex-direction: column;
@@ -129,6 +134,18 @@ post-header {
     }
   }
 
+  [slot='global-login'],
+  .local-login {
+    post-menu-trigger {
+      height: tokens.get('avatar-size', components.$post-avatar);
+      display: block;
+
+      button {
+        border-radius: 100%;
+      }
+    }
+  }
+
   [slot='title'] {
     margin: 0;
     flex-shrink: 10;
@@ -154,7 +171,15 @@ post-header {
     }
   }
 
-  button:not(post-mainnavigation *, post-language-switch *) {
+  button:where(
+      :not(
+          post-mainnavigation *,
+          post-language-switch *,
+          [slot='global-login'] *,
+          .local-login post-menu *,
+          .local-login post-menu-trigger *
+        )
+    ) {
     @include button-mx.reset-button;
 
     &:hover {
@@ -162,10 +187,36 @@ post-header {
     }
   }
 
+  // Hide link/button text on mobile in order to only have icon visible
+  post-togglebutton,
+  a[slot='global-login'],
+  [slot='global-controls'] a,
+  > .list-inline:where(:not([slot])) a {
+    > span {
+      @include media.max(sm) {
+        @include utilities.visuallyhidden;
+      }
+    }
+  }
+
+  a[slot='global-login'] {
+    @include media.max(sm) {
+      padding: 10px !important;
+    }
+  }
+
   a,
   button,
   post-togglebutton {
-    &:not(post-mainnavigation *, post-language-switch *) {
+    &:where(
+        :not(
+            post-mainnavigation *,
+            post-language-switch *,
+            [slot='global-login'] *,
+            .local-login post-menu *,
+            .local-login post-menu-trigger *
+          )
+      ) {
       @include subsidiary-header-interactive;
 
       post-icon {
@@ -175,17 +226,21 @@ post-header {
 
       @include media.max(sm) {
         padding: 8px;
-
-        .visually-hidden-sm {
-          @include utilities.visuallyhidden;
-        }
       }
     }
   }
 
   button,
   a {
-    &:not(post-mainnavigation *, post-language-switch *) {
+    &:where(
+        :not(
+            post-mainnavigation *,
+            post-language-switch *,
+            [slot='global-login'] *,
+            .local-login post-menu *,
+            .local-login post-menu-trigger *
+          )
+      ) {
       display: flex;
 
       @include media.max(sm) {
@@ -194,11 +249,21 @@ post-header {
     }
   }
 
-  a.selected,
+  #user-menu a,
+  #user-menu button {
+    min-width: 327px;
+
+    @include media.between(sm, md) {
+      min-width: 300px;
+    }
+  }
+
+  a.active,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
       color: color.$white;
       background: #050400;
+      box-shadow: var(--post-device-elevation-100);
     }
   }
 
@@ -220,6 +285,7 @@ post-header {
 
   > .list-inline:where(:not([slot])) {
     gap: 4px;
+    align-items: center;
   }
 }
 

@@ -1,7 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/variables/animation';
 
 post-menu-item {
   button {
@@ -18,51 +16,48 @@ post-menu-item {
     display: flex;
     width: 100%;
     align-items: center;
-    padding: .5rem 1rem;
-    gap: .5rem;
-    font-size: 1rem;
+    padding: 0.5rem 0.75rem 0.5rem 1rem;
+    gap: 0.5rem;
+    font-size: 0.875rem;
     color: #050400;
-    transition: color animation.$transition-base-timing;
-    outline-offset: 0;
+    border-radius: 0;
 
-    &:has(post-icon:last-child) {
-      padding-inline-end: .75rem;
+    post-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin: 0.125rem;
+    }
+
+    @include media.min(md) {
+      font-size: 1rem;
+      padding-block: 0.75rem;
+      gap: 1rem;
+
+      post-icon {
+        width: 1.375rem;
+        height: 1.375rem;
+        margin: 0;
+      }
     }
 
     @include media.min(lg) {
       font-size: 1.25rem;
-    }
+      padding-block: 0.8125rem;
 
-    @include media.min(xs) {
-      padding-block: .75rem;
-
-      & > post-icon:last-child {
-        margin-inline-start: .5rem;
+      post-icon {
+        width: 1.5rem;
+        height: 1.5rem;
       }
     }
 
     &:focus-visible {
-      outline-offset: -2px !important;
+      outline-offset: 2px !important;
       border-radius: 4px;
     }
 
-    &::after {
-      content: "";
-      display: block;
-      position: absolute;
-      inset-block-end: 0;
-      inset-inline: 0;
-      height: 3px;
-      background-color: transparent;
-      transition: background-color animation.$transition-base-timing;
-    }
-
     &:hover {
-      color: #504F4B;
-
-      &::after {
-        background-color: currentColor;
-      }
+      background-color: #504f4b;
+      color: #fff;
     }
   }
 }

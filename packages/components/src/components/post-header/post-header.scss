@@ -77,7 +77,7 @@
 .global-sub {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 4px;
 
   @include media.min(lg) {
     // targets the right links and language switch to hide them on scroll
@@ -211,6 +211,9 @@
   width: 100%;
 
   @include media.min(lg) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     inset-block-start: var(--post-global-header-reduced-height);
 
     &::before {
@@ -243,9 +246,9 @@
     padding-inline: 40px;
   }
 
+  .navigation-header,
   ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
+  .navigation-footer {
     display: none;
     flex-direction: column;
 

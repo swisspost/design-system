@@ -1,11 +1,12 @@
 import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import sharedStyles from './shared.component.scss?inline';
-import { getLocaleStorage, MIGRATION_TYPE, setLocaleStorage } from './util/persist.util';
+import { _restorePersistedState, MIGRATION_TYPE, setLocaleStorage } from './util/persist.util';
+import { GlobalStateData } from './types';
 
 @customElement('migration-global-state')
 export class GlobalStateComponent extends LitElement {
-  @state() private state = {
+  @state() private state: GlobalStateData = {
     currentVersion: 7,
     environment: 'intranet',
     angular: true,
@@ -23,7 +24,7 @@ export class GlobalStateComponent extends LitElement {
     this.addEventListener('migration-state-current-version-changed', this._updateVersion);
     this.addEventListener('migration-state-environment-changed', this._updateEnvironment);
     this.addEventListener('migration-state-angular-changed', this._updateAngular);
-    this._restorePersistedState();
+    this.state = _restorePersistedState<GlobalStateData>(MIGRATION_TYPE) ?? this.state;
   }
 
   connectedCallback() {
@@ -37,13 +38,6 @@ export class GlobalStateComponent extends LitElement {
         ${unsafeCSS(sharedStyles)}
       </style>
     `;
-  }
-
-  private _restorePersistedState() {
-    const stateTypeFromLocalStorage = getLocaleStorage(MIGRATION_TYPE);
-    if (stateTypeFromLocalStorage) {
-      this.state = stateTypeFromLocalStorage;
-    }
   }
 
   private _updateVersion(e: Event) {
