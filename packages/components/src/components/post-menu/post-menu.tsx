@@ -94,7 +94,12 @@ export class PostMenu {
 
   componentDidLoad() {
     this.validatePlacement();
-    this.validateLabel();
+    // Temporary workaround: defer validation to avoid timing issues with parent components.
+    // Child componentDidLoad runs before parent finishes passing props.
+    // TODO: Remove once validation utilities are enhanced (issue #[6507])
+    requestAnimationFrame(() => {
+      this.validateLabel();
+    });
     if (this.popoverRef) {
       this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
     }
