@@ -3,6 +3,7 @@ import * as IconStories from './icon.stories';
 import SampleMixin from './mixin.sample.scss?raw';
 import { POST_ICONS_COUNT, UI_ICONS_COUNT, Search } from './search/search-icons.blocks';
 import './icon.styles.scss';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={IconStories} />
 
@@ -19,12 +20,7 @@ import './icon.styles.scss';
 <post-tabs active-panel="search">
   <post-tab-header panel="installation">Installation</post-tab-header>
   <post-tab-panel name="installation">
-    ## Installation
-
-    ### Icon Component
-
-    The `<post-icon>` element is part of the `@swisspost/design-system-components` package.
-    For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+    <ComponentsPackageInstall subtitle="Icon Component" component="<post-icon>" />
 
     ### Icon SVGs
 

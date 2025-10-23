@@ -2,6 +2,7 @@ import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as TabStories from './tabs.stories';
 import SampleTabChange from './tabs-tab-change.sample?raw';
 import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={TabStories} />
 
@@ -17,6 +18,8 @@ import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
 <Canvas sourceState="shown" of={TabStories.Default} />
 
 <Controls of={TabStories.Default} />
+
+<ComponentsPackageInstall component="<post-tabs>" />
 
 ## Examples
 
