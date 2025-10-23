@@ -64,7 +64,7 @@ export class PostBreadcrumbItem {
 
     return (
       <Host data-version={version}>
-        <post-icon name="2111" class="breadcrumb-item-icon" />
+        <post-icon name="chevronright" class="breadcrumb-item-icon" />
         <BreadcrumbTag
           class="breadcrumb-item"
           {...(this.validUrl ? { href: this.validUrl } : {})}

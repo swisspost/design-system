@@ -2,8 +2,6 @@
 @use './../color';
 @use './../animation';
 
-@use './../../functions/icons' as icon-fn;
-
 @use '../../tokens/utilities';
 @use '../../functions/tokens';
 
@@ -19,7 +17,7 @@ $stepper-indicator-border-color: rgb(var(--post-bg-rgb, 255 255 255));
 $stepper-indicator-font-weight: type.$font-weight-bold;
 $stepper-indicator-bg: color.$yellow;
 $stepper-indicator-color: color.$black;
-$stepper-indicator-check-size: tokens.get('utility-gap-24');
+$stepper-indicator-check-icon-size: tokens.get('utility-gap-24');
 $stepper-indicator-transition:
   color animation.$transition-base-timing,
   background-color animation.$transition-base-timing;
@@ -29,9 +27,6 @@ $stepper-indicator-hover-bg: color.$black;
 
 $stepper-indicator-future-bg: color.$gray-60;
 $stepper-indicator-future-color: color.$white;
-$_stepper-indicator-check-icon: icon-fn.get-colored-svg-url('2105', $stepper-indicator-color);
-$stepper-indicator-check-icon: url('#{$_stepper-indicator-check-icon}');
-$stepper-indicator-check-icon-size: $stepper-indicator-check-size;
 
 $stepper-link-line-height: type.$line-height-sm;
 $stepper-link-gap: tokens.get('utility-gap-8');

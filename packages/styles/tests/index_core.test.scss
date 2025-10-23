@@ -1,6 +1,0 @@
-@use 'src/index';
-@use 'src/core' as post;
-
-.test {
-  background-image: url(post.get-colored-svg-url('2063', #ff0080));
-}
