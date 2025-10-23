@@ -83,6 +83,7 @@ post-mainnavigation {
       $button-padding: 1rem;
       $button-width: $icon-size + 2 * $button-padding;
 
+      z-index: 1;
       cursor: pointer;
       padding: $button-padding;
       background: color.$white;
