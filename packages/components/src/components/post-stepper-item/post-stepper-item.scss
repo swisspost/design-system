@@ -151,20 +151,20 @@ $checkIconSize: calc(
 .stepper-item-content::after {
   display: block;
   position: absolute;
-  top: tokens.get('stepper-border-width');
+  inset-block-start: tokens.get('stepper-border-width');
   z-index: 1;
   background-color: tokens.get('stepper-enabled-fg');
 
   post-stepper-item:first-child > & {
-    left: tokens.get('stepper-border-width');
+    inset-inline-start: tokens.get('stepper-border-width');
   }
 
   post-stepper-item:not(:first-child, :last-child) > & {
-    left: calc(50% - ($checkIconSize / 2));
+    inset-inline-start: calc(50% - ($checkIconSize / 2));
   }
 
   post-stepper-item:last-child > & {
-    right: tokens.get('stepper-border-width');
+    inset-inline-end: tokens.get('stepper-border-width');
   }
 
   // show only for completed steps
