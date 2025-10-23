@@ -32,6 +32,20 @@ const meta: MetaComponent = {
         'The step on which the user is currently at in the process. Note that a negative step index means the process has not started yet.',
       control: {
         type: 'select',
+        labels: {
+          '-1': 'Not started',
+          0: 'Step 1',
+          1: 'Step 2',
+          2: 'Step 3',
+          3: 'Step 4',
+          4: 'Step 5',
+          5: 'Step 6',
+          6: 'Step 7',
+          7: 'Step 8',
+          8: 'Step 9',
+          9: 'Step 10',
+          10: 'Completed',
+        },
       },
       options: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       table: {
