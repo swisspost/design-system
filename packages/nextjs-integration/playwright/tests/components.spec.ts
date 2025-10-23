@@ -7,13 +7,6 @@ test.describe('Components', () => {
     await page.goto('/ssr');
   });
 
-  componentNames.forEach(componentName => {
-    test(`should contain <${componentName}>`, async ({ page }) => {
-      const count = await page.locator(componentName).count();
-      expect(count, `Component <${componentName}> should exist on the page`).toBeGreaterThan(0);
-    });
-  });
-
   test('should render and be attached', async ({ page }) => {
     for (const componentName of componentNames) {
       const component = page.locator(componentName).first();
