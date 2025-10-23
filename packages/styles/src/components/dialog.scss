@@ -126,8 +126,6 @@ dialog > .dialog-grid {
     grid-area: body;
     margin-bottom: 0;
     overflow: auto;
-    min-height: 0;
-    position: sticky;
 
     > *:last-child {
       margin-bottom: 0;
