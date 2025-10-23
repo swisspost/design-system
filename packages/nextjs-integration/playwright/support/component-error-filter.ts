@@ -16,9 +16,6 @@ export function captureComponentErrors(page: Page, componentNames: string[]): st
   const hydrationErrorPatterns = [
     'hydration failed because',
     'server rendered html didn\'t match',
-    'text content does not match server-rendered html',
-    'hydration mismatch',
-    'suppresshydrationwarning',
   ];
 
   const isHydrationError = (text: string): boolean => {
