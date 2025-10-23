@@ -131,7 +131,7 @@ post-stepper-item {
   // Completed steps
   .stepper-item-completed > & {
     color: transparent; // Hides the number on completed step
-    background-color: tokens.get('stepper-completed-bg');
+    background-color: tokens.get('stepper-completed-stroke');
     border-color: tokens.get('stepper-completed-stroke');
   }
 
@@ -143,26 +143,28 @@ post-stepper-item {
   }
 }
 
+$checkIconSize: calc(
+  #{tokens.get('stepper-indicator')} - (#{tokens.get('stepper-border-width')} * 2)
+);
+
 // check icon
 .stepper-item-content::after {
   display: block;
   position: absolute;
-  top: calc((#{tokens.get('stepper-indicator')} - 24px) / 2);
+  top: tokens.get('stepper-border-width');
   z-index: 1;
-  height: 24px;
-  width: 24px;
-  color: tokens.get('stepper-enabled-fg');
+  background-color: tokens.get('stepper-enabled-fg');
 
   post-stepper-item:first-child > & {
-    left: calc((#{tokens.get('stepper-indicator')} - 24px) / 2);
+    left: tokens.get('stepper-border-width');
   }
 
   post-stepper-item:not(:first-child, :last-child) > & {
-    left: calc(50% - (24px / 2));
+    left: calc(50% - ($checkIconSize / 2));
   }
 
   post-stepper-item:last-child > & {
-    right: calc((#{tokens.get('stepper-indicator')} - 24px) / 2);
+    right: tokens.get('stepper-border-width');
   }
 
   // show only for completed steps
@@ -171,10 +173,10 @@ post-stepper-item {
   }
 
   @include icons.post-icon(
-    $name: 'checkmark',
-    $color: tokens.get('stepper-enabled-fg'),
-    $width: 1.5rem,
-    $height: 1.5rem
+    $name: 'success-solid',
+    $color: tokens.get('stepper-completed-bg'),
+    $width: $checkIconSize,
+    $height: $checkIconSize
   );
 }
 
