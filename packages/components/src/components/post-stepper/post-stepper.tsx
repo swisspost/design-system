@@ -91,12 +91,15 @@ export class PostStepper {
       // Update accessibility label depending on status (Completed/Current/-)
       const hiddenLabel = el.querySelector('.step-hidden-label');
       if (hiddenLabel) {
-        hiddenLabel.textContent =
-          this.currentIndex > i
-            ? `${this.completedLabel}:`
-            : this.currentIndex === i
-              ? `${this.currentLabel}:`
-              : '';
+        let labelText = '';
+
+        if (this.currentIndex > i) {
+          labelText = `${this.completedLabel}:`;
+        } else if (this.currentIndex === i) {
+          labelText = `${this.currentLabel}:`;
+        }
+
+        hiddenLabel.textContent = labelText;
       }
 
       // Update accessibility aria attributes
