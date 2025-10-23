@@ -17,6 +17,11 @@ import './icon.styles.scss';
 </div>
 
 <post-tabs active-panel="search">
+  <post-tab-header panel="search">Find your Icon</post-tab-header>
+  <post-tab-panel name="search">
+    <Search />
+  </post-tab-panel>
+
   <post-tab-header panel="installation">Installation</post-tab-header>
   <post-tab-panel name="installation">
     ## Installation
@@ -145,8 +150,4 @@ import './icon.styles.scss';
 
   </post-tab-panel>
 
-  <post-tab-header panel="search">Find your Icon</post-tab-header>
-  <post-tab-panel name="search">
-    <Search />
-  </post-tab-panel>
 </post-tabs>
