@@ -205,23 +205,16 @@ export const Typography: Story = {
       )}
 
       <!-- Links -->
-      // TODO:  update examples similar to Link Snapshots
       ${schemes(
         () => html`
           <section>
             <h2>Links</h2>
             <div class="d-flex flex-column gap-24">
-              <a href="https://example.com">Link Text</a>
-              <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
+              <a href="https://post.ch">Link Text</a>
+              <a href="https://imgur.com/FKmX7dt">Link Text</a>
 
-              <p>
-                Inline link inside paragraph:
-                <a href="https://example.com">Example Link</a>
-              </p>
-              <p>
-                Another with longer text:
-                <a href="https://imgur.com/FKmX7dt">Click here for image</a>
-              </p>
+              <a href="https://post.ch">Lorem ipsum dolor sit amet consectetur</a>
+              <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
             </div>
           </section>
         `,
