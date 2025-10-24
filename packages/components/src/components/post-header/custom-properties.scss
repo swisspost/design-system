@@ -25,6 +25,7 @@
   );
 
   @include media.only(desktop) {
+    --post-header-gap: 0.25rem;
     --post-global-header-padding-inline-start: 0.25rem;
     --post-global-header-padding-inline-end: 0.5rem;
     --post-local-header-padding-inline-start: 0.75rem;
@@ -32,10 +33,12 @@
   }
 
   @include media.only(tablet) {
+    --post-header-gap: 0.75rem 0.25rem;
     --post-global-header-padding-inline-start: 0.25rem;
     --post-global-header-padding-inline-end: 0.25rem;
     --post-local-header-padding-inline-start: 0.75rem;
     --post-local-header-padding-inline-end: 0.25rem;
+    --post-local-header-padding-block: 0.75rem;
     --post-burger-menu-padding-inline: 2.5rem;
     --post-burger-menu-body-gap: 2rem;
     --post-burger-menu-footer-gap: 1.5rem;
@@ -47,10 +50,12 @@
   }
 
   @include media.only(mobile) {
+    --post-header-gap: 0.75rem 0.25rem;
     --post-global-header-padding-inline-start: 0rem;
     --post-global-header-padding-inline-end: 0.5rem;
     --post-local-header-padding-inline-start: 0.5rem;
     --post-local-header-padding-inline-end: 0.5rem;
+    --post-local-header-padding-block: 0.75rem;
     --post-burger-menu-padding-inline: 1rem;
     --post-burger-menu-body-gap: 1.5rem;
     --post-burger-menu-footer-gap: 1rem;
