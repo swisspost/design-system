@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as AppStoreBadgeStories from './app-store-badge.stories';
+import meta, * as AppStoreBadgeStories from './app-store-badge.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={AppStoreBadgeStories} />
 
@@ -8,6 +9,8 @@ import * as AppStoreBadgeStories from './app-store-badge.stories';
 
   <link-design of={JSON.stringify(AppStoreBadgeStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   The app store badge leads the user to the respective product page in the Apple Store or Google Play, so the user can download the app.

@@ -1,9 +1,12 @@
 import { Canvas, Meta } from '@storybook/addon-docs/blocks';
-import * as ContainerStories from './containers.stories';
+import meta, * as ContainerStories from './containers.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ContainerStories} />
 
 # Containers
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Containers are essential layout elements ensuring content is aligned and properly padded across

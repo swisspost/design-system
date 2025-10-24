@@ -1,5 +1,6 @@
 import { Canvas, Meta, Controls } from '@storybook/addon-docs/blocks';
-import * as SectionStories from './sections.stories';
+import meta, * as SectionStories from './sections.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={SectionStories} />
 
@@ -8,6 +9,8 @@ import * as SectionStories from './sections.stories';
 
   <link-design of={JSON.stringify(SectionStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
 The `.section` class is used to create a container that ensures content does not exceed a maximum width of 1920px (Full HD), providing a consistent layout across different screen sizes.
