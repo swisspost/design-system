@@ -93,6 +93,7 @@ post-header {
 
   ul.list-inline {
     margin: 0;
+    gap: 0.25rem;
   }
 
   ul[slot='meta-navigation'] {
@@ -288,7 +289,7 @@ post-header {
     align-items: center;
   }
 
-  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
+  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton'], [slot='local-controls']) {
     @include media.only(mobile) {
       &:where(ul) > li > a,
       &:where(a, post-togglebutton) {
