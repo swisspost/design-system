@@ -149,7 +149,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
 
     const globalControls = html`
       <!-- Global controls (Search) -->
-      <ul class="list-inline" slot="global-controls">
+      <ul slot="global-controls">
         <li>
           <a href="">
             <span>Search</span>

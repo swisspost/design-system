@@ -4,7 +4,7 @@ import { html, nothing } from 'lit';
 export function renderMetaNavigation(args: Args) {
   return html`
     <!-- Meta navigation -->
-    <ul class="list-inline" slot="meta-navigation">
+    <ul slot="meta-navigation">
       <li>
         <a href="" class=${args.jobs ? 'active' : nothing}>
           Jobs

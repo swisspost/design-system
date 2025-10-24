@@ -23,6 +23,7 @@ tokens.$default-map: components.$post-button;
 
 .btn {
   @extend %btn;
+  @include button-mx.button-size();
 }
 
 // Type variants
