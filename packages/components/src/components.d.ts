@@ -103,13 +103,16 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
         "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component
+         */
+        "label": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -447,7 +450,6 @@ export namespace Components {
         "currentRating": number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
         "label": string;
         /**
@@ -1008,13 +1010,16 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
-        "homeText"?: string;
+        "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component
+         */
+        "label": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -1301,9 +1306,8 @@ declare namespace LocalJSX {
         "currentRating"?: number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
-        "label"?: string;
+        "label": string;
         /**
           * An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */

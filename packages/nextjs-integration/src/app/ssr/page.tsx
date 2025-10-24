@@ -149,7 +149,7 @@ export default function Home() {
       </PostPopover>
 
       <h2>Rating</h2>
-      <PostRating></PostRating>
+      <PostRating label="Rating"></PostRating>
 
       <h2>Tabs</h2>
       <PostTabs>
