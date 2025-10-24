@@ -285,6 +285,7 @@ export class PostMegadropdown {
         >
           <div class="megadropdown">
             <slot name="megadropdown-title"></slot>
+            <slot name="megadropdown-overview-link"></slot>
             <div class="megadropdown-content">
               <slot></slot>
             </div>
