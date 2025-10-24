@@ -119,20 +119,19 @@
     margin-block-end: 16px;
     display: flex;
     align-items: center;
+    min-height: 56px;
 
     @include header-mx.mobile-header-interactive() {
-      height: 56px;
+      height: unset;
     }
 
     @include media.max(lg) {
-      height: 48px;
-      margin-block-end: 8px;
+      padding-block: 12px 11px;
+      min-height: unset;
     }
 
     @include media.max(sm) {
       padding-block: 10px 9px;
-      height: 40px;
-      margin-block-end: 0;
     }
   }
 
