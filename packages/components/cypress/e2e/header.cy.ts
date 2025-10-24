@@ -18,13 +18,13 @@ describe('Header', () => {
     };
 
     it('should close mobile nav menu after reattaching header', () => {
-      cy.get('div.local-header-mobile-extended').should('not.exist');
+      cy.get('div.burger-menu.extended').should('not.exist');
       cy.get('post-togglebutton').click();
-      cy.get('div.local-header-mobile-extended').should('exist');
+      cy.get('div.burger-menu.extended').should('exist');
 
       removeAndReattachHeader();
 
-      cy.get('div.local-header-mobile-extended').should('not.exist');
+      cy.get('div.burger-menu.extended').should('not.exist');
     });
 
     it('should release scroll lock after reattaching header', () => {
@@ -40,31 +40,31 @@ describe('Header', () => {
     it('should close both megadropdown and mobile menu with one click', () => {
       // Open mobile menu
       cy.get('post-togglebutton').click();
-      cy.get('div.local-header-mobile-extended').should('exist');
+      cy.get('div.burger-menu.extended').should('exist');
       // Open megadropdown
       cy.get('post-megadropdown-trigger').first().click();
       cy.get('post-megadropdown .megadropdown-container').should('be.visible');
       // Click menu button to close both
       cy.get('post-togglebutton').click();
-      cy.get('div.local-header-mobile-extended').should('not.exist');
+      cy.get('div.burger-menu.extended').should('not.exist');
       cy.get('post-megadropdown .megadropdown-container').should('not.be.visible');
     });
 
     it('should animate megadropdown open after forced close', () => {
       // Open mobile menu and megadropdown
       cy.get('post-togglebutton').click();
-      cy.get('div.local-header-mobile-extended').should('exist');
+      cy.get('div.burger-menu.extended').should('exist');
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
       cy.get('post-megadropdown .megadropdown-container').should('be.visible');
 
       // Force close by toggling menu
       cy.get('post-togglebutton').click();
-      cy.get('div.local-header-mobile-extended').should('not.exist');
+      cy.get('div.burger-menu.extended').should('not.exist');
       cy.get('post-megadropdown .megadropdown-container').should('not.be.visible');
 
       // Reopen mobile menu before clicking the trigger again
       cy.get('post-togglebutton').click();
-      cy.get('div.local-header-mobile-extended').should('exist');
+      cy.get('div.burger-menu.extended').should('exist');
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
 
       // Check if animation class is present

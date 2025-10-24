@@ -75,7 +75,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Main Navigation">
+      <post-mainnavigation slot="post-mainnavigation" caption="Main Navigation">
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <post-list-item> ${story(context.args, context)} </post-list-item>

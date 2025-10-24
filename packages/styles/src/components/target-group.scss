@@ -12,7 +12,8 @@ tokens.$default-map: components.$post-button;
   gap: 4px;
   display: flex;
   justify-content: center;
-  padding-inline-start: 56px;
+  margin: 0;
+  padding-inline-start: 0;
 
   li {
     list-style: none;
@@ -59,14 +60,13 @@ tokens.$default-map: components.$post-button;
     }
   }
 
-  @include media.max(lg) {
-    padding: 40px 32px 24px;
+  @include media.only(tablet) {
+    margin-block: 16px;
   }
 
   @include media.max(sm) {
     flex-direction: column;
     gap: 8px;
-    padding: 24px 16px 0;
 
     a {
       width: 100%;
