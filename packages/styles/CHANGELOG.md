@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.51
+
+### Patch Changes
+
+- Changed Tailwind token generation output format to meet the Tailwind v4 configuration requirements. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6474](https://github.com/swisspost/design-system/pull/6474))
+
+- Fixed header position inside the `<dialog>` element when content becomes scrollable. The header, footer and close button now remain visible while only the body scrolls. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6509](https://github.com/swisspost/design-system/pull/6509))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.51
+
 ## 10.0.0-next.50
 
 ### Major Changes
