@@ -12,7 +12,7 @@ import { renderUserMenu } from '@/stories/components/header/renderers/user-menu'
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
   title: 'Components/Header',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-header',
   parameters: {
     layout: 'fullscreen',

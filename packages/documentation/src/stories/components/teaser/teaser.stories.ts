@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '68699b2c-ec1f-467d-81ae-8b3f48d7c595',
   title: 'Components/Card Teaser',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Experimental'],
   parameters: {
     design: {
       type: 'figma',
