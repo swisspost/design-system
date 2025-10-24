@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.25rem;
+  gap: var(--post-header-gap);
 
   .spacer {
     flex-grow: 1;
@@ -79,6 +79,7 @@
   min-height: var(--post-local-header-expanded-min-height);
   padding-inline-start: var(--post-local-header-padding-inline-start);
   padding-inline-end: var(--post-local-header-padding-inline-end);
+  padding-block: var(--post-local-header-padding-block);
 
   // having both title AND navigation
   &:not(.no-title, .no-navigation) {
