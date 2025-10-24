@@ -59,11 +59,13 @@
 
 .global-header:has(> .sliding-controls:focus-within),
 .global-header:has(+ .local-header:focus-within):has(+ .local-header > .navigation:not(:focus-within)) {
-  --post-global-header-top: 0;
-  --post-global-controls-top: 0;
-  --post-logo-height: var(--post-global-header-expanded-height);
+  @include media.only(desktop) {
+    --post-global-header-top: 0;
+    --post-global-controls-top: 0;
+    --post-logo-height: var(--post-global-header-expanded-height);
 
-  + .local-header {
-    --post-local-header-top: var(--post-global-header-expanded-height);
+    + .local-header {
+      --post-local-header-top: var(--post-global-header-expanded-height);
+    }
   }
 }
