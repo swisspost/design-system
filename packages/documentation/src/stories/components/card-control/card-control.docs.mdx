@@ -26,8 +26,8 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 </post-banner>
 
 <post-tabs>
-  <post-tab-header panel="standardhtml">Standard HTML</post-tab-header>
-  <post-tab-panel name="standardhtml">
+  <post-tab-item name="standardhtml">Standard HTML</post-tab-item>
+  <post-tab-panel for="standardhtml">
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
       <Controls of={CardControlStandardHTMLStories.Default} />
@@ -74,8 +74,8 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
   </post-tab-panel>
 
-<post-tab-header panel="webcomponent">Webcomponent</post-tab-header>
-<post-tab-panel name="webcomponent">
+<post-tab-item name="webcomponent">Webcomponent</post-tab-item>
+<post-tab-panel for="webcomponent">
 
 <Canvas of={CardControlStories.Default} sourceState="shown" />
 <Controls of={CardControlStories.Default} />

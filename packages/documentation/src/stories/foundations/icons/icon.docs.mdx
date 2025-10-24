@@ -17,8 +17,8 @@ import './icon.styles.scss';
 </div>
 
 <post-tabs active-panel="search">
-  <post-tab-header panel="installation">Installation</post-tab-header>
-  <post-tab-panel name="installation">
+  <post-tab-item name="installation">Installation</post-tab-item>
+  <post-tab-panel for="installation">
     ## Installation
 
     ### Icon Component
@@ -32,8 +32,8 @@ import './icon.styles.scss';
     For guidelines on how to set this up, please refer to the [icon package documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs#usage).
   </post-tab-panel>
 
-  <post-tab-header panel="component">Usage as Web-Component</post-tab-header>
-  <post-tab-panel name="component">
+  <post-tab-item name="component">Usage as Web-Component</post-tab-item>
+  <post-tab-panel for="component">
     ## Usage as Web-Component
 
     Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
@@ -102,8 +102,8 @@ import './icon.styles.scss';
 
   </post-tab-panel>
 
-  <post-tab-header panel="scss">Usage as CSS-Background</post-tab-header>
-  <post-tab-panel name="scss">
+  <post-tab-item name="scss">Usage as CSS-Background</post-tab-item>
+  <post-tab-panel for="scss">
     ## Usage in CSS
 
     To define an icon in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
@@ -145,8 +145,8 @@ import './icon.styles.scss';
 
   </post-tab-panel>
 
-  <post-tab-header panel="search">Find your Icon</post-tab-header>
-  <post-tab-panel name="search">
+  <post-tab-item name="search">Find your Icon</post-tab-item>
+  <post-tab-panel for="search">
     <Search />
   </post-tab-panel>
 </post-tabs>

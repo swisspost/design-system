@@ -22,11 +22,9 @@ import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
 
 ### Initially Active Tab
 
-The initial selection is set to the first tab by default, displaying its associated panel.
-To have a different panel displayed initially,
-use the `active-panel` property and assign it the name of the desired panel.
+The initial selection is set to the first tab by default. To have a different tab active initially, use the `active-tab` property and assign it the name of the desired tab.
 
-<Canvas of={TabStories.ActivePanel} />
+<Canvas of={TabStories.ActiveTab} />
 
 ### Full-width Tabs
 
@@ -43,12 +41,12 @@ Setting the `full-width` property to `true` will allow the tabs container stretc
 
 ### Tab Changes
 
-Use the `tabChange` event to run a function anytime a new tab gets activate.
+Use the `postChange` event to run a function anytime a new tab gets activated.
 
 <Source code={SampleTabChange} language="typescript" />
 
 ### Custom Trigger
 
-To trigger a tab change, use the `show()` method specifying the name of the panel that you want to show.
+To trigger a tab change, use the `show()` method specifying the name of the tab to activate and show its content.
 
 <Source code={SampleCustomTrigger} language="typescript" />
