@@ -3,16 +3,11 @@
 :host {
   // The following variables will affect the header to minimize it on scroll
   --post-global-header-top: max(
-    calc(0px - var(--post-header-scroll-top, 0px)),
+    calc(-1 * var(--post-header-scroll-top, 0px)),
     calc(var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height))
   );
-
-  --post-global-header-height: max(
-    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px),
-    var(--post-global-header-reduced-height)
-  );
   --post-local-header-top: calc(var(--post-global-header-height) + max(
-    calc(0px - var(--post-header-scroll-top, 0px)),
+    calc(-1 * var(--post-header-scroll-top, 0px)),
     calc(var(--post-local-header-reduced-height) - var(--post-local-header-expanded-height))
   ));
 

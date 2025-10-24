@@ -26,10 +26,15 @@ tokens.$default-map: elements.$post-link;
   );
 
   // total height (dynamic depending on the scroll position)
-  --post-header-height: max(
-    var(--post-header-expanded-height) - var(--post-header-scroll-top, 0px),
-    var(--post-header-reduced-height)
+  --post-global-header-height: max(
+    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px),
+    var(--post-global-header-reduced-height)
   );
+  --post-local-header-height: max(
+    var(--post-local-header-expanded-height) - var(--post-header-scroll-top, 0px),
+    var(--post-local-header-reduced-height)
+  );
+  --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
 
   // microsite
   &:has(post-header post-mainnavigation) {
