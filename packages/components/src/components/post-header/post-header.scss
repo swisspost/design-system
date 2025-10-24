@@ -64,11 +64,11 @@
 
   .logo {
     align-self: flex-end;
-    height: var(--post-logo-height);
     width: var(--post-global-header-expanded-height);
+    height: var(--post-logo-height);
     min-height: var(--post-global-header-reduced-height);
+    max-height: 100%;
     margin-inline-end: 1.25rem;
-    transition: height animation.$transition-time-simple animation.$transition-easing-default;
   }
 }
 

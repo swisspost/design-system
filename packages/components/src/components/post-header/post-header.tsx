@@ -225,8 +225,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
@@ -283,7 +283,10 @@ export class PostHeader {
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
-    document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
+    document.documentElement.style.setProperty(
+      '--post-header-scroll-top',
+      `${Math.max(scrollTop, 0)}px`,
+    );
   }
 
   private updateLocalHeaderHeight() {
