@@ -192,15 +192,8 @@ $toolbar-icons: (
   }
 
   .docs-story {
-    padding: 1rem;
-    padding-block-end: 2rem;
-
     [scale] {
       transform: none;
-    }
-
-    > :first-child {
-      padding: 0;
     }
 
     > :last-child {
