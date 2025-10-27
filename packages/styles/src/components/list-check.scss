@@ -67,6 +67,8 @@ ul.list-check {
       margin-block: calc(-1 * tokens.get('list-check-text-padding'));
       top: tokens.get('list-check-padding-icon');
       left: tokens.get('list-check-padding-icon');
+      width: tokens.get('list-check-sizing-icon');
+      height: tokens.get('list-check-sizing-icon');
       content: '';
       @include icons-mx.mask-image('3035');
       color: tokens.get('list-check-color-icon-fg');
@@ -75,12 +77,6 @@ ul.list-check {
         margin-block: tokens.get('list-check-icon-container-block');
         padding-inline: tokens.get('list-check-icon-container-inline');
       }
-      @include icon-mixin.post-icon(
-        'checkmark',
-        $color: tokens.get('list-check-color-icon-fg'),
-        $width: tokens.get('list-check-sizing-icon'),
-        $height: tokens.get('list-check-sizing-icon')
-      );
     }
   }
 }
