@@ -7,7 +7,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/utilities';
-@use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
 
 tokens.$default-map: utilities.$post-color;
@@ -19,7 +18,7 @@ $toolbar-icons: (
   '.docblock-code-toggle': 'chevrondown',
   '.docblock-code-toggle + button': 'resizeexpand',
   '.docblock-code-toggle + button + button': 'link',
-  '.docblock-code-toggle + button + button + button': 'code'
+  '.docblock-code-toggle + button + button + button': 'code',
 );
 
 #storybook-root,

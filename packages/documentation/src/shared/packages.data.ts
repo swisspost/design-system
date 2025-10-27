@@ -4,7 +4,6 @@ import metaStyles from '@/stories/packages/styles/styles.stories';
 import metaComponents from '@/stories/packages/components/components.stories';
 import metaComponentsAngular from '@/stories/packages/components-angular/components-angular.stories';
 import metaComponentsReact from '@/stories/packages/components-react/components-react.stories';
-import metaInternetHeader from '@/stories/packages/internet-header/internet-header.stories';
 import metaIcons from '@/stories/packages/icons/package-icons.stories';
 import metaTokens from '@/stories/packages/tokens/tokens.stories';
 import { PackageType } from '@/../types';
@@ -106,26 +105,6 @@ export const packages: IPackage[] = [
       alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components-react'])}`,
-  },
-  {
-    name: 'Internet-Header',
-    docsStoryId: metaInternetHeader.id,
-    type: PackageType.Wc,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/internet-header',
-        ariaLabel: 'Source of Internet-Header package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaInternetHeader.id),
-        ariaLabel: 'Getting started with Internet-Header package',
-      },
-    },
-    img: {
-      src: '/assets/images/packages/internet-header.svg',
-      alt: '',
-    },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/internet-header'])}`,
   },
   {
     name: 'Icons',

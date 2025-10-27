@@ -37,14 +37,6 @@ Please contact [security@post.ch](mailto:security@post.ch).
 | 8       | :white_check_mark: | Angular 18             |
 | 7[^1]   | until June 2025    | Angular 17             |
 
-### Internet Header
-
-@swisspost/internet-header
-
-| Version | Supported          | Supported Dependencies                  |
-| ------- | ------------------ | --------------------------------------- |
-| 1       | :white_check_mark: | Angular, Vue JS, React, Vanilla JS, ... |
-
 ### Icons
 
 @swisspost/design-system-icons

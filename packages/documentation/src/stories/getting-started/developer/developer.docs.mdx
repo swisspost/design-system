@@ -37,31 +37,6 @@ The design-system is formed with several packages and different compatibilities 
     <tbody>
       <tr>
         <td scope="row">
-          Internet-header:
-          <developer-list-component packageType={PackageType.InternetHeader}></developer-list-component>
-        </td>
-        <td rowSpan="4">
-          {[packages.find(pkg => pkg.name === 'Styles')].map((p => (
-            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
-              <img src={p.img.src} alt={p.img.alt}/>
-              <span>{p.version}</span>
-            </ti-le>
-          )))}
-        </td>
-        <td colSpan="2">
-          <div style={{ display:'flex', justifyContent: 'center' }}>
-          {[packages.find(pkg => pkg.name === 'Internet-Header')].map((p => (
-            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
-              <img src={p.img.src} alt={p.img.alt}/>
-              <span>{p.version}</span>
-            </ti-le>
-          )))}
-          </div>
-        </td>
-        <td>TBD</td>
-      </tr>
-      <tr>
-        <td scope="row">
           Web Components:
           <developer-list-component packageType={PackageType.Wc}></developer-list-component>
         </td>

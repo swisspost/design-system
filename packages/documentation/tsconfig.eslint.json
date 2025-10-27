@@ -3,5 +3,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": [".storybook/*", "cypress", "src", "types", "../internet-header/src/components.d.ts"]
+  "include": [".storybook/*", "cypress", "src", "types"]
 }

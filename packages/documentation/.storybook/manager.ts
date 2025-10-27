@@ -9,7 +9,6 @@ import { API_HashEntry, API_PreparedIndexEntry, StatusByTypeId } from 'storybook
 const TECH_ICONS: Record<string, string> = {
   Styles: cssIcon,
   WebComponents: webComponentsIcon,
-  InternetHeader: webComponentsIcon,
 };
 
 defineCustomElementPostIcon();

@@ -13,8 +13,7 @@
       "@swisspost/design-system-components-angular",
       "@swisspost/design-system-components-react",
       "@swisspost/design-system-icons",
-      "@swisspost/design-system-styles-primeng",
-      "@swisspost/internet-header"
+      "@swisspost/design-system-styles-primeng"
     ]
   ],
   "linked": [],
