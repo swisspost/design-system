@@ -86,10 +86,10 @@ body:has(post-header) {
 }
 
 post-header {
-  height: var(--post-header-expanded-height);
-
+  // prevent layout shift by giving a height to the header before it gets hydrated
   &:not(:defined),
   &:not([data-hydrated]) {
+    height: var(--post-header-height);
     display: block;
   }
 
@@ -290,7 +290,12 @@ post-header {
     align-items: center;
   }
 
-  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton'], [slot='local-controls']) {
+  > :is(
+      [slot='global-controls'],
+      [slot='global-login'],
+      [slot='post-togglebutton'],
+      [slot='local-controls']
+    ) {
     @include media.only(mobile) {
       &:where(ul) > li > a,
       &:where(a, post-togglebutton) {
