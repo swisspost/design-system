@@ -104,7 +104,7 @@ tokens.$default-map: components.$post-cards;
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mx.icon('arrowright');
+      @include icons-mx.mask-image('arrowright');
       content: '';
       display: inline-block;
       width: icons.$icon-size-default;
