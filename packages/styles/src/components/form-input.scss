@@ -8,7 +8,7 @@
 
 tokens.$default-map: components.$post-text-input;
 
-@include icons-mx.custom-property('success-solid', 'warning-solid');
+@include icons-mx.custom-property(('success-solid', 'warning-solid'));
 
 input.form-control {
   display: block;
