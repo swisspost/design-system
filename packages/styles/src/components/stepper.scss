@@ -68,7 +68,6 @@ tokens.$default-map: utilities.$post-spacing;
   &::before,
   &::after {
     content: '';
-
     display: block;
     position: absolute;
     inset-block-start: calc((stepper.$stepper-indicator-size - stepper.$stepper-bar-height) / 2);
