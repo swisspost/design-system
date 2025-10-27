@@ -20,8 +20,13 @@ BEFORE:
 
 AFTER:
 ```scss
-// load icon at the top of your file
-@include post.custom-property($names: 'accessibility', $path: './path/to/icon/folder');
+// Load icon(s) at the top of your file
+
+// For a single icon:
+@include post.custom-property('accessibility', './path/to/icon/folder');
+
+// For multiple icons in the same file:
+@include post.custom-property(('accessibility', 'arrow'), './path/to/icon/folder');
 
 .my-icon {
   @include post.icon(

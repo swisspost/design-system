@@ -17,6 +17,11 @@
 }
 
 @mixin custom-property($names, $path: '../icons/temp') {
+  // Convert single string to list
+  @if type-of($names) == 'string' {
+    $names: ($names,);
+  }
+  
   @each $name in $names {
     @at-root {
       @include meta.load-css('#{$path}/#{$name}');
