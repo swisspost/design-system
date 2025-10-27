@@ -130,7 +130,7 @@
   height: calc(
     min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
   );
-  overflow-y: auto;
+  overflow: hidden auto;
   display: flex;
   flex-direction: column;
   background-color: #fafafa;
