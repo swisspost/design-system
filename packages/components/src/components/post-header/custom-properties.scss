@@ -7,10 +7,10 @@
     calc(var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height))
   );
   --post-local-header-top: 0px;
-  --post-header-top: calc(var(--post-global-header-top) + max(
+  --post-header-top: max(
     calc(-1 * var(--post-header-scroll-top, 0px)),
-    calc(var(--post-local-header-reduced-height) - var(--post-local-header-expanded-height))
-  ));
+    calc(var(--post-header-reduced-height) - var(--post-header-expanded-height))
+  );
 
   --post-logo-height: calc(var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px));
   --post-global-controls-top: clamp(
