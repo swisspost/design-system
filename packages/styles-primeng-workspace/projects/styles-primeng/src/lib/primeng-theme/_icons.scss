@@ -2,7 +2,19 @@
 
 // Load all icon CSS files used in this component
 @include post.custom-property(
-  ('plus', 'trash', 'chevrondown', 'filter', 'updown', 'chevronup', 'arrowup', 'arrowdown', 'checkmark', 'closex', 'burger')
+  (
+    'plus',
+    'trash',
+    'chevrondown',
+    'filter',
+    'updown',
+    'chevronup',
+    'arrowup',
+    'arrowdown',
+    'checkmark',
+    'closex',
+    'burger'
+  )
 );
 
 @mixin custom-icon($icon) {
