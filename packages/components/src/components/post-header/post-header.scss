@@ -137,7 +137,11 @@
   background-color: #fafafa;
 
   &:not(.extended) {
-    display: none;
+    transform: translateY(-100%);
+
+    > * {
+      display: none;
+    }
   }
 
   .burger-menu-body,
