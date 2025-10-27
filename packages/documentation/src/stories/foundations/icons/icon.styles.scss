@@ -32,5 +32,5 @@ $resizer-max-width: 64px;
 .letter-icon {
   width: 1em;
   height: 1em;
-  @include post.icon('letter');
+  @include post.mask-image('letter');
 }

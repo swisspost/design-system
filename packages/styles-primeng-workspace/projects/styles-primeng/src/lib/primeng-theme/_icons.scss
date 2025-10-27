@@ -24,7 +24,7 @@
     display: none;
   }
 
-  @include post.icon($icon);
+  @include post.mask-image($icon);
 }
 
 plusicon {

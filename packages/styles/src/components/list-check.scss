@@ -70,7 +70,7 @@ ul.list-check {
       width: tokens.get('list-check-sizing-icon');
       height: tokens.get('list-check-sizing-icon');
       content: '';
-      @include icons-mx.icon('3035');
+  @include icons-mx.mask-image('3035');
       color: tokens.get('list-check-color-icon-fg');
 
       @include media.max(sm) {
