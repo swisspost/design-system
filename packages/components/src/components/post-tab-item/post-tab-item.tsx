@@ -19,7 +19,7 @@ export class PostTabItem {
   @State() isNavigationMode = false;
 
   /**
-   * The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode.
+   * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
    */
   @Prop({ reflect: true }) readonly name!: string;
 
