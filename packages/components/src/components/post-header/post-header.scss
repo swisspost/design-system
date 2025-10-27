@@ -43,7 +43,7 @@
 }
 
 .global-header {
-  z-index: 1; // local header should slide bellow the global header
+  z-index: 2; // local header should slide bellow the global header
   position: sticky;
   inset-block-start: var(--post-global-header-top);
   background-color: #ffcc00;
@@ -127,7 +127,7 @@
   z-index: -1; // burger-menu should slide bellow the local header
   position: absolute;
   inset-inline: 0;
-  inset-block-start: var(--post-header-height);
+  inset-block-start: calc(var(--post-header-height) - var(--post-header-top));
   height: calc(
     min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
   );
