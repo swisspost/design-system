@@ -10,6 +10,8 @@
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/variables/color';
 
+@include icons.custom-property('2113');
+
 post-mainnavigation {
   // reset links and buttons
   post-list-item {
@@ -47,11 +49,9 @@ post-mainnavigation {
   post-megadropdown-trigger button {
     &::after {
       content: '';
-      @include icons.post-icon(
-        $name: 'chevrondown',
-        $width: 24px,
-        $height: 24px
-      );
+      @include icons.mask-image(2113);
+      height: 24px;
+      width: 24px;
     }
 
     @include utilities.high-contrast-mode() {

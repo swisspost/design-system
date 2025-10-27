@@ -12,6 +12,8 @@
 
 tokens.$default-map: utilities.$post-color;
 
+@include post.custom-property(('chevrondown', 'resizeexpand', 'link', 'code'));
+
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 // Mixin for toolbar button icons
@@ -240,7 +242,9 @@ $toolbar-icons: (
         &::before {
           content: '';
           margin-right: 0.5rem;
-          @include post.post-icon($name: $icon-name);
+          width: 1em;
+          height: 1em;
+          @include post.mask-image($icon-name);
         }
       }
     }

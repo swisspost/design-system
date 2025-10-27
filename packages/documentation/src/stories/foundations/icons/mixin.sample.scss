@@ -1,9 +1,18 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+// Load icon(s) at the top of your file
+// For a single icon:
+@include post.custom-property('accessibility', './path/to/icon/folder');
+
+// For multiple icons in the same file:
+@include post.custom-property(('accessibility', 'arrow'), './path/to/icon/folder');
+
 .my-icon {
-  @include post.post-icon(
+  @include post.icon(
     $name: 'accessibility',
     // optional
-    $color: '#fc0'
+    $color: '#fc0',
+    $width: 1em,
+    $height: 1em
   );
 }
