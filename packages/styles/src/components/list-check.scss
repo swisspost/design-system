@@ -72,6 +72,7 @@ ul.list-check {
       content: '';
       @include icons-mx.mask-image('checkmark');
       color: tokens.get('list-check-color-icon-fg');
+
       @include media.max(sm) {
         margin-block: tokens.get('list-check-icon-container-block');
         padding-inline: tokens.get('list-check-icon-container-inline');
