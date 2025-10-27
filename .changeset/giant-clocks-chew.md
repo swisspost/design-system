@@ -21,7 +21,7 @@ BEFORE:
 AFTER:
 ```scss
 // load icon at the top of your file
-@include post.custom-property('accessibility', './path/to/icon/folder');
+@include post.custom-property('./path/to/icon/folder', 'accessibility');
 
 .my-icon {
   @include post.icon(
