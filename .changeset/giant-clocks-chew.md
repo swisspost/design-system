@@ -21,7 +21,6 @@ BEFORE:
 AFTER:
 ```scss
 // Load icon(s) at the top of your file
-
 // For a single icon:
 @include post.custom-property('accessibility', './path/to/icon/folder');
 
