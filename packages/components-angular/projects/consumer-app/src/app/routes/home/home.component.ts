@@ -16,6 +16,8 @@ import {
   PostTabHeader,
   PostTabPanel,
   PostTooltipTrigger,
+  PostStepper,
+  PostStepperItem,
 } from 'components';
 
 @Component({
@@ -39,9 +41,10 @@ import {
     PostTabHeader,
     PostTabPanel,
     PostTooltipTrigger,
-  ]
+    PostStepper,
+    PostStepperItem,
+  ],
 })
-
 export class HomeComponent {
   isCollapsed = false;
 }

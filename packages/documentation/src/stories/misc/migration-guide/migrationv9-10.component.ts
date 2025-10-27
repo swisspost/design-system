@@ -69,6 +69,7 @@ export class MigrationV99Component extends LitElement {
       spinner_sizes: false,
       standard_html_alert: false,
       spinner: false,
+      stepper: false,
     },
     components: {
       alert: false,
@@ -1202,6 +1203,22 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.loader</code> is now <code>.spinner</code></li>
                           <li><code>.loader-*</code> are now <code>.spinner-*</code></li>
                         </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others.stepper"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.stepper}"
+                      />
+                      <label class="form-check-label" for="others.stepper">
+                        Removed the stepper HTML component.
+                        <span class="info"
+                          >You can now use the <code>post-stepper</code> web component.</span
+                        >
                       </label>
                     </div>
                   </li>
