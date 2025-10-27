@@ -30,49 +30,49 @@
 }
 
 plusicon {
-  @include custom-icon(2040);
+  @include custom-icon('plus');
 }
 
 trashicon {
-  @include custom-icon(2015);
+  @include custom-icon('trash');
 }
 
 chevrondownicon {
-  @include custom-icon(2113);
+  @include custom-icon('chevrondown');
 }
 
 filtericon {
-  @include custom-icon(2060);
+  @include custom-icon('filter');
 }
 
 sortalticon {
-  @include custom-icon(2127);
+  @include custom-icon('updown');
 }
 
 sortamountupalticon {
-  @include custom-icon(2112);
+  @include custom-icon('chevronup');
 }
 
 sortamountdownicon {
-  @include custom-icon(2113);
+  @include custom-icon('chevrondown');
 }
 
 arrowupicon {
-  @include custom-icon(3026);
+  @include custom-icon('arrowup');
 }
 
 arrowdownicon {
-  @include custom-icon(3022);
+  @include custom-icon('arrowdown');
 }
 
 checkicon {
-  @include custom-icon(3035);
+  @include custom-icon('checkmark');
 }
 
 timesicon {
-  @include custom-icon(2043);
+  @include custom-icon('closex');
 }
 
 .p-datatable-reorderablerow-handle {
-  @include custom-icon(2070);
+  @include custom-icon('burger');
 }
