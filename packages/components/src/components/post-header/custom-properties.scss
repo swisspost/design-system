@@ -6,7 +6,8 @@
     calc(-1 * var(--post-header-scroll-top, 0px)),
     calc(var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height))
   );
-  --post-local-header-top: calc(var(--post-global-header-height) + max(
+  --post-local-header-top: 0px;
+  --post-header-top: calc(var(--post-global-header-top) + max(
     calc(-1 * var(--post-header-scroll-top, 0px)),
     calc(var(--post-local-header-reduced-height) - var(--post-local-header-expanded-height))
   ));
@@ -57,6 +58,7 @@
   }
 }
 
+// extend header height when hidden controls get focused
 .global-header:has(> .sliding-controls:focus-within),
 .global-header:has(+ .local-header:focus-within):has(+ .local-header > .navigation:not(:focus-within)) {
   @include media.only(desktop) {
@@ -64,8 +66,9 @@
     --post-global-controls-top: 0;
     --post-logo-height: var(--post-global-header-expanded-height);
 
+    // slide local header to compensate the negative inset of the host
     + .local-header {
-      --post-local-header-top: var(--post-global-header-expanded-height);
+      --post-local-header-top: calc(-1 * var(--post-header-top));
     }
   }
 }
