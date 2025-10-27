@@ -86,7 +86,7 @@ body:has(post-header) {
 }
 
 post-header {
-  height: var(--post-header-height);
+  height: var(--post-header-expanded-height);
 
   &:not(:defined),
   &:not([data-hydrated]) {
