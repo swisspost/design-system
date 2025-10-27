@@ -397,7 +397,7 @@ export class PostHeader {
 
   render() {
     return (
-      <Host data-version={version} data-color-scheme="light">
+      <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
         <div class="global-header">
           <div class="logo">
             <slot name="post-logo"></slot>

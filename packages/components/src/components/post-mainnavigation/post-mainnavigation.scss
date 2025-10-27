@@ -63,7 +63,7 @@ post-mainnavigation {
   }
 
   // desktop styles
-  @include media.min(lg) {
+  post-header:not([data-burger-menu]) > & {
     display: flex;
     overflow: hidden;
     height: var(--post-main-navigation-height, 0);
@@ -189,7 +189,7 @@ post-mainnavigation {
   }
 
   // tablet/mobile styles
-  @include media.max(lg) {
+  post-header[data-burger-menu] > & {
     nav {
       transform: none !important;
     }
