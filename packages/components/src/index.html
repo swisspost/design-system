@@ -19,9 +19,39 @@
   <body style="min-height: 200vh">
     <post-header>
       <!-- Logo -->
-      <post-logo slot="post-logo" url="/">Homepage</post-logo>
+      <post-logo slot="post-logo">Homepage</post-logo>
 
-      <!-- Target Group -->
+      <!-- Meta navigation -->
+      <ul class="list-inline" slot="meta-navigation">
+        <li><a href="">Jobs</a></li>
+        <li><a href="">Über uns</a></li>
+      </ul>
+
+      <!-- Menu button for mobile -->
+      <post-togglebutton slot="post-togglebutton">
+        <span>Menu</span>
+        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+      </post-togglebutton>
+
+      <!-- Language switch -->
+      <post-language-switch
+        caption="Change the language"
+        description="The currently selected language is English."
+        name="language-switch-example"
+        slot="post-language-switch"
+        variant="menu"
+      >
+        <post-language-option code="de" name="Deutsch">DE</post-language-option>
+        <post-language-option code="fr" name="French">FR</post-language-option>
+        <post-language-option code="it" name="Italiano">IT</post-language-option>
+        <post-language-option active code="en" name="English">EN</post-language-option>
+      </post-language-switch>
+
+      <!-- Application title (optional) -->
+      <h1 slot="title">Application title</h1>
+
+      <!-- Target group -->
       <ul slot="target-group" class="target-group">
         <li>
           <a href="#" class="active">Private customers</a>
@@ -29,154 +59,118 @@
         <li>
           <a href="#">Business customers</a>
         </li>
+        <li>
+          <a href="#">Authorities</a>
+        </li>
       </ul>
 
-      <!-- Global controls (Search) -->
-      <ul class="list-inline" slot="global-controls">
+      <!-- Local controls (optional) -->
+      <ul slot="local-controls" class="list-inline">
         <li>
-          <a href="">
+          <a href="#">
             <span>Search</span>
             <post-icon aria-hidden="true" name="search"></post-icon>
           </a>
         </li>
-      </ul>
-
-      <!-- Meta navigation -->
-      <ul class="list-inline" slot="meta-navigation">
         <li>
-          <a href="">
-            Jobs
-            <post-icon name="jobs" aria-hidden="true"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            Create Account
-            <post-icon name="adduser" aria-hidden="true"></post-icon>
+          <a href="#">
+            <span>Login</span>
+            <post-icon aria-hidden="true" name="login"></post-icon>
           </a>
         </li>
       </ul>
-
-      <!-- Language switch -->
-      <post-language-switch
-        caption="Change the language"
-        description="The currently selected language is English."
-        variant="list"
-        name="language-switch-example"
-        slot="post-language-switch"
-      >
-        <post-language-option code="de" name="German">de</post-language-option>
-        <post-language-option code="fr" name="French">fr</post-language-option>
-        <post-language-option code="it" name="Italian">it</post-language-option>
-        <post-language-option active="true" code="en" name="English">en</post-language-option>
-      </post-language-switch>
-
-      <!-- Global header login/user menu -->
-
-      <a href="" slot="global-login">
-        <span>Login</span>
-        <post-icon name="login"></post-icon>
-      </a>
-
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span>Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-      </post-togglebutton>
 
       <!-- Main navigation -->
-      <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
+      <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
+
           <!-- Link only level 1 -->
-          <post-list-item slot="post-list-item">
-            <a href="/letters">Letters</a>
-          </post-list-item>
-          <post-list-item slot="post-list-item">
-            <a href="/packages">Packages</a>
-          </post-list-item>
+          <post-list-item slot="post-list-item"
+            ><a href="/briefe"
+              ><post-mainnavigation-toplevel-item>Briefe</post-mainnavigation-toplevel-item></a
+            ></post-list-item
+          >
+          <post-list-item slot="post-list-item"
+            ><a href="/pakete"
+              ><post-mainnavigation-toplevel-item>Pakete</post-mainnavigation-toplevel-item></a
+            ></post-list-item
+          >
 
           <!-- Level 1 with megadropdown -->
           <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-            <post-megadropdown id="letters">
-              <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
+            <post-megadropdown id="briefe">
+              <button slot="back-button" class="btn btn-tertiary btn-sm">
                 <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
-              <post-closebutton slot="close-button">Close</post-closebutton>
-              <h2 slot="megadropdown-title">Letters title</h2>
+              <post-closebutton slot="close-button">Schliessen</post-closebutton>
+              <h2 slot="megadropdown-title">Briefe title</h2>
+              <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
               <post-list>
-                <h3>Send letters</h3>
-                <post-list-item slot="post-list-item">
-                  <a href="/sch">Letters Switzerland</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="/kl">Small items abroad</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="">Goods abroad</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="">Express and courier</a>
-                </post-list-item>
+                <h3>Briefe senden</h3>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Briefe Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
               <post-list>
-                <h3><a href="/step-by-step">Step by step</a></h3>
-                <post-list-item slot="post-list-item">
-                  <a href="/sch">Packages Switzerland</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="/kl">Small items abroad</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="">Goods abroad</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="">Express and courier</a>
-                </post-list-item>
+                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
             </post-megadropdown>
           </post-list-item>
           <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-            <post-megadropdown id="packages">
-              <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
+            <post-megadropdown id="pakete">
+              <button slot="back-button" class="btn btn-tertiary btn-sm">
                 <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
-              <post-closebutton slot="close-button">Close</post-closebutton>
-              <h2 slot="megadropdown-title">Packages title</h2>
+              <post-closebutton slot="close-button">Schliessen</post-closebutton>
+              <h2 slot="megadropdown-title">Pakete title</h2>
+              <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
               <post-list>
-                <h3>Send packages</h3>
-                <post-list-item slot="post-list-item">
-                  <a href="/sch">Packages Switzerland</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="/kl">Small items abroad</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="">Goods abroad</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="">Express and courier</a>
-                </post-list-item>
+                <h3>Pakete senden</h3>
+                <post-list-item slot="post-list-item"
+                  ><a aria-current="page" href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
               <post-list>
-                <h3><a href="/step-by-step">Step by step</a></h3>
-                <post-list-item slot="post-list-item">
-                  <a href="/sch">Packages Switzerland</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="/kl">Small items abroad</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="">Goods abroad</a>
-                </post-list-item>
-                <post-list-item slot="post-list-item">
-                  <a href="">Express and courier</a>
-                </post-list-item>
+                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
             </post-megadropdown>
           </post-list-item>
