@@ -97,9 +97,6 @@ export default function Home() {
             <h5>Titulum</h5>
             <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
             <a className="card-link" href="#test">
-              Ligilo teksto
-            </a>
-            <a className="card-link" href="#test">
               Pli da ligo
             </a>
           </div>
@@ -111,7 +108,7 @@ export default function Home() {
       <PostMenuTrigger for="menu-one">
         <button className="btn btn-primary">Menu button</button>
       </PostMenuTrigger>
-      <PostMenu id="menu-one">
+      <PostMenu id="menu-one" label="Demo menu">
         <PostMenuItem>
           <button>Example 1</button>
         </PostMenuItem>
