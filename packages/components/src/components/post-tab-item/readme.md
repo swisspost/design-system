@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property            | Attribute | Description                                                                                               | Type     | Default     |
-| ------------------- | --------- | --------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `name` _(required)_ | `name`    | The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode. | `string` | `undefined` |
+| Property            | Attribute | Description                                                                                          | Type     | Default     |
+| ------------------- | --------- | ---------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `name` _(required)_ | `name`    | The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode. | `string` | `undefined` |
 
 
 ## Slots

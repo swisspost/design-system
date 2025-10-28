@@ -463,7 +463,7 @@ export namespace Components {
     }
     interface PostTabItem {
         /**
-          * The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
@@ -1325,7 +1325,7 @@ declare namespace LocalJSX {
     }
     interface PostTabItem {
         /**
-          * The name of the tab, used to associate it with a tab panel or identify the active tab in navigation mode.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
