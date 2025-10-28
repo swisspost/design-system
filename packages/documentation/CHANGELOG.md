@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.52
+
+### Patch Changes
+
+- The missing `type` property has been added to the code snippets of the `<post-banner>` component documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6475](https://github.com/swisspost/design-system/pull/6475))
+
+- Fixed the components previews styling to avoid unnecessary scrollbars. (by [@leagrdv](https://github.com/leagrdv) with [#6515](https://github.com/swisspost/design-system/pull/6515))
+
+- Fixed header position inside the `<dialog>` element when content becomes scrollable. The header, footer and close button now remain visible while only the body scrolls. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6509](https://github.com/swisspost/design-system/pull/6509))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.51
+  - @swisspost/design-system-components@10.0.0-next.51
+  - @swisspost/design-system-styles@10.0.0-next.51
+  - @swisspost/design-system-components-react@10.0.0-next.51
+  - @swisspost/internet-header@10.0.0-next.51
+  - @swisspost/design-system-tokens@10.0.0-next.51
+
 ## 6.0.0-next.51
 
 ### Minor Changes

@@ -49,7 +49,7 @@ describe('accordion', () => {
         cy.get('@collapsibles').each(($item) => {
           cy.wrap($item)
             .shadow()
-            .find('post-icon[name="2051"]')
+            .find('post-icon[name="chevrondown"]')
             .should('exist');
         });
       });
