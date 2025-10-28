@@ -13,6 +13,8 @@ import { nanoid } from 'nanoid';
   shadow: true,
 })
 export class PostTabItem {
+  private mutationObserver = new MutationObserver(this.checkNavigationMode.bind(this));
+
   @Element() host: HTMLPostTabItemElement;
 
   @State() tabId: string;
@@ -28,14 +30,23 @@ export class PostTabItem {
     checkRequiredAndType(this, 'name', 'string');
   }
 
+  connectedCallback() {
+    this.mutationObserver.observe(this.host, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
   componentWillLoad() {
     this.tabId = `tab-${this.host.id || nanoid(6)}`;
-    this.checkNavigationMode();
   }
 
   componentDidLoad() {
-    // Re-check navigation mode after content is loaded
     this.checkNavigationMode();
+  }
+
+  disconnectedCallback() {
+    this.mutationObserver.disconnect();
   }
 
   private checkNavigationMode() {
