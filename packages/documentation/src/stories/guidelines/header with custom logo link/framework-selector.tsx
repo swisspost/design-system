@@ -70,6 +70,7 @@ const code = `
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
           <h2 slot="megadropdown-title">Briefe title</h2>
+          <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
           <post-list>
             <h3>Briefe senden</h3>
             <post-list-item slot="post-list-item"><a href="#">Briefe Schweiz</a></post-list-item>
@@ -99,6 +100,7 @@ const code = `
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
           <h2 slot="megadropdown-title">Pakete title</h2>
+          <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
           <post-list>
             <h3>Pakete senden</h3>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
