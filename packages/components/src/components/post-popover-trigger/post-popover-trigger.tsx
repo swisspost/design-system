@@ -22,9 +22,17 @@ export class PostPopoverTrigger {
   @State() ariaExpanded: boolean = false;
 
   /**
-   * It holds the state of the popover toggle
+   * Holds the state of the popover toggle
    */
   @State() private popoverOpen: boolean = false;
+
+  @Watch('popoverOpen')
+  syncAriaExpanded(newValue: boolean) {
+    this.ariaExpanded = newValue;
+    if (this.trigger) {
+      this.trigger.setAttribute('aria-expanded', String(newValue));
+    }
+  }
 
   /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
@@ -42,14 +50,14 @@ export class PostPopoverTrigger {
 
   private readonly boundHandleToggle: (event: Event) => void;
   private readonly boundHandleKeyDown: (event: Event) => void;
+  private readonly boundHandlePostToggle: (event: CustomEvent<{ isOpen: boolean }>) => void;
 
-  //this gets the associated popover element to the trigger based on 'for'
+  // Gets the associated popover element to the trigger based on 'for'
   private get popover(): HTMLPostPopoverElement | null {
     const ref = document.getElementById(this.for);
     return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
   }
 
-  // setup the trigger to get the correct aria attributes
   private setupTrigger() {
     this.trigger = this.host.querySelector('*');
 
@@ -62,11 +70,10 @@ export class PostPopoverTrigger {
         this.trigger.setAttribute('role', 'button');
       }
 
-      // set aria attributes
+      // Set aria attributes
       this.trigger.setAttribute('aria-haspopup', 'true');
       this.trigger.setAttribute('aria-controls', this.for);
 
-      // add event listeners
       this.trigger.addEventListener('click', this.boundHandleToggle);
       this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
     } else {
@@ -77,18 +84,19 @@ export class PostPopoverTrigger {
   }
 
   private handleToggle() {
-    this.popoverOpen = !this.popoverOpen;
     const popoverEl = this.popover;
     if (popoverEl) {
       popoverEl.toggle(this.trigger);
-
-      this.trigger.setAttribute('aria-expanded', this.popoverOpen.toString());
-
-      if (this.ariaExpanded === false) {
-        this.trigger.focus();
-      }
+      this.focusTrigger();
     } else {
       console.warn(`No post-popover found with ID: ${this.for}`);
+    }
+  }
+
+  private focusTrigger() {
+    // Restores focus to the trigger
+    if (!this.popoverOpen && this.trigger) {
+      this.trigger.focus();
     }
   }
 
@@ -102,17 +110,22 @@ export class PostPopoverTrigger {
   constructor() {
     this.boundHandleToggle = this.handleToggle.bind(this);
     this.boundHandleKeyDown = this.handleKeyDown.bind(this);
+    this.boundHandlePostToggle = (event: CustomEvent<{ isOpen: boolean }>) => {
+      this.popoverOpen = event.detail.isOpen;
+      this.focusTrigger();
+    };
   }
 
   componentDidLoad() {
     this.validateFor();
     this.setupTrigger();
+    this.popover?.addEventListener('postToggle', this.boundHandlePostToggle);
   }
 
   disconnectedCallback() {
-    // remove event listeners
     this.trigger.removeEventListener('click', this.boundHandleToggle);
     this.trigger.removeEventListener('keydown', this.boundHandleKeyDown);
+    this.popover?.removeEventListener('postToggle', this.boundHandlePostToggle);
   }
 
   render() {

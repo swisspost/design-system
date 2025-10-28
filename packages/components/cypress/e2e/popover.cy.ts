@@ -58,12 +58,12 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@trigger').then($trigger => {
         const originalText = $trigger.text();
         $trigger.html(`
-            <div class="level-1">
-              <div class="level-2">
-                <span class="level-3">${originalText}</span>
+              <div class="level-1">
+                <div class="level-2">
+                  <span class="level-3">${originalText}</span>
+                </div>
               </div>
-            </div>
-          `);
+            `);
       });
 
       cy.get('@popover').should('not.be.visible');
@@ -134,14 +134,6 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
   describe('Accessibility', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
-
-      // Ensure the component is hydrated, which is necessary to ensure the component is ready for interaction
-      cy.get('post-popover[data-hydrated]');
-
-      // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
-
-      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]').as('trigger');
-
       cy.injectAxe();
     });
 
