@@ -16,7 +16,10 @@ const TOKENS = ['quarter', 'third', 'half', 'two-thirds', 'three-quarters', 'ful
 const PIXEL_TOKENS = ['12', '16', '24', '32', '40', '48', '56', '64', '78', '80', '104'];
 const BASE_VW = 'vw-half';
 const BASE_VH = 'vh-half';
-
+const BASE_VH_FOR_MAX = 'vh-full';
+const BASE_VH_FOR_MIN = 'vh-quarter';
+const BASE_VW_FOR_MAX = 'vw-full';
+const BASE_VW_FOR_MIN = 'vw-quarter';
 const BASE: Args = {
   height: 'half',
   width: 'half',
@@ -33,6 +36,31 @@ const BASE_PX: Args = {
   minHeight: 'none',
   minWidth: 'none',
 };
+const BASE_FOR_MAX: Args = {
+  ...BASE,
+  height: 'full',
+  width: 'full',
+  minHeight: 'none',
+  minWidth: 'none',
+};
+
+const BASE_FOR_MIN: Args = {
+  ...BASE,
+  height: 'quarter',
+  width: 'quarter',
+  maxHeight: 'none',
+  maxWidth: 'none',
+};
+const BASE_PX_FOR_MAX: Args = {
+  ...BASE_PX,
+  height: '104',
+  width: '104',
+};
+const BASE_PX_FOR_MIN: Args = {
+  ...BASE_PX,
+  height: '0',
+  width: '0',
+};
 
 const listFrom = (key: keyof Args, values: string[], base: Args): Array<Args> =>
   values.map(v => ({ ...base, [key]: v }));
@@ -42,10 +70,10 @@ export const PercentageSizing: Story = {
   render: (_: Args, context: StoryContext) => {
     const H_ONLY = listFrom('height', TOKENS, BASE);
     const W_ONLY = listFrom('width', TOKENS, BASE);
-    const MAX_H = listFrom('maxHeight', TOKENS, BASE);
-    const MAX_W = listFrom('maxWidth', TOKENS, BASE);
-    const MIN_H = listFrom('minHeight', TOKENS, BASE);
-    const MIN_W = listFrom('minWidth', TOKENS, BASE);
+    const MAX_H = listFrom('maxHeight', TOKENS, BASE_FOR_MAX);
+    const MAX_W = listFrom('maxWidth', TOKENS, BASE_FOR_MAX);
+    const MIN_H = listFrom('minHeight', TOKENS, BASE_FOR_MIN);
+    const MIN_W = listFrom('minWidth', TOKENS, BASE_FOR_MIN);
 
     return schemes(
       () => html`
@@ -69,10 +97,10 @@ export const PixelSizing: Story = {
   render: (_: Args, context: StoryContext) => {
     const H_ONLY = listFrom('height', PIXEL_TOKENS, BASE_PX);
     const W_ONLY = listFrom('width', PIXEL_TOKENS, BASE_PX);
-    const MAX_H = listFrom('maxHeight', PIXEL_TOKENS, BASE_PX);
-    const MAX_W = listFrom('maxWidth', PIXEL_TOKENS, BASE_PX);
-    const MIN_H = listFrom('minHeight', PIXEL_TOKENS, BASE_PX);
-    const MIN_W = listFrom('minWidth', PIXEL_TOKENS, BASE_PX);
+    const MAX_H = listFrom('maxHeight', PIXEL_TOKENS, BASE_PX_FOR_MAX);
+    const MAX_W = listFrom('maxWidth', PIXEL_TOKENS, BASE_PX_FOR_MAX);
+    const MIN_H = listFrom('minHeight', PIXEL_TOKENS, BASE_PX_FOR_MIN);
+    const MIN_W = listFrom('minWidth', PIXEL_TOKENS, BASE_PX_FOR_MIN);
 
     return schemes(
       () => html`
@@ -113,10 +141,10 @@ export const PercentageVpSizing: Story = {
   render: () => {
     const VH_ONLY = TOKENS.map(t => ['content', `vh-${t}`, BASE_VW].join(' '));
     const VW_ONLY = TOKENS.map(t => ['content', `vw-${t}`, BASE_VH].join(' '));
-    const MAX_VH = TOKENS.map(t => ['content', `max-vh-${t}`, BASE_VW].join(' '));
-    const MAX_VW = TOKENS.map(t => ['content', `max-vw-${t}`, BASE_VH].join(' '));
-    const MIN_VH = TOKENS.map(t => ['content', `min-vh-${t}`, BASE_VW].join(' '));
-    const MIN_VW = TOKENS.map(t => ['content', `min-vw-${t}`, BASE_VH].join(' '));
+    const MAX_VH = TOKENS.map(t => ['content', BASE_VW_FOR_MAX, `max-vh-${t}`].join(' '));
+    const MAX_VW = TOKENS.map(t => ['content', BASE_VH_FOR_MAX, `max-vw-${t}`].join(' '));
+    const MIN_VH = TOKENS.map(t => ['content', BASE_VH_FOR_MIN, `min-vh-${t}`].join(' '));
+    const MIN_VW = TOKENS.map(t => ['content', BASE_VW_FOR_MIN, `min-vw-${t}`].join(' '));
 
     return schemes(
       () => html`
@@ -138,6 +166,8 @@ export const PercentageVpSizing: Story = {
 const renderViewportTokensSection = (title: string, classBlocks: string[]) => {
   return html`
     <h2>${title}</h2>
-    ${classBlocks.map(cls => html`<div class="${cls}"></div>`)}
+    <div class="d-flex gap-1 flex-wrap">
+      ${classBlocks.map(cls => html` <div class="${cls}"></div> `)}
+    </div>
   `;
 };
