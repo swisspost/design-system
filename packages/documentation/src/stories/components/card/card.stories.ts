@@ -126,17 +126,29 @@ function getCardButton({ label, variant }: Args) {
 }
 
 function getCardContent(args: Args) {
-  const { content, action } = args;
+  const {
+    title,
+    body = '',
+    interactive = false,
+    action = 'none',
+    interactiveAction = 'button',
+  } = args;
+
+  // si interactive => on pilote via interactiveAction, sinon via action
+  const chosenAction = interactive ? interactiveAction : action;
+
   return html`
     <div class="card-body">
-      ${unsafeHTML(content)}
+      ${title ? html`<h3 class="card-title">${title}</h3>` : nothing} ${unsafeHTML(body)}
       ${choose(
-        action,
+        chosenAction,
         [
+          // couvre tes deux vocabulaires: 'button'/'buttons' et 'link'
           ['button', () => getCardButton(args)],
-          ['links', getCardLinks],
+          ['buttons', () => getCardButton(args)],
+          ['link', () => getCardLinks(args)],
         ],
-        () => html` ${nothing} `,
+        () => nothing,
       )}
     </div>
   `;
