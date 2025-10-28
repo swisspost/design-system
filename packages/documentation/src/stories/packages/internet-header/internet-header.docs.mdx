@@ -67,8 +67,8 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   - Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
 
   <post-tabs>
-    <post-tab-header panel="with-bundler">Install with a bundler</post-tab-header>
-    <post-tab-panel name="with-bundler">
+    <post-tab-item name="with-bundler">Install with a bundler</post-tab-item>
+    <post-tab-panel for="with-bundler">
       All the popular frameworks come with some form of bundler.
       This makes it easy to use npm packages like the Internet Header as you can import,
       bundle and deliver the header with your own code.
@@ -93,8 +93,8 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
       </div>
     </post-tab-panel>
 
-    <post-tab-header panel="with-cdn">Include from a CDN</post-tab-header>
-    <post-tab-panel name="with-cdn">
+    <post-tab-item name="with-cdn">Include from a CDN</post-tab-item>
+    <post-tab-panel for="with-cdn">
       If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
       Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
 
@@ -128,12 +128,12 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   This stylesheet allows you to access CSS variables to implement styling relative to the header as needed, but it is completely optional.
 
   <post-tabs>
-    <post-tab-header panel="sass-import">Sass Import</post-tab-header>
-    <post-tab-panel name="sass-import">
+    <post-tab-item name="sass-import">Sass Import</post-tab-item>
+    <post-tab-panel for="sass-import">
       <Source code={`@use "@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css";`} dark={SourceDarkScheme} language="scss" />
     </post-tab-panel>
-    <post-tab-header panel="html-import">HTML Import</post-tab-header>
-    <post-tab-panel name="html-import">
+    <post-tab-item name="html-import">HTML Import</post-tab-item>
+    <post-tab-panel for="html-import">
       <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css"/>`} dark={SourceDarkScheme} language="html" />
     </post-tab-panel>
   </post-tabs>

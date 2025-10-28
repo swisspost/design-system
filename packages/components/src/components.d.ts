@@ -469,32 +469,32 @@ export namespace Components {
          */
         "stars": number;
     }
-    interface PostTabHeader {
+    interface PostTabItem {
         /**
-          * The name of the panel controlled by the tab header.
-         */
-        "panel": string;
-    }
-    interface PostTabPanel {
-        /**
-          * The name of the panel, used to associate it with a tab header.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Changing this value after initialization has no effect.**
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
           * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth": boolean;
         /**
-          * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
+          * Shows the panel with the given name and selects its associated tab. In navigation mode, only updates the active tab state. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
-        "show": (panelName: string) => Promise<void>;
+        "show": (tabName: string) => Promise<void>;
     }
     interface PostTogglebutton {
         /**
@@ -863,11 +863,11 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
-    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    interface HTMLPostTabItemElement extends Components.PostTabItem, HTMLStencilElement {
     }
-    var HTMLPostTabHeaderElement: {
-        prototype: HTMLPostTabHeaderElement;
-        new (): HTMLPostTabHeaderElement;
+    var HTMLPostTabItemElement: {
+        prototype: HTMLPostTabItemElement;
+        new (): HTMLPostTabItemElement;
     };
     interface HTMLPostTabPanelElement extends Components.PostTabPanel, HTMLStencilElement {
     }
@@ -940,7 +940,7 @@ declare global {
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
-        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-tab-item": HTMLPostTabItemElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
@@ -1351,30 +1351,30 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
-    interface PostTabHeader {
+    interface PostTabItem {
         /**
-          * The name of the panel controlled by the tab header.
-         */
-        "panel": string;
-    }
-    interface PostTabPanel {
-        /**
-          * The name of the panel, used to associate it with a tab header.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Changing this value after initialization has no effect.**
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
           * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth"?: boolean;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
@@ -1447,7 +1447,7 @@ declare namespace LocalJSX {
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
-        "post-tab-header": PostTabHeader;
+        "post-tab-item": PostTabItem;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-togglebutton": PostTogglebutton;
@@ -1494,7 +1494,7 @@ declare module "@stencil/core" {
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
-            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;

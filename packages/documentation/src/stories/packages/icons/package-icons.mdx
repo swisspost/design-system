@@ -46,13 +46,13 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   If you want to know more about pre & post scripts and how they are handled, please read the <a href="https://docs.npmjs.com/cli/v7/using-npm/scripts#description">npm documentation</a>.
 
   <post-tabs>
-    <post-tab-header panel="nodeNew">NodeJS version 16.7.0 or newer</post-tab-header>
-    <post-tab-panel name="nodeNew">
+    <post-tab-item name="nodeNew">NodeJS version 16.7.0 or newer</post-tab-item>
+    <post-tab-panel for="nodeNew">
       <Source  code={SampleNode16} language="json"/>
     </post-tab-panel>
 
-    <post-tab-header panel="nodeOld">Older NodeJS versions</post-tab-header>
-    <post-tab-panel name="nodeOld">
+    <post-tab-item name="nodeOld">Older NodeJS versions</post-tab-item>
+    <post-tab-panel for="nodeOld">
       <Source code={SampleNodeOlder} language="json"/>
       <Source code={SampleNodeOlderJs} language="javascript" />
     </post-tab-panel>
@@ -67,13 +67,13 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   2. Use the **base-attribute** solution, to configure the `base-path` on every `icon` component. This can also be used to overwrite the global `base-path` for a single icon.
 
   <post-tabs>
-    <post-tab-header panel="metaTag">Meta-tag solution (recommended)</post-tab-header>
-    <post-tab-panel name="metaTag">
+    <post-tab-item name="metaTag">Meta-tag solution (recommended)</post-tab-item>
+    <post-tab-panel for="metaTag">
       <Source code={SampleIconMeta} language="html" />
     </post-tab-panel>
 
-    <post-tab-header panel="baseAttribute">Base-attribute solution</post-tab-header>
-    <post-tab-panel name="baseAttribute">
+    <post-tab-item name="baseAttribute">Base-attribute solution</post-tab-item>
+    <post-tab-panel for="baseAttribute">
       <Source  code={`<post-icon name="letter" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
     </post-tab-panel>
   </post-tabs>

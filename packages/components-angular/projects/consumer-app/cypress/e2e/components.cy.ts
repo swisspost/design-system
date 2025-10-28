@@ -1,4 +1,4 @@
-import * as Components from '@swisspost/design-system-components/dist';
+import * as Components from '@swisspost/design-system-components/loader';
 
 const COMPONENT_TAG_NAMES = Object.keys(Components)
   .filter(c => /^Post([A-Z][a-z]+)+$/.test(c))
