@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+@include post.custom-property(('accessibility', 'letter'));
+
 $resizer-padding: 1rem;
 $resizer-border-width: 1px;
 $resizer-border-color: #999;
@@ -27,10 +29,8 @@ $resizer-max-width: 64px;
   background-color: post.$info;
 }
 
-.my-accessibility-icon {
-  @include post.post-icon($name: 'accessibility');
-}
-
 .letter-icon {
-  @include post.post-icon($name: 'letter');
+  width: 1em;
+  height: 1em;
+  @include post.mask-image('letter');
 }
