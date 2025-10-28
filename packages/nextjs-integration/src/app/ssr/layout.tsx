@@ -64,7 +64,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         <h1 slot="title">Application title</h1>
 
-        <ul className="list-inline">
+        <ul slot="local-controls" className="list-inline">
           <li>
             <a href="#test">
               <span>Search</span>
@@ -184,7 +184,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
       <main style={{ paddingBlock: '3rem' }}>
         <div className="container">
-          <PostBreadcrumbs home-url="/" home-text="Home" menu-label='More breadcrumb items'>
+          <PostBreadcrumbs home-url="/" home-text="Home" menu-label="More breadcrumb items">
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>

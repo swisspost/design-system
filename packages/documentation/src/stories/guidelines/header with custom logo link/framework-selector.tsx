@@ -37,7 +37,7 @@ const code = `
   <h1 slot="title">Application title</h1>
 
   <!-- Custom content (optional) -->
-  <ul class="list-inline">
+  <ul slot="local-controls" class="list-inline">
     <li>
       <a href="#">
         <span>Search</span>
