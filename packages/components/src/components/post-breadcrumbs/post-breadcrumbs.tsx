@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, checkEmptyOrType, debounce } from '@/utils';
+import { checkRequiredAndUrl, checkEmptyOrType, debounce, checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -20,6 +20,11 @@ export class PostBreadcrumbs {
    */
   @Prop() homeText: string = 'Home';
 
+  /**
+   * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+    */
+  @Prop() menuLabel!: string;
+
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
   @State() lastWindowWidth: number;
@@ -37,6 +42,11 @@ export class PostBreadcrumbs {
     checkEmptyOrType(this, 'homeUrl', 'string');
   }
 
+  @Watch('menuLabel')
+  validateLabel() {
+    checkRequiredAndType(this, 'menuLabel', 'string');
+  }
+
   componentWillLoad() {
     this.updateBreadcrumbItems();
   }
@@ -44,6 +54,7 @@ export class PostBreadcrumbs {
   componentDidLoad() {
     this.validateHomeUrl();
     this.validateHomeText();
+    this.validateLabel();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
   }
@@ -149,14 +160,14 @@ export class PostBreadcrumbs {
                   }
                 }}
               >
-                <post-icon name="2111" class="breadcrumb-item-icon" />
+                <post-icon name="chevronright" class="breadcrumb-item-icon" />
                 <div class="actual-menu">
                   <post-menu-trigger for="breadcrumb-menu" tabIndex={0}>
                     <button class="btn test" tabIndex={-1}>
                       ...
                     </button>
                   </post-menu-trigger>
-                  <post-menu id="breadcrumb-menu">
+                  <post-menu id="breadcrumb-menu" label={this.menuLabel}>
                     {visibleItems.map(item => (
                       <post-menu-item
                         key={item.url || item.text}

@@ -7,10 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { ButtonType } from "./components/post-closebutton/button-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { ButtonType } from "./components/post-closebutton/button-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -108,6 +110,10 @@ export namespace Components {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -161,6 +167,11 @@ export namespace Components {
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default 'button'
+         */
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -327,7 +338,7 @@ export namespace Components {
         /**
           * An accessible name for the menu.
          */
-        "label"?: string;
+        "label": string;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
@@ -394,6 +405,10 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
+          * Handles the popover closing process and emits related events.
+         */
+        "close": () => Promise<void>;
+        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -407,6 +422,10 @@ export namespace Components {
           * @default false
          */
         "manualClose": boolean;
+        /**
+          * Handles the popover opening process and emits related events.
+         */
+        "open": () => Promise<void>;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -806,7 +825,11 @@ declare global {
         new (): HTMLPostPopoverElement;
     };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postToggle": { isOpen: boolean; first?: boolean };
+        "postBeforeShow": { first?: boolean };
+        "postShow": { first?: boolean };
+        "postHide": any;
+        "postBeforeToggle": { willOpen: boolean };
+        "postToggle": { isOpen: boolean };
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1004,6 +1027,10 @@ declare namespace LocalJSX {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1057,6 +1084,11 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default 'button'
+         */
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -1203,7 +1235,7 @@ declare namespace LocalJSX {
         /**
           * An accessible name for the menu.
          */
-        "label"?: string;
+        "label": string;
         /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
@@ -1260,9 +1292,25 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
+          * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
-        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) => void;
+        "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
+         */
+        "onPostBeforeToggle"?: (event: PostPopovercontainerCustomEvent<{ willOpen: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is hidden.
+         */
+        "onPostHide"?: (event: PostPopovercontainerCustomEvent<any>) => void;
+        /**
+          * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+         */
+        "onPostShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
+         */
+        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean }>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'

@@ -1,5 +1,59 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.52
+
+### Patch Changes
+
+- The missing `type` property has been added to the code snippets of the `<post-banner>` component documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6475](https://github.com/swisspost/design-system/pull/6475))
+
+- Fixed the components previews styling to avoid unnecessary scrollbars. (by [@leagrdv](https://github.com/leagrdv) with [#6515](https://github.com/swisspost/design-system/pull/6515))
+
+- Fixed header position inside the `<dialog>` element when content becomes scrollable. The header, footer and close button now remain visible while only the body scrolls. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6509](https://github.com/swisspost/design-system/pull/6509))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.51
+  - @swisspost/design-system-components@10.0.0-next.51
+  - @swisspost/design-system-styles@10.0.0-next.51
+  - @swisspost/design-system-components-react@10.0.0-next.51
+  - @swisspost/internet-header@10.0.0-next.51
+  - @swisspost/design-system-tokens@10.0.0-next.51
+
+## 6.0.0-next.51
+
+### Minor Changes
+
+- Improved the `dialog` element documentation by adding the control-table entries for core methods and events, updating examples with aria-labelledby/aria-describedby, and exposing the closedby option. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6439](https://github.com/swisspost/design-system/pull/6439))
+
+- Added the user menu for logged in users in the `post-header` component. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+
+- Added checkboxes on each step of the v9 to v10 migration guide to allow for progress tracking. (by [@leagrdv](https://github.com/leagrdv) with [#6451](https://github.com/swisspost/design-system/pull/6451))
+
+- Added a new header example for the Jobs portal pages. (by [@myrta2302](https://github.com/myrta2302) with [#6421](https://github.com/swisspost/design-system/pull/6421))
+
+### Patch Changes
+
+- Added information in the migration guide regarding the update on the `post-alert` component. (by [@leagrdv](https://github.com/leagrdv) with [#6431](https://github.com/swisspost/design-system/pull/6431))
+
+- Added the `button-type` property to the `post-closebutton` to allow users to override the default button type. (by [@leagrdv](https://github.com/leagrdv) with [#6361](https://github.com/swisspost/design-system/pull/6361))
+
+- Improved `dialog` component accessibility by adding proper paragraph markup around text content. (by [@bucknatt](https://github.com/bucknatt) with [#6206](https://github.com/swisspost/design-system/pull/6206))
+
+- Added information in the migration guide regarding the update on font curve classes. (by [@leagrdv](https://github.com/leagrdv) with [#6340](https://github.com/swisspost/design-system/pull/6340))
+
+- Added icons to the header meta navigation links. (by [@alizedebray](https://github.com/alizedebray) with [#6413](https://github.com/swisspost/design-system/pull/6413))
+
+- Removed the `.btn-close` and replaced it with the `post-closebutton` component in the dialog, toast and `post-popover` components. (by [@leagrdv](https://github.com/leagrdv) with [#6361](https://github.com/swisspost/design-system/pull/6361))
+
+- Reorganized Global Header structure: introduced `global-controls` and `global-login` slots. Search button must now be placed in the `global-controls` slot, login button or user menu component in the `global-login` slot. Updated documentation and Storybook examples to reflect the new structure. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6422](https://github.com/swisspost/design-system/pull/6422))
+
+- Added information in the migration guide regarding the removal of position helpers. (by [@leagrdv](https://github.com/leagrdv) with [#6335](https://github.com/swisspost/design-system/pull/6335))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.50
+  - @swisspost/design-system-styles@10.0.0-next.50
+  - @swisspost/design-system-components@10.0.0-next.50
+  - @swisspost/internet-header@10.0.0-next.50
+  - @swisspost/design-system-components-react@10.0.0-next.50
+  - @swisspost/design-system-tokens@10.0.0-next.50
+
 ## 6.0.0-next.50
 
 ### Minor Changes
@@ -15,6 +69,8 @@
   - Removed all informations of removed elements that were never previously documented (by [@leagrdv](https://github.com/leagrdv) with [#6208](https://github.com/swisspost/design-system/pull/6208))
 
 - Added usage examples for the header component. (by [@alizedebray](https://github.com/alizedebray) with [#6270](https://github.com/swisspost/design-system/pull/6270))
+
+- The `Multiple` and `Multiple Size` controls have been removed from the Form Select documentation and the Form Creation guideline. (by [@bucknatt](https://github.com/bucknatt) with [#6359](https://github.com/swisspost/design-system/pull/6359))
 
 ### Patch Changes
 
@@ -41,6 +97,8 @@
 - Cleaned up the migration guide by removing redundant "breaking" tags in the "Migration from v9 to v10" section, since all listed changes are breaking. (by [@leagrdv](https://github.com/leagrdv) with [#6250](https://github.com/swisspost/design-system/pull/6250))
 
 - Added information in the migration guide regarding auto migration for the spinner. (by [@leagrdv](https://github.com/leagrdv) with [#6249](https://github.com/swisspost/design-system/pull/6249))
+
+- Grouped the text truncation documentation with other text utilities. (by [@hugomslv](https://github.com/hugomslv) with [#6349](https://github.com/swisspost/design-system/pull/6349))
 
 - Updated interactive cards to have the `.card` class directly set on the `post-linkarea` component, reducing unnecessary DOM nesting. (by [@leagrdv](https://github.com/leagrdv) with [#6367](https://github.com/swisspost/design-system/pull/6367))
 

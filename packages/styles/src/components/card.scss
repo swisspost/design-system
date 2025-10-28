@@ -10,6 +10,8 @@
 
 tokens.$default-map: components.$post-cards;
 
+@include icons-mx.custom-property('arrowright');
+
 .card {
   display: flex;
   flex-direction: column;
@@ -84,8 +86,8 @@ tokens.$default-map: components.$post-cards;
     text-decoration: none;
     -ms-flex-align: center;
 
-    &::after {
-      @include icons-mx.icon(3020);
+    &::before {
+      @include icons-mx.mask-image('arrowright');
       content: '';
       display: inline-block;
       width: icons.$icon-size-default;

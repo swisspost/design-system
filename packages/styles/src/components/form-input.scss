@@ -3,10 +3,12 @@
 @use './../tokens/elements';
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities';
-@use './../mixins/icons' as icon-mx;
+@use './../mixins/icons' as icons-mx;
 @use './../variables/components/forms';
 
 tokens.$default-map: components.$post-text-input;
+
+@include icons-mx.custom-property(('success-solid', 'warning-solid'));
 
 input.form-control {
   display: block;
@@ -207,6 +209,11 @@ input.form-control {
 .form-floating {
   position: relative;
 
+  &::after {
+    width: tokens.get('input-sizing-icon');
+    height: tokens.get('input-sizing-icon');
+  }
+
   &:has(> input.form-control.is-valid:not(:disabled))::after,
   &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
@@ -216,12 +223,8 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 2;
     pointer-events: none;
-    @include icon-mx.post-icon(
-      $name: 'success-solid',
-      $color: tokens.get('post-validation-success', components.$post-validation),
-      $width: tokens.get('input-sizing-icon'),
-      $height: tokens.get('input-sizing-icon')
-    );
+    @include icons-mx.mask-image('success-solid');
+    color: tokens.get('post-validation-success', components.$post-validation);
   }
 
   &:has(> input.form-control.is-invalid:not(:disabled))::after,
@@ -233,12 +236,8 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 1;
     pointer-events: none;
-    @include icon-mx.post-icon(
-      $name: 'warning-solid',
-      $color: tokens.get('post-validation-error', components.$post-validation),
-      $width: tokens.get('input-sizing-icon'),
-      $height: tokens.get('input-sizing-icon')
-    );
+    @include icons-mx.mask-image('warning-solid');
+    color: tokens.get('post-validation-error', components.$post-validation);
   }
 
   > input.form-control ~ label {
