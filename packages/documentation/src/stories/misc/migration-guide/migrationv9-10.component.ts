@@ -46,13 +46,13 @@ export class MigrationV99Component extends LitElement {
       text_color: false,
     },
     typography: {
-      font_sizes: false,
+      font_sizes_variables: false,
+      font_sizes_classes: false,
       font_curves_classes: false,
-      font_curves_variables_and_classes: false,
+      font_curves_variables: false,
       line_height_variables: false,
       weight_light: false,
       font_weight: false,
-      line_height_base: false,
       monospace: false,
     },
     others: {
@@ -108,23 +108,74 @@ export class MigrationV99Component extends LitElement {
       <section>
         <ol class="bubble-tea">
           <li>
+            <h3>Introduction</h3>
+            <p>
+              Version 10 comes with a <span class="fw-bold">new look and cleaner codebase</span> —
+              and yes, a few breaking changes, all for good reason.
+            </p>
+            <p>
+              We’ve completely refreshed the design and reworked how components are built.
+              <span class="fw-bold">Bootstrap</span> and
+              <span class="fw-bold">Ng-Bootstrap</span> are gone; everything now runs on
+              <span class="fw-bold">Stencil Web Components</span>, which means the Design System
+              works across <span class="fw-bold">any framework</span> (<a
+                href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
+                >Angular</a
+              >, <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs">React</a>, or
+              <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">plain HTML</a>).
+            </p>
+            <p>
+              Most utility classes are still there, but renamed to be
+              <span class="fw-bold">pixel-based and more intuitive</span> — for example,
+              <code>.p-16</code> now clearly means "16px padding", instead of guessing what
+              <code>.p-3</code> stood for. We’ve also simplified things overall: fewer breakpoints,
+              fewer font-size classes, and a more consistent color palette (no more purple or coral
+              buttons 🎨).
+            </p>
+            <p>
+              Most components are now <span class="fw-bold">tokenized</span>, so you can easily
+              adjust themes or colors without rewriting CSS. Want to see this in action? Check the
+              <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                >Palette documentation</a
+              >
+              and switch to the Cargo theme.
+            </p>
+            <p>
+              Oh, and yes — there’s a
+              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
+                >brand-new icon set</a
+              >
+              too 🖼️.
+            </p>
+          </li>
+          <li>
             <h3>Package Update 🩺</h3>
-            <ol>
-              <li>
-                <p>
-                  Update Design System styles and components packages to version 10:
-                  <code languages="['bash']">npm install @swisspost/design-system-styles@10</code>
-                  <code languages="['bash']">
-                    npm install
-                    @swisspost/design-system-components${this.angular ? '-angular' : nothing}@10
-                  </code>
-                </p>
-              </li>
-            </ol>
+            <p>
+              Update Design System styles and components packages to version 10 by running these two
+              commands in your project root:
+              <code languages="['bash']">npm install @swisspost/design-system-styles@10</code>
+              <code languages="['bash']">
+                npm install
+                @swisspost/design-system-components${this.angular ? '-angular' : nothing}@10
+              </code>
+              ${!this.angular
+                ? html`
+                    <div class="pt-4">or for react projects:</div>
+                    <code languages="['bash']">
+                      npm install @swisspost/design-system-components-react@10
+                    </code>
+                  `
+                : nothing}
+            </p>
           </li>
           <li>
             <h3>Component Migration 🤓</h3>
             <div class="my-16">
+              <p>
+                💡 Many changes are automatically handled by the migration scripts. Each 🪄 symbol
+                means that <span class="fw-bold">automatic migration rules</span> can handle the
+                changes, but you should still verify the results manually.
+              </p>
               <div class="form-check">
                 <input
                   id="state.general.hide_automigration"
@@ -141,7 +192,7 @@ export class MigrationV99Component extends LitElement {
                 </label>
               </div>
             </div>
-            <post-banner type="warning">
+            <post-banner type="warning" class="mt-24">
               <h4 slot="heading">Notice: Bootstrap & Ng-Bootstrap removed</h4>
               <p>
                 As part of the latest migration, Bootstrap and Ng-Bootstrap have been fully removed
@@ -149,22 +200,22 @@ export class MigrationV99Component extends LitElement {
                 originating from Bootstrap and all components from Ng-Bootstrap are no longer
                 available.
               </p>
+              <h5 class="h6 pt-8">✅ Good news:</h5>
               <p>
-                However,
-                <span class="fw-bold"
-                  >many commonly used features from Bootstrap — such as the grid system (columns)
-                  and most utility classes — have been internalized into the design system</span
-                >. You can continue using them through the design system without needing
-                Bootstrap.<br />
+                Common Bootstrap features — such as the grid system (columns) and most utility
+                classes — have been internalized into the design system. You can continue using them
+                through the design system without needing Bootstrap.<br />
               </p>
               <p>
                 If you encounter any broken styles or issues after upgrading, you have two options:
               </p>
               <ul>
-                <li>Internalize the specific mixins or utilities you still rely on</li>
+                <li>Recreate the needed mixin or utility inside your app.</li>
                 <li>
-                  If issues persist, open a
-                  <a href="https://github.com/swisspost/design-system/issues">GitHub issue</a>
+                  Or report an issue in the
+                  <a href="https://github.com/swisspost/design-system/issues"
+                    >Swiss Post Design System GitHub repository</a
+                  >
                 </li>
               </ul>
               <p>Please review your components and styles to ensure compatibility.</p>
@@ -173,7 +224,7 @@ export class MigrationV99Component extends LitElement {
 
             <div @change="${this._onChange}">
               <section>
-                <h4>Ng-Bootstrap</h4>
+                <h4>🧩 Ng-Bootstrap</h4>
                 <ul class="list-unstyled">
                   <li>
                     <div class="form-check">
@@ -184,7 +235,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.ngbootstrap.removed_components}"
                       />
                       <label class="form-check-label" for="ngbootstrap.removed_components">
-                        Removed the following Ng-Bootstrap components:
+                        All Ng-Bootstrap components are no longer available:
                         <ul>
                           <li>carousel</li>
                           <li>custom select</li>
@@ -206,7 +257,7 @@ export class MigrationV99Component extends LitElement {
               <section>
                 <h4>Styles</h4>
 
-                <h5>Forms</h5>
+                <h5>✍️ Forms</h5>
                 <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
@@ -217,14 +268,17 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.forms.tooltip_validation}"
                       />
                       <label class="form-check-label" for="forms.tooltip_validation">
-                        Removed tooltip validation classes
+                        Tooltip validation classes removed
                         <ul>
                           <li><code>.valid-tooltip</code></li>
                           <li><code>.invalid-tooltip</code></li>
                         </ul>
                         <span class="info">
                           Instead, use classes <code>.valid-feedback</code> and
-                          <code>.invalid-feedback</code>.
+                          <code>.invalid-feedback</code>. <br />More informations on the
+                          <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs"
+                            >form validation docs</a
+                          >.
                         </span>
                       </label>
                     </div>
@@ -238,9 +292,8 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.forms.input_sizes}"
                       />
                       <label class="form-check-label" for="forms.input_sizes">
-                        <code>textarea</code>, <code>input</code> and <code>select</code> form
-                        elements no longer have sizes, therefore the following classes have no more
-                        effect on those elements
+                        Form field size classes removed, therefore the following classes have no
+                        more effect on those elements.
                         <ul>
                           <li><code>.form-control-sm</code></li>
                           <li><code>.form-control-rg</code></li>
@@ -264,14 +317,14 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The <code>.form-text</code> class has been renamed to
+                        <code>.form-text</code> class has been renamed to
                         <code>.form-hint</code>
                       </label>
                     </div>
                   </li>
                 </ul>
 
-                <h5>Grid</h5>
+                <h5>📐 Grid system</h5>
                 <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
@@ -282,7 +335,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.grid.container}"
                       />
                       <label class="form-check-label" for="grid.container">
-                        Removed grid container helper classes
+                        Grid helper classes removed
                         <ul>
                           <li><code>.vertical-gutters</code></li>
                           <li><code>.row.border-gutters</code></li>
@@ -308,7 +361,7 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The <code>rg</code> and <code>xxl</code> breakpoints have been removed
+                        Breakpoints updated
                         <ul>
                           <li>
                             All classes containing <code>*-rg-*</code> are no longer effective
@@ -318,10 +371,9 @@ export class MigrationV99Component extends LitElement {
                           </li>
                         </ul>
                         <span class="info">
-                          <code>xs</code> now spans the previous <code>xs</code> and
-                          <code>sm</code>, while <code>sm</code> spans the previous <code>rg</code>.
-                          <code>xl</code> now spans both the previous <code>xl</code> and
-                          <code>xxl</code> breakpoints.
+                          <code>xs</code> now covers old <code>xs</code> and <code>sm</code>, while
+                          <code>sm</code> covers old <code>rg</code>. <code>xl</code> covers old
+                          <code>xl</code> and <code>xxl</code> breakpoints.
                         </span>
                       </label>
                     </div>
@@ -338,8 +390,8 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The gutter classes naming (<code>g-*</code>, <code>gx-*</code>,
-                        <code>gy-*</code>) has changed to pixel-based names
+                        Gutter classes (<code>.g-*</code>, <code>.gx-*</code>, <code>.gy-*</code>)
+                        renamed
                         <ul>
                           <li><code>*-1</code> is now <code>*-4</code></li>
                           <li><code>*-2</code> is now <code>*-8</code></li>
@@ -347,6 +399,11 @@ export class MigrationV99Component extends LitElement {
                           <li><code>*-4</code> is now <code>*-24</code></li>
                           <li><code>*-5</code> is now <code>*-48</code></li>
                         </ul>
+
+                        <span class="info">
+                          For instance, the old Bootstrap class <code>.g-1</code> (gutter of 4px) is
+                          now <code>.g-4</code> for greater coherance.
+                        </span>
                       </label>
                     </div>
                   </li>
@@ -362,8 +419,8 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The gap classes naming (<code>gap-*</code>, <code>row-gap-*</code>,
-                        <code>column-gap-*</code>) has changed to pixel-based names
+                        Gap classes (<code>.gap-*</code>, <code>.row-gap-*</code>,
+                        <code>.column-gap-*</code>) renamed
                         <ul>
                           <li><code>*-1</code> is now <code>*-4</code></li>
                           <li><code>*-2</code> is now <code>*-8</code></li>
@@ -376,7 +433,7 @@ export class MigrationV99Component extends LitElement {
                   </li>
                 </ul>
 
-                <h5>Utilities</h5>
+                <h5>🧰 Utilities</h5>
                 <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
@@ -390,8 +447,8 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Changed the percentage sizing utility classes (<code>w-*</code>,
-                        <code>h-*</code>, <code>mh-*</code>, <code>mw-*</code>) naming
+                        Percentage sizing utility classes (<code>.w-*</code>,
+                        <code>.h-*</code>, <code>.mh-*</code>, <code>.mw-*</code>) renamed
                         <ul>
                           <li><code>*-25</code> is now <code>*-quarter</code></li>
                           <li><code>*-50</code> is now <code>*-half</code></li>
@@ -413,8 +470,8 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Removed some pixel sizing utility classes (<code>w-*</code>,
-                        <code>h-*</code>, <code>mh-*</code>, <code>mw-*</code>)
+                        Some pixel sizing utility classes (<code>.w-*</code>,
+                        <code>.h-*</code>, <code>.mh-*</code>, <code>.mw-*</code>) removed
                         <ul>
                           <li><code>*-small-large</code></li>
                           <li><code>*-bigger-giant</code></li>
@@ -434,8 +491,8 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Changed the pixel sizing utility classes (<code>w-*</code>,
-                        <code>h-*</code>, <code>mh-*</code>, <code>mw-*</code>) to pixel-based names
+                        Pixel sizing utility classes (<code>.w-*</code>,
+                        <code>.h-*</code>, <code>.mh-*</code>, <code>.mw-*</code>) renamed
                         <ul>
                           <li><code>*-hair</code> is now <code>*-1</code></li>
                           <li><code>*-line</code> is now <code>*-2</code></li>
@@ -466,10 +523,10 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Changed the sizing utility classes max-height and max-width naming
+                        Sizing utility classes max-height and max-width renamed
                         <ul>
-                          <li><code>mh-*</code> is now <code>max-h-*</code></li>
-                          <li><code>mw-*</code> is now <code>max-w-*</code></li>
+                          <li><code>.mh-*</code> is now <code>.max-h-*</code></li>
+                          <li><code>.mw-*</code> is now <code>.max-w-*</code></li>
                         </ul>
                       </label>
                     </div>
@@ -486,16 +543,13 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Shadow utility classes have been removed
+                        Shadow utility classes replaced with elevations
                         <ul>
-                          <li>
-                            Shadows: <code>.shadow-none</code>, <code>.shadow-sm</code>,
-                            <code>.shadow</code> and <code>.shadow-lg</code>
-                          </li>
+                          <li><code>.shadow-none</code> is now <code>.elevation-none</code></li>
+                          <li><code>.shadow-sm</code> is now <code>.elevation-200</code></li>
+                          <li><code>.shadow</code> is now <code>.elevation-400</code></li>
+                          <li><code>.shadow-lg</code> is now <code>.elevation-500</code></li>
                         </ul>
-                        <span class="info">
-                          We recommend using the <code>.elevation-*</code> classes instead.
-                        </span>
                       </label>
                     </div>
                   </li>
@@ -512,7 +566,7 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The following elevation utility classes have been renamed
+                        Elevation utility classes renamed
                         <ul>
                           <li><code>.elevation-1</code> is now <code>.elevation-100</code></li>
                           <li><code>.elevation-2</code> is now <code>.elevation-200</code></li>
@@ -535,8 +589,8 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Removed some spacing utilities' classes (margin and padding
-                        <code>{m/p}{x/y/s/e/t/b}-*</code>)
+                        Some margin and padding utilities classes (
+                        <code>.{m/p}{x/y/s/e/t/b}-*</code>) were removed
                         <ul>
                           <li><code>*-small-large</code></li>
                           <li><code>*-bigger-giant</code></li>
@@ -556,8 +610,8 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Changed the spacing utilities' classes (margin and padding
-                        <code>{m/p}{x/y/s/e/t/b}-*</code>) naming to pixel-based names
+                        Margin and padding utilities classes (
+                        <code>.{m/p}{x/y/s/e/t/b}-*</code>) renamed
                         <ul>
                           <li><code>*-hair</code> is now <code>*-1</code></li>
                           <li><code>*-line</code> is now <code>*-2</code></li>
@@ -593,7 +647,13 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.utilities.background}"
                       />
                       <label class="form-check-label" for="utilities.background">
-                        All background color classes (<code>bg-*</code>) have been removed
+                        Background color classes (<code>.bg-*</code>) removed
+                        <span class="info"
+                          >Colors are now handled by
+                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                            >palettes</a
+                          ></span
+                        >
                       </label>
                     </div>
                   </li>
@@ -609,7 +669,7 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Renamed some utility classes
+                        Utility classes renamed
                         <ul>
                           <li>
                             <code>.h-visuallyhidden</code> is now <code>.visually-hidden</code>
@@ -628,7 +688,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.utilities.removed_various_utilities}"
                       />
                       <label class="form-check-label" for="utilities.removed_various_utilities">
-                        Removed some utility classes
+                        Utility classes removed
                         <ul>
                           <li>
                             <code>.spacer</code>
@@ -654,7 +714,7 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Renamed border radius classes
+                        Border radius classes renamed
                         <ul>
                           <li><code>.rounded</code> is now <code>.rounded-4</code></li>
                           <li>
@@ -677,24 +737,23 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Removed some position helper classes that can be replaced with a combination
-                        of other utilities
+                        Position helper classes replaced with a combination of other utilities
                         <ul>
                           <li>
-                            <code>fixed-top</code> is now
-                            <code>position-fixed top-0 start-0 end-0 z-fixed</code>
+                            <code>.fixed-top</code> is now
+                            <code>.position-fixed .top-0 .start-0 .end-0 .z-fixed</code>
                           </li>
                           <li>
-                            <code>fixed-bottom</code> is now
-                            <code>position-fixed bottom-0 start-0 end-0 z-fixed</code>
+                            <code>.fixed-bottom</code> is now
+                            <code>position-fixed bottom-0 .start-0 .end-0 .z-fixed</code>
                           </li>
                           <li>
-                            <code>sticky-top</code> is now
-                            <code>position-sticky top-0 z-header</code>
+                            <code>.sticky-top</code> is now
+                            <code>.position-sticky .top-0 .z-header</code>
                           </li>
                           <li>
-                            <code>sticky-bottom</code> is now
-                            <code>position-sticky bottom-0 z-header</code>
+                            <code>.sticky-bottom</code> is now
+                            <code>.position-sticky .bottom-0 .z-header</code>
                           </li>
                         </ul>
                       </label>
@@ -709,7 +768,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.utilities.text_color}"
                       />
                       <label class="form-check-label" for="utilities.text_color">
-                        Removed all text color utility classes (<code>.text-*</code>)
+                        Text color classes (<code>.text-*</code>) removed
                         <ul>
                           <li><code>.text-primary</code></li>
                           <li><code>.text-secondary</code></li>
@@ -720,50 +779,78 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.text-error</code></li>
                           <li><code>.text-info</code></li>
                         </ul>
+                        <span class="info"
+                          >Colors are now handled by
+                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                            >palettes</a
+                          ></span
+                        >
                       </label>
                     </div>
                   </li>
                 </ul>
 
-                <h5>Typography</h5>
+                <h5>✒️ Typography</h5>
                 <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.font_sizes"
+                        id="typography.font_sizes_variables"
                         class="form-check-input"
                         type="checkbox"
-                        ?checked="${this.state.typography.font_sizes}"
+                        ?checked="${this.state.typography.font_sizes_variables}"
                       />
-                      <label class="form-check-label" for="typography.font_sizes">
+                      <label class="form-check-label" for="typography.font_sizes_variables">
+                        Font size variables removed
+                        <ul>
+                          <li><code>$font-size-12</code></li>
+                          <li><code>$font-size-14</code></li>
+                          <li><code>$font-size-16</code></li>
+                          <li><code>$font-size-18</code></li>
+                          <li><code>$font-size-20</code></li>
+                          <li><code>$font-size-24</code></li>
+                          <li><code>$font-size-28</code></li>
+                          <li><code>$font-size-32</code></li>
+                          <li><code>$font-size-40</code></li>
+                          <li><code>$font-size-48</code></li>
+                          <li><code>$font-size-56</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography.font_sizes_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.font_sizes_classes}"
+                      />
+                      <label class="form-check-label" for="typography.font_sizes_classes">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Removed deprecated font size variables and classes
+                        Font size classes removed
                         <ul>
-                          <li><code>$font-size-12</code> and <code>.font-size-12</code></li>
-                          <li><code>$font-size-14</code> and <code>.font-size-14</code></li>
-                          <li><code>$font-size-16</code> and <code>.font-size-16</code></li>
-                          <li><code>$font-size-18</code> and <code>.font-size-18</code></li>
-                          <li><code>$font-size-20</code> and <code>.font-size-20</code></li>
-                          <li><code>$font-size-24</code> and <code>.font-size-24</code></li>
-                          <li><code>$font-size-28</code> and <code>.font-size-28</code></li>
-                          <li><code>$font-size-32</code> and <code>.font-size-32</code></li>
-                          <li><code>$font-size-40</code> and <code>.font-size-40</code></li>
-                          <li><code>$font-size-48</code> and <code>.font-size-48</code></li>
-                          <li><code>$font-size-56</code> and <code>.font-size-56</code></li>
+                          <li><code>.font-size-12</code> is now <code>.fs-11</code></li>
+                          <li><code>.font-size-14</code> is now <code>.fs-9</code></li>
+                          <li><code>.font-size-16</code> is now <code>.fs-8</code></li>
+                          <li><code>.font-size-18</code> is now <code>.fs-6</code></li>
+                          <li><code>.font-size-20</code> is now <code>.fs-6</code></li>
+                          <li><code>.font-size-24</code> is now <code>.fs-5</code></li>
+                          <li><code>.font-size-28</code> is now <code>.fs-4</code></li>
+                          <li><code>.font-size-32</code> is now <code>.fs-3</code></li>
+                          <li><code>.font-size-40</code> is now <code>.fs-2</code></li>
+                          <li><code>.font-size-48</code> is now <code>.fs-1</code></li>
+                          <li><code>.font-size-56</code> is now <code>.fs-1</code></li>
                         </ul>
                         <span class="info">
-                          You can now either use the font curves <code>.fs-1</code> to
-                          <code>.fs-11</code> that are documented in the
-                          <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
-                            >text utilities</a
-                          >
-                          for text content, or the
+                          ⚠️ For <code>post-icon</code> sizing, use the
                           <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs"
                             >sizing utility classes</a
                           >
-                          for sizing <code>post-icon</code> components.
+                          instead of font size classes. If you're using the automigration rules,
+                          this gets handled correctly automatically.
                         </span>
                       </label>
                     </div>
@@ -780,7 +867,7 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Removed deprecated font curve classes
+                        Font curve classes removed
                         <ul>
                           <li><code>.font-curve-tiny</code> is now <code>.fs-9</code></li>
                           <li><code>.font-curve-small</code> is now <code>.fs-7</code></li>
@@ -789,6 +876,17 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.font-curve-medium</code> is now <code>.fs-4</code></li>
                           <li><code>.font-curve-large</code> is now <code>.fs-3</code></li>
                           <li><code>.font-curve-big</code> is now <code>.fs-1</code></li>
+                          <li><code>.fs-tiny</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-small</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-regular</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-bigger-regular</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-medium</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-large</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-small-big</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-big</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-bigger-big</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-small-huge</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-huge</code> is now <code>.fs-9</code></li>
                         </ul>
                       </label>
                     </div>
@@ -796,51 +894,32 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.font_curves_variables_and_classes"
+                        id="typography.font_curves_variables"
                         class="form-check-input"
                         type="checkbox"
-                        ?checked="${this.state.typography.font_curves_variables_and_classes}"
+                        ?checked="${this.state.typography.font_curves_variables}"
                       />
-                      <label
-                        class="form-check-label"
-                        for="typography.font_curves_variables_and_classes"
-                      >
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
-                        >
-                        Removed deprecated font curve variables and classes
+                      <label class="form-check-label" for="typography.font_curves_variables">
+                        Font curve variables removed
                         <ul>
-                          <li><code>$font-size-tiny</code> and <code>.fs-tiny</code></li>
-                          <li><code>$font-size-small</code> and <code>.fs-small</code></li>
-                          <li><code>$font-size-regular</code> and <code>.fs-regular</code></li>
+                          <li><code>$font-size-tiny</code></li>
+                          <li><code>$font-size-small</code></li>
+                          <li><code>$font-size-regular</code></li>
                           <li>
-                            <code>$font-size-bigger-regular</code> and
-                            <code>.fs-bigger-regular</code>
+                            <code>$font-size-bigger-regular</code>
                           </li>
-                          <li><code>$font-size-medium</code> and <code>.fs-medium</code></li>
-                          <li><code>$font-size-large</code> and <code>.fs-large</code></li>
-                          <li><code>$font-size-small-big</code> and <code>.fs-small-big</code></li>
-                          <li><code>$font-size-big</code> and <code>.fs-big</code></li>
+                          <li><code>$font-size-medium</code></li>
+                          <li><code>$font-size-large</code></li>
+                          <li><code>$font-size-small-big</code></li>
+                          <li><code>$font-size-big</code></li>
                           <li>
-                            <code>$font-size-bigger-big</code> and <code>.fs-bigger-big</code>
+                            <code>$font-size-bigger-big</code>
                           </li>
                           <li>
-                            <code>$font-size-small-huge</code> and <code>.fs-small-huge</code>
+                            <code>$font-size-small-huge</code>
                           </li>
-                          <li><code>$font-size-huge</code> and <code>.fs-huge</code></li>
+                          <li><code>$font-size-huge</code></li>
                         </ul>
-                        <span class="info">
-                          You can now either use the font curves <code>.fs-1</code> to
-                          <code>.fs-11</code> that are documented in the
-                          <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
-                            >text utilities</a
-                          >
-                          for text content, or the
-                          <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs"
-                            >sizing utility classes</a
-                          >
-                          for sizing <code>post-icon</code> components.
-                        </span>
                       </label>
                     </div>
                   </li>
@@ -853,7 +932,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.typography.line_height_variables}"
                       />
                       <label class="form-check-label" for="typography.line_height_variables">
-                        Removed deprecated line-height variables
+                        Line height variables and classes removed
                         <ul>
                           <li><code>$line-heights</code></li>
                           <li><code>$line-height-tiny</code></li>
@@ -885,8 +964,9 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.lh-bigger-giant</code></li>
                         </ul>
                         <span class="info">
-                          You can now use the following classes: <code>.lh-1</code>,
-                          <code>.lh-sm</code> and <code>.lh-lg</code> which are documented in the
+                          Line height utilities classes have been reduced to the following classes:
+                          <code>.lh-1</code>, <code>.lh-sm</code> and <code>.lh-lg</code> which are
+                          documented in the
                           <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
                             >text utilities</a
                           >.
@@ -903,8 +983,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.typography.weight_light}"
                       />
                       <label class="form-check-label" for="typography.weight_light">
-                        The following classes have been removed as the new Swiss Post font does not
-                        provide a light font weight (300)
+                        Light font weight (300) removed as the new Swiss Post does not provide it
                         <ul>
                           <li><code>.fw-light</code></li>
                           <li><code>.light</code></li>
@@ -924,24 +1003,11 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        Renamed font-weight utility classes
+                        Font weight utilities renamed
                         <ul>
                           <li><code>.bold</code> is now <code>.fw-bold</code></li>
                           <li><code>.regular</code> is now <code>.fw-regular</code></li>
                         </ul>
-                      </label>
-                    </div>
-                  </li>
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="typography.line_height_base"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.typography.line_height_base}"
-                      />
-                      <label class="form-check-label" for="typography.line_height_base">
-                        <span> The <code>.lh-base</code> class has been removed </span>
                       </label>
                     </div>
                   </li>
@@ -954,14 +1020,17 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.typography.monospace}"
                       />
                       <label class="form-check-label" for="typography.monospace">
-                        The <code>.font-monospace</code> class has been removed along with the
-                        <code>$font-family-monospace</code> scss variable
+                        Monospace font removed
+                        <ul>
+                          <li><code>.font-monospace</code></li>
+                          <li><code>$font-family-monospace</code></li>
+                        </ul>
                       </label>
                     </div>
                   </li>
                 </ul>
 
-                <h5>Other styles</h5>
+                <h5>🎨 Other styles</h5>
                 <ul class="list-unstyled">
                   <li class="mb-16">
                     <div class="form-check">
@@ -972,8 +1041,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.card}"
                       />
                       <label class="form-check-label" for="others.card">
-                        Some elements of the card component and their corresponding classes have
-                        been removed
+                        Some card component elements have been removed
                         <ul>
                           <li><code>.card-header</code></li>
                           <li><code>.card-footer</code></li>
@@ -995,7 +1063,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.card_group}"
                       />
                       <label class="form-check-label" for="others.card_group">
-                        The <code>.card-group</code> class has been removed
+                        <code>.card-group</code> removed
                         <span class="info"
                           >Card elements should be set inside a grid container.</span
                         >
@@ -1014,8 +1082,10 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The <code>.btn-rg</code> class has been removed. Buttons using this class
-                        will now fall back to the default size
+                        <code>.btn-rg</code> class removed.
+                        <span class="info"
+                          >Buttons using this class will now fall back to the default size</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -1028,7 +1098,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.button_animated}"
                       />
                       <label class="form-check-label" for="others.button_animated">
-                        The <code>.btn-animated</code> class has been removed
+                        <code>.btn-animated</code> class removed
                       </label>
                     </div>
                   </li>
@@ -1041,9 +1111,13 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.icon_pi}"
                       />
                       <label class="form-check-label" for="others.icon_pi">
-                        The <code>.pi-*</code> classes have been removed
+                        <code>.pi-*</code> classes (icons) removed
                         <span class="info"
-                          >The <code>post-icon</code> component should be used instead.</span
+                          >The <code>post-icon</code> component should be used instead, which is
+                          documented in the
+                          <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
+                            >icon component</a
+                          >.</span
                         >
                       </label>
                     </div>
@@ -1057,9 +1131,13 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.breadcrumb_item}"
                       />
                       <label class="form-check-label" for="others.breadcrumb_item">
-                        The <code>.breadcrumb-item</code> class has been removed
+                        <code>.breadcrumb-item</code> class removed
                         <span class="info">
-                          The <code>post-breadcrumb-item</code> component should be used instead.
+                          The <code>post-breadcrumb-item</code> component should be used instead,
+                          which is documented in the
+                          <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
+                            >breadcrumbs component</a
+                          >.
                         </span>
                       </label>
                     </div>
@@ -1073,7 +1151,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.alert_fixed_bottom}"
                       />
                       <label class="form-check-label" for="others.alert_fixed_bottom">
-                        The <code>.alert-fixed-bottom</code> class has been removed
+                        <code>.alert-fixed-bottom</code> class removed
                       </label>
                     </div>
                   </li>
@@ -1086,8 +1164,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.topic_teaser}"
                       />
                       <label class="form-check-label" for="others.topic_teaser">
-                        The <code>topic-teaser</code> component and all of its related classes have
-                        been removed
+                        <code>topic-teaser</code> component (and its related classes) removed
                       </label>
                     </div>
                   </li>
@@ -1103,9 +1180,8 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The <code>.chip-filter</code> has been renamed to
-                        <code>.chip-selectable</code> and the small variant of the chip
-                        <code>.chip-sm</code> has been removed
+                        <code>.chip-filter</code> renamed to <code>.chip-selectable</code>, and
+                        small variant <code>.chip-sm</code> removed
                       </label>
                     </div>
                   </li>
@@ -1118,7 +1194,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.accent_colors}"
                       />
                       <label class="form-check-label" for="others.accent_colors">
-                        Accent colors have been removed
+                        Accent colors removed
                         <ul>
                           <li>
                             <code>.btn-nightblue</code>, <code>.btn-nightblue-bright</code>,
@@ -1126,8 +1202,7 @@ export class MigrationV99Component extends LitElement {
                             <code>.btn-coral</code>, <code>.btn-coral-bright</code>,
                             <code>.btn-olive</code>, <code>.btn-olive-bright</code>,
                             <code>.btn-purple</code>, <code>.btn-purple-bright</code>,
-                            <code>.btn-aubergine</code>, <code>.btn-aubergine-bright</code> classes
-                            no longer exist.
+                            <code>.btn-aubergine</code>, <code>.btn-aubergine-bright</code>
                           </li>
                           <li>
                             <code>$nightblue</code>, <code>$nightblue-bright</code>,
@@ -1135,37 +1210,12 @@ export class MigrationV99Component extends LitElement {
                             <code>$coral-bright</code>, <code>$olive</code>,
                             <code>$olive-bright</code>, <code>$purple</code>,
                             <code>$purple-bright</code>, <code>$aubergine</code>,
-                            <code>$aubergine-bright</code> scss variables no longer exist.
+                            <code>$aubergine-bright</code>
                           </li>
                         </ul>
                       </label>
                     </div>
                   </li>
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="others.spinner_sizes"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.others.spinner_sizes}"
-                      />
-                      <label class="form-check-label" for="others.spinner_sizes">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
-                        >
-                        Deprecated loader classes and related scss variables have been removed
-                        <ul>
-                          <li><code>.loader-xs</code></li>
-                          <li><code>.loader-sm</code></li>
-                        </ul>
-                        <span class="info">
-                          Instead, use classes <code>.spinner-16</code> and
-                          <code>.spinner-40</code>.
-                        </span>
-                      </label>
-                    </div>
-                  </li>
-
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -1175,8 +1225,8 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.standard_html_alert}"
                       />
                       <label class="form-check-label" for="others.standard_html_alert">
-                        Removed the Standard HTML Alert component (<code>.alert</code>,
-                        <code>.alert-*</code>)
+                        Standard HTML Alert component (<code>.alert</code>,
+                        <code>.alert-*</code>) removed
                         <span class="info">
                           Replaced by the <code>post-banner</code> component.
                         </span>
@@ -1196,7 +1246,7 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The following spinner classes have been renamed
+                        Loader renamed to spinner
                         <ul>
                           <li><code>.loading-modal</code> is now <code>.spinner-modal</code></li>
                           <li><code>.loader</code> is now <code>.spinner</code></li>
@@ -1205,11 +1255,32 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others.spinner_sizes"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.spinner_sizes}"
+                      />
+                      <label class="form-check-label" for="others.spinner_sizes">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Loader size classes renamed
+                        <ul>
+                          <li><code>.loader-xs</code> is now <code>.spinner-16</code></li>
+                          <li><code>.loader-sm</code> is now <code>.spinner-40</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
                 </ul>
               </section>
 
               <section>
-                <h4>Components</h4>
+                <h4>🧩 Components</h4>
 
                 <ul class="list-unstyled">
                   <li class="mb-16">
@@ -1224,7 +1295,7 @@ export class MigrationV99Component extends LitElement {
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
-                        The <code>post-alert</code> web component is now <code>post-banner</code>
+                        <code>post-alert</code> renamed to <code>post-banner</code>
                       </label>
                     </div>
                   </li>
@@ -1237,8 +1308,8 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.components.accordion_heading}"
                       />
                       <label class="form-check-label" for="components.accordion_heading">
-                        The <code>heading-level</code> property on <code>post-accordion</code> is
-                        now required
+                        <code>heading-level</code> property on <code>post-accordion</code> is now
+                        required
                       </label>
                     </div>
                   </li>
@@ -1269,9 +1340,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.components.accordion_item_part}"
                       />
                       <label class="form-check-label" for="components.accordion_item_part">
-                        Removed the <code>accordion-item</code> shadow part from the
-                        <code>post-accordion-item</code> component and introduced two new shadow
-                        parts: <code>button</code> and <code>body</code>
+                        <code>accordion-item</code> shadow part removed from the
+                        <code>post-accordion-item</code> component and two new shadow parts
+                        introduced: <code>button</code> and <code>body</code>
                         <span class="info">
                           If you were styling the component using the
                           <code>::part(accordion-item)</code> selector, this will no longer work.
