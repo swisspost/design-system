@@ -21,7 +21,7 @@ export class PostBreadcrumbs {
   @Prop() homeText!: string;
 
   /**
-   * The accessible label for the breadcrumb component
+   * The accessible label for the breadcrumb component.
    */
   @Prop() label!: string;
 

@@ -110,7 +110,7 @@ export namespace Components {
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component
+          * The accessible label for the breadcrumb component.
          */
         "label": string;
         /**
@@ -1017,7 +1017,7 @@ declare namespace LocalJSX {
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component
+          * The accessible label for the breadcrumb component.
          */
         "label": string;
         /**

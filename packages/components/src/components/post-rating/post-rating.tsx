@@ -149,7 +149,7 @@ export class PostRating {
           aria-valuemin="0"
           aria-valuemax={this.stars}
           aria-valuenow={this.currentRating}
-          aria-valuetext={`${this.currentRating} / ${this.stars}`} // Screen readers will announce "x (slash) y"
+          aria-valuetext={`${this.currentRating} / ${this.stars}`}
           aria-readonly={this.readonly ? 'true' : 'false'}
           onKeyDown={this.keydownHandler}
           onBlur={this.blurHandler}
