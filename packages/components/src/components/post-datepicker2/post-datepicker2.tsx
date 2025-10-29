@@ -80,9 +80,9 @@ export class PostDatepicker2 {
 
   @EventFrom('post-popovercontainer')
   private readonly handlePostToggle = (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.toggleCalendar.emit(this.isVisible);
-    };
+    this.isVisible = event.detail;
+    this.toggleCalendar.emit(this.isVisible);
+  };
 
   private popoverRef: HTMLPostPopovercontainerElement;
   private datepickerEl: HTMLInputElement;
@@ -117,6 +117,11 @@ export class PostDatepicker2 {
             ? formattedDate.join(' - ')
             : formattedDate;
           this.popoverRef?.hide();
+        },
+        onRenderCell({ date, cellType }) {
+          if (cellType === 'day' && (date.getDay() === 1 || date.getDay() === 3)) {
+            return { disabled: true };
+          }
         },
       };
 

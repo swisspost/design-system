@@ -265,7 +265,7 @@ tokens.$default-map: components.$post-breadcrumb;
         }
       }
 
-      &.-disabled- {
+      &.-disabled-:not(.-day-.-other-month-) {
         color: #504f4b;
         border: 2px dashed #504f4b; // post.datepicker.grid.cell.disabled.border
         width: 38px; // post.datepicker.grid.cell.disabled.size
