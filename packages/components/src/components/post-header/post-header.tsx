@@ -1,4 +1,4 @@
-import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch, Listen } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -225,8 +225,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
@@ -350,6 +350,21 @@ export class PostHeader {
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
       languageSwitch?.setAttribute('variant', variant);
     });
+  }
+
+  @Listen('focusin')
+  @Listen('focusout')
+  onFocusChange() {
+    const fixedElements = this.device === 'desktop' ? '.logo, .navigation' : '.global-header';
+    const isHeaderExpanded =
+      this.host.matches(':focus-within') &&
+      !this.host.shadowRoot.querySelector(`:where(${fixedElements}):focus-within`);
+
+    if (isHeaderExpanded) {
+      this.host.setAttribute('data-expanded', '');
+    } else {
+      this.host.removeAttribute('data-expanded');
+    }
   }
 
   private renderNavigation() {
