@@ -57,12 +57,10 @@
   @return $state;
 }
 
-@function success-icon($color: #107800) {
-  $icon: icons.get-colored-svg-url('success', $color);
-  @return url('#{$icon}');
+@function success-icon() {
+  @return var(--post-signal-icon-success);
 }
 
-@function warning-icon($color: #b20000) {
-  $icon: icons.get-colored-svg-url('warning', $color);
-  @return url('#{$icon}');
+@function error-icon() {
+  @return var(--post-signal-icon-error);
 }

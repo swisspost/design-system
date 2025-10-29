@@ -8,7 +8,7 @@
 
 tokens.$default-map: components.$post-text-input;
 
-@include icons-mx.custom-property(('success-solid', 'warning-solid'));
+@include icons-mx.custom-property(('success-solid', 'error-solid'));
 
 input.form-control {
   display: block;
@@ -236,7 +236,7 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 1;
     pointer-events: none;
-    @include icons-mx.mask-image('warning-solid');
+    @include icons-mx.mask-image('error-solid');
     color: tokens.get('post-validation-error', components.$post-validation);
   }
 

@@ -24,23 +24,23 @@
     background-image: forms-fx.success-icon();
 
     @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.success-icon(#e0e0e0);
+      background-image: forms-fx.success-icon();
     }
 
     @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.success-icon(#333);
+      background-image: forms-fx.success-icon();
     }
   }
 
   &.is-invalid:not(:disabled) {
-    background-image: forms-fx.warning-icon();
+    background-image: forms-fx.error-icon();
 
     @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.warning-icon(#e0e0e0);
+      background-image: forms-fx.error-icon();
     }
 
     @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.warning-icon(#333);
+      background-image: forms-fx.error-icon();
     }
   }
 }
