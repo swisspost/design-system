@@ -1,13 +1,8 @@
 @use 'sass:map';
 @use 'sass:list';
 
-@use './color' as color-mx;
-@use './icons' as icons-mx;
 @use './utilities' as utilities-mx;
-@use './../functions/contrast' as contrast-fn;
 
-@use './../variables/spacing';
-@use './../variables/components/close';
 @use './../variables/components/notification';
 @use '../tokens/components';
 @use '../functions/tokens';
@@ -35,7 +30,7 @@ tokens.$default-map: components.$post-banner;
   position: relative;
   color: var(--post-current-fg);
 
-  // Set the neutral notification as the default color
+  // Set the info notification as the default color
   @include notification-variant(
     list.nth($default-var, 2),
     list.nth($default-var, 3),
@@ -47,28 +42,11 @@ tokens.$default-map: components.$post-banner;
   &::before {
     content: '';
     display: block;
-  }
-
-  &::before,
-  > post-icon {
     position: absolute;
     height: $icon-size;
     width: $icon-size;
     left: $padding-x;
     top: $padding-y;
-  }
-
-  &.no-icon {
-    min-height: calc(2 * $padding-y + close.$close-size);
-    padding-inline-start: $padding-x;
-
-    &::before {
-      content: unset;
-    }
-
-    > post-icon {
-      display: none;
-    }
   }
 
   @include utilities-mx.high-contrast-mode {
@@ -106,45 +84,10 @@ tokens.$default-map: components.$post-banner;
   border-color: $border-color;
   color-scheme: $scheme;
 
-  // default icon (mask-image)
-  &:not(.no-icon)::before {
-    @include icons-mx.icon($icon);
-    color: $icon-color;
-
-    @include utilities-mx.high-contrast-mode {
-      color: CanvasText;
-    }
-  }
-
-  // Prevent flashing when using post-icon
-  &:has(> post-icon)::before {
-    content: none;
-  }
-
-  // icon override (post-icon), needed when :has is not supported
-  > post-icon {
-    background-color: $color;
-    color: $icon-color;
-  }
-}
-
-@mixin notification-dismissible($size, $close: 'btn-close') {
-  $padding-x: map.get(notification.$notification-padding-x-map, $size);
-  $gap: map.get(notification.$notification-gap-map, $size);
-
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-  & {
-    pointer-events: auto;
-    position: relative;
-  }
-
-  &:not(.banner-action):not(.alert-action) {
-    padding-inline-end: calc(#{$padding-x} + #{$gap} + #{close.$close-size});
-  }
-
-  > .#{$close} {
-    position: absolute;
-    inset-block-start: spacing.$spacer;
-    inset-inline-end: $padding-x;
+  &::before {
+    background-image: #{$icon};
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }

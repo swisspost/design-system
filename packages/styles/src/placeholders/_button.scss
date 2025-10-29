@@ -2,6 +2,11 @@
 @use './../mixins/color' as color-mx;
 @use './../variables/color';
 @use './../variables/components/button';
+@use './../mixins/button' as button-mx;
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-button;
 
 %btn-transparent-background {
   @include utilities.not-disabled-focus-hover() {
@@ -11,5 +16,59 @@
   // Invert icon on dark backgrounds
   @include color-mx.on-dark-background() {
     color: color.$black;
+  }
+}
+
+%btn {
+  // Resets
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+  transition: button.$btn-transition;
+  border-width: tokens.get('button-border-width');
+  border-style: solid;
+  border-radius: tokens.get('button-border-radius-round');
+  background-color: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  font-weight: tokens.get('button-label-font-weight');
+  text-decoration: none;
+  white-space: nowrap; // Long content should never break in buttons
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @include button-mx.button-size();
+
+  &:disabled {
+    border-style: tokens.get('button-border-style-disabled');
+  }
+
+  @include utilities.focus-style;
+
+  @include utilities.high-contrast-mode() {
+    &:is(a) {
+      color: LinkText;
+      border: unset;
+    }
+
+    &:is(button) {
+      background-color: ButtonFace !important;
+      border: 1px solid ButtonBorder !important;
+    }
+
+    &:not(:disabled, .disabled) {
+      &:is(button):hover {
+        background-color: Highlight !important;
+
+        > post-icon {
+          color: HighlightText !important;
+        }
+      }
+    }
   }
 }

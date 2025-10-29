@@ -26,7 +26,7 @@ export class MigrationV45Component extends LitElement {
           tabindex="-1"
           href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v4-to-v5"
         >
-          <post-icon name="2037"></post-icon>
+          <post-icon name="link"></post-icon>
         </a>
       </h2>
       <section>

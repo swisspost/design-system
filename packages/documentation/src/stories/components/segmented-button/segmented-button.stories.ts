@@ -7,7 +7,7 @@ const MAX_LABELS = 8;
 const meta: MetaComponent = {
   id: '78509712-d45e-462c-bde3-405cfaff5421',
   title: 'Components/Segmented button',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
@@ -60,6 +60,8 @@ export const IconExample: Story = {
   render: (args: Args) => {
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
     const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
+    
+    const iconNames = ['letter', 'parcel', 'letterandparcel', 'locationpackage', 'locationletter', 'stampapost', 'stampbpost', 'mailboxprivate'];
 
     return html`
       <div class="segmented-button-container">
@@ -70,7 +72,7 @@ export const IconExample: Story = {
             (_undefined, index) => html`
               <label class="segmented-button-label">
                 <input type="radio" name="${name}" checked="${index === 0 ? '' : nothing}" />
-                <post-icon name="${1000 + index}" />
+                <post-icon name="${iconNames[index % iconNames.length]}" />
               </label>
             `,
           )}

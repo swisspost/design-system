@@ -42,7 +42,7 @@
     $state: if(map.has-key($utility, state), map.get($utility, state), ());
 
     $infix: if(
-      list.length($class-list) == 0 and string.slice($infix, 1, 1) == '-',
+      $class-list == null and string.slice($infix, 1, 1) == '-',
       string.slice($infix, 2),
       $infix
     );
@@ -50,7 +50,7 @@
     // Don't prefix if value key is null (e.g. with shadow class)
     $property-class-modifier: if(
       $key,
-      if(list.length($class-list) == 0 and $infix == '', '', '-') + $key,
+      if($class-list == null and $infix == '', '', '-') + $key,
       ''
     );
 

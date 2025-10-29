@@ -5,9 +5,9 @@ import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
- * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
- * @part body - The pseudo-element, used to override styles on the components internal `body` element.
- * @slot logo - Slot for the placing a logo before the header.
+ * @part button - The element that toggles the accordion item (header button).
+ * @part body - The container element that holds the accordion item's content.
+ * @slot logo - Slot for placing a logo in the accordion item’s header, before the content.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
  */
@@ -96,7 +96,7 @@ export class PostAccordionItem {
                   <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
                 </span>
                 <slot name="header" />
-                <post-icon name="2051"></post-icon>
+                <post-icon name="chevrondown"></post-icon>
               </button>
             </HeadingTag>
           </post-collapsible-trigger>

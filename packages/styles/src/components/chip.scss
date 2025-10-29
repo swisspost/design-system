@@ -6,6 +6,8 @@
 
 tokens.$default-map: components.$post-chip;
 
+@include icons-mx.custom-property(('closex', 'checkmark'));
+
 button.chip-dismissible {
   $button-size: tokens.get('close-size', components.$post-close);
   $icon-size: tokens.get('close-icon-size', components.$post-close);
@@ -41,12 +43,14 @@ button.chip-dismissible {
   // Close icon
   &::after {
     content: '';
-    @include icons-mx.post-icon($name: 'closex', $height: $icon-size, $width: $icon-size);
     margin-left: calc((#{$button-size} - #{$icon-size}) / 2);
+    width: tokens.get('close-icon-size', components.$post-close);
+    height: tokens.get('close-icon-size', components.$post-close);
 
     @include utilities.high-contrast-mode() {
       background-color: ButtonText;
     }
+    @include icons-mx.mask-image('closex');
   }
 
   &:hover::after {
@@ -102,17 +106,15 @@ button.chip-dismissible {
 
         &::before {
           content: '';
-          @include icons-mx.post-icon(
-            $name: 'checkmark',
-            $width: tokens.get('chip-selectable-icon'),
-            $height: tokens.get('chip-selectable-icon')
-          );
           position: absolute;
           left: tokens.get('chip-selectable-padding-inline');
 
           @include utilities.high-contrast-mode() {
             background-color: Highlight;
           }
+          width: tokens.get('chip-selectable-icon');
+          height: tokens.get('chip-selectable-icon');
+          @include icons-mx.mask-image('checkmark');
         }
 
         .badge {

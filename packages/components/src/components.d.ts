@@ -7,10 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { ButtonType } from "./components/post-closebutton/button-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { ButtonType } from "./components/post-closebutton/button-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -55,6 +57,10 @@ export namespace Components {
     }
     interface PostAvatar {
         /**
+          * Provides a custom description for the avatar, used for accessibility purposes.
+         */
+        "description"?: string;
+        /**
           * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
@@ -67,7 +73,7 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
          */
         "userid"?: string;
     }
@@ -83,21 +89,8 @@ export namespace Components {
          */
         "dismiss": () => Promise<void>;
         /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-          * @default false
-         */
-        "dismissible": boolean;
-        /**
-          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
-         */
-        "icon"?: string;
-        /**
           * The type of the banner.
-          * @default 'neutral'
+          * @default 'info'
          */
         "type": BannerType;
     }
@@ -117,6 +110,10 @@ export namespace Components {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -141,7 +138,7 @@ export namespace Components {
          */
         "groupReset": () => Promise<void>;
         /**
-          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <post-banner data-size="sm"><p>If not set the icon will not show up.</p></post-banner>
          */
         "icon"?: string;
         /**
@@ -149,7 +146,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</p></post-banner> <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "name"?: string;
         /**
@@ -165,11 +162,16 @@ export namespace Components {
          */
         "validity"?: boolean;
         /**
-          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default 'button'
+         */
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -334,6 +336,10 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * An accessible name for the menu.
+         */
+        "label": string;
+        /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
          */
@@ -399,6 +405,10 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
+          * Handles the popover closing process and emits related events.
+         */
+        "close": () => Promise<void>;
+        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -412,6 +422,10 @@ export namespace Components {
           * @default false
          */
         "manualClose": boolean;
+        /**
+          * Handles the popover opening process and emits related events.
+         */
+        "open": () => Promise<void>;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -811,7 +825,11 @@ declare global {
         new (): HTMLPostPopoverElement;
     };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postToggle": boolean;
+        "postBeforeShow": { first?: boolean };
+        "postShow": { first?: boolean };
+        "postHide": any;
+        "postBeforeToggle": { willOpen: boolean };
+        "postToggle": { isOpen: boolean };
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -956,6 +974,10 @@ declare namespace LocalJSX {
     }
     interface PostAvatar {
         /**
+          * Provides a custom description for the avatar, used for accessibility purposes.
+         */
+        "description"?: string;
+        /**
           * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
@@ -968,7 +990,7 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
          */
         "userid"?: string;
     }
@@ -980,25 +1002,12 @@ declare namespace LocalJSX {
     }
     interface PostBanner {
         /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-          * @default false
-         */
-        "dismissible"?: boolean;
-        /**
-          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
-         */
-        "icon"?: string;
-        /**
           * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
          */
         "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
         /**
           * The type of the banner.
-          * @default 'neutral'
+          * @default 'info'
          */
         "type"?: BannerType;
     }
@@ -1018,6 +1027,10 @@ declare namespace LocalJSX {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1038,7 +1051,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <post-banner data-size="sm"><p>If not set the icon will not show up.</p></post-banner>
          */
         "icon"?: string;
         /**
@@ -1046,11 +1059,11 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</p></post-banner> <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "name"?: string;
         /**
-          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="banner banner-sm banner-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <post-banner data-size="sm"><p>If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</p></post-banner>
          */
         "onPostChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
@@ -1066,11 +1079,16 @@ declare namespace LocalJSX {
          */
         "validity"?: boolean;
         /**
-          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default 'button'
+         */
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -1215,6 +1233,10 @@ declare namespace LocalJSX {
     }
     interface PostMenu {
         /**
+          * An accessible name for the menu.
+         */
+        "label": string;
+        /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
@@ -1270,9 +1292,25 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
+          * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
-        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
+        "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
+         */
+        "onPostBeforeToggle"?: (event: PostPopovercontainerCustomEvent<{ willOpen: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is hidden.
+         */
+        "onPostHide"?: (event: PostPopovercontainerCustomEvent<any>) => void;
+        /**
+          * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+         */
+        "onPostShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
+         */
+        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean }>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'

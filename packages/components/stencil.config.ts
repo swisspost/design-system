@@ -16,19 +16,48 @@ export const config: Config = {
   },
   invisiblePrehydration: false,
   outputTargets: [
+    /*
+     * This output-target type is to generate the component(s) as a reusable, tree-shakable, self lazy-loading library.
+     * It is required for the angular-output-target, if `outputType: 'component'`!
+     * The loader folder is a single JS entry point, containing lazy-loaded components
+     * This is an alternative approach to e.g. loading the components directly through a script tag like: <script type="module" src='https://cdn.jsdelivr.net/npm/{{library-name}}@1.0.0/dist/{{library-name}}.js'></script>
+     */
     {
       type: 'dist',
-      esmLoaderPath: '../loader',
     },
+    /**
+     * This output-target type creates custom elements that directly extend HTMLElement.
+     * It is required for the react-output-target. To work for the react-output-target, `externalRuntime: false` is required!
+     * Thanks to `customElementsExportBehavior: 'auto-define-custom-elements'`, the components are self-defining themself.
+     */
     {
       type: 'dist-custom-elements',
+      dir: 'dist/components/react',
       customElementsExportBehavior: 'auto-define-custom-elements',
       externalRuntime: false,
     },
+    /**
+     * This output-target type creates custom elements that directly extend HTMLElement.
+     * It's the default standalone ouptut and required for the angular-output-target, if `outputType: 'scam|standalone'`!
+     * Thanks to `customElementsExportBehavior: 'single-export-module'`, all components can be consumed through a single entry point.
+     */
+    {
+      type: 'dist-custom-elements',
+      dir: 'dist/components',
+      customElementsExportBehavior: 'single-export-module',
+    },
+    /**
+     * This output-target type generates a module that can be used on a NodeJS server to hydrate HTML and implement server side rendering (SSR).
+     * It is required for the react-output-target, if SSR functionality is needed!
+     */
     {
       type: 'dist-hydrate-script',
       dir: './hydrate',
     },
+    /**
+     * This output-target type is oriented for webapps and websites, hosted from an http server, which can benefit from prerendering and service workers.
+     * Even if a project is meant to only build a reusable component library, the www output target is useful to build out and test the components throughout development.
+     */
     {
       type: 'www',
       copy: [
@@ -54,16 +83,30 @@ export const config: Config = {
       type: 'docs-json',
       file: 'dist/docs.json',
     },
+    /**
+     * This output-target type automates the creation of React component wrappers for the Stencil web-components.
+     * When SSR is needed, the `hydrate` output must be included in the build as well.
+     * Setting `externalRuntime: false` in the used `dist-custom-elements` output is required.
+     */
     reactOutputTarget({
+      customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated',
     }),
     reactOutputTarget({
+      customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated/server',
       hydrateModule: '@swisspost/design-system-components/hydrate',
     }),
+    /**
+     * This output-target type automates the creation of Angular component wrappers for the Stencil web-components.
+     * With `outputType: 'component'` the `dist` output is used to create the Angular compoments.
+     * While `outputType: 'scam|standalone` uses the default `dist-custom-elements` output.
+     * With these outputTypes, setting the `dist-custom-elements` option `customElementsExportBehavior` to `single-export-module` is required.
+     */
     angularOutputTarget({
+      customElementsDir: 'components',
       componentCorePackage: '@swisspost/design-system-components',
-      outputType: 'component',
+      outputType: 'standalone',
       directivesProxyFile:
         '../components-angular/projects/components/src/lib/stencil-generated/components.ts',
       directivesArrayFile:

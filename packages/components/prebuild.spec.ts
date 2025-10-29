@@ -1,9 +1,9 @@
 import fs from 'fs';
 import mockFs from 'mock-fs';
-import { createComponentNamesScssMap } from './prebuild';
+import { createComponentNameOutput, componentNameOutputOptions } from './prebuild';
 
 describe('prebuild', () => {
-  it('should read out component folders', () => {
+  it('should read out component folders', async () => {
     mockFs({
       'src/components': {
         'post-accordion': {},
@@ -15,17 +15,17 @@ describe('prebuild', () => {
         'some-other-folder': {},
         'folder_name_with_different_notation': {},
       },
-      'src/styles/generated': {},
+      'src/_generated': {},
     });
 
-    createComponentNamesScssMap();
-    const componentNamesScssMap = fs.readFileSync(
-      'src/styles/generated/component-names.scss',
-      'utf8',
-    );
+    await createComponentNameOutput(componentNameOutputOptions);
+
+    const componentNamesJson = fs.readFileSync('src/_generated/component-names.json', 'utf8');
+    const componentNamesScss = fs.readFileSync('src/_generated/component-names.scss', 'utf8');
 
     mockFs.restore();
 
-    expect(componentNamesScssMap).toMatchSnapshot();
+    expect(componentNamesJson).toMatchSnapshot();
+    expect(componentNamesScss).toMatchSnapshot();
   });
 });

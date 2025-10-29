@@ -2,7 +2,7 @@ describe('Spinner', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
       cy.visit('/iframe.html?id=snapshots--spinner');
-      cy.get('.loader', { timeout: 30000 }).should('be.visible');
+      cy.get('.spinner', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 

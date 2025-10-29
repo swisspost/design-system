@@ -1,8 +1,13 @@
-import type { StoryObj } from '@storybook/web-components-vite';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
-import { nothing } from 'lit';
+import { html, nothing } from 'lit';
 import { fakeContent } from '@/utils';
-import { html, unsafeStatic } from 'lit/static-html.js';
+import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
+import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
+import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
+import { renderCustomControls } from '@/stories/components/header/renderers/custom-controls';
+import { renderNavigationControls } from '@/stories/components/header/renderers/navigation-controls';
+import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
@@ -18,10 +23,15 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    title: 'Application title',
+    title: '',
+    mainNavigation: true,
     metaNavigation: true,
-    customControls: true,
-    useHeadings: false,
+    globalControls: true,
+    targetGroup: true,
+    globalLogin: true,
+    customControls: false,
+    isLoggedIn: false,
+    jobs: false,
   },
   argTypes: {
     title: {
@@ -34,9 +44,9 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    metaNavigation: {
-      name: 'Meta navigation',
-      description: 'Whether or not the meta navigation is displayed ("about us" and "jobs").',
+    mainNavigation: {
+      name: 'Main navigation',
+      description: 'Whether or not the main navigation is displayed.',
       control: {
         type: 'boolean',
       },
@@ -44,16 +54,46 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    useHeadings: {
-      name: 'Use headings',
-      description: 'Whether or not to use headings for the title and megadropdown titles.',
+    globalControls: {
+      name: 'Global controls',
+      description: 'Whether or not the search button in the global header is displayed.',
       control: {
         type: 'boolean',
       },
       table: {
         category: 'Content',
       },
-      defaultValue: { summary: true },
+    },
+    globalLogin: {
+      name: 'Global login',
+      description: 'Whether or not the user menu or login button in the global header is displayed',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    metaNavigation: {
+      name: 'Meta navigation',
+      description:
+        'Whether or not the meta navigation is displayed ("jobs" and "create an account").',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    targetGroup: {
+      name: 'Target group',
+      description: 'Whether or not the target group buttons are visible.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
     },
     customControls: {
       name: 'Custom controls',
@@ -65,6 +105,22 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    isLoggedIn: {
+      name: 'Is logged in',
+      description: 'Whether the user is logged in or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'state' },
+    },
+    jobs: {
+      name: 'Jobs',
+      description: 'Whether the jobs is active or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'state' },
+    },
   },
   decorators: [
     story =>
@@ -72,197 +128,190 @@ const meta: MetaComponent = {
         <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>`,
   ],
+  render: getHeaderRenderer(),
 };
+
+function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = renderUserMenu()) {
+  return (args: Args) => {
+    const title = html`
+      <!-- Application title (optional) -->
+      <h1 slot="title">${args.title}</h1>
+    `;
+
+    const globalLogin = args.isLoggedIn
+      ? html` <div slot="global-login">${userMenu}</div> `
+      : html`
+          <a href="" slot="global-login">
+            <span>Login</span>
+            <post-icon name="login"></post-icon>
+          </a>
+        `;
+
+    const globalControls = html`
+      <!-- Global controls (Search) -->
+      <ul class="list-inline" slot="global-controls">
+        <li>
+          <a href="">
+            <span>Search</span>
+            <post-icon aria-hidden="true" name="search"></post-icon>
+          </a>
+        </li>
+      </ul>
+    `;
+
+    return html`
+      <post-header>
+        <!-- Logo -->
+        <post-logo slot="post-logo" url="/">Homepage</post-logo>
+
+        ${args.targetGroup ? renderTargetGroup(args) : nothing}
+        ${args.globalControls && !args.jobs ? globalControls : nothing}
+        ${args.metaNavigation ? renderMetaNavigation(args) : nothing}
+
+        <!-- Language switch -->
+        <post-language-switch
+          caption="Change the language"
+          description="The currently selected language is English."
+          variant="list"
+          name="language-switch-example"
+          slot="post-language-switch"
+        >
+          <post-language-option code="de" name="German">de</post-language-option>
+          <post-language-option code="fr" name="French">fr</post-language-option>
+          <post-language-option code="it" name="Italian">it</post-language-option>
+          <post-language-option active="true" code="en" name="English">en</post-language-option>
+        </post-language-switch>
+
+        ${!args.title && !args.jobs
+          ? html`
+              <!-- Global header login/user menu -->
+              ${globalLogin}
+            `
+          : nothing}
+
+        <!-- Menu button for mobile -->
+        <post-togglebutton slot="post-togglebutton">
+          <span>Menu</span>
+          <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+          <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+        </post-togglebutton>
+
+        ${args.title !== '' ? title : nothing}
+        ${args.customControls ? renderCustomControls(args) : nothing}
+        ${args.mainNavigation ? mainnavigation : nothing}
+        ${args.jobs ? renderNavigationControls() : nothing}
+      </post-header>
+    `;
+  };
+}
+
+function getIframeParameters(iframeHeight: number) {
+  return {
+    parameters: {
+      docs: {
+        story: {
+          inline: false,
+          iframeHeight,
+        },
+      },
+    },
+  };
+}
 
 export default meta;
 
 type Story = StoryObj;
 
-/**
- * Get the heading element based on the provided parameters.
- * @param useHeadings Whether to use semantic headings (h1, h2, etc.) or not.
- * @param headingLevel The level of the heading (e.g., "h1", "h2", etc.).
- * @param content The content to be displayed inside the heading.
- * @param attributes Additional attributes to be added to the heading element.
- * @returns A TemplateResult representing the heading element.
- */
-const getHeading = (
-  useHeadings: boolean,
-  headingLevel: string,
-  content: string,
-  attributes?: Record<string, string>,
-) => {
-  const attrs = attributes
-    ? unsafeStatic(
-        Object.entries(attributes)
-          .map(([key, value]) => `${key}="${value}"`)
-          .join(' '),
-      )
-    : '';
+export const Default: Story = {};
 
-  const headingTag = unsafeStatic(headingLevel);
+export const ActiveNavigationItem: Story = {
+  ...getIframeParameters(250),
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer(html` ${story(context.args, context)} `);
+      return renderHeader(context.args);
+    },
+  ],
+  render: () => html`
+    <post-mainnavigation caption="Main navigation">
+      <post-list title-hidden="">
+        <h2>Main Navigation</h2>
+        <post-list-item slot="post-list-item">
+          <a href="/letters">Letters</a>
+        </post-list-item>
 
-  return useHeadings
-    ? html`<${headingTag} ${attrs}>${unsafeStatic(content)}</${headingTag}>`
-    : html`<p class="${headingLevel}" ${attrs}>${unsafeStatic(content)}</p>`;
+        <post-list-item slot="post-list-item">
+          <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
+          <a href="/packages" aria-current="page">Packages</a>
+        </post-list-item>
+      </post-list>
+    </post-mainnavigation>
+  `,
 };
 
-export const Default: Story = {
-  render: args => {
-    return html`<post-header>
-      <!-- Logo -->
-      <post-logo slot="post-logo" url="/">Homepage</post-logo>
+export const Portal: Story = {
+  ...getIframeParameters(550),
+};
 
-      ${args.metaNavigation
-        ? html`
-            <!-- Meta navigation -->
-            <ul class="list-inline" slot="meta-navigation">
-              <li><a href="">Jobs</a></li>
-              <li><a href="">About us</a></li>
-            </ul>
-          `
-        : ''}
+export const Jobs: Story = {
+  ...getIframeParameters(550),
+  args: {
+    jobs: true,
+  },
+};
 
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-      </post-togglebutton>
+export const Microsite: Story = {
+  ...getIframeParameters(550),
+  args: {
+    title: '[Microsite Title]',
+    mainNavigation: true,
+    globalControls: false,
+    metaNavigation: false,
+    globalLogin: false,
+    targetGroup: false,
+    customControls: true,
+  },
+};
 
-      <!-- Language switch -->
-      <post-language-switch
-        caption="Change the language"
-        description="The currently selected language is English."
-        variant="list"
-        name="language-switch-example"
-        slot="post-language-switch"
-      >
-        <post-language-option active="false" code="de" name="German">de</post-language-option>
-        <post-language-option active="false" code="fr" name="French">fr</post-language-option>
-        <post-language-option active="false" code="it" name="Italian">it</post-language-option>
-        <post-language-option active="true" code="en" name="English">en</post-language-option>
-      </post-language-switch>
+export const OnePager: Story = {
+  ...getIframeParameters(250),
+  args: {
+    title: '[One Pager Title]',
+    mainNavigation: false,
+    metaNavigation: false,
+    globalControls: false,
+    customControls: false,
+    globalLogin: false,
+    targetGroup: false,
+  },
+};
 
-      ${args.title
-        ? html` <!-- Application title (optional) -->
-            ${getHeading(args.useHeadings, 'h1', args.title, { slot: 'title' })}`
-        : nothing}
-      ${args.customControls
-        ? html`
-            <!-- Custom content (optional) -->
-            <ul class="list-inline">
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Search</span>
-                  <post-icon aria-hidden="true" name="search"></post-icon>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Login</span>
-                  <post-icon aria-hidden="true" name="login"></post-icon>
-                </a>
-              </li>
-            </ul>
-          `
-        : ''}
+// Used in target group documentation
+export const WithTargetGroup: Story = {
+  args: {
+    targetGroup: true,
+  },
+};
 
-      <!-- Main navigation -->
-      <post-mainnavigation caption="Main navigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
-        </button>
-        <post-list title-hidden="">
-          ${getHeading(args.useHeadings, 'h2', 'Main Navigation')}
+// User is logged in
+export const LoggedIn: Story = {
+  ...getIframeParameters(400),
+  args: {
+    isLoggedIn: true,
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer(undefined, html` ${story(context.args, context)} `);
+      return renderHeader({ ...context.args, customControls: true });
+    },
+  ],
+  render: () => renderUserMenu(),
+};
 
-          <!-- Link only level 1 -->
-          <post-list-item slot="post-list-item"><a href="/letters">Letters</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/packages">Packages</a></post-list-item>
-
-          <!-- Level 1 with megadropdown -->
-          <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-            <post-megadropdown id="letters">
-              <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                <post-icon name="arrowleft"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Close</post-closebutton>
-
-              ${getHeading(args.useHeadings, 'h2', 'Letters title', {
-                slot: 'megadropdown-title',
-              })}
-              <post-list>
-                ${getHeading(args.useHeadings, 'h3', 'Send letters')}
-                <post-list-item slot="post-list-item"
-                  ><a href="/sch">Letters Switzerland</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/kl">Small items abroad</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
-                <post-list-item slot="post-list-item"
-                  ><a href="">Express and courier</a></post-list-item
-                >
-              </post-list>
-              <post-list>
-                ${getHeading(args.useHeadings, 'h3', '<a href="/step-by-step">Step by step</a>')}
-                <post-list-item slot="post-list-item"
-                  ><a href="/sch">Packages Switzerland</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/kl">Small items abroad</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
-                <post-list-item slot="post-list-item"
-                  ><a href="">Express and courier</a></post-list-item
-                >
-              </post-list>
-            </post-megadropdown>
-          </post-list-item>
-          <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-            <post-megadropdown id="packages">
-              <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                <post-icon name="arrowleft"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Close</post-closebutton>
-
-              ${getHeading(args.useHeadings, 'h2', 'Packages title', {
-                slot: 'megadropdown-title',
-              })}
-              <post-list>
-                ${getHeading(args.useHeadings, 'h3', 'Send packages')}
-                <post-list-item slot="post-list-item"
-                  ><a href="/sch">Packages Switzerland</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/kl">Small items abroad</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
-                <post-list-item slot="post-list-item"
-                  ><a href="">Express and courier</a></post-list-item
-                >
-              </post-list>
-              <post-list>
-                ${getHeading(args.useHeadings, 'h3', '<a href="/step-by-step">Step by step</a>')}
-                <post-list-item slot="post-list-item"
-                  ><a href="/sch">Packages Switzerland</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"
-                  ><a href="/kl">Small items abroad</a></post-list-item
-                >
-                <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
-                <post-list-item slot="post-list-item"
-                  ><a href="">Express and courier</a></post-list-item
-                >
-              </post-list>
-            </post-megadropdown>
-          </post-list-item>
-        </post-list>
-      </post-mainnavigation>
-    </post-header>`;
+// User is logged out
+export const LoggedOut: Story = {
+  ...getIframeParameters(200),
+  args: {
+    isLoggedIn: false,
   },
 };

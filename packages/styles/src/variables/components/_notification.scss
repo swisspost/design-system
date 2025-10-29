@@ -38,15 +38,6 @@ $notification-padding-y-map: map.merge(
   )
 );
 
-$notification-font-size-map: () !default;
-$notification-font-size-map: map.merge(
-  $notification-font-size-map,
-  (
-    'banner': type.$font-size-base,
-    'toast': 0.75rem,
-  )
-);
-
 $notification-hr-margin-block-map: () !default;
 $notification-hr-margin-block-map: map.merge(
   $notification-hr-margin-block-map,
@@ -76,23 +67,21 @@ $notification-icon-size-map: map.merge(
   )
 );
 
-//TODO: Note that primary, and gray have been deleted (.banner by default is now neutral) and that danger is back to error
 $notification-variants: () !default;
 $notification-variants: list.join(
   $notification-variants,
   (
-    'neutral' tokens.get('banner-neutral-bg') 2201 tokens.get('banner-neutral-border-color')
-      tokens.get('banner-neutral-icon-color') tokens.get('post-banner-neutral-bg-scheme'),
-    'success' tokens.get('banner-success-bg') 2105 tokens.get('banner-success-border-color')
-      tokens.get('banner-success-icon-color') tokens.get('post-banner-success-bg-scheme'),
-    'warning' tokens.get('banner-warning-bg') 2104 tokens.get('banner-warning-border-color')
-      tokens.get('banner-warning-icon-color') tokens.get('post-banner-warning-bg-scheme'),
-    'error' tokens.get('banner-error-bg') 2104 tokens.get('banner-error-border-color')
-      tokens.get('banner-error-icon-color') tokens.get('post-banner-error-bg-scheme'),
-    'info' tokens.get('banner-info-bg') 2106 tokens.get('banner-info-border-color')
-      tokens.get('banner-info-icon-color') tokens.get('post-banner-info-bg-scheme'),
-    // duplicate
-    'danger' tokens.get('banner-error-bg') 2104 tokens.get('banner-error-border-color')
-      tokens.get('banner-error-icon-color') tokens.get('post-banner-error-bg-scheme')
+    'info' tokens.get('banner-info-bg') var(--post-signal-icon-info)
+      tokens.get('banner-info-border-color') tokens.get('banner-info-icon-color')
+      tokens.get('post-banner-info-bg-scheme'),
+    'success' tokens.get('banner-success-bg') var(--post-signal-icon-success)
+      tokens.get('banner-success-border-color') tokens.get('banner-success-icon-color')
+      tokens.get('post-banner-success-bg-scheme'),
+    'warning' tokens.get('banner-warning-bg') var(--post-signal-icon-warning)
+      tokens.get('banner-warning-border-color') tokens.get('banner-warning-icon-color')
+      tokens.get('post-banner-warning-bg-scheme'),
+    'error' tokens.get('banner-error-bg') var(--post-signal-icon-error)
+      tokens.get('banner-error-border-color') tokens.get('banner-error-icon-color')
+      tokens.get('post-banner-error-bg-scheme')
   )
 );

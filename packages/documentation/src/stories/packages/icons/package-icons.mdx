@@ -24,10 +24,10 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
   <Source code={`npm install @swisspost/design-system-icons`} language="bash" />
 
-  <div className="banner banner-info banner-md">
+  <post-banner>
     To render an icon with a component, you need to install the [Components
     package](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs) as well.
-  </div>
+  </post-banner>
 
   ## Usage
 
@@ -74,7 +74,7 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
     <post-tab-header panel="baseAttribute">Base-attribute solution</post-tab-header>
     <post-tab-panel name="baseAttribute">
-      <Source  code={`<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
+      <Source  code={`<post-icon name="letter" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
     </post-tab-panel>
   </post-tabs>
 
@@ -84,10 +84,10 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
   All icons are also available from a CDN, which is the default if you don't configure a base path for your icons and don't serve them locally. When using the CDN, please note that you need to configure your CORS policy to enable resource loading from unpkg.com.
 
-  <div className="banner banner-warning banner-md">
+  <post-banner type="warning">
     Using the CDN is not recommended for production because of higher latency when loading from the
     CDN, use it for quickly testing something or for prototyping.
-  </div>
+  </post-banner>
 
   ### Check the Content Security Policy
 

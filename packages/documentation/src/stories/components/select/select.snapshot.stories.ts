@@ -113,17 +113,19 @@ export const Select: Story = {
               `,
           )}
           <h2>Multiple - Default</h2>
-          ${bombArgsGeneratedMultiple.map(
-            (args: Args) =>
-              html`
-                <div>
-                  ${Default.render?.(
-                    { ...context.args, ...Default.args, ...args },
-                    { ...context, id: `a-${crypto.randomUUID()}` },
-                  )}
-                </div>
-              `,
-          )}
+          ${bombArgsGeneratedMultiple
+            .map((args: Args) => ({ ...args, floatingLabel: false }))
+            .map(
+              (args: Args) =>
+                html`
+                  <div>
+                    ${Default.render?.(
+                      { ...context.args, ...Default.args, ...args },
+                      { ...context, id: `a-${crypto.randomUUID()}` },
+                    )}
+                  </div>
+                `,
+            )}
         </div>
       `,
     );

@@ -3,6 +3,7 @@
 
 @use '../variables/sizing' as *;
 @use '../variables/type';
+@use '../variables/commons';
 
 /*
   Utilities are generated with our utility API using bellow $utilities map.
@@ -446,20 +447,22 @@ $utilities: (
     values: static relative absolute fixed sticky,
   ),
   'top': (
-    property: top,
+    property: inset-block-start,
+    class: top,
     values: $position-values,
   ),
   'bottom': (
-    property: bottom,
+    property: inset-block-end,
+    class: bottom,
     values: $position-values,
   ),
   'start': (
-    property: left,
+    property: inset-inline-start,
     class: start,
     values: $position-values,
   ),
   'end': (
-    property: right,
+    property: inset-inline-end,
     class: end,
     values: $position-values,
   ),
@@ -567,6 +570,14 @@ $utilities: (
       reset: inherit,
     ),
   ),
+  'visibility': (
+    property: visibility,
+    class: null,
+    values: (
+      visible: visible,
+      invisible: hidden,
+    ),
+  ),
   'user-select': (
     property: user-select,
     values: all auto none,
@@ -575,5 +586,17 @@ $utilities: (
     property: pointer-events,
     class: pe,
     values: none auto,
+  ),
+  'z-index': (
+    property: z-index,
+    class: z,
+    values: map.merge(commons.$zindex-map, commons.$named-zindex-map),
+  ),
+  'small': (
+    property: font-size,
+    class: null,
+    values: (
+      small: 80%,
+    ),
   ),
 );

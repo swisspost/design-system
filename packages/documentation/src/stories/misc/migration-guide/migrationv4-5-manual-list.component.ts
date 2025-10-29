@@ -1,14 +1,16 @@
 import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getLocaleStorage, MIGRATION_CHECKS_KEY, setLocaleStorage } from './util/persist.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V4 } from './util/persist.util';
 import { _templateAutoIcon } from './util/template.util';
+import { V45Checks } from './types';
+import { _updateOnChange } from './util/migration-checks.util';
 
 @customElement('migration-version-4-5-manual-list')
 export class MigrationV45ManualListComponent extends LitElement {
   @property({ type: Boolean }) angular?: boolean;
 
   @state()
-  private state: TodoListChecks = {
+  private state: V45Checks = {
     general: {
       naming_cwfpackagename: false,
       naming_entryfiles: false,
@@ -103,7 +105,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
   constructor() {
     super();
-    this._restorePersistedState();
+    this.state = _restorePersistedState<V45Checks>(MIGRATION_CHECKS_KEY_V4) ?? this.state;
   }
 
   render() {
@@ -1789,11 +1791,11 @@ export class MigrationV45ManualListComponent extends LitElement {
                     </p>
 
                     ${this.angular
-                      ? html` <p class="banner banner-info">
+                      ? html` <post-banner>
                           One might think: "When it is so easy to migrate, why don't you offer an
                           automatic migration?"<br />
                           The short answer: because it is no longer the same component!
-                        </p>`
+                        </post-banner>`
                       : nothing}
                   </label>
                 </div>
@@ -2034,41 +2036,20 @@ export class MigrationV45ManualListComponent extends LitElement {
     `;
   }
 
-  private _restorePersistedState() {
-    const stateTypeFromLocalStorage = getLocaleStorage(MIGRATION_CHECKS_KEY);
-    if (stateTypeFromLocalStorage) {
-      this.state = stateTypeFromLocalStorage;
-    }
-  }
-
   private _onChange(
     event: Event & {
       target: HTMLInputElement;
     },
   ) {
-    this._toggleStateProperty(event.target.id);
-    this._updatePersistedState();
+    _updateOnChange(event, MIGRATION_CHECKS_KEY_V4, this.state);
     this.requestUpdate();
-  }
-
-  private _toggleStateProperty(path: string) {
-    const keys = path.split('.');
-    const last_key = keys.pop();
-    if (last_key) {
-      const last_obj = keys.reduce((o, k) => o[k], this.state);
-      last_obj[last_key] = !last_obj[last_key];
-    }
-  }
-
-  private _updatePersistedState() {
-    setLocaleStorage(MIGRATION_CHECKS_KEY, this.state);
   }
 
   private _templateAutoIconAngular() {
     return html` ${this.angular ? _templateAutoIcon() : nothing} `;
   }
 
-  public _templateGroupTodoListStatus(group: keyof TodoListChecks) {
+  public _templateGroupTodoListStatus(group: keyof V45Checks) {
     const checkboxValues = Object.values(this.state?.[group] ?? {});
     const checkedValues = checkboxValues.filter(v => v === true);
 

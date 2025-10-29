@@ -99,11 +99,6 @@ export class PostMainnavigation {
       });
   }
 
-  private handleBackButtonClick() {
-    const header = this.navbar.closest<HTMLPostHeaderElement>('post-header');
-    if (header) header.toggleMobileMenu();
-  }
-
   /**
    * Returns whether scrolling is enabled in either the left or right direction.
    */
@@ -195,10 +190,6 @@ export class PostMainnavigation {
   render() {
     return (
       <Host slot="post-mainnavigation" version={version}>
-        <div onClick={() => this.handleBackButtonClick()} class="back-button">
-          <slot name="back-button"></slot>
-        </div>
-
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}

@@ -11,7 +11,7 @@ legend {
 
   &.large {
     font-size: tokens.get('legend-large-font-size');
-    padding-block-start: tokens.get('legend-large-padding-block-start');
+    margin-block-start: tokens.get('legend-large-margin-block-start');
     padding-block-end: calc(
       tokens.get('legend-large-padding-block-end') - tokens.get('legend-large-border-width')
     );

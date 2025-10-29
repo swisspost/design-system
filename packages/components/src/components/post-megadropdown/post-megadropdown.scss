@@ -112,6 +112,29 @@
     padding-inline: 16px;
   }
 
+  [slot='megadropdown-overview-link'] {
+    text-decoration: none;
+    border-radius: 0;
+    padding-block: 13px 12px;
+    margin-block-end: 16px;
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+
+    @include header-mx.mobile-header-interactive() {
+      height: unset;
+    }
+
+    @include media.max(lg) {
+      padding-block: 12px 11px;
+      min-height: unset;
+    }
+
+    @include media.max(sm) {
+      padding-block: 10px 9px;
+    }
+  }
+
   .megadropdown-content {
     gap: 1.5rem;
     display: grid;

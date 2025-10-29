@@ -1,6 +1,10 @@
-// components/DependenciesTable.tsx
-import React from 'react';
-import versionsData from '../../../../public/assets/versions.json';
+import React, { useEffect, useState } from 'react';
+import * as packageJson from '../../../../package.json';
+import { getVersion } from '@/utils/version';
+
+const VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
+const STYLES_VERSION = packageJson.dependencies['@swisspost/design-system-styles'] ?? '';
+const CURRENT_VERSION = Number(getVersion(STYLES_VERSION, 'major'));
 
 interface VersionEntry {
   title: string;
@@ -14,7 +18,29 @@ interface VersionEntry {
 }
 
 const DependenciesTable: React.FC = () => {
-  const versions = versionsData as VersionEntry[];
+  const [versions, setVersions] = useState<VersionEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(VERSIONS_URL)
+      .then(res => {
+        if (!res.ok) setError('Failed to fetch versions.json.');
+        return res.json();
+      })
+      .then(data => {
+        const filtered = (data as VersionEntry[]).filter(
+          entry => Number(getVersion(entry.version, 'major')) <= CURRENT_VERSION,
+        );
+        setVersions(filtered);
+      })
+      .catch(err => {
+        setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   const formatVersion = (version: string | undefined, majorOnly = false): string => {
     if (!version) return 'N/A';
@@ -38,6 +64,9 @@ const DependenciesTable: React.FC = () => {
     const match = version.match(/^(\d+)\./);
     return match ? `${match[1]}.x` : version;
   };
+
+  if (loading) return <p>Loading versions...</p>;
+  if (error) return <p>Error loading versions: {error}</p>;
 
   return (
     <div className="table-responsive table-fit-content text-start">

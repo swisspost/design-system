@@ -40,6 +40,7 @@
         "*",
         "!typescript",
         "!@storybook/*",
+        "!storybook",
         "!@angular/*",
         "!@stencil/*",
         "!tailwindcss",

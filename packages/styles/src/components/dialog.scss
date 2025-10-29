@@ -16,7 +16,7 @@ dialog {
   min-width: min(389px, 90vw);
   max-width: 590px;
   max-height: 90vh;
-  overflow: auto;
+  overflow: visible;
   margin: revert;
   overscroll-behavior: contain;
   border: 2px solid color.$black; // Ensures good contrast when bg is dark against dark backdrop
@@ -75,50 +75,91 @@ dialog {
 }
 
 dialog > .dialog-grid {
-  margin: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0 tokens.get('utility-gap-16');
+  padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0;
   display: grid;
+  grid-template-rows: auto 1fr auto;
+  max-height: 90vh;
   column-gap: tokens.get('utility-gap-16');
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     'icon header close-button'
-    'icon body close-button'
+    'icon body body'
     'controls controls controls';
 
   // Propagate bg color to the controls
   background-color: inherit;
+
+  &:not(:has(.dialog-controls)) {
+    padding-bottom: tokens.get('utility-gap-16');
+  }
 }
 
 :where(.dialog-icon, .dialog-header, .dialog-body, .dialog-controls, .dialog-close):empty {
   display: none;
 }
 
-.dialog-grid > post-icon {
-  grid-area: icon;
-  display: block;
+.dialog-grid {
+  > post-icon {
+    grid-area: icon;
+    display: block;
 
-  width: tokens.get('utility-gap-32');
-  height: tokens.get('utility-gap-32');
+    width: tokens.get('utility-gap-32');
+    height: tokens.get('utility-gap-32');
 
-  // Larger icon for bigger notification dialogs
-  dialog:not([size='small']) & {
-    @include media.min(sm) {
-      width: tokens.get('utility-gap-48');
-      height: tokens.get('utility-gap-48');
+    // Larger icon for bigger notification dialogs
+    dialog:not([size='small']) & {
+      @include media.min(sm) {
+        width: tokens.get('utility-gap-48');
+        height: tokens.get('utility-gap-48');
+      }
     }
   }
-}
 
-.dialog-header {
-  grid-area: header;
-  margin-top: 0;
-}
+  .dialog-header {
+    grid-area: header;
+    margin-top: 0;
+    position: sticky;
+  }
 
-.dialog-body {
-  grid-area: body;
-  margin-bottom: 0;
-
-  > *:last-child {
+  .dialog-body {
+    grid-area: body;
     margin-bottom: 0;
+    overflow: auto;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  > post-closebutton {
+    position: sticky;
+    top: 0;
+    grid-area: close-button;
+    width: tokens.get('utility-gap-24');
+    height: tokens.get('utility-gap-24');
+    min-height: 0;
+  }
+
+  &:not(:has(> post-icon)) {
+    .dialog-header {
+      grid-area: 1 / icon / 1 / header;
+    }
+
+    .dialog-body {
+      grid-area: 2 / icon / 2 / body;
+    }
+  }
+
+  &:not(:has(> post-closebutton)) {
+    .dialog-header {
+      grid-area: 1 / header / 1 / close-button;
+    }
+  }
+
+  &:not(:has(> post-icon, > post-closebutton)) {
+    .dialog-header {
+      grid-area: 1 / icon / 1 / close-button;
+    }
   }
 }
 
@@ -126,7 +167,9 @@ dialog > .dialog-grid {
   grid-area: controls;
   position: sticky;
   bottom: 0;
-  padding-block: tokens.get('utility-gap-16');
+  padding-top: tokens.get('utility-gap-16');
+  padding-bottom: tokens.get('utility-gap-16');
+  margin-block-end: 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row-reverse;
@@ -138,15 +181,6 @@ dialog > .dialog-grid {
       width: 100%;
     }
   }
-}
-
-.dialog-grid > .btn-close {
-  position: sticky;
-  top: 0;
-  grid-area: close-button;
-  width: tokens.get('utility-gap-24');
-  height: tokens.get('utility-gap-24');
-  min-height: 0;
 }
 
 // Animations

@@ -7,9 +7,6 @@
 
 tokens.$default-map: elements.$post-body;
 
-// Resets type
-@use '../components/fonts';
-
 body {
   --post-current-bg: #{tokens.get('body-color-bg')};
   --post-current-fg: #{tokens.get('body-color-fg')};

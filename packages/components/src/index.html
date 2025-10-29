@@ -29,7 +29,7 @@
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
+        <span>Menu</span>
         <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
         <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
       </post-togglebutton>
@@ -51,17 +51,30 @@
       <!-- Application title (optional) -->
       <p class="h1" slot="title">Application title</p>
 
+      <!-- Target group -->
+      <ul slot="target-group" class="target-group">
+        <li>
+          <a href="#" class="active">Private customers</a>
+        </li>
+        <li>
+          <a href="#">Business customers</a>
+        </li>
+        <li>
+          <a href="#">Authorities</a>
+        </li>
+      </ul>
+
       <!-- Custom content (optional) -->
       <ul class="list-inline">
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Search</span>
+            <span>Search</span>
             <post-icon aria-hidden="true" name="search"></post-icon>
           </a>
         </li>
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Login</span>
+            <span>Login</span>
             <post-icon aria-hidden="true" name="login"></post-icon>
           </a>
         </li>
@@ -69,10 +82,6 @@
 
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
-        </button>
-
         <post-list title-hidden="">
           <p class="h2">Main Navigation</p>
 
@@ -98,6 +107,7 @@
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
               <p slot="megadropdown-title" class="h2">Briefe title</p>
+              <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
               <post-list>
                 <p class="h3">Briefe senden</p>
                 <post-list-item slot="post-list-item"
@@ -135,10 +145,11 @@
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
               <p class="h2" slot="megadropdown-title">Pakete title</p>
+              <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
               <post-list>
                 <p class="h3">Pakete senden</p>
                 <post-list-item slot="post-list-item"
-                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                  ><a aria-current="page" href="/sch">Pakete Schweiz</a></post-list-item
                 >
                 <post-list-item slot="post-list-item"
                   ><a href="/kl">Kleinwaren Ausland</a></post-list-item

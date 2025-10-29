@@ -14,47 +14,30 @@ $post-docs-banner-icon-size-sm: 1.4em;
 $post-docs-banner-line-height-md: 1.35;
 $post-docs-banner-line-height-sm: 1.25;
 
-@include mixins.style-docs-only-guard('.banner') {
+@include mixins.style-docs-only-guard('post-banner') {
+  min-height: 0;
+  padding: $post-docs-banner-padding-md;
   font-size: 1rem;
+  line-height: $post-docs-banner-line-height-md;
+  margin-block-end: 0.5rem;
 
-  &:not(.banner-action) {
-    > :only-child:not(code),
-    > :first-child:not(code) + :last-child:not(code) {
-      font-size: inherit;
-    }
+  &::before {
+    top: list.nth($post-docs-banner-padding-md, 1) +
+        (($post-docs-banner-line-height-md - $post-docs-banner-icon-size-md) * 0.5);
+    left: (list.nth($post-docs-banner-padding-md, 4) - $post-docs-banner-icon-size-md) * 0.5;
+    width: $post-docs-banner-icon-size-md;
+    height: $post-docs-banner-icon-size-md;
   }
 
   &:last-child {
     margin-bottom: 0;
   }
 
-  .banner-heading {
-    font-size: 1.0625rem;
-    font-weight: tokens.get('utility-font-weight-black', utilities.$post-typo);
-  }
-
-  &.banner-sm,
-  &.banner-md {
-    display: block;
-    min-height: 0;
-    font-family: inherit;
-
-    a {
-      font-size: inherit;
-      font-weight: inherit;
-      color: var(--post-current-fg);
-
-      &:hover {
-        color: black;
-      }
-    }
-  }
-
-  &.banner-sm {
+  &[data-size="sm"] {
     padding: $post-docs-banner-padding-sm;
-    font-size: 0.75rem;
-    font-weight: 400;
     line-height: $post-docs-banner-line-height-sm;
+    margin-block-end: 0.25rem;
+    font-size: 0.825rem;
 
     &::before {
       top: list.nth($post-docs-banner-padding-sm, 1) +
@@ -63,30 +46,22 @@ $post-docs-banner-line-height-sm: 1.25;
       width: $post-docs-banner-icon-size-sm;
       height: $post-docs-banner-icon-size-sm;
     }
-
-    code {
-      font-size: 0.833333em;
-    }
   }
 
-  &.banner-md {
-    padding: $post-docs-banner-padding-md;
-    font-size: 0.9rem;
-    line-height: $post-docs-banner-line-height-md;
-
-    &::before {
-      top: list.nth($post-docs-banner-padding-md, 1) +
-        (($post-docs-banner-line-height-md - $post-docs-banner-icon-size-md) * 0.5);
-      left: (list.nth($post-docs-banner-padding-md, 4) - $post-docs-banner-icon-size-md) * 0.5;
-      width: $post-docs-banner-icon-size-md;
-      height: $post-docs-banner-icon-size-md;
-    }
+  :not(code) {
+    font-family: inherit;
   }
-}
 
-@include mixins.style-docs-only-guard('post-banner') {
-  &::part(banner) {
-    font-size: 1rem;
-    font-weight: 400;
+  [slot="heading"] {
+    font-weight: bold;
+  }
+
+  a {
+    font-weight: inherit;
+    color: var(--post-current-fg);
+
+    &:hover {
+      color: black;
+    }
   }
 }
