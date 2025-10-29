@@ -99,6 +99,7 @@ post-header {
   ul.list-inline {
     margin: 0;
     gap: 0.25rem;
+    align-items: center;
   }
 
   ul[slot='meta-navigation'] {
