@@ -24,7 +24,7 @@
 
     @include utilities.high-contrast-mode-dark() {
       background-image: var(--post-signal-icon-success);
-    } // ✅ Added closing brace
+    }
 
     @include utilities.high-contrast-mode-light() {
       background-image: var(--post-signal-icon-success);
