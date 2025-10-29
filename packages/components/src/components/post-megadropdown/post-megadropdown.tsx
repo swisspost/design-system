@@ -224,7 +224,7 @@ export class PostMegadropdown {
 
   private handleTabOutside(e: KeyboardEvent) {
     if (e.key === 'Tab' && this.device === 'desktop') {
-      if (!this.host.contains(e.target as Node)) {
+      if (this.isVisible && !this.host.contains(e.target as Node)) {
         this.hide(false);
       }
     }
