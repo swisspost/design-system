@@ -278,14 +278,17 @@ tokens.$default-map: components.$post-select;
     }
 
     &.is-valid:not(:disabled) {
-      background-image: forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-success);
+      background-image: forms-fx.select-arrow-icon('enabled', 'dark'),
+        var(--post-signal-icon-success);
 
       &:focus {
-        background-image: forms-fx.select-arrow-icon('selected', 'dark'), var(--post-signal-icon-success);
+        background-image: forms-fx.select-arrow-icon('selected', 'dark'),
+          var(--post-signal-icon-success);
       }
 
       &:hover {
-        background-image: forms-fx.select-arrow-icon('hover', 'dark'), var(--post-signal-icon-success);
+        background-image: forms-fx.select-arrow-icon('hover', 'dark'),
+          var(--post-signal-icon-success);
       }
     }
 
@@ -293,7 +296,8 @@ tokens.$default-map: components.$post-select;
       background-image: forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-error);
 
       &:focus {
-        background-image: forms-fx.select-arrow-icon('selected', 'dark'), var(--post-signal-icon-error);
+        background-image: forms-fx.select-arrow-icon('selected', 'dark'),
+          var(--post-signal-icon-error);
       }
 
       &:hover {
