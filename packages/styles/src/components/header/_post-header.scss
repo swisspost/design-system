@@ -96,7 +96,8 @@ post-header {
   ul.list-inline {
     margin: 0;
     gap: 0.25rem;
-    @include media.only(desktop) {
+
+    &[slot='local-controls'] {
       align-items: center;
     }
   }
