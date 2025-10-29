@@ -29,12 +29,3 @@ $other-icons: map.merge(
   ),
   $other-icons
 );
-
-$warning-icon-name: 'warning';
-$warning-icon-svg-path: var(--post-signal-icon-warning);
-$other-icons: map.merge(
-  (
-    $warning-icon-name: $warning-icon-svg-path,
-  ),
-  $other-icons
-);
