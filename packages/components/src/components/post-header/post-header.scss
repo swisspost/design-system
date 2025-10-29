@@ -74,7 +74,6 @@
 
 .local-header {
   position: relative;
-  inset-block-start: var(--post-local-header-top);
   flex-wrap: wrap;
   background-color: #fff;
   min-height: var(--post-local-header-expanded-min-height);
@@ -127,7 +126,7 @@
   z-index: -1; // burger-menu should slide bellow the local header
   position: absolute;
   inset-inline: 0;
-  inset-block-start: calc(var(--post-header-height) - var(--post-header-top));
+  inset-block-start: 100%;
   height: calc(
     min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
   );
