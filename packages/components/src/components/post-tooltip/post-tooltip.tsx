@@ -85,17 +85,18 @@ export class PostTooltip {
    * Set the open state based on the toggle event.
    * @param e Popovercontainer toggle event
    */
-  private handleToggle(e: PostPopovercontainerCustomEvent<boolean>) {
-    this.open = e.detail;
+  private handleToggle(e: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) {
+    this.open = e.detail.isOpen;
   }
 
   render() {
     const popoverClass = `${this.arrow ? 'has-arrow' : ''}`;
     return (
-      <Host data-version={version} role="tooltip">
+      <Host data-version={version}>
         <post-popovercontainer
           safeSpace="trapezoid"
           class={popoverClass}
+          role="tooltip"
           arrow={this.arrow}
           animation={this.animation}
           placement={this.placement}

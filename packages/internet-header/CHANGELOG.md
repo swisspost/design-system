@@ -1,5 +1,86 @@
 # @swisspost/internet-header
 
+## 10.0.0-next.51
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.51
+
+## 10.0.0-next.50
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.50
+
+## 10.0.0-next.49
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.49
+
+## 10.0.0-next.48
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.48
+
+## 10.0.0-next.47
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.47
+
+## 10.0.0-next.46
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.46
+
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.45
+
+## 10.0.0-next.44
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.44
+
+## 10.0.0-next.43
+
+### Major Changes
+
+- Aligned version number with the rest of the Design System packages to indicate the dependency on the @swisspost/design-system-components package in the future. (by [@gfellerph](https://github.com/gfellerph) with [#5905](https://github.com/swisspost/design-system/pull/5905))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.43
+
+## 2.0.0-next.42
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.42
+
+## 2.0.0-next.41
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.41
+
 ## 2.0.0-next.40
 
 ### Patch Changes

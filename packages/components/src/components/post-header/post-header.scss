@@ -16,38 +16,28 @@
   position: relative;
 
   // The following variables will affect the header to minimize it on scroll
+  --post-logo-height: calc(var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px));
   --post-global-header-top: calc(
-    (var(--post-global-header-height) - var(--post-global-header-reduced-height)) * -1
+    var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)
   );
   --post-local-header-top: calc(
-    -1 * (var(--post-local-header-height) - var(--post-main-navigation-height)) + var(--post-global-header-reduced-height)
+    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height) - var(--post-local-header-expanded-height)
   );
-  --post-logo-height: calc(var(--post-global-header-height) - var(--post-header-scroll-top, 0px));
-  --post-global-controls-top: calc(min((var(--post-header-scroll-top) / 4), 20px) * -1);
+  --post-global-controls-top: clamp(
+    1000 * var(--post-global-header-top), /* 0 when header is static, large negative when header shrinks to enable offset */
+    calc(-1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))),
+    0px
+  );
 
-  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
-  &:has(.global-sub > *:not(.logo):focus-within),
-  &:has(.local-sub:focus-within) {
-    --post-global-header-top: 0;
-    --post-local-header-top: var(--post-global-header-height);
-    --post-logo-height: var(--post-global-header-height);
-    --post-global-controls-top: 0;
-  }
-
-  @include media.max(lg) {
-    position: fixed;
-    inset: 0;
-    bottom: auto;
-  }
-}
-
-:host(:not(:has([slot='title']))) {
-  .local-header {
-    padding-block-start: 0;
-  }
-
-  .local-sub {
-    display: none;
+  @include media.only(desktop) {
+    // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
+    &:has(.global-sub > *:not(.logo):focus-within),
+    &:has(.local-sub:focus-within) {
+      --post-global-header-top: 0;
+      --post-local-header-top: var(--post-global-header-expanded-height);
+      --post-logo-height: var(--post-global-header-expanded-height);
+      --post-global-controls-top: 0;
+    }
   }
 }
 
@@ -65,26 +55,29 @@
   justify-content: space-between;
   position: sticky;
   padding-inline: 4px;
-  height: var(--post-global-header-height);
+  height: var(--post-global-header-expanded-height);
 
   @include media.max(lg) {
     z-index: 4;
     inset-block-start: 0;
-    position: relative;
   }
 
   @include media.min(lg) {
     z-index: 5;
-    padding-inline-end: 12px;
+    padding-inline-end: 8px;
     inset-block-start: var(--post-global-header-top);
     transition: inset-block-start 0.2s ease-in-out;
+  }
+
+  &:has(+ .local-header.no-navigation.no-title) {
+    box-shadow: elevation.$elevation-300;
   }
 }
 
 .global-sub {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 4px;
 
   @include media.min(lg) {
     // targets the right links and language switch to hide them on scroll
@@ -92,6 +85,11 @@
       position: relative;
       transition: inset-block-start 0.2s ease-in-out;
       inset-block-start: var(--post-global-controls-top);
+    }
+
+    // targets the target group
+    &:not(:last-child):not(:first-child) {
+      flex-grow: 1;
     }
   }
 }
@@ -102,8 +100,8 @@
 
 .logo {
   flex: 1 0 auto;
-  height: var(--post-global-header-height);
-  width: var(--post-global-header-height);
+  height: var(--post-global-header-expanded-height);
+  width: var(--post-global-header-expanded-height);
   min-height: var(--post-global-header-reduced-height);
   align-self: flex-end;
 
@@ -125,11 +123,12 @@
 .local-header {
   display: flex;
   position: sticky;
+  inset-block-start: var(--post-local-header-top);
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 4px;
-  min-height: var(--post-local-header-min-height);
+  min-height: var(--post-local-header-expanded-min-height);
   background: color.$white;
   transition: box-shadow 0.2s ease-in-out;
 
@@ -149,15 +148,16 @@
 
   @include media.min(lg) {
     z-index: 3;
-    inset-block-start: var(--post-local-header-top);
-    padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
     transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
+
+    &:not(.no-title) {
+      padding-block-start: 18px;
+    }
   }
 
   @include media.max(lg) {
     z-index: 3;
-    position: relative;
     padding-block: 8px;
 
     flex-wrap: wrap;
@@ -173,10 +173,22 @@
       box-shadow: elevation.$elevation-300;
     }
   }
+
+  &.no-navigation {
+    padding-block: 0;
+
+    .navigation {
+      display: none;
+    }
+  }
+
+  &.no-navigation.no-title {
+    display: none;
+  }
 }
 
 .local-sub {
-  margin-inline-end: 8px;
+  margin-inline-end: 16px;
 
   @include media.max(lg) {
     margin-inline-end: 4px;
@@ -199,6 +211,9 @@
   width: 100%;
 
   @include media.min(lg) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     inset-block-start: var(--post-global-header-reduced-height);
 
     &::before {
@@ -227,14 +242,23 @@
 
   ::slotted(post-mainnavigation),
   .navigation-footer {
+    padding-block: 16px 24px;
+    padding-inline: 40px;
+  }
+
+  .navigation-header,
+  ::slotted(post-mainnavigation),
+  .navigation-footer {
     display: none;
     flex-direction: column;
-    padding-block: 16px 24px;
-    padding-inline: 32px;
 
     .navigation.extended & {
       display: flex;
     }
+  }
+
+  ::slotted(post-mainnavigation) {
+    padding-block: 24px;
   }
 
   .navigation.extended {
@@ -259,13 +283,17 @@
     }
   }
 
-  ::slotted(post-mainnavigation) {
-    gap: 32px;
-  }
-
   .navigation-footer {
     background-color: #f0efed;
     gap: 24px;
+
+    ::slotted(post-language-switch) {
+      margin-top: 16px;
+    }
+
+    @include media.max(sm) {
+      gap: 16px;
+    }
   }
 }
 

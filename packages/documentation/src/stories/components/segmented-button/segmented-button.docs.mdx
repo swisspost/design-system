@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SegmentedButtonStories from './segmented-button.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -13,11 +13,11 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 The segmented button is a single-select component.
 It allows users to toggle between two or more content sections within the same area on the screen.
 
-<div role="alert" className="banner banner-info">
+<post-banner>
   If the labels are too long or the number of options is excessive for the available space, consider
   using a select component. Keep in mind that long labels may cause layout issues, such as text
   overflowing or word breaks.
-</div>
+</post-banner>
 
 <Canvas of={SegmentedButtonStories.TextExample} sourceState="shown" />
 <Controls of={SegmentedButtonStories.TextExample} />

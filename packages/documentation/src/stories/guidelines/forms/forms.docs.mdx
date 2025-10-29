@@ -1,4 +1,4 @@
-import { Canvas, Meta, Source } from '@storybook/blocks';
+import { Canvas, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as FormGuidelinesStories from './forms.stories';
 
 <Meta of={FormGuidelinesStories} />
@@ -80,7 +80,13 @@ Or
 
 The input field needs the class `.is-invalid/.is-valid`
 
-<Canvas of={FormGuidelinesStories.Validation} sourceState="shown" />
+<Canvas of={FormGuidelinesStories.Validation} sourceState="hidden" />
+
+## Required and optional fields
+
+Mark all required fields with the label “required” and all optional fields with the label “optional”. However, not specifying that a field is optional is not a deal breaker, but doing so is a nice perk.
+
+<Canvas of={FormGuidelinesStories.RequiredOptional} sourceState="hidden" />
 
 ## Hints
 

@@ -3,11 +3,12 @@ import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-menu-item',
+  styleUrl: 'post-menu-item.scss',
 })
 export class PostMenuItem {
   render() {
     return (
-      <Host role="menuitem" data-version={version}>
+      <Host data-version={version}>
         <slot></slot>
       </Host>
     );

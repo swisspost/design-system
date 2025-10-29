@@ -1,0 +1,33 @@
+@use '../tokens/temp/schemestatic';
+
+/**
+ * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
+ * This check becomes obsolete when the fallback is removed.
+ */
+@use '../mixins/supports';
+
+@mixin light-variables() {
+  @each $key, $value in schemestatic.$post-light {
+    --#{$key}: #{$value};
+  }
+
+  @include supports.light-dark(false) {
+    --post-scheme-even: ;
+    --post-scheme-swapped: initial;
+    --post-scheme-light: ;
+    --post-scheme-dark: initial;
+  }
+}
+
+@mixin dark-variables() {
+  @each $key, $value in schemestatic.$post-dark {
+    --#{$key}: #{$value};
+  }
+
+  @include supports.light-dark(false) {
+    --post-scheme-even: initial;
+    --post-scheme-swapped: ;
+    --post-scheme-light: ;
+    --post-scheme-dark: initial;
+  }
+}

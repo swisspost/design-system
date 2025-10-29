@@ -1,5 +1,58 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.51
+
+## 10.0.0-next.50
+
+## 10.0.0-next.49
+
+## 10.0.0-next.48
+
+## 10.0.0-next.47
+
+### Patch Changes
+
+- Updated tokens package to use TypeScript. (by [@myrta2302](https://github.com/myrta2302) with [#5557](https://github.com/swisspost/design-system/pull/5557))
+
+## 10.0.0-next.46
+
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Reverted Tailwind token generation format change introduced for Tailwind v4 compatibility. This restores the previous format compatible with Tailwind v3. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6059](https://github.com/swisspost/design-system/pull/6059))
+
+## 10.0.0-next.44
+
+## 10.0.0-next.43
+
+### Major Changes
+
+- Updated color palettes to use the `light-dark()` CSS function for setting component color schemes on supporting browsers. A fallback solution is included for unsupported browsers.
+
+  Palettes now require adding the `.palette` class in addition to existing palette classes (e.g., `.palette-default`, `.palette-brand`).
+
+  BEFORE:
+
+  ```html
+  <div class="palette-brand">Content</div>
+  ```
+
+  AFTER:
+
+  ```html
+  <div class="palette palette-brand">Content</div>
+  ```
+
+  Also renamed the following CSS custom properties:
+
+  - `--post-current-palette-fg` → `--post-current-fg`
+  - `--post-current-palette-bg` → `--post-current-bg` (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
+
+## 10.0.0-next.42
+
+## 10.0.0-next.41
+
 ## 10.0.0-next.40
 
 ## 10.0.0-next.39

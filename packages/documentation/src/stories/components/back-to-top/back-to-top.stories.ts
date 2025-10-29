@@ -1,4 +1,4 @@
-import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { fakeContent } from '@/utils';
@@ -28,7 +28,7 @@ const meta: MetaComponent = {
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
+        <span>Menu</span>
         <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
         <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
       </post-togglebutton>
@@ -54,13 +54,13 @@ const meta: MetaComponent = {
       <ul class="list-inline">
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Search</span>
+            <span>Search</span>
             <post-icon aria-hidden="true" name="search"></post-icon>
           </a>
         </li>
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Login</span>
+            <span>Login</span>
             <post-icon aria-hidden="true" name="login"></post-icon>
           </a>
         </li>
@@ -68,9 +68,6 @@ const meta: MetaComponent = {
 
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
-        </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->

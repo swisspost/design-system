@@ -46,16 +46,14 @@ export class SetupComponent extends LitElement {
                 @.../common-web-frontend 4.x.x or lower
               </option>
             </select>
-            <div class="form-text">
+            <div class="form-hint">
               This information can be found in the <code>package.json</code> file in the root of
               your application.
             </div>
           </div>
           <div class="col-12">
             <fieldset @change="${this._onEnvironmentChange}">
-              <legend class="fs-9 fw-bold">
-                What environment is your application for?
-              </legend>
+              <legend class="fs-9 fw-bold">What environment is your application for?</legend>
               <div class="form-check form-check-inline mb-0">
                 <input
                   id="migration-intranet"
@@ -86,9 +84,7 @@ export class SetupComponent extends LitElement {
           </div>
           <div class="col-12">
             <fieldset @change="${this._onAngularChange}">
-              <legend class="fs-9 fw-bold">
-                What technology is your application built with?
-              </legend>
+              <legend class="fs-9 fw-bold">What technology is your application built with?</legend>
               <div class="form-check form-check-inline mb-0">
                 <input
                   id="migration-angular"

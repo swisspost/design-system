@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 const meta: Meta = {
@@ -12,7 +12,7 @@ const meta: Meta = {
 
 function render() {
   return html`
-    <div class="palette-alternate error-container">
+    <div class="palette palette-alternate error-container">
       <div class="container">
         <div class="row">
           <div class="col-sm-8 py-56">

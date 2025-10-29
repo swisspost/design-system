@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           fetch-depth: 0
 
@@ -29,14 +29,14 @@ jobs:
           use_cache: false
 
       - name: Cache cypress
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-cypress-
 
       - name: Install & build dependencies
-        run: pnpm bootstrap
+        run: pnpm install && pnpm -r build
 
       - name: Prepare Cypress – Spawn Xvfb server
         run: Xvfb :99 &

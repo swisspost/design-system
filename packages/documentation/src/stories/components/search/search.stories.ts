@@ -1,11 +1,11 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'bc68b346-2fdd-436e-bddf-309d24df06a1',
   title: 'Components/Form Search',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: render,
   parameters: {
     badges: [],

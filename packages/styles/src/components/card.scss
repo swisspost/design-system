@@ -1,36 +1,29 @@
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/card' as bootstrap-card;
-@use './../variables/color';
 @use './../variables/commons';
 @use './../mixins/icons' as icons-mx;
 @use './../variables/icons';
 @use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
+@use './../mixins/color-scheme';
 @use './../tokens/utilities';
-@use './../tokens/elements';
 @use './../tokens/components';
 
 tokens.$default-map: components.$post-cards;
 
-post-linkarea:has(> .card) {
-  border-radius: tokens.get('card-border-radius');
-  display: block;
-  @include utilities-mx.focus-style();
-}
+@include icons-mx.custom-property('arrowright');
 
 .card {
+  display: flex;
+  flex-direction: column;
   transition: all 250ms;
   border-radius: tokens.get('card-border-radius');
-  background-color: tokens.get('card-enabled-bg1');
+  background-color: tokens.get('card-bg');
+  color: tokens.get('card-fg');
   border: 1px solid tokens.get('card-non-interactive-stroke');
-
-  .palette-alternate & {
-    background-color: tokens.get('card-enabled-bg2');
-  }
+  @include color-scheme.set(tokens.get('card-scheme'));
 
   // Add an elevation only if card is interactive
-  post-linkarea > & {
+  &:is(post-linkarea) {
     border: 0;
     box-shadow: tokens.get('card-interactive-elevation');
 
@@ -51,28 +44,18 @@ post-linkarea:has(> .card) {
     }
   }
 
-  .card-header:first-child,
-  .list-interactive:first-child,
-  .card-img-top {
+  > *:first-child {
     border-start-start-radius: tokens.get('card-border-radius');
     border-start-end-radius: tokens.get('card-border-radius');
   }
 
-  .card-footer:last-child,
-  .list-interactive:last-child,
-  .card-img-bottom {
+  > *:last-child {
     border-end-start-radius: tokens.get('card-border-radius');
     border-end-end-radius: tokens.get('card-border-radius');
   }
 
-  &.product-card {
-    box-shadow: none;
-
-    &:hover,
-    &:focus {
-      z-index: 1;
-      box-shadow: commons.$box-shadow-lg;
-    }
+  .card-body {
+    padding: tokens.get('card-padding-1');
   }
 
   .list-interactive {
@@ -81,90 +64,19 @@ post-linkarea:has(> .card) {
 
   .list-interactive-item {
     padding: 1.25rem 1rem;
-    border-color: tokens.get('card-non-interactive-stroke');
-  }
 
-  .link-icon {
-    text-decoration: none;
-
-    post-icon {
-      width: 1.5rem;
-      height: 1.5rem;
-      margin-inline-end: 0.5rem;
-    }
-  }
-
-  > .list-interactive + .card-footer,
-  .card-body ~ .card-body {
-    border-block-start: 1px solid color.$gray-20;
-  }
-}
-
-// Card elements have paddings, prevent double spacing by removing
-// elements margins
-.card-header,
-.card-body,
-.card-footer,
-.list-interactive-item {
-  > *:first-child {
-    margin-block-start: 0;
-  }
-
-  > *:last-child {
-    margin-block-end: 0;
-  }
-}
-
-.card-header,
-.card-footer,
-.card-body {
-  padding: 1.25rem 1rem;
-
-  .product-card & {
-    @include media-breakpoint-down(sm) {
-      padding: tokens.get('utility-gap-16', utilities.$post-spacing);
+    &:not(:first-child) {
+      border-top: 1px solid tokens.get('card-non-interactive-stroke');
     }
 
-    @include media-breakpoint-between(sm, md) {
-      padding: tokens.get('utility-gap-24', utilities.$post-spacing);
+    // Card elements have paddings, prevent double spacing by removing
+    // elements margins
+    > *:first-child {
+      margin-block-start: 0;
     }
 
-    @include media-breakpoint-up(md) {
-      padding: tokens.get('utility-gap-32', utilities.$post-spacing);
-    }
-  }
-
-  .card-white & {
-    background: color.$white;
-  }
-}
-
-.card-header {
-  align-items: center;
-
-  > *:not(:last-child) {
-    margin-inline-end: 1rem;
-  }
-}
-
-.product-card {
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    color: tokens.get('body-color', elements.$post-body);
-    text-decoration: none;
-  }
-
-  .link-icon {
-    display: flex;
-    align-items: center;
-    transition: opacity 250ms;
-    opacity: 0.75;
-
-    &:hover,
-    &:focus {
-      opacity: 1;
+    > *:last-child {
+      margin-block-end: 0;
     }
   }
 }
@@ -192,11 +104,48 @@ post-linkarea:has(> .card) {
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mx.icon(3020);
+      @include icons-mx.mask-image('arrowright');
       content: '';
       display: inline-block;
       width: icons.$icon-size-default;
       height: icons.$icon-size-default;
+    }
+  }
+}
+
+// Card product
+.product-card {
+  text-decoration: none;
+  box-shadow: none;
+
+  &:hover,
+  &:focus {
+    z-index: 1;
+    box-shadow: commons.$box-shadow-lg;
+    color: var(--post-current-fg);
+    text-decoration: none;
+  }
+
+  > *:not(:first-child) {
+    border-top: 1px solid tokens.get('card-non-interactive-stroke');
+  }
+
+  .link-icon {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: opacity 250ms;
+    opacity: 0.75;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+
+    post-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-inline-end: 0.5rem;
     }
   }
 }

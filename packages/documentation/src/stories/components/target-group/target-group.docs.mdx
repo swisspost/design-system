@@ -1,0 +1,34 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as TargetGroup from './target-group.stories';
+import * as Header from './../header/header.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={TargetGroup} />
+
+<div className="docs-title">
+  # Target Group
+
+<link-design of={JSON.stringify(TargetGroup)}></link-design>
+
+</div>
+
+<div className="lead">
+  The target group component is a group of buttons which enables users to easily navigate to content
+  tailored to their specific user group.
+
+It is designed to be used within the <code>post-header</code> component.
+
+</div>
+
+<Canvas sourceState="shown" of={TargetGroup.Default} />
+<div className="hide-col-default">
+  <Controls of={TargetGroup.Default} />
+</div>
+
+<StylesPackageImport components={['button', 'target-group']} />
+
+## Header example
+
+Here is an example of the target group component used within the <code>post-header</code> component.
+
+<Canvas sourceState="hidden" of={Header.WithTargetGroup} />

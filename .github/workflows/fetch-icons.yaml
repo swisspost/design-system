@@ -30,48 +30,67 @@ permissions:
   pull-requests: write
 
 jobs:
-
   fetch:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'swisspost'
 
     steps:
       - name: Checkout
-        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           fetch-depth: 0
 
-      - name: Configure GitHub User
-        uses: ./.github/actions/configure-github-user
-
-      - name: Setup pnpm
+      - name: Setup
         uses: ./.github/actions/setup-pnpm
 
-      - name: Fetch Icons
+      - name: Get Date
+        id: current-date
+        run: echo "date=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
+
+      - name: Create Branch
+        id: current-branch
         run: |
-          pnpm --filter design-system-icons... --filter design-system-styles... install
-          pnpm --filter design-system-icons fetchSVGs
+          git checkout -b $BRANCH_NAME origin/main
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+        env:
+          BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
+
+      - name: Install icons & dependencies
+        run: pnpm --filter design-system-icons... --filter design-system-styles... install
+
+      - name: Fetch Icons
+        run: pnpm --filter design-system-icons fetchSVGs
         env:
           CEN_USERNAME: ${{ secrets.CEN_USERNAME }}
           CEN_PASSWORD: ${{ secrets.CEN_PASSWORD }}
           CEN_URL_ICONSET_POST: ${{ secrets.CEN_URL_ICONSET_POST }}
           CEN_URL_ICONSET_UI: ${{ secrets.CEN_URL_ICONSET_UI }}
 
+      - name: Build styles
+        run: pnpm --filter design-system-styles... build
+
       - name: Commit Changes
-        id: commit
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -am "chore(icons): update icon SVGs"
+          git push -u origin ${{ steps.current-branch.outputs.branch }}
 
-      - name: Get Changed Files
+      - name: Get Changes
         id: changed-files
         uses: step-security/changed-files@93edf87999a88af96afc15072c8b52bbe8469fb1
         with:
           files: ./packages/icons/src/icons/**/*.svg
 
+      - name: Exit if no changes
+        if: steps.changed-files.outputs.any_modified == 'false'
+        run: |
+          git checkout main
+          git push origin --delete ${{ steps.current-branch.outputs.branch }}
+
       - name: Get Changed Icons
         id: changed-icons
-        if: steps.changed-files.outputs.any_modified != 'false'
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
@@ -84,25 +103,23 @@ jobs:
             const { getIconChanges } = require('.github/workflows/scripts/icons.mjs')
             return getIconChanges(process.env)
 
-      - name: Build styles
-        if: steps.changed-files.outputs.any_modified != 'false'
-        run: pnpm --filter design-system-styles... build
-
       - name: Create Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
+          DATE: ${{ steps.current-date.outputs.date }}
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
             const { writeChangesets } = require('.github/workflows/scripts/icons.mjs')
             return writeChangesets(process.env)
 
-      - name: Update Commit
+      - name: Commit Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
           git add .
-          git commit  --amend --no-edit
+          git commit -am "chore(icons): add changeset"
+          git push -u origin ${{ steps.current-branch.outputs.branch }}
 
       - name: Write PR Body
         id: pr-body
@@ -116,15 +133,9 @@ jobs:
             const { writePrBody } = require('.github/workflows/scripts/icons.mjs')
             return writePrBody(process.env)
 
-      - name: Create or Update PR
+      - name: Create PR
         if: steps.changed-files.outputs.any_modified != 'false'
-        uses: ./.github/actions/create-or-update-pr
-        with:
-          head: update-icons
-          title: "chore(icons): ☝️ update icons"
-          body-file: ${{ steps.pr-body.outputs.result }}
-          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-
-      - name: Push Changes
-        if: steps.changed-files.outputs.any_modified != 'false'
-        run: git push -u origin ${{ steps.current-branch.outputs.branch }}
+        run: |
+          gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.result }} --base main
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}

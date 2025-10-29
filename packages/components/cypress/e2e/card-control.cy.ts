@@ -132,7 +132,7 @@ describe('Card-Control', () => {
       cy.get('@wrapper').should('have.class', 'is-valid').and('not.have.class', 'is-invalid');
       cy.get('@card-control').invoke('attr', 'validity', true);
       cy.get('@wrapper').should('have.class', 'is-valid').and('not.have.class', 'is-invalid');
-      cy.get('@card-control').invoke('attr', 'validity', false);
+      cy.get('@card-control').invoke('removeAttr', 'validity');
       cy.get('@wrapper').should('not.have.class', 'is-valid').and('have.class', 'is-invalid');
     });
 

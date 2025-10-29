@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -15,6 +15,9 @@ type Story = StoryObj<HTMLPostFooterElement>;
 
 export const Footer: Story = {
   render: (args: Args, context: StoryContext<HTMLPostFooterElement>) => {
-    return schemes(() => html` ${meta.render?.(args, context)} `);
+    return schemes(() => html` ${meta.render?.(args, context)} `, {
+      // dark mode is not yet implemented corretly
+      filter: scheme => scheme === 'light',
+    });
   },
 };

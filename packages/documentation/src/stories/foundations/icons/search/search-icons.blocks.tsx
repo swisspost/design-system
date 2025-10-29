@@ -212,7 +212,7 @@ export class Search extends React.Component {
     const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
 
     return (
-      <post-popovercontainer id="icon-panel" class="palette-default icon-panel">
+      <post-popovercontainer id="icon-panel" class="palette palette-default icon-panel">
         <div className="icon-panel-content">
           <div>
             <div className="resizer-container">
@@ -246,9 +246,7 @@ export class Search extends React.Component {
               </dd>
             </dl>
           </div>
-          <button className="btn btn-close" onClick={() => popover.hidePopover()}>
-            <span className="visually-hidden">Close</span>
-          </button>
+          <post-closebutton onClick={() => popover.hidePopover()}>Close</post-closebutton>
         </div>
       </post-popovercontainer>
     );
@@ -321,7 +319,7 @@ export class Search extends React.Component {
     if (this.results.paging.totalPages <= 0)
       return (
         <div className="no-results">
-          <post-icon name="2126"></post-icon>
+          <post-icon name="emotefrowny"></post-icon>
           <p>No results found with your current query</p>
         </div>
       );
@@ -400,7 +398,7 @@ export class Search extends React.Component {
       <div className="container">
         <div className="search-form">{this.searchForm()}</div>
         <div className="search-results">
-          <a href="#results-top"></a>
+          <a href="#results-top" aria-hidden="true" tabindex="-1"></a>
           {this.paging()}
           {this.resultsList()}
           {this.paging()}

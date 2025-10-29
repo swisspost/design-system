@@ -53,7 +53,7 @@ runs:
         version: ${{ inputs.pnpm_version || null }}
 
     - name: Install node
-      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      uses: actions/setup-node@5e2628c959b9ade56971c0afcebbe5332d44b398
       with:
         node-version: ${{ inputs.node_version || fromJSON(steps.wanted-versions.outputs.result).node }}
         cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}
@@ -63,4 +63,5 @@ runs:
       run: |
         echo "Installed versions:"
         echo "- node: $(node -v)"
+        echo "- npm: $(npm -v)"
         echo "- pnpm: $(pnpm -v)"

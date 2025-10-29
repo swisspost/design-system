@@ -1,5 +1,209 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.51
+
+### Patch Changes
+
+- Adjusted the `post-menu-item` icon size. (by [@leagrdv](https://github.com/leagrdv) with [#6504](https://github.com/swisspost/design-system/pull/6504))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.51
+  - @swisspost/design-system-styles@10.0.0-next.51
+
+## 10.0.0-next.50
+
+### Major Changes
+
+- The label property for `<post-menu>` component was made required for accessibility compliance. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6417](https://github.com/swisspost/design-system/pull/6417))
+
+- Added required `menu-label` property to the `<post-breadcrumbs>` component. This accessible label is used for the dropdown menu when breadcrumb items are concatenated. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6417](https://github.com/swisspost/design-system/pull/6417))
+
+- Reorganized Global Header structure: introduced `global-controls` and `global-login` slots. Search button must now be placed in the `global-controls` slot, login button or user menu component in the `global-login` slot. Updated documentation and Storybook examples to reflect the new structure. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6422](https://github.com/swisspost/design-system/pull/6422))
+
+### Minor Changes
+
+- Added the `button-type` property to the `post-closebutton` to allow users to override the default button type. (by [@leagrdv](https://github.com/leagrdv) with [#6361](https://github.com/swisspost/design-system/pull/6361))
+
+- Added the user menu for logged in users in the `post-header` component. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+
+- Updated the `<post-header>` component by adding a new slot for auxiliary navigation links on the right side of the main-navigation. (by [@myrta2302](https://github.com/myrta2302) with [#6421](https://github.com/swisspost/design-system/pull/6421))
+
+### Patch Changes
+
+- Updated styles of the `post-menu-item` component, which is used in both the new user menu and the `post-breadcrumbs` dropdown menu when breadcrumb items are concatenated. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+
+- Enhanced the header navigation behavior to keep parent item styles in sync when `aria-current="page"` changes dynamically after load. (by [@myrta2302](https://github.com/myrta2302) with [#6381](https://github.com/swisspost/design-system/pull/6381))
+
+- Removed the hover border color from `post-avatar` to maintain design consistency. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.50
+  - @swisspost/design-system-styles@10.0.0-next.50
+
+## 10.0.0-next.49
+
+### Major Changes
+
+- Removed support for multiple links in the `post-linkarea` component; it now throws an error if more than one link is detected in the slotted content. (by [@leagrdv](https://github.com/leagrdv) with [#6324](https://github.com/swisspost/design-system/pull/6324))
+
+### Minor Changes
+
+- Added a new component-names.json file, which contains a list of all components the package is outputting. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6199](https://github.com/swisspost/design-system/pull/6199))
+
+### Patch Changes
+
+- Added styles to highlight the current navigation item marked with `aria-current="page"` and its potential parent item in the header main navigation. (by [@myrta2302](https://github.com/myrta2302) with [#6216](https://github.com/swisspost/design-system/pull/6216))
+
+- Updated the `<post-accordion-item>` component to enforce a top border in all use cases. (by [@hugomslv](https://github.com/hugomslv) with [#6151](https://github.com/swisspost/design-system/pull/6151))
+
+- Fixed accessibility issue in the `<post-breadcrumbs>` component by wrapping breadcrumb items in `<li>` elements. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6294](https://github.com/swisspost/design-system/pull/6294))
+
+- Fixed the `post-header` component to consistently omit the title container when no title is defined across all configurations. (by [@alizedebray](https://github.com/alizedebray) with [#6244](https://github.com/swisspost/design-system/pull/6244))
+
+- Refactored icon path to improve readability and maintain correct handling of multiple sources. (by [@myrta2302](https://github.com/myrta2302) with [#6220](https://github.com/swisspost/design-system/pull/6220))
+
+- Improved `<post-avatar>` markup and added a `description` prop to allow users to provide additional context to the component. (by [@myrta2302](https://github.com/myrta2302) with [#6092](https://github.com/swisspost/design-system/pull/6092))
+
+- Updated `<post-menu>` and `<post-menu-item>` to prevent accessibility roles from being announced before the menu content is visible, and to ensure correct focus behavior on menu items during keyboard navigation when NVDA is running.  
+  Removed the obsolete `role="menuitem"` from `<post-language-switch>. `<post-language-option>`now assigns`role="listitem"`in case of`variant="list"`, to ensure a correct reference relationship.
+
+  Updated the `<post-breadcrumbs>` component by removing an `aria-label` set on the trigger wrapper `<div>`, which was causing an accessibility error. Also added `role="none"` to the wrapper div to reflect its presentational purpose. (by [@myrta2302](https://github.com/myrta2302) with [#6042](https://github.com/swisspost/design-system/pull/6042))
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.49
+  - @swisspost/design-system-styles@10.0.0-next.49
+
+## 10.0.0-next.48
+
+### Minor Changes
+
+- Added the `/components` entry point, which can be used to consume standalone, none lazy-loading components. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6140](https://github.com/swisspost/design-system/pull/6140))
+
+### Patch Changes
+
+- Updated `<post-avatar>` to handle errors if no Gravatar is found. (by [@myrta2302](https://github.com/myrta2302) with [#5860](https://github.com/swisspost/design-system/pull/5860))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.48
+  - @swisspost/design-system-styles@10.0.0-next.48
+
+## 10.0.0-next.47
+
+### Major Changes
+
+- Removed the `dismissible` and `dismissLabel` properties from the `post-banner` component. Dismiss functionality now only requires assigning a `post-closebutton` to the new `close-button` slot. (by [@alizedebray](https://github.com/alizedebray) with [#6108](https://github.com/swisspost/design-system/pull/6108))
+
+### Minor Changes
+
+- Added a `postClick` event and accessibility checks to the `post-closebutton` component. (by [@alizedebray](https://github.com/alizedebray) with [#6108](https://github.com/swisspost/design-system/pull/6108))
+
+### Patch Changes
+
+- Updated the `post-banner` icons. (by [@alizedebray](https://github.com/alizedebray) with [#6078](https://github.com/swisspost/design-system/pull/6078))
+
+- Updated `post-back-to-top` button to not be visible during browser overscroll bounce effect. (by [@myrta2302](https://github.com/myrta2302) with [#6105](https://github.com/swisspost/design-system/pull/6105))
+
+- Updated the arrow placement of the `<post-tooltip>` to fix the layout issue. (by [@leagrdv](https://github.com/leagrdv) with [#6157](https://github.com/swisspost/design-system/pull/6157))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.47
+  - @swisspost/design-system-icons@10.0.0-next.47
+
+## 10.0.0-next.46
+
+### Major Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.46
+  - @swisspost/design-system-styles@10.0.0-next.46
+
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.45
+  - @swisspost/design-system-styles@10.0.0-next.45
+
+## 10.0.0-next.44
+
+### Minor Changes
+
+- Enabled use of the `post-header` component without requiring a `post-mainnavigation`. (by [@alizedebray](https://github.com/alizedebray) with [#5933](https://github.com/swisspost/design-system/pull/5933))
+
+### Patch Changes
+
+- Updated `<post-tooltip>` by moving the `role` attribute from the `<post-tooltip>` to the nested `<post-popovercontainer>` component to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#5551](https://github.com/swisspost/design-system/pull/5551))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.44
+  - @swisspost/design-system-styles@10.0.0-next.44
+
+## 10.0.0-next.43
+
+### Major Changes
+
+- The `back-button` slot has been completely removed from the `<post-mainnavigation>` in the `<post-header>` component. If you currently have a `back-button` inside `<post-mainnavigation>`, you must remove it entirely as this is no longer supported. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5899](https://github.com/swisspost/design-system/pull/5899))
+
+- Removed the `post-tag` component. The `tag` component can be used instead. (by [@schaertim](https://github.com/schaertim) with [#5764](https://github.com/swisspost/design-system/pull/5764))
+
+### Minor Changes
+
+- Added a `full-width` property to the `post-tabs` component to allow the tabs container to span the full screen width. (by [@myrta2302](https://github.com/myrta2302) with [#5736](https://github.com/swisspost/design-system/pull/5736))
+
+- Added the `target group` css component within the `post-header` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5687](https://github.com/swisspost/design-system/pull/5687))
+
+### Patch Changes
+
+- Updated `post-tooltip` and `post-popover` components: added `.palette` class in the documentation examples and overrode default `popovercontainer` styles in both components. (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
+
+- Updated `<post-header>` component styles to align with design specifications. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5903](https://github.com/swisspost/design-system/pull/5903))
+
+- Fixed a bug where `<post-megadropdown>` component retained its expanded state inside `<post-header>` when switching from desktop to mobile view. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5747](https://github.com/swisspost/design-system/pull/5747))
+
+- Fixed a regression causing breakpoint-related errors in the `post-header`, `post-footer` and `post-megadropdown` components. (by [@alizedebray](https://github.com/alizedebray) with [#5965](https://github.com/swisspost/design-system/pull/5965))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.43
+  - @swisspost/design-system-styles@10.0.0-next.43
+
+## 10.0.0-next.42
+
+### Patch Changes
+
+- Moved `@swisspost/design-system-eslint` from `dependencies` to `devDependencies`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5835](https://github.com/swisspost/design-system/pull/5835))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.42
+  - @swisspost/design-system-icons@10.0.0-next.42
+
+## 10.0.0-next.41
+
+### Major Changes
+
+- Renamed the custom event `postBreakpoint:name` to `postBreakpoint:device`. (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+### Patch Changes
+
+- Fixed visual gap regression in `<post-header>` component during initial page load. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5772](https://github.com/swisspost/design-system/pull/5772))
+
+- Improved accessibility of the `post-language-switch` component by adding ARIA roles to trigger Screen Readers' focus mode navigation. (by [@myrta2302](https://github.com/myrta2302) with [#5578](https://github.com/swisspost/design-system/pull/5578))
+
+- Fixed `<post-header>` component overlapping content on tablet and mobile devices. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5826](https://github.com/swisspost/design-system/pull/5826))
+
+- Updated `post-tooltip-trigger` and `post-menu-trigger` components to prevent errors when they do not contain an internal HTML element. (by [@myrta2302](https://github.com/myrta2302) with [#5591](https://github.com/swisspost/design-system/pull/5591))
+
+- Improved URL handling in `post-icon` component:
+
+  - Enhanced URL construction to properly handle both absolute and relative URLs
+  - Fixed slug detection to correctly identify root paths ("/") as valid slugs
+  - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
+
+- Enhanced accessibility of `post-language-switch` component by replacing `aria-labels` with `visually-hidden` spans and properly assigning semantic `role` attributes. (by [@myrta2302](https://github.com/myrta2302) with [#5350](https://github.com/swisspost/design-system/pull/5350))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.41
+  - @swisspost/design-system-styles@10.0.0-next.41
+
 ## 10.0.0-next.40
 
 ### Minor Changes

@@ -2,12 +2,6 @@ import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
-type UrlDefinition = {
-  url: URL | null;
-  definesDomain: boolean;
-  definesSlug: boolean;
-};
-
 const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/`;
 const ANIMATION_NAMES = [
   'cylon',
@@ -93,71 +87,67 @@ export class PostIcon {
     checkEmptyOrType(this, 'scale', 'number');
   }
 
-  // Construct the icon url from different possible sources
-  private getUrl() {
+  /**
+   * Construct the icon URL according to the following rules:
+   * 1. `@base` (absolute URL) → use directly.
+   * 2. `@base` (relative URL) → resolve with `base href` and/or `origin`
+   *  - If `base href` is absolute → use just that.
+   *  - If `base href` is relative → prepend with `origin`.
+   *  - If `base href` does not exist → use only `origin`.
+   * 3. `@meta` (absolute URL) → use directly.
+   * 4. `@meta` (relative URL) → resolve with `base href` and/or `origin`. (same as above)
+   * 5. `CDN_URL` fallback → `https://unpkg.com/...`.
+   **/
+
+  private getUrl(): string {
+    const fileName = `${this.name}.svg`;
+
+    if (!IS_BROWSER && !this.base) {
+      return `${CDN_URL}${fileName}`;
+    }
+
+    const isAbsolute = (url: string) => /^https?:\/\//.test(url);
+    const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
+    const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
+
+    const currentDomain = IS_BROWSER ? window.location.origin : '';
+    const baseHref = IS_BROWSER
+      ? document.querySelector('base[href]')?.getAttribute('href') || ''
+      : '';
+    const metaIconBase = IS_BROWSER
+      ? document.querySelector('meta[name="design-system-settings"]')?.getAttribute('data-post-icon-base') || ''
+      : '';
+
+    // Function to build the first part of the URL when 'this.base' or 'metaIconBase' are relative
+    const buildUrlWithBase = (relativeUrl: string) => {
+      const normalizedHref = normalizeUrl(baseHref);
+      const normalizedRelative = normalizeUrl(relativeUrl);
+      if (isAbsolute(normalizedHref)) {
+        return `${normalizedHref}${normalizedRelative}`;
+      }
+      return `${currentDomain}${normalizedHref}${normalizedRelative}`;
+    };
+
     let url: string;
-    const file = `${this.name}.svg`;
 
-    // the first definition object which defines a domain, will be used to set the domain of the file url
-    // the first definition object which defines a slug, will be used to set the slug of the file url
-    const urlDefinitions = [this.getUrlDefinition(this.base, 'both')];
-
-    if (IS_BROWSER) {
-      urlDefinitions.push(
-        this.getUrlDefinition(
-          document.head
-            .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
-            ?.getAttribute('data-post-icon-base'),
-          'relative',
-        ),
-      );
-      urlDefinitions.push(
-        this.getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
-      );
+    // Highest Priority is this.base
+    if (this.base) {
+      url = isAbsolute(this.base)
+        ? `${normalizeUrl(this.base)}${fileName}`
+        : `${buildUrlWithBase(this.base)}${fileName}`;
+      return cleanUrl(url);
     }
 
-    // in case no definition defines a domain, a relative url is used to load the icon
-    const origin = urlDefinitions.find(d => d.definesDomain)?.url?.origin;
-    // in case no definition defines a slug either, the cdn url is used as a fallback
-    const slug = urlDefinitions.find(d => d.definesSlug)?.url?.pathname;
-
-    if (origin && slug) {
-      url = `${origin}${slug}${file}`;
-    } else if (!origin && slug) {
-      url = `${slug}${file}`;
-    } else {
-      url = `${CDN_URL}${file}`;
+    // Second Priority is metaIconBase
+    if (metaIconBase) {
+      url = isAbsolute(metaIconBase)
+        ? `${normalizeUrl(metaIconBase)}${fileName}`
+        : `${buildUrlWithBase(metaIconBase)}${fileName}`;
+      return cleanUrl(url);
     }
 
-    return url;
-  }
-
-  private getUrlDefinition(
-    url: string | undefined | null,
-    allow: 'both' | 'absolute' | 'relative',
-  ): UrlDefinition {
-    return {
-      url: this.getUrlObject(url),
-      definesDomain: allow !== 'relative' ? this.definesDomain(url) : false,
-      definesSlug: allow !== 'absolute' ? this.definesSlug(url) : false,
-    } as UrlDefinition;
-  }
-
-  private getUrlObject(url: string | undefined | null) {
-    if (url) {
-      url = url?.endsWith('/') ? url : `${url}/`;
-      return new URL(url, 'https://url.base');
-    } else {
-      return null;
-    }
-  }
-
-  private definesDomain(url: string | undefined | null) {
-    return url ? /^https?:\/\//.test(url) : false;
-  }
-
-  private definesSlug(url: string | undefined | null) {
-    return Boolean(/^\/.+/.test(this.getUrlObject(url)?.pathname));
+    // Fallback to CDN
+    return cleanUrl(`${CDN_URL}${fileName}`);
   }
 
   private getStyles() {

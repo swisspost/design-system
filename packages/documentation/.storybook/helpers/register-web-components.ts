@@ -1,5 +1,5 @@
+import '@swisspost/design-system-components';
 import { defineCustomElements as defineHeader } from '@swisspost/internet-header/loader/index.es2017.js';
-import { defineCustomElements as defineComponents } from '@swisspost/design-system-components/loader';
 import { setStencilDocJson } from '@kurbar/storybook-addon-docs-stencil';
 import { StencilJsonDocs } from '@kurbar/storybook-addon-docs-stencil/dist/types';
 import postComponentsDocJson from '@swisspost/design-system-components/dist/docs.json';
@@ -7,7 +7,6 @@ import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
 import '../../src/shared/link-design/link-design.component';
 
 defineHeader();
-defineComponents();
 
 if (postComponentsDocJson && internetHeaderDocJson) {
   const { components, ...docJsonMetaData } = postComponentsDocJson as unknown as StencilJsonDocs;
@@ -21,7 +20,7 @@ if (postComponentsDocJson && internetHeaderDocJson) {
   allComponents.forEach(component => {
     component.props.forEach(prop => {
       if (prop.deprecation) {
-        const deprecationAlert = `<span className="mb-4 banner banner-warning banner-sm">**Deprecated:** ${prop.deprecation}</span>`;
+        const deprecationAlert = `<post-banner type="warning" data-size="sm">**Deprecated:** ${prop.deprecation}</post-banner>`;
         prop.docs = `${prop.deprecation ? deprecationAlert : ''}${prop.docs}`;
       }
     });

@@ -1,5 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import { PostBanner } from '@swisspost/design-system-components-react';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as ProductCardStories from './card-product.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import ProductCardSyncHeights from './card-product.sample.js?raw';
@@ -10,7 +9,8 @@ import ProductCardAngularSyncHeights from './card-product.sample.ts?raw';
 <div className="docs-title">
   # Card for Products
 
-  <link-design of={JSON.stringify(ProductCardStories)}></link-design>
+<link-design of={JSON.stringify(ProductCardStories)}></link-design>
+
 </div>
 
 <div className="lead">
@@ -37,10 +37,10 @@ Ensure consistent height by applying the `.h-full` class to all product cards.
 
 For presenting a collection of products with comparable features, use cards with multiple sections, as illustrated in the example below.
 
-<PostBanner type="info">
+<post-banner>
   Note that this layout necessitates JavaScript implementation to ensure consistent section heights
   across all cards.
-</PostBanner>
+</post-banner>
 
 <Canvas of={ProductCardStories.Multipart} />
 
@@ -52,6 +52,7 @@ For presenting a collection of products with comparable features, use cards with
 
 <post-tab-header panel="angular">Angular Implementation</post-tab-header>
 <post-tab-panel name="angular">
+
 <Source code={ProductCardAngularSyncHeights} language="typescript"/>
 </post-tab-panel>
 </post-tabs>

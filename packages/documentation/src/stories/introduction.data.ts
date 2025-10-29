@@ -1,5 +1,3 @@
-import { DEPENDENCIES, getVersion } from '@/utils/version';
-
 interface ITechnology {
   name: string;
   href: string;
@@ -48,14 +46,6 @@ export const technologies: ITechnology[] = [
     img: {
       src: '/assets/images/technologies/logo-gulp.svg',
       alt: 'Gulp Logo',
-    },
-  },
-  {
-    name: 'Bootstrap',
-    href: `https://getbootstrap.com/docs/${getVersion(DEPENDENCIES['bootstrap'], 'Mm')}`,
-    img: {
-      src: '/assets/images/technologies/logo-bootstrap.svg',
-      alt: 'Bootstrap Logo',
     },
   },
   {

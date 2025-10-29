@@ -1,135 +1,185 @@
-@use './../variables/components/chip';
 @use './../mixins/utilities';
 @use './../mixins/chip' as chip-mx;
 @use './../mixins/icons' as icons-mx;
-@use './../placeholders/badge' as badge-ph;
+@use '../tokens/components';
+@use '../functions/tokens';
 
-.chip-dismissible {
+tokens.$default-map: components.$post-chip;
+
+@include icons-mx.custom-property(('closex', 'checkmark'));
+
+button.chip-dismissible {
+  $button-size: tokens.get('close-size', components.$post-close);
+  $icon-size: tokens.get('close-icon-size', components.$post-close);
+
   position: relative;
-  padding-inline-start: chip.$chip-dismissable-padding-start;
-  gap: chip.$chip-gap;
+  padding-inline: tokens.get('chip-dismissible-padding-inline');
+  gap: tokens.get('chip-dismissible-gap-inline');
   @include utilities.focus-style-none();
   @include chip-mx.chip-styles();
 
-  &::before,
-  &::after {
-    content: '';
-    display: inline-block;
-    flex: 0 0 auto;
-    height: chip.$chip-close-button-height;
-    width: chip.$chip-close-button-height;
-    transition: chip.$chip-transition;
-  }
+  &:disabled {
+    @include chip-mx.chip-styles-disabled();
 
-  &::before {
-    border-radius: chip.$chip-close-button-border-radius;
-  }
-
-  &:hover::before {
-    background-color: chip.$chip-hover-bg;
-    border: chip.$chip-close-button-border;
-  }
-
-  &::after {
-    @include icons-mx.icon(chip.$chip-close-button-icon);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  // set the focus ring on the close button only
-  @include utilities.focus-style('::before') {
-    background-color: chip.$chip-hover-bg;
-  }
-
-  @include utilities.disabled-style();
-}
-
-.chip-filter {
-  display: inline-block;
-  max-width: 100%;
-
-  @include utilities.focus-style() {
-    border-radius: chip.$chip-border-radius;
-    width: fit-content;
-  }
-
-  &-label {
-    cursor: pointer;
-    @include chip-mx.chip-styles();
-
-    > .badge {
-      box-sizing: border-box;
-      min-width: var(--post-badge-height);
-      padding-inline: calc(var(--post-badge-padding-x) * 0.75);
-      color: chip.$chip-hover-color;
-      background-color: chip.$chip-hover-bg;
-      border: chip.$chip-border-width solid chip.$chip-border-color;
-      transition: chip.$chip-transition;
+    &::after {
+      @include utilities.high-contrast-mode() {
+        background-color: GrayText;
+      }
     }
   }
 
-  &-input {
+  // Close icon border on focus
+  &::before {
+    content: '';
+    border-radius: 100%;
+    height: $button-size;
+    width: $button-size;
+    position: absolute;
+    right: calc(
+      tokens.get('chip-dismissible-padding-inline') - ((#{$button-size} - #{$icon-size}) / 2)
+    );
+  }
+
+  // Close icon
+  &::after {
+    content: '';
+    margin-left: calc((#{$button-size} - #{$icon-size}) / 2);
+    width: tokens.get('close-icon-size', components.$post-close);
+    height: tokens.get('close-icon-size', components.$post-close);
+
+    @include utilities.high-contrast-mode() {
+      background-color: ButtonText;
+    }
+    @include icons-mx.mask-image('closex');
+  }
+
+  &:hover::after {
+    color: tokens.get('chip-hovered-fg');
+  }
+
+  // set the focus ring on the close button only
+  @include utilities.focus-style('::before');
+  @include utilities.disabled-style();
+}
+
+// Filter / Selectable
+.chip-selectable {
+  display: inline-block;
+  border-radius: tokens.get('chip-border-radius');
+  @include utilities.focus-style();
+
+  label {
+    cursor: pointer;
+    padding-inline: tokens.get('chip-selectable-padding-inline');
+    @include chip-mx.chip-styles();
+
+    .badge {
+      box-sizing: border-box;
+      color: tokens.get('chip-selectable-badge-enabled-fg');
+      padding-inline: tokens.get('chip-selectable-badge-padding-inline');
+      background-color: tokens.get('chip-selectable-badge-enabled-bg');
+      margin-left: tokens.get('chip-selectable-gap-inline-badge');
+
+      // HCM
+      border: 1px solid transparent;
+      height: calc(tokens.get('chip-selectable-badge-size') - 2px);
+      min-width: calc(tokens.get('chip-selectable-badge-size') - 2px);
+    }
+  }
+
+  input {
     @include utilities.visuallyhidden;
 
     &:checked {
-      + .chip-filter-label {
-        color: chip.$chip-active-color;
-        background-color: chip.$chip-active-bg;
-
-        > .badge {
-          background-color: chip.$chip-bg;
-        }
+      + label {
+        color: tokens.get('chip-selectable-selected-enabled-fg');
+        background-color: tokens.get('chip-selectable-selected-enabled-bg');
+        border-color: tokens.get('chip-selectable-selected-enabled-stroke');
+        padding-left: calc(
+          tokens.get('chip-selectable-padding-inline') + tokens.get('chip-selectable-icon') +
+            tokens.get('chip-selectable-gap-inline-selected-icon')
+        );
 
         @include utilities.high-contrast-mode() {
           border-color: Highlight;
         }
-      }
 
-      &:disabled + .chip-filter-label {
-        background-color: chip.$chip-disabled-active-bg;
-
-        @include utilities.high-contrast-mode() {
-          > .chip-text {
-            text-decoration: underline;
-          }
-        }
-      }
-
-      &:not(:disabled) {
-        + .chip-filter-label > .chip-text {
-          text-decoration: underline;
-          transition: text-decoration 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        + .chip-filter-label:hover > .chip-text {
-          text-decoration-color: transparent;
+        &::before {
+          content: '';
+          position: absolute;
+          left: tokens.get('chip-selectable-padding-inline');
 
           @include utilities.high-contrast-mode() {
-            text-decoration-color: initial;
+            background-color: Highlight;
           }
+          width: tokens.get('chip-selectable-icon');
+          height: tokens.get('chip-selectable-icon');
+          @include icons-mx.mask-image('checkmark');
+        }
+
+        .badge {
+          color: tokens.get('chip-selectable-badge-selected-enabled-fg');
+          background-color: tokens.get('chip-selectable-badge-selected-enabled-bg');
+        }
+
+        &:hover {
+          color: tokens.get('chip-selectable-selected-hovered-fg');
+          background-color: tokens.get('chip-selectable-selected-hovered-bg');
+          border-color: tokens.get('chip-selectable-selected-hovered-stroke');
+
+          .badge {
+            color: tokens.get('chip-selectable-badge-selected-hovered-fg');
+            background-color: tokens.get('chip-selectable-badge-selected-hovered-bg');
+          }
+        }
+      }
+
+      @include utilities.disabled-style('+ label') {
+        color: tokens.get('chip-selectable-selected-disabled-fg');
+        background-color: tokens.get('chip-selectable-selected-disabled-bg');
+        border-color: tokens.get('chip-selectable-selected-disabled-stroke');
+
+        .badge {
+          color: tokens.get('chip-selectable-badge-selected-disabled-fg');
+          background-color: tokens.get('chip-selectable-badge-selected-disabled-bg');
         }
       }
     }
 
-    &:not(:checked) + .chip-filter-label:hover {
-      color: chip.$chip-hover-color;
-      background-color: chip.$chip-hover-bg;
+    &:not(:checked) {
+      + label:hover {
+        color: tokens.get('chip-hovered-fg');
+        background-color: tokens.get('chip-hovered-bg');
+        border-color: tokens.get('chip-hovered-stroke');
 
-      @include utilities.high-contrast-mode() {
-        border-color: highlight;
+        @include utilities.high-contrast-mode() {
+          border-color: highlight;
+        }
+
+        .badge {
+          color: tokens.get('chip-selectable-badge-hovered-fg');
+          background-color: tokens.get('chip-selectable-badge-hovered-bg');
+        }
       }
 
-      > .badge {
-        background-color: chip.$chip-bg;
+      @include utilities.disabled-style('+ label') {
+        @include chip-mx.chip-styles-disabled();
+
+        .badge {
+          color: tokens.get('chip-selectable-badge-disabled-fg');
+          background-color: tokens.get('chip-selectable-badge-disabled-bg');
+        }
       }
     }
 
-    @include utilities.disabled-style('+ .chip-filter-label') {
-      background-color: chip.$chip-disabled-bg;
+    &:checked:disabled + label,
+    &:not(:checked):disabled + label {
+      &::before {
+        background-color: GrayText;
+      }
 
-      @include utilities.high-contrast-mode() {
-        > .badge {
+      .badge {
+        @include utilities.high-contrast-mode() {
           color: GrayText;
           border-color: GrayText;
         }
@@ -138,27 +188,16 @@
   }
 }
 
-.chip-sm {
-  &.chip-dismissible {
-    @include chip-mx.chip-styles-sm();
-    padding-inline-start: chip.$chip-dismissable-padding-start;
-    gap: chip.$chip-gap-sm;
+.chip-dismissible-group,
+.chip-selectable-group {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-    &::before,
-    &::after {
-      height: chip.$chip-close-button-height-sm;
-      width: chip.$chip-close-button-height-sm;
-    }
-  }
+.chip-dismissible-group {
+  gap: tokens.get('chip-dismissible-group-gap');
+}
 
-  &.chip-filter > .chip-filter-label {
-    @include chip-mx.chip-styles-sm();
-
-    > .badge {
-      @extend %badge-sm;
-      line-height: chip.$chip-badge-line-height;
-      border-width: chip.$chip-badge-border-width;
-      padding-inline: calc(var(--post-badge-padding-x) * 1.2);
-    }
-  }
+.chip-selectable-group {
+  gap: tokens.get('filter-chips-group-selectable-gap', components.$post-filter);
 }

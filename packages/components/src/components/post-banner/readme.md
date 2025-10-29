@@ -7,12 +7,9 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                                                           | Type                                                        | Default     |
-| -------------- | --------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ----------- |
-| `dismissLabel` | `dismiss-label` | The label to use for the close button of a dismissible banner.                                                        | `string`                                                    | `undefined` |
-| `dismissible`  | `dismissible`   | If `true`, a close button (×) is displayed and the banner can be dismissed by the user.                               | `boolean`                                                   | `false`     |
-| `icon`         | `icon`          | The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed. | `string`                                                    | `undefined` |
-| `type`         | `type`          | The type of the banner.                                                                                               | `"danger" \| "info" \| "neutral" \| "success" \| "warning"` | `'neutral'` |
+| Property | Attribute | Description             | Type                                          | Default  |
+| -------- | --------- | ----------------------- | --------------------------------------------- | -------- |
+| `type`   | `type`    | The type of the banner. | `"error" \| "info" \| "success" \| "warning"` | `'info'` |
 
 
 ## Events
@@ -37,25 +34,13 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot        | Description                                                               |
-| ----------- | ------------------------------------------------------------------------- |
-| `"actions"` | Slot for placing custom actions (buttons, links, etc.) within the banner. |
-| `"default"` | Slot for placing the main content/message of the banner.                  |
-| `"heading"` | Slot for placing custom content within the banner's heading.              |
+| Slot             | Description                                                                     |
+| ---------------- | ------------------------------------------------------------------------------- |
+| `"actions"`      | Slot for placing custom actions (buttons, links, etc.) within the banner.       |
+| `"close-button"` | Slot for placing a `post-closebutton` component to make the banner dismissible. |
+| `"default"`      | Slot for placing the main content/message of the banner.                        |
+| `"heading"`      | Slot for placing custom content within the banner's heading.                    |
 
-
-## Dependencies
-
-### Depends on
-
-- [post-icon](../post-icon)
-
-### Graph
-```mermaid
-graph TD;
-  post-banner --> post-icon
-  style post-banner fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './radio.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
@@ -28,15 +28,21 @@ export const Radio: Story = {
               disabled: [false, true],
               size: ['null', 'form-check-sm'],
               validation: context.argTypes.validation.options,
+              requiredOptional: ['null', 'required', 'optional'],
             }),
             ...bombArgs({
               hiddenLabel: [true],
               disabled: [false, true],
               validation: context.argTypes.validation.options,
+              requiredOptional: ['null', 'required', 'optional'],
             }),
           ]
             // remove disabled & validated examples
-            .filter((args: Args) => !(args.disabled && args.validation !== 'null'))
+            .filter(
+              (args: Args) =>
+                !(args.disabled && args.validation !== 'null') &&
+                !(args.requiredOptional === 'required' && args.disabled === true),
+            )
             .map((args: Args) => {
               context.id = `${scheme}-${crypto.randomUUID()}`;
               return meta.render?.({ ...context.args, ...args }, context);

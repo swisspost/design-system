@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           fetch-depth: 0
 
@@ -26,6 +26,9 @@ jobs:
 
       - name: Install dependencies of changed packages
         run: pnpm install
+
+      - name: Build eslint package
+        run: pnpm --filter @swisspost/design-system-eslint build
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since

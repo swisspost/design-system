@@ -1,4 +1,4 @@
-import type { StoryObj, Args, StoryContext } from '@storybook/web-components';
+import type { StoryObj, Args, StoryContext } from '@storybook/web-components-vite';
 import meta, {
   Checkbox,
   Input,

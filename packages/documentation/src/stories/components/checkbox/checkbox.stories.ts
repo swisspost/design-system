@@ -1,14 +1,15 @@
-import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { getLabelText } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Form Checkbox',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderCheckbox,
   parameters: {
     badges: [],
@@ -25,6 +26,7 @@ const meta: MetaComponent = {
     checked: 'unchecked',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     hiddenLegend: {
@@ -62,10 +64,10 @@ const meta: MetaComponent = {
       name: 'Hidden Label',
       description:
         'If `true`, the checkbox label is set via an `aria-label` attribute and is therefore not visible.' +
-        '<span className="mt-8 banner banner-info banner-sm">' +
+        '<post-banner data-size="sm"><p>' +
         'Shown or hidden, a label must always be defined.<br/>' +
         'More details in our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.' +
-        '</span>',
+        '</p></post-banner>',
       control: {
         type: 'boolean',
       },
@@ -93,10 +95,10 @@ const meta: MetaComponent = {
       name: 'Disabled',
       description:
         'If `true`, makes the checkbox appear inactive and disables its functionality.' +
-        '<span className="mt-8 banner banner-info banner-sm">' +
+        '<post-banner data-size="sm"><p>' +
         'There are accessibility concerns with the disabled state.<br/>' +
         'More details in our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.' +
-        '</span>',
+        '</p></post-banner>',
       control: {
         type: 'boolean',
       },
@@ -107,7 +109,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the checkbox and controls the display of the corresponding return message. <span className="mt-8 banner banner-info banner-sm">Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#checkbox">validation guidelines here</a>.</span> ',
+        'Defines the validation state of the checkbox and controls the display of the corresponding return message. <post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#checkbox">validation guidelines here</a>.</p></post-banner> ',
       control: {
         type: 'radio',
         labels: {
@@ -117,6 +119,22 @@ const meta: MetaComponent = {
         },
       },
       options: ['null', 'valid', 'invalid'],
+      table: {
+        category: 'States',
+      },
+    },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
       table: {
         category: 'States',
       },
@@ -146,10 +164,6 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   valid: false,
   invalid: true,
 };
-
-function getLabel({ label }: Args, { id }: StoryContext) {
-  return html` <label for="${id}">${label}</label> `;
-}
 
 function getValidationFeedback({ validation }: Args, context: StoryContext) {
   return html`
@@ -194,8 +208,9 @@ function renderCheckbox(args: Args, context: StoryContext) {
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"
+        ?required="${args.requiredOptional === 'required'}"
       />
-      ${args.hiddenLabel ? nothing : getLabel(args, context)}
+      ${args.hiddenLabel ? nothing : html`<label for="${context.id}">${getLabelText(args)}</label>`}
       ${args.validation !== 'null' ? getValidationFeedback(args, context) : nothing}
     </div>
   `;

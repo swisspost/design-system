@@ -1,2 +1,1 @@
-'use client';
-export * from './components';
+export * from './stencil-generated/components.js';

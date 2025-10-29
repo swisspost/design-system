@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                                                                                                                                           | Type     | Default     |
-| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `activePanel` | `active-panel` | The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.** | `string` | `undefined` |
+| Property      | Attribute      | Description                                                                                                                                                                           | Type      | Default     |
+| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `activePanel` | `active-panel` | The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.** | `string`  | `undefined` |
+| `fullWidth`   | `full-width`   | When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.                                                                    | `boolean` | `false`     |
 
 
 ## Events
@@ -49,10 +50,10 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part        | Description                                     |
-| ----------- | ----------------------------------------------- |
-| `"content"` | Add custom styles for the tab panel container.  |
-| `"tabs"`    | Add custom styles for the tab header container. |
+| Part        | Description                                                                  |
+| ----------- | ---------------------------------------------------------------------------- |
+| `"content"` | The container element that displays the content of the currently active tab. |
+| `"tabs"`    | The container element that holds the set of tabs.                            |
 
 
 ----------------------------------------------

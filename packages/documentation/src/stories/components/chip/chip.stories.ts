@@ -1,12 +1,12 @@
-import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
   title: 'Components/Chip',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderChip,
   parameters: {
     controls: {
@@ -15,10 +15,9 @@ const meta: MetaComponent = {
   },
   args: {
     text: 'Chip',
-    size: 'Large',
-    type: 'filter',
+    type: 'selectable',
     disabled: false,
-    active: false,
+    selected: false,
     badge: false,
     dismissed: false,
     number: 1,
@@ -35,28 +34,17 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    size: {
-      name: 'Size',
-      description: 'The size of the chip.',
-      control: {
-        type: 'radio',
-      },
-      options: ['Large', 'Small'],
-      table: {
-        category: 'General',
-      },
-    },
     type: {
       name: 'Type',
       description: 'Defines how the chip can be interacted with.',
       control: {
         type: 'radio',
         labels: {
-          filter: 'Filter Chip',
+          selectable: 'Selectable Chip',
           dismissible: 'Dismissible Chip',
         },
       },
-      options: ['filter', 'dismissible'],
+      options: ['selectable', 'dismissible'],
       table: {
         category: 'General',
       },
@@ -64,7 +52,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'If `true`, the chip is disabled.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
+        'If `true`, the chip is disabled.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
       control: {
         type: 'boolean',
       },
@@ -72,13 +60,13 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    active: {
-      name: 'Active',
+    selected: {
+      name: 'Selected',
       description:
-        'If `true`, the chip is active.<div className="mt-8 banner banner-info banner-sm">Disabling active chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
+        'If `true`, the chip is selected.<post-banner data-size="sm"><p>Disabling selected chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
       if: {
         arg: 'type',
-        eq: 'filter',
+        eq: 'selectable',
       },
       control: {
         type: 'boolean',
@@ -89,10 +77,11 @@ const meta: MetaComponent = {
     },
     badge: {
       name: 'Nested Badge',
-      description: 'If `true`, a badge is displayed inside the chip.',
+      description:
+        'If `true`, a badge is displayed inside the chip (only available on selectable chips).',
       if: {
         arg: 'type',
-        eq: 'filter',
+        eq: 'selectable',
       },
       control: {
         type: 'boolean',
@@ -126,7 +115,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
 }
 
 // RENDERER
-function getFilterChip(
+function getSelectableChip(
   args: Args,
   updateArgs: (args: Args) => void,
   context: StoryContext,
@@ -136,7 +125,7 @@ function getFilterChip(
   const inputId = typeof index !== 'undefined' ? `${inputName}-${index}` : inputName;
 
   const handleChange = (e: Event) => {
-    updateArgs({ active: !args.active });
+    updateArgs({ selected: !args.selected });
 
     if (document.activeElement === e.target) {
       setTimeout(() => {
@@ -147,17 +136,16 @@ function getFilterChip(
   };
 
   return html`
-    <div class="chip${args.size === 'Large' ? '' : ' chip-sm'} chip-filter">
+    <div class="chip chip-selectable">
       <input
         id="${inputId}"
         name="${args.radio ? inputName : inputId}"
-        class="chip-filter-input"
         type="${args.radio ? 'radio' : 'checkbox'}"
-        ?checked="${args.active}"
+        ?checked="${args.selected}"
         ?disabled="${args.disabled}"
         @change="${handleChange}"
       />
-      <label class="chip-filter-label" for="${inputId}">
+      <label for="${inputId}">
         <span class="chip-text">${args.text}</span>
         ${args.badge ? html` <span class="badge">${args.number}</span> ` : nothing}
       </label>
@@ -168,7 +156,7 @@ function getFilterChip(
 function getDismissibleChip(args: Args, updateArgs: (args: Args) => void) {
   return html`
     <button
-      class="chip${args.size === 'Large' ? '' : ' chip-sm'} chip-dismissible"
+      class="chip chip-dismissible"
       @click="${() => updateArgs({ dismissed: true })}"
       ?disabled="${args.disabled}"
     >
@@ -185,7 +173,7 @@ function renderChip(args: Args, context: StoryContext, index?: number) {
 
   if (args.type === 'dismissible') return getDismissibleChip(args, updateArgs);
 
-  return getFilterChip(args, updateArgs, context, index);
+  return getSelectableChip(args, updateArgs, context, index);
 }
 
 // STORIES
@@ -195,63 +183,78 @@ export const Default: Story = {
   decorators: [externalControl],
 };
 
-export const FilterCheckboxChip: Story = {
-  render: ({ active, ...args }, context) => {
+export const SelectableCheckboxChip: Story = {
+  render: ({ selected, ...args }, context) => {
     const checkboxChips = [
-      { text: 'Adventure', active: true },
+      { text: 'Adventure', selected: true },
       { text: 'Family' },
       { text: 'Sights' },
     ];
 
     return html`
-      <fieldset>
+      <fieldset class="chip-selectable-group">
         <legend>Travel Itineraries</legend>
-        <div class="d-flex flex-wrap gap-8">
-          ${checkboxChips.map(({ text, active }, index) =>
-            renderChip({ ...args, text, active }, context, index),
-          )}
-        </div>
+        ${checkboxChips.map(({ text, selected }, index) =>
+          renderChip({ ...args, text, selected }, context, index),
+        )}
       </fieldset>
     `;
   },
-  decorators: [story => html`<div class="d-flex gap-56">${story()}</div>`],
   args: {
     type: 'filter',
   },
 };
 
-export const FilterRadioChip: Story = {
-  render: ({ active, ...args }, context) => {
+export const SelectableBadgeChip: Story = {
+  render: ({ selected, ...args }, context) => {
+    const checkboxChips = [
+      { text: 'Adventure', badge: true, number: 5, selected: true },
+      { text: 'Family', badge: true, number: 233 },
+      { text: 'Sights', badge: true, number: 12 },
+    ];
+
+    return html`
+      <fieldset class="chip-selectable-group">
+        <legend>Travel Itineraries</legend>
+        ${checkboxChips.map(({ text, selected, badge, number }, index) =>
+          renderChip({ ...args, text, selected, badge, number }, context, index),
+        )}
+      </fieldset>
+    `;
+  },
+  args: {
+    type: 'filter',
+  },
+};
+
+export const SelectableRadioChip: Story = {
+  render: ({ selected, ...args }, context) => {
     const radioChips = [
       { number: 253, text: 'All' },
-      { number: 12, text: 'Articles', active: true },
+      { number: 12, text: 'Articles', selected: true },
       { number: 5, text: 'Tools' },
       { number: 236, text: 'Documents' },
     ];
 
     return html`
-      <fieldset>
+      <fieldset class="chip-selectable-group">
         <legend class="">Search Results</legend>
-        <div class="d-flex flex-wrap gap-8">
-          ${radioChips.map(({ text, number, active }, index) =>
-            renderChip({ ...args, text, number, active }, context, index),
-          )}
-        </div>
+        ${radioChips.map(({ text, number, selected }, index) =>
+          renderChip({ ...args, text, number, selected }, context, index),
+        )}
       </fieldset>
     `;
   },
-  decorators: [story => html`<div class="d-flex gap-56">${story()}</div>`],
   args: {
     type: 'filter',
     radio: true,
-    size: 'Small',
     badge: true,
   },
 };
 
 export const Dismissible: Story = {
   render: ({ dismissed, ...args }, context) => html`
-    <div class="d-flex flex-wrap gap-8">
+    <div class="chip-dismissible-group">
       ${renderChip({ ...args, text: 'First user input' }, context)}
       ${renderChip({ ...args, text: 'Second user input' }, context)}
       ${renderChip({ ...args, text: 'Third user input' }, context)}

@@ -4,7 +4,7 @@
       "module": "node16",
       "moduleResolution": "node16"
     },
-    "include": ["prebuild.ts"],
+    "include": ["prebuild.ts", "prebuild.spec.ts"]
   },
   "compilerOptions": {
     "types": ["node", "jest", "mock-fs"],
@@ -16,10 +16,10 @@
     "allowUnreachableCode": false,
     "declaration": false,
     "experimentalDecorators": true,
-    "lib": ["dom", "es2021"],
+    "lib": ["dom", "es2020"],
     "moduleResolution": "bundler",
     "module": "esnext",
-    "target": "es2021",
+    "target": "es2020",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react",
@@ -28,6 +28,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["prebuild.ts", "prebuild.spec.ts", ".config/*", "src", "types"],
+  "include": [".config/*", "src", "types"],
   "exclude": ["node_modules"]
 }

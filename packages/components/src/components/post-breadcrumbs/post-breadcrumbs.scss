@@ -143,24 +143,6 @@ post-menu::part(popover-container) {
   justify-content: center;
   gap: tokens.get('breadcrumb-gap-inline-inner');
 
-  a {
-    text-decoration: none;
-    color: tokens.get('body-color', elements.$post-body);
-    line-height: 150%;
-    padding-block: tokens.get('breadcrumb-padding-block-text');
-    font-size: tokens.get('body-font-size', elements.$post-body);
-    @include utilities.focus-style;
-
-    &:hover {
-      color: tokens.get('breadcrumb-hover-fg');
-      text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
-    }
-
-    &:focus-visible {
-      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-    }
-  }
-
   span {
     &:hover {
       color: tokens.get('breadcrumb-hover-fg');
@@ -185,7 +167,7 @@ post-menu::part(popover-container) {
   }
 }
 
-post-breadcrumb-item:last-of-type {
+li[aria-current="page"] post-breadcrumb-item {
   pointer-events: none;
   color: tokens.get('breadcrumb-selected-fg');
   font-weight: tokens.get('breadcrumb-selected-font-weight');
@@ -198,5 +180,5 @@ post-breadcrumb-item:last-of-type {
 }
 
 .visually-hidden {
-  @include post.visually-hidden();
+  @include post.visuallyhidden();
 }

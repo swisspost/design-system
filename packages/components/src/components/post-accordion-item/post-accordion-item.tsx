@@ -1,13 +1,13 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkEmptyOrOneOf, eventGuard } from '@/utils';
+import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
- * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
- * @part body - The pseudo-element, used to override styles on the components internal `body` element.
- * @slot logo - Slot for the placing a logo before the header.
+ * @part button - The element that toggles the accordion item (header button).
+ * @part body - The container element that holds the accordion item's content.
+ * @slot logo - Slot for placing a logo in the accordion item’s header, before the content.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
  */
@@ -52,15 +52,9 @@ export class PostAccordionItem {
 
   // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
+  @EventFrom('post-accordion-item')
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    eventGuard(
-      this.host,
-      event,
-      { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion-item' },
-      () => {
-        this.collapsed = !event.detail;
-      },
-    );
+    this.collapsed = !event.detail;
   }
 
   /**
@@ -102,7 +96,7 @@ export class PostAccordionItem {
                   <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
                 </span>
                 <slot name="header" />
-                <post-icon name="2051"></post-icon>
+                <post-icon name="chevrondown"></post-icon>
               </button>
             </HeadingTag>
           </post-collapsible-trigger>

@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './switch.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
@@ -25,13 +25,18 @@ export const Switch: Story = {
         checked: [false, true],
         disabled: [false, true],
         validation: ['null', 'is-valid', 'is-invalid'],
+        requiredOptional: ['null', 'required', 'optional'],
       })
-        .filter((args: Args) => !(args.labelPosition == 'before' && args.label === longerText))
+        .filter(
+          (args: Args) =>
+            !(args.labelPosition == 'before' && args.label === longerText) &&
+            !(args.requiredOptional === 'required' && args.disabled === true),
+        )
         .map(args => ({ ...args, id: `${scheme}-${crypto.randomUUID()}` }))
         .map(
           (args: Args) =>
             html`
-              <div class="col-6 p-16">
+              <div class="col-6 col-lg-4 p-16">
                 ${meta.render?.({ ...context.args, ...args }, { ...context, id: args.id })}
               </div>
             `,

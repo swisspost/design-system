@@ -3,19 +3,27 @@
 @use '../variables/type';
 @use '../functions/tokens';
 @use '../tokens/elements';
+@use '../tokens/components';
 
 tokens.$default-map: elements.$post-body;
 
-// Resets type
-@use '../components/fonts';
-
 body {
+  --post-current-bg: #{tokens.get('body-color-bg')};
+  --post-current-fg: #{tokens.get('body-color-fg')};
+
+  background-color: var(--post-current-bg);
+  color: var(--post-current-fg);
+
   font-family: type.$font-family-sans-serif;
   font-size: tokens.get('body-font-size');
   font-weight: tokens.get('body-font-weight');
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   font-variant-numeric: proportional-nums;
-  color: tokens.get('body-color');
   min-height: 100vh;
+
+  [data-color-scheme] {
+    --post-current-fg: #{tokens.get('body-color-fg')};
+    color: var(--post-current-fg);
+  }
 }

@@ -1,10 +1,10 @@
-import { HostElement } from '@stencil/core/internal';
+import type { HTMLStencilElement } from '@stencil/core/internal';
 
 /**
  * Invoke the `componentOnReady` method if it is available, simulate it otherwise
  * @see https://stenciljs.com/docs/api#componentonready
  */
-export function componentOnReady<T extends HostElement>(el: T): Promise<T> {
+export function componentOnReady<T extends HTMLStencilElement>(el: T): Promise<T> {
   if (typeof el.componentOnReady === 'function') {
     return el.componentOnReady();
   } else {

@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as HeaderStories from './header.stories';
 import './header.styles.scss';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
@@ -8,29 +8,27 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="docs-title">
   # Header
 
-  <link-design of={JSON.stringify(HeaderStories)}></link-design>
+<link-design of={JSON.stringify(HeaderStories)}></link-design>
+
 </div>
 
-<div className="lead">The header of the Post.</div>
+<div className="lead">
+  Allow users to navigate through your application.
+</div>
 
-<Canvas sourceState="shown" of={HeaderStories.Default} style={{ height: '700px' }} />
+The Header adapts to your needs and can contain a variety of sub-components depending on your use case.
+
+It is divided into two sections:
+
+1. **Global Header** (Yellow Background): provides navigation links and information that are global to the entire organization.
+2. **Application Header** (White Background): displays navigation links and information specific to the current application.
+
+<div className="main-story">
+  <Canvas sourceState="shown" of={HeaderStories.Default} />
+</div>
 <div className="hide-col-default">
   <Controls of={HeaderStories.Default} />
 </div>
-
-## CSS Properties
-
-The `<post-header>` component exposes the following custom properties to the `:root` element:
-
-<ul>
-  <li>
-    `--post-header-height`: This property represents the height of the header that is currently
-    visible in the viewport.
-  </li>
-  <li>`--post-header-expanded-height`: This property represents the actual size of the header.</li>
-</ul>
-Additionally, it sets the `scroll-padding-top` property to equal the visible header height, which can
-be useful for pages that use scroll navigation.
 
 ## Installation
 
@@ -38,3 +36,65 @@ The `<post-header>` element is part of the `@swisspost/design-system-components`
 For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
 
 <StylesPackageImport components={['header', 'list', 'button']} />
+
+### CSS Properties
+
+The `<post-header>` styles expose several custom properties on the `:root` element:
+
+- `--post-header-height`: the current visible height of the header
+- `--post-header-expanded-height`: the height of the header when expanded
+- `--post-header-reduced-height`: the height of the header when reduced
+
+In addition, the `<post-header>` styles set the `scroll-padding-top` property on the `<body>` element to match the currently visible header height.
+This ensures that when using scroll navigation (e.g. jumping to anchors), content is positioned correctly below the header.
+
+## Active Navigation Items
+
+**The `aria-current="page"` attribute highlights the active navigation items**
+
+This attribute is not added automatically,
+it must be applied by your application logic to the `<a>` element of the `<post-mainnavigation>` that represents the page currently being viewed.
+Once applied, parent items in the navigation automatically inherit the correct selected styling.
+
+<Canvas sourceState="shown" of={HeaderStories.ActiveNavigationItem} />
+
+## Examples
+
+### Post Portal
+
+The Header for the Post Portal (post.ch) is a consistently available interface element that provides a consistent navigation experience across the whole Post Portal and other portals.
+
+It not only contains globally available key elements (such as Language), it also provides a first content selection via the target group buttons. They define the further navigation.
+
+<Canvas of={HeaderStories.Portal} inline="false" />
+
+#### Jobs
+
+A dedicated header for the Jobs pages within the Post Portal.
+
+<Canvas of={HeaderStories.Jobs} inline="false" />
+
+### Microsite
+
+The Microsite Header is a consistently available interface element that provides a consistent navigation experience across the whole Microsite.
+
+<Canvas of={HeaderStories.Microsite} inline="false" />
+
+### One Pager
+
+The One Pager Header is a consistently available interface element that provides a consistent navigation experience across the whole One Pager.
+
+<Canvas of={HeaderStories.OnePager} inline="false" />
+
+## User menu
+
+The user menu is part of the global header, it is a menu containing information and links linked to the currently logged-in user.
+When no user is logged in, a login button is displayed instead.
+
+### Logged out
+
+<Canvas sourceState="hidden" of={HeaderStories.LoggedOut} />
+
+### Logged in
+
+<Canvas sourceState="shown" of={HeaderStories.LoggedIn} />

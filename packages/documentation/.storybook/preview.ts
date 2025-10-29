@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/web-components';
+import type { Preview } from '@storybook/web-components-vite';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout/layout';
@@ -16,7 +16,7 @@ import './addons/cypress-storybook/client';
 
 import './styles/preview.scss';
 
-import { SyntaxHighlighter } from '@storybook/components';
+import { SyntaxHighlighter } from 'storybook/internal/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
@@ -83,7 +83,7 @@ const preview: Preview = {
             onClick: openFullScreenDemo,
           },
           {
-            title: 'Copy link',
+            title: 'Copy deep link',
             onClick: copyStoryConfigUrl,
           },
           {

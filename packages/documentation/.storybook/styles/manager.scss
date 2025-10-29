@@ -50,7 +50,7 @@
   .sidebar-item {
     position: relative;
     border-radius: 0;
-    overflow: visible!important;
+    overflow: visible !important;
 
     &:before,
     &:after {
@@ -83,18 +83,13 @@
   }
 
   .sidebar-item {
-    > span {
-      margin-top: 4px;
-    }
-
     + a:not([data-nodetype]) {
       display: none;
     }
 
-    > div > svg {
-      margin-top: 0;
-      width: 1.2em;
-      height: 1.2em;
+    > a {
+      display: flex;
+      align-items: center;
     }
 
     &[data-nodetype='group'] svg {
@@ -113,6 +108,18 @@
     &[data-selected='true'] {
       background-color: rgba(post.$yellow, 0.4);
       color: post.$black;
+    }
+
+    .label-with-icon {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      img {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+      }
     }
   }
 
@@ -133,6 +140,11 @@
   [data-parent-id='misc']:where(:not([data-parent-id='misc'] + *)) {
     margin-block-start: 1rem;
   }
+}
+
+// Hide default SVG icons
+[data-env="development"] #storybook-explorer-tree .sidebar-item > a > div > svg {
+  display: none;
 }
 
 #storybook-explorer-menu {

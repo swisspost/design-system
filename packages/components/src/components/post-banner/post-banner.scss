@@ -1,15 +1,85 @@
-@use '@swisspost/design-system-styles/components/banner';
-@use '@swisspost/design-system-styles/components/close';
-@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/mixins/icons';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/color-scheme';
+
+@use '@swisspost/design-system-styles/variables/components/notification';
+@use '@swisspost/design-system-styles/variables/spacing';
+
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+tokens.$default-map: components.$post-banner;
 
 :host {
-  display: block;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  grid-auto-flow: row;
+  row-gap: tokens.get('banner-content-gap');
+  min-height: calc(#{tokens.get('banner-icon-size')} + (2 * #{tokens.get('banner-padding')}));
+  padding: tokens.get('banner-padding');
+  padding-inline-start: calc(#{tokens.get('banner-padding')} + #{tokens.get('banner-icon-size')} + #{tokens.get('banner-gap')});
+  color: var(--post-current-fg);
+  border-style: tokens.get('banner-border-style');
+  border-width: tokens.get('banner-border-width');
+  border-radius: tokens.get('banner-border-radius');
+  box-shadow: tokens.get('banner-elevation');
 
-  ::slotted(*) {
-    margin: 0 !important;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: tokens.get('banner-icon-size');
+    width: tokens.get('banner-icon-size');
+    inset-block-start: tokens.get('banner-padding');
+    inset-inline-start: tokens.get('banner-padding');
   }
 }
 
-.visually-hidden {
-  @include post.visually-hidden();
+@each $name in 'info', 'success', 'warning', 'error' {
+  :host([type="#{$name}"]) {
+    background-color: tokens.get('banner-#{$name}-bg');
+    border-color: tokens.get('banner-#{$name}-border-color');
+    @include color-scheme.set(tokens.get('post-banner-#{$name}-bg-scheme'));
+
+    &::before {
+      background-image: var(--post-signal-icon-#{$name});
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  margin-block-start: tokens.get('banner-actions-margin-top');
+  gap: tokens.get('banner-actions-gap');
+
+  @include media.only(mobile) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+::slotted(*) {
+  margin-block: 0 !important;
+}
+
+::slotted(post-closebutton) {
+  position: absolute;
+  inset-block-start: tokens.get('banner-padding');
+  inset-inline-end: tokens.get('banner-padding');
+}
+
+@include utilities.high-contrast-mode {
+  :host {
+    border-color: CanvasText;
+
+    &::before {
+      color: CanvasText;
+    }
+  }
 }

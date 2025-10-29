@@ -1,31 +1,5 @@
 @use 'sass:map';
 
 // Spacing
-//
-// Control the default styling of most Bootstrap elements by modifying these
-// variables. Mostly focused on spacing.
-// You can add more entries to the $spacers map, should you need more variation.
 
 $spacer: 1rem !default;
-$spacers: (
-  0: 0,
-  1: $spacer * 0.25,
-  2: $spacer * 0.5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
-) !default;
-
-$responsive-spacing-properties: (
-  'm': 'margin',
-  'mt': 'margin-top',
-  'mr': 'margin-right',
-  'mb': 'margin-bottom',
-  'ml': 'margin-left',
-  'p': 'padding',
-  'pt': 'padding-top',
-  'pr': 'padding-right',
-  'pb': 'padding-bottom',
-  'pl': 'padding-left',
-  'gap': 'gap',
-);

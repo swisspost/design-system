@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 
@@ -79,7 +79,8 @@ export const TextWrapping: Story = {
     </div>
     <div class="my-container w-half text-nowrap">
       <p class="text-wrap">
-        This text should wrap, showing how text naturally breaks into multiple lines when wrapping is enabled.
+        This text should wrap, showing how text naturally breaks into multiple lines when wrapping
+        is enabled.
       </p>
     </div>
   `,
@@ -108,3 +109,20 @@ export const TextDecoration: Story = {
     <a href="#" class="text-decoration-none">This link has its text decoration removed.</a>
   `,
 };
+
+export const TextTruncation: StoryObj = {
+  render: () => html`
+    <p class="text-truncate" style="max-width: 200px">
+      This is a long text that should be truncated when it exceeds the defined max-width.
+    </p>
+  `,
+};
+
+export const SmallText: StoryObj = {
+  render: () => html`
+    <p>This is normal text</p>
+    <p class="small">This is small text (80% of parent font size)</p>
+    <h2>This is a title with <span class="small">smaller text inside</span></h2>
+  `,
+};
+

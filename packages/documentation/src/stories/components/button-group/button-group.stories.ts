@@ -1,12 +1,12 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderButtonGroup,
   parameters: {
     badges: [],

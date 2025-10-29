@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Source } from '@storybook/addon-docs';
+import { Source } from '@storybook/addon-docs/blocks';
 
 const code = `
 <post-header>
@@ -15,7 +15,7 @@ const code = `
 
   <!-- Menu button mobile -->
   <post-togglebutton slot="post-togglebutton">
-    <span class="visually-hidden-sm">Menu</span>
+    <span>Menu</span>
     <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
     <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
   </post-togglebutton>
@@ -40,13 +40,13 @@ const code = `
   <ul class="list-inline">
     <li>
       <a href="#">
-        <span class="visually-hidden-sm">Search</span>
+        <span>Search</span>
         <post-icon aria-hidden="true" name="search"></post-icon>
       </a>
     </li>
     <li>
       <a href="#">
-        <span class="visually-hidden-sm">Login</span>
+        <span>Login</span>
         <post-icon aria-hidden="true" name="login"></post-icon>
       </a>
     </li>
@@ -54,9 +54,6 @@ const code = `
 
   <!-- Main navigation -->
   <post-mainnavigation caption="Hauptnavigation">
-    <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-      <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
-    </button>
     <post-list title-hidden="">
       <h2>Main Navigation</h2>
       <!-- Link only level 1 -->
@@ -73,6 +70,7 @@ const code = `
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
           <h2 slot="megadropdown-title">Briefe title</h2>
+          <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
           <post-list>
             <h3>Briefe senden</h3>
             <post-list-item slot="post-list-item"><a href="#">Briefe Schweiz</a></post-list-item>
@@ -102,6 +100,7 @@ const code = `
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
           <h2 slot="megadropdown-title">Pakete title</h2>
+          <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
           <post-list>
             <h3>Pakete senden</h3>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>

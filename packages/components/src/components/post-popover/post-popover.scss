@@ -1,8 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
-@use '@swisspost/design-system-styles/components/close';
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/elements';
 
 * {
   box-sizing: border-box;
@@ -17,6 +14,8 @@
 }
 
 .popover-container {
+  color: var(--post-current-fg);
+  background-color: var(--post-current-bg);
   display: flex;
   align-items: self-start;
   padding: 0.5em;
@@ -28,14 +27,4 @@
 .popover-content {
   padding: 0.5em;
   flex-grow: 1;
-}
-
-.btn-close {
-  color: tokens.get('body-color', elements.$post-body);
-
-  &:hover {
-    @include utilities-mx.high-contrast-mode() {
-      color: HighlightText !important;
-    }
-  }
 }

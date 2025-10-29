@@ -1,7 +1,8 @@
 import { MetaComponent } from '@root/types';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { mapClasses } from '@/utils';
+import { getLabelText, getValidationMessages } from '@/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -12,7 +13,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: '152b7268-cce0-43d7-b931-41a57370f9a0',
   title: 'Components/Form Textarea',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderTextarea,
   parameters: {
     badges: [],
@@ -29,6 +30,7 @@ const meta: MetaComponent = {
     hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     label: {
@@ -54,7 +56,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</span>',
+        'Renders the component with or without a visible label.<post-banner data-size="sm"><p>There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</p></post-banner>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -103,7 +105,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
       control: {
         type: 'boolean',
       },
@@ -114,7 +116,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the textarea and controls the display of the corresponding return message. <span className="mt-8 banner banner-info banner-sm">Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#textarea">validation guidelines here</a>.</span> ',
+        'Defines the validation state of the textarea and controls the display of the corresponding return message. <post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#textarea">validation guidelines here</a>.</p></post-banner> ',
       control: {
         type: 'radio',
         labels: {
@@ -124,6 +126,22 @@ const meta: MetaComponent = {
         },
       },
       options: ['null', 'is-valid', 'is-invalid'],
+      table: {
+        category: 'States',
+      },
+    },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
       table: {
         category: 'States',
       },
@@ -141,22 +159,11 @@ function renderTextarea(args: Args, context: StoryContext) {
     [args.validation]: args.validation,
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
+
   const label = !useAriaLabel
-    ? html` <label for=${context.id} class="form-label">${args.label}</label> `
+    ? html` <label for=${context.id} class="form-label">${getLabelText(args)}</label> `
     : null;
-  const contextual = [
-    args.validation === 'is-valid'
-      ? html`<p class="valid-feedback" id="${args.validation}-id-${context.id}">
-          Great success!
-        </p>`
-      : null,
-    args.validation === 'is-invalid'
-      ? html`<p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>`
-      : null,
-    args.hint !== ''
-      ? html`<p class="form-hint" id="form-hint-${context.id}">${args.hint}</p>`
-      : null,
-  ];
+  const contextual = getValidationMessages(args, context);
 
   const ariaDescribedByParts = [
     args.hint ? 'form-hint-' + context.id : '',
@@ -178,6 +185,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
       aria-describedby="${ariaDescribedBy}"
       style=${args.resize ?? nothing}
+      ?required="${args.requiredOptional === 'required'}"
     >
 ${args.textInside ?? nothing}</textarea
     >

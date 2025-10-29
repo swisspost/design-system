@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "10.0.0-next.40",
+  "version": "10.0.0-next.51",
   "description": "Design System React Components for easy integration with the React ecosystem",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -13,35 +13,52 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public",
     "linkDirectory": true
   },
-  "files": [
-    "dist"
-  ],
+  "type": "module",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
+  "exports": {
+    "./post-components.css": "./dist/post-components.css",
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "node": "./dist/index.server.js",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/types/index.server.d.ts",
+      "import": "./dist/index.server.js",
+      "require": "./dist/index.server.js"
+    }
+  },
   "scripts": {
     "build": "pnpm clean && tsc -p .",
     "postbuild": "pnpm copy:styles:dist",
     "clean": "rimraf dist",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "copy:styles:dist": "copyfiles -f src/components/stencil-generated/post-components.css dist/"
+    "copy:styles:dist": "copyfiles -f src/stencil-generated/post-components.css dist/"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:10.0.0-next.40"
+    "@stencil/react-output-target": "0.8.2",
+    "@stencil/ssr": "0.1.1",
+    "@swisspost/design-system-components": "workspace:10.0.0-next.51"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
-    "@stencil/react-output-target": "0.5.3",
     "@types/node": "22.10.5",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.5",
+    "@types/react": "18.3.23",
+    "@types/react-dom": "18.3.7",
     "copyfiles": "2.4.1",
     "eslint": "9.18.0",
-    "eslint-plugin-react": "7.37.4",
+    "eslint-plugin-react": "7.37.5",
     "globals": "16.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -50,8 +67,8 @@
     "typescript-eslint": "8.20.0"
   },
   "peerDependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": ">=18.0.0 <20.0.0",
+    "react-dom": ">=18.0.0 <20.0.0"
   },
   "keywords": [
     "components",

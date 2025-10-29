@@ -200,13 +200,15 @@ export class PostTooltipTrigger {
   }
 
   private interestHandler() {
-    if (this.delay > 0) {
-      this.delayTimeout = window.setTimeout(() => {
+    if (this.trigger) {
+      if (this.delay > 0) {
+        this.delayTimeout = window.setTimeout(() => {
+          this.tooltip?.show(this.trigger);
+          this.delayTimeout = null;
+        }, this.delay);
+      } else {
         this.tooltip?.show(this.trigger);
-        this.delayTimeout = null;
-      }, this.delay);
-    } else {
-      this.tooltip?.show(this.trigger);
+      }
     }
   }
 

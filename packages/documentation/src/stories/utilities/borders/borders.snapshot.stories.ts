@@ -1,4 +1,4 @@
-import type { StoryObj, Args } from '@storybook/web-components';
+import type { StoryObj, Args } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import meta, { BorderRounded, BorderSides, RemoveBorders } from './borders.stories';
 import './borders.styles.scss';

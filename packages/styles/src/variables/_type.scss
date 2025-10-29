@@ -1,11 +1,5 @@
 @use 'sass:math';
 
-@use './spacing';
-@use './color';
-@use './commons';
-@use './components/paragraph';
-@use './../functions/sizing';
-
 @use './../functions/tokens';
 @use './../tokens/utilities';
 @use './../tokens/elements' as element-tokens;
@@ -41,39 +35,3 @@ $line-height-base: $line-height-copy;
 $line-height-1: tokens.get('utility-line-height-1');
 $line-height-sm: tokens.get('utility-line-height-sm');
 $line-height-lg: tokens.get('utility-line-height-lg');
-
-$headings-margin-bottom: (spacing.$spacer * 0.5) !default;
-$headings-font-family: inherit !default;
-$headings-font-weight: 700 !default;
-$headings-line-height: $line-height-heading;
-$headings-color: tokens.get('body-color', element-tokens.$post-body) !default;
-
-$small-font-size: 80% !default;
-
-$text-muted: color.$gray-60;
-
-$blockquote-font-weight: $font-weight-bold !default;
-$blockquote-border-left: commons.$border-thick solid color.$black !default;
-$blockquote-border-left-width-md: tokens.get('utility-gap-4', utilities.$post-spacing) !default;
-$blockquote-padding-left: tokens.get('utility-gap-12', utilities.$post-spacing) !default;
-$blockquote-margin-top: tokens.get('utility-gap-24', utilities.$post-spacing) !default;
-$blockquote-margin-y: tokens.get('utility-gap-16', utilities.$post-spacing) !default;
-$blockquote-footer-font-size: math.div(1em * sizing.strip-unit($small-font-size), 100) !default;
-$blockquote-cite-font-weight: $font-weight-normal !default;
-
-$hr-border-color: rgba(color.$black, 0.1) !default; // Design System
-$hr-border-color-light: rgba(color.$white, 0.4) !default; // Design System only
-$hr-border-width: commons.$border-width !default;
-
-$mark-padding: 0.2em !default;
-
-$dt-font-weight: $font-weight-bold !default;
-
-$kbd-box-shadow: inset 0 -0.1rem 0 rgba(color.$black, 0.25) !default;
-$nested-kbd-font-weight: $font-weight-bold !default;
-
-$list-inline-padding: 0.5rem !default;
-
-$mark-bg: #fcf8e3 !default;
-
-$hr-margin-y: spacing.$spacer !default;

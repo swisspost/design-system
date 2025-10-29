@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as ChipStories from './chip.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -6,7 +6,11 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 # Chip
 
-<div className="lead">Display small pieces of information with which users can interact.</div>
+<div className="lead">
+  Chips contain small labels which represent single values or a collection of values. These discrete
+  pieces of information can be inputs, status, properties, categories or any other pieces of meta
+  data.
+</div>
 
 <Canvas sourceState="shown" of={ChipStories.Default} />
 <div className="hide-col-default">
@@ -17,23 +21,30 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 ## Examples
 
-### Filter Chip
+### Selectable Chip
 
-Filter chips provide a simple means to refine content or search results based on specific attributes.
+Selectable chips typically contain product-authored information and are used to select, filter or categorize elements.
 They are personalized checkboxes, allowing users to toggle them to filter content effectively.
 
-<Canvas of={ChipStories.FilterCheckboxChip} />
+A group of selectable chips need to be contained within a `.chip-selectable-group` div.
 
-Alternatively, filter chips may be used with radio inputs when a single filter selection is needed.
+<Canvas of={ChipStories.SelectableCheckboxChip} />
 
-<Canvas of={ChipStories.FilterRadioChip} />
+Alternatively, selectable chips may be used with radio inputs when a single filter selection is needed.
+
+<Canvas of={ChipStories.SelectableRadioChip} />
+
+Selectable chips can contain a number badge which indicates the number of items matching with the respective label.
+
+<Canvas of={ChipStories.SelectableBadgeChip} />
 
 ### Dismissible Chip
 
-Dismissible chips represent pieces of information entered by a user.
-Each chip includes a close button, enabling users to conveniently remove them from view.
+Dismissible chips typically contain user-authored information and do not provide any additional action next to “Dismiss”.
 
 It's important to note that the close icon lacks visible text.
 Therefore, it's imperative to include a visually hidden label to ensure accessibility for users relying on assistive technologies.
 
-<Canvas of={ChipStories.Dismissible} />
+A group of dismissible chips need to be contained within a `.chip-dismissible-group` div.
+
+<Canvas sourceState="shown" of={ChipStories.Dismissible} />

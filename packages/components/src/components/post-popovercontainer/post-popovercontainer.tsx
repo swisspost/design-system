@@ -28,7 +28,8 @@ import {
 import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
+import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+import { popIn } from '@/animations/pop-in';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -74,11 +75,32 @@ export class PostPopovercontainer {
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
   private toggleTimeoutId: number;
+  private hasOpenedOnce: boolean = true;
 
   /**
-   * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
+   * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
    */
-  @Event() postToggle: EventEmitter<boolean>;
+  @Event() postBeforeShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+   */
+  @Event() postShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is hidden.
+   */
+  @Event() postHide: EventEmitter;
+
+  /**
+   * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
+   */
+  @Event() postBeforeToggle: EventEmitter<{ willOpen: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
+   */
+  @Event() postToggle: EventEmitter<{ isOpen: boolean }>;
 
   /**
    * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -158,11 +180,56 @@ export class PostPopovercontainer {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
-      this.calculatePosition();
-      this.host.showPopover();
+    if (this.toggleTimeoutId) return;
+    this.eventTarget = target;
+    this.calculatePosition();
+    this.host.showPopover();
+  }
+
+  /**
+   * Handles the popover opening process and emits related events.
+   */
+  @Method()
+  async open() {
+    const content = this.host.querySelector('.popover-content');
+    this.startAutoupdates();
+
+    if (content) {
+      const animation = popIn(content);
+
+      if (animation?.playState === 'running') {
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+      }
+
+      animation?.finished.then(() => {
+        this.postToggle.emit({ isOpen: true });
+        this.postShow.emit({ first: this.hasOpenedOnce });
+
+        if (this.hasOpenedOnce) this.hasOpenedOnce = false;
+      });
     }
+
+    if (this.safeSpace) {
+      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+  }
+
+  /**
+   * Handles the popover closing process and emits related events.
+   */
+  @Method()
+  async close() {
+    if (typeof this.clearAutoUpdate === 'function') {
+      this.clearAutoUpdate();
+    }
+
+    if (this.safeSpace) {
+      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+
+    this.postToggle.emit({ isOpen: false });
+    this.postHide.emit();
   }
 
   /**
@@ -173,6 +240,7 @@ export class PostPopovercontainer {
     if (!this.toggleTimeoutId) {
       this.eventTarget = null;
       this.host.hidePopover();
+      this.postHide.emit();
     }
   }
 
@@ -204,15 +272,10 @@ export class PostPopovercontainer {
 
     const isOpen = e.newState === 'open';
     if (isOpen) {
-      this.startAutoupdates();
-      if (this.safeSpace)
-        window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      this.open();
     } else {
-      if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-      if (this.safeSpace)
-        window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      this.close();
     }
-    this.postToggle.emit(isOpen);
   }
 
   /**
@@ -252,7 +315,7 @@ export class PostPopovercontainer {
         Object.assign(this.arrowRef.style, {
           left: arrowX ? `${arrowX}px` : '',
           top: arrowY ? `${arrowY}px` : '',
-          [staticSide]: '-7px',
+          [staticSide]: '-5px',
         });
       }
     }
@@ -299,6 +362,7 @@ export class PostPopovercontainer {
 
   private async updateSafeSpaceBoundaries(currentPlacement: string) {
     const targetRect = this.eventTarget.getBoundingClientRect();
+
     const popoverRect = this.host.getBoundingClientRect();
 
     const isVertical = currentPlacement === 'top' || currentPlacement === 'bottom';
@@ -374,11 +438,9 @@ export class PostPopovercontainer {
   }
 
   render() {
-    const animationClass = this.animation ? `animate-${this.animation}` : '';
-
     return (
       <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
-        <div class={animationClass}>
+        <div class="popover-content">
           {this.arrow && (
             <span
               class="arrow"

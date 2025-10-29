@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import meta from './text.stories';
@@ -82,9 +82,19 @@ function getTextUtility(type: string) {
             `,
         )}
       `;
+    case 'Text Truncation':
+      return html`
+        ${[100, 200, 300, 400].map(
+          val =>
+            html`
+              <p class="text-truncate" style="max-width: ${val}px">
+                This is a long text that should be truncated when it exceeds the defined max-width.
+              </p>
+            `,
+        )}
+      `;
   }
 }
-
 export const Text: Story = {
   render: () => {
     return schemes(
@@ -101,6 +111,7 @@ export const Text: Story = {
           'Text transform',
           'White space',
           'Word wrap break',
+          'Text Truncation',
         ].map(
           val => html`
             <h2>${val}</h2>

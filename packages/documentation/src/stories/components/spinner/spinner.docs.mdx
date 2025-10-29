@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as SpinnerStories from './spinner.stories.ts';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -11,11 +11,6 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 </div>
 
 <p className="lead">Indicate a loading state and prevent interactivity behind it</p>
-
-<div className="banner banner-warning">
-  `.loader-xs` and `loader-sm` classes for sizes are deprecated and will be replace with
-  respectively `.loader-16` and `.loader-40`.
-</div>
 
 <Canvas sourceState="shown" of={SpinnerStories.Default} />
 

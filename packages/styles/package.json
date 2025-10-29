@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "10.0.0-next.40",
+  "version": "10.0.0-next.51",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -23,56 +23,39 @@
     "start": "gulp watch",
     "build": "pnpm turbo run build:force",
     "build:force": "pnpm clean && gulp build",
-    "clean": "rimraf dist src/tokens/temp",
+    "clean": "rimraf dist src/tokens/temp src/icons/temp",
     "unit": "gulp sass:tests",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
     "format": "prettier src/**/*.scss --write"
   },
-  "peerDependencies": {
-    "@angular/core": "^19.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
-    "bootstrap": "~5.3.0"
-  },
-  "peerDependenciesMeta": {
-    "@ng-bootstrap/ng-bootstrap": {
-      "optional": true
-    },
-    "@angular/core": {
-      "optional": true
-    },
-    "bootstrap": {
-      "optional": true
-    }
-  },
   "dependencies": {
     "@popperjs/core": "2.11.8",
-    "bootstrap": "5.3.3",
+    "@swisspost/design-system-icons": "workspace:10.0.0-next.51",
     "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-icons": "workspace:10.0.0-next.40",
-    "@swisspost/design-system-tokens": "workspace:10.0.0-next.40",
+    "@swisspost/design-system-tokens": "workspace:10.0.0-next.51",
     "@types/node": "22.10.5",
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "10.4.21",
     "copyfiles": "2.4.1",
-    "glob": "11.0.0",
-    "gulp": "5.0.0",
-    "gulp-newer": "^1.4.0",
+    "glob": "11.0.3",
+    "gulp": "5.0.1",
+    "gulp-newer": "1.4.0",
     "gulp-postcss": "10.0.0",
-    "gulp-sass": "6.0.0",
+    "gulp-sass": "6.0.1",
     "jest": "29.7.0",
-    "postcss": "8.5.3",
+    "postcss": "8.5.6",
     "postcss-scss": "4.0.9",
     "prettier": "3.3.3",
     "rimraf": "6.0.1",
     "sass-embedded": "1.78.0",
     "stylelint": "16.12.0",
     "stylelint-config-sass-guidelines": "11.1.0",
-    "stylelint-prettier": "5.0.2",
+    "stylelint-prettier": "5.0.3",
     "stylelint-scss": "6.10.0",
     "typescript": "5.8.3",
-    "vite": "6.3.4"
+    "vite": "7.1.11"
   },
   "sass": {
     "loadPaths": [

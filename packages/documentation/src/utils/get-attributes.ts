@@ -1,4 +1,4 @@
-import { Args } from '@storybook/web-components';
+import { Args } from '@storybook/web-components-vite';
 
 export const getAttributes = (args: Args, condition?: (arg: unknown) => boolean): Args => {
   const attrs: { [key: string]: unknown } = {};

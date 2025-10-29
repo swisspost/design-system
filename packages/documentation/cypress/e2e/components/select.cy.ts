@@ -1,8 +1,8 @@
 describe('Select', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
-      cy.visit('/iframe.html?id=snapshots--slider');
-      cy.get('.form-range', { timeout: 30000 }).should('be.visible');
+      cy.visit('/iframe.html?id=snapshots--select');
+      cy.get('.form-select', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 

@@ -1,7 +1,7 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
 
@@ -92,7 +92,7 @@ function render(args: Args) {
     <post-tooltip
       id="${args.id}"
       arrow="${ifDefined(args.arrow)}"
-      class="${args.palette}"
+      class="palette ${args.palette}"
       placement="${ifDefined(args.placement)}"
       animation="${ifDefined(args.animation)}"
     >

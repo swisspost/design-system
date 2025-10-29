@@ -1,4 +1,4 @@
-import { IconButton, WithTooltip } from '@storybook/components';
+import { IconButton, WithTooltip } from 'storybook/internal/components';
 import React, { useEffect, useState } from 'react';
 import { getVersion } from '../../../src/utils/version';
 import * as packageJson from '../../../package.json';
@@ -96,14 +96,14 @@ function VersionSwitcher() {
             aria-hidden="true"
           >
             v{CURRENT_MINOR_VERSION}
-            <post-icon name="2052"></post-icon>
+            <post-icon name="chevrondown"></post-icon>
           </IconButton>
         </>
       )}
     >
       <IconButton placeholder="Versions" className="addon-label">
         v{CURRENT_MINOR_VERSION}
-        <post-icon name="2052"></post-icon>
+        <post-icon name="chevrondown"></post-icon>
       </IconButton>
     </WithTooltip>
   );

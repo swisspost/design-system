@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as FloatStories from './float.stories';
 
 <Meta of={FloatStories} />
@@ -17,10 +17,10 @@ import * as FloatStories from './float.stories';
 
 ### Relative to breakpoints
 
-<div className="banner banner-info">
+<post-banner>
   The `float-{breakpoint}-{position}` classes provide control over floating elements at specific
   breakpoints, enabling you to float elements or remove floating based on the screen size.
-</div>
+</post-banner>
 
 > - `float-sm-{start|end|none}`
 > - `float-md-{start|end|none}`

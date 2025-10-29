@@ -8,6 +8,10 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-tooltip-trigger[for="tooltip-one"]').as('trigger');
     });
 
+    it('should contain an HTML element inside the trigger, not just plain text', () => {
+      cy.get('@trigger').children().should('have.length.at.least', 1);
+    });
+
     it('should display a tooltip', () => {
       cy.get('@tooltip').should('not.be.visible');
       cy.get('@target2').focus();
@@ -44,20 +48,20 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
         doc.body.appendChild(trigger);
       });
 
-      cy.get('#added-later')
-        .should('exist')
-        .and('have.attr', 'aria-describedby', 'tooltip-one');
+      cy.get('#added-later').should('exist').and('have.attr', 'aria-describedby', 'tooltip-one');
     });
 
     describe('trigger behavior', () => {
       it('should initialize trigger with correct attributes', () => {
-        cy.get('@trigger').first().within(() => {
-          cy.get('button')
-            .should('have.attr', 'aria-describedby')
-            .then((ariaDescribedBy) => {
-              expect(ariaDescribedBy).to.include('tooltip-one');
-            });
-        });
+        cy.get('@trigger')
+          .first()
+          .within(() => {
+            cy.get('button')
+              .should('have.attr', 'aria-describedby')
+              .then(ariaDescribedBy => {
+                expect(ariaDescribedBy).to.include('tooltip-one');
+              });
+          });
       });
 
       it('should show tooltip on trigger hover', () => {
@@ -114,9 +118,7 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should add tabindex', () => {
-      cy.get('@target')
-        .should('have.attr', 'tabindex')
-        .and('eq', '0');
+      cy.get('@target').should('have.attr', 'tabindex').and('eq', '0');
     });
   });
 

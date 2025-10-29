@@ -6,8 +6,8 @@ import { componentOnReady } from '@/utils';
 /**
  * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
  * @slot default - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
- * @part tabs - Add custom styles for the tab header container.
- * @part content - Add custom styles for the tab panel container.
+ * @part tabs - The container element that holds the set of tabs.
+ * @part content - The container element that displays the content of the currently active tab.
  */
 
 @Component({
@@ -36,6 +36,12 @@ export class PostTabs {
    * **Changing this value after initialization has no effect.**
    */
   @Prop() readonly activePanel?: HTMLPostTabPanelElement['name'];
+
+  /**
+   * When set to true, this property allows the tabs container to span the
+   * full width of the screen, from edge to edge.
+   */
+  @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.

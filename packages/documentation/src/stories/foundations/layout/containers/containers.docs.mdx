@@ -1,4 +1,4 @@
-import { Canvas, Meta } from '@storybook/blocks';
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
 import * as ContainerStories from './containers.stories';
 
 <Meta of={ContainerStories} />
@@ -10,10 +10,9 @@ import * as ContainerStories from './containers.stories';
   all devices and viewports.
 </div>
 
-<div className="banner banner-info my-24 banner-md">
-  Containers are required when using the{' '}
-  <a href="/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs">grid system</a>.
-</div>
+<post-banner class="my-24">
+  Containers are required when using the <a href="/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs">grid system</a>.
+</post-banner>
 
 There are two types of containers. The only difference between them is how they behave on wider screens.
 To see the difference, click the **"View full screen"** button in the examples below.

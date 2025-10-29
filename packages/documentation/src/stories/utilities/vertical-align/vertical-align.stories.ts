@@ -1,4 +1,4 @@
-import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import './vertical-align.styles.scss';
 import { MetaExtended } from '@root/types';

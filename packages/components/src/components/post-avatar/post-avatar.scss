@@ -64,8 +64,9 @@ img,
   border-radius: tokens.get('avatar-border-radius');
   color: var(--post-avatar-fg);
   text-transform: uppercase;
+  font-weight: 400;
 
   span {
-    @include post.visually-hidden();
+    @include post.visuallyhidden();
   }
 }

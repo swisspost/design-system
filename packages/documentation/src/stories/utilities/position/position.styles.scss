@@ -61,9 +61,16 @@
 
     .my-element {
       background: post.$yellow;
+      min-width: 2rem;
+      min-height: 2rem;
+      border-radius: post.$border-radius;
+    }
+
+    .position-relative & {
       width: 2rem;
       height: 2rem;
-      border-radius: post.$border-radius;
+      min-width: unset;
+      min-height: unset;
     }
   }
 

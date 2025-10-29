@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -16,17 +16,24 @@ const meta: MetaComponent = {
   args: {
     homeUrl: '/',
     homeText: 'Home',
+    menuLabel: 'More breadcrumb items'
   },
   argTypes: {
     homeUrl: {
-      name: 'Home URL',
+      name: 'home-url',
       description: 'URL for the home breadcrumb link.',
       control: { type: 'text' },
       table: { category: 'Props' },
     },
     homeText: {
-      name: 'Home Text',
+      name: 'home-text',
       description: 'Text for the home breadcrumb link.',
+      control: { type: 'text' },
+      table: { category: 'Props' },
+    },
+    menuLabel: {
+      name: 'menu-label',
+      description: 'The accessible label for the breadcrumb menu when breadcrumb items are concatenated.',
       control: { type: 'text' },
       table: { category: 'Props' },
     },
@@ -39,7 +46,7 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}>
+    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText} menu-label=${args.menuLabel}>
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
       <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
@@ -49,7 +56,7 @@ export const Default: Story = {
 
 export const Concatenated: Story = {
   render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}>
+    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText} menu-label=${args.menuLabel}>
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
       <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
@@ -74,18 +81,19 @@ export const BreadcrumbItem: Story = {
   },
   argTypes: {
     url: {
-      name: 'URL',
+      name: 'url',
       description: 'The URL of the breadcrumb item.',
       control: { type: 'text' },
       table: { category: 'Props' },
     },
     content: {
-      name: 'Content',
+      name: 'content',
       description: 'The visible label of the breadcrumb item.',
       control: { type: 'text' },
       table: { category: 'Props' },
     },
     homeUrl: { table: { disable: true } },
     homeText: { table: { disable: true } },
+    menuLabel: { table: { disable: true } }
   },
 };

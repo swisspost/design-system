@@ -1,4 +1,4 @@
-import { StoryContext, StoryFn } from '@storybook/web-components';
+import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 export const fullScreenUrlDecorator = (story: StoryFn, context: StoryContext) => {
@@ -23,7 +23,7 @@ export const fullScreenUrlDecorator = (story: StoryFn, context: StoryContext) =>
   let linkConfigBaseURL = `/?path=/docs/${id.split('--')[0]}--docs&story=${context.story}`;
 
   if (args.length) linkConfigBaseURL += `&args=${args}`;
-  const linkConfigURL = window.location.host + linkConfigBaseURL.replace(':!', ':') + '#' + id;
+  const linkConfigURL = window.location.origin + linkConfigBaseURL.replace(':!', ':') + '#' + id;
 
   return html`
     <p class="linkConfigURL" hidden>${linkConfigURL}</p>

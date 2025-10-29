@@ -1,11 +1,11 @@
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '5a47ba70-7831-4e59-b83e-81b6e6c32372',
   title: 'Components/List Interactive',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderListGroup,
   decorators: [gridDecorator],
   parameters: {
@@ -65,9 +65,9 @@ export function renderListGroup(args: Args) {
   }
 
   function getContent(args: Args, itemsCount: number) {
-    const linkIcon = getIcon('3020');
-    const fileIcon = getIcon('3169');
-    const downloadIcon = getIcon('2066');
+    const linkIcon = getIcon('arrowright');
+    const fileIcon = getIcon('document');
+    const downloadIcon = getIcon('download');
 
     const isDoc = args.listType === 'document';
     const items = Array.from(Array(itemsCount).keys());

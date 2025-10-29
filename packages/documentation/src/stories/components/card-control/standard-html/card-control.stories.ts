@@ -1,5 +1,5 @@
-import type { Args } from '@storybook/web-components';
-import { useArgs, useState } from '@storybook/preview-api';
+import type { Args } from '@storybook/web-components-vite';
+import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -11,7 +11,7 @@ type useStateFn = typeof useState;
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Form Card Control',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
@@ -65,7 +65,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['none', '1000', '1001', '2000'],
+      options: ['none', 'letter', 'letteropen', 'parcel'],
       table: {
         category: 'General',
       },
@@ -81,7 +81,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
       control: {
         type: 'boolean',
       },
@@ -92,7 +92,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the card control and controls the display of the corresponding return message.<span className="mt-8 banner banner-info banner-sm">Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs##card-control">validation guidelines here</a>.</span> ',
+        'Defines the validation state of the card control and controls the display of the corresponding return message.<post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs##card-control">validation guidelines here</a>.</p></post-banner> ',
       control: {
         type: 'radio',
         labels: {

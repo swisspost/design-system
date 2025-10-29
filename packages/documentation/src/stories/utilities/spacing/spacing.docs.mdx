@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as SpacingStories from './spacing.stories';
 
 export const firstBreakpoint = Object.values(SpacingStories.SCSS_VARIABLES.firstBreakpoint)[0];
@@ -14,16 +14,13 @@ export const breakpoints = Object.values(SpacingStories.SCSS_VARIABLES.breakpoin
 
 ## Margin and Padding
 
-<div className="banner banner-info">
-  <p className="banner-heading my-0">
-    Avoid applying spacing classes to grid elements (e.g. `.row`, `.col`, `.col-*`).
-  </p>
-  <div>
-    The grid system uses negative margins and positive padding along the horizontal axis, and
-    applying additional spacing classes can affect the layout unless done with careful
-    consideration.
-  </div>
-</div>
+<post-banner>
+  <p slot="heading">Avoid applying spacing classes to grid elements (e.g. `.row`, `.col`, `.col-*`).</p>
+
+  The grid system uses negative margins and positive padding along the horizontal axis, and
+  applying additional spacing classes can affect the layout unless done with careful
+  consideration.
+</post-banner>
 
 The naming convention for spacing utilities follows this pattern:
 

@@ -1,4 +1,4 @@
-import { Meta, Canvas, Source } from '@storybook/blocks';
+import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks';
 import * as ListStories from './list.stories';
 import SampleListBullet from './list-bullet.sample.scss?raw';
 import SampleListInline from './list-inline.sample.scss?raw';
@@ -37,7 +37,9 @@ Remove a list’s bullets.
 
 ## Unstyled List
 
-<p className="banner banner-info banner-md">Can be used with both, unordered and ordered lists.</p>
+<post-banner>
+  Can be used with both, unordered and ordered lists.
+</post-banner>
 Remove all the styles on a list and make it appear as if it is made out of `<div>` elements.
 
 <Canvas of={ListStories.UnstyledList} sourceState="shown" />

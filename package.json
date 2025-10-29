@@ -88,6 +88,8 @@
     "nextjs:start": "pnpm --filter design-system-nextjs-integration start",
     "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
     "nextjs:build:serve": "pnpm --filter design-system-nextjs-integration build:serve",
+    "nextjs:e2e": "pnpm --filter design-system-nextjs-integration e2e",
+    "nextjs:e2e:watch": "pnpm --filter design-system-nextjs-integration e2e:watch",
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
     "nextjs:lint:fix": "pnpm --filter design-system-nextjs-integration lint:fix",
     "nextjs:typecheck": "pnpm --filter design-system-nextjs-integration typecheck",
@@ -107,9 +109,9 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.29.2",
-    "start-server-and-test": "2.0.9",
-    "turbo": "2.5.0"
+    "@changesets/cli": "2.29.5",
+    "start-server-and-test": "2.1.2",
+    "turbo": "2.5.5"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
@@ -127,7 +129,9 @@
         "zone.js": ">=0.14"
       }
     },
-    "overrides": {},
+    "overrides": {
+      "form-data@>=4.0.0 <4.0.4": "4.0.4"
+    },
     "onlyBuiltDependencies": [
       "cypress"
     ]

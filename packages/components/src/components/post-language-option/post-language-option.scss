@@ -1,17 +1,19 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/elements';
 
 post-language-option {
   display: inline-block;
 
   button {
     @include post.reset-button;
+    .visually-hidden {
+      @include utilities-mx.visuallyhidden();
+    }
   }
 
   a {
-    color: tokens.get('body-color', elements.$post-body);
+    color: var(--post-current-fg);
     text-decoration: none;
   }
 
@@ -22,9 +24,12 @@ post-language-option {
     justify-content: center;
     width: 100%;
     height: 100%;
-    border-radius: 2px;
     text-transform: uppercase;
-    @include utilities-mx.focus-style;
+
+    @include utilities-mx.focus-style {
+      outline-offset: -2px !important;
+      border-radius: 4px;
+    }
   }
 
   // Show all options now, instead of hiding the active one
@@ -73,11 +78,22 @@ post-language-option {
       box-sizing: border-box;
       justify-content: flex-start;
       position: relative;
+      border-radius: 0;
 
       &:hover {
         color: white;
         background-color: #504f4b;
       }
+    }
+
+    &:first-child :is(a, button) {
+      border-start-start-radius: commons.$border-radius;
+      border-start-end-radius: commons.$border-radius;
+    }
+
+    &:last-child :is(a, button) {
+      border-end-start-radius: commons.$border-radius;
+      border-end-end-radius: commons.$border-radius;
     }
   }
 }

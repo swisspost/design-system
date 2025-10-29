@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 import * as FormFooterMeta from '../../components/form-footer/form-footer.stories';
@@ -167,34 +167,6 @@ export const Validation: Story = {
         </div>
       </div>
 
-      <!-- Form Select Multiple-->
-      <div class="row mb-16">
-        <div class="col-md-6">
-          <div class="form-floating">
-            <select
-              id="FormSelectMultipleInvalid"
-              class="form-select is-invalid"
-              multiple
-              required
-            ></select>
-            <label class="form-label" for="FormSelectMultipleInvalid">
-              Invalid Select Multiple
-            </label>
-            <p class="invalid-feedback">Error message</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-floating">
-            <select id="FormSelectMultipleValid" class="form-select is-valid" multiple>
-              <option value="1">Value 1</option>
-              <option value="2">Value 2</option>
-            </select>
-            <label class="form-label" for="FormSelectMultipleValid">Valid Select Multiple</label>
-            <p class="valid-feedback">Success message (optional)</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Form File -->
       <div class="row mb-16">
         <div class="col-md-6">
@@ -286,24 +258,6 @@ export const Validation: Story = {
         </div>
       </div>
 
-      <!-- Form Range -->
-      <div class="row mb-16">
-        <div class="col-md-6">
-          <div class="">
-            <label class="form-label" for="FormRangeInvalid">Invalid Range</label>
-            <input class="form-range is-invalid" id="FormRangeInvalid" type="range" />
-            <p class="invalid-feedback">Error message</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="">
-            <label class="form-label" for="FormRangeValid">Valid Range</label>
-            <input class="form-range is-valid" id="FormRangeValid" type="range" />
-            <p class="valid-feedback">Success message (optional)</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Form Switch -->
       <div class="row mb-16">
         <div class="col-md-6">
@@ -331,6 +285,107 @@ export const Validation: Story = {
             <p class="valid-feedback">Success message (optional)</p>
           </div>
         </div>
+      </div>
+    </form>
+  `,
+};
+
+export const RequiredOptional: Story = {
+  decorators: [story => html`<div style="margin-inline: auto; max-width: 600px;">${story()}</div>`],
+  render: () => html`
+    <form action="/">
+      <div class="mb-16">
+        <div class="form-floating">
+          <select id="select-el" class="form-select">
+            <option>Choose an option...</option>
+            <option value="value_1">Mr.</option>
+            <option value="value_2">Mrs.</option>
+            <option value="value_3">Ms.</option>
+          </select>
+          <label class="form-label" for="select-el"
+            >Salutation <span aria-hidden="true">(optional)</span></label
+          >
+        </div>
+      </div>
+      <div class="mb-16">
+        <div class="form-floating">
+          <input
+            id="input-first-name"
+            class="form-control"
+            type="text"
+            placeholder="Placeholder"
+            required
+          />
+          <label class="form-label" for="input-first-name"
+            >First name <span aria-hidden="true">(required)</span></label
+          >
+        </div>
+      </div>
+      <div class="mb-16">
+        <div class="form-floating">
+          <input
+            id="input-last-name"
+            class="form-control"
+            type="text"
+            placeholder="Placeholder"
+            required
+          />
+          <label class="form-label" for="input-last-name"
+            >Last name <span aria-hidden="true">(required)</span></label
+          >
+        </div>
+      </div>
+      <div class="mb-16">
+        <div class="form-floating">
+          <textarea id="textarea-subject" class="form-control" rows="4" required></textarea>
+          <label class="form-label" for="textarea-subject"
+            >Subject <span aria-hidden="true">(required)</span></label
+          >
+        </div>
+      </div>
+      <div class="mb-16">
+        <fieldset>
+          <legend>Are you an existing customer? <span aria-hidden="true">(optional)</span></legend>
+          <div class="form-check">
+            <input
+              name="customer-group"
+              class="form-check-input"
+              type="radio"
+              id="customer-radio-1"
+            />
+            <label class="form-check-label" for="customer-radio-1">Yes</label>
+          </div>
+          <div class="form-check ">
+            <input
+              name="customer-group"
+              class="form-check-input"
+              type="radio"
+              id="customer-radio-2"
+            />
+            <label class="form-check-label" for="customer-radio-2">No</label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="mb-16">
+        <div class="form-check form-switch">
+          <input type="checkbox" role="switch" id="input-switch" class="form-check-input" />
+          <label class="form-check-label" for="input-switch">
+            I want to receive the newsletter <span aria-hidden="true">(optional)</span>
+          </label>
+        </div>
+      </div>
+      <div class="mb-16">
+        <div class="form-check">
+          <input type="checkbox" id="input-checkbox" required />
+          <label for="input-checkbox">
+            I hereby confirm that I acknowledge and accept the terms and conditions.
+            <span aria-hidden="true">(required)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-primary">Send</button>
       </div>
     </form>
   `,

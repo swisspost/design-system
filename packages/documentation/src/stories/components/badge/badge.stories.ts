@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import backgroundColors from '@/shared/background-colors.module.scss';
@@ -7,7 +7,7 @@ import chipMeta from '@/stories/components/chip/chip.stories';
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
   title: 'Components/Badge',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderBadge,
   parameters: {
     badges: [],
@@ -116,7 +116,7 @@ export const Position: Story = {
     ${chipMeta.render?.({ ...chipMeta.args, badge: true }, context)}
 
     <div class="position-relative d-inline">
-      <post-icon name="2026" scale="1.5"></post-icon>
+      <post-icon name="shop" scale="1.5"></post-icon>
       <div class="badge badge-sm position-absolute top-0 start-100 translate-middle">3</div>
     </div>
   `,

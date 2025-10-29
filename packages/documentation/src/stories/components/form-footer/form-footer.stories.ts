@@ -1,22 +1,22 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 export const FooterArgs = {
   showPrimaryButton: true,
   primaryButtonText: 'Send',
-  primaryButtonIcon: '3020',
+  primaryButtonIcon: 'arrowright',
   showSecondaryButton: true,
   secondaryButtonText: 'Cancel',
   showTertiaryButton: true,
   tertiaryButtonText: 'Back',
-  tertiaryButtonIcon: '3024',
+  tertiaryButtonIcon: 'arrowleft',
 };
 
 const meta: MetaComponent = {
   id: 'f2eddf67-2c3c-40c4-bfec-df49bd028001',
   title: 'Components/Form Footer',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: render,
   parameters: {
     badges: [],
