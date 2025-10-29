@@ -57,10 +57,3 @@
   @return $state;
 }
 
-@function success-icon() {
-  @return var(--post-signal-icon-success);
-}
-
-@function error-icon() {
-  @return var(--post-signal-icon-error);
-}

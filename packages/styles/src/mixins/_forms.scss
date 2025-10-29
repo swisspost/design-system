@@ -2,7 +2,6 @@
 @use './../variables/components/forms';
 @use './../mixins/utilities';
 @use './../functions/icons';
-@use './../functions/forms' as forms-fx;
 @use './../functions/utilities' as utilities-fx;
 @use './../variables/color';
 
@@ -21,26 +20,26 @@
 // Used on form elements to set the correct colored validation icon
 @mixin validation-icons() {
   &.is-valid:not(:disabled) {
-    background-image: forms-fx.success-icon();
+    background-image: var(--post-signal-icon-success);
 
     @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.success-icon();
-    }
+      background-image: var(--post-signal-icon-success);
+    } // ✅ Added closing brace
 
     @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.success-icon();
+      background-image: var(--post-signal-icon-success);
     }
   }
 
   &.is-invalid:not(:disabled) {
-    background-image: forms-fx.error-icon();
+    background-image: var(--post-signal-icon-error);
 
     @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.error-icon();
+      background-image: var(--post-signal-icon-error);
     }
 
     @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.error-icon();
+      background-image: var(--post-signal-icon-error);
     }
   }
 }
