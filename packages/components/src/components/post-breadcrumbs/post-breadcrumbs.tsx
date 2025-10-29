@@ -160,7 +160,7 @@ export class PostBreadcrumbs {
                   }
                 }}
               >
-                <post-icon name="2111" class="breadcrumb-item-icon" />
+                <post-icon name="chevronright" class="breadcrumb-item-icon" />
                 <div class="actual-menu">
                   <post-menu-trigger for="breadcrumb-menu" tabIndex={0}>
                     <button class="btn test" tabIndex={-1}>
