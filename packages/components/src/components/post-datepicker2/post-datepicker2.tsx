@@ -19,6 +19,13 @@ interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement
   onShow?: (isAnimationComplete: boolean) => void;
 }
 
+interface RenderCellArgs {
+  date: Date;
+  cellType: 'day' | 'month' | 'year';
+}
+
+type OnRenderCell = (args: RenderCellArgs) => { disabled?: boolean } | void;
+
 @Component({
   tag: 'post-datepicker2',
   styleUrl: 'post-datepicker2.scss',
@@ -42,6 +49,9 @@ export class PostDatepicker2 {
 
   /**Locale prop to set translations */
   @Prop() locale: string = 'en';
+
+  /** ON render cell  */
+  @Prop() onRenderCell?: OnRenderCell;
 
   @Watch('locale')
   localeChangedHandler(newValue: string, oldValue: string) {
@@ -76,6 +86,11 @@ export class PostDatepicker2 {
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
+  }
+
+  @Method()
+  async getInstance() {
+    return this.datepickerInstance;
   }
 
   @EventFrom('post-popovercontainer')
@@ -118,11 +133,19 @@ export class PostDatepicker2 {
             : formattedDate;
           this.popoverRef?.hide();
         },
-        onRenderCell({ date, cellType }) {
-          if (cellType === 'day' && (date.getDay() === 1 || date.getDay() === 3)) {
-            return { disabled: true };
+        onRenderCell: args => {
+          if (this.onRenderCell) {
+            return this.onRenderCell(args);
           }
+
+          // optionally, add default behavior here
+          return {};
         },
+        // onRenderCell({ date, cellType }) {
+        //   if (cellType === 'day' && (date.getDay() === 1 || date.getDay() === 3)) {
+        //     return { disabled: true };
+        //   }
+        // },
       };
 
       this.datepickerInstance = new AirDatepicker(

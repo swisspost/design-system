@@ -5,9 +5,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                     | Type     | Default |
-| -------- | --------- | ------------------------------- | -------- | ------- |
-| `locale` | `locale`  | Locale prop to set translations | `string` | `'en'`  |
+| Property       | Attribute        | Description                     | Type                                                        | Default     |
+| -------------- | ---------------- | ------------------------------- | ----------------------------------------------------------- | ----------- |
+| `locale`       | `locale`         | Locale prop to set translations | `string`                                                    | `'en'`      |
+| `onRenderCell` | `on-render-cell` | ON render cell                  | `(args: RenderCellArgs) => void \| { disabled?: boolean; }` | `undefined` |
 
 
 ## Events
@@ -18,6 +19,16 @@
 
 
 ## Methods
+
+### `getInstance() => Promise<AirDatepicker<HTMLDivElement>>`
+
+
+
+#### Returns
+
+Type: `Promise<AirDatepicker<HTMLDivElement>>`
+
+
 
 ### `hide() => Promise<void>`
 

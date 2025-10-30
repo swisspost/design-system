@@ -198,7 +198,7 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
-     <post-datepicker2 locale="de"><input 
+     <post-datepicker2 locale="de" ><input 
             id="2df77c32-5e33-402e-bd2e-54d54271ce19--default"
             class="form-control"
             type="text"
@@ -206,6 +206,25 @@
             aria-describedby="form-hint-2df77c32-5e33-402e-bd2e-54d54271ce19--default"
           ></input></post-datepicker2>
 
+<script>    // Wait for the component to be ready
+window.addEventListener('DOMContentLoaded', () => {
+  const dp = document.querySelector('post-datepicker2');
 
+ 
+    console.log(dp);
+
+    // Assign onRenderCell dynamically
+    dp.onRenderCell = ({ date, cellType }) => {
+      // Disable all Sundays
+      if (cellType === 'day' && date.getDay() === 0) {
+        return { disabled: true, classes: 'is-sunday' };
+      }
+
+      // Return undefined for all other cells (no changes)
+      return undefined;
+    };
+ 
+});
+    </script>
   </body>
 </html>

@@ -191,6 +191,7 @@ export namespace Components {
         "show": (target: HTMLElement) => Promise<void>;
     }
     interface PostDatepicker2 {
+        "getInstance": () => Promise<AirDatepicker<HTMLDivElement>>;
         /**
           * Hides the popover calendar and restores focus to the previously focused element.
          */
@@ -200,6 +201,10 @@ export namespace Components {
           * @default 'en'
          */
         "locale": string;
+        /**
+          * ON render cell
+         */
+        "onRenderCell"?: OnRenderCell;
         /**
           * Displays the popover calendar, focusing the first calendar item.
           * @param target - The HTML element relative to which the popover calendar should be displayed.
@@ -1165,6 +1170,10 @@ declare namespace LocalJSX {
           * @default 'en'
          */
         "locale"?: string;
+        /**
+          * ON render cell
+         */
+        "onRenderCell"?: OnRenderCell;
         /**
           * Emits when the calendar is shown or hidden. The event payload is a boolean: `true` when the calendar was opened, `false` when it was closed.
          */
