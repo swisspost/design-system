@@ -5,7 +5,7 @@ import { fakeContent } from '@/utils';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
 import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
-import { renderCustomControls } from '@/stories/components/header/renderers/custom-controls';
+import { renderLocalControls } from '@/stories/components/header/renderers/custom-controls';
 import { renderNavigationControls } from '@/stories/components/header/renderers/navigation-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 
@@ -29,7 +29,7 @@ const meta: MetaComponent = {
     globalControls: true,
     targetGroup: true,
     globalLogin: true,
-    customControls: false,
+    localControls: false,
     isLoggedIn: false,
     jobs: false,
   },
@@ -95,7 +95,7 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    customControls: {
+    localControls: {
       name: 'Custom controls',
       description: 'Whether or not the custom controls are displayed ("search" and "login").',
       control: {
@@ -197,7 +197,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
         </post-togglebutton>
 
         ${args.title !== '' ? title : nothing}
-        ${args.customControls ? renderCustomControls(args) : nothing}
+        ${args.localControls ? renderLocalControls(args) : nothing}
         ${args.mainNavigation ? mainnavigation : nothing}
         ${args.jobs ? renderNavigationControls() : nothing}
       </post-header>
@@ -233,7 +233,7 @@ export const ActiveNavigationItem: Story = {
     },
   ],
   render: () => html`
-    <post-mainnavigation caption="Main navigation">
+    <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
       <post-list title-hidden="">
         <h2>Main Navigation</h2>
         <post-list-item slot="post-list-item">
@@ -269,7 +269,7 @@ export const Microsite: Story = {
     metaNavigation: false,
     globalLogin: false,
     targetGroup: false,
-    customControls: true,
+    localControls: true,
   },
 };
 
@@ -280,7 +280,7 @@ export const OnePager: Story = {
     mainNavigation: false,
     metaNavigation: false,
     globalControls: false,
-    customControls: false,
+    localControls: false,
     globalLogin: false,
     targetGroup: false,
   },
@@ -302,7 +302,7 @@ export const LoggedIn: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) => {
       const renderHeader = getHeaderRenderer(undefined, html` ${story(context.args, context)} `);
-      return renderHeader({ ...context.args, customControls: true });
+      return renderHeader({ ...context.args, localControls: true });
     },
   ],
   render: () => renderUserMenu(),

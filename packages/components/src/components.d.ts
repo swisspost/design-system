@@ -202,9 +202,9 @@ export namespace Components {
     }
     interface PostHeader {
         /**
-          * Toggles the mobile navigation.
+          * Toggles the burger navigation menu.
          */
-        "toggleMobileMenu": (force?: boolean) => Promise<void>;
+        "toggleBurgerMenu": (force?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component

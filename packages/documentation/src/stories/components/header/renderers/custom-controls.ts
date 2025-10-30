@@ -2,7 +2,7 @@ import { Args } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 
-export function renderCustomControls(args: Args) {
+export function renderLocalControls(args: Args) {
   const loginButton = html`
     <a href="">
       <span>Login</span>
@@ -12,7 +12,7 @@ export function renderCustomControls(args: Args) {
 
   return html`
     <!-- Custom controls (optional) -->
-    <ul class="list-inline">
+    <ul class="list-inline" slot="local-controls">
       <li>
         <a href="#">
           <span>Search</span>

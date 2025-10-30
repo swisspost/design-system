@@ -35,7 +35,9 @@ export class PostMegadropdown {
 
   private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
-    return hostId ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`) : null;
+    return hostId
+      ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
+      : null;
   }
 
   /**
@@ -213,7 +215,7 @@ export class PostMegadropdown {
 
   private handleTabOutside(e: KeyboardEvent) {
     if (e.key === 'Tab' && this.device === 'desktop') {
-      if (!this.host.contains(e.target as Node)) {
+      if (this.isVisible && !this.host.contains(e.target as Node)) {
         this.hide(false);
       }
     }

@@ -51,7 +51,7 @@ const meta: MetaComponent = {
       <h1 slot="title">Application title</h1>
 
       <!-- Custom content (optional) -->
-      <ul class="list-inline">
+      <ul slot="local-controls" class="list-inline">
         <li>
           <a href="#">
             <span>Search</span>
@@ -67,7 +67,7 @@ const meta: MetaComponent = {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Hauptnavigation">
+      <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->

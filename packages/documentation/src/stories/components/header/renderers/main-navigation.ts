@@ -3,7 +3,7 @@ import { html } from 'lit';
 export function renderMainnavigation() {
   return html`
     <!-- Main navigation -->
-    <post-mainnavigation caption="Main navigation">
+    <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
       <post-list title-hidden="">
         <h2>Main Navigation</h2>
         <!-- Link only level 1 -->
