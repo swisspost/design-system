@@ -1,5 +1,54 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.51
+
+### Major Changes
+
+- The `post-icon` mixin has been renamed to `icon` and now requires icons to be preloaded using the `custom-property` mixin at the top of the file.  
+  BEFORE:
+
+  ```scss
+  .my-icon {
+    @include post.post-icon(
+      $name: 'accessibility',
+      // optional
+      $color: '#fc0',
+      $width: 1em,
+      $height: 1em
+    );
+  }
+  ```
+
+  AFTER:
+
+  ````scss
+  // Load icon(s) at the top of your file
+  // For a single icon:
+  @include post.custom-property('accessibility', './path/to/icon/folder');
+
+  // For multiple icons in the same file:
+  @include post.custom-property(('accessibility', 'arrow'), './path/to/icon/folder');
+
+  .my-icon {
+    @include post.icon(
+      $name: 'accessibility',
+      // optional
+      $color: '#fc0',
+      $width: 1em,
+      $height: 1em
+    );
+  }
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6372](https://github.com/swisspost/design-system/pull/6372))
+  ````
+
+### Patch Changes
+
+- Changed Tailwind token generation output format to meet the Tailwind v4 configuration requirements. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6474](https://github.com/swisspost/design-system/pull/6474))
+
+- Fixed header position inside the `<dialog>` element when content becomes scrollable. The header, footer and close button now remain visible while only the body scrolls. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6509](https://github.com/swisspost/design-system/pull/6509))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.51
+
 ## 10.0.0-next.50
 
 ### Major Changes

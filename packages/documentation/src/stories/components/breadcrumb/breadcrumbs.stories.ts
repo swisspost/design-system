@@ -5,6 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',
   title: 'Components/Breadcrumbs',
+  component: 'post-breadcrumbs',
   tags: ['package:WebComponents'],
   parameters: {
     badges: [],
@@ -16,27 +17,8 @@ const meta: MetaComponent = {
   args: {
     homeUrl: '/',
     homeText: 'Home',
-    menuLabel: 'More breadcrumb items'
-  },
-  argTypes: {
-    homeUrl: {
-      name: 'home-url',
-      description: 'URL for the home breadcrumb link.',
-      control: { type: 'text' },
-      table: { category: 'Props' },
-    },
-    homeText: {
-      name: 'home-text',
-      description: 'Text for the home breadcrumb link.',
-      control: { type: 'text' },
-      table: { category: 'Props' },
-    },
-    menuLabel: {
-      name: 'menu-label',
-      description: 'The accessible label for the breadcrumb menu when breadcrumb items are concatenated.',
-      control: { type: 'text' },
-      table: { category: 'Props' },
-    },
+    label: 'Breadcrumbs',
+    menuLabel: 'More breadcrumb items',
   },
 };
 
@@ -46,7 +28,12 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText} menu-label=${args.menuLabel}>
+    <post-breadcrumbs
+      home-url=${args.homeUrl}
+      home-text=${args.homeText}
+      label=${args.label}
+      menu-label=${args.menuLabel}
+    >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
       <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
@@ -56,7 +43,12 @@ export const Default: Story = {
 
 export const Concatenated: Story = {
   render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText} menu-label=${args.menuLabel}>
+    <post-breadcrumbs
+      home-url=${args.homeUrl}
+      home-text=${args.homeText}
+      label=${args.label}
+      menu-label=${args.menuLabel}
+    >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
       <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
@@ -84,16 +76,15 @@ export const BreadcrumbItem: Story = {
       name: 'url',
       description: 'The URL of the breadcrumb item.',
       control: { type: 'text' },
-      table: { category: 'Props' },
     },
     content: {
       name: 'content',
       description: 'The visible label of the breadcrumb item.',
       control: { type: 'text' },
-      table: { category: 'Props' },
     },
     homeUrl: { table: { disable: true } },
     homeText: { table: { disable: true } },
-    menuLabel: { table: { disable: true } }
+    label: { table: { disable: true } },
+    menuLabel: { table: { disable: true } },
   },
 };
