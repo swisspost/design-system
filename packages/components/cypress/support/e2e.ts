@@ -32,8 +32,11 @@ Cypress.on('uncaught:exception', err => {
 beforeEach(() => {
   cy.intercept('/*', req => {
     req.continue(res => {
-      const contentType = res.headers['content-type'] || '';
-      if (contentType && contentType.includes('text/html') && typeof res.body === 'string') {
+      if (
+        res.headers['content-type'] &&
+        res.headers['content-type'].includes('text/html') &&
+        typeof res.body === 'string'
+      ) {
         res.body = res.body.replace(
           /<meta http-equiv="Content-Security-Policy" content="[^"]*">/g,
           '<meta http-equiv="Content-Security-Policy" content="*">',
