@@ -118,7 +118,7 @@ export class PostBackToTop {
           tabindex={this.belowFold ? '0' : '-1'}
           onClick={this.scrollToTop}
         >
-          <post-icon aria-hidden="true" name="3026"></post-icon>
+          <post-icon aria-hidden="true" name="arrowup"></post-icon>
           <span class="visually-hidden">{this.label}</span>
         </button>
       </Host>

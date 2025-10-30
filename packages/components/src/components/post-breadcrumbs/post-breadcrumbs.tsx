@@ -161,7 +161,7 @@ export class PostBreadcrumbs {
             {/* Conditionally render concatenated menu or individual breadcrumb items */}
             {this.isConcatenated ? (
               <li class="menu-trigger-wrapper">
-                <post-icon name="2111" class="breadcrumb-item-icon" />
+                 <post-icon name="chevronright" class="breadcrumb-item-icon" />
                 <div class="actual-menu">
                   <post-menu-trigger
                     for="breadcrumb-menu"
