@@ -40,6 +40,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.6.8",
     "@oddbird/popover-polyfill": "0.3.7",
+    "@stencil/core": "4.35.0",
     "@swisspost/design-system-styles": "workspace:9.5.1",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0"
@@ -49,7 +50,6 @@
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.8.0",
     "@stencil/angular-output-target": "0.8.4",
-    "@stencil/core": "4.19.2",
     "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "3.0.12",
     "@types/jest": "29.5.12",
