@@ -18,6 +18,11 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 </div>
 
 <post-tabs active-panel="search">
+  <post-tab-header panel="search">Find your Icon</post-tab-header>
+  <post-tab-panel name="search">
+    <Search />
+  </post-tab-panel>
+
   <post-tab-header panel="installation">Installation</post-tab-header>
   <post-tab-panel name="installation">
     <ComponentsPackageInstall subtitle="Icon Component" component="<post-icon>" />
@@ -141,8 +146,4 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
   </post-tab-panel>
 
-  <post-tab-header panel="search">Find your Icon</post-tab-header>
-  <post-tab-panel name="search">
-    <Search />
-  </post-tab-panel>
 </post-tabs>
