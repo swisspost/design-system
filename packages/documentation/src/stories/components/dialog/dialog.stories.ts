@@ -4,6 +4,7 @@ import { html, nothing } from 'lit-html';
 const meta: Meta = {
   id: '562eac2b-6dc1-4007-ba8e-4e981cef0cbc',
   title: 'Components/Dialog',
+  tags: ['package:Styles'],
   parameters: {
     design: {
       type: 'figma',
