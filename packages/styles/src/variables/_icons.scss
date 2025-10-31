@@ -12,20 +12,3 @@ $svg-post-path: "'%3E%3C/path%3E%3C/svg%3E";
 
 $other-icons: () !default;
 
-$error-icon-name: 'error';
-$error-icon-svg-path: var(--post-signal-icon-error);
-$other-icons: map.merge(
-  (
-    $error-icon-name: $error-icon-svg-path,
-  ),
-  $other-icons
-);
-
-$success-icon-name: 'success';
-$success-icon-svg-path: var(--post-signal-icon-success);
-$other-icons: map.merge(
-  (
-    $success-icon-name: $success-icon-svg-path,
-  ),
-  $other-icons
-);
