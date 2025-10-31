@@ -55,17 +55,20 @@
 
 <div class="my-24">
   <h2>Post Popover</h2>
-  <button class="btn btn-secondary btn-large" data-popover-target="popover-one">
-    Click here to see a popover
-  </button>
-  <post-popover closeButtonCaption="Close" id="popover-one" placement="top" arrow="">
-    <h2 class="h6">Optional title</h2>
-
-    <p class="mb-0">
-      A longer message that needs more time to read.
-      <a href="#">Links</a>
-      are also possible.
-    </p>
+  <post-popover-trigger for="popover-one">
+    <button type="button" class="btn btn-secondary">Popover Trigger</button>
+  </post-popover-trigger>
+  <post-popover
+    class="palette palette-accent"
+    id="popover-one"
+    placement="top"
+    close-button-caption="Close"
+    ><div id="popoverContent">
+      <h2 class="h6">Optional title</h2>
+      <p class="mb-0">
+        A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+      </p>
+    </div>
   </post-popover>
 </div>
 

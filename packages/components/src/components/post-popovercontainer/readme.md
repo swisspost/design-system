@@ -64,9 +64,9 @@ Programmatically display the popovercontainer
 
 #### Parameters
 
-| Name     | Type          | Description                                                                           |
-| -------- | ------------- | ------------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popovercontainer should be shown |
+| Name     | Type          | Description                                                                               |
+| -------- | ------------- | ----------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
 
 #### Returns
 
@@ -80,10 +80,10 @@ Toggle popovercontainer display
 
 #### Parameters
 
-| Name     | Type          | Description                                                                           |
-| -------- | ------------- | ------------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popovercontainer should be shown |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                                      |
+| Name     | Type          | Description                                                                               |
+| -------- | ------------- | ----------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                                          |
 
 #### Returns
 

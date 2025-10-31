@@ -30,10 +30,48 @@ export function getFocusableChildren(element: Element): HTMLElement[] {
     `${focusableSelector}:not(${focusDisablingSelector})`,
   );
 
-  const visibleFocusableChildren = Array.from(focusableChildren).filter(child => {
-    const style = window.getComputedStyle(child.parentElement);
-    return style.display !== 'none' && style.visibility !== 'hidden';
-  });
+  return Array.from(focusableChildren).filter(isVisible);
+}
 
-  return visibleFocusableChildren;
+// Searches deeper accross shadowDom
+export function getDeepFocusableChildren(element: Element): HTMLElement[] {
+  const results: HTMLElement[] = [];
+
+  function traverse(node: Element | ShadowRoot) {
+    if (isElementFocusable(node)) {
+      results.push(node as HTMLElement);
+    }
+
+    if (node instanceof HTMLElement && node.shadowRoot) {
+      traverse(node.shadowRoot);
+    }
+
+    for (const child of Array.from(node.children)) {
+      traverse(child);
+    }
+
+    if (node instanceof HTMLElement) {
+      for (const slot of Array.from(node.querySelectorAll('slot'))) {
+        for (const el of slot.assignedElements({ flatten: true })) {
+          traverse(el);
+        }
+      }
+    }
+  }
+
+  traverse(element);
+  return results;
+}
+
+function isVisible(el: HTMLElement): boolean {
+  const style = window.getComputedStyle(el.parentElement);
+  return style.display !== 'none' && style.visibility !== 'hidden';
+}
+
+function isElementFocusable(node: Element | ShadowRoot): boolean {
+  return (
+    node instanceof HTMLElement &&
+    node.matches(`${focusableSelector}:not(${focusDisablingSelector})`) &&
+    isVisible(node)
+  );
 }

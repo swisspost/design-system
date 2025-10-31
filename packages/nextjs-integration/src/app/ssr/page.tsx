@@ -13,6 +13,7 @@ import {
   PostMenuItem,
   PostMenuTrigger,
   PostPopover,
+  PostPopoverTrigger,
   PostRating,
   PostTabs,
   PostTabHeader,
@@ -124,16 +125,10 @@ export default function Home() {
       </PostMenu>
 
       <h2>Popover</h2>
-      <div className="d-flex justify-content-center">
+      <PostPopoverTrigger for="popover-one">
         {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
-        <button
-          className="btn btn-secondary btn-large"
-          data-popover-target="popover-one"
-          aria-expanded="false"
-        >
-          Click here to see a popover
-        </button>
-      </div>
+        <button className="btn btn-secondary btn-large">Click here to see a popover</button>
+      </PostPopoverTrigger>
       <PostPopover
         className="palette palette-alternate"
         id="popover-one"
