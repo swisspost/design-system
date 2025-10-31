@@ -11,9 +11,16 @@
 
     .content {
       width: 24rem;
+      font-size: 18px;
 
       @include post.max(md) {
+        width: 20rem;
+        font-size: 16px;
+      }
+
+      @include post.max(sm) {
         width: 16rem;
+        font-size: 14px;
       }
     }
   }

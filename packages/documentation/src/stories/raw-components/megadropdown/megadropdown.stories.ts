@@ -99,6 +99,7 @@ function render() {
       </button>
       <post-closebutton slot="close-button">Close</post-closebutton>
       <h2 slot="megadropdown-title"><a href="">Packages title</a></h2>
+      <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
       <post-list>
         <h3>Send packages</h3>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
