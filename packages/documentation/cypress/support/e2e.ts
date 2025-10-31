@@ -26,3 +26,18 @@ Cypress.on('uncaught:exception', err => {
     return false;
   }
 });
+
+// cypress is inserting scripts into the html file to execute its tests, but the script is blocked by the csp, so we remove the csp for the tests.
+beforeEach(() => {
+  cy.intercept('/*', req => {
+    req.continue(res => {
+      const contentType = res.headers['content-type'] || '';
+      if (contentType && contentType.includes('text/html') && typeof res.body === 'string') {
+        res.body = res.body.replace(
+          /<meta http-equiv="Content-Security-Policy" content="[^"]*">/g,
+          '<meta http-equiv="Content-Security-Policy" content="*">',
+        );
+      }
+    });
+  });
+});

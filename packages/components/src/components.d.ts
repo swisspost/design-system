@@ -103,13 +103,16 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
         "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component.
+         */
+        "label": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -405,6 +408,10 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
+          * Handles the popover closing process and emits related events.
+         */
+        "close": () => Promise<void>;
+        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -418,6 +425,10 @@ export namespace Components {
           * @default false
          */
         "manualClose": boolean;
+        /**
+          * Handles the popover opening process and emits related events.
+         */
+        "open": () => Promise<void>;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -447,7 +458,6 @@ export namespace Components {
         "currentRating": number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
         "label": string;
         /**
@@ -817,7 +827,11 @@ declare global {
         new (): HTMLPostPopoverElement;
     };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postToggle": { isOpen: boolean; first?: boolean };
+        "postBeforeShow": { first?: boolean };
+        "postShow": { first?: boolean };
+        "postHide": any;
+        "postBeforeToggle": { willOpen: boolean };
+        "postToggle": { isOpen: boolean };
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1008,13 +1022,16 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
-        "homeText"?: string;
+        "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component.
+         */
+        "label": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -1280,9 +1297,25 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
+          * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
-        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) => void;
+        "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
+         */
+        "onPostBeforeToggle"?: (event: PostPopovercontainerCustomEvent<{ willOpen: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is hidden.
+         */
+        "onPostHide"?: (event: PostPopovercontainerCustomEvent<any>) => void;
+        /**
+          * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+         */
+        "onPostShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
+         */
+        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean }>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -1301,9 +1334,8 @@ declare namespace LocalJSX {
         "currentRating"?: number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
-        "label"?: string;
+        "label": string;
         /**
           * An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */

@@ -3,7 +3,6 @@
 
 body {
   @include mixins.hover-animation(10px, 500px, 500px);
-  @include mixins.hover-animation-svg-icon(red, 2021);
   @include mixins.focus-outline();
 
   @include mixins.font-smoothing();

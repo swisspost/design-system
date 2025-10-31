@@ -23,7 +23,6 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
       options: ['first', 'second', 'third'],
     },
   },
-  args: { fullWidth: false },
 };
 
 export default meta;
@@ -55,9 +54,6 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
 type Story = StoryObj<HTMLPostTabsElement>;
 
 export const Default: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
 };
 
 export const ActivePanel: Story = {
