@@ -3,6 +3,7 @@ import meta, * as HeaderStories from './header.stories';
 import './header.styles.scss';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={HeaderStories} />
 
@@ -31,10 +32,7 @@ It is divided into two sections:
   <Controls of={HeaderStories.Default} />
 </div>
 
-## Installation
-
-The `<post-header>` element is part of the `@swisspost/design-system-components` package.
-For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+<ComponentsPackageInstall component="<post-header>" />
 
 <StylesPackageImport components={['header', 'list', 'button']} />
 

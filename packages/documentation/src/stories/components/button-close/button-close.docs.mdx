@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as CloseButtonStories from './button-close.stories';
 import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={CloseButtonStories} />
 
@@ -23,3 +24,5 @@ The value inside the `<post-closebutton>` element will be rendered inside the bu
 <div className="hide-col-default">
   <Controls of={CloseButtonStories.Default} />
 </div>
+
+<ComponentsPackageInstall component="<post-closebutton>" />

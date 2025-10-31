@@ -2,6 +2,7 @@ import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as AvatarPictureStories from './avatar.stories';
 import AvatarSample from './avatar.sample.scss?raw';
 import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={AvatarPictureStories} />
 
@@ -19,6 +20,8 @@ import PackageTag from '@/shared/package-tag';
 
 <Canvas of={AvatarPictureStories.Default} sourceState="shown" />
 <Controls of={AvatarPictureStories.Default} />
+
+<ComponentsPackageInstall component="<post-avatar>" />
 
 ## Interactive Wrapper Element
 
