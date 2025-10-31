@@ -24,7 +24,6 @@ export class MigrationV99Component extends LitElement {
       form_text: false,
     },
     grid: {
-      container: false,
       breakpoints: false,
       gutter: false,
       gap: false,
@@ -160,10 +159,15 @@ export class MigrationV99Component extends LitElement {
               </code>
               ${!this.angular
                 ? html`
-                    <div class="pt-4">or for react projects:</div>
-                    <code languages="['bash']">
-                      npm install @swisspost/design-system-components-react@10
-                    </code>
+                    <p class="mt-8">
+                      Are you using React? V10 of the design system comes with a
+                      <code>@swisspost/design-system-components-react</code> package. Go check out
+                      the
+                      <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs"
+                        >React package documentation</a
+                      >
+                      for more informations.
+                    </p>
                   `
                 : nothing}
             </p>
@@ -224,7 +228,7 @@ export class MigrationV99Component extends LitElement {
 
             <div @change="${this._onChange}">
               <section>
-                <h4>🧩 Ng-Bootstrap</h4>
+                <h4>Ng-Bootstrap</h4>
                 <ul class="list-unstyled">
                   <li>
                     <div class="form-check">
@@ -237,23 +241,116 @@ export class MigrationV99Component extends LitElement {
                       <label class="form-check-label" for="ngbootstrap.removed_components">
                         All Ng-Bootstrap components are no longer available:
                         <ul>
-                          <li>carousel</li>
-                          <li>custom select</li>
-                          <li>datatable</li>
-                          <li>datepicker</li>
-                          <li>dropdown</li>
-                          <li>modal</li>
-                          <li>notification overlay</li>
-                          <li>pagination</li>
-                          <li>progressbar</li>
-                          <li>timepicker</li>
-                          <li>typeahead</li>
+                          <li>carousel → <i>coming soon</i></li>
+                          <li>custom select → <i>coming soon</i></li>
+                          <li>datatable → AG Grid <i>coming soon</i></li>
+                          <li>datepicker → <i>coming soon</i></li>
+                          <li>dropdown → <i>coming soon</i></li>
+                          <li>
+                            modal →
+                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                              >dialog</a
+                            >
+                          </li>
+                          <li>
+                            notification overlay →
+                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                              >dialog</a
+                            >
+                          </li>
+                          <li>pagination → <i>coming soon</i></li>
+                          <li>progressbar → <i>coming soon</i></li>
+                          <li>timepicker → <i>coming soon</i></li>
+                          <li>typeahead → <i>coming soon</i></li>
                         </ul>
+                        <span class="info"
+                          >Each removed Ng-Bootstrap component has (or will have) an equivalent in
+                          the Design System, shown in the list above. Migration to these new
+                          components is manual — you’ll need to update the affected components in
+                          your application to use the corresponding elements as described in their
+                          corresponding documentation.</span
+                        >
                       </label>
                     </div>
                   </li>
                 </ul>
               </section>
+              <section>
+                <h4>Components</h4>
+
+                <ul class="list-unstyled">
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components.alert"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.alert}"
+                      />
+                      <label class="form-check-label" for="components.alert">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>post-alert</code> renamed to <code>post-banner</code>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components.accordion_heading"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.accordion_heading}"
+                      />
+                      <label class="form-check-label" for="components.accordion_heading">
+                        <code>heading-level</code> property on <code>post-accordion</code> is now
+                        required
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components.hydrated_flag"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.hydrated_flag}"
+                      />
+                      <label class="form-check-label" for="components.hydrated_flag">
+                        The stencil hydrated flag has switched from the
+                        <code>.hydrated</code> class to to the <code>data-hydrated</code> attribute
+                        <span class="info">
+                          If your tests related on the class being present, please rewrite the
+                          selector to use the new attribute selector.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components.accordion_item_part"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.accordion_item_part}"
+                      />
+                      <label class="form-check-label" for="components.accordion_item_part">
+                        <code>accordion-item</code> shadow part removed from the
+                        <code>post-accordion-item</code> component and two new shadow parts
+                        introduced: <code>button</code> and <code>body</code>
+                        <span class="info">
+                          If you were styling the component using the
+                          <code>::part(accordion-item)</code> selector, this will no longer work.
+                          Update your styles to use <code>::part(button)</code> for the header
+                          trigger and <code>::part(body)</code> for the content area instead.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+
               <section>
                 <h4>Styles</h4>
 
@@ -292,8 +389,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.forms.input_sizes}"
                       />
                       <label class="form-check-label" for="forms.input_sizes">
-                        Form field size classes removed, therefore the following classes have no
-                        more effect on those elements.
+                        Form field size classes removed
                         <ul>
                           <li><code>.form-control-sm</code></li>
                           <li><code>.form-control-rg</code></li>
@@ -302,6 +398,10 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.form-select-rg</code></li>
                           <li><code>.form-select-lg</code></li>
                         </ul>
+                        <span class="info"
+                          >These classes can safely be removed. All form inputs will now have the
+                          same height.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -326,29 +426,6 @@ export class MigrationV99Component extends LitElement {
 
                 <h5>📐 Grid system</h5>
                 <ul class="list-unstyled">
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="grid.container"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.grid.container}"
-                      />
-                      <label class="form-check-label" for="grid.container">
-                        Grid helper classes removed
-                        <ul>
-                          <li><code>.vertical-gutters</code></li>
-                          <li><code>.row.border-gutters</code></li>
-                          <li><code>.container-reset</code></li>
-                          <li>
-                            <code>.container-reset-left</code> and
-                            <code>.container-reset-right</code>
-                          </li>
-                          <li><code>.container-fluid-#{$breakpoint}</code></li>
-                        </ul>
-                      </label>
-                    </div>
-                  </li>
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -652,7 +729,7 @@ export class MigrationV99Component extends LitElement {
                           >Colors are now handled by
                           <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
                             >palettes</a
-                          ></span
+                          >.</span
                         >
                       </label>
                     </div>
@@ -699,6 +776,14 @@ export class MigrationV99Component extends LitElement {
                             <code>.h-visuallyhidden-down-lg</code>
                           </li>
                         </ul>
+                        <span class="info"
+                          >Use
+                          <a href="/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs#gap"
+                            >gaps</a
+                          >
+                          to add spacing between elements and the
+                          <code>.visually-hidden</code> class to hide content.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -783,7 +868,7 @@ export class MigrationV99Component extends LitElement {
                           >Colors are now handled by
                           <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
                             >palettes</a
-                          ></span
+                          >.</span
                         >
                       </label>
                     </div>
@@ -815,6 +900,15 @@ export class MigrationV99Component extends LitElement {
                           <li><code>$font-size-48</code></li>
                           <li><code>$font-size-56</code></li>
                         </ul>
+                        <span class="info"
+                          >Those SCSS variables can either be replaced by a static value, or you can
+                          add a
+                          <a
+                            href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs#font-sizes"
+                            >font-size class</a
+                          >
+                          to the element it was affecting.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -920,6 +1014,15 @@ export class MigrationV99Component extends LitElement {
                           </li>
                           <li><code>$font-size-huge</code></li>
                         </ul>
+                        <span class="info"
+                          >Those SCSS variables can either be replaced by a static value, or you can
+                          add a
+                          <a
+                            href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs#font-sizes"
+                            >font-size class</a
+                          >
+                          to the element it was affecting.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -988,6 +1091,11 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.fw-light</code></li>
                           <li><code>.light</code></li>
                         </ul>
+                        <span class="info"
+                          >Those classes can safely be removed. If needed, they can be replaced with
+                          <code>.fw-regular</code> if a contrast needs to be set with a bold text
+                          parent.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -1025,6 +1133,11 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.font-monospace</code></li>
                           <li><code>$font-family-monospace</code></li>
                         </ul>
+                        <span class="info"
+                          >Though we recommend using the official <b>Swiss Post Sans</b> font, if
+                          monospace is needed, you can define your own monospace font in your
+                          project.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -1051,6 +1164,16 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.card-button</code></li>
                           <li><code>.card-buttons</code></li>
                         </ul>
+                        <span class="info"
+                          >The card component has been simplified, images don't need a specific
+                          class anymore and all the card content is now within the
+                          <code>.card-body</code>.<br />
+                          Read the
+                          <a href="/?path=/docs/605c788d-3f75-4e6c-8498-be3d546843c2--docs"
+                            >card documentation</a
+                          >
+                          for more informations.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -1065,7 +1188,10 @@ export class MigrationV99Component extends LitElement {
                       <label class="form-check-label" for="others.card_group">
                         <code>.card-group</code> removed
                         <span class="info"
-                          >Card elements should be set inside a grid container.</span
+                          >Card elements should be set inside a
+                          <a href="/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs"
+                            >grid container</a
+                          >.</span
                         >
                       </label>
                     </div>
@@ -1099,6 +1225,10 @@ export class MigrationV99Component extends LitElement {
                       />
                       <label class="form-check-label" for="others.button_animated">
                         <code>.btn-animated</code> class removed
+                        <span class="info"
+                          >The class can safely be removed, there will simply be no icon animation
+                          on hover.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -1152,6 +1282,13 @@ export class MigrationV99Component extends LitElement {
                       />
                       <label class="form-check-label" for="others.alert_fixed_bottom">
                         <code>.alert-fixed-bottom</code> class removed
+                        <span class="info"
+                          >Use
+                          <a href="/?path=/docs/803a58e8-c734-4ad7-80a8-62da1bb29d4b--docs"
+                            >position utilities</a
+                          >
+                          to fix an alert to the bottom of a page.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -1165,6 +1302,13 @@ export class MigrationV99Component extends LitElement {
                       />
                       <label class="form-check-label" for="others.topic_teaser">
                         <code>topic-teaser</code> component (and its related classes) removed
+                        <span class="info"
+                          >As an alternative, you can use the
+                          <a href="/?path=/docs/5a47ba70-7831-4e59-b83e-81b6e6c32372--docs"
+                            >list interactive</a
+                          >
+                          component to display a list of links.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -1213,6 +1357,12 @@ export class MigrationV99Component extends LitElement {
                             <code>$aubergine-bright</code>
                           </li>
                         </ul>
+                        <span class="info"
+                          >Colors are now handled by
+                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                            >palettes</a
+                          >.</span
+                        >
                       </label>
                     </div>
                   </li>
@@ -1278,83 +1428,38 @@ export class MigrationV99Component extends LitElement {
                   </li>
                 </ul>
               </section>
-
-              <section>
-                <h4>🧩 Components</h4>
-
-                <ul class="list-unstyled">
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="components.alert"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.components.alert}"
-                      />
-                      <label class="form-check-label" for="components.alert">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
-                        >
-                        <code>post-alert</code> renamed to <code>post-banner</code>
-                      </label>
-                    </div>
-                  </li>
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="components.accordion_heading"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.components.accordion_heading}"
-                      />
-                      <label class="form-check-label" for="components.accordion_heading">
-                        <code>heading-level</code> property on <code>post-accordion</code> is now
-                        required
-                      </label>
-                    </div>
-                  </li>
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="components.hydrated_flag"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.components.hydrated_flag}"
-                      />
-                      <label class="form-check-label" for="components.hydrated_flag">
-                        The stencil hydrated flag has switched from the
-                        <code>.hydrated</code> class to to the <code>data-hydrated</code> attribute
-                        <span class="info">
-                          If your tests related on the class being present, please rewrite the
-                          selector to use the new attribute selector.
-                        </span>
-                      </label>
-                    </div>
-                  </li>
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="components.accordion_item_part"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.components.accordion_item_part}"
-                      />
-                      <label class="form-check-label" for="components.accordion_item_part">
-                        <code>accordion-item</code> shadow part removed from the
-                        <code>post-accordion-item</code> component and two new shadow parts
-                        introduced: <code>button</code> and <code>body</code>
-                        <span class="info">
-                          If you were styling the component using the
-                          <code>::part(accordion-item)</code> selector, this will no longer work.
-                          Update your styles to use <code>::part(button)</code> for the header
-                          trigger and <code>::part(body)</code> for the content area instead.
-                        </span>
-                      </label>
-                    </div>
-                  </li>
-                </ul>
-              </section>
             </div>
+          </li>
+          <li>
+            <h3>🧹 Clean up</h3>
+            <p>
+              You're almost done! After completing the migration steps above, you can now remove all
+              remaining references to
+              <strong>Bootstrap</strong> and <strong>Ng-Bootstrap</strong> from your project. The
+              steps below help ensure that no deprecated imports or dependencies remain.
+            </p>
+            <ol>
+              <li>
+                Search your CSS or SCSS files for any occurrences of
+                <code>@import 'bootstrap/...';</code> and remove them.
+              </li>
+              <li>
+                Check your TypeScript files for Ng-Bootstrap imports such as
+                <code>import { ... } from '@ng-bootstrap/ng-bootstrap';</code> and delete them.
+                <span class="info">
+                  💡 <em>Note:</em> Your project might also use Ng-Bootstrap components that were
+                  not previously styled by the Design System. In that case, verify whether an
+                  equivalent component exists in the Design System. If no equivalent is available
+                  yet, you may need to keep <strong>Ng-Bootstrap</strong> temporarily until a
+                  replacement is provided.
+                </span>
+              </li>
+              <li>
+                Once you've verified that your project builds and displays correctly, uninstall the
+                packages by running:
+                <code languages="['bash']">npm uninstall bootstrap @ng-bootstrap/ng-bootstrap</code>
+              </li>
+            </ol>
           </li>
         </ol>
       </section>

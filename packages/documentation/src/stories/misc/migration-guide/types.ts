@@ -97,7 +97,6 @@ export interface V910Checks {
     form_text: boolean;
   };
   grid: {
-    container: boolean;
     breakpoints: boolean;
     gutter: boolean;
     gap: boolean;
