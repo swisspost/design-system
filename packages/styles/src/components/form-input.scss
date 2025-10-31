@@ -212,8 +212,8 @@ input.form-control {
     height: tokens.get('input-sizing-icon');
   }
 
-    &:has(> input.form-control.is-valid:not(:disabled))::after,
-    &:has(> input.form-control:-webkit-autofill.is-valid)::after {
+  &:has(> input.form-control.is-valid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
     position: absolute;
     top: calc(#{tokens.get('input-sizing-height')} / 2);
@@ -224,8 +224,8 @@ input.form-control {
     background-image: var(--post-signal-icon-success);
   }
 
-    &:has(> input.form-control.is-invalid:not(:disabled))::after,
-    &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
+  &:has(> input.form-control.is-invalid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
     content: '';
     position: absolute;
     top: calc(#{tokens.get('input-sizing-height')} / 2);
