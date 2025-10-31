@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles-primeng-workspace",
-  "version": "1.0.6-next.51",
+  "version": "1.0.6-next.52",
   "description": "Showcase for a Post like custom prime-ng theme",
   "license": "Apache-2.0",
   "private": true,
@@ -31,7 +31,7 @@
     "@angular/platform-browser-dynamic": "19.2.15",
     "@angular/router": "19.2.15",
     "@primeng/themes": "19.0.9",
-    "@swisspost/design-system-styles": "workspace:10.0.0-next.51",
+    "@swisspost/design-system-styles": "workspace:10.0.0-next.52",
     "primeng": "19.0.9",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
