@@ -1,6 +1,7 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks';
-import * as BackToTopStories from './back-to-top.stories.ts';
+import meta, * as BackToTopStories from './back-to-top.stories.ts';
 import BackToTop from './back-to-top.sample.html?raw';
+import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={BackToTopStories} />
@@ -10,6 +11,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
   <link-design of={JSON.stringify(BackToTopStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   The Back to top component enables the user to scroll back to the top of the page with only a

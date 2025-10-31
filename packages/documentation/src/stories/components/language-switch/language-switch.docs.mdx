@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as languageSwitchStories from './language-switch.stories';
+import meta, * as languageSwitchStories from './language-switch.stories';
 import { PostBanner } from '@swisspost/design-system-components-react';
+import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={languageSwitchStories} />
@@ -11,6 +12,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <link-design of={JSON.stringify(languageSwitchStories)}></link-design>
 
 </div>
+
+<PackageTag meta={meta}/>
 
 <p className="lead">
   The language option switch is a web component which enables users to select their preferred

@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as logoStories from './logo.stories';
+import meta, * as logoStories from './logo.stories';
+import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={logoStories} />
@@ -9,6 +10,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
   <link-design of={JSON.stringify(logoStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <p className="lead">Display the Post logo as a clickable link or as a simple image.</p>
 
