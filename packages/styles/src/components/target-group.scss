@@ -45,7 +45,7 @@ tokens.$default-map: components.$post-button;
     }
   }
 
-  a.active {
+  a[aria-current='location'] {
     box-shadow: tokens.get('button-elevation');
 
     @include button-mx.button-variant-def('enabled', 'primary');
