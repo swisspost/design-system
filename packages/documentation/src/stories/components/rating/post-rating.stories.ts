@@ -16,7 +16,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    'label': undefined,
+    'label': 'Rating',
     'stars': undefined,
     'currentRating': undefined,
     'readonly': false,
@@ -24,6 +24,11 @@ const meta: MetaComponent = {
     'event-postChange': '',
   },
   argTypes: {
+    label: {
+      name: 'label',
+      description: 'The accessible label for the rating component.',
+      control: { type: 'text' },
+    },
     stars: {
       control: { type: 'number', min: 3, max: 10, step: 1 },
     },
@@ -44,6 +49,7 @@ export default meta;
 function render(args: Args) {
   return html`
     <post-rating
+      label="${args.label}"
       stars="${args.stars || nothing}"
       current-rating="${args.currentRating || nothing}"
       readonly="${args.readonly || nothing}"

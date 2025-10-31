@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.51
+
+### Patch Changes
+
+- Adjusted the `post-menu-item` icon size. (by [@leagrdv](https://github.com/leagrdv) with [#6504](https://github.com/swisspost/design-system/pull/6504))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.51
+  - @swisspost/design-system-styles@10.0.0-next.51
+
 ## 10.0.0-next.50
 
 ### Major Changes
