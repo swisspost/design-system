@@ -109,9 +109,9 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.29.5",
+    "@changesets/cli": "2.29.7",
     "start-server-and-test": "2.1.2",
-    "turbo": "2.5.5"
+    "turbo": "2.5.8"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
