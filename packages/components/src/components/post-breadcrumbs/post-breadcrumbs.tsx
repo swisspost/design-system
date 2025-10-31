@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, checkEmptyOrType, debounce, checkRequiredAndType } from '@/utils';
+import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -18,11 +18,16 @@ export class PostBreadcrumbs {
   /**
    * The text label for the home breadcrumb item.
    */
-  @Prop() homeText: string = 'Home';
+  @Prop() homeText!: string;
+
+  /**
+   * The accessible label for the breadcrumb component.
+   */
+  @Prop() label!: string;
 
   /**
    * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
-    */
+   */
   @Prop() menuLabel!: string;
 
   @State() breadcrumbItems: { url: string; text: string }[] = [];
@@ -39,11 +44,16 @@ export class PostBreadcrumbs {
 
   @Watch('homeText')
   validateHomeText() {
-    checkEmptyOrType(this, 'homeUrl', 'string');
+    checkRequiredAndType(this, 'homeText', 'string');
+  }
+
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'label', 'string');
   }
 
   @Watch('menuLabel')
-  validateLabel() {
+  validateMenuLabel() {
     checkRequiredAndType(this, 'menuLabel', 'string');
   }
 
@@ -55,6 +65,7 @@ export class PostBreadcrumbs {
     this.validateHomeUrl();
     this.validateHomeText();
     this.validateLabel();
+    this.validateMenuLabel();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
   }
@@ -123,7 +134,6 @@ export class PostBreadcrumbs {
       const menuTrigger = this.host.shadowRoot
         ?.querySelector('.menu-trigger-wrapper')
         ?.querySelector('button');
-
       if (menuTrigger) {
         menuTrigger.click();
       }
@@ -136,7 +146,7 @@ export class PostBreadcrumbs {
     return (
       <Host data-version={version}>
         <nav
-          aria-label="Breadcrumbs"
+          aria-label={this.label}
           class="breadcrumbs-nav"
           ref={el => (this.breadcrumbsNavRef = el)}
         >
@@ -150,20 +160,20 @@ export class PostBreadcrumbs {
 
             {/* Conditionally render concatenated menu or individual breadcrumb items */}
             {this.isConcatenated ? (
-              <li
-                role="none"
-                class="menu-trigger-wrapper"
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.handleBreadcrumbItemClick();
-                  }
-                }}
-              >
+              <li class="menu-trigger-wrapper">
                 <post-icon name="chevronright" class="breadcrumb-item-icon" />
                 <div class="actual-menu">
-                  <post-menu-trigger for="breadcrumb-menu" tabIndex={0}>
-                    <button class="btn test" tabIndex={-1}>
+                  <post-menu-trigger
+                    for="breadcrumb-menu"
+                    tabIndex={0}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.handleBreadcrumbItemClick();
+                      }
+                    }}
+                  >
+                    <button class="btn" tabIndex={-1}>
                       ...
                     </button>
                   </post-menu-trigger>

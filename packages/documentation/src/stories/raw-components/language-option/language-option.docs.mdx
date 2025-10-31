@@ -1,5 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as languageOptionStories from './language-option.stories';
+import meta, * as languageOptionStories from './language-option.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={languageOptionStories} />
 
@@ -9,16 +11,15 @@ import * as languageOptionStories from './language-option.stories';
   <link-design of={JSON.stringify(languageOptionStories)}></link-design>
 </div>
 
+<PackageTag meta={meta}/>
+
 <p className="lead">Enable users to select their preferred language.</p>
 
 <Canvas sourceState="shown" of={languageOptionStories.Default} />
 
 <Controls of={languageOptionStories.Default} />
 
-## Installation
-
-The `<post-language-option>` element is part of the `@swisspost/design-system-components` package.
-For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+<ComponentsPackageInstall component="<post-language-option>" />
 
 ## Examples
 
