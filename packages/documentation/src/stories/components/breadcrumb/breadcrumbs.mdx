@@ -1,5 +1,6 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as BreadcrumbsStories from './breadcrumbs.stories';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={BreadcrumbsStories} />
 
@@ -19,6 +20,8 @@ The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components,
 
 <Canvas of={BreadcrumbsStories.Default} sourceState="shown" />
 <Controls of={BreadcrumbsStories.Default} />
+
+<ComponentsPackageInstall component="<post-breadcrumbs>" />
 
 ## Concatenated Breadcrumbs
 

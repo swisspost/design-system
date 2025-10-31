@@ -12,8 +12,24 @@
 
 <meta name="color-scheme" content="light dark" />
 <meta name="design-system-settings" data-post-icon-base="/post-icons" />
-<meta http-equiv="Content-Security-Policy"
-  content="connect-src 'self' *.coveo.com *.post.ch *.gravatar.com *.app.github.dev" />
+
+<meta http-equiv="Content-Security-Policy" content="
+connect-src 'self' *.coveo.com *.post.ch *.gravatar.com *.google.com  *.app.github.dev;
+default-src 'self';
+script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.coveo.com *.post.ch *.gravatar.com *.googletagmanager.com;
+style-src 'self' 'unsafe-inline' blob: data: *.coveo.com *.post.ch *.gravatar.com;
+img-src 'self' data: *.cloudfront.net *.post.ch *.gravatar.com picsum.photos *.picsum.photos *.unpkg.com *.githubusercontent.com badge.fury.io;
+font-src 'self' *.coveo.com *.post.ch *.gravatar.com;
+frame-src 'self';
+object-src 'none';
+base-uri 'self';
+form-action 'self';
+media-src 'self';
+manifest-src 'self';
+worker-src 'self';
+upgrade-insecure-requests;
+block-all-mixed-content;
+">
 
 <script>
   window.global = window;
