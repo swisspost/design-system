@@ -77,7 +77,7 @@ export class PostPopoverTrigger {
       this.trigger.addEventListener('click', this.boundHandleToggle);
       this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
     } else {
-      console.warn(
+      console.error(
         'No content found in the post-popover-trigger slot. Please insert a focusable element or content that can receive focus.',
       );
     }
