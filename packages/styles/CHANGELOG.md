@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.52
+
+### Patch Changes
+
+- Replaced `Post Icons` with their corresponding `UI Icon` equivalents across the package to align icon usage with the current design guidelines. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6217](https://github.com/swisspost/design-system/pull/6217))
+
+- Fixed an issue with button styles specificity where e.g. icon buttons got overwritten by the button styles. Button styles are now delivered in the correct source order, also when selectively importing component CSS. (by [@gfellerph](https://github.com/gfellerph) with [#6553](https://github.com/swisspost/design-system/pull/6553))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.52
+
 ## 10.0.0-next.51
 
 ### Major Changes
