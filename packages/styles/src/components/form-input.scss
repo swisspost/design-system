@@ -8,8 +8,6 @@
 
 tokens.$default-map: components.$post-text-input;
 
-@include icons-mx.custom-property(('success-solid', 'error-solid'));
-
 input.form-control {
   display: block;
   width: 100%;
@@ -214,8 +212,8 @@ input.form-control {
     height: tokens.get('input-sizing-icon');
   }
 
-  &:has(> input.form-control.is-valid:not(:disabled))::after,
-  &:has(> input.form-control:-webkit-autofill.is-valid)::after {
+    &:has(> input.form-control.is-valid:not(:disabled))::after,
+    &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
     position: absolute;
     top: calc(#{tokens.get('input-sizing-height')} / 2);
@@ -223,12 +221,11 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 2;
     pointer-events: none;
-    @include icons-mx.mask-image('success-solid');
-    color: tokens.get('post-validation-success', components.$post-validation);
+    background-image: var(--post-signal-icon-success);
   }
 
-  &:has(> input.form-control.is-invalid:not(:disabled))::after,
-  &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
+    &:has(> input.form-control.is-invalid:not(:disabled))::after,
+    &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
     content: '';
     position: absolute;
     top: calc(#{tokens.get('input-sizing-height')} / 2);
@@ -236,8 +233,7 @@ input.form-control {
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 1;
     pointer-events: none;
-    @include icons-mx.mask-image('error-solid');
-    color: tokens.get('post-validation-error', components.$post-validation);
+    background-image: var(--post-signal-icon-error);
   }
 
   > input.form-control ~ label {
