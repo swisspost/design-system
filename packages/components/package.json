@@ -99,7 +99,7 @@
   "devDependencies": {
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
-    "@percy/cli": "1.30.6",
+    "@percy/cli": "1.31.4",
     "@percy/cypress": "3.1.6",
     "@stencil-community/eslint-plugin": "0.10.0",
     "@stencil/angular-output-target": "0.10.2",
