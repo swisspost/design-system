@@ -76,7 +76,7 @@ textarea.form-control {
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
-      background-size: tokens.get('textarea-sizing-icon');
+      background-size: tokens.get('textarea-sizing-icon') tokens.get('textarea-sizing-icon');
       background-position: top tokens.get('textarea-position-block-start-validation') right
         tokens.get('textarea-position-inline-end-validation');
       background-repeat: no-repeat;
