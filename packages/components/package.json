@@ -88,22 +88,22 @@
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.7.3",
+    "@floating-ui/dom": "1.7.4",
     "@oddbird/popover-polyfill": "0.6.0",
+    "@stencil/core": "4.35.0",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.51",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.51",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0",
-    "nanoid": "5.1.5"
+    "nanoid": "5.1.6"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
-    "@percy/cli": "1.30.6",
+    "@percy/cli": "1.31.4",
     "@percy/cypress": "3.1.6",
     "@stencil-community/eslint-plugin": "0.10.0",
     "@stencil/angular-output-target": "0.10.2",
-    "@stencil/core": "4.35.0",
     "@stencil/react-output-target": "=0.8.2",
     "@stencil/sass": "3.0.12",
     "@swisspost/design-system-eslint": "workspace:1.1.0-next.2",
