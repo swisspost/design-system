@@ -76,10 +76,11 @@ textarea.form-control {
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
-      background-size: 24px 24px;
-      background-position-x: calc(100% - #{tokens.get('textarea-position-inline-end-validation')});
-      background-position-y: #{tokens.get('textarea-position-block-start-validation')};
+      background-size: tokens.get('textarea-sizing-icon') tokens.get('textarea-sizing-icon');
+      background-position: top tokens.get('textarea-position-block-start-validation') right
+        tokens.get('textarea-position-inline-end-validation');
       background-repeat: no-repeat;
+      padding-inline-end: tokens.get('textarea-validated-padding-inline-end');
     }
   }
 
