@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-tabs',
   render: renderTabs,
   parameters: {
@@ -176,14 +176,6 @@ type Story = StoryObj<HTMLPostTabsElement & {
 }>;
 
 export const Default: Story = {
-  parameters: {
-    layout: 'fullscreen',
-    docs: {
-      description: {
-        story: 'Use the **Variant** control above to switch between panels variant (default) and navigation variant. The component automatically detects the variant based on whether tab items contain anchor links.\n\n**Note**: The `content` CSS Shadow Part is only available in panels mode, while the `tabs` part is available in both modes.',
-      },
-    },
-  },
 };
 
 export const PanelsVariant: Story = {

@@ -103,13 +103,16 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
         "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component.
+         */
+        "label": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -383,15 +386,21 @@ export namespace Components {
         "placement"?: Placement;
         /**
           * Programmatically display the popover
-          * @param target An element with [data-popover-target="id"] where the popover should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popover display
-          * @param target An element with [data-popover-target="id"] where the popover should be anchored to
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
+    interface PostPopoverTrigger {
+        /**
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
+         */
+        "for": string;
     }
     interface PostPopovercontainer {
         /**
@@ -437,12 +446,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -455,7 +464,6 @@ export namespace Components {
         "currentRating": number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
         "label": string;
         /**
@@ -824,6 +832,12 @@ declare global {
         prototype: HTMLPostPopoverElement;
         new (): HTMLPostPopoverElement;
     };
+    interface HTMLPostPopoverTriggerElement extends Components.PostPopoverTrigger, HTMLStencilElement {
+    }
+    var HTMLPostPopoverTriggerElement: {
+        prototype: HTMLPostPopoverTriggerElement;
+        new (): HTMLPostPopoverTriggerElement;
+    };
     interface HTMLPostPopovercontainerElementEventMap {
         "postBeforeShow": { first?: boolean };
         "postShow": { first?: boolean };
@@ -938,6 +952,7 @@ declare global {
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
         "post-popover": HTMLPostPopoverElement;
+        "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
         "post-tab-item": HTMLPostTabItemElement;
@@ -1020,13 +1035,16 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
-        "homeText"?: string;
+        "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component.
+         */
+        "label": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -1270,6 +1288,12 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement;
     }
+    interface PostPopoverTrigger {
+        /**
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
+         */
+        "for": string;
+    }
     interface PostPopovercontainer {
         /**
           * Animation style
@@ -1329,9 +1353,8 @@ declare namespace LocalJSX {
         "currentRating"?: number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
-        "label"?: string;
+        "label": string;
         /**
           * An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */
@@ -1445,6 +1468,7 @@ declare namespace LocalJSX {
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
         "post-popover": PostPopover;
+        "post-popover-trigger": PostPopoverTrigger;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
         "post-tab-item": PostTabItem;
@@ -1492,6 +1516,7 @@ declare module "@stencil/core" {
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
+            "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;

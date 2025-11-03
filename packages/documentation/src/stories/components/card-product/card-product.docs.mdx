@@ -1,8 +1,9 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as ProductCardStories from './card-product.stories';
+import meta, * as ProductCardStories from './card-product.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import ProductCardSyncHeights from './card-product.sample.js?raw';
 import ProductCardAngularSyncHeights from './card-product.sample.ts?raw';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ProductCardStories} />
 
@@ -10,8 +11,9 @@ import ProductCardAngularSyncHeights from './card-product.sample.ts?raw';
   # Card for Products
 
 <link-design of={JSON.stringify(ProductCardStories)}></link-design>
-
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Highlight essential product details and provide an entry point to access in-depth information.
