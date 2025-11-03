@@ -20,7 +20,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
   argTypes: {
     variant: {
       name: 'variant',
-      description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt to mix both variants(anchors + panels), the component will throw an error.</p></post-banner>',
+        description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt to mix both variants(anchors + panels), the component will throw an error.</p></post-banner>',
       control: 'radio',
       options: ['panels', 'navigation'],
       table: {
@@ -30,9 +30,8 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
     },
     activeTab: {
       name: 'active-tab',
-      description: `The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.
-
-      **Changing this value after initialization has no effect.**`,
+      description:
+        'The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.\n\n**Changing this value after initialization has no effect.**',
       control: 'select',
       options: ['first', 'second', 'third'],
       if: { arg: 'variant' },
