@@ -41,7 +41,7 @@
     "@kurbar/storybook-addon-docs-stencil": "8.0.0",
     "@lit/task": "1.0.3",
     "@open-wc/lit-helpers": "0.7.0",
-    "@percy/cli": "1.30.6",
+    "@percy/cli": "1.31.4",
     "@percy/cypress": "3.1.6",
     "@storybook/addon-docs": "9.1.16",
     "@storybook/addon-links": "9.1.16",

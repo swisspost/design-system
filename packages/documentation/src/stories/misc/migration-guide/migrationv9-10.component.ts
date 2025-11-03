@@ -74,6 +74,7 @@ export class MigrationV99Component extends LitElement {
       accordion_heading: false,
       hydrated_flag: false,
       accordion_item_part: false,
+      popover_trigger: false,
     },
   };
 
@@ -1429,6 +1430,22 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.loader-xs</code> is now <code>.spinner-16</code></li>
                           <li><code>.loader-sm</code> is now <code>.spinner-40</code></li>
                         </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components.popover_trigger"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.popover_trigger}"
+                      />
+                      <label class="form-check-label" for="components.popover_trigger">
+                        The <code>post-popover</code> now uses its own
+                        <code>post-popover-trigger</code> component instead of an element with a
+                        <code>data-popover-target</code> attribute.
+                        <span class="tag tag-sm tag-danger">breaking</span>
                       </label>
                     </div>
                   </li>

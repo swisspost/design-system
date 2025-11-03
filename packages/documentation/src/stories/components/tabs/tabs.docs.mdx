@@ -1,7 +1,8 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as TabStories from './tabs.stories';
+import meta, * as TabStories from './tabs.stories';
 import SampleTabChange from './tabs-tab-change.sample?raw';
 import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
+import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={TabStories} />
@@ -9,9 +10,10 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <div className="docs-title">
   # Tabs
 
-<link-design of={JSON.stringify(TabStories)}></link-design>
-
+  <link-design of={JSON.stringify(TabStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">Organize content across different sections that are shown one at a time.</div>
 

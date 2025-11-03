@@ -1,7 +1,8 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as accordionStories from './accordion.stories';
+import meta, * as accordionStories from './accordion.stories';
 import * as accordionItemStories from './accordion-item.stories';
 import SampleCustomTrigger from './accordion-custom-trigger.sample?raw';
+import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={accordionStories} />
@@ -12,6 +13,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
   <link-design of={JSON.stringify(accordionStories)}></link-design>
 </div>
 
+<PackageTag meta={meta}/>
 
 <p className="lead">Toggle the visibility of a set of related content in your project.</p>
 
