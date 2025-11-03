@@ -114,9 +114,9 @@ export class MigrationV99Component extends LitElement {
             </p>
             <p>
               We’ve completely refreshed the design and reworked how components are built.
-              <span class="fw-bold">Bootstrap</span> and
-              <span class="fw-bold">Ng-Bootstrap</span> are gone; everything now runs on
-              <span class="fw-bold">Stencil Web Components</span>, which means the Design System
+              <b>Bootstrap</b> and
+              <b>Ng-Bootstrap</b> have been replaced by
+              <b>Web Standards</b> compliant components, which means the Design System
               works across <span class="fw-bold">any framework</span> (<a
                 href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
                 >Angular</a
