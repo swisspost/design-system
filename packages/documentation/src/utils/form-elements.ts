@@ -26,3 +26,9 @@ export function getValidationMessages(args: Args, context: StoryContext, withHin
       : null,
   ];
 }
+
+export const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
+  'null': undefined,
+  'is-valid': false,
+  'is-invalid': true,
+};

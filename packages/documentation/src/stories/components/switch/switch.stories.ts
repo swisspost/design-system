@@ -4,7 +4,7 @@ import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
-import { getLabelText } from '@/utils/form-elements';
+import { getLabelText, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
@@ -123,12 +123,6 @@ const meta: MetaComponent = {
 };
 
 export default meta;
-
-const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
-  'null': undefined,
-  'is-valid': false,
-  'is-invalid': true,
-};
 
 function renderSwitch(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
