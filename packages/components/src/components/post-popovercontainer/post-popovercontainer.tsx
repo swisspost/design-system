@@ -172,16 +172,18 @@ export class PostPopovercontainer {
     if (typeof this.clearAutoUpdate === 'function') {
       this.clearAutoUpdate();
     }
+    this.host.removeEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
   /**
    * Programmatically display the popovercontainer
-   * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
    */
   @Method()
   async show(target: HTMLElement) {
     if (this.toggleTimeoutId) return;
     this.eventTarget = target;
+    if (this.toggleTimeoutId) return;
     this.calculatePosition();
     this.host.showPopover();
   }
@@ -245,6 +247,9 @@ export class PostPopovercontainer {
   @Method()
   async hide() {
     if (!this.toggleTimeoutId) {
+      if (this.eventTarget && this.eventTarget instanceof HTMLElement) {
+        this.eventTarget.focus();
+      }
       this.eventTarget = null;
       this.host.hidePopover();
       this.postHide.emit();
@@ -253,18 +258,19 @@ export class PostPopovercontainer {
 
   /**
    * Toggle popovercontainer display
-   * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    this.eventTarget = target;
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
       this.calculatePosition();
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
     }
+
     return this.host.matches(':where(:popover-open, .popover-open)');
   }
 
@@ -276,8 +282,8 @@ export class PostPopovercontainer {
    */
   private handleToggle(e: ToggleEvent) {
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
-
     const isOpen = e.newState === 'open';
+
     if (isOpen) {
       this.open();
     } else {
