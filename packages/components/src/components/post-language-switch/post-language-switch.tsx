@@ -56,6 +56,11 @@ export class PostLanguageSwitch {
    */
   @Prop() readonly animation?: 'pop-in' | null = 'pop-in';
 
+  @Watch('animation')
+  validateAnimation() {
+    checkEmptyOrOneOf(this, 'animation', ['pop-in', null]);
+  }
+
   /**
    * The active language of the language switch
    */

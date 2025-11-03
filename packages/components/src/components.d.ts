@@ -102,6 +102,11 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
+          * Animation style
+          * @default 'pop-in'
+         */
+        "animation"?: 'pop-in' | null;
+        /**
           * The text label for the home breadcrumb item.
          */
         "homeText": string;
@@ -1030,6 +1035,11 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostBreadcrumbs {
+        /**
+          * Animation style
+          * @default 'pop-in'
+         */
+        "animation"?: 'pop-in' | null;
         /**
           * The text label for the home breadcrumb item.
          */

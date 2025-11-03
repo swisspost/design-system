@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
+import { checkRequiredAndUrl, debounce, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -30,6 +30,11 @@ export class PostBreadcrumbs {
    */
   @Prop() menuLabel!: string;
 
+  /**
+   * Animation style
+   */
+  @Prop() animation?: 'pop-in' | null = 'pop-in';
+
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
   @State() lastWindowWidth: number;
@@ -55,6 +60,11 @@ export class PostBreadcrumbs {
   @Watch('menuLabel')
   validateMenuLabel() {
     checkRequiredAndType(this, 'menuLabel', 'string');
+  }
+
+  @Watch('animation')
+  validateAnimation() {
+    checkEmptyOrOneOf(this, 'animation', ['pop-in', null]);
   }
 
   componentWillLoad() {
