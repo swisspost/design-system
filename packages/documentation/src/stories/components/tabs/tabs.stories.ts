@@ -36,7 +36,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
       options: ['first', 'second', 'third'],
       if: { arg: 'variant' },
       table: {
-        category: 'Properties',
+        category: 'Props',
       },
     },
     fullWidth: {
@@ -44,7 +44,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
       description: 'When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.',
       control: 'boolean',
       table: {
-        category: 'Properties',
+        category: 'Props',
       },
     },
     'slots-default': {
