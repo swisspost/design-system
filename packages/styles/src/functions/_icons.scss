@@ -3,7 +3,7 @@
 
 @use './color';
 @use './utilities';
-@use '../_svg-icon-map' as icon-vars;
+@use '../svg-icon-map' as icon-vars;
 
 @function add-fill-color($svg, $color) {
   @if (meta.type-of($color) == string) {
