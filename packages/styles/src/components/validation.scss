@@ -1,7 +1,5 @@
 @use 'sass:map';
 @use '../functions/tokens';
-@use '../functions/icons';
-@use './../mixins/icons' as icons-mx;
 @use '../tokens/components';
 
 tokens.$default-map: components.$post-validation;
