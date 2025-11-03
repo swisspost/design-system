@@ -1,7 +1,7 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeIn, fadeOut } from '@/animations';
-import { componentOnReady } from '@/utils';
+import { componentOnReady, checkRequiredAndType } from '@/utils';
 
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
@@ -53,6 +53,18 @@ export class PostTabs {
   @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
+   * The accessible label for the tabs component for navigation variant.
+   */
+  @Prop() readonly label?: string;
+
+  @Watch('label')
+  validateLabel() {
+    if (this.isNavigationMode) {
+      checkRequiredAndType(this, 'label', 'string');
+    }
+  }
+
+  /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
    * The payload is the name of the newly active tab.
    */
@@ -64,6 +76,7 @@ export class PostTabs {
     this.isLoaded = true;
     this.enableTabs();
     this.setupContentObserver();
+    this.validateLabel();
 
     if (this.isNavigationMode) {
       const activeTab = this.findActiveNavigationTab();
@@ -323,7 +336,7 @@ export class PostTabs {
 
   render() {
     const tabsRole = this.isNavigationMode ? undefined : 'tablist';
-    const ariaLabel = this.isNavigationMode ? 'Tabs navigation' : undefined;
+    const ariaLabel = this.isNavigationMode ? this.label : undefined;
     const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
 
     return (
