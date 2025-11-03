@@ -20,14 +20,14 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
   The official Swiss Post Icon Library with {Math.floor(POST_ICONS_COUNT / 10) * 10}+ high-quality svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with {Math.floor(UI_ICONS_COUNT / 10) * 10}+ icons and responsive level-of-detail.
 </div>
 
-<post-tabs active-panel="search">
-  <post-tab-header panel="search">Find your Icon</post-tab-header>
-  <post-tab-panel name="search">
+<post-tabs active-tab="search">
+  <post-tab-item name="search">Find your Icon</post-tab-item>
+  <post-tab-panel for="search">
     <Search />
   </post-tab-panel>
 
-  <post-tab-header panel="installation">Installation</post-tab-header>
-  <post-tab-panel name="installation">
+  <post-tab-item name="installation">Installation</post-tab-item>
+  <post-tab-panel for="installation">
     <ComponentsPackageInstall subtitle="Icon Component" component="<post-icon>" />
 
     ### Icon SVGs
