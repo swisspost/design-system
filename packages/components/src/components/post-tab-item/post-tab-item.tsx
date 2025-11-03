@@ -13,12 +13,13 @@ import { nanoid } from 'nanoid';
   shadow: true,
 })
 export class PostTabItem {
-  private mutationObserver = new MutationObserver(this.checkNavigationMode.bind(this));
+  private mutationObserver = new MutationObserver(this.handleMutations.bind(this));
 
   @Element() host: HTMLPostTabItemElement;
 
   @State() tabId: string;
   @State() isNavigationMode = false;
+  @State() hasAriaCurrent = false;
 
   /**
    * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
@@ -34,6 +35,8 @@ export class PostTabItem {
     this.mutationObserver.observe(this.host, {
       childList: true,
       subtree: true,
+      attributes: true,
+      attributeFilter: ['aria-current'],
     });
   }
 
@@ -43,10 +46,18 @@ export class PostTabItem {
 
   componentDidLoad() {
     this.checkNavigationMode();
+    this.checkAriaCurrent();
   }
 
   disconnectedCallback() {
-    this.mutationObserver.disconnect();
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
+  }
+
+  private handleMutations() {
+    this.checkNavigationMode();
+    this.checkAriaCurrent();
   }
 
   private checkNavigationMode() {
@@ -54,8 +65,20 @@ export class PostTabItem {
     this.isNavigationMode = hasAnchor;
   }
 
+  private checkAriaCurrent() {
+    if (this.isNavigationMode) {
+      const anchor = this.host.querySelector('a');
+      this.hasAriaCurrent = anchor?.getAttribute('aria-current') === 'page';
+    }
+  }
+
   render() {
     const isPanelMode = !this.isNavigationMode;
+    const classes = {
+      'tab-title': true,
+      active: this.isNavigationMode && this.hasAriaCurrent,
+    };
+
     return (
       <Host
         id={this.tabId}
@@ -64,7 +87,7 @@ export class PostTabItem {
         data-navigation-mode={this.isNavigationMode.toString()}
         aria-selected={isPanelMode ? 'false' : undefined}
         tabindex={isPanelMode ? '-1' : undefined}
-        class="tab-title"
+        class={classes}
       >
         <slot />
       </Host>

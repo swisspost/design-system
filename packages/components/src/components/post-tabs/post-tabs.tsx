@@ -55,7 +55,7 @@ export class PostTabs {
   /**
    * The accessible label for the tabs component for navigation variant.
    */
-  @Prop() readonly label?: string;
+  @Prop() readonly label!: string;
 
   @Watch('label')
   validateLabel() {
@@ -100,7 +100,9 @@ export class PostTabs {
     }
 
     // Clean up content observer
-    this.contentObserver.disconnect();
+    if (this.contentObserver) {
+      this.contentObserver.disconnect();
+    }
   }
 
   private setupContentObserver() {

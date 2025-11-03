@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html, nothing, TemplateResult } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
@@ -16,11 +16,21 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
     },
+    decorators: [
+      // Inject style to ensure required asterisk in arg table is displayed in error color
+      // Targets Storybook's required badge which typically has title="Required"
+      (story: () => TemplateResult) => html`<style>
+        /* make the required asterisk red to match design system error color */
+        span[title="Required"] {
+          color: rgb(255,68,0) !important;
+        }
+      </style>${story()}`,
+    ],
   },
   argTypes: {
     variant: {
       name: 'variant',
-        description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt to mix both variants(anchors + panels), the component will throw an error.</p></post-banner>',
+        description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt  (anchors + panels), the component will throw an error.</p></post-banner>',
       control: 'radio',
       options: ['panels', 'navigation'],
       table: {
@@ -57,9 +67,6 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
         type: {
           summary: 'string',
         },
-        defaultValue: { 
-          summary: 'required',
-        },
       },
     },
     'slots-default': {
@@ -93,6 +100,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
   },
   args: { 
     variant: 'panels',
+    label: 'Tabs navigation',
     'slots-default': '',
     'slots-panels': '',
   },
