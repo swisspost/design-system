@@ -1,10 +1,6 @@
 @use './../functions/tokens';
 @use './../tokens/components';
-@use './../tokens/elements';
-@use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities';
-@use './../mixins/icons' as icons-mx;
-@use './../variables/components/forms';
 
 tokens.$default-map: components.$post-text-input;
 
