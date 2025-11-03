@@ -1086,7 +1086,7 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.typography.weight_light}"
                       />
                       <label class="form-check-label" for="typography.weight_light">
-                        Light font weight (300) removed as the new Swiss Post does not provide it
+                        Light font weight (300) removed as the new Swiss Post Sans does not provide it
                         <ul>
                           <li><code>.fw-light</code></li>
                           <li><code>.light</code></li>
