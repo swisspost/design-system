@@ -77,7 +77,6 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
   },
   args: { 
     variant: 'panels',
-    fullWidth: false,
     'slots-default': '',
     'slots-panels': '',
   },
