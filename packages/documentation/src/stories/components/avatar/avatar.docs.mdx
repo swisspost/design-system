@@ -1,6 +1,8 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as AvatarPictureStories from './avatar.stories';
+import meta, * as AvatarPictureStories from './avatar.stories';
 import AvatarSample from './avatar.sample.scss?raw';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={AvatarPictureStories} />
 
@@ -10,12 +12,16 @@ import AvatarSample from './avatar.sample.scss?raw';
   <link-design of={JSON.stringify(AvatarPictureStories)}></link-design>
 </div>
 
+<PackageTag meta={meta}/>
+
 <div className="lead">
   Display a user's profile picture or their initials if the picture is unavailable.
 </div>
 
 <Canvas of={AvatarPictureStories.Default} sourceState="shown" />
 <Controls of={AvatarPictureStories.Default} />
+
+<ComponentsPackageInstall component="<post-avatar>" />
 
 ## Interactive Wrapper Element
 

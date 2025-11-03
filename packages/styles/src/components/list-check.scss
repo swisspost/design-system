@@ -1,10 +1,12 @@
 @use '../functions/tokens';
-@use '../mixins/icons' as icon-mixin;
+@use '../mixins/icons' as icons-mx;
 @use '../tokens/components';
 @use '../mixins/media';
 @use '../mixins/utilities';
 
 tokens.$default-map: components.$post-listcheck;
+
+@include icons-mx.custom-property('checkmark');
 
 ul.list-check {
   @include utilities.reset-list;
@@ -68,8 +70,9 @@ ul.list-check {
       width: tokens.get('list-check-sizing-icon');
       height: tokens.get('list-check-sizing-icon');
       content: '';
-      @include icon-mixin.icon('3035');
+      @include icons-mx.mask-image('checkmark');
       color: tokens.get('list-check-color-icon-fg');
+
       @include media.max(sm) {
         margin-block: tokens.get('list-check-icon-container-block');
         padding-inline: tokens.get('list-check-icon-container-inline');

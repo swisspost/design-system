@@ -1,6 +1,7 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import * as LeadStories from './lead.stories';
+import meta, * as LeadStories from './lead.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={LeadStories} />
 
@@ -9,6 +10,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
   <link-design of={JSON.stringify(LeadStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div>
   A lead provides the reader with a summary of the most important information about the subsequent
