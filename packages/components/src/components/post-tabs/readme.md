@@ -11,7 +11,7 @@
 | ----------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `activeTab` | `active-tab` | The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Changing this value after initialization has no effect.** | `string`  | `undefined` |
 | `fullWidth` | `full-width` | When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.                                         | `boolean` | `false`     |
-| `label`     | `label`      | The accessible label for the tabs component . Required when tabs are used for navigation.                                                                  | `string`  | `undefined` |
+| `label`     | `label`      | The accessible label for the tabs component for navigation variant.                                                                                        | `string`  | `undefined` |
 
 
 ## Events
