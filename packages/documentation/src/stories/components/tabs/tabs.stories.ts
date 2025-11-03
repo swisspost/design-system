@@ -153,7 +153,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
       <post-tab-item name="first">First tab</post-tab-item>
       <post-tab-item name="second">Second tab</post-tab-item>
       <post-tab-item name="third">Third tab</post-tab-item>
-      
+
       <post-tab-panel for="first" slot="panels">
         This is the content of the first tab. By default it is shown initially.
       </post-tab-panel>
