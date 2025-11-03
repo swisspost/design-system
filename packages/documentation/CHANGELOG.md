@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.8.3
+
+### Patch Changes
+
+- Added v9 to all package dependency tables, moved each table to its respective package documentation, and removed the global compatibility page. (by [@leagrdv](https://github.com/leagrdv) with [#6523](https://github.com/swisspost/design-system/pull/6523))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.4.0
+  - @swisspost/design-system-styles@9.4.0
+  - @swisspost/design-system-components@9.4.0
+  - @swisspost/design-system-components-react@9.4.0
+  - @swisspost/internet-header@1.15.21
+
 ## 5.8.2
 
 ### Patch Changes
