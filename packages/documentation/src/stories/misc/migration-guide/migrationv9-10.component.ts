@@ -109,31 +109,36 @@ export class MigrationV99Component extends LitElement {
           <li>
             <h3>Introduction</h3>
             <p>
-              Version 10 comes with a <b>new look and cleaner codebase</b> —
-              and yes, a few breaking changes, all for good reason.
+              Version 10 comes with a <b>new look and cleaner codebase</b> — and yes, a few breaking
+              changes, all for good reason.
             </p>
             <p>
               We’ve completely refreshed the design and reworked how components are built.
-              <b>Bootstrap</b> and
-              <b>Ng-Bootstrap</b> have been replaced by
-              <b>Web Standards</b> compliant components, which means the Design System
-              works across <b>any framework</b> (<a
+              <b>Bootstrap</b> and <b>Ng-Bootstrap</b> have been replaced by
+              <b>Web Standards</b> compliant components, which means the Design System works across
+              <b>any framework</b> (<a
                 href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
                 >Angular</a
               >, <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs">React</a>, or
               <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">plain HTML</a>).
             </p>
             <p>
-              We've reworked utility classes to be 
-              <b>pixel-based and more intuitive</b> — for example,
-              <code>.p-16</code> now clearly means "16px padding", instead of guessing what
-              <code>.p-3</code> stood for. We’ve also simplified things overall: fewer breakpoints,
-              fewer font-size classes, and a more consistent color palette (no more purple or coral
-              buttons 🎨).
+              We've reworked utility classes to be
+              <b>pixel-based and more intuitive</b> — for example, <code>.p-16</code> now clearly
+              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We’ve also
+              simplified things overall: fewer breakpoints, fewer font-size classes, and a more
+              consistent color palette (no more purple or coral buttons 🎨).
             </p>
             <p>
-              Components are now <b>tokenized</b>, so you can implement <span data-color-scheme="dark"><span style="display: inline-block; padding: 2px 0.25em; border-radius: 3px" class="palette palette-default">dark mode</span></span> and easily
-              adjust themes without rewriting CSS. Want to see this in action? Check the
+              Components are now <b>tokenized</b>, so you can implement
+              <span data-color-scheme="dark"
+                ><span
+                  style="display: inline-block; padding: 2px 0.25em; border-radius: 3px"
+                  class="palette palette-default"
+                  >dark mode</span
+                ></span
+              >
+              and easily adjust themes without rewriting CSS. Want to see this in action? Check the
               <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
                 >Palette documentation</a
               >
@@ -177,20 +182,20 @@ export class MigrationV99Component extends LitElement {
             <div class="my-16">
               <p>
                 💡 Many changes are automatically handled by the migration scripts. Each 🪄 symbol
-                means that <b>automatic migration rules</b> can handle the
-                changes, but you should still verify the results manually.
+                means that <b>automatic migration rules</b> can handle the changes, but you should
+                still verify the results manually.
               </p>
               <div class="form-check">
                 <input
-                  id="state.general.hide_automigration"
+                  id="state-general-hide_automigration"
                   type="checkbox"
                   class="form-check-input"
-                  name="state.general.hide_automigration"
+                  name="state-general-hide_automigration"
                   value="true"
                   @change="${this._onAutoMigrationChange}"
                   ?checked="${this.state.general.hide_automigration}"
                 />
-                <label for="state.general.hide_automigration" class="form-check-label">
+                <label for="state-general-hide_automigration" class="form-check-label">
                   Hide changes covered by the automatic
                   <span class="tag tag-sm tag-info">🪄 migration rules</span>
                 </label>
@@ -233,12 +238,12 @@ export class MigrationV99Component extends LitElement {
                   <li>
                     <div class="form-check">
                       <input
-                        id="ngbootstrap.removed_components"
+                        id="ngbootstrap-removed_components"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.ngbootstrap.removed_components}"
                       />
-                      <label class="form-check-label" for="ngbootstrap.removed_components">
+                      <label class="form-check-label" for="ngbootstrap-removed_components">
                         All Ng-Bootstrap components are no longer available:
                         <ul>
                           <li>carousel → <i>coming soon</i></li>
@@ -268,7 +273,7 @@ export class MigrationV99Component extends LitElement {
                           the Design System, shown in the list above. Migration to these new
                           components is manual — you’ll need to update the affected components in
                           your application to use the corresponding elements as described in their
-                         documentation.</span
+                          documentation.</span
                         >
                       </label>
                     </div>
@@ -282,12 +287,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="components.alert"
+                        id="components-alert"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.components.alert}"
                       />
-                      <label class="form-check-label" for="components.alert">
+                      <label class="form-check-label" for="components-alert">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -298,12 +303,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="components.accordion_heading"
+                        id="components-accordion_heading"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.components.accordion_heading}"
                       />
-                      <label class="form-check-label" for="components.accordion_heading">
+                      <label class="form-check-label" for="components-accordion_heading">
                         <code>heading-level</code> property on <code>post-accordion</code> is now
                         required
                       </label>
@@ -312,12 +317,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="components.hydrated_flag"
+                        id="components-hydrated_flag"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.components.hydrated_flag}"
                       />
-                      <label class="form-check-label" for="components.hydrated_flag">
+                      <label class="form-check-label" for="components-hydrated_flag">
                         The stencil hydrated flag has switched from the
                         <code>.hydrated</code> class to to the <code>data-hydrated</code> attribute
                         <span class="info">
@@ -330,12 +335,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="components.accordion_item_part"
+                        id="components-accordion_item_part"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.components.accordion_item_part}"
                       />
-                      <label class="form-check-label" for="components.accordion_item_part">
+                      <label class="form-check-label" for="components-accordion_item_part">
                         <code>accordion-item</code> shadow part removed from the
                         <code>post-accordion-item</code> component and two new shadow parts
                         introduced: <code>button</code> and <code>body</code>
@@ -359,12 +364,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="forms.tooltip_validation"
+                        id="forms-tooltip_validation"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.forms.tooltip_validation}"
                       />
-                      <label class="form-check-label" for="forms.tooltip_validation">
+                      <label class="form-check-label" for="forms-tooltip_validation">
                         Tooltip validation classes removed
                         <ul>
                           <li><code>.valid-tooltip</code></li>
@@ -383,12 +388,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="forms.input_sizes"
+                        id="forms-input_sizes"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.forms.input_sizes}"
                       />
-                      <label class="form-check-label" for="forms.input_sizes">
+                      <label class="form-check-label" for="forms-input_sizes">
                         Form field size classes removed
                         <ul>
                           <li><code>.form-control-sm</code></li>
@@ -408,12 +413,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="forms.form_text"
+                        id="forms-form_text"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.forms.form_text}"
                       />
-                      <label class="form-check-label" for="forms.form_text">
+                      <label class="form-check-label" for="forms-form_text">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -429,12 +434,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="grid.breakpoints"
+                        id="grid-breakpoints"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.grid.breakpoints}"
                       />
-                      <label class="form-check-label" for="grid.breakpoints">
+                      <label class="form-check-label" for="grid-breakpoints">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -458,12 +463,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="grid.gutter"
+                        id="grid-gutter"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.grid.gutter}"
                       />
-                      <label class="form-check-label" for="grid.gutter">
+                      <label class="form-check-label" for="grid-gutter">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -487,12 +492,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="grid.gap"
+                        id="grid-gap"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.grid.gap}"
                       />
-                      <label class="form-check-label" for="grid.gap">
+                      <label class="form-check-label" for="grid-gap">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -515,12 +520,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.percentage_sizing"
+                        id="utilities-percentage_sizing"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.percentage_sizing}"
                       />
-                      <label class="form-check-label" for="utilities.percentage_sizing">
+                      <label class="form-check-label" for="utilities-percentage_sizing">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -538,12 +543,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.removed_pixel_sizing"
+                        id="utilities-removed_pixel_sizing"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.removed_pixel_sizing}"
                       />
-                      <label class="form-check-label" for="utilities.removed_pixel_sizing">
+                      <label class="form-check-label" for="utilities-removed_pixel_sizing">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -559,12 +564,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.renamed_pixel_sizing"
+                        id="utilities-renamed_pixel_sizing"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.renamed_pixel_sizing}"
                       />
-                      <label class="form-check-label" for="utilities.renamed_pixel_sizing">
+                      <label class="form-check-label" for="utilities-renamed_pixel_sizing">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -591,12 +596,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.max_size"
+                        id="utilities-max_size"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.max_size}"
                       />
-                      <label class="form-check-label" for="utilities.max_size">
+                      <label class="form-check-label" for="utilities-max_size">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -611,12 +616,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.shadow"
+                        id="utilities-shadow"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.shadow}"
                       />
-                      <label class="form-check-label" for="utilities.shadow">
+                      <label class="form-check-label" for="utilities-shadow">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -634,12 +639,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.elevation"
+                        id="utilities-elevation"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.elevation}"
                       />
-                      <label class="form-check-label" for="utilities.elevation">
+                      <label class="form-check-label" for="utilities-elevation">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -657,12 +662,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.removed_spacing"
+                        id="utilities-removed_spacing"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.removed_spacing}"
                       />
-                      <label class="form-check-label" for="utilities.removed_spacing">
+                      <label class="form-check-label" for="utilities-removed_spacing">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -678,12 +683,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.renamed_spacing"
+                        id="utilities-renamed_spacing"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.renamed_spacing}"
                       />
-                      <label class="form-check-label" for="utilities.renamed_spacing">
+                      <label class="form-check-label" for="utilities-renamed_spacing">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -718,12 +723,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.background"
+                        id="utilities-background"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.background}"
                       />
-                      <label class="form-check-label" for="utilities.background">
+                      <label class="form-check-label" for="utilities-background">
                         Background color classes (<code>.bg-*</code>) removed
                         <span class="info"
                           >Colors are now handled by
@@ -737,12 +742,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.renamed_various_utilities"
+                        id="utilities-renamed_various_utilities"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.renamed_various_utilities}"
                       />
-                      <label class="form-check-label" for="utilities.renamed_various_utilities">
+                      <label class="form-check-label" for="utilities-renamed_various_utilities">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -759,12 +764,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.removed_various_utilities"
+                        id="utilities-removed_various_utilities"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.removed_various_utilities}"
                       />
-                      <label class="form-check-label" for="utilities.removed_various_utilities">
+                      <label class="form-check-label" for="utilities-removed_various_utilities">
                         Utility classes removed
                         <ul>
                           <li>
@@ -790,12 +795,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.border_radius"
+                        id="utilities-border_radius"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.border_radius}"
                       />
-                      <label class="form-check-label" for="utilities.border_radius">
+                      <label class="form-check-label" for="utilities-border_radius">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -813,12 +818,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.position_helper"
+                        id="utilities-position_helper"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.position_helper}"
                       />
-                      <label class="form-check-label" for="utilities.position_helper">
+                      <label class="form-check-label" for="utilities-position_helper">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -847,12 +852,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="utilities.text_color"
+                        id="utilities-text_color"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.utilities.text_color}"
                       />
-                      <label class="form-check-label" for="utilities.text_color">
+                      <label class="form-check-label" for="utilities-text_color">
                         Text color classes (<code>.text-*</code>) removed
                         <ul>
                           <li><code>.text-primary</code></li>
@@ -880,12 +885,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.font_sizes_variables"
+                        id="typography-font_sizes_variables"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.typography.font_sizes_variables}"
                       />
-                      <label class="form-check-label" for="typography.font_sizes_variables">
+                      <label class="form-check-label" for="typography-font_sizes_variables">
                         Font size variables removed
                         <ul>
                           <li><code>$font-size-12</code></li>
@@ -915,12 +920,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.font_sizes_classes"
+                        id="typography-font_sizes_classes"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.typography.font_sizes_classes}"
                       />
-                      <label class="form-check-label" for="typography.font_sizes_classes">
+                      <label class="form-check-label" for="typography-font_sizes_classes">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -952,12 +957,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.font_curves_classes"
+                        id="typography-font_curves_classes"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.typography.font_curves_classes}"
                       />
-                      <label class="form-check-label" for="typography.font_curves_classes">
+                      <label class="form-check-label" for="typography-font_curves_classes">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -970,17 +975,17 @@ export class MigrationV99Component extends LitElement {
                           <li><code>.font-curve-medium</code> is now <code>.fs-4</code></li>
                           <li><code>.font-curve-large</code> is now <code>.fs-3</code></li>
                           <li><code>.font-curve-big</code> is now <code>.fs-1</code></li>
-                          <li><code>.fs-tiny</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-tiny</code> is now <code>.fs-10</code></li>
                           <li><code>.fs-small</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-regular</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-bigger-regular</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-medium</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-large</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-small-big</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-big</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-bigger-big</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-small-huge</code> is now <code>.fs-9</code></li>
-                          <li><code>.fs-huge</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-regular</code> is now <code>.fs-8</code></li>
+                          <li><code>.fs-bigger-regular</code> is now <code>.fs-8</code></li>
+                          <li><code>.fs-medium</code> is now <code>.fs-6</code></li>
+                          <li><code>.fs-large</code> is now <code>.fs-6</code></li>
+                          <li><code>.fs-small-big</code> is now <code>.fs-5</code></li>
+                          <li><code>.fs-big</code> is now <code>.fs-4</code></li>
+                          <li><code>.fs-bigger-big</code> is now <code>.fs-3</code></li>
+                          <li><code>.fs-small-huge</code> is now <code>.fs-2</code></li>
+                          <li><code>.fs-huge</code> is now <code>.fs-1</code></li>
                         </ul>
                       </label>
                     </div>
@@ -988,12 +993,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.font_curves_variables"
+                        id="typography-font_curves_variables"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.typography.font_curves_variables}"
                       />
-                      <label class="form-check-label" for="typography.font_curves_variables">
+                      <label class="form-check-label" for="typography-font_curves_variables">
                         Font curve variables removed
                         <ul>
                           <li><code>$font-size-tiny</code></li>
@@ -1029,12 +1034,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.line_height_variables"
+                        id="typography-line_height_variables"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.typography.line_height_variables}"
                       />
-                      <label class="form-check-label" for="typography.line_height_variables">
+                      <label class="form-check-label" for="typography-line_height_variables">
                         Line height variables and classes removed
                         <ul>
                           <li><code>$line-heights</code></li>
@@ -1080,13 +1085,14 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.weight_light"
+                        id="typography-weight_light"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.typography.weight_light}"
                       />
-                      <label class="form-check-label" for="typography.weight_light">
-                        Light font weight (300) removed as the new Swiss Post Sans does not provide it
+                      <label class="form-check-label" for="typography-weight_light">
+                        Light font weight (300) removed as the new Swiss Post Sans does not provide
+                        it
                         <ul>
                           <li><code>.fw-light</code></li>
                           <li><code>.light</code></li>
@@ -1102,12 +1108,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.font_weight"
+                        id="typography-font_weight"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.typography.font_weight}"
                       />
-                      <label class="form-check-label" for="typography.font_weight">
+                      <label class="form-check-label" for="typography-font_weight">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -1122,12 +1128,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="typography.monospace"
+                        id="typography-monospace"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.typography.monospace}"
                       />
-                      <label class="form-check-label" for="typography.monospace">
+                      <label class="form-check-label" for="typography-monospace">
                         Monospace font removed
                         <ul>
                           <li><code>.font-monospace</code></li>
@@ -1148,12 +1154,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.card"
+                        id="others-card"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.card}"
                       />
-                      <label class="form-check-label" for="others.card">
+                      <label class="form-check-label" for="others-card">
                         Some card component elements have been removed
                         <ul>
                           <li><code>.card-header</code></li>
@@ -1180,12 +1186,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.card_group"
+                        id="others-card_group"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.card_group}"
                       />
-                      <label class="form-check-label" for="others.card_group">
+                      <label class="form-check-label" for="others-card_group">
                         <code>.card-group</code> removed
                         <span class="info"
                           >Card elements should be set inside a
@@ -1199,12 +1205,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.button_regular"
+                        id="others-button_regular"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.button_regular}"
                       />
-                      <label class="form-check-label" for="others.button_regular">
+                      <label class="form-check-label" for="others-button_regular">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -1218,12 +1224,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.button_animated"
+                        id="others-button_animated"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.button_animated}"
                       />
-                      <label class="form-check-label" for="others.button_animated">
+                      <label class="form-check-label" for="others-button_animated">
                         <code>.btn-animated</code> class removed
                         <span class="info"
                           >The class can safely be removed, there will simply be no icon animation
@@ -1235,12 +1241,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.icon_pi"
+                        id="others-icon_pi"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.icon_pi}"
                       />
-                      <label class="form-check-label" for="others.icon_pi">
+                      <label class="form-check-label" for="others-icon_pi">
                         <code>.pi-*</code> classes (icons) removed
                         <span class="info"
                           >The <code>post-icon</code> component should be used instead, which is
@@ -1255,12 +1261,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.breadcrumb_item"
+                        id="others-breadcrumb_item"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.breadcrumb_item}"
                       />
-                      <label class="form-check-label" for="others.breadcrumb_item">
+                      <label class="form-check-label" for="others-breadcrumb_item">
                         <code>.breadcrumb-item</code> class removed
                         <span class="info">
                           The <code>post-breadcrumb-item</code> component should be used instead,
@@ -1275,12 +1281,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.alert_fixed_bottom"
+                        id="others-alert_fixed_bottom"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.alert_fixed_bottom}"
                       />
-                      <label class="form-check-label" for="others.alert_fixed_bottom">
+                      <label class="form-check-label" for="others-alert_fixed_bottom">
                         <code>.alert-fixed-bottom</code> class removed
                         <span class="info"
                           >Use
@@ -1295,12 +1301,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.topic_teaser"
+                        id="others-topic_teaser"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.topic_teaser}"
                       />
-                      <label class="form-check-label" for="others.topic_teaser">
+                      <label class="form-check-label" for="others-topic_teaser">
                         <code>topic-teaser</code> component (and its related classes) removed
                         <span class="info"
                           >As an alternative, you can use the
@@ -1315,12 +1321,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.chip"
+                        id="others-chip"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.chip}"
                       />
-                      <label class="form-check-label" for="others.chip">
+                      <label class="form-check-label" for="others-chip">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -1332,12 +1338,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.accent_colors"
+                        id="others-accent_colors"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.accent_colors}"
                       />
-                      <label class="form-check-label" for="others.accent_colors">
+                      <label class="form-check-label" for="others-accent_colors">
                         Accent colors removed
                         <ul>
                           <li>
@@ -1369,12 +1375,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.standard_html_alert"
+                        id="others-standard_html_alert"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.standard_html_alert}"
                       />
-                      <label class="form-check-label" for="others.standard_html_alert">
+                      <label class="form-check-label" for="others-standard_html_alert">
                         Standard HTML Alert component (<code>.alert</code>,
                         <code>.alert-*</code>) removed
                         <span class="info">
@@ -1387,12 +1393,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.spinner"
+                        id="others-spinner"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.spinner}"
                       />
-                      <label class="form-check-label" for="others.spinner">
+                      <label class="form-check-label" for="others-spinner">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
@@ -1409,12 +1415,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.spinner_sizes"
+                        id="others-spinner_sizes"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.spinner_sizes}"
                       />
-                      <label class="form-check-label" for="others.spinner_sizes">
+                      <label class="form-check-label" for="others-spinner_sizes">
                         <span data-info="automigration" class="tag tag-sm tag-info"
                           >🪄 migration rule</span
                         >
