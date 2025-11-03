@@ -117,27 +117,27 @@ export class MigrationV99Component extends LitElement {
               <b>Bootstrap</b> and
               <b>Ng-Bootstrap</b> have been replaced by
               <b>Web Standards</b> compliant components, which means the Design System
-              works across <span class="fw-bold">any framework</span> (<a
+              works across <b>any framework</b> (<a
                 href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
                 >Angular</a
               >, <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs">React</a>, or
               <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">plain HTML</a>).
             </p>
             <p>
-              Most utility classes are still there, but renamed to be
-              <span class="fw-bold">pixel-based and more intuitive</span> — for example,
+              We've reworked utility classes to be 
+              <b>pixel-based and more intuitive</b> — for example,
               <code>.p-16</code> now clearly means "16px padding", instead of guessing what
               <code>.p-3</code> stood for. We’ve also simplified things overall: fewer breakpoints,
               fewer font-size classes, and a more consistent color palette (no more purple or coral
               buttons 🎨).
             </p>
             <p>
-              Most components are now <span class="fw-bold">tokenized</span>, so you can easily
-              adjust themes or colors without rewriting CSS. Want to see this in action? Check the
+              Components are now <b>tokenized</b>, so you can implement <span data-color-scheme="dark"><span style="display: inline-block; padding: 2px 0.25em; border-radius: 3px" class="palette palette-default">dark mode</span></span> and easily
+              adjust themes without rewriting CSS. Want to see this in action? Check the
               <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
                 >Palette documentation</a
               >
-              and switch to the Cargo theme.
+              and switch to dark mode or the Cargo theme.
             </p>
             <p>
               Oh, and yes — there’s a
@@ -177,7 +177,7 @@ export class MigrationV99Component extends LitElement {
             <div class="my-16">
               <p>
                 💡 Many changes are automatically handled by the migration scripts. Each 🪄 symbol
-                means that <span class="fw-bold">automatic migration rules</span> can handle the
+                means that <b>automatic migration rules</b> can handle the
                 changes, but you should still verify the results manually.
               </p>
               <div class="form-check">
@@ -268,7 +268,7 @@ export class MigrationV99Component extends LitElement {
                           the Design System, shown in the list above. Migration to these new
                           components is manual — you’ll need to update the affected components in
                           your application to use the corresponding elements as described in their
-                          corresponding documentation.</span
+                         documentation.</span
                         >
                       </label>
                     </div>
@@ -321,7 +321,7 @@ export class MigrationV99Component extends LitElement {
                         The stencil hydrated flag has switched from the
                         <code>.hydrated</code> class to to the <code>data-hydrated</code> attribute
                         <span class="info">
-                          If your tests related on the class being present, please rewrite the
+                          If your tests relied on the class being present, please rewrite the
                           selector to use the new attribute selector.
                         </span>
                       </label>
@@ -479,7 +479,7 @@ export class MigrationV99Component extends LitElement {
 
                         <span class="info">
                           For instance, the old Bootstrap class <code>.g-1</code> (gutter of 4px) is
-                          now <code>.g-4</code> for greater coherance.
+                          now <code>.g-4</code> for better coherance.
                         </span>
                       </label>
                     </div>
