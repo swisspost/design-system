@@ -30,7 +30,9 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
     },
     activeTab: {
       name: 'active-tab',
-      description: 'The name of the initially active tab',
+      description: `The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.
+
+      **Changing this value after initialization has no effect.**`,
       control: 'select',
       options: ['first', 'second', 'third'],
       if: { arg: 'variant' },
@@ -40,7 +42,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
     },
     fullWidth: {
       name: 'full-width',
-      description: 'Stretch tabs container to full screen width',
+      description: 'When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.',
       control: 'boolean',
       table: {
         category: 'Properties',
