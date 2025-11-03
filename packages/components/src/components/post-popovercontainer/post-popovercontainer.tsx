@@ -195,19 +195,26 @@ export class PostPopovercontainer {
     this.startAutoupdates();
 
     if (content) {
-      const animation = popIn(content);
+      // Only run and emit animation-related events if animation is defined
+      if (this.animation === 'pop-in') {
+        const animation = popIn(content);
 
-      if (animation?.playState === 'running') {
-        this.postBeforeToggle.emit({ willOpen: true });
-        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
-      }
+        if (animation?.playState === 'running') {
+          this.postBeforeToggle.emit({ willOpen: true });
+          this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+        }
 
-      animation?.finished.then(() => {
+        await animation.finished;
+
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
+      } else {
+        // No animation case
+        this.postToggle.emit({ isOpen: true });
+        this.postShow.emit({ first: this.hasOpenedOnce });
+      }
 
-        if (this.hasOpenedOnce) this.hasOpenedOnce = false;
-      });
+      if (this.hasOpenedOnce) this.hasOpenedOnce = false;
     }
 
     if (this.safeSpace) {
@@ -228,7 +235,7 @@ export class PostPopovercontainer {
       window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
 
-    this.postToggle.emit({ isOpen: false });
+    this.postBeforeToggle.emit({ willOpen: false });
     this.postHide.emit();
   }
 
@@ -283,6 +290,7 @@ export class PostPopovercontainer {
    * an influence on popovercontainer positioning
    */
   private startAutoupdates() {
+    if (!this.eventTarget || !this.host) return;
     this.clearAutoUpdate = autoUpdate(
       this.eventTarget,
       this.host,

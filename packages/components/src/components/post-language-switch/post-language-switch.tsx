@@ -52,6 +52,11 @@ export class PostLanguageSwitch {
   }
 
   /**
+   * Animation style
+   */
+  @Prop() readonly animation?: 'pop-in' | null = 'pop-in';
+
+  /**
    * The active language of the language switch
    */
   @State() activeLang: string;
@@ -135,7 +140,12 @@ export class PostLanguageSwitch {
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-switch-dropdown-container" label={this.caption}>
+        <post-menu
+          id={this.menuId}
+          class="post-language-switch-dropdown-container"
+          label={this.caption}
+          animation={this.animation}
+        >
           <slot></slot>
         </post-menu>
       </Host>

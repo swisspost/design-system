@@ -66,6 +66,11 @@ export class PostMenu {
   }
 
   /**
+   * Animation style
+   */
+  @Prop() readonly animation?: 'pop-in' | null = 'pop-in';
+
+  /**
    * Holds the current visibility state of the menu.
    * This state is internally managed to track whether the menu is open (`true`) or closed (`false`),
    * and updates automatically when the menu is toggled.
@@ -147,8 +152,10 @@ export class PostMenu {
     }
   };
 
+
   @EventFrom('post-popovercontainer')
   private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
+
       // Only for the first open
       if (event.detail.first) {
         // Add "menu" and "menuitem" aria roles and aria-label
@@ -164,16 +171,19 @@ export class PostMenu {
     };
 
   @EventFrom('post-popovercontainer')
-  private readonly handlePostToggled = (event: CustomEvent<{ isOpen: boolean }>) => {
-      this.isVisible = event.detail.isOpen;
-      this.toggleMenu.emit(this.isVisible);
+  private readonly handlePostBeforeToggle = (event: CustomEvent<{ willOpen: boolean }>) => {
 
+      this.isVisible = event.detail.willOpen;
+      this.toggleMenu.emit(this.isVisible);
+     
       if (this.isVisible) {
         this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-        const menuItems = this.getSlottedItems();
-        if (menuItems.length > 0) {
-          (menuItems[0] as HTMLElement).focus();
-        }
+        requestAnimationFrame(() => {
+          const menuItems = this.getSlottedItems();
+          if (menuItems.length > 0) {
+            (menuItems[0] as HTMLElement).focus();
+          }
+        });
       } else if (this.lastFocusedElement) {
         this.lastFocusedElement.focus();
       }
@@ -247,8 +257,9 @@ export class PostMenu {
       <Host data-version={version}>
         <post-popovercontainer
           onPostShow={this.handlePostShown}
-          onPostToggle={this.handlePostToggled}
+          onPostBeforeToggle={this.handlePostBeforeToggle}
           placement={this.placement}
+          animation={this.animation}
           ref={e => (this.popoverRef = e)}
         >
           <div part="menu">

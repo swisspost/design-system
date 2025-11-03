@@ -272,6 +272,11 @@ export namespace Components {
     }
     interface PostLanguageSwitch {
         /**
+          * Animation style
+          * @default 'pop-in'
+         */
+        "animation"?: 'pop-in' | null;
+        /**
           * A title for the list of language options
          */
         "caption": string;
@@ -334,6 +339,11 @@ export namespace Components {
         "for": string;
     }
     interface PostMenu {
+        /**
+          * Animation style
+          * @default 'pop-in'
+         */
+        "animation"?: 'pop-in' | null;
         /**
           * Hides the popover menu and restores focus to the previously focused element.
          */
@@ -1187,6 +1197,11 @@ declare namespace LocalJSX {
     }
     interface PostLanguageSwitch {
         /**
+          * Animation style
+          * @default 'pop-in'
+         */
+        "animation"?: 'pop-in' | null;
+        /**
           * A title for the list of language options
          */
         "caption": string;
@@ -1237,6 +1252,11 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostMenu {
+        /**
+          * Animation style
+          * @default 'pop-in'
+         */
+        "animation"?: 'pop-in' | null;
         /**
           * An accessible name for the menu.
          */
