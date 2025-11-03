@@ -109,7 +109,7 @@ export class MigrationV99Component extends LitElement {
           <li>
             <h3>Introduction</h3>
             <p>
-              Version 10 comes with a <span class="fw-bold">new look and cleaner codebase</span> —
+              Version 10 comes with a <b>new look and cleaner codebase</b> —
               and yes, a few breaking changes, all for good reason.
             </p>
             <p>
