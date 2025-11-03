@@ -47,6 +47,21 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
         category: 'Props',
       },
     },
+    label: {
+      name: 'label',
+      description: 'The accessible label for the tabs component.',
+      control: 'text',
+      if: { arg: 'variant', eq: 'navigation' },
+      table: {
+        category: 'Props',
+        type: {
+          summary: 'string',
+        },
+        defaultValue: { 
+          summary: 'required',
+        },
+      },
+    },
     'slots-default': {
       name: 'default',
       description: 'Slot for tab items. Available in both variants - for tab navigation buttons in both panels and navigation modes.',
@@ -94,6 +109,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
         <post-tabs
           active-tab="${ifDefined(args.activeTab)}"
           full-width="${args.fullWidth ? true : nothing}"
+          label="${ifDefined(args.label)}"
         >
           ${unsafeHTML(args['slots-default'])}
         </post-tabs>
@@ -104,6 +120,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
       <post-tabs
         active-tab="${ifDefined(args.activeTab)}"
         full-width="${args.fullWidth ? true : nothing}"
+        label="${ifDefined(args.label)}"
       >
         <post-tab-item name="first">
           <a href="#first">First page</a>
@@ -202,6 +219,7 @@ export const NavigationVariant: Story = {
   },
   args: {
     variant: 'navigation',
+    label: 'Page navigation',
   },
 };
 
