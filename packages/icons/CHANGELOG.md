@@ -1,5 +1,26 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.52
+
+### Minor Changes
+
+- Added icons:
+
+  - `acid` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bikebattery` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `carbatteryleak` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `carbattery` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `container` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `lithiumbatteryleak` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `lithiumbattery` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `meetinghybrid` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `meetingonsite` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `meetingteams` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `noweapon` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `poison` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6540](https://github.com/swisspost/design-system/pull/6540))
+
+- Added icons: `2740` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6570](https://github.com/swisspost/design-system/pull/6570))
+
 ## 10.0.0-next.51
 
 ### Major Changes
