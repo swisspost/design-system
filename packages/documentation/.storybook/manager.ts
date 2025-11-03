@@ -12,6 +12,12 @@ const TECH_ICONS: Record<string, string> = {
   InternetHeader: webComponentsIcon,
 };
 
+const STATUS_ICONS: Record<string, string> = {
+  InProgress: '⏳',
+  Experimental: '🧪',
+  Deprecated: '⛔',
+};
+
 defineCustomElementPostIcon();
 
 // Get existing URL params
@@ -51,14 +57,32 @@ const renderLabel = (item: API_HashEntry) => {
     return item.name;
   }
 
-  // Only show icons in development mode
-  if (document.documentElement.getAttribute('data-env') !== 'development') {
-    return item.name;
+  const tags = item.tags || [];
+
+  // Logic to get the status
+  const statusTags = tags.filter(tag => tag.startsWith('status:'));
+  let statusIcon = '';
+  let statusName = '';
+  if (statusTags.length > 0) {
+    statusName = statusTags[0].substring(7).trim();
+    statusIcon =
+      statusName !== 'Stable' && STATUS_ICONS[statusName] ? ' ' + STATUS_ICONS[statusName] : '';
   }
 
-  const tags = item.tags || [];
+  // Logic to get the package
   const packageTags = tags.filter(tag => tag.startsWith('package:'));
 
+  // Production Mode: show StatusIcon + Name
+  if (document.documentElement.getAttribute('data-env') !== 'development') {
+    return React.createElement(
+      'span',
+      null,
+      item.name,
+      statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+    );
+  }
+
+  // Development Mode: show optional package icons
   if (packageTags.length > 0) {
     const icons = packageTags
       .map(tag => tag.substring(8))
@@ -71,17 +95,29 @@ const renderLabel = (item: API_HashEntry) => {
         }),
       );
 
+    // StatusIcons with Tooltip for status
     if (icons.length > 0) {
       return React.createElement(
         'span',
         { className: 'label-with-icon' },
-        React.createElement('span', null, item.name),
+        React.createElement(
+          'span',
+          null,
+          item.name,
+          // show StatusIcon with HTML title Attribute as Tooltip
+          statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+        ),
         ...icons,
       );
     }
   }
-
-  return item.name;
+  // Fallback where there is no package icon
+  return React.createElement(
+    'span',
+    null,
+    item.name,
+    statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+  );
 };
 
 // Function to update filters in the Storybook sidebar configuration

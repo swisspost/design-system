@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '18566ca9-4502-4053-89f0-db5fdf6f906e',
   title: 'Raw Components/List',
-  tags: ['package:WebComponents', 'devOnly'],
+  tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
   component: 'post-list',
   parameters: {
     badges: [],

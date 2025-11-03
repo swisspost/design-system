@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   decorators: [clickBlocker],
   parameters: {
     badges: [],
@@ -182,25 +182,24 @@ export const Palette: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: () =>
-    html`
-      <div class="palette palette-default">
-        <div class="container py-32">
-          <div class="row gy-16">
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          </div>
+  render: () => html`
+    <div class="palette palette-default">
+      <div class="container py-32">
+        <div class="row gy-16">
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
         </div>
       </div>
-      <div class="palette palette-alternate">
-        <div class="container py-32">
-          <div class="row gy-16">
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          </div>
+    </div>
+    <div class="palette palette-alternate">
+      <div class="container py-32">
+        <div class="row gy-16">
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
         </div>
       </div>
-    `,
+    </div>
+  `,
 };
 
 export const ListGroup: Story = {

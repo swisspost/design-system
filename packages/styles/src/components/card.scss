@@ -1,6 +1,5 @@
 @use './../variables/commons';
 @use './../mixins/icons' as icons-mx;
-@use './../variables/icons';
 @use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
@@ -9,6 +8,8 @@
 @use './../tokens/components';
 
 tokens.$default-map: components.$post-cards;
+
+@include icons-mx.custom-property('arrowright');
 
 .card {
   display: flex;
@@ -102,11 +103,11 @@ tokens.$default-map: components.$post-cards;
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mx.icon(3020);
+      @include icons-mx.mask-image('arrowright');
       content: '';
       display: inline-block;
-      width: icons.$icon-size-default;
-      height: icons.$icon-size-default;
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }

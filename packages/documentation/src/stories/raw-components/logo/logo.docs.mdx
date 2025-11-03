@@ -1,5 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as logoStories from './logo.stories';
+import meta, * as logoStories from './logo.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={logoStories} />
 
@@ -9,6 +11,8 @@ import * as logoStories from './logo.stories';
   <link-design of={JSON.stringify(logoStories)}></link-design>
 </div>
 
+<PackageTag meta={meta}/>
+
 <p className="lead">Display the Post logo as a clickable link or as a simple image.</p>
 
 <Canvas sourceState="shown" of={logoStories.Default} />
@@ -16,10 +20,7 @@ import * as logoStories from './logo.stories';
   <Controls of={logoStories.Default} />
 </div>
 
-## Installation
-
-The `<post-logo>` element is part of the `@swisspost/design-system-components` package.
-For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+<ComponentsPackageInstall component="<post-logo>" />
 
 ## Examples
 

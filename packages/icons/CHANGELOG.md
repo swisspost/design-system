@@ -1,5 +1,117 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.52
+
+### Minor Changes
+
+- Added icons:
+
+  - `acid` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bikebattery` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `carbatteryleak` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `carbattery` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `container` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `lithiumbatteryleak` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `lithiumbattery` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `meetinghybrid` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `meetingonsite` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `meetingteams` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `noweapon` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `poison` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6540](https://github.com/swisspost/design-system/pull/6540))
+
+- Added icons: `2740` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6570](https://github.com/swisspost/design-system/pull/6570))
+
+## 10.0.0-next.51
+
+### Major Changes
+
+- The `post-icon` mixin has been renamed to `icon` and now requires icons to be preloaded using the `custom-property` mixin at the top of the file.  
+  BEFORE:
+
+  ```scss
+  .my-icon {
+    @include post.post-icon(
+      $name: 'accessibility',
+      // optional
+      $color: '#fc0',
+      $width: 1em,
+      $height: 1em
+    );
+  }
+  ```
+
+  AFTER:
+
+  ````scss
+  // Load icon(s) at the top of your file
+  // For a single icon:
+  @include post.custom-property('accessibility', './path/to/icon/folder');
+
+  // For multiple icons in the same file:
+  @include post.custom-property(('accessibility', 'arrow'), './path/to/icon/folder');
+
+  .my-icon {
+    @include post.icon(
+      $name: 'accessibility',
+      // optional
+      $color: '#fc0',
+      $width: 1em,
+      $height: 1em
+    );
+  }
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6372](https://github.com/swisspost/design-system/pull/6372))
+  ````
+
+### Minor Changes
+
+- Added icons:
+  - `adddate` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `co2reduction` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `co2` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `crypto` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `currency` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `drone` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `grave` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `payment` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `solar` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `sustainability` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6519](https://github.com/swisspost/design-system/pull/6519))
+
+## 10.0.0-next.50
+
+### Minor Changes
+
+- Added icons: `2716`, `2717`, `2718`, `2719`, `2720`, `2721`, `2722`, `2723`, `2724`, `2725`, `2726`, `2727`, `2728` and `2729` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6441](https://github.com/swisspost/design-system/pull/6441))
+
+- Added icons:
+
+  - `accountmanagement` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `autum` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `brush` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `crystal` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `daynight` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `diamond` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentupdate` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `etiquetteprinter` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `etiquette` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `locationsearch` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `palette` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `spring` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `summer` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `userblocked` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `winter` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6441](https://github.com/swisspost/design-system/pull/6441))
+
+- Added icons:
+  - `electricchargingstation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fuelstation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fuel` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `h2station` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6445](https://github.com/swisspost/design-system/pull/6445))
+
+### Patch Changes
+
+- Updated icons:
+  - `error` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `warning` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6441](https://github.com/swisspost/design-system/pull/6441))
+
 ## 10.0.0-next.49
 
 ### Minor Changes

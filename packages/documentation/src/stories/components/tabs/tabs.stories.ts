@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-tabs',
   render: renderTabs,
   parameters: {
@@ -23,7 +23,6 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
       options: ['first', 'second', 'third'],
     },
   },
-  args: { fullWidth: false },
 };
 
 export default meta;
@@ -55,9 +54,6 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
 type Story = StoryObj<HTMLPostTabsElement>;
 
 export const Default: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
 };
 
 export const ActivePanel: Story = {

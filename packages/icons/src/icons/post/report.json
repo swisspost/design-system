@@ -27102,6 +27102,42 @@
       "modifiedAt": "2025-10-09T06:05:08.110Z"
     },
     {
+      "uuid": "e6eaa5d0-b628-11f0-b91a-0050568d2654",
+      "id": 7157506,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7157506/storage/MDA3MTU3NTA2LzAvbWFzdGVy",
+        "keywords": [
+          "Brandschutz",
+          "Fire Screen",
+          "Protezione antincendio",
+          "Écran De Protection Contre L'Incendie",
+          "Fire alarm system maintenance",
+          "Wartung Brandmeldeanlage",
+          "Maintenance du dispositif de détection d’incendie",
+          "Manutenzione impianto di rilevazione d’incendio",
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2740.svg",
+        "basename": "2740",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-31T07:12:03.000Z",
+      "modifiedAt": "2025-11-01T07:05:10.694Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40340,13 +40376,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1061,
+    "success": 1062,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-10-14T05:44:13.510Z",
-  "version": "10.0.0-next.49"
+  "created": "2025-11-02T02:19:59.995Z",
+  "version": "10.0.0-next.51"
 }

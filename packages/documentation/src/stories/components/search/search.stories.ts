@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'bc68b346-2fdd-436e-bddf-309d24df06a1',
   title: 'Components/Form Search',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Experimental'],
   render: render,
   parameters: {
     badges: [],
