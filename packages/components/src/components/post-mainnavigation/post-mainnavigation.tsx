@@ -189,7 +189,7 @@ export class PostMainnavigation {
 
   render() {
     return (
-      <Host version={version}>
+      <Host version={version} class={this.canScroll ? 'scrollable' : ''}>
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
