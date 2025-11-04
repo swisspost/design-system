@@ -9,7 +9,7 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
-.tab-title[role='tab'] {
+.tab-title {
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -111,5 +111,21 @@ tokens.$default-map: utilities.$post-spacing;
         background-color: Highlight;
       }
     }
+  }
+}
+
+.tab-title[data-navigation-mode='true'] {
+  a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  &:hover a,
+  &:focus a,
+  &:focus-visible a {
+    color: inherit;
   }
 }

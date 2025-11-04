@@ -131,7 +131,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
         label="${ifDefined(args.label)}"
       >
         <post-tab-item name="first">
-          <a href="#first">First page</a>
+          <a href="#first" aria-current="page">First page</a>
         </post-tab-item>
         <post-tab-item name="second">
           <a href="#second">Second page</a>
