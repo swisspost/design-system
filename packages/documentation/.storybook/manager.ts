@@ -12,15 +12,33 @@ const TECH_ICONS: Record<string, string> = {
   InternetHeader: webComponentsIcon,
 };
 
+const STATUS_ICONS: Record<string, string> = {
+  InProgress: '⏳',
+  Experimental: '🧪',
+  Deprecated: '⛔',
+};
+
 defineCustomElementPostIcon();
 
+// Get existing URL params
+const params = new URLSearchParams(window.location.search);
+
+// Get value, that states if URL devMode is enabled (String 'true' or 'false', or null if the item is not specified in URL)
+const devModeFromUrl = params.get('devModeEnabled');
+
+// Get value, that states if localStorage devMode is enabled (String 'true' or 'false', or null if the item is not specified in localStorage)
 const storedDevMode = localStorage.getItem('devModeEnabled');
 
+// Default fallback: always 'production'
 let initialEnv = process.env.NODE_ENV || 'production';
 
-if (storedDevMode !== null) {
+// Override initialEnv by priority (url param is more important than the stored state)
+if (devModeFromUrl !== null) {
+  initialEnv = JSON.parse(devModeFromUrl) ? 'development' : 'production';
+} else if (storedDevMode !== null) {
   initialEnv = JSON.parse(storedDevMode) ? 'development' : 'production';
 }
+localStorage.setItem('devModeEnabled', initialEnv);
 
 document.documentElement.setAttribute('data-env', initialEnv);
 
@@ -39,14 +57,32 @@ const renderLabel = (item: API_HashEntry) => {
     return item.name;
   }
 
-  // Only show icons in development mode
-  if (document.documentElement.getAttribute('data-env') !== 'development') {
-    return item.name;
+  const tags = item.tags || [];
+
+  // Logic to get the status
+  const statusTags = tags.filter(tag => tag.startsWith('status:'));
+  let statusIcon = '';
+  let statusName = '';
+  if (statusTags.length > 0) {
+    statusName = statusTags[0].substring(7).trim();
+    statusIcon =
+      statusName !== 'Stable' && STATUS_ICONS[statusName] ? ' ' + STATUS_ICONS[statusName] : '';
   }
 
-  const tags = item.tags || [];
+  // Logic to get the package
   const packageTags = tags.filter(tag => tag.startsWith('package:'));
 
+  // Production Mode: show StatusIcon + Name
+  if (document.documentElement.getAttribute('data-env') !== 'development') {
+    return React.createElement(
+      'span',
+      null,
+      item.name,
+      statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+    );
+  }
+
+  // Development Mode: show optional package icons
   if (packageTags.length > 0) {
     const icons = packageTags
       .map(tag => tag.substring(8))
@@ -59,17 +95,29 @@ const renderLabel = (item: API_HashEntry) => {
         }),
       );
 
+    // StatusIcons with Tooltip for status
     if (icons.length > 0) {
       return React.createElement(
         'span',
         { className: 'label-with-icon' },
-        React.createElement('span', null, item.name),
+        React.createElement(
+          'span',
+          null,
+          item.name,
+          // show StatusIcon with HTML title Attribute as Tooltip
+          statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+        ),
         ...icons,
       );
     }
   }
-
-  return item.name;
+  // Fallback where there is no package icon
+  return React.createElement(
+    'span',
+    null,
+    item.name,
+    statusIcon ? React.createElement('span', { title: statusName }, statusIcon) : null,
+  );
 };
 
 // Function to update filters in the Storybook sidebar configuration

@@ -9,7 +9,7 @@ import { getLabelText } from '@/utils/form-elements';
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Form Checkbox',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderCheckbox,
   parameters: {
     badges: [],

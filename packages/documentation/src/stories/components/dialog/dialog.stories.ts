@@ -4,6 +4,7 @@ import { html, nothing } from 'lit-html';
 const meta: Meta = {
   id: '562eac2b-6dc1-4007-ba8e-4e981cef0cbc',
   title: 'Components/Dialog',
+  tags: ['package:Styles', 'status:Experimental'],
   parameters: {
     design: {
       type: 'figma',
@@ -101,9 +102,9 @@ const meta: Meta = {
       description:
         'Specifies the types of user actions that can be used to close the dialog.\n\nMore details on [MDN: closedby attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby)',
       control: { disable: true },
-      table: { 
+      table: {
         category: 'props',
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
     },
     show: {
@@ -209,7 +210,8 @@ const FormTemplate = {
   ...Template,
   render: (args: Args) => {
     return html`
-      <dialog size="${args.size}"
+      <dialog
+        size="${args.size}"
         aria-labelledby="example-dialog-title"
         aria-describedby="example-dialog-description"
       >
@@ -254,13 +256,12 @@ const CustomContentTemplate = {
   ...Template,
   render: () => {
     return html`
-      <dialog
-        aria-labelledby="custom-dialog-title"
-        aria-describedby="custom-dialog-description"
-      >
+      <dialog aria-labelledby="custom-dialog-title" aria-describedby="custom-dialog-description">
         <form method="dialog" onsubmit="console.log(event)" class="p-16">
           <h2 id="custom-dialog-title">Custom content</h2>
-          <p id="custom-dialog-description">This is some other content, just placed inside the dialog.</p>
+          <p id="custom-dialog-description">
+            This is some other content, just placed inside the dialog.
+          </p>
           <button class="btn btn-primary">Ok</button>
         </form>
       </dialog>

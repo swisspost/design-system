@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'f1cda0ac-28d4-4afc-b56d-9182bd9bd671',
   title: 'Components/App Store Badge',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Experimental'],
   parameters: {
     badges: [],
     design: {

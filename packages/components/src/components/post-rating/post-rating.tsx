@@ -27,7 +27,7 @@ export class PostRating {
   /**
    * Defines a hidden label for the component.
    */
-  @Prop() readonly label: string = 'Rating';
+  @Prop() readonly label!: string;
 
   /**
    * Defines the total amount of stars rendered in the component.
@@ -149,7 +149,7 @@ export class PostRating {
           aria-valuemin="0"
           aria-valuemax={this.stars}
           aria-valuenow={this.currentRating}
-          aria-valuetext={`${this.currentRating} out of ${this.stars}`}
+          aria-valuetext={`${this.currentRating} / ${this.stars}`}
           aria-readonly={this.readonly ? 'true' : 'false'}
           onKeyDown={this.keydownHandler}
           onBlur={this.blurHandler}

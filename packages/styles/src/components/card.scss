@@ -1,6 +1,5 @@
 @use './../variables/commons';
 @use './../mixins/icons' as icons-mx;
-@use './../variables/icons';
 @use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
@@ -90,8 +89,8 @@ tokens.$default-map: components.$post-cards;
       @include icons-mx.mask-image('arrowright');
       content: '';
       display: inline-block;
-      width: icons.$icon-size-default;
-      height: icons.$icon-size-default;
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }
