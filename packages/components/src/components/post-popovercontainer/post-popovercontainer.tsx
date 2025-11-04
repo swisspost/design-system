@@ -212,6 +212,8 @@ export class PostPopovercontainer {
         this.postShow.emit({ first: this.hasOpenedOnce });
       } else {
         // No animation case
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
       }

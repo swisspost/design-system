@@ -89,6 +89,6 @@ export const BreadcrumbItem: Story = {
     homeText: { table: { disable: true } },
     label: { table: { disable: true } },
     menuLabel: { table: { disable: true } },
-    animation: { table: { disable: true } },
+    menuAnimationOff: { table: { disable: true } },
   },
 };
