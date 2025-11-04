@@ -198,6 +198,7 @@ export class PostPopovercontainer {
 
     if (content) {
       // Only run and emit animation-related events if animation is defined
+
       if (this.animation === 'pop-in') {
         const animation = popIn(content);
 
@@ -240,6 +241,7 @@ export class PostPopovercontainer {
     }
 
     this.postBeforeToggle.emit({ willOpen: false });
+    this.postToggle.emit({ isOpen: false });
     this.postHide.emit();
   }
 
