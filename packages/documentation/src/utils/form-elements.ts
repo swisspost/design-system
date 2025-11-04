@@ -1,6 +1,12 @@
 import { Args, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
 
+export const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
+  'null': undefined,
+  'is-valid': false,
+  'is-invalid': true,
+};
+
 export function getLabelText({ label, requiredOptional }: Args) {
   if (requiredOptional === 'required') {
     label = html`${label} <span aria-hidden="true">(required)</span>`;
@@ -26,9 +32,3 @@ export function getValidationMessages(args: Args, context: StoryContext, withHin
       : null,
   ];
 }
-
-export const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
-  'null': undefined,
-  'is-valid': false,
-  'is-invalid': true,
-};
