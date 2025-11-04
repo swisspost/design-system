@@ -2,8 +2,17 @@
 @use './../../variables/color';
 @use './../../variables/spacing';
 @use './../../variables/components/nav';
+@use './../../variables/components/subnavigation';
+@use './../../functions/utilities' as utilities-fx;
 
-.tabs-wrapper {
+@use '../../functions/tokens';
+@use '../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+$module-name: 'subnavigation';
+
+.tabs-wrapper[data-role="tabs-panel"] {
   position: relative;
   padding-top: spacing.$spacer;
   border: 0;
@@ -58,4 +67,33 @@
 
 .tab-content {
   padding-top: spacing.$spacer;
+}
+
+.tabs-wrapper[data-role="tabs-nav"] {
+  position: relative;
+  background-color: subnavigation.$subnavigation-background-color;
+
+  &::after {
+    @include utilities-mx.full-width-underscore(
+      subnavigation.$subnavigation-border-bottom-color,
+      subnavigation.$subnavigation-border-bottom-width
+    );
+    z-index: utilities-fx.z-index(subnavigation, underscore-root);
+  }
+
+  .tabs {
+    display: flex;
+    width: calc(100% + 2rem);
+    margin: 0 (-(spacing.$spacer));
+    padding: 0 spacing.$spacer;
+    overflow-x: auto;
+    list-style: none;
+  }
+}
+
+/* Placed outside the attribute-based
+   selector to avoid creating an invalid selector like
+   `.tabs-wrapper[data-role="tabs-panel"]-alternate` which Sass rejects. */
+.tabs-wrapper-alternate[data-role="tabs-nav"] {
+  background-color: subnavigation.$subnavigation-background-color-alternate;
 }
