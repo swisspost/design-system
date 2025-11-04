@@ -20,7 +20,7 @@ const meta: MetaComponent = {
     title: "This is my card's title",
     body: "This is my card's content.",
     interactive: false,
-    action: 'buttons',
+    action: 'button',
     interactiveAction: 'button',
     label: 'Button Text',
     variant: 'btn-primary',
@@ -54,9 +54,9 @@ const meta: MetaComponent = {
       description: 'Non-interactive card action.',
       control: {
         type: 'inline-radio',
-        labels: { buttons: 'Buttons', link: 'Link', none: 'None' },
+        labels: { button: 'Button', link: 'Link', none: 'None' },
       },
-      options: ['buttons', 'link', 'none'],
+      options: ['button', 'link', 'none'],
       if: { arg: 'interactive', eq: false },
       table: { category: 'Card Content' },
     },
@@ -84,7 +84,7 @@ const meta: MetaComponent = {
       },
       options: ['btn-primary', 'btn-secondary', 'btn-tertiary'],
       table: { category: 'Card Content' },
-      if: { arg: 'action', neq: 'link' },
+      if: { arg: 'action', eq: 'button' },
     },
   },
 };
@@ -126,29 +126,17 @@ function getCardButton({ label, variant }: Args) {
 }
 
 function getCardContent(args: Args) {
-  const {
-    title,
-    body = '',
-    interactive = false,
-    action = 'none',
-    interactiveAction = 'button',
-  } = args;
-
-  // si interactive => on pilote via interactiveAction, sinon via action
-  const chosenAction = interactive ? interactiveAction : action;
-
+  const { action, title, body = '' } = args;
   return html`
     <div class="card-body">
       ${title ? html`<h3 class="card-title">${title}</h3>` : nothing} ${unsafeHTML(body)}
       ${choose(
-        chosenAction,
+        action,
         [
-          // couvre tes deux vocabulaires: 'button'/'buttons' et 'link'
           ['button', () => getCardButton(args)],
-          ['buttons', () => getCardButton(args)],
-          ['link', () => getCardLinks(args)],
+          ['link', getCardLinks],
         ],
-        () => nothing,
+        () => html` ${nothing} `,
       )}
     </div>
   `;
@@ -184,9 +172,7 @@ type Story = StoryObj;
 export const Default: Story = {
   decorators: [gridContainer],
   render: (args: Args) =>
-    html`${args.action === 'button'
-      ? renderInteractiveCard(args)
-      : renderNoninteractiveCard(args)}`,
+    html`${args.interactive ? renderInteractiveCard(args) : renderNoninteractiveCard(args)}`,
 };
 
 export const Foundation: Story = {

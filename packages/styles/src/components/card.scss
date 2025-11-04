@@ -86,7 +86,7 @@ tokens.$default-map: components.$post-cards;
     text-decoration: none;
     -ms-flex-align: center;
 
-    &::before {
+    &::after {
       @include icons-mx.mask-image('arrowright');
       content: '';
       display: inline-block;
