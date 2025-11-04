@@ -1,5 +1,7 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as BreadcrumbsStories from './breadcrumbs.stories';
+import meta, * as BreadcrumbsStories from './breadcrumbs.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={BreadcrumbsStories} />
 
@@ -8,6 +10,8 @@ import * as BreadcrumbsStories from './breadcrumbs.stories';
 
   <link-design of={JSON.stringify(BreadcrumbsStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
     The breadcrumbs is a secondary navigation pattern that helps users understand the hierarchy among levels and navigate back through them.
@@ -19,6 +23,8 @@ The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components,
 
 <Canvas of={BreadcrumbsStories.Default} sourceState="shown" />
 <Controls of={BreadcrumbsStories.Default} />
+
+<ComponentsPackageInstall component="<post-breadcrumbs>" />
 
 ## Concatenated Breadcrumbs
 

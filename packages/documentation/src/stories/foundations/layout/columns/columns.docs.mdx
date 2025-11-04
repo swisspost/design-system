@@ -1,10 +1,13 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as ColumnStories from './columns.stories';
+import meta, * as ColumnStories from './columns.stories';
 import './columns.styles.scss';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ColumnStories} />
 
 # Columns
+
+<PackageTag meta={meta}/>
 
 {/* prettier-ignore */}
 <ul>

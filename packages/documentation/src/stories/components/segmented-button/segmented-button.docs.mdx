@@ -1,6 +1,7 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as SegmentedButtonStories from './segmented-button.stories';
+import meta, * as SegmentedButtonStories from './segmented-button.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={SegmentedButtonStories} />
 
@@ -9,6 +10,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
   <link-design of={JSON.stringify(SegmentedButtonStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 The segmented button is a single-select component.
 It allows users to toggle between two or more content sections within the same area on the screen.
