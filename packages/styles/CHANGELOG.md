@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Added Tailwind v3 token output alongside the existing v4 format to support both Tailwind versions. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6586](https://github.com/swisspost/design-system/pull/6586))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.53
+
 ## 10.0.0-next.52
 
 ### Patch Changes
