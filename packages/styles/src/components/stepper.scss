@@ -12,6 +12,8 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
+@include icons-mx.custom-property('checkmark');
+
 // for backward compatibility
 .stepper-container {
   margin-bottom: 20px;
@@ -172,7 +174,7 @@ tokens.$default-map: utilities.$post-spacing;
 
 // check icon
 .stepper-link::after {
-  @include icons-mx.icon(2105);
+  @include icons-mx.mask-image('checkmark');
   display: block;
   position: absolute;
   top: calc((stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size) / 2);

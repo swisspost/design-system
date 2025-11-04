@@ -6,7 +6,7 @@ import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   id: '212efc4e-875b-4497-912d-d28c6baf32f5',
   title: 'Raw Components/Megadropdown',
-  tags: ['package:WebComponents', 'devOnly'],
+  tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
   component: 'post-megadropdown',
   render: render,
   parameters: {
@@ -99,6 +99,7 @@ function render() {
       </button>
       <post-closebutton slot="close-button">Close</post-closebutton>
       <h2 slot="megadropdown-title"><a href="">Packages title</a></h2>
+      <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
       <post-list>
         <h3>Send packages</h3>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>

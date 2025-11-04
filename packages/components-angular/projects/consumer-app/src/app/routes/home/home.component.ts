@@ -10,6 +10,7 @@ import {
   PostIcon,
   PostLogo,
   PostPopover,
+  PostPopoverTrigger,
   PostPopovercontainer,
   PostRating,
   PostTabs,
@@ -33,15 +34,15 @@ import {
     PostIcon,
     PostLogo,
     PostPopover,
+    PostPopoverTrigger,
     PostPopovercontainer,
     PostRating,
     PostTabs,
     PostTabHeader,
     PostTabPanel,
     PostTooltipTrigger,
-  ]
+  ],
 })
-
 export class HomeComponent {
   isCollapsed = false;
 }

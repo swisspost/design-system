@@ -35,7 +35,9 @@ export class PostMegadropdown {
 
   private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
-    return hostId ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`) : null;
+    return hostId
+      ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
+      : null;
   }
 
   /**
@@ -192,6 +194,15 @@ export class PostMegadropdown {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
 
+    // Check for an overview link
+    const overviewLink = this.host.querySelector<HTMLAnchorElement>(
+      'a[slot="megadropdown-overview-link"]',
+    );
+
+    if (overviewLink) {
+      focusableChildren.unshift(overviewLink);
+    }
+
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
   }
@@ -285,6 +296,7 @@ export class PostMegadropdown {
         >
           <div class="megadropdown">
             <slot name="megadropdown-title"></slot>
+            <slot name="megadropdown-overview-link"></slot>
             <div class="megadropdown-content">
               <slot></slot>
             </div>
