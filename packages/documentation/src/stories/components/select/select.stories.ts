@@ -3,13 +3,7 @@ import { html, nothing } from 'lit';
 import { useArgs } from 'storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
-import { getLabelText, getValidationMessages } from '@/utils/form-elements';
-
-const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
-  'null': undefined,
-  'is-valid': false,
-  'is-invalid': true,
-};
+import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
