@@ -21,6 +21,13 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
     description: 'The currently selected language is English.',
     menuAnimationOff: false,
   },
+  argTypes: {
+    menuAnimationOff: {
+      control: 'select',
+      options: ['pop-in'],
+      if: { arg: 'variant', eq: 'menu' },
+    },
+  },
 };
 
 export default meta;
