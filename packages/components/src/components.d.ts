@@ -102,11 +102,6 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
-          * Animation style
-          * @default 'pop-in'
-         */
-        "animation"?: 'pop-in' | null;
-        /**
           * The text label for the home breadcrumb item.
          */
         "homeText": string;
@@ -118,6 +113,10 @@ export namespace Components {
           * The accessible label for the breadcrumb component.
          */
         "label": string;
+        /**
+          * Disable the dropdown menu animation of the concatenated breadcrumbs
+         */
+        "menuAnimationOff"?: boolean;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -277,11 +276,6 @@ export namespace Components {
     }
     interface PostLanguageSwitch {
         /**
-          * Animation style
-          * @default 'pop-in'
-         */
-        "animation"?: 'pop-in' | null;
-        /**
           * A title for the list of language options
          */
         "caption": string;
@@ -289,6 +283,10 @@ export namespace Components {
           * A descriptive text for the list of language options
          */
         "description": string;
+        /**
+          * Disable the animation of the dropdown menu containing the language options
+         */
+        "menuAnimationOff"?: boolean;
         /**
           * Whether the component is rendered as a list or a menu
           * @default 'list'
@@ -342,6 +340,35 @@ export namespace Components {
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
         "for": string;
+    }
+    interface PostMenu {
+        /**
+          * Disable animation
+          * @default false
+         */
+        "animationOff": boolean;
+        /**
+          * Hides the popover menu and restores focus to the previously focused element.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * An accessible name for the menu.
+         */
+        "label": string;
+        /**
+          * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'bottom'
+         */
+        "placement"?: Placement;
+        /**
+          * Displays the popover menu, focusing the first menu item.
+          * @param target - The HTML element relative to which the popover menu should be displayed.
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Toggles the menu visibility based on its current state.
+         */
+        "toggle": (target: HTMLElement) => Promise<void>;
     }
     interface PostMenuItem {
     }
@@ -565,6 +592,10 @@ export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMegadropdownElement;
 }
+export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMenuElement;
+}
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
@@ -779,6 +810,23 @@ declare global {
         prototype: HTMLPostMegadropdownTriggerElement;
         new (): HTMLPostMegadropdownTriggerElement;
     };
+    interface HTMLPostMenuElementEventMap {
+        "toggleMenu": boolean;
+    }
+    interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostMenuElement: {
+        prototype: HTMLPostMenuElement;
+        new (): HTMLPostMenuElement;
+    };
     interface HTMLPostMenuItemElement extends Components.PostMenuItem, HTMLStencilElement {
     }
     var HTMLPostMenuItemElement: {
@@ -913,6 +961,7 @@ declare global {
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
         "post-megadropdown-trigger": HTMLPostMegadropdownTriggerElement;
+        "post-menu": HTMLPostMenuElement;
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
         "post-popover": HTMLPostPopoverElement;
@@ -998,11 +1047,6 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbs {
         /**
-          * Animation style
-          * @default 'pop-in'
-         */
-        "animation"?: 'pop-in' | null;
-        /**
           * The text label for the home breadcrumb item.
          */
         "homeText": string;
@@ -1014,6 +1058,10 @@ declare namespace LocalJSX {
           * The accessible label for the breadcrumb component.
          */
         "label": string;
+        /**
+          * Disable the dropdown menu animation of the concatenated breadcrumbs
+         */
+        "menuAnimationOff"?: boolean;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -1169,11 +1217,6 @@ declare namespace LocalJSX {
     }
     interface PostLanguageSwitch {
         /**
-          * Animation style
-          * @default 'pop-in'
-         */
-        "animation"?: 'pop-in' | null;
-        /**
           * A title for the list of language options
          */
         "caption": string;
@@ -1181,6 +1224,10 @@ declare namespace LocalJSX {
           * A descriptive text for the list of language options
          */
         "description": string;
+        /**
+          * Disable the animation of the dropdown menu containing the language options
+         */
+        "menuAnimationOff"?: boolean;
         /**
           * Whether the component is rendered as a list or a menu
           * @default 'list'
@@ -1222,6 +1269,26 @@ declare namespace LocalJSX {
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
         "for": string;
+    }
+    interface PostMenu {
+        /**
+          * Disable animation
+          * @default false
+         */
+        "animationOff"?: boolean;
+        /**
+          * An accessible name for the menu.
+         */
+        "label": string;
+        /**
+          * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
+         */
+        "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
+        /**
+          * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'bottom'
+         */
+        "placement"?: Placement;
     }
     interface PostMenuItem {
     }
@@ -1423,6 +1490,7 @@ declare namespace LocalJSX {
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
         "post-megadropdown-trigger": PostMegadropdownTrigger;
+        "post-menu": PostMenu;
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
         "post-popover": PostPopover;
@@ -1470,6 +1538,7 @@ declare module "@stencil/core" {
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
             "post-megadropdown-trigger": LocalJSX.PostMegadropdownTrigger & JSXBase.HTMLAttributes<HTMLPostMegadropdownTriggerElement>;
+            "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;

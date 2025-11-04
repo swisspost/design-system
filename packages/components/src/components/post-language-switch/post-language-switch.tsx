@@ -52,14 +52,9 @@ export class PostLanguageSwitch {
   }
 
   /**
-   * Animation style
+   * Disable the animation of the dropdown menu containing the language options
    */
-  @Prop() readonly animation?: 'pop-in' | null = 'pop-in';
-
-  @Watch('animation')
-  validateAnimation() {
-    checkEmptyOrOneOf(this, 'animation', ['pop-in', null]);
-  }
+  @Prop() readonly menuAnimationOff?: boolean;
 
   /**
    * The active language of the language switch
@@ -149,7 +144,7 @@ export class PostLanguageSwitch {
           id={this.menuId}
           class="post-language-switch-dropdown-container"
           label={this.caption}
-          animation={this.animation}
+          animation-off={this.menuAnimationOff}
         >
           <slot></slot>
         </post-menu>

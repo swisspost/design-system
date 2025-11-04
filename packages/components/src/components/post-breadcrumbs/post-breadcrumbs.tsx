@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, debounce, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
+import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -31,9 +31,10 @@ export class PostBreadcrumbs {
   @Prop() menuLabel!: string;
 
   /**
-   * Animation style
+   * Disable the dropdown menu animation of the concatenated breadcrumbs
    */
-  @Prop() animation?: 'pop-in' | null = 'pop-in';
+
+  @Prop() readonly menuAnimationOff?: boolean;
 
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
@@ -60,11 +61,6 @@ export class PostBreadcrumbs {
   @Watch('menuLabel')
   validateMenuLabel() {
     checkRequiredAndType(this, 'menuLabel', 'string');
-  }
-
-  @Watch('animation')
-  validateAnimation() {
-    checkEmptyOrOneOf(this, 'animation', ['pop-in', null]);
   }
 
   componentWillLoad() {
@@ -187,7 +183,11 @@ export class PostBreadcrumbs {
                       ...
                     </button>
                   </post-menu-trigger>
-                  <post-menu id="breadcrumb-menu" label={this.menuLabel}>
+                  <post-menu
+                    id="breadcrumb-menu"
+                    label={this.menuLabel}
+                    animation-off={this.menuAnimationOff}
+                  >
                     {visibleItems.map(item => (
                       <post-menu-item
                         key={item.url || item.text}

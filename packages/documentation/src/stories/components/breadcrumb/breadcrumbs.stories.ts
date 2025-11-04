@@ -1,5 +1,5 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -19,7 +19,7 @@ const meta: MetaComponent = {
     homeText: 'Home',
     label: 'Breadcrumbs',
     menuLabel: 'More breadcrumb items',
-    animation: 'pop-in',
+    menuAnimationOff: false,
   },
 };
 
@@ -34,7 +34,7 @@ export const Default: Story = {
       home-text=${args.homeText}
       label=${args.label}
       menu-label=${args.menuLabel}
-      animation=${args.animation}
+      menu-animation-off=${args.menuAnimationOff ? args.menuAnimationOff : nothing}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -50,7 +50,7 @@ export const Concatenated: Story = {
       home-text=${args.homeText}
       label=${args.label}
       menu-label=${args.menuLabel}
-      animation=${args.animation}
+      menu-animation-off=${args.menuAnimationOff ? args.menuAnimationOff : nothing}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
