@@ -63,13 +63,6 @@ export class PostTabItem {
   private checkNavigationMode() {
     const hasAnchor = this.host.querySelector('a') !== null;
     this.isNavigationMode = hasAnchor;
-    
-    if (this.isNavigationMode && hasAnchor) {
-      const anchor = this.host.querySelector('a');
-      if (anchor) {
-        anchor.setAttribute('tabindex', '-1');
-      }
-    }
   }
 
   private checkAriaCurrent() {
@@ -79,31 +72,11 @@ export class PostTabItem {
     }
   }
 
-  private handleClick = () => {
-    if (!this.isNavigationMode) return;
-    
-    const anchor = this.host.querySelector('a');
-    if (anchor) {
-      anchor.click();
-    }
-  };
-
-  private handleKeyDown = (event: KeyboardEvent) => {
-    if (!this.isNavigationMode) return;
-    
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      const anchor = this.host.querySelector('a');
-      if (anchor) {
-        anchor.click();
-      }
-    }
-  };
-
   render() {
     const isPanelMode = !this.isNavigationMode;
     const classes = {
-      'tab-title': true,
+      'tab-title': isPanelMode,
+      'nav-item': this.isNavigationMode,
       active: this.isNavigationMode && this.hasAriaCurrent,
     };
 
@@ -114,10 +87,8 @@ export class PostTabItem {
         data-version={version}
         data-navigation-mode={this.isNavigationMode.toString()}
         aria-selected={isPanelMode ? 'false' : undefined}
-        tabindex={isPanelMode ? '-1' : '0'}
+        tabindex={isPanelMode ? '-1' : undefined}
         class={classes}
-        onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}
       >
         <slot />
       </Host>
