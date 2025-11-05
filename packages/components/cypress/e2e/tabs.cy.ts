@@ -11,17 +11,17 @@ describe('tabs', () => {
       cy.get('@tabs').should('exist');
     });
 
-    it('should show three tab headers', () => {
+    it('should show three tab items', () => {
       cy.get('@items').should('have.length', 3);
     });
 
-    it('should only show the first tab header as active', () => {
+    it('should only show the first tab item as active', () => {
       cy.get('post-tab-item.active').each(($item, index) => {
         cy.wrap($item).should(index === 0 ? 'exist' : 'not.exist');
       });
     });
 
-    it('should only show the tab panel associated with the first tab header', () => {
+    it('should only show the tab panel associated with the first tab item', () => {
       cy.get('post-tab-panel:visible').as('panel');
       cy.get('@panel').should('have.length', 1);
       cy.get('@items')
@@ -32,14 +32,14 @@ describe('tabs', () => {
         });
     });
 
-    it('should activate a clicked tab header and deactivate the tab header that was previously activated', () => {
+    it('should activate a clicked tab item and deactivate the tab item that was previously activated', () => {
       cy.get('@items').last().click();
 
       cy.get('@items').first().should('not.have.class', 'active');
       cy.get('@items').last().should('have.class', 'active');
     });
 
-    it('should show the panel associated with a clicked tab header and hide the panel that was previously shown', () => {
+    it('should show the panel associated with a clicked tab item and hide the panel that was previously shown', () => {
       cy.get('@items').last().click();
 
       // wait for the fade out animation to complete
@@ -95,12 +95,12 @@ describe('tabs', () => {
       cy.get('post-tab-item').as('items');
     });
 
-    it('should add a tab header', () => {
+    it('should add a tab item', () => {
       cy.get('#add-tab').click();
       cy.get('@items').should('have.length', 4);
     });
 
-    it('should still show the tab panel associated with the first tab header after adding new tab', () => {
+    it('should still show the tab panel associated with the first tab item after adding new tab', () => {
       cy.get('#add-tab').click();
 
       cy.get('post-tab-panel:visible').as('panel');
@@ -113,7 +113,7 @@ describe('tabs', () => {
         });
     });
 
-    it('should activate the newly added tab header after clicking on it', () => {
+    it('should activate the newly added tab item after clicking on it', () => {
       cy.get('#add-tab').click();
 
       cy.get('post-tab-item').as('items');
@@ -141,14 +141,14 @@ describe('tabs', () => {
         });
     });
 
-    it('should remove a tab header', () => {
+    it('should remove a tab item', () => {
       cy.get('.tab-title.active').then(() => {
         cy.get('#remove-active-tab').click();
         cy.get('@items').should('have.length', 2);
       });
     });
 
-    it('should still show an active tab header after removing the active tab', () => {
+    it('should still show an active tab item after removing the active tab', () => {
       cy.get('.tab-title.active').then(() => {
         cy.get('#remove-active-tab').click();
         cy.get('.tab-title.active').should('exist');
@@ -213,16 +213,17 @@ describe('tabs', () => {
         });
       });
 
-      it('should mark the current page tab as active when anchor has aria-current="page"', () => {
-        cy.get('@items').each($item => {
-          const hasAriaCurrent = $item.find('a[aria-current="page"]').length > 0;
-          if (hasAriaCurrent) {
-            cy.wrap($item).should('have.class', 'active');
-          } else {
-            cy.wrap($item).should('not.have.class', 'active');
-          }
-        });
+       it('should mark the current page tab as active when anchor has aria-current="page"', () => {
+      cy.get('@items').each($item => {
+        const hasAriaCurrent = $item.find('a[aria-current="page"]').length > 0;
+        if (hasAriaCurrent) {
+          cy.wrap($item).should('have.class', 'active');
+        } else {
+          cy.wrap($item).should('not.have.class', 'active');
+        }
       });
+    });
+
 
       it('should mark only one tab as active when anchor has aria-current="page"', () => {
         let activeCount = 0;
@@ -335,12 +336,6 @@ describe('tabs', () => {
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('tabs');
-
-    cy.wait(200);
-
-    cy.get('post-tabs').should('be.visible');
-    cy.get('post-tab-item').should('exist');
-
     cy.checkA11y('#root-inner');
   });
 
