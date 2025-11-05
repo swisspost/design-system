@@ -164,7 +164,7 @@ export default function Home() {
       </PostTabs>
 
       <h2>Tabs - Navigation Variant</h2>
-      <PostTabs>
+      <PostTabs label="Tabs navigation">
         <PostTabItem name="nav-first">
           <a href="#first">First</a>
         </PostTabItem>
