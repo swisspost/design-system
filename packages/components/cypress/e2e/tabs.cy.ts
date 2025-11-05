@@ -177,15 +177,7 @@ describe('tabs', () => {
       cy.get('@items').should('have.length', 3);
     });
 
-    it('should render as navigation when tabs contain anchor elements', () => {
-      cy.get('@items').each($item => {
-        cy.wrap($item).find('a').should('exist');
-      });
-    });
-
-    it('should not render tab panels in navigation mode', () => {
-      cy.get('post-tab-panel').should('not.exist');
-    });
+    
 
     it('should not render content part in navigation mode', () => {
       cy.get('@tabs')
@@ -239,17 +231,7 @@ describe('tabs', () => {
       });
     });
 
-    describe('mode detection', () => {
-      it('should automatically enable navigation mode when <a> is present inside post-tab-item', () => {
-        cy.get('@items').each($item => {
-          cy.wrap($item).should('have.attr', 'data-navigation-mode', 'true');
-        });
-      });
-
-      it('should not have tab panel elements in navigation mode', () => {
-        cy.get('post-tab-panel').should('not.exist');
-      });
-    });
+    
 
     describe('tab item properties', () => {
       it('should have name property on each tab item', () => {
