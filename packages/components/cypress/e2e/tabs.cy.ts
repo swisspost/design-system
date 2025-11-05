@@ -205,16 +205,16 @@ describe('tabs', () => {
         });
       });
 
-       it('should mark the current page tab as active when anchor has aria-current="page"', () => {
-      cy.get('@items').each($item => {
-        const hasAriaCurrent = $item.find('a[aria-current="page"]').length > 0;
-        if (hasAriaCurrent) {
-          cy.wrap($item).should('have.class', 'active');
-        } else {
-          cy.wrap($item).should('not.have.class', 'active');
-        }
+      it('should mark the current page tab as active when anchor has aria-current="page"', () => {
+        cy.get('@items').each($item => {
+          const hasAriaCurrent = $item.find('a[aria-current="page"]').length > 0;
+          if (hasAriaCurrent) {
+            cy.wrap($item).should('have.class', 'active');
+          } else {
+            cy.wrap($item).should('not.have.class', 'active');
+          }
+        });
       });
-    });
 
 
       it('should mark only one tab as active when anchor has aria-current="page"', () => {
