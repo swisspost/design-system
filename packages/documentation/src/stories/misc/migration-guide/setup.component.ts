@@ -20,7 +20,7 @@ export class SetupComponent extends LitElement {
         <div class="row gap-24 migration-options">
           <div class="col-auto">
             <label class="form-label fs-9 fw-bold d-block mb-12" for="docs_Default_ExampleSelect">
-              What currentVersion of the Design System is your application currently using?
+              What version of the Design System is your application currently using?
             </label>
             <select
               @change="${this._onCurrentVersionChange}"
