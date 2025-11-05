@@ -9,45 +9,32 @@
 @use './../mixins/utilities';
 @use './../utilities/env-variables' as icon-version;
 
-@mixin icon($name) {
-  $icon: icon-fn.get-svg-url($name);
-  mask-image: url('#{$icon}');
+@mixin mask-image($name) {
+  mask-image: var(--post-icon-#{$name});
   background-color: currentColor;
   color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
   forced-color-adjust: preserve-parent-color;
 }
 
-$loaded-icons: () !default;
-
-@mixin load-icon-css($name, $path: '../icons/temp') {
-  @if list.index($loaded-icons, $name) == null {
-    $loaded-icons: list.append($loaded-icons, $name) !global;
+@mixin custom-property($names, $path: '../icons/temp') {
+  @each $name in $names {
     @at-root {
       @include meta.load-css('#{$path}/#{$name}');
     }
   }
 }
 
-@mixin post-icon($name, $color: inherit, $width: 1em, $height: 1em) {
+@mixin icon($name, $color: inherit, $width: 1em, $height: 1em) {
   display: inline-block;
   width: $width;
   height: $height;
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: var(--post-icon-#{$name});
   mask-image: var(--post-icon-#{$name});
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-position: center center;
   mask-position: center center;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-size: 100%;
   mask-size: 100%;
-  @include load-icon-css($name);
 }
 
 @mixin remove-icon() {

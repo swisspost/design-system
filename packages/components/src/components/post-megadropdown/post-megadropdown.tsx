@@ -12,19 +12,14 @@ export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
 
-  @State() device: Device = breakpoint.get('device');
-
-  @Element() host: HTMLPostMegadropdownElement;
-
   /** Tracks the currently active dropdown instance. */
   private static activeDropdown: PostMegadropdown | null = null;
 
-  private breakpointChange(e: CustomEvent) {
-    this.device = e.detail;
-    if (this.device === 'desktop' && this.isVisible) {
-      this.animationClass = null;
-    }
-  }
+  private defaultSlotObserver: MutationObserver;
+
+  @Element() host: HTMLPostMegadropdownElement;
+
+  @State() device: Device = breakpoint.get('device');
 
   /**
    * Holds the current visibility state of the dropdown.
@@ -38,6 +33,13 @@ export class PostMegadropdown {
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
+  private get megadropdownTrigger(): Element | null {
+    const hostId = this.host.getAttribute('id');
+    return hostId
+      ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
+      : null;
+  }
+
   /**
    * Emits when the dropdown is shown or hidden.
    * The event payload is an object.
@@ -46,16 +48,29 @@ export class PostMegadropdown {
    **/
   @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
+  connectedCallback() {
+    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+  }
+
+  componentDidRender() {
+    this.getFocusableElements();
+  }
+
+  componentDidLoad() {
+    this.checkInitialAriaCurrent();
+    this.setupObserver();
+    this.handleAriaCurrentChange([]);
+  }
+
   disconnectedCallback() {
     this.removeListeners();
     window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
-  }
 
-  componentWillRender() {
-    this.getFocusableElements();
+    this.defaultSlotObserver.disconnect();
   }
 
   /**
@@ -114,10 +129,12 @@ export class PostMegadropdown {
     this.firstFocusableEl?.focus();
   }
 
-  connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
+    if (this.device === 'desktop' && this.isVisible) {
+      this.animationClass = null;
+    }
   }
-
   /**
    * Forces the dropdown to close without animation.
    */
@@ -137,7 +154,7 @@ export class PostMegadropdown {
     }
   }
 
-  private handleClickOutside = (event: MouseEvent) => {
+  private readonly handleClickOutside = (event: MouseEvent) => {
     if (this.device !== 'desktop') return;
 
     const target = event.target as Node;
@@ -177,16 +194,13 @@ export class PostMegadropdown {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
 
-    // Check if the focusable children list contains a `.selected` (active) item
-    if (focusableChildren.some(el => el.classList.contains('selected'))) {
-      if (this.host.getAttribute('id')) {
-        // Select the trigger element by its "for" attribute, locate the contained button, and mark it as selected
-        const triggerFor = this.host.getAttribute('id');
-        document
-          .querySelector(`[for="${triggerFor}"]`)
-          .querySelector('button')
-          .classList.add('selected');
-      }
+    // Check for an overview link
+    const overviewLink = this.host.querySelector<HTMLAnchorElement>(
+      'a[slot="megadropdown-overview-link"]',
+    );
+
+    if (overviewLink) {
+      focusableChildren.unshift(overviewLink);
     }
 
     this.firstFocusableEl = focusableChildren[0];
@@ -216,6 +230,60 @@ export class PostMegadropdown {
     }
   }
 
+  /**
+   * Sets up a MutationObserver on the host to watch for changes
+   * in `aria-current` attributes.
+   */
+  private setupObserver() {
+    const config: MutationObserverInit = {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['aria-current'],
+    };
+
+    this.defaultSlotObserver = new MutationObserver(this.handleAriaCurrentChange.bind(this));
+    this.defaultSlotObserver.observe(this.host, config);
+  }
+
+  /**
+   * Adds or removes the 'active' class on the megadropdown trigger button
+   * based on the active state.
+   *
+   * @param isActive - Whether the trigger should appear active
+   */
+  private setTriggerActive(isActive: boolean) {
+    const trigger = this.megadropdownTrigger;
+    if (!trigger) return;
+
+    if (isActive) {
+      trigger.classList.add('active');
+    } else {
+      trigger.classList.remove('active');
+    }
+  }
+
+  /**
+   * Updates the megadropdown trigger state when the megadropdown content changes.
+   * Checks if any element inside the megadropdown has `aria-current="page"`
+   * and sets the trigger as active accordingly.
+   */
+  private handleAriaCurrentChange(mutations: MutationRecord[]) {
+    if (!mutations.length) return;
+    const hasCurrentPage = mutations.some(
+      m => m.target instanceof HTMLElement && m.target.getAttribute('aria-current') === 'page',
+    );
+    this.setTriggerActive(hasCurrentPage);
+  }
+
+  /**
+   * Checks on initialization if any element inside the megadropdown
+   * has `aria-current="page"` and sets the trigger as active if so.
+   */
+  private checkInitialAriaCurrent() {
+    const hasCurrentPage = this.host.querySelector('[aria-current="page"]');
+    if (hasCurrentPage) this.setTriggerActive(true);
+  }
+
   render() {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
@@ -228,6 +296,7 @@ export class PostMegadropdown {
         >
           <div class="megadropdown">
             <slot name="megadropdown-title"></slot>
+            <slot name="megadropdown-overview-link"></slot>
             <div class="megadropdown-content">
               <slot></slot>
             </div>

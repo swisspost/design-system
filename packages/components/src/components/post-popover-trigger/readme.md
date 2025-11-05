@@ -1,9 +1,9 @@
+
 # post-popover
 
-
+# post-popover-trigger
 
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -72,6 +72,11 @@ graph TD;
   post-popover --> post-popovercontainer
   style post-popover fill:#f9f,stroke:#333,stroke-width:4px
 ```
+
+| Property           | Attribute | Description                                                                                   | Type     | Default     |
+| ------------------ | --------- | --------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `for` _(required)_ | `for`     | ID of the popover element that this trigger is linked to. Used to open and close the popover. | `string` | `undefined` |
+
 
 ----------------------------------------------
 

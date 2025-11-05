@@ -14,7 +14,7 @@ export interface PostTogglebuttonProps {
 const meta: MetaComponent<PostTogglebuttonProps> = {
   id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
   title: 'Components/Button Toggle',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   render: renderBadge,
   component: 'post-togglebutton',
   parameters: {
@@ -90,8 +90,8 @@ export const ContentVisibility: StoryObj<PostTogglebuttonProps> = {
     return html`
       <post-togglebutton class="btn btn-primary">
         Menu
-        <span data-showwhen="untoggled"><post-icon name="2070"></post-icon></span>
-        <span data-showwhen="toggled"><post-icon name="2043"></post-icon></span>
+        <span data-showwhen="untoggled"><post-icon name="burger"></post-icon></span>
+        <span data-showwhen="toggled"><post-icon name="closex"></post-icon></span>
       </post-togglebutton>
     `;
   },

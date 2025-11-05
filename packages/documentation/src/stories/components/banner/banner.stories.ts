@@ -77,7 +77,7 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
   }
 
   return html`
-  <post-banner .type=${type} @postDismissed=${() => updateArgs({ dismissed: true })}>
+  <post-banner type=${type === 'info' ? nothing : type} @postDismissed=${() => updateArgs({ dismissed: true })}>
       ${dismissible
         ? html`
             <post-closebutton
@@ -102,8 +102,8 @@ export const Contents: Story = {
     innerHTML:
       '<h4 slot="heading">Heading Title</h4>' +
       '<ul class="list-unstyled">' +
-      '<li class="d-flex gap-8"><post-icon name="1027"></post-icon>An example list item</li>' +
-      '<li class="d-flex gap-8"><post-icon name="1028"></post-icon>Another example list item</li>' +
+      '<li class="d-flex gap-8"><post-icon name="moon"></post-icon>An example list item</li>' +
+      '<li class="d-flex gap-8"><post-icon name="sun"></post-icon>Another example list item</li>' +
       '</ul>' +
       '<hr class="w-full"/>' +
       '<p>This is the banner content that provides important information to the user.</p>' +

@@ -11,7 +11,7 @@ type useStateFn = typeof useState;
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Form Card Control',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   parameters: {
     badges: [],
     design: {
@@ -65,7 +65,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['none', '1000', '1001', '2000'],
+      options: ['none', 'letter', 'letteropen', 'parcel'],
       table: {
         category: 'General',
       },

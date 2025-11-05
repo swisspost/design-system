@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   decorators: [clickBlocker],
   parameters: {
     badges: [],
@@ -132,27 +132,27 @@ function getCardImage() {
   return html` <img src="https://picsum.photos/id/38/500/300" alt="" /> `;
 }
 
-function renderCard(args: Args) {
+function renderCardContent(args: Args) {
   const { showImage, imagePosition } = args;
 
   return html`
-    <div class="card">
-      ${showImage && imagePosition === 'top' ? getCardImage() : nothing} ${getCardContent(args)}
-      ${showImage && imagePosition === 'bottom' ? getCardImage() : nothing}
-    </div>
+    ${showImage && imagePosition === 'top' ? getCardImage() : nothing} ${getCardContent(args)}
+    ${showImage && imagePosition === 'bottom' ? getCardImage() : nothing}
   `;
 }
 
-function renderCardWithInteractiveContainer(args: Args) {
-  return html`<post-linkarea>${renderCard(args)}</post-linkarea>`;
+function renderNoninteractiveCard(args: Args) {
+  return html` <div class="card">${renderCardContent(args)}</div> `;
+}
+
+function renderInteractiveCard(args: Args) {
+  return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
 }
 
 const renderSimpleInteractiveCard = html`
-  <post-linkarea>
-    <div class="card">
-      <div class="card-body">
-        <p><a href="http://google.com">Interactive card</a></p>
-      </div>
+  <post-linkarea class="card">
+    <div class="card-body">
+      <p><a href="http://google.com">Interactive card</a></p>
     </div>
   </post-linkarea>
 `;
@@ -163,7 +163,7 @@ type Story = StoryObj;
 export const Default: Story = {
   decorators: [gridContainer],
   render: (args: Args) =>
-    html`${args.action === 'button' ? renderCardWithInteractiveContainer(args) : renderCard(args)}`,
+    html`${args.action === 'button' ? renderInteractiveCard(args) : renderNoninteractiveCard(args)}`,
 };
 
 export const Foundation: Story = {
@@ -182,25 +182,24 @@ export const Palette: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: () =>
-    html`
-      <div class="palette palette-default">
-        <div class="container py-32">
-          <div class="row gy-16">
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          </div>
+  render: () => html`
+    <div class="palette palette-default">
+      <div class="container py-32">
+        <div class="row gy-16">
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
         </div>
       </div>
-      <div class="palette palette-alternate">
-        <div class="container py-32">
-          <div class="row gy-16">
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          </div>
+    </div>
+    <div class="palette palette-alternate">
+      <div class="container py-32">
+        <div class="row gy-16">
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
         </div>
       </div>
-    `,
+    </div>
+  `,
 };
 
 export const ListGroup: Story = {
@@ -224,10 +223,10 @@ export const CustomContent: Story = {
     return html`
       <div class="card">
         <div class="d-flex px-16 py-32 gap-16 align-items-center">
-          <post-icon aria-hidden="true" scale="2" name="3217"></post-icon>
+          <post-icon aria-hidden="true" scale="1.5" name="profile"></post-icon>
           <h3 class="fw-bold my-0 me-auto">User Details</h3>
           <a href="#" aria-labelledby="details-title">
-            <post-icon aria-hidden="true" scale="1.5" name="3020"></post-icon>
+            <post-icon aria-hidden="true" name="arrowright"></post-icon>
             <span class="visually-hidden">Account Management</span>
           </a>
         </div>
@@ -237,14 +236,14 @@ export const CustomContent: Story = {
               Mr<br />First Name Last Name<br />Street 1<br />1234 City
             </address>
             <a href="#">
-              <post-icon aria-label="Edit Address" scale="1.5" name="3193"></post-icon>
+              <post-icon aria-label="Edit Address" name="edit"></post-icon>
               <span class="visually-hidden">Edit Address</span>
             </a>
           </li>
           <li class="list-interactive-item d-flex align-items-center justify-content-between">
             <p class="mb-0">Language: <span class="fw-bold">English</span></p>
             <a href="#">
-              <post-icon aria-label="Edit Language" scale="1.5" name="3193"></post-icon>
+              <post-icon aria-label="Edit Language" name="edit"></post-icon>
               <span class="visually-hidden">Edit Language</span>
             </a>
           </li>

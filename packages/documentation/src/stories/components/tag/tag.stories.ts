@@ -11,7 +11,7 @@ const SCSS_VARIABLES: any = parse(scss);
 const meta: MetaComponent = {
   id: '1b1ea384-7421-4064-ad34-e3f48a36b39f',
   title: 'Components/Tag',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   render: renderTag,
   parameters: {
     design: {
@@ -23,7 +23,7 @@ const meta: MetaComponent = {
     variant: 'null',
     size: 'null',
     showIcon: false,
-    icon: 1001,
+    icon: "letter",
     markup: 'Tag',
   },
   argTypes: {

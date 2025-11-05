@@ -1,49 +1,6 @@
-import rule, { name } from '../../../../src/rules/html/migrations/no-deprecated-loader';
-import { htmlRuleTester } from '../../../utils/html-rule-tester';
+import rule, { data, name } from '../../../../src/rules/html/migrations/no-deprecated-loader';
+import { generatedDataTester } from '../../../utils/generated-data-tester';
 
-htmlRuleTester.run(name, rule, {
-  valid: [
-    {
-      code: `
-        <div role="status" aria-live="polite" class="loader">
-          <span class="visually-hidden">Loading…</span>
-        </div>
-      `,
-    },
-    {
-      code: `
-        <div role="status" aria-live="polite" class="loader loader-16">
-          <span class="visually-hidden">Loading…</span>
-        </div>
-      `,
-    },
-  ],
-  invalid: [
-    {
-      code: `
-        <div role="status" aria-live="polite" class="loader loader-xs">
-          <span class="visually-hidden">Loading…</span>
-        </div>
-      `,
-      output: `
-        <div role="status" aria-live="polite" class="loader loader-16">
-          <span class="visually-hidden">Loading…</span>
-        </div>
-      `,
-      errors: [{ messageId: 'deprecatedLoaderXS' }],
-    },
-    {
-      code: `
-        <div role="status" aria-live="polite" class="loader loader-sm">
-          <span class="visually-hidden">Loading…</span>
-        </div>
-      `,
-      output: `
-        <div role="status" aria-live="polite" class="loader loader-40">
-          <span class="visually-hidden">Loading…</span>
-        </div>
-      `,
-      errors: [{ messageId: 'deprecatedLoaderSM' }],
-    },
-  ],
-});
+const validData = ['spinner', 'spinner-modal', 'spinner-16', 'spinner-40'];
+
+generatedDataTester(name, rule, data, validData);

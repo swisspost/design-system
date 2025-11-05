@@ -12,11 +12,13 @@
 
 tokens.$default-map: utilities.$post-color;
 
+@include post.custom-property(('chevrondown', 'resizeexpand', 'link', 'code'));
+
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 // Mixin for toolbar button icons
 $toolbar-icons: (
-  '.docblock-code-toggle': '2052',
+  '.docblock-code-toggle': 'chevrondown',
   '.docblock-code-toggle + button': 'resizeexpand',
   '.docblock-code-toggle + button + button': 'link',
   '.docblock-code-toggle + button + button + button': 'code'
@@ -192,15 +194,8 @@ $toolbar-icons: (
   }
 
   .docs-story {
-    padding: 1rem;
-    padding-block-end: 2rem;
-
     [scale] {
       transform: none;
-    }
-
-    > :first-child {
-      padding: 0;
     }
 
     > :last-child {
@@ -240,7 +235,9 @@ $toolbar-icons: (
         &::before {
           content: '';
           margin-right: 0.5rem;
-          @include post.post-icon($name: $icon-name);
+          width: 1em;
+          height: 1em;
+          @include post.mask-image($icon-name);
         }
       }
     }

@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-tabs',
   render: renderTabs,
   parameters: {
@@ -23,7 +23,6 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
       options: ['first', 'second', 'third'],
     },
   },
-  args: { fullWidth: false },
 };
 
 export default meta;
@@ -55,9 +54,6 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
 type Story = StoryObj<HTMLPostTabsElement>;
 
 export const Default: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
 };
 
 export const ActivePanel: Story = {
@@ -109,7 +105,7 @@ export const Async: Story = {
         <hr />
         <div class="d-flex gap-8">
           <button class="btn btn-default" id="add-tab" type="button" @click="${addTab}">
-            <post-icon name="2040"></post-icon>
+            <post-icon name="plus"></post-icon>
             Add tab
           </button>
           <button
@@ -118,7 +114,7 @@ export const Async: Story = {
             type="button"
             @click="${removeActiveTab}"
           >
-            <post-icon name="2039"></post-icon>
+            <post-icon name="minus"></post-icon>
             Remove active tab
           </button>
         </div>

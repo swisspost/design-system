@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
   title: 'Components/Card Control',
   component: 'post-card-control',
-  tags: ['package:Styles', 'package:WebComponents'],
+  tags: ['package:Styles', 'package:WebComponents', 'status:InProgress'],
   parameters: {
     badges: [],
     design: {
@@ -280,7 +280,7 @@ export const FormIntegration: Story = {
       </fieldset>
       <div class="mt-16 d-flex gap-16 justify-content-end">
         <button type="reset" class="btn btn-tertiary px-0">
-          <post-icon name="2042"></post-icon>Reset
+          <post-icon name="reloadright"></post-icon>Reset
         </button>
         <button type="submit" class="btn btn-primary"><span>Submit</span></button>
       </div>

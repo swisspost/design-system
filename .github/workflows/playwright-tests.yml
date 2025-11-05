@@ -1,4 +1,4 @@
-name: Playwright e2e tests
+name: E2E tests (playwright)
 on:
   pull_request:
     paths:
@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           fetch-depth: 0
 
@@ -32,5 +32,3 @@ jobs:
 
       - name: Run tests
         run: pnpm --filter design-system-nextjs-integration e2e
-        # Remove "continue-on-error: true" as soon as the components are fully ssr compatible!
-        continue-on-error: true

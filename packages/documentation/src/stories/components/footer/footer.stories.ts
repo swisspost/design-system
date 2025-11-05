@@ -9,7 +9,7 @@ const meta: MetaComponent = {
   id: 'd97528b3-a9ef-4201-bf28-9caf6e8997dc',
   title: 'Components/Footer',
   component: 'post-footer',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   parameters: {
     layout: 'fullscreen',
     badges: [],
@@ -52,37 +52,37 @@ function render(args: Args) {
       <h3>Follow us</h3>
       <post-list-item>
         <a href="https://www.facebook.com/swisspost" class="btn btn-primary btn-icon">
-          <post-icon aria-hidden="true" name="8004"></post-icon>
+          <post-icon aria-hidden="true" name="facebook"></post-icon>
           <span class="visually-hidden">Facebook</span>
         </a>
       </post-list-item>
       <post-list-item>
         <a href="https://www.instagram.com/swisspost/" class="btn btn-primary btn-icon">
-          <post-icon aria-hidden="true" name="8007"></post-icon>
+          <post-icon aria-hidden="true" name="instagram"></post-icon>
           <span class="visually-hidden">Instagram</span>
         </a>
       </post-list-item>
       <post-list-item>
         <a href="http://www.youtube.com/swisspost" class="btn btn-primary btn-icon">
-          <post-icon aria-hidden="true" name="8002"></post-icon>
+          <post-icon aria-hidden="true" name="youtube"></post-icon>
           <span class="visually-hidden">Youtube</span>
         </a>
       </post-list-item>
       <post-list-item>
         <a href="https://www.snapchat.com/add/swisspostjobs" class="btn btn-primary btn-icon">
-          <post-icon aria-hidden="true" name="8017"></post-icon>
+          <post-icon aria-hidden="true" name="snapchat"></post-icon>
           <span class="visually-hidden">Snapchat</span>
         </a>
       </post-list-item>
       <post-list-item>
         <a href="https://twitter.com/PostSchweiz" class="btn btn-primary btn-icon">
-          <post-icon aria-hidden="true" name="8000"></post-icon>
+          <post-icon aria-hidden="true" name="twitterx"></post-icon>
           <span class="visually-hidden">Titter X</span>
         </a>
       </post-list-item>
       <post-list-item>
         <a href="https://www.linkedin.com/company/swiss-post" class="btn btn-primary btn-icon">
-          <post-icon aria-hidden="true" name="8005"></post-icon>
+          <post-icon aria-hidden="true" name="linkedin"></post-icon>
           <span class="visually-hidden">Linkedin</span>
         </a>
       </post-list-item>
@@ -91,7 +91,7 @@ function render(args: Args) {
           href="https://www.xing.com/companies/dieschweizerischepost"
           class="btn btn-primary btn-icon"
         >
-          <post-icon aria-hidden="true" name="8001"></post-icon>
+          <post-icon aria-hidden="true" name="xing"></post-icon>
           <span class="visually-hidden">Xing</span>
         </a>
       </post-list-item>
