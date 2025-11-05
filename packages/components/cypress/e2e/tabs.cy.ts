@@ -177,20 +177,33 @@ describe('tabs', () => {
       cy.get('@items').should('have.length', 3);
     });
 
+    it('should render as navigation when tabs contain anchor elements', () => {
+      cy.get('@items').each($item => {
+        cy.wrap($item).find('a').should('exist');
+      });
+    });
+
+    it('should not render tab panels in navigation mode', () => {
+      cy.get('post-tab-panel').should('not.exist');
+    });
+
+    it('should not render content part in navigation mode', () => {
+      cy.get('@tabs')
+        .shadow()
+        .find('[part="content"]')
+        .should('not.exist');
+    });
+
     describe('semantic navigation markup', () => {
-      it('should render as navigation element', () => {
-        cy.get('@tabs')
-          .find('nav')
-          .should('exist');
+      it('should render the tabs container as nav element', () => {
+        cy.get('@tabs').find('nav').should('exist');
       });
 
-      it('should have aria-label on nav element for context', () => {
-        cy.get('@tabs')
-          .find('nav')
-          .should('have.attr', 'aria-label');
+      it('should have aria-label on nav element', () => {
+        cy.get('@tabs').find('nav').should('have.attr', 'aria-label');
       });
 
-      it('should have required label attribute on tabs component', () => {
+      it('should have label attribute on tabs component', () => {
         cy.get('@tabs').should('have.attr', 'label');
       });
 
@@ -200,16 +213,29 @@ describe('tabs', () => {
         });
       });
 
-        it('should mark the current page tab as active when anchor has aria-current="page"', () => {
-          cy.get('@items').each($item => {
-            const hasAriaCurrent = $item.find('a[aria-current="page"]').length > 0;
-            if (hasAriaCurrent) {
-              cy.wrap($item).should('have.class', 'active');
-            } else {
-              cy.wrap($item).should('not.have.class', 'active');
-            }
-          });
+      it('should mark the current page tab as active when anchor has aria-current="page"', () => {
+        cy.get('@items').each($item => {
+          const hasAriaCurrent = $item.find('a[aria-current="page"]').length > 0;
+          if (hasAriaCurrent) {
+            cy.wrap($item).should('have.class', 'active');
+          } else {
+            cy.wrap($item).should('not.have.class', 'active');
+          }
         });
+      });
+
+      it('should mark only one tab as active when anchor has aria-current="page"', () => {
+        let activeCount = 0;
+        cy.get('@items').each($item => {
+          const hasAriaCurrent = $item.find('a[aria-current="page"]').length > 0;
+          if (hasAriaCurrent) {
+            activeCount++;
+            cy.wrap($item).should('have.class', 'active');
+          }
+        }).then(() => {
+          expect(activeCount).to.be.lte(1); // At most one active tab
+        });
+      });
     });
 
     describe('mode detection', () => {
@@ -253,6 +279,7 @@ describe('tabs', () => {
     describe('anchor elements in light DOM', () => {
       it('should render anchor elements in light DOM for consumer routing integration', () => {
         cy.get('@items').each($item => {
+          // Verify anchor is in light DOM (not in shadow DOM)
           cy.wrap($item).children('a').should('exist');
         });
       });
@@ -263,6 +290,15 @@ describe('tabs', () => {
     });
 
     describe('active-tab property', () => {
+      it('should support programmatic tab activation via show() method', () => {
+        cy.get('@tabs').then($tabs => {
+          const tabsElement = $tabs[0] as HTMLElement & { show: (tabName: string) => Promise<void> };
+          if (typeof tabsElement.show === 'function') {
+            void tabsElement.show('second');
+            cy.get('@items').eq(1).should('have.class', 'active');
+          }
+        });
+      });
 
       it('should mark the tab item matching active-tab as active', () => {
         cy.get('@tabs')
@@ -274,25 +310,98 @@ describe('tabs', () => {
           });
       });
     });
+  });
 
-    describe('panels ignored in navigation mode', () => {
-      it('should not display content part in navigation mode', () => {
-        cy.get('@tabs')
-          .shadow()
-          .find('[part="content"]')
-          .should('not.exist');
-      });
+  describe('mode detection', () => {
+    it('should detect panels mode when no anchor elements are present', () => {
+      cy.getComponent('tabs', TABS_ID, 'default');
+      cy.get('post-tabs').should('exist');
+      cy.get('post-tab-panel').should('exist');
+      cy.get('post-tabs')
+        .shadow()
+        .find('[part="content"]')
+        .should('exist');
+    });
 
-      it('should ignore any post-tab-panel elements if present', () => {
-        cy.get('post-tab-panel').should('not.exist');
+    it('should detect navigation mode when anchor elements are present', () => {
+      cy.getComponent('tabs', TABS_ID, 'navigation');
+      cy.get('post-tabs').should('exist');
+      cy.get('post-tab-panel').should('not.exist');
+      cy.get('post-tabs').find('nav').should('exist');
+    });
+  });
+});
+
+describe('Accessibility', () => {
+  it('Has no detectable a11y violations on load for all variants', () => {
+    cy.getSnapshots('tabs');
+
+    cy.wait(200);
+
+    cy.get('post-tabs').should('be.visible');
+    cy.get('post-tab-item').should('exist');
+
+    cy.checkA11y('#root-inner');
+  });
+
+  describe('panels mode ARIA attributes', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'default');
+    });
+
+    it('should have proper ARIA attributes for panels mode', () => {
+      cy.get('post-tabs')
+        .shadow()
+        .find('[role="tablist"]')
+        .should('exist');
+      cy.get('post-tab-item').should('have.attr', 'role', 'tab');
+      cy.get('post-tab-item').should('have.attr', 'aria-selected');
+      cy.get('post-tab-item').first().should('have.attr', 'aria-selected', 'true');
+      cy.get('post-tab-item').not(':first').should('have.attr', 'aria-selected', 'false');
+    });
+
+    it('should link tabs to panels with aria-controls and aria-labelledby', () => {
+      cy.get('post-tab-item').first().then($tab => {
+        const tabId = $tab.attr('id');
+        const ariaControls = $tab.attr('aria-controls');
+
+        if (ariaControls) {
+          cy.get(`post-tab-panel[id="${ariaControls}"]`).should('exist');
+          cy.get(`post-tab-panel[id="${ariaControls}"]`).should('have.attr', 'aria-labelledby', tabId);
+        }
       });
+    });
+
+    it('should manage tabindex properly', () => {
+      cy.get('post-tab-item').first().should('have.attr', 'tabindex', '0');
+      cy.get('post-tab-item').not(':first').should('have.attr', 'tabindex', '-1');
+
+      cy.get('post-tab-item').last().click();
+      cy.get('post-tab-item').last().should('have.attr', 'tabindex', '0');
+      cy.get('post-tab-item').not(':last').should('have.attr', 'tabindex', '-1');
     });
   });
 
-  describe('Accessibility', () => {
-    it('Has no detectable a11y violations on load for all variants', () => {
-      cy.getSnapshots('tabs');
-      cy.checkA11y('#root-inner');
+  describe('navigation mode ARIA attributes', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'navigation');
+    });
+
+    it('should have proper ARIA attributes for navigation mode', () => {
+      cy.get('post-tabs').find('nav').should('have.attr', 'aria-label');
+      cy.get('post-tab-item').should('not.have.attr', 'role');
+      cy.get('post-tab-item').should('not.have.attr', 'tabindex');
+    });
+
+    it('should not have tablist role in navigation mode', () => {
+      cy.get('post-tabs')
+        .shadow()
+        .find('[role="tablist"]')
+        .should('not.exist');
+    });
+
+    it('should not have aria-selected on tab items in navigation mode', () => {
+      cy.get('post-tab-item').should('not.have.attr', 'aria-selected');
     });
   });
 });
