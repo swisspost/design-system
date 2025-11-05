@@ -35,6 +35,7 @@ tokens.$default-map: utilities.$post-spacing;
     color: color.$white;
   }
 
+  // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
   &:focus-visible {
     outline: transparent;
     opacity: 1;
@@ -77,9 +78,6 @@ tokens.$default-map: utilities.$post-spacing;
   }
 }
 
-// Panel variant styles (no per-variant base rules; active state is grouped below)
-
-// Navigation variant styles
 .nav-item {
   display: inline-block;
   position: relative;
@@ -141,6 +139,7 @@ tokens.$default-map: utilities.$post-spacing;
   font-weight: 700;
 }
 
+// Create a line that does not suffer from border corner mitering
 .tab-title.active::before,
 .nav-item.active a::before {
   content: '';
@@ -151,7 +150,6 @@ tokens.$default-map: utilities.$post-spacing;
   left: -1px;
   height: tokens.get('utility-gap-4');
   background-color: nav.$nav-tabs-link-active-border-color;
-  z-index: -1;
 }
 
 @include utilities-mx.high-contrast-mode() {
