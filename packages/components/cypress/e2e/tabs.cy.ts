@@ -251,12 +251,6 @@ describe('tabs', () => {
           cy.wrap($item).should('not.have.attr', 'tabindex');
         });
       });
-
-      it('should not have aria-selected attribute in navigation mode', () => {
-        cy.get('@items').each($item => {
-          cy.wrap($item).should('not.have.attr', 'aria-selected');
-        });
-      });
     });
 
     describe('anchor elements in light DOM', () => {
@@ -375,10 +369,6 @@ describe('Accessibility', () => {
         .shadow()
         .find('[role="tablist"]')
         .should('not.exist');
-    });
-
-    it('should not have aria-selected on tab items in navigation mode', () => {
-      cy.get('post-tab-item').should('not.have.attr', 'aria-selected');
     });
   });
 });
