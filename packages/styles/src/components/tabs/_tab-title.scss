@@ -9,7 +9,6 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
-// Shared styles for tab-like controls (avoids repeating identical rules)
 .tab-title,
 .nav-item a {
   display: inline-block;
@@ -80,10 +79,9 @@ tokens.$default-map: utilities.$post-spacing;
 
 // Panel variant styles
 .tab-title {
-  /* Panel-specific rules are minimal now; base styles live in the grouped selector above */
 
   &.active {
-    z-index: 1; // Lift above the line and make focus visible all around
+    z-index: 1;
     border-right-color: nav.$nav-tabs-border-color;
     border-left-color: nav.$nav-tabs-border-color;
     opacity: 1;
@@ -91,7 +89,6 @@ tokens.$default-map: utilities.$post-spacing;
     color: color.$black;
     font-weight: 700;
 
-    // Create a line that does not suffer from border corner mitering
     &::before {
       content: '';
       display: block;
@@ -101,16 +98,6 @@ tokens.$default-map: utilities.$post-spacing;
       left: -1px;
       height: tokens.get('utility-gap-4');
       background-color: nav.$nav-tabs-link-active-border-color;
-    }
-
-    @include utilities-mx.high-contrast-mode() {
-      border-left-color: ButtonText;
-      border-right-color: ButtonText;
-      color: Highlight;
-
-      &::before {
-        background-color: Highlight;
-      }
     }
   }
 }
@@ -142,14 +129,13 @@ tokens.$default-map: utilities.$post-spacing;
     position: relative;
     outline: none;
     cursor: pointer;
-  border-radius: 0;
+    border-radius: 0;
 
     &:focus {
       outline: none;
     }
 
     &:focus-visible {
-      // keep the original stronger override for nav links
       outline: none !important;
     }
   }
@@ -195,23 +181,17 @@ tokens.$default-map: utilities.$post-spacing;
       }
     }
   }
-  
-  @include utilities-mx.high-contrast-mode() {
-    a {
-      opacity: 1;
-      border-left-color: Canvas;
-      border-right-color: Canvas;
-      color: LinkText;
-    }
-    
-    &.active a {
-      border-left-color: ButtonText;
-      border-right-color: ButtonText;
-      color: Highlight;
+}
 
-      &::before {
-        background-color: Highlight;
-      }
+@include utilities-mx.high-contrast-mode() {
+  .tab-title.active,
+  .nav-item.active a {
+    border-left-color: ButtonText;
+    border-right-color: ButtonText;
+    color: Highlight;
+
+    &::before {
+      background-color: Highlight;
     }
   }
 }
