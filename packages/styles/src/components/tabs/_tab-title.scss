@@ -24,12 +24,6 @@ tokens.$default-map: utilities.$post-spacing;
   background-color: transparent;
   cursor: pointer;
 
-  &:focus {
-    opacity: 1;
-    background-color: color.$black-alpha-60;
-    color: color.$white;
-  }
-
   &:hover {
     opacity: 1;
     background-color: color.$black-alpha-60;
