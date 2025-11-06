@@ -3,7 +3,6 @@ import {
   PostAccordion,
   PostAccordionItem,
   PostAvatar,
-  PostBackToTop,
   PostBanner,
   PostCardControl,
   PostCollapsible,

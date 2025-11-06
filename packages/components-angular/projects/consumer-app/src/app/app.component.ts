@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router, RouterOutlet, RouterLink } from '@angular/router';
 import {
+  PostBackToTop,
   PostBreadcrumbItem,
   PostBreadcrumbs,
   PostClosebutton,
@@ -28,6 +29,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     RouterOutlet,
     RouterLink,
+    PostBackToTop,
     PostBreadcrumbItem,
     PostBreadcrumbs,
     PostClosebutton,
