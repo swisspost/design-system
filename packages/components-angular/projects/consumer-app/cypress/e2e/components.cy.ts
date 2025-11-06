@@ -8,21 +8,13 @@ describe('Components', () => {
 
   componentNames.forEach(componentName => {
     it(`should contain <${componentName}>`, () => {
-      cy.get('body').then($body => {
-        if ($body.find(componentName).length > 0) {
-          cy.get(componentName).first().should('exist');
-        }
-      });
+      cy.get(componentName).first().should('exist');
     });
   });
 
   componentNames.forEach(componentName => {
     it(`should render and be attached: <${componentName}>`, () => {
-      cy.get('body').then($body => {
-        if ($body.find(componentName).length > 0) {
-          cy.get(componentName).first().should('exist');
-        }
-      });
+      cy.get(`${componentName}[data-hydrated]`).first().should('exist');
     });
   });
 
@@ -33,6 +25,7 @@ describe('Components', () => {
       onBeforeLoad: errorCapture.onBeforeLoad
     });
     
+    // Wait for all components to hydrate and any asynchronous errors to surface
     cy.wait(500);
     
     assertNoComponentErrors(errorCapture.errors, componentNames);
