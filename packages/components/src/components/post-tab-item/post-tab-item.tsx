@@ -19,7 +19,6 @@ export class PostTabItem {
 
   @State() tabId: string;
   @State() isNavigationMode = false;
-  @State() hasAriaCurrent = false;
 
   /**
    * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
@@ -36,7 +35,7 @@ export class PostTabItem {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['aria-current'],
+      attributeFilter: ['class'],
     });
   }
 
@@ -46,7 +45,7 @@ export class PostTabItem {
 
   componentDidLoad() {
     this.checkNavigationMode();
-    this.checkAriaCurrent();
+    this.syncAriaCurrent();
   }
 
   disconnectedCallback() {
@@ -57,7 +56,7 @@ export class PostTabItem {
 
   private handleMutations() {
     this.checkNavigationMode();
-    this.checkAriaCurrent();
+    this.syncAriaCurrent();
   }
 
   private checkNavigationMode() {
@@ -65,10 +64,18 @@ export class PostTabItem {
     this.isNavigationMode = hasAnchor;
   }
 
-  private checkAriaCurrent() {
-    if (this.isNavigationMode) {
-      const anchor = this.host.querySelector('a');
-      this.hasAriaCurrent = anchor?.getAttribute('aria-current') === 'page';
+  private syncAriaCurrent() {
+    if (!this.isNavigationMode) return;
+
+    const anchor = this.host.querySelector('a');
+    if (!anchor) return;
+
+    const isActive = this.host.classList.contains('active');
+
+    if (isActive) {
+      anchor.setAttribute('aria-current', 'page');
+    } else {
+      anchor.removeAttribute('aria-current');
     }
   }
 
@@ -88,7 +95,7 @@ export class PostTabItem {
         data-navigation-mode={this.isNavigationMode.toString()}
         aria-selected={isPanelMode ? 'false' : undefined}
         tabindex={isPanelMode ? '-1' : undefined}
-        class={classes}
+        class="tab-title"
       >
         <slot />
       </Host>

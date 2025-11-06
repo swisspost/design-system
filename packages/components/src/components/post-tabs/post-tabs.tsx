@@ -79,9 +79,16 @@ export class PostTabs {
     this.validateLabel();
 
     if (this.isNavigationMode) {
-      const activeTab = this.findActiveNavigationTab();
-      if (activeTab) {
-        void this.show(activeTab.name);
+      // In navigation mode, check for activeTab prop or find tab with aria-current
+      if (this.activeTab) {
+        void this.show(this.activeTab);
+      } else {
+        const activeTab = this.findActiveNavigationTab();
+        if (activeTab) {
+          void this.show(activeTab.name);
+        } else if (this.tabs.length > 0) {
+          void this.show(this.tabs[0].name);
+        }
       }
     } else {
       const initiallyActiveTab = this.activeTab || this.tabs[0]?.name;
@@ -139,6 +146,14 @@ export class PostTabs {
       // If mode changed, re-initialize
       if (previousMode !== this.isNavigationMode) {
         this.enableTabs();
+        
+        // Re-initialize active tab after mode change
+        if (this.isNavigationMode) {
+          const activeTab = this.activeTab || this.findActiveNavigationTab()?.name || this.tabs[0]?.name;
+          if (activeTab) {
+            void this.show(activeTab);
+          }
+        }
       }
     }
   }
@@ -271,23 +286,26 @@ export class PostTabs {
   }
 
   private activateTab(tab: HTMLPostTabItemElement) {
+    // Deactivate previous tab
     if (this.currentActiveTab) {
       this.currentActiveTab.setAttribute('aria-selected', 'false');
+      this.currentActiveTab.classList.remove('active');
+      
       if (!this.isNavigationMode) {
         this.currentActiveTab.setAttribute('tabindex', '-1');
       } else {
         this.currentActiveTab.removeAttribute('tabindex');
       }
-      this.currentActiveTab.classList.remove('active');
     }
 
     tab.setAttribute('aria-selected', 'true');
+    tab.classList.add('active');
+    
     if (!this.isNavigationMode) {
       tab.setAttribute('tabindex', '0');
     } else {
       tab.removeAttribute('tabindex');
     }
-    tab.classList.add('active');
 
     this.currentActiveTab = tab;
   }
@@ -306,6 +324,7 @@ export class PostTabs {
 
   private showSelectedPanel() {
     const panel = this.getPanel(this.currentActiveTab.name);
+    if (!panel) return;
     panel.style.display = 'block';
 
     // prevent the initially selected panel from fading in
