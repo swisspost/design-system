@@ -52,7 +52,7 @@ export class PostLanguageSwitch {
   }
 
   /**
-   * Disable the animation of the dropdown menu containing the language options
+   * Set the animation of the dropdown menu containing the language options
    */
   @Prop() readonly menuAnimation?: 'pop-in' | 'none';
 

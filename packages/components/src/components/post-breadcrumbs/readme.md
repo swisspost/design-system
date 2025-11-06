@@ -12,7 +12,7 @@
 | `homeText` _(required)_  | `home-text`      | The text label for the home breadcrumb item.                                         | `string`             | `undefined` |
 | `homeUrl` _(required)_   | `home-url`       | The URL for the home breadcrumb item.                                                | `string`             | `undefined` |
 | `label` _(required)_     | `label`          | The accessible label for the breadcrumb component.                                   | `string`             | `undefined` |
-| `menuAnimation`          | `menu-animation` | Sets the dropdown menu animation of the concatenated breadcrumbs                     | `"none" \| "pop-in"` | `undefined` |
+| `menuAnimation`          | `menu-animation` |                                                                                      | `"none" \| "pop-in"` | `undefined` |
 | `menuLabel` _(required)_ | `menu-label`     | The accessible label for the breadcrumb menu when breadcrumb items are concatenated. | `string`             | `undefined` |
 
 

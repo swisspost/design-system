@@ -31,7 +31,7 @@ export class PostBreadcrumbs {
   @Prop() menuLabel!: string;
 
   /**
-   * Sets the dropdown menu animation of the concatenated breadcrumbs
+   *
    */
 
   @Prop() readonly menuAnimation?: 'pop-in' | 'none';

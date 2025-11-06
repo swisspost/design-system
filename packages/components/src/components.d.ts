@@ -113,9 +113,6 @@ export namespace Components {
           * The accessible label for the breadcrumb component.
          */
         "label": string;
-        /**
-          * Sets the dropdown menu animation of the concatenated breadcrumbs
-         */
         "menuAnimation"?: 'pop-in' | 'none';
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
@@ -284,7 +281,7 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Disable the animation of the dropdown menu containing the language options
+          * Set the animation of the dropdown menu containing the language options
          */
         "menuAnimation"?: 'pop-in' | 'none';
         /**
@@ -1058,9 +1055,6 @@ declare namespace LocalJSX {
           * The accessible label for the breadcrumb component.
          */
         "label": string;
-        /**
-          * Sets the dropdown menu animation of the concatenated breadcrumbs
-         */
         "menuAnimation"?: 'pop-in' | 'none';
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
@@ -1225,7 +1219,7 @@ declare namespace LocalJSX {
          */
         "description": string;
         /**
-          * Disable the animation of the dropdown menu containing the language options
+          * Set the animation of the dropdown menu containing the language options
          */
         "menuAnimation"?: 'pop-in' | 'none';
         /**
