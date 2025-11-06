@@ -107,3 +107,490 @@
     <button class="btn btn-secondary btn-large">Button</button>
   </post-tooltip-trigger>
 </div>
+
+<post-back-to-top label="Back to top button"></post-back-to-top>
+
+<h2>Menu</h2>
+<post-menu-trigger for="menu-one">
+  <button class="btn btn-primary">Menu button</button>
+</post-menu-trigger>
+<post-menu id="menu-one">
+  <post-menu-item>
+    <button>Example 1</button>
+  </post-menu-item>
+  <post-menu-item>
+    <a href="#test">Example 2</a>
+    <post-menu-item>
+      <div>Example 3</div>
+    </post-menu-item>
+  </post-menu-item>
+</post-menu>
+
+<h2>Tooltip</h2>
+<post-tooltip-trigger for="tooltip-one">
+  <!-- The aria-describedby attribute need to be defined on the button already, otherwise we'll get a hydration error -->
+  <button class="btn btn-secondary btn-large" aria-describedby="undefined tooltip-one">
+    Button
+  </button>
+</post-tooltip-trigger>
+<post-tooltip id="tooltip-one" class="palette palette-accent" placement="top">
+  Hi there 👋
+</post-tooltip>
+
+<h2>Linkarea</h2>
+<post-linkarea>
+  <div class="card">
+    <div class="card-body">
+      <h5>Titulum</h5>
+      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      <a class="card-link" href="#test">
+        Ligilo teksto
+      </a>
+      <a class="card-link" href="#test">
+        Pli da ligo
+      </a>
+    </div>
+  </div>
+</post-linkarea>
+
+<post-header>
+  <!-- Logo -->
+  <post-logo slot="post-logo" url="/">Homepage</post-logo>
+
+  <!-- Target Group -->
+  <ul slot="target-group" class="target-group">
+    <li>
+      <a href="#" class="active">Private customers</a>
+    </li>
+    <li>
+      <a href="#">Business customers</a>
+    </li>
+  </ul>
+
+  <!-- Global controls (Search) -->
+  <ul class="list-inline" slot="global-controls">
+    <li>
+      <a href="">
+        <span>Search</span>
+        <post-icon aria-hidden="true" name="search"></post-icon>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Meta navigation -->
+  <ul class="list-inline" slot="meta-navigation">
+    <li>
+      <a href="">
+        Jobs
+        <post-icon name="jobs" aria-hidden="true"></post-icon>
+      </a>
+    </li>
+    <li>
+      <a href="">
+        Create Account
+        <post-icon name="adduser" aria-hidden="true"></post-icon>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Language switch -->
+  <post-language-switch
+    caption="Change the language"
+    description="The currently selected language is English."
+    variant="list"
+    name="language-switch-example"
+    slot="post-language-switch"
+  >
+    <post-language-option code="de" name="German">de</post-language-option>
+    <post-language-option code="fr" name="French">fr</post-language-option>
+    <post-language-option code="it" name="Italian">it</post-language-option>
+    <post-language-option active="true" code="en" name="English">en</post-language-option>
+  </post-language-switch>
+
+  <!-- Global header login/user menu -->
+
+  <a href="" slot="global-login">
+    <span>Login</span>
+    <post-icon name="login"></post-icon>
+  </a>
+
+  <!-- Menu button for mobile -->
+  <post-togglebutton slot="post-togglebutton">
+    <span>Menu</span>
+    <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
+    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+  </post-togglebutton>
+
+  <!-- Main navigation -->
+  <post-mainnavigation caption="Main navigation">
+    <post-list title-hidden="">
+      <h2>Main Navigation</h2>
+      <!-- Link only level 1 -->
+      <post-list-item slot="post-list-item">
+        <a href="/letters">Letters</a>
+      </post-list-item>
+      <post-list-item slot="post-list-item">
+        <a href="/packages">Packages</a>
+      </post-list-item>
+
+      <!-- Level 1 with megadropdown -->
+      <post-list-item slot="post-list-item">
+        <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
+        <post-megadropdown id="letters">
+          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+            <post-icon name="arrowleft"></post-icon>
+            Back
+          </button>
+          <post-closebutton slot="close-button">Close</post-closebutton>
+          <h2 slot="megadropdown-title">Letters title</h2>
+          <a slot="megadropdown-overview-link" href="/letters">Overview Letters</a>
+          <post-list>
+            <h3>Send letters</h3>
+            <post-list-item slot="post-list-item">
+              <a href="/sch">Letters Switzerland</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="/kl">Small items abroad</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="">Goods abroad</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="">Express and courier</a>
+            </post-list-item>
+          </post-list>
+          <post-list>
+            <h3><a href="/step-by-step">Step by step</a></h3>
+            <post-list-item slot="post-list-item">
+              <a href="/sch">Packages Switzerland</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="/kl">Small items abroad</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="">Goods abroad</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="">Express and courier</a>
+            </post-list-item>
+          </post-list>
+        </post-megadropdown>
+      </post-list-item>
+      <post-list-item slot="post-list-item">
+        <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
+        <post-megadropdown id="packages">
+          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+            <post-icon name="arrowleft"></post-icon>
+            Back
+          </button>
+          <post-closebutton slot="close-button">Close</post-closebutton>
+          <h2 slot="megadropdown-title">Packages title</h2>
+          <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
+          <post-list>
+            <h3>Send packages</h3>
+            <post-list-item slot="post-list-item">
+              <a href="/sch">Packages Switzerland</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="/kl">Small items abroad</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="">Goods abroad</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="">Express and courier</a>
+            </post-list-item>
+          </post-list>
+          <post-list>
+            <h3><a href="/step-by-step">Step by step</a></h3>
+            <post-list-item slot="post-list-item">
+              <a href="/sch">Packages Switzerland</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="/kl">Small items abroad</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="">Goods abroad</a>
+            </post-list-item>
+            <post-list-item slot="post-list-item">
+              <a href="">Express and courier</a>
+            </post-list-item>
+          </post-list>
+        </post-megadropdown>
+      </post-list-item>
+    </post-list>
+  </post-mainnavigation>
+</post-header>
+<div className="container">
+  <post-breadcrumbs
+    home-url="/"
+    home-text="Home"
+    label="Breadcrumbs"
+    menu-label="More breadcrumb items"
+  >
+    <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+    <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+    <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+  </post-breadcrumbs>
+</div>
+
+<post-footer label="Footer label">
+  <span slot="grid-1-title">Title 1</span>
+  <post-list slot="grid-1" id="grid-1">
+    <h3>Title 1</h3>
+
+    <post-list-item>
+      <a href="#test">Text link 1</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 2</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 3</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 4</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 5</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 6</a>
+    </post-list-item>
+  </post-list>
+
+  <span slot="grid-2-title">Title 2</span>
+  <post-list slot="grid-2">
+    <h3>Title 2</h3>
+
+    <post-list-item>
+      <a href="#test">Text link 1</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 2</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 3</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 4</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 5</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 6</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 7</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 8</a>
+    </post-list-item>
+  </post-list>
+
+  <span slot="grid-3-title">Title 3</span>
+  <post-list slot="grid-3">
+    <h3>Title 3</h3>
+
+    <post-list-item>
+      <a href="#test">Text link 1</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 2</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 3</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 4</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 5</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 6</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 7</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 8</a>
+    </post-list-item>
+  </post-list>
+
+  <span slot="grid-4-title">Title 4</span>
+  <post-list slot="grid-4">
+    <h3>Title 4</h3>
+
+    <post-list-item>
+      <a href="#test">Text link 1</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 2</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 3</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 4</a>
+    </post-list-item>
+
+    <post-list-item>
+      <a href="#test">Text link 5</a>
+    </post-list-item>
+  </post-list>
+
+  <post-list slot="socialmedia">
+    <h3>Follow us</h3>
+    <post-list-item>
+      <a href="#facebook" class="btn btn-primary btn-icon">
+        <post-icon aria-hidden="true" name="8004"></post-icon>
+        <span class="visually-hidden">Facebook</span>
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="#instagram" class="btn btn-primary btn-icon">
+        <post-icon aria-hidden="true" name="8007"></post-icon>
+        <span class="visually-hidden">Instagram</span>
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="#youtube" class="btn btn-primary btn-icon">
+        <post-icon aria-hidden="true" name="8002"></post-icon>
+        <span class="visually-hidden">Youtube</span>
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="#snapchat" class="btn btn-primary btn-icon">
+        <post-icon aria-hidden="true" name="8017"></post-icon>
+        <span class="visually-hidden">Snapchat</span>
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="#twitter-x" class="btn btn-primary btn-icon">
+        <post-icon aria-hidden="true" name="8000"></post-icon>
+        <span class="visually-hidden">Titter X</span>
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="#linkedin" class="btn btn-primary btn-icon">
+        <post-icon aria-hidden="true" name="8005"></post-icon>
+        <span class="visually-hidden">Linkedin</span>
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="#xing" class="btn btn-primary btn-icon">
+        <post-icon aria-hidden="true" name="8001"></post-icon>
+        <span class="visually-hidden">Xing</span>
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="mailto:noreply@post.ch" class="btn btn-primary btn-icon">
+        <post-icon aria-hidden="true" name="letter"></post-icon>
+        <span class="visually-hidden">E-Mail</span>
+      </a>
+    </post-list-item>
+  </post-list>
+
+  <post-list slot="app">
+    <h3>Download app</h3>
+    <post-list-item>
+      <a
+        class="app-store-badge"
+        href="https://play.google.com/store/apps/details?id=com.nth.swisspost&amp;hl=de_CH&amp;pli=1"
+      >
+        <img
+          width="135"
+          height="40"
+          src="https://next.design-system.post.ch/assets/images/google-play-badge.svg"
+          alt="Google Play Store badge"
+        />
+        <span class="visually-hidden">Download the App on Google Play</span>
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a
+        class="app-store-badge"
+        href="https://apps.apple.com/ch/app/die-post/id378676700"
+      >
+        <img
+          width="120"
+          height="40"
+          src="https://next.design-system.post.ch/assets/images/apple-store-badge.svg"
+          alt="Apple App Store badge"
+        />
+        <span class="visually-hidden">Download the App on the Apple Store</span>
+      </a>
+    </post-list-item>
+  </post-list>
+
+  <post-list slot="businesssectors">
+    <h3>Die schweizerische Post AG</h3>
+    <post-list-item>
+      <a href="https://www.postauto.ch">PostAuto</a>
+    </post-list-item>
+    <post-list-item>
+      <a href="https://www.postfinance.ch">PostFinance</a>
+    </post-list-item>
+  </post-list>
+
+  <post-list slot="meta" title-hidden="">
+    <h3>Meta</h3>
+    <post-list-item>
+      <a href="https://www.post.ch/en/pages/footer/accessibility-at-swiss-post">
+        Accessibility
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc">
+        General Terms and Conditions
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer">
+        Data protection and disclaimer
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <a href="https://www.post.ch/en/pages/footer/publication-details">
+        Publication details
+      </a>
+    </post-list-item>
+    <post-list-item>
+      <button
+        class="btn btn-link"
+        [style.minHeight]="0"
+        [style.border]="'0 none'"
+        [style.fontWeight]="'inherit'"
+      >
+        Cookie Settings
+      </button>
+    </post-list-item>
+  </post-list>
+
+  <span slot="copyright">© Copyright 2024 by Swiss Post Ltd.</span>
+  <span slot="copyright">All rights reserved.</span>
+</post-footer>
