@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
@@ -36,7 +36,7 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageSwitchElement>) {
     description=${args.description}
     variant=${args.variant}
     type=${args.type}
-    menu-animation=${args.menuAnimation}
+    menu-animation=${args.variant == 'menu' ? args.menuAnimation : nothing}
   >
     <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
     <post-language-option active="true" code="en" name="English">en</post-language-option>
