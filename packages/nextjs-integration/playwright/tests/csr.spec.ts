@@ -17,7 +17,7 @@ test.describe('CSR compatibility', () => {
   test('should render and be attached (hydrated)', async ({ page }) => {
     for (const componentName of componentNames) {
       const component = page.locator(`${componentName}[data-hydrated]`).first();
-      await expect(component).toHaveCount(1);
+      await expect(component).toBeAttached();
     }
   });
 
