@@ -54,7 +54,7 @@ export class PostLanguageSwitch {
   /**
    * Disable the animation of the dropdown menu containing the language options
    */
-  @Prop() readonly menuAnimationOff?: boolean;
+  @Prop() readonly menuAnimation?: 'pop-in' | 'none';
 
   /**
    * The active language of the language switch
@@ -144,7 +144,7 @@ export class PostLanguageSwitch {
           id={this.menuId}
           class="post-language-switch-dropdown-container"
           label={this.caption}
-          animation-off={this.menuAnimationOff}
+          animation={this.menuAnimation}
         >
           <slot></slot>
         </post-menu>

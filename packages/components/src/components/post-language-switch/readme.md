@@ -5,12 +5,12 @@
 
 ## Properties
 
-| Property                   | Attribute            | Description                                                                | Type               | Default     |
-| -------------------------- | -------------------- | -------------------------------------------------------------------------- | ------------------ | ----------- |
-| `caption` _(required)_     | `caption`            | A title for the list of language options                                   | `string`           | `undefined` |
-| `description` _(required)_ | `description`        | A descriptive text for the list of language options                        | `string`           | `undefined` |
-| `menuAnimationOff`         | `menu-animation-off` | Disable the animation of the dropdown menu containing the language options | `boolean`          | `undefined` |
-| `variant`                  | `variant`            | Whether the component is rendered as a list or a menu                      | `"list" \| "menu"` | `'list'`    |
+| Property                   | Attribute        | Description                                                                | Type                 | Default     |
+| -------------------------- | ---------------- | -------------------------------------------------------------------------- | -------------------- | ----------- |
+| `caption` _(required)_     | `caption`        | A title for the list of language options                                   | `string`             | `undefined` |
+| `description` _(required)_ | `description`    | A descriptive text for the list of language options                        | `string`             | `undefined` |
+| `menuAnimation`            | `menu-animation` | Disable the animation of the dropdown menu containing the language options | `"none" \| "pop-in"` | `undefined` |
+| `variant`                  | `variant`        | Whether the component is rendered as a list or a menu                      | `"list" \| "menu"`   | `'list'`    |
 
 
 ## Dependencies

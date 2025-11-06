@@ -31,10 +31,10 @@ export class PostBreadcrumbs {
   @Prop() menuLabel!: string;
 
   /**
-   * Disable the dropdown menu animation of the concatenated breadcrumbs
+   * Sets the dropdown menu animation of the concatenated breadcrumbs
    */
 
-  @Prop() readonly menuAnimationOff?: boolean;
+  @Prop() readonly menuAnimation?: 'pop-in' | 'none';
 
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
@@ -186,7 +186,7 @@ export class PostBreadcrumbs {
                   <post-menu
                     id="breadcrumb-menu"
                     label={this.menuLabel}
-                    animation-off={this.menuAnimationOff}
+                    animation={this.menuAnimation}
                   >
                     {visibleItems.map(item => (
                       <post-menu-item

@@ -114,9 +114,9 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Disable the dropdown menu animation of the concatenated breadcrumbs
+          * Sets the dropdown menu animation of the concatenated breadcrumbs
          */
-        "menuAnimationOff"?: boolean;
+        "menuAnimation"?: 'pop-in' | 'none';
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -286,7 +286,7 @@ export namespace Components {
         /**
           * Disable the animation of the dropdown menu containing the language options
          */
-        "menuAnimationOff"?: boolean;
+        "menuAnimation"?: 'pop-in' | 'none';
         /**
           * Whether the component is rendered as a list or a menu
           * @default 'list'
@@ -343,10 +343,10 @@ export namespace Components {
     }
     interface PostMenu {
         /**
-          * Disable animation
-          * @default false
+          * Sets the animation type
+          * @default 'pop-in'
          */
-        "animationOff": boolean;
+        "animation": 'pop-in' | 'none';
         /**
           * Hides the popover menu and restores focus to the previously focused element.
          */
@@ -1059,9 +1059,9 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Disable the dropdown menu animation of the concatenated breadcrumbs
+          * Sets the dropdown menu animation of the concatenated breadcrumbs
          */
-        "menuAnimationOff"?: boolean;
+        "menuAnimation"?: 'pop-in' | 'none';
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -1227,7 +1227,7 @@ declare namespace LocalJSX {
         /**
           * Disable the animation of the dropdown menu containing the language options
          */
-        "menuAnimationOff"?: boolean;
+        "menuAnimation"?: 'pop-in' | 'none';
         /**
           * Whether the component is rendered as a list or a menu
           * @default 'list'
@@ -1272,10 +1272,10 @@ declare namespace LocalJSX {
     }
     interface PostMenu {
         /**
-          * Disable animation
-          * @default false
+          * Sets the animation type
+          * @default 'pop-in'
          */
-        "animationOff"?: boolean;
+        "animation"?: 'pop-in' | 'none';
         /**
           * An accessible name for the menu.
          */

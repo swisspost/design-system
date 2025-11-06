@@ -19,12 +19,10 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
     type: 'language',
     caption: 'Change the language',
     description: 'The currently selected language is English.',
-    menuAnimationOff: false,
+    menuAnimation: 'pop-in',
   },
   argTypes: {
-    menuAnimationOff: {
-      control: 'select',
-      options: ['pop-in'],
+    menuAnimation: {
       if: { arg: 'variant', eq: 'menu' },
     },
   },
@@ -38,7 +36,7 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageSwitchElement>) {
     description=${args.description}
     variant=${args.variant}
     type=${args.type}
-    menu-animation-off=${args.menuAnimationOff}
+    menu-animation=${args.menuAnimation}
   >
     <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
     <post-language-option active="true" code="en" name="English">en</post-language-option>
@@ -51,7 +49,7 @@ function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageSwitchElement
     caption=${args.caption}
     description=${args.description}
     variant="menu"
-    menu-animation-off=${args.menuAnimationOff}
+    menu-animation=${args.menuAnimation}
   >
     <post-language-option url="/de" active="false" code="de" name="Deutsch"
       >DE</post-language-option

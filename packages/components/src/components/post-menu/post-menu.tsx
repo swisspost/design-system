@@ -66,9 +66,9 @@ export class PostMenu {
   }
 
   /**
-   * Disable animation
+   * Sets the animation type
    */
-  @Prop() readonly animationOff: boolean = false;
+  @Prop() readonly animation: 'pop-in' | 'none' = 'pop-in';
 
   /**
    * Holds the current visibility state of the menu.
@@ -255,7 +255,7 @@ export class PostMenu {
           onPostShow={this.handlePostShown}
           onPostBeforeToggle={this.handlePostBeforeToggle}
           placement={this.placement}
-          animation={this.animationOff ? undefined : 'pop-in'}
+          animation={this.animation === 'none' ? null : this.animation }
           ref={e => (this.popoverRef = e)}
         >
           <div part="menu">

@@ -1,5 +1,5 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -19,7 +19,7 @@ const meta: MetaComponent = {
     homeText: 'Home',
     label: 'Breadcrumbs',
     menuLabel: 'More breadcrumb items',
-    menuAnimationOff: false,
+    menuAnimation: 'pop-in',
   },
 };
 
@@ -34,7 +34,7 @@ export const Default: Story = {
       home-text=${args.homeText}
       label=${args.label}
       menu-label=${args.menuLabel}
-      menu-animation-off=${args.menuAnimationOff ? args.menuAnimationOff : nothing}
+      menu-animation=${args.menuAnimation}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -50,7 +50,7 @@ export const Concatenated: Story = {
       home-text=${args.homeText}
       label=${args.label}
       menu-label=${args.menuLabel}
-      menu-animation-off=${args.menuAnimationOff ? args.menuAnimationOff : nothing}
+      menu-animation=${args.menuAnimation}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -89,6 +89,6 @@ export const BreadcrumbItem: Story = {
     homeText: { table: { disable: true } },
     label: { table: { disable: true } },
     menuLabel: { table: { disable: true } },
-    menuAnimationOff: { table: { disable: true } },
+    menuAnimation: { table: { disable: true } },
   },
 };
