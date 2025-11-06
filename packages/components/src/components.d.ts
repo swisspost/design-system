@@ -283,7 +283,7 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Set the animation of the dropdown menu containing the language options
+          * Sets the animation of the dropdown menu containing the language options
          */
         "menuAnimation"?: 'pop-in' | 'none';
         /**
@@ -1221,7 +1221,7 @@ declare namespace LocalJSX {
          */
         "description": string;
         /**
-          * Set the animation of the dropdown menu containing the language options
+          * Sets the animation of the dropdown menu containing the language options
          */
         "menuAnimation"?: 'pop-in' | 'none';
         /**
