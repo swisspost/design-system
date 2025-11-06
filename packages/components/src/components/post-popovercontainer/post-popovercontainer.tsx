@@ -215,13 +215,12 @@ export class PostPopovercontainer {
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
+        if (this.hasOpenedOnce) this.hasOpenedOnce = false;
       } else {
         // Get the animation function from the registry
         const animationFn = ANIMATIONS[this.animation];
         this.runAnimation(animationFn, popoverContentEl);
       }
-
-      if (this.hasOpenedOnce) this.hasOpenedOnce = false;
     }
 
     if (this.safeSpace) {
@@ -287,6 +286,7 @@ export class PostPopovercontainer {
     animationFn: (el: HTMLElement) => Animation | undefined,
     element: HTMLElement,
   ) {
+    console.log('get in animation');
     const animation = animationFn(element);
 
     if (animation?.playState === 'running') {
@@ -298,6 +298,8 @@ export class PostPopovercontainer {
 
     this.postToggle.emit({ isOpen: true });
     this.postShow.emit({ first: this.hasOpenedOnce });
+
+    if (this.hasOpenedOnce) this.hasOpenedOnce = false;
   }
 
   /**
