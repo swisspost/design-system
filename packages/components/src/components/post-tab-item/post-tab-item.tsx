@@ -84,7 +84,6 @@ export class PostTabItem {
     const classes = {
       'tab-title': isPanelMode,
       'nav-item': this.isNavigationMode,
-      active: this.isNavigationMode && this.hasAriaCurrent,
     };
 
     return (
@@ -95,7 +94,7 @@ export class PostTabItem {
         data-navigation-mode={this.isNavigationMode.toString()}
         aria-selected={isPanelMode ? 'false' : undefined}
         tabindex={isPanelMode ? '-1' : undefined}
-        class="tab-title"
+        class={classes}
       >
         <slot />
       </Host>
