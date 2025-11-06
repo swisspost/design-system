@@ -1,10 +1,10 @@
 import { Page } from '@playwright/test';
 
 const IGNORE_ERROR_PATTERNS = [
-  /hydration failed because/i,
-  /server rendered html didn't match/i,
-  /there was an error while hydrating/i,
-  /hydration error/i,
+  /^hydration failed because/i,
+  /^server rendered html didn't match/i,
+  /^there was an error while hydrating/i,
+  /^hydration error/i,
 ];
 
 /**
@@ -12,9 +12,9 @@ const IGNORE_ERROR_PATTERNS = [
  * Captures console.error and page errors for Playwright tests.
  * @param page - Playwright page object
  * @param componentNames - Array of component names to monitor
- * @returns Object with errors array
+ * @returns Array of captured error messages
  */
-export function setupComponentErrorCapture(page: Page, componentNames: string[]) {
+export function captureComponentErrors(page: Page, componentNames: string[]): string[] {
   const errors: string[] = [];
   const lowerCaseComponentNames = componentNames.map(n => n.toLowerCase());
 
@@ -29,26 +29,25 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
     }
   };
 
-  const isIgnoredError = (text: string): boolean => {
+  function isIgnoredError(text: string): boolean {
     return IGNORE_ERROR_PATTERNS.some(pattern => pattern.test(text));
-  };
+  }
 
-  const isRelevant = (message: string): boolean => {
+  function isRelevant(message: string): boolean {
     const lowerCaseMessage = message.toLowerCase();
     return lowerCaseComponentNames.some(n => lowerCaseMessage.includes(n));
-  };
+  }
 
-  const capture = (message: string) => {
+  function capture(message: string): void {
     if (!isIgnoredError(message) && isRelevant(message)) {
       errors.push(message);
     }
-  };
+  }
 
   // Capture console errors
   page.on('console', msg => {
     if (msg.type() === 'error') {
-      const text = msg.text();
-      capture(text);
+      capture(msg.text());
     }
   });
 
@@ -57,7 +56,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
     capture(extractMessage(error));
   });
 
-  return { errors };
+  return errors;
 }
 
 /**
