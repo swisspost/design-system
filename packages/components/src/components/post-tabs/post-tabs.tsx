@@ -288,23 +288,19 @@ export class PostTabs {
   private activateTab(tab: HTMLPostTabItemElement) {
     // Deactivate previous tab
     if (this.currentActiveTab) {
-      this.currentActiveTab.setAttribute('aria-selected', 'false');
       this.currentActiveTab.classList.remove('active');
-      
+    
       if (!this.isNavigationMode) {
+        this.currentActiveTab.setAttribute('aria-selected', 'false');
         this.currentActiveTab.setAttribute('tabindex', '-1');
-      } else {
-        this.currentActiveTab.removeAttribute('tabindex');
       }
     }
 
-    tab.setAttribute('aria-selected', 'true');
     tab.classList.add('active');
-    
+
     if (!this.isNavigationMode) {
+      tab.setAttribute('aria-selected', 'true');
       tab.setAttribute('tabindex', '0');
-    } else {
-      tab.removeAttribute('tabindex');
     }
 
     this.currentActiveTab = tab;
