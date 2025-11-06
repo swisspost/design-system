@@ -37,6 +37,12 @@ interface PopoverElement {
   togglePopover: (force?: boolean) => boolean;
 }
 
+const ANIMATIONS = {
+  'pop-in': popIn,
+} as const;
+
+type AnimationName = keyof typeof ANIMATIONS;
+
 export type PostPopoverElement = HTMLElement & PopoverElement;
 
 /**
@@ -117,7 +123,7 @@ export class PostPopovercontainer {
   /**
    * Animation style
    */
-  @Prop() readonly animation?: 'pop-in' | null = null;
+  @Prop() readonly animation?: AnimationName | null = null;
 
   /**
    * Whether or not to display a little pointer arrow
@@ -146,6 +152,11 @@ export class PostPopovercontainer {
   @Watch('safeSpace')
   validateSafeSpace() {
     checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
+  }
+
+  @Watch('animation')
+  validateAnimation() {
+    checkEmptyOrOneOf(this, 'animation', Object.keys(ANIMATIONS));
   }
 
   /**
@@ -193,30 +204,21 @@ export class PostPopovercontainer {
    */
   @Method()
   async open() {
-    const content = this.host.querySelector('.popover-content');
+    const popoverContentEl: HTMLElement = this.host.querySelector('.popover-content');
     this.startAutoupdates();
 
-    if (content) {
+    if (popoverContentEl) {
       // Only run and emit animation-related events if animation is defined
-
-      if (this.animation === 'pop-in') {
-        const animation = popIn(content);
-
-        if (animation?.playState === 'running') {
-          this.postBeforeToggle.emit({ willOpen: true });
-          this.postBeforeShow.emit({ first: this.hasOpenedOnce });
-        }
-
-        await animation.finished;
-
-        this.postToggle.emit({ isOpen: true });
-        this.postShow.emit({ first: this.hasOpenedOnce });
-      } else {
+      if (this.animation === null) {
         // No animation case
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
+      } else {
+        // Get the animation function from the registry
+        const animationFn = ANIMATIONS[this.animation];
+        this.runAnimation(animationFn, popoverContentEl);
       }
 
       if (this.hasOpenedOnce) this.hasOpenedOnce = false;
@@ -276,6 +278,26 @@ export class PostPopovercontainer {
     }
 
     return this.host.matches(':where(:popover-open, .popover-open)');
+  }
+
+  /**
+   * Runs the animation and emits the toggle/show/hide events in the correct timing
+   */
+  private async runAnimation(
+    animationFn: (el: HTMLElement) => Animation | undefined,
+    element: HTMLElement,
+  ) {
+    const animation = animationFn(element);
+
+    if (animation?.playState === 'running') {
+      this.postBeforeToggle.emit({ willOpen: true });
+      this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+    }
+
+    await animation?.finished;
+
+    this.postToggle.emit({ isOpen: true });
+    this.postShow.emit({ first: this.hasOpenedOnce });
   }
 
   /**

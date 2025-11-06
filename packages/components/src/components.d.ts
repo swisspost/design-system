@@ -417,7 +417,7 @@ export namespace Components {
           * Animation style
           * @default null
          */
-        "animation"?: 'pop-in' | null;
+        "animation"?: AnimationName | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -1319,7 +1319,7 @@ declare namespace LocalJSX {
           * Animation style
           * @default null
          */
-        "animation"?: 'pop-in' | null;
+        "animation"?: AnimationName | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
