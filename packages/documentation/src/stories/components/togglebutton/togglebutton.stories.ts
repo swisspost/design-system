@@ -14,7 +14,7 @@ export interface PostTogglebuttonProps {
 const meta: MetaComponent<PostTogglebuttonProps> = {
   id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
   title: 'Components/Button Toggle',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   render: renderBadge,
   component: 'post-togglebutton',
   parameters: {

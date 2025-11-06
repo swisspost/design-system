@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '956e063b-b40c-4fe4-bc27-53b8c4ab1e81',
   title: 'Components/Rating',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-rating',
   render: render,
   parameters: {

@@ -6,12 +6,12 @@ const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',
   title: 'Components/Breadcrumbs',
   component: 'post-breadcrumbs',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1787-20607&node-type=instance&m=dev',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=558-16158&m=dev',
     },
   },
   args: {

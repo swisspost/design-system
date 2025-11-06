@@ -1,5 +1,38 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.53
+  - @swisspost/design-system-icons@10.0.0-next.53
+
+## 10.0.0-next.52
+
+### Major Changes
+
+- Added a new required `label` prop for the accessible name of `<post-breadcrumbs>` and made its `homeText` prop required. Made the `<post-rating>` label prop required. (by [@myrta2302](https://github.com/myrta2302) with [#6487](https://github.com/swisspost/design-system/pull/6487))
+
+- Introduced `<post-popover-trigger>` web component to replace the previous `data-popover-target` implementation. (by [@myrta2302](https://github.com/myrta2302) with [#6209](https://github.com/swisspost/design-system/pull/6209))
+
+### Minor Changes
+
+- Added a slot to the `post-megadropdown` component to support an optional “overview link” above the other links. This allows users to include a top-level link for each megadropdown, enabling navigation to the overview page. (by [@leagrdv](https://github.com/leagrdv) with [#6513](https://github.com/swisspost/design-system/pull/6513))
+
+### Patch Changes
+
+- Replaced `Post Icons` with their corresponding `UI Icon` equivalents across the package to align icon usage with the current design guidelines. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6217](https://github.com/swisspost/design-system/pull/6217))
+
+- Added the megadropdown overview link into the list of focusable elements in the `post-megadropdown`. (by [@leagrdv](https://github.com/leagrdv) with [#6557](https://github.com/swisspost/design-system/pull/6557))
+
+- Added styles to center the `post-closebutton` button within its container. (by [@myrta2302](https://github.com/myrta2302) with [#6526](https://github.com/swisspost/design-system/pull/6526))
+
+- Fixed an issue with dependency managemant around @stencil/core. This package no longer has to be installed as a dependency by projects using the Design System Components or Components Angular packages as it's now declared a dependency of the components package (was a devDependency before). (by [@gfellerph](https://github.com/gfellerph) with [#6554](https://github.com/swisspost/design-system/pull/6554))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.52
+  - @swisspost/design-system-styles@10.0.0-next.52
+
 ## 10.0.0-next.51
 
 ### Patch Changes
