@@ -41,7 +41,7 @@ const ANIMATIONS = {
   'pop-in': popIn,
 } as const;
 
-type AnimationName = keyof typeof ANIMATIONS;
+export type AnimationName = keyof typeof ANIMATIONS;
 
 export type PostPopoverElement = HTMLElement & PopoverElement;
 

@@ -10,11 +10,13 @@ import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType } from "./components/post-closebutton/button-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
+import { AnimationName } from "./components/post-popovercontainer/post-popovercontainer";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType } from "./components/post-closebutton/button-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
+export { AnimationName } from "./components/post-popovercontainer/post-popovercontainer";
 export namespace Components {
     interface PostAccordion {
         /**
