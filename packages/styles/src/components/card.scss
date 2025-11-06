@@ -1,6 +1,5 @@
 @use './../variables/commons';
 @use './../mixins/icons' as icons-mx;
-@use './../variables/icons';
 @use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
@@ -10,11 +9,7 @@
 
 tokens.$default-map: components.$post-cards;
 
-post-linkarea:has(> .card) {
-  border-radius: tokens.get('card-border-radius');
-  display: block;
-  @include utilities-mx.focus-style();
-}
+@include icons-mx.custom-property('arrowright');
 
 .card {
   display: flex;
@@ -27,7 +22,7 @@ post-linkarea:has(> .card) {
   @include color-scheme.set(tokens.get('card-scheme'));
 
   // Add an elevation only if card is interactive
-  post-linkarea > & {
+  &:is(post-linkarea) {
     border: 0;
     box-shadow: tokens.get('card-interactive-elevation');
 
@@ -108,11 +103,11 @@ post-linkarea:has(> .card) {
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mx.icon(3020);
+      @include icons-mx.mask-image('arrowright');
       content: '';
       display: inline-block;
-      width: icons.$icon-size-default;
-      height: icons.$icon-size-default;
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }

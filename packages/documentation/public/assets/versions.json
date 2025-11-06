@@ -1,24 +1,24 @@
 [
   {
     "title": "Version 10 (next)",
-    "version": "10.0.0-next.48",
+    "version": "10.0.0-next.53",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
     "url": "https://next.design-system.post.ch",
     "dependencies": {
       "@swisspost/design-system-changelog-github": "1.0.2",
-      "@swisspost/design-system-components": "10.0.0-next.48",
-      "@swisspost/design-system-components-angular-workspace": "1.1.10-next.48",
-      "@swisspost/design-system-components-angular": "10.0.0-next.48",
-      "@swisspost/design-system-components-react": "10.0.0-next.48",
-      "@swisspost/design-system-documentation": "6.0.0-next.49",
-      "@swisspost/design-system-eslint": "1.0.1-next.1",
-      "@swisspost/design-system-icons": "10.0.0-next.48",
-      "@swisspost/internet-header": "10.0.0-next.48",
-      "@swisspost/design-system-nextjs-integration": "0.1.14-next.48",
-      "@swisspost/design-system-styles": "10.0.0-next.48",
-      "@swisspost/design-system-styles-primeng-workspace": "1.0.6-next.48",
-      "@swisspost/design-system-styles-primeng": "10.0.0-next.48",
-      "@swisspost/design-system-tokens": "10.0.0-next.48"
+      "@swisspost/design-system-components": "10.0.0-next.53",
+      "@swisspost/design-system-components-angular-workspace": "1.1.10-next.53",
+      "@swisspost/design-system-components-angular": "10.0.0-next.53",
+      "@swisspost/design-system-components-react": "10.0.0-next.53",
+      "@swisspost/design-system-documentation": "6.0.0-next.54",
+      "@swisspost/design-system-eslint": "1.1.0-next.2",
+      "@swisspost/design-system-icons": "10.0.0-next.53",
+      "@swisspost/internet-header": "10.0.0-next.53",
+      "@swisspost/design-system-nextjs-integration": "0.1.14-next.53",
+      "@swisspost/design-system-styles": "10.0.0-next.53",
+      "@swisspost/design-system-styles-primeng-workspace": "1.0.6-next.53",
+      "@swisspost/design-system-styles-primeng": "10.0.0-next.53",
+      "@swisspost/design-system-tokens": "10.0.0-next.53"
     }
   },
   {

@@ -7,12 +7,12 @@ const MAX_LABELS = 8;
 const meta: MetaComponent = {
   id: '78509712-d45e-462c-bde3-405cfaff5421',
   title: 'Components/Segmented button',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Experimental'],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=2864-83396&node-type=instance&m=dev',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=18-16&m=dev',
     },
   },
   args: {
@@ -60,8 +60,17 @@ export const IconExample: Story = {
   render: (args: Args) => {
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
     const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
-    
-    const iconNames = ['letter', 'parcel', 'letterandparcel', 'locationpackage', 'locationletter', 'stampapost', 'stampbpost', 'mailboxprivate'];
+
+    const iconNames = [
+      'letter',
+      'parcel',
+      'letterandparcel',
+      'locationpackage',
+      'locationletter',
+      'stampapost',
+      'stampbpost',
+      'mailboxprivate',
+    ];
 
     return html`
       <div class="segmented-button-container">

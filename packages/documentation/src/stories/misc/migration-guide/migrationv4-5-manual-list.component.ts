@@ -1,14 +1,16 @@
 import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getLocaleStorage, MIGRATION_CHECKS_KEY, setLocaleStorage } from './util/persist.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V4 } from './util/persist.util';
 import { _templateAutoIcon } from './util/template.util';
+import { V45Checks } from './types';
+import { _updateOnChange } from './util/migration-checks.util';
 
 @customElement('migration-version-4-5-manual-list')
 export class MigrationV45ManualListComponent extends LitElement {
   @property({ type: Boolean }) angular?: boolean;
 
   @state()
-  private state: TodoListChecks = {
+  private state: V45Checks = {
     general: {
       naming_cwfpackagename: false,
       naming_entryfiles: false,
@@ -103,7 +105,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
   constructor() {
     super();
-    this._restorePersistedState();
+    this.state = _restorePersistedState<V45Checks>(MIGRATION_CHECKS_KEY_V4) ?? this.state;
   }
 
   render() {
@@ -122,13 +124,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.naming_cwfpackagename"
+                    id="general-naming_cwfpackagename"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.naming_cwfpackagename}"
                   />
 
-                  <label class="form-check-label" for="general.naming_cwfpackagename">
+                  <label class="form-check-label" for="general-naming_cwfpackagename">
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed <em>packages</em>.
                     <ul class="mt-8">
                       <li>
@@ -150,12 +152,12 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.naming_entryfiles"
+                    id="general-naming_entryfiles"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.naming_entryfiles}"
                   />
-                  <label for="general.naming_entryfiles" class="form-check-label">
+                  <label for="general-naming_entryfiles" class="form-check-label">
                     <span class="tag tag-sm tag-danger">breaking</span>
                     Renamed entry files. Renamed entry files.
                     <br />
@@ -208,13 +210,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.naming_cwfname"
+                    id="general-naming_cwfname"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.naming_cwfname}"
                   />
 
-                  <label class="form-check-label" for="general.naming_cwfname">
+                  <label class="form-check-label" for="general-naming_cwfname">
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>src/cwf.scss</em> file to <em>src/core.scss</em>.<br />
                     <span
@@ -238,13 +240,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.naming_cwflicense"
+                    id="general-naming_cwflicense"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.naming_cwflicense}"
                   />
 
-                  <label class="form-check-label" for="general.naming_cwflicense">
+                  <label class="form-check-label" for="general-naming_cwflicense">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>src/lic/cwf-license.scss</em>
                     file.
@@ -254,13 +256,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.naming_options"
+                    id="general-naming_options"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.naming_options}"
                   />
 
-                  <label class="form-check-label" for="general.naming_options">
+                  <label class="form-check-label" for="general-naming_options">
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>src/themes/bootstrap/options.scss</em> file to
                     <em>src/variables/features.scss</em>.
@@ -277,13 +279,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_isolatecomponents"
+                    id="general-variables_isolatecomponents"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_isolatecomponents}"
                   />
 
-                  <label class="form-check-label" for="general.variables_isolatecomponents">
+                  <label class="form-check-label" for="general-variables_isolatecomponents">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <code>$isolate-components</code>
                     variable.
@@ -293,13 +295,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_fontsizemap"
+                    id="general-variables_fontsizemap"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_fontsizemap}"
                   />
 
-                  <label class="form-check-label" for="general.variables_fontsizemap">
+                  <label class="form-check-label" for="general-variables_fontsizemap">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <code>$font-size-map</code>
                     variable.
@@ -309,13 +311,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_lineheightrg"
+                    id="general-variables_lineheightrg"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_lineheightrg}"
                   />
 
-                  <label class="form-check-label" for="general.variables_lineheightrg">
+                  <label class="form-check-label" for="general-variables_lineheightrg">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <code>$line-height-rg</code> variable.<br />
                     <em>Line-heights</em> are now relative to the font-size.
@@ -325,13 +327,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_floatinglabel"
+                    id="general-variables_floatinglabel"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_floatinglabel}"
                   />
 
-                  <label class="form-check-label" for="general.variables_floatinglabel">
+                  <label class="form-check-label" for="general-variables_floatinglabel">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>floating-label</em> variables.<br />
                     <ul class="mt-8">
@@ -347,13 +349,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_colorsremoved"
+                    id="general-variables_colorsremoved"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_colorsremoved}"
                   />
 
-                  <label class="form-check-label" for="general.variables_colorsremoved">
+                  <label class="form-check-label" for="general-variables_colorsremoved">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>color</em> variables.<br />
                     <ul class="mt-8">
@@ -386,13 +388,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_colorsrenamed"
+                    id="general-variables_colorsrenamed"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_colorsrenamed}"
                   />
 
-                  <label class="form-check-label" for="general.variables_colorsrenamed">
+                  <label class="form-check-label" for="general-variables_colorsrenamed">
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>color</em> variables.
                     <ul class="mt-8">
@@ -415,13 +417,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_lineheigts"
+                    id="general-variables_lineheigts"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_lineheigts}"
                   />
 
-                  <label class="form-check-label" for="general.variables_lineheigts">
+                  <label class="form-check-label" for="general-variables_lineheigts">
                     Dropped usage of <em>line-height</em> variables.<br />
                     <ul class="mt-8">
                       <li><code>$line-height-sm</code></li>
@@ -434,13 +436,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_lineheightlighter"
+                    id="general-variables_lineheightlighter"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_lineheightlighter}"
                   />
 
-                  <label class="form-check-label" for="general.variables_lineheightlighter">
+                  <label class="form-check-label" for="general-variables_lineheightlighter">
                     Dropped usage of <code>$font-weight-lighter</code> variable.<br />
                     Also removed corresponding <code>@font-face</code> rule.<br />
                     <p class="info">The variable remains available because of Bootstrap.</p>
@@ -450,13 +452,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.variables_headingfontsizes"
+                    id="general-variables_headingfontsizes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.variables_headingfontsizes}"
                   />
 
-                  <label class="form-check-label" for="general.variables_headingfontsizes">
+                  <label class="form-check-label" for="general-variables_headingfontsizes">
                     Dropped usage of <em>font-size</em> variables.<br />
                     Headings now have responsive font-sizes.<br />
                     <ul class="mt-8">
@@ -481,13 +483,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.mixins_fontsizelineheight"
+                    id="general-mixins_fontsizelineheight"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.mixins_fontsizelineheight}"
                   />
 
-                  <label class="form-check-label" for="general.mixins_fontsizelineheight">
+                  <label class="form-check-label" for="general-mixins_fontsizelineheight">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>font-size</em> and <em>line-height</em> mixins:<br />
                     <ul class="mt-8">
@@ -508,13 +510,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.classes_bgopacity"
+                    id="general-classes_bgopacity"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.classes_bgopacity}"
                   />
 
-                  <label class="form-check-label" for="general.classes_bgopacity">
+                  <label class="form-check-label" for="general-classes_bgopacity">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <code>.bg-[colorname]-opacity-[opacityvalue]</code> classes.<br />
@@ -530,13 +532,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.classes_secondary"
+                    id="general-classes_secondary"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.classes_secondary}"
                   />
 
-                  <label class="form-check-label" for="general.classes_secondary"
+                  <label class="form-check-label" for="general-classes_secondary"
                     >${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>secondary</em> classes.<br />
@@ -551,13 +553,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.classes_rtlmode"
+                    id="general-classes_rtlmode"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.classes_rtlmode}"
                   />
 
-                  <label class="form-check-label" for="general.classes_rtlmode">
+                  <label class="form-check-label" for="general-classes_rtlmode">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span>
                     Updated spacing and alignment helper classes, for better support of
@@ -618,13 +620,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="general.classes_sronly"
+                    id="general-classes_sronly"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.general.classes_sronly}"
                   />
 
-                  <label class="form-check-label" for="general.classes_sronly"
+                  <label class="form-check-label" for="general-classes_sronly"
                     >${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Updated
                     <em>sr-only</em>
@@ -658,13 +660,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.alerts_closebuttoncontent"
+                    id="bootstrap-alerts_closebuttoncontent"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.alerts_closebuttoncontent}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.alerts_closebuttoncontent">
+                  <label class="form-check-label" for="bootstrap-alerts_closebuttoncontent">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed the
                     <code>&lt;span aria-hidden="true"&gt;&lt;/span&gt;</code>
@@ -677,13 +679,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.alerts_closebuttonclass"
+                    id="bootstrap-alerts_closebuttonclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.alerts_closebuttonclass}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.alerts_closebuttonclass">
+                  <label class="form-check-label" for="bootstrap-alerts_closebuttonclass">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed class
                     <code>.close</code> to <code>.btn-close</code>.
@@ -707,13 +709,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.badges_classes"
+                    id="bootstrap-badges_classes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.badges_classes}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.badges_classes">
+                  <label class="form-check-label" for="bootstrap-badges_classes">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>badge</em> classes.<br />
@@ -762,13 +764,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.backgrounds_textcolor"
+                    id="bootstrap-backgrounds_textcolor"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.backgrounds_textcolor}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.backgrounds_textcolor">
+                  <label class="form-check-label" for="bootstrap-backgrounds_textcolor">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.text-auto</code> class on elements with background classes such as
                     <code>.bg-[colorname]</code>. The <em>text-color</em> is now automatically
@@ -794,13 +796,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.blockquotes_footerstructure"
+                    id="bootstrap-blockquotes_footerstructure"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.blockquotes_footerstructure}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.blockquotes_footerstructure">
+                  <label class="form-check-label" for="bootstrap-blockquotes_footerstructure">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Refactored
                     <em>blockquote</em> with footer.<br />
@@ -814,13 +816,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.blockquotes_qclass"
+                    id="bootstrap-blockquotes_qclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.blockquotes_qclass}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.blockquotes_qclass">
+                  <label class="form-check-label" for="bootstrap-blockquotes_qclass">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.mb-0</code> class, on <em>p</em> tags within
                     <em>blockquote</em> elements.
@@ -844,13 +846,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.buttons_outline"
+                    id="bootstrap-buttons_outline"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.buttons_outline}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.buttons_outline">
+                  <label class="form-check-label" for="bootstrap-buttons_outline">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>button</em> classes <code>.btn-outline-[colorname]</code>.<br />
@@ -865,13 +867,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.buttons_borderradius"
+                    id="bootstrap-buttons_borderradius"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.buttons_borderradius}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.buttons_borderradius">
+                  <label class="form-check-label" for="bootstrap-buttons_borderradius">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>button</em> variables.<br />
                     <ul class="mt-8">
@@ -884,13 +886,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.buttons_borderradius2"
+                    id="bootstrap-buttons_borderradius2"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.buttons_borderradius2}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.buttons_borderradius2">
+                  <label class="form-check-label" for="bootstrap-buttons_borderradius2">
                     Dropped the usage of <em>button</em> variables.
                     <ul class="mt-8">
                       <li><code>$btn-border-radius-sm</code></li>
@@ -903,13 +905,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.buttons_invertedclass"
+                    id="bootstrap-buttons_invertedclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.buttons_invertedclass}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.buttons_invertedclass">
+                  <label class="form-check-label" for="bootstrap-buttons_invertedclass">
                     ${this._templateAutoIconAngular()} Dropped the usage of
                     <code>.btn-inverted</code> class.<br />
                     <em>Text-colors</em> are now automatically handled.
@@ -919,13 +921,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.buttons_iconclass"
+                    id="bootstrap-buttons_iconclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.buttons_iconclass}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.buttons_iconclass">
+                  <label class="form-check-label" for="bootstrap-buttons_iconclass">
                     ${this._templateAutoIconAngular()} Dropped the usage of
                     <code>.btn-icon</code> class for buttons with <em>icon</em> and visible
                     <em>text</em>.<br />
@@ -950,13 +952,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.buttonclose_content"
+                    id="bootstrap-buttonclose_content"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.buttonclose_content}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.buttonclose_content">
+                  <label class="form-check-label" for="bootstrap-buttonclose_content">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed the
                     <code>&lt;span aria-hidden="true"&gt;&lt;/span&gt;</code>
@@ -969,13 +971,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.buttonclose_class"
+                    id="bootstrap-buttonclose_class"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.buttonclose_class}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.buttonclose_class">
+                  <label class="form-check-label" for="bootstrap-buttonclose_class">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed class
                     <code>.close</code> to <code>.btn-close</code>.
@@ -985,13 +987,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.buttonclose_buttonclasses"
+                    id="bootstrap-buttonclose_buttonclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.buttonclose_buttonclasses}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.buttonclose_buttonclasses">
+                  <label class="form-check-label" for="bootstrap-buttonclose_buttonclasses">
                     ${this._templateAutoIconAngular()} Dropped the usage of
                     <code>.btn</code> and <code>.btn-icon</code> classes.<br />
                     <span class="info"
@@ -1018,13 +1020,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.cards_classes"
+                    id="bootstrap-cards_classes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.cards_classes}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.cards_classes">
+                  <label class="form-check-label" for="bootstrap-cards_classes">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>card</em> classes <code>.card-deck</code> and
                     <code>.card-columns</code>.<br />
@@ -1049,13 +1051,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="boostrapforms_formlabelclass"
+                    id="boostrap-forms_formlabelclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.forms_formlabelclass}"
                   />
 
-                  <label class="form-check-label" for="boostrapforms_formlabelclass">
+                  <label class="form-check-label" for="boostrap-forms_formlabelclass">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Required class
                     <code>.form-label</code> on <em>form-label</em> elements.
@@ -1065,13 +1067,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.forms_formgroup"
+                    id="bootstrap-forms_formgroup"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.forms_formgroup}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.forms_formgroup">
+                  <label class="form-check-label" for="bootstrap-forms_formgroup">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.form-group</code> class.<br />
                     Use <em>utility-class</em>&nbsp;<code>.mb-16</code> instead.<br />
@@ -1081,13 +1083,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.forms_formtext"
+                    id="bootstrap-forms_formtext"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.forms_formtext}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.forms_formtext">
+                  <label class="form-check-label" for="bootstrap-forms_formtext">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.small</code> and <code>.text-muted</code> classes on
                     <code>.form-text</code> elements.
@@ -1179,13 +1181,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formselects_classes"
+                    id="bootstrap-formselects_classes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formselects_classes}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.formselects_classes">
+                  <label class="form-check-label" for="bootstrap-formselects_classes">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed <em>select</em>,
                     <em>multi-select</em> and
@@ -1231,7 +1233,7 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formselects_formfloatingselectlgclass"
+                    id="bootstrap-formselects_formfloatingselectlgclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formselects_formfloatingselectlgclass}"
@@ -1239,7 +1241,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label
                     class="form-check-label"
-                    for="bootstrap.formselects_formfloatingselectlgclass"
+                    for="bootstrap-formselects_formfloatingselectlgclass"
                   >
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.form-control-lg</code> class on <em>floating-label</em> elements.
@@ -1324,13 +1326,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formcheckboxes_classes"
+                    id="bootstrap-formcheckboxes_classes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formcheckboxes_classes}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.formcheckboxes_classes">
+                  <label class="form-check-label" for="bootstrap-formcheckboxes_classes">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>control</em>
@@ -1359,13 +1361,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formcheckboxes_validationclasses"
+                    id="bootstrap-formcheckboxes_validationclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formcheckboxes_validationclasses}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.formcheckboxes_validationclasses">
+                  <label class="form-check-label" for="bootstrap-formcheckboxes_validationclasses">
                     <span class="tag tag-sm tag-danger">breaking</span> Shifted
                     <em>validation</em> classes.<br />
                     The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on
@@ -1377,7 +1379,7 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formcheckboxes_validationfeedbackclasses"
+                    id="bootstrap-formcheckboxes_validationfeedbackclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formcheckboxes_validationfeedbackclasses}"
@@ -1385,7 +1387,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label
                     class="form-check-label"
-                    for="bootstrap.formcheckboxes_validationfeedbackclasses"
+                    for="bootstrap-formcheckboxes_validationfeedbackclasses"
                   >
                     <span class="tag tag-sm tag-danger">breaking</span> Shifted
                     <em>validation-feedback</em> elements.<br />
@@ -1411,13 +1413,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formradios_classes"
+                    id="bootstrap-formradios_classes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formradios_classes}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.formradios_classes">
+                  <label class="form-check-label" for="bootstrap-formradios_classes">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>control</em>
@@ -1446,13 +1448,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formradios_validationclasses"
+                    id="bootstrap-formradios_validationclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formradios_validationclasses}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.formradios_validationclasses">
+                  <label class="form-check-label" for="bootstrap-formradios_validationclasses">
                     <span class="tag tag-sm tag-danger">breaking</span> Shifted
                     <em>validation</em> classes.<br />
                     The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on
@@ -1464,7 +1466,7 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formradios_validationfeedbackclasses"
+                    id="bootstrap-formradios_validationfeedbackclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formradios_validationfeedbackclasses}"
@@ -1472,7 +1474,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label
                     class="form-check-label"
-                    for="bootstrap.formradios_validationfeedbackclasses"
+                    for="bootstrap-formradios_validationfeedbackclasses"
                   >
                     <span class="tag tag-sm tag-danger">breaking</span> Shifted
                     <em>validation-feedback</em> elements.<br />
@@ -1510,13 +1512,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formswitches_classes"
+                    id="bootstrap-formswitches_classes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formswitches_classes}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.formswitches_classes">
+                  <label class="form-check-label" for="bootstrap-formswitches_classes">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Refactored
                     <em>switch</em> classes.<br />
@@ -1536,13 +1538,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formswitches_labelclasses"
+                    id="bootstrap-formswitches_labelclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formswitches_labelclasses}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.formswitches_labelclasses">
+                  <label class="form-check-label" for="bootstrap-formswitches_labelclasses">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Refactored
                     <em>switch-label</em>.<br />
@@ -1565,13 +1567,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formswitches_validationclasses"
+                    id="bootstrap-formswitches_validationclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formswitches_validationclasses}"
                   />
 
-                  <label class="form-check-label" for="bootstrap.formswitches_validationclasses">
+                  <label class="form-check-label" for="bootstrap-formswitches_validationclasses">
                     <span class="tag tag-sm tag-danger">breaking</span> Shifted
                     <em>validation</em> classes.<br />
                     The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on
@@ -1582,7 +1584,7 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="bootstrap.formswitches_validationfeedbackclasses"
+                    id="bootstrap-formswitches_validationfeedbackclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.bootstrap.formswitches_validationfeedbackclasses}"
@@ -1590,7 +1592,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label
                     class="form-check-label"
-                    for="bootstrap.formswitches_validationfeedbackclasses"
+                    for="bootstrap-formswitches_validationfeedbackclasses"
                   >
                     <span class="tag tag-sm tag-danger">breaking</span> Shifted
                     <em>validation-feedback</em> elements.<br />
@@ -1625,13 +1627,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="ngbootstrap.buttons_labelclass"
+                    id="ngbootstrap-buttons_labelclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.ngbootstrap.buttons_labelclass}"
                   />
 
-                  <label class="form-check-label" for="ngbootstrap.buttons_labelclass">
+                  <label class="form-check-label" for="ngbootstrap-buttons_labelclass">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Refactored
                     <code>label.btn-primary</code> to <code>label.btn.btn-secondary</code>.
@@ -1641,13 +1643,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="ngbootstrap.buttons_inputclass"
+                    id="ngbootstrap-buttons_inputclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.ngbootstrap.buttons_inputclass}"
                   />
 
-                  <label class="form-check-label" for="ngbootstrap.buttons_inputclass">
+                  <label class="form-check-label" for="ngbootstrap-buttons_inputclass">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Required class
                     <code>.btn-check</code> on the <code>input</code> element.
@@ -1657,13 +1659,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="ngbootstrap.buttons_grouptoggleclass"
+                    id="ngbootstrap-buttons_grouptoggleclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.ngbootstrap.buttons_grouptoggleclass}"
                   />
 
-                  <label class="form-check-label" for="ngbootstrap.buttons_grouptoggleclass">
+                  <label class="form-check-label" for="ngbootstrap-buttons_grouptoggleclass">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.btn-group-toggle</code>
                     class.
@@ -1680,13 +1682,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="ngbootstrap.datepickers_variables"
+                    id="ngbootstrap-datepickers_variables"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.ngbootstrap.datepickers_variables}"
                   />
 
-                  <label class="form-check-label" for="ngbootstrap.datepickers_variables">
+                  <label class="form-check-label" for="ngbootstrap-datepickers_variables">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>padding</em> variables.
                     <ul class="mt-8">
@@ -1715,13 +1717,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="ngbootstrap.modals_closebuttoncontent"
+                    id="ngbootstrap-modals_closebuttoncontent"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.ngbootstrap.modals_closebuttoncontent}"
                   />
 
-                  <label class="form-check-label" for="ngbootstrap.modals_closebuttoncontent">
+                  <label class="form-check-label" for="ngbootstrap-modals_closebuttoncontent">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed the
                     <code>&lt;span aria-hidden="true"&gt;&lt;/span&gt;</code>
@@ -1734,13 +1736,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="ngbootstrap.modals_closebuttonclass"
+                    id="ngbootstrap-modals_closebuttonclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.ngbootstrap.modals_closebuttonclass}"
                   />
 
-                  <label class="form-check-label" for="ngbootstrap.modals_closebuttonclass">
+                  <label class="form-check-label" for="ngbootstrap-modals_closebuttonclass">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed class
                     <code>.close</code> to <code>.btn-close</code>.
@@ -1771,13 +1773,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="jquery.accordions_removed"
+                    id="jquery-accordions_removed"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.jquery.accordions_removed}"
                   />
 
-                  <label class="form-check-label" for="jquery.accordions_removed">
+                  <label class="form-check-label" for="jquery-accordions_removed">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed the entire jQuery
                     <em>accordion</em> component.
                     <p class="info">
@@ -1815,13 +1817,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.accordions_removed"
+                    id="post-accordions_removed"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.accordions_removed}"
                   />
 
-                  <label class="form-check-label" for="post.accordions_removed">
+                  <label class="form-check-label" for="post-accordions_removed">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed the entire Post
                     <em>accordion</em> component and the associated
                     <em>detail-summary</em> stylesheet.<br />
@@ -1855,13 +1857,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.customselects_formfloatingwrapper"
+                    id="post-customselects_formfloatingwrapper"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.customselects_formfloatingwrapper}"
                   />
 
-                  <label class="form-check-label" for="post.customselects_formfloatingwrapper">
+                  <label class="form-check-label" for="post-customselects_formfloatingwrapper">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Required a
                     <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code>
@@ -1873,13 +1875,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.customselects_classes"
+                    id="post-customselects_classes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.customselects_classes}"
                   />
 
-                  <label class="form-check-label" for="post.customselects_classes">
+                  <label class="form-check-label" for="post-customselects_classes">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Refactored
                     <code>.form-control.custom-select</code> and
@@ -1891,13 +1893,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.customselects_menuclass"
+                    id="post-customselects_menuclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.customselects_menuclass}"
                   />
 
-                  <label class="form-check-label" for="post.customselects_menuclass">
+                  <label class="form-check-label" for="post-customselects_menuclass">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <code>.custom-select-menu</code> class.<br />
@@ -1923,13 +1925,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.subnavigations_invertedclass"
+                    id="post-subnavigations_invertedclass"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.subnavigations_invertedclass}"
                   />
 
-                  <label class="form-check-label" for="post.subnavigations_invertedclass">
+                  <label class="form-check-label" for="post-subnavigations_invertedclass">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.subnavigation-inverted</code>
                     class.
@@ -1953,13 +1955,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.topicteasers_imageattributes"
+                    id="post-topicteasers_imageattributes"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.topicteasers_imageattributes}"
                   />
 
-                  <label class="form-check-label" for="post.topicteasers_imageattributes">
+                  <label class="form-check-label" for="post-topicteasers_imageattributes">
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Required
                     <em>image</em>
@@ -1974,13 +1976,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.topicteasers_imagecontainergridclasses"
+                    id="post-topicteasers_imagecontainergridclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.topicteasers_imagecontainergridclasses}"
                   />
 
-                  <label class="form-check-label" for="post.topicteasers_imagecontainergridclasses">
+                  <label class="form-check-label" for="post-topicteasers_imagecontainergridclasses">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.col-10.col-rg-8.col-lg-4</code> on
                     <code>.topic-teaser-image-container</code> elements.
@@ -1990,7 +1992,7 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.topicteasers_contentcontainergridclasses"
+                    id="post-topicteasers_contentcontainergridclasses"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.topicteasers_contentcontainergridclasses}"
@@ -1998,7 +2000,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label
                     class="form-check-label"
-                    for="post.topicteasers_contentcontainergridclasses"
+                    for="post-topicteasers_contentcontainergridclasses"
                   >
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.col-12.col-lg-8</code> on <code>.topic-teaser-content</code> elements.
@@ -2008,13 +2010,13 @@ export class MigrationV45ManualListComponent extends LitElement {
               <li>
                 <div class="form-check">
                   <input
-                    id="post.topicteasers_linklistfontcurve"
+                    id="post-topicteasers_linklistfontcurve"
                     class="form-check-input"
                     type="checkbox"
                     ?checked="${this.state.post.topicteasers_linklistfontcurve}"
                   />
 
-                  <label class="form-check-label" for="post.topicteasers_linklistfontcurve">
+                  <label class="form-check-label" for="post-topicteasers_linklistfontcurve">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.font-curve-regular</code> on <code>ul.link-list</code> elements.
                   </label>
@@ -2034,41 +2036,20 @@ export class MigrationV45ManualListComponent extends LitElement {
     `;
   }
 
-  private _restorePersistedState() {
-    const stateTypeFromLocalStorage = getLocaleStorage(MIGRATION_CHECKS_KEY);
-    if (stateTypeFromLocalStorage) {
-      this.state = stateTypeFromLocalStorage;
-    }
-  }
-
   private _onChange(
     event: Event & {
       target: HTMLInputElement;
     },
   ) {
-    this._toggleStateProperty(event.target.id);
-    this._updatePersistedState();
+    _updateOnChange(event, MIGRATION_CHECKS_KEY_V4, this.state);
     this.requestUpdate();
-  }
-
-  private _toggleStateProperty(path: string) {
-    const keys = path.split('.');
-    const last_key = keys.pop();
-    if (last_key) {
-      const last_obj = keys.reduce((o, k) => o[k], this.state);
-      last_obj[last_key] = !last_obj[last_key];
-    }
-  }
-
-  private _updatePersistedState() {
-    setLocaleStorage(MIGRATION_CHECKS_KEY, this.state);
   }
 
   private _templateAutoIconAngular() {
     return html` ${this.angular ? _templateAutoIcon() : nothing} `;
   }
 
-  public _templateGroupTodoListStatus(group: keyof TodoListChecks) {
+  public _templateGroupTodoListStatus(group: keyof V45Checks) {
     const checkboxValues = Object.values(this.state?.[group] ?? {});
     const checkedValues = checkboxValues.filter(v => v === true);
 

@@ -2,29 +2,11 @@ import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core'
 import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
-import { IS_BROWSER, getAttributeObserver, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrOneOf, getDeepFocusableChildren } from '@/utils';
 
 /**
  * @slot default - Slot for placing content inside the popover.
  */
-
-let popoverInstances = 0;
-const popoverTargetAttribute = 'data-popover-target';
-
-const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
-  let currentElement = e.target as HTMLElement;
-
-  // Traverse up the DOM tree to find if any parent has the popover target attribute
-  while (currentElement && !currentElement.getAttribute(popoverTargetAttribute)) {
-    if (currentElement === document.body || !currentElement.parentElement) break;
-    currentElement = currentElement.parentElement;
-  }
-
-  const popoverTarget = currentElement?.getAttribute(popoverTargetAttribute);
-  if (!popoverTarget || ('key' in e && e.key !== 'Enter')) return;
-  const popover = document.getElementById(popoverTarget) as HTMLPostPopoverElement;
-  popover?.toggle(currentElement);
-};
 
 @Component({
   tag: 'post-popover',
@@ -33,11 +15,6 @@ const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
 })
 export class PostPopover {
   private popoverRef: HTMLPostPopovercontainerElement;
-  private readonly localBeforeToggleHandler: () => void;
-  // Initialize a mutation observer for patching accessibility features
-  private readonly triggerObserver = IS_BROWSER
-    ? getAttributeObserver(popoverTargetAttribute, this.patchAccessibilityFeatures)
-    : null;
 
   @Element() host: HTMLPostPopoverElement;
 
@@ -68,56 +45,18 @@ export class PostPopover {
   // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() readonly arrow?: boolean = true;
 
-  constructor() {
-    this.localBeforeToggleHandler = this.beforeToggleHandler.bind(this);
-  }
-
-  connectedCallback() {
-    // Set up accessibility patcher and event listeners for the first component
-    if (popoverInstances === 0) {
-      window.addEventListener('pointerup', globalToggleHandler);
-      window.addEventListener('keydown', globalToggleHandler);
-      this.triggerObserver?.observe(document.body, {
-        subtree: true,
-        childList: true,
-        attributeFilter: [popoverTargetAttribute],
-      });
-    }
-
-    popoverInstances++;
-
-    this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
-  }
-
   componentDidLoad() {
     this.validatePlacement();
     this.validateCloseButtonCaption();
-    this.popoverRef.addEventListener('beforetoggle', this.localBeforeToggleHandler);
-  }
-
-  disconnectedCallback() {
-    popoverInstances--;
-
-    // Remove listeners and observer after the last popover has been destructed
-    if (popoverInstances === 0) {
-      window.removeEventListener('click', globalToggleHandler);
-      window.removeEventListener('keydown', globalToggleHandler);
-      this.triggerObserver?.disconnect();
-    }
-
-    this.popoverRef.removeEventListener('beforetoggle', this.localBeforeToggleHandler);
-    this.triggers.forEach(trigger => trigger.removeAttribute('aria-expanded'));
   }
 
   /**
    * Programmatically display the popover
-   * @param target An element with [data-popover-target="id"] where the popover should be shown
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
    */
   @Method()
   async show(target: HTMLElement) {
     this.popoverRef.show(target);
-    console.log(this.popoverRef);
-    target.setAttribute('aria-expanded', 'true');
   }
 
   /**
@@ -126,32 +65,25 @@ export class PostPopover {
   @Method()
   async hide() {
     this.popoverRef.hide();
-    this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
   }
 
   /**
    * Toggle popover display
-   * @param target An element with [data-popover-target="id"] where the popover should be anchored to
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
-    const newState = await this.popoverRef.toggle(target, force);
-    this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
-    target.setAttribute('aria-expanded', `${newState}`);
-  }
+    await this.popoverRef.toggle(target, force);
 
-  private get triggers() {
-    return document.querySelectorAll(`[${popoverTargetAttribute}="${this.host.id}"]`);
-  }
+    const focusableChildren = getDeepFocusableChildren(this.host);
 
-  private beforeToggleHandler() {
-    this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
-  }
+    // find first focusable element
+    const firstFocusable = focusableChildren[0];
 
-  private patchAccessibilityFeatures(trigger: HTMLElement) {
-    const force = trigger.hasAttribute(popoverTargetAttribute);
-    trigger.setAttribute('aria-expanded', force ? 'false' : null);
+    if (firstFocusable) {
+      firstFocusable.focus();
+    }
   }
 
   render() {
@@ -166,9 +98,9 @@ export class PostPopover {
             <div class="popover-content">
               <slot></slot>
             </div>
-            <button class="btn-close" onClick={() => this.hide()}>
-              <span class="visually-hidden">{this.closeButtonCaption}</span>
-            </button>
+            <post-closebutton onClick={() => this.hide()}>
+              {this.closeButtonCaption}
+            </post-closebutton>
           </div>
         </post-popovercontainer>
       </Host>
