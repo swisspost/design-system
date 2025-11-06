@@ -1,3 +1,10 @@
+<h1>Design System Components</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut mollitia
+  deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est iusto suscipit,
+  omnis iste laboriosam!
+</p>
+
 <div class="my-24">
   <h2>Post Accordion</h2>
   <post-accordion [headingLevel]="3">
@@ -18,53 +25,90 @@
   </post-accordion>
 </div>
 
+<div class="my-4">
+  <h2>Post Avatar</h2>
+  <post-avatar firstname="Firstname" lastname="Lastname"></post-avatar>
+</div>
+
 <div class="my-24">
   <h2>Post Banner</h2>
   <post-banner><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-banner>
 </div>
 
-<div class="my-4">
-  <h2>Post Avatar</h2>
-  <post-avatar firstname="Firstname"></post-avatar>
+<div class="my-24">
+  <h2>Post Card-Control</h2>
+  <post-card-control type="checkbox" label="Label"></post-card-control>
 </div>
 
 <div class="my-24">
-  <h2>Post Card-Control</h2>
-  <post-card-control type="checkbox" label="label"></post-card-control>
+  <h2>Post Close Button</h2>
+  <post-closebutton>Close button</post-closebutton>
 </div>
 
 <div class="my-24">
   <h2>Post Collapsible</h2>
   <post-collapsible-trigger for="angular-collapsible">
-    <button class="btn btn-secondary mb-8">Toggle</button>
+    <button class="btn btn-secondary mb-8">Toggle Collapsible</button>
   </post-collapsible-trigger>
   <post-collapsible id="angular-collapsible">
-    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    <p class="border rounded p-24">Contentus momentus vero siteos et accusam iretea et justo.</p>
   </post-collapsible>
 </div>
 
 <div class="my-24">
   <h2>Post Icon</h2>
-  <post-icon name="1001"></post-icon>
+  <post-icon name="1000"></post-icon>
 </div>
 
 <div class="my-24">
-  <h2>Post Logo</h2>
-  <post-logo url="https://www.post.ch/en">Logo of the Post, To the homepage</post-logo>
+  <h2>Post Linkarea</h2>
+  <post-linkarea>
+    <div class="card">
+      <div class="card-body">
+        <h5>Titulum</h5>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+        <a class="card-link" href="#test">Ligilo teksto</a>
+        <a class="card-link" href="#test">Pli da ligo</a>
+      </div>
+    </div>
+  </post-linkarea>
+</div>
+
+<div class="my-24">
+  <h2>Post Menu</h2>
+  <post-menu-trigger for="menu-one">
+    <button class="btn btn-primary">Menu button</button>
+  </post-menu-trigger>
+  <post-menu id="menu-one">
+    <post-menu-item>
+      <button>Example 1</button>
+    </post-menu-item>
+    <post-menu-item>
+      <a href="#test">Example 2</a>
+      <post-menu-item>
+        <div>Example 3</div>
+      </post-menu-item>
+    </post-menu-item>
+  </post-menu>
 </div>
 
 <div class="my-24">
   <h2>Post Popover</h2>
-  <button class="btn btn-secondary btn-large" data-popover-target="popover-one">
-    Click here to see a popover
-  </button>
-  <post-popover closeButtonCaption="Close" id="popover-one" placement="top" arrow="">
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-secondary btn-large" data-popover-target="popover-one">
+      Click here to see a popover
+    </button>
+  </div>
+  <post-popover
+    class="palette palette-alternate"
+    id="popover-one"
+    placement="top"
+    closeButtonCaption="Close Popover"
+    arrow=""
+  >
     <h2 class="h6">Optional title</h2>
-
     <p class="mb-0">
-      A longer message that needs more time to read.
-      <a href="#">Links</a>
-      are also possible.
+      A longer message that needs more time to read. <a href="#test">Links</a> are also possible.
     </p>
   </post-popover>
 </div>
@@ -99,8 +143,20 @@
 </div>
 
 <div class="my-24">
+  <h2>Post Togglebutton</h2>
+  <post-togglebutton>
+    <span class="visually-hidden-sm">Menu</span>
+    <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
+    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+  </post-togglebutton>
+</div>
+
+<div class="my-24">
   <h2>Post Tooltip</h2>
   <post-tooltip-trigger for="tooltip-one">
     <button class="btn btn-secondary btn-large">Button</button>
   </post-tooltip-trigger>
+  <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top">
+    Hi there 👋
+  </post-tooltip>
 </div>
