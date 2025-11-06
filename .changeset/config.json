@@ -7,14 +7,19 @@
   "commit": false,
   "fixed": [
     [
-      "@swisspost/design-system-styles",
-      "@swisspost/design-system-tokens",
+      "@swisspost/design-system-changelog-github",
       "@swisspost/design-system-components",
+      "@swisspost/design-system-components-angular-workspace",
       "@swisspost/design-system-components-angular",
       "@swisspost/design-system-components-react",
+      "@swisspost/design-system-eslint",
       "@swisspost/design-system-icons",
+      "@swisspost/internet-header",
+      "@swisspost/design-system-nextjs-integration",
+      "@swisspost/design-system-styles",
+      "@swisspost/design-system-styles-primeng-workspace",
       "@swisspost/design-system-styles-primeng",
-      "@swisspost/internet-header"
+      "@swisspost/design-system-tokens"
     ]
   ],
   "linked": [],

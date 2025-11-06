@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.54
+
+### Patch Changes
+
+- Fixed missing validation message in the checkbox documentation. (by [@leagrdv](https://github.com/leagrdv) with [#6574](https://github.com/swisspost/design-system/pull/6574))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.53
+  - @swisspost/design-system-components@10.0.0-next.53
+  - @swisspost/internet-header@10.0.0-next.53
+  - @swisspost/design-system-components-react@10.0.0-next.53
+  - @swisspost/design-system-tokens@10.0.0-next.53
+  - @swisspost/design-system-icons@10.0.0-next.53
+
 ## 6.0.0-next.53
 
 ### Minor Changes

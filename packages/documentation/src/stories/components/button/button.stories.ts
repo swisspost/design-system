@@ -12,7 +12,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=302-9575&m=dev',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=17-163&m=dev',
     },
   },
   args: {
@@ -144,12 +144,12 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
         labels: {
-          'null': 'None',
-          'search': 'Search',
-          'edit': 'Edit',
-          'save': 'Save',
-          'trash': 'Remove',
-          'heart': 'Like',
+          null: 'None',
+          search: 'Search',
+          edit: 'Edit',
+          save: 'Save',
+          trash: 'Remove',
+          heart: 'Like',
         },
       },
       options: ['null', 'search', 'edit', 'save', 'trash', 'heart'],
@@ -167,12 +167,12 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
         labels: {
-          'null': 'None',
-          'search': 'Search',
-          'edit': 'Edit',
-          'save': 'Save',
-          'trash': 'Remove',
-          'heart': 'Like',
+          null: 'None',
+          search: 'Search',
+          edit: 'Edit',
+          save: 'Save',
+          trash: 'Remove',
+          heart: 'Like',
         },
       },
       options: ['null', 'search', 'edit', 'save', 'trash', 'heart'],

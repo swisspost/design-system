@@ -9,8 +9,9 @@ const meta: MetaComponent = {
   tags: ['package:Styles', 'status:InProgress'],
   render: renderChip,
   parameters: {
-    controls: {
-      exclude: ['dismissed', 'number', 'radio'],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=18-15',
     },
   },
   args: {
