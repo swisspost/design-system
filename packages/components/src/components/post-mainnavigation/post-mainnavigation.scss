@@ -39,7 +39,7 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: 4px;
-        outline-offset: 2px !important;
+        z-index: 2;
       }
     }
   }
@@ -86,7 +86,7 @@ post-mainnavigation {
       $button-padding: 1rem;
       $button-width: $icon-size + 2 * $button-padding;
 
-      z-index: 1;
+      z-index: 2;
       cursor: pointer;
       padding: $button-padding;
       background: color.$white;
