@@ -259,6 +259,7 @@ post-header {
   }
 
   a[aria-current='location'],
+  a.active,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
       color: color.$white;
