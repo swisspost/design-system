@@ -80,21 +80,15 @@ export class PostTabItem {
   }
 
   render() {
-    const isPanelMode = !this.isNavigationMode;
-    const classes = {
-      'tab-title': isPanelMode,
-      'nav-item': this.isNavigationMode,
-    };
-
     return (
       <Host
         id={this.tabId}
-        role={isPanelMode ? 'tab' : undefined}
+        role={!this.isNavigationMode ? 'tab' : undefined}
         data-version={version}
         data-navigation-mode={this.isNavigationMode.toString()}
-        aria-selected={isPanelMode ? 'false' : undefined}
-        tabindex={isPanelMode ? '-1' : undefined}
-        class={classes}
+        aria-selected={!this.isNavigationMode ? 'false' : undefined}
+        tabindex={!this.isNavigationMode ? '-1' : undefined}
+        class={!this.isNavigationMode ? 'tab-title' : 'nav-item'}
       >
         <slot />
       </Host>
