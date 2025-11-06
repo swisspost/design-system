@@ -25,8 +25,9 @@ tokens.$default-map: utilities.$post-spacing;
   cursor: pointer;
 
   &:focus {
-    background-color: unset;
-    color: color.$black;
+    opacity: 1;
+    background-color: color.$black-alpha-60;
+    color: color.$white;
   }
 
   &:hover {
