@@ -105,6 +105,12 @@ tokens.$default-map: utilities.$post-spacing;
       outline: none;
     }
 
+    &:active {
+      opacity: 1;
+      background-color: color.$black-alpha-60;
+      color: color.$white;
+    }
+
     &:focus-visible {
       outline: none !important;
     }
