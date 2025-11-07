@@ -51,6 +51,22 @@ export class AppComponent implements OnInit {
   title = 'consumer-app';
   public navigationRoutes: Route[] = [];
 
+  // Shared links for megadropdown sections (Header)
+  private megadropdownLinks = {
+    standard: [
+      { text: 'Letters Switzerland', url: '/sch' },
+      { text: 'Small items abroad', url: '/kl' },
+      { text: 'Goods abroad', url: '' },
+      { text: 'Express and courier', url: '' },
+    ],
+    packages: [
+      { text: 'Packages Switzerland', url: '/sch' },
+      { text: 'Small items abroad', url: '/kl' },
+      { text: 'Goods abroad', url: '' },
+      { text: 'Express and courier', url: '' },
+    ]
+  };
+
   // Header megadropdown data
   public megadropdowns = [
     {
@@ -61,22 +77,12 @@ export class AppComponent implements OnInit {
       sections: [
         {
           title: 'Send letters',
-          links: [
-            { text: 'Letters Switzerland', url: '/sch' },
-            { text: 'Small items abroad', url: '/kl' },
-            { text: 'Goods abroad', url: '' },
-            { text: 'Express and courier', url: '' },
-          ]
+          links: this.megadropdownLinks.standard
         },
         {
           title: 'Step by step',
           titleLink: '/step-by-step',
-          links: [
-            { text: 'Packages Switzerland', url: '/sch' },
-            { text: 'Small items abroad', url: '/kl' },
-            { text: 'Goods abroad', url: '' },
-            { text: 'Express and courier', url: '' },
-          ]
+          links: this.megadropdownLinks.packages
         }
       ]
     },
@@ -88,22 +94,12 @@ export class AppComponent implements OnInit {
       sections: [
         {
           title: 'Send packages',
-          links: [
-            { text: 'Packages Switzerland', url: '/sch' },
-            { text: 'Small items abroad', url: '/kl' },
-            { text: 'Goods abroad', url: '' },
-            { text: 'Express and courier', url: '' },
-          ]
+          links: this.megadropdownLinks.packages
         },
         {
           title: 'Step by step',
           titleLink: '/step-by-step',
-          links: [
-            { text: 'Packages Switzerland', url: '/sch' },
-            { text: 'Small items abroad', url: '/kl' },
-            { text: 'Goods abroad', url: '' },
-            { text: 'Express and courier', url: '' },
-          ]
+          links: this.megadropdownLinks.packages
         }
       ]
     }
