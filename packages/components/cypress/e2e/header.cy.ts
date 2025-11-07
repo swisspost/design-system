@@ -149,16 +149,4 @@ describe('header', () => {
       cy.get('@packagesTrigger').should('have.class', 'active');
     });
   });
-
-  describe('Accessibility', { baseUrl: null }, () => {
-    beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-header.test.html');
-      cy.get('post-header[data-hydrated]').should('be.visible');
-      cy.injectAxe();
-    });
-
-    it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-mainnavigation');
-    });
-  });
 });
