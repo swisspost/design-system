@@ -158,6 +158,8 @@ export class PostPopovercontainer {
     this.host.style.setProperty('--post-safe-space-cursor-y', `${event.clientY}px`);
   }
 
+  private currentAnimation: Animation | null = null;
+
   connectedCallback() {
     if (IS_BROWSER && !isSupported()) {
       apply();
@@ -183,7 +185,6 @@ export class PostPopovercontainer {
   async show(target: HTMLElement) {
     if (this.toggleTimeoutId) return;
     this.eventTarget = target;
-    if (this.toggleTimeoutId) return;
     this.calculatePosition();
     this.host.showPopover();
   }
@@ -193,23 +194,22 @@ export class PostPopovercontainer {
    */
   @Method()
   async open() {
-    const content = this.host.querySelector('.popover-content');
+    const popoverContentEl: HTMLElement = this.host.querySelector('.popover-content');
     this.startAutoupdates();
 
-    if (content) {
-      const animation = popIn(content);
-
-      if (animation?.playState === 'running') {
+    if (popoverContentEl) {
+      // Only run animation and emit related events if animation is defined
+      if (this.animation == null) {
+        // No animation case
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
-      }
-
-      animation?.finished.then(() => {
+        await Promise.resolve();
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
-
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
-      });
+      } else {
+        this.runOpenAnimation(popoverContentEl);
+      }
     }
 
     if (this.safeSpace) {
@@ -230,8 +230,51 @@ export class PostPopovercontainer {
       window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
 
+    // Cancel any running animation
+    if (this.animation !== null && this.currentAnimation) {
+      this.currentAnimation.cancel();
+      this.currentAnimation = null;
+    }
+
+    this.postBeforeToggle.emit({ willOpen: false });
     this.postToggle.emit({ isOpen: false });
     this.postHide.emit();
+  }
+
+  /**
+   * Runs the animation and emits the toggle/show/hide events in the correct timing
+   */
+
+  private async runOpenAnimation(element: HTMLElement) {
+    let animation: Animation | undefined;
+
+    try {
+      animation = popIn(element);
+
+      this.currentAnimation = animation;
+
+      if (animation.playState === 'running') {
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+      }
+
+      await animation.finished;
+
+      this.postToggle.emit({ isOpen: true });
+      this.postShow.emit({ first: this.hasOpenedOnce });
+
+      this.hasOpenedOnce = true;
+    } catch (err) {
+      console.warn('Animation failed or was interrupted:', err);
+      // Reset all states to closing
+      this.postBeforeToggle.emit({ willOpen: false });
+      this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+      this.postToggle.emit({ isOpen: false });
+    } finally {
+      if (this.currentAnimation === animation) {
+        this.currentAnimation = null;
+      }
+    }
   }
 
   /**
@@ -240,9 +283,6 @@ export class PostPopovercontainer {
   @Method()
   async hide() {
     if (!this.toggleTimeoutId) {
-      if (this.eventTarget && this.eventTarget instanceof HTMLElement) {
-        this.eventTarget.focus();
-      }
       this.eventTarget = null;
       this.host.hidePopover();
       this.postHide.emit();
