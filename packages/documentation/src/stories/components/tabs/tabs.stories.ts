@@ -4,7 +4,13 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
-const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }> = {
+const meta: MetaComponent<HTMLPostTabsElement & { 
+  variant: string; 
+  activeTabPanels?: string;
+  activeTabNavigation?: string;
+  'slots-default': string; 
+  'slots-panels': string;
+}> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
   tags: ['package:WebComponents', 'status:InProgress'],
@@ -41,7 +47,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
     activeTabPanels: {
       name: 'active-tab',
       description:
-        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\n**Changing this value after initialization has no effect.**',
+        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\n**Changing this value after initialization has no effect.',
       control: 'select',
       options: ['first', 'second', 'third'],
       if: { arg: 'variant', eq: 'panels' },
@@ -49,12 +55,10 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
         category: 'Props',
       },
     },
-
     activeTabNavigation: {
       name: 'active-tab',
-      description: `The name of the tab that is initially active. If not specified, it defaults to the first tab. \n\n**This should be updated by the routing framework
-   * to reflect the current page on each navigation. The component will
-   * automatically sync the active state when this prop changes.**`,
+      description: 
+        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\nThis should be updated by the routing framework to reflect the current page on each navigation. The component will automatically sync the active state when this prop changes.',
       control: 'select',
       options: ['first', 'second', 'third'],
       if: { arg: 'variant', eq: 'navigation' },
@@ -114,10 +118,11 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
         },
       },
     },
-
   },
   args: {
     variant: 'panels',
+    activeTabPanels: undefined,
+    activeTabNavigation: undefined,
     label: 'Tabs navigation',
     'slots-default': '',
     'slots-panels': '',
@@ -126,14 +131,23 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
 
 export default meta;
 
-function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }>) {
+function renderTabs(args: Partial<HTMLPostTabsElement & { 
+  variant: string; 
+  activeTabPanels?: string;
+  activeTabNavigation?: string;
+  'slots-default': string; 
+  'slots-panels': string;
+}>) {
   const variant = args.variant || 'panels';
+  
+  // Map the variant-specific activeTab arg to the actual activeTab prop
+  const activeTab = variant === 'navigation' ? args.activeTabNavigation : args.activeTabPanels;
   
   if (variant === 'navigation') {
     if (args['slots-default']) {
       return html`
         <post-tabs
-          active-tab="${ifDefined(args.activeTab)}"
+          active-tab="${ifDefined(activeTab)}"
           full-width="${args.fullWidth ? true : nothing}"
           label="${ifDefined(args.label)}"
         >
@@ -144,7 +158,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
     
     return html`
       <post-tabs
-        active-tab="${ifDefined(args.activeTab)}"
+        active-tab="${ifDefined(activeTab)}"
         full-width="${args.fullWidth ? true : nothing}"
         label="${ifDefined(args.label)}"
       >
@@ -166,7 +180,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
     // Use custom slot content if provided (complete custom content)
     return html`
       <post-tabs
-        active-tab="${ifDefined(args.activeTab)}"
+        active-tab="${ifDefined(activeTab)}"
         full-width="${args.fullWidth ? true : nothing}"
       >
         ${unsafeHTML(args['slots-default'])}
@@ -177,7 +191,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
   if (args['slots-panels']) {
     return html`
       <post-tabs
-        active-tab="${ifDefined(args.activeTab)}"
+        active-tab="${ifDefined(activeTab)}"
         full-width="${args.fullWidth ? true : nothing}"
       >
         <post-tab-item name="first">First tab</post-tab-item>
@@ -191,7 +205,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
   
   return html`
     <post-tabs
-      active-tab="${ifDefined(args.activeTab)}"
+      active-tab="${ifDefined(activeTab)}"
       full-width="${args.fullWidth ? true : nothing}"
     >
       <post-tab-item name="first">First tab</post-tab-item>
@@ -212,7 +226,13 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }>;
+type Story = StoryObj<HTMLPostTabsElement & { 
+  variant: string; 
+  activeTabPanels?: string;
+  activeTabNavigation?: string;
+  'slots-default': string; 
+  'slots-panels': string;
+}>;
 
 export const Default: Story = {};
 
@@ -254,7 +274,7 @@ export const ActiveTab: Story = {
   },
   args: {
     variant: 'panels',
-    activeTab: 'third',
+    activeTabPanels: 'third',
   },
 };
 
