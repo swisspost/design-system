@@ -14,7 +14,7 @@ describe('Components', () => {
 
   componentNames.forEach(componentName => {
     it(`should render and be attached: <${componentName}>`, () => {
-      cy.get(`${componentName}[data-hydrated]`).first().should('exist');
+      cy.get(`${componentName}.hydrated`).first().should('exist');
     });
   });
 
