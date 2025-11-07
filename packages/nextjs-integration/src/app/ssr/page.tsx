@@ -1,193 +1,161 @@
-import {
-  PostAccordion,
-  PostAccordionItem,
-  PostAvatar,
-  PostBanner,
-  PostCardControl,
-  PostClosebutton,
-  PostCollapsible,
-  PostCollapsibleTrigger,
-  PostIcon,
-  PostLinkarea,
-  PostMenu,
-  PostMenuItem,
-  PostMenuTrigger,
-  PostPopover,
-  PostPopoverTrigger,
-  PostRating,
-  PostTabs,
-  PostTabItem,
-  PostTabPanel,
-  PostTooltipTrigger,
-  PostTooltip,
-} from '@swisspost/design-system-components-react/server';
+'use client';
 
-export default function Home() {
+import { usePathname, useRouter } from 'next/navigation';
+import { PostTabs, PostTabItem } from '@swisspost/design-system-components-react';
+import { useEffect, useRef } from 'react';
+
+export default function Page() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const tabsRef = useRef<HTMLPostTabsElement>(null);
+
+  // Map pathname to tab name
+  const getActiveTab = () => {
+    if (pathname === '/ssr/products') return 'products';
+    if (pathname === '/ssr/contact') return 'contact';
+    return 'home';
+  };
+
+  // Update activeTab when route changes
+  useEffect(() => {
+    const activeTab = getActiveTab();
+    if (tabsRef.current) {
+      tabsRef.current.setAttribute('active-tab', activeTab);
+    }
+  }, [pathname]);
+
+
   return (
-    <>
-      <h1>Design System Components</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
-        mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
-        iusto suscipit, omnis iste laboriosam!
-      </p>
+    <div style={{ maxWidth: '1200px', margin: '2rem auto', padding: '0 1rem' }}>
+      <h1>Navigation Tabs Test</h1>
+      <p>Testing navigation mode with Next.js routing</p>
 
-      <h2>Accordion</h2>
-      <PostAccordion headingLevel={3}>
-        <PostAccordionItem>
-          <span slot="header">Titulum 1</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
-        </PostAccordionItem>
-
-        <PostAccordionItem>
-          <span slot="header">Titulum 2</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
-        </PostAccordionItem>
-
-        <PostAccordionItem>
-          <span slot="header">Titulum 3</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
-        </PostAccordionItem>
-      </PostAccordion>
-
-      <h2>Avatar</h2>
-      <PostAvatar firstname="Firstname" lastname="Lastname"></PostAvatar>
-
-      <h2>Banner</h2>
-      <PostBanner>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </PostBanner>
-
-      <h2>Card Control</h2>
-      <PostCardControl label="Label" type="checkbox" />
-
-      <h2>Close Button</h2>
-      <PostClosebutton>Close button</PostClosebutton>
-
-      <h2>Collapsible</h2>
-      {/* The aria attributes need to be defined on the button already, otherwise nextjs will report a hydration error */}
-      <PostCollapsibleTrigger for="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
-        <button
-          className="btn btn-secondary"
-          aria-expanded={true}
-          aria-controls="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default"
-        >
-          Toggle Collapsible
-        </button>
-      </PostCollapsibleTrigger>
-
-      <PostCollapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
-        <p className="border rounded p-24">
-          Contentus momentus vero siteos et accusam iretea et justo.
-        </p>
-      </PostCollapsible>
-
-      <h2>Icon</h2>
-      <PostIcon name="1000" />
-
-      <h2>Linkarea</h2>
-      <PostLinkarea>
-        <div className="card">
-          <div className="card-body">
-            <h5>Titulum</h5>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-            <a className="card-link" href="#test">
-              Ligilo teksto
-            </a>
-            <a className="card-link" href="#test">
-              Pli da ligo
-            </a>
-          </div>
-        </div>
-      </PostLinkarea>
-
-      <h2>Menu</h2>
-      {/* Throws Hydration Errors */}
-      <PostMenuTrigger for="menu-one">
-        <button className="btn btn-primary">Menu button</button>
-      </PostMenuTrigger>
-      <PostMenu id="menu-one">
-        <PostMenuItem>
-          <button>Example 1</button>
-        </PostMenuItem>
-        <PostMenuItem>
-          <a href="#test">Example 2</a>
-          <PostMenuItem>
-            <div>Example 3</div>
-          </PostMenuItem>
-        </PostMenuItem>
-      </PostMenu>
-
-      <h2>Popover</h2>
-      <PostPopoverTrigger for="popover-one">
-        {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
-        <button className="btn btn-secondary btn-large">Click here to see a popover</button>
-      </PostPopoverTrigger>
-      <PostPopover
-        className="palette palette-alternate"
-        id="popover-one"
-        placement="top"
-        closeButtonCaption="Close Popover"
-        arrow={true}
+      <PostTabs 
+        ref={tabsRef}
+        activeTab={getActiveTab()} 
+        label="Page navigation"
       >
-        <h2 className="h6">Optional title</h2>
-        <p className="mb-0">
-          A longer message that needs more time to read. <a href="#test">Links</a> are also
-          possible.
+        <PostTabItem name="home">
+          <a 
+            href="/ssr" 
+            onClick={(e) => {
+              e.preventDefault();
+              router.push('/ssr');
+            }}
+          >
+            Home
+          </a>
+        </PostTabItem>
+        <PostTabItem name="products">
+          <a 
+            href="/ssr/products"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push('/ssr/products');
+            }}
+          >
+            Products
+          </a>
+        </PostTabItem>
+        <PostTabItem name="contact">
+          <a 
+            href="/ssr/contact"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push('/ssr/contact');
+            }}
+          >
+            Contact
+          </a>
+        </PostTabItem>
+      </PostTabs>
+
+      <div style={{ 
+        marginTop: '2rem', 
+        padding: '1rem', 
+        background: '#e3f2fd', 
+        borderRadius: '4px' 
+      }}>
+        <p><strong>Current Route:</strong> {pathname}</p>
+        <p><strong>Active Tab:</strong> {getActiveTab()}</p>
+      </div>
+
+      {/* Page Content */}
+      <div style={{ 
+        marginTop: '2rem', 
+        padding: '2rem', 
+        background: '#f5f5f5',
+        borderRadius: '4px'
+      }}>
+        {pathname === '/ssr' && (
+          <>
+            <h2>Home Page</h2>
+            <p>Welcome to the home page. This is the default view.</p>
+          </>
+        )}
+        
+        {pathname === '/ssr/products' && (
+          <>
+            <h2>Products Page</h2>
+            <p>Browse our product catalog here.</p>
+            <ul>
+              <li>Product A</li>
+              <li>Product B</li>
+              <li>Product C</li>
+            </ul>
+          </>
+        )}
+        
+        {pathname === '/ssr/contact' && (
+          <>
+            <h2>Contact Page</h2>
+            <p>Get in touch with us.</p>
+            <form style={{ marginTop: '1rem' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <label>Name: <input type="text" style={{ marginLeft: '0.5rem' }} /></label>
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <label>Email: <input type="email" style={{ marginLeft: '0.5rem' }} /></label>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </>
+        )}
+      </div>
+
+      {/* Debug/Test Section */}
+      <div style={{ 
+        marginTop: '2rem', 
+        padding: '1rem', 
+        background: '#fff3cd',
+        borderRadius: '4px'
+      }}>
+        <h3>Test Navigation</h3>
+        <p>Use these buttons to test programmatic navigation:</p>
+        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+          <button 
+            className="btn btn-secondary"
+            onClick={() => router.push('/ssr')}
+          >
+            Go to Home
+          </button>
+          <button 
+            className="btn btn-secondary"
+            onClick={() => router.push('/ssr/products')}
+          >
+            Go to Products
+          </button>
+          <button 
+            className="btn btn-secondary"
+            onClick={() => router.push('/ssr/contact')}
+          >
+            Go to Contact
+          </button>
+        </div>
+        <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#666' }}>
+          💡 Open browser console to see postChange events and aria-current updates
         </p>
-      </PostPopover>
-
-      <h2>Rating</h2>
-      <PostRating label="Rating"></PostRating>
-
-      <h2>Tabs - Panel Variant</h2>
-      <PostTabs>
-        <PostTabItem name="unua">Unua langeto</PostTabItem>
-        <PostTabItem name="dua">Dua langeto</PostTabItem>
-        <PostTabItem name="tria">Tria langeto</PostTabItem>
-
-        <PostTabPanel for="unua">
-          Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
-        </PostTabPanel>
-        <PostTabPanel for="dua">
-          Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
-        </PostTabPanel>
-        <PostTabPanel for="tria">
-          Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
-        </PostTabPanel>
-      </PostTabs>
-
-      <h2>Tabs - Navigation Variant</h2>
-      <PostTabs label="Tabs navigation">
-        <PostTabItem name="nav-first">
-          <a href="#first">First</a>
-        </PostTabItem>
-        <PostTabItem name="nav-second">
-          <a href="#second">Second</a>
-        </PostTabItem>
-        <PostTabItem name="nav-third">
-          <a href="#third">Third</a>
-        </PostTabItem>
-      </PostTabs>
-
-      <h2>Tag</h2>
-
-      <h2>Tooltip</h2>
-      <PostTooltipTrigger for="tooltip-one">
-        {/* The aria-describedby attribute need to be defined on the button already, otherwise we'll get a hydration error */}
-        <button className="btn btn-secondary btn-large" aria-describedby="undefined tooltip-one">
-          Button
-        </button>
-      </PostTooltipTrigger>
-      <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
-        Hi there 👋
-      </PostTooltip>
-    </>
+      </div>
+    </div>
   );
 }
