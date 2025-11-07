@@ -11,16 +11,9 @@
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
   <body>
-    <post-popover-trigger for="popover-one">
-      <button type="button" class="btn btn-secondary">Popover Trigger</button>
-    </post-popover-trigger>
+    <button data-popover-target="popover-one">toggle</button>
     <post-popover id="popover-one" close-button-caption="Close Popover">
-      <p id="testtext">This is a <a href="">test</a></p>
+      <p id="testtext">This is a test</p>
     </post-popover>
-
-    <!-- Alternative trigger case with no interactive element inside the trigger -->
-    <post-popover-trigger for="popover-two">
-      <div>Popover Trigger</div>
-    </post-popover-trigger>
   </body>
 </html>

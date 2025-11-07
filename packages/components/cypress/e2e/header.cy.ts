@@ -1,6 +1,6 @@
 const HEADER_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498';
-const TEST_FILES = ['post-header', 'post-header-without-title'];
-const VIEWPORTS: Record<string, Cypress.ViewportPreset>= {
+const HEADER_CONFIGS = ['portal', 'microsite', 'one-pager'];
+const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
   desktop: 'macbook-15',
   tablet: 'ipad-2',
   mobile: 'iphone-6',
@@ -8,37 +8,39 @@ const VIEWPORTS: Record<string, Cypress.ViewportPreset>= {
 
 describe('header', () => {
   function getContentTop() {
-    return cy.get('main').then($main => Math.round($main.position().top));
+    return cy.get('.container').then($container => Math.round($container.position().top));
   }
 
   function checkLayoutShift() {
     cy.get('@header').should('exist');
 
-    // get the content position before the header is visible
+    // get the content position before the header is hydrated
     let initialContentTop: number;
     getContentTop().then(pos => {
       initialContentTop = pos;
-      cy.get('@header').should('not.be.visible');
+      cy.log(`content position before header hydration: ${pos.toString()}`);
+      cy.get('@header').invoke('attr', 'data-hydrated').should('not.exist');
     });
 
-    // check the content position did not change when the header is visible
+    // check the content position did not change when the header is hydrated
     cy.get('@header')
-      .should('be.visible')
+      .invoke('attr', 'data-hydrated')
+      .should('exist')
       .then(() => {
         getContentTop().should('eq', initialContentTop);
       });
   }
 
-  TEST_FILES.forEach(testFile => {
-    Object.entries(VIEWPORTS).forEach(([viewportName, viewportPreset]) => {
-      describe(testFile.replaceAll('-', ' '), { baseUrl: null }, () => {
-        beforeEach(() => {
-          cy.viewport(viewportPreset);
-          cy.visit(`./cypress/fixtures/${testFile}.test.html`);
-          cy.get('post-header').as('header');
-        });
+  HEADER_CONFIGS.forEach(config => {
+    describe(config.replace('-', ' '), () => {
+      beforeEach(() => {
+        cy.visit(`/iframe.html?id=${HEADER_ID}--${config}`);
+        cy.get('post-header').as('header');
+      });
 
+      Object.entries(VIEWPORTS).forEach(([viewportName, viewportPreset]) => {
         it(`should not shift layout on ${viewportName}`, () => {
+          cy.viewport(viewportPreset);
           checkLayoutShift();
         });
       });

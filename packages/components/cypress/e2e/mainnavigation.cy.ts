@@ -25,7 +25,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
   describe('default', () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-header.test.html');
+      cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
 
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
     });
@@ -37,7 +37,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
   describe('overflow', () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
+      cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
 
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
 
@@ -221,7 +221,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
     describe('resize observer', () => {
       beforeEach(() => {
-        cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
+        cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
         cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
         cy.get('@mainnavigation').find('.scroll-left').as('leftScroll');
         cy.get('@mainnavigation').find('.scroll-right').as('rightScroll');
@@ -281,7 +281,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
   describe('Accessibility', () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
+      cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
       cy.get('post-mainnavigation[data-hydrated]').should('be.visible');
       cy.injectAxe();
     });
