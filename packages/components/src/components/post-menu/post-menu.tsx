@@ -93,7 +93,7 @@ export class PostMenu {
 
   componentDidLoad() {
     // Temporary workaround: defer validation to avoid timing issues with parent components.
-      this.validateLabel();
+    this.validatePlacement();
   }
 
   /**
