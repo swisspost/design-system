@@ -117,7 +117,7 @@ export class PostPopovercontainer {
   /**
    * Animation style
    */
-  @Prop() readonly animation?: 'pop-in' | null = null;
+  @Prop() readonly animation?: 'pop-in' | null = 'pop-in';
 
   /**
    * Whether or not to display a little pointer arrow
@@ -203,7 +203,6 @@ export class PostPopovercontainer {
         // No animation case
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
-        await Promise.resolve();
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
