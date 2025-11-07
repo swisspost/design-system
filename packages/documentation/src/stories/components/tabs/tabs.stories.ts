@@ -123,74 +123,20 @@ const meta: MetaComponent<HTMLPostTabsElement & {
 
 export default meta;
 
-function renderTabs(args: Partial<HTMLPostTabsElement & { 
-  variant: string; 
-  activeTabPanels?: string;
-  activeTabNavigation?: string;
-  'slots-default': string; 
-  'slots-panels': string;
-}>) {
-  const variant = args.variant || 'panels';
-  
-  // Map the variant-specific activeTab arg to the actual activeTab prop
-  const activeTab = variant === 'navigation' ? args.activeTabNavigation : args.activeTabPanels;
-  
-  if (variant === 'navigation') {
-    if (args['slots-default']) {
-      return html`
-        <post-tabs
-          active-tab="${ifDefined(activeTab)}"
-          full-width="${args.fullWidth ? true : nothing}"
-          label="${ifDefined(args.label)}"
-        >
-          ${unsafeHTML(args['slots-default'])}
-        </post-tabs>
-      `;
-    }
-    
+function renderNavigationVariant(
+  activeTab: string,
+  fullWidth: boolean,
+  label: string,
+  customSlots: string
+): ReturnType<typeof html> {
+  if (customSlots) {
     return html`
       <post-tabs
         active-tab="${ifDefined(activeTab)}"
-        full-width="${args.fullWidth ? true : nothing}"
-        label="${ifDefined(args.label)}"
+        full-width="${fullWidth ? true : nothing}"
+        label="${ifDefined(label)}"
       >
-        <post-tab-item name="first">
-          <a href="#first">First page</a>
-        </post-tab-item>
-        <post-tab-item name="second">
-          <a href="#second">Second page</a>
-        </post-tab-item>
-        <post-tab-item name="third">
-          <a href="#third">Third page</a>
-        </post-tab-item>
-      </post-tabs>
-    `;
-  }
-  
-  // Panels variant (default)
-  if (args['slots-default']) {
-    // Use custom slot content if provided (complete custom content)
-    return html`
-      <post-tabs
-        active-tab="${ifDefined(activeTab)}"
-        full-width="${args.fullWidth ? true : nothing}"
-      >
-        ${unsafeHTML(args['slots-default'])}
-      </post-tabs>
-    `;
-  }
-  
-  if (args['slots-panels']) {
-    return html`
-      <post-tabs
-        active-tab="${ifDefined(activeTab)}"
-        full-width="${args.fullWidth ? true : nothing}"
-      >
-        <post-tab-item name="first">First tab</post-tab-item>
-        <post-tab-item name="second">Second tab</post-tab-item>
-        <post-tab-item name="third">Third tab</post-tab-item>
-        
-        ${unsafeHTML(args['slots-panels'])}
+        ${unsafeHTML(customSlots)}
       </post-tabs>
     `;
   }
@@ -198,7 +144,59 @@ function renderTabs(args: Partial<HTMLPostTabsElement & {
   return html`
     <post-tabs
       active-tab="${ifDefined(activeTab)}"
-      full-width="${args.fullWidth ? true : nothing}"
+      full-width="${fullWidth ? true : nothing}"
+      label="${ifDefined(label)}"
+    >
+      <post-tab-item name="first">
+        <a href="#first">First page</a>
+      </post-tab-item>
+      <post-tab-item name="second">
+        <a href="#second">Second page</a>
+      </post-tab-item>
+      <post-tab-item name="third">
+        <a href="#third">Third page</a>
+      </post-tab-item>
+    </post-tabs>
+  `;
+}
+
+// Helper function to render tabs variant
+function renderPanelsVariant(
+  activeTab: string | undefined,
+  fullWidth: boolean | undefined,
+  customSlots: string,
+  panelSlots: string
+): ReturnType<typeof html> {
+  if (customSlots) {
+    return html`
+      <post-tabs
+        active-tab="${ifDefined(activeTab)}"
+        full-width="${fullWidth ? true : nothing}"
+      >
+        ${unsafeHTML(customSlots)}
+      </post-tabs>
+    `;
+  }
+  
+  if (panelSlots) {
+    return html`
+      <post-tabs
+        active-tab="${ifDefined(activeTab)}"
+        full-width="${fullWidth ? true : nothing}"
+      >
+        <post-tab-item name="first">First tab</post-tab-item>
+        <post-tab-item name="second">Second tab</post-tab-item>
+        <post-tab-item name="third">Third tab</post-tab-item>
+        
+        ${unsafeHTML(panelSlots)}
+      </post-tabs>
+    `;
+  }
+  
+  return html`
+    <post-tabs
+      active-tab="${ifDefined(activeTab)}"
+      full-width="${fullWidth ? true : nothing}"
     >
       <post-tab-item name="first">First tab</post-tab-item>
       <post-tab-item name="second">Second tab</post-tab-item>
@@ -215,6 +213,21 @@ function renderTabs(args: Partial<HTMLPostTabsElement & {
       </post-tab-panel>
     </post-tabs>
   `;
+}
+
+function renderTabs(args: Partial<HTMLPostTabsElement & { 
+  variant: string; 
+  activeTabPanels?: string;
+  activeTabNavigation?: string;
+  'slots-default': string; 
+  'slots-panels': string;
+}>) {
+  const variant = args.variant || 'panels';
+  const activeTab = variant === 'navigation' ? args.activeTabNavigation : args.activeTabPanels;
+  
+  return variant === 'navigation'
+    ? renderNavigationVariant(activeTab, args.fullWidth, args.label, args['slots-default'] || '')
+    : renderPanelsVariant(activeTab, args.fullWidth, args['slots-default'] || '', args['slots-panels'] || '');
 }
 
 // STORIES
@@ -266,7 +279,7 @@ export const ActiveTab: Story = {
   },
   args: {
     variant: 'panels',
-    activeTabPanels: 'third',
+    activeTabPanels: 'first',
   },
 };
 
