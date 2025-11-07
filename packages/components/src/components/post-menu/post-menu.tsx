@@ -171,6 +171,7 @@ export class PostMenu {
   @EventFrom('post-popovercontainer')
   private readonly handlePostBeforeToggle = (event: CustomEvent<{ willOpen: boolean }>) => {
       this.isVisible = event.detail.willOpen;
+      console.log('post before toggle');
       this.toggleMenu.emit(this.isVisible);
       if (this.isVisible) {
         this.lastFocusedElement = this.root?.activeElement as HTMLElement;

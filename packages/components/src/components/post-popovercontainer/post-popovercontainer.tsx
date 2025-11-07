@@ -292,36 +292,49 @@ export class PostPopovercontainer {
     animationFn: (el: HTMLElement) => Animation | undefined,
     element: HTMLElement,
   ) {
-    // Increment ID to invalidate previous animations
     const animationId = ++this.currentAnimationId;
 
-    // Cancel previous animation if still running
     if (this.currentAnimation) {
       this.currentAnimation.cancel();
       this.currentAnimation = null;
     }
 
-    const animation = animationFn(element);
-    this.currentAnimation = animation || null;
-
-    if (animation?.playState === 'running') {
-      this.postBeforeToggle.emit({ willOpen: true });
-      this.postBeforeShow.emit({ first: this.hasOpenedOnce });
-    }
+    let animation: Animation | undefined;
 
     try {
-      await animation?.finished;
+      animation = animationFn(element);
+      if (!animation) {
+        // Fallback: no animation, just emit open events directly
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+        this.postToggle.emit({ isOpen: true });
+        this.postShow.emit({ first: this.hasOpenedOnce });
 
-      // Check if this animation is still the current one
-      if (animationId !== this.currentAnimationId) {
-        this.postToggle.emit({ isOpen: false });
         return;
       }
 
+      this.currentAnimation = animation;
+
+      if (animation.playState === 'running') {
+        console.log('before toggle emitted');
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+      }
+
+      await animation.finished;
+
+      // Check if a new animation has replaced this one
+      if (animationId !== this.currentAnimationId) return;
+
       this.postToggle.emit({ isOpen: true });
       this.postShow.emit({ first: this.hasOpenedOnce });
-      if (this.hasOpenedOnce) this.hasOpenedOnce = false;
-    } catch (e) {
+
+      this.hasOpenedOnce = true;
+    } catch (err) {
+      console.warn('Animation failed or was interrupted:', err);
+      // Reset all states to closing
+      this.postBeforeToggle.emit({ willOpen: false });
+      this.postBeforeShow.emit({ first: this.hasOpenedOnce });
       this.postToggle.emit({ isOpen: false });
     } finally {
       if (this.currentAnimation === animation) {
@@ -329,6 +342,7 @@ export class PostPopovercontainer {
       }
     }
   }
+
   /**
    * Start or stop auto updates based on popovercontainer events.
    * Popovercontainers can be closed or opened with other methods than class members,
