@@ -458,12 +458,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the trigger component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the trigger component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -553,7 +553,7 @@ export namespace Components {
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display.
+          * s Toggle tooltip display.
           * @param target An element where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */

@@ -45,6 +45,7 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
 
+s
 Toggle tooltip display.
 
 #### Parameters
