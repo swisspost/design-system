@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/web-components-vite';
-import { html, nothing, TemplateResult } from 'lit';
+import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
