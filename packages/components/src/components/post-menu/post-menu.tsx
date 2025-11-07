@@ -92,8 +92,11 @@ export class PostMenu {
   }
 
   componentDidLoad() {
-    this.validatePlacement();
-    this.validateLabel();
+    // Temporary workaround: defer validation to avoid timing issues with parent components.
+    requestAnimationFrame(() => {
+      this.validatePlacement();
+      this.validateLabel();
+    });
   }
 
   /**
