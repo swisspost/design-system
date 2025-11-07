@@ -83,7 +83,6 @@ export class PostMenuTrigger {
       if (this.menu && this.slottedButton) {
         this.menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
           this.ariaExpanded = event.detail;
-          console.log('aria-expanded:', this.ariaExpanded);
           this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
         });
       }

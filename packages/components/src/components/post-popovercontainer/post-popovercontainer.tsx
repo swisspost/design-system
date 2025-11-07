@@ -316,7 +316,6 @@ export class PostPopovercontainer {
       this.currentAnimation = animation;
 
       if (animation.playState === 'running') {
-        console.log('before toggle emitted');
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
       }
