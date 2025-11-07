@@ -22,16 +22,6 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
     },
-    decorators: [
-      // Inject style to ensure required asterisk in arg table is displayed in error color
-      // Targets Storybook's required badge which typically has title="Required"
-      (story: () => TemplateResult) => html`<style>
-        /* make the required asterisk red to match design system error color */
-        span[title="Required"] {
-          color: rgb(255,68,0) !important;
-        }
-      </style>${story()}`,
-    ],
   },
   argTypes: {
     variant: {
@@ -47,12 +37,13 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     activeTabPanels: {
       name: 'active-tab',
       description:
-        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\n**Changing this value after initialization has no effect.',
+        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\n**Changing this value after initialization has no effect.**',
       control: 'select',
       options: ['first', 'second', 'third'],
       if: { arg: 'variant', eq: 'panels' },
       table: {
         category: 'Props',
+        type: { summary: 'string' },
       },
     },
     activeTabNavigation: {
@@ -64,6 +55,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       if: { arg: 'variant', eq: 'navigation' },
       table: {
         category: 'Props',
+        type: { summary: 'string' },
       },
     },
     activeTab: {
