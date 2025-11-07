@@ -419,7 +419,7 @@ export namespace Components {
           * Animation style
           * @default null
          */
-        "animation"?: AnimationName | null;
+        "animation"?: AnimationName | 'none' | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -1321,7 +1321,7 @@ declare namespace LocalJSX {
           * Animation style
           * @default null
          */
-        "animation"?: AnimationName | null;
+        "animation"?: AnimationName | 'none' | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false

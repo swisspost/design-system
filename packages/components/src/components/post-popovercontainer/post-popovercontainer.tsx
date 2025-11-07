@@ -123,7 +123,7 @@ export class PostPopovercontainer {
   /**
    * Animation style
    */
-  @Prop() readonly animation?: AnimationName | null = null;
+  @Prop() readonly animation?: AnimationName | 'none' | null = null;
 
   /**
    * Whether or not to display a little pointer arrow
@@ -176,6 +176,7 @@ export class PostPopovercontainer {
   }
 
   componentDidLoad() {
+    console.log(this.animation);
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
@@ -209,7 +210,7 @@ export class PostPopovercontainer {
 
     if (popoverContentEl) {
       // Only run and emit animation-related events if animation is defined
-      if (this.animation === null) {
+      if (this.animation === null || this.animation === 'none') {
         // No animation case
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
