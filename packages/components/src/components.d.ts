@@ -491,7 +491,7 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Panel mode**: Changing this value after initialization has no effect.  **Navigation mode**: This should be updated by the routing framework to reflect the current page on each navigation. The component will automatically sync the active state when this prop changes.
          */
         "activeTab"?: string;
         /**
@@ -1392,7 +1392,7 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Panel mode**: Changing this value after initialization has no effect.  **Navigation mode**: This should be updated by the routing framework to reflect the current page on each navigation. The component will automatically sync the active state when this prop changes.
          */
         "activeTab"?: string;
         /**

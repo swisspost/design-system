@@ -30,7 +30,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
   argTypes: {
     variant: {
       name: 'variant',
-        description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt  (anchors + panels), the component will throw an error.</p></post-banner>',
+      description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt (anchors + panels), the component will throw an error.</p></post-banner>',
       control: 'radio',
       options: ['panels', 'navigation'],
       table: {
@@ -38,15 +38,33 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
         defaultValue: { summary: 'panels' },
       },
     },
-    activeTab: {
+    activeTabPanels: {
       name: 'active-tab',
       description:
-        'The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.\n\n**Changing this value after initialization has no effect.**',
+        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\n**Changing this value after initialization has no effect.**',
       control: 'select',
       options: ['first', 'second', 'third'],
-      if: { arg: 'variant' },
+      if: { arg: 'variant', eq: 'panels' },
       table: {
         category: 'Props',
+      },
+    },
+
+    activeTabNavigation: {
+      name: 'active-tab',
+      description: `The name of the tab that is initially active. If not specified, it defaults to the first tab. \n\n**This should be updated by the routing framework
+   * to reflect the current page on each navigation. The component will
+   * automatically sync the active state when this prop changes.**`,
+      control: 'select',
+      options: ['first', 'second', 'third'],
+      if: { arg: 'variant', eq: 'navigation' },
+      table: {
+        category: 'Props',
+      },
+    },
+    activeTab: {
+      table: {
+        disable: true,
       },
     },
     fullWidth: {
@@ -98,7 +116,7 @@ const meta: MetaComponent<HTMLPostTabsElement & { variant: string; 'slots-defaul
     },
 
   },
-  args: { 
+  args: {
     variant: 'panels',
     label: 'Tabs navigation',
     'slots-default': '',
@@ -194,14 +212,9 @@ function renderTabs(args: Partial<HTMLPostTabsElement & { variant: string; 'slot
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostTabsElement & { 
-  variant: string; 
-  'slots-default': string; 
-  'slots-panels': string;
-}>;
+type Story = StoryObj<HTMLPostTabsElement & { variant: string; 'slots-default': string; 'slots-panels': string }>;
 
-export const Default: Story = {
-};
+export const Default: Story = {};
 
 export const PanelsVariant: Story = {
   parameters: {

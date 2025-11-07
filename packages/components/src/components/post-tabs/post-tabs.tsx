@@ -42,9 +42,20 @@ export class PostTabs {
    * The name of the tab that is initially active.
    * If not specified, it defaults to the first tab.
    *
-   * **Changing this value after initialization has no effect.**
+   * **Panel mode**: Changing this value after initialization has no effect.
+   *
+   * **Navigation mode**: This should be updated by the routing framework
+   * to reflect the current page on each navigation. The component will
+   * automatically sync the active state when this prop changes.
    */
   @Prop() readonly activeTab?: string;
+
+  @Watch('activeTab')
+  handleActiveTabChange(newTab: string) {
+    if (this.isLoaded && this.isNavigationMode && newTab && newTab !== this.currentActiveTab?.name) {
+      void this.show(newTab);
+    }
+  }
 
   /**
    * When set to true, this property allows the tabs container to span the
@@ -78,21 +89,14 @@ export class PostTabs {
     this.setupContentObserver();
     this.validateLabel();
 
-    if (this.isNavigationMode) {
-      // In navigation mode, check for activeTab prop or find tab with aria-current
-      if (this.activeTab) {
-        void this.show(this.activeTab);
-      } else {
-        const activeTab = this.findActiveNavigationTab();
-        if (activeTab) {
-          void this.show(activeTab.name);
-        } else if (this.tabs.length > 0) {
-          void this.show(this.tabs[0].name);
-        }
-      }
-    } else {
-      const initiallyActiveTab = this.activeTab || this.tabs[0]?.name;
-      void this.show(initiallyActiveTab);
+    // Unified logic for both modes with priority order
+    const tabToActivate = 
+      this.activeTab ||
+      this.findActiveNavigationTab()?.name ||
+      this.tabs[0]?.name;
+    
+    if (tabToActivate) {
+      void this.show(tabToActivate);
     }
   }
 
@@ -148,11 +152,9 @@ export class PostTabs {
         this.enableTabs();
         
         // Re-initialize active tab after mode change
-        if (this.isNavigationMode) {
-          const activeTab = this.activeTab || this.findActiveNavigationTab()?.name || this.tabs[0]?.name;
-          if (activeTab) {
-            void this.show(activeTab);
-          }
+        const activeTab = this.activeTab || this.findActiveNavigationTab()?.name || this.tabs[0]?.name;
+        if (activeTab) {
+          void this.show(activeTab);
         }
       }
     }
