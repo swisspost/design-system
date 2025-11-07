@@ -64,7 +64,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         <h1 slot="title">Application title</h1>
 
-        <ul className="list-inline">
+        <ul slot="local-controls" className="list-inline">
           <li>
             <a href="#test">
               <span>Search</span>
@@ -80,7 +80,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </ul>
 
         {/* Throws Hydration Errors */}
-        <PostMainnavigation>
+        <PostMainnavigation slot="post-mainnavigation">
           {/* Throws Hydration Errors */}
           <PostList title-hidden="">
             <h2>Main Navigation</h2>
