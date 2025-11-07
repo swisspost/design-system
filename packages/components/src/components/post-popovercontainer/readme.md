@@ -17,16 +17,40 @@
 
 ## Events
 
-| Event        | Description                                                                                                   | Type                   |
-| ------------ | ------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `postToggle` | Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean | `CustomEvent<boolean>` |
+| Event              | Description                                                                                                                                                                                                          | Type                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| `postBeforeShow`   | Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.                                                          | `CustomEvent<{ first?: boolean; }>`   |
+| `postBeforeToggle` | Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed. | `CustomEvent<{ willOpen: boolean; }>` |
+| `postHide`         | Fires whenever the popovercontainer is hidden.                                                                                                                                                                       | `CustomEvent<any>`                    |
+| `postShow`         | Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.                                                                            | `CustomEvent<{ first?: boolean; }>`   |
+| `postToggle`       | Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.               | `CustomEvent<{ isOpen: boolean; }>`   |
 
 
 ## Methods
 
+### `close() => Promise<void>`
+
+Handles the popover closing process and emits related events.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `hide() => Promise<void>`
 
 Programmatically hide the popovercontainer
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `open() => Promise<void>`
+
+Handles the popover opening process and emits related events.
 
 #### Returns
 
@@ -40,9 +64,9 @@ Programmatically display the popovercontainer
 
 #### Parameters
 
-| Name     | Type          | Description                                                                           |
-| -------- | ------------- | ------------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popovercontainer should be shown |
+| Name     | Type          | Description                                                                               |
+| -------- | ------------- | ----------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
 
 #### Returns
 
@@ -56,10 +80,10 @@ Toggle popovercontainer display
 
 #### Parameters
 
-| Name     | Type          | Description                                                                           |
-| -------- | ------------- | ------------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popovercontainer should be shown |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                                      |
+| Name     | Type          | Description                                                                               |
+| -------- | ------------- | ----------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                                          |
 
 #### Returns
 

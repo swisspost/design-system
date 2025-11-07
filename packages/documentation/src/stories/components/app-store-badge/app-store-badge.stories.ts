@@ -1,16 +1,16 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'f1cda0ac-28d4-4afc-b56d-9182bd9bd671',
   title: 'Components/App Store Badge',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'status:Experimental'],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=2513-10518&node-type=instance&t=YDywHpWmdpWu1a5h-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=1530-32646',
     },
   },
   args: {

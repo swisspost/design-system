@@ -1,15 +1,15 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 const defaultSteps = ['Sender', 'Product', 'Other details', 'Order summary'];
 
 const meta: MetaComponent = {
   id: '7dc546d9-e248-4d06-befe-3ad62fcd310f',
   title: 'Components/Stepper',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderStepper,
   parameters: {
     badges: [],
@@ -153,9 +153,6 @@ export const InformationalStepper: StoryObj = {
 
 export const LongLabels: StoryObj = {
   args: {
-    steps: [
-      'Personal information and shipping address',
-      ...defaultSteps.slice(1),
-    ],
+    steps: ['Personal information and shipping address', ...defaultSteps.slice(1)],
   },
 };

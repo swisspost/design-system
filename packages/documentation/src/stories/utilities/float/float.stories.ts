@@ -1,4 +1,4 @@
-import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
 import { nothing } from 'lit';
@@ -6,6 +6,7 @@ import { nothing } from 'lit';
 const meta: MetaExtended = {
   id: 'ccf092c1-f0ab-49a1-a612-87e5be23adde',
   title: 'Utilities/Float',
+  tags: ['status:Stable'],
   argTypes: {
     floatPosition: {
       name: 'float',

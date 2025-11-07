@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, breakpoint } from '@/utils';
+import { checkRequiredAndType, breakpoint, Device } from '@/utils';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
 
@@ -26,7 +26,7 @@ export class PostFooter {
    */
   @Prop() readonly label!: string;
 
-  @State() device: string = breakpoint.get('device');
+  @State() device: Device = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
 
   @Watch('label')
@@ -97,7 +97,7 @@ export class PostFooter {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} data-color-scheme="light">
         <footer>
           <h2 class="visually-hidden">{this.label}</h2>
 

@@ -1,11 +1,11 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
   title: 'Components/Language Switch',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-language-switch',
   render: renderLanguageSwitch,
   parameters: {

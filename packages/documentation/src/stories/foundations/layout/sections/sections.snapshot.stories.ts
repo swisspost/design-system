@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta, { Default } from './sections.stories';
 import { html } from 'lit';
 

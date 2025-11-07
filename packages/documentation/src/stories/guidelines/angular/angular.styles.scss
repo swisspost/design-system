@@ -11,7 +11,7 @@ tokens.$default-map: utilities.$post-spacing;
   list-style-type: none;
   gap: tokens.get('utility-gap-32');
 
-  @include post.media-breakpoint-down(sm) {
+  @include post.max(sm) {
     gap: tokens.get('utility-gap-16');
   }
 }

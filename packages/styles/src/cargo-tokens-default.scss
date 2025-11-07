@@ -1,8 +1,10 @@
 @use 'sass:meta';
 
 @layer design-system {
+  @include meta.load-css('./tokens/schemes-static');
   @include meta.load-css('./tokens/schemes');
   @include meta.load-css('./tokens/device-default');
   @include meta.load-css('./tokens/appearance-default');
   @include meta.load-css('./tokens/cargo-theme');
+  @include meta.load-css('./tokens/palettes');
 }

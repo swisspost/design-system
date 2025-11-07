@@ -1,6 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as HintStories from './hint.stories';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as HintStories from './hint.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={HintStories} />
 
@@ -9,6 +10,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
   <link-design of={JSON.stringify(HintStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Form hint or assistive text is used under a form element to give guidance to users on how to best

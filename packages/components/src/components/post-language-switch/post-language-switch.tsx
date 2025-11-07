@@ -103,7 +103,6 @@ export class PostLanguageSwitch {
   private updateChildrenVariant() {
     this.languageOptions.forEach(el => {
       el.setAttribute('variant', this.variant);
-      el.setAttribute('role', this.variant == 'menu' ? 'menuitem' : 'listitem');
     });
   }
 
@@ -136,12 +135,7 @@ export class PostLanguageSwitch {
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu
-          id={this.menuId}
-          class="post-language-switch-dropdown-container"
-          aria-label={this.caption}
-          role="menu"
-        >
+        <post-menu id={this.menuId} class="post-language-switch-dropdown-container" label={this.caption}>
           <slot></slot>
         </post-menu>
       </Host>

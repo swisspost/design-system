@@ -3,50 +3,72 @@
 @use '../../variables/color';
 @use '../../functions/tokens';
 @use '../../tokens/elements';
+@use '../../tokens/components';
 @use '../../mixins/button' as button-mx;
 @use 'mixins' as *;
 
 tokens.$default-map: elements.$post-link;
 
 :root:has(post-header) {
+  // expanded height
+  --post-local-header-expanded-height: var(
+    --post-local-header-expanded-min-height
+  ); // default value later updated with JavaScript
   --post-header-expanded-height: calc(
-    var(--post-global-header-height) + var(--post-local-header-height)
+    var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
   );
+
+  // reduced height
+  --post-global-header-reduced-height: var(--post-global-header-expanded-height);
+  --post-local-header-reduced-height: var(--post-local-header-expanded-height);
   --post-header-reduced-height: calc(
-    var(--post-global-header-reduced-height) + var(--post-main-navigation-height)
-  );
-  --post-header-height: calc(
-    var(--post-header-expanded-height) - min(
-        var(--post-header-scroll-top, 0px),
-        calc(var(--post-header-expanded-height) - var(--post-header-reduced-height))
-      )
+    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height)
   );
 
-  @include media.min(lg) {
-    --post-global-header-height: 72px;
-    --post-global-header-reduced-height: 24px;
-    --post-main-navigation-height: 56px;
-    --post-local-header-height: 112px;
+  // total height (dynamic depending on the scroll position)
+  --post-header-height: max(
+    var(--post-header-expanded-height) - var(--post-header-scroll-top, 0px),
+    var(--post-header-reduced-height)
+  );
+
+  // microsite
+  &:has(post-header post-mainnavigation) {
+    --post-global-header-expanded-height: 4rem;
+    --post-local-header-reduced-height: 0rem; /* stylelint-disable-line length-zero-no-unit */ // needed for calculation
+
+    @include media.only(mobile) {
+      --post-local-header-expanded-min-height: 3rem;
+    }
+
+    @include media.only(tablet) {
+      --post-local-header-expanded-min-height: 3.5rem;
+    }
+
+    @include media.only(desktop) {
+      --post-global-header-expanded-height: 4.5rem;
+      --post-local-header-expanded-min-height: 7rem;
+
+      // header reducing on desktop
+      --post-global-header-reduced-height: 1.5rem;
+      --post-local-header-reduced-height: 3.5rem;
+      --post-main-navigation-height: var(--post-local-header-reduced-height);
+    }
   }
 
-  @include media.max(lg) {
-    --post-header-reduced-height: var(--post-header-expanded-height);
-    --post-global-header-height: 64px;
-    --post-global-header-reduced-height: var(--post-global-header-height);
-    --post-local-header-height: 48px;
-    --post-main-navigation-height: 0px; /* stylelint-disable-line length-zero-no-unit */ /* needed for calculation */
+  // one pager
+  &:not(:has(post-header post-mainnavigation)) {
+    --post-global-header-expanded-height: 4rem;
+    --post-local-header-expanded-min-height: 3.5rem;
+
+    @include media.only(desktop) {
+      --post-global-header-expanded-height: 4.5rem;
+      --post-local-header-expanded-min-height: 4rem;
+    }
   }
 
-  @include media.min(md) {
-    --post-local-header-min-height: 56px;
-  }
-
-  @include media.max(md) {
-    --post-local-header-min-height: 48px;
-  }
-
+  // no title
   &:not(:has(post-header [slot='title'])) {
-    --post-local-header-height: var(--post-main-navigation-height) !important;
+    --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0);
   }
 }
 
@@ -67,30 +89,59 @@ post-header {
   }
 
   ul[slot='meta-navigation'] {
+    gap: 0 4px;
+
     @include media.min(lg) {
-      gap: 4px;
+      align-items: center;
     }
 
-    @include media.max(lg) {
-      flex-direction: column;
-      gap: 0;
+    &:where(post-header:has(post-mainnavigation) > *) {
+      @include media.max(lg) {
+        flex-direction: column;
 
-      a,
-      button {
-        justify-content: space-between;
-        border-radius: 0;
-        @include mobile-header-interactive;
+        a,
+        button {
+          justify-content: space-between;
+          border-radius: 0;
+          @include mobile-header-interactive;
 
-        @include utilities.focus-style-custom {
-          border-radius: 4px;
+          @include utilities.focus-style-custom {
+            border-radius: 4px;
+          }
+        }
+      }
+
+      @include media.max(lg) {
+        a,
+        button {
+          flex-direction: row-reverse;
+          justify-content: flex-end;
+        }
+      }
+
+      @include media.max(sm) {
+        a,
+        button {
+          font-size: 14px;
+          gap: 0.5rem;
+
+          > post-icon {
+            height: 1rem;
+            width: 1rem;
+          }
         }
       }
     }
+  }
 
-    @include media.max(sm) {
-      a,
+  [slot='global-login'],
+  .local-login {
+    post-menu-trigger {
+      height: tokens.get('avatar-size', components.$post-avatar);
+      display: block;
+
       button {
-        font-size: 14px;
+        border-radius: 100%;
       }
     }
   }
@@ -120,7 +171,15 @@ post-header {
     }
   }
 
-  button:not(post-mainnavigation *, post-language-switch *) {
+  button:where(
+      :not(
+          post-mainnavigation *,
+          post-language-switch *,
+          [slot='global-login'] *,
+          .local-login post-menu *,
+          .local-login post-menu-trigger *
+        )
+    ) {
     @include button-mx.reset-button;
 
     &:hover {
@@ -128,10 +187,36 @@ post-header {
     }
   }
 
+  // Hide link/button text on mobile in order to only have icon visible
+  post-togglebutton,
+  a[slot='global-login'],
+  [slot='global-controls'] a,
+  > .list-inline:where(:not([slot])) a {
+    > span {
+      @include media.max(sm) {
+        @include utilities.visuallyhidden;
+      }
+    }
+  }
+
+  a[slot='global-login'] {
+    @include media.max(sm) {
+      padding: 10px !important;
+    }
+  }
+
   a,
   button,
   post-togglebutton {
-    &:not(post-mainnavigation *, post-language-switch *) {
+    &:where(
+        :not(
+            post-mainnavigation *,
+            post-language-switch *,
+            [slot='global-login'] *,
+            .local-login post-menu *,
+            .local-login post-menu-trigger *
+          )
+      ) {
       @include subsidiary-header-interactive;
 
       post-icon {
@@ -141,28 +226,45 @@ post-header {
 
       @include media.max(sm) {
         padding: 8px;
-
-        .visually-hidden-sm {
-          @include utilities.visuallyhidden;
-        }
       }
     }
   }
 
   button,
-  a:not(post-mainnavigation *, post-language-switch *) {
-    display: flex;
+  a {
+    &:where(
+        :not(
+            post-mainnavigation *,
+            post-language-switch *,
+            [slot='global-login'] *,
+            .local-login post-menu *,
+            .local-login post-menu-trigger *
+          )
+      ) {
+      display: flex;
 
-    @include media.max(sm) {
-      padding: 4px 10px;
+      @include media.max(sm) {
+        padding: 4px 10px;
+      }
     }
   }
 
-  a.selected,
+  #user-menu a,
+  #user-menu button {
+    min-width: 327px;
+
+    @include media.between(sm, md) {
+      min-width: 300px;
+    }
+  }
+
+  a[aria-current='location'],
+  a.active,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
       color: color.$white;
       background: #050400;
+      box-shadow: var(--post-device-elevation-100);
     }
   }
 
@@ -180,6 +282,11 @@ post-header {
         }
       }
     }
+  }
+
+  > .list-inline:where(:not([slot])) {
+    gap: 4px;
+    align-items: center;
   }
 }
 

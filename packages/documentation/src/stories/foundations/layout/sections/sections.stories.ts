@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 import './sections.styles.scss';
@@ -6,6 +6,7 @@ import './sections.styles.scss';
 const meta: MetaExtended = {
   id: '49b036fc-5c54-46da-b6d1-081f0c731b05',
   title: 'Foundations/Layout/Sections',
+  tags: ['package:Styles', 'status:Stable'],
   parameters: {
     layout: 'fullscreen',
     badges: [],
@@ -113,13 +114,14 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () => html`
-    <section class="section palette-brand">
+    <section class="section palette palette-brand">
       <div class="container py-64">
         <h2>Title</h2>
         <p>
-          This section demonstrates a foundational layout component with proper spacing and container styling.
-          Sections help in organizing content into distinct visual blocks, improving readability and structure.
-          The container ensures consistent horizontal padding and maximum width across different screen sizes.
+          This section demonstrates a foundational layout component with proper spacing and
+          container styling. Sections help in organizing content into distinct visual blocks,
+          improving readability and structure. The container ensures consistent horizontal padding
+          and maximum width across different screen sizes.
         </p>
       </div>
     </section>
@@ -156,7 +158,7 @@ export const Alignment: Story = {
     }
 
     return html`
-      <section class="section palette-brand">
+      <section class="section palette palette-brand">
         <div class="container">${content}</div>
       </section>
     `;

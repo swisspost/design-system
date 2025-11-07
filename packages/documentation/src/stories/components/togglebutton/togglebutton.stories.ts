@@ -1,4 +1,4 @@
-import { type Args, StoryObj } from '@storybook/web-components';
+import { type Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import buttonMeta from '../button/button.stories';
@@ -14,7 +14,7 @@ export interface PostTogglebuttonProps {
 const meta: MetaComponent<PostTogglebuttonProps> = {
   id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
   title: 'Components/Button Toggle',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   render: renderBadge,
   component: 'post-togglebutton',
   parameters: {
@@ -48,19 +48,19 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       ...buttonMeta.argTypes?.size,
       description:
         'Sets the size of the component.' +
-        '<span className="mt-8 banner banner-info banner-sm">' +
+        '<post-banner data-size="sm"><p>' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
-        '.</span>',
+        '.</p></post-banner>',
     },
     variant: {
       ...buttonMeta.argTypes?.variant,
       description:
         'Defines a style variant.' +
-        '<span className="mt-8 banner banner-info banner-sm">' +
+        '<post-banner data-size="sm"><p>' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
-        '.</span>',
+        '.</p></post-banner>',
     },
   },
 };
@@ -90,8 +90,8 @@ export const ContentVisibility: StoryObj<PostTogglebuttonProps> = {
     return html`
       <post-togglebutton class="btn btn-primary">
         Menu
-        <span data-showwhen="untoggled"><post-icon name="2070"></post-icon></span>
-        <span data-showwhen="toggled"><post-icon name="2043"></post-icon></span>
+        <span data-showwhen="untoggled"><post-icon name="burger"></post-icon></span>
+        <span data-showwhen="toggled"><post-icon name="closex"></post-icon></span>
       </post-togglebutton>
     `;
   },

@@ -1415,6 +1415,16 @@
         "keywords": [
           "Filiale",
           "Branch",
+          "Postfiliale",
+          "Filiale postale",
+          "Swiss Post branch",
+          "filiale della Posta",
+          "Subsidiary",
+          "Controllata",
+          "Filialen",
+          "Filiales",
+          "Filiali",
+          "Branches",
           "entrée",
           "entrata",
           "entrance",
@@ -1437,7 +1447,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:05.000Z"
+      "modifiedAt": "2025-10-06T04:05:07.348Z"
     },
     {
       "uuid": "221f62c0-df41-11e7-a943-005056a94f4a",
@@ -25959,6 +25969,1175 @@
       "modifiedAt": "2025-06-12T11:05:32.000Z"
     },
     {
+      "uuid": "41adffd1-678c-11f0-ad2d-005056873709",
+      "id": 5623270,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5623270/storage/MDA1NjIzMjcwLzAvbWFzdGVy",
+        "keywords": [
+          "Télécharger",
+          "Download",
+          "Herunterladen",
+          "Scaricare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2694.svg",
+        "basename": "2694",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-07-23T06:14:14.000Z",
+      "modifiedAt": "2025-07-23T06:19:33.000Z"
+    },
+    {
+      "uuid": "1041c204-678d-11f0-ad2d-005056873709",
+      "id": 5623329,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5623329/storage/MDA1NjIzMzI5LzAvbWFzdGVy",
+        "keywords": [
+          "ZIP",
+          "Télécharger",
+          "Download",
+          "Herunterladen",
+          "Scaricare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2695.svg",
+        "basename": "2695",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-07-23T06:20:00.000Z",
+      "modifiedAt": "2025-07-24T06:05:03.467Z"
+    },
+    {
+      "uuid": "221d8740-7915-11f0-80d2-005056873709",
+      "id": 5865070,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5865070/storage/MDA1ODY1MDcwLzAvbWFzdGVy",
+        "keywords": [
+          "Add storage space",
+          "Stellplatz hinzufügen",
+          "Ajouter un emplacement",
+          "Aggiungere punto di posizionamento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2696.svg",
+        "basename": "2696",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-14T13:46:52.000Z",
+      "modifiedAt": "2025-08-15T13:05:04.533Z"
+    },
+    {
+      "uuid": "a98dec10-7915-11f0-80d2-005056873709",
+      "id": 5865096,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5865096/storage/MDA1ODY1MDk2LzAvbWFzdGVy",
+        "keywords": [
+          "Remove storage space",
+          "Stellplatz entfernen",
+          "Supprimer l’emplacement",
+          "Rimuovere il punto di posizionamento"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2697.svg",
+        "basename": "2697",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-14T13:50:39.000Z",
+      "modifiedAt": "2025-08-15T13:05:04.533Z"
+    },
+    {
+      "uuid": "407d8320-7e56-11f0-80d2-005056873709",
+      "id": 5916547,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916547/storage/MDA1OTE2NTQ3LzAvbWFzdGVy",
+        "keywords": [
+          "PET Flaschen",
+          "PET bottles",
+          "bottiglie in PET",
+          "Bouteilles en PET",
+          "recycling",
+          "recyclage",
+          "Recycling",
+          "riciclaggio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2698.svg",
+        "basename": "2698",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T06:15:36.000Z",
+      "modifiedAt": "2025-08-21T06:19:59.000Z"
+    },
+    {
+      "uuid": "dec76770-7e57-11f0-80d2-005056873709",
+      "id": 5916610,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916610/storage/MDA1OTE2NjEwLzAvbWFzdGVy",
+        "keywords": [
+          "Glas",
+          "jar",
+          "Vetro",
+          "Verre",
+          "collection of glass",
+          "Glassammlung",
+          "Collecte de verre",
+          "Raccolta di vetro"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2699.svg",
+        "basename": "2699",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T06:27:11.000Z",
+      "modifiedAt": "2025-08-22T06:05:02.704Z"
+    },
+    {
+      "uuid": "d4e434c0-7e59-11f0-80d2-005056873709",
+      "id": 5916678,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916678/storage/MDA1OTE2Njc4LzAvbWFzdGVy",
+        "keywords": [
+          "Aluminium",
+          "Alluminio",
+          "aluminium collection",
+          "Aluminiumsammlung",
+          "Collecte de l’aluminium",
+          "Raccolta dell’alluminio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2700.svg",
+        "basename": "2700",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T06:41:13.000Z",
+      "modifiedAt": "2025-08-22T06:05:02.704Z"
+    },
+    {
+      "uuid": "adb804c0-7e5a-11f0-80d2-005056873709",
+      "id": 5916720,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916720/storage/MDA1OTE2NzIwLzAvbWFzdGVy",
+        "keywords": [
+          "Büromaterial",
+          "office materials",
+          "Matériel de bureau",
+          "materiale da ufficio",
+          "Office materials",
+          "Büromaterialien",
+          "Materiale da ufficio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2701.svg",
+        "basename": "2701",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T06:47:17.000Z",
+      "modifiedAt": "2025-08-21T06:50:47.000Z"
+    },
+    {
+      "uuid": "675039c0-7e5b-11f0-80d2-005056873709",
+      "id": 5916750,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916750/storage/MDA1OTE2NzUwLzAvbWFzdGVy",
+        "keywords": [
+          "Glas",
+          "jar",
+          "Vetro",
+          "Verre",
+          "carafe",
+          "Karaffe",
+          "Carafe",
+          "Caraffa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2702.svg",
+        "basename": "2702",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T06:52:28.000Z",
+      "modifiedAt": "2025-08-22T06:05:02.704Z"
+    },
+    {
+      "uuid": "26947580-7e5c-11f0-80d2-005056873709",
+      "id": 5916788,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916788/storage/MDA1OTE2Nzg4LzAvbWFzdGVy",
+        "keywords": [
+          "Glas",
+          "jar",
+          "Vetro",
+          "Verre",
+          "Glasses",
+          "Gläser",
+          "Verres",
+          "vasetti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2703.svg",
+        "basename": "2703",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T06:57:49.000Z",
+      "modifiedAt": "2025-08-22T06:05:02.704Z"
+    },
+    {
+      "uuid": "0ce543f0-7e5f-11f0-80d2-005056873709",
+      "id": 5916908,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916908/storage/MDA1OTE2OTA4LzAvbWFzdGVy",
+        "keywords": [
+          "Teller",
+          "Plate",
+          "Piastra",
+          "Assiette"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2704.svg",
+        "basename": "2704",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T07:18:35.000Z",
+      "modifiedAt": "2025-08-21T07:21:52.000Z"
+    },
+    {
+      "uuid": "9abb89a4-7e5f-11f0-80d2-005056873709",
+      "id": 5916926,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916926/storage/MDA1OTE2OTI2LzAvbWFzdGVy",
+        "keywords": [
+          "nursing room",
+          "Stillzimmer",
+          "Salle d’allaitement",
+          "Stanza allattamento",
+          "Baby",
+          "Neonati",
+          "Bébé",
+          "Zimmer",
+          "Room",
+          "Camera",
+          "Chambre"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2705.svg",
+        "basename": "2705",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T07:22:33.000Z",
+      "modifiedAt": "2025-08-22T07:05:05.026Z"
+    },
+    {
+      "uuid": "25c154c0-7e61-11f0-80d2-005056873709",
+      "id": 5916990,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5916990/storage/MDA1OTE2OTkwLzAvbWFzdGVy",
+        "keywords": [
+          "Türe",
+          "Door",
+          "Porta",
+          "Porte",
+          "Door opening right",
+          "Türöffnung rechts",
+          "Ouverture ö Tü droite",
+          "Türöapertura destra"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2706.svg",
+        "basename": "2706",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T07:33:35.000Z",
+      "modifiedAt": "2025-08-22T07:05:05.026Z"
+    },
+    {
+      "uuid": "4051c1c0-7e62-11f0-80d2-005056873709",
+      "id": 5917043,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5917043/storage/MDA1OTE3MDQzLzAvbWFzdGVy",
+        "keywords": [
+          "Türe",
+          "Door",
+          "Porta",
+          "Porte",
+          "Ouvrir la porte",
+          "Aprire la porta",
+          "Türe öffnen",
+          "Open the door"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2707.svg",
+        "basename": "2707",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-21T07:41:29.000Z",
+      "modifiedAt": "2025-08-21T07:50:08.000Z"
+    },
+    {
+      "uuid": "5d735650-7f26-11f0-80d2-005056873709",
+      "id": 5923282,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5923282/storage/MDA1OTIzMjgyLzAvbWFzdGVy",
+        "keywords": [
+          "separator card",
+          "Trennkarte",
+          "Carte de séparation",
+          "Carta di separazione",
+          "Card",
+          "Scheda",
+          "Carte",
+          "Karte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2708.svg",
+        "basename": "2708",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-22T07:05:20.000Z",
+      "modifiedAt": "2025-08-23T07:05:05.336Z"
+    },
+    {
+      "uuid": "36690630-7f27-11f0-80d2-005056873709",
+      "id": 5923317,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5923317/storage/MDA1OTIzMzE3LzAvbWFzdGVy",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella",
+          "Lastwagen",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2709.svg",
+        "basename": "2709",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-22T07:11:24.000Z",
+      "modifiedAt": "2025-08-23T07:05:05.336Z"
+    },
+    {
+      "uuid": "bccfc330-7f27-11f0-80d2-005056873709",
+      "id": 5923342,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5923342/storage/MDA1OTIzMzQyLzAvbWFzdGVy",
+        "keywords": [
+          "Anhänger LKW",
+          "Trailer Truck",
+          "Autocarro rimorchio",
+          "Camion Remorque",
+          "Swap body trailer",
+          "Anhänger Wechselbrücke",
+          "Anhänger Wechselbrunckeü",
+          "Anhängerüseminterrato"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2710.svg",
+        "basename": "2710",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-22T07:15:09.000Z",
+      "modifiedAt": "2025-08-23T07:05:05.336Z"
+    },
+    {
+      "uuid": "60789fb0-7f29-11f0-80d2-005056873709",
+      "id": 5923409,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5923409/storage/MDA1OTIzNDA5LzAvbWFzdGVy",
+        "keywords": [
+          "Swap body lorry",
+          "LKW Wechselbrücke",
+          "Caisson mobile ü camion",
+          "Autocarro a ü variabile",
+          "lorry",
+          "LKW",
+          "Camion",
+          "AUTOCARRO"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2711.svg",
+        "basename": "2711",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-22T07:26:53.000Z",
+      "modifiedAt": "2025-08-23T07:05:05.336Z"
+    },
+    {
+      "uuid": "5709a810-7f2a-11f0-80d2-005056873709",
+      "id": 5923450,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5923450/storage/MDA1OTIzNDUwLzAvbWFzdGVy",
+        "keywords": [
+          "Swap body trailer",
+          "Anhänger Wechselbrücke",
+          "Anhänger Wechselbrunckeü",
+          "Anhängerüseminterrato",
+          "Anhänger LKW",
+          "Trailer Truck",
+          "Autocarro rimorchio",
+          "Camion Remorque"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2712.svg",
+        "basename": "2712",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-22T07:33:47.000Z",
+      "modifiedAt": "2025-08-23T07:05:05.336Z"
+    },
+    {
+      "uuid": "2286db70-7f2b-11f0-80d2-005056873709",
+      "id": 5923477,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5923477/storage/MDA1OTIzNDc3LzAvbWFzdGVy",
+        "keywords": [
+          "Anhänger LKW",
+          "Trailer Truck",
+          "Autocarro rimorchio",
+          "Camion Remorque",
+          "Trailer Two axes",
+          "Anhänger Zwei Achsen",
+          "Anhänger Deux axes",
+          "Anhänger Due assi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2713.svg",
+        "basename": "2713",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-08-22T07:39:28.000Z",
+      "modifiedAt": "2025-08-23T07:05:05.336Z"
+    },
+    {
+      "uuid": "fd893eb0-92c8-11f0-9719-005056873709",
+      "id": 6251978,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6251978/storage/MDA2MjUxOTc4LzAvbWFzdGVy",
+        "keywords": [
+          "Interdit",
+          "Proibito",
+          "Verboten",
+          "Forbidden",
+          "prohibition",
+          "Verbot",
+          "Interdiction",
+          "Divieto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2714.svg",
+        "basename": "2714",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-09-16T06:47:19.000Z",
+      "modifiedAt": "2025-09-17T06:05:03.771Z"
+    },
+    {
+      "uuid": "a8dd90e0-92c9-11f0-9719-005056873709",
+      "id": 6252010,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6252010/storage/MDA2MjUyMDEwLzAvbWFzdGVy",
+        "keywords": [
+          "PubliCar"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2715.svg",
+        "basename": "2715",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-09-16T06:52:06.000Z",
+      "modifiedAt": "2025-09-16T06:56:10.000Z"
+    },
+    {
+      "uuid": "d4280670-a405-11f0-8b39-0050568d2654",
+      "id": 6616362,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616362/storage/MDA2NjE2MzYyLzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "A5 postcard",
+          "Postkarte A5",
+          "Carte postale A5",
+          "Cartolina postale A5"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2716.svg",
+        "basename": "2716",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:15:38.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "935a40d0-a406-11f0-8b39-0050568d2654",
+      "id": 6616472,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616472/storage/MDA2NjE2NDcyLzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "A6 postcard",
+          "Postkarte A6",
+          "Carte postale A6",
+          "Cartolina postale A6"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2717.svg",
+        "basename": "2717",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:20:59.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "0133f000-a408-11f0-8b39-0050568d2654",
+      "id": 6616666,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616666/storage/MDA2NjE2NjY2LzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "A6/5 postcard",
+          "Postkarte A6/5",
+          "Carte postale A6/5",
+          "Cartolina postale A6/5"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2718.svg",
+        "basename": "2718",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:31:13.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "b215c470-a408-11f0-8b39-0050568d2654",
+      "id": 6616753,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616753/storage/MDA2NjE2NzUzLzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "Square postcard",
+          "Postkarte Quadratisch",
+          "Carte postale carrée",
+          "Cartolina postale quadrata"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2719.svg",
+        "basename": "2719",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:36:10.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "5166fc10-a409-11f0-8b39-0050568d2654",
+      "id": 6616844,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616844/storage/MDA2NjE2ODQ0LzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "B5 postcard",
+          "Postkarte B5",
+          "Carte postale B5",
+          "Cartolina postale B5"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2720.svg",
+        "basename": "2720",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:40:37.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "fe7448e0-a409-11f0-8b39-0050568d2654",
+      "id": 6616931,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616931/storage/MDA2NjE2OTMxLzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "A5 glitter postcard",
+          "Postkarte A5 Glitter",
+          "Carte postale A5 Paillettes",
+          "Cartolina postale A5 glitter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2721.svg",
+        "basename": "2721",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:45:27.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "8310f440-a40a-11f0-8b39-0050568d2654",
+      "id": 6617006,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617006/storage/MDA2NjE3MDA2LzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "self-mailer",
+          "Selfmailer"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2722.svg",
+        "basename": "2722",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:49:10.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "25093000-a40b-11f0-8b39-0050568d2654",
+      "id": 6617093,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617093/storage/MDA2NjE3MDkzLzAvbWFzdGVy",
+        "keywords": [
+          "Fahrplan",
+          "Timetable",
+          "Orario",
+          "Horaire",
+          "Wheelchair accessible No information",
+          "Rollstuhlgängig Keine Information",
+          "Accessible ä fauteuil roulant Aucune information",
+          "ä in sedia a rotelle Nessuna informazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2723.svg",
+        "basename": "2723",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:53:42.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "934aa1b2-a40c-11f0-8b39-0050568d2654",
+      "id": 6617283,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617283/storage/MDA2NjE3MjgzLzAvbWFzdGVy",
+        "keywords": [
+          "Fahrplan",
+          "Timetable",
+          "Orario",
+          "Horaire",
+          "Not wheelchair accessible",
+          "Nicht Rollstuhlgängig",
+          "Non accessible ä fauteuil roulant",
+          "Non accessibile in ä a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2724.svg",
+        "basename": "2724",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:03:56.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "4144a300-a40e-11f0-8b39-0050568d2654",
+      "id": 6617508,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617508/storage/MDA2NjE3NTA4LzAvbWFzdGVy",
+        "keywords": [
+          "Shuttle",
+          "Shuttle registration",
+          "Anmeldung Shuttle",
+          "Inscription à la navette",
+          "Iscrizione alla navetta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2725.svg",
+        "basename": "2725",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:15:57.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "4778d010-a40f-11f0-8b39-0050568d2654",
+      "id": 6617656,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617656/storage/MDA2NjE3NjU2LzAvbWFzdGVy",
+        "keywords": [
+          "Fahrplan",
+          "Timetable",
+          "Orario",
+          "Horaire",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2726.svg",
+        "basename": "2726",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:23:17.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "07319f90-a410-11f0-8b39-0050568d2654",
+      "id": 6617755,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617755/storage/MDA2NjE3NzU1LzAvbWFzdGVy",
+        "keywords": [
+          "Fahrplan",
+          "Timetable",
+          "Orario",
+          "Horaire",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2727.svg",
+        "basename": "2727",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:28:39.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "a2fa25a0-a410-11f0-8b39-0050568d2654",
+      "id": 6617844,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617844/storage/MDA2NjE3ODQ0LzAvbWFzdGVy",
+        "keywords": [
+          "seat",
+          "Sitzplatz",
+          "Place assise",
+          "Posto a sedere",
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2728.svg",
+        "basename": "2728",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:33:00.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "44dcc110-a412-11f0-8b39-0050568d2654",
+      "id": 6618054,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6618054/storage/MDA2NjE4MDU0LzAvbWFzdGVy",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2729.svg",
+        "basename": "2729",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:44:42.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "e6eaa5d0-b628-11f0-b91a-0050568d2654",
+      "id": 7157506,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7157506/storage/MDA3MTU3NTA2LzAvbWFzdGVy",
+        "keywords": [
+          "Brandschutz",
+          "Fire Screen",
+          "Protezione antincendio",
+          "Écran De Protection Contre L'Incendie",
+          "Fire alarm system maintenance",
+          "Wartung Brandmeldeanlage",
+          "Maintenance du dispositif de détection d’incendie",
+          "Manutenzione impianto di rilevazione d’incendio",
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2740.svg",
+        "basename": "2740",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-31T07:12:03.000Z",
+      "modifiedAt": "2025-11-01T07:05:10.694Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -39197,13 +40376,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1025,
+    "success": 1062,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-07-20T02:39:25.358Z",
-  "version": "10.0.0-next.40"
+  "created": "2025-11-02T02:19:59.995Z",
+  "version": "10.0.0-next.51"
 }

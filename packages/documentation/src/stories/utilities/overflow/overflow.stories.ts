@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
 import './overflow.styles.scss';
@@ -6,6 +6,7 @@ import './overflow.styles.scss';
 const meta: MetaExtended = {
   id: '4b505a3e-f4ce-48ce-8fae-6aa8158d66e8',
   title: 'Utilities/Overflow',
+  tags: ['status:Stable'],
   args: {
     overflow: 'visible',
   },
@@ -16,7 +17,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['', 'auto', 'hidden', 'scroll', 'visible'],
+      options: ['unset', 'auto', 'hidden', 'scroll', 'visible'],
       table: {
         category: 'General',
       },
@@ -27,7 +28,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['', 'auto', 'hidden', 'scroll', 'visible'],
+      options: ['unset', 'auto', 'hidden', 'scroll', 'visible'],
       table: {
         category: 'General',
       },
@@ -38,7 +39,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['', 'auto', 'hidden', 'scroll', 'visible'],
+      options: ['unset', 'auto', 'hidden', 'scroll', 'visible'],
       table: {
         category: 'General',
       },
@@ -47,9 +48,9 @@ const meta: MetaExtended = {
   render: (args: Args) => {
     return html`
       <div
-        class="my-container ${args.overflow ? 'overflow-' + args.overflow : ''}${args.overflowX
+        class="my-container ${args.overflow && args.overflow !== 'unset' ? 'overflow-' + args.overflow : ''}${args.overflowX && args.overflowX !== 'unset'
           ? ' overflow-x-' + args.overflowX
-          : ''}${args.overflowY ? ' overflow-y-' + args.overflowY : ''}"
+          : ''}${args.overflowY && args.overflowY !== 'unset' ? ' overflow-y-' + args.overflowY : ''}"
       >
         <div class="content">
           This is a long text content that demonstrates how the overflow property works. This paragraph contains several sentences that will help show the different overflow behaviors when the container is too small to contain all the text. It's useful for testing different overflow settings and seeing how they affect the layout and scrolling capabilities of the container element.

@@ -1,7 +1,9 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import * as accordionStories from './accordion.stories';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import meta, * as accordionStories from './accordion.stories';
 import * as accordionItemStories from './accordion-item.stories';
 import SampleCustomTrigger from './accordion-custom-trigger.sample?raw';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={accordionStories} />
 
@@ -11,6 +13,7 @@ import SampleCustomTrigger from './accordion-custom-trigger.sample?raw';
   <link-design of={JSON.stringify(accordionStories)}></link-design>
 </div>
 
+<PackageTag meta={meta}/>
 
 <p className="lead">Toggle the visibility of a set of related content in your project.</p>
 
@@ -27,10 +30,7 @@ It is used to manage how content is shown and hidden across a set of collapsible
 
 <Controls of={accordionItemStories.Default} />
 
-## Installation
-
-The `<post-accordion>` element is part of the `@swisspost/design-system-components` package.
-For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+<ComponentsPackageInstall component="<post-accordion>" />
 
 ## Examples
 

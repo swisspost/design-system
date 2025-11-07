@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { choose } from 'lit/directives/choose.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -7,38 +7,20 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'status:InProgress'],
   decorators: [clickBlocker],
   parameters: {
     badges: [],
-    controls: {
-      exclude: [
-        'Custom Header',
-        'Custom Body',
-        'Custom Footer',
-        'Show Body',
-        'Show List Interactive',
-      ],
-    },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21462-3684&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=18-13',
     },
   },
   args: {
-    showImage: true,
+    showImage: false,
     imagePosition: 'top',
-    showHeader: false,
-    customHeader: null,
-    showBody: true,
-    customBody: null,
-    showTitle: true,
-    showSubtitle: false,
-    content: 'This is the card content that can contain various types of information.',
+    content: "<h5>This is my card's title</h5><p>This is my card's content.</p>",
     action: 'button',
-    showListGroup: false,
-    showFooter: false,
-    customFooter: null,
   },
   argTypes: {
     showImage: {
@@ -69,97 +51,19 @@ const meta: MetaComponent = {
         category: 'Card Image',
       },
     },
-    showHeader: {
-      name: 'Show Header',
-      description: 'When set to `true`, a header is shown in the card.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Card Header',
-      },
-    },
-    customHeader: {
-      name: 'Custom Header',
-      description: 'HTML content to use as a header for the card.',
-      if: {
-        arg: 'showHeader',
-      },
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Card Header',
-      },
-    },
-    showBody: {
-      name: 'Show Body',
-      description: 'When set to `true`, a body is shown in the card.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Card Body',
-      },
-    },
-    customBody: {
-      name: 'Custom Body',
-      description: 'HTML content to use as a body for the card.',
-      if: {
-        arg: 'showBody',
-      },
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Card Body',
-      },
-    },
-    showTitle: {
-      name: 'Show Title',
-      description: 'When set to `true`, a title is shown in the card body.',
-      if: {
-        arg: 'showBody',
-      },
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Card Body',
-      },
-    },
-    showSubtitle: {
-      name: 'Show Subtitle',
-      description: 'When set to `true`, a subtitle is shown in the card body.',
-      if: {
-        arg: 'showBody',
-      },
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Card Body',
-      },
-    },
     content: {
       name: 'Content',
-      description: 'The text contained in the card body.',
-      if: {
-        arg: 'showBody',
-      },
+      description: 'The content within the card.',
       control: {
         type: 'text',
       },
       table: {
-        category: 'Card Body',
+        category: 'Card Content',
       },
     },
     action: {
       name: 'Action',
-      description: 'Defines the call-to-action to show in the card body.',
-      if: {
-        arg: 'showBody',
-      },
+      description: 'Defines the call-to-action to show in the card.',
       control: {
         type: 'inline-radio',
         labels: {
@@ -170,40 +74,7 @@ const meta: MetaComponent = {
       },
       options: ['button', 'links', 'none'],
       table: {
-        category: 'Card Body',
-      },
-    },
-    showListGroup: {
-      name: 'Show List Interactive',
-      description: 'When set to `true`, a list interactive is shown in the card.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Card Body',
-      },
-    },
-    showFooter: {
-      name: 'Show Footer',
-      description: 'When set to `true`, a footer is shown in the card.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Card Footer',
-      },
-    },
-    customFooter: {
-      name: 'Custom Footer',
-      description: 'HTML content to use as the footer of the card.',
-      if: {
-        arg: 'showFooter',
-      },
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Card Footer',
+        category: 'Card Content',
       },
     },
   },
@@ -241,16 +112,10 @@ function getCardButton() {
   `;
 }
 
-function getCardBody({ customBody, content, action, showTitle, showSubtitle }: Args) {
-  if (customBody) return unsafeHTML(customBody);
-
+function getCardContent({ content, action }: Args) {
   return html`
     <div class="card-body">
-      ${showTitle ? html` <h5 class="card-title">Card Title</h5> ` : nothing}
-      ${showSubtitle
-        ? html` <h6 class="card-subtitle mb-8 text-muted">Card Subtitle</h6> `
-        : nothing}
-      <p class="card-text">${content}</p>
+      ${unsafeHTML(content)}
       ${choose(
         action,
         [
@@ -263,54 +128,30 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
   `;
 }
 
-function getCardListGroup() {
+function getCardImage() {
+  return html` <img src="https://picsum.photos/id/38/500/300" alt="" /> `;
+}
+
+function renderCardContent(args: Args) {
+  const { showImage, imagePosition } = args;
+
   return html`
-    <ul class="list-interactive">
-      ${['First Item', 'Second Item', 'Another Item'].map(
-        label => html` <li class="list-interactive-item">${label}</li> `,
-      )}
-    </ul>
+    ${showImage && imagePosition === 'top' ? getCardImage() : nothing} ${getCardContent(args)}
+    ${showImage && imagePosition === 'bottom' ? getCardImage() : nothing}
   `;
 }
 
-function getCardHeader({ customHeader }: Args) {
-  if (customHeader) return unsafeHTML(customHeader);
-
-  return html` <div class="card-header">Header Title</div> `;
+function renderNoninteractiveCard(args: Args) {
+  return html` <div class="card">${renderCardContent(args)}</div> `;
 }
 
-function getCardFooter({ customFooter }: Args) {
-  if (customFooter) return unsafeHTML(customFooter);
-
-  return html` <div class="card-footer">Footer Content</div> `;
-}
-
-function getCardImage({ imagePosition }: Args) {
-  return html`
-    <img class=${'card-img-' + imagePosition} src="https://picsum.photos/id/20/300/200" alt="" />
-  `;
-}
-
-function renderCard(args: Args) {
-  const { showImage, imagePosition, showHeader, showBody, showListGroup, showFooter } = args;
-
-  return html`
-    <div class="card">
-      ${showImage && imagePosition === 'top' ? getCardImage(args) : nothing}
-      ${showHeader ? getCardHeader(args) : nothing} ${showBody ? getCardBody(args) : nothing}
-      ${showListGroup ? getCardListGroup() : nothing} ${showFooter ? getCardFooter(args) : nothing}
-      ${showImage && imagePosition === 'bottom' ? getCardImage(args) : nothing}
-    </div>
-  `;
-}
-
-function renderCardWithInteractiveContainer(args: Args) {
-  return html`<post-linkarea>${renderCard(args)}</post-linkarea>`;
+function renderInteractiveCard(args: Args) {
+  return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
 }
 
 const renderSimpleInteractiveCard = html`
-  <post-linkarea>
-    <div class="card p-16">
+  <post-linkarea class="card">
+    <div class="card-body">
       <p><a href="http://google.com">Interactive card</a></p>
     </div>
   </post-linkarea>
@@ -319,116 +160,98 @@ const renderSimpleInteractiveCard = html`
 // STORIES
 type Story = StoryObj;
 
-const singleCardStory: Story = {
+export const Default: Story = {
   decorators: [gridContainer],
   render: (args: Args) =>
-    html`${args.action === 'button' ? renderCardWithInteractiveContainer(args) : renderCard(args)}`,
-};
-
-export const Default: Story = {
-  ...singleCardStory,
+    html`${args.action === 'button' ? renderInteractiveCard(args) : renderNoninteractiveCard(args)}`,
 };
 
 export const Foundation: Story = {
-  decorators: [story => html`<div class="d-flex gap-16">${story()}</div>`],
+  decorators: [(story: StoryFn) => html`<div class="d-flex gap-16">${story()}</div>`],
   render: () => html`
-    <div class="card p-16">
-      <p>Non-interactive card</p>
+    <div class="card">
+      <div class="card-body">
+        <p>Non-interactive card</p>
+      </div>
     </div>
     ${renderSimpleInteractiveCard}
   `,
 };
 
 export const Palette: Story = {
-  decorators: [],
   parameters: {
     layout: 'fullscreen',
   },
-  render: () =>
-    html`
-      <div class="palette-default">
-        <div class="container py-32">
-          <div class="row gy-16">
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          </div>
+  render: () => html`
+    <div class="palette palette-default">
+      <div class="container py-32">
+        <div class="row gy-16">
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
         </div>
       </div>
-      <div class="palette-alternate">
-        <div class="container py-32">
-          <div class="row gy-16">
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          </div>
+    </div>
+    <div class="palette palette-alternate">
+      <div class="container py-32">
+        <div class="row gy-16">
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
         </div>
       </div>
-    `,
+    </div>
+  `,
 };
 
 export const ListGroup: Story = {
-  ...singleCardStory,
-  args: {
-    showImage: false,
-    showBody: false,
-    showListGroup: true,
-    action: 'none',
+  decorators: [gridContainer],
+  render: () => {
+    return html`
+      <div class="card">
+        <ul class="list-interactive">
+          ${['First Item', 'Second Item', 'Another Item'].map(
+            label => html` <li class="list-interactive-item">${label}</li> `,
+          )}
+        </ul>
+      </div>
+    `;
   },
 };
 
 export const CustomContent: Story = {
-  ...singleCardStory,
-  args: {
-    showImage: false,
-    showHeader: true,
-    showFooter: true,
-    action: 'links',
-    customHeader: `<div class="card-header d-flex">
-  <post-icon aria-hidden="true" scale="2" name="3217"></post-icon>
-  <h3 class="fw-bold mb-0 me-auto">User Details</h3>
-  <a href="#" aria-labelledby="details-title">
-    <post-icon aria-hidden="true" scale="1.5" name="3020"></post-icon>
-    <span class="visually-hidden">Account Management</span>
-  </a>
-</div>`,
-    customBody: `<ul class="list-interactive">
-  <li class="list-interactive-item d-flex align-items-center justify-content-between">
-    <address class="mb-0">
-      Mr<br>First Name Last Name<br>Street 1<br>1234 City
-    </address>
-    <a href="#">
-      <post-icon aria-label="Edit Address" scale="1.5" name="3193"></post-icon>
-      <span class="visually-hidden">Edit Address</span>
-    </a>
-  </li>
-  <li class="list-interactive-item d-flex align-items-center justify-content-between">
-    <p class="mb-0">Language: <span class="fw-bold">English</span></p>
-    <a href="#">
-      <post-icon aria-label="Edit Language" scale="1.5" name="3193"></post-icon>
-      <span class="visually-hidden">Edit Language</span>
-    </a>
-  </li>
-</ul>`,
-    customFooter: `<div class="card-footer card-links">
-  <a href="#">Add Address</a>
-</div>`,
-  },
-};
-
-export const BackgroundImage: Story = {
-  ...singleCardStory,
-  args: {
-    showImage: false,
-    customBody: `<img class="card-img" src="https://picsum.photos/id/20/300/200" alt="" />
-  <div class="card-img-overlay">
-    <div class="card-body">
-      <h5 class="card-title">Card Title</h5>
-
-      <p class="card-text">This is the card content that can contain various types of information.</p>
-
-      <button class="btn btn-primary">
-        <span>Button Text</span>
-      </button>
-    </div>
-  </div>`,
+  decorators: [gridContainer],
+  render: () => {
+    return html`
+      <div class="card">
+        <div class="d-flex px-16 py-32 gap-16 align-items-center">
+          <post-icon aria-hidden="true" scale="1.5" name="profile"></post-icon>
+          <h3 class="fw-bold my-0 me-auto">User Details</h3>
+          <a href="#" aria-labelledby="details-title">
+            <post-icon aria-hidden="true" name="arrowright"></post-icon>
+            <span class="visually-hidden">Account Management</span>
+          </a>
+        </div>
+        <ul class="list-interactive">
+          <li class="list-interactive-item d-flex align-items-center justify-content-between">
+            <address class="mb-0">
+              Mr<br />First Name Last Name<br />Street 1<br />1234 City
+            </address>
+            <a href="#">
+              <post-icon aria-label="Edit Address" name="edit"></post-icon>
+              <span class="visually-hidden">Edit Address</span>
+            </a>
+          </li>
+          <li class="list-interactive-item d-flex align-items-center justify-content-between">
+            <p class="mb-0">Language: <span class="fw-bold">English</span></p>
+            <a href="#">
+              <post-icon aria-label="Edit Language" name="edit"></post-icon>
+              <span class="visually-hidden">Edit Language</span>
+            </a>
+          </li>
+        </ul>
+        <div class="card-links p-16">
+          <a href="#">Add Address</a>
+        </div>
+      </div>
+    `;
   },
 };

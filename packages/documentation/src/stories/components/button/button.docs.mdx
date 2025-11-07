@@ -1,6 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as ButtonStories from './button.stories';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as ButtonStories from './button.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ButtonStories} />
 
@@ -9,6 +10,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
   <link-design of={JSON.stringify(ButtonStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Use our custom button styles for actions in forms, dialogs, and more with support for multiple

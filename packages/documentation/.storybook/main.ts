@@ -1,3 +1,5 @@
+import { createRequire } from 'node:module';
+import { dirname, join } from 'node:path';
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import type { InlineConfig } from 'vite';
 import pkg from '@/../package.json';
@@ -5,31 +7,25 @@ import { mergeConfig } from 'vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
+const require = createRequire(import.meta.url);
+
 const config: StorybookConfig = {
   logLevel: 'info',
+
   core: {
     disableTelemetry: true,
   },
+
   framework: {
-    name: '@storybook/web-components-vite',
+    name: getAbsolutePath('@storybook/web-components-vite'),
     options: {},
   },
+
   stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'],
+
   addons: [
     {
-      name: '@storybook/addon-essentials',
-      options: {
-        actions: false,
-        backgrounds: false,
-        highlight: false,
-        outline: false,
-        docs: false,
-        measure: false,
-        viewport: false,
-      },
-    },
-    {
-      name: '@storybook/addon-docs',
+      name: getAbsolutePath('@storybook/addon-docs'),
       options: {
         mdxPluginOptions: {
           mdxCompileOptions: {
@@ -41,7 +37,7 @@ const config: StorybookConfig = {
                   content: {
                     type: 'element',
                     tagName: 'post-icon',
-                    properties: { name: 2037 },
+                    properties: { name: 'link' },
                   },
                   headingProperties: { className: 'docs-autolink' },
                   behavior: 'append',
@@ -52,11 +48,12 @@ const config: StorybookConfig = {
         },
       },
     },
-    '@storybook/addon-links',
-    '@kurbar/storybook-addon-docs-stencil',
-    './addons/version-switcher/register',
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@kurbar/storybook-addon-docs-stencil'),
     './addons/styles-switcher/register',
+    './addons/version-switcher/register',
   ],
+
   staticDirs: [
     {
       from: '../public/assets',
@@ -71,9 +68,7 @@ const config: StorybookConfig = {
       to: '/post-icons',
     },
   ],
-  docs: {
-    autodocs: 'tag',
-  },
+
   env: (config: Record<string, string> | undefined) => ({
     ...config,
     STORYBOOK_GTM_KEY: 'GTM-WKSKHGJ',
@@ -86,6 +81,7 @@ const config: StorybookConfig = {
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK: 'dev',
     STORYBOOK_BASE_URL: 'https://design-system.post.ch',
   }),
+
   async viteFinal(config: InlineConfig) {
     return mergeConfig(config, {
       css: {
@@ -93,6 +89,19 @@ const config: StorybookConfig = {
       },
     });
   },
+
+  features: {
+    actions: false,
+    backgrounds: false,
+    highlight: false,
+    outline: false,
+    measure: false,
+    viewport: false,
+  },
 };
 
 export default config;
+
+function getAbsolutePath(value: string): string {
+  return dirname(require.resolve(join(value, 'package.json')));
+}

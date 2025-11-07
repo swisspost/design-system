@@ -1,9 +1,28 @@
-@use './temp/palettes/post-light' as post-light;
-@use './temp/palettes/post-dark' as post-dark;
-@use './temp/palettes/cargo-light' as cargo-light;
-@use './temp/palettes/cargo-dark' as cargo-dark;
+@use 'sass:map';
+@use './core';
+@use '../tokens/temp/palette';
 
-$post-light: post-light.$post-palettes;
-$post-dark: post-dark.$post-palettes;
-$cargo-light: cargo-light.$post-palettes;
-$cargo-dark: cargo-dark.$post-palettes;
+:root,
+.palette-default {
+  @each $key, $value in palette.$post-default {
+    --#{$key}: #{$value};
+  }
+}
+
+.palette-alternate {
+  @each $key, $value in palette.$post-alternate {
+    --#{$key}: #{$value};
+  }
+}
+
+.palette-accent {
+  @each $key, $value in palette.$post-accent {
+    --#{$key}: #{$value};
+  }
+}
+
+.palette-brand {
+  @each $key, $value in palette.$post-brand {
+    --#{$key}: #{$value};
+  }
+}

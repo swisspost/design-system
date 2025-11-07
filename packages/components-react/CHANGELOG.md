@@ -1,5 +1,109 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.53
+
+## 10.0.0-next.52
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.52
+
+## 10.0.0-next.51
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.51
+
+## 10.0.0-next.50
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.50
+
+## 10.0.0-next.49
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.49
+
+## 10.0.0-next.48
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.48
+
+## 10.0.0-next.47
+
+### Patch Changes
+
+- Added peer dependencies for `react` and `react-dom`. (by [@myrta2302](https://github.com/myrta2302) with [#5836](https://github.com/swisspost/design-system/pull/5836))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.47
+
+## 10.0.0-next.46
+
+### Major Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+
+### Patch Changes
+
+- Added file extensions in relative import/export statements to make them browser conform. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6082](https://github.com/swisspost/design-system/pull/6082))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.46
+
+## 10.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.45
+
+## 10.0.0-next.44
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.44
+
+## 10.0.0-next.43
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.43
+
+## 10.0.0-next.42
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.42
+
+## 10.0.0-next.41
+
+### Patch Changes
+
+- Improved URL handling in `post-icon` component:
+  - Enhanced URL construction to properly handle both absolute and relative URLs
+  - Fixed slug detection to correctly identify root paths ("/") as valid slugs
+  - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.41
+
 ## 10.0.0-next.40
 
 ### Patch Changes

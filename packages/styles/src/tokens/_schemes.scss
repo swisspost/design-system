@@ -1,11 +1,27 @@
+@use 'sass:map';
 @use './core';
-@use '../placeholders/schemes';
+@use '../tokens/temp/scheme';
 
-:root,
-[data-color-scheme='light'] {
-  @extend %color-scheme-light;
+/**
+ * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
+ * This check becomes obsolete when the fallback is removed.
+ */
+@use '../mixins/supports';
+
+@include supports.light-dark(true) {
+  :root {
+    @each $key, $light-value in scheme.$post-light {
+      --#{$key}: light-dark(#{$light-value}, #{map.get(scheme.$post-dark, $key)});
+    }
+  }
 }
 
-[data-color-scheme='dark'] {
-  @extend %color-scheme-dark;
+@include supports.light-dark(false) {
+  :root,
+  [data-color-scheme] {
+    @each $key, $light-value in scheme.$post-light {
+      --#{$key}-light: var(--post-fallback-prefers-light) #{$light-value};
+      --#{$key}: var(--#{$key}-light, #{map.get(scheme.$post-dark, $key)});
+    }
+  }
 }

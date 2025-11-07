@@ -1,9 +1,10 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 const meta: Meta = {
   id: 'a536a61d-cac2-4f39-adbf-092bdd445ce5',
   title: 'Templates/Error page',
+  tags: ['status:InProgress'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -12,7 +13,7 @@ const meta: Meta = {
 
 function render() {
   return html`
-    <div class="palette-alternate error-container">
+    <div class="palette palette-alternate error-container">
       <div class="container">
         <div class="row">
           <div class="col-sm-8 py-56">

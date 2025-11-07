@@ -1,5 +1,5 @@
 import { componentOnReady } from '../component-on-ready';
-import { HostElement } from '@stencil/core/internal';
+import { HTMLStencilElement } from '@stencil/core/internal';
 
 describe('componentOnReady', () => {
   const mockRequestAnimationFrame = jest.fn();
@@ -18,7 +18,7 @@ describe('componentOnReady', () => {
   it('should return the result of componentOnReady if it exists', async () => {
     const el = {
       componentOnReady: jest.fn().mockResolvedValue('resolvedValue'),
-    } as unknown as HostElement;
+    } as unknown as HTMLStencilElement;
 
     const result = await componentOnReady(el);
     expect(el.componentOnReady).toHaveBeenCalledTimes(1);
@@ -28,7 +28,7 @@ describe('componentOnReady', () => {
   it('should use customOnReady if componentOnReady does not exist and requestAnimationFrame is available', async () => {
     mockRequestAnimationFrame.mockImplementation(callback => callback());
 
-    const el = {} as HostElement;
+    const el = {} as HTMLStencilElement;
     const promise = componentOnReady(el);
 
     const result = await promise;
@@ -41,7 +41,7 @@ describe('componentOnReady', () => {
 
     mockSetTimeout.mockImplementation(callback => callback());
 
-    const el = {} as HostElement;
+    const el = {} as HTMLStencilElement;
     const promise = componentOnReady(el);
 
     const result = await promise;

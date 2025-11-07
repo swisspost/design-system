@@ -1,13 +1,4 @@
-@use './../../functions/icons';
-
 @use './../animation';
-@use './../color';
-@use './../commons';
-@use './../spacing';
-@use './../type';
 
-@use './button';
-
-$accordion-button-transition: button.$btn-transition !default;
 $accordion-icon-transition: transform animation.$transition-base-timing !default;
 $accordion-icon-transform: rotate(-180deg) !default;

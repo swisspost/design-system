@@ -1,10 +1,11 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
   id: '61faccd2-de2c-48f0-9a06-c051a56580ef',
   title: 'Foundations/Typography/Legend',
+  tags: ['package:Styles', 'status:Stable'],
   parameters: {
     badges: [],
     design: {

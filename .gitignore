@@ -32,3 +32,6 @@ styles/stylelint-report.txt
 
 # Turborepo
 .turbo
+
+# Intellij IDEA
+.idea

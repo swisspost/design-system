@@ -4,12 +4,6 @@ These contribution guidelines extend the [general contribution guidelines](../..
 
 ## Design principles
 
-### Bootstrap
-
-The Design System Styles are a collection of independent component styles. Components are based on Bootstrap an its design philosophy. For some components, styles are custom built and don't depend on Bootstrap, e.g. buttons. These components should maintain compatibility with Bootstrap classes. Adhering to this principle will reduce the entry barrier for new developers who might be familiar with Bootstrap.
-
-Bootstrap components use global variables, mixins, functions and placeholders, therefore they are wrapped with custom partials that import those globals, the respective bootstrap file and the variable overrides with Swiss Post styles (see [themes/bootstrap](./src/themes/bootstrap/) for examples). These wrapper files are a workaround until bootstrap supports the newer `@use` syntax.
-
 ### Sass
 
 General styling rules are suggested through linting with stylelint. At the moment, these rules are not enforced or applied/fixed automatically. This might change in the future.
@@ -40,13 +34,9 @@ Component file names are lower- and kebab-cased (`floating-label.scss`) and don'
 
 Every component file should have a corresponding test file importing the component to check if a standalone build works.
 
-### Themes
-
-The only and default theme used currently is Bootstrap. When adding themings for other libraries, create separate entry files for each theme.
-
 ### Dependencies/licensing
 
-Licenses of third party packages that are bundled with the output (e.g. Bootstrap) need to be included in the output and delivered with the output code.
+Licenses of third party packages that are bundled with the output need to be included in the output and delivered with the output code.
 
 ### Margins
 

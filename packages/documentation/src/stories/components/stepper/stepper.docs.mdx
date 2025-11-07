@@ -1,6 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
-import * as StepperStories from './stepper.stories';
+import meta, * as StepperStories from './stepper.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={StepperStories} />
 
@@ -9,6 +10,8 @@ import * as StepperStories from './stepper.stories';
 
   <link-design of={JSON.stringify(StepperStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead mb-16">
   The stepped progression component provides an interactive visual overview of a process. It shows

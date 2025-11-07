@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 import * as FormFooterMeta from '../../components/form-footer/form-footer.stories';
@@ -167,34 +167,6 @@ export const Validation: Story = {
         </div>
       </div>
 
-      <!-- Form Select Multiple-->
-      <div class="row mb-16">
-        <div class="col-md-6">
-          <div class="form-floating">
-            <select
-              id="FormSelectMultipleInvalid"
-              class="form-select is-invalid"
-              multiple
-              required
-            ></select>
-            <label class="form-label" for="FormSelectMultipleInvalid">
-              Invalid Select Multiple
-            </label>
-            <p class="invalid-feedback">Error message</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-floating">
-            <select id="FormSelectMultipleValid" class="form-select is-valid" multiple>
-              <option value="1">Value 1</option>
-              <option value="2">Value 2</option>
-            </select>
-            <label class="form-label" for="FormSelectMultipleValid">Valid Select Multiple</label>
-            <p class="valid-feedback">Success message (optional)</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Form File -->
       <div class="row mb-16">
         <div class="col-md-6">
@@ -281,24 +253,6 @@ export const Validation: Story = {
           <div class="form-check">
             <input class="form-check-input is-valid" id="FormRadioValid" type="radio" checked />
             <label class="form-check-label" for="FormRadioValid">Valid Radio</label>
-            <p class="valid-feedback">Success message (optional)</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Form Range -->
-      <div class="row mb-16">
-        <div class="col-md-6">
-          <div class="">
-            <label class="form-label" for="FormRangeInvalid">Invalid Range</label>
-            <input class="form-range is-invalid" id="FormRangeInvalid" type="range" />
-            <p class="invalid-feedback">Error message</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="">
-            <label class="form-label" for="FormRangeValid">Valid Range</label>
-            <input class="form-range is-valid" id="FormRangeValid" type="range" />
             <p class="valid-feedback">Success message (optional)</p>
           </div>
         </div>

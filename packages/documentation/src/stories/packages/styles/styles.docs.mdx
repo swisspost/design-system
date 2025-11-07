@@ -1,4 +1,4 @@
-import { Meta, Source } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
 import * as PackageStories from './styles.stories';
 import SampleVariable from './styles-variable.sample.scss?raw';
 import changelog from '@/../../styles/CHANGELOG.md?raw';
@@ -12,11 +12,6 @@ import DependenciesTable from './dependenciesTable';
 <div className="npm-package-link">
   [![npm
   version](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles)
-</div>
-
-<div className="lead">
-  The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and
-  [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components.
 </div>
 
 <PackageDocs changelog={changelog}>
@@ -133,10 +128,10 @@ import DependenciesTable from './dependenciesTable';
 
   Use the SCSS core for your custom styles and make sure you're always using the most up to date definitions:
 
-  <div className="banner banner-info banner-md mb-16">
+  <post-banner class="mb-16">
     NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions
     and mixins.
-  </div>
+  </post-banner>
 
   <Source code={SampleVariable} language="scss" />
 </PackageDocs>

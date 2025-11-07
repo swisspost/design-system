@@ -1,6 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as SpinnerStories from './spinner.stories.ts';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as SpinnerStories from './spinner.stories.ts';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={SpinnerStories} />
 
@@ -10,12 +11,9 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   <link-design of={JSON.stringify(SpinnerStories)}></link-design>
 </div>
 
-<p className="lead">Indicate a loading state and prevent interactivity behind it</p>
+<PackageTag meta={meta}/>
 
-<div className="banner banner-warning">
-  `.loader-xs` and `loader-sm` classes for sizes are deprecated and will be replace with
-  respectively `.loader-16` and `.loader-40`.
-</div>
+<p className="lead">Indicate a loading state and prevent interactivity behind it</p>
 
 <Canvas sourceState="shown" of={SpinnerStories.Default} />
 

@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           fetch-depth: 0
 
@@ -53,7 +53,7 @@ jobs:
           git checkout -b $BRANCH_NAME origin/release/v9
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
         env:
-          BRANCH_NAME: v9/${{ steps.current-date.outputs.date }}-update-icons
+          BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons-v9
 
       - name: Install icons & dependencies
         run: pnpm --filter design-system-icons... --filter design-system-styles... install

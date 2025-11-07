@@ -1,5 +1,7 @@
 ---
-'@swisspost/design-system-components': minor
+'@swisspost/design-system-components': patch
+"@swisspost/design-system-components-react": patch
+'@swisspost/design-system-components-angular': patch
 ---
 
 Improved URL handling in `post-icon` component:

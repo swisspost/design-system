@@ -1,14 +1,15 @@
 @use 'sass:list';
-
-@use './../themes/bootstrap/core' as *;
+@use 'sass:map';
 
 @use './../mixins/notification' as notification-mx;
-@use './../placeholders/close' as close-ph;
 
 @use './../variables/spacing';
+@use './../variables/commons';
 @use './../variables/components/notification';
 @use './../tokens/components';
+@use './../tokens/utilities';
 @use './../functions/tokens';
+@use '../mixins/media';
 
 tokens.$default-map: components.$post-banner;
 
@@ -18,15 +19,21 @@ tokens.$default-map: components.$post-banner;
 }
 
 .toast-dismissible {
-  @include notification-mx.notification-dismissible(toast, 'toast-close-button');
-}
+  $padding-x: map.get(notification.$notification-padding-x-map, toast);
+  $gap: map.get(notification.$notification-gap-map, toast);
+  pointer-events: auto;
+  position: relative;
 
-.toast-close-button {
-  @extend %btn-close;
+  &:not(.alert-action) {
+    padding-inline-end: calc(
+      #{$padding-x} + #{$gap} + #{tokens.get('utility-gap-24', utilities.$post-spacing)}
+    );
+  }
 
-  // Hide ngx-toastr close-button and keep our. Only useful when toast is used programmatically with ngx-toastr.
-  > span {
-    display: none;
+  > post-closebutton {
+    position: absolute;
+    inset-block-start: spacing.$spacer;
+    inset-inline-end: $padding-x;
   }
 }
 
@@ -47,7 +54,7 @@ tokens.$default-map: components.$post-banner;
 // Positioning
 .toast-container {
   position: fixed;
-  z-index: 1080;
+  z-index: commons.$zindex-toast;
   display: flex;
   flex-direction: column;
 
@@ -55,13 +62,13 @@ tokens.$default-map: components.$post-banner;
     width: 25rem;
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.max(md) {
     .toast {
       max-width: 25rem;
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.max(md) {
     right: spacing.$spacer;
     left: spacing.$spacer;
 

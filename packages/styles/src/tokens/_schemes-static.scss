@@ -1,0 +1,58 @@
+@use './core';
+@use '../mixins/schemes';
+
+/**
+ * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
+ * This check becomes obsolete when the fallback is removed.
+ */
+@use '../mixins/supports';
+
+// prefered root color-scheme
+:root {
+  @include supports.light-dark(true) {
+    color-scheme: light;
+  }
+
+  // This sets the light theme by default and does not take
+  // into account user's preferred colors
+  // Put back the @media (prefers-color-scheme: light/dark)
+  // queries to define which tokens to use depending on user's
+  // preferences once we allow for automatic dark scheme again
+  @include schemes.light-variables;
+
+  @include supports.light-dark(false) {
+    --post-fallback-prefers-light: ;
+  }
+}
+
+// make sure data-color-scheme attributes can't
+// take effect on palette elements because they
+// are not supposed to be used there and they
+// can cause issues with the color-scheme
+:not(.palette) {
+  // forced root color-scheme light
+  &[data-color-scheme='light'] {
+    @include schemes.light-variables;
+
+    @include supports.light-dark(true) {
+      color-scheme: light;
+    }
+
+    @include supports.light-dark(false) {
+      --post-fallback-prefers-light: ;
+    }
+  }
+
+  // forced root color-scheme dark
+  &[data-color-scheme='dark'] {
+    @include schemes.dark-variables;
+
+    @include supports.light-dark(true) {
+      color-scheme: dark;
+    }
+
+    @include supports.light-dark(false) {
+      --post-fallback-prefers-light: initial;
+    }
+  }
+}

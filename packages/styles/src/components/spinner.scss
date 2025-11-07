@@ -1,9 +1,6 @@
 @use 'sass:math';
 @use './../variables/type';
 
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/progress' as bp;
-
 @use './../mixins/utilities';
 @use './../variables/commons';
 @use './../variables/components/spinners';
@@ -17,7 +14,7 @@
   height: 100%;
 }
 
-.loading-modal {
+.spinner-modal {
   display: inline-flex;
   position: absolute;
   z-index: commons.$zindex-spinner;
@@ -27,7 +24,7 @@
   left: 0;
 }
 
-.loader {
+.spinner {
   width: 1em;
   height: 1em;
   animation: spin spinners.$spinner-duration linear infinite;
@@ -36,18 +33,9 @@
 
   // Sizes
   @each $key, $font-size in spinners.$spinner-size-map {
-    &.loader-#{$key} {
+    &.spinner-#{$key} {
       font-size: $font-size;
     }
-  }
-
-  // Deprecated sizes
-  &.loader-sm {
-    font-size: spinners.$spinner-size-sm;
-  }
-
-  &.loader-xs {
-    font-size: spinners.$spinner-size-xs;
   }
 
   &::before,

@@ -1,13 +1,16 @@
-import { Meta, Canvas, Source } from '@storybook/blocks';
-import * as ListStories from './list.stories';
+import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks';
+import meta, * as ListStories from './list.stories';
 import SampleListBullet from './list-bullet.sample.scss?raw';
 import SampleListInline from './list-inline.sample.scss?raw';
 import SampleListUnstyled from './list-unstyled.sample.scss?raw';
 import SampleListNumber from './list-number.sample.scss?raw';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ListStories} />
 
 # Lists
+
+<PackageTag meta={meta}/>
 
 <p className="lead">Use lists to group a collection of related items.</p>
 
@@ -37,7 +40,9 @@ Remove a list’s bullets.
 
 ## Unstyled List
 
-<p className="banner banner-info banner-md">Can be used with both, unordered and ordered lists.</p>
+<post-banner>
+  Can be used with both, unordered and ordered lists.
+</post-banner>
 Remove all the styles on a list and make it appear as if it is made out of `<div>` elements.
 
 <Canvas of={ListStories.UnstyledList} sourceState="shown" />

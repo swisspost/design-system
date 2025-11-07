@@ -1,4 +1,4 @@
-import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import sizing from './sizing.module.scss';
 import { parse } from '@/utils/sass-export';
@@ -19,6 +19,7 @@ const meta: MetaExtended = {
   render: renderSizing,
   id: 'e728de1f-0d71-4317-8bb8-cbef0bf8d5db',
   title: 'Utilities/Sizing',
+  tags: ['status:Stable'],
   parameters: {
     badges: [],
   },

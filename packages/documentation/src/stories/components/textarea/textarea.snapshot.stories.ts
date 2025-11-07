@@ -1,6 +1,7 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './textarea.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 import { COMBINATIONS, getCombinations } from '@/utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
@@ -9,8 +10,6 @@ export default {
   ...metaWithoutId,
   title: 'Snapshots',
 };
-
-const SCHEME = ['light', 'dark'];
 
 type Story = StoryObj;
 
@@ -54,47 +53,43 @@ export const Textarea: Story = {
       },
     ];
 
-    return html`
-      <h1 class="ps-48">Textarea</h1>
-      ${SCHEME.map(
-        scheme => html`
-          <div data-color-scheme="${scheme}" class="palette-default px-48">
-            <h2 class="h3 pt-32">Standard Combinations - ${scheme} theme</h2>
-            <h3 class="h4">Floating Label</h3>
-            <div class="row">
-              ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
-                context.id = crypto.randomUUID();
-                return html` <div class="col-md-6 mb-16">
-                  <h4 class="h6">${args.title}</h4>
-                  <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
-                </div>`;
-              })}
-            </div>
+    return schemes(
+      scheme => html`
+      <div>
+        <h1>Textarea</h1>
+        <h2 class="h4">Floating Label</h2>
+        <div class="row">
+          ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
+            context.id = crypto.randomUUID();
+            return html` <div class="col-md-6 mb-16">
+              <h3 class="h6">${args.title}</h3>
+              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+            </div>`;
+          })}
+        </div>
 
-            <h3 class="h4">Standard Label</h3>
-            <div class="row">
-              ${getCombinations('floatingLabel', [false], combinations).map((args: Args) => {
-                context.id = crypto.randomUUID();
-                return html` <div class="col-md-6 mb-16">
-                  <h4 class="h6">${args.title}</h4>
-                  <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
-                </div>`;
-              })}
-            </div>
+        <h2 class="h4">Standard Label</h2>
+        <div class="row">
+          ${getCombinations('floatingLabel', [false], combinations).map((args: Args) => {
+            context.id = crypto.randomUUID();
+            return html` <div class="col-md-6 mb-16">
+              <h3 class="h6">${args.title}</h3>
+              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+            </div>`;
+          })}
+        </div>
 
-            <h2 class="h3">Disabled with Overflow Text - ${scheme} Theme</h2>
-            <div class="row">
-              ${disabledOverflowTextCombinations.map((args: Args) => {
-                context.id = crypto.randomUUID();
-                return html` <div class="col-md-6 mb-16">
-                  <h3 class="h6">${args.title}</h3>
-                  <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
-                </div>`;
-              })}
-            </div>
-          </div>
-        `,
-      )}
-    `;
+        <h2 class="h3">Disabled with Overflow Text - ${scheme} Theme</h2>
+        <div class="row">
+          ${disabledOverflowTextCombinations.map((args: Args) => {
+            context.id = crypto.randomUUID();
+            return html` <div class="col-md-6 mb-16">
+              <h3 class="h6">${args.title}</h3>
+              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+            </div>`;
+          })}
+        </div>
+      </div>
+    `);
   },
 };

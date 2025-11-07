@@ -1,6 +1,6 @@
 // Source: https://github.com/storybookjs/storybook/blob/next/code/ui/blocks/src/blocks/mdx.tsx#L34
-import { Source } from '@storybook/blocks';
-import { Code } from '@storybook/components';
+import { Source } from '@storybook/addon-docs/blocks';
+import { Code } from 'storybook/internal/components';
 import { SourceDarkScheme } from '@/../.storybook/preview';
 
 /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */

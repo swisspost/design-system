@@ -1,6 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as TableStories from './table.stories';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as TableStories from './table.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={TableStories} />
 
@@ -9,6 +10,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
   <link-design of={JSON.stringify(TableStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Customize the native <code>&lt;table&gt;</code> element with CSS that changes the element’s

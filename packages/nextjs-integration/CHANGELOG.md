@@ -1,5 +1,117 @@
 # @swisspost/design-system-nextjs-integration
 
+## 0.1.14-next.53
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.53
+  - @swisspost/design-system-components-react@10.0.0-next.53
+
+## 0.1.14-next.52
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.52
+  - @swisspost/design-system-components-react@10.0.0-next.52
+
+## 0.1.14-next.51
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.51
+  - @swisspost/design-system-components-react@10.0.0-next.51
+
+## 0.1.14-next.50
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.50
+  - @swisspost/design-system-components-react@10.0.0-next.50
+
+## 0.1.14-next.49
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.49
+  - @swisspost/design-system-components-react@10.0.0-next.49
+
+## 0.1.14-next.48
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.48
+  - @swisspost/design-system-components-react@10.0.0-next.48
+  - @swisspost/internet-header@10.0.0-next.48
+
+## 0.1.14-next.47
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components-react@10.0.0-next.47
+  - @swisspost/design-system-styles@10.0.0-next.47
+  - @swisspost/internet-header@10.0.0-next.47
+
+## 0.1.14-next.46
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components-react@10.0.0-next.46
+  - @swisspost/design-system-styles@10.0.0-next.46
+  - @swisspost/internet-header@10.0.0-next.46
+
+## 0.1.14-next.45
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.45
+  - @swisspost/design-system-components-react@10.0.0-next.45
+  - @swisspost/internet-header@10.0.0-next.45
+
+## 0.1.14-next.44
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.44
+  - @swisspost/design-system-components-react@10.0.0-next.44
+  - @swisspost/internet-header@10.0.0-next.44
+
+## 0.1.14-next.43
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.43
+  - @swisspost/internet-header@10.0.0-next.43
+  - @swisspost/design-system-components-react@10.0.0-next.43
+
+## 0.1.14-next.42
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components-react@10.0.0-next.42
+  - @swisspost/design-system-styles@10.0.0-next.42
+  - @swisspost/internet-header@2.0.0-next.42
+
+## 0.1.14-next.41
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.41
+  - @swisspost/design-system-components-react@10.0.0-next.41
+  - @swisspost/internet-header@2.0.0-next.41
+
 ## 0.1.14-next.40
 
 ### Patch Changes

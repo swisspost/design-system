@@ -1,11 +1,11 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '6f359d06-bca5-4983-b588-c8c790531642',
   title: 'Foundations/Typography/Link',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'status:Stable'],
   parameters: {
     badges: [],
     design: {

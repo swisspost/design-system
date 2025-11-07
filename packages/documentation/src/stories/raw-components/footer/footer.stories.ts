@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import customFooterConfig from './custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';
@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: '27fc009d-3eec-43a9-b3a2-55531e721817',
   title: 'Raw Components/Internet Header/Footer',
   component: 'swisspost-internet-footer',
-  tags: ['package:InternetHeader', 'devOnly'],
+  tags: ['package:InternetHeader', 'status:Deprecated', 'devOnly'],
   render: renderInternetFooter,
   decorators: [hiddenHeader],
   parameters: {

@@ -1,16 +1,19 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import * as ProductCardStories from './card-product.stories';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import meta, * as ProductCardStories from './card-product.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import ProductCardSyncHeights from './card-product.sample.js?raw';
 import ProductCardAngularSyncHeights from './card-product.sample.ts?raw';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ProductCardStories} />
 
 <div className="docs-title">
   # Card for Products
 
-  <link-design of={JSON.stringify(ProductCardStories)}></link-design>
+<link-design of={JSON.stringify(ProductCardStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Highlight essential product details and provide an entry point to access in-depth information.
@@ -36,7 +39,7 @@ Ensure consistent height by applying the `.h-full` class to all product cards.
 
 For presenting a collection of products with comparable features, use cards with multiple sections, as illustrated in the example below.
 
-<post-banner type="info">
+<post-banner>
   Note that this layout necessitates JavaScript implementation to ensure consistent section heights
   across all cards.
 </post-banner>
@@ -51,6 +54,7 @@ For presenting a collection of products with comparable features, use cards with
 
 <post-tab-header panel="angular">Angular Implementation</post-tab-header>
 <post-tab-panel name="angular">
+
 <Source code={ProductCardAngularSyncHeights} language="typescript"/>
 </post-tab-panel>
 </post-tabs>

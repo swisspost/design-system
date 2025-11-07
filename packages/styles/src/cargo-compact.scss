@@ -1,8 +1,10 @@
+@use './tokens/schemes-static';
 @use './tokens/schemes';
 @use './tokens/device-compact';
 @use './tokens/appearance-compact';
 @use './tokens/cargo-theme';
-@use './palettes/cargo-palettes';
+@use './tokens/palettes';
+@use './icons/signal-icons';
 @use './layout';
 @use './utilities';
 @use './elements';

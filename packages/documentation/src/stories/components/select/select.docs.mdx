@@ -1,6 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as SelectStories from './select.stories';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as SelectStories from './select.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={SelectStories} />
 
@@ -9,6 +10,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
   <link-design of={JSON.stringify(SelectStories)}></link-design>
 </div>
+
+<PackageTag meta={meta}/>
 
 <div className="lead">
   Customize the native `<select>` with CSS that changes the element’s initial appearance.

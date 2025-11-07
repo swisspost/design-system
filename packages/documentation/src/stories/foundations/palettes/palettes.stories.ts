@@ -1,10 +1,10 @@
-import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { html, nothing } from 'lit';
+import { Args, Meta, StoryObj } from '@storybook/web-components-vite';
+import { html } from 'lit';
 
 const meta: Meta = {
   id: '43481535-5b39-40b5-a273-478b07dc3b31',
   title: 'Foundations/Palettes',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'status:Experimental'],
   render: renderPalette,
   parameters: {
     palettes: [],
@@ -42,7 +42,7 @@ export default meta;
 // RENDERER
 function renderPalette(args: Args) {
   return html`
-    <div class="palette-${args.palette} p-24" data-color-scheme=${args.colorScheme ?? nothing}>
+    <div class="palette palette-${args.palette} p-24">
       <h2 class="palette-text">
         I use a specific color from the palette (it might be the same as the body color).
       </h2>

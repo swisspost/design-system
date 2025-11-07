@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -32,6 +32,9 @@ export const CardControl: StoryObj = {
           ${bombedArgs.map(args => html` <div class="col-sm-6">${Default.render(args)}</div> `)}
         </div>
       `,
+      {
+        filter: (scheme: string) => scheme === 'light',
+      },
     );
   },
 };

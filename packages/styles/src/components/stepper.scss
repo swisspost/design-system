@@ -5,13 +5,14 @@
 @use './../variables/commons';
 @use './../variables/components/stepper';
 
-@use './../themes/bootstrap/core' as *;
 @use './../mixins/media';
 
 @use './../functions/tokens';
 @use './../tokens/utilities';
 
 tokens.$default-map: utilities.$post-spacing;
+
+@include icons-mx.custom-property('checkmark');
 
 // for backward compatibility
 .stepper-container {
@@ -173,7 +174,7 @@ tokens.$default-map: utilities.$post-spacing;
 
 // check icon
 .stepper-link::after {
-  @include icons-mx.icon(2105);
+  @include icons-mx.mask-image('checkmark');
   display: block;
   position: absolute;
   top: calc((stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size) / 2);
@@ -231,7 +232,7 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 // smaller screens
-@include media-breakpoint-down(sm) {
+@include media.max(sm) {
   .stepper-item:first-child,
   .stepper-item:last-child {
     padding-inline: 0;

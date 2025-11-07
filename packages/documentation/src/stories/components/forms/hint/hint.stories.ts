@@ -1,11 +1,11 @@
 import { MetaComponent } from '@root/types';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 const meta: MetaComponent = {
   id: '43525c38-d00c-4632-8cc5-0fb8a0f2a741',
   title: 'Components/Form Hint',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'status:Experimental'],
   render: renderHint,
   parameters: {
     badges: [],

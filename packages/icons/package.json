@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "10.0.0-next.40",
+  "version": "10.0.0-next.53",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -18,13 +18,14 @@
     "linkDirectory": true
   },
   "files": [
-    "public"
+    "public",
+    "dist"
   ],
   "scripts": {
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
     "build": "pnpm clean && ts-node src/build.ts",
-    "clean": "rimraf public/post-icons public/report.json",
+    "clean": "rimraf public/post-icons public/report.json dist",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "unit:updatesnapshots": "jest -u",
@@ -34,11 +35,12 @@
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
-    "@tsconfig/node22": "22.0.0",
+    "@tsconfig/node22": "22.0.2",
     "@types/jest": "29.5.14",
     "@types/mock-fs": "4.13.4",
     "@types/node": "22.10.5",
-    "@types/node-fetch": "2.6.11",
+    "@types/node-fetch": "2.6.13",
+    "@types/prettier": "2.7.3",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "dotenv": "16.5.0",
@@ -46,12 +48,13 @@
     "eslint-plugin-jest": "28.11.0",
     "globals": "16.0.0",
     "http-server": "14.1.1",
-    "https-proxy-agent": "7.0.5",
+    "https-proxy-agent": "7.0.6",
     "jest": "29.7.0",
     "mock-fs": "5.5.0",
     "node-fetch": "2.7.0",
     "node-html-parser": "7.0.1",
-    "nodemon": "3.1.7",
+    "nodemon": "3.1.10",
+    "prettier": "2.8.8",
     "rimraf": "6.0.1",
     "svgo": "3.3.2",
     "ts-jest": "29.2.5",
@@ -63,6 +66,7 @@
     "icons",
     "design-system",
     "ui",
-    "frontend"
+    "frontend",
+    "css"
   ]
 }

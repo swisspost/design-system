@@ -68,6 +68,12 @@ const TEAM_MEMBERS: TeamMember[] = [
     githubImageId: '170833805',
     githubUsername: 'hugomslv',
   },
+  {
+    name: 'Nattaya Buck',
+    title: 'Whitespace Warrior',
+    githubImageId: '166115007',
+    githubUsername: 'bucknatt',
+  },
 ];
 
 const BASEURL = 'https://github.com/swisspost/design-system/tree/main/packages/documentation';

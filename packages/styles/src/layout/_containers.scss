@@ -22,11 +22,24 @@ tokens.$default-map: components.$post-container;
       // The `.row` has a negative margin equal to half the gutter size.
       // To prevent content from overflowing, the container needs to have
       // a padding of at least half the gutter size to offset this negative margin.
-      padding-inline: max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x)));
+      --post-container-padding-inline: max(#{$padding}, calc(0.5 * #{$gutter}));
+      padding-inline: var(--post-container-padding-inline);
     }
   }
 }
 
 .container {
-  max-width: tokens.get('grid-max-width');
+  --post-container-max-width: #{tokens.get('grid-max-width')};
+  max-width: var(--post-container-max-width);
+
+  // Offset for `.container` is: padding-inline + max(0px, (100vw - container-max-width) / 2)
+  --post-container-offset: calc(
+    var(--post-container-padding-inline) +
+      max(0px, calc((100vw - var(--post-container-max-width)) / 2))
+  );
+}
+
+.container-fluid {
+  // Offset for `.container-fluid` is the padding-inline
+  --post-container-offset: var(--post-container-padding-inline);
 }

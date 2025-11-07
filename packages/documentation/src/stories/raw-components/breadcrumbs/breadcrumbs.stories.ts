@@ -1,4 +1,4 @@
-import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
 import { getAttributes } from '@/utils';
@@ -9,7 +9,7 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
   id: '4347e5bf-8bf2-4f44-9075-9faaa53591ed',
   title: 'Raw Components/Internet Header/Breadcrumbs',
   component: 'swisspost-internet-breadcrumbs',
-  tags: ['package:InternetHeader', 'devOnly'],
+  tags: ['package:InternetHeader', 'status:Deprecated', 'devOnly'],
   render: renderInternetBreadcrumbs,
   decorators: [hiddenHeader],
   parameters: {

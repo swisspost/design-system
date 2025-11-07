@@ -1,10 +1,11 @@
-import type { StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import type { StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
   id: '7ecd87f1-de96-4e39-a057-ba1798eb69593',
   title: 'Foundations/Typography/Paragraph',
+  tags: ['package:Styles', 'status:Stable'],
   parameters: {
     badges: [],
     design: {

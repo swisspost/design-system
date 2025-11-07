@@ -167,7 +167,7 @@ post-menu::part(popover-container) {
   }
 }
 
-post-breadcrumb-item:last-of-type {
+li[aria-current="page"] post-breadcrumb-item {
   pointer-events: none;
   color: tokens.get('breadcrumb-selected-fg');
   font-weight: tokens.get('breadcrumb-selected-font-weight');
@@ -180,5 +180,5 @@ post-breadcrumb-item:last-of-type {
 }
 
 .visually-hidden {
-  @include post.visually-hidden();
+  @include post.visuallyhidden();
 }

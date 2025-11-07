@@ -1,4 +1,4 @@
-import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import './vertical-align.styles.scss';
 import { MetaExtended } from '@root/types';
@@ -8,6 +8,7 @@ const alignOptions = ['baseline', 'top', 'middle', 'bottom', 'text-bottom', 'tex
 const meta: MetaExtended = {
   id: 'cf01f6d1-970f-444e-aaa9-8a96c25cc8b2',
   title: 'Utilities/Vertical Align',
+  tags: ['status:Stable'],
   args: {
     align: '',
   },

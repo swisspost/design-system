@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
 
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
@@ -43,34 +43,34 @@ jobs:
               echo "Error: Netlify config file missing"
               exit 1
           fi
-          
+
           CONFIG_CONTENT=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
-          
+
           node -e "
           try {
             const config = JSON.parse(process.argv[1]);
             const { siteId, siteUrl } = config;
-            
+
             if (!siteId || !siteUrl) {
               console.error('Error: Missing siteId or siteUrl in netlify config');
               process.exit(1);
             }
-            
+
             if (!/^[a-zA-Z0-9-]+\$/.test(siteId)) {
               console.error('Error: Invalid site ID format.');
               process.exit(1);
             }
-            
+
             if (!/^[a-zA-Z0-9.-]+\$/.test(siteUrl)) {
               console.error('Error: Invalid site URL format.');
               process.exit(1);
             }
-            
+
           // Export environment variables for subsequent workflow steps
           // These console.log outputs get redirected to GITHUB_ENV via >> operator
           console.log('SITE_ID=' + siteId);
           console.log('SITE_URL=' + siteUrl);
-            
+
           } catch (error) {
             console.error('JSON parsing error:', error.message);
             process.exit(1);
@@ -85,8 +85,8 @@ jobs:
         run: |
           url_alias=$(echo "preview-$BUILD_ID" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z)
           echo "URL_ALIAS=$url_alias" >> $GITHUB_ENV
-          
-          preview_url="https://${url_alias}--${SITE_URL}"
+
+          preview_url="https://${url_alias}--${SITE_URL}?devModeEnabled=true"
           echo "PREVIEW_URL=$preview_url" >> $GITHUB_ENV
 
       - name: Deploy Documentation Preview

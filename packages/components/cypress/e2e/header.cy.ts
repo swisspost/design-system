@@ -80,6 +80,72 @@ describe('header', () => {
 
       cy.get('[data-post-scroll-locked]').should('not.exist');
     });
+
+    it('should close both megadropdown and mobile menu with one click', () => {
+      // Open mobile menu
+      cy.get('post-togglebutton').click();
+      cy.get('div.local-header-mobile-extended').should('exist');
+      // Open megadropdown
+      cy.get('post-megadropdown-trigger').first().click();
+      cy.get('post-megadropdown .megadropdown-container').should('be.visible');
+      // Click menu button to close both
+      cy.get('post-togglebutton').click();
+      cy.get('div.local-header-mobile-extended').should('not.exist');
+      cy.get('post-megadropdown .megadropdown-container').should('not.be.visible');
+    });
+
+    it('should animate megadropdown open after forced close', () => {
+      // Open mobile menu and megadropdown
+      cy.get('post-togglebutton').click();
+      cy.get('div.local-header-mobile-extended').should('exist');
+      cy.get('post-megadropdown-trigger').first().should('be.visible').click();
+      cy.get('post-megadropdown .megadropdown-container').should('be.visible');
+
+      // Force close by toggling menu
+      cy.get('post-togglebutton').click();
+      cy.get('div.local-header-mobile-extended').should('not.exist');
+      cy.get('post-megadropdown .megadropdown-container').should('not.be.visible');
+
+      // Reopen mobile menu before clicking the trigger again
+      cy.get('post-togglebutton').click();
+      cy.get('div.local-header-mobile-extended').should('exist');
+      cy.get('post-megadropdown-trigger').first().should('be.visible').click();
+
+      // Check if animation class is present
+      cy.get('post-megadropdown .megadropdown-container')
+        .should('be.visible')
+        .should('have.class', 'slide-in');
+    });
+
+    it('should update active class when active link changes within the same or different megadropdown', () => {
+      cy.get('post-megadropdown#letters a[href="/sch"]').first().as('lettersFirstLink');
+      cy.get('post-megadropdown#letters a[href="/kl"]').first().as('lettersSecondLink');
+      cy.get('post-megadropdown#packages a[href="/sch"]').first().as('packagesLink');
+
+      cy.get('post-megadropdown-trigger button').first().as('lettersTrigger');
+      cy.get('post-megadropdown-trigger button').eq(1).as('packagesTrigger');
+
+      // Activate first link
+      cy.get('@lettersFirstLink').then($link => $link.attr('aria-current', 'page'));
+      cy.get('@lettersFirstLink').should('have.attr', 'aria-current', 'page');
+      cy.get('@lettersTrigger').should('have.class', 'active');
+      cy.get('@packagesTrigger').should('not.have.class', 'active');
+
+      // Move active link within the same megadropdown
+      cy.get('@lettersFirstLink').then($link => $link.removeAttr('aria-current'));
+      cy.get('@lettersSecondLink').then($link => $link.attr('aria-current', 'page'));
+
+      cy.get('@lettersTrigger').should('have.class', 'active');
+      cy.get('@packagesTrigger').should('not.have.class', 'active');
+
+      // Move active link to a different megadropdown
+      cy.log('Change active link to a different megadropdown');
+      cy.get('@lettersSecondLink').then($link => $link.removeAttr('aria-current'));
+      cy.get('@packagesLink').then($link => $link.attr('aria-current', 'page'));
+
+      cy.get('@lettersTrigger').should('not.have.class', 'active');
+      cy.get('@packagesTrigger').should('have.class', 'active');
+    });
   });
 
   describe('Accessibility', { baseUrl: null }, () => {

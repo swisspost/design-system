@@ -1,22 +1,24 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as CardStories from './card.stories';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as CardStories from './card.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={CardStories} />
 
 <div className="docs-title">
   # Card
 
-  <link-design of={JSON.stringify(CardStories)}></link-design>
+<link-design of={JSON.stringify(CardStories)}></link-design>
+
 </div>
 
-<div className="lead">
-  Cards provide a flexible and extensible content container with multiple variants and options.
-</div>
+<PackageTag meta={meta}/>
+
+<div className="lead">Cards provide a flexible and extensible content container.</div>
 
 Built with flexbox, they offer easy alignment and mix well with other components.
 
-They have no fixed width to start, so they’ll naturally fill the full width of its parent element.
+They have no fixed width to start, so they’ll naturally fill the full width of their parent element.
 This is easily customizable using the grid for example. For more details on that, read our [grid docs](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs).
 
 <Canvas sourceState="shown" of={CardStories.Default} />
@@ -26,16 +28,16 @@ This is easily customizable using the grid for example. For more details on that
 
 <StylesPackageImport components={['card']} />
 
-## Foundations
+## Interactivity
 
 Card elements can contain many things, they can be interactive or not. Interactive cards will have a shadow and an hover effect. To make your card interactive, simply add the `post-linkarea` component around it.
 To read more about it, read our [post-linkarea docs](/?path=/docs/1d52b794-768b-464e-90eb-4fd15774aa90--docs).
 
-<div className="banner banner-info">
+<post-banner>
   Do not place more than one interactive element on an interactive card. If your card should contain
   more than one action, consider using a non-interactive card which can contain multiple different
   actionable/interactive elements.
-</div>
+</post-banner>
 
 <Canvas sourceState="shown" of={CardStories.Foundation} />
 
@@ -49,8 +51,7 @@ Cards should never be the same color as its section's background. Therefore, dep
 
 ### Custom Content
 
-Cards support a wide variety of content, including images, text, links, and more.
-This applies to the body of the card as well as its header and footer.
+A card is simply a box which can contain a wide variety of content, including images, text, links, and more.
 
 <Canvas of={CardStories.CustomContent} />
 
@@ -59,12 +60,3 @@ This applies to the body of the card as well as its header and footer.
 Create lists of content in a card by simply using a list interactive in place of the card body.
 
 <Canvas of={CardStories.ListGroup} />
-
-### Bad example
-
-<div className="banner banner-danger mb-16">
-  Never use text with a background image because you can't ensure it is readable by everyone for all
-  languages and browser sizes.
-</div>
-
-<Canvas of={CardStories.BackgroundImage} />

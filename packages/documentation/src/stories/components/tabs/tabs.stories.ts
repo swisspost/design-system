@@ -1,12 +1,12 @@
-import { StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { StoryObj } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-tabs',
   render: renderTabs,
   parameters: {
@@ -29,7 +29,10 @@ export default meta;
 
 function renderTabs(args: Partial<HTMLPostTabsElement>) {
   return html`
-    <post-tabs active-panel="${ifDefined(args.activePanel)}">
+    <post-tabs
+      active-panel="${ifDefined(args.activePanel)}"
+      full-width="${args.fullWidth ? true : nothing}"
+    >
       <post-tab-header panel="first">First tab</post-tab-header>
       <post-tab-header panel="second">Second tab</post-tab-header>
       <post-tab-header panel="third">Third tab</post-tab-header>
@@ -50,12 +53,21 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
 // STORIES
 type Story = StoryObj<HTMLPostTabsElement>;
 
-export const Default: Story = {};
+export const Default: Story = {
+};
 
 export const ActivePanel: Story = {
   args: {
     activePanel: 'third',
   },
+};
+
+export const FullWidth: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: { fullWidth: true },
+  decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
 export const Async: Story = {
@@ -93,7 +105,7 @@ export const Async: Story = {
         <hr />
         <div class="d-flex gap-8">
           <button class="btn btn-default" id="add-tab" type="button" @click="${addTab}">
-            <post-icon name="2040"></post-icon>
+            <post-icon name="plus"></post-icon>
             Add tab
           </button>
           <button
@@ -102,7 +114,7 @@ export const Async: Story = {
             type="button"
             @click="${removeActiveTab}"
           >
-            <post-icon name="2039"></post-icon>
+            <post-icon name="minus"></post-icon>
             Remove active tab
           </button>
         </div>

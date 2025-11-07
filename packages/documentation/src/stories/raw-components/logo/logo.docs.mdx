@@ -1,0 +1,43 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as logoStories from './logo.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={logoStories} />
+
+<div className="docs-title">
+ # Post Logo
+
+  <link-design of={JSON.stringify(logoStories)}></link-design>
+</div>
+
+<PackageTag meta={meta}/>
+
+<p className="lead">Display the Post logo as a clickable link or as a simple image.</p>
+
+<Canvas sourceState="shown" of={logoStories.Default} />
+<div className="hide-col-default">
+  <Controls of={logoStories.Default} />
+</div>
+
+<ComponentsPackageInstall component="<post-logo>" />
+
+## Examples
+
+### Height
+
+By default, the logo will be 100% of the height of its parent.
+You can also set the height on the logo using one of the <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs">sizing utility classes</a>.
+
+<Canvas of={logoStories.Height} />
+
+### Link
+
+You can use the logo as a link by setting its `url` property.
+Ensure that the descriptive text clearly indicates the destination the user will be redirected to after clicking the logo.
+
+<Canvas of={logoStories.Link} />
+
+#### Custom Link
+
+For client-side routing applications, a custom link component can be implemented; refer to the <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82579--docs">guidelines</a> for details.

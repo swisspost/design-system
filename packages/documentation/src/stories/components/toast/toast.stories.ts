@@ -1,12 +1,12 @@
-import { useArgs } from '@storybook/preview-api';
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
-  tags: ['package:HTML'],
+  tags: ['package:Styles', 'status:InProgress'],
   parameters: {
     badges: [],
     design: {
@@ -17,9 +17,7 @@ const meta: MetaComponent = {
   args: {
     title: 'Title',
     content: 'This is a sample toast message to demonstrate the component functionality.',
-    variant: 'toast-neutral',
-    noIcon: false,
-    icon: 'null',
+    variant: 'toast-info',
     dismissible: true,
     position: 'static',
     alignV: 'bottom',
@@ -57,52 +55,13 @@ const meta: MetaComponent = {
       control: {
         type: 'radio',
         labels: {
-          'toast-neutral': 'Neutral',
           'toast-info': 'Info',
           'toast-success': 'Success',
-          'toast-danger': 'Danger',
+          'toast-error': 'Error',
           'toast-warning': 'Warning',
         },
       },
-      options: ['toast-neutral', 'toast-info', 'toast-success', 'toast-danger', 'toast-warning'],
-      table: {
-        category: 'General',
-      },
-    },
-    noIcon: {
-      name: 'No Icon',
-      description: 'Removes the predefined icon completely.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    icon: {
-      name: 'Icon',
-      description:
-        'Defines a custom icon.' +
-        '<span className="mt-8 banner banner-info banner-sm">' +
-        '<span>To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
-        '.</span></span>',
-      if: {
-        arg: 'noIcon',
-        truthy: false,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'null': 'Default',
-          '1001': 'Envelope (1001)',
-          '2023': 'Cog (2023)',
-          '2025': 'Send (2025)',
-          '2035': 'Home (2035)',
-          '2101': 'Bubble (2101)',
-        },
-      },
-      options: ['null', '1001', '2023', '2025', '2035', '2101'],
+      options: ['toast-info', 'toast-success', 'toast-error', 'toast-warning'],
       table: {
         category: 'General',
       },
@@ -346,33 +305,21 @@ function killAutoHideTimeout(timeoutStore: ReturnType<typeof setTimeout>[], args
   }
 }
 
-function getToastIcon(args: Args) {
-  return !args.noIcon && args.icon !== 'null'
-    ? html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `
-    : null;
-}
-
 function getDismissButton(args: Args, isFixed: boolean) {
-  return args.dismissible || isFixed
-    ? html` <button class="toast-close-button" aria-label="close"></button> `
-    : null;
+  return args.dismissible || isFixed ? html` <post-closebutton>Close</post-closebutton> ` : null;
 }
 
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   updateAlignments(args, updateArgs);
-  
-  const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores] || timeoutStores['Default'];
-  
+
+  const timeoutStore =
+    timeoutStores[context.name as keyof ITimeoutStores] || timeoutStores['Default'];
+
   const isFixed = args.position === 'fixed';
-  
-  const classes = [
-    'toast',
-    args.variant,
-    args.noIcon && 'no-icon',
-    (args.dismissible || isFixed) && 'toast-dismissible',
-  ]
+
+  const classes = ['toast', args.variant, (args.dismissible || isFixed) && 'toast-dismissible']
     .filter(c => c && c !== 'null')
     .join(' ');
 
@@ -388,8 +335,6 @@ function render(args: Args, context: StoryContext) {
     ariaLive = 'polite';
   }
 
-  const toastIcon = getToastIcon(args);
-
   const dismissButton = getDismissButton(args, isFixed);
 
   const component = html`
@@ -402,7 +347,7 @@ function render(args: Args, context: StoryContext) {
       @mouseenter="${() => killAutoHideTimeout(timeoutStore, args)}"
       @mouseleave="${() => createAutoHideTimeout(timeoutStore, args, updateArgs)}"
     >
-      ${toastIcon} ${dismissButton}
+      ${dismissButton}
       <div class="toast-title">${args.title}</div>
       ${args.content ? html` <div class="toast-message">${args.content}</div> ` : null}
     </div>
@@ -412,12 +357,8 @@ function render(args: Args, context: StoryContext) {
   if (args.stacked) {
     wrappedContent = html` ${component} ${component} `;
   } else if (isFixed) {
-    wrappedContent = html`
-      <div style="${args.show ? '' : 'display: none;'}">
-        ${component}
-      </div>
-    `;
-    
+    wrappedContent = html` <div style="${args.show ? '' : 'display: none;'}">${component}</div> `;
+
     if (args.show) {
       createAutoHideTimeout(timeoutStore, args, updateArgs);
     }

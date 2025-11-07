@@ -1,5 +1,6 @@
-import { Canvas, Meta, Controls } from '@storybook/blocks';
-import * as SectionStories from './sections.stories';
+import { Canvas, Meta, Controls } from '@storybook/addon-docs/blocks';
+import meta, * as SectionStories from './sections.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={SectionStories} />
 
@@ -9,11 +10,15 @@ import * as SectionStories from './sections.stories';
   <link-design of={JSON.stringify(SectionStories)}></link-design>
 </div>
 
+<PackageTag meta={meta}/>
+
 <div className="lead">
 The `.section` class is used to create a container that ensures content does not exceed a maximum width of 1920px (Full HD), providing a consistent layout across different screen sizes.
 </div>
 
-<p className="banner banner-info">To see this component in action, you actually need a screen with a resolution bigger than Full HD.</p>
+<post-banner>
+  To see this component in action, you actually need a screen with a resolution bigger than Full HD.
+</post-banner>
 
 The component does not add any paddings, so make sure you're using a `.container` element along with some of our [spacing utility classes](/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs) inside to ensure your content gets padded correctly across all viewports.
 
