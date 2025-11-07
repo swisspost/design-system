@@ -129,7 +129,7 @@ export class AppComponent implements OnInit {
     { slot: 'grid-4', title: 'Title 4', linkCount: 5 },
   ];
 
-  // Social media links
+  // Social media links (Footer)
   public socialMediaLinks = [
     { name: 'Facebook', url: '#facebook', icon: '8004' },
     { name: 'Instagram', url: '#instagram', icon: '8007' },
@@ -141,7 +141,7 @@ export class AppComponent implements OnInit {
     { name: 'E-Mail', url: 'mailto:noreply@post.ch', icon: 'letter' },
   ];
 
-  // Meta links
+  // Meta links (Footer)
   public metaLinks = [
     { text: 'Accessibility', url: 'https://www.post.ch/en/pages/footer/accessibility-at-swiss-post' },
     { text: 'General Terms and Conditions', url: 'https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc' },
