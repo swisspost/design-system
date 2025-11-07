@@ -66,6 +66,7 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
   @State() hasNavigationControls: boolean = false;
+  @State() hasTargetGroup: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -124,6 +125,7 @@ export class PostHeader {
 
     this.checkNavigationExistence();
     this.checkNavigationControlsExistence();
+    this.checkTargetGroupExistence();
     this.checkTitleExistence();
     this.switchLanguageSwitchMode();
 
@@ -175,6 +177,10 @@ export class PostHeader {
   private checkNavigationControlsExistence(): void {
     this.hasNavigationControls =
       this.host.querySelectorAll('[slot="navigation-controls"]').length > 0;
+  }
+
+  private checkTargetGroupExistence(): void {
+    this.hasTargetGroup = this.host.querySelectorAll('[slot="target-group"]').length > 0;
   }
 
   private checkTitleExistence(): void {
@@ -382,8 +388,7 @@ export class PostHeader {
       return (
         <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
           {mainNavigation}
-          <div class="spacer"></div>
-          {navigationControls}
+          <div class="navigation-controls">{navigationControls}</div>
         </div>
       );
     }
@@ -413,13 +418,24 @@ export class PostHeader {
   render() {
     return (
       <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
-        <div class="global-header">
+        <div
+          class={{
+            'global-header': true,
+            'no-target-group': !this.hasTargetGroup,
+          }}
+        >
           <div class="logo">
             <slot name="post-logo"></slot>
           </div>
           <div class="sliding-controls">
-            {this.device === 'desktop' && <slot name="target-group"></slot>}
-            <div class="spacer"></div>
+            {this.device === 'desktop' && (
+              <div class="target-group">
+                <slot
+                  name="target-group"
+                  onSlotchange={() => this.checkTargetGroupExistence()}
+                ></slot>
+              </div>
+            )}
             <slot name="global-controls"></slot>
             {!this.hasBurgerMenu && [
               <slot name="meta-navigation"></slot>,
@@ -437,6 +453,7 @@ export class PostHeader {
           class={{
             'local-header': true,
             'no-title': !this.hasTitle,
+            'no-target-group': !this.hasTargetGroup,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
             'no-navigation-controls': !this.hasNavigationControls,
           }}
