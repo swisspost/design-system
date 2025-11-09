@@ -32147,6 +32147,46 @@
       "modifiedAt": "2025-11-01T07:05:10.694Z"
     },
     {
+      "uuid": "4a86d2a0-b974-11f0-b91a-0050568d2654",
+      "id": 7229034,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7229034/storage/MDA3MjI5MDMzLzAvbWFzdGVy",
+        "keywords": [
+          "Kalender",
+          "Calendar",
+          "Calendario",
+          "Calendrier",
+          "Kalenderanpassung",
+          "Modifica calendario",
+          "calendar adjustment",
+          "Adaptation du calendrier",
+          "Move calendar",
+          "Kalender verschieben",
+          "Déplacer le calendrier",
+          "spostare il calendario",
+          "Move date",
+          "Datum verschieben",
+          "Déplacer la date",
+          "Spostare la data"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2741.svg",
+        "basename": "2741",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-04T11:49:16.000Z",
+      "modifiedAt": "2025-11-05T11:05:07.704Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -44585,37 +44625,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:43.000Z"
-    },
-    {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
       "id": 352299,
       "type": "picture.pictogram.",
@@ -44645,6 +44654,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:42.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:43.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -44758,11 +44798,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2025-11-02T02:24:42.924Z",
+  "created": "2025-11-09T02:23:04.210Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1061
+    "success": 1062
   },
-  "version": "9.3.0"
+  "version": "9.4.0"
 }
