@@ -169,6 +169,8 @@ export class PostPopovercontainer {
     this.host.style.setProperty('--post-safe-space-cursor-y', `${event.clientY}px`);
   }
 
+  private currentAnimation: Animation | null = null;
+
   connectedCallback() {
     if (IS_BROWSER && !isSupported()) {
       apply();
@@ -203,10 +205,10 @@ export class PostPopovercontainer {
    */
   @Method()
   async open() {
-    const popoverContentEl: HTMLElement = this.host.querySelector('.popover-content');
+    const content: HTMLElement = this.host.querySelector('.popover-content');
     this.startAutoupdates();
 
-    if (popoverContentEl) {
+    if (content) {
       // Only run animation and emit related events if animation is defined
       if (this.animation === null || this.animation === 'none') {
         // No animation case
@@ -217,7 +219,7 @@ export class PostPopovercontainer {
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
       } else {
         const animationFn = ANIMATIONS[this.animation];
-        this.runOpenAnimation(animationFn, popoverContentEl);
+        this.runOpenAnimation(animationFn, content);
       }
     }
 
@@ -239,10 +241,9 @@ export class PostPopovercontainer {
       window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
 
-    // Wait for any running animation to complete
-    if ((this.animation !== null || this.animation !== 'none') && this.currentAnimation) {
+    // Cancel any running animation
+    if (this.currentAnimation) {
       this.currentAnimation.cancel();
-      await this.currentAnimation.finished;
       this.currentAnimation = null;
     }
 
@@ -281,7 +282,6 @@ export class PostPopovercontainer {
     return this.host.matches(':where(:popover-open, .popover-open)');
   }
 
-  private currentAnimation: Animation | null = null;
   /**
    * Runs the animation and emits the toggle/show/hide events in the correct timing
    */
