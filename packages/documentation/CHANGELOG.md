@@ -1,5 +1,24 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.55
+
+### Minor Changes
+
+- Updated the `post-header` to use aria-current="location" for active header links outside main navigation to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#6566](https://github.com/swisspost/design-system/pull/6566))
+
+### Patch Changes
+
+- Updated the migration guide to improve clarity and usability, making it more user-friendly and understandable, and added detailed instructions for removing Bootstrap and Ng-Bootstrap along with general migration guidance. (by [@leagrdv](https://github.com/leagrdv) with [#6565](https://github.com/swisspost/design-system/pull/6565))
+
+- Updated several outdated Figma links to point to the correct design. (by [@leagrdv](https://github.com/leagrdv) with [#6592](https://github.com/swisspost/design-system/pull/6592))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.54
+  - @swisspost/design-system-components@10.0.0-next.54
+  - @swisspost/design-system-styles@10.0.0-next.54
+  - @swisspost/design-system-components-react@10.0.0-next.54
+  - @swisspost/internet-header@10.0.0-next.54
+  - @swisspost/design-system-tokens@10.0.0-next.54
+
 ## 6.0.0-next.54
 
 ### Patch Changes
