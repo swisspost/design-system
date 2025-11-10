@@ -28,10 +28,7 @@ function shouldProcessEvent(
   if (ignoreNestedComponents) {
     // Find the closest parent with the same tag as the host
     const closestParentWithSameTag = findClosestParentWithTag(eventTarget, host.localName);
-
-    if (closestParentWithSameTag !== null) {
-      if (closestParentWithSameTag !== host) return false;
-    }
+    if (closestParentWithSameTag !== host) return false;
   }
 
   return true;
