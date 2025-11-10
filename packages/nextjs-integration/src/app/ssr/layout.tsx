@@ -356,7 +356,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <PostListItem>
             <a href="#twitter-x" className="btn btn-primary btn-icon">
               <PostIcon aria-hidden="true" name="8000"></PostIcon>
-              <span className="visually-hidden">Titter X</span>
+              <span className="visually-hidden">Twitter X</span>
             </a>
           </PostListItem>
           <PostListItem>

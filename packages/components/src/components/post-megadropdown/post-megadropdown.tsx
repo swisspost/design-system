@@ -69,8 +69,10 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
-
-    this.defaultSlotObserver.disconnect();
+    
+    if (this.defaultSlotObserver) {
+      this.defaultSlotObserver.disconnect();
+    }
   }
 
   /**
