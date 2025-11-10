@@ -8,18 +8,27 @@ test.describe('SSR compatibility', () => {
   });
 
   for (const componentName of componentNames) {
-  test(`should contain ${componentName}`, async ({ page }) => {
+    test(`should contain ${componentName}`, async ({ page }) => {
       const component = page.locator(componentName).first();
       await expect(component).toHaveCount(1);
     });
-  }
 
-  test('should be hydrated)', async ({ page }) => {
-    for (const componentName of componentNames) {
+    test(`should be hydrated: ${componentName}`, async ({ page }) => {
       const component = page.locator(`${componentName}[data-hydrated]`).first();
       await expect(component).toBeAttached();
-    }
-  });
+    });
+
+    test(`should not have console errors: ${componentName}`, async ({ page }) => {
+      const errorCapture = setupComponentErrorCapture(page, [componentName]);
+
+      await page.goto('/ssr');
+
+      // Wait for all components to hydrate and any asynchronous errors to surface
+      await page.waitForTimeout(500);
+
+      assertNoComponentErrors(errorCapture.errors, [componentName]);
+    });
+  }
 
   // NextJS typically only logs a single hydration error.
   // This means that after an error in one component has been fixed, another one may occur.
@@ -45,20 +54,9 @@ test.describe('SSR compatibility', () => {
     // expect(hydrationErrors.length).toBe(0);
     if (hydrationErrors) {
       test.info().annotations.push({
-        type: ' Warning',
+        type: 'Warning',
         description: `The test detected hydration errors!\n${hydrationErrors.join('\n')}`,
       });
     }
-  });
-
-  test('should not have console errors from components', async ({ page }) => {
-    const errorCapture = setupComponentErrorCapture(page, componentNames);
-
-    await page.goto('/ssr');
-
-    // Wait for all components to hydrate and any asynchronous errors to surface
-    await page.waitForTimeout(500);
-
-    assertNoComponentErrors(errorCapture.errors, componentNames);
   });
 });
