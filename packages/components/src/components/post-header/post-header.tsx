@@ -124,7 +124,6 @@ export class PostHeader {
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
-    this.switchLanguageSwitchMode();
 
     this.handleScrollParentResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
@@ -133,6 +132,7 @@ export class PostHeader {
   componentWillRender() {
     this.handleScrollEvent();
     this.handleSlottedContentChanges();
+    this.switchLanguageSwitchMode();
   }
 
   componentDidRender() {
@@ -216,8 +216,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
