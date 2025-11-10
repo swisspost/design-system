@@ -1,5 +1,12 @@
 # @swisspost/design-system-components-angular
 
+## 9.5.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.5.0
+
 ## 9.4.0
 
 ### Patch Changes
