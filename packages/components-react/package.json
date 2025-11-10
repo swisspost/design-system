@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "10.0.0-next.53",
+  "version": "10.0.0-next.54",
   "description": "Design System React Components for easy integration with the React ecosystem",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -49,7 +49,7 @@
   "dependencies": {
     "@stencil/react-output-target": "0.8.2",
     "@stencil/ssr": "0.1.1",
-    "@swisspost/design-system-components": "workspace:10.0.0-next.53"
+    "@swisspost/design-system-components": "workspace:10.0.0-next.54"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",

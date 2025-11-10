@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.54
+
+### Minor Changes
+
+- Updated the `post-header` to use aria-current="location" for active header links outside main navigation to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#6566](https://github.com/swisspost/design-system/pull/6566))
+
+### Patch Changes
+
+- Updated `post-popovercontainer` to fix a tooltip desynchronization issue when hovering quickly in and out. (by [@myrta2302](https://github.com/myrta2302) with [#6607](https://github.com/swisspost/design-system/pull/6607))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.54
+  - @swisspost/design-system-styles@10.0.0-next.54
+
 ## 10.0.0-next.53
 
 ### Patch Changes
