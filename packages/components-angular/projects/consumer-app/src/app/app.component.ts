@@ -131,7 +131,7 @@ export class AppComponent implements OnInit {
     { name: 'Instagram', url: '#instagram', icon: '8007' },
     { name: 'Youtube', url: '#youtube', icon: '8002' },
     { name: 'Snapchat', url: '#snapchat', icon: '8017' },
-    { name: 'Titter X', url: '#twitter-x', icon: '8000' },
+    { name: 'Twitter X', url: '#twitter-x', icon: '8000' },
     { name: 'Linkedin', url: '#linkedin', icon: '8005' },
     { name: 'Xing', url: '#xing', icon: '8001' },
     { name: 'E-Mail', url: 'mailto:noreply@post.ch', icon: 'letter' },
