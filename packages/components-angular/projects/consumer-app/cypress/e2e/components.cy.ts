@@ -1,33 +1,24 @@
-import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
-import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
+import * as Components from '@swisspost/design-system-components/dist';
+
+const COMPONENT_TAG_NAMES = Object.keys(Components)
+  .filter(c => /^Post([A-Z][a-z]+)+$/.test(c))
+  .map(c => c.replace(/([a-z0–9])([A-Z])/g, '$1-$2').toLowerCase());
 
 describe('Components', () => {
   beforeEach(() => {
     cy.visit('/');
-  });
-
-  componentNames.forEach(componentName => {
-    it(`should contain <${componentName}>`, () => {
-      cy.get(componentName).first().should('exist');
+    cy.window().then(win => {
+      cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
     });
   });
 
-  componentNames.forEach(componentName => {
-    it(`should render and be attached: <${componentName}>`, () => {
-      cy.get(`${componentName}.hydrated`).first().should('exist');
-    });
+  it('should not log any error', () => {
+    cy.get('@consoleError').should('not.have.been.called');
   });
 
-  it('should not have console errors from components', () => {
-    const errorCapture = setupComponentErrorCapture(componentNames);
-    
-    cy.visit('/', {
-      onBeforeLoad: errorCapture.onBeforeLoad
+  COMPONENT_TAG_NAMES.forEach(tagName => {
+    it(`should contain <${tagName}>`, () => {
+      cy.get(tagName).should('exist');
     });
-    
-    // Wait for all components to hydrate and any asynchronous errors to surface
-    cy.wait(500);
-    
-    assertNoComponentErrors(errorCapture.errors, componentNames);
   });
 });

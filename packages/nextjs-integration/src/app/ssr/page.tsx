@@ -100,6 +100,9 @@ export default function Home() {
             <a className="card-link" href="#test">
               Ligilo teksto
             </a>
+            <a className="card-link" href="#test">
+              Pli da ligo
+            </a>
           </div>
         </div>
       </PostLinkarea>
