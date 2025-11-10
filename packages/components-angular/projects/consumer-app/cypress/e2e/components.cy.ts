@@ -13,7 +13,7 @@ describe('Components', () => {
   });
 
   componentNames.forEach(componentName => {
-    it(`should render and be attached: <${componentName}>`, () => {
+    it(`should be hydrated: <${componentName}>`, () => {
       cy.get(componentName).first().should('have.class', 'hydrated');
     });
   });

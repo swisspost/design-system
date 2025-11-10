@@ -7,14 +7,14 @@ test.describe('SSR compatibility', () => {
     await page.goto('/ssr');
   });
 
-  test('should contain every component tag at least once', async ({ page }) => {
-    for (const componentName of componentNames) {
+  for (const componentName of componentNames) {
+  test(`should contain ${componentName}`, async ({ page }) => {
       const component = page.locator(componentName).first();
       await expect(component).toHaveCount(1);
-    }
-  });
+    });
+  }
 
-  test('should render and be attached (hydrated)', async ({ page }) => {
+  test('should be hydrated)', async ({ page }) => {
     for (const componentName of componentNames) {
       const component = page.locator(`${componentName}[data-hydrated]`).first();
       await expect(component).toBeAttached();
