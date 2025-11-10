@@ -1,6 +1,8 @@
 import { createRule } from './create-rule';
 import { HtmlNode } from '../parsers/html/html-node';
 import { Rule } from 'eslint';
+import { generateReplacedClassMutations } from './generate-mutations';
+import { generateReplacedClassMessages } from './generate-messages';
 
 type RuleType = Rule.RuleMetaData['type'];
 
@@ -15,7 +17,16 @@ export interface PhaseConfig<T> {
   mutations: Record<keyof T, [string, string]>;
 }
 
+export interface PhaseConfigWrapper {
+  description: string;
+  classesMap: {
+    old: string;
+    new: string;
+  }[];
+}
+
 type SinglePhaseRuleConfig<T> = RuleConfigBase & PhaseConfig<T>;
+type SinglePhaseRuleConfigWrapper = RuleConfigBase & PhaseConfigWrapper;
 
 export const createClassUpdateRule = <T extends Record<string, string>>(
   config: SinglePhaseRuleConfig<T>,
@@ -58,3 +69,15 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
       };
     },
   });
+
+export const createClassUpdateRuleWrapper = (config: SinglePhaseRuleConfigWrapper) => {
+  const data = generateReplacedClassMutations(config.classesMap);
+  const rule = createClassUpdateRule({
+    name: config.name,
+    description: config.description,
+    messages: generateReplacedClassMessages(config.classesMap),
+    mutations: data,
+  });
+
+  return { name: config.name, data, rule };
+};
