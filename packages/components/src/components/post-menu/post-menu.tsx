@@ -170,10 +170,12 @@ export class PostMenu {
 
       if (this.isVisible) {
         this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-        const menuItems = this.getSlottedItems();
-        if (menuItems.length > 0) {
-          (menuItems[0] as HTMLElement).focus();
-        }
+        requestAnimationFrame(() => {
+          const menuItems = this.getSlottedItems();
+          if (menuItems.length > 0) {
+            (menuItems[0] as HTMLElement).focus();
+          }
+        });
       } else if (this.lastFocusedElement) {
         this.lastFocusedElement.focus();
       }
