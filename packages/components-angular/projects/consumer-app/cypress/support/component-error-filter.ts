@@ -1,31 +1,54 @@
+type CapturedError = {
+  message: string;
+  source: 'console' | 'error';
+  stack?: string;
+  timestamp: number;
+};
+
 /**
  * Sets up error monitoring for specific components.
- * Captures console.error, uncaught errors, and unhandled rejections.
+ * Captures console.error and uncaught errors.
  * @param componentNames - Array of component names to monitor
  * @returns Object with errors array and setup function
  */
 export function setupComponentErrorCapture(componentNames: string[]) {
-  const errors: string[] = [];
-  // Pre-compute lowercase names to avoid repeated lowercasing during error capture
+  const errors: string[] = []; // live array used by tests
+  const captured: CapturedError[] = [];
+  const seen = new Set<string>(); // dedupe key: message||stack
+
+  // Pre-compute lowercase names to avoid repeated lowercasing in the hot path
   const lowerCaseComponentNames = componentNames.map(n => n.toLowerCase());
 
   const extractMessage = (arg: any): string => {
     if (typeof arg === 'string') return arg;
     if (arg?.message) return arg.message;
-    if (arg?.stack) return arg.stack;
-    try { return JSON.stringify(arg); } catch { return String(arg); }
+    if (arg?.stack) return arg.stack ?? String(arg);
+    try {
+      return JSON.stringify(arg);
+    } catch {
+      return String(arg);
+    }
   };
 
   const isRelevant = (message: string): boolean => {
-    const lowerCaseMessage = message.toLowerCase();
+    const lower = message.toLowerCase();
     // Only capture errors that mention one of the monitored component names
-    return lowerCaseComponentNames.some(n => lowerCaseMessage.includes(n));
-  }
-
-  const capture = (message: string) => {
-    // Push error to array only if it's relevant to our components
-    if (isRelevant(message)) errors.push(message);
+    return lowerCaseComponentNames.some(n => lower.includes(n));
   };
+
+  function pushError(message: string, source: CapturedError['source'], stack?: string) {
+    // Skip errors unrelated to our components
+    if (!isRelevant(message)) return;
+
+    const key = `${message}||${stack ?? ''}`;
+    // Avoid exact duplicate entries (same message + same stack)
+    if (seen.has(key)) return;
+    seen.add(key);
+
+    const entry: CapturedError = { message, source, stack, timestamp: Date.now() };
+    captured.push(entry);
+    errors.push(message);
+  }
 
   return {
     errors,
@@ -37,26 +60,30 @@ export function setupComponentErrorCapture(componentNames: string[]) {
       cy.stub(win.console, 'error').callsFake((...args: any[]) => {
         originalError(...args);
         // Convert all arguments to strings and join them
-        capture(args.map(extractMessage).join(' '));
+        const message = args.map(extractMessage).join(' ');
+        pushError(message, 'console');
       });
 
       // Capture uncaught exceptions and runtime errors from the page
-      win.addEventListener('error', (e: ErrorEvent) => 
-        capture(e.message || extractMessage(e.error))
-      );
+      win.addEventListener('error', (e: ErrorEvent) => {
+        const message = e.message || extractMessage(e.error);
+        const stack = e.error?.stack;
+        pushError(message, 'error', stack);
+      });
     }
   };
 }
 
 /**
- * Asserts that no component errors were captured
+ * Asserts that no component errors were captured.
  */
 export function assertNoComponentErrors(errors: string[], componentNames: string[]): void {
   cy.then(() => {
-    if (errors.length > 0) {
-      // Format errors with line numbers for readable test output
-      const list = errors.map((e, i) => `  ${i + 1}. ${e}`).join('\n');
-      throw new Error(`Found ${errors.length} error(s) for [${componentNames.join(', ')}]:\n${list}`);
-    }
+    if (errors.length === 0) return;
+
+    // Deduplicate errors in case the same error was captured multiple times
+    const unique = [...new Set(errors)];
+    const list = unique.map((m, i) => `${i + 1}. ${m}`).join('\n');
+    throw new Error(`Found ${unique.length} error(s) for [${componentNames.join(', ')}]:\n${list}`);
   });
 }

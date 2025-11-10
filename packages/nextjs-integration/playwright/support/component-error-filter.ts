@@ -16,8 +16,11 @@ type CapturedError = {
 
 /**
  * Sets up error monitoring for specific components.
- * Returns an object with a live `errors` array (strings) and a `dispose` method
- * that removes listeners when the test is done.
+ * Captures console.error, uncaught errors, and unhandled rejections.
+ * Excludes known hydration errors (SSR-specific).
+ * @param page - Playwright page object
+ * @param componentNames - Array of component names to monitor
+ * @returns Object with errors array and dispose method
  */
 export function setupComponentErrorCapture(page: Page, componentNames: string[]) {
   const errors: string[] = []; // live array used by tests
@@ -107,8 +110,6 @@ export function assertNoComponentErrors(errors: string[], componentNames: string
 
   // Deduplicate errors in case the same error was captured multiple times
   const unique = [...new Set(errors)];
-
   const list = unique.map((m, i) => `${i + 1}. ${m}`).join('\n');
-
   throw new Error(`Found ${unique.length} error(s) for [${componentNames.join(', ')}]:\n${list}`);
 }
