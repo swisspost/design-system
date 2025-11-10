@@ -3,9 +3,4 @@
 post-megadropdown-trigger {
   width: 100%;
   position: relative;
-  z-index: 3;
-
-  @include media.max(lg) {
-    z-index: 4;
-  }
 }
