@@ -405,7 +405,7 @@ export namespace Components {
     interface PostPopovercontainer {
         /**
           * Animation style
-          * @default 'pop-in'
+          * @default null
          */
         "animation"?: 'pop-in' | null;
         /**
@@ -1297,7 +1297,7 @@ declare namespace LocalJSX {
     interface PostPopovercontainer {
         /**
           * Animation style
-          * @default 'pop-in'
+          * @default null
          */
         "animation"?: 'pop-in' | null;
         /**
