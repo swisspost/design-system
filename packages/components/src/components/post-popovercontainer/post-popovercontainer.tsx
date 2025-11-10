@@ -117,7 +117,7 @@ export class PostPopovercontainer {
   /**
    * Animation style
    */
-  @Prop() readonly animation?: 'pop-in' | null = 'pop-in';
+  @Prop() readonly animation?: 'pop-in' | null = null;
 
   /**
    * Whether or not to display a little pointer arrow
@@ -194,12 +194,12 @@ export class PostPopovercontainer {
    */
   @Method()
   async open() {
-    const popoverContentEl: HTMLElement = this.host.querySelector('.popover-content');
+    const content: HTMLElement = this.host.querySelector('.popover-content');
     this.startAutoupdates();
 
-    if (popoverContentEl) {
+    if (content) {
       // Only run animation and emit related events if animation is defined
-      if (this.animation == null) {
+      if (this.animation === null) {
         // No animation case
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
@@ -207,7 +207,7 @@ export class PostPopovercontainer {
         this.postShow.emit({ first: this.hasOpenedOnce });
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
       } else {
-        this.runOpenAnimation(popoverContentEl);
+        this.runOpenAnimation(content);
       }
     }
 
