@@ -203,11 +203,8 @@ export class PostPopovercontainer {
         // No animation case
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
-
-        // // Wait for the browser to process the before events
-        // Wait for the browser to process the before events and update the DOM
-        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-
+        // Await to let the browser update DOM before running the next events
+        await Promise.resolve();
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
