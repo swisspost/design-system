@@ -1,5 +1,4 @@
-import * as Components from '@swisspost/design-system-components/loader';
-import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
+import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/components-error-filter';
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
 
 describe('Components', () => {
