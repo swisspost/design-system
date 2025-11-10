@@ -47,7 +47,7 @@ export class PostCollapsibleTrigger {
     this.observer.disconnect();
     this.root?.removeEventListener('postToggle', this.boundHandlePostToggle);
   }
-  
+
   /**
    * Update the "aria-controls" and "aria-expanded" attributes on the trigger button
    */
