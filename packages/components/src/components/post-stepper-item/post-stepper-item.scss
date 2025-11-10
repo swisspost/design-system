@@ -188,69 +188,20 @@ $checkIconSize: calc(
 
 // smaller screens
 @include media.max(md) {
-  post-stepper-item:first-child,
-  post-stepper-item:last-child {
-    padding-inline: 0;
-  }
+  post-stepper-item {
+    flex-grow: 1;
+    margin-inline: 0;
+    padding: 0 !important;
 
-  .stepper-item-current {
-    // using "display: contents" on the stepper-item and stepper-item-content so that label, indicator and progress bar can be directly placed in the grid
-    display: contents;
-
-    > .stepper-item-content {
-      display: contents;
+    &:last-child {
+      flex: 0 0 32px;
     }
+    .stepper-item-content {
+      margin-inline: 0 !important;
 
-    // progress bar
-    &::before {
-      grid-row: -1;
-      margin-block-start: calc((#{tokens.get('stepper-indicator')} - 2px) / 2);
-      position: static;
-    }
-
-    &:not(:last-child) > .stepper-item-content::before {
-      grid-row: -1;
-    }
-
-    &:not(:first-child, :last-child)::after {
-      inset-inline-start: 0;
-    }
-  }
-
-  .stepper-item-inactive,
-  .stepper-item-completed {
-    grid-row: -1;
-    justify-self: stretch;
-
-    // hide completed and future step labels
-    > .stepper-item-content {
-      -webkit-line-clamp: initial;
-      line-height: 0;
-      text-indent: 100%;
-    }
-  }
-
-  .stepper-item-content {
-    white-space: nowrap;
-    width: 100%;
-  }
-
-  // step indicator
-  .stepper-item-content::before {
-    .stepper-item-current:first-child > & {
-      order: -1;
-    }
-
-    .stepper-item-current:not(:first-child, :last-child) > & {
-      margin-inline-start: 0;
-      transform: translateX(-50%);
-    }
-
-    .stepper-item-current:last-child > & {
-      position: absolute;
-      z-index: 2;
-      inset-block-start: 0;
-      inset-inline-end: 0;
+      > span {
+        display: none;
+      }
     }
   }
 }

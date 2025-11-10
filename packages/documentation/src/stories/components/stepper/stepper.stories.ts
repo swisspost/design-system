@@ -58,7 +58,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+      options: [3, 4, 5, 6, 7, 8, 9, 10],
       table: {
         category: 'General',
       },

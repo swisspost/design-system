@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndType } from '@/utils';
 
@@ -11,6 +11,11 @@ export class PostStepper {
   @Element() host: HTMLPostStepperElement;
 
   private stepItems: NodeListOf<HTMLPostStepperItemElement>;
+
+  /**
+   * Active step label is for visual purposes on mobile only
+   */
+  @State() activeStepLabel: string;
 
   /**
    * "Current step" label for accessibility
@@ -67,14 +72,20 @@ export class PostStepper {
   private updateSteps() {
     this.stepItems = this.host.querySelectorAll('post-stepper-item');
 
-    if (!this.stepItems || this.stepItems.length < 2) {
-      console.error('The post-stepper component should have at least two steps.');
+    if (!this.stepItems || this.stepItems.length < 3) {
+      console.error('The post-stepper component should have at least three steps.');
       return;
     }
 
     this.stepItems.forEach((el, i) => {
       if (this.stepLabel) {
         el.querySelector('.step-mobile-label').textContent = `${this.stepLabel} ${i + 1}:`;
+      }
+
+      if (this.currentIndex === i) {
+        this.activeStepLabel = `${this.stepLabel} ${i + 1}: ${
+          el.querySelector('.label').textContent
+        }`;
       }
 
       // Update "post-stepper-item" classes to show correct status
@@ -111,6 +122,10 @@ export class PostStepper {
         el.removeAttribute('aria-live');
       }
     });
+
+    if (this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
+      this.activeStepLabel = '';
+    }
   }
 
   render() {
@@ -119,6 +134,9 @@ export class PostStepper {
         <ol>
           <slot onSlotchange={() => this.updateSteps()}></slot>
         </ol>
+        <div class="active-step" aria-hidden="true">
+          {this.activeStepLabel}
+        </div>
       </Host>
     );
   }

@@ -1,4 +1,4 @@
-import { Component, Element, h, Host } from '@stencil/core';
+import { Component, h, Host } from '@stencil/core';
 import { version } from '@root/package.json';
 
 @Component({
@@ -7,15 +7,13 @@ import { version } from '@root/package.json';
   shadow: false,
 })
 export class PostStepperItem {
-  @Element() host: HTMLPostStepperItemElement;
-
   render() {
     return (
       <Host data-version={version} role="listitem">
         <span class="stepper-item-content">
-          <span>
-            <span class="step-hidden-label visually-hidden"></span>
-            <span class="step-mobile-label"></span>
+          <span class="step-hidden-label visually-hidden"></span>
+          <span class="step-mobile-label"></span>
+          <span class="label">
             <slot></slot>
           </span>
         </span>
