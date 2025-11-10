@@ -286,14 +286,10 @@ export class PostPopovercontainer {
    * Runs the animation and emits the toggle/show/hide events in the correct timing
    */
 
-  private currentAnimationId = 0;
-
   private async runOpenAnimation(
     animationFn: (el: HTMLElement) => Animation | undefined,
     element: HTMLElement,
   ) {
-    const animationId = ++this.currentAnimationId;
-
     if (this.currentAnimation) {
       this.currentAnimation.cancel();
       this.currentAnimation = null;
@@ -321,9 +317,6 @@ export class PostPopovercontainer {
       }
 
       await animation.finished;
-
-      // Check if a new animation has replaced this one
-      if (animationId !== this.currentAnimationId) return;
 
       this.postToggle.emit({ isOpen: true });
       this.postShow.emit({ first: this.hasOpenedOnce });
