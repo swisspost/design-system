@@ -6,7 +6,7 @@ export function renderMetaNavigation(args: Args) {
     <!-- Meta navigation -->
     <ul class="list-inline" slot="meta-navigation">
       <li>
-        <a href="" class=${args.jobs ? 'active' : nothing}>
+        <a href="" aria-current=${args.jobs ? 'location' : nothing}>
           Jobs
           <post-icon name="jobs" aria-hidden="true"></post-icon>
         </a>
