@@ -10,6 +10,7 @@ export class PostCollapsibleTrigger {
   private trigger?: HTMLButtonElement;
   private readonly observer = new MutationObserver(() => this.setTrigger());
   private root?: Document | ShadowRoot;
+  private boundHandlePostToggle!: (e: CustomEvent) => void;
 
   @Element() host: HTMLPostCollapsibleTriggerElement;
 
@@ -31,7 +32,8 @@ export class PostCollapsibleTrigger {
    */
   connectedCallback() {
     this.root = getRoot(this.host);
-    this.root.addEventListener('postToggle', this.handlePostToggle);
+    this.boundHandlePostToggle = (e: CustomEvent) => this.handlePostToggle(e);
+    this.root.addEventListener('postToggle', this.boundHandlePostToggle);
     this.observer.observe(this.host, { childList: true, subtree: true });
   }
 
@@ -43,7 +45,7 @@ export class PostCollapsibleTrigger {
 
   disconnectedCallback() {
     this.observer.disconnect();
-    this.root.removeEventListener('postToggle', this.handlePostToggle);
+    this.root?.removeEventListener('postToggle', this.boundHandlePostToggle);
   }
   
 
