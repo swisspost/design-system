@@ -97,7 +97,6 @@ export interface V910Checks {
     form_text: boolean;
   };
   grid: {
-    container: boolean;
     breakpoints: boolean;
     gutter: boolean;
     gap: boolean;
@@ -119,13 +118,13 @@ export interface V910Checks {
     text_color: boolean;
   };
   typography: {
-    font_sizes: boolean;
+    font_sizes_variables: boolean;
+    font_sizes_classes: boolean;
     font_curves_classes: boolean;
-    font_curves_variables_and_classes: boolean;
+    font_curves_variables: boolean;
     line_height_variables: boolean;
     weight_light: boolean;
     font_weight: boolean;
-    line_height_base: boolean;
     monospace: boolean;
   };
   others: {
@@ -149,6 +148,7 @@ export interface V910Checks {
     accordion_heading: boolean;
     hydrated_flag: boolean;
     accordion_item_part: boolean;
+    popover_trigger: boolean;
   };
 }
 

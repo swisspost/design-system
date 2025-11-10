@@ -103,13 +103,16 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
         "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component.
+         */
+        "label": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -383,15 +386,21 @@ export namespace Components {
         "placement"?: Placement;
         /**
           * Programmatically display the popover
-          * @param target An element with [data-popover-target="id"] where the popover should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popover display
-          * @param target An element with [data-popover-target="id"] where the popover should be anchored to
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
+    interface PostPopoverTrigger {
+        /**
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
+         */
+        "for": string;
     }
     interface PostPopovercontainer {
         /**
@@ -404,6 +413,10 @@ export namespace Components {
           * @default false
          */
         "arrow"?: boolean;
+        /**
+          * Handles the popover closing process and emits related events.
+         */
+        "close": () => Promise<void>;
         /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
@@ -419,6 +432,10 @@ export namespace Components {
          */
         "manualClose": boolean;
         /**
+          * Handles the popover opening process and emits related events.
+         */
+        "open": () => Promise<void>;
+        /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
@@ -429,12 +446,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -447,7 +464,6 @@ export namespace Components {
         "currentRating": number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
         "label": string;
         /**
@@ -837,8 +853,18 @@ declare global {
         prototype: HTMLPostPopoverElement;
         new (): HTMLPostPopoverElement;
     };
+    interface HTMLPostPopoverTriggerElement extends Components.PostPopoverTrigger, HTMLStencilElement {
+    }
+    var HTMLPostPopoverTriggerElement: {
+        prototype: HTMLPostPopoverTriggerElement;
+        new (): HTMLPostPopoverTriggerElement;
+    };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postToggle": { isOpen: boolean; first?: boolean };
+        "postBeforeShow": { first?: boolean };
+        "postShow": { first?: boolean };
+        "postHide": any;
+        "postBeforeToggle": { willOpen: boolean };
+        "postToggle": { isOpen: boolean };
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -959,6 +985,7 @@ declare global {
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
         "post-popover": HTMLPostPopoverElement;
+        "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
         "post-stepper": HTMLPostStepperElement;
@@ -1043,13 +1070,16 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
-        "homeText"?: string;
+        "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component.
+         */
+        "label": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -1293,6 +1323,12 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement;
     }
+    interface PostPopoverTrigger {
+        /**
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
+         */
+        "for": string;
+    }
     interface PostPopovercontainer {
         /**
           * Animation style
@@ -1315,9 +1351,25 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
+          * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
-        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) => void;
+        "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
+         */
+        "onPostBeforeToggle"?: (event: PostPopovercontainerCustomEvent<{ willOpen: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is hidden.
+         */
+        "onPostHide"?: (event: PostPopovercontainerCustomEvent<any>) => void;
+        /**
+          * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+         */
+        "onPostShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
+         */
+        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean }>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -1336,9 +1388,8 @@ declare namespace LocalJSX {
         "currentRating"?: number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
-        "label"?: string;
+        "label": string;
         /**
           * An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */
@@ -1473,6 +1524,7 @@ declare namespace LocalJSX {
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
         "post-popover": PostPopover;
+        "post-popover-trigger": PostPopoverTrigger;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
         "post-stepper": PostStepper;
@@ -1522,6 +1574,7 @@ declare module "@stencil/core" {
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
+            "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-stepper": LocalJSX.PostStepper & JSXBase.HTMLAttributes<HTMLPostStepperElement>;

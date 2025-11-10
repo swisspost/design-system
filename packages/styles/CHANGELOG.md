@@ -1,5 +1,83 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.54
+
+### Minor Changes
+
+- Updated the `post-header` to use aria-current="location" for active header links outside main navigation to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#6566](https://github.com/swisspost/design-system/pull/6566))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.54
+
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Added Tailwind v3 token output alongside the existing v4 format to support both Tailwind versions. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6586](https://github.com/swisspost/design-system/pull/6586))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.53
+
+## 10.0.0-next.52
+
+### Patch Changes
+
+- Replaced `Post Icons` with their corresponding `UI Icon` equivalents across the package to align icon usage with the current design guidelines. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6217](https://github.com/swisspost/design-system/pull/6217))
+
+- Fixed an issue with button styles specificity where e.g. icon buttons got overwritten by the button styles. Button styles are now delivered in the correct source order, also when selectively importing component CSS. (by [@gfellerph](https://github.com/gfellerph) with [#6553](https://github.com/swisspost/design-system/pull/6553))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.52
+
+## 10.0.0-next.51
+
+### Major Changes
+
+- The `post-icon` mixin has been renamed to `icon` and now requires icons to be preloaded using the `custom-property` mixin at the top of the file.  
+  BEFORE:
+
+  ```scss
+  .my-icon {
+    @include post.post-icon(
+      $name: 'accessibility',
+      // optional
+      $color: '#fc0',
+      $width: 1em,
+      $height: 1em
+    );
+  }
+  ```
+
+  AFTER:
+
+  ````scss
+  // Load icon(s) at the top of your file
+  // For a single icon:
+  @include post.custom-property('accessibility', './path/to/icon/folder');
+
+  // For multiple icons in the same file:
+  @include post.custom-property(('accessibility', 'arrow'), './path/to/icon/folder');
+
+  .my-icon {
+    @include post.icon(
+      $name: 'accessibility',
+      // optional
+      $color: '#fc0',
+      $width: 1em,
+      $height: 1em
+    );
+  }
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6372](https://github.com/swisspost/design-system/pull/6372))
+  ````
+
+### Patch Changes
+
+- Changed Tailwind token generation output format to meet the Tailwind v4 configuration requirements. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6474](https://github.com/swisspost/design-system/pull/6474))
+
+- Fixed header position inside the `<dialog>` element when content becomes scrollable. The header, footer and close button now remain visible while only the body scrolls. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6509](https://github.com/swisspost/design-system/pull/6509))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.51
+
 ## 10.0.0-next.50
 
 ### Major Changes

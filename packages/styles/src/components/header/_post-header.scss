@@ -34,7 +34,9 @@ tokens.$default-map: elements.$post-link;
   // microsite
   &:has(post-header post-mainnavigation) {
     --post-global-header-expanded-height: 4rem;
-    --post-local-header-reduced-height: 0rem; /* stylelint-disable-line length-zero-no-unit */ // needed for calculation
+
+    /* stylelint-disable-next-line length-zero-no-unit */ // needed for calculation
+    --post-local-header-reduced-height: 0rem;
 
     @include media.only(mobile) {
       --post-local-header-expanded-min-height: 3rem;
@@ -66,9 +68,10 @@ tokens.$default-map: elements.$post-link;
     }
   }
 
-  // no title
+  // portal
   &:not(:has(post-header [slot='title'])) {
-    --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0);
+    /* stylelint-disable-next-line length-zero-no-unit */ // needed for calculation
+    --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0rem);
   }
 }
 
@@ -258,6 +261,7 @@ post-header {
     }
   }
 
+  a[aria-current='location'],
   a.active,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {

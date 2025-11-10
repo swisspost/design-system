@@ -7,6 +7,8 @@
 
 tokens.$default-map: components.$post-stepper;
 
+@include icons.custom-property('success-solid');
+
 post-stepper-item {
   grid-row: 1;
   position: relative;
@@ -154,6 +156,10 @@ $checkIconSize: calc(
   inset-block-start: tokens.get('stepper-border-width');
   z-index: 1;
   background-color: tokens.get('stepper-enabled-fg');
+  @include icons.mask-image('success-solid');
+  width: $checkIconSize;
+  height: $checkIconSize;
+  color: tokens.get('stepper-completed-bg');
 
   post-stepper-item:first-child > & {
     inset-inline-start: tokens.get('stepper-border-width');
@@ -171,13 +177,6 @@ $checkIconSize: calc(
   .stepper-item-completed > & {
     content: '';
   }
-
-  @include icons.post-icon(
-    $name: 'success-solid',
-    $color: tokens.get('stepper-completed-bg'),
-    $width: $checkIconSize,
-    $height: $checkIconSize
-  );
 }
 
 @include media.min(md) {

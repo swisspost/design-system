@@ -29,19 +29,3 @@
     }
   }
 }
-
-// DEPRECATED
-@mixin hover-animation-svg-icon($color, $icon-name, $stroke-width: null) {
-  &:not(:disabled):not(.disabled) > span {
-    &::after {
-      @if ($stroke-width == null) {
-        $icon: icons.get-colored-svg-url($icon-name, $color);
-        background-image: url('#{$icon}');
-      } @else {
-        $icon: icons.get-colored-svg-url($icon-name, $color);
-        $icon: icons.add-stroke-color($icon, $color, $stroke-width);
-        background-image: url('#{$icon}');
-      }
-    }
-  }
-}
