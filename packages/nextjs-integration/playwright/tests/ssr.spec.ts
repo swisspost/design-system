@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
-import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
+import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter.ts';
 
 test.describe('SSR compatibility', () => {
   test.beforeEach(async ({ page }) => {
@@ -50,7 +50,6 @@ test.describe('SSR compatibility', () => {
       });
     }
   });
-});
 
   test('should not have console errors from components', async ({ page }) => {
     const errorCapture = setupComponentErrorCapture(page, componentNames);
@@ -61,4 +60,5 @@ test.describe('SSR compatibility', () => {
     await page.waitForTimeout(500);
 
     assertNoComponentErrors(errorCapture.errors, componentNames);
+  });
 });
