@@ -77,7 +77,7 @@ function render(args: Args) {
       <post-list-item>
         <a href="https://twitter.com/PostSchweiz" class="btn btn-primary btn-icon">
           <post-icon aria-hidden="true" name="twitterx"></post-icon>
-          <span class="visually-hidden">Titter X</span>
+          <span class="visually-hidden">Twitter X</span>
         </a>
       </post-list-item>
       <post-list-item>
