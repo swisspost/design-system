@@ -24,6 +24,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
   const captured: CapturedError[] = [];
   const seen = new Set<string>(); // dedupe key: message||stack
 
+  // Pre-compute lowercase names to avoid repeated lowercasing in the hot path
   const lowerCaseComponentNames = componentNames.map(n => n.toLowerCase());
 
   const extractMessage = (arg: any): string => {
@@ -38,14 +39,17 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
   };
 
   const isIgnoredError = (text: string): boolean =>
+    // Check if error message matches any known hydration/non-critical patterns
     IGNORE_ERROR_PATTERNS.some(pattern => pattern.test(text));
 
   const isRelevant = (message: string): boolean => {
     const lower = message.toLowerCase();
+    // Only capture errors that mention one of the monitored component names
     return lowerCaseComponentNames.some(n => lower.includes(n));
   };
 
   function pushError(message: string, source: CapturedError['source'], stack?: string) {
+    // Skip hydration errors and errors unrelated to our components
     if (isIgnoredError(message) || !isRelevant(message)) return;
 
     const key = `${message}||${stack ?? ''}`;
@@ -58,6 +62,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
     errors.push(message);
   }
 
+  // Listener for console.error() and similar console messages
   const onConsole = (msg: any) => {
     try {
       if (msg.type && msg.type() === 'error') {
@@ -68,6 +73,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
     }
   };
 
+  // Listener for uncaught exceptions and promise rejections
   const onPageError = (err: any) => {
     try {
       const message = extractMessage(err);
@@ -99,6 +105,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
 export function assertNoComponentErrors(errors: string[], componentNames: string[]): void {
   if (errors.length === 0) return;
 
+  // Deduplicate errors in case the same error was captured multiple times
   const unique = [...new Set(errors)];
 
   const list = unique.map((m, i) => `${i + 1}. ${m}`).join('\n');
