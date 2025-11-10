@@ -18,16 +18,18 @@ describe('Components', () => {
     });
   });
 
-  it('should not have console errors from components', () => {
-    const errorCapture = setupComponentErrorCapture(componentNames);
+  componentNames.forEach(componentName => {
+    it(`should not have console errors from component: <${componentName}>`, () => {
+      const errorCapture = setupComponentErrorCapture([componentName]);
 
-    cy.visit('/', {
-      onBeforeLoad: errorCapture.onBeforeLoad
+      cy.visit('/', {
+        onBeforeLoad: errorCapture.onBeforeLoad
+      });
+
+      // Wait for the component to hydrate and any asynchronous errors to surface
+      cy.wait(500);
+
+      assertNoComponentErrors(errorCapture.errors, [componentName]);
     });
-
-    // Wait for all components to hydrate and any asynchronous errors to surface
-    cy.wait(500);
-
-    assertNoComponentErrors(errorCapture.errors, componentNames);
   });
 });

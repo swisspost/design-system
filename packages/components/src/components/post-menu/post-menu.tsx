@@ -93,11 +93,6 @@ export class PostMenu {
 
   componentDidLoad() {
     this.validatePlacement();
-    // Temporary workaround: defer validation to avoid timing issues with parent components.
-    // Child componentDidLoad runs before parent finishes passing props.
-    requestAnimationFrame(() => {
-      this.validateLabel();
-    });
   }
 
   /**
@@ -105,7 +100,7 @@ export class PostMenu {
    */
   @Method()
   async toggle(target: HTMLElement) {
-    if (this.popoverRef) {
+    if (this.popoverRef) <{
       await this.popoverRef.toggle(target);
     } else {
       console.error('toggle: popoverRef is null or undefined');
