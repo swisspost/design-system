@@ -2,7 +2,7 @@ describe('Card', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
       cy.visit('/iframe.html?id=snapshots--card');
-      cy.get('.card post-icon', { timeout: 30000 }).should('be.visible');
+      cy.get('.card', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 
