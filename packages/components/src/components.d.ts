@@ -400,7 +400,7 @@ export namespace Components {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
@@ -1292,7 +1292,7 @@ declare namespace LocalJSX {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
