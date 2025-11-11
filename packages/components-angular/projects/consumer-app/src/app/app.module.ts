@@ -14,9 +14,9 @@ import { CardControlComponent } from './routes/card-control/card-control.compone
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AppComponent,
     CardControlComponent,
   ],
-  declarations: [AppComponent],
   providers: [providePostComponents()],
   bootstrap: [AppComponent],
 })
