@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 @use '../mixins/utilities' as utilities-mx;
 @use '../variables/spacing';
 @use '../variables/color';
@@ -9,6 +11,8 @@
 @use '../mixins/media';
 
 tokens.$default-map: utilities.$post-spacing;
+
+$dialog-types: 'info', 'error', 'success', 'warning';
 
 dialog {
   box-shadow: elevation.$elevation-500;
@@ -99,20 +103,23 @@ dialog > .dialog-grid {
 }
 
 .dialog-grid {
-  > post-icon {
-    grid-area: icon;
-    display: block;
+  $typed-dialog-children: ();
+  @each $type in $dialog-types {
+    $selector: 'dialog[data-type="#{$type}"] > *';
+    $typed-dialog-children: list.append($typed-dialog-children, $selector, $separator: comma);
 
-    width: tokens.get('utility-gap-32');
-    height: tokens.get('utility-gap-32');
-
-    // Larger icon for bigger notification dialogs
-    dialog:not([size='small']) & {
-      @include media.min(sm) {
-        width: tokens.get('utility-gap-48');
-        height: tokens.get('utility-gap-48');
-      }
+    &:where(#{$selector})::before {
+      background-image: var(--post-signal-icon-#{$type});
     }
+  }
+
+  &:where(#{$typed-dialog-children})::before {
+    content: '';
+    display: block;
+    grid-area: icon;
+
+    width: tokens.get('utility-gap-40');
+    height: tokens.get('utility-gap-40');
   }
 
   .dialog-header {
@@ -140,7 +147,7 @@ dialog > .dialog-grid {
     min-height: 0;
   }
 
-  &:not(:has(> post-icon)) {
+  &:not(:where(#{$typed-dialog-children})) {
     .dialog-header {
       grid-area: 1 / icon / 1 / header;
     }
@@ -156,7 +163,7 @@ dialog > .dialog-grid {
     }
   }
 
-  &:not(:has(> post-icon, > post-closebutton)) {
+  &:not(:where(#{$typed-dialog-children})):not(:has(> post-closebutton)) {
     .dialog-header {
       grid-area: 1 / icon / 1 / close-button;
     }
@@ -173,7 +180,7 @@ dialog > .dialog-grid {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row-reverse;
-  gap: tokens.get('utility-gap-16');
+  gap: tokens.get('utility-gap-8');
   background-color: inherit;
 
   button {
