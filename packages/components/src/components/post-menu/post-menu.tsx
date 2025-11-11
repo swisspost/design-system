@@ -58,7 +58,7 @@ export class PostMenu {
   /**
    * An accessible name for the menu.
    */
-  @Prop() readonly label!: string;
+  @Prop({ reflect: true }) readonly label!: string;
 
   @Watch('label')
   validateLabel() {

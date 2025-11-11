@@ -27,7 +27,7 @@ export class PostRating {
   /**
    * Defines a hidden label for the component.
    */
-  @Prop() readonly label!: string;
+  @Prop({ reflect: true }) readonly label!: string;
 
   /**
    * Defines the total amount of stars rendered in the component.
