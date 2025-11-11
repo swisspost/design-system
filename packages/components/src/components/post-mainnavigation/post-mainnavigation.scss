@@ -50,8 +50,16 @@ post-mainnavigation {
     &::after {
       content: '';
       @include icons.mask-image('chevrondown');
-      height: 24px;
-      width: 24px;
+      height: 1em;
+      width: 1em;
+
+      @include media.only(tablet) {
+        font-size: 1.5rem;
+      }
+
+      @include media.only(mobile) {
+        font-size: 1rem;
+      }
     }
 
     @include utilities.high-contrast-mode() {
@@ -119,7 +127,7 @@ post-mainnavigation {
         position: sticky;
         padding-inline: 12px;
         height: var(--post-main-navigation-height, 0);
-        gap: 4px;
+        gap: 8px;
         font-size: 16px;
 
         .nav-el-active {
@@ -169,7 +177,7 @@ post-mainnavigation {
         transition: border-block-end-color animation.$transition-base-timing;
 
         .nav-el-inactive {
-          width: calc(100% - 28px);
+          width: calc(100% - 1em - 8px);
         }
 
         &::after {

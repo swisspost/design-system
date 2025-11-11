@@ -27,7 +27,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           Homepage
         </PostLogo>
 
-        <ul className="list-inline" slot="meta-navigation">
+        <ul slot="meta-navigation">
           <li>
             <a href="#test">Jobs</a>
           </li>
@@ -64,7 +64,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         <h1 slot="title">Application title</h1>
 
-        <ul slot="local-controls" className="list-inline">
+        <ul slot="local-controls">
           <li>
             <a href="#test">
               <span>Search</span>
