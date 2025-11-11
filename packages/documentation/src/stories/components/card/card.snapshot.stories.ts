@@ -19,17 +19,14 @@ export const Card: Story = {
     const defaultTemplateVariants =
       // Layout related combinations
       bombArgs({
-        action: ['none', 'button', 'links'],
-      })
-        .filter(args => !(!args.showImage && args.imagePosition === 'bottom'))
-        // Map default template variants
-        .map(
-          args => html`
-            <div class="col-6 col-md-4 p-16">
-              ${Default.render && Default.render({ ...meta.args, ...args }, context)}
-            </div>
-          `,
-        );
+        action: ['none', 'button', 'link'],
+      }).map(
+        args => html`
+          <div class="col-6 col-md-4 p-16">
+            ${Default.render && Default.render({ ...meta.args, ...args }, context)}
+          </div>
+        `,
+      );
 
     return schemes(
       () =>

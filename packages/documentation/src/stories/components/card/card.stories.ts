@@ -157,10 +157,8 @@ function renderInteractiveCard(args: Args) {
 const renderSimpleInteractiveCard = html`
   <post-linkarea class="card">
     <div class="card-body">
-      <p>
-        <a href="http://google.com"
-          >Interactive card <post-icon name="arrowright" aria-hidden="true"></post-icon
-        ></a>
+      <p class="card-links">
+        <a href="http://google.com" class="btn-link px-0">Interactive card</a>
       </p>
     </div>
   </post-linkarea>
