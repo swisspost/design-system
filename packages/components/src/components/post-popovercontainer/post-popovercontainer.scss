@@ -116,25 +116,43 @@
     pointer-events: none;
     z-index: -1;
 
-    // Create transparent border to be styled by and for the high contrast mode
-    &.top {
-      border-block-start: 2px solid transparent;
-      border-inline-start: 2px solid transparent;
+    &[dynamic-placement='top'] {
+      border-bottom-right-radius: 2px;
+    }
+    &[dynamic-placement='right'] {
+      border-bottom-left-radius: 2px;
+    }
+    &[dynamic-placement='bottom'] {
+      border-top-left-radius: 2px;
+    }
+    &[dynamic-placement='left'] {
+      border-top-right-radius: 2px;
     }
 
-    &.right {
-      border-block-start: 2px solid transparent;
-      border-inline-end: 2px solid transparent;
-    }
+    @include utilities.high-contrast-mode {
+      &[dynamic-placement='top'] {
+        bottom: -6px !important;
+        border-block-end: 2px solid transparent;
+        border-inline-end: 2px solid transparent;
+      }
 
-    &.left {
-      border-block-end: 2px solid transparent;
-      border-inline-start: 2px solid transparent;
-    }
+      &[dynamic-placement='left'] {
+        border-block-start: 2px solid transparent;
+        border-inline-end: 2px solid transparent;
+        right: -6px !important;
+      }
 
-    &.bottom {
-      border-block-end: 2px solid transparent;
-      border-inline-end: 2px solid transparent;
+      &[dynamic-placement='right'] {
+        border-block-end: 2px solid transparent;
+        border-inline-start: 2px solid transparent;
+        left: -6px !important;
+      }
+
+      &[dynamic-placement='bottom'] {
+        top: -6px !important;
+        border-block-start: 2px solid transparent;
+        border-inline-start: 2px solid transparent;
+      }
     }
   }
 }

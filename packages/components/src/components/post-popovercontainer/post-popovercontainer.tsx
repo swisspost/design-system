@@ -8,6 +8,7 @@ import {
   Prop,
   h,
   Watch,
+  State,
 } from '@stencil/core';
 
 import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
@@ -107,7 +108,7 @@ export class PostPopovercontainer {
    * Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
-  @Prop() readonly placement?: Placement = 'top';
+  @Prop({ reflect: true }) readonly placement?: Placement = 'top';
 
   /**
    * Gap between the edge of the page and the popovercontainer
@@ -129,6 +130,7 @@ export class PostPopovercontainer {
    */
   @Prop() manualClose: boolean = false;
 
+  @State() dynamicPlacement?: string;
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
@@ -346,7 +348,7 @@ export class PostPopovercontainer {
   private async calculatePosition() {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
-
+    this.dynamicPlacement = currentPlacement;
     // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
@@ -360,7 +362,7 @@ export class PostPopovercontainer {
         Object.assign(this.arrowRef.style, {
           left: arrowX ? `${arrowX}px` : '',
           top: arrowY ? `${arrowY}px` : '',
-          [staticSide]: '-5px',
+          [staticSide]: '-4.8px',
         });
       }
     }
@@ -488,6 +490,7 @@ export class PostPopovercontainer {
         <div class="popover-content">
           {this.arrow && (
             <span
+              dynamic-placement={this.dynamicPlacement}
               class="arrow"
               ref={el => {
                 this.arrowRef = el;
