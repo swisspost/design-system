@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@st
 import { version } from '@root/package.json';
 
 const ELLIPSIS = '...';
-const DELTA = 2; // Number of pages to show on each side of current page
+const DELTA = 2;
 
 @Component({
   tag: 'post-pagination',
@@ -42,6 +42,7 @@ export class PostPagination {
 
   /**
    * Event emitted when the page changes.
+   * Payload is the new page number.
    */
   @Event({
     eventName: 'postChange',
@@ -55,32 +56,30 @@ export class PostPagination {
   @Watch('pageSize')
   @Watch('collectionSize')
   handlePropsChange() {
-    this.validateAndUpdatePage();
-    this.updatePages();
+    this.validateAndUpdatePages();
   }
 
   componentWillLoad() {
-    this.validateAndUpdatePage();
-    this.updatePages();
+    this.validateAndUpdatePages();
   }
 
   /**
    * Validates and clamps the page number to valid range.
    */
-  private validateAndUpdatePage() {
+  private validateAndUpdatePages() {
     const totalPages = this.getTotalPages();
 
-    // Clamp page to valid range
     if (this.page < 1) {
       this.page = 1;
     } else if (totalPages > 0 && this.page > totalPages) {
       this.page = totalPages;
     }
 
-    // Handle edge case: if collectionSize is 0 or smaller than pageSize
     if (totalPages === 0 || this.collectionSize === 0) {
       this.page = 1;
     }
+
+    this.generatePages(totalPages);
   }
 
   /**
@@ -95,13 +94,8 @@ export class PostPagination {
 
   /**
    * Generates the page numbers array with ellipsis where appropriate.
-   * Algorithm based on common pagination patterns with configurable delta.
    */
-  private updatePages() {
-    const totalPages = this.getTotalPages();
-    const current = this.page;
-    const delta = DELTA;
-
+  private generatePages(totalPages: number) {
     // If total pages is small, show all pages
     if (totalPages <= 7) {
       this.pages = Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -116,7 +110,7 @@ export class PostPagination {
     range.push(1);
 
     // Add pages around current page
-    for (let i = current - delta; i <= current + delta; i++) {
+    for (let i = this.page - DELTA; i <= this.page + DELTA; i++) {
       if (i > 1 && i < totalPages) {
         range.push(i);
       }
@@ -130,10 +124,8 @@ export class PostPagination {
     for (const page of range) {
       if (lastPage !== undefined) {
         if (page - lastPage === 2) {
-          // If gap is exactly 2, show the page in between
           rangeWithEllipsis.push(lastPage + 1);
         } else if (page - lastPage !== 1) {
-          // If gap is larger than 2, add ellipsis
           rangeWithEllipsis.push(ELLIPSIS);
         }
       }
@@ -184,6 +176,16 @@ export class PostPagination {
   }
 
   /**
+   * Handles keyboard events on page buttons.
+   */
+  private handleKeyDown(event: KeyboardEvent, pageNumber: number) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.handlePageClick(pageNumber);
+    }
+  }
+
+  /**
    * Renders a page button.
    */
   private renderPageButton(pageItem: number | string, index: number) {
@@ -194,7 +196,7 @@ export class PostPagination {
     if (isEllipsis) {
       return (
         <li class="pagination-item pagination-ellipsis" key={`ellipsis-${index}`}>
-          <span class="pagination-link" aria-hidden="true">
+          <span class="pagination-ellipsis-content" aria-hidden="true">
             {ELLIPSIS}
           </span>
         </li>
@@ -205,7 +207,6 @@ export class PostPagination {
     const isFirst = pageNumber === 1;
     const isLast = pageNumber === totalPages;
 
-    // Generate accessible label
     let ariaLabel = `Page ${pageNumber}`;
     if (isFirst) {
       ariaLabel = `First page, page ${pageNumber}`;
@@ -224,9 +225,11 @@ export class PostPagination {
           aria-label={ariaLabel}
           aria-current={isCurrent ? 'page' : undefined}
           onClick={() => this.handlePageClick(pageNumber)}
+          onKeyDown={(e) => this.handleKeyDown(e, pageNumber)}
           disabled={this.disabled}
+          tabIndex={this.disabled ? -1 : 0}
         >
-          {pageNumber}
+          <span aria-hidden="true">{pageNumber}</span>
         </button>
       </li>
     );
@@ -237,7 +240,6 @@ export class PostPagination {
     const isPrevDisabled = this.disabled || this.page <= 1;
     const isNextDisabled = this.disabled || this.page >= totalPages;
 
-    // Don't render pagination if there's only one page or no items
     if (totalPages <= 1) {
       return null;
     }
@@ -245,43 +247,54 @@ export class PostPagination {
     return (
       <Host slot="post-pagination" version={version}>
         <nav class="pagination" aria-label={this.ariaLabel} id={this.paginationId}>
-          <ul class="pagination-list">
-            {/* Previous Button */}
+          <ul class="pagination-list" role="list">
             <li class="pagination-item pagination-control">
               <button
                 type="button"
                 class={{
                   'pagination-link': true,
+                  'pagination-control-button': true,
                   'pagination-link-disabled': isPrevDisabled,
                 }}
                 aria-label="Previous page"
                 onClick={() => this.handlePrevious()}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.handlePrevious();
+                  }
+                }}
                 disabled={isPrevDisabled}
                 tabIndex={isPrevDisabled ? -1 : 0}
               >
                 <post-icon name="chevronleft" aria-hidden="true"></post-icon>
-                <span class="sr-only">Previous</span>
+                <span class="visually-hidden">Previous</span>
               </button>
             </li>
 
-            {/* Page Numbers */}
             {this.pages.map((pageItem, index) => this.renderPageButton(pageItem, index))}
 
-            {/* Next Button */}
             <li class="pagination-item pagination-control">
               <button
                 type="button"
                 class={{
                   'pagination-link': true,
+                  'pagination-control-button': true,
                   'pagination-link-disabled': isNextDisabled,
                 }}
                 aria-label="Next page"
                 onClick={() => this.handleNext()}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.handleNext();
+                  }
+                }}
                 disabled={isNextDisabled}
                 tabIndex={isNextDisabled ? -1 : 0}
               >
                 <post-icon name="chevronright" aria-hidden="true"></post-icon>
-                <span class="sr-only">Next</span>
+                <span class="visually-hidden">Next</span>
               </button>
             </li>
           </ul>

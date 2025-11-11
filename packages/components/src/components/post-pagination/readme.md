@@ -18,9 +18,9 @@
 
 ## Events
 
-| Event        | Description                          | Type                  |
-| ------------ | ------------------------------------ | --------------------- |
-| `postChange` | Event emitted when the page changes. | `CustomEvent<number>` |
+| Event        | Description                                                          | Type                  |
+| ------------ | -------------------------------------------------------------------- | --------------------- |
+| `postChange` | Event emitted when the page changes. Payload is the new page number. | `CustomEvent<number>` |
 
 
 ## Dependencies

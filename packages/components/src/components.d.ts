@@ -1308,7 +1308,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Event emitted when the page changes.
+          * Event emitted when the page changes. Payload is the new page number.
          */
         "onPostChange"?: (event: PostPaginationCustomEvent<number>) => void;
         /**
