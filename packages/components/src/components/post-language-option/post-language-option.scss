@@ -27,7 +27,6 @@ post-language-option {
     text-transform: uppercase;
 
     @include utilities-mx.focus-style {
-      outline-offset: -2px !important;
       border-radius: 4px;
     }
   }
