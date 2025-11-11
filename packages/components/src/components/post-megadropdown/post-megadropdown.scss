@@ -121,6 +121,10 @@
     align-items: center;
     min-height: 56px;
 
+    &:focus-visible {
+      border-radius: 4px;
+    }
+
     @include header-mx.mobile-header-interactive() {
       height: unset;
     }
