@@ -4,18 +4,13 @@
 post-header > [slot='navigation-controls'] {
   &:where(ul) {
     @include list.list-inline;
-    padding-inline-end: 4px;
-    z-index: 3;
 
     @include media.min(lg) {
       gap: 0;
     }
 
     @include media.max(lg) {
-      height: 56px;
       gap: 10px;
-      align-items: center;
-      justify-content: flex-end;
     }
   }
 }

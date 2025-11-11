@@ -26,10 +26,15 @@ tokens.$default-map: elements.$post-link;
   );
 
   // total height (dynamic depending on the scroll position)
-  --post-header-height: max(
-    var(--post-header-expanded-height) - var(--post-header-scroll-top, 0px),
-    var(--post-header-reduced-height)
+  --post-global-header-height: max(
+    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px),
+    var(--post-global-header-reduced-height)
   );
+  --post-local-header-height: max(
+    var(--post-local-header-expanded-height) - var(--post-header-scroll-top, 0px),
+    var(--post-local-header-reduced-height)
+  );
+  --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
 
   // microsite
   &:has(post-header post-mainnavigation) {
@@ -84,11 +89,20 @@ body:has(post-header) {
 }
 
 post-header {
-  height: var(--post-header-height);
-
+  // prevent layout shift by giving a height to the header before it gets hydrated
   &:not(:defined),
   &:not([data-hydrated]) {
+    height: var(--post-header-height);
     display: block;
+  }
+
+  ul.list-inline {
+    margin: 0;
+    gap: 0.25rem;
+
+    &[slot='local-controls'] {
+      align-items: center;
+    }
   }
 
   ul[slot='meta-navigation'] {
@@ -140,6 +154,7 @@ post-header {
   [slot='global-login'],
   .local-login {
     post-menu-trigger {
+      margin-block: -5px;
       height: tokens.get('avatar-size', components.$post-avatar);
       display: block;
 
@@ -152,16 +167,7 @@ post-header {
   [slot='title'] {
     margin: 0;
     flex-shrink: 10;
-    z-index: 3;
     font-weight: 900;
-
-    @include media.min(sm) {
-      margin-inline-start: 12px;
-    }
-
-    @include media.max(sm) {
-      margin-inline-start: 8px;
-    }
 
     @include media.min(lg) {
       font-size: 28px;
@@ -290,6 +296,29 @@ post-header {
   > .list-inline:where(:not([slot])) {
     gap: 4px;
     align-items: center;
+  }
+
+  > :is(
+      [slot='global-controls'],
+      [slot='global-login'],
+      [slot='post-togglebutton'],
+      [slot='local-controls']
+    ) {
+    @include media.only(mobile) {
+      &:where(ul) > li > a,
+      &:where(a, post-togglebutton) {
+        padding: 0.5rem;
+
+        > :not(post-icon) {
+          display: none;
+        }
+
+        > post-icon {
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+      }
+    }
   }
 }
 
