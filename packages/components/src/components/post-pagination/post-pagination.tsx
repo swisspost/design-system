@@ -1,5 +1,7 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Element, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
+import { nanoid } from 'nanoid';
+import { checkEmptyOrType, checkRequiredAndType } from '@/utils';
 
 const ELLIPSIS = '...';
 const DELTA = 2;
@@ -10,8 +12,9 @@ const DELTA = 2;
   shadow: false,
 })
 export class PostPagination {
-  private paginationId = `pagination-${PostPagination.paginationCounter++}`;
-  private static paginationCounter = 0;
+  @Element() host: HTMLPostPaginationElement;
+
+  @State() private paginationId: string;
 
   /**
    * The current active page number (1-indexed).
@@ -31,12 +34,42 @@ export class PostPagination {
   /**
    * Accessible label for the pagination navigation.
    */
-  @Prop() ariaLabel: string = 'Pagination';
+  @Prop() readonly ariaLabel: string = 'Pagination';
+
+  /**
+   * Accessible label for the previous page button.
+   * Used for screen readers and accessible name generation.
+   */
+  @Prop() readonly labelPrevious: string = 'Previous page';
+
+  /**
+   * Accessible label for the next page button.
+   * Used for screen readers and accessible name generation.
+   */
+  @Prop() readonly labelNext: string = 'Next page';
+
+  /**
+   * Prefix text for page number labels.
+   * Used in aria-label construction (e.g., "Page 5").
+   */
+  @Prop() readonly labelPage: string = 'Page';
+
+  /**
+   * Prefix text for the first page label.
+   * Used in aria-label construction (e.g., "First page, page 1").
+   */
+  @Prop() readonly labelFirst: string = 'First page';
+
+  /**
+   * Prefix text for the last page label.
+   * Used in aria-label construction (e.g., "Last page, page 20").
+   */
+  @Prop() readonly labelLast: string = 'Last page';
 
   /**
    * If true, the pagination is disabled.
    */
-  @Prop() disabled: boolean = false;
+  @Prop() readonly disabled: boolean = false;
 
   @State() private pages: (number | string)[] = [];
 
@@ -53,6 +86,56 @@ export class PostPagination {
   postChange: EventEmitter<number>;
 
   @Watch('page')
+  validatePage() {
+    checkEmptyOrType(this, 'page', 'number');
+  }
+
+  @Watch('pageSize')
+  validatePageSize() {
+    checkEmptyOrType(this, 'pageSize', 'number');
+  }
+
+  @Watch('collectionSize')
+  validateCollectionSize() {
+    checkEmptyOrType(this, 'collectionSize', 'number');
+  }
+
+  @Watch('ariaLabel')
+  validateAriaLabel() {
+    checkRequiredAndType(this, 'ariaLabel', 'string');
+  }
+
+  @Watch('labelPrevious')
+  validateLabelPrevious() {
+    checkRequiredAndType(this, 'labelPrevious', 'string');
+  }
+
+  @Watch('labelNext')
+  validateLabelNext() {
+    checkRequiredAndType(this, 'labelNext', 'string');
+  }
+
+  @Watch('labelPage')
+  validateLabelPage() {
+    checkRequiredAndType(this, 'labelPage', 'string');
+  }
+
+  @Watch('labelFirst')
+  validateLabelFirst() {
+    checkRequiredAndType(this, 'labelFirst', 'string');
+  }
+
+  @Watch('labelLast')
+  validateLabelLast() {
+    checkRequiredAndType(this, 'labelLast', 'string');
+  }
+
+  @Watch('disabled')
+  validateDisabled() {
+    checkEmptyOrType(this, 'disabled', 'boolean');
+  }
+
+  @Watch('page')
   @Watch('pageSize')
   @Watch('collectionSize')
   handlePropsChange() {
@@ -60,6 +143,19 @@ export class PostPagination {
   }
 
   componentWillLoad() {
+    // Get the id set on the host element or use a random id by default
+    this.paginationId = `pagination-${this.host.id || nanoid(6)}`;
+
+    this.validatePage();
+    this.validatePageSize();
+    this.validateCollectionSize();
+    this.validateAriaLabel();
+    this.validateLabelPrevious();
+    this.validateLabelNext();
+    this.validateLabelPage();
+    this.validateLabelFirst();
+    this.validateLabelLast();
+    this.validateDisabled();
     this.validateAndUpdatePages();
   }
 
@@ -94,6 +190,9 @@ export class PostPagination {
 
   /**
    * Generates the page numbers array with ellipsis where appropriate.
+   * Algorithm uses DELTA=2 to show pages around current page.
+   * If total pages <= 7, all pages are shown.
+   * Otherwise, first page, pages around current (±DELTA), and last page are shown with ellipsis for gaps.
    */
   private generatePages(totalPages: number) {
     // If total pages is small, show all pages
@@ -186,12 +285,29 @@ export class PostPagination {
   }
 
   /**
+   * Builds accessible label for a page button.
+   * Includes contextual information for first and last pages.
+   */
+  private buildPageLabel(pageNumber: number): string {
+    const totalPages = this.getTotalPages();
+    const isFirst = pageNumber === 1;
+    const isLast = pageNumber === totalPages;
+
+    if (isFirst) {
+      return `${this.labelFirst}, ${this.labelPage} ${pageNumber}`;
+    } else if (isLast) {
+      return `${this.labelLast}, ${this.labelPage} ${pageNumber}`;
+    }
+
+    return `${this.labelPage} ${pageNumber}`;
+  }
+
+  /**
    * Renders a page button.
    */
   private renderPageButton(pageItem: number | string, index: number) {
     const isEllipsis = pageItem === ELLIPSIS;
     const isCurrent = pageItem === this.page;
-    const totalPages = this.getTotalPages();
 
     if (isEllipsis) {
       return (
@@ -204,15 +320,7 @@ export class PostPagination {
     }
 
     const pageNumber = pageItem as number;
-    const isFirst = pageNumber === 1;
-    const isLast = pageNumber === totalPages;
-
-    let ariaLabel = `Page ${pageNumber}`;
-    if (isFirst) {
-      ariaLabel = `First page, page ${pageNumber}`;
-    } else if (isLast) {
-      ariaLabel = `Last page, page ${pageNumber}`;
-    }
+    const ariaLabel = this.buildPageLabel(pageNumber);
 
     return (
       <li class="pagination-item" key={`page-${pageNumber}`}>
@@ -256,7 +364,7 @@ export class PostPagination {
                   'pagination-control-button': true,
                   'pagination-link-disabled': isPrevDisabled,
                 }}
-                aria-label="Previous page"
+                aria-label={this.labelPrevious}
                 onClick={() => this.handlePrevious()}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -268,7 +376,7 @@ export class PostPagination {
                 tabIndex={isPrevDisabled ? -1 : 0}
               >
                 <post-icon name="chevronleft" aria-hidden="true"></post-icon>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden">{this.labelPrevious}</span>
               </button>
             </li>
 
@@ -282,7 +390,7 @@ export class PostPagination {
                   'pagination-control-button': true,
                   'pagination-link-disabled': isNextDisabled,
                 }}
-                aria-label="Next page"
+                aria-label={this.labelNext}
                 onClick={() => this.handleNext()}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -294,7 +402,7 @@ export class PostPagination {
                 tabIndex={isNextDisabled ? -1 : 0}
               >
                 <post-icon name="chevronright" aria-hidden="true"></post-icon>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden">{this.labelNext}</span>
               </button>
             </li>
           </ul>

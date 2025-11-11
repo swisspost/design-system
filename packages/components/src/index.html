@@ -196,5 +196,18 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+<post-pagination page="5" page-size="10" collection-size="200"></post-pagination>
+
+<script>
+  const pagination = document.querySelector('post-pagination');
+  
+  // Listen to the event
+  pagination.addEventListener('postChange', (event) => {
+    console.log('🎉 [User Code] Page changed to:', event.detail);
+  });
+  
+  // Test keyboard: Focus a button and press Enter or Space
+  console.log('💡 [User Test] Use Tab to navigate, Enter/Space to activate');
+</script>
   </body>
 </html>
