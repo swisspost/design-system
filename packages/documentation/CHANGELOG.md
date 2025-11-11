@@ -1,5 +1,73 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.55
+
+### Minor Changes
+
+- Updated the `post-header` to use aria-current="location" for active header links outside main navigation to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#6566](https://github.com/swisspost/design-system/pull/6566))
+
+### Patch Changes
+
+- Updated the migration guide to improve clarity and usability, making it more user-friendly and understandable, and added detailed instructions for removing Bootstrap and Ng-Bootstrap along with general migration guidance. (by [@leagrdv](https://github.com/leagrdv) with [#6565](https://github.com/swisspost/design-system/pull/6565))
+
+- Updated several outdated Figma links to point to the correct design. (by [@leagrdv](https://github.com/leagrdv) with [#6592](https://github.com/swisspost/design-system/pull/6592))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.54
+  - @swisspost/design-system-components@10.0.0-next.54
+  - @swisspost/design-system-styles@10.0.0-next.54
+  - @swisspost/design-system-components-react@10.0.0-next.54
+  - @swisspost/internet-header@10.0.0-next.54
+  - @swisspost/design-system-tokens@10.0.0-next.54
+
+## 6.0.0-next.54
+
+### Patch Changes
+
+- Fixed missing validation message in the checkbox documentation. (by [@leagrdv](https://github.com/leagrdv) with [#6574](https://github.com/swisspost/design-system/pull/6574))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.53
+  - @swisspost/design-system-components@10.0.0-next.53
+  - @swisspost/internet-header@10.0.0-next.53
+  - @swisspost/design-system-components-react@10.0.0-next.53
+  - @swisspost/design-system-tokens@10.0.0-next.53
+  - @swisspost/design-system-icons@10.0.0-next.53
+
+## 6.0.0-next.53
+
+### Minor Changes
+
+- Removed default svg-icons from all navigation entries. Introduced state-specific icons for individual components to indicate their current development status:
+
+  - In Progress ⏳: This component has open issues or tasks that need to be fixed before it can be used.
+  - Experimental 🧪: This component has been newly introduced and you might experience some bumps while using it.
+  - Stable (No icon): This component is tested, has some mileage, other projects are already successfully implementing it, it's safe to use this.
+  - Deprecated ⛔: This component will be removed in an upcoming major version. (by [@bucknatt](https://github.com/bucknatt) with [#6044](https://github.com/swisspost/design-system/pull/6044))
+
+- Enhanced component documentation to include a badge at the top of each page showing the package where the component can be found, clarifying which dependency needs to be installed to make it available in a project (by [@bucknatt](https://github.com/bucknatt) with [#5984](https://github.com/swisspost/design-system/pull/5984))
+
+### Patch Changes
+
+- Fixed layout issue in the `post-tabs` component and `overflow` utilities documentation where the code preview controls overlapped the content, making text unreadable. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6534](https://github.com/swisspost/design-system/pull/6534))
+
+- Introduced `<post-popover-trigger>` web component to replace the previous `data-popover-target` implementation. (by [@myrta2302](https://github.com/myrta2302) with [#6209](https://github.com/swisspost/design-system/pull/6209))
+
+- Added a slot to the `post-megadropdown` component to support an optional “overview link” above the other links. This allows users to include a top-level link for each megadropdown, enabling navigation to the overview page. (by [@leagrdv](https://github.com/leagrdv) with [#6513](https://github.com/swisspost/design-system/pull/6513))
+
+- Moved 'Find your icon' tab to be the first one in `Foundations/Icons` documentation page. (by [@bucknatt](https://github.com/bucknatt) with [#6511](https://github.com/swisspost/design-system/pull/6511))
+
+- Updated `post-breadcrumbs` and `post-rating` documentation examples to include the newly required props. (by [@myrta2302](https://github.com/myrta2302) with [#6487](https://github.com/swisspost/design-system/pull/6487))
+
+- Updated the compatibility matrix of the `components-angular` and `components-react` packages. (by [@leagrdv](https://github.com/leagrdv) with [#6521](https://github.com/swisspost/design-system/pull/6521))
+
+- Added common installation instructions on every web component documentation page. (by [@leagrdv](https://github.com/leagrdv) with [#6514](https://github.com/swisspost/design-system/pull/6514))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.52
+  - @swisspost/design-system-components@10.0.0-next.52
+  - @swisspost/design-system-styles@10.0.0-next.52
+  - @swisspost/design-system-components-react@10.0.0-next.52
+  - @swisspost/internet-header@10.0.0-next.52
+  - @swisspost/design-system-tokens@10.0.0-next.52
+
 ## 6.0.0-next.52
 
 ### Patch Changes

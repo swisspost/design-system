@@ -6,11 +6,12 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
   title: 'Components/Chip',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   render: renderChip,
   parameters: {
-    controls: {
-      exclude: ['dismissed', 'number', 'radio'],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=18-15',
     },
   },
   args: {

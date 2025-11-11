@@ -1,4 +1,3 @@
-@use 'button';
 @use './../mixins/media';
 @use '../functions/tokens';
 @use '../tokens/components';
@@ -46,6 +45,7 @@ tokens.$default-map: components.$post-button;
     }
   }
 
+  a[aria-current='location'],
   a.active {
     box-shadow: tokens.get('button-elevation');
 

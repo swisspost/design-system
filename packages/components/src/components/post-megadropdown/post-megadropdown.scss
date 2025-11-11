@@ -71,7 +71,7 @@
   @include media.max(lg) {
     z-index: 1;
     position: absolute;
-    inset-block-start: 0;
+    inset-block-start: var(--post-header-navigation-current-inset);
     inset-inline: 0;
 
     height: calc(

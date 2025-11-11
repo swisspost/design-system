@@ -1,5 +1,34 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.54
+
+### Minor Changes
+
+- Updated the `post-header` to use aria-current="location" for active header links outside main navigation to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#6566](https://github.com/swisspost/design-system/pull/6566))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.54
+
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Added Tailwind v3 token output alongside the existing v4 format to support both Tailwind versions. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6586](https://github.com/swisspost/design-system/pull/6586))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.53
+
+## 10.0.0-next.52
+
+### Patch Changes
+
+- Replaced `Post Icons` with their corresponding `UI Icon` equivalents across the package to align icon usage with the current design guidelines. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6217](https://github.com/swisspost/design-system/pull/6217))
+
+- Fixed an issue with button styles specificity where e.g. icon buttons got overwritten by the button styles. Button styles are now delivered in the correct source order, also when selectively importing component CSS. (by [@gfellerph](https://github.com/gfellerph) with [#6553](https://github.com/swisspost/design-system/pull/6553))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.52
+
 ## 10.0.0-next.51
 
 ### Major Changes

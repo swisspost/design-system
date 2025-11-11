@@ -27102,6 +27102,82 @@
       "modifiedAt": "2025-10-09T06:05:08.110Z"
     },
     {
+      "uuid": "e6eaa5d0-b628-11f0-b91a-0050568d2654",
+      "id": 7157506,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7157506/storage/MDA3MTU3NTA2LzAvbWFzdGVy",
+        "keywords": [
+          "Brandschutz",
+          "Fire Screen",
+          "Protezione antincendio",
+          "Écran De Protection Contre L'Incendie",
+          "Fire alarm system maintenance",
+          "Wartung Brandmeldeanlage",
+          "Maintenance du dispositif de détection d’incendie",
+          "Manutenzione impianto di rilevazione d’incendio",
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2740.svg",
+        "basename": "2740",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-31T07:12:03.000Z",
+      "modifiedAt": "2025-11-01T07:05:10.694Z"
+    },
+    {
+      "uuid": "4a64cbb0-b974-11f0-b91a-0050568d2654",
+      "id": 7229033,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7229033/storage/MDA3MjI5MDMzLzAvbWFzdGVy",
+        "keywords": [
+          "Kalender",
+          "Calendar",
+          "Calendario",
+          "Calendrier",
+          "Move calendar",
+          "Kalender verschieben",
+          "Déplacer le calendrier",
+          "spostare il calendario",
+          "Kalenderanpassung",
+          "Modifica calendario",
+          "calendar adjustment",
+          "Adaptation du calendrier",
+          "Move date",
+          "Datum verschieben",
+          "Déplacer la date",
+          "Spostare la data"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2741.svg",
+        "basename": "2741",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-04T11:49:16.000Z",
+      "modifiedAt": "2025-11-04T12:05:09.990Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40340,13 +40416,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1061,
+    "success": 1063,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-10-26T02:16:38.745Z",
-  "version": "10.0.0-next.50"
+  "created": "2025-11-04T12:29:31.505Z",
+  "version": "10.0.0-next.52"
 }

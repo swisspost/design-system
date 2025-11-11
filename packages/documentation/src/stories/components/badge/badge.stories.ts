@@ -7,13 +7,13 @@ import chipMeta from '@/stories/components/chip/chip.stories';
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
   title: 'Components/Badge',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Experimental'],
   render: renderBadge,
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18172-73431&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=17-162',
     },
   },
   args: {

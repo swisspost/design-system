@@ -80,7 +80,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </ul>
 
         {/* Throws Hydration Errors */}
-        <PostMainnavigation>
+        <PostMainnavigation slot="post-mainnavigation">
           {/* Throws Hydration Errors */}
           <PostList title-hidden="">
             <h2>Main Navigation</h2>
@@ -184,7 +184,12 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
       <main style={{ paddingBlock: '3rem' }}>
         <div className="container">
-          <PostBreadcrumbs home-url="/" home-text="Home" menu-label="More breadcrumb items">
+          <PostBreadcrumbs
+            home-url="/"
+            home-text="Home"
+            label="Breadcrumbs"
+            menu-label="More breadcrumb items"
+          >
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>
@@ -351,7 +356,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <PostListItem>
             <a href="#twitter-x" className="btn btn-primary btn-icon">
               <PostIcon aria-hidden="true" name="8000"></PostIcon>
-              <span className="visually-hidden">Titter X</span>
+              <span className="visually-hidden">Twitter X</span>
             </a>
           </PostListItem>
           <PostListItem>

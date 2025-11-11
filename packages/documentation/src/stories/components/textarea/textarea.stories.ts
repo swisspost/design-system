@@ -2,18 +2,12 @@ import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { mapClasses } from '@/utils';
-import { getLabelText, getValidationMessages } from '@/utils/form-elements';
-
-const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
-  'null': undefined,
-  'is-valid': false,
-  'is-invalid': true,
-};
+import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '152b7268-cce0-43d7-b931-41a57370f9a0',
   title: 'Components/Form Textarea',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderTextarea,
   parameters: {
     badges: [],

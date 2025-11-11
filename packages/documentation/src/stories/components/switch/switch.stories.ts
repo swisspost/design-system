@@ -4,18 +4,18 @@ import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
-import { getLabelText } from '@/utils/form-elements';
+import { getLabelText, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
   title: 'Components/Form Switch',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   render: renderSwitch,
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22183-26714&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21-178',
     },
   },
   args: {
@@ -123,12 +123,6 @@ const meta: MetaComponent = {
 };
 
 export default meta;
-
-const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
-  'null': undefined,
-  'is-valid': false,
-  'is-invalid': true,
-};
 
 function renderSwitch(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();

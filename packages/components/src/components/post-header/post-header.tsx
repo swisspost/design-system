@@ -34,6 +34,7 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+  private slottedContentObserver: MutationObserver;
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
@@ -66,6 +67,7 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
   @State() hasNavigationControls: boolean = false;
+  @State() hasTargetGroup: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -92,6 +94,7 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.checkSlottedContent = this.checkSlottedContent.bind(this);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
@@ -122,17 +125,14 @@ export class PostHeader {
     this.host.addEventListener('click', this.handleLinkClick);
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
 
-    this.checkNavigationExistence();
-    this.checkNavigationControlsExistence();
-    this.checkTitleExistence();
-    this.switchLanguageSwitchMode();
-
     this.handleScrollParentResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
   }
 
   componentWillRender() {
     this.handleScrollEvent();
+    this.handleSlottedContentChanges();
+    this.switchLanguageSwitchMode();
   }
 
   componentDidRender() {
@@ -164,21 +164,12 @@ export class PostHeader {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
     }
+    if (this.slottedContentObserver) {
+      this.slottedContentObserver.disconnect();
+      this.slottedContentObserver = null;
+    }
 
     this.burgerMenuExtended = false;
-  }
-
-  private checkNavigationExistence(): void {
-    this.hasNavigation = this.host.querySelectorAll('[slot="post-mainnavigation"]').length > 0;
-  }
-
-  private checkNavigationControlsExistence(): void {
-    this.hasNavigationControls =
-      this.host.querySelectorAll('[slot="navigation-controls"]').length > 0;
-  }
-
-  private checkTitleExistence(): void {
-    this.hasTitle = this.host.querySelectorAll('[slot="title"]').length > 0;
   }
 
   private async closeBurgerMenu() {
@@ -345,6 +336,22 @@ export class PostHeader {
     }
   }
 
+  private handleSlottedContentChanges() {
+    if (!this.slottedContentObserver) {
+      this.checkSlottedContent();
+
+      this.slottedContentObserver = new MutationObserver(this.checkSlottedContent);
+      this.slottedContentObserver.observe(this.host, { childList: true });
+    }
+  }
+
+  private checkSlottedContent() {
+    this.hasNavigation = !!this.host.querySelector('[slot="post-mainnavigation"]');
+    this.hasNavigationControls = !!this.host.querySelector('[slot="navigation-controls"]');
+    this.hasTargetGroup = !!this.host.querySelector('[slot="target-group"]');
+    this.hasTitle = !!this.host.querySelector('[slot="title"]');
+  }
+
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.hasBurgerMenu ? 'list' : 'menu';
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
@@ -355,7 +362,8 @@ export class PostHeader {
   @Listen('focusin')
   @Listen('focusout')
   onFocusChange() {
-    const fixedElements = this.device === 'desktop' ? '.logo, .navigation' : '.global-header';
+    const fixedElements =
+      this.device === 'desktop' ? '.logo, .navigation' : '.global-header, .burger-menu';
     const isHeaderExpanded =
       this.host.matches(':focus-within') &&
       !this.host.shadowRoot.querySelector(`:where(${fixedElements}):focus-within`);
@@ -368,22 +376,13 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    const mainNavigation = (
-      <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
-    );
-    const navigationControls = (
-      <slot
-        name="navigation-controls"
-        onSlotchange={() => this.checkNavigationControlsExistence()}
-      ></slot>
-    );
-
     if (this.device === 'desktop') {
       return (
         <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
-          {mainNavigation}
-          <div class="spacer"></div>
-          {navigationControls}
+          <slot name="post-mainnavigation"></slot>
+          <div class="navigation-controls">
+            <slot name="navigation-controls"></slot>
+          </div>
         </div>
       );
     }
@@ -395,12 +394,15 @@ export class PostHeader {
           'extended': this.burgerMenuExtended,
           'no-navigation-controls': !this.hasNavigationControls,
         }}
+        style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
       >
-        <div class="navigation-controls">{navigationControls}</div>
+        <div class="navigation-controls">
+          <slot name="navigation-controls"></slot>
+        </div>
         <div class="burger-menu-body">
           <slot name="target-group"></slot>
-          {mainNavigation}
+          <slot name="post-mainnavigation"></slot>
         </div>
         <div class="burger-menu-footer">
           <slot name="meta-navigation"></slot>
@@ -413,13 +415,21 @@ export class PostHeader {
   render() {
     return (
       <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
-        <div class="global-header">
+        <div
+          class={{
+            'global-header': true,
+            'no-target-group': !this.hasTargetGroup,
+          }}
+        >
           <div class="logo">
             <slot name="post-logo"></slot>
           </div>
           <div class="sliding-controls">
-            {this.device === 'desktop' && <slot name="target-group"></slot>}
-            <div class="spacer"></div>
+            {this.device === 'desktop' && (
+              <div class="target-group">
+                <slot name="target-group"></slot>
+              </div>
+            )}
             <slot name="global-controls"></slot>
             {!this.hasBurgerMenu && [
               <slot name="meta-navigation"></slot>,
@@ -437,11 +447,12 @@ export class PostHeader {
           class={{
             'local-header': true,
             'no-title': !this.hasTitle,
+            'no-target-group': !this.hasTargetGroup,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
             'no-navigation-controls': !this.hasNavigationControls,
           }}
         >
-          <slot name="title" onSlotchange={() => this.checkTitleExistence()}></slot>
+          <slot name="title"></slot>
           {this.hasTitle && <slot name="local-controls"></slot>}
           {this.device === 'desktop' && this.renderNavigation()}
         </div>

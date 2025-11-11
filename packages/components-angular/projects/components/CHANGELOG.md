@@ -1,5 +1,27 @@
 # @swisspost/design-system-components-angular
 
+## 10.0.0-next.54
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.54
+
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.53
+
+## 10.0.0-next.52
+
+### Patch Changes
+
+- Fixed an issue with dependency managemant around @stencil/core. This package no longer has to be installed as a dependency by projects using the Design System Components or Components Angular packages as it's now declared a dependency of the components package (was a devDependency before). (by [@gfellerph](https://github.com/gfellerph) with [#6554](https://github.com/swisspost/design-system/pull/6554))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.52
+
 ## 10.0.0-next.51
 
 ### Patch Changes
