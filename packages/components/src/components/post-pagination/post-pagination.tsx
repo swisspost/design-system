@@ -6,6 +6,14 @@ import { checkEmptyOrType, checkRequiredAndType } from '@/utils';
 const ELLIPSIS = '...';
 const DELTA = 2;
 
+/**
+ * Type-safe pagination item definition using discriminated union.
+ * This ensures TypeScript can distinguish between page and ellipsis items.
+ */
+type PaginationItem = 
+  | { type: 'page'; page: number }
+  | { type: 'ellipsis' };
+
 @Component({
   tag: 'post-pagination',
   styleUrl: './post-pagination.scss',
@@ -38,31 +46,26 @@ export class PostPagination {
 
   /**
    * Accessible label for the previous page button.
-   * Used for screen readers and accessible name generation.
    */
   @Prop() readonly labelPrevious: string = 'Previous page';
 
   /**
    * Accessible label for the next page button.
-   * Used for screen readers and accessible name generation.
    */
   @Prop() readonly labelNext: string = 'Next page';
 
   /**
    * Prefix text for page number labels.
-   * Used in aria-label construction (e.g., "Page 5").
    */
   @Prop() readonly labelPage: string = 'Page';
 
   /**
    * Prefix text for the first page label.
-   * Used in aria-label construction (e.g., "First page, page 1").
    */
   @Prop() readonly labelFirst: string = 'First page';
 
   /**
    * Prefix text for the last page label.
-   * Used in aria-label construction (e.g., "Last page, page 20").
    */
   @Prop() readonly labelLast: string = 'Last page';
 
@@ -71,11 +74,15 @@ export class PostPagination {
    */
   @Prop() readonly disabled: boolean = false;
 
-  @State() private pages: (number | string)[] = [];
+  /**
+   * Type-safe array of pagination items.
+   * Uses discriminated union type for better type safety.
+   * Contains page numbers and ellipsis markers.
+   */
+  @State() private items: PaginationItem[] = [];
 
   /**
    * Event emitted when the page changes.
-   * Payload is the new page number.
    */
   @Event({
     eventName: 'postChange',
@@ -143,7 +150,6 @@ export class PostPagination {
   }
 
   componentWillLoad() {
-    // Get the id set on the host element or use a random id by default
     this.paginationId = `pagination-${this.host.id || nanoid(6)}`;
 
     this.validatePage();
@@ -190,25 +196,34 @@ export class PostPagination {
 
   /**
    * Generates the page numbers array with ellipsis where appropriate.
-   * Algorithm uses DELTA=2 to show pages around current page.
-   * If total pages <= 7, all pages are shown.
-   * Otherwise, first page, pages around current (±DELTA), and last page are shown with ellipsis for gaps.
+   * Returns a typed array of PaginationItem objects.
+   * 
+   * Algorithm:
+   * - If total pages <= 7: show all pages
+   * - Otherwise: show first page, pages around current (±DELTA), and last page
+   * - Add ellipsis for gaps > 1 page
+   * 
+   * @param totalPages - Total number of pages to display
    */
   private generatePages(totalPages: number) {
+    const items: PaginationItem[] = [];
+
     // If total pages is small, show all pages
     if (totalPages <= 7) {
-      this.pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+      for (let i = 1; i <= totalPages; i++) {
+        items.push({ type: 'page', page: i });
+      }
+      this.items = items;
       return;
     }
 
     // Generate range around current page
     const range: number[] = [];
-    const rangeWithEllipsis: (number | string)[] = [];
 
     // Always include first page
     range.push(1);
 
-    // Add pages around current page
+    // Add pages around current page (±DELTA)
     for (let i = this.page - DELTA; i <= this.page + DELTA; i++) {
       if (i > 1 && i < totalPages) {
         range.push(i);
@@ -218,21 +233,26 @@ export class PostPagination {
     // Always include last page
     range.push(totalPages);
 
-    // Add ellipsis where there are gaps
+    // Add ellipsis where there are gaps, then add to items array
     let lastPage: number | undefined;
     for (const page of range) {
       if (lastPage !== undefined) {
-        if (page - lastPage === 2) {
-          rangeWithEllipsis.push(lastPage + 1);
-        } else if (page - lastPage !== 1) {
-          rangeWithEllipsis.push(ELLIPSIS);
+        const gap = page - lastPage;
+        
+        if (gap === 2) {
+          // Gap of 1 page: show the page instead of ellipsis
+          items.push({ type: 'page', page: lastPage + 1 });
+        } else if (gap > 2) {
+          // Gap of 2+ pages: show ellipsis
+          items.push({ type: 'ellipsis' });
         }
       }
-      rangeWithEllipsis.push(page);
+      
+      items.push({ type: 'page', page });
       lastPage = page;
     }
 
-    this.pages = rangeWithEllipsis;
+    this.items = items;
   }
 
   /**
@@ -286,7 +306,6 @@ export class PostPagination {
 
   /**
    * Builds accessible label for a page button.
-   * Includes contextual information for first and last pages.
    */
   private buildPageLabel(pageNumber: number): string {
     const totalPages = this.getTotalPages();
@@ -303,23 +322,30 @@ export class PostPagination {
   }
 
   /**
-   * Renders a page button.
+   * Renders an ellipsis item.
+   * Non-interactive, hidden from screen readers.
+   * 
+   * @returns JSX element for ellipsis
    */
-  private renderPageButton(pageItem: number | string, index: number) {
-    const isEllipsis = pageItem === ELLIPSIS;
-    const isCurrent = pageItem === this.page;
+  private renderEllipsis() {
+    return (
+      <li class="pagination-item pagination-ellipsis">
+        <span class="pagination-ellipsis-content" aria-hidden="true">
+          {ELLIPSIS}
+        </span>
+      </li>
+    );
+  }
 
-    if (isEllipsis) {
-      return (
-        <li class="pagination-item pagination-ellipsis" key={`ellipsis-${index}`}>
-          <span class="pagination-ellipsis-content" aria-hidden="true">
-            {ELLIPSIS}
-          </span>
-        </li>
-      );
-    }
-
-    const pageNumber = pageItem as number;
+  /**
+   * Renders a page button.
+   * Type-narrowed version: only receives page numbers.
+   * 
+   * @param pageNumber - The page number for this button
+   * @returns JSX element for page button
+   */
+  private renderPageButton(pageNumber: number) {
+    const isCurrent = pageNumber === this.page;
     const ariaLabel = this.buildPageLabel(pageNumber);
 
     return (
@@ -343,6 +369,23 @@ export class PostPagination {
     );
   }
 
+  /**
+   * Renders a pagination item.
+   * Uses type narrowing to call appropriate render method based on item type.
+   * 
+   * @param item - PaginationItem (either page or ellipsis)
+   * @param index - Index for key
+   * @returns JSX element
+   */
+  private renderItem(item: PaginationItem, index: number) {
+    if (item.type === 'ellipsis') {
+      return <div key={`ellipsis-${index}`}>{this.renderEllipsis()}</div>;
+    }
+
+    // TypeScript knows item.page exists due to type narrowing
+    return this.renderPageButton(item.page);
+  }
+
   render() {
     const totalPages = this.getTotalPages();
     const isPrevDisabled = this.disabled || this.page <= 1;
@@ -353,9 +396,14 @@ export class PostPagination {
     }
 
     return (
-      <Host slot="post-pagination" version={version}>
-        <nav class="pagination" aria-label={this.ariaLabel} id={this.paginationId}>
+      <Host slot="post-pagination" data-version={version}>
+        <nav
+          class="pagination"
+          aria-label={this.ariaLabel}
+          id={this.paginationId}
+        >
           <ul class="pagination-list" role="list">
+            {/* Previous Button */}
             <li class="pagination-item pagination-control">
               <button
                 type="button"
@@ -380,8 +428,10 @@ export class PostPagination {
               </button>
             </li>
 
-            {this.pages.map((pageItem, index) => this.renderPageButton(pageItem, index))}
+            {/* Page Items - Rendered with type-safe items */}
+            {this.items.map((item, index) => this.renderItem(item, index))}
 
+            {/* Next Button */}
             <li class="pagination-item pagination-control">
               <button
                 type="button"
