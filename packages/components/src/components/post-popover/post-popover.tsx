@@ -33,7 +33,7 @@ export class PostPopover {
   /**
    * Define the caption of the close button for assistive technology
    */
-  @Prop() readonly closeButtonCaption!: string;
+  @Prop({ reflect: true }) readonly closeButtonCaption!: string;
 
   @Watch('closeButtonCaption')
   validateCloseButtonCaption() {
