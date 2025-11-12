@@ -11,7 +11,7 @@ export default createRule({
     docs: {
       dir: 'ts',
       description:
-        'Reports any required Stencil component property, which is not reflected on its host element, since this would lead to errors in our property validations, when used in a SSR environment.',
+        'Reports any required Stencil component property, which is not reflected on its host element, since this does not render the props on the server, thus leading to missing required prop errors in our property validations when used in a SSR environment.',
     },
     messages: {
       [messageId]:
