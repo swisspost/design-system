@@ -13,7 +13,7 @@ import { nanoid } from 'nanoid';
   shadow: true,
 })
 export class PostTabItem {
-  private mutationObserver = new MutationObserver(this.handleMutations.bind(this));
+  private mutationObserver = new MutationObserver(this.checkNavigationMode.bind(this));
 
   @Element() host: HTMLPostTabItemElement;
 
@@ -49,10 +49,6 @@ export class PostTabItem {
     if (this.mutationObserver) {
       this.mutationObserver.disconnect();
     }
-  }
-
-  private handleMutations() {
-    this.checkNavigationMode();
   }
 
   private checkNavigationMode() {
