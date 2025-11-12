@@ -20,13 +20,14 @@ dialog {
   min-width: min(389px, 90vw);
   max-width: 590px;
   max-height: 90vh;
-  overflow: visible;
+  overflow: hidden;
   margin: revert;
   overscroll-behavior: contain;
   border: 2px solid color.$black; // Ensures good contrast when bg is dark against dark backdrop
+  border-radius: 0.5rem;
 
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(#050400, 0.8);
     backdrop-filter: blur(0);
   }
 
