@@ -1,5 +1,7 @@
 # @swisspost/design-system-eslint
 
+## 10.0.0-next.54
+
 ## 1.1.0-next.2
 
 ### Minor Changes
