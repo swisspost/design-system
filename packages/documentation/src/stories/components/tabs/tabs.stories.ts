@@ -7,7 +7,6 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<HTMLPostTabsElement & { 
   variant: string; 
   activeTabPanels?: string;
-  activeTabNavigation?: string;
   'slots-default': string; 
   'slots-panels': string;
 }> = {
@@ -26,7 +25,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   argTypes: {
     variant: {
       name: 'variant',
-      description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt (anchors + panels), the component will throw an error.</p></post-banner>',
+      description: 'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt to mix modes (anchors + panels), the component will throw an error.</p></post-banner>',
       control: 'radio',
       options: ['panels', 'navigation'],
       table: {
@@ -41,18 +40,6 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       control: 'select',
       options: ['first', 'second', 'third'],
       if: { arg: 'variant', eq: 'panels' },
-      table: {
-        category: 'Props',
-        type: { summary: 'string' },
-      },
-    },
-    activeTabNavigation: {
-      name: 'active-tab',
-      description: 
-        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\nThis should be updated by the routing framework to reflect the current page on each navigation. The component will automatically sync the active state when this prop changes.',
-      control: 'select',
-      options: ['first', 'second', 'third'],
-      if: { arg: 'variant', eq: 'navigation' },
       table: {
         category: 'Props',
         type: { summary: 'string' },
@@ -73,7 +60,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     },
     label: {
       name: 'label',
-      description: 'The accessible label for the tabs component.',
+      description: 'The accessible label for the tabs component in navigation mode. **Required for navigation variant.**',
       control: 'text',
       if: { arg: 'variant', eq: 'navigation' },
       table: {
@@ -85,7 +72,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     },
     'slots-default': {
       name: 'default',
-      description: 'Slot for tab items. Available in both variants - for tab navigation buttons in both panels and navigation modes.',
+      description: 'Slot for tab items. Available in both variants - for tab navigation buttons in panels mode, and for navigation links in navigation mode.',
       control: {
         type: 'text',
       },
@@ -114,7 +101,6 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   args: {
     variant: 'panels',
     activeTabPanels: undefined,
-    activeTabNavigation: undefined,
     label: 'Tabs navigation',
     'slots-default': '',
     'slots-panels': '',
@@ -124,7 +110,6 @@ const meta: MetaComponent<HTMLPostTabsElement & {
 export default meta;
 
 function renderNavigationVariant(
-  activeTab: string,
   fullWidth: boolean,
   label: string,
   customSlots: string
@@ -132,7 +117,6 @@ function renderNavigationVariant(
   if (customSlots) {
     return html`
       <post-tabs
-        active-tab="${ifDefined(activeTab)}"
         full-width="${fullWidth ? true : nothing}"
         label="${ifDefined(label)}"
       >
@@ -141,14 +125,14 @@ function renderNavigationVariant(
     `;
   }
   
+  // Default navigation example - first link is active
   return html`
     <post-tabs
-      active-tab="${ifDefined(activeTab)}"
       full-width="${fullWidth ? true : nothing}"
       label="${ifDefined(label)}"
     >
       <post-tab-item name="first">
-        <a href="#first">First page</a>
+        <a href="#first" aria-current="page">First page</a>
       </post-tab-item>
       <post-tab-item name="second">
         <a href="#second">Second page</a>
@@ -218,23 +202,20 @@ function renderPanelsVariant(
 function renderTabs(args: Partial<HTMLPostTabsElement & { 
   variant: string; 
   activeTabPanels?: string;
-  activeTabNavigation?: string;
   'slots-default': string; 
   'slots-panels': string;
 }>) {
   const variant = args.variant || 'panels';
-  const activeTab = variant === 'navigation' ? args.activeTabNavigation : args.activeTabPanels;
   
   return variant === 'navigation'
-    ? renderNavigationVariant(activeTab, args.fullWidth, args.label, args['slots-default'] || '')
-    : renderPanelsVariant(activeTab, args.fullWidth, args['slots-default'] || '', args['slots-panels'] || '');
+    ? renderNavigationVariant(args.fullWidth, args.label, args['slots-default'] || '')
+    : renderPanelsVariant(args.activeTabPanels, args.fullWidth, args['slots-default'] || '', args['slots-panels'] || '');
 }
 
 // STORIES
 type Story = StoryObj<HTMLPostTabsElement & { 
   variant: string; 
   activeTabPanels?: string;
-  activeTabNavigation?: string;
   'slots-default': string; 
   'slots-panels': string;
 }>;
@@ -259,7 +240,13 @@ export const NavigationVariant: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Navigation variant is for page navigation. When tab items contain `<a>` elements, the component renders as semantic navigation. Perfect for sub-navigation menus.',
+        story: `Navigation variant is for page navigation. When tab items contain \`<a>\` elements, the component renders as semantic \`<nav>\` navigation.
+
+**How it works:**
+- Your routing framework sets \`aria-current="page"\` on the active link
+- The component automatically styles the active tab
+- Works the same way as navigation in the header component
+- Perfect for sub-navigation menus or section navigation`,
       },
     },
   },
@@ -273,13 +260,13 @@ export const ActiveTab: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Set which tab is initially active using the `active-tab` property. Works in both variants.',
+        story: '**Panel mode only:** Set which tab is initially active using the `active-tab` property.',
       },
     },
   },
   args: {
     variant: 'panels',
-    activeTabPanels: 'first',
+    activeTabPanels: 'second',
   },
 };
 
@@ -287,14 +274,24 @@ export const FullWidth: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  args: { fullWidth: true },
+  args: { 
+    fullWidth: true,
+    variant: 'panels',
+  },
   decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
 export const Async: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Dynamically add or remove tabs in panels mode. The component handles DOM mutations and updates accordingly.',
+      },
+    },
+  },
   decorators: [
     story => {
-      let tabIndex = 0;
+      let tabIndex = 3;
       const addTab = () => {
         const tabs = document.querySelector('post-tabs');
 

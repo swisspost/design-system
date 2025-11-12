@@ -34,8 +34,6 @@ export class PostTabItem {
     this.mutationObserver.observe(this.host, {
       childList: true,
       subtree: true,
-      attributes: true,
-      attributeFilter: ['class'],
     });
   }
 
@@ -45,7 +43,6 @@ export class PostTabItem {
 
   componentDidLoad() {
     this.checkNavigationMode();
-    this.syncAriaCurrent();
   }
 
   disconnectedCallback() {
@@ -56,27 +53,11 @@ export class PostTabItem {
 
   private handleMutations() {
     this.checkNavigationMode();
-    this.syncAriaCurrent();
   }
 
   private checkNavigationMode() {
     const hasAnchor = this.host.querySelector('a') !== null;
     this.isNavigationMode = hasAnchor;
-  }
-
-  private syncAriaCurrent() {
-    if (!this.isNavigationMode) return;
-
-    const anchor = this.host.querySelector('a');
-    if (!anchor) return;
-
-    const isActive = this.host.classList.contains('active');
-
-    if (isActive) {
-      anchor.setAttribute('aria-current', 'page');
-    } else {
-      anchor.removeAttribute('aria-current');
-    }
   }
 
   render() {

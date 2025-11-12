@@ -40,22 +40,10 @@ export class PostTabs {
 
   /**
    * The name of the tab that is initially active.
-   * If not specified, it defaults to the first tab.
-   *
-   * **Panel mode**: Changing this value after initialization has no effect.
-   *
-   * **Navigation mode**: This should be updated by the routing framework
-   * to reflect the current page on each navigation. The component will
-   * automatically sync the active state when this prop changes.
+   * Changing this value after initialization has no effect.
+   * If not specified, defaults to the first tab.
    */
   @Prop() readonly activeTab?: string;
-
-  @Watch('activeTab')
-  handleActiveTabChange(newTab: string) {
-    if (this.isLoaded && this.isNavigationMode && newTab && newTab !== this.currentActiveTab?.name) {
-      void this.show(newTab);
-    }
-  }
 
   /**
    * When set to true, this property allows the tabs container to span the
@@ -64,7 +52,7 @@ export class PostTabs {
   @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
-   * The accessible label for the tabs component for navigation variant.
+   * The accessible label for the tabs component in navigation mode.
    */
   @Prop() readonly label!: string;
 
@@ -78,6 +66,7 @@ export class PostTabs {
   /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
    * The payload is the name of the newly active tab.
+   * Only emitted in panel mode.
    */
   @Event() postChange: EventEmitter<string>;
 
@@ -89,14 +78,18 @@ export class PostTabs {
     this.setupContentObserver();
     this.validateLabel();
 
-    // Unified logic for both modes with priority order
-    const tabToActivate = 
-      this.activeTab ||
-      this.findActiveNavigationTab()?.name ||
-      this.tabs[0]?.name;
-    
-    if (tabToActivate) {
-      void this.show(tabToActivate);
+    if (this.isNavigationMode) {
+      // In navigation mode, activate the tab with aria-current="page"
+      const activeTab = this.findActiveNavigationTab();
+      if (activeTab) {
+        this.activateTab(activeTab);
+      }
+    } else {
+      // In panel mode, use activeTab prop or default to first tab
+      const tabToActivate = this.activeTab || this.tabs[0]?.name;
+      if (tabToActivate) {
+        void this.show(tabToActivate);
+      }
     }
   }
 
@@ -110,7 +103,6 @@ export class PostTabs {
       this.hiding = null;
     }
 
-    // Clean up content observer
     if (this.contentObserver) {
       this.contentObserver.disconnect();
     }
@@ -118,10 +110,10 @@ export class PostTabs {
 
   private setupContentObserver() {
     const config: MutationObserverInit = {
-      childList: true,        // Watch for child elements being added/removed
-      subtree: true,          // Watch all descendants
-      attributes: true,       // Watch for attribute changes
-      attributeFilter: ['data-navigation-mode']  // Only watch navigation mode changes
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-navigation-mode', 'aria-current']
     };
 
     this.contentObserver = new MutationObserver(this.handleContentChange.bind(this));
@@ -129,32 +121,45 @@ export class PostTabs {
   }
 
   private handleContentChange(mutations: MutationRecord[]) {
-    // Check if any mutations affect navigation mode
     const shouldRedetect = mutations.some(mutation => {
-      // Child nodes added/removed (new tab items or anchor elements)
       if (mutation.type === 'childList') {
         return mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0;
       }
-      // Navigation mode attribute changed
       if (mutation.type === 'attributes' && mutation.attributeName === 'data-navigation-mode') {
         return true;
       }
       return false;
     });
 
+    // Handle aria-current changes in navigation mode
+    const ariaCurrentChanged = mutations.some(
+      mutation => mutation.type === 'attributes' && mutation.attributeName === 'aria-current'
+    );
+
+    if (ariaCurrentChanged && this.isNavigationMode) {
+      const activeTab = this.findActiveNavigationTab();
+      if (activeTab && activeTab !== this.currentActiveTab) {
+        this.activateTab(activeTab);
+      }
+    }
+
     if (shouldRedetect) {
-      // Re-detect mode and re-enable tabs if needed
       const previousMode = this.isNavigationMode;
       this.detectMode();
       
-      // If mode changed, re-initialize
       if (previousMode !== this.isNavigationMode) {
         this.enableTabs();
         
-        // Re-initialize active tab after mode change
-        const activeTab = this.activeTab || this.findActiveNavigationTab()?.name || this.tabs[0]?.name;
-        if (activeTab) {
-          void this.show(activeTab);
+        if (this.isNavigationMode) {
+          const activeTab = this.findActiveNavigationTab();
+          if (activeTab) {
+            this.activateTab(activeTab);
+          }
+        } else {
+          const tabToActivate = this.activeTab || this.tabs[0]?.name;
+          if (tabToActivate) {
+            void this.show(tabToActivate);
+          }
         }
       }
     }
@@ -184,7 +189,6 @@ export class PostTabs {
 
   /**
    * Shows the panel with the given name and selects its associated tab.
-   * In navigation mode, only updates the active tab state.
    * Any other panel that was previously shown becomes hidden and its associated tab is unselected.
    */
   @Method()
@@ -206,12 +210,6 @@ export class PostTabs {
     
     this.activateTab(newTab);
 
-    // In navigation mode, we don't need to handle panels
-    if (this.isNavigationMode) {
-      if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
-      return;
-    }
-
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
     if (this.showing) {
       this.showing.effect['target'].style.display = 'none';
@@ -224,9 +222,7 @@ export class PostTabs {
     // wait for any hiding animation to complete before showing the selected tab
     if (this.hiding) await this.hiding.finished;
 
-    if (!this.isNavigationMode) {
-      this.showSelectedPanel();
-    }
+    this.showSelectedPanel();
 
     // wait for any display animation to complete for the returned promise to fully resolve
     if (this.showing) await this.showing.finished;
@@ -246,18 +242,18 @@ export class PostTabs {
   }
 
   private enableTabs() {
-    // Prevent early call before detectMode()
     if (!this.isLoaded) return;
-
     if (!this.tabs) return;
 
     this.tabs.forEach(async tab => {
       await componentOnReady(tab);
 
+      // In navigation mode, navigation is handled by the consumer's routing
       if (this.isNavigationMode) {
         return;
       }
 
+      // Panel mode: set up ARIA relationships and event handlers
       if (tab.getAttribute('aria-controls')) return;
 
       const tabPanel = this.getPanel(tab.name);

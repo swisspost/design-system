@@ -491,7 +491,7 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Panel mode**: Changing this value after initialization has no effect.  **Navigation mode**: This should be updated by the routing framework to reflect the current page on each navigation. The component will automatically sync the active state when this prop changes.
+          * The name of the tab that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
@@ -500,11 +500,11 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
-          * The accessible label for the tabs component for navigation variant.
+          * The accessible label for the tabs component in navigation mode.
          */
         "label": string;
         /**
-          * Shows the panel with the given name and selects its associated tab. In navigation mode, only updates the active tab state. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
+          * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
         "show": (tabName: string) => Promise<void>;
     }
@@ -1392,7 +1392,7 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Panel mode**: Changing this value after initialization has no effect.  **Navigation mode**: This should be updated by the routing framework to reflect the current page on each navigation. The component will automatically sync the active state when this prop changes.
+          * The name of the tab that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
@@ -1401,11 +1401,11 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
-          * The accessible label for the tabs component for navigation variant.
+          * The accessible label for the tabs component in navigation mode.
          */
         "label": string;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }

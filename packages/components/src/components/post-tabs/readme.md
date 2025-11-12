@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property             | Attribute    | Description                                                                                                                                                                                                                                                                                                                                                                 | Type      | Default     |
-| -------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `activeTab`          | `active-tab` | The name of the tab that is initially active. If not specified, it defaults to the first tab.  **Panel mode**: Changing this value after initialization has no effect.  **Navigation mode**: This should be updated by the routing framework to reflect the current page on each navigation. The component will automatically sync the active state when this prop changes. | `string`  | `undefined` |
-| `fullWidth`          | `full-width` | When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.                                                                                                                                                                                                                                                          | `boolean` | `false`     |
-| `label` _(required)_ | `label`      | The accessible label for the tabs component for navigation variant.                                                                                                                                                                                                                                                                                                         | `string`  | `undefined` |
+| Property             | Attribute    | Description                                                                                                                                        | Type      | Default     |
+| -------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `activeTab`          | `active-tab` | The name of the tab that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab. | `string`  | `undefined` |
+| `fullWidth`          | `full-width` | When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.                                 | `boolean` | `false`     |
+| `label` _(required)_ | `label`      | The accessible label for the tabs component in navigation mode.                                                                                    | `string`  | `undefined` |
 
 
 ## Events
 
-| Event        | Description                                                                                                                                                      | Type                  |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `postChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. | `CustomEvent<string>` |
+| Event        | Description                                                                                                                                                                                  | Type                  |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `postChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode. | `CustomEvent<string>` |
 
 
 ## Methods
@@ -26,7 +26,6 @@
 ### `show(tabName: string) => Promise<void>`
 
 Shows the panel with the given name and selects its associated tab.
-In navigation mode, only updates the active tab state.
 Any other panel that was previously shown becomes hidden and its associated tab is unselected.
 
 #### Parameters
