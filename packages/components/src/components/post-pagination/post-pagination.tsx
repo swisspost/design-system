@@ -382,7 +382,6 @@ export class PostPagination {
       return <div key={`ellipsis-${index}`}>{this.renderEllipsis()}</div>;
     }
 
-    // TypeScript knows item.page exists due to type narrowing
     return this.renderPageButton(item.page);
   }
 
@@ -428,7 +427,7 @@ export class PostPagination {
               </button>
             </li>
 
-            {/* Page Items - Rendered with type-safe items */}
+            {/* Page Items */}
             {this.items.map((item, index) => this.renderItem(item, index))}
 
             {/* Next Button */}
