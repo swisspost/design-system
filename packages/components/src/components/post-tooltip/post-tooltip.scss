@@ -27,7 +27,8 @@ post-popovercontainer {
 
   & > div {
     padding: spacing.$size-micro spacing.$size-mini;
-    max-width: 280px;
+    max-width: var(--post-tooltip-max-width, 280px);
+    width: inherit;
     min-height: 32px;
     word-wrap: break-word;
     white-space: normal;
