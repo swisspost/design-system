@@ -1,6 +1,5 @@
 import rule, { name, messageId } from '../../src/rules/stencil-no-unreflected-required-props';
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { AST_NODE_TYPES } from '@typescript-eslint/utils'; // Import AST_NODE_TYPES
 
 const ruleTester = new RuleTester();
 
