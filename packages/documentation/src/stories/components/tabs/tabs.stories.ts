@@ -8,9 +8,10 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   variant: string; 
   activeTabPanels?: string;
   postChange: string,
-  show: string,
+  content?: string,
+  tabs?: string,
   'slots-default': string; 
-  'slots-panels': string;
+  'slots-panels': string; 
 }> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
@@ -65,7 +66,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     },
     label: {
       name: 'label',
-      description: 'The accessible label for the tabs component in navigation mode. **Required for navigation variant.**',
+      description: 'The accessible label for the tabs component in navigation mode.',
       control: 'text',
       if: { arg: 'variant', eq: 'navigation' },
       table: {
@@ -150,7 +151,6 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   args: {
     variant: 'panels',
     postChange: 'postChange',
-    show: 'show',
     content: 'content',
     activeTabPanels: undefined,
     label: 'Tabs navigation',
@@ -162,8 +162,8 @@ const meta: MetaComponent<HTMLPostTabsElement & {
 export default meta;
 
 function renderNavigationVariant(
-  fullWidth: boolean,
-  label: string,
+  fullWidth: boolean | undefined,
+  label: string | undefined,
   customSlots: string
 ): ReturnType<typeof html> {
   if (customSlots) {
@@ -284,27 +284,6 @@ export const PanelsVariant: Story = {
   },
   args: {
     variant: 'panels',
-  },
-};
-
-export const NavigationVariant: Story = {
-  parameters: {
-    layout: 'fullscreen',
-    docs: {
-      description: {
-        story: `Navigation variant is for page navigation. When tab items contain \`<a>\` elements, the component renders as semantic \`<nav>\` navigation.
-
-**How it works:**
-- Your routing framework sets \`aria-current="page"\` on the active link
-- The component automatically styles the active tab
-- Works the same way as navigation in the header component
-- Perfect for sub-navigation menus or section navigation`,
-      },
-    },
-  },
-  args: {
-    variant: 'navigation',
-    label: 'Page navigation',
   },
 };
 
