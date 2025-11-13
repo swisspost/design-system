@@ -22,7 +22,7 @@ const meta: MetaComponent = {
     currentIndex: 2,
     completedLabel: 'Completed step',
     currentLabel: 'Current step',
-    stepLabel: 'Step',
+    activeStepLabel: 'Step #index:',
     stepsAmount: 5,
   },
   argTypes: {
@@ -67,7 +67,7 @@ function render(args: Args) {
     <post-stepper
       completed-label="${args.completedLabel}"
       current-label="${args.currentLabel}"
-      step-label="${args.stepLabel}"
+      active-step-label="${args.activeStepLabel}"
       current-index="${args.currentIndex}"
     >
       ${Array.from({ length: args.stepsAmount }).map(

@@ -12,7 +12,6 @@ export class PostStepperItem {
       <Host data-version={version} role="listitem">
         <span class="stepper-item-content">
           <span class="step-hidden-label visually-hidden"></span>
-          <span class="step-mobile-label"></span>
           <span class="label">
             <slot></slot>
           </span>

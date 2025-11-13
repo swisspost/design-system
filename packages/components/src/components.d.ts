@@ -479,6 +479,10 @@ export namespace Components {
     }
     interface PostStepper {
         /**
+          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
+         */
+        "activeStepLabel": string;
+        /**
           * "Completed step" label for accessibility
          */
         "completedLabel": string;
@@ -491,10 +495,6 @@ export namespace Components {
           * "Current step" label for accessibility
          */
         "currentLabel": string;
-        /**
-          * "Step" label for mobile view
-         */
-        "stepLabel": string;
     }
     interface PostStepperItem {
     }
@@ -1411,6 +1411,10 @@ declare namespace LocalJSX {
     }
     interface PostStepper {
         /**
+          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
+         */
+        "activeStepLabel": string;
+        /**
           * "Completed step" label for accessibility
          */
         "completedLabel": string;
@@ -1423,10 +1427,6 @@ declare namespace LocalJSX {
           * "Current step" label for accessibility
          */
         "currentLabel": string;
-        /**
-          * "Step" label for mobile view
-         */
-        "stepLabel": string;
     }
     interface PostStepperItem {
     }

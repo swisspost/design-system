@@ -29,6 +29,14 @@ describe('stepper', { baseUrl: null }, () => {
     cy.get('@consoleError').should('be.called');
   });
 
+  it('should log an error if the mobile step label does not contain #index', () => {
+    cy.window().then(win => {
+      cy.spy(win.console, 'error').as('consoleError');
+    });
+    cy.get('post-stepper').invoke('attr', 'step-label', 'Step:');
+    cy.get('@consoleError').should('be.called');
+  });
+
   it('should log an error if the mobile step label is missing', () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');

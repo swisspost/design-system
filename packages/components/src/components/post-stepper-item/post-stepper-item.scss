@@ -179,12 +179,6 @@ $checkIconSize: calc(
   }
 }
 
-@include media.min(md) {
-  .step-mobile-label {
-    display: none;
-  }
-}
-
 // smaller screens
 @include media.max(md) {
   post-stepper-item {
