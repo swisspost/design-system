@@ -99,6 +99,11 @@ post-header {
     }
   }
 
+  // global user menu trigger
+  [slot='global-login'] > post-menu-trigger > button {
+    display: block;
+  }
+
   // local user menu trigger
   .local-login button {
     display: block;
