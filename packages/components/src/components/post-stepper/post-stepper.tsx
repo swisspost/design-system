@@ -20,7 +20,7 @@ export class PostStepper {
   /**
    * "Current step" label for accessibility
    */
-  @Prop() currentLabel!: string;
+  @Prop({ reflect: true }) currentLabel!: string;
 
   @Watch('currentLabel')
   validateCurrentLabel() {
@@ -30,7 +30,7 @@ export class PostStepper {
   /**
    * "Completed step" label for accessibility
    */
-  @Prop() completedLabel!: string;
+  @Prop({ reflect: true }) completedLabel!: string;
 
   @Watch('completedLabel')
   validateCompletedLabel() {
@@ -40,7 +40,7 @@ export class PostStepper {
   /**
    * "Step" label for mobile view
    */
-  @Prop() stepLabel!: string;
+  @Prop({ reflect: true }) stepLabel!: string;
 
   @Watch('stepLabel')
   validateStepLabel() {
@@ -84,7 +84,7 @@ export class PostStepper {
 
       if (this.currentIndex === i) {
         this.activeStepLabel = `${this.stepLabel} ${i + 1}: ${
-          el.querySelector('.label').textContent
+          el.querySelector('.label').innerHTML
         }`;
       }
 
@@ -135,7 +135,7 @@ export class PostStepper {
           <slot onSlotchange={() => this.updateSteps()}></slot>
         </ol>
         <div class="active-step" aria-hidden="true">
-          {this.activeStepLabel}
+          <div innerHTML={this.activeStepLabel}></div>
         </div>
       </Host>
     );
