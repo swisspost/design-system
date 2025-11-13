@@ -141,14 +141,14 @@ export interface V910Checks {
     spinner_sizes: boolean;
     standard_html_alert: boolean;
     spinner: boolean;
+    dialog_icon: boolean;
+    popover_trigger: boolean;
   };
   components: {
     alert: boolean;
     accordion_heading: boolean;
     hydrated_flag: boolean;
     accordion_item_part: boolean;
-    dialog_icon: boolean;
-    popover_trigger: boolean;
   };
 }
 
