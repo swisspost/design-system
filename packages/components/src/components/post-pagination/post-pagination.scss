@@ -1,0 +1,194 @@
+// post-pagination.scss
+// Width-based responsive pagination styles
+
+.pagination {
+  width: 100%;
+  position: relative;
+}
+
+.pagination-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: nowrap; // Prevent wrapping
+  /* Prevent temporary overflow while items are being updated */
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pagination-item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; // Prevent items from shrinking
+}
+
+.pagination-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 0.25rem;
+  background-color: var(--color-background, #fff);
+  color: var(--color-text, #000);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-background-hover, #f5f5f5);
+    border-color: var(--color-border-hover, #999);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus, #0056b3);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.pagination-link-active {
+  background-color: var(--color-primary, #0056b3);
+  color: var(--color-primary-text, #fff);
+  border-color: var(--color-primary, #0056b3);
+
+  &:hover {
+    background-color: var(--color-primary-hover, #004494);
+    border-color: var(--color-primary-hover, #004494);
+  }
+}
+
+.pagination-link-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  
+  &:hover {
+    background-color: var(--color-background, #fff);
+    border-color: var(--color-border, #ccc);
+  }
+}
+
+.pagination-control-button {
+  padding: 0.5rem 0.75rem;
+}
+
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+}
+
+.pagination-ellipsis-content {
+  color: var(--color-text-muted, #666);
+  font-size: 1rem;
+  user-select: none;
+  padding: 0 0.25rem;
+}
+
+// Hidden container for width measurement (matches breadcrumbs pattern)
+.hidden-pagination-container {
+    position: absolute;
+  height: 20px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: nowrap; // Prevent wrapping
+  /* Prevent temporary overflow while items are being updated */
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  
+  // Make sure hidden buttons have EXACT same styling as visible ones
+  .pagination-item {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .pagination-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border, #ccc);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+  }
+
+  .pagination-control-button {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  // Apply responsive sizing to hidden container too
+  @media (max-width: 768px) {
+    gap: 0.5rem;  // Keep same gap on mobile
+    
+    .pagination-link {
+      min-width: 2rem;
+      height: 2rem;
+      padding: 0.25rem;
+      font-size: 0.875rem;
+    }
+
+    .pagination-control-button {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+}
+
+.hidden-pagination-button {
+  // Ensure hidden buttons are properly styled for measurement
+  flex-shrink: 0;
+}
+
+// Visually hidden utility (for screen reader text)
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Responsive behavior
+@media (max-width: 768px) {
+  .pagination-link {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  .pagination-ellipsis {
+    min-width: 2rem;
+    height: 2rem;
+  }
+
+  .pagination-control-button {
+    padding: 0.25rem 0.5rem;
+  }
+}

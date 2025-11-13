@@ -364,11 +364,6 @@ export namespace Components {
     }
     interface PostPagination {
         /**
-          * Accessible label for the pagination navigation.
-          * @default 'Pagination'
-         */
-        "ariaLabel": string;
-        /**
           * The total number of items in the collection.
           * @default 0
          */
@@ -379,27 +374,27 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Prefix text for the first page label. Used in aria-label construction (e.g., "First page, page 1").
+          * Prefix text for the first page label.
           * @default 'First page'
          */
         "labelFirst": string;
         /**
-          * Prefix text for the last page label. Used in aria-label construction (e.g., "Last page, page 20").
+          * Prefix text for the last page label.
           * @default 'Last page'
          */
         "labelLast": string;
         /**
-          * Accessible label for the next page button. Used for screen readers and accessible name generation.
+          * Accessible label for the next page button.
           * @default 'Next page'
          */
         "labelNext": string;
         /**
-          * Prefix text for page number labels. Used in aria-label construction (e.g., "Page 5").
+          * Prefix text for page number labels.
           * @default 'Page'
          */
         "labelPage": string;
         /**
-          * Accessible label for the previous page button. Used for screen readers and accessible name generation.
+          * Accessible label for the previous page button.
           * @default 'Previous page'
          */
         "labelPrevious": string;
@@ -413,6 +408,11 @@ export namespace Components {
           * @default 10
          */
         "pageSize": number;
+        /**
+          * Accessible label for the pagination navigation.
+          * @default 'Pagination'
+         */
+        "paginationLabel": string;
     }
     interface PostPopover {
         /**
@@ -1318,11 +1318,6 @@ declare namespace LocalJSX {
     }
     interface PostPagination {
         /**
-          * Accessible label for the pagination navigation.
-          * @default 'Pagination'
-         */
-        "ariaLabel"?: string;
-        /**
           * The total number of items in the collection.
           * @default 0
          */
@@ -1333,32 +1328,32 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Prefix text for the first page label. Used in aria-label construction (e.g., "First page, page 1").
+          * Prefix text for the first page label.
           * @default 'First page'
          */
         "labelFirst"?: string;
         /**
-          * Prefix text for the last page label. Used in aria-label construction (e.g., "Last page, page 20").
+          * Prefix text for the last page label.
           * @default 'Last page'
          */
         "labelLast"?: string;
         /**
-          * Accessible label for the next page button. Used for screen readers and accessible name generation.
+          * Accessible label for the next page button.
           * @default 'Next page'
          */
         "labelNext"?: string;
         /**
-          * Prefix text for page number labels. Used in aria-label construction (e.g., "Page 5").
+          * Prefix text for page number labels.
           * @default 'Page'
          */
         "labelPage"?: string;
         /**
-          * Accessible label for the previous page button. Used for screen readers and accessible name generation.
+          * Accessible label for the previous page button.
           * @default 'Previous page'
          */
         "labelPrevious"?: string;
         /**
-          * Event emitted when the page changes. Payload is the new page number.
+          * Event emitted when the page changes.
          */
         "onPostChange"?: (event: PostPaginationCustomEvent<number>) => void;
         /**
@@ -1371,6 +1366,11 @@ declare namespace LocalJSX {
           * @default 10
          */
         "pageSize"?: number;
+        /**
+          * Accessible label for the pagination navigation.
+          * @default 'Pagination'
+         */
+        "paginationLabel"?: string;
     }
     interface PostPopover {
         /**
