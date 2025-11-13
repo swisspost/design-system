@@ -165,7 +165,6 @@ const Template = {
 
     return html`
       <dialog
-        class="palette palette-default"
         data-type="${args.type !== 'default' ? args.type : nothing}"
         data-size="${args.size}"
         data-position="${args.position}"

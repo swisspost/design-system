@@ -13,6 +13,7 @@ tokens.$default-map: components.$post-palettes;
 .palette {
   --post-current-bg: #{tokens.get('palettes-bg')};
   --post-current-fg: #{tokens.get('palettes-fg')};
+  --post-current-scheme: #{tokens.get('palettes-scheme')};
 
   background-color: var(--post-current-bg);
   color: var(--post-current-fg);

@@ -9,6 +9,7 @@
 @use '../functions/tokens';
 @use '../tokens/utilities';
 @use '../mixins/media';
+@use '../mixins/color-scheme';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -91,8 +92,9 @@ dialog > .dialog-grid {
     'icon body body'
     'controls controls controls';
 
-  // Propagate bg color to the controls
-  background-color: inherit;
+  color: var(--post-current-fg);
+  background-color: var(--post-current-bg);
+  @include color-scheme.set(var(--post-current-scheme));
 
   &:not(:has(.dialog-controls)) {
     padding-bottom: tokens.get('utility-gap-16');
