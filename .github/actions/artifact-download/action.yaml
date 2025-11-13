@@ -37,18 +37,57 @@ runs:
         name: ${{ inputs.name }}
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
+        path: ${{ runner.temp }}/artifact_download
+
+    - name: Ensure target directory exists
+      env:
+        FOLDER: ${{ inputs.folder }}
+      shell: bash
+      run: mkdir -p $FOLDER
 
     - name: Unzip artifacts
+      env:
+        FOLDER: ${{ inputs.folder }}
       shell: bash
-      run: unzip artifacts.zip -d ${{ inputs.folder }}
+      run: unzip ${{ runner.temp }}/artifact_download/artifacts.zip -d $FOLDER
+
+    - name: Validate artifact contents
+      env:
+        FOLDER: ${{ inputs.folder }}
+      shell: bash
+      run: |
+        if [[ ! -f "$FOLDER/GHA-EVENT-ID" ]]; then
+          echo "Error: Event ID file missing"
+          exit 1
+        fi
+
+        if [[ ! -f "$FOLDER/GHA-EVENT-ACTION" ]]; then
+          echo "Error: Event Action file missing"
+          exit 1
+        fi
+
+        # Validate ID is numeric
+        EVENT_ID=$(cat $FOLDER/GHA-EVENT-ID)
+        if ! [[ "$EVENT_ID" =~ ^[0-9]*$ ]]; then
+          echo "Error: Invalid Event ID format"
+          exit 1
+        fi
 
     - name: Clean up
       shell: bash
       run: rm -r artifacts.zip
 
     - name: Create outputs
+      env:
+        FOLDER: ${{ inputs.folder }}
       id: build
       shell: bash
       run: |
-        echo "id=$(cat ${{ inputs.folder }}/GHA-EVENT-ID)" >> $GITHUB_OUTPUT
-        echo "action=$(cat ${{ inputs.folder }}/GHA-EVENT-ACTION)" >> $GITHUB_OUTPUT
+        EVENT_ID=$(cat $FOLDER/GHA-EVENT-ID)
+        EVENT_ACTION=$(cat $FOLDER/GHA-EVENT-ACTION)
+
+        SANITIZED_ID=$(echo "$EVENT_ID" | tr -cd '[:digit:]')
+        SANITIZED_ACTION=$(echo "$EVENT_ACTION" | tr -cd '[:alnum:]-_')
+
+        echo "id=$SANITIZED_ID" >> $GITHUB_OUTPUT
+        echo "action=$SANITIZED_ACTION" >> $GITHUB_OUTPUT
