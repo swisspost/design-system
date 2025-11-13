@@ -1,7 +1,4 @@
-import rule, {
-  name,
-  messageId,
-} from '../../../../src/rules/html/migrations/no-deprecated-h-clearfix';
+import rule, { name } from '../../../../src/rules/html/migrations/no-deprecated-h-clearfix';
 import { htmlRuleTester } from '../../../utils/html-rule-tester';
 
 htmlRuleTester.run(name, rule, {
@@ -14,7 +11,7 @@ htmlRuleTester.run(name, rule, {
     {
       code: '<div class="h-clearfix">Content</div>',
       output: '<div class="clearfix">Content</div>',
-      errors: [{ messageId }],
+      errors: [{ messageId: 'h-clearfix' }],
     },
   ],
 });

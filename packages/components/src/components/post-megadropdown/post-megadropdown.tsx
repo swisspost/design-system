@@ -69,8 +69,10 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
-
-    this.defaultSlotObserver.disconnect();
+    
+    if (this.defaultSlotObserver) {
+      this.defaultSlotObserver.disconnect();
+    }
   }
 
   /**
@@ -224,7 +226,7 @@ export class PostMegadropdown {
 
   private handleTabOutside(e: KeyboardEvent) {
     if (e.key === 'Tab' && this.device === 'desktop') {
-      if (!this.host.contains(e.target as Node)) {
+      if (this.isVisible && !this.host.contains(e.target as Node)) {
         this.hide(false);
       }
     }

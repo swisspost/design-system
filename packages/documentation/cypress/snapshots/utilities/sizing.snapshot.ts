@@ -6,7 +6,7 @@ describe('Sizing', () => {
     cy.percySnapshot('Sizing', { widths: [320, 1440] });
   });
 
-  // Percentage sizing classes relative to viewport [e.g. vh-25, vw-33, min-vh-50, max-vw-100, etc.]
+  //sizing classes relative to viewport [e.g. vh-quarter, vw-third, min-vh-half, max-vw-full, etc.]
   it('Sizing Viewport Percentages', () => {
     cy.visit('/iframe.html?id=snapshots--percentage-vp-sizing');
     cy.get('.snapshot', { timeout: 30000 }).should('be.visible');
