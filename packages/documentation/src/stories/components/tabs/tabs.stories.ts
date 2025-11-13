@@ -7,8 +7,8 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<HTMLPostTabsElement & { 
   variant: string; 
   activeTabPanels?: string;
-  postchange: string,
-  Show: string,
+  postChange: string,
+  show: string,
   'slots-default': string; 
   'slots-panels': string;
 }> = {
@@ -24,7 +24,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
     },
     controls: {
-      exclude: ['postChange', 'show'],
+      exclude: ['postChange', 'show', 'content', 'tabs'],
     },
   },
   argTypes: {
@@ -75,8 +75,8 @@ const meta: MetaComponent<HTMLPostTabsElement & {
         },
       },
     },
-    postchange: {
-      name: 'postchange',
+    postChange: {
+      name: 'postChange ',
       description: 'An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.',
       if: { arg: 'variant', eq: 'panels' },
       table: {
@@ -86,8 +86,30 @@ const meta: MetaComponent<HTMLPostTabsElement & {
         },
       },
     },
-    Show: {
-      name: 'Show',
+    content: {
+      name: 'content ',
+      description: 'The container element that displays the content of the currently active tab.',
+      if: { arg: 'variant', eq: 'panels' },
+      table: {
+        category: 'CSS SHADOW PARTS',
+        type: {
+          summary: 'other',
+        },
+      },
+    },
+    tabs: {
+      name: 'tabs ',
+      description: 'The container element that holds the set of tabs.',
+      if: { arg: 'variant', eq: 'panels' },
+      table: {
+        category: 'CSS SHADOW PARTS',
+        type: {
+          summary: 'other',
+        },
+      },
+    },
+    show: {
+      name: 'show ',
       description: 'Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.',
       if: { arg: 'variant', eq: 'panels' },
       table: {
@@ -127,8 +149,9 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   },
   args: {
     variant: 'panels',
-    postchange: 'postchange',
-    Show: 'show',
+    postChange: 'postChange',
+    show: 'show',
+    content: 'content',
     activeTabPanels: undefined,
     label: 'Tabs navigation',
     'slots-default': '',
