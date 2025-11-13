@@ -7,6 +7,8 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<HTMLPostTabsElement & { 
   variant: string; 
   activeTabPanels?: string;
+  postchange: string,
+  Show: string,
   'slots-default': string; 
   'slots-panels': string;
 }> = {
@@ -20,6 +22,9 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
+    },
+    controls: {
+      exclude: ['postChange', 'show'],
     },
   },
   argTypes: {
@@ -70,6 +75,28 @@ const meta: MetaComponent<HTMLPostTabsElement & {
         },
       },
     },
+    postchange: {
+      name: 'postchange',
+      description: 'An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.',
+      if: { arg: 'variant', eq: 'panels' },
+      table: {
+        category: 'Events',
+        type: {
+          summary: 'CustomEvent<string>',
+        },
+      },
+    },
+    Show: {
+      name: 'Show',
+      description: 'Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.',
+      if: { arg: 'variant', eq: 'panels' },
+      table: {
+        category: 'Methods',
+        type: {
+          summary: '(tabName: string) => Promise<void>',
+        },
+      },
+    },
     'slots-default': {
       name: 'default',
       description: 'Slot for tab items. Available in both variants - for tab navigation buttons in panels mode, and for navigation links in navigation mode.',
@@ -100,6 +127,8 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   },
   args: {
     variant: 'panels',
+    postchange: 'postchange',
+    Show: 'show',
     activeTabPanels: undefined,
     label: 'Tabs navigation',
     'slots-default': '',
