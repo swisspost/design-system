@@ -19,7 +19,6 @@ const meta: MetaComponent = {
     homeText: 'Home',
     label: 'Breadcrumbs',
     menuLabel: 'More breadcrumb items',
-    menuAnimation: 'pop-in',
   },
 };
 
@@ -34,7 +33,6 @@ export const Default: Story = {
       home-text=${args.homeText}
       label=${args.label}
       menu-label=${args.menuLabel}
-      menu-animation=${args.menuAnimation}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -50,7 +48,6 @@ export const Concatenated: Story = {
       home-text=${args.homeText}
       label=${args.label}
       menu-label=${args.menuLabel}
-      menu-animation=${args.menuAnimation}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -89,6 +86,5 @@ export const BreadcrumbItem: Story = {
     homeText: { table: { disable: true } },
     label: { table: { disable: true } },
     menuLabel: { table: { disable: true } },
-    menuAnimation: { table: { disable: true } },
   },
 };

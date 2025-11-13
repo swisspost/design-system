@@ -13,28 +13,22 @@ export class PostBreadcrumbs {
   /**
    * The URL for the home breadcrumb item.
    */
-  @Prop() homeUrl!: string;
+  @Prop({ reflect: true }) homeUrl!: string;
 
   /**
    * The text label for the home breadcrumb item.
    */
-  @Prop() homeText!: string;
+  @Prop({ reflect: true }) homeText!: string;
 
   /**
    * The accessible label for the breadcrumb component.
    */
-  @Prop() label!: string;
+  @Prop({ reflect: true }) label!: string;
 
   /**
    * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
    */
-  @Prop() menuLabel!: string;
-
-  /**
-   *
-   */
-
-  @Prop() readonly menuAnimation?: 'pop-in' | 'none';
+  @Prop({ reflect: true }) menuLabel!: string;
 
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
@@ -183,11 +177,7 @@ export class PostBreadcrumbs {
                       ...
                     </button>
                   </post-menu-trigger>
-                  <post-menu
-                    id="breadcrumb-menu"
-                    label={this.menuLabel}
-                    animation={this.menuAnimation}
-                  >
+                  <post-menu id="breadcrumb-menu" label={this.menuLabel}>
                     {visibleItems.map(item => (
                       <post-menu-item
                         key={item.url || item.text}

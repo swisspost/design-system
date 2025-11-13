@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
@@ -19,12 +19,6 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
     type: 'language',
     caption: 'Change the language',
     description: 'The currently selected language is English.',
-    menuAnimation: 'pop-in',
-  },
-  argTypes: {
-    menuAnimation: {
-      if: { arg: 'variant', eq: 'menu' },
-    },
   },
 };
 
@@ -36,7 +30,6 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageSwitchElement>) {
     description=${args.description}
     variant=${args.variant}
     type=${args.type}
-    menu-animation=${args.variant == 'menu' ? args.menuAnimation : nothing}
   >
     <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
     <post-language-option active="true" code="en" name="English">en</post-language-option>
@@ -49,7 +42,6 @@ function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageSwitchElement
     caption=${args.caption}
     description=${args.description}
     variant="menu"
-    menu-animation=${args.menuAnimation}
   >
     <post-language-option url="/de" active="false" code="de" name="Deutsch"
       >DE</post-language-option
