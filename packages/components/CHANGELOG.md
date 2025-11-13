@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 9.5.1
+
+### Patch Changes
+
+- Added the CSS variables `--post-tooltip-max-width` and `--post-popover-max-width` that enables configuring the max-width of the `post-tooltip` and `post-popover` component. (by [@leagrdv](https://github.com/leagrdv) with [#6633](https://github.com/swisspost/design-system/pull/6633))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.5.1
+
 ## 9.5.0
 
 ### Patch Changes
