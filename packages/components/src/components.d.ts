@@ -901,7 +901,19 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
-    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    interface HTMLPostStepperElement extends Components.PostStepper, HTMLStencilElement {
+    }
+    var HTMLPostStepperElement: {
+        prototype: HTMLPostStepperElement;
+        new (): HTMLPostStepperElement;
+    };
+    interface HTMLPostStepperItemElement extends Components.PostStepperItem, HTMLStencilElement {
+    }
+    var HTMLPostStepperItemElement: {
+        prototype: HTMLPostStepperItemElement;
+        new (): HTMLPostStepperItemElement;
+    };
+    interface HTMLPostTabItemElement extends Components.PostTabItem, HTMLStencilElement {
     }
     var HTMLPostTabItemElement: {
         prototype: HTMLPostTabItemElement;
@@ -979,7 +991,9 @@ declare global {
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
-        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-stepper": HTMLPostStepperElement;
+        "post-stepper-item": HTMLPostStepperItemElement;
+        "post-tab-item": HTMLPostTabItemElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
@@ -1398,7 +1412,28 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
-    interface PostTabHeader {
+    interface PostStepper {
+        /**
+          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
+         */
+        "activeStepLabel": string;
+        /**
+          * "Completed step" label for accessibility
+         */
+        "completedLabel": string;
+        /**
+          * Defines the currently active step
+          * @default -1
+         */
+        "currentIndex"?: number;
+        /**
+          * "Current step" label for accessibility
+         */
+        "currentLabel": string;
+    }
+    interface PostStepperItem {
+    }
+    interface PostTabItem {
         /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
@@ -1498,7 +1533,9 @@ declare namespace LocalJSX {
         "post-popover-trigger": PostPopoverTrigger;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
-        "post-tab-header": PostTabHeader;
+        "post-stepper": PostStepper;
+        "post-stepper-item": PostStepperItem;
+        "post-tab-item": PostTabItem;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-togglebutton": PostTogglebutton;
@@ -1546,7 +1583,9 @@ declare module "@stencil/core" {
             "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
-            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-stepper": LocalJSX.PostStepper & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
+            "post-stepper-item": LocalJSX.PostStepperItem & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
+            "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
