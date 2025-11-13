@@ -49,7 +49,7 @@ export class PostTabs {
    * When set to true, this property allows the tabs container to span the
    * full width of the screen, from edge to edge.
    */
-  @Prop({ reflect: true }) fullWidth: boolean;
+  @Prop({ reflect: true }) fullWidth?: boolean;
 
   /**
    * The accessible label for the tabs component in navigation mode.
@@ -121,7 +121,20 @@ export class PostTabs {
   }
 
   private handleContentChange(mutations: MutationRecord[]) {
-    const shouldRedetect = mutations.some(mutation => {
+    const shouldRedetect = this.shouldRedetectMode(mutations);
+    const ariaCurrentChanged = this.hasAriaCurrentChanged(mutations);
+
+    if (ariaCurrentChanged && this.isNavigationMode) {
+      this.updateActiveNavigationTab();
+    }
+
+    if (shouldRedetect) {
+      this.handleModeChange();
+    }
+  }
+
+  private shouldRedetectMode(mutations: MutationRecord[]): boolean {
+    return mutations.some(mutation => {
       if (mutation.type === 'childList') {
         return mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0;
       }
@@ -130,37 +143,41 @@ export class PostTabs {
       }
       return false;
     });
+  }
 
-    // Handle aria-current changes in navigation mode
-    const ariaCurrentChanged = mutations.some(
+  private hasAriaCurrentChanged(mutations: MutationRecord[]): boolean {
+    return mutations.some(
       mutation => mutation.type === 'attributes' && mutation.attributeName === 'aria-current'
     );
+  }
 
-    if (ariaCurrentChanged && this.isNavigationMode) {
+  private updateActiveNavigationTab(): void {
+    const activeTab = this.findActiveNavigationTab();
+    if (activeTab && activeTab !== this.currentActiveTab) {
+      this.activateTab(activeTab);
+    }
+  }
+
+  private handleModeChange(): void {
+    const previousMode = this.isNavigationMode;
+    this.detectMode();
+    
+    if (previousMode !== this.isNavigationMode) {
+      this.enableTabs();
+      this.initializeActiveTab();
+    }
+  }
+
+  private initializeActiveTab(): void {
+    if (this.isNavigationMode) {
       const activeTab = this.findActiveNavigationTab();
-      if (activeTab && activeTab !== this.currentActiveTab) {
+      if (activeTab) {
         this.activateTab(activeTab);
       }
-    }
-
-    if (shouldRedetect) {
-      const previousMode = this.isNavigationMode;
-      this.detectMode();
-      
-      if (previousMode !== this.isNavigationMode) {
-        this.enableTabs();
-        
-        if (this.isNavigationMode) {
-          const activeTab = this.findActiveNavigationTab();
-          if (activeTab) {
-            this.activateTab(activeTab);
-          }
-        } else {
-          const tabToActivate = this.activeTab || this.tabs[0]?.name;
-          if (tabToActivate) {
-            void this.show(tabToActivate);
-          }
-        }
+    } else {
+      const tabToActivate = this.activeTab || this.tabs[0]?.name;
+      if (tabToActivate) {
+        void this.show(tabToActivate);
       }
     }
   }

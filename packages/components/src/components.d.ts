@@ -497,7 +497,7 @@ export namespace Components {
         /**
           * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
          */
-        "fullWidth": boolean;
+        "fullWidth"?: boolean;
         /**
           * The accessible label for the tabs component in navigation mode.
          */
