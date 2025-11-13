@@ -49,7 +49,7 @@ export class PostTabs {
    * When set to true, this property allows the tabs container to span the
    * full width of the screen, from edge to edge.
    */
-  @Prop({ reflect: true }) fullWidth: boolean = false;
+  @Prop({ reflect: true }) fullWidth: boolean;
 
   /**
    * The accessible label for the tabs component in navigation mode.
@@ -202,11 +202,6 @@ export class PostTabs {
     const newTab: HTMLPostTabItemElement = this.host.querySelector(
       `post-tab-item[name=${tabName}]`,
     );
-    
-    if (!newTab) {
-      console.warn(`PostTabs: No tab found with name "${tabName}"`);
-      return;
-    }
     
     this.activateTab(newTab);
 
