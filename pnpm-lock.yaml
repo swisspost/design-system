@@ -571,9 +571,6 @@ importers:
       '@types/node-fetch':
         specifier: 2.6.13
         version: 2.6.13
-      '@types/prettier':
-        specifier: 2.7.3
-        version: 2.7.3
       '@typescript-eslint/eslint-plugin':
         specifier: 7.18.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3)
@@ -5191,9 +5188,6 @@ packages:
 
   '@types/node@22.10.5':
     resolution: {integrity: sha512-F8Q+SeGimwOo86fiovQh8qiXfFEh2/ocYv7tU5pJ3EXMSSxk1Joj5wefpFK2fHTf/N6HKGSxIDBT9f3gCxXPkQ==}
-
-  '@types/prettier@2.7.3':
-    resolution: {integrity: sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==}
 
   '@types/prop-types@15.7.14':
     resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
@@ -17606,8 +17600,6 @@ snapshots:
   '@types/node@22.10.5':
     dependencies:
       undici-types: 6.20.0
-
-  '@types/prettier@2.7.3': {}
 
   '@types/prop-types@15.7.14': {}
 
