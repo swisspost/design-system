@@ -5,3 +5,4 @@
 
 Updated styles for elements slotted in the `post-header` component.
 Slotted lists should now omit the `.list-inline` class and will be automatically styled as part of the `post-header`.
+Keeping the `.inline-list` class will cause incorrect spacing between header elements.
