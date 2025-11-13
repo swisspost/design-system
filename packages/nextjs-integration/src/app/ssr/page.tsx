@@ -182,7 +182,7 @@ export default function Home() {
       <PostStepper
         completedLabel="Completed step"
         currentLabel="Current step"
-        stepLabel="Step"
+        activeStepLabel="Step #index:"
         currentIndex={1}
       >
         <PostStepperItem> Step 1 </PostStepperItem>
