@@ -20,18 +20,40 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Save Event Infos into the artifact folder
+    - name: Validate folder exists
+      env:
+        FOLDER: ${{ inputs.folder }}
       shell: bash
       run: |
-        echo ${{ github.event.number }} > ${{ inputs.folder }}/GHA-EVENT-ID
-        echo ${{ github.event.action }} > ${{ inputs.folder }}/GHA-EVENT-ACTION
+        if [[ ! -d "$FOLDER" ]]; then
+          echo "Error: Folder $FOLDER does not exist"
+          exit 1
+        fi
+
+    - name: Save Event Infos into the artifact folder
+      env:
+        FOLDER: ${{ inputs.folder }}
+      shell: bash
+      run: |
+        if ! [[ "${{ github.event.number }}" =~ ^[0-9]*$ ]]; then
+          echo "Warning: Invalid event number format, using default"
+          echo "0" > $FOLDER/GHA-EVENT-ID
+        else
+          echo "${{ github.event.number }}" > $FOLDER/GHA-EVENT-ID
+        fi
+
+        ACTION="${{ github.event.action }}"
+        SANITIZED_ACTION=$(echo "$ACTION" | tr -cd '[:alnum:]-_')
+        echo "$SANITIZED_ACTION" > $FOLDER/GHA-EVENT-ACTION
 
     - name: Zip artifact folder
+      env:
+        FOLDER: ${{ inputs.folder }}
       shell: bash
-      run: cd ${{ inputs.folder }} && zip artifacts.zip . -r
+      run: cd $FOLDER && zip artifacts.zip . -r
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
       with:
         name: ${{ inputs.name }}
         path: ${{ inputs.folder }}/artifacts.zip
