@@ -491,7 +491,7 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the tab that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
@@ -1391,7 +1391,7 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the tab that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**

@@ -39,7 +39,7 @@ export class PostTabs {
   @Element() host: HTMLPostTabsElement;
 
   /**
-   * The name of the tab that is initially active.
+   * The name of the tab in the panel mode that is initially active.
    * Changing this value after initialization has no effect.
    * If not specified, defaults to the first tab.
    */
