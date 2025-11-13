@@ -8,10 +8,11 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <div className="docs-title">
   # Popover
 
-  <link-design of={JSON.stringify(PopoverStories)}></link-design>
+<link-design of={JSON.stringify(PopoverStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead">
   For longer, informative messages or explanations and also simple interactive elements like links.
@@ -19,5 +20,9 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Canvas sourceState="shown" of={PopoverStories.Default} />
 <Controls of={PopoverStories.Default} />
+
+## Wrapped Popover
+
+<Canvas sourceState="shown" of={PopoverStories.Wrapped} />
 
 <ComponentsPackageInstall component="<post-popover>" />
