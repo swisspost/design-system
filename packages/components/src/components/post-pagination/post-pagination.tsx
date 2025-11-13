@@ -228,6 +228,32 @@ export class PostPagination {
   private isMeasuring: boolean = false;
 
   /**
+   * Read the configured gap (CSS variable or computed gap) and return pixels.
+   */
+  private getGapPx(el?: HTMLElement): number {
+    try {
+      const target = el || this.hiddenContainerRef || document.documentElement;
+      const cs = window.getComputedStyle(target as Element);
+      // Prefer CSS variable first
+  let gap = cs.getPropertyValue('--pagination-gap') || cs.gap || cs.columnGap || '8px';
+      gap = gap.trim();
+
+      // Resolve rem relative to root font-size
+      const rootFont = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      if (gap.endsWith('rem')) {
+        return parseFloat(gap) * rootFont;
+      }
+      if (gap.endsWith('px')) {
+        return parseFloat(gap);
+      }
+      // Fallback: try parsing numeric value
+      return parseFloat(gap) || 8;
+    } catch (e) {
+      return 8;
+    }
+  }
+
+  /**
    * Calculates how many page buttons can fit in available width
    */
   private checkIfShouldCondense() {
@@ -257,7 +283,7 @@ export class PostPagination {
       display: 'flex',
       alignItems: 'center',
       whiteSpace: 'nowrap',
-      gap: '0.5rem'
+      gap: '8px'
     });
 
     try {
@@ -366,13 +392,19 @@ export class PostPagination {
       return sum + width;
     }, 0);
 
+  // Get gap size in pixels (use helper to read CSS var or computed gap)
+  const gapPxForAll = this.getGapPx(this.hiddenContainerRef);
+
     console.log('Total page buttons width:', totalPageButtonsWidth);
     console.log('Total controls width:', totalControlsWidth);
     console.log('Average page button width:', totalPageButtonsWidth / pageButtons.length);
+    console.log('Gap between items (used for fit check):', gapPxForAll, 'px');
 
-    // Check if all pages fit
-    const totalWidth = totalPageButtonsWidth + totalControlsWidth;
-    console.log('Total width needed:', totalWidth);
+    // Check if all pages fit. We must include gaps between items in the total width.
+    // Total items are pageButtons + controlButtons; there are (n-1) gaps.
+    const totalItemsCount = pageButtons.length + controlButtons.length;
+    const totalWidth = totalPageButtonsWidth + totalControlsWidth + Math.max(0, totalItemsCount - 1) * gapPxForAll;
+    console.log('Total width needed (including gaps):', totalWidth);
     console.log('Does everything fit?', totalWidth <= availableWidth);
     
     if (totalWidth <= availableWidth) {
@@ -400,10 +432,8 @@ export class PostPagination {
     // Not everything fits - calculate how many page buttons we can show
     // We need to account for GAPS between buttons AND ellipsis width!
     
-    // Get the gap size from computed styles
-    const computedStyle = window.getComputedStyle(this.hiddenContainerRef);
-    const gapValue = computedStyle.gap || computedStyle.columnGap || '0.5rem';
-    const gapPx = parseFloat(gapValue) * (gapValue.includes('rem') ? 16 : 1);
+  // Get the gap size in pixels for condensed calculation
+  const gapPx = this.getGapPx(this.hiddenContainerRef);
     
     console.log('Gap between buttons:', gapPx, 'px');
 

@@ -4,19 +4,19 @@
 .pagination {
   width: 100%;
   position: relative;
+  /* default gap variable used by JS measurement */
+  --pagination-gap: 8px;
 }
 
 .pagination-list {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--pagination-gap);
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-wrap: nowrap; // Prevent wrapping
-  /* Prevent temporary overflow while items are being updated */
-  overflow: hidden;
+  flex-wrap: nowrap;
   width: 100%;
   box-sizing: border-box;
 }
@@ -106,7 +106,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -141,7 +140,7 @@
   
   // Apply responsive sizing to hidden container too
   @media (max-width: 768px) {
-    gap: 0.5rem;  // Keep same gap on mobile
+    gap: var(--pagination-gap);  // Keep same gap on mobile
     
     .pagination-link {
       min-width: 2rem;
