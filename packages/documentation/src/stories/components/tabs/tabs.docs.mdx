@@ -23,6 +23,16 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <ComponentsPackageInstall component="<post-tabs>" />
 
+### Active Navigation Item
+
+**The `aria-current="page"` attribute highlights the active navigation item**
+
+This attribute must be manually added to the anchor element that represents the current page, it is not set automatically. The component detects which link has `aria-current="page"` and applies the active styling to the parent `post-tab-item`.
+
+<Canvas of={TabStories.ActiveNavigationItem} />
+
+Navigation is handled by your application's router. When users click a tab, they navigate to the URL specified in the anchor's `href` attribute.
+
 ## Examples
 
 ### Initially Active Tab
@@ -30,6 +40,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 The initial selection is set to the first tab by default. To have a different tab active initially, use the `active-tab` property and assign it the name of the desired tab.
 
 <Canvas of={TabStories.ActiveTab} />
+
 
 ### Full-width Tabs
 

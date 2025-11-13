@@ -184,13 +184,13 @@ function renderNavigationVariant(
       label="${ifDefined(label)}"
     >
       <post-tab-item name="first">
-        <a href="#first" aria-current="page">First page</a>
+        <a href="/first" aria-current="page">First page</a>
       </post-tab-item>
       <post-tab-item name="second">
-        <a href="#second">Second page</a>
+        <a href="/second">Second page</a>
       </post-tab-item>
       <post-tab-item name="third">
-        <a href="#third">Third page</a>
+        <a href="/third">Third page</a>
       </post-tab-item>
     </post-tabs>
   `;
@@ -316,12 +316,37 @@ export const NavigationVariant: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Navigation variant displays tabs as page navigation links. Each tab contains an anchor element for routing. Use this for site navigation.',
+        story: 'Navigation variant displays tabs as page navigation links. Each tab contains an anchor element for routing. Use this for site navigation. The active link must have an `aria-current="page"` attribute to ensure correct accessibility and styling.',
       },
     },
   },
   args: {
     variant: 'navigation',
+  },
+};
+
+export const ActiveNavigationItem: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: '**Navigation mode only:** The active navigation item is determined by the `aria-current="page"` attribute on the anchor element. This ensures proper accessibility and visual indication of the current page. Navigation is handled by your application\'s router - clicking tabs will navigate to the specified URLs.',
+      },
+    },
+  },
+  args: {
+    variant: 'navigation',
+    'slots-default': `
+      <post-tab-item name="letters">
+        <a href="/letters">Letters</a>
+      </post-tab-item>
+      <post-tab-item name="packages">
+        <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
+        <a href="/packages" aria-current="page">Packages</a>
+      </post-tab-item>
+      <post-tab-item name="logistics">
+        <a href="/logistics">Logistics</a>
+      </post-tab-item>
+    `,
   },
 };
 
