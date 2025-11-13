@@ -345,14 +345,16 @@ export class PostTabs {
   }
 
   render() {
-    const tabsRole = this.isNavigationMode ? undefined : 'tablist';
-    const ariaLabel = this.isNavigationMode ? this.label : undefined;
     const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
 
     return (
       <Host data-version={version}>
         <div class="tabs-wrapper" part="tabs">
-          <TabsContainer class="tabs" role={tabsRole} aria-label={ariaLabel}>
+          <TabsContainer
+            class="tabs"
+            role={this.isNavigationMode ? undefined : 'tablist'}
+            aria-label={this.isNavigationMode ? this.label : undefined}
+          >
             <slot onSlotchange={() => this.enableTabs()} />
           </TabsContainer>
         </div>
