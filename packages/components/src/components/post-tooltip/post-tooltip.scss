@@ -31,7 +31,8 @@ post-popovercontainer {
     color: var(--post-current-fg);
     background-color: var(--post-current-bg);
     padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
-    max-width: 280px;
+    max-width: var(--post-tooltip-max-width, 280px);
+    width: inherit;
     min-height: 32px;
     word-wrap: break-word;
     white-space: normal;
