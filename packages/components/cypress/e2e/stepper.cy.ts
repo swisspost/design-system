@@ -33,7 +33,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'step-label', 'Step:');
+    cy.get('post-stepper').invoke('attr', 'active-step-label', 'Step:');
     cy.get('@consoleError').should('be.called');
   });
 
@@ -41,7 +41,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'step-label', null);
+    cy.get('post-stepper').invoke('attr', 'active-step-label', null);
     cy.get('@consoleError').should('be.called');
   });
 
@@ -153,14 +153,12 @@ describe('stepper', { baseUrl: null }, () => {
       .should('have.text', 'Completed step:');
   });
 
-  it('should set correct mobile label on current step', () => {
+  it('should set correct mobile label on stepper', () => {
     cy.get('post-stepper')
       .invoke('attr', 'current-index', 1)
       .wait(100)
-      .find('post-stepper-item')
-      .eq(1)
-      .find('.step-mobile-label')
-      .should('have.text', 'Step 2:');
+      .find('.active-step')
+      .should('have.text', 'Step 2 : Step 2');
   });
 
   // Dynamically added/removed steps

@@ -68,18 +68,20 @@ export class PostStepper {
   componentDidLoad() {
     this.validateCompletedLabel();
     this.validateCurrentLabel();
+    this.validateActiveStepLabel();
 
     // Wait for slotchange
     setTimeout(() => {
-      this.validateActiveStepLabel();
       this.validateCurrentIndex();
     });
   }
 
   private updateActiveStepLabel() {
-    const labelTemplate = this.activeStepLabel;
-    this.mobileActiveStepLabel = labelTemplate.replace(/#index/g, `${this.currentIndex + 1}`);
-    this.updateMobileActiveStepVisibility();
+    if (this.activeStepLabel) {
+      const labelTemplate = this.activeStepLabel;
+      this.mobileActiveStepLabel = labelTemplate.replace(/#index/g, `${this.currentIndex + 1}`);
+      this.updateMobileActiveStepVisibility();
+    }
   }
 
   private updateSteps() {
