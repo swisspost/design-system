@@ -312,6 +312,19 @@ export const FullWidth: Story = {
   decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
+export const NavigationVariant: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Navigation variant displays tabs as page navigation links. Each tab contains an anchor element for routing. Use this for site navigation.',
+      },
+    },
+  },
+  args: {
+    variant: 'navigation',
+  },
+};
+
 export const Async: Story = {
   parameters: {
     docs: {
