@@ -68,7 +68,7 @@ export class PostMenu {
   /**
    * Sets the animation type
    */
-  @Prop() readonly animation: 'pop-in' | 'none' = 'pop-in';
+  @Prop() readonly animation: 'pop-in' | null = 'pop-in';
 
   /**
    * Holds the current visibility state of the menu.
@@ -154,36 +154,36 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
-      // Only for the first open
-      if (event.detail.first) {
-        // Add "menu" and "menuitem" aria roles and aria-label
-        this.host.setAttribute('role', 'menu');
+    // Only for the first open
+    if (event.detail.first) {
+      // Add "menu" and "menuitem" aria roles and aria-label
+      this.host.setAttribute('role', 'menu');
 
-        const menuItems = this.getSlottedItems();
-        for (const item of menuItems) {
-          item.setAttribute('role', 'menuitem');
-        }
-
-        if (this.label) this.host.setAttribute('aria-label', this.label);
+      const menuItems = this.getSlottedItems();
+      for (const item of menuItems) {
+        item.setAttribute('role', 'menuitem');
       }
-    };
+
+      if (this.label) this.host.setAttribute('aria-label', this.label);
+    }
+  };
 
   @EventFrom('post-popovercontainer')
   private readonly handlePostBeforeToggle = (event: CustomEvent<{ willOpen: boolean }>) => {
-      this.isVisible = event.detail.willOpen;
-      this.toggleMenu.emit(this.isVisible);
-      if (this.isVisible) {
-        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-        requestAnimationFrame(() => {
-          const menuItems = this.getSlottedItems();
-          if (menuItems.length > 0) {
-            (menuItems[0] as HTMLElement).focus();
-          }
-        });
-      } else if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
-      }
-    };
+    this.isVisible = event.detail.willOpen;
+    this.toggleMenu.emit(this.isVisible);
+    if (this.isVisible) {
+      this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+      requestAnimationFrame(() => {
+        const menuItems = this.getSlottedItems();
+        if (menuItems.length > 0) {
+          (menuItems[0] as HTMLElement).focus();
+        }
+      });
+    } else if (this.lastFocusedElement) {
+      this.lastFocusedElement.focus();
+    }
+  };
 
   private readonly handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -255,7 +255,7 @@ export class PostMenu {
           onPostShow={this.handlePostShown}
           onPostBeforeToggle={this.handlePostBeforeToggle}
           placement={this.placement}
-          animation={this.animation === 'none' ? null : this.animation}
+          animation={this.animation || null}
           ref={e => (this.popoverRef = e)}
         >
           <div part="menu">
