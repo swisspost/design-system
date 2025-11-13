@@ -21,6 +21,8 @@ import {
   PostTabs,
   PostTooltip,
   PostTooltipTrigger,
+  PostStepper,
+  PostStepperItem,
 } from 'components';
 
 @Component({
@@ -49,6 +51,8 @@ import {
     PostTabs,
     PostTooltip,
     PostTooltipTrigger,
+    PostStepper,
+    PostStepperItem,
   ],
 })
 export class HomeComponent {
