@@ -78,7 +78,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     },
     postChange: {
       name: 'postChange ',
-      description: 'An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.',
+      description: 'An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab.',
       if: { arg: 'variant', eq: 'panels' },
       table: {
         category: 'Events',
@@ -122,7 +122,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     },
     'slots-default': {
       name: 'default',
-      description: 'Slot for tab items. Available in both variants - for tab navigation buttons in panels mode, and for navigation links in navigation mode.',
+      description: 'Slot for placing tab items.',
       control: {
         type: 'text',
       },
@@ -135,7 +135,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     },
     'slots-panels': {
       name: 'panels',
-      description: 'Slot for tab panels content. Only available in panels variant for customizing panel content.',
+      description: 'Slot for placing tab panels.',
       control: {
         type: 'text',
       },
@@ -291,7 +291,7 @@ export const ActiveTab: Story = {
   parameters: {
     docs: {
       description: {
-        story: '**Panel mode only:** Set which tab is initially active using the `active-tab` property.',
+        story: 'Set which tab is initially active using the `active-tab` property.',
       },
     },
   },
@@ -326,13 +326,6 @@ export const NavigationVariant: Story = {
 };
 
 export const ActiveNavigationItem: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: '**Navigation mode only:** The active navigation item is determined by the `aria-current="page"` attribute on the anchor element. This ensures proper accessibility and visual indication of the current page. Navigation is handled by your application\'s router - clicking tabs will navigate to the specified URLs.',
-      },
-    },
-  },
   args: {
     variant: 'navigation',
     'slots-default': `
