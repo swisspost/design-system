@@ -140,6 +140,7 @@ export interface V910Checks {
     accent_colors: boolean;
     spinner_sizes: boolean;
     standard_html_alert: boolean;
+    stepper: boolean;
     spinner: boolean;
   };
   components: {

@@ -153,3 +153,18 @@
     Hi there 👋
   </post-tooltip>
 </div>
+
+<div class="my-24">
+  <h2>Post Stepper</h2>
+  <post-stepper
+    completedLabel="Completed step"
+    currentLabel="Current step"
+    activeStepLabel="Step #index:"
+    [currentIndex]="1"
+  >
+    <post-stepper-item> Step 1 </post-stepper-item>
+    <post-stepper-item> Step 2 </post-stepper-item>
+    <post-stepper-item> Step 3 </post-stepper-item>
+    <post-stepper-item> Step 4 </post-stepper-item>
+  </post-stepper>
+</div>
