@@ -39,7 +39,7 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: 4px;
-        outline-offset: -2px !important;
+        z-index: 2;
       }
     }
   }
@@ -75,15 +75,18 @@ post-mainnavigation {
   // desktop styles
   post-header:not([data-burger-menu]) > & {
     display: flex;
-    overflow: hidden;
     height: var(--post-main-navigation-height, 0);
     background: color.$white;
     user-select: none;
 
     nav {
       flex: 1 1 auto;
-      overflow: hidden;
       scroll-behavior: smooth;
+    }
+
+    &.scrollable,
+    &.scrollable nav {
+      overflow: hidden;
     }
 
     .scroll-control {
@@ -91,7 +94,7 @@ post-mainnavigation {
       $button-padding: 1rem;
       $button-width: $icon-size + 2 * $button-padding;
 
-      z-index: 1;
+      z-index: 2;
       cursor: pointer;
       padding: $button-padding;
       background: color.$white;

@@ -86,14 +86,24 @@ post-header {
   }
 
   // title
+  $header-title-line-height: 34px;
+
   [slot='title'] {
     margin: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 900;
 
     @include media.only(desktop) {
-      font-size: 28px;
-      line-height: 34px;
+      font-size: 1.75rem;
+      line-height: $header-title-line-height;
     }
+  }
+
+  // local user menu trigger
+  .local-login button {
+    display: block;
+    margin-block: calc(
+      (#{$header-title-line-height} - #{tokens.get('avatar-size', components.$post-avatar)}) / 2
+    );
   }
 }

@@ -31,7 +31,7 @@ export class PostLanguageOption {
   /**
    *  The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
    */
-  @Prop() code!: string;
+  @Prop({ reflect: true }) code!: string;
 
   @Watch('code')
   validateCode() {
