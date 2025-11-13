@@ -1,6 +1,5 @@
 ---
-'@swisspost/design-system-documentation': minor
 '@swisspost/design-system-components': minor
 ---
 
-Added the `menuAnimation` prop to the `post-breadcrumbs` and `post-language-switch` components to enable control over their dropdown menu animations.
+Enabled a 'pop-in' animation for the `post-breadcrumbs` concatenated version and the `post-language-switch` menu variant components.
