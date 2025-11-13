@@ -74,6 +74,7 @@ export class MigrationV99Component extends LitElement {
       accordion_heading: false,
       hydrated_flag: false,
       accordion_item_part: false,
+      dialog_icon: false,
       popover_trigger: false,
     },
   };
@@ -351,6 +352,23 @@ export class MigrationV99Component extends LitElement {
                           Update your styles to use <code>::part(button)</code> for the header
                           trigger and <code>::part(body)</code> for the content area instead.
                         </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-dialog_icon"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.dialog_icon}"
+                      />
+                      <label class="form-check-label" for="components-dialog_icon">
+                        <code>dialog</code> icons can no longer be set manually. They are now
+                        automatically determined by the <code>data-type</code> attribute defined on
+                        the component. The data-type attribute supports only the four standard
+                        signal types: <code>info</code>, <code>success</code>, <code>warning</code>,
+                        and <code>error</code>.
                       </label>
                     </div>
                   </li>
