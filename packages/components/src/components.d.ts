@@ -115,7 +115,6 @@ export namespace Components {
           * The accessible label for the breadcrumb component.
          */
         "label": string;
-        "menuAnimation"?: 'pop-in' | 'none';
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -283,10 +282,6 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Sets the animation of the dropdown menu containing the language options
-         */
-        "menuAnimation"?: 'pop-in' | 'none';
-        /**
           * Whether the component is rendered as a list or a menu
           * @default 'list'
          */
@@ -345,7 +340,7 @@ export namespace Components {
           * Sets the animation type
           * @default 'pop-in'
          */
-        "animation": 'pop-in' | 'none';
+        "animation": 'pop-in' | null;
         /**
           * Hides the popover menu and restores focus to the previously focused element.
          */
@@ -419,7 +414,7 @@ export namespace Components {
           * Animation style
           * @default null
          */
-        "animation"?: AnimationName | 'none' | null;
+        "animation"?: AnimationName | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -574,7 +569,7 @@ export namespace Components {
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * s Toggle tooltip display.
+          * Toggle tooltip display.
           * @param target An element where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */
@@ -1092,7 +1087,6 @@ declare namespace LocalJSX {
           * The accessible label for the breadcrumb component.
          */
         "label": string;
-        "menuAnimation"?: 'pop-in' | 'none';
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
@@ -1256,10 +1250,6 @@ declare namespace LocalJSX {
          */
         "description": string;
         /**
-          * Sets the animation of the dropdown menu containing the language options
-         */
-        "menuAnimation"?: 'pop-in' | 'none';
-        /**
           * Whether the component is rendered as a list or a menu
           * @default 'list'
          */
@@ -1306,7 +1296,7 @@ declare namespace LocalJSX {
           * Sets the animation type
           * @default 'pop-in'
          */
-        "animation"?: 'pop-in' | 'none';
+        "animation"?: 'pop-in' | null;
         /**
           * An accessible name for the menu.
          */
@@ -1356,7 +1346,7 @@ declare namespace LocalJSX {
           * Animation style
           * @default null
          */
-        "animation"?: AnimationName | 'none' | null;
+        "animation"?: AnimationName | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
