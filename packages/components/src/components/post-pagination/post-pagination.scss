@@ -1,161 +1,227 @@
-// Width-based responsive pagination styles
+// post-pagination.scss
+// Responsive pagination component styles with container-aware layout
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+// Button sizes per device (must match BUTTON_SIZES in TypeScript)
+$pagination-button-size-mobile: 32px;
+$pagination-button-size-tablet: 40px;
+$pagination-button-size-desktop: 48px;
+
+// Gap between buttons (must match BUTTON_GAP in TypeScript)
+$pagination-gap: 4px;
+
+// Colors (adjust to match your design system)
+$pagination-color-text: #333;
+$pagination-color-border: #ccc;
+$pagination-color-hover-bg: #f5f5f5;
+$pagination-color-active-bg: #007bff;
+$pagination-color-active-text: #fff;
+$pagination-color-disabled: #999;
+$pagination-color-disabled-bg: #f0f0f0;
+
+// Typography
+$pagination-font-size: 14px;
+$pagination-font-weight: 400;
+$pagination-font-weight-active: 600;
+
+// Transitions
+$pagination-transition: all 0.2s ease;
+
+// Border radius
+$pagination-border-radius: 4px;
+
+// ============================================================================
+// Main Container
+// ============================================================================
 
 .pagination {
   width: 100%;
-  position: relative;
-  --pagination-gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+// ============================================================================
+// Pagination List
+// ============================================================================
 
 .pagination-list {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--pagination-gap);
   list-style: none;
-  padding: 0;
   margin: 0;
-  flex-wrap: nowrap;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 0;
+  
+  // CRITICAL: Gap must match BUTTON_GAP constant (4px)
+  gap: $pagination-gap;
 }
+
+// ============================================================================
+// Pagination Items (li wrapper)
+// ============================================================================
 
 .pagination-item {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
 }
+
+// ============================================================================
+// Pagination Links (buttons)
+// ============================================================================
 
 .pagination-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.5rem;
-  height: 2.5rem;
-  padding: 0.5rem;
-  border: 1px solid var(--color-border, #ccc);
-  border-radius: 0.25rem;
-  background-color: var(--color-background, #fff);
-  color: var(--color-text, #000);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover:not(:disabled) {
-    background-color: var(--color-background-hover, #f5f5f5);
-    border-color: var(--color-border-hover, #999);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--color-focus, #0056b3);
-    outline-offset: 2px;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-}
-
-.pagination-link-active {
-  background-color: var(--color-primary, #0056b3);
-  color: var(--color-primary-text, #fff);
-  border-color: var(--color-primary, #0056b3);
-
-  &:hover {
-    background-color: var(--color-primary-hover, #004494);
-    border-color: var(--color-primary-hover, #004494);
-  }
-}
-
-.pagination-link-disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
   
-  &:hover {
-    background-color: var(--color-background, #fff);
-    border-color: var(--color-border, #ccc);
+  // CRITICAL: Sizes must match BUTTON_SIZES constant
+  // Mobile: 32px
+  width: $pagination-button-size-mobile;
+  height: $pagination-button-size-mobile;
+  min-width: $pagination-button-size-mobile; // Prevent shrinking
+  
+  padding: 0;
+  margin: 0;
+  
+  font-size: $pagination-font-size;
+  font-weight: $pagination-font-weight;
+  color: $pagination-color-text;
+  text-decoration: none;
+  
+  background-color: transparent;
+  border: 1px solid $pagination-color-border;
+  border-radius: $pagination-border-radius;
+  
+  cursor: pointer;
+  transition: $pagination-transition;
+  
+  // Remove default button styles
+  appearance: none;
+  outline: none;
+  
+  // Prevent text selection
+  user-select: none;
+  
+  &:hover:not(:disabled):not(.pagination-link-disabled) {
+    background-color: $pagination-color-hover-bg;
+    border-color: darken($pagination-color-border, 10%);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid $pagination-color-active-bg;
+    outline-offset: 2px;
+    z-index: 1;
+  }
+  
+  // Active state
+  &.pagination-link-active {
+    background-color: $pagination-color-active-bg;
+    color: $pagination-color-active-text;
+    border-color: $pagination-color-active-bg;
+    font-weight: $pagination-font-weight-active;
+    cursor: default;
+    
+    &:hover {
+      background-color: $pagination-color-active-bg;
+      border-color: $pagination-color-active-bg;
+    }
+  }
+  
+  // Disabled state
+  &:disabled,
+  &.pagination-link-disabled {
+    color: $pagination-color-disabled;
+    background-color: $pagination-color-disabled-bg;
+    border-color: $pagination-color-border;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  // Tablet: 40px
+  @media (min-width: 600px) {
+    width: $pagination-button-size-tablet;
+    height: $pagination-button-size-tablet;
+    min-width: $pagination-button-size-tablet;
+  }
+  
+  // Desktop: 48px
+  @media (min-width: 1024px) {
+    width: $pagination-button-size-desktop;
+    height: $pagination-button-size-desktop;
+    min-width: $pagination-button-size-desktop;
   }
 }
 
-.pagination-control-button {
-  padding: 0.5rem 0.75rem;
+// ============================================================================
+// Control Buttons (Previous/Next)
+// ============================================================================
+
+.pagination-control {
+  .pagination-control-button {
+    // Control buttons use same size as regular buttons
+    // Icons should be centered within
+    
+    post-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      
+      @media (min-width: 600px) {
+        width: 18px;
+        height: 18px;
+      }
+      
+      @media (min-width: 1024px) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 }
+
+// ============================================================================
+// Ellipsis
+// ============================================================================
 
 .pagination-ellipsis {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.5rem;
-  height: 2.5rem;
 }
 
 .pagination-ellipsis-content {
-  color: var(--color-text-muted, #666);
-  font-size: 1rem;
-  user-select: none;
-  padding: 0 0.25rem;
-}
-
-// Hidden container for width measurement
-.hidden-pagination-container {
-  position: absolute !important;
-  left: -9999px !important;
-  top: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  z-index: -1 !important;
-  overflow: hidden !important;
-  max-width: none !important;
-  
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--pagination-gap);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-wrap: nowrap;
-  box-sizing: border-box;
   
-  .pagination-item {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .pagination-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.5rem;
-    height: 2.5rem;
-    padding: 0.5rem;
-    border: 1px solid var(--color-border, #ccc);
-    border-radius: 0.25rem;
-    font-size: 1rem;
-  }
-
-  .pagination-control-button {
-    padding: 0.5rem 0.75rem;
+  // CRITICAL: Must match button sizes for proper spacing calculation
+  width: $pagination-button-size-mobile;
+  height: $pagination-button-size-mobile;
+  
+  font-size: $pagination-font-size;
+  color: $pagination-color-text;
+  user-select: none;
+  
+  // Tablet: 40px
+  @media (min-width: 600px) {
+    width: $pagination-button-size-tablet;
+    height: $pagination-button-size-tablet;
   }
   
-  @media (max-width: 768px) {
-    gap: var(--pagination-gap);
-    
-    .pagination-link {
-      min-width: 2rem;
-      height: 2rem;
-      padding: 0.25rem;
-      font-size: 0.875rem;
-    }
-
-    .pagination-control-button {
-      padding: 0.25rem 0.5rem;
-    }
+  // Desktop: 48px
+  @media (min-width: 1024px) {
+    width: $pagination-button-size-desktop;
+    height: $pagination-button-size-desktop;
   }
 }
 
-// Visually hidden utility (for screen reader text)
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -165,24 +231,44 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border-width: 0;
+  border: 0;
 }
 
-// Responsive behavior
-@media (max-width: 768px) {
+// ============================================================================
+// Responsive Adjustments
+// ============================================================================
+
+// Small mobile devices
+@media (max-width: 375px) {
+  .pagination {
+    // Allow some horizontal padding on very small screens
+    padding: 0 8px;
+  }
+  
   .pagination-link {
-    min-width: 2rem;
-    height: 2rem;
-    padding: 0.25rem;
-    font-size: 0.875rem;
+    font-size: 12px;
   }
+}
 
-  .pagination-ellipsis {
-    min-width: 2rem;
-    height: 2rem;
+// Larger desktop screens
+@media (min-width: 1280px) {
+  .pagination-link {
+    font-size: 16px;
   }
+}
 
-  .pagination-control-button {
-    padding: 0.25rem 0.5rem;
+
+// Ensure the pagination never causes horizontal scroll
+.pagination {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+  // Hide scrollbar but keep functionality
+  -ms-overflow-style: none;  // IE and Edge
+  scrollbar-width: none;  // Firefox
+  
+  &::-webkit-scrollbar {
+    display: none;  // Chrome, Safari, Opera
   }
 }

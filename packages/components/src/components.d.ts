@@ -364,6 +364,11 @@ export namespace Components {
     }
     interface PostPagination {
         /**
+          * Accessible label for the pagination navigation.
+          * @default 'Pagination'
+         */
+        "ariaLabel": string;
+        /**
           * The total number of items in the collection.
           * @default 0
          */
@@ -408,11 +413,6 @@ export namespace Components {
           * @default 10
          */
         "pageSize": number;
-        /**
-          * Accessible label for the pagination navigation.
-          * @default 'Pagination'
-         */
-        "paginationLabel": string;
     }
     interface PostPopover {
         /**
@@ -1318,6 +1318,11 @@ declare namespace LocalJSX {
     }
     interface PostPagination {
         /**
+          * Accessible label for the pagination navigation.
+          * @default 'Pagination'
+         */
+        "ariaLabel"?: string;
+        /**
           * The total number of items in the collection.
           * @default 0
          */
@@ -1366,11 +1371,6 @@ declare namespace LocalJSX {
           * @default 10
          */
         "pageSize"?: number;
-        /**
-          * Accessible label for the pagination navigation.
-          * @default 'Pagination'
-         */
-        "paginationLabel"?: string;
     }
     interface PostPopover {
         /**
