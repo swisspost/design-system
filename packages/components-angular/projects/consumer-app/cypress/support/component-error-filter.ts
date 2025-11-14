@@ -13,7 +13,6 @@ type CapturedError = {
  */
 export function setupComponentErrorCapture(componentNames: string[]) {
   const errors: string[] = []; // live array used by tests
-  const captured: CapturedError[] = [];
   const seen = new Set<string>(); // dedupe key: message||stack
 
   // Pre-compute lowercase names to avoid repeated lowercasing in the hot path
@@ -45,8 +44,6 @@ export function setupComponentErrorCapture(componentNames: string[]) {
     if (seen.has(key)) return;
     seen.add(key);
 
-    const entry: CapturedError = { message, source, stack, timestamp: Date.now() };
-    captured.push(entry);
     errors.push(message);
   }
 
