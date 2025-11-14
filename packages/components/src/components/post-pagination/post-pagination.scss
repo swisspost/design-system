@@ -1,10 +1,8 @@
-// post-pagination.scss
 // Width-based responsive pagination styles
 
 .pagination {
   width: 100%;
   position: relative;
-  /* default gap variable used by JS measurement */
   --pagination-gap: 8px;
 }
 
@@ -24,7 +22,7 @@
 .pagination-item {
   display: flex;
   align-items: center;
-  flex-shrink: 0; // Prevent items from shrinking
+  flex-shrink: 0;
 }
 
 .pagination-link {
@@ -98,24 +96,27 @@
   padding: 0 0.25rem;
 }
 
-// Hidden container for width measurement (matches breadcrumbs pattern)
+// Hidden container for width measurement
 .hidden-pagination-container {
-    position: absolute;
-  height: 20px;
-  background-color: red;
+  position: absolute !important;
+  left: -9999px !important;
+  top: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  overflow: hidden !important;
+  max-width: none !important;
+  
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--pagination-gap);
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-wrap: nowrap; // Prevent wrapping
-  /* Prevent temporary overflow while items are being updated */
-  overflow: hidden;
-  width: 100%;
+  flex-wrap: nowrap;
   box-sizing: border-box;
   
-  // Make sure hidden buttons have EXACT same styling as visible ones
   .pagination-item {
     display: flex;
     align-items: center;
@@ -138,9 +139,8 @@
     padding: 0.5rem 0.75rem;
   }
   
-  // Apply responsive sizing to hidden container too
   @media (max-width: 768px) {
-    gap: var(--pagination-gap);  // Keep same gap on mobile
+    gap: var(--pagination-gap);
     
     .pagination-link {
       min-width: 2rem;
@@ -153,11 +153,6 @@
       padding: 0.25rem 0.5rem;
     }
   }
-}
-
-.hidden-pagination-button {
-  // Ensure hidden buttons are properly styled for measurement
-  flex-shrink: 0;
 }
 
 // Visually hidden utility (for screen reader text)

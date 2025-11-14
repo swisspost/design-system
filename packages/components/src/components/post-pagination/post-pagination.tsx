@@ -99,7 +99,18 @@ export class PostPagination {
   postChange: EventEmitter<number>;
 
   private hiddenContainerRef?: HTMLElement;
-  private lastWindowWidth: number;
+  private lastWindowWidth: number = 0;
+  private resizeObserver?: ResizeObserver;
+
+  /**
+   * Maximum number of page buttons that can fit (calculated from width)
+   */
+  @State() private maxPageButtons: number = 7;
+
+  /**
+   * Flag to prevent measurement loops
+   */
+  private isMeasuring: boolean = false;
 
   @Watch('page')
   validatePage() {
@@ -160,6 +171,7 @@ export class PostPagination {
 
   componentWillLoad() {
     this.paginationId = `pagination-${this.host.id || nanoid(6)}`;
+    this.lastWindowWidth = window.innerWidth;
 
     this.validatePage();
     this.validatePageSize();
@@ -175,36 +187,61 @@ export class PostPagination {
   }
 
   componentDidLoad() {
-    window.addEventListener('resize', this.handleResize);
-    this.waitForPaginationRef();
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      if (this.hiddenContainerRef) {
+        this.checkIfShouldCondense();
+      }
+    });
+    
+    // Use ResizeObserver for smoother resize handling
+    if (typeof ResizeObserver !== 'undefined') {
+      this.resizeObserver = new ResizeObserver(this.handleResize);
+      let parent = this.host.parentNode;
+      while (parent && !(parent instanceof HTMLElement)) {
+        parent = parent.parentNode;
+      }
+      if (parent instanceof HTMLElement) {
+        this.resizeObserver.observe(parent);
+      }
+    } else {
+      window.addEventListener('resize', this.handleResize);
+    }
   }
 
   disconnectedCallback() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
     window.removeEventListener('resize', this.handleResize);
   }
-
-  /**
-   * Waits for pagination reference to be available before checking width
-   */
-  private waitForPaginationRef = debounce(() => {
-    if (this.hiddenContainerRef?.clientWidth > 0 && !this.isMeasuring) {
-      this.checkIfShouldCondense();
-    } else if (!this.isMeasuring) {
-      this.waitForPaginationRef();
-    }
-  }, 100); // Increased debounce time
 
   /**
    * Handles window resize to recalculate condensation
    */
   private handleResize = debounce(() => {
-    if (window.innerWidth === this.lastWindowWidth) return;
-    this.lastWindowWidth = window.innerWidth;
+    const currentWidth = window.innerWidth;
     
-    if (!this.isMeasuring) {
+    // Only recalculate if width actually changed significantly (avoid subpixel triggers)
+    if (Math.abs(currentWidth - this.lastWindowWidth) < 2) return;
+    
+    this.lastWindowWidth = currentWidth;
+    
+    if (!this.isMeasuring && this.hiddenContainerRef) {
       this.checkIfShouldCondense();
     }
-  }, 150); // Debounce resize events
+  }, 100);
+
+  /**
+   * Waits for pagination reference to be available before checking width
+   */
+  private waitForPaginationRef = () => {
+    if (this.hiddenContainerRef?.clientWidth > 0 && !this.isMeasuring) {
+      this.checkIfShouldCondense();
+    } else if (!this.isMeasuring) {
+      requestAnimationFrame(() => this.waitForPaginationRef());
+    }
+  };
 
   /**
    * Gets the available width for pagination
@@ -218,27 +255,15 @@ export class PostPagination {
   }
 
   /**
-   * Maximum number of page buttons that can fit (calculated from width)
-   */
-  @State() private maxPageButtons: number = 7;
-
-  /**
-   * Flag to prevent measurement loops
-   */
-  private isMeasuring: boolean = false;
-
-  /**
    * Read the configured gap (CSS variable or computed gap) and return pixels.
    */
   private getGapPx(el?: HTMLElement): number {
     try {
       const target = el || this.hiddenContainerRef || document.documentElement;
       const cs = window.getComputedStyle(target as Element);
-      // Prefer CSS variable first
-  let gap = cs.getPropertyValue('--pagination-gap') || cs.gap || cs.columnGap || '8px';
+      let gap = cs.getPropertyValue('--pagination-gap') || cs.gap || cs.columnGap || '8px';
       gap = gap.trim();
 
-      // Resolve rem relative to root font-size
       const rootFont = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
       if (gap.endsWith('rem')) {
         return parseFloat(gap) * rootFont;
@@ -246,7 +271,6 @@ export class PostPagination {
       if (gap.endsWith('px')) {
         return parseFloat(gap);
       }
-      // Fallback: try parsing numeric value
       return parseFloat(gap) || 8;
     } catch (e) {
       return 8;
@@ -264,15 +288,10 @@ export class PostPagination {
     const totalPages = this.getTotalPages();
     const availableWidth = this.getAvailableWidth();
     
-  // Pagination width check
-    
-    // Measure all hidden items using an off-DOM wrapper appended to document.body.
-    // This avoids changing styles on the real hidden container and is more robust
-    // across browsers.
     const hiddenItems: HTMLElement[] = [];
     const measureWrapper = document.createElement('div');
     measureWrapper.setAttribute('aria-hidden', 'true');
-    // Keep off-screen but measurable
+    
     Object.assign(measureWrapper.style, {
       position: 'absolute',
       left: '-9999px',
@@ -281,24 +300,23 @@ export class PostPagination {
       display: 'flex',
       alignItems: 'center',
       whiteSpace: 'nowrap',
-      gap: '8px'
+      gap: '8px',
+      overflow: 'hidden'
     });
 
     try {
-      // Clone the hidden items (prev control, pages, next control) into wrapper
       const sourceItems = this.hiddenContainerRef
         ? Array.from(this.hiddenContainerRef.querySelectorAll('.hidden-pagination-item'))
         : [];
 
-      // Helper to copy a small set of computed properties from source to dest
       const copyStyles = (src: HTMLElement, dest: HTMLElement) => {
         try {
           const cs = window.getComputedStyle(src);
           const props = [
-            'box-sizing', 'min-width', 'height', 'padding', 'padding-left', 'padding-right', 'padding-top', 'padding-bottom',
-            'border', 'border-width', 'border-style', 'border-color', 'border-radius',
-            'font-size', 'font-family', 'font-weight', 'line-height',
-            'display', 'align-items', 'justify-content', 'white-space'
+            'box-sizing', 'min-width', 'height', 'padding', 'padding-left', 'padding-right', 
+            'padding-top', 'padding-bottom', 'border', 'border-width', 'border-style', 
+            'border-color', 'border-radius', 'font-size', 'font-family', 'font-weight', 
+            'line-height', 'display', 'align-items', 'justify-content', 'white-space'
           ];
 
           for (const p of props) {
@@ -306,59 +324,50 @@ export class PostPagination {
             if (v) dest.style.setProperty(p, v);
           }
         } catch (e) {
-          // ignore errors copying styles
+          // Ignore style copy errors
         }
       };
 
       for (const node of sourceItems) {
-        // deep clone and append
         const clone = node.cloneNode(true) as HTMLElement;
 
-        // Copy computed styles from source element to clone to ensure identical sizing
         try {
           copyStyles(node as HTMLElement, clone);
 
-          // Also copy styles for the inner `.pagination-link` if present
           const srcBtn = (node as HTMLElement).querySelector('.pagination-link') as HTMLElement | null;
           const cloneBtn = clone.querySelector('.pagination-link') as HTMLElement | null;
           if (srcBtn && cloneBtn) {
             copyStyles(srcBtn, cloneBtn);
           }
         } catch (e) {
-          // swallow
+          // Ignore
         }
 
         measureWrapper.appendChild(clone);
       }
 
-      // Append wrapper next to the real hidden container so it inherits the same
-      // CSS cascade (variables, scoped selectors, etc.). Fall back to body.
       const appendTarget = this.hiddenContainerRef?.parentElement || document.body;
-      // Copy class names from the hidden container to preserve styles
       if (this.hiddenContainerRef && this.hiddenContainerRef.className) {
         measureWrapper.className = this.hiddenContainerRef.className + ' measurement-wrapper';
       }
       appendTarget.appendChild(measureWrapper);
 
-      // Read children as measured items
-      Array.from(measureWrapper.querySelectorAll('.hidden-pagination-item')).forEach((el) => hiddenItems.push(el as HTMLElement));
-
-      // Read measured widths (used later)
-      for (const item of hiddenItems) {
-        item.getBoundingClientRect().width; // ensure layout/read for measurement
-      }
+      Array.from(measureWrapper.querySelectorAll('.hidden-pagination-item')).forEach((el) => {
+        hiddenItems.push(el as HTMLElement);
+        (el as HTMLElement).getBoundingClientRect().width;
+      });
     } catch (e) {
-      // measurement failed; swallow to avoid noisy logs
+      // Measurement failed
     }
-
-  // Hidden items count available via hiddenItems.length
 
     if (hiddenItems.length === 0) {
       this.isMeasuring = false;
+      if (measureWrapper && measureWrapper.parentNode) {
+        measureWrapper.parentNode.removeChild(measureWrapper);
+      }
       return;
     }
 
-    // Separate page buttons from control buttons
     const pageButtons = hiddenItems.filter(item => 
       !item.classList.contains('pagination-control')
     );
@@ -367,35 +376,25 @@ export class PostPagination {
       item.classList.contains('pagination-control')
     );
 
-  // pageButtons and controlButtons counts available for calculations
-
     if (pageButtons.length === 0) {
       this.isMeasuring = false;
+      if (measureWrapper && measureWrapper.parentNode) {
+        measureWrapper.parentNode.removeChild(measureWrapper);
+      }
       return;
     }
 
-    // Calculate total width of ALL page buttons
     const totalPageButtonsWidth = pageButtons.reduce((sum, item) => {
-      const width = item.getBoundingClientRect().width;
-      return sum + width;
+      return sum + item.getBoundingClientRect().width;
     }, 0);
 
-    // Calculate total width of control buttons
     const totalControlsWidth = controlButtons.reduce((sum, item) => {
-      const width = item.getBoundingClientRect().width;
-      return sum + width;
+      return sum + item.getBoundingClientRect().width;
     }, 0);
 
-  // Get gap size in pixels (use helper to read CSS var or computed gap)
-  const gapPxForAll = this.getGapPx(this.hiddenContainerRef);
-
-  // computed widths and gap are available in variables
-
-    // Check if all pages fit. We must include gaps between items in the total width.
-    // Total items are pageButtons + controlButtons; there are (n-1) gaps.
+    const gapPxForAll = this.getGapPx(this.hiddenContainerRef);
     const totalItemsCount = pageButtons.length + controlButtons.length;
     const totalWidth = totalPageButtonsWidth + totalControlsWidth + Math.max(0, totalItemsCount - 1) * gapPxForAll;
-  // totalWidth computed and compared against availableWidth below
     
     if (totalWidth <= availableWidth) {
       const previousCondense = this.shouldCondense;
@@ -404,50 +403,23 @@ export class PostPagination {
       this.shouldCondense = false;
       this.maxPageButtons = totalPages;
       
-  // All pages fit; update state below
-      
       if (previousCondense !== this.shouldCondense || previousMax !== this.maxPageButtons) {
         this.generatePages(totalPages);
       }
 
       this.isMeasuring = false;
-      // remove measurement wrapper if present
       if (measureWrapper && measureWrapper.parentNode) {
         measureWrapper.parentNode.removeChild(measureWrapper);
       }
-
       return;
     }
 
-    // Not everything fits - calculate how many page buttons we can show
-    // We need to account for GAPS between buttons AND ellipsis width!
-    
-  // Get the gap size in pixels for condensed calculation
-  const gapPx = this.getGapPx(this.hiddenContainerRef);
-    
-  // gapPx computed for condensed calculation
-
-    // Average width per page button (WITHOUT gap)
+    const gapPx = this.getGapPx(this.hiddenContainerRef);
     const avgPageButtonWidth = totalPageButtonsWidth / pageButtons.length;
-
-    // Ellipsis width is approximately 60% of a button width
     const ellipsisWidth = avgPageButtonWidth * 0.6;
-    
-  // ellipsisWidth estimated
-
-    // Available width for page buttons
-    // Reserve space for up to 2 ellipses (one at start, one at end)
     const reservedForEllipses = (ellipsisWidth + gapPx) * 2;
     const availableForPages = availableWidth - totalControlsWidth - reservedForEllipses;
-
-  // availableForPages computed
-
-    // Calculate how many buttons fit INCLUDING gaps
-    // Formula: n * buttonWidth + (n-1) * gap <= availableWidth
-    // Solving for n: n <= (availableWidth + gap) / (buttonWidth + gap)
     const maxButtons = Math.floor((availableForPages + gapPx) / (avgPageButtonWidth + gapPx));
-    
-  // maxButtons calculated
     
     const previousCondense = this.shouldCondense;
     const previousMax = this.maxPageButtons;
@@ -455,18 +427,10 @@ export class PostPagination {
     this.shouldCondense = true;
     this.maxPageButtons = Math.max(5, Math.min(maxButtons, totalPages));
     
-  // final condensation state updated
-    
     if (previousCondense !== this.shouldCondense || previousMax !== this.maxPageButtons) {
-  // regenerate pages when state changed
       this.generatePages(totalPages);
-    } else {
-  // no change
     }
 
-  // End width check
-
-    // remove measurement wrapper if present
     if (measureWrapper && measureWrapper.parentNode) {
       measureWrapper.parentNode.removeChild(measureWrapper);
     }
@@ -490,27 +454,15 @@ export class PostPagination {
       this.page = 1;
     }
 
-    // Update all pages array for hidden container
     this.allPages = [];
     for (let i = 1; i <= totalPages; i++) {
       this.allPages.push(i);
     }
 
-    // Don't generate pages directly - let checkIfShouldCondense measure and then generate
-    // This prevents overflow when page changes
     if (this.hiddenContainerRef) {
-      // Run width check (may regenerate pages if layout changed)
       this.checkIfShouldCondense();
-
-      // Always regenerate visible items after a page change so the active page
-      // is reflected in `this.items`. checkIfShouldCondense may skip regeneration
-      // when maxPageButtons/shouldCondense haven't changed, but the active page
-      // might have moved outside the previously generated window. Force generation
-      // here to keep visible items in sync with `this.page`.
-  // Force regeneration to sync visible items with current page
       this.generatePages(totalPages);
     } else {
-      // Fallback if hidden container not ready yet
       this.generatePages(totalPages);
     }
   }
@@ -527,43 +479,24 @@ export class PostPagination {
 
   /**
    * Generates exactly maxPageButtons page numbers, using ellipsis where needed.
-   * The number of page buttons is always constant based on available width.
-   * 
-   * @param totalPages - Total number of pages to display
    */
   private generatePages(totalPages: number) {
-  // Generate pages for rendering (no debug logging)
-    
     const items: PaginationItem[] = [];
 
-    // If all pages fit (no condensation needed), show them all
     if (!this.shouldCondense) {
       for (let i = 1; i <= totalPages; i++) {
         items.push({ type: 'page', page: i });
       }
-  // Showing all pages (no condensation)
       this.items = items;
       return;
     }
 
-    // Need to condense - show exactly maxPageButtons pages
-    // Always show: first page, last page, and pages around current
     const buttonsToShow = this.maxPageButtons;
-    
-    // Reserve 2 slots for first and last page
     const middleSlots = buttonsToShow - 2;
     
-  // buttonsToShow and middleSlots available
-    
-    // Calculate range around current page - ensure EXACTLY middleSlots pages
-    // Strategy:
-    // 1. Try to center the current page within the middle slots.
-    // 2. If we overflow the left or right bounds, shift the window to fit.
-    // This guarantees end - start + 1 === middleSlots (when totalPages allows).
     let start = this.page - Math.floor(middleSlots / 2);
     let end = start + middleSlots - 1;
 
-    // Clamp to available page range (2 .. totalPages-1)
     if (start < 2) {
       start = 2;
       end = Math.min(totalPages - 1, start + middleSlots - 1);
@@ -574,39 +507,27 @@ export class PostPagination {
       start = Math.max(2, end - middleSlots + 1);
     }
     
-  // computed range around current page
-    
-    // Build the pages array
     const pages: number[] = [];
-    
-    // Always include first page
     pages.push(1);
     
-    // Add middle pages
     for (let i = start; i <= end; i++) {
       if (i > 1 && i < totalPages) {
         pages.push(i);
       }
     }
     
-    // Always include last page
     if (totalPages > 1) {
       pages.push(totalPages);
     }
     
-  // pages array prepared
-    
-    // Now convert pages array to items with ellipsis
     let lastPage: number | undefined;
     for (const page of pages) {
       if (lastPage !== undefined) {
         const gap = page - lastPage;
         
         if (gap === 2) {
-          // Gap of 1 page: show the page instead of ellipsis
           items.push({ type: 'page', page: lastPage + 1 });
         } else if (gap > 2) {
-          // Gap of 2+ pages: show ellipsis
           items.push({ type: 'ellipsis' });
         }
       }
@@ -615,19 +536,10 @@ export class PostPagination {
       lastPage = page;
     }
 
-  // Final items prepared
-
-    // Adjust numeric button count to account for ellipses.
-    // Rule: when an extra ellipsis appears (going from 1 to 2), it should
-    // reduce the number of numeric buttons by one so the total visible
-    // items remains stable. Desired numeric count = maxPageButtons - (ellipsisCount - 1).
     const ellipsisCount = items.filter(i => i.type === 'ellipsis').length;
     const desiredNumeric = Math.max(1, this.maxPageButtons - Math.max(0, ellipsisCount - 1));
-
-    // Collect indices of numeric page items
     const numericIndices = () => items.map((it, idx) => (it.type === 'page' ? idx : -1)).filter(i => i >= 0);
 
-    // Remove extra numeric pages (but never first/last) until we have desiredNumeric
     let currentNumeric = numericIndices().length;
     while (currentNumeric > desiredNumeric) {
       const pageIdxs = numericIndices();
@@ -649,10 +561,6 @@ export class PostPagination {
       currentNumeric = numericIndices().length;
     }
 
-    // If for some reason there are fewer page buttons than expected, we could attempt
-    // to expand, but in practice the earlier logic fills as much as possible. Leave
-    // as-is to avoid complicated insertion logic here.
-
     this.items = items;
   }
 
@@ -664,12 +572,8 @@ export class PostPagination {
       return;
     }
 
-  // handle page click
-
     this.page = pageNumber;
     this.postChange.emit(pageNumber);
-    
-    // Don't trigger immediate width check - let the Watch decorator handle it
   }
 
   /**
@@ -681,7 +585,6 @@ export class PostPagination {
     }
 
     const newPage = this.page - 1;
-  // handle previous click
     this.page = newPage;
     this.postChange.emit(newPage);
   }
@@ -696,7 +599,6 @@ export class PostPagination {
     }
 
     const newPage = this.page + 1;
-  // handle next click
     this.page = newPage;
     this.postChange.emit(newPage);
   }
@@ -879,7 +781,6 @@ export class PostPagination {
             ref={el => (this.hiddenContainerRef = el)}
             aria-hidden="true"
             role="list"
-            // Keep it measurable but remove from flow and interaction
           >
             {/* Render prev button */}
             <li class="pagination-item pagination-control hidden-pagination-item">
