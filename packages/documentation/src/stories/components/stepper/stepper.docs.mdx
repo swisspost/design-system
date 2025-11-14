@@ -1,5 +1,4 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import meta, * as StepperStories from './stepper.stories';
 import PackageTag from '@/shared/package-tag';
 
@@ -8,15 +7,15 @@ import PackageTag from '@/shared/package-tag';
 <div className="docs-title">
   # Stepper
 
-  <link-design of={JSON.stringify(StepperStories)}></link-design>
+<link-design of={JSON.stringify(StepperStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead mb-16">
-  The stepped progression component provides an interactive visual overview of a process. It shows
-  at a glance the amount of steps a user is required to go through, and serves as a guide for each
-  step, indicating its status.
+  A stepper guides users through any linear, multistep process by showing the user their completed,
+  current, and future steps in an interactive manner.
 </div>
 
 <Canvas sourceState="shown" of={StepperStories.Default} />
@@ -24,30 +23,7 @@ import PackageTag from '@/shared/package-tag';
   <Controls of={StepperStories.Default} />
 </div>
 
-<StylesPackageImport components={['stepper']} />
+## Installation
 
-## Examples
-
-### Navigational Stepper
-
-You can use a stepper to allow users to navigate to specific steps.
-To do so, use `a` elements for the `.stepper-link` of the steps you want to be navigable, and use `span` for the steps you want not to be navigable.
-Then, wrap the stepper inside a `<nav>`.
-
-However, it is better not to use an `a` for the current step since the user is already on the page.
-
-<Canvas of={StepperStories.NavigationalStepper} />
-
-### Informational Stepper
-
-If you wish to display the stepper for informational purposes only, you can use `<span>` elements for the `.stepper-link` on all the steps.
-In this case, there's no need to wrap the stepper inside a `<nav>`.
-
-<Canvas of={StepperStories.InformationalStepper} />
-
-### Long Labels
-
-When dealing with longer labels that may wrap into multiple lines, it is recommended to use a `title` attribute for the `.stepper-link`.
-This will truncate the label with an ellipsis if it exceeds two lines, while allowing the user to read the full label by hovering over it with the mouse.
-
-<Canvas of={StepperStories.LongLabels} />
+The `<post-stepper>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).

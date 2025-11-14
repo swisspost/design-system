@@ -21,7 +21,7 @@
   padding: 0.5em;
 
   min-width: 160px;
-  max-width: min(var(--post-popover-max-width, 280px), 100vw);
+  max-width: var(--post-popover-max-width, 280px);
 }
 
 .popover-content {
