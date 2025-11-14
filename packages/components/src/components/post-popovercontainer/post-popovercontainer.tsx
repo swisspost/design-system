@@ -108,7 +108,7 @@ export class PostPopovercontainer {
    * Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
-  @Prop({ reflect: true }) readonly placement?: Placement = 'top';
+  @Prop() readonly placement?: Placement = 'top';
 
   /**
    * Gap between the edge of the page and the popovercontainer
