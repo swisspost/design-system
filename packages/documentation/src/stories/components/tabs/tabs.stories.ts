@@ -10,8 +10,8 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   postChange: string,
   content?: string,
   tabs?: string,
-  'slots-default': string; 
-  'slots-panels': string; 
+  'slots-default'?: string; 
+  'slots-panels'?: string; 
 }> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
@@ -125,11 +125,12 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       description: 'Slot for placing tab items.',
       control: {
         type: 'text',
+        disable: true,
       },
       table: {
         category: 'Slots',
         type: {
-          summary: 'HTML',
+          summary: 'other',
         },
       },
     },
@@ -138,12 +139,13 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       description: 'Slot for placing tab panels.',
       control: {
         type: 'text',
+        disable: true,
       },
       if: { arg: 'variant', eq: 'panels' },
       table: {
         category: 'Slots',
         type: {
-          summary: 'HTML',
+          summary: 'other',
         },
       },
     },
@@ -254,8 +256,8 @@ function renderPanelsVariant(
 function renderTabs(args: Partial<HTMLPostTabsElement & { 
   variant: string; 
   activeTabPanels?: string;
-  'slots-default': string; 
-  'slots-panels': string;
+  'slots-default'?: string; 
+  'slots-panels'?: string;
 }>) {
   const variant = args.variant || 'panels';
   
@@ -268,8 +270,8 @@ function renderTabs(args: Partial<HTMLPostTabsElement & {
 type Story = StoryObj<HTMLPostTabsElement & { 
   variant: string; 
   activeTabPanels?: string;
-  'slots-default': string; 
-  'slots-panels': string;
+  'slots-default'?: string; 
+  'slots-panels'?: string;
 }>;
 
 export const Default: Story = {};
