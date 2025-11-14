@@ -37,6 +37,12 @@ interface PopoverElement {
   togglePopover: (force?: boolean) => boolean;
 }
 
+const ANIMATIONS = {
+  'pop-in': popIn,
+} as const;
+
+export type AnimationName = keyof typeof ANIMATIONS;
+
 export type PostPopoverElement = HTMLElement & PopoverElement;
 
 /**
@@ -117,7 +123,7 @@ export class PostPopovercontainer {
   /**
    * Animation style
    */
-  @Prop() readonly animation?: 'pop-in' | null = null;
+  @Prop() readonly animation?: AnimationName | null = null;
 
   /**
    * Whether or not to display a little pointer arrow
@@ -146,6 +152,11 @@ export class PostPopovercontainer {
   @Watch('safeSpace')
   validateSafeSpace() {
     checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
+  }
+
+  @Watch('animation')
+  validateAnimation() {
+    checkEmptyOrOneOf(this, 'animation', Object.keys(ANIMATIONS));
   }
 
   /**
@@ -179,7 +190,7 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popovercontainer
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * @param target A focusable element inside the trigger component that controls the popover
    */
   @Method()
   async show(target: HTMLElement) {
@@ -207,7 +218,8 @@ export class PostPopovercontainer {
         this.postShow.emit({ first: this.hasOpenedOnce });
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
       } else {
-        this.runOpenAnimation(content);
+        const animationFn = ANIMATIONS[this.animation];
+        this.runOpenAnimation(animationFn, content);
       }
     }
 
@@ -230,7 +242,7 @@ export class PostPopovercontainer {
     }
 
     // Cancel any running animation
-    if (this.animation !== null && this.currentAnimation) {
+    if (this.currentAnimation) {
       this.currentAnimation.cancel();
       this.currentAnimation = null;
     }
@@ -241,14 +253,56 @@ export class PostPopovercontainer {
   }
 
   /**
+   * Programmatically hide the popovercontainer
+   */
+  @Method()
+  async hide() {
+    if (!this.toggleTimeoutId) {
+      this.eventTarget = null;
+      this.host.hidePopover();
+      this.postHide.emit();
+    }
+  }
+
+  /**
+   * Toggle popovercontainer display
+   * @param target A focusable element inside the trigger component that controls the popover
+   * @param force Pass true to always show or false to always hide
+   */
+  @Method()
+  async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    this.eventTarget = target;
+    // Prevent instant double toggle
+    if (!this.toggleTimeoutId) {
+      this.calculatePosition();
+      this.host.togglePopover(force);
+      this.toggleTimeoutId = null;
+    }
+
+    return this.host.matches(':where(:popover-open, .popover-open)');
+  }
+
+  /**
    * Runs the animation and emits the toggle/show/hide events in the correct timing
    */
 
-  private async runOpenAnimation(element: HTMLElement) {
+  private async runOpenAnimation(
+    animationFn: (el: HTMLElement) => Animation | undefined,
+    element: HTMLElement,
+  ) {
     let animation: Animation | undefined;
 
     try {
-      animation = popIn(element);
+      animation = animationFn(element);
+      if (!animation) {
+        // Fallback: no animation, just emit open events directly
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+        this.postToggle.emit({ isOpen: true });
+        this.postShow.emit({ first: this.hasOpenedOnce });
+
+        return;
+      }
 
       this.currentAnimation = animation;
 
@@ -277,36 +331,6 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically hide the popovercontainer
-   */
-  @Method()
-  async hide() {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = null;
-      this.host.hidePopover();
-      this.postHide.emit();
-    }
-  }
-
-  /**
-   * Toggle popovercontainer display
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
-   * @param force Pass true to always show or false to always hide
-   */
-  @Method()
-  async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
-    this.eventTarget = target;
-    // Prevent instant double toggle
-    if (!this.toggleTimeoutId) {
-      this.calculatePosition();
-      this.host.togglePopover(force);
-      this.toggleTimeoutId = null;
-    }
-
-    return this.host.matches(':where(:popover-open, .popover-open)');
-  }
-
-  /**
    * Start or stop auto updates based on popovercontainer events.
    * Popovercontainers can be closed or opened with other methods than class members,
    * therefore listening to the toggle event is safer for cleaning up.
@@ -328,6 +352,7 @@ export class PostPopovercontainer {
    * an influence on popovercontainer positioning
    */
   private startAutoupdates() {
+    if (!this.eventTarget || !this.host) return;
     this.clearAutoUpdate = autoUpdate(
       this.eventTarget,
       this.host,

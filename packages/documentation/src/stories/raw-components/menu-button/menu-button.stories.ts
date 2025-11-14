@@ -16,6 +16,7 @@ const meta: MetaComponent = {
     placement: 'bottom',
     padding: '',
     backgroundColor: '',
+    animation: 'pop-in',
   },
   argTypes: {
     id: {
@@ -44,6 +45,7 @@ const meta: MetaComponent = {
 };
 
 function render(args: Args) {
+  console.log(args.animation);
   // Construct the style string conditionally based on padding and backgroundColor
   const styles = [
     args.padding ? `--post-menu-padding: ${args.padding};` : '',
@@ -62,6 +64,7 @@ function render(args: Args) {
       id="${args.id}"
       placement="${args.placement !== 'bottom' ? args.placement : nothing}"
       label="Example menu"
+      animation="${args.animation ? args.animation : nothing}"
     >
       <post-menu-item><button>Example 1</button></post-menu-item>
       <post-menu-item><a href="#">Example 2</a></post-menu-item>
