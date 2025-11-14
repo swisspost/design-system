@@ -149,6 +149,7 @@ export interface V910Checks {
     hydrated_flag: boolean;
     accordion_item_part: boolean;
     popover_trigger: boolean;
+    tabs_anchor_navigation: boolean;
   };
 }
 
