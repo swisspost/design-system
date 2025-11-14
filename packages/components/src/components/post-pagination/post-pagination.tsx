@@ -264,9 +264,7 @@ export class PostPagination {
     const totalPages = this.getTotalPages();
     const availableWidth = this.getAvailableWidth();
     
-    console.log('=== Pagination Width Check ===');
-    console.log('Total pages:', totalPages);
-    console.log('Available width:', availableWidth);
+  // Pagination width check
     
     // Measure all hidden items using an off-DOM wrapper appended to document.body.
     // This avoids changing styles on the real hidden container and is more robust
@@ -345,19 +343,17 @@ export class PostPagination {
       // Read children as measured items
       Array.from(measureWrapper.querySelectorAll('.hidden-pagination-item')).forEach((el) => hiddenItems.push(el as HTMLElement));
 
-      // Log widths for debugging
-      hiddenItems.forEach((item, idx) => {
-        const w = item.getBoundingClientRect().width;
-        console.log(`[Pagination][measure] item ${idx}:`, item.textContent?.trim(), 'width:', w);
-      });
+      // Read measured widths (used later)
+      for (const item of hiddenItems) {
+        item.getBoundingClientRect().width; // ensure layout/read for measurement
+      }
     } catch (e) {
-      console.warn('[Pagination][measure] failed during off-DOM measurement', e);
+      // measurement failed; swallow to avoid noisy logs
     }
 
-    console.log('Hidden items count:', hiddenItems.length);
+  // Hidden items count available via hiddenItems.length
 
     if (hiddenItems.length === 0) {
-      console.log('No hidden items found!');
       this.isMeasuring = false;
       return;
     }
@@ -371,11 +367,9 @@ export class PostPagination {
       item.classList.contains('pagination-control')
     );
 
-    console.log('Page buttons count:', pageButtons.length);
-    console.log('Control buttons count:', controlButtons.length);
+  // pageButtons and controlButtons counts available for calculations
 
     if (pageButtons.length === 0) {
-      console.log('No page buttons found!');
       this.isMeasuring = false;
       return;
     }
@@ -395,17 +389,13 @@ export class PostPagination {
   // Get gap size in pixels (use helper to read CSS var or computed gap)
   const gapPxForAll = this.getGapPx(this.hiddenContainerRef);
 
-    console.log('Total page buttons width:', totalPageButtonsWidth);
-    console.log('Total controls width:', totalControlsWidth);
-    console.log('Average page button width:', totalPageButtonsWidth / pageButtons.length);
-    console.log('Gap between items (used for fit check):', gapPxForAll, 'px');
+  // computed widths and gap are available in variables
 
     // Check if all pages fit. We must include gaps between items in the total width.
     // Total items are pageButtons + controlButtons; there are (n-1) gaps.
     const totalItemsCount = pageButtons.length + controlButtons.length;
     const totalWidth = totalPageButtonsWidth + totalControlsWidth + Math.max(0, totalItemsCount - 1) * gapPxForAll;
-    console.log('Total width needed (including gaps):', totalWidth);
-    console.log('Does everything fit?', totalWidth <= availableWidth);
+  // totalWidth computed and compared against availableWidth below
     
     if (totalWidth <= availableWidth) {
       const previousCondense = this.shouldCondense;
@@ -414,7 +404,7 @@ export class PostPagination {
       this.shouldCondense = false;
       this.maxPageButtons = totalPages;
       
-      console.log('All pages fit! Setting maxPageButtons to:', totalPages);
+  // All pages fit; update state below
       
       if (previousCondense !== this.shouldCondense || previousMax !== this.maxPageButtons) {
         this.generatePages(totalPages);
@@ -435,7 +425,7 @@ export class PostPagination {
   // Get the gap size in pixels for condensed calculation
   const gapPx = this.getGapPx(this.hiddenContainerRef);
     
-    console.log('Gap between buttons:', gapPx, 'px');
+  // gapPx computed for condensed calculation
 
     // Average width per page button (WITHOUT gap)
     const avgPageButtonWidth = totalPageButtonsWidth / pageButtons.length;
@@ -443,21 +433,21 @@ export class PostPagination {
     // Ellipsis width is approximately 60% of a button width
     const ellipsisWidth = avgPageButtonWidth * 0.6;
     
-    console.log('Estimated ellipsis width:', ellipsisWidth, 'px');
+  // ellipsisWidth estimated
 
     // Available width for page buttons
     // Reserve space for up to 2 ellipses (one at start, one at end)
     const reservedForEllipses = (ellipsisWidth + gapPx) * 2;
     const availableForPages = availableWidth - totalControlsWidth - reservedForEllipses;
 
-    console.log('Available width for pages (after ellipses):', availableForPages);
+  // availableForPages computed
 
     // Calculate how many buttons fit INCLUDING gaps
     // Formula: n * buttonWidth + (n-1) * gap <= availableWidth
     // Solving for n: n <= (availableWidth + gap) / (buttonWidth + gap)
     const maxButtons = Math.floor((availableForPages + gapPx) / (avgPageButtonWidth + gapPx));
     
-    console.log('Calculated max buttons that fit (with gaps and ellipses):', maxButtons);
+  // maxButtons calculated
     
     const previousCondense = this.shouldCondense;
     const previousMax = this.maxPageButtons;
@@ -465,17 +455,16 @@ export class PostPagination {
     this.shouldCondense = true;
     this.maxPageButtons = Math.max(5, Math.min(maxButtons, totalPages));
     
-    console.log('Final maxPageButtons:', this.maxPageButtons);
-    console.log('shouldCondense:', this.shouldCondense);
+  // final condensation state updated
     
     if (previousCondense !== this.shouldCondense || previousMax !== this.maxPageButtons) {
-      console.log('Regenerating pages...');
+  // regenerate pages when state changed
       this.generatePages(totalPages);
     } else {
-      console.log('No change, skipping regeneration');
+  // no change
     }
 
-    console.log('=== End Width Check ===\n');
+  // End width check
 
     // remove measurement wrapper if present
     if (measureWrapper && measureWrapper.parentNode) {
@@ -518,7 +507,7 @@ export class PostPagination {
       // when maxPageButtons/shouldCondense haven't changed, but the active page
       // might have moved outside the previously generated window. Force generation
       // here to keep visible items in sync with `this.page`.
-      console.log('[Pagination] validateAndUpdatePages: forcing generatePages to sync visible items with page', this.page);
+  // Force regeneration to sync visible items with current page
       this.generatePages(totalPages);
     } else {
       // Fallback if hidden container not ready yet
@@ -543,11 +532,7 @@ export class PostPagination {
    * @param totalPages - Total number of pages to display
    */
   private generatePages(totalPages: number) {
-    console.log('=== Generate Pages ===');
-    console.log('Current page:', this.page);
-    console.log('Total pages:', totalPages);
-    console.log('maxPageButtons:', this.maxPageButtons);
-    console.log('shouldCondense:', this.shouldCondense);
+  // Generate pages for rendering (no debug logging)
     
     const items: PaginationItem[] = [];
 
@@ -556,7 +541,7 @@ export class PostPagination {
       for (let i = 1; i <= totalPages; i++) {
         items.push({ type: 'page', page: i });
       }
-      console.log('Showing all pages (no condensation)');
+  // Showing all pages (no condensation)
       this.items = items;
       return;
     }
@@ -568,8 +553,7 @@ export class PostPagination {
     // Reserve 2 slots for first and last page
     const middleSlots = buttonsToShow - 2;
     
-    console.log('Buttons to show:', buttonsToShow);
-    console.log('Middle slots available:', middleSlots);
+  // buttonsToShow and middleSlots available
     
     // Calculate range around current page - ensure EXACTLY middleSlots pages
     // Strategy:
@@ -590,7 +574,7 @@ export class PostPagination {
       start = Math.max(2, end - middleSlots + 1);
     }
     
-    console.log('Range around current page: start =', start, ', end =', end);
+  // computed range around current page
     
     // Build the pages array
     const pages: number[] = [];
@@ -610,7 +594,7 @@ export class PostPagination {
       pages.push(totalPages);
     }
     
-    console.log('Pages to display:', pages);
+  // pages array prepared
     
     // Now convert pages array to items with ellipsis
     let lastPage: number | undefined;
@@ -631,8 +615,7 @@ export class PostPagination {
       lastPage = page;
     }
 
-    console.log('Final items:', items.map(i => i.type === 'ellipsis' ? '...' : i.page));
-    console.log('=== End Generate Pages ===\n');
+  // Final items prepared
 
     // Adjust numeric button count to account for ellipses.
     // Rule: when an extra ellipsis appears (going from 1 to 2), it should
@@ -681,9 +664,7 @@ export class PostPagination {
       return;
     }
 
-    console.log('[Pagination] handlePageClick: clicking page', pageNumber, 'current:', this.page);
-    // Also log the visible items at the time of click
-    console.log('[Pagination] visible items before click:', this.items.map(i => i.type === 'ellipsis' ? '...' : (i as any).page));
+  // handle page click
 
     this.page = pageNumber;
     this.postChange.emit(pageNumber);
@@ -700,8 +681,7 @@ export class PostPagination {
     }
 
     const newPage = this.page - 1;
-    console.log('[Pagination] handlePrevious: from', this.page, 'to', newPage);
-    console.log('[Pagination] visible items before prev:', this.items.map(i => i.type === 'ellipsis' ? '...' : (i as any).page));
+  // handle previous click
     this.page = newPage;
     this.postChange.emit(newPage);
   }
@@ -716,8 +696,7 @@ export class PostPagination {
     }
 
     const newPage = this.page + 1;
-    console.log('[Pagination] handleNext: from', this.page, 'to', newPage);
-    console.log('[Pagination] visible items before next:', this.items.map(i => i.type === 'ellipsis' ? '...' : (i as any).page));
+  // handle next click
     this.page = newPage;
     this.postChange.emit(newPage);
   }
