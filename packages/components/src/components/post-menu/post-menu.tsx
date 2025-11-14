@@ -93,7 +93,11 @@ export class PostMenu {
 
   componentDidLoad() {
     this.validatePlacement();
-    this.validateLabel();
+    // Temporary workaround: defer validation to avoid timing issues with parent components.
+    // Child componentDidLoad runs before parent finishes passing props.
+    requestAnimationFrame(() => {
+      this.validateLabel();
+    });
   }
 
   /**
