@@ -168,7 +168,7 @@ export default function Home() {
       <h2>Tabs - Navigation Variant</h2>
       <PostTabs label="Tabs navigation">
         <PostTabItem name="nav-first">
-          <a href="#first">First</a>
+          <a href="#first" aria-current="page">First</a>
         </PostTabItem>
         <PostTabItem name="nav-second">
           <a href="#second">Second</a>
