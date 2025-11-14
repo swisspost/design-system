@@ -1,5 +1,34 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.55
+
+### Major Changes
+
+- Renamed the `toggleMobileMenu` method in the `post-header` component to `toggleBurgerMenu` for clearer and device-agnostic naming. (by [@alizedebray](https://github.com/alizedebray) with [#6512](https://github.com/swisspost/design-system/pull/6512))
+
+- Removed the default slot from the `post-header` component. Content previously placed in the default slot should now be assigned to the `local-controls` slot. (by [@alizedebray](https://github.com/alizedebray) with [#6512](https://github.com/swisspost/design-system/pull/6512))
+
+- Removed the `slot` attribute from the `post-mainnavigation` host. The slot must now be added manually to position the `post-mainnavigation` correctly within the `post-header` component. (by [@alizedebray](https://github.com/alizedebray) with [#6512](https://github.com/swisspost/design-system/pull/6512))
+
+- Removed `--post-local-header-top` custom properties from the `post-header` component because the local header is no longer a positioned element. (by [@alizedebray](https://github.com/alizedebray) with [#6512](https://github.com/swisspost/design-system/pull/6512))
+
+### Minor Changes
+
+- Removed the HTML stepper component and replaced it with new `post-stepper` and `post-stepper-item` web components. (by [@leagrdv](https://github.com/leagrdv) with [#6502](https://github.com/swisspost/design-system/pull/6502))
+
+### Patch Changes
+
+- Added the CSS variable `--post-tooltip-max-width` that enables configuring the max-width of the `post-tooltip` component. (by [@leagrdv](https://github.com/leagrdv) with [#6632](https://github.com/swisspost/design-system/pull/6632))
+
+- Fixed components with missing required properties during hydration phase, when used nested in other components in a SSR environment. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6635](https://github.com/swisspost/design-system/pull/6635))
+
+- Fixed console error appearing when toggling `post-collapsible` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6611](https://github.com/swisspost/design-system/pull/6611))
+
+- Corrected offset of the outline of focused elements in the `post-language-option` and `post-mainnavigation`. (by [@leagrdv](https://github.com/leagrdv) with [#6584](https://github.com/swisspost/design-system/pull/6584))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.55
+  - @swisspost/design-system-styles@10.0.0-next.55
+
 ## 10.0.0-next.54
 
 ### Minor Changes
