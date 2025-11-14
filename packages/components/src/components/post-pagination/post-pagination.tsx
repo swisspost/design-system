@@ -218,11 +218,6 @@ export class PostPagination {
         // Get width from contentRect (most compatible)
         const width = entry.contentRect.width;
         if (width !== this.containerWidth) {
-          console.log('[Pagination] Container resized:', {
-            oldWidth: this.containerWidth,
-            newWidth: width,
-            device: this.currentDevice,
-          });
           this.containerWidth = width;
         }
       }
@@ -231,7 +226,6 @@ export class PostPagination {
     // Observe the nav element
     const nav = this.host.querySelector('nav');
     if (nav) {
-      console.log('[Pagination] Starting to observe nav element');
       this.resizeObserver.observe(nav);
     } else {
       console.warn('[Pagination] Nav element not found for observation');
@@ -249,10 +243,6 @@ export class PostPagination {
    * Handles device change events
    */
   private handleDeviceChange = (event: CustomEvent<Device>) => {
-    console.log('[Pagination] Device changed:', {
-      oldDevice: this.currentDevice,
-      newDevice: event.detail,
-    });
     this.currentDevice = event.detail;
   };
 
@@ -271,7 +261,6 @@ export class PostPagination {
    */
   private calculateMaxVisiblePages(): number {
     if (this.containerWidth === 0) {
-      console.log('[Pagination] Container width is 0, using fallback of 7 pages');
       // Default fallback
       return 7;
     }
@@ -295,20 +284,8 @@ export class PostPagination {
     const totalPages = this.getTotalPages();
     const result = Math.max(3, Math.min(maxButtons, totalPages));
     
-    console.log('[Pagination] Calculate max visible pages:', {
-      containerWidth: this.containerWidth,
-      device: this.currentDevice,
-      buttonSize: buttonSize,
-      buttonGap: BUTTON_GAP,
-      controlButtonsWidth: controlButtonsWidth,
-      availableWidth: availableWidth,
-      buttonWithGap: buttonWithGap,
-      calculatedMaxButtons: maxButtons,
-      totalPages: totalPages,
-      finalResult: result,
-    });
-    
     return result;
+    
   }
 
   /**
@@ -353,18 +330,14 @@ export class PostPagination {
     const maxVisible = this.calculateMaxVisiblePages();
     const items: PaginationItem[] = [];
 
-    console.log('[Pagination] Generating pages:', {
-      totalPages: totalPages,
-      maxVisible: maxVisible,
-      currentPage: this.page,
-    });
+    
 
     // If we can show all pages, do so
     if (totalPages <= maxVisible) {
       for (let i = 1; i <= totalPages; i++) {
         items.push({ type: 'page', page: i });
       }
-      console.log('[Pagination] Showing all pages:', items.length);
+      
       this.items = items;
       return;
     }
@@ -436,7 +409,7 @@ export class PostPagination {
       endPage = newEnd;
     }
 
-    const finalSections = (() => {
+    (() => {
       const leftGap = startPage - 1;
       const rightGap = totalPages - endPage;
 
@@ -451,18 +424,7 @@ export class PostPagination {
       return { leftGap, rightGap, leftSection, rightSection };
     })();
 
-    console.log('[Pagination] Range calculation:', {
-      middleSlots: middleSlots,
-      delta: delta,
-      initialStartPage: this.page - delta,
-      initialEndPage: this.page + delta,
-      adjustedStartPage: startPage,
-      adjustedEndPage: endPage,
-      leftGap: finalSections.leftGap,
-      rightGap: finalSections.rightGap,
-      leftSection: finalSections.leftSection,
-      rightSection: finalSections.rightSection,
-    });
+    
 
     // Build items - now we'll have exactly maxVisible items
     items.push({ type: 'page', page: 1 });
@@ -486,24 +448,6 @@ export class PostPagination {
     items.push({ type: 'page', page: totalPages });
 
     const pageCount = items.filter(item => item.type === 'page').length;
-    const ellipsisCount = items.filter(item => item.type === 'ellipsis').length;
-    
-    console.log('[Pagination] Generated items:', {
-      totalItems: items.length,
-      targetItems: maxVisible,
-      pageButtons: pageCount,
-      ellipses: ellipsisCount,
-      items: items,
-    });
-
-    // Verify we have correct count
-    if (items.length !== maxVisible) {
-      console.error('[Pagination] ❌ ITEM COUNT MISMATCH!', {
-        expected: maxVisible,
-        actual: items.length,
-        difference: items.length - maxVisible,
-      });
-    }
 
     // Check for potential overflow
     const expectedWidth = (pageCount + 2) * (BUTTON_SIZES[this.currentDevice] + BUTTON_GAP);
@@ -637,17 +581,8 @@ export class PostPagination {
     const isNextDisabled = this.disabled || this.page >= totalPages;
     
     if (totalPages <= 1) {
-      console.log('[Pagination] Not rendering (totalPages <= 1)');
       return null;
     }
-
-    console.log('[Pagination] Rendering:', {
-      totalPages: totalPages,
-      currentPage: this.page,
-      totalItems: this.items.length,
-      containerWidth: this.containerWidth,
-      device: this.currentDevice,
-    });
 
     return (
       <Host slot="post-pagination" data-version={version}>
