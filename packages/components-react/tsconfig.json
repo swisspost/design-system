@@ -16,6 +16,7 @@
     "noLib": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "rootDir": "src",
     "outDir": "dist",
     "removeComments": true,
     "skipLibCheck": true,

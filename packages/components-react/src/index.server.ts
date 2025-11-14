@@ -1,1 +1,1 @@
-export * from './stencil-generated/server/components.js';
+export * from './stencil-generated/components.server.js';
