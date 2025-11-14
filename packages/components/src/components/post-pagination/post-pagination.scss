@@ -1,9 +1,4 @@
-// post-pagination.scss
-// Responsive pagination component styles with container-aware layout
-
-// ============================================================================
-// Variables
-// ============================================================================
+@use '@swisspost/design-system-styles/mixins/media';
 
 // Button sizes per device (must match BUTTON_SIZES in TypeScript)
 $pagination-button-size-mobile: 32px;
@@ -143,14 +138,14 @@ $pagination-border-radius: 4px;
   }
   
   // Tablet: 40px
-  @media (min-width: 600px) {
+  @include media.min(sm) {
     width: $pagination-button-size-tablet;
     height: $pagination-button-size-tablet;
     min-width: $pagination-button-size-tablet;
   }
-  
+
   // Desktop: 48px
-  @media (min-width: 1024px) {
+  @include media.min(md) {
     width: $pagination-button-size-desktop;
     height: $pagination-button-size-desktop;
     min-width: $pagination-button-size-desktop;
@@ -173,12 +168,12 @@ $pagination-border-radius: 4px;
       width: 16px;
       height: 16px;
       
-      @media (min-width: 600px) {
+      @include media.min(sm) {
         width: 18px;
         height: 18px;
       }
-      
-      @media (min-width: 1024px) {
+
+      @include media.min(md) {
         width: 20px;
         height: 20px;
       }
@@ -210,13 +205,13 @@ $pagination-border-radius: 4px;
   user-select: none;
   
   // Tablet: 40px
-  @media (min-width: 600px) {
+  @include media.min(sm) {
     width: $pagination-button-size-tablet;
     height: $pagination-button-size-tablet;
   }
-  
+
   // Desktop: 48px
-  @media (min-width: 1024px) {
+  @include media.min(md) {
     width: $pagination-button-size-desktop;
     height: $pagination-button-size-desktop;
   }
@@ -239,19 +234,19 @@ $pagination-border-radius: 4px;
 // ============================================================================
 
 // Small mobile devices
-@media (max-width: 375px) {
+@include media.max(sm) {
   .pagination {
     // Allow some horizontal padding on very small screens
     padding: 0 8px;
   }
-  
+
   .pagination-link {
     font-size: 12px;
   }
 }
 
 // Larger desktop screens
-@media (min-width: 1280px) {
+@include media.min(lg) {
   .pagination-link {
     font-size: 16px;
   }
