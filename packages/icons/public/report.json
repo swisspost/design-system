@@ -32187,6 +32187,58 @@
       "modifiedAt": "2025-11-05T11:05:07.704Z"
     },
     {
+      "uuid": "8e24c310-c125-11f0-b1fa-0050568d2654",
+      "id": 7351970,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7351970/storage/MDA3MzUxOTY5LzAvbWFzdGVy",
+        "keywords": [
+          "Mobility",
+          "Mobilität",
+          "Mobilité",
+          "Mobilità",
+          "AmiGo",
+          "On-demand mobility",
+          "On-Demand Mobilität",
+          "Mobilité à la demande",
+          "Mobilità on demand"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2742.svg",
+        "basename": "2742",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-14T06:45:49.000Z",
+      "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
+      "uuid": "ab24a972-c126-11f0-b1fa-0050568d2654",
+      "id": 7352046,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7352046/storage/MDA3MzUyMDQ1LzAvbWFzdGVy",
+        "keywords": [
+          "App",
+          "Application",
+          "Car App"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2744.svg",
+        "basename": "2744",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-14T06:53:47.000Z",
+      "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -44798,11 +44850,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2025-11-09T02:23:04.210Z",
+  "created": "2025-11-16T02:26:42.986Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1062
+    "success": 1064
   },
-  "version": "9.4.0"
+  "version": "9.5.0"
 }
