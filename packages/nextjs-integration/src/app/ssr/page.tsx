@@ -20,6 +20,8 @@ import {
   PostTabPanel,
   PostTooltipTrigger,
   PostTooltip,
+  PostStepper,
+  PostStepperItem,
 } from '@swisspost/design-system-components-react/server';
 
 export default function Home() {
@@ -175,6 +177,19 @@ export default function Home() {
       <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
         Hi there 👋
       </PostTooltip>
+
+      <h2>Post Stepper</h2>
+      <PostStepper
+        completedLabel="Completed step"
+        currentLabel="Current step"
+        activeStepLabel="Step #index:"
+        currentIndex={1}
+      >
+        <PostStepperItem> Step 1 </PostStepperItem>
+        <PostStepperItem> Step 2 </PostStepperItem>
+        <PostStepperItem> Step 3 </PostStepperItem>
+        <PostStepperItem> Step 4 </PostStepperItem>
+      </PostStepper>
     </>
   );
 }
