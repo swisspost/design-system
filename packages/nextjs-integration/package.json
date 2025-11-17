@@ -11,7 +11,7 @@
   "dependencies": {
     "@swisspost/design-system-components-react": "workspace:1.0.31",
     "@swisspost/design-system-styles": "workspace:6.6.5",
-    "@swisspost/internet-header": "workspace:1.13.9",
+    "@swisspost/internet-header": "1.15.23",
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18"

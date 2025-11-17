@@ -253,7 +253,6 @@ For some packages it's necessary to run multiple dev servers at the same time. T
 | Package         | Port |
 | :-------------- | ---: |
 | Styles (unused) | 9300 |
-| Internet-Header | 9310 |
 | Intranet-Header | 9320 |
 | Icons           | 9330 |
 
