@@ -17,10 +17,11 @@
     <post-popover id="popover-one" close-button-caption="Close Popover">
       <p id="testtext">This is a <a href="">test</a></p>
     </post-popover>
-
-    <!-- Alternative trigger case with no interactive element inside the trigger -->
-    <post-popover-trigger for="popover-two">
-      <div>Popover Trigger</div>
+    <post-popover-trigger id="popover-two">
+      <button type="button" class="btn btn-secondary">Popover Trigger</button>
+      <post-popover close-button-caption="Close Popover">
+        <p id="testtext2">This is a <a href="">test</a></p>
+      </post-popover>
     </post-popover-trigger>
   </body>
 </html>

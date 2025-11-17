@@ -52,45 +52,61 @@ export class PostPopoverTrigger {
   private readonly boundHandleKeyDown: (event: Event) => void;
   private readonly boundHandlePostToggle: (event: CustomEvent<{ isOpen: boolean }>) => void;
 
-  // Gets the associated popover element to the trigger based on 'for'
+  // Gets the associated to the trigger popover element
   private get popover(): HTMLPostPopoverElement | null {
     const ref = this.host.querySelector('post-popover') ?? document.getElementById(this.for);
+
+    if (!ref) {
+      console.log(this.for);
+      const target = this.for ? `with ID: ${this.for}` : 'inside the <post-popover-trigger>';
+      console.warn(`No post-popover found ${target}.`);
+      return null;
+    }
     return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
   }
 
   private setupTrigger() {
     this.trigger = this.host.querySelector('*');
 
-    if (this.trigger) {
-      this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
-
-      // check if its not focusable and add aria role and tabindex
-      if (!isFocusable(this.trigger)) {
-        this.trigger.setAttribute('tabindex', '0');
-        this.trigger.setAttribute('role', 'button');
-      }
-
-      // Set aria attributes
-      this.trigger.setAttribute('aria-haspopup', 'true');
-      this.trigger.setAttribute('aria-controls', this.for);
-
-      this.trigger.addEventListener('click', this.boundHandleToggle);
-      this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
-    } else {
+    if (!this.trigger) {
       console.error(
         'No content found in the post-popover-trigger slot. Please insert a focusable element or content that can receive focus.',
       );
+      return;
     }
+
+    // check if its not focusable and add aria role and tabindex
+    if (!isFocusable(this.trigger)) {
+      this.trigger.setAttribute('tabindex', '0');
+      this.trigger.setAttribute('role', 'button');
+    }
+
+    const popover = this.popover;
+    if (!popover) return;
+
+    // Set aria attributes
+    this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
+    this.trigger.setAttribute('aria-haspopup', 'true');
+
+    // Set aria-controls depending on the popover/trigger relationship
+    if (this.for) {
+      this.trigger.setAttribute('aria-controls', this.for);
+    } else if ('ariaControlsElements' in this.trigger) {
+      // Use Elements Api ariaControlsElements property
+      this.trigger.ariaControlsElements = [popover];
+    } else {
+      // Alternatively connect with a random ID
+      popover.id ||= `popover-${crypto.randomUUID()}`;
+      (this.trigger as HTMLElement).setAttribute('aria-controls', popover.id);
+    }
+
+    this.trigger.addEventListener('click', this.boundHandleToggle);
+    this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
   }
 
   private handleToggle() {
-    const popoverEl = this.popover;
-    if (popoverEl) {
-      popoverEl.toggle(this.trigger);
-      this.focusTrigger();
-    } else {
-      console.warn(`No post-popover found with ID: ${this.for}`);
-    }
+    this.popover?.toggle(this.trigger);
+    this.focusTrigger();
   }
 
   private focusTrigger() {
