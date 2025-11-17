@@ -1,5 +1,60 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.56
+
+### Patch Changes
+
+- Removed the need for a palette class on the dialog component. (by [@alizedebray](https://github.com/alizedebray) with [#6625](https://github.com/swisspost/design-system/pull/6625))
+
+- Removed the HTML stepper component and replaced it with new `post-stepper` and `post-stepper-item` web components. (by [@leagrdv](https://github.com/leagrdv) with [#6502](https://github.com/swisspost/design-system/pull/6502))
+
+- Removed the default slot from the `post-header` component. Content previously placed in the default slot should now be assigned to the `local-controls` slot. (by [@alizedebray](https://github.com/alizedebray) with [#6512](https://github.com/swisspost/design-system/pull/6512))
+
+- Added the `data-type` attribute to the dialog component. The icon is now automatically selected based on this attribute and limited to the four signal types: info, success, warning, and error. (by [@alizedebray](https://github.com/alizedebray) with [#6625](https://github.com/swisspost/design-system/pull/6625))
+
+- Removed the `slot` attribute from the `post-mainnavigation` host. The slot must now be added manually to position the `post-mainnavigation` correctly within the `post-header` component. (by [@alizedebray](https://github.com/alizedebray) with [#6512](https://github.com/swisspost/design-system/pull/6512))
+
+- Updated sections to ensure they function correctly when nested inside containers. (by [@alizedebray](https://github.com/alizedebray) with [#6641](https://github.com/swisspost/design-system/pull/6641))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.55
+  - @swisspost/design-system-components@10.0.0-next.55
+  - @swisspost/design-system-styles@10.0.0-next.55
+  - @swisspost/design-system-components-react@10.0.0-next.55
+  - @swisspost/internet-header@10.0.0-next.55
+  - @swisspost/design-system-tokens@10.0.0-next.55
+
+## 6.0.0-next.55
+
+### Minor Changes
+
+- Updated the `post-header` to use aria-current="location" for active header links outside main navigation to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#6566](https://github.com/swisspost/design-system/pull/6566))
+
+### Patch Changes
+
+- Updated the migration guide to improve clarity and usability, making it more user-friendly and understandable, and added detailed instructions for removing Bootstrap and Ng-Bootstrap along with general migration guidance. (by [@leagrdv](https://github.com/leagrdv) with [#6565](https://github.com/swisspost/design-system/pull/6565))
+
+- Updated several outdated Figma links to point to the correct design. (by [@leagrdv](https://github.com/leagrdv) with [#6592](https://github.com/swisspost/design-system/pull/6592))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.54
+  - @swisspost/design-system-components@10.0.0-next.54
+  - @swisspost/design-system-styles@10.0.0-next.54
+  - @swisspost/design-system-components-react@10.0.0-next.54
+  - @swisspost/internet-header@10.0.0-next.54
+  - @swisspost/design-system-tokens@10.0.0-next.54
+
+## 6.0.0-next.54
+
+### Patch Changes
+
+- Fixed missing validation message in the checkbox documentation. (by [@leagrdv](https://github.com/leagrdv) with [#6574](https://github.com/swisspost/design-system/pull/6574))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.53
+  - @swisspost/design-system-components@10.0.0-next.53
+  - @swisspost/internet-header@10.0.0-next.53
+  - @swisspost/design-system-components-react@10.0.0-next.53
+  - @swisspost/design-system-tokens@10.0.0-next.53
+  - @swisspost/design-system-icons@10.0.0-next.53
+
 ## 6.0.0-next.53
 
 ### Minor Changes

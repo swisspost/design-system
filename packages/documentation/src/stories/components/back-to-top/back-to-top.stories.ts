@@ -27,12 +27,12 @@ const meta: MetaComponent = {
           <li><a href="">Über uns</a></li>
         </ul>
 
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span>Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-      </post-togglebutton>
+        <!-- Menu button for mobile -->
+        <post-togglebutton slot="post-togglebutton">
+          <span>Menu</span>
+          <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
+          <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+        </post-togglebutton>
 
         <!-- Language switch -->
         <post-language-switch
@@ -51,24 +51,24 @@ const meta: MetaComponent = {
         <!-- Application title (optional) -->
         <h1 slot="title">Application title</h1>
 
-      <!-- Custom content (optional) -->
-      <ul class="list-inline">
-        <li>
-          <a href="#">
-            <span>Search</span>
-            <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>Login</span>
-            <post-icon aria-hidden="true" name="login"></post-icon>
-          </a>
-        </li>
-      </ul>
+        <!-- Local controls (optional) -->
+        <ul slot="local-controls" class="list-inline">
+          <li>
+            <a href="#">
+              <span>Search</span>
+              <post-icon aria-hidden="true" name="search"></post-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Login</span>
+              <post-icon aria-hidden="true" name="login"></post-icon>
+            </a>
+          </li>
+        </ul>
 
         <!-- Main navigation -->
-        <post-mainnavigation caption="Hauptnavigation">
+        <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
           <post-list title-hidden="">
             <h2>Main Navigation</h2>
             <!-- Link only level 1 -->

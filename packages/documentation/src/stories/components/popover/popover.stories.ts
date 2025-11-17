@@ -17,7 +17,7 @@ const meta: MetaComponent = {
     },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18199-9350&mode=design&t=38qLaYwWdirTcHdb-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21-173&m=dev',
     },
   },
   render,

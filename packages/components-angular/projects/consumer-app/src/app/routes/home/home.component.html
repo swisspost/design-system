@@ -19,13 +19,13 @@
 </div>
 
 <div class="my-24">
-  <h2>Post Banner</h2>
-  <post-banner><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-banner>
-</div>
-
-<div class="my-4">
   <h2>Post Avatar</h2>
   <post-avatar firstname="Firstname"></post-avatar>
+</div>
+
+<div class="my-24">
+  <h2>Post Banner</h2>
+  <post-banner><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-banner>
 </div>
 
 <div class="my-24">
@@ -49,8 +49,36 @@
 </div>
 
 <div class="my-24">
-  <h2>Post Logo</h2>
-  <post-logo url="https://www.post.ch/en">Logo of the Post, To the homepage</post-logo>
+  <h2>Post Linkarea</h2>
+  <post-linkarea>
+    <div class="card">
+      <div class="card-body">
+        <h5>Titulum</h5>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+        <a class="card-link" href="#test">
+          Ligilo teksto
+        </a>
+      </div>
+    </div>
+  </post-linkarea>
+</div>
+
+<div class="my-24">
+  <h2>Post Menu</h2>
+  <post-menu-trigger for="menu-one">
+    <button class="btn btn-primary">Menu button</button>
+  </post-menu-trigger>
+  <post-menu id="menu-one">
+    <post-menu-item>
+      <button>Example 1</button>
+    </post-menu-item>
+    <post-menu-item>
+      <a href="#test">Example 2</a>
+      <post-menu-item>
+        <div>Example 3</div>
+      </post-menu-item>
+    </post-menu-item>
+  </post-menu>
 </div>
 
 <div class="my-24">
@@ -104,6 +132,26 @@
 <div class="my-24">
   <h2>Post Tooltip</h2>
   <post-tooltip-trigger for="tooltip-one">
-    <button class="btn btn-secondary btn-large">Button</button>
+    <button class="btn btn-secondary btn-large" aria-describedby="tooltip-one">
+      Button
+    </button>
   </post-tooltip-trigger>
+  <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top">
+    Hi there 👋
+  </post-tooltip>
+</div>
+
+<div class="my-24">
+  <h2>Post Stepper</h2>
+  <post-stepper
+    completedLabel="Completed step"
+    currentLabel="Current step"
+    activeStepLabel="Step #index:"
+    [currentIndex]="1"
+  >
+    <post-stepper-item> Step 1 </post-stepper-item>
+    <post-stepper-item> Step 2 </post-stepper-item>
+    <post-stepper-item> Step 3 </post-stepper-item>
+    <post-stepper-item> Step 4 </post-stepper-item>
+  </post-stepper>
 </div>

@@ -15,7 +15,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1009-25200&node-type=frame&t=Fmc9LEl8mpYnfRid-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=558-7013',
     },
   },
   render,
@@ -77,7 +77,7 @@ function render(args: Args) {
       <post-list-item>
         <a href="https://twitter.com/PostSchweiz" class="btn btn-primary btn-icon">
           <post-icon aria-hidden="true" name="twitterx"></post-icon>
-          <span class="visually-hidden">Titter X</span>
+          <span class="visually-hidden">Twitter X</span>
         </a>
       </post-list-item>
       <post-list-item>
