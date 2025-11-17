@@ -71,10 +71,10 @@ importers:
         specifier: 4.35.0
         version: 4.35.0
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -105,13 +105,13 @@ importers:
         specifier: 1.1.1
         version: 1.1.1(@stencil/core@4.35.0)
       '@stencil/react-output-target':
-        specifier: '=0.8.2'
-        version: 0.8.2(@stencil/core@4.35.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        specifier: 1.2.0
+        version: 1.2.0(@stencil/core@4.35.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@stencil/sass':
         specifier: 3.0.12
         version: 3.0.12(@stencil/core@4.35.0)
       '@swisspost/design-system-eslint':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../eslint
       '@types/jest':
         specifier: 29.5.14
@@ -210,10 +210,10 @@ importers:
         specifier: 20.3.9
         version: 20.3.9(@angular/common@20.3.9(@angular/core@20.3.9(@angular/compiler@20.3.9)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.9(@angular/compiler@20.3.9)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.9(@angular/animations@20.3.9(@angular/core@20.3.9(@angular/compiler@20.3.9)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.9(@angular/core@20.3.9(@angular/compiler@20.3.9)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.9(@angular/compiler@20.3.9)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.2
@@ -241,7 +241,7 @@ importers:
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:dist/components
       angular-eslint:
         specifier: 19.8.1
@@ -298,7 +298,7 @@ importers:
         specifier: '>=19.0.0 <21.0.0'
         version: 20.1.6(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.9(@angular/animations@20.3.9(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -308,13 +308,13 @@ importers:
   packages/components-react:
     dependencies:
       '@stencil/react-output-target':
-        specifier: 0.8.2
-        version: 0.8.2(@stencil/core@4.35.0)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 1.2.0
+        version: 1.2.0(@stencil/core@4.35.0)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@stencil/ssr':
         specifier: 0.1.1
         version: 0.1.1(next@15.4.7(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(vite@7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.43.1)(yaml@2.7.0))(webpack@5.99.9)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../components
     devDependencies:
       '@eslint/js':
@@ -360,22 +360,22 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../internet-header
     devDependencies:
       '@eslint/js':
@@ -409,7 +409,7 @@ importers:
         specifier: 9.0.18
         version: 9.0.18(lit@3.3.1)(storybook@9.0.18(@testing-library/dom@10.4.0)(prettier@2.8.8))(vite@7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.1)(sass-embedded@1.78.0)(sass@1.89.2)(terser@5.43.1)(yaml@2.7.0))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../components-angular/dist/components
       '@types/css-modules':
         specifier: 1.0.5
@@ -638,7 +638,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -774,10 +774,10 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../styles/dist
       next:
         specifier: 15.4.7
@@ -799,7 +799,7 @@ importers:
         specifier: 1.56.1
         version: 1.56.1
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../components
       '@tailwindcss/postcss':
         specifier: 4.0.0
@@ -847,14 +847,14 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../icons
       gulp-sourcemaps:
         specifier: 3.0.0
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../tokens/dist
       '@types/node':
         specifier: 22.10.5
@@ -948,7 +948,7 @@ importers:
         specifier: 19.0.9
         version: 19.0.9
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../styles/dist
       primeng:
         specifier: 19.0.9
@@ -1036,7 +1036,7 @@ importers:
   packages/styles-primeng-workspace/projects/styles-primeng:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.54
+        specifier: workspace:10.0.0-next.55
         version: link:../../../styles/dist
       primeng:
         specifier: ^19.0.0
@@ -2459,6 +2459,9 @@ packages:
 
   '@emnapi/runtime@1.5.0':
     resolution: {integrity: sha512-97/BJ3iXHww3djw6hYIfErCZFee7qCtrneuLa20UXFCOTCfBM2cvQHjWJ2EG0s0MtdNwInarqCTz35i4wWXHsQ==}
+
+  '@emotion/unitless@0.10.0':
+    resolution: {integrity: sha512-dFoMUuQA20zvtVTuxZww6OHoJYgrzfKM1t52mVySDJnMSEa08ruEvdYQbhvyu6soU+NeLVd3yKfTfT0NeV6qGg==}
 
   '@esbuild/aix-ppc64@0.25.11':
     resolution: {integrity: sha512-Xt1dOL13m8u0WE8iplx9Ibbm+hFAO0GsU2P34UNoDGvZYkY8ifSiy6Zuc1lYxfG7svWE2fzqCUmFp5HCn51gJg==}
@@ -4813,8 +4816,8 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
-  '@stencil/react-output-target@0.8.2':
-    resolution: {integrity: sha512-O7zRCfRbiPmxaW3oaPBB3RFOMQOuy1dfkcUUg+6en6NckrRzC2YEAzzo6iIkppDrPW34TJJRy/mqJUdlBPLJ1g==}
+  '@stencil/react-output-target@1.2.0':
+    resolution: {integrity: sha512-xDNpWdRg897T3Diy5V2d8dZUdjhc4QJ/5JZdTVyv3/e9UICdJPfCY6eKp/dWWgYlJ9AUE6GLHOI1iePZmLY12A==}
     peerDependencies:
       '@stencil/core': '>=3 || >= 4.0.0-beta.0 || >= 4.0.0'
       react: ^18 || ^19
@@ -10906,6 +10909,10 @@ packages:
   react-property@2.0.2:
     resolution: {integrity: sha512-+PbtI3VuDV0l6CleQMsx2gtK0JZbZKbpdu5ynr+lbsuvtmgbNcS3VM0tuY2QjFNOcWxvXeHjDpy42RO+4U2rug==}
 
+  react-style-stringify@1.2.0:
+    resolution: {integrity: sha512-88JZckqgbfXJaGcDQoTFKRmBwHBF0Ddaxz3PL9Q+vywAJruBY+NdN+ZiKSBe7r/pWtjbt0naZdtH5oNI1X3FLA==}
+    engines: {node: '>=14.0.0'}
+
   react-syntax-highlighter@15.6.6:
     resolution: {integrity: sha512-DgXrc+AZF47+HvAPEmn7Ua/1p10jNoVZVI/LoPiYdtY+OM+/nG5yefLHKJwdKqY1adMuHFbeyBaG9j64ML7vTw==}
     peerDependencies:
@@ -11943,9 +11950,6 @@ packages:
 
   style-inject@0.3.0:
     resolution: {integrity: sha512-IezA2qp+vcdlhJaVm5SOdPPTUu0FCEqfNSli2vRuSIBbu5Nq5UvygTk/VzeCqfLz2Atj3dVII5QBKGZRZ0edzw==}
-
-  style-object-to-css-string@1.1.3:
-    resolution: {integrity: sha512-bISQoUsir/qGfo7vY8rw00ia9nnyE1jvYt3zZ2jhdkcXZ6dAEi74inMzQ6On57vFI+I4Fck6wOv5UI9BEwJDgw==}
 
   style-to-js@1.1.16:
     resolution: {integrity: sha512-/Q6ld50hKYPH3d/r6nr117TZkHR0w0kGGIVfpG9N6D8NymRPM9RqCUv4pRpJ62E5DqOYx2AFpbZMyCPnjQCnOw==}
@@ -15237,6 +15241,8 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
+  '@emotion/unitless@0.10.0': {}
+
   '@esbuild/aix-ppc64@0.25.11':
     optional: true
 
@@ -17258,26 +17264,26 @@ snapshots:
       '@rollup/rollup-win32-arm64-msvc': 4.34.9
       '@rollup/rollup-win32-x64-msvc': 4.34.9
 
-  '@stencil/react-output-target@0.8.2(@stencil/core@4.35.0)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@stencil/react-output-target@1.2.0(@stencil/core@4.35.0)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@18.3.26)
       '@stencil/core': 4.35.0
       html-react-parser: 5.2.5(@types/react@18.3.26)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      style-object-to-css-string: 1.1.3
+      react-style-stringify: 1.2.0
       ts-morph: 22.0.0
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/react-output-target@0.8.2(@stencil/core@4.35.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@stencil/react-output-target@1.2.0(@stencil/core@4.35.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@19.1.9)
       '@stencil/core': 4.35.0
       html-react-parser: 5.2.5(@types/react@19.1.9)(react@19.1.1)
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
-      style-object-to-css-string: 1.1.3
+      react-style-stringify: 1.2.0
       ts-morph: 22.0.0
     transitivePeerDependencies:
       - '@types/react'
@@ -19088,7 +19094,7 @@ snapshots:
       css-what: 6.1.0
       domelementtype: 2.3.0
       domhandler: 5.0.3
-      domutils: 3.1.0
+      domutils: 3.2.2
 
   cheerio@1.0.0:
     dependencies:
@@ -19444,7 +19450,7 @@ snapshots:
       boolbase: 1.0.0
       css-what: 6.1.0
       domhandler: 5.0.3
-      domutils: 3.1.0
+      domutils: 3.2.2
       nth-check: 2.1.1
 
   css-tree@1.1.3:
@@ -21359,7 +21365,7 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
       domhandler: 5.0.3
-      domutils: 3.1.0
+      domutils: 3.2.2
       entities: 4.5.0
 
   http-cache-semantics@4.1.1: {}
@@ -24884,6 +24890,10 @@ snapshots:
 
   react-property@2.0.2: {}
 
+  react-style-stringify@1.2.0:
+    dependencies:
+      '@emotion/unitless': 0.10.0
+
   react-syntax-highlighter@15.6.6(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.28.4
@@ -26189,8 +26199,6 @@ snapshots:
       tinycolor2: 1.6.0
 
   style-inject@0.3.0: {}
-
-  style-object-to-css-string@1.1.3: {}
 
   style-to-js@1.1.16:
     dependencies:
