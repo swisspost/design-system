@@ -484,8 +484,8 @@ importers:
         specifier: workspace:8.12.1
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: 1.15.15
-        version: 1.15.15(@ng-bootstrap/ng-bootstrap@17.0.0)(bootstrap@5.3.3)
+        specifier: 1.15.23
+        version: 1.15.23(@ng-bootstrap/ng-bootstrap@17.0.0(@popperjs/core@2.11.8))(bootstrap@5.3.3(@popperjs/core@2.11.8))
       bootstrap:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -873,8 +873,8 @@ importers:
         specifier: workspace:8.12.1
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: 1.15.15
-        version: 1.15.15(@ng-bootstrap/ng-bootstrap@17.0.0)(bootstrap@5.3.3)
+        specifier: 1.15.23
+        version: 1.15.23(@ng-bootstrap/ng-bootstrap@17.0.0(@popperjs/core@2.11.8))(bootstrap@5.3.3(@popperjs/core@2.11.8))
       next:
         specifier: 14.2.5
         version: 14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
@@ -3846,19 +3846,19 @@ packages:
       '@angular/platform-browser': '>=11.0.2'
       rxjs: ^6.6.3 || ^7.4.0
 
-  '@swisspost/design-system-styles@9.0.1':
-    resolution: {integrity: sha512-namOiS2pcpd9LSnnLFFkeZ0sjFtsZ6KOJglOaGH6qzNsLpzbEtLb6Tp6QeY2BSY7v9/LuWAsCyHmUn7T7iSeXw==}
+  '@swisspost/design-system-styles@9.5.1':
+    resolution: {integrity: sha512-TMM9Vlsht1VYJ4KH8WQW2EJ1TkgsB4PCV0MjWlpiygkvTtnj25C2SMNzREHNgA+eE4ecu08Ccdmp2u23lylkbA==}
     peerDependencies:
-      '@ng-bootstrap/ng-bootstrap': ^17.0.0 || ^18.0.0
-      bootstrap: ~5.3.0
+      '@ng-bootstrap/ng-bootstrap': ^17.0.0 || ^18.0.0 || ^19.0.0
+      bootstrap: ~5.3.6
     peerDependenciesMeta:
       '@ng-bootstrap/ng-bootstrap':
         optional: true
       bootstrap:
         optional: true
 
-  '@swisspost/internet-header@1.15.15':
-    resolution: {integrity: sha512-KAcRzNPRf70qyGQOC4yM4cdOsiZyF6joMLVhl/gcWVjBMUTpskcbHdU9Tz9M+0w5xzudYKLy0+KmiMtn5rSEUQ==}
+  '@swisspost/internet-header@1.15.23':
+    resolution: {integrity: sha512-5jt6aNgMlgPR2ZYNqD843ljwQ08wbdHKJsX3FbRzORCx7I6/vTc2i26RetfWuuw77mFBb35KtB5J/0upO+UlpA==}
 
   '@tokens-studio/sd-transforms@1.2.2':
     resolution: {integrity: sha512-T4NmOn6+K/1LUZqLN5wiCR58B0Slih1sjltyU6gNCwBzWlaVrt4iVeACXtY8/PD0Im0EQkY8n44aSLRfOrt/hw==}
@@ -15445,16 +15445,16 @@ snapshots:
       rxjs: 7.8.1
       tslib: 2.6.3
 
-  '@swisspost/design-system-styles@9.0.1(@ng-bootstrap/ng-bootstrap@17.0.0)(bootstrap@5.3.3)':
+  '@swisspost/design-system-styles@9.5.1(@ng-bootstrap/ng-bootstrap@17.0.0(@popperjs/core@2.11.8))(bootstrap@5.3.3(@popperjs/core@2.11.8))':
     dependencies:
       '@popperjs/core': 2.11.8
     optionalDependencies:
       '@ng-bootstrap/ng-bootstrap': 17.0.0(@angular/common@18.2.10(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8))(@angular/forms@18.2.10(@angular/common@18.2.10(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8))(@angular/platform-browser@18.2.10(@angular/animations@18.2.10(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8)))(@angular/common@18.2.10(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8)))(rxjs@7.8.1))(@angular/localize@18.2.10(@angular/compiler-cli@18.2.10(@angular/compiler@18.2.10(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(@angular/compiler@18.2.10(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.8))))(@popperjs/core@2.11.8)(rxjs@7.8.1)
       bootstrap: 5.3.3(@popperjs/core@2.11.8)
 
-  '@swisspost/internet-header@1.15.15(@ng-bootstrap/ng-bootstrap@17.0.0)(bootstrap@5.3.3)':
+  '@swisspost/internet-header@1.15.23(@ng-bootstrap/ng-bootstrap@17.0.0(@popperjs/core@2.11.8))(bootstrap@5.3.3(@popperjs/core@2.11.8))':
     dependencies:
-      '@swisspost/design-system-styles': 9.0.1(@ng-bootstrap/ng-bootstrap@17.0.0)(bootstrap@5.3.3)
+      '@swisspost/design-system-styles': 9.5.1(@ng-bootstrap/ng-bootstrap@17.0.0(@popperjs/core@2.11.8))(bootstrap@5.3.3(@popperjs/core@2.11.8))
       body-scroll-lock: 4.0.0-beta.0
       iframe-resizer: 4.4.5
       jquery: 3.7.1
