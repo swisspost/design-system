@@ -481,8 +481,8 @@ importers:
         specifier: workspace:7.4.13
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.14.13
-        version: link:../internet-header
+        specifier: 1.15.23
+        version: 1.15.23(bootstrap@5.3.3(@popperjs/core@2.11.8))
       bootstrap:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -677,124 +677,6 @@ importers:
         specifier: 5.2.2
         version: 5.2.2
 
-  packages/internet-header:
-    dependencies:
-      '@swisspost/design-system-styles':
-        specifier: 7.4.12
-        version: 7.4.12(@angular/core@17.3.11)(@ng-bootstrap/ng-bootstrap@16.0.0(@angular/core@17.3.11)(@popperjs/core@2.11.8))(bootstrap@5.3.3(@popperjs/core@2.11.8))
-      body-scroll-lock:
-        specifier: 4.0.0-beta.0
-        version: 4.0.0-beta.0
-      iframe-resizer:
-        specifier: 4.4.2
-        version: 4.4.2
-      jquery:
-        specifier: 3.7.1
-        version: 3.7.1
-      throttle-debounce:
-        specifier: 5.0.2
-        version: 5.0.2
-      url-polyfill:
-        specifier: 1.1.12
-        version: 1.1.12
-    devDependencies:
-      '@babel/core':
-        specifier: 7.24.7
-        version: 7.24.7
-      '@percy/cli':
-        specifier: 1.28.8
-        version: 1.28.8
-      '@percy/cypress':
-        specifier: 3.1.2
-        version: 3.1.2(cypress@13.13.0)
-      '@stencil-community/eslint-plugin':
-        specifier: 0.7.2
-        version: 0.7.2(@typescript-eslint/eslint-plugin@7.15.0(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5))(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@4.9.5))(eslint-plugin-react@7.34.3(eslint@8.57.0))(eslint@8.57.0)(typescript@4.9.5)
-      '@stencil/core':
-        specifier: 4.19.1
-        version: 4.19.1
-      '@stencil/sass':
-        specifier: 3.0.12
-        version: 3.0.12(@stencil/core@4.19.1)
-      '@stencil/store':
-        specifier: 2.0.16
-        version: 2.0.16(@stencil/core@4.19.1)
-      '@types/body-scroll-lock':
-        specifier: 3.1.2
-        version: 3.1.2
-      '@types/iframe-resizer':
-        specifier: 3.5.13
-        version: 3.5.13
-      '@types/jest':
-        specifier: 29.5.12
-        version: 29.5.12
-      '@types/jquery':
-        specifier: 3.5.30
-        version: 3.5.30
-      '@types/node':
-        specifier: 20.14.9
-        version: 20.14.9
-      '@types/throttle-debounce':
-        specifier: 5.0.2
-        version: 5.0.2
-      babel-loader:
-        specifier: 9.1.3
-        version: 9.1.3(@babel/core@7.24.7)(webpack@5.92.1)
-      bootstrap:
-        specifier: 5.3.3
-        version: 5.3.3(@popperjs/core@2.11.8)
-      cypress:
-        specifier: 13.13.0
-        version: 13.13.0
-      cypress-each:
-        specifier: 1.14.0
-        version: 1.14.0
-      cypress-storybook:
-        specifier: 1.0.0
-        version: 1.0.0(cypress@13.13.0)
-      eslint:
-        specifier: 8.57.0
-        version: 8.57.0
-      eslint-plugin-react:
-        specifier: 7.34.3
-        version: 7.34.3(eslint@8.57.0)
-      focus-trap:
-        specifier: 7.5.4
-        version: 7.5.4
-      globby:
-        specifier: 14.0.2
-        version: 14.0.2
-      jest:
-        specifier: 29.7.0
-        version: 29.7.0(@types/node@20.14.9)(ts-node@10.9.2(@types/node@20.14.9)(typescript@5.2.2))
-      jest-environment-jsdom:
-        specifier: 29.7.0
-        version: 29.7.0
-      rimraf:
-        specifier: 6.0.1
-        version: 6.0.1
-      rollup-plugin-node-polyfills:
-        specifier: 0.2.1
-        version: 0.2.1
-      rollup-plugin-scss:
-        specifier: 4.0.0
-        version: 4.0.0
-      rollup-plugin-visualizer:
-        specifier: 5.12.0
-        version: 5.12.0(rollup@4.13.0)
-      sass:
-        specifier: 1.77.6
-        version: 1.77.6
-      start-server-and-test:
-        specifier: 2.0.4
-        version: 2.0.4
-      ts-jest:
-        specifier: 29.1.5
-        version: 29.1.5(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.9))(typescript@4.9.5)
-      typescript:
-        specifier: 4.9.5
-        version: 4.9.5
-
   packages/intranet-header-workspace:
     dependencies:
       '@angular/animations':
@@ -985,8 +867,8 @@ importers:
         specifier: workspace:7.4.13
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.14.13
-        version: link:../internet-header
+        specifier: 1.15.23
+        version: 1.15.23(bootstrap@5.3.3(@popperjs/core@2.11.8))
       next:
         specifier: 14.2.4
         version: 14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6)
@@ -3479,12 +3361,6 @@ packages:
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
 
-  '@stencil/store@2.0.16':
-    resolution: {integrity: sha512-ET3EByKlmNyTA8O+tcp5YWePOiVnPIiuoiIaxTrf3zFFVo7JWVsVoak9IE0UTn3MkIM0ubR9lgxvi70uN588/A==}
-    engines: {node: '>=12.0.0', npm: '>=6.0.0'}
-    peerDependencies:
-      '@stencil/core': '>=2.0.0 || >=3.0.0 || >= 4.0.0-beta.0 || >= 4.0.0'
-
   '@storybook/addon-actions@8.1.11':
     resolution: {integrity: sha512-jqYXgBgOVInStOCk//AA+dGkrfN8R7rDXA4lyu82zM59kvICtG9iqgmkSRDn0Z3zUkM+lIHZGoz0aLVQ8pxsgw==}
 
@@ -3685,19 +3561,19 @@ packages:
       '@angular/platform-browser': '>=11.0.2'
       rxjs: ^6.6.3 || ^7.4.0
 
-  '@swisspost/design-system-styles@7.4.12':
-    resolution: {integrity: sha512-vcJtRCnfXEXWqxHRGIZX1P5RZ+uVmvKZbivg53/YVuW1LVeS0yvfZdmMRVONufH5VkGFXVMz9U2wkx3culkp4g==}
+  '@swisspost/design-system-styles@9.5.1':
+    resolution: {integrity: sha512-TMM9Vlsht1VYJ4KH8WQW2EJ1TkgsB4PCV0MjWlpiygkvTtnj25C2SMNzREHNgA+eE4ecu08Ccdmp2u23lylkbA==}
     peerDependencies:
-      '@angular/core': ^16.0.0 || ^17.0.0
-      '@ng-bootstrap/ng-bootstrap': ^15.0.0 || ^16.0.0
-      bootstrap: ~5.3.0
+      '@ng-bootstrap/ng-bootstrap': ^17.0.0 || ^18.0.0 || ^19.0.0
+      bootstrap: ~5.3.6
     peerDependenciesMeta:
-      '@angular/core':
-        optional: true
       '@ng-bootstrap/ng-bootstrap':
         optional: true
       bootstrap:
         optional: true
+
+  '@swisspost/internet-header@1.15.23':
+    resolution: {integrity: sha512-5jt6aNgMlgPR2ZYNqD843ljwQ08wbdHKJsX3FbRzORCx7I6/vTc2i26RetfWuuw77mFBb35KtB5J/0upO+UlpA==}
 
   '@testing-library/dom@9.3.1':
     resolution: {integrity: sha512-0DGPd9AR3+iDTjGoMpxIkAsUihHZ3Ai6CneU6bRRrffXMgzCdlNk43jTrD2/5LT6CBb3MWTP8v510JzYtahD2w==}
@@ -3769,9 +3645,6 @@ packages:
 
   '@types/body-parser@1.19.2':
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
-
-  '@types/body-scroll-lock@3.1.2':
-    resolution: {integrity: sha512-ELhtuphE/YbhEcpBf/rIV9Tl3/O0A0gpCVD+oYFSS8bWstHFJUgA4nNw1ZakVlRC38XaQEIsBogUZKWIPBvpfQ==}
 
   '@types/bonjour@3.5.10':
     resolution: {integrity: sha512-p7ienRMiS41Nu2/igbJxxLDWrSZ0WxM8UQgCeO9KhoVF7cOVFkrKsiDr1EsJIla8vV3oEEjGcz11jc5yimhzZw==}
@@ -3848,9 +3721,6 @@ packages:
   '@types/http-proxy@1.17.11':
     resolution: {integrity: sha512-HC8G7c1WmaF2ekqpnFq626xd3Zz0uvaqFmBJNRZCGEZCXkvSdJoNFn/8Ygbd9fKNQj8UzLdCETaI0UWPAjK7IA==}
 
-  '@types/iframe-resizer@3.5.13':
-    resolution: {integrity: sha512-/Np2ntlOWd/NOHs23Mj7QlNEnZ6SL02AWWdYZLm4RQNukDdpqpagfMAdin5FvQDLngR8LWfh/qUnYxuDmR8BCg==}
-
   '@types/is-empty@1.2.3':
     resolution: {integrity: sha512-4J1l5d79hoIvsrKh5VUKVRA1aIdsOb10Hu5j3J2VfP/msDnfTdGPmNp2E1Wg+vs97Bktzo+MZePFFXSGoykYJw==}
 
@@ -3874,9 +3744,6 @@ packages:
 
   '@types/jest@29.5.12':
     resolution: {integrity: sha512-eDC8bTvT/QhYdxJAulQikueigY5AsdBRH2yDKW3yveW7svY3+DzN84/2NUgkw10RTiJbWqZrTtoGVdYlvFJdLw==}
-
-  '@types/jquery@3.5.30':
-    resolution: {integrity: sha512-nbWKkkyb919DOUxjmRVk8vwtDb0/k8FKncmUKFi+NY+QXqWltooxTrswvz4LspQwxvLdvzBN1TImr6cw3aQx2A==}
 
   '@types/jsdom@20.0.1':
     resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
@@ -3982,9 +3849,6 @@ packages:
 
   '@types/supports-color@8.1.3':
     resolution: {integrity: sha512-Hy6UMpxhE3j1tLpl27exp1XqHD7n8chAiNPzWfz16LPZoMMoSc4dzLl6w9qijkEb/r5O1ozdu1CWGA2L83ZeZg==}
-
-  '@types/throttle-debounce@5.0.2':
-    resolution: {integrity: sha512-pDzSNulqooSKvSNcksnV72nk8p7gRqN8As71Sp28nov1IgmPKWbOEIwAWvBME5pPTtaXJAvG3O4oc76HlQ4kqQ==}
 
   '@types/tough-cookie@4.0.5':
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
@@ -5390,9 +5254,6 @@ packages:
       axe-core: ^3 || ^4
       cypress: ^10 || ^11 || ^12 || ^13
 
-  cypress-each@1.14.0:
-    resolution: {integrity: sha512-mUpF5KSSBy0kQaxYPLFswHceYoUMpXWRAJJ2LrcuHu1Vp5lgMw96lLtpDsNGID13FQhBfPSW6FmYBBCQqdJRBg==}
-
   cypress-storybook@1.0.0:
     resolution: {integrity: sha512-tXEhJwkD9SNsg9o9ZKI4XReTV4bpW60bcUQA6X7+j40Oqgt7atBg+oG2nMBJFf172v9cp6LX3fNTxvv7JFGVOA==}
     peerDependencies:
@@ -6323,9 +6184,6 @@ packages:
     resolution: {integrity: sha512-Ftqkqisn4MA8u+1I7KGYz35y/RtLsRETsK4qrH6KkDUjxnC4mgq3CcXbckHpGyfTErqMyVhJnlJ56feEn9Cn7A==}
     engines: {node: '>=0.4.0'}
 
-  focus-trap@7.5.4:
-    resolution: {integrity: sha512-N7kHdlgsO/v+iD/dMoJKtsSqs5Dz/dXZVebRgJw23LDk+jMi/974zyiOYDziY2JPp8xivq9BmUGwIJMiuSBi7w==}
-
   follow-redirects@1.15.6:
     resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
     engines: {node: '>=4.0'}
@@ -6831,8 +6689,8 @@ packages:
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
-  iframe-resizer@4.4.2:
-    resolution: {integrity: sha512-2SupFCq9V9osWac4q+PodF0E9QdWY5A9VdCpKrrE7HlDrcIsaTp7D6k14mkGXWoWMS9jCavYusik25wTc0YB2Q==}
+  iframe-resizer@4.4.5:
+    resolution: {integrity: sha512-U8bCywf/Gh07O69RXo6dXAzTtODQrxaHGHRI7Nt4ipXsuq6EMxVsOP/jjaP43YtXz/ibESS0uSVDN3sOGCzSmw==}
     engines: {node: '>=0.8.0'}
 
   ignore-walk@6.0.4:
@@ -7867,9 +7725,6 @@ packages:
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
-
-  magic-string@0.25.9:
-    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
 
   magic-string@0.26.7:
     resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
@@ -9616,31 +9471,11 @@ packages:
     engines: {node: 20 || >=22}
     hasBin: true
 
-  rollup-plugin-inject@3.0.2:
-    resolution: {integrity: sha512-ptg9PQwzs3orn4jkgXJ74bfs5vYz1NCZlSQMBUA0wKcGp5i5pA1AO3fOUEte8enhGUC+iapTCzEWw2jEFFUO/w==}
-    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-inject.
-
-  rollup-plugin-node-polyfills@0.2.1:
-    resolution: {integrity: sha512-4kCrKPTJ6sK4/gLL/U5QzVT8cxJcofO0OU74tnB19F40cmuAKSzH5/siithxlofFEjwvw1YAhPmbvGNA6jEroA==}
-
   rollup-plugin-postcss@4.0.2:
     resolution: {integrity: sha512-05EaY6zvZdmvPUDi3uCcAQoESDcYnv8ogJJQRp6V5kZ6J6P7uAVJlrTZcaaA20wTH527YTnKfkAoPxWI/jPp4w==}
     engines: {node: '>=10'}
     peerDependencies:
       postcss: 8.x
-
-  rollup-plugin-scss@4.0.0:
-    resolution: {integrity: sha512-wxasNXDYC2m+fDxCMgK00WebVWYmeFvShyNABmjvSJZ6D1/SepwqFeaMFMQromveI79gfvb64yJjiZZxSZxEIA==}
-
-  rollup-plugin-visualizer@5.12.0:
-    resolution: {integrity: sha512-8/NU9jXcHRs7Nnj07PF2o4gjxmm9lXIrZ8r175bT9dK8qoLlvKTwRMArRCMgpMGlq8CTLugRvEmyMeMXIU2pNQ==}
-    engines: {node: '>=14'}
-    hasBin: true
-    peerDependencies:
-      rollup: 2.x || 3.x || 4.x
-    peerDependenciesMeta:
-      rollup:
-        optional: true
 
   rollup-pluginutils@2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
@@ -10251,9 +10086,6 @@ packages:
   synckit@0.9.0:
     resolution: {integrity: sha512-7RnqIMq572L8PeEzKeBINYEJDDxpcH8JEgLwUqBd3TkofhFRbkq4QLR0u+36avGAhCRbk2nnmjcW9SE531hPDg==}
     engines: {node: ^14.18.0 || >=16.0.0}
-
-  tabbable@6.2.0:
-    resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
 
   table@6.8.2:
     resolution: {integrity: sha512-w2sfv80nrAh2VCbqR5AK27wswXhqcck2AhfnNW76beQXskGZ1V12GwS//yYVa3d3fcvAip2OUnbDAjW2k3v9fA==}
@@ -11121,18 +10953,6 @@ packages:
     peerDependencies:
       bufferutil: ^4.0.1
       utf-8-validate: ^5.0.2
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
-  ws@8.13.0:
-    resolution: {integrity: sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
     peerDependenciesMeta:
       bufferutil:
         optional: true
@@ -14304,13 +14124,6 @@ snapshots:
       rxjs: 7.8.1
       tslib: 2.6.3
 
-  '@ng-bootstrap/ng-bootstrap@16.0.0(@angular/core@17.3.11)(@popperjs/core@2.11.8)':
-    dependencies:
-      '@angular/core': 17.3.11(rxjs@7.8.1)(zone.js@0.14.4)
-      '@popperjs/core': 2.11.8
-      tslib: 2.6.3
-    optional: true
-
   '@ngtools/webpack@17.3.8(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.3.3))(typescript@5.3.3)(webpack@5.90.3(esbuild@0.20.1))':
     dependencies:
       '@angular/compiler-cli': 17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.3.3)
@@ -14923,22 +14736,6 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil-community/eslint-plugin@0.7.2(@typescript-eslint/eslint-plugin@7.15.0(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5))(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@4.9.5))(eslint-plugin-react@7.34.3(eslint@8.57.0))(eslint@8.57.0)(typescript@4.9.5)':
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 7.15.0(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5)
-      '@typescript-eslint/parser': 7.15.0(eslint@8.57.0)(typescript@4.9.5)
-      eslint: 8.57.0
-      eslint-plugin-react: 7.34.3(eslint@8.57.0)
-      eslint-utils: 3.0.0(eslint@8.57.0)
-      jsdom: 23.2.0
-      tsutils: 3.21.0(typescript@4.9.5)
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - bufferutil
-      - canvas
-      - supports-color
-      - utf-8-validate
-
   '@stencil/angular-output-target@0.8.4(@stencil/core@4.19.1)':
     dependencies:
       '@stencil/core': 4.19.1
@@ -14950,10 +14747,6 @@ snapshots:
       '@stencil/core': 4.19.1
 
   '@stencil/sass@3.0.12(@stencil/core@4.19.1)':
-    dependencies:
-      '@stencil/core': 4.19.1
-
-  '@stencil/store@2.0.16(@stencil/core@4.19.1)':
     dependencies:
       '@stencil/core': 4.19.1
 
@@ -15680,13 +15473,23 @@ snapshots:
       rxjs: 7.8.1
       tslib: 2.6.3
 
-  '@swisspost/design-system-styles@7.4.12(@angular/core@17.3.11)(@ng-bootstrap/ng-bootstrap@16.0.0(@angular/core@17.3.11)(@popperjs/core@2.11.8))(bootstrap@5.3.3(@popperjs/core@2.11.8))':
+  '@swisspost/design-system-styles@9.5.1(bootstrap@5.3.3(@popperjs/core@2.11.8))':
     dependencies:
       '@popperjs/core': 2.11.8
     optionalDependencies:
-      '@angular/core': 17.3.11(rxjs@7.8.1)(zone.js@0.14.4)
-      '@ng-bootstrap/ng-bootstrap': 16.0.0(@angular/core@17.3.11)(@popperjs/core@2.11.8)
       bootstrap: 5.3.3(@popperjs/core@2.11.8)
+
+  '@swisspost/internet-header@1.15.23(bootstrap@5.3.3(@popperjs/core@2.11.8))':
+    dependencies:
+      '@swisspost/design-system-styles': 9.5.1(bootstrap@5.3.3(@popperjs/core@2.11.8))
+      body-scroll-lock: 4.0.0-beta.0
+      iframe-resizer: 4.4.5
+      jquery: 3.7.1
+      throttle-debounce: 5.0.2
+      url-polyfill: 1.1.12
+    transitivePeerDependencies:
+      - '@ng-bootstrap/ng-bootstrap'
+      - bootstrap
 
   '@testing-library/dom@9.3.1':
     dependencies:
@@ -15716,7 +15519,8 @@ snapshots:
 
   '@tokens-studio/types@0.4.0': {}
 
-  '@tootallnate/once@2.0.0': {}
+  '@tootallnate/once@2.0.0':
+    optional: true
 
   '@trysound/sax@0.2.0': {}
 
@@ -15768,8 +15572,6 @@ snapshots:
     dependencies:
       '@types/connect': 3.4.35
       '@types/node': 20.14.9
-
-  '@types/body-scroll-lock@3.1.2': {}
 
   '@types/bonjour@3.5.10':
     dependencies:
@@ -15862,8 +15664,6 @@ snapshots:
     dependencies:
       '@types/node': 20.14.9
 
-  '@types/iframe-resizer@3.5.13': {}
-
   '@types/is-empty@1.2.3': {}
 
   '@types/istanbul-lib-coverage@2.0.4': {}
@@ -15889,15 +15689,12 @@ snapshots:
       expect: 29.7.0
       pretty-format: 29.7.0
 
-  '@types/jquery@3.5.30':
-    dependencies:
-      '@types/sizzle': 2.3.3
-
   '@types/jsdom@20.0.1':
     dependencies:
       '@types/node': 20.14.9
       '@types/tough-cookie': 4.0.5
       parse5: 7.1.2
+    optional: true
 
   '@types/json-schema@7.0.15': {}
 
@@ -15999,9 +15796,8 @@ snapshots:
 
   '@types/supports-color@8.1.3': {}
 
-  '@types/throttle-debounce@5.0.2': {}
-
-  '@types/tough-cookie@4.0.5': {}
+  '@types/tough-cookie@4.0.5':
+    optional: true
 
   '@types/trusted-types@2.0.3': {}
 
@@ -16123,24 +15919,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/eslint-plugin@7.15.0(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5)':
-    dependencies:
-      '@eslint-community/regexpp': 4.10.0
-      '@typescript-eslint/parser': 7.15.0(eslint@8.57.0)(typescript@4.9.5)
-      '@typescript-eslint/scope-manager': 7.15.0
-      '@typescript-eslint/type-utils': 7.15.0(eslint@8.57.0)(typescript@4.9.5)
-      '@typescript-eslint/utils': 7.15.0(eslint@8.57.0)(typescript@4.9.5)
-      '@typescript-eslint/visitor-keys': 7.15.0
-      eslint: 8.57.0
-      graphemer: 1.4.0
-      ignore: 5.3.1
-      natural-compare: 1.4.0
-      ts-api-utils: 1.3.0(typescript@4.9.5)
-    optionalDependencies:
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - supports-color
-
   '@typescript-eslint/eslint-plugin@7.15.0(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@5.3.3))(eslint@8.57.0)(typescript@5.3.3)':
     dependencies:
       '@eslint-community/regexpp': 4.10.0
@@ -16231,19 +16009,6 @@ snapshots:
       eslint: 8.57.0
     optionalDependencies:
       typescript: 5.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@4.9.5)':
-    dependencies:
-      '@typescript-eslint/scope-manager': 7.15.0
-      '@typescript-eslint/types': 7.15.0
-      '@typescript-eslint/typescript-estree': 7.15.0(typescript@4.9.5)
-      '@typescript-eslint/visitor-keys': 7.15.0
-      debug: 4.3.5(supports-color@8.1.1)
-      eslint: 8.57.0
-    optionalDependencies:
-      typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
 
@@ -16349,18 +16114,6 @@ snapshots:
       ts-api-utils: 1.3.0(typescript@5.3.3)
     optionalDependencies:
       typescript: 5.3.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/type-utils@7.15.0(eslint@8.57.0)(typescript@4.9.5)':
-    dependencies:
-      '@typescript-eslint/typescript-estree': 7.15.0(typescript@4.9.5)
-      '@typescript-eslint/utils': 7.15.0(eslint@8.57.0)(typescript@4.9.5)
-      debug: 4.3.5(supports-color@8.1.1)
-      eslint: 8.57.0
-      ts-api-utils: 1.3.0(typescript@4.9.5)
-    optionalDependencies:
-      typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
 
@@ -16486,21 +16239,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/typescript-estree@7.15.0(typescript@4.9.5)':
-    dependencies:
-      '@typescript-eslint/types': 7.15.0
-      '@typescript-eslint/visitor-keys': 7.15.0
-      debug: 4.3.5(supports-color@8.1.1)
-      globby: 11.1.0
-      is-glob: 4.0.3
-      minimatch: 9.0.4
-      semver: 7.6.0
-      ts-api-utils: 1.3.0(typescript@4.9.5)
-    optionalDependencies:
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - supports-color
-
   '@typescript-eslint/typescript-estree@7.15.0(typescript@5.3.3)':
     dependencies:
       '@typescript-eslint/types': 7.15.0
@@ -16595,17 +16333,6 @@ snapshots:
       '@typescript-eslint/scope-manager': 7.11.0
       '@typescript-eslint/types': 7.11.0
       '@typescript-eslint/typescript-estree': 7.11.0(typescript@5.3.3)
-      eslint: 8.57.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-
-  '@typescript-eslint/utils@7.15.0(eslint@8.57.0)(typescript@4.9.5)':
-    dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
-      '@typescript-eslint/scope-manager': 7.15.0
-      '@typescript-eslint/types': 7.15.0
-      '@typescript-eslint/typescript-estree': 7.15.0(typescript@4.9.5)
       eslint: 8.57.0
     transitivePeerDependencies:
       - supports-color
@@ -16763,7 +16490,8 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  abab@2.0.6: {}
+  abab@2.0.6:
+    optional: true
 
   abbrev@2.0.0: {}
 
@@ -16776,6 +16504,7 @@ snapshots:
     dependencies:
       acorn: 8.11.3
       acorn-walk: 8.2.0
+    optional: true
 
   acorn-import-assertions@1.9.0(acorn@8.11.3):
     dependencies:
@@ -17177,13 +16906,6 @@ snapshots:
       find-cache-dir: 4.0.0
       schema-utils: 4.0.1
       webpack: 5.90.3(esbuild@0.20.1)
-
-  babel-loader@9.1.3(@babel/core@7.24.7)(webpack@5.92.1):
-    dependencies:
-      '@babel/core': 7.24.7
-      find-cache-dir: 4.0.0
-      schema-utils: 4.0.1
-      webpack: 5.92.1
 
   babel-plugin-istanbul@6.1.1:
     dependencies:
@@ -18006,13 +17728,16 @@ snapshots:
     dependencies:
       css-tree: 2.2.1
 
-  cssom@0.3.8: {}
+  cssom@0.3.8:
+    optional: true
 
-  cssom@0.5.0: {}
+  cssom@0.5.0:
+    optional: true
 
   cssstyle@2.3.0:
     dependencies:
       cssom: 0.3.8
+    optional: true
 
   cssstyle@4.0.1:
     dependencies:
@@ -18026,8 +17751,6 @@ snapshots:
     dependencies:
       axe-core: 4.7.0
       cypress: 13.13.0
-
-  cypress-each@1.14.0: {}
 
   cypress-storybook@1.0.0(cypress@13.13.0):
     dependencies:
@@ -18089,6 +17812,7 @@ snapshots:
       abab: 2.0.6
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
+    optional: true
 
   data-urls@5.0.0:
     dependencies:
@@ -18299,6 +18023,7 @@ snapshots:
   domexception@4.0.0:
     dependencies:
       webidl-conversions: 7.0.0
+    optional: true
 
   domhandler@4.3.1:
     dependencies:
@@ -18665,6 +18390,7 @@ snapshots:
       esutils: 2.0.3
     optionalDependencies:
       source-map: 0.6.1
+    optional: true
 
   eslint-compat-utils@0.1.2(eslint@8.57.0):
     dependencies:
@@ -19364,10 +19090,6 @@ snapshots:
 
   flow-parser@0.211.0: {}
 
-  focus-trap@7.5.4:
-    dependencies:
-      tabbable: 6.2.0
-
   follow-redirects@1.15.6(debug@4.3.5):
     optionalDependencies:
       debug: 4.3.5(supports-color@8.1.1)
@@ -19891,6 +19613,7 @@ snapshots:
       debug: 4.3.5(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   http-proxy-agent@7.0.2:
     dependencies:
@@ -19989,7 +19712,7 @@ snapshots:
 
   ieee754@1.2.1: {}
 
-  iframe-resizer@4.4.2: {}
+  iframe-resizer@4.4.5: {}
 
   ignore-walk@6.0.4:
     dependencies:
@@ -20683,6 +20406,7 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+    optional: true
 
   jest-environment-node@29.7.0:
     dependencies:
@@ -20910,6 +20634,7 @@ snapshots:
       - babel-plugin-macros
       - supports-color
       - ts-node
+    optional: true
 
   jest@29.7.0(@types/node@20.14.9)(ts-node@10.9.2(@types/node@20.14.9)(typescript@5.2.2)):
     dependencies:
@@ -21013,12 +20738,13 @@ snapshots:
       whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
-      ws: 8.13.0
+      ws: 8.17.1
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - utf-8-validate
+    optional: true
 
   jsdom@23.2.0:
     dependencies:
@@ -21495,10 +21221,6 @@ snapshots:
       yallist: 4.0.0
 
   lz-string@1.5.0: {}
-
-  magic-string@0.25.9:
-    dependencies:
-      sourcemap-codec: 1.4.8
 
   magic-string@0.26.7:
     dependencies:
@@ -22338,7 +22060,8 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nwsapi@2.2.4: {}
+  nwsapi@2.2.4:
+    optional: true
 
   nx@17.2.8:
     dependencies:
@@ -23644,16 +23367,6 @@ snapshots:
       glob: 11.0.0
       package-json-from-dist: 1.0.0
 
-  rollup-plugin-inject@3.0.2:
-    dependencies:
-      estree-walker: 0.6.1
-      magic-string: 0.25.9
-      rollup-pluginutils: 2.8.2
-
-  rollup-plugin-node-polyfills@0.2.1:
-    dependencies:
-      rollup-plugin-inject: 3.0.2
-
   rollup-plugin-postcss@4.0.2(postcss@8.4.39)(ts-node@10.9.2(@types/node@20.14.9)(typescript@5.3.3)):
     dependencies:
       chalk: 4.1.2
@@ -23672,19 +23385,6 @@ snapshots:
       style-inject: 0.3.0
     transitivePeerDependencies:
       - ts-node
-
-  rollup-plugin-scss@4.0.0:
-    dependencies:
-      rollup-pluginutils: 2.8.2
-
-  rollup-plugin-visualizer@5.12.0(rollup@4.13.0):
-    dependencies:
-      open: 8.4.2
-      picomatch: 2.3.1
-      source-map: 0.7.4
-      yargs: 17.7.2
-    optionalDependencies:
-      rollup: 4.13.0
 
   rollup-pluginutils@2.8.2:
     dependencies:
@@ -24538,8 +24238,6 @@ snapshots:
       '@pkgr/core': 0.1.1
       tslib: 2.6.3
 
-  tabbable@6.2.0: {}
-
   table@6.8.2:
     dependencies:
       ajv: 8.13.0
@@ -24758,6 +24456,7 @@ snapshots:
   tr46@3.0.0:
     dependencies:
       punycode: 2.3.1
+    optional: true
 
   tr46@5.0.0:
     dependencies:
@@ -24824,24 +24523,6 @@ snapshots:
       make-error: 1.3.6
       semver: 7.6.0
       typescript: 5.3.3
-      yargs-parser: 21.1.1
-    optionalDependencies:
-      '@babel/core': 7.24.7
-      '@jest/transform': 29.7.0
-      '@jest/types': 29.6.3
-      babel-jest: 29.7.0(@babel/core@7.24.7)
-
-  ts-jest@29.1.5(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.9))(typescript@4.9.5):
-    dependencies:
-      bs-logger: 0.2.6
-      fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@20.14.9)
-      jest-util: 29.7.0
-      json5: 2.2.3
-      lodash.memoize: 4.1.2
-      make-error: 1.3.6
-      semver: 7.6.0
-      typescript: 4.9.5
       yargs-parser: 21.1.1
     optionalDependencies:
       '@babel/core': 7.24.7
@@ -25406,6 +25087,7 @@ snapshots:
   w3c-xmlserializer@4.0.0:
     dependencies:
       xml-name-validator: 4.0.0
+    optional: true
 
   w3c-xmlserializer@5.0.0:
     dependencies:
@@ -25606,7 +25288,8 @@ snapshots:
     dependencies:
       iconv-lite: 0.6.3
 
-  whatwg-mimetype@3.0.0: {}
+  whatwg-mimetype@3.0.0:
+    optional: true
 
   whatwg-mimetype@4.0.0: {}
 
@@ -25614,6 +25297,7 @@ snapshots:
     dependencies:
       tr46: 3.0.0
       webidl-conversions: 7.0.0
+    optional: true
 
   whatwg-url@14.0.0:
     dependencies:
@@ -25724,13 +25408,12 @@ snapshots:
 
   ws@8.11.0: {}
 
-  ws@8.13.0: {}
-
   ws@8.16.0: {}
 
   ws@8.17.1: {}
 
-  xml-name-validator@4.0.0: {}
+  xml-name-validator@4.0.0:
+    optional: true
 
   xml-name-validator@5.0.0: {}
 
