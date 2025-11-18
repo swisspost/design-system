@@ -22,14 +22,14 @@ export const referencingData = [
         worksAcrossShadow: '❌',
         workaround: '✔️ Elements API - ariaLabelledByElements',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa340f7d3--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom-',
+          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3401234--docs#ii-referencing-from-the-light-dom-into-the-shadowdom',
       },
       {
         case: 'ShadowDOM ➔ Light DOM/Slot',
         worksAcrossShadow: '❌',
         workaround: '⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3401234--docs#iii-referencing-from-inside-a-shadow-dom-out-to-the-light-dom',
+          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3401234--docs#iii-referencing-from-the-shadowdom-into-the-light-dom',
       },
       {
         case: 'ShadowDOM ➔ Other ShadowDOM',
@@ -49,14 +49,14 @@ export const referencingData = [
         worksAcrossShadow: '❌',
         workaround: '✔️ Elements API - ariaLabelledByElements',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405678--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom',
+          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405678--docs#ii-referencing-from-the-shadowdom-out-to-the-light-dom',
       },
       {
         case: 'Light DOM/Slot ➔ ShadowDOM',
         worksAcrossShadow: '❌',
         workaround: '⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405678--docs#iii-referencing-from-inside-a-shadow-dom-out-to-the-light-dom',
+          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405678--docs#iii-referencing-from-the-light-dom-into-the-shadowdom',
       },
       {
         case: 'ShadowDOM ➔ Other ShadowDOM',
@@ -76,14 +76,14 @@ export const referencingData = [
         worksAcrossShadow: '❌',
         workaround: '✔️ Elements API - ariaDescribedByElements',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405910--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom',
+          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405910--docs#ii-referencing-from-the-shadowdom-out-to-the-light-dom',
       },
       {
         case: 'Light DOM/Slot ➔ ShadowDOM',
         worksAcrossShadow: '❌',
         workaround: '⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405910--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom',
+          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405910--docs#iii-referencing-from-the-light-dom-into-the-shadowdom',
       },
       {
         case: 'ShadowDOM ➔ Other ShadowDOM',
