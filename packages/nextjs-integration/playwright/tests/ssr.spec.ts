@@ -15,12 +15,12 @@ test.describe('SSR compatibility', () => {
         await expect(component).toHaveCount(1);
       });
 
-      test(`should be hydrated`, async ({ page }) => {
+      test(`the component should be hydrated`, async ({ page }) => {
         const component = page.locator(`${name}[data-hydrated]`).first();
         await expect(component).toBeAttached();
       });
 
-      test(`should not have console errors`, async ({ page }) => {
+      test(`the component should not have console errors`, async ({ page }) => {
         const errorCapture = setupComponentErrorCapture(page, [name]);
 
         await page.reload();
