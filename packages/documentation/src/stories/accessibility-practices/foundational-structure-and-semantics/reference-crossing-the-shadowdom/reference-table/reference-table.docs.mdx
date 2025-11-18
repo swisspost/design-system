@@ -28,7 +28,7 @@ import * as CCR from './reference-table.stories';
       </tr>
     </thead>
    <tbody>
- {CCR.referencingData.map(({ attribute, cases }, attrIndex) =>
+ {CCR.ReferencingData.map(({ attribute, cases }, attrIndex) =>
   cases.map((row, index) => (
     <tr
       key={`${attribute}-${index}`}

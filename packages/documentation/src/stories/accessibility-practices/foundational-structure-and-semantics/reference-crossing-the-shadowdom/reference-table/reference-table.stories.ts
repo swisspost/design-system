@@ -13,7 +13,7 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
-export const referencingData = [
+export const ReferencingData = [
   {
     attribute: 'For',
     cases: [

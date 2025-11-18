@@ -30,11 +30,7 @@ export const ExampleHTML: Story = {
 
 // Case: Light Dom to child components with Slotted content
 export const Example1a: Story = {
-  render: () => html` <demo-list list-version="2">
-    <div role="listitem">item 1</div>
-    <div role="listitem">item 2</div>
-    <div role="listitem">item 3</div>
-  </demo-list>`,
+  render: () => html` <demo-list list-version="2"> </demo-list>`,
 };
 
 // Case: Parent in the Light - children with Slotted content same component
