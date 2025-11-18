@@ -132,7 +132,7 @@ export class PostStepper {
   }
 
   private updateMobileActiveStepVisibility() {
-    if (this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
+    if (!this.stepItems || this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
       this.mobileActiveStepLabel = '';
       this.mobileActiveStepName = '';
     }
