@@ -58,7 +58,6 @@ function renderHeading(args: { [p: string]: unknown }) {
 
 export const Typography: Story = {
   render: () => html`
-    <div class="d-flex flex-column gap-64">
       <!-- Headings -->
       ${schemes(
         () => html`
