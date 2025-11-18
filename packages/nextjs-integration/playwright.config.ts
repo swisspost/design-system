@@ -17,7 +17,6 @@ export default defineConfig({
   testDir: './playwright/tests',
   outputDir: './playwright/results',
   snapshotDir: './playwright/snapshots',
-  /* Run tests in files in parallel */
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */

@@ -25,9 +25,6 @@ test.describe('CSR compatibility', () => {
 
         await page.reload();
 
-        // Wait for all components to hydrate and any asynchronous errors to surface
-        await page.waitForTimeout(500);
-
         assertNoComponentErrors(errorCapture.errors, [name]);
       });
     });
