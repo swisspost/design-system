@@ -20,12 +20,7 @@ type Story = StoryObj;
 
 // Case: Standard Light DOM to Light DOM
 export const ExampleHTML: Story = {
-  render: () => html`
-    <div class="btn btn-primary" aria-describedby="id_1" role="button" tabindex="0">
-      <post-icon name="1022"></post-icon>
-    </div>
-    <span id="id_1">My Description</span>
-  `,
+  render: () => html` <demo-button ariadescribedby-id="example-description"></demo-button> `,
 };
 
 // Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element) workaround setting programmatically the relevant Element property

@@ -45,14 +45,14 @@ export const referencingData = [
     attribute: 'Aria-Labelledby',
     cases: [
       {
-        case: 'Light DOM/Slot ➔ ShadowDOM',
+        case: 'ShadowDOM ➔ Light DOM/Slot',
         worksAcrossShadow: '❌',
         workaround: '✔️ Elements API - ariaLabelledByElements',
         docPage:
           '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405678--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom',
       },
       {
-        case: 'ShadowDOM ➔ Light DOM/Slot',
+        case: 'Light DOM/Slot ➔ ShadowDOM',
         worksAcrossShadow: '❌',
         workaround: '⬇️ Set the "id" on the component host',
         docPage:
@@ -72,14 +72,14 @@ export const referencingData = [
     attribute: 'Aria-Describedby',
     cases: [
       {
-        case: 'Light DOM/Slot ➔ ShadowDOM',
+        case: 'ShadowDOM ➔ Light DOM/Slot',
         worksAcrossShadow: '❌',
         workaround: '✔️ Elements API - ariaDescribedByElements',
         docPage:
           '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405910--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom',
       },
       {
-        case: 'ShadowDOM ➔ Light DOM/Slot',
+        case: 'Light DOM/Slot ➔ ShadowDOM',
         worksAcrossShadow: '❌',
         workaround: '⬇️ Set the "id" on the component host',
         docPage:
@@ -99,9 +99,9 @@ export const referencingData = [
     attribute: 'Aria-Role: List ',
     cases: [
       {
-        case: 'Light DOM/Slot ➔ ShadowDOM',
+        case: 'All cases',
         worksAcrossShadow:
-          '✔️ The relationship is not affected by the ShadowDOM. It will be valid for all cases where the structure is accessible in such way that the "list" element contains its "listitems".',
+          '✔️ The relationship is not affected by the ShadowDOM. It will always be valid if the structure is accessible and the "list" element contains its "listitems".',
         workaround: '',
         docPage: '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405112--docs',
       },

@@ -1,16 +1,16 @@
 import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks';
 import * as CCR from './aria-role-list.stories';
 
-import DefaultExample from './examples/defaultExample.sample.html?raw';
-import DefaultExample2 from './examples/defaultExample2.sample.html?raw';
-import DefaultExample3 from './examples/defaultExample3.sample.html?raw';
-import WorkingExampleIIa from './examples/workingExample-IIa.sample.html?raw';
-import WorkingExampleIIb from './examples/workingExample-IIb.sample.html?raw';
-import WorkingExampleIIIa from './examples/workingExample-IIIa.sample.html?raw';
-import WorkingExampleIIIb from './examples/workingExample-IIIb.sample.html?raw';
-import WorkingExampleIVa from './examples/workingExample-IVa.sample.html?raw';
-import WorkingExampleIVb from './examples/workingExample-IVb.sample.html?raw';
-import WorkingExampleIVc from './examples/workingExample-IVc.sample.html?raw';
+import DefaultExample from './examples/default-example.sample.html?raw';
+import DefaultExample2 from './examples/default-example-2.sample.html?raw';
+import DefaultExample3 from './examples/default-example-3.sample.html?raw';
+import WorkingExampleIIa from './examples/working-example-IIa.sample.html?raw';
+import WorkingExampleIIb from './examples/working-example-IIb.sample.html?raw';
+import WorkingExampleIIIa from './examples/working-example-IIIa.sample.html?raw';
+import WorkingExampleIIIb from './examples/working-example-IIIb.sample.html?raw';
+import WorkingExampleIVa from './examples/working-example-IVa.sample.html?raw';
+import WorkingExampleIVb from './examples/working-example-IVb.sample.html?raw';
+import WorkingExampleIVc from './examples/working-example-IVc.sample.html?raw';
 
 <Meta of={CCR} />
 
@@ -21,9 +21,9 @@ import WorkingExampleIVc from './examples/workingExample-IVc.sample.html?raw';
   expected to contain related items identified with `role="listitem"`.
 </div>
 
-### I. Referencing Within the Same DOM Tree
+### I. Parent and Children Within the Same DOM Tree
 
-• <b>Both `list` parent and `listitem` children in Light DOM</b> ✔️
+• <b>Both parent and children in Light DOM</b> ✔️
 
 <Source language="html" dark code={DefaultExample}></Source>
 
@@ -34,7 +34,7 @@ import WorkingExampleIVc from './examples/workingExample-IVc.sample.html?raw';
   `role="listitem"`.
 </p>
 
-• <b>Both `list` parent and `listitem` children in the same Shadow DOM</b> ✔️
+• <b>Parent and children in the same Shadow DOM</b> ✔️
 
 <Source language="html" dark code={DefaultExample2}></Source>
 
@@ -45,20 +45,20 @@ import WorkingExampleIVc from './examples/workingExample-IVc.sample.html?raw';
   direct `role="listitem"` children, so the structure remains valid.
 </p>
 
-• <b>`list` role on the host and slotted `listitem` children</b> ✔️
+• <b>Parent on the host with slotted children</b> ✔️
 
 <Source language="html" dark code={DefaultExample3}></Source>
 
 <Canvas of={CCR.Example1b} sourceState="hide" />
 
 <p>
-  Similarly, in the case of a component with `role="list"` set on the host and slotted `listitems`, the
-  relationship is preserved correctly.
+  Similarly, in the case of a component with `role="list"` set on the host and slotted `listitems`,
+  the relationship is preserved correctly.
 </p>
 
 ### II. Parent in the Light DOM-children Into The Shadow DOM
 
-• <b>Light DOM → Shadow DOM</b> ✔️
+• <b>Parent in the light DOM and children in the ShadowDOM</b> ✔️
 
 <Source language="html" dark code={WorkingExampleIIa}></Source>
 
@@ -69,9 +69,9 @@ import WorkingExampleIVc from './examples/workingExample-IVc.sample.html?raw';
   DOM, the relationship is valid.
 </p>
 
-• <b>Slotted Parent → Shadow DOM</b> ❌
+• <b>Slotted parent and children in the ShadowDOM</b> ❌
 
-<Source language="html" dark code={WorkingExampleIIb}></Source>
+<Source language="html" dark code={WorkingExampleIIa}></Source>
 
 <p>
   ⚠️ The above structure does not comply with accessibility standards, as `listitems` must be
@@ -81,9 +81,9 @@ import WorkingExampleIVc from './examples/workingExample-IVc.sample.html?raw';
 
 ### III. Parent in the Shadow DOM - Children Out to the Light DOM
 
-• <b>Parent in the Shadow DOM → Children in the Light DOM</b> ❌
+• <b>Parent in the Shadow DOM and children in the Light DOM</b> ❌
 
-<Source language="html" dark code={WorkingExampleIIIa}></Source>
+<Source language="html" dark code={WorkingExampleIIIb}></Source>
 
 <p>
   ⚠️ The above structure does not comply with accessibility standards, as `listitems` must be
@@ -91,47 +91,60 @@ import WorkingExampleIVc from './examples/workingExample-IVc.sample.html?raw';
   boundary, but due to the incorrect structure itself.
 </p>
 
-• <b>Parent in the Shadow DOM → Slotted Children </b> ✔️
+• <b>Parent in the Shadow DOM with slotted children </b> ✔️
 
 <Source language="html" dark code={WorkingExampleIIIb}></Source>
 
 <Canvas of={CCR.Example3b} sourceState="hide" />
 
 <p>
-  When a component applies `role="list"` to an internal element and its children with `role="listitem"` are slotted into that element, the structure still works correctly and preserves a valid `list/listitem` relationship.
+  When a component applies `role="list"` to an internal element and its children with
+  `role="listitem"` are slotted into that element, the structure still works correctly and preserves
+  a valid `list/listitem` relationship.
 </p>
 
-### IV. Referencing From One Shadow DOM To Another Shadow shadowDOM
+### IV. Referencing From One ShadowDOM To Another ShadowDOM
 
-• <b>Parent in the Shadow DOM → Children grouped in a nested Component</b> ✔️
+• <b>Parent in the Shadow DOM - Children grouped in a nested Component</b> ✔️
 
 <Source language="html" dark code={WorkingExampleIVa}></Source>
 
 <Canvas of={CCR.Example4a} sourceState="shown" />
 
 <p>
-  This structure works correctly: the parent `role="list"` maintains a valid relationship with its children, even when the `listitem` elements are grouped inside a nested component.
+  This structure works correctly: the parent `role="list"` maintains a valid relationship with its
+  children, even when the `listitem` elements are grouped inside a nested component.
 </p>
 
-• <b>Parent in the Shadow DOM → slotted Children as individual Components</b> ✔️
+• <b>Parent in the Shadow DOM - Slotted Children as individual Components</b> ✔️
 
 <Source language="html" dark code={WorkingExampleIVb}></Source>
 
 <Canvas of={CCR.Example4b} sourceState="hide" />
 <p>
- In this case the `listitem` elements are slotted and encapsulated within individual custom components. This structure also forms a valid `list-listitem` relationship.
+  In this case the `listitem` elements are slotted and encapsulated within individual custom
+  components. This structure also forms a valid `list-listitem` relationship.
 </p>
 
-• <b>Parent in the Shadow DOM → nested Grouping Component -> nested Children individual components</b> ✔️
+• <b>Parent in the Shadow DOM - nested Grouping Component -> nested Children individual components</b> ✔️
 
 <Source language="html" dark code={WorkingExampleIVc}></Source>
 
 <Canvas of={CCR.Example4c} sourceState="hide" />
 
 <p>
-  In the case of a `role="list"` parent containing a grouping component, with individual `listitem` children nested inside their own components, the relationship is still correctly preserved across two Shadow DOM boundaries.
+  In the case of a `role="list"` parent containing a grouping component, with individual `listitem`
+  children nested inside their own components, the relationship is still correctly preserved across
+  two Shadow DOM boundaries.
 </p>
 
+## Conclusion: Shadow DOM and List Semantics
 
-## Conclusion: Shadow DOM and List Semantics 
-<p>When the markup is properly structured such that elements with `role="listitem"` exist within a parent element having `role="list"`, the presence of Shadow DOM does not break the semantic `list/listitem` relationship—even across multiple component boundaries. The `listitems` do not necessarily have to be direct children of the `role="list"` element for the relationship to be preserved, as the accessibility tree will bridge through the encapsulation when the markup is correct.</p>
+<p>
+  When the markup is properly structured such that elements with `role="listitem"` exist within a
+  parent element having `role="list"`, the presence of Shadow DOM does not break the semantic
+  `list/listitem` relationship—even across multiple component boundaries. The `listitems` do not
+  necessarily have to be direct children of the `role="list"` element for the relationship to be
+  preserved, as the accessibility tree will bridge through the encapsulation when the markup is
+  correct.
+</p>

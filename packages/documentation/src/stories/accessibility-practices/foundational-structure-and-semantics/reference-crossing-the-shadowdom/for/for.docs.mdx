@@ -1,17 +1,17 @@
 import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
 import * as CCR from './for.stories';
-import DefaultExample from './examples/defaultExample.sample.html?raw';
-import DefaultExample2 from './examples/defaultExample2.sample.html?raw';
-import ArialabelledbyElementsPropertyHTML from './examples/arialabelledbyElementsProperty.sample.html?raw';
-import ArialabelledbyElementsProperty from './examples/arialabelledbyElementsProperty.sample.js?raw';
-import NonWorkingExampleIIa from './examples/nonWorkingExample-IIa.sample.html?raw';
-import NonWorkingExampleIIb from './examples/nonWorkingExample-IIb.sample.html?raw';
-import WorkingExampleIIa from './examples/workingExample-IIa.sample.html?raw';
-import WorkingExampleIIb from './examples/workingExample-IIb.sample.html?raw';
-import NonWorkingExampleIII from './examples/nonWorkingExample-III.sample.html?raw';
-import WorkingExampleIII from './examples/workingExample-III.sample.html?raw';
-import NonWorkingExampleIV from './examples/nonWorkingExample-IV.sample.html?raw';
-import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
+import DefaultExample from './examples/default-example.sample.html?raw';
+import DefaultExample2 from './examples/default-example-2.sample.html?raw';
+import ArialabelledbyElementsPropertyHTML from './examples/arialabelledbyelements-property.sample.html?raw';
+import ArialabelledbyElementsProperty from './examples/arialabelledbyelements-property.sample.js?raw';
+import NonWorkingExampleIIa from './examples/non-working-example-IIa.sample.html?raw';
+import NonWorkingExampleIIb from './examples/non-working-example-IIb.sample.html?raw';
+import WorkingExampleIIa from './examples/working-example-IIa.sample.html?raw';
+import WorkingExampleIIb from './examples/working-example-IIb.sample.html?raw';
+import NonWorkingExampleIII from './examples/non-working-example-III.sample.html?raw';
+import WorkingExampleIII from './examples/working-example-III.sample.html?raw';
+import NonWorkingExampleIV from './examples/non-working-example-IV.sample.html?raw';
+import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
 
 <Meta of={CCR} />
 
@@ -48,7 +48,7 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 </p>
 
 <Canvas of={CCR.ExampleHTML} sourceState="hide" />
-### II. Referencing From Outside a Shadow DOM Into That Shadow DOM
+### II. Referencing From the Light DOM into the ShadowDOM
 
 • <b>Light DOM → Shadow DOM</b> ❌
 
@@ -72,7 +72,7 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 #### Workaround: `Element:ariaLabelledByElements`
 
 <p>
-  `ariaLabelledByElements` is a property of the Element interface that returns an array of elements
+  `ariaLabelledByElements` is a property of the <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="_blank">Element API</a> that returns an array of elements
   labeling the element. It provides direct references to these elements rather than just their ID
   strings.
   <a
@@ -84,11 +84,13 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 </p>
 
 <div className="lead">Basic usage of `ariaLabelledByElements` </div>
-<Source language="html" dark code={ArialabelledbyElementsPropertyHTML}></Source>
+
 <p>
   Instead of adding the `aria-labelledby` attribute on the element, we can set it using the
   `ariaLabelledByElements` property.
 </p>
+<Source language="html" dark code={ArialabelledbyElementsPropertyHTML}></Source>
+
 <Source language="js" dark code={ArialabelledbyElementsProperty}></Source>
 <p>
   The following examples demonstrate how the `ariaLabelledByElements` property can be used to
@@ -126,14 +128,17 @@ import WorkingExampleIV from './examples/workingExample-IV.sample.html?raw';
 
 ⚠️ In the above scenarios, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.
 
-### III. Referencing From Inside a Shadow DOM Out to the Light DOM
+### III. Referencing From the ShadowDOM into the Light DOM
 
 <p>
   <b>• Shadow DOM → Light DOM (or Shadow DOM → Slotted Content)</b>❌
 </p>
 
 <p>
- A `for` attribute on an element inside a Shadow DOM <b>cannot reference the id of an element outside that Shadow DOM</b>. The `ariaLabelledByElements` property neither works in this case because, for it to work, the label element must be in the same DOM or in a parent DOM of the target element.
+  A `for` attribute on an element inside a Shadow DOM{' '}
+  <b>cannot reference the id of an element outside that Shadow DOM</b>. The `ariaLabelledByElements`
+  property neither works in this case because, for it to work, the label element must be in the same
+  DOM or in a parent DOM of the target element.
 </p>
 
 <Source language="html" dark code={NonWorkingExampleIII}></Source>
@@ -157,8 +162,8 @@ Shadow DOM → Other Shadow DOM ❌
 
 <Source language="html" dark code={NonWorkingExampleIV}></Source>
 <p>
-  This relationship is not valid because both `for` and `id` attributes are scoped only within
-  their individual shadowDoms.
+  This relationship is not valid because both `for` and `id` attributes are scoped only within their
+  individual shadowDoms.
 </p>
 ##### Working Solution
 

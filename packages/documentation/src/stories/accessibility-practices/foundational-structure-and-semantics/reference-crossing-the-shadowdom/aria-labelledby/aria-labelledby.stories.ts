@@ -18,9 +18,9 @@ export default meta;
 
 type Story = StoryObj;
 
-// Case: Standard Light DOM to Light DOM
+// Case: Shadow Dom EXAMPLE
 export const ExampleHTML: Story = {
-  render: () => html` <demo-button> </demo-button> `,
+  render: () => html` <demo-button arialabelledby-id="example-label"> </demo-button> `,
 };
 
 // Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element) workaround setting programmatically the relevant Element property

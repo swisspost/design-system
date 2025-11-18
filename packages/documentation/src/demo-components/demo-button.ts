@@ -19,22 +19,28 @@ export class DemoButton extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
-    if (name === 'workaround') this.workaround = newValue;
-    if (name === 'arialabelledby-id') this.arialabelledbyId = newValue;
-    if (name === 'ariadescribedby-id') this.ariadescribedbyId = newValue;
-    if (name === 'button-version') this.buttonVersion = newValue as '1' | '2' | '3';
+    const member = name.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+
+    if (member === 'buttonVersion') {
+      this.buttonVersion = newValue as '1' | '2' | '3' | '4';
+    } else {
+      this[member as keyof this] = newValue as this[keyof this];
+    }
+
     this.render();
   }
 
   private setupAria() {
+    let elementToLink: Element | null = null;
+
     const isLabelled = this.workaround === 'ariaLabelledByElements';
     const isDescribed = this.workaround === 'ariaDescribedByElements';
+
+    const ariaPropertyName = isLabelled ? 'ariaLabelledByElements' : 'ariaDescribedByElements';
 
     if (!this.internalButton || (!isLabelled && !isDescribed)) {
       return;
     }
-
-    let elementToLink: Element | null = null;
 
     if (this.buttonVersion === '1' || this.buttonVersion === '3') {
       const id = isLabelled ? this.arialabelledbyId : this.ariadescribedbyId;
@@ -48,7 +54,6 @@ export class DemoButton extends HTMLElement {
       }
     }
 
-    const ariaPropertyName = isLabelled ? 'ariaLabelledByElements' : 'ariaDescribedByElements';
     this.internalButton[ariaPropertyName] = elementToLink ? [elementToLink] : [];
   }
 
@@ -64,13 +69,21 @@ export class DemoButton extends HTMLElement {
       > <post-icon name="1022"></post-icon>
       </div>
     `;
-    } else {
+    } else if (this.arialabelledbyId) {
       this.shadowRoot.innerHTML = `
-      <span id="example">My Text</span>
+      <span id="${this.arialabelledbyId}">My Text</span>
       <div part="button"
-      role="button" tabindex="0" aria-labelledby="example">
+      role="button" tabindex="0" aria-labelledby="${this.arialabelledbyId}">
         <post-icon name="1022"></post-icon>
       </div>
+   `;
+    } else if (this.ariadescribedbyId) {
+      this.shadowRoot.innerHTML = `
+      <div part="button"
+      role="button" tabindex="0" aria-describedby="${this.ariadescribedbyId}">
+        <post-icon name="1022"></post-icon>
+      </div>
+        <span id="${this.ariadescribedbyId}">My Description</span>
    `;
     }
 

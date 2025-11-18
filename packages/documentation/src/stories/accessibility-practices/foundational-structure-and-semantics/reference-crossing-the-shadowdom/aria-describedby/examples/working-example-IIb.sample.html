@@ -1,12 +1,11 @@
 <custom-component>
   ⏷ #shadow-root (open)
-  <slot name="description-slot"></slot>
-  <div ref="targetRef" role="button" tabindex="0" aria-describedby>
-    <!--The aria-describedby attribute is set automatically by the browser -->
-    <custom-icon />
-  </div>
-  <!-- slotted description -->
-  <span slot="description-slot">My Description</span>
+    <slot name="description-slot"></slot>
+    <div ref="targetRef" role="button" tabindex="0" aria-describedby>
+      <!--The aria-describedby attribute is set automatically by the browser -->
+      <custom-icon />
+    </div>
+    <span slot="description-slot">My Description</span>
 </custom-component>
 
 <script>
