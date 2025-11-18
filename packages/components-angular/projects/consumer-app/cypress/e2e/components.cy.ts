@@ -2,8 +2,14 @@ import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
 
 describe('Components', () => {
+  let errorCapture: ReturnType<typeof setupComponentErrorCapture>;
+
   beforeEach(() => {
-    cy.visit('/');
+    errorCapture = setupComponentErrorCapture(componentNames);
+    
+    cy.visit('/', {
+      onBeforeLoad: errorCapture.onBeforeLoad
+    });
   });
 
   componentNames.forEach(componentName => {
@@ -20,8 +26,8 @@ describe('Components', () => {
 
   componentNames.forEach(componentName => {
     it(`should not have console errors from component: <${componentName}>`, () => {
-      const errorCapture = setupComponentErrorCapture([componentName]);
-
+      // Note: We must use cy.visit() instead of cy.reload() here because cy.reload() 
+      // does not support the onBeforeLoad option needed to re-register the error capture hook
       cy.visit('/', {
         onBeforeLoad: errorCapture.onBeforeLoad
       });
