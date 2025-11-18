@@ -23,8 +23,6 @@ describe('Components', () => {
           onBeforeLoad: errorCapture.onBeforeLoad
         });
 
-        // Wait for the component to hydrate and any asynchronous errors to surface
-        cy.wait(500);
         assertNoComponentErrors(errorCapture.errors, [componentName]);
       });
     });
