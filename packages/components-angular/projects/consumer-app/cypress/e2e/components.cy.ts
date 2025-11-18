@@ -2,40 +2,31 @@ import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
 
 describe('Components', () => {
-  let errorCapture: ReturnType<typeof setupComponentErrorCapture>;
-
-  beforeEach(() => {
-    errorCapture = setupComponentErrorCapture(componentNames);
-    
-    cy.visit('/', {
-      onBeforeLoad: errorCapture.onBeforeLoad
-    });
-  });
-
   componentNames.forEach(componentName => {
-    it(`should contain <${componentName}>`, () => {
-      cy.get(componentName).first().should('exist');
-    });
-  });
-
-  componentNames.forEach(componentName => {
-    it(`should be hydrated: <${componentName}>`, () => {
-      cy.get(componentName).first().should('have.class', 'hydrated');
-    });
-  });
-
-  componentNames.forEach(componentName => {
-    it(`should not have console errors from component: <${componentName}>`, () => {
-      // Note: We must use cy.visit() instead of cy.reload() here because cy.reload() 
-      // does not support the onBeforeLoad option needed to re-register the error capture hook
-      cy.visit('/', {
-        onBeforeLoad: errorCapture.onBeforeLoad
+    describe(componentName, () => {
+      beforeEach(() => {
+        cy.visit('/');
       });
 
-      // Wait for the component to hydrate and any asynchronous errors to surface
-      cy.wait(500);
+      it('Angular consumer-app should contain the component', () => {
+        cy.get(componentName).first().should('exist');
+      });
 
-      assertNoComponentErrors(errorCapture.errors, [componentName]);
+      it('the component should be hydrated', () => {
+        cy.get(componentName).first().should('have.class', 'hydrated');
+      });
+
+      it('the component should not have console errors', () => {
+        const errorCapture = setupComponentErrorCapture([componentName]);
+
+        cy.visit('/', {
+          onBeforeLoad: errorCapture.onBeforeLoad
+        });
+
+        // Wait for the component to hydrate and any asynchronous errors to surface
+        cy.wait(500);
+        assertNoComponentErrors(errorCapture.errors, [componentName]);
+      });
     });
   });
 });
