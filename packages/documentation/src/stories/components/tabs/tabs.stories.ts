@@ -314,6 +314,17 @@ export const FullWidth: Story = {
   decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
+export const NavigationFullWidth: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    fullWidth: true,
+    variant: 'navigation',
+  },
+  decorators: [story => html`<div class="container">${story()}</div>`],
+};
+
 export const NavigationVariant: Story = {
   parameters: {
     docs: {
