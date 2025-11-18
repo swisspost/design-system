@@ -64,9 +64,7 @@ export const Typography: Story = {
         () => html`
           <section>
             <h2>Headings</h2>
-            <div class="d-flex flex-column gap-16">
-              ${headingVariants.map(args => renderHeading(args))}
-            </div>
+            ${headingVariants.map(args => renderHeading(args))}
           </section>
         `,
       )}
@@ -76,13 +74,11 @@ export const Typography: Story = {
         () => html`
           <section>
             <h2>Links</h2>
-            <div class="d-flex flex-column gap-24">
-              <a href="https://post.ch">Link Text</a>
-              <a href="https://imgur.com/FKmX7dt">Link Text</a>
+            <a href="https://post.ch">Link Text</a>
+            <a href="https://imgur.com/FKmX7dt">Link Text</a>
 
-              <a href="https://post.ch">Lorem ipsum dolor sit amet consectetur</a>
-              <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
-            </div>
+            <a href="https://post.ch">Lorem ipsum dolor sit amet consectetur</a>
+            <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
           </section>
         `,
       )}
@@ -92,22 +88,19 @@ export const Typography: Story = {
         () => html`
           <section>
             <h2>Paragraphs</h2>
-            <div class="d-flex flex-column gap-24 font-sans-serif">
-              <p>
-                This is a sample paragraph showing how text will appear in your application. It
-                demonstrates the font style, size, and spacing that will be used throughout your
-                content.
-              </p>
-              <p>
-                Another paragraph follows to illustrate how multiple paragraphs will look. Notice
-                the spacing between paragraphs and how the text flows naturally from one line to the
-                next.
-              </p>
-              <p class="lead">
-                This is a lead paragraph that stands out from regular text, typically used for
-                introductory content.
-              </p>
-            </div>
+            <p>
+              This is a sample paragraph showing how text will appear in your application. It
+              demonstrates the font style, size, and spacing that will be used throughout your
+              content.
+            </p>
+            <p>
+              Another paragraph follows to illustrate how multiple paragraphs will look. Notice the
+              spacing between paragraphs and how the text flows naturally from one line to the next.
+            </p>
+            <p class="lead">
+              This is a lead paragraph that stands out from regular text, typically used for
+              introductory content.
+            </p>
           </section>
         `,
       )}
@@ -117,17 +110,15 @@ export const Typography: Story = {
         () => html`
           <section>
             <h2>Legend</h2>
-            <div class="d-flex flex-column gap-24">
-              <fieldset>
-                <legend>Default legend</legend>
-                <input type="text" placeholder="Text input" />
-              </fieldset>
+            <fieldset>
+              <legend>Default legend</legend>
+              <input type="text" placeholder="Text input" />
+            </fieldset>
 
-              <fieldset>
-                <legend class="large">Large legend</legend>
-                <input type="text" placeholder="Text input" />
-              </fieldset>
-            </div>
+            <fieldset>
+              <legend class="large">Large legend</legend>
+              <input type="text" placeholder="Text input" />
+            </fieldset>
           </section>
         `,
       )}
@@ -137,25 +128,23 @@ export const Typography: Story = {
         () => html`
           <section>
             <h2>Inline Elements</h2>
-            <div class="d-flex flex-column gap-16">
-              <p>This is <small>small inline text</small> for fine print or disclaimers.</p>
-              <p>This is <strong>strong text</strong> to emphasize importance.</p>
-              <p>This is <em>emphasized text</em> using italics.</p>
-              <p>Here is <sub>subscript</sub> and <sup>superscript</sup>.</p>
-              <p>
-                This is
-                <mark>highlighted text</mark>
-                for attention.
-              </p>
-              <p>This contains an <abbr title="abbreviation">abbr</abbr> element.</p>
-              <p>Inline <code>code sample</code> for dev use.</p>
-              <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>
-              <p>
-                This shows
-                <del>deleted text</del>
-                for corrections.
-              </p>
-            </div>
+            <p>This is <small>small inline text</small> for fine print or disclaimers.</p>
+            <p>This is <strong>strong text</strong> to emphasize importance.</p>
+            <p>This is <em>emphasized text</em> using italics.</p>
+            <p>Here is <sub>subscript</sub> and <sup>superscript</sup>.</p>
+            <p>
+              This is
+              <mark>highlighted text</mark>
+              for attention.
+            </p>
+            <p>This contains an <abbr title="abbreviation">abbr</abbr> element.</p>
+            <p>Inline <code>code sample</code> for dev use.</p>
+            <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>
+            <p>
+              This shows
+              <del>deleted text</del>
+              for corrections.
+            </p>
           </section>
         `,
       )}
