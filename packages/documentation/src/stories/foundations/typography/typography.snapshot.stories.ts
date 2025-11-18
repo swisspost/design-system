@@ -111,12 +111,10 @@ export const Typography: Story = {
             <h2>Legend</h2>
             <fieldset>
               <legend>Default legend</legend>
-              <input type="text" placeholder="Text input" />
             </fieldset>
 
             <fieldset>
               <legend class="large">Large legend</legend>
-              <input type="text" placeholder="Text input" />
             </fieldset>
           </section>
         `,
