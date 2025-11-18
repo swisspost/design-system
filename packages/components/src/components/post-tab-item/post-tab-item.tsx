@@ -39,9 +39,6 @@ export class PostTabItem {
 
   componentWillLoad() {
     this.tabId = `tab-${this.host.id || nanoid(6)}`;
-  }
-
-  componentDidLoad() {
     this.checkNavigationMode();
   }
 

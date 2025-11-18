@@ -70,8 +70,11 @@ export class PostTabs {
    */
   @Event() postChange: EventEmitter<string>;
 
-  componentDidLoad() {
+  componentWillRender() {
     this.detectMode();
+  }
+
+  componentDidLoad() {
     this.moveMisplacedTabs();
     this.isLoaded = true;
     this.enableTabs();
@@ -79,13 +82,11 @@ export class PostTabs {
     this.validateLabel();
 
     if (this.isNavigationMode) {
-      // In navigation mode, activate the tab with aria-current="page"
       const activeTab = this.findActiveNavigationTab();
       if (activeTab) {
         this.activateTab(activeTab);
       }
     } else {
-      // In panel mode, use activeTab prop or default to first tab
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
       if (tabToActivate) {
         void this.show(tabToActivate);
@@ -182,10 +183,13 @@ export class PostTabs {
     }
   }
 
-  private detectMode() {    
+  private detectMode() {
+    // Check for navigation mode by looking for anchor elements in tabs
+    // This works even before post-tab-item sets data-navigation-mode attribute
     const hasNavigationTabs = this.tabs.some(tab => {
-      const navMode = tab.getAttribute('data-navigation-mode') === 'true';
-      return navMode;
+      const hasAnchor = tab.querySelector('a') !== null;
+      const navModeAttr = tab.getAttribute('data-navigation-mode') === 'true';
+      return hasAnchor || navModeAttr;
     });
     
     const hasPanels = this.panels.length > 0;
@@ -343,7 +347,7 @@ export class PostTabs {
   }
 
   private getPanel(name: string): HTMLPostTabPanelElement {
-    return this.host.querySelector(`post-tab-panel[for=${name}]`);
+    return this.host.querySelector<HTMLPostTabPanelElement>(`post-tab-panel[for=${name}]`);
   }
 
   private navigateTabs(tab: HTMLPostTabItemElement, key: 'ArrowRight' | 'ArrowLeft') {
