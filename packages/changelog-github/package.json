@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-changelog-github",
-  "version": "10.0.0-next.54",
+  "version": "10.0.0-next.55",
   "description": "A changelog entry generator for GitHub that links to PRs and users",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -26,7 +26,7 @@
   "dependencies": {
     "@changesets/get-github-info": "0.6.0",
     "@changesets/types": "6.0.0",
-    "dotenv": "16.5.0"
+    "dotenv": "17.2.3"
   },
   "devDependencies": {
     "@changesets/parse": "0.4.1",
