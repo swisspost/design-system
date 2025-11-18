@@ -237,9 +237,12 @@ $toolbar-icons: (
   }
 
   .docblock-argstable-body tr td textarea,
-  .docblock-argstable-body tr td select,
-  .docblock-argstable-body tr td button {
+  .docblock-argstable-body tr td select {
     font-size: 0.875rem;
+  }
+
+  .docblock-argstable-body tr td button {
+    font-size: 0.8125rem;
   }
 
   .docblock-argstable-body tr td span,
