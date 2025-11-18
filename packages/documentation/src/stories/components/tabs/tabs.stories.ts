@@ -90,22 +90,23 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     content: {
       name: 'content ',
       description: 'The container element that displays the content of the currently active tab.',
+      control: false,
       if: { arg: 'variant', eq: 'panels' },
       table: {
-        category: 'CSS SHADOW PARTS',
+        category: 'CSS Shadow Parts',
         type: {
-          summary: 'other',
+          summary: 'CSS Selector',
         },
       },
     },
     tabs: {
       name: 'tabs ',
       description: 'The container element that holds the set of tabs.',
-      if: { arg: 'variant', eq: 'panels' },
+      control: false,
       table: {
-        category: 'CSS SHADOW PARTS',
+        category: 'CSS Shadow Parts',
         type: {
-          summary: 'other',
+          summary: 'CSS Selector',
         },
       },
     },
