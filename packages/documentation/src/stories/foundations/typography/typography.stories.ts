@@ -7,6 +7,10 @@ const meta: MetaExtended = {
   title: 'Foundations/Typography',
   tags: ['package:Styles'],
   parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=26-49',
+    },
     badges: [],
   },
 };
