@@ -8,25 +8,28 @@ test.describe('SSR compatibility', () => {
   });
 
   for (const componentName of componentNames) {
-    test(`should contain ${componentName}`, async ({ page }) => {
-      const component = page.locator(componentName).first();
-      await expect(component).toHaveCount(1);
-    });
+    const name = componentName;
+    test.describe(name, () => {
+      test(`Nextjs-integration package should contain the component`, async ({ page }) => {
+        const component = page.locator(name).first();
+        await expect(component).toHaveCount(1);
+      });
 
-    test(`should be hydrated: ${componentName}`, async ({ page }) => {
-      const component = page.locator(`${componentName}[data-hydrated]`).first();
-      await expect(component).toBeAttached();
-    });
+      test(`should be hydrated`, async ({ page }) => {
+        const component = page.locator(`${name}[data-hydrated]`).first();
+        await expect(component).toBeAttached();
+      });
 
-    test(`should not have console errors: ${componentName}`, async ({ page }) => {
-      const errorCapture = setupComponentErrorCapture(page, [componentName]);
+      test(`should not have console errors`, async ({ page }) => {
+        const errorCapture = setupComponentErrorCapture(page, [name]);
 
-      await page.reload();
+        await page.reload();
 
-      // Wait for all components to hydrate and any asynchronous errors to surface
-      await page.waitForTimeout(500);
+        // Wait for all components to hydrate and any asynchronous errors to surface
+        await page.waitForTimeout(500);
 
-      assertNoComponentErrors(errorCapture.errors, [componentName]);
+        assertNoComponentErrors(errorCapture.errors, [name]);
+      });
     });
   }
 
