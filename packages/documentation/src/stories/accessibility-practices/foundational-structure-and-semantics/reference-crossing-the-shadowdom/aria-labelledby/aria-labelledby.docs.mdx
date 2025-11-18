@@ -73,9 +73,12 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
 #### Workaround: `Element:ariaLabelledByElements`
 
 <p>
-  `ariaLabelledByElements` is a property of the <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="_blank">Element API</a> that returns an array of elements
-  labeling the element. It provides direct references to these elements rather than just their ID
-  strings.
+  `ariaLabelledByElements` is a property of the{' '}
+  <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="blank">
+    Element API
+  </a>{' '}
+  that returns an array of elements labeling the element. It provides direct references to these
+  elements rather than just their ID strings.
   <a
     target="blank"
     href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaLabelledByElements"
@@ -145,9 +148,10 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
 
 <p>
   The only option here is to <b>set the `id` directly on the host</b> of the labeling component. In
-  this case <b>all the visible text inside the component that contains the reference will be assigned as the Accessible Name</b> of the target element.
+  this case <b>all the visible text inside the component that contains the reference will be assigned as the
+    Accessible Name</b> of the target element.
 </p>
-<Canvas of={CCR.Example4} sourceState="hide" />
+<Source language="html" dark code={WorkingExampleIII}></Source>
 
 ### IV. Referencing From One Shadow DOM To Another Shadow DOM
 
