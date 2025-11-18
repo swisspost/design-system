@@ -21,7 +21,7 @@ test.describe('SSR compatibility', () => {
     test(`should not have console errors: ${componentName}`, async ({ page }) => {
       const errorCapture = setupComponentErrorCapture(page, [componentName]);
 
-      await page.goto('/ssr');
+      await page.reload();
 
       // Wait for all components to hydrate and any asynchronous errors to surface
       await page.waitForTimeout(500);
