@@ -12,6 +12,9 @@ type PaginationItem =
   | { type: 'page'; page: number }
   | { type: 'ellipsis' };
 
+// Helper type used when generating sections around the page range
+type SectionType = 'none' | 'page' | 'ellipsis';
+
 @Component({
   tag: 'post-pagination',
   styleUrl: './post-pagination.scss',
@@ -294,6 +297,27 @@ export class PostPagination {
     return Math.ceil(this.collectionSize / this.pageSize);
   }
 
+  // Convert numeric gap to a section type used when deciding whether to
+  // render a page, nothing, or an ellipsis.
+  private sectionForGap(gap: number): SectionType {
+    if (gap === 0 || gap === 1) return 'none';
+    if (gap === 2) return 'page';
+    return 'ellipsis';
+  }
+
+  // Compute the left/right sections and numeric gaps for a given start/end
+  private getSections(s: number, e: number, totalPages: number) {
+    const leftGap = s - 1;
+    const rightGap = totalPages - e;
+    return {
+      leftSection: this.sectionForGap(leftGap),
+      rightSection: this.sectionForGap(rightGap),
+      leftGap,
+      rightGap,
+    };
+  }
+
+
   /**
    * Generates the page numbers array with ellipsis based on available space.
    */
@@ -317,27 +341,9 @@ export class PostPagination {
     if (startPage < 2) startPage = 2;
     if (endPage > totalPages - 1) endPage = totalPages - 1;
 
-    type SectionType = 'none' | 'page' | 'ellipsis';
-
-    const sectionForGap = (gap: number): SectionType => {
-      if (gap === 0 || gap === 1) return 'none';
-      if (gap === 2) return 'page';
-      return 'ellipsis';
-    };
-
-    const getSections = (s: number, e: number) => {
-      const leftGap = s - 1;
-      const rightGap = totalPages - e;
-      return {
-        leftSection: sectionForGap(leftGap) as SectionType,
-        rightSection: sectionForGap(rightGap) as SectionType,
-        leftGap,
-        rightGap,
-      };
-    };
 
     for (let iter = 0; iter < 20; iter++) {
-      const { leftSection, rightSection } = getSections(startPage, endPage);
+      const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
 
       const slotsTaken = 2 + (leftSection !== 'none' ? 1 : 0) + (rightSection !== 'none' ? 1 : 0);
       const middleCount = maxVisible - slotsTaken;
@@ -355,7 +361,7 @@ export class PostPagination {
       endPage = newEnd;
     }
 
-    const { leftSection, rightSection } = getSections(startPage, endPage);
+    const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
 
     const pushLeft = () => {
       if (leftSection === 'page') items.push({ type: 'page', page: 2 });
