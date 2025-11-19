@@ -301,71 +301,43 @@ export class PostPagination {
     const maxVisible = this.maxVisiblePages;
     const items: PaginationItem[] = [];
 
-    // If we can show all pages, do so
     if (totalPages <= maxVisible) {
       for (let i = 1; i <= totalPages; i++) {
         items.push({ type: 'page', page: i });
       }
-      
       this.items = items;
       return;
     }
-
-    // We need to show exactly maxVisible items
-    // Format: [1] [left-section] [middle-pages] [right-section] [last]
 
     const middleSlots = Math.max(1, maxVisible - 4);
     const delta = Math.floor(middleSlots / 2);
     let startPage = this.page - delta;
     let endPage = this.page + delta;
 
-    // Clamp to valid inner page range [2, totalPages-1]
-    if (startPage < 2) {
-      startPage = 2;
-    }
-    if (endPage > totalPages - 1) {
-      endPage = totalPages - 1;
-    }
+    if (startPage < 2) startPage = 2;
+    if (endPage > totalPages - 1) endPage = totalPages - 1;
 
     type SectionType = 'none' | 'page' | 'ellipsis';
-    let leftSection: SectionType = 'none';
-    let rightSection: SectionType = 'none';
 
-    const computeSections = (): { leftGap: number; rightGap: number; leftSection: SectionType; rightSection: SectionType } => {
-      const leftGap = startPage - 1;
-      const rightGap = totalPages - endPage;
-
-      let newLeftSection: SectionType = 'none';
-      let newRightSection: SectionType = 'none';
-
-      if (leftGap === 0 || leftGap === 1) {
-        newLeftSection = 'none';
-      } else if (leftGap === 2) {
-        newLeftSection = 'page';
-      } else {
-        newLeftSection = 'ellipsis';
-      }
-
-      if (rightGap === 0 || rightGap === 1) {
-        newRightSection = 'none';
-      } else if (rightGap === 2) {
-        newRightSection = 'page';
-      } else {
-        newRightSection = 'ellipsis';
-      }
-
-      leftSection = newLeftSection;
-      rightSection = newRightSection;
-
-      return { leftGap, rightGap, leftSection: newLeftSection, rightSection: newRightSection };
+    const sectionForGap = (gap: number): SectionType => {
+      if (gap === 0 || gap === 1) return 'none';
+      if (gap === 2) return 'page';
+      return 'ellipsis';
     };
 
-    // Balance the sections iteratively
-    let iter = 0;
-    while (iter < 20) {
-      iter++;
+    const getSections = (s: number, e: number) => {
+      const leftGap = s - 1;
+      const rightGap = totalPages - e;
+      return {
+        leftSection: sectionForGap(leftGap) as SectionType,
+        rightSection: sectionForGap(rightGap) as SectionType,
+        leftGap,
+        rightGap,
+      };
+    };
 
-      computeSections();
+    for (let iter = 0; iter < 20; iter++) {
+      const { leftSection, rightSection } = getSections(startPage, endPage);
 
       const slotsTaken = 2 + (leftSection !== 'none' ? 1 : 0) + (rightSection !== 'none' ? 1 : 0);
       const middleCount = maxVisible - slotsTaken;
@@ -377,36 +349,28 @@ export class PostPagination {
         newStart = Math.max(2, newEnd - middleCount + 1);
       }
 
-      if (newStart === startPage && newEnd === endPage) {
-        break;
-      }
+      if (newStart === startPage && newEnd === endPage) break;
 
       startPage = newStart;
       endPage = newEnd;
     }
 
-    // Final computation
-    computeSections();
+    const { leftSection, rightSection } = getSections(startPage, endPage);
 
-    // Build items
+    const pushLeft = () => {
+      if (leftSection === 'page') items.push({ type: 'page', page: 2 });
+      else if (leftSection === 'ellipsis') items.push({ type: 'ellipsis' });
+    };
+
+    const pushRight = () => {
+      if (rightSection === 'page') items.push({ type: 'page', page: totalPages - 1 });
+      else if (rightSection === 'ellipsis') items.push({ type: 'ellipsis' });
+    };
+
     items.push({ type: 'page', page: 1 });
-    
-    if (leftSection === ('page' as SectionType)) {
-      items.push({ type: 'page', page: 2 });
-    } else if (leftSection === 'ellipsis' as SectionType) {
-      items.push({ type: 'ellipsis' });
-    }
-    
-    for (let i = startPage; i <= endPage; i++) {
-      items.push({ type: 'page', page: i });
-    }
-    
-    if (rightSection === ('page' as SectionType)) {
-      items.push({ type: 'page', page: totalPages - 1 });
-    } else if (rightSection === 'ellipsis' as SectionType) {
-      items.push({ type: 'ellipsis' });
-    }
-    
+    pushLeft();
+    for (let i = startPage; i <= endPage; i++) items.push({ type: 'page', page: i });
+    pushRight();
     items.push({ type: 'page', page: totalPages });
 
     this.items = items;
