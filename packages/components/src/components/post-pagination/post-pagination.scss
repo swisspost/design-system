@@ -33,6 +33,10 @@ $pagination-border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  // CRITICAL FIX: Prevent overflow from expanding container during resize
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .pagination-list {
@@ -44,6 +48,11 @@ $pagination-border-radius: 50%;
   
   // CRITICAL: Gap must match BUTTON_GAP constant (4px)
   gap: $pagination-gap;
+  
+  // CRITICAL FIX: Allow list to shrink and prevent overflow
+  flex-wrap: nowrap;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .pagination-item {
@@ -51,6 +60,10 @@ $pagination-border-radius: 50%;
   align-items: center;
   margin: 0;
   padding: 0;
+  
+  // CRITICAL FIX: Prevent items from shrinking or growing
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .pagination-link {
@@ -159,6 +172,10 @@ $pagination-border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  // CRITICAL FIX: Prevent ellipsis from growing or shrinking
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .pagination-ellipsis-content {

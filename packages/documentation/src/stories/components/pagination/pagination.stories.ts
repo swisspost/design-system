@@ -21,6 +21,12 @@ const meta: MetaComponent = {
     pageSize: 10,
     collectionSize: 100,
     disabled: false,
+    label: 'Pagination',
+    labelPrevious: 'Previous page',
+    labelNext: 'Next page',
+    labelPage: 'Page',
+    labelFirst: 'First page',
+    labelLast: 'Last page',
   },
 };
 
@@ -37,8 +43,8 @@ export const Default: Story = {
   },
 };
 
-export const ManyItems: Story = {
-  name: 'Many items',
+export const ManyPages: Story = {
+  name: 'Many Pages',
   render: (args: Args) => html`
       <post-pagination
         page=10
