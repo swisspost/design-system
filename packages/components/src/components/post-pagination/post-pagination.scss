@@ -1,24 +1,29 @@
 @use '@swisspost/design-system-styles/functions/breakpoint' as breakpoint;
+@use '@swisspost/design-system-styles/mixins/media';
 
 // Colors (adjust to match your design system)
-$pagination-color-text: #333;
+$pagination-color-text: #050400;
 $pagination-color-border: #ccc;
 $pagination-color-hover-bg: #f5f5f5;
-$pagination-color-active-bg: #000000;
+$pagination-color-hover-stroke: #504F4B;
+$pagination-color-hover-fg: #504F4B;
+$pagination-color-active-bg: #050400;
 $pagination-color-active-text: #fff;
 $pagination-color-disabled: #999;
 $pagination-color-disabled-bg: #f0f0f0;
 
 // Typography
 $pagination-font-size: 14px;
-$pagination-font-weight: 400;
-$pagination-font-weight-active: 600;
+$pagination-font-weight: 700;
+$pagination-font-weight-active: 700;
 
 // Transitions
 $pagination-transition: all 0.2s ease;
 
 // Border radius
-$pagination-border-radius: 50%;
+$pagination-border-radius: 100%;
+
+$pagination-gap: 4px;
 
 .pagination {
   width: 100%;
@@ -37,7 +42,7 @@ $pagination-border-radius: 50%;
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 4px; // This will be measured, not hardcoded in JS
+  gap: $pagination-gap;
   flex-wrap: nowrap;
   min-width: 0;
   max-width: 100%;
@@ -57,10 +62,13 @@ $pagination-border-radius: 50%;
   align-items: center;
   justify-content: center;
   
+  box-sizing: border-box;
   // Responsive sizes via CSS (browser handles this, we just measure)
   width: 32px;
   height: 32px;
   min-width: 32px;
+  border-width: 1px;
+  border-style: solid;
   
   padding: 0;
   margin: 0;
@@ -71,7 +79,7 @@ $pagination-border-radius: 50%;
   text-decoration: none;
   
   background-color: transparent;
-  border: 1px solid $pagination-color-border;
+  border-color: $pagination-color-border;
   border-radius: $pagination-border-radius;
   
   cursor: pointer;
@@ -82,7 +90,9 @@ $pagination-border-radius: 50%;
   
   &:hover:not(:disabled):not(.pagination-link-disabled) {
     background-color: $pagination-color-hover-bg;
-    border-color: darken($pagination-color-border, 10%);
+    border-color: $pagination-color-hover-stroke;
+    color: $pagination-color-hover-fg;
+    border-width: 2px;
   }
   
   &:focus-visible {
@@ -99,8 +109,8 @@ $pagination-border-radius: 50%;
     cursor: default;
     
     &:hover {
-      background-color: $pagination-color-active-bg;
-      border-color: $pagination-color-active-bg;
+      background-color: $pagination-color-hover-stroke;
+      border-color: $pagination-color-hover-stroke;
     }
   }
   
@@ -117,12 +127,14 @@ $pagination-border-radius: 50%;
     width: 40px;
     height: 40px;
     min-width: 40px;
+    font-size: 16px;
   }
   
   @media (min-width: breakpoint.min-width(lg)) {
     width: 48px;
     height: 48px;
     min-width: 48px;
+    font-size: 20px;
   }
 }
 
@@ -187,7 +199,7 @@ $pagination-border-radius: 50%;
   overflow: hidden;
   white-space: nowrap;
   display: flex;
-  gap: 4px; // Same gap as visible items
+  gap: $pagination-gap;
   pointer-events: none;
   visibility: hidden;
 }
