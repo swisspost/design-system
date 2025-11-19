@@ -42,17 +42,17 @@ export class PostPagination {
   /**
    * The current active page number (1-indexed).
    */
-  @Prop({ mutable: true }) page: number;
+  @Prop() page: number;
   
   /**
    * The number of items per page.
    */
-  @Prop() pageSize: number;
+  @Prop({ reflect: true }) pageSize!: number;
   
   /**
    * The total number of items in the collection.
    */
-  @Prop() collectionSize: number;
+  @Prop({ reflect: true }) collectionSize!: number;
   
   /**
    * Accessible label for the pagination navigation.

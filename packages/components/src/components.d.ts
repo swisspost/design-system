@@ -1376,7 +1376,7 @@ declare namespace LocalJSX {
         /**
           * The total number of items in the collection.
          */
-        "collectionSize"?: number;
+        "collectionSize": number;
         /**
           * If true, the pagination is disabled.
           * @default false
@@ -1417,7 +1417,7 @@ declare namespace LocalJSX {
         /**
           * The number of items per page.
          */
-        "pageSize"?: number;
+        "pageSize": number;
     }
     interface PostPopover {
         /**

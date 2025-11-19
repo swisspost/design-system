@@ -1,5 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { spread } from '@open-wc/lit-helpers';
+import { getAttributes } from '@/utils';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -9,17 +11,15 @@ const meta: MetaComponent = {
   tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: '',
+    },
   },
   args: {
     page: 1,
     pageSize: 10,
     collectionSize: 100,
-    label: 'Pagination',
-    labelPrevious: 'Previous page',
-    labelNext: 'Next page',
-    labelPage: 'Page',
-    labelFirst: 'First page',
-    labelLast: 'Last page',
     disabled: false,
   },
 };
@@ -29,23 +29,16 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => html`
-      <post-pagination
-        page=${args.page}
-        page-size=${args.pageSize}
-        collection-size=${args.collectionSize}
-        label=${args.label}
-        label-previous=${args.labelPrevious}
-        label-next=${args.labelNext}
-        label-page=${args.labelPage}
-        label-first=${args.labelFirst}
-        label-last=${args.labelLast}
-        ?disabled=${args.disabled}
-      ></post-pagination>
-  `,
+  render: (args: Args) => {
+    const attributes = getAttributes(args, (v) => v !== null && v !== undefined);
+    return html`
+      <post-pagination ${spread(attributes)}></post-pagination>
+    `;
+  },
 };
 
-export const ManyPages: Story = {
+export const ManyItems: Story = {
+  name: 'Many items',
   render: (args: Args) => html`
       <post-pagination
         page=10
