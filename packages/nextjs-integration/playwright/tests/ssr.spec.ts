@@ -7,7 +7,7 @@ test.describe('SSR compatibility', () => {
     await page.goto('/ssr');
   });
 
-  test('Nextjs-integration package should contain all components', async ({ page }) => {
+  test('should contain all components', async ({ page }) => {
     for (const componentName of componentNames) {
       const component = page.locator(componentName).first();
       await expect(component).toHaveCount(1);
@@ -21,7 +21,7 @@ test.describe('SSR compatibility', () => {
     }
   });
 
-  test('components should not have console errors', async ({ page }) => {
+  test('all components should not have console errors', async ({ page }) => {
     const errorCapture = setupComponentErrorCapture(page, componentNames as string[]);
 
     await page.reload();
