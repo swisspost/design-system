@@ -17,7 +17,7 @@
 | `labelNext` _(required)_      | `label-next`      | Accessible label for the next page button.      | `string`  | `undefined` |
 | `labelPage` _(required)_      | `label-page`      | Prefix text for page number labels.             | `string`  | `undefined` |
 | `labelPrevious` _(required)_  | `label-previous`  | Accessible label for the previous page button.  | `string`  | `undefined` |
-| `page`                        | `page`            | The current active page number (1-indexed).     | `number`  | `undefined` |
+| `page`                        | `page`            | The current active page number.                 | `number`  | `undefined` |
 | `pageSize` _(required)_       | `page-size`       | The number of items per page.                   | `number`  | `undefined` |
 
 

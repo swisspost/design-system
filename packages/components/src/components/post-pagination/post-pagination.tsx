@@ -4,6 +4,9 @@ import { nanoid } from 'nanoid';
 import { checkEmptyOrType, checkRequiredAndType, debounce } from '@/utils';
 
 const ELLIPSIS = '...';
+const MAX_PAGINATION_ITERATIONS = 20;
+const MEASUREMENT_DEBOUNCE_MS = 50;
+const RESIZE_DEBOUNCE_MS = 150;
 
 /**
  * Type-safe pagination item definition using discriminated union.
@@ -24,7 +27,7 @@ export class PostPagination {
   @Element() host: HTMLPostPaginationElement;
   
   @State() private paginationId: string;
-  @State() private maxVisiblePages: number;
+  @State() private maxVisiblePages: number = 7;
   
   /**
    * The current active page number.
@@ -89,6 +92,7 @@ export class PostPagination {
   private navRef?: HTMLElement;
   private hiddenItemsRef?: HTMLElement;
   private lastWindowWidth: number;
+  private isConnected: boolean = false;
 
   @Watch('page')
   validatePage() {
@@ -163,11 +167,13 @@ export class PostPagination {
   }
 
   componentDidLoad() {
+    this.isConnected = true;
     window.addEventListener('resize', this.handleResize);
     this.waitForMeasurement();
   }
 
   disconnectedCallback() {
+    this.isConnected = false;
     window.removeEventListener('resize', this.handleResize);
   }
 
@@ -175,27 +181,31 @@ export class PostPagination {
    * Waits for the pagination elements to be available and measures them
    */
   private waitForMeasurement = debounce(() => {
+    if (!this.isConnected) return;
+    
     if (this.navRef?.clientWidth > 0 && this.hiddenItemsRef) {
       this.measureAndCalculateVisiblePages();
     } else {
       this.waitForMeasurement();
     }
-  }, 50);
+  }, MEASUREMENT_DEBOUNCE_MS);
 
   /**
    * Handles window resize events
    */
-  private handleResize = () => {
+  private handleResize = debounce(() => {
+    if (!this.isConnected) return;
     if (window.innerWidth === this.lastWindowWidth) return;
+    
     this.lastWindowWidth = window.innerWidth;
     this.measureAndCalculateVisiblePages();
-  };
+  }, RESIZE_DEBOUNCE_MS);
 
   /**
    * Measures actual rendered elements to determine how many pages can fit
    */
   private measureAndCalculateVisiblePages() {
-    if (!this.navRef || !this.hiddenItemsRef) return;
+    if (!this.navRef || !this.hiddenItemsRef || !this.isConnected) return;
 
     const totalPages = this.getTotalPages();
     if (totalPages <= 1) return;
@@ -212,28 +222,22 @@ export class PostPagination {
       return sum + (el as HTMLElement).getBoundingClientRect().width;
     }, 0);
 
-    const allHiddenItems = Array.from(
-      this.hiddenItemsRef.querySelectorAll('.hidden-page-button, .hidden-ellipsis')
-    );
-
-    if (allHiddenItems.length === 0) {
-      return;
-    }
-
-    // Measure single page button width
-    const singleButtonWidth = (allHiddenItems[0] as HTMLElement).getBoundingClientRect().width;
+    // Measure single page button width (using the widest - last page)
+    const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button') as HTMLElement;
+    if (!pageButton) return;
+    
+    const singleButtonWidth = pageButton.getBoundingClientRect().width;
 
     // Calculate available width for page buttons
     const widthForPages = availableWidth - controlButtonsWidth;
 
     // Calculate gap between items
+    const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis') as HTMLElement;
     let gap = 0;
-    if (allHiddenItems.length >= 2) {
-      const first = allHiddenItems[0] as HTMLElement;
-      const second = allHiddenItems[1] as HTMLElement;
-      const firstRect = first.getBoundingClientRect();
-      const secondRect = second.getBoundingClientRect();
-      gap = secondRect.left - firstRect.right;
+    if (pageButton && ellipsis) {
+      const buttonRect = pageButton.getBoundingClientRect();
+      const ellipsisRect = ellipsis.getBoundingClientRect();
+      gap = ellipsisRect.left - buttonRect.right;
     }
 
     // Calculate max pages: Math.floor((widthForPages + gap) / (singleButtonWidth + gap))
@@ -332,13 +336,14 @@ export class PostPagination {
    */
   private generatePages(totalPages: number) {
     const maxVisible = this.maxVisiblePages;
-    const items: PaginationItem[] = [];
 
+    // Early return for simple cases
     if (totalPages <= maxVisible) {
       this.items = this.buildAllPages(totalPages);
       return;
     }
 
+    const items: PaginationItem[] = [];
     const middleSlots = Math.max(1, maxVisible - 4);
     const delta = Math.floor(middleSlots / 2);
     let startPage = this.page - delta;
@@ -347,8 +352,7 @@ export class PostPagination {
     if (startPage < 2) startPage = 2;
     if (endPage > totalPages - 1) endPage = totalPages - 1;
 
-
-    for (let iter = 0; iter < 20; iter++) {
+    for (let iter = 0; iter < MAX_PAGINATION_ITERATIONS; iter++) {
       const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
 
       const slotsTaken = 2 + (leftSection !== 'none' ? 1 : 0) + (rightSection !== 'none' ? 1 : 0);
@@ -502,7 +506,7 @@ export class PostPagination {
   }
 
   /**
-   * Renders all pages in a hidden container for measurement
+   * Renders minimal hidden items for measurement (only what's needed)
    */
   private renderHiddenItems(totalPages: number) {
     const items = [];
@@ -514,14 +518,12 @@ export class PostPagination {
       </button>
     );
 
-    // Render all possible page buttons
-    for (let i = 1; i <= totalPages; i++) {
-      items.push(
-        <button class="pagination-link hidden-page-button" disabled>
-          <span>{i}</span>
-        </button>
-      );
-    }
+    // Only render one page button with the widest number (last page)
+    items.push(
+      <button class="pagination-link hidden-page-button" disabled>
+        <span>{totalPages}</span>
+      </button>
+    );
 
     // Render ellipsis
     items.push(
