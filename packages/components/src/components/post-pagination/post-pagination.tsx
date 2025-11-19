@@ -27,7 +27,7 @@ export class PostPagination {
   @State() private maxVisiblePages: number;
   
   /**
-   * The current active page number (1-indexed).
+   * The current active page number.
    */
   @Prop({ mutable: true }) page?: number;
   
