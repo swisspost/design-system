@@ -367,10 +367,6 @@ export namespace Components {
     }
     interface PostPagination {
         /**
-          * Accessible label for the pagination navigation.
-         */
-        "label": string;
-        /**
           * The total number of items in the collection.
           * @default 0
          */
@@ -380,6 +376,10 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Accessible label for the pagination navigation.
+         */
+        "label": string;
         /**
           * Prefix text for the first page label.
           * @default 'First page'
@@ -1382,10 +1382,6 @@ declare namespace LocalJSX {
     }
     interface PostPagination {
         /**
-          * Accessible label for the pagination navigation.
-         */
-        "label"?: string;
-        /**
           * The total number of items in the collection.
           * @default 0
          */
@@ -1395,6 +1391,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Accessible label for the pagination navigation.
+         */
+        "label": string;
         /**
           * Prefix text for the first page label.
           * @default 'First page'
