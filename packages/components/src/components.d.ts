@@ -338,9 +338,9 @@ export namespace Components {
     interface PostMenu {
         /**
           * Sets the animation type
-          * @default 'pop-in'
+          * @default 'pop'
          */
-        "animation": 'pop-in' | null;
+        "animation": 'pop' | null;
         /**
           * Hides the popover menu and restores focus to the previously focused element.
          */
@@ -543,7 +543,7 @@ export namespace Components {
         /**
           * Choose a tooltip animation
          */
-        "animation"?: 'pop-in';
+        "animation"?: 'pop';
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -869,6 +869,7 @@ declare global {
     interface HTMLPostPopovercontainerElementEventMap {
         "postBeforeShow": { first?: boolean };
         "postShow": { first?: boolean };
+        "postBeforeHide": any;
         "postHide": any;
         "postBeforeToggle": { willOpen: boolean };
         "postToggle": { isOpen: boolean };
@@ -1294,9 +1295,9 @@ declare namespace LocalJSX {
     interface PostMenu {
         /**
           * Sets the animation type
-          * @default 'pop-in'
+          * @default 'pop'
          */
-        "animation"?: 'pop-in' | null;
+        "animation"?: 'pop' | null;
         /**
           * An accessible name for the menu.
          */
@@ -1362,6 +1363,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "manualClose"?: boolean;
+        /**
+          * Fires whenever the popovercontainer is about to be hidden.
+         */
+        "onPostBeforeHide"?: (event: PostPopovercontainerCustomEvent<any>) => void;
         /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
@@ -1480,7 +1485,7 @@ declare namespace LocalJSX {
         /**
           * Choose a tooltip animation
          */
-        "animation"?: 'pop-in';
+        "animation"?: 'pop';
         /**
           * Whether or not to display a little pointer arrow
           * @default false

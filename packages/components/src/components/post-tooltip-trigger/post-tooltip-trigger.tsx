@@ -204,6 +204,7 @@ export class PostTooltipTrigger {
       if (this.delay > 0) {
         this.delayTimeout = window.setTimeout(() => {
           this.tooltip?.show(this.trigger);
+          console.log('tooltip trigger: show');
           this.delayTimeout = null;
         }, this.delay);
       } else {
@@ -218,6 +219,7 @@ export class PostTooltipTrigger {
       this.delayTimeout = null;
     }
     this.tooltip?.hide();
+    console.log('tooltip trigger: hide');
   }
 
   render() {

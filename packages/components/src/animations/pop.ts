@@ -16,3 +16,19 @@ export function popIn(el: Element) {
     },
   );
 }
+
+export function popOut(el: Element) {
+  if (!el) return;
+
+  return el.animate(
+    [
+      { transform: 'scale(1)', opacity: 1 },
+      { transform: 'scale(0.9)', opacity: 0 },
+    ],
+    {
+      duration,
+      easing,
+      fill: 'none',
+    },
+  );
+}

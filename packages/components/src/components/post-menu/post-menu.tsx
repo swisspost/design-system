@@ -68,7 +68,7 @@ export class PostMenu {
   /**
    * Sets the animation type
    */
-  @Prop() readonly animation: 'pop-in' | null = 'pop-in';
+  @Prop() readonly animation: 'pop' | null = 'pop';
 
   /**
    * Holds the current visibility state of the menu.
@@ -154,7 +154,7 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
-    // Only for the first open
+      // Only for the first open
       if (event.detail.first) {
         // Add "menu" and "menuitem" aria roles and aria-label
         this.host.setAttribute('role', 'menu');

@@ -29,7 +29,7 @@ import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
-import { popIn } from '@/animations/pop-in';
+import { popIn, popOut } from '@/animations/pop';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -38,7 +38,7 @@ interface PopoverElement {
 }
 
 const ANIMATIONS = {
-  'pop-in': popIn,
+  pop: { open: popIn, close: popOut },
 } as const;
 
 export type AnimationName = keyof typeof ANIMATIONS;
@@ -92,6 +92,11 @@ export class PostPopovercontainer {
    * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
    */
   @Event() postShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is about to be hidden.
+   */
+  @Event() postBeforeHide: EventEmitter;
 
   /**
    * Fires whenever the popovercontainer is hidden.
@@ -169,7 +174,8 @@ export class PostPopovercontainer {
     this.host.style.setProperty('--post-safe-space-cursor-y', `${event.clientY}px`);
   }
 
-  private currentAnimation: Animation | null = null;
+  private currentOpenAnimation: Animation | null = null;
+  private currentClosingAnimation: Animation | null = null;
 
   connectedCallback() {
     if (IS_BROWSER && !isSupported()) {
@@ -194,6 +200,7 @@ export class PostPopovercontainer {
    */
   @Method()
   async show(target: HTMLElement) {
+    console.log('popovercontainer: show');
     if (this.toggleTimeoutId) return;
     this.eventTarget = target;
     this.calculatePosition();
@@ -205,6 +212,7 @@ export class PostPopovercontainer {
    */
   @Method()
   async open() {
+    console.log('popovercontainer: open');
     const content: HTMLElement = this.host.querySelector('.popover-content');
     this.startAutoupdates();
 
@@ -218,7 +226,12 @@ export class PostPopovercontainer {
         this.postShow.emit({ first: this.hasOpenedOnce });
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
       } else {
-        const animationFn = ANIMATIONS[this.animation];
+        // Cancel any running open animation
+        if (this.currentClosingAnimation) {
+          this.currentClosingAnimation.cancel();
+          this.currentClosingAnimation = null;
+        }
+        const animationFn = ANIMATIONS[this.animation].open;
         this.runOpenAnimation(animationFn, content);
       }
     }
@@ -233,6 +246,9 @@ export class PostPopovercontainer {
    */
   @Method()
   async close() {
+    console.log('popovercontainer: close');
+    const content: HTMLElement = this.host.querySelector('.popover-content');
+
     if (typeof this.clearAutoUpdate === 'function') {
       this.clearAutoUpdate();
     }
@@ -241,15 +257,24 @@ export class PostPopovercontainer {
       window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
 
-    // Cancel any running animation
-    if (this.currentAnimation) {
-      this.currentAnimation.cancel();
-      this.currentAnimation = null;
-    }
+    if (this.animation === null) {
+      this.postBeforeToggle.emit({ willOpen: false });
+      this.postToggle.emit({ isOpen: false });
+      this.postBeforeHide.emit();
+      this.postHide.emit();
+    } else {
+      console.log('animation for close');
+      // Cancel any running open animation
+      if (this.currentOpenAnimation) {
+        this.currentOpenAnimation.cancel();
+        this.currentOpenAnimation = null;
+      }
 
-    this.postBeforeToggle.emit({ willOpen: false });
-    this.postToggle.emit({ isOpen: false });
-    this.postHide.emit();
+      if (content) {
+        const animationFn = ANIMATIONS[this.animation].close;
+        this.runCloseAnimation(animationFn, content);
+      }
+    }
   }
 
   /**
@@ -257,9 +282,11 @@ export class PostPopovercontainer {
    */
   @Method()
   async hide() {
+    console.log('popovercontainer: hide');
     if (!this.toggleTimeoutId) {
       this.eventTarget = null;
       this.host.hidePopover();
+      this.postBeforeHide.emit();
       this.postHide.emit();
     }
   }
@@ -271,6 +298,7 @@ export class PostPopovercontainer {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    console.log('popovercontainer: toggle');
     this.eventTarget = target;
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
@@ -283,7 +311,7 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Runs the animation and emits the toggle/show/hide events in the correct timing
+   * Runs the opening animation of the popovercontainer and emits the toggle/show/hide events in the correct timing
    */
 
   private async runOpenAnimation(
@@ -291,7 +319,7 @@ export class PostPopovercontainer {
     element: HTMLElement,
   ) {
     let animation: Animation | undefined;
-
+    console.log('popovercontainer: run open animation');
     try {
       animation = animationFn(element);
       if (!animation) {
@@ -304,17 +332,20 @@ export class PostPopovercontainer {
         return;
       }
 
-      this.currentAnimation = animation;
+      this.currentOpenAnimation = animation;
 
       if (animation.playState === 'running') {
+        console.log('popovercontainer: animation running');
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+        console.log('popovercontainer: emitted before show/toggle events');
       }
 
       await animation.finished;
 
       this.postToggle.emit({ isOpen: true });
       this.postShow.emit({ first: this.hasOpenedOnce });
+      console.log('popovercontainer: emitted posttoggle and postshow');
 
       this.hasOpenedOnce = true;
     } catch (err) {
@@ -324,8 +355,53 @@ export class PostPopovercontainer {
       this.postBeforeShow.emit({ first: this.hasOpenedOnce });
       this.postToggle.emit({ isOpen: false });
     } finally {
-      if (this.currentAnimation === animation) {
-        this.currentAnimation = null;
+      if (this.currentOpenAnimation === animation) {
+        this.currentOpenAnimation = null;
+      }
+    }
+  }
+
+  /**
+   * Runs the closing animation the popovercontainer and emits the toggle/show/hide events in the correct timing
+   */
+
+  private async runCloseAnimation(
+    animationFn: (el: HTMLElement) => Animation | undefined,
+    element: HTMLElement,
+  ) {
+    let animation: Animation | undefined;
+
+    try {
+      animation = animationFn(element);
+
+      if (!animation) {
+        // Fallback: no animation, just emit open events directly
+        this.postBeforeToggle.emit({ willOpen: false });
+        this.postToggle.emit({ isOpen: false });
+        this.postBeforeHide.emit();
+        this.postHide.emit();
+
+        return;
+      }
+      this.currentClosingAnimation = animation;
+      if (animation.playState === 'running') {
+        this.postBeforeToggle.emit({ willOpen: false });
+        this.postBeforeHide.emit();
+      }
+
+      await animation.finished;
+
+      this.postToggle.emit({ isOpen: false });
+      this.postHide.emit();
+    } catch (err) {
+      console.warn('Animation failed or was interrupted:', err);
+      // Reset all states to closing
+      this.postBeforeToggle.emit({ willOpen: false });
+      this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+      this.postToggle.emit({ isOpen: false });
+    } finally {
+      if (this.currentClosingAnimation === animation) {
+        this.currentClosingAnimation = null;
       }
     }
   }
@@ -337,6 +413,7 @@ export class PostPopovercontainer {
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
+    console.log('popovercontainer: handleToggle');
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
 
