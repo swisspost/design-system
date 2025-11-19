@@ -1,5 +1,5 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { Default, ManyItems, PageOutOfRange } from './pagination.stories';
+import meta, { Default, ManyPages, PageOutOfRange } from './pagination.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -21,7 +21,7 @@ export const PaginationSnapshots: Story = {
       },
       {
         label: 'Many Pages',
-        story: ManyItems.render?.(context.args, context) || html`<p>Error rendering ManyPages</p>`,
+        story: ManyPages.render?.(context.args, context) || html`<p>Error rendering ManyPages</p>`,
       },
       {
         label: 'Page Out Of Range',
