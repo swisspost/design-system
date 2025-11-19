@@ -39,7 +39,7 @@
     "@types/node": "22.10.5",
     "autoprefixer": "10.4.21",
     "copyfiles": "2.4.1",
-    "glob": "11.0.3",
+    "glob": "11.1.0",
     "gulp": "5.0.1",
     "gulp-newer": "1.4.0",
     "gulp-postcss": "10.0.0",
