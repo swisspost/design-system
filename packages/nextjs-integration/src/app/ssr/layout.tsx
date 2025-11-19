@@ -62,7 +62,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           </PostLanguageOption>
         </PostLanguageSwitch>
 
-        <h1 slot="title">Application title</h1>
+        <p slot="title">Application title</p>
 
         <ul slot="local-controls" className="list-inline">
           <li>
@@ -83,7 +83,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <PostMainnavigation slot="post-mainnavigation">
           {/* Throws Hydration Errors */}
           <PostList title-hidden="">
-            <h2>Main Navigation</h2>
+            <p>Main Navigation</p>
             <PostListItem slot="post-list-item">
               <a href="/briefe">Briefe</a>
             </PostListItem>
@@ -100,9 +100,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   Back
                 </button>
                 <PostClosebutton slot="close-button">Schliessen</PostClosebutton>
-                <h2 slot="megadropdown-title">Briefe title</h2>
                 <PostList>
-                  <h3>Briefe senden</h3>
+                  <p>Briefe senden</p>
                   <PostListItem slot="post-list-item">
                     <a href="/sch">Briefe Schweiz</a>
                   </PostListItem>
@@ -117,9 +116,9 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   </PostListItem>
                 </PostList>
                 <PostList>
-                  <h3>
+                  <p>
                     <a href="/schritt-für-schritt">Schritt für Schritt</a>
-                  </h3>
+                  </p>
                   <PostListItem slot="post-list-item">
                     <a href="/sch">Pakete Schweiz</a>
                   </PostListItem>
@@ -143,9 +142,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   Back
                 </button>
                 <PostClosebutton slot="close-button">Schliessen</PostClosebutton>
-                <h2 slot="megadropdown-title">Pakete title</h2>
                 <PostList>
-                  <h3>Pakete senden</h3>
+                  <p>Pakete senden</p>
                   <PostListItem slot="post-list-item">
                     <a href="/sch">Pakete Schweiz</a>
                   </PostListItem>
@@ -160,9 +158,9 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   </PostListItem>
                 </PostList>
                 <PostList>
-                  <h3>
+                  <p>
                     <a href="/schritt-für-schritt">Schritt für Schritt</a>
-                  </h3>
+                  </p>
                   <PostListItem slot="post-list-item">
                     <a href="/sch">Pakete Schweiz</a>
                   </PostListItem>
