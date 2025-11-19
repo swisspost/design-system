@@ -47,7 +47,7 @@ export class PostPagination {
   /**
    * The number of items per page.
    */
-  @Prop() pageSize: number = 10;
+  @Prop() pageSize: number;
   
   /**
    * The total number of items in the collection.

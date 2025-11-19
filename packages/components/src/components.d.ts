@@ -412,7 +412,6 @@ export namespace Components {
         "page": number;
         /**
           * The number of items per page.
-          * @default 10
          */
         "pageSize": number;
     }
@@ -1431,7 +1430,6 @@ declare namespace LocalJSX {
         "page"?: number;
         /**
           * The number of items per page.
-          * @default 10
          */
         "pageSize"?: number;
     }

@@ -18,7 +18,7 @@
 | `labelPage`          | `label-page`      | Prefix text for page number labels.             | `string`  | `'Page'`          |
 | `labelPrevious`      | `label-previous`  | Accessible label for the previous page button.  | `string`  | `'Previous page'` |
 | `page`               | `page`            | The current active page number (1-indexed).     | `number`  | `1`               |
-| `pageSize`           | `page-size`       | The number of items per page.                   | `number`  | `10`              |
+| `pageSize`           | `page-size`       | The number of items per page.                   | `number`  | `undefined`       |
 
 
 ## Events
