@@ -7,7 +7,7 @@ test.describe('SSR compatibility', () => {
     await page.goto('/ssr');
   });
 
-  test('should contain all components', async ({ page }) => {
+  test('should contain every component tag at least once', async ({ page }) => {
     for (const componentName of componentNames) {
       const component = page.locator(componentName).first();
       await expect(component).toHaveCount(1);
