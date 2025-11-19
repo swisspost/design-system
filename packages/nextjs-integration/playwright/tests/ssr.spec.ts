@@ -53,7 +53,7 @@ test.describe('SSR compatibility', () => {
     // expect(hydrationErrors.length).toBe(0);
     if (hydrationErrors) {
       test.info().annotations.push({
-        type: 'Warning',
+        type: ' Warning',
         description: `The test detected hydration errors!\n${hydrationErrors.join('\n')}`,
       });
     }
