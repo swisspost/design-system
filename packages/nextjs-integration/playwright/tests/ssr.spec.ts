@@ -21,17 +21,13 @@ test.describe('SSR compatibility', () => {
     }
   });
 
-  for (const componentName of componentNames) {
-    test.describe(componentName, () => {
-      test(`the component should not have console errors`, async ({ page }) => {
-        const errorCapture = setupComponentErrorCapture(page, [componentName]);
+  test('components should not have console errors', async ({ page }) => {
+    const errorCapture = setupComponentErrorCapture(page, componentNames as string[]);
 
-        await page.reload();
+    await page.reload();
 
-        assertNoComponentErrors(errorCapture.errors, [componentName]);
-      });
-    });
-  }
+    assertNoComponentErrors(errorCapture.errors, componentNames as string[]);
+  });
 
   // NextJS typically only logs a single hydration error.
   // This means that after an error in one component has been fixed, another one may occur.
