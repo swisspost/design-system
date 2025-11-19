@@ -9,11 +9,14 @@ describe('Typography', () => {
       // Test Inline Elements
       cy.get('small', { timeout: 30000 }).should('be.visible');
       cy.get('strong', { timeout: 30000 }).should('be.visible');
+      cy.get('em', { timeout: 30000 }).should('be.visible');
       cy.get('sub', { timeout: 30000 }).should('be.visible');
+      cy.get('sup', { timeout: 30000 }).should('be.visible');
       cy.get('mark', { timeout: 30000 }).should('be.visible');
       cy.get('abbr', { timeout: 30000 }).should('be.visible');
       cy.get('code', { timeout: 30000 }).should('be.visible');
       cy.get('kbd', { timeout: 30000 }).should('be.visible');
+      cy.get('del', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 
