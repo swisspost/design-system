@@ -317,6 +317,15 @@ export class PostPagination {
     };
   }
 
+  // Helper: build a full list of pages (1..totalPages)
+  private buildAllPages(totalPages: number): PaginationItem[] {
+    const items: PaginationItem[] = [];
+    for (let i = 1; i <= totalPages; i++) {
+      items.push({ type: 'page', page: i });
+    }
+    return items;
+  }
+
 
   /**
    * Generates the page numbers array with ellipsis based on available space.
@@ -326,10 +335,7 @@ export class PostPagination {
     const items: PaginationItem[] = [];
 
     if (totalPages <= maxVisible) {
-      for (let i = 1; i <= totalPages; i++) {
-        items.push({ type: 'page', page: i });
-      }
-      this.items = items;
+      this.items = this.buildAllPages(totalPages);
       return;
     }
 
