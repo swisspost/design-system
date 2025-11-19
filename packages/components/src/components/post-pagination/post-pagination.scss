@@ -182,14 +182,14 @@ $pagination-border-radius: 50%;
 // Hidden items container for measurement (like breadcrumbs)
 .hidden-items {
   position: absolute;
-  height: 40px;
+  height: 0;
   overflow: hidden;
   white-space: nowrap;
   display: flex;
   gap: 4px; // Same gap as visible items
   pointer-events: none;
+  visibility: hidden;
 }
-
 
 .visually-hidden {
   position: absolute;
