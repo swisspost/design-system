@@ -65,6 +65,10 @@ export class PostStepper {
     this.updateSteps();
   }
 
+  connectedCallback() {
+    this.stepItems = document.querySelectorAll(null);
+  }
+
   componentDidLoad() {
     this.validateCompletedLabel();
     this.validateCurrentLabel();
@@ -132,7 +136,7 @@ export class PostStepper {
   }
 
   private updateMobileActiveStepVisibility() {
-    if (!this.stepItems || this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
+    if (this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
       this.mobileActiveStepLabel = '';
       this.mobileActiveStepName = '';
     }
