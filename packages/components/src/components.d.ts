@@ -369,7 +369,7 @@ export namespace Components {
         /**
           * Accessible label for the pagination navigation.
          */
-        "ariaLabel": string;
+        "label": string;
         /**
           * The total number of items in the collection.
           * @default 0
@@ -1384,7 +1384,7 @@ declare namespace LocalJSX {
         /**
           * Accessible label for the pagination navigation.
          */
-        "ariaLabel": string;
+        "label"?: string;
         /**
           * The total number of items in the collection.
           * @default 0

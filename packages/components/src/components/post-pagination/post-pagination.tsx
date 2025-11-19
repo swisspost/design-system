@@ -57,7 +57,7 @@ export class PostPagination {
   /**
    * Accessible label for the pagination navigation.
    */
-  @Prop() readonly ariaLabel!: string;
+  @Prop() readonly label!: string;
 
   /**
    * Accessible label for the previous page button.
@@ -122,9 +122,9 @@ export class PostPagination {
     checkEmptyOrType(this, 'collectionSize', 'number');
   }
   
-  @Watch('ariaLabel')
-  validateAriaLabel() {
-    checkRequiredAndType(this, 'ariaLabel', 'string');
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'label', 'string');
   }
   
   @Watch('labelPrevious')
@@ -173,7 +173,7 @@ export class PostPagination {
     this.validatePage();
     this.validatePageSize();
     this.validateCollectionSize();
-    this.validateAriaLabel();
+    this.validateLabel();
     this.validateLabelPrevious();
     this.validateLabelNext();
     this.validateLabelPage();
@@ -588,7 +588,7 @@ export class PostPagination {
       <Host slot="post-pagination" data-version={version}>
         <nav
           class="pagination"
-          aria-label={this.ariaLabel}
+          aria-label={this.label}
           id={this.paginationId}
         >
           <ul class="pagination-list" role="list">
