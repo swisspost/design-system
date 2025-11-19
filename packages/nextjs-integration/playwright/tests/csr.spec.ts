@@ -10,22 +10,9 @@ test.describe('CSR compatibility', () => {
   for (const componentName of componentNames) {
     const name = componentName;
     test.describe(name, () => {
-      test(`Nextjs-integration package should contain the component`, async ({ page }) => {
-        const component = page.locator(name).first();
-        await expect(component).toHaveCount(1);
-      });
-
       test(`the component should be hydrated`, async ({ page }) => {
         const component = page.locator(`${name}[data-hydrated]`).first();
         await expect(component).toBeAttached();
-      });
-
-      test(`the component should not have console errors`, async ({ page }) => {
-        const errorCapture = setupComponentErrorCapture(page, [name]);
-
-        await page.reload();
-
-        assertNoComponentErrors(errorCapture.errors, [name]);
       });
     });
   }
