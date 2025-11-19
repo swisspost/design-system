@@ -1,5 +1,3 @@
-import { EMPTY_VALUES } from './property-checkers/constants';
-
 export function isValueEmpty(value: unknown): boolean {
-  return EMPTY_VALUES.some(v => v === value);
+  return value == null || value === '' || (typeof value === 'number' && isNaN(value));
 }
