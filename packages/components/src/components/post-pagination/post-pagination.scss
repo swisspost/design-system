@@ -28,20 +28,12 @@ $pagination-transition: all 0.2s ease;
 // Border radius
 $pagination-border-radius: 50%;
 
-// ============================================================================
-// Main Container
-// ============================================================================
-
 .pagination {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-// ============================================================================
-// Pagination List
-// ============================================================================
 
 .pagination-list {
   display: flex;
@@ -54,20 +46,12 @@ $pagination-border-radius: 50%;
   gap: $pagination-gap;
 }
 
-// ============================================================================
-// Pagination Items (li wrapper)
-// ============================================================================
-
 .pagination-item {
   display: flex;
   align-items: center;
   margin: 0;
   padding: 0;
 }
-
-// ============================================================================
-// Pagination Links (buttons)
-// ============================================================================
 
 .pagination-link {
   display: flex;
@@ -145,10 +129,6 @@ $pagination-border-radius: 50%;
     min-width: $pagination-button-size-desktop;
   }
 }
-
-// ============================================================================
-// Control Buttons (Previous/Next)
-// ============================================================================
 
 .pagination-control {
   .pagination-control-button {
