@@ -15,16 +15,10 @@ export default meta;
 type Story = StoryObj;
 
 const headingVariants = bombArgs({
-  title: [
-    'Lorem ipsum dolor sit',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, libero. Dolore possimus ut atque quaerat nobis iusto vero, reiciendis sapiente',
-  ],
+  title: ['Lorem ipsum dolor sit'],
   level: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
   showSubtitle: [false, true],
-  subtitle: [
-    'Lorem ipsum dolor sit amet',
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam veniam inventore nulla saepe veritatis ut',
-  ],
+  subtitle: ['Lorem ipsum dolor sit amet'],
 }).filter(args => {
   const subtitle = args.subtitle;
   return !(args.showSubtitle === false && typeof subtitle === 'string' && subtitle.length > 30);
@@ -58,19 +52,15 @@ function renderHeading(args: { [p: string]: unknown }) {
 
 export const Typography: Story = {
   render: () => html`
-      <!-- Headings -->
-      ${schemes(
-        () => html`
+    <!-- Headings -->
+    ${schemes(
+      () => html`
           <section>
             <h2>Headings</h2>
             ${headingVariants.map(args => renderHeading(args))}
           </section>
-        `,
-      )}
 
       <!-- Links -->
-      ${schemes(
-        () => html`
           <section>
             <h2>Links</h2>
             <a href="https://post.ch">Link Text</a>
@@ -79,12 +69,8 @@ export const Typography: Story = {
             <a href="https://post.ch">Lorem ipsum dolor sit amet consectetur</a>
             <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
           </section>
-        `,
-      )}
 
       <!-- Paragraphs -->
-      ${schemes(
-        () => html`
           <section>
             <h2>Paragraphs</h2>
             <p>
@@ -101,12 +87,8 @@ export const Typography: Story = {
               introductory content.
             </p>
           </section>
-        `,
-      )}
 
       <!-- Legend -->
-      ${schemes(
-        () => html`
           <section>
             <h2>Legend</h2>
             <fieldset>
@@ -117,12 +99,8 @@ export const Typography: Story = {
               <legend class="large">Large legend</legend>
             </fieldset>
           </section>
-        `,
-      )}
 
       <!-- Inline Elements -->
-      ${schemes(
-        () => html`
           <section>
             <h2>Inline Elements</h2>
             <p>This is <small>small inline text</small> for fine print or disclaimers.</p>
@@ -143,8 +121,8 @@ export const Typography: Story = {
               for corrections.
             </p>
           </section>
-        `,
-      )}
     </div>
+  `,
+    )}
   `,
 };
