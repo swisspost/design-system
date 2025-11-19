@@ -26,7 +26,7 @@ export class PostPagination {
   /**
    * The current active page number (1-indexed).
    */
-  @Prop({ mutable: true }) page: number;
+  @Prop({ mutable: true }) page?: number;
   
   /**
    * The number of items per page.

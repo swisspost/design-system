@@ -402,7 +402,7 @@ export namespace Components {
         /**
           * The current active page number (1-indexed).
          */
-        "page": number;
+        "page"?: number;
         /**
           * The number of items per page.
          */
