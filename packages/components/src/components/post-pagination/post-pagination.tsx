@@ -206,7 +206,7 @@ export class PostPagination {
   /**
    * Calculates gap between two elements
    */
-  private calculateGap(first: HTMLElement, second: HTMLElement): number {
+  private calculateGap(first: Element, second: Element): number {
     const firstRect = first.getBoundingClientRect();
     const secondRect = second.getBoundingClientRect();
     return secondRect.left - firstRect.right;
@@ -225,8 +225,8 @@ export class PostPagination {
     const availableWidth = this.getAvailableWidth() - paginationPadding;
 
     const controlButtonsWidth = this.getControlButtonsWidth();
-    const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button') as HTMLElement;
-    const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis') as HTMLElement;
+    const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button');
+    const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis');
     
     if (!pageButton) return;
 
@@ -250,9 +250,7 @@ export class PostPagination {
       this.hiddenItemsRef.querySelectorAll('.hidden-control-button')
     );
     
-    return controlButtons.reduce((sum, el) => {
-      return sum + (el as HTMLElement).getBoundingClientRect().width;
-    }, 0);
+    return controlButtons.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
   }
 
   /** 
