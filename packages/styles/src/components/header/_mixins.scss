@@ -43,11 +43,7 @@
 
   @include button.button-variant-def('enabled', 'tertiary');
 
-  &:disabled {
-    @include button.button-variant-def('disabled', 'tertiary');
-  }
-
-  @include utilities.not-disabled-hover {
+  &:hover {
     @include button.button-variant-def('hover', 'tertiary');
   }
 
@@ -56,11 +52,7 @@
 
     @include button.button-variant-def('enabled', 'primary');
 
-    &:disabled {
-      @include button.button-variant-def('disabled', 'primary');
-    }
-
-    @include utilities.not-disabled-hover {
+    &:hover {
       @include button.button-variant-def('hover', 'primary');
     }
   }
@@ -111,7 +103,7 @@
     }
   }
 
-  @include utilities.not-disabled-hover {
+  &:hover {
     @include button.button-variant-def('hover', 'primary');
   }
 
