@@ -365,7 +365,6 @@ export namespace Components {
     interface PostPagination {
         /**
           * Accessible label for the pagination navigation.
-          * @default 'Pagination'
          */
         "ariaLabel": string;
         /**
@@ -1319,9 +1318,8 @@ declare namespace LocalJSX {
     interface PostPagination {
         /**
           * Accessible label for the pagination navigation.
-          * @default 'Pagination'
          */
-        "ariaLabel"?: string;
+        "ariaLabel": string;
         /**
           * The total number of items in the collection.
           * @default 0

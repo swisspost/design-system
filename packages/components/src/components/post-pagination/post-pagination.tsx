@@ -57,7 +57,7 @@ export class PostPagination {
   /**
    * Accessible label for the pagination navigation.
    */
-  @Prop() readonly ariaLabel: string = 'Pagination';
+  @Prop() readonly ariaLabel!: string;
 
   /**
    * Accessible label for the previous page button.

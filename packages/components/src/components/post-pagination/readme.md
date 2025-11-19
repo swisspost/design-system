@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property         | Attribute         | Description                                     | Type      | Default           |
-| ---------------- | ----------------- | ----------------------------------------------- | --------- | ----------------- |
-| `ariaLabel`      | `aria-label`      | Accessible label for the pagination navigation. | `string`  | `'Pagination'`    |
-| `collectionSize` | `collection-size` | The total number of items in the collection.    | `number`  | `0`               |
-| `disabled`       | `disabled`        | If true, the pagination is disabled.            | `boolean` | `false`           |
-| `labelFirst`     | `label-first`     | Prefix text for the first page label.           | `string`  | `'First page'`    |
-| `labelLast`      | `label-last`      | Prefix text for the last page label.            | `string`  | `'Last page'`     |
-| `labelNext`      | `label-next`      | Accessible label for the next page button.      | `string`  | `'Next page'`     |
-| `labelPage`      | `label-page`      | Prefix text for page number labels.             | `string`  | `'Page'`          |
-| `labelPrevious`  | `label-previous`  | Accessible label for the previous page button.  | `string`  | `'Previous page'` |
-| `page`           | `page`            | The current active page number (1-indexed).     | `number`  | `1`               |
-| `pageSize`       | `page-size`       | The number of items per page.                   | `number`  | `10`              |
+| Property                 | Attribute         | Description                                     | Type      | Default           |
+| ------------------------ | ----------------- | ----------------------------------------------- | --------- | ----------------- |
+| `ariaLabel` _(required)_ | `aria-label`      | Accessible label for the pagination navigation. | `string`  | `undefined`       |
+| `collectionSize`         | `collection-size` | The total number of items in the collection.    | `number`  | `0`               |
+| `disabled`               | `disabled`        | If true, the pagination is disabled.            | `boolean` | `false`           |
+| `labelFirst`             | `label-first`     | Prefix text for the first page label.           | `string`  | `'First page'`    |
+| `labelLast`              | `label-last`      | Prefix text for the last page label.            | `string`  | `'Last page'`     |
+| `labelNext`              | `label-next`      | Accessible label for the next page button.      | `string`  | `'Next page'`     |
+| `labelPage`              | `label-page`      | Prefix text for page number labels.             | `string`  | `'Page'`          |
+| `labelPrevious`          | `label-previous`  | Accessible label for the previous page button.  | `string`  | `'Previous page'` |
+| `page`                   | `page`            | The current active page number (1-indexed).     | `number`  | `1`               |
+| `pageSize`               | `page-size`       | The number of items per page.                   | `number`  | `10`              |
 
 
 ## Events
