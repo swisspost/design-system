@@ -257,90 +257,90 @@ describe('pagination', () => {
   });
 
   describe('keyboard navigation', () => {
-  beforeEach(() => {
-    cy.getComponent('pagination', PAGINATION_ID);
-    cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
-    cy.get('@pagination').find('.pagination-control-button').first().as('prevButton');
-    cy.get('@pagination').find('.pagination-control-button').last().as('nextButton');
-  });
+    beforeEach(() => {
+      cy.getComponent('pagination', PAGINATION_ID);
+      cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
+      cy.get('@pagination').find('.pagination-control-button').first().as('prevButton');
+      cy.get('@pagination').find('.pagination-control-button').last().as('nextButton');
+    });
 
-  it('should allow focus on all enabled controls', () => {
-    cy.get('.pagination-link:not([disabled])').each($button => {
-      cy.wrap($button).focus();
-      cy.wrap($button).should('have.focus');
+    it('should allow focus on all enabled controls', () => {
+      cy.get('.pagination-link:not([disabled])').each($button => {
+        cy.wrap($button).focus();
+        cy.wrap($button).should('have.focus');
+      });
+    });
+
+    it('should activate control with Enter key', () => {
+      cy.get('@pagination').invoke('attr', 'page', '1');
+      cy.wait(100);
+    
+      cy.get('@pageButtons').contains('2').focus().type('{enter}');
+      cy.wait(100);
+    
+      cy.get('.pagination-link-active')
+        .find('span[aria-hidden="true"]')
+        .should('contain', '2');
+    });
+
+    it('should activate control with Space key', () => {
+      cy.get('@pagination').invoke('attr', 'page', '1');
+      cy.wait(100);
+    
+      cy.get('@pageButtons').contains('3').focus().type(' ');
+      cy.wait(100);
+    
+      cy.get('.pagination-link-active')
+        .find('span[aria-hidden="true"]')
+        .should('contain', '3');
+    });
+
+    it('should activate next button with Enter key', () => {
+      cy.get('@pagination').invoke('attr', 'page', '1');
+      cy.wait(100);
+    
+      cy.get('@nextButton').focus().type('{enter}');
+      cy.wait(100);
+    
+      cy.get('.pagination-link-active')
+        .find('span[aria-hidden="true"]')
+        .should('contain', '2');
+    });
+
+    it('should activate previous button with Space key', () => {
+      cy.get('@pagination').invoke('attr', 'page', '3');
+      cy.wait(100);
+    
+      cy.get('@prevButton').focus().type(' ');
+      cy.wait(100);
+    
+      cy.get('.pagination-link-active')
+        .find('span[aria-hidden="true"]')
+        .should('contain', '2');
+    });
+
+    it('should not allow focus on disabled controls', () => {
+      cy.get('@pagination').invoke('attr', 'page', '1');
+      cy.wait(100);
+    
+      cy.get('@prevButton').should('be.disabled');
+      cy.get('@prevButton').should('have.attr', 'tabindex', '-1');
+    });
+
+    it('should have proper focus management', () => {
+      cy.get('@pagination').invoke('attr', 'page', '2');
+      cy.wait(100);
+    
+      // Focus and activate a page button
+      cy.get('@pageButtons').contains('3').focus().type('{enter}');
+      cy.wait(100);
+    
+      // Verify the new page is active
+      cy.get('.pagination-link-active')
+        .find('span[aria-hidden="true"]')
+        .should('contain', '3');
     });
   });
-
-  it('should activate control with Enter key', () => {
-    cy.get('@pagination').invoke('attr', 'page', '1');
-    cy.wait(100);
-    
-    cy.get('@pageButtons').contains('2').focus().type('{enter}');
-    cy.wait(100);
-    
-    cy.get('.pagination-link-active')
-      .find('span[aria-hidden="true"]')
-      .should('contain', '2');
-  });
-
-  it('should activate control with Space key', () => {
-    cy.get('@pagination').invoke('attr', 'page', '1');
-    cy.wait(100);
-    
-    cy.get('@pageButtons').contains('3').focus().type(' ');
-    cy.wait(100);
-    
-    cy.get('.pagination-link-active')
-      .find('span[aria-hidden="true"]')
-      .should('contain', '3');
-  });
-
-  it('should activate next button with Enter key', () => {
-    cy.get('@pagination').invoke('attr', 'page', '1');
-    cy.wait(100);
-    
-    cy.get('@nextButton').focus().type('{enter}');
-    cy.wait(100);
-    
-    cy.get('.pagination-link-active')
-      .find('span[aria-hidden="true"]')
-      .should('contain', '2');
-  });
-
-  it('should activate previous button with Space key', () => {
-    cy.get('@pagination').invoke('attr', 'page', '3');
-    cy.wait(100);
-    
-    cy.get('@prevButton').focus().type(' ');
-    cy.wait(100);
-    
-    cy.get('.pagination-link-active')
-      .find('span[aria-hidden="true"]')
-      .should('contain', '2');
-  });
-
-  it('should not allow focus on disabled controls', () => {
-    cy.get('@pagination').invoke('attr', 'page', '1');
-    cy.wait(100);
-    
-    cy.get('@prevButton').should('be.disabled');
-    cy.get('@prevButton').should('have.attr', 'tabindex', '-1');
-  });
-
-  it('should have proper focus management', () => {
-    cy.get('@pagination').invoke('attr', 'page', '2');
-    cy.wait(100);
-    
-    // Focus and activate a page button
-    cy.get('@pageButtons').contains('3').focus().type('{enter}');
-    cy.wait(100);
-    
-    // Verify the new page is active
-    cy.get('.pagination-link-active')
-      .find('span[aria-hidden="true"]')
-      .should('contain', '3');
-  });
-});
 
   describe('accessibility', () => {
     beforeEach(() => {
