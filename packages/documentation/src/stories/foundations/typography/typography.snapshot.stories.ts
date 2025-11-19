@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { html, render } from 'lit';
 import type { StoryObj } from '@storybook/web-components-vite';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -32,22 +32,9 @@ function renderHeading(args: { [p: string]: unknown }) {
       ? html`<span class="d-block fw-normal"> ${subtitle}</span>`
       : null;
 
-  switch (level) {
-    case 'h1':
-      return html`<h1>h1 - ${title}${subtitleHtml}</h1>`;
-    case 'h2':
-      return html`<h2>h2 - ${title}${subtitleHtml}</h2>`;
-    case 'h3':
-      return html`<h3>h3 - ${title}${subtitleHtml}</h3>`;
-    case 'h4':
-      return html`<h4>h4 - ${title}${subtitleHtml}</h4>`;
-    case 'h5':
-      return html`<h5>h5 - ${title}${subtitleHtml}</h5>`;
-    case 'h6':
-      return html`<h6>h6 - ${title}${subtitleHtml}</h6>`;
-    default:
-      return null;
-  }
+  const element = document.createElement(level as keyof HTMLElementTagNameMap);
+  render(html`${level} - ${title}${subtitleHtml}`, element);
+  return element;
 }
 
 export const Typography: Story = {
