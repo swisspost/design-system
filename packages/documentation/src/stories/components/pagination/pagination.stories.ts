@@ -17,6 +17,9 @@ const meta: MetaComponent = {
     label: 'Pagination',
     labelPrevious: 'Previous page',
     labelNext: 'Next page',
+    labelPage: 'Page',
+    labelFirst: 'First page',
+    labelLast: 'Last page',
     disabled: false,
   },
   argTypes: {
@@ -41,6 +44,9 @@ export const Default: Story = {
         label=${args.label}
         label-previous=${args.labelPrevious}
         label-next=${args.labelNext}
+        label-page=${args.labelPage}
+        label-first=${args.labelFirst}
+        label-last=${args.labelLast}
         ?disabled=${args.disabled}
       ></post-pagination>
   `,
@@ -53,6 +59,9 @@ export const ManyPages: Story = {
         page-size=10
         collection-size=300
         label="Pagination"
+        label-page="Page"
+        label-first="First page"
+        label-last="Last page"
       ></post-pagination>
   `,
 };
@@ -65,6 +74,9 @@ export const PageOutOfRange: Story = {
         page-size=10
         collection-size=40
         label="Pagination"
+        label-page="Page"
+        label-first="First page"
+        label-last="Last page"
       ></post-pagination>
   `,
 };
@@ -76,6 +88,9 @@ export const Disabled: Story = {
         page-size=10
         collection-size=100
         label="Pagination"
+        label-page="Page"
+        label-first="First page"
+        label-last="Last page"
         ?disabled=${true}
       ></post-pagination>
   `,

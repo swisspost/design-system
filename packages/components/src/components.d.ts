@@ -382,27 +382,22 @@ export namespace Components {
         "label": string;
         /**
           * Prefix text for the first page label.
-          * @default 'First page'
          */
         "labelFirst": string;
         /**
           * Prefix text for the last page label.
-          * @default 'Last page'
          */
         "labelLast": string;
         /**
           * Accessible label for the next page button.
-          * @default 'Next page'
          */
         "labelNext": string;
         /**
           * Prefix text for page number labels.
-          * @default 'Page'
          */
         "labelPage": string;
         /**
           * Accessible label for the previous page button.
-          * @default 'Previous page'
          */
         "labelPrevious": string;
         /**
@@ -412,6 +407,7 @@ export namespace Components {
         "page": number;
         /**
           * The number of items per page.
+          * @default 10
          */
         "pageSize": number;
     }
@@ -1396,29 +1392,24 @@ declare namespace LocalJSX {
         "label": string;
         /**
           * Prefix text for the first page label.
-          * @default 'First page'
          */
-        "labelFirst"?: string;
+        "labelFirst": string;
         /**
           * Prefix text for the last page label.
-          * @default 'Last page'
          */
-        "labelLast"?: string;
+        "labelLast": string;
         /**
           * Accessible label for the next page button.
-          * @default 'Next page'
          */
-        "labelNext"?: string;
+        "labelNext": string;
         /**
           * Prefix text for page number labels.
-          * @default 'Page'
          */
-        "labelPage"?: string;
+        "labelPage": string;
         /**
           * Accessible label for the previous page button.
-          * @default 'Previous page'
          */
-        "labelPrevious"?: string;
+        "labelPrevious": string;
         /**
           * Event emitted when the page changes.
          */
@@ -1430,6 +1421,7 @@ declare namespace LocalJSX {
         "page"?: number;
         /**
           * The number of items per page.
+          * @default 10
          */
         "pageSize"?: number;
     }

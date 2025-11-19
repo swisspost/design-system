@@ -47,7 +47,7 @@ export class PostPagination {
   /**
    * The number of items per page.
    */
-  @Prop() pageSize: number;
+  @Prop() pageSize: number = 10;
   
   /**
    * The total number of items in the collection.
@@ -62,27 +62,27 @@ export class PostPagination {
   /**
    * Accessible label for the previous page button.
    */
-  @Prop() readonly labelPrevious: string = 'Previous page';
+  @Prop({ reflect: true }) readonly labelPrevious!: string;
 
   /**
    * Accessible label for the next page button.
    */
-  @Prop() readonly labelNext: string = 'Next page';
+  @Prop({ reflect: true }) readonly labelNext!: string;
 
   /**
    * Prefix text for page number labels.
    */
-  @Prop() readonly labelPage: string = 'Page';
+  @Prop({ reflect: true }) readonly labelPage!: string;
 
   /**
    * Prefix text for the first page label.
    */
-  @Prop() readonly labelFirst: string = 'First page';
+  @Prop({ reflect: true }) readonly labelFirst!: string;
 
   /**
    * Prefix text for the last page label.
    */
-  @Prop() readonly labelLast: string = 'Last page';
+  @Prop({ reflect: true }) readonly labelLast!: string;
 
   /**
    * If true, the pagination is disabled.
