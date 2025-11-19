@@ -57,7 +57,7 @@ export class PostPagination {
   /**
    * Accessible label for the pagination navigation.
    */
-  @Prop() readonly label!: string;
+  @Prop({ reflect: true }) readonly label!: string;
 
   /**
    * Accessible label for the previous page button.
@@ -97,13 +97,7 @@ export class PostPagination {
   /**
    * Event emitted when the page changes.
    */
-  @Event({
-    eventName: 'postChange',
-    composed: true,
-    cancelable: false,
-    bubbles: true,
-  })
-  postChange: EventEmitter<number>;
+  @Event({ eventName: 'postChange', composed: true, cancelable: false, bubbles: true }) postChange: EventEmitter<number>;
 
   private resizeObserver: ResizeObserver | null = null;
 
@@ -347,8 +341,8 @@ export class PostPagination {
     // Where left-section and right-section are either ellipsis or a page
 
     // Start with a middle range centered on current page (rough draft)
-    let middleSlots = Math.max(1, maxVisible - 4); // initial guess
-    let delta = Math.floor(middleSlots / 2);
+    const middleSlots = Math.max(1, maxVisible - 4); // initial guess
+    const delta = Math.floor(middleSlots / 2);
     let startPage = this.page - delta;
     let endPage = this.page + delta;
 
@@ -387,7 +381,7 @@ export class PostPagination {
     while (iter < 20) {
       iter++;
 
-  computeSections();
+      computeSections();
 
       const slotsTaken = 2 + (leftSection !== 'none' ? 1 : 0) + (rightSection !== 'none' ? 1 : 0); // first + last + left/right sections
       const middleCount = maxVisible - slotsTaken;
