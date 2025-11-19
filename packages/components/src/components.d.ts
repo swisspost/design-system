@@ -368,7 +368,6 @@ export namespace Components {
     interface PostPagination {
         /**
           * The total number of items in the collection.
-          * @default 0
          */
         "collectionSize": number;
         /**
@@ -402,12 +401,10 @@ export namespace Components {
         "labelPrevious": string;
         /**
           * The current active page number (1-indexed).
-          * @default 1
          */
         "page": number;
         /**
           * The number of items per page.
-          * @default 10
          */
         "pageSize": number;
     }
@@ -1378,7 +1375,6 @@ declare namespace LocalJSX {
     interface PostPagination {
         /**
           * The total number of items in the collection.
-          * @default 0
          */
         "collectionSize"?: number;
         /**
@@ -1416,12 +1412,10 @@ declare namespace LocalJSX {
         "onPostChange"?: (event: PostPaginationCustomEvent<number>) => void;
         /**
           * The current active page number (1-indexed).
-          * @default 1
          */
         "page"?: number;
         /**
           * The number of items per page.
-          * @default 10
          */
         "pageSize"?: number;
     }

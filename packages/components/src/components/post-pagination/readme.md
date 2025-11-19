@@ -9,7 +9,7 @@
 
 | Property                     | Attribute         | Description                                     | Type      | Default     |
 | ---------------------------- | ----------------- | ----------------------------------------------- | --------- | ----------- |
-| `collectionSize`             | `collection-size` | The total number of items in the collection.    | `number`  | `0`         |
+| `collectionSize`             | `collection-size` | The total number of items in the collection.    | `number`  | `undefined` |
 | `disabled`                   | `disabled`        | If true, the pagination is disabled.            | `boolean` | `false`     |
 | `label` _(required)_         | `label`           | Accessible label for the pagination navigation. | `string`  | `undefined` |
 | `labelFirst` _(required)_    | `label-first`     | Prefix text for the first page label.           | `string`  | `undefined` |
@@ -17,8 +17,8 @@
 | `labelNext` _(required)_     | `label-next`      | Accessible label for the next page button.      | `string`  | `undefined` |
 | `labelPage` _(required)_     | `label-page`      | Prefix text for page number labels.             | `string`  | `undefined` |
 | `labelPrevious` _(required)_ | `label-previous`  | Accessible label for the previous page button.  | `string`  | `undefined` |
-| `page`                       | `page`            | The current active page number (1-indexed).     | `number`  | `1`         |
-| `pageSize`                   | `page-size`       | The number of items per page.                   | `number`  | `10`        |
+| `page`                       | `page`            | The current active page number (1-indexed).     | `number`  | `undefined` |
+| `pageSize`                   | `page-size`       | The number of items per page.                   | `number`  | `undefined` |
 
 
 ## Events

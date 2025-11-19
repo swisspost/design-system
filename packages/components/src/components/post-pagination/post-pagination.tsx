@@ -42,17 +42,17 @@ export class PostPagination {
   /**
    * The current active page number (1-indexed).
    */
-  @Prop({ mutable: true }) page: number = 1;
+  @Prop({ mutable: true }) page: number;
   
   /**
    * The number of items per page.
    */
-  @Prop() pageSize: number = 10;
+  @Prop() pageSize: number;
   
   /**
    * The total number of items in the collection.
    */
-  @Prop() collectionSize: number = 0;
+  @Prop() collectionSize: number;
   
   /**
    * Accessible label for the pagination navigation.
@@ -97,7 +97,7 @@ export class PostPagination {
   /**
    * Event emitted when the page changes.
    */
-  @Event({ eventName: 'postChange', composed: true, cancelable: false, bubbles: true }) postChange: EventEmitter<number>;
+  @Event() postChange: EventEmitter<number>;
 
   private resizeObserver: ResizeObserver | null = null;
 

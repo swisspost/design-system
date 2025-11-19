@@ -22,13 +22,6 @@ const meta: MetaComponent = {
     labelLast: 'Last page',
     disabled: false,
   },
-  argTypes: {
-    page: { control: { type: 'number' } },
-    pageSize: { control: { type: 'number' } },
-    collectionSize: { control: { type: 'number' } },
-    label: { control: { type: 'text' } },
-    disabled: { control: { type: 'boolean' } },
-  },
 };
 
 export default meta;
@@ -56,8 +49,8 @@ export const ManyPages: Story = {
   render: (args: Args) => html`
       <post-pagination
         page=10
-        page-size=10
-        collection-size=300
+        page-size=6
+        collection-size=200
         label="Pagination"
         label-page="Page"
         label-first="First page"
@@ -77,21 +70,6 @@ export const PageOutOfRange: Story = {
         label-page="Page"
         label-first="First page"
         label-last="Last page"
-      ></post-pagination>
-  `,
-};
-
-export const Disabled: Story = {
-  render: (args: Args) => html`
-      <post-pagination
-        page=1
-        page-size=10
-        collection-size=100
-        label="Pagination"
-        label-page="Page"
-        label-first="First page"
-        label-last="Last page"
-        ?disabled=${true}
       ></post-pagination>
   `,
 };
