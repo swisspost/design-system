@@ -1,13 +1,5 @@
 @use '@swisspost/design-system-styles/functions/breakpoint' as breakpoint;
 
-// Button sizes per device (must match BUTTON_SIZES in TypeScript)
-$pagination-button-size-mobile: 32px;
-$pagination-button-size-tablet: 40px;
-$pagination-button-size-desktop: 48px;
-
-// Gap between buttons (must match BUTTON_GAP in TypeScript)
-$pagination-gap: 4px;
-
 // Colors (adjust to match your design system)
 $pagination-color-text: #333;
 $pagination-color-border: #ccc;
@@ -33,10 +25,9 @@ $pagination-border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  // CRITICAL FIX: Prevent overflow from expanding container during resize
   max-width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .pagination-list {
@@ -45,11 +36,7 @@ $pagination-border-radius: 50%;
   list-style: none;
   margin: 0;
   padding: 0;
-  
-  // CRITICAL: Gap must match BUTTON_GAP constant (4px)
-  gap: $pagination-gap;
-  
-  // CRITICAL FIX: Allow list to shrink and prevent overflow
+  gap: 4px; // This will be measured, not hardcoded in JS
   flex-wrap: nowrap;
   min-width: 0;
   max-width: 100%;
@@ -60,8 +47,6 @@ $pagination-border-radius: 50%;
   align-items: center;
   margin: 0;
   padding: 0;
-  
-  // CRITICAL FIX: Prevent items from shrinking or growing
   flex-shrink: 0;
   flex-grow: 0;
 }
@@ -71,11 +56,10 @@ $pagination-border-radius: 50%;
   align-items: center;
   justify-content: center;
   
-  // CRITICAL: Sizes must match BUTTON_SIZES constant
-  // Mobile: 32px
-  width: $pagination-button-size-mobile;
-  height: $pagination-button-size-mobile;
-  min-width: $pagination-button-size-mobile; // Prevent shrinking
+  // Responsive sizes via CSS (browser handles this, we just measure)
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
   
   padding: 0;
   margin: 0;
@@ -128,27 +112,22 @@ $pagination-border-radius: 50%;
     opacity: 0.6;
   }
   
-  // Tablet: 40px
   @media (min-width: breakpoint.min-width(sm)) {
-    width: $pagination-button-size-tablet;
-    height: $pagination-button-size-tablet;
-    min-width: $pagination-button-size-tablet;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
   }
   
-  // Desktop: 48px
   @media (min-width: breakpoint.min-width(lg)) {
-    width: $pagination-button-size-desktop;
-    height: $pagination-button-size-desktop;
-    min-width: $pagination-button-size-desktop;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
   }
 }
 
 .pagination-control {
   .pagination-control-button {
-    // Control buttons use same size as regular buttons
-    // Icons should be centered within
-    
-  post-icon {
+    post-icon {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -172,8 +151,6 @@ $pagination-border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  // CRITICAL FIX: Prevent ellipsis from growing or shrinking
   flex-shrink: 0;
   flex-grow: 0;
 }
@@ -183,26 +160,36 @@ $pagination-border-radius: 50%;
   align-items: center;
   justify-content: center;
   
-  // CRITICAL: Must match button sizes for proper spacing calculation
-  width: $pagination-button-size-mobile;
-  height: $pagination-button-size-mobile;
+  // Match button sizes for proper spacing
+  width: 32px;
+  height: 32px;
   
   font-size: $pagination-font-size;
   color: $pagination-color-text;
   user-select: none;
   
-  // Tablet: 40px
   @media (min-width: breakpoint.min-width(sm)) {
-    width: $pagination-button-size-tablet;
-    height: $pagination-button-size-tablet;
+    width: 40px;
+    height: 40px;
   }
   
-  // Desktop: 48px
   @media (min-width: breakpoint.min-width(lg)) {
-    width: $pagination-button-size-desktop;
-    height: $pagination-button-size-desktop;
+    width: 48px;
+    height: 48px;
   }
 }
+
+// Hidden items container for measurement (like breadcrumbs)
+.hidden-items {
+  position: absolute;
+  height: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  gap: 4px; // Same gap as visible items
+  pointer-events: none;
+}
+
 
 .visually-hidden {
   position: absolute;

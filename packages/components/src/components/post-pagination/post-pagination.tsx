@@ -1,24 +1,9 @@
 import { Component, Element, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { nanoid } from 'nanoid';
-import { breakpoint, checkEmptyOrType, checkRequiredAndType, Device } from '@/utils';
-
+import { checkEmptyOrType, checkRequiredAndType, debounce } from '@/utils';
 
 const ELLIPSIS = '...';
-
-/**
- * Button sizes per device (in pixels)
- */
-const BUTTON_SIZES = {
-  mobile: 32,
-  tablet: 40,
-  desktop: 48,
-} as const;
-
-/**
- * Gap between buttons (in pixels)
- */
-const BUTTON_GAP = 4;
 
 /**
  * Type-safe pagination item definition using discriminated union.
@@ -36,13 +21,12 @@ export class PostPagination {
   @Element() host: HTMLPostPaginationElement;
   
   @State() private paginationId: string;
-  @State() private containerWidth: number = 0;
-  @State() private currentDevice: Device = 'desktop';
+  @State() private maxVisiblePages: number;
   
   /**
    * The current active page number (1-indexed).
    */
-  @Prop() page: number;
+  @Prop({ mutable: true }) page: number;
   
   /**
    * The number of items per page.
@@ -99,7 +83,9 @@ export class PostPagination {
    */
   @Event() postChange: EventEmitter<number>;
 
-  private resizeObserver: ResizeObserver | null = null;
+  private navRef?: HTMLElement;
+  private hiddenItemsRef?: HTMLElement;
+  private lastWindowWidth: number;
 
   @Watch('page')
   validatePage() {
@@ -154,15 +140,12 @@ export class PostPagination {
   @Watch('page')
   @Watch('pageSize')
   @Watch('collectionSize')
-  @Watch('containerWidth')
-  @Watch('currentDevice')
   handlePropsChange() {
     this.validateAndUpdatePages();
   }
 
   componentWillLoad() {
     this.paginationId = `pagination-${this.host.id || nanoid(6)}`;
-    this.currentDevice = breakpoint.get('device');
 
     this.validatePage();
     this.validatePageSize();
@@ -177,109 +160,106 @@ export class PostPagination {
   }
 
   componentDidLoad() {
-    // Set up ResizeObserver to measure container width
-    this.setupResizeObserver();
-    
-    // Listen for device changes
-    this.setupDeviceListener();
-    
-    // Initial measurement
-    this.measureContainer();
+    window.addEventListener('resize', this.handleResize);
+    this.waitForMeasurement();
   }
 
   disconnectedCallback() {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-      this.resizeObserver = null;
-    }
-    
-    window.removeEventListener('postBreakpoint:device', this.handleDeviceChange);
+    window.removeEventListener('resize', this.handleResize);
   }
 
   /**
-   * Sets up ResizeObserver to track container width changes
+   * Waits for the pagination elements to be available and measures them
    */
-  private setupResizeObserver() {
-    if (typeof ResizeObserver === 'undefined') {
-      console.warn('[Pagination] ResizeObserver not available, using fallback');
-      // Fallback: measure once if ResizeObserver not available
-      this.measureContainer();
-      return;
-    }
-
-    this.resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        // Get width from contentRect (most compatible)
-        const width = entry.contentRect.width;
-        if (width !== this.containerWidth) {
-          this.containerWidth = width;
-        }
-      }
-    });
-
-    // Observe the nav element
-    const nav = this.host.querySelector('nav');
-    if (nav) {
-      this.resizeObserver.observe(nav);
+  private waitForMeasurement = debounce(() => {
+    if (this.navRef?.clientWidth > 0 && this.hiddenItemsRef) {
+      this.measureAndCalculateVisiblePages();
     } else {
-      console.warn('[Pagination] Nav element not found for observation');
+      this.waitForMeasurement();
     }
-  }
+  }, 50);
 
   /**
-   * Sets up listener for device/breakpoint changes
+   * Handles window resize events
    */
-  private setupDeviceListener() {
-    window.addEventListener('postBreakpoint:device', this.handleDeviceChange);
-  }
-
-  /**
-   * Handles device change events
-   */
-  private handleDeviceChange = (event: CustomEvent<Device>) => {
-    this.currentDevice = event.detail;
+  private handleResize = () => {
+    if (window.innerWidth === this.lastWindowWidth) return;
+    this.lastWindowWidth = window.innerWidth;
+    this.measureAndCalculateVisiblePages();
   };
 
   /**
-   * Manually measures the container width (fallback method)
+   * Measures actual rendered elements to determine how many pages can fit
    */
-  private measureContainer() {
-    const nav = this.host.querySelector('nav');
-    if (nav) {
-      this.containerWidth = nav.getBoundingClientRect().width;
+  private measureAndCalculateVisiblePages() {
+    if (!this.navRef || !this.hiddenItemsRef) return;
+
+    const totalPages = this.getTotalPages();
+    if (totalPages <= 1) return;
+
+    // Get available width from parent/container
+    const availableWidth = this.getAvailableWidth();
+
+    // Measure control buttons (prev/next)
+    const controlButtons = Array.from(
+      this.hiddenItemsRef.querySelectorAll('.hidden-control-button')
+    );
+    const controlButtonsWidth = controlButtons.reduce((sum, el) => {
+      return sum + (el as HTMLElement).getBoundingClientRect().width;
+    }, 0);
+
+    // Measure the gap between items by measuring container vs sum of children
+    // This is more reliable than hardcoding gap values
+    const allHiddenItems = Array.from(
+      this.hiddenItemsRef.querySelectorAll('.hidden-page-button, .hidden-ellipsis')
+    );
+    
+    if (allHiddenItems.length === 0) {
+      // Not ready yet
+      return;
     }
+
+    // Measure single page button width (they should all be the same)
+    const singleButtonWidth = (allHiddenItems[0] as HTMLElement).getBoundingClientRect().width;
+
+    // Calculate available width for page buttons
+    const widthForPages = availableWidth - controlButtonsWidth;
+
+    // Calculate how many buttons can fit
+    // We need to account for gaps - measure actual gap from rendered elements
+    let gap = 0;
+    if (allHiddenItems.length >= 2) {
+      const first = allHiddenItems[0] as HTMLElement;
+      const second = allHiddenItems[1] as HTMLElement;
+      const firstRect = first.getBoundingClientRect();
+      const secondRect = second.getBoundingClientRect();
+      gap = secondRect.left - firstRect.right;
+    }
+
+    // Calculate max pages: (width + gap) / (buttonWidth + gap)
+    // The last button doesn't have a trailing gap, so we add gap back to available width
+    const maxPages = Math.floor((widthForPages + gap) / (singleButtonWidth + gap));
+
+    // Ensure at least 3 buttons (first, current, last) or all pages if fewer
+    this.maxVisiblePages = Math.max(3, Math.min(maxPages, totalPages));
+
+    // Regenerate pages with new max
+    this.validateAndUpdatePages();
   }
 
   /**
-   * Calculates how many page buttons can fit in the available width
+   * Gets available width from parent container
    */
-  private calculateMaxVisiblePages(): number {
-    if (this.containerWidth === 0) {
-      // Default fallback
-      return 7;
+  private getAvailableWidth(): number {
+    if (!this.navRef) return 0;
+    
+    // Try to get parent width (like breadcrumbs does)
+    let parent = this.host.parentNode;
+    while (parent && !(parent instanceof HTMLElement)) {
+      parent = parent.parentNode;
     }
-
-    const buttonSize = BUTTON_SIZES[this.currentDevice];
     
-    // Space used by prev and next buttons (2 buttons + gaps)
-    const controlButtonsWidth = 2 * buttonSize + 2 * BUTTON_GAP;
-    
-    // Available width for page buttons
-    const availableWidth = this.containerWidth - controlButtonsWidth;
-    
-    // Calculate how many buttons can fit
-    // Each button is: buttonSize + BUTTON_GAP (except the last one)
-    // We need space for: first page, last page, and pages around current
-    // Also account for potential ellipsis (same size as button)
-    const buttonWithGap = buttonSize + BUTTON_GAP;
-    const maxButtons = Math.floor(availableWidth / buttonWithGap);
-    
-    // Ensure at least 3 buttons (first, current, last) or all pages if fewer
-    const totalPages = this.getTotalPages();
-    const result = Math.max(3, Math.min(maxButtons, totalPages));
-    
-    return result;
-    
+    return parent instanceof HTMLElement ? parent.clientWidth : window.innerWidth;
   }
 
   /**
@@ -310,21 +290,10 @@ export class PostPagination {
 
   /**
    * Generates the page numbers array with ellipsis based on available space.
-   * 
-   * Algorithm:
-   * - Calculate max visible pages based on container width
-   * - If total pages <= max visible: show all pages
-   * - Otherwise: show adaptive pattern maintaining EXACTLY maxVisible items
-   * - Intelligently replaces ellipsis with actual page when gap is only 1
-   * - Adjusts middle range to compensate when ellipsis is replaced
-   * 
-   * @param totalPages - Total number of pages to display
    */
   private generatePages(totalPages: number) {
-    const maxVisible = this.calculateMaxVisiblePages();
+    const maxVisible = this.maxVisiblePages;
     const items: PaginationItem[] = [];
-
-    
 
     // If we can show all pages, do so
     if (totalPages <= maxVisible) {
@@ -338,10 +307,8 @@ export class PostPagination {
 
     // We need to show exactly maxVisible items
     // Format: [1] [left-section] [middle-pages] [right-section] [last]
-    // Where left-section and right-section are either ellipsis or a page
 
-    // Start with a middle range centered on current page (rough draft)
-    const middleSlots = Math.max(1, maxVisible - 4); // initial guess
+    const middleSlots = Math.max(1, maxVisible - 4);
     const delta = Math.floor(middleSlots / 2);
     let startPage = this.page - delta;
     let endPage = this.page + delta;
@@ -354,39 +321,49 @@ export class PostPagination {
       endPage = totalPages - 1;
     }
 
-    // Iteratively balance start/end and the left/right sections so that
-    // the total number of items (including first/last and potential
-    // ellipses/pages) equals maxVisible. This avoids off-by-one cases
-    // when a gap becomes 'page' (2) or 'none' (1) near edges.
-    let leftSection: 'none' | 'page' | 'ellipsis' = 'none';
-    let rightSection: 'none' | 'page' | 'ellipsis' = 'none';
+    type SectionType = 'none' | 'page' | 'ellipsis';
+    let leftSection: SectionType = 'none';
+    let rightSection: SectionType = 'none';
 
-    const computeSections = () => {
-      const leftGap = startPage - 1; // gap between 1 and startPage
-      const rightGap = totalPages - endPage; // gap between endPage and last
+    const computeSections = (): { leftGap: number; rightGap: number; leftSection: SectionType; rightSection: SectionType } => {
+      const leftGap = startPage - 1;
+      const rightGap = totalPages - endPage;
 
-      if (leftGap === 0 || leftGap === 1) leftSection = 'none';
-      else if (leftGap === 2) leftSection = 'page';
-      else leftSection = 'ellipsis';
+      let newLeftSection: SectionType = 'none';
+      let newRightSection: SectionType = 'none';
 
-      if (rightGap === 0 || rightGap === 1) rightSection = 'none';
-      else if (rightGap === 2) rightSection = 'page';
-      else rightSection = 'ellipsis';
+      if (leftGap === 0 || leftGap === 1) {
+        newLeftSection = 'none';
+      } else if (leftGap === 2) {
+        newLeftSection = 'page';
+      } else {
+        newLeftSection = 'ellipsis';
+      }
 
-      return { leftGap, rightGap };
+      if (rightGap === 0 || rightGap === 1) {
+        newRightSection = 'none';
+      } else if (rightGap === 2) {
+        newRightSection = 'page';
+      } else {
+        newRightSection = 'ellipsis';
+      }
+
+      leftSection = newLeftSection;
+      rightSection = newRightSection;
+
+      return { leftGap, rightGap, leftSection: newLeftSection, rightSection: newRightSection };
     };
 
-    // Limit iterations to avoid infinite loops
+    // Balance the sections iteratively
     let iter = 0;
     while (iter < 20) {
       iter++;
 
       computeSections();
 
-      const slotsTaken = 2 + (leftSection !== 'none' ? 1 : 0) + (rightSection !== 'none' ? 1 : 0); // first + last + left/right sections
+      const slotsTaken = 2 + (leftSection !== 'none' ? 1 : 0) + (rightSection !== 'none' ? 1 : 0);
       const middleCount = maxVisible - slotsTaken;
 
-      // Re-center middle range around current page with middleCount slots
       let newStart = Math.max(2, this.page - Math.floor((middleCount - 1) / 2));
       let newEnd = newStart + middleCount - 1;
       if (newEnd > totalPages - 1) {
@@ -394,7 +371,6 @@ export class PostPagination {
         newStart = Math.max(2, newEnd - middleCount + 1);
       }
 
-      // If nothing changed, break
       if (newStart === startPage && newEnd === endPage) {
         break;
       }
@@ -403,29 +379,15 @@ export class PostPagination {
       endPage = newEnd;
     }
 
-    (() => {
-      const leftGap = startPage - 1;
-      const rightGap = totalPages - endPage;
+    // Final computation
+    computeSections();
 
-      if (leftGap === 0 || leftGap === 1) leftSection = 'none';
-      else if (leftGap === 2) leftSection = 'page';
-      else leftSection = 'ellipsis';
-
-      if (rightGap === 0 || rightGap === 1) rightSection = 'none';
-      else if (rightGap === 2) rightSection = 'page';
-      else rightSection = 'ellipsis';
-
-      return { leftGap, rightGap, leftSection, rightSection };
-    })();
-
-    
-
-    // Build items - now we'll have exactly maxVisible items
+    // Build items
     items.push({ type: 'page', page: 1 });
     
-    if (leftSection === 'page') {
+    if (leftSection === ('page' as SectionType)) {
       items.push({ type: 'page', page: 2 });
-    } else if (leftSection === 'ellipsis') {
+    } else if (leftSection === 'ellipsis' as SectionType) {
       items.push({ type: 'ellipsis' });
     }
     
@@ -433,25 +395,13 @@ export class PostPagination {
       items.push({ type: 'page', page: i });
     }
     
-    if (rightSection === 'page') {
+    if (rightSection === ('page' as SectionType)) {
       items.push({ type: 'page', page: totalPages - 1 });
-    } else if (rightSection === 'ellipsis') {
+    } else if (rightSection === 'ellipsis' as SectionType) {
       items.push({ type: 'ellipsis' });
     }
     
     items.push({ type: 'page', page: totalPages });
-
-    const pageCount = items.filter(item => item.type === 'page').length;
-
-    // Check for potential overflow
-    const expectedWidth = (pageCount + 2) * (BUTTON_SIZES[this.currentDevice] + BUTTON_GAP);
-    if (expectedWidth > this.containerWidth) {
-      console.warn('[Pagination] ⚠️ POTENTIAL OVERFLOW DETECTED!', {
-        expectedWidth: expectedWidth,
-        containerWidth: this.containerWidth,
-        overflow: expectedWidth - this.containerWidth,
-      });
-    }
 
     this.items = items;
   }
@@ -569,6 +519,44 @@ export class PostPagination {
     return this.renderPageButton(item.page);
   }
 
+  /**
+   * Renders all pages in a hidden container for measurement
+   */
+  private renderHiddenItems(totalPages: number) {
+    const items = [];
+    
+    // Render control buttons
+    items.push(
+      <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+        <post-icon name="chevronleft" aria-hidden="true"></post-icon>
+      </button>
+    );
+
+    // Render all possible page buttons
+    for (let i = 1; i <= totalPages; i++) {
+      items.push(
+        <button class="pagination-link hidden-page-button" disabled>
+          <span>{i}</span>
+        </button>
+      );
+    }
+
+    // Render ellipsis
+    items.push(
+      <span class="pagination-ellipsis-content hidden-ellipsis">
+        {ELLIPSIS}
+      </span>
+    );
+
+    items.push(
+      <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+        <post-icon name="chevronright" aria-hidden="true"></post-icon>
+      </button>
+    );
+
+    return items;
+  }
+
   render() {
     const totalPages = this.getTotalPages();
     const isPrevDisabled = this.disabled || this.page <= 1;
@@ -584,6 +572,7 @@ export class PostPagination {
           class="pagination"
           aria-label={this.label}
           id={this.paginationId}
+          ref={el => (this.navRef = el)}
         >
           <ul class="pagination-list" role="list">
             {/* Previous Button */}
@@ -639,6 +628,11 @@ export class PostPagination {
               </button>
             </li>
           </ul>
+
+          {/* Hidden items container for width measurement */}
+          <div class="hidden-items" ref={el => (this.hiddenItemsRef = el)}>
+            {this.renderHiddenItems(totalPages)}
+          </div>
         </nav>
       </Host>
     );
