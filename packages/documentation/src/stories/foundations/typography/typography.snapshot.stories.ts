@@ -1,7 +1,6 @@
 import { html, render } from 'lit';
 import type { StoryObj } from '@storybook/web-components-vite';
 import { schemes } from '@/shared/snapshots/schemes';
-import { bombArgs } from '@/utils';
 
 const meta = {
   title: 'Snapshots',
@@ -14,26 +13,13 @@ export default meta;
 
 type Story = StoryObj;
 
-const headingVariants = bombArgs({
-  title: ['Lorem ipsum dolor sit'],
-  level: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-  showSubtitle: [false, true],
-  subtitle: ['Lorem ipsum dolor sit amet'],
-}).filter(args => {
-  const subtitle = args.subtitle;
-  return !(args.showSubtitle === false && typeof subtitle === 'string' && subtitle.length > 30);
-});
+const headingVariants = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-function renderHeading(args: { [p: string]: unknown }) {
-  const { level, title, showSubtitle, subtitle } = args;
+function renderHeading(args: string) {
+  const subtitleHtml = html`<span class="d-block fw-normal">Lorem ipsum dolor sit amet</span>`;
 
-  const subtitleHtml =
-    showSubtitle && typeof subtitle === 'string'
-      ? html`<span class="d-block fw-normal"> ${subtitle}</span>`
-      : null;
-
-  const element = document.createElement(level as keyof HTMLElementTagNameMap);
-  render(html`${level} - ${title}${subtitleHtml}`, element);
+  const element = document.createElement(args as keyof HTMLElementTagNameMap);
+  render(html`${args} - Lorem ipsum dolor sit${subtitleHtml}`, element);
   return element;
 }
 
@@ -42,74 +28,74 @@ export const Typography: Story = {
     <!-- Headings -->
     ${schemes(
       () => html`
-          <section>
-            <h2>Headings</h2>
-            ${headingVariants.map(args => renderHeading(args))}
-          </section>
+        <section>
+          <h2>Headings</h2>
+          ${headingVariants.map(args => renderHeading(args))}
+        </section>
 
-      <!-- Links -->
-          <section>
-            <h2>Links</h2>
-            <a href="https://post.ch">Link Text</a>
-            <a href="https://imgur.com/FKmX7dt">Link Text</a>
+        <!-- Links -->
+        <section>
+          <h2>Links</h2>
+          <a href="https://post.ch">Link Text</a>
+          <a href="https://imgur.com/FKmX7dt">Link Text</a>
 
-            <a href="https://post.ch">Lorem ipsum dolor sit amet consectetur</a>
-            <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
-          </section>
+          <a href="https://post.ch">Lorem ipsum dolor sit amet consectetur</a>
+          <a href="https://imgur.com/FKmX7dt">Lorem ipsum dolor sit amet consectetur</a>
+        </section>
 
-      <!-- Paragraphs -->
-          <section>
-            <h2>Paragraphs</h2>
-            <p>
-              This is a sample paragraph showing how text will appear in your application. It
-              demonstrates the font style, size, and spacing that will be used throughout your
-              content.
-            </p>
-            <p>
-              Another paragraph follows to illustrate how multiple paragraphs will look. Notice the
-              spacing between paragraphs and how the text flows naturally from one line to the next.
-            </p>
-            <p class="lead">
-              This is a lead paragraph that stands out from regular text, typically used for
-              introductory content.
-            </p>
-          </section>
+        <!-- Paragraphs -->
+        <section>
+          <h2>Paragraphs</h2>
+          <p>
+            This is a sample paragraph showing how text will appear in your application. It
+            demonstrates the font style, size, and spacing that will be used throughout your
+            content.
+          </p>
+          <p>
+            Another paragraph follows to illustrate how multiple paragraphs will look. Notice the
+            spacing between paragraphs and how the text flows naturally from one line to the next.
+          </p>
+          <p class="lead">
+            This is a lead paragraph that stands out from regular text, typically used for
+            introductory content.
+          </p>
+        </section>
 
-      <!-- Legend -->
-          <section>
-            <h2>Legend</h2>
-            <fieldset>
-              <legend>Default legend</legend>
-            </fieldset>
+        <!-- Legend -->
+        <section>
+          <h2>Legend</h2>
+          <fieldset>
+            <legend>Default legend</legend>
+          </fieldset>
 
-            <fieldset>
-              <legend class="large">Large legend</legend>
-            </fieldset>
-          </section>
+          <fieldset>
+            <legend class="large">Large legend</legend>
+          </fieldset>
+        </section>
 
-      <!-- Inline Elements -->
-          <section>
-            <h2>Inline Elements</h2>
-            <p>This is <small>small inline text</small> for fine print or disclaimers.</p>
-            <p>This is <strong>strong text</strong> to emphasize importance.</p>
-            <p>This is <em>emphasized text</em> using italics.</p>
-            <p>Here is <sub>subscript</sub> and <sup>superscript</sup>.</p>
-            <p>
-              This is
-              <mark>highlighted text</mark>
-              for attention.
-            </p>
-            <p>This contains an <abbr title="abbreviation">abbr</abbr> element.</p>
-            <p>Inline <code>code sample</code> for dev use.</p>
-            <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>
-            <p>
-              This shows
-              <del>deleted text</del>
-              for corrections.
-            </p>
-          </section>
-    </div>
-  `,
+        <!-- Inline Elements -->
+        <section>
+          <h2>Inline Elements</h2>
+          <p>This is <small>small inline text</small> for fine print or disclaimers.</p>
+          <p>This is <strong>strong text</strong> to emphasize importance.</p>
+          <p>This is <em>emphasized text</em> using italics.</p>
+          <p>Here is <sub>subscript</sub> and <sup>superscript</sup>.</p>
+          <p>
+            This is
+            <mark>highlighted text</mark>
+            for attention.
+          </p>
+          <p>This contains an <abbr title="abbreviation">abbr</abbr> element.</p>
+          <p>Inline <code>code sample</code> for dev use.</p>
+          <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>
+          <p>
+            This shows
+            <del>deleted text</del>
+            for corrections.
+          </p>
+        </section>
+        </div>
+      `,
     )}
   `,
 };
