@@ -8,24 +8,23 @@ test.describe('SSR compatibility', () => {
   });
 
   for (const componentName of componentNames) {
-    const name = componentName;
-    test.describe(name, () => {
+    test.describe(componentName, () => {
       test(`Nextjs-integration package should contain the component`, async ({ page }) => {
-        const component = page.locator(name).first();
+        const component = page.locator(componentName).first();
         await expect(component).toHaveCount(1);
       });
 
       test(`the component should be hydrated`, async ({ page }) => {
-        const component = page.locator(`${name}[data-hydrated]`).first();
+        const component = page.locator(`${componentName}[data-hydrated]`).first();
         await expect(component).toBeAttached();
       });
 
       test(`the component should not have console errors`, async ({ page }) => {
-        const errorCapture = setupComponentErrorCapture(page, [name]);
+        const errorCapture = setupComponentErrorCapture(page, [componentName]);
 
         await page.reload();
 
-        assertNoComponentErrors(errorCapture.errors, [name]);
+        assertNoComponentErrors(errorCapture.errors, [componentName]);
       });
     });
   }

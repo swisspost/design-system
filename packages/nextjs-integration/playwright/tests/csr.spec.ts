@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test';
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
-import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
 
 test.describe('CSR compatibility', () => {
   test.beforeEach(async ({ page }) => {
@@ -8,8 +7,7 @@ test.describe('CSR compatibility', () => {
   });
 
   for (const componentName of componentNames) {
-    const name = componentName;
-    test.describe(name, () => {
+    test.describe(componentName, () => {
       test(`the component should be hydrated`, async ({ page }) => {
         const component = page.locator(`${name}[data-hydrated]`).first();
         await expect(component).toBeAttached();
