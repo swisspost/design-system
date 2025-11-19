@@ -6,10 +6,10 @@ test.describe('CSR compatibility', () => {
     await page.goto('/csr');
   });
 
-  test('should contain every component tag at least once', async ({ page }) => {
+  test('all components should be hydrated', async ({ page }) => {
     for (const componentName of componentNames) {
-      const component = page.locator(componentName).first();
-      await expect(component).toHaveCount(1);
+      const component = page.locator(`${componentName}[data-hydrated]`).first();
+      await expect(component).toBeAttached();
     }
   });
 

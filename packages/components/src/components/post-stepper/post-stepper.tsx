@@ -65,6 +65,10 @@ export class PostStepper {
     this.updateSteps();
   }
 
+  connectedCallback() {
+    this.stepItems = document.querySelectorAll(null);
+  }
+
   componentDidLoad() {
     this.validateCompletedLabel();
     this.validateCurrentLabel();

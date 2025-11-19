@@ -5,6 +5,7 @@ on:
       - 'packages/documentation/**'
       - 'packages/styles/**'
       - 'packages/components/**'
+      - 'packages/components-angular/**'
       - 'packages/internet-header/**'
       - 'packages/icons/**'
       - 'packages/tokens/tokensstudio-generated/tokens.json'
