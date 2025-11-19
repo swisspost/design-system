@@ -42,7 +42,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
    * Event handler for console messages from the page.
    * Captures console.error messages and passes them to pushError.
    * 
-   * @param msg - Playwright ConsoleMessage object from the page
+   * @param msg - Playwright ConsoleMessage object
    */
   function onConsole(msg: ConsoleMessage): void {
     try {
