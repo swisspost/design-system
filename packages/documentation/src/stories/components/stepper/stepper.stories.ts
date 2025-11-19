@@ -1,16 +1,13 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { useArgs } from 'storybook/preview-api';
-
-const defaultSteps = ['Sender', 'Product', 'Other details', 'Order summary'];
 
 const meta: MetaComponent = {
   id: '7dc546d9-e248-4d06-befe-3ad62fcd310f',
   title: 'Components/Stepper',
-  tags: ['package:Styles'],
-  render: renderStepper,
+  tags: ['package:WebComponents', 'status:InProgress'],
+  component: 'post-stepper',
+  render,
   parameters: {
     badges: [],
     controls: {
@@ -18,50 +15,45 @@ const meta: MetaComponent = {
     },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=20952-29106&mode=design&t=38qLaYwWdirTcHdb-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21-176&p=f&t=SlP83fyysFMbjBGJ-0',
     },
   },
   args: {
-    currentStepNumber: 3,
-    navigatableSteps: 'all',
-    processName: 'Registration Form',
-    steps: defaultSteps,
+    currentIndex: 2,
+    completedLabel: 'Completed step',
+    currentLabel: 'Current step',
+    activeStepLabel: 'Step #index:',
+    stepsAmount: 5,
   },
   argTypes: {
-    navigatableSteps: {
-      name: 'Navigatable Steps',
-      description: 'Defines which steps in the current process the user can navigate to.',
+    currentIndex: {
+      name: 'current-index',
       control: {
-        type: 'radio',
+        type: 'select',
         labels: {
-          all: 'All steps',
-          completedOnly: 'Completed Steps only',
-          none: 'None',
+          '-1': 'Not started',
+          0: 'Step 1',
+          1: 'Step 2',
+          2: 'Step 3',
+          3: 'Step 4',
+          4: 'Step 5',
+          5: 'Step 6',
+          6: 'Step 7',
+          7: 'Step 8',
+          8: 'Step 9',
+          9: 'Step 10',
+          10: 'Completed',
         },
       },
-      options: ['all', 'completedOnly', 'none'],
-      table: {
-        category: 'General',
-      },
+      options: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
-    currentStepNumber: {
-      name: 'Current Step Number',
-      description: 'The number of the step the user is currently at in the process.',
+    stepsAmount: {
+      name: 'Steps amount',
+      description: 'The amount of steps in the stepper.',
       control: {
         type: 'select',
       },
-      options: Object.keys(defaultSteps).map(key => parseInt(key, 10) + 1),
-      table: {
-        category: 'General',
-      },
-    },
-    processName: {
-      name: 'Process Name',
-      description:
-        'A straightforward, self-explanatory name for the current process, used for assistive technologies.',
-      control: {
-        type: 'text',
-      },
+      options: [3, 4, 5, 6, 7, 8, 9, 10],
       table: {
         category: 'General',
       },
@@ -70,89 +62,19 @@ const meta: MetaComponent = {
 };
 export default meta;
 
-// RENDERER
-function getStepperItem(
-  args: Args,
-  step: string,
-  index: number,
-  updateStep: (newStep: number, event: Event) => void,
-) {
-  const currentStepIndex = args.currentStepNumber - 1;
-  const isCompletedStep = index < currentStepIndex;
-  const isCurrentStep = index === currentStepIndex;
-  const isNextStep = index > currentStepIndex;
-  const isLink =
-    (isCompletedStep && args.navigatableSteps !== 'none') ||
-    (isNextStep && args.navigatableSteps === 'all');
-
-  let status = 'Current';
-  if (isCompletedStep) status = 'Completed';
-  if (isNextStep) status = 'Next';
-
-  const text = html`<span class="visually-hidden">${status} step:</span> ${step}`;
-  const title = step !== defaultSteps[index] ? step : undefined;
-
+function render(args: Args) {
   return html`
-    <li aria-current=${ifDefined(isCurrentStep ? 'step' : undefined)} class="stepper-item">
-      ${isLink
-        ? html`
-            <a
-              class="stepper-link"
-              href="../step-${index + 1}"
-              title=${ifDefined(title)}
-              @click=${(e: Event) => {
-                e.preventDefault();
-                updateStep(index + 1, e);
-              }}
-            >
-              ${text}
-            </a>
-          `
-        : html`<span class="stepper-link" title=${ifDefined(title)}>${text}</span>`}
-    </li>
+    <post-stepper
+      completed-label="${args.completedLabel}"
+      current-label="${args.currentLabel}"
+      active-step-label="${args.activeStepLabel}"
+      current-index="${args.currentIndex}"
+    >
+      ${Array.from({ length: args.stepsAmount }).map(
+        (a, i) => html` <post-stepper-item> Step ${i + 1} label</post-stepper-item> `,
+      )}
+    </post-stepper>
   `;
 }
 
-function renderStepper(args: Args) {
-  const [_, updateArgs] = useArgs();
-
-  const updateStep = (newStepNumber: number, event: Event) => {
-    event.preventDefault();
-    updateArgs({ currentStepNumber: newStepNumber });
-  };
-
-  const isNav = args.navigatableSteps !== 'none';
-
-  const stepper = html`<ol
-    class="stepper"
-    aria-label=${ifDefined(isNav ? undefined : args.processName + ' Progress')}
-  >
-    ${args.steps.map((step: string, index: number) =>
-      getStepperItem(args, step, index, updateStep),
-    )}
-  </ol>`;
-
-  return args.navigatableSteps === 'none'
-    ? stepper
-    : html`<nav aria-label="${args.processName}">${stepper}</nav>`;
-}
-
 export const Default: StoryObj = {};
-
-export const NavigationalStepper: StoryObj = {
-  args: {
-    navigatableSteps: 'completedOnly',
-  },
-};
-
-export const InformationalStepper: StoryObj = {
-  args: {
-    navigatableSteps: 'none',
-  },
-};
-
-export const LongLabels: StoryObj = {
-  args: {
-    steps: ['Personal information and shipping address', ...defaultSteps.slice(1)],
-  },
-};

@@ -3,7 +3,7 @@ import { html } from 'lit';
 export function renderMainnavigation() {
   return html`
     <!-- Main navigation -->
-    <post-mainnavigation caption="Main navigation">
+    <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
       <post-list title-hidden="">
         <h2>Main Navigation</h2>
         <!-- Link only level 1 -->
@@ -24,6 +24,7 @@ export function renderMainnavigation() {
             </button>
             <post-closebutton slot="close-button">Close</post-closebutton>
             <h2 slot="megadropdown-title">Letters title</h2>
+            <a slot="megadropdown-overview-link" href="/letters">Overview Letters</a>
             <post-list>
               <h3>Send letters</h3>
               <post-list-item slot="post-list-item">
@@ -65,6 +66,7 @@ export function renderMainnavigation() {
             </button>
             <post-closebutton slot="close-button">Close</post-closebutton>
             <h2 slot="megadropdown-title">Packages title</h2>
+            <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
             <post-list>
               <h3>Send packages</h3>
               <post-list-item slot="post-list-item">

@@ -6,7 +6,7 @@ import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   id: '212efc4e-875b-4497-912d-d28c6baf32f5',
   title: 'Raw Components/Megadropdown',
-  tags: ['package:WebComponents', 'devOnly'],
+  tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
   component: 'post-megadropdown',
   render: render,
   parameters: {
@@ -59,7 +59,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <h1 slot="title">Application title</h1>
 
       <!-- Custom content (optional) -->
-      <ul class="list-inline">
+      <ul slot="local-controls" class="list-inline">
         <li>
           <a href="#">
             <span>Search</span>
@@ -75,7 +75,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Main Navigation">
+      <post-mainnavigation slot="post-mainnavigation" caption="Main Navigation">
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <post-list-item> ${story(context.args, context)} </post-list-item>
@@ -99,6 +99,7 @@ function render() {
       </button>
       <post-closebutton slot="close-button">Close</post-closebutton>
       <h2 slot="megadropdown-title"><a href="">Packages title</a></h2>
+      <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
       <post-list>
         <h3>Send packages</h3>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>

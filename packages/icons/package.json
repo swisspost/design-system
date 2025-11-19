@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "10.0.0-next.50",
+  "version": "10.0.0-next.55",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -43,7 +43,7 @@
     "@types/prettier": "2.7.3",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
-    "dotenv": "16.5.0",
+    "dotenv": "17.2.3",
     "eslint": "9.18.0",
     "eslint-plugin-jest": "28.11.0",
     "globals": "16.0.0",

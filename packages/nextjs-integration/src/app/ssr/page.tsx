@@ -13,12 +13,15 @@ import {
   PostMenuItem,
   PostMenuTrigger,
   PostPopover,
+  PostPopoverTrigger,
   PostRating,
   PostTabs,
   PostTabHeader,
   PostTabPanel,
   PostTooltipTrigger,
   PostTooltip,
+  PostStepper,
+  PostStepperItem,
 } from '@swisspost/design-system-components-react/server';
 
 export default function Home() {
@@ -124,16 +127,10 @@ export default function Home() {
       </PostMenu>
 
       <h2>Popover</h2>
-      <div className="d-flex justify-content-center">
+      <PostPopoverTrigger for="popover-one">
         {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
-        <button
-          className="btn btn-secondary btn-large"
-          data-popover-target="popover-one"
-          aria-expanded="false"
-        >
-          Click here to see a popover
-        </button>
-      </div>
+        <button className="btn btn-secondary btn-large">Click here to see a popover</button>
+      </PostPopoverTrigger>
       <PostPopover
         className="palette palette-alternate"
         id="popover-one"
@@ -149,7 +146,7 @@ export default function Home() {
       </PostPopover>
 
       <h2>Rating</h2>
-      <PostRating></PostRating>
+      <PostRating label="Rating"></PostRating>
 
       <h2>Tabs</h2>
       <PostTabs>
@@ -180,6 +177,19 @@ export default function Home() {
       <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
         Hi there 👋
       </PostTooltip>
+
+      <h2>Post Stepper</h2>
+      <PostStepper
+        completedLabel="Completed step"
+        currentLabel="Current step"
+        activeStepLabel="Step #index:"
+        currentIndex={1}
+      >
+        <PostStepperItem> Step 1 </PostStepperItem>
+        <PostStepperItem> Step 2 </PostStepperItem>
+        <PostStepperItem> Step 3 </PostStepperItem>
+        <PostStepperItem> Step 4 </PostStepperItem>
+      </PostStepper>
     </>
   );
 }

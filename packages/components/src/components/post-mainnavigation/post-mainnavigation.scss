@@ -10,6 +10,8 @@
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/variables/color';
 
+@include icons.custom-property('chevrondown');
+
 post-mainnavigation {
   // reset links and buttons
   post-list-item {
@@ -37,7 +39,7 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: 4px;
-        outline-offset: -2px !important;
+        z-index: 2;
       }
     }
   }
@@ -47,7 +49,7 @@ post-mainnavigation {
   post-megadropdown-trigger button {
     &::after {
       content: '';
-      @include icons.icon(2113);
+      @include icons.mask-image('chevrondown');
       height: 24px;
       width: 24px;
     }
@@ -63,17 +65,20 @@ post-mainnavigation {
   }
 
   // desktop styles
-  @include media.min(lg) {
+  post-header:not([data-burger-menu]) > & {
     display: flex;
-    overflow: hidden;
     height: var(--post-main-navigation-height, 0);
     background: color.$white;
     user-select: none;
 
     nav {
       flex: 1 1 auto;
-      overflow: hidden;
       scroll-behavior: smooth;
+    }
+
+    &.scrollable,
+    &.scrollable nav {
+      overflow: hidden;
     }
 
     .scroll-control {
@@ -81,8 +86,8 @@ post-mainnavigation {
       $button-padding: 1rem;
       $button-width: $icon-size + 2 * $button-padding;
 
+      z-index: 2;
       cursor: pointer;
-      z-index: 5;
       padding: $button-padding;
       background: color.$white;
       box-shadow: elevation.$elevation-500;
@@ -119,11 +124,6 @@ post-mainnavigation {
         height: var(--post-main-navigation-height, 0);
         gap: 4px;
         font-size: 16px;
-        z-index: 4;
-
-        @include media.max(lg) {
-          z-index: 5;
-        }
 
         .nav-el-active {
           font-weight: 700;
@@ -194,7 +194,7 @@ post-mainnavigation {
   }
 
   // tablet/mobile styles
-  @include media.max(lg) {
+  post-header[data-burger-menu] > & {
     nav {
       transform: none !important;
     }

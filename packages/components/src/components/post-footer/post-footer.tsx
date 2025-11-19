@@ -24,7 +24,7 @@ export class PostFooter {
   /**
    * The label to add to the footer (visually hidden).
    */
-  @Prop() readonly label!: string;
+  @Prop({ reflect: true }) readonly label!: string;
 
   @State() device: Device = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
