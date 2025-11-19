@@ -2,29 +2,29 @@ import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
 
 describe('Components', () => {
-  componentNames.forEach(componentName => {
-    describe(componentName, () => {
-      beforeEach(() => {
-        cy.visit('/');
-      });
+  beforeEach(() => {
+    cy.visit('/');
+  });
 
-      it('Angular consumer-app should contain the component', () => {
-        cy.get(componentName).first().should('exist');
-      });
-
-      it('the component should be hydrated', () => {
-        cy.get(componentName).first().should('have.class', 'hydrated');
-      });
-
-      it('the component should not have console errors', () => {
-        const errorCapture = setupComponentErrorCapture([componentName]);
-
-        cy.visit('/', {
-          onBeforeLoad: errorCapture.onBeforeLoad
-        });
-
-        assertNoComponentErrors(errorCapture.errors, [componentName]);
-      });
+  it('Angular consumer-app should contain all components', () => {
+    componentNames.forEach(componentName => {
+      cy.get(componentName).first().should('exist');
     });
+  });
+
+  it('all components should be hydrated', () => {
+    componentNames.forEach(componentName => {
+      cy.get(componentName).first().should('have.class', 'hydrated');
+    });
+  });
+
+  it('components should not have console errors', () => {
+    const errorCapture = setupComponentErrorCapture(componentNames as string[]);
+
+    cy.visit('/', {
+      onBeforeLoad: errorCapture.onBeforeLoad
+    });
+
+    assertNoComponentErrors(errorCapture.errors, componentNames as string[]);
   });
 });
