@@ -197,8 +197,9 @@ export class PostPagination {
     const totalPages = this.getTotalPages();
     if (totalPages <= 1) return;
 
-    // Get available width from parent/container
-    const availableWidth = this.getAvailableWidth();
+    // Get available width and subtract pagination padding
+    const paginationPadding = this.getPaginationPadding();
+    const availableWidth = this.getAvailableWidth() - paginationPadding;
 
     // Measure control buttons (prev/next)
     const controlButtons = Array.from(
@@ -208,25 +209,21 @@ export class PostPagination {
       return sum + (el as HTMLElement).getBoundingClientRect().width;
     }, 0);
 
-    // Measure the gap between items by measuring container vs sum of children
-    // This is more reliable than hardcoding gap values
     const allHiddenItems = Array.from(
       this.hiddenItemsRef.querySelectorAll('.hidden-page-button, .hidden-ellipsis')
     );
-    
+
     if (allHiddenItems.length === 0) {
-      // Not ready yet
       return;
     }
 
-    // Measure single page button width (they should all be the same)
+    // Measure single page button width
     const singleButtonWidth = (allHiddenItems[0] as HTMLElement).getBoundingClientRect().width;
 
     // Calculate available width for page buttons
     const widthForPages = availableWidth - controlButtonsWidth;
 
-    // Calculate how many buttons can fit
-    // We need to account for gaps - measure actual gap from rendered elements
+    // Calculate gap between items
     let gap = 0;
     if (allHiddenItems.length >= 2) {
       const first = allHiddenItems[0] as HTMLElement;
@@ -236,15 +233,24 @@ export class PostPagination {
       gap = secondRect.left - firstRect.right;
     }
 
-    // Calculate max pages: (width + gap) / (buttonWidth + gap)
-    // The last button doesn't have a trailing gap, so we add gap back to available width
+    // Calculate max pages: Math.floor((widthForPages + gap) / (singleButtonWidth + gap))
+    // This accounts for the gap between each button
     const maxPages = Math.floor((widthForPages + gap) / (singleButtonWidth + gap));
 
-    // Ensure at least 3 buttons (first, current, last) or all pages if fewer
     this.maxVisiblePages = Math.max(3, Math.min(maxPages, totalPages));
 
-    // Regenerate pages with new max
     this.validateAndUpdatePages();
+  }
+
+  /** 
+   * Gets the horizontal padding of the pagination container
+   */
+  private getPaginationPadding(): number {
+    if (!this.navRef) return 0;
+    const computedStyle = window.getComputedStyle(this.navRef);
+    const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
+    const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
+    return paddingLeft + paddingRight;
   }
 
   /**
