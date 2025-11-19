@@ -76,23 +76,25 @@ export const Typography: Story = {
         <!-- Inline Elements -->
         <section>
           <h2>Inline Elements</h2>
-          <p>This is <small>small inline text</small> for fine print or disclaimers.</p>
-          <p>This is <strong>strong text</strong> to emphasize importance.</p>
-          <p>This is <em>emphasized text</em> using italics.</p>
-          <p>Here is <sub>subscript</sub> and <sup>superscript</sup>.</p>
-          <p>
-            This is
-            <mark>highlighted text</mark>
-            for attention.
-          </p>
-          <p>This contains an <abbr title="abbreviation">abbr</abbr> element.</p>
-          <p>Inline <code>code sample</code> for dev use.</p>
-          <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>
-          <p>
-            This shows
-            <del>deleted text</del>
-            for corrections.
-          </p>
+          <p>This text contains <small>small inline text</small> for fine print or disclaimers.</p>
+
+          <p>This text shows <strong>strong emphasis</strong> for important words or phrases.</p>
+
+          <p>This text shows <em>emphasis through italics</em> for subtle highlighting.</p>
+
+          <p>This text contains <sub>subscript text</sub> for chemical formulas or footnotes.</p>
+
+          <p>This text contains <sup>superscript text</sup> for exponents or references.</p>
+
+          <p>This text <mark>highlights important information</mark> for visual scanning.</p>
+
+          <p>This text contains an <abbr title="abbreviation">abbr</abbr> element for shortened forms.</p>
+
+          <p>This text shows <code>inline code examples</code> for technical documentation.</p>
+
+          <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text to clipboard.</p>
+
+          <p>This shows <del>deleted text</del> for tracking changes or corrections.</p>
         </section>
         </div>
       `,
