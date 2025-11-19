@@ -1,0 +1,7 @@
+# Basic dependabot configuration file
+version: 2
+updates:
+  - package-ecosystem: 'pnpm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
