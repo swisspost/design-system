@@ -7,18 +7,22 @@ test.describe('SSR compatibility', () => {
     await page.goto('/ssr');
   });
 
+  test('Nextjs-integration package should contain all components', async ({ page }) => {
+    for (const componentName of componentNames) {
+      const component = page.locator(componentName).first();
+      await expect(component).toHaveCount(1);
+    }
+  });
+
+  test('all components should be hydrated', async ({ page }) => {
+    for (const componentName of componentNames) {
+      const component = page.locator(`${componentName}[data-hydrated]`).first();
+      await expect(component).toBeAttached();
+    }
+  });
+
   for (const componentName of componentNames) {
     test.describe(componentName, () => {
-      test(`Nextjs-integration package should contain the component`, async ({ page }) => {
-        const component = page.locator(componentName).first();
-        await expect(component).toHaveCount(1);
-      });
-
-      test(`the component should be hydrated`, async ({ page }) => {
-        const component = page.locator(`${componentName}[data-hydrated]`).first();
-        await expect(component).toBeAttached();
-      });
-
       test(`the component should not have console errors`, async ({ page }) => {
         const errorCapture = setupComponentErrorCapture(page, [componentName]);
 

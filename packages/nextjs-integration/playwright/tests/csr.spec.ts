@@ -6,14 +6,12 @@ test.describe('CSR compatibility', () => {
     await page.goto('/csr');
   });
 
-  for (const componentName of componentNames) {
-    test.describe(componentName, () => {
-      test(`the component should be hydrated`, async ({ page }) => {
-        const component = page.locator(`${name}[data-hydrated]`).first();
-        await expect(component).toBeAttached();
-      });
-    });
-  }
+  test('all components should be hydrated', async ({ page }) => {
+    for (const componentName of componentNames) {
+      const component = page.locator(`${componentName}[data-hydrated]`).first();
+      await expect(component).toBeAttached();
+    }
+  });
 
   // Hydration errors should, if at all, only occur on the /ssr route.
   // If a hydration error occurs here on the /csr route, something is wrongly implemented in general!
