@@ -17,11 +17,13 @@ tokens.$default-map: utilities.$post-spacing;
 .version-switcher__dropdown {
   .item__title {
     display: block;
+    padding: 0.5rem 0.75rem;
   }
 
   .item__deps {
     display: flex;
     gap: tokens.get('utility-gap-12');
+    padding: 0.5rem 0.75rem;
   }
 
   .deps_dep {
