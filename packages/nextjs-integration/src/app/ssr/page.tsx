@@ -194,9 +194,9 @@ export default function Home() {
 
       <h2>Pagination</h2>
       <PostPagination
-        page="1"
-        page-size="10"
-        collection-size="95"
+        page={1}
+        page-size={10}
+        collection-size={95}
         label="Pagination"
         label-previous="Previous page"
         label-next="Next page"
