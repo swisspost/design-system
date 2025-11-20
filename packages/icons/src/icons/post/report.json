@@ -27178,6 +27178,83 @@
       "modifiedAt": "2025-11-05T11:05:07.704Z"
     },
     {
+      "uuid": "8e0ea300-c125-11f0-b1fa-0050568d2654",
+      "id": 7351969,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7351969/storage/MDA3MzUxOTY5LzAvbWFzdGVy",
+        "keywords": [
+          "AmiGo",
+          "On-demand mobility",
+          "On-Demand Mobilität",
+          "Mobilité à la demande",
+          "Mobilità on demand",
+          "Mobility",
+          "Mobilität",
+          "Mobilité",
+          "Mobilità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2742.svg",
+        "basename": "2742",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-14T06:45:48.000Z",
+      "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
+      "uuid": "22731210-c126-11f0-b1fa-0050568d2654",
+      "id": 7352011,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7352011/storage/MDA3MzUyMDExLzAvbWFzdGVy",
+        "keywords": [
+          "AmiGo",
+          "gelbe Flotte",
+          "Flotte jaune",
+          "flotta gialla",
+          "yellow fleet"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2743.svg",
+        "basename": "2743",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-14T06:49:57.000Z",
+      "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
+      "uuid": "ab0d29d0-c126-11f0-b1fa-0050568d2654",
+      "id": 7352045,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7352045/storage/MDA3MzUyMDQ1LzAvbWFzdGVy",
+        "keywords": [
+          "Car App",
+          "App",
+          "Application"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2744.svg",
+        "basename": "2744",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-14T06:53:47.000Z",
+      "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40416,13 +40493,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1063,
+    "success": 1066,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-11-12T08:36:11.013Z",
+  "created": "2025-11-16T02:21:54.981Z",
   "version": "10.0.0-next.54"
 }
