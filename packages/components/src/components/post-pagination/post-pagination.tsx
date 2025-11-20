@@ -88,7 +88,7 @@ export class PostPagination {
   private navRef?: HTMLElement;
   private hiddenItemsRef?: HTMLElement;
   private lastWindowWidth: number;
-  private isConnected: boolean = false;
+  private connected: boolean = false;
 
   @Watch('page')
   validatePage() {
@@ -153,13 +153,13 @@ export class PostPagination {
   }
 
   componentDidLoad() {
-    this.isConnected = true;
+    this.connected = true;
     window.addEventListener('resize', this.handleResize);
     this.waitForMeasurement();
   }
 
   disconnectedCallback() {
-    this.isConnected = false;
+    this.connected = false;
     window.removeEventListener('resize', this.handleResize);
   }
 
@@ -183,7 +183,7 @@ export class PostPagination {
    * Waits for the pagination elements to be available and measures them
    */
   private waitForMeasurement = debounce(() => {
-    if (!this.isConnected) return;
+    if (!this.connected) return;
     
     if (this.navRef?.clientWidth > 0 && this.hiddenItemsRef) {
       this.measureAndCalculateVisiblePages();
@@ -196,7 +196,7 @@ export class PostPagination {
    * Handles window resize events
    */
   private handleResize = debounce(() => {
-    if (!this.isConnected) return;
+    if (!this.connected) return;
     if (window.innerWidth === this.lastWindowWidth) return;
     
     this.lastWindowWidth = window.innerWidth;
@@ -216,7 +216,7 @@ export class PostPagination {
    * Measures actual rendered elements to determine how many pages can fit
    */
   private measureAndCalculateVisiblePages() {
-    if (!this.navRef || !this.hiddenItemsRef || !this.isConnected) return;
+    if (!this.navRef || !this.hiddenItemsRef || !this.connected) return;
 
     const totalPages = this.getTotalPages();
     if (totalPages <= 1) return;
