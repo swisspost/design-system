@@ -412,7 +412,7 @@ export namespace Components {
     interface PostPopovercontainer {
         /**
           * Animation style
-          * @default null
+          * @default 'pop'
          */
         "animation"?: AnimationName | null;
         /**
@@ -433,6 +433,10 @@ export namespace Components {
           * Programmatically hide the popovercontainer
          */
         "hide": () => Promise<void>;
+        /**
+          * Return the current state of closing animation. Used by the popover-trigger to prevent retoggling.
+         */
+        "isClosingAnimationRunning": () => Promise<boolean>;
         /**
           * Whether or not the popovercontainer should close when user clicks outside of it
           * @default false
@@ -1345,7 +1349,7 @@ declare namespace LocalJSX {
     interface PostPopovercontainer {
         /**
           * Animation style
-          * @default null
+          * @default 'pop'
          */
         "animation"?: AnimationName | null;
         /**

@@ -7,7 +7,7 @@
 
 | Property      | Attribute      | Description                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                 | Default     |
 | ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `animation`   | `animation`    | Animation style                                                                                                                                                                                                                                                                                                                             | `"pop"`                                                                                                                                                              | `null`      |
+| `animation`   | `animation`    | Animation style                                                                                                                                                                                                                                                                                                                             | `"pop"`                                                                                                                                                              | `'pop'`     |
 | `arrow`       | `arrow`        | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                                            | `boolean`                                                                                                                                                            | `false`     |
 | `edgeGap`     | `edge-gap`     | Gap between the edge of the page and the popovercontainer                                                                                                                                                                                                                                                                                   | `number`                                                                                                                                                             | `8`         |
 | `manualClose` | `manual-close` | Whether or not the popovercontainer should close when user clicks outside of it                                                                                                                                                                                                                                                             | `boolean`                                                                                                                                                            | `false`     |
@@ -46,6 +46,16 @@ Programmatically hide the popovercontainer
 #### Returns
 
 Type: `Promise<void>`
+
+
+
+### `isClosingAnimationRunning() => Promise<boolean>`
+
+Return the current state of closing animation. Used by the popover-trigger to prevent retoggling.
+
+#### Returns
+
+Type: `Promise<boolean>`
 
 
 

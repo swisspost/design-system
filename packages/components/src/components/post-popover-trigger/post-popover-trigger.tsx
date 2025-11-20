@@ -83,12 +83,12 @@ export class PostPopoverTrigger {
     }
   }
 
-  private handleToggle() {
-    console.log('popover trigger: handlePostToggle');
+  private async handleToggle() {
+    console.log('popover trigger was clicked -> handlePostToggle()');
     const popoverEl = this.popover;
     if (popoverEl) {
-      popoverEl.toggle(this.trigger);
-      this.focusTrigger();
+      await popoverEl.toggle(this.trigger);
+      // this.focusTrigger();
     } else {
       console.warn(`No post-popover found with ID: ${this.for}`);
     }
@@ -113,7 +113,7 @@ export class PostPopoverTrigger {
     this.boundHandleKeyDown = this.handleKeyDown.bind(this);
     this.boundHandlePostToggle = (event: CustomEvent<{ isOpen: boolean }>) => {
       this.popoverOpen = event.detail.isOpen;
-      this.focusTrigger();
+      // this.focusTrigger();
     };
   }
 
