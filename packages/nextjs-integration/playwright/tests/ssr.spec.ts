@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
+import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
 
 test.describe('SSR compatibility', () => {
   test.beforeEach(async ({ page }) => {
@@ -11,6 +12,21 @@ test.describe('SSR compatibility', () => {
       const component = page.locator(componentName).first();
       await expect(component).toHaveCount(1);
     }
+  });
+
+  test('all components should be hydrated', async ({ page }) => {
+    for (const componentName of componentNames) {
+      const component = page.locator(`${componentName}[data-hydrated]`).first();
+      await expect(component).toBeAttached();
+    }
+  });
+
+  test('all components should not have console errors', async ({ page }) => {
+    const errorCapture = setupComponentErrorCapture(page, componentNames as string[]);
+
+    await page.reload();
+
+    assertNoComponentErrors(errorCapture.errors, componentNames as string[]);
   });
 
   // NextJS typically only logs a single hydration error.
