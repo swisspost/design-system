@@ -195,14 +195,15 @@ export default function Home() {
       <h2>Pagination</h2>
       <PostPagination
         page={1}
-        page-size={10}
-        collection-size={95}
+        pageSize={10}
+        collectionSize={100}
+        disabled={false}
         label="Pagination"
-        label-previous="Previous page"
-        label-next="Next page"
-        label-page="Page"
-        label-first="First page"
-        label-last="Last page"
+        labelPrevious="Previous page"
+        labelNext="Next page"
+        labelPage="Page"
+        labelFirst="First page"
+        labelLast="Last page"
       />
     </>
   );
