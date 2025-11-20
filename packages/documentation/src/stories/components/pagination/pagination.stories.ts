@@ -44,8 +44,7 @@ export const Default: Story = {
 };
 
 export const ManyPages: Story = {
-  name: 'Many Pages',
-  render: (args: Args) => html`
+  render: () => html`
       <post-pagination
         page=10
         page-size=6
@@ -59,7 +58,7 @@ export const ManyPages: Story = {
 };
 
 export const PageOutOfRange: Story = {
-  render: (args: Args) => html`
+  render: () => html`
 
       <post-pagination
         page=50
