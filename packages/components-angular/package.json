@@ -19,6 +19,7 @@
     "postbuild": "pnpm copy:styles:dist",
     "clean": "rimraf dist .angular",
     "e2e": "ng e2e --watch=false",
+    "e2e:ci": "xvfb-run -a ng e2e --watch=false",
     "e2e:watch": "ng e2e",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
