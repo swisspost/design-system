@@ -8,7 +8,7 @@ const code = `
   {{logoLink}}
 
   <!-- Meta navigation -->
-  <ul slot="meta-navigation">
+  <ul class="list-inline" slot="meta-navigation">
     <li><a href="#">Jobs</a></li>
     <li><a href="#">Über uns</a></li>
   </ul>
@@ -37,7 +37,7 @@ const code = `
   <h1 slot="title">Application title</h1>
 
   <!-- Custom content (optional) -->
-  <ul slot="local-controls">
+  <ul slot="local-controls" class="list-inline">
     <li>
       <a href="#">
         <span>Search</span>
