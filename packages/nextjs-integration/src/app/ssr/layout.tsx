@@ -29,7 +29,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </PostLogo>
 
       {/* Target Group */}
-      <ul slot="target-group" className="target-group">
+      <ul slot="target-group">
         <li>
           <a href="#" aria-current="location">
             Private customers
@@ -41,7 +41,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </ul>
 
       {/* Global controls (Search) */}
-      <ul className="list-inline" slot="global-controls">
+      <ul slot="global-controls">
         <li>
           <a href="">
             <span>Search</span>
@@ -51,7 +51,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </ul>
 
       {/* Meta navigation */}
-      <ul className="list-inline" slot="meta-navigation">
+      <ul slot="meta-navigation">
         <li>
           <a href="">
             Jobs
@@ -104,7 +104,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       <PostMainnavigation slot="post-mainnavigation">
         <PostList title-hidden="">
           <h2>Main Navigation</h2>
-          
+
           {/* Link only level 1 */}
           <PostListItem slot="post-list-item">
             <a href="/letters">Letters</a>
