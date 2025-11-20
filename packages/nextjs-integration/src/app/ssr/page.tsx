@@ -12,6 +12,7 @@ import {
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
+  PostPagination,
   PostPopover,
   PostPopoverTrigger,
   PostRating,
@@ -190,6 +191,19 @@ export default function Home() {
         <PostStepperItem> Step 3 </PostStepperItem>
         <PostStepperItem> Step 4 </PostStepperItem>
       </PostStepper>
+
+      <h2>Pagination</h2>
+      <PostPagination
+        page="1"
+        page-size="10"
+        collection-size="95"
+        label="Pagination"
+        label-previous="Previous page"
+        label-next="Next page"
+        label-page="Page"
+        label-first="First page"
+        label-last="Last page"
+      />
     </>
   );
 }

@@ -541,7 +541,8 @@ export class PostPagination {
     iconName: string,
     label: string,
     isDisabled: boolean,
-    onClick: () => void
+    onClick: () => void,
+    rotateIcon: boolean = false
   ) {
     return (
       <li class="pagination-item pagination-control">
@@ -558,7 +559,7 @@ export class PostPagination {
           disabled={isDisabled}
           tabIndex={isDisabled ? -1 : 0}
         >
-          <post-icon name={iconName} aria-hidden="true"></post-icon>
+          <post-icon name={iconName} class={rotateIcon ? 'pagination-icon-rotated' : undefined} aria-hidden="true"></post-icon>
           <span class="visually-hidden">{label}</span>
         </button>
       </li>
@@ -580,7 +581,7 @@ export class PostPagination {
         {ELLIPSIS}
       </span>,
       <button class="pagination-link pagination-control-button hidden-control-button" disabled>
-        <post-icon name="chevronright" aria-hidden="true"></post-icon>
+        <post-icon name="chevronleft" class="pagination-icon-rotated" aria-hidden="true"></post-icon>
       </button>
     ];
   }
@@ -615,10 +616,11 @@ export class PostPagination {
 
             {/* Next Button */}
             {this.renderControlButton(
-              'chevronright',
+              'chevronleft',
               this.labelNext,
               isNextDisabled,
-              () => this.handleNext()
+              () => this.handleNext(),
+              true
             )}
           </ul>
 

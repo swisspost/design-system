@@ -204,6 +204,10 @@ $pagination-gap: 4px;
   visibility: hidden;
 }
 
+.pagination-icon-rotated {
+  display: inline-block;
+  transform: rotate(180deg);
+}
 
 .visually-hidden {
   position: absolute;
