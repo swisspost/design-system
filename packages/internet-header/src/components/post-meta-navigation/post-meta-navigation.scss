@@ -1,0 +1,99 @@
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/functions';
+@use '../../utils/utils.scss';
+@use '../../utils/mixins.scss';
+
+:host {
+  display: block;
+  font-size: functions.px-to-rem(14px);
+}
+
+.meta-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: functions.px-to-rem(48px);
+
+  background: color.$light;
+
+  @media (min-width: 1441px) {
+    &:not(.full-width) {
+      margin: 0 auto;
+      max-width: 1440px;
+    }
+  }
+
+  &.vertical {
+    @include mixins.container-padding();
+
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+
+    @include mixins.min(lg) {
+      display: none;
+    }
+  }
+
+  &.horizontal {
+    ::slotted(*) {
+      --separator-display: block;
+      --separator-height: #{functions.px-to-rem(34px)};
+    }
+
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0px;
+      height: var(--meta-header-height);
+      background-color: color.$light;
+      left: 50%;
+      width: 50%;
+    }
+  }
+}
+
+.meta-navigation {
+  .horizontal & {
+    position: relative;
+    padding-right: 1rem;
+  }
+}
+
+.meta-list {
+  @extend %no-list;
+  display: flex;
+
+  .vertical & {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.meta-link {
+  @extend %nav-link;
+
+  font-size: functions.px-to-rem(14px);
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  min-height: functions.px-to-rem(34px);
+  border-radius: 3px;
+
+  &.active {
+    background: color.$yellow;
+    color: black;
+  }
+
+  .vertical & {
+    color: black;
+    padding: 0;
+
+    &.active {
+      padding: 0 0.5rem;
+      margin-left: -0.5rem;
+    }
+  }
+}

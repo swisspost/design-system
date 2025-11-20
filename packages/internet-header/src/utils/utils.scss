@@ -1,0 +1,124 @@
+@use '@swisspost/design-system-styles/components/fonts';
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/breakpoints';
+@use '@swisspost/design-system-styles/variables/components/button';
+@use '@swisspost/design-system-styles/variables/type';
+@use '@swisspost/design-system-styles/mixins/forms' as forms-mx;
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use './placeholders.scss';
+@use './mixins.scss';
+
+*,
+:host,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:host {
+  font-family: type.$font-family-sans-serif;
+}
+
+button {
+  font: inherit;
+  padding: 0;
+}
+
+a,
+button {
+  border-radius: button.$btn-border-radius;
+
+  @include forms-mx.focus-outline() {
+    border-radius: button.$btn-border-radius;
+  }
+}
+
+img,
+svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+svg {
+  @include utilities.high-contrast-mode {
+    color: currentColor;
+    forced-color-adjust: preserve-parent-color;
+  }
+}
+
+.box {
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.mirrored {
+  transform: scaleX(-1);
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.nav-link {
+  @extend %nav-link;
+}
+
+.no-list {
+  @extend %no-list;
+}
+
+.btn-blank {
+  @extend %blank-button;
+}
+
+.wide-container {
+  @media (min-width: 1441px) {
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+}
+
+.container {
+  @include mixins.container-padding();
+}
+
+.visually-hidden {
+  @extend %visually-hidden;
+}
+
+@each $breakpoint, $value in breakpoints.$grid-breakpoints {
+  .hidden-#{$breakpoint} {
+    @include mixins.max($breakpoint) {
+      display: none;
+    }
+  }
+}
