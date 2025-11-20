@@ -3,7 +3,7 @@ import meta, { Default, ManyPages, PageOutOfRange } from './pagination.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
-const { id, ...metaWithoutId } = meta as any;
+const { id, ...metaWithoutId } = meta as unknown as { id?: string } & Record<string, unknown>;
 
 export default {
   ...metaWithoutId,
