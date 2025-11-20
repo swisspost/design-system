@@ -77,7 +77,7 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
 export const Default: Story = {
   render: (args: Args) => {
     return html`
-      <ul class="target-group">
+      <ul>
         ${[args.label_1, args.label_2, args.label_3].map(
           (arg, i) => html`
             <li>
