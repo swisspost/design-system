@@ -1,14 +1,9 @@
 @use '../../mixins/list';
 @use '../../mixins/media';
-@use '../../mixins/utilities';
-@use '../../variables/color';
 @use '../../functions/tokens';
-@use '../../tokens/elements';
 @use '../../tokens/components';
-@use '../../mixins/button' as button-mx;
-@use 'mixins' as *;
 
-tokens.$default-map: components.$post-button;
+@use 'mixins' as *;
 
 body:has(post-header) {
   scroll-padding-top: var(--post-header-height);
