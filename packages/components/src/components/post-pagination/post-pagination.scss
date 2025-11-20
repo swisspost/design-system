@@ -9,7 +9,7 @@ $pagination-color-hover-stroke: #504F4B;
 $pagination-color-hover-fg: #504F4B;
 $pagination-color-active-bg: #050400;
 $pagination-color-active-text: #fff;
-$pagination-color-disabled: #999;
+$pagination-color-disabled: #6B6B6B;
 $pagination-color-disabled-bg: #f0f0f0;
 
 // Typography
@@ -63,7 +63,6 @@ $pagination-gap: 4px;
   justify-content: center;
   
   box-sizing: border-box;
-  // Responsive sizes via CSS (browser handles this, we just measure)
   width: 32px;
   height: 32px;
   min-width: 32px;
