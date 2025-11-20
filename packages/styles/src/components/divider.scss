@@ -2,3 +2,11 @@
 @use '../tokens/components';
 
 tokens.$default-map: components.$post-divider;
+
+.divider {
+  border-color: tokens.get('post-divider-border');
+  border-width: tokens.get('post-divider-border-width');
+
+  margin-block-start: tokens.get('post-divider-margin-block');
+  margin-block-end: tokens.get('post-divider-margin-block');
+}
