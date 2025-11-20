@@ -1,5 +1,6 @@
 @use 'sass:meta';
 @use 'sass:math';
+
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/spacing';
@@ -8,6 +9,8 @@
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
 
 // Puts polyfilled styles in a separate layer so they are easy to override
 // Can be removed as soon as popover is supported by all major browsers
@@ -106,35 +109,61 @@
       drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));
   }
 
+  $arrow-rotation: 45deg;
   .arrow {
     $arrow-size: 0.5825rem;
+    --arrow-size: #{$arrow-size};
     position: absolute;
     width: $arrow-size;
     height: $arrow-size;
     background-color: inherit;
-    rotate: 45deg;
+    rotate: $arrow-rotation;
     pointer-events: none;
     z-index: -1;
 
-    // Create transparent border to be styled by and for the high contrast mode
-    &.top {
-      border-block-start: 2px solid transparent;
-      border-inline-start: 2px solid transparent;
+    &[dynamic-placement='top'] {
+      border-bottom-right-radius: 2px;
+    }
+    &[dynamic-placement='right'] {
+      border-bottom-left-radius: 2px;
+    }
+    &[dynamic-placement='bottom'] {
+      border-top-left-radius: 2px;
+    }
+    &[dynamic-placement='left'] {
+      border-top-right-radius: 2px;
     }
 
-    &.right {
-      border-block-start: 2px solid transparent;
-      border-inline-end: 2px solid transparent;
-    }
+    $angle-rad: math.div($arrow-rotation, 180deg) * 3.14; // convert deg to rad
+    $border-width-rem: 0.125rem;
 
-    &.left {
-      border-block-end: 2px solid transparent;
-      border-inline-start: 2px solid transparent;
-    }
+    // the actual offset when the 2px border is rotated by 45deg
+    $offset: -(math.cos($angle-rad) * $border-width-rem) - 0.5 * $arrow-size;
 
-    &.bottom {
-      border-block-end: 2px solid transparent;
-      border-inline-end: 2px solid transparent;
+    @include utilities.high-contrast-mode {
+      &[dynamic-placement='top'] {
+        border-block-end: 2px solid transparent;
+        border-inline-end: 2px solid transparent;
+        bottom: #{$offset} !important;
+      }
+
+      &[dynamic-placement='left'] {
+        border-block-start: 2px solid transparent;
+        border-inline-end: 2px solid transparent;
+        right: #{$offset} !important;
+      }
+
+      &[dynamic-placement='right'] {
+        border-block-end: 2px solid transparent;
+        border-inline-start: 2px solid transparent;
+        left: #{$offset} !important;
+      }
+
+      &[dynamic-placement='bottom'] {
+        border-block-start: 2px solid transparent;
+        border-inline-start: 2px solid transparent;
+        top: #{$offset} !important;
+      }
     }
   }
 }
