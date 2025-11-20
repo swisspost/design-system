@@ -1,4 +1,4 @@
-const duration = 2250;
+const duration = 600;
 const easing = 'ease-out';
 
 export function popIn(el: Element) {
@@ -19,6 +19,7 @@ export function popIn(el: Element) {
 
 export function popOut(el: Element) {
   if (!el) return;
+  console.log('pop-out noW!!');
 
   return el.animate(
     [

@@ -268,15 +268,17 @@ export class PostPopovercontainer {
 
       if (content) {
         const animationFn = ANIMATIONS[this.animation].close;
-        console.log(
-          '::::::popover open',
-          this.host.matches(':where(:popover-open, .popover-open)'),
-        );
+        console.log('::::::popover', {
+          isOpen: this.host.matches(':where([popover-open], .popover-open)'),
+          opacity: window.getComputedStyle(this.host).opacity,
+        });
+
         await this.runCloseAnimation(animationFn, content);
-        console.log(
-          '::::::popover open',
-          this.host.matches(':where(:popover-open, .popover-open)'),
-        );
+        console.log('::::::popover', {
+          isOpen: this.host.matches(':where([popover-open], .popover-open)'),
+          opacity: window.getComputedStyle(this.host).opacity,
+        });
+
         console.log('close animation is finished');
       }
     }
@@ -431,8 +433,11 @@ export class PostPopovercontainer {
   private beforeToggleHandler = async (event: ToggleEvent) => {
     console.log('beforeToggle event');
 
-    const isOpen = event.newState === 'open';
-
+    const isOpen = event.newState;
+    console.log('::::::popover', {
+      isOpen: this.host.matches(':where([popover-open], .popover-open)'),
+      opacity: window.getComputedStyle(this.host).opacity,
+    });
     if (isOpen) {
       // OPEN → allow native open, but delegate logic to handleToggle
       this.handleToggle(event);
@@ -609,7 +614,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version} popover={'manual'}>
+      <Host data-version={version} popover={'auto'}>
         <div class="popover-content">
           {this.arrow && (
             <span
