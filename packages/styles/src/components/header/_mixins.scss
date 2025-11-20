@@ -1,6 +1,7 @@
 @use '../../functions/tokens';
 @use '../../mixins/button';
 @use '../../mixins/media';
+@use '../../tokens/components';
 
 /**
  selects all slotted controls
@@ -46,7 +47,7 @@
   }
 
   @include active-state {
-    box-shadow: tokens.get('button-elevation');
+    box-shadow: tokens.get('button-elevation', components.$post-button);
 
     @include button.button-variant-def('enabled', 'primary');
 
