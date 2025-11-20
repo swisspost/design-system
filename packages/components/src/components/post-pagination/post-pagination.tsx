@@ -149,6 +149,11 @@ export class PostPagination {
 
   componentWillLoad() {
     this.paginationId = `pagination-${this.host.id || nanoid(6)}`;
+
+    if (this.page == null) {
+      this.page = 1;
+    }
+
     this.runAllValidations();
   }
 
