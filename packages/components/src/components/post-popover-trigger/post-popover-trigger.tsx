@@ -88,7 +88,7 @@ export class PostPopoverTrigger {
     const popoverEl = this.popover;
     if (popoverEl) {
       await popoverEl.toggle(this.trigger);
-      // this.focusTrigger();
+      this.focusTrigger();
     } else {
       console.warn(`No post-popover found with ID: ${this.for}`);
     }
@@ -113,7 +113,7 @@ export class PostPopoverTrigger {
     this.boundHandleKeyDown = this.handleKeyDown.bind(this);
     this.boundHandlePostToggle = (event: CustomEvent<{ isOpen: boolean }>) => {
       this.popoverOpen = event.detail.isOpen;
-      // this.focusTrigger();
+      this.focusTrigger();
     };
   }
 

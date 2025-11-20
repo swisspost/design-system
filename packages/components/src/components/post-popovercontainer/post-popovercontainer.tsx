@@ -174,8 +174,6 @@ export class PostPopovercontainer {
     this.host.style.setProperty('--post-safe-space-cursor-y', `${event.clientY}px`);
   }
 
-  private popoverOpenObserver: MutationObserver;
-
   private currentOpenAnimation: Animation | null = null;
   private currentClosingAnimation: Animation | null = null;
 
@@ -191,12 +189,6 @@ export class PostPopovercontainer {
       this.clearAutoUpdate();
     }
     this.host.removeEventListener('beforetoggle', this.beforeToggleHandler);
-  }
-  private logPopoverState() {
-    const popover = this.host; // the <post-popovercontainer> itself
-    const isOpen = popover.matches(':popover-open');
-    console.log(`Popover :popover-open state is now: ${isOpen}`);
-    return isOpen;
   }
 
   /**
@@ -235,13 +227,6 @@ export class PostPopovercontainer {
         this.postShow.emit({ first: this.hasOpenedOnce });
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
       } else {
-        // Cancel any running open animation
-        if (this.currentClosingAnimation) {
-          console.log('open: currentClosingAnimation', this.currentClosingAnimation);
-          this.currentClosingAnimation.cancel();
-          this.currentClosingAnimation = null;
-          console.log('open aftercancel: currentClosingAnimation', this.currentClosingAnimation);
-        }
         const animationFn = ANIMATIONS[this.animation].open;
         this.runOpenAnimation(animationFn, content);
       }
@@ -283,9 +268,15 @@ export class PostPopovercontainer {
 
       if (content) {
         const animationFn = ANIMATIONS[this.animation].close;
-        this.logPopoverState();
+        console.log(
+          '::::::popover open',
+          this.host.matches(':where(:popover-open, .popover-open)'),
+        );
         await this.runCloseAnimation(animationFn, content);
-        this.logPopoverState();
+        console.log(
+          '::::::popover open',
+          this.host.matches(':where(:popover-open, .popover-open)'),
+        );
         console.log('close animation is finished');
       }
     }
@@ -318,19 +309,9 @@ export class PostPopovercontainer {
       this.calculatePosition();
       this.host.togglePopover(force);
       console.log('native popover api: toggle was called again');
-      // this.toggleTimeoutId = null;
+      this.toggleTimeoutId = null;
     }
     return this.host.matches(':where(:popover-open, .popover-open)');
-  }
-
-  /**
-   * Return the current state of closing animation. Used by the popover-trigger to prevent retoggling.
-   */
-
-  @Method()
-  async isClosingAnimationRunning() {
-    console.log('popovercontainer currentClosingAnimation:', this.currentClosingAnimation);
-    return !!this.currentClosingAnimation;
   }
 
   /**
@@ -376,6 +357,7 @@ export class PostPopovercontainer {
       this.postBeforeToggle.emit({ willOpen: false });
       this.postBeforeShow.emit({ first: this.hasOpenedOnce });
       this.postToggle.emit({ isOpen: false });
+      this.postShow.emit({ first: this.hasOpenedOnce });
     } finally {
       if (this.currentOpenAnimation === animation) {
         this.currentOpenAnimation = null;

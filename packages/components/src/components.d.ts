@@ -434,10 +434,6 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Return the current state of closing animation. Used by the popover-trigger to prevent retoggling.
-         */
-        "isClosingAnimationRunning": () => Promise<boolean>;
-        /**
           * Whether or not the popovercontainer should close when user clicks outside of it
           * @default false
          */

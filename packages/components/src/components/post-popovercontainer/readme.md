@@ -49,16 +49,6 @@ Type: `Promise<void>`
 
 
 
-### `isClosingAnimationRunning() => Promise<boolean>`
-
-Return the current state of closing animation. Used by the popover-trigger to prevent retoggling.
-
-#### Returns
-
-Type: `Promise<boolean>`
-
-
-
 ### `open() => Promise<void>`
 
 Handles the popover opening process and emits related events.
