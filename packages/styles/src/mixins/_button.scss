@@ -10,8 +10,6 @@
 @use '../functions/tokens';
 @use '../tokens/components';
 
-tokens.$default-map: components.$post-button;
-
 @mixin reset-button {
   padding: 0;
   overflow: visible;
@@ -31,6 +29,58 @@ tokens.$default-map: components.$post-button;
   }
 }
 
+@mixin button-base {
+  // Resets
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+  transition: button.$btn-transition;
+  border-width: tokens.get('button-border-width', components.$post-button);
+  border-style: solid;
+  border-radius: tokens.get('button-border-radius-round', components.$post-button);
+  background-color: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  font-weight: tokens.get('button-label-font-weight', components.$post-button);
+  text-decoration: none;
+  white-space: nowrap; // Long content should never break in buttons
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:disabled {
+    border-style: tokens.get('button-border-style-disabled', components.$post-button);
+  }
+
+  @include utilities.focus-style;
+
+  @include utilities.high-contrast-mode() {
+    &:is(a) {
+      color: LinkText;
+      border: unset;
+    }
+
+    &:is(button) {
+      background-color: ButtonFace !important;
+      border: 1px solid ButtonBorder !important;
+    }
+
+    &:not(:disabled, .disabled) {
+      &:is(button):hover {
+        background-color: Highlight !important;
+
+        > post-icon {
+          color: HighlightText !important;
+        }
+      }
+    }
+  }
+}
+
 @mixin button-size($size: md) {
   min-height: map.get(button.$btn-height-map, $size);
   gap: map.get(button.$btn-gap-x-map, $size);
@@ -43,9 +93,9 @@ tokens.$default-map: components.$post-button;
 }
 
 @mixin button-variant-def($type, $color) {
-  border-color: tokens.get('button-#{$color}-#{$type}-stroke');
-  background-color: tokens.get('button-#{$color}-#{$type}-bg');
-  color: tokens.get('button-#{$color}-#{$type}-fg');
+  border-color: tokens.get('button-#{$color}-#{$type}-stroke', components.$post-button);
+  background-color: tokens.get('button-#{$color}-#{$type}-bg', components.$post-button);
+  color: tokens.get('button-#{$color}-#{$type}-fg', components.$post-button);
 }
 
 @mixin button-color-variant($name, $color) {
