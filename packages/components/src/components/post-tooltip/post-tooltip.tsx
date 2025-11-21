@@ -34,7 +34,7 @@ export class PostTooltip {
   /**
    * Choose a tooltip animation
    */
-  @Prop() readonly animation?: 'pop-in';
+  @Prop() readonly animation?: 'pop';
   /**
    * Indicates the open state of the tooltip
    */
