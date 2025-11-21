@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Updated `<post-popover-trigger>` to provide the option to wrap the popover, as alternative to using an id reference.
+Updated the `<post-popover-trigger>` component, to provide the ability to wrap it around the `<post-popover>` element, instead of using the `id` and `for` attribute references.
