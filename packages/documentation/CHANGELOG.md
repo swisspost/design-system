@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.57
+
+### Patch Changes
+
+- Updated `post-header` to prevent unnecessary h-tags. An h-tag can now only be used for the header title in microsite or one-page variants, other elements no longer use h-tags. (by [@alizedebray](https://github.com/alizedebray) with [#6693](https://github.com/swisspost/design-system/pull/6693))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.56
+  - @swisspost/design-system-components-react@10.0.0-next.56
+  - @swisspost/design-system-icons@10.0.0-next.56
+  - @swisspost/internet-header@10.0.0-next.56
+  - @swisspost/design-system-styles@10.0.0-next.56
+  - @swisspost/design-system-tokens@10.0.0-next.56
+
 ## 6.0.0-next.56
 
 ### Patch Changes
