@@ -1,2 +1,140 @@
-@use './custom-properties';
-@use './post-header';
+@use '../../mixins/list';
+@use '../../mixins/media';
+@use '../../functions/tokens';
+@use '../../tokens/components';
+
+@use 'custom-properties';
+@use 'mixins' as *;
+
+body:has(post-header) {
+  scroll-padding-top: var(--post-header-height);
+}
+
+[data-post-scroll-locked] {
+  overflow: hidden !important;
+}
+
+// Added to prevent Back-to-top button from showing up before header is hydrated
+body:has(post-header:not([data-hydrated])) post-back-to-top {
+  visibility: hidden !important;
+}
+
+post-header {
+  &:not(:defined),
+  &:not([data-hydrated]) {
+    display: block;
+    height: var(--post-header-height);
+  }
+
+  // all header lists
+  > ul,
+  > post-mainnavigation > ul {
+    @include list.list-inline;
+    gap: 0 0.25rem;
+    margin: 0;
+
+    @include media.only(desktop) {
+      align-items: center;
+    }
+
+    > li {
+      flex: 1 0 auto !important;
+    }
+  }
+
+  // all slotted links and buttons
+  > *,
+  > post-mainnavigation > * {
+    @include slotted-controls {
+      @include header-control-styles;
+    }
+  }
+
+  // links and buttons remaining in the global header on tablet and mobile
+  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
+    @include media.only(mobile) {
+      @include slotted-controls {
+        @include icon-only-control-styles;
+      }
+    }
+  }
+
+  // target group on mobile
+  > ul[slot='target-group'] {
+    @include media.only(tablet) {
+      margin-block: 1rem;
+    }
+
+    @include media.only(mobile) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  // meta navigation on desktop
+  > [slot='meta-navigation'] {
+    @include media.max(desktop) {
+      &:where(ul) {
+        flex-direction: column;
+      }
+
+      @include slotted-controls {
+        flex-direction: row-reverse;
+        @include navigation-control-styles;
+
+        > post-icon {
+          margin: unset;
+        }
+      }
+    }
+  }
+
+  // title
+  $header-title-line-height: 34px;
+
+  [slot='title'] {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 900;
+
+    @include media.only(desktop) {
+      font-size: 1.75rem;
+      line-height: $header-title-line-height;
+    }
+  }
+
+  // global user menu trigger
+  [slot='global-login'] > post-menu-trigger > button {
+    display: block;
+  }
+
+  // local user menu trigger
+  .local-login button {
+    display: block;
+    margin-block: calc(
+      (#{$header-title-line-height} - #{tokens.get('avatar-size', components.$post-avatar)}) / 2
+    );
+  }
+
+  // main navigation
+  > post-mainnavigation {
+    > ul {
+      height: 100%;
+      align-items: stretch;
+      gap: 0;
+
+      @include media.max(desktop) {
+        flex-direction: column;
+      }
+    }
+
+    > * {
+      @include slotted-controls {
+        height: 100%;
+
+        @include navigation-control-styles;
+        @include bold-hover-control-styles;
+      }
+    }
+  }
+}
