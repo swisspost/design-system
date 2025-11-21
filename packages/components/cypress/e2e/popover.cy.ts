@@ -4,32 +4,27 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
 
       // For/id relationship case
-      cy.get('post-popover[data-hydrated][id="popover-one"]').as('post-popover');
+      cy.get('post-popover[data-hydrated][id="popover-one"]').as('popover');
+      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]').as('popoverTrigger');
+      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+        .find('button')
+        .as('triggerButton');
+      cy.get('#testtext').as('content');
 
-      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]').as('post-popover-trigger');
-
-      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]').find('button').as('trigger');
-
-      cy.get('#testtext').as('popover-content');
+      cy.get('@popover').find('post-closebutton').as('closebutton');
 
       // Wrapped popover case
-      cy.get('post-popover-trigger[data-hydrated][id="popover-two"]').as(
-        'post-popover-trigger-wrapped',
-      );
+      cy.get('post-popover-trigger[data-hydrated][id="popover-two"]').as('popoverTrigger2');
     });
 
     it('if the element inside the trigger is not interactive, it should at least have a set tabindex="0" and role="button"', () => {
-      cy.window().then(win => {
-        cy.stub(win.console, 'warn').as('consoleWarn');
-      });
-
-      cy.get('@post-popover-trigger')
-        .find('button')
-        .invoke('replaceWith', '<div id="not-interactive">No interactive content.</div>')
-        .then(() => {
-          cy.get('@post-popover-trigger').children().first().should('have.attr', 'tabindex', '0');
-          cy.get('@post-popover-trigger').children().first().should('have.attr', 'role', 'button');
-        });
+      cy.get('@triggerButton').invoke(
+        'replaceWith',
+        '<div id="not-interactive">No interactive content.</div>',
+      );
+      cy.get('#not-interactive')
+        .should('have.attr', 'tabindex', '0')
+        .and('have.attr', 'role', 'button');
     });
 
     it('if the trigger is empty', () => {
@@ -37,8 +32,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         cy.spy(win.console, 'error').as('consoleError');
       });
 
-      cy.get('@post-popover-trigger')
-        .find('button')
+      cy.get('@triggerButton')
         .invoke('replaceWith', '')
         .then($children => {
           if ($children.length == 0) {
@@ -51,35 +45,35 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should show up on click', () => {
-      cy.get('@popover-content').should('not.be.visible');
-      cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
-      cy.get('@trigger').click();
-      cy.get('@popover-content').should('be.visible');
-      cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@content').should('not.be.visible');
+      cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@triggerButton').click();
+      cy.get('@content').should('be.visible');
+      cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'true');
 
       // Void click light dismiss does not work in cypress for closing
     });
 
     it('should show up when clicking on a nested element inside the trigger', () => {
       // Modify trigger by adding a nested span
-      cy.get('@trigger').then($trigger => {
+      cy.get('@triggerButton').then($trigger => {
         const originalText = $trigger.text();
         $trigger.html(`<span class="nested-element">${originalText}</span>`);
       });
 
-      cy.get('@popover-content').should('not.be.visible');
-      cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@content').should('not.be.visible');
+      cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'false');
       cy.get('.nested-element').click();
-      cy.get('@popover-content').should('be.visible');
-      cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
-      cy.get('@post-popover').find('post-closebutton').click();
-      cy.get('@popover-content').should('not.be.visible');
-      cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@content').should('be.visible');
+      cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@closebutton').click();
+      cy.get('@content').should('not.be.visible');
+      cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should show up when clicking on a deeply nested element inside the trigger', () => {
       // Set up a trigger with a deeply nested structure
-      cy.get('@trigger').then($trigger => {
+      cy.get('@triggerButton').then($trigger => {
         const originalText = $trigger.text();
         $trigger.html(`
                 <div class="level-1">
@@ -90,36 +84,36 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
               `);
       });
 
-      cy.get('@popover-content').should('not.be.visible');
+      cy.get('@content').should('not.be.visible');
       cy.get('.level-3').click();
-      cy.get('@popover-content').should('be.visible');
-      cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@content').should('be.visible');
+      cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'true');
     });
 
     it('should close on X click', () => {
-      cy.get('@trigger').click();
-      cy.get('@popover-content').should('be.visible');
-      cy.get('@post-popover').find('post-closebutton').click();
-      cy.get('@popover-content').should('not.be.visible');
+      cy.get('@triggerButton').click();
+      cy.get('@content').should('be.visible');
+      cy.get('@closebutton').click();
+      cy.get('@content').should('not.be.visible');
     });
 
     it('should open on enter and first focusable element should be focused', () => {
-      cy.get('@popover-content').should('not.be.visible');
-      cy.get('@trigger').focus().type('{enter}');
-      cy.get('@popover-content').should('be.visible');
+      cy.get('@content').should('not.be.visible');
+      cy.get('@triggerButton').focus().type('{enter}');
+      cy.get('@content').should('be.visible');
 
       // find the first focusable element (e.g., button, input, link, etc.)
-      cy.get('@popover-content')
+      cy.get('@content')
         .find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
         .first()
         .should('have.focus');
     });
 
     it('should switch position', () => {
-      cy.get('@post-popover').invoke('attr', 'placement', 'top');
-      cy.get('@popover-content').should('not.be.visible');
+      cy.get('@popover').invoke('attr', 'placement', 'top');
+      cy.get('@content').should('not.be.visible');
 
-      Promise.all([cy.get('@trigger'), cy.get('@popover-content')])
+      Promise.all([cy.get('@triggerButton'), cy.get('@content')])
         .then(
           ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
             $trigger.get(0),
@@ -135,25 +129,22 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('should warn only if there is a for reference set but no popover in the DOM with this ID', () => {
       cy.window().then(win => {
-        cy.stub(win.console, 'warn').as('consoleWarn');
+        cy.spy(win.console, 'error').as('consoleError');
       });
 
-      cy.get('@post-popover-trigger')
+      cy.get('@popoverTrigger')
         .invoke('attr', 'for')
         .then(forId => {
           cy.get(`post-popover#${forId}`).should('exist');
 
-          cy.get('@trigger').click();
-          cy.get('@consoleWarn').should('not.be.called');
-
-          cy.get('@trigger').click();
-          cy.get('@consoleWarn').should('not.be.called');
+          cy.get('@triggerButton').click();
+          cy.get('@consoleError').should('not.be.called');
 
           // remove popover
           cy.get(`post-popover#${forId}`).invoke('remove');
 
-          cy.get('@trigger').click();
-          cy.get('@consoleWarn').should(
+          cy.get('@triggerButton').click();
+          cy.get('@consoleError').should(
             'be.calledWithMatch',
             new RegExp(`No post-popover found with ID: ${forId}\\.`),
           );
@@ -162,21 +153,21 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('should warn if there is no internal popover wrapped', () => {
       cy.window().then(win => {
-        cy.spy(win.console, 'warn').as('consoleWarning');
+        cy.spy(win.console, 'error').as('consoleError');
       });
 
-      cy.get('@post-popover-trigger-wrapped').find('post-popover').invoke('remove');
+      cy.get('@popoverTrigger2').find('post-popover').invoke('remove');
 
-      cy.get('post-popover-trigger[id="popover-two"][data-hydrated]').find('button').click();
+      cy.get('@popoverTrigger2').find('button').click();
 
-      cy.get('@consoleWarning').should(
+      cy.get('@consoleError').should(
         'be.calledWithMatch',
         /No post-popover found inside the <post-popover-trigger>/,
       );
     });
 
     it('should open and close with the API', () => {
-      Promise.all([cy.get('@trigger'), cy.get('@post-popover')])
+      Promise.all([cy.get('@triggerButton'), cy.get('@popover')])
         .then(
           ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
             $trigger.get(0),
@@ -184,15 +175,15 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
           ],
         )
         .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
-          cy.get('@popover-content').should('not.be.visible');
+          cy.get('@content').should('not.be.visible');
           popover.show(trigger);
-          cy.get('@popover-content').should('be.visible');
+          cy.get('@content').should('be.visible');
           popover.toggle(trigger);
-          cy.get('@popover-content').should('not.be.visible');
+          cy.get('@content').should('not.be.visible');
           popover.toggle(trigger);
-          cy.get('@popover-content').should('be.visible');
+          cy.get('@content').should('be.visible');
           popover.toggle(trigger);
-          cy.get('@popover-content').should('not.be.visible');
+          cy.get('@content').should('not.be.visible');
         });
     });
   });

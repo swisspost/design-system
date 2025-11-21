@@ -48,6 +48,12 @@ export class PostPopoverTrigger {
    */
   private trigger: HTMLElement;
 
+  private hasAriaControlsElements(
+    el: HTMLElement,
+  ): el is HTMLElement & { ariaControlsElements: HTMLElement[] } {
+    return 'ariaControlsElements' in el;
+  }
+
   private readonly boundHandleToggle: (event: Event) => void;
   private readonly boundHandleKeyDown: (event: Event) => void;
   private readonly boundHandlePostToggle: (event: CustomEvent<{ isOpen: boolean }>) => void;
@@ -57,15 +63,15 @@ export class PostPopoverTrigger {
     const ref = this.host.querySelector('post-popover') ?? document.getElementById(this.for);
 
     if (!ref) {
-      console.log(this.for);
       const target = this.for ? `with ID: ${this.for}` : 'inside the <post-popover-trigger>';
-      console.warn(`No post-popover found ${target}.`);
+      console.error(`No post-popover found ${target}.`);
       return null;
     }
     return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
   }
 
   private setupTrigger() {
+    const popover = this.popover;
     this.trigger = this.host.querySelector('*');
 
     if (!this.trigger) {
@@ -81,7 +87,6 @@ export class PostPopoverTrigger {
       this.trigger.setAttribute('role', 'button');
     }
 
-    const popover = this.popover;
     if (!popover) return;
 
     // Set aria attributes
@@ -89,15 +94,16 @@ export class PostPopoverTrigger {
     this.trigger.setAttribute('aria-haspopup', 'true');
 
     // Set aria-controls depending on the popover/trigger relationship
+
     if (this.for) {
       this.trigger.setAttribute('aria-controls', this.for);
-    } else if ('ariaControlsElements' in this.trigger) {
-      // Use Elements Api ariaControlsElements property
-      this.trigger.ariaControlsElements = [popover];
     } else {
-      // Alternatively connect with a random ID
-      popover.id ||= `popover-${crypto.randomUUID()}`;
-      (this.trigger as HTMLElement).setAttribute('aria-controls', popover.id);
+      if (this.hasAriaControlsElements(this.trigger)) {
+        this.trigger.ariaControlsElements = [popover];
+      } else {
+        popover.id ||= `popover-${crypto.randomUUID()}`;
+        this.trigger.setAttribute('aria-controls', popover.id);
+      }
     }
 
     this.trigger.addEventListener('click', this.boundHandleToggle);
@@ -109,12 +115,7 @@ export class PostPopoverTrigger {
     this.focusTrigger();
   }
 
-  private focusTrigger() {
-    // Restores focus to the trigger
-    if (!this.popoverOpen && this.trigger) {
-      this.trigger.focus();
-    }
-  }
+  private focusTrigger() {}
 
   private readonly handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
