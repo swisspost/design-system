@@ -255,7 +255,6 @@ export class PostPopovercontainer {
   private beforeOpenHandler = async (event: ToggleEvent) => {
     if (event.newState === 'open') {
       await this.open();
-      console.log('open handler');
       return;
     }
   };
@@ -265,7 +264,6 @@ export class PostPopovercontainer {
    */
   private async open() {
     this.startAutoupdates();
-    console.log(this.animation);
     if (this.contentEl) {
       if (this.animation === null) {
         // No animation
@@ -334,7 +332,6 @@ export class PostPopovercontainer {
 
       // Animation has started running → emit BEFORE events
       if (animation.playState === 'running') {
-        console.log('running open animation');
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
       }
@@ -374,7 +371,6 @@ export class PostPopovercontainer {
 
       // Animation has started running → emit BEFORE events
       if (animation.playState === 'running') {
-        console.log('running close animation');
         this.postBeforeToggle.emit({ willOpen: false });
         this.postBeforeHide.emit();
       }
