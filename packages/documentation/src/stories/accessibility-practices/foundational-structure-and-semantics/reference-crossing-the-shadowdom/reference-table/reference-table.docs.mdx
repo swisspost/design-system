@@ -1,0 +1,66 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import * as CCR from './reference-table.stories';
+
+<Meta of={CCR} />
+
+# Attribute Referencing Table
+
+<div
+  className="table-responsive"
+  style={{ '--post-docs-tile-size': '100px', '--post-docs-tile-rg-size': '100px' }}
+>
+  <table className="table table-bordered ">
+    <caption className="visually-hidden">Cross-component referencing table</caption>
+    <colgroup>
+      <col style={{ width: '15%' }} />
+      <col style={{ width: '28%' }} />
+      <col style={{ width: '25%' }} />
+      <col style={{ width: '15%' }} />
+      <col style={{ width: '10%' }} />
+    </colgroup>
+    <thead>
+      <tr>
+        <th style={{ textAlign: 'left' }} scope="col">Attribute</th>
+        <th scope="col">Cross-Boundary Case</th>
+        <th scope="col" style={{ fontSize: '1.2rem' }}>Works Across ShadowDOM</th>
+        <th scope="col" style={{ fontSize: '1.2rem' }}>✔️Workaround/⬇️Trade-off</th>
+        <th scope="col">Documentation Link</th>
+      </tr>
+    </thead>
+   <tbody>
+ {CCR.ReferencingData.map(({ attribute, cases }, attrIndex) =>
+  cases.map((row, index) => (
+    <tr
+      key={`${attribute}-${index}`}
+      style={{
+        backgroundColor: attrIndex % 2 === 1 ? '#f2f2f2' : 'transparent', 
+      }}
+    >
+      {/* Span the attribute cell only for the first case row */}
+      {index === 0 && (
+        <td rowSpan={cases.length} style={{ verticalAlign: 'middle' }}>
+          {attribute}
+        </td>
+      )}
+      <td style={{ fontSize: '1.1rem', textAlign: 'center', verticalAlign: 'middle' }}>{row.case}</td>
+      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>{row.worksAcrossShadow}</td>
+      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>{row.workaround}</td>
+      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+        {row.docPage ? (
+          <a
+            href={row.docPage}
+            style={{ textDecoration: 'none' }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            🔗
+          </a>
+        ) : null}
+      </td>
+    </tr>
+  ))
+)}
+
+</tbody>
+  </table>
+</div>

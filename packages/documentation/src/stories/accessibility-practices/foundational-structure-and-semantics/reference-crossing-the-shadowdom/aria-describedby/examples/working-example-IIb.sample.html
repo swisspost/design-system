@@ -1,0 +1,18 @@
+<custom-component>
+  ⏷ #shadow-root (open)
+    <slot name="description-slot"></slot>
+    <div ref="targetRef" role="button" tabindex="0" aria-describedby>
+      <!--The aria-describedby attribute is set automatically by the browser -->
+      <custom-icon />
+    </div>
+    <span slot="description-slot">My Description</span>
+</custom-component>
+
+<script>
+  // Assign the slotted element(s) as description for the target using ariaDescribedbyByElements
+  const slotContent = this.shadowRoot
+    .querySelector('slot[name="description-slot"]')
+    .assignedElements({ flatten: true });
+  const description = slotContent.find(el => el.textContent.trim().length > 0);
+  this.targetRef.ariaDescribedbyByElements = [description];
+</script>
