@@ -85,6 +85,40 @@ export class PostPopovercontainer {
   private hasOpenedOnce: boolean = true;
 
   /**
+   * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+   * Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted
+   * towards the viewport if they would overlap edge boundaries.
+   */
+  @Prop() readonly placement?: Placement = 'top';
+
+  /**
+   * Gap between the edge of the page and the popovercontainer
+   */
+  @Prop() readonly edgeGap?: number = 8;
+
+  /**
+   * Animation style
+   */
+  @Prop() readonly animation?: AnimationName | null = null;
+
+  /**
+   * Whether or not to display a little pointer arrow
+   */
+  @Prop() readonly arrow?: boolean = false;
+
+  /**
+   * Whether or not the popovercontainer should close when user clicks outside of it
+   */
+  @Prop() manualClose: boolean = false;
+
+  /**
+   * Enables a safespace through which the cursor can be moved without the popover being disabled
+   */
+  @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
+
+  @State() dynamicPlacement?: string;
+
+  /**
    * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
    */
   @Event() postBeforeShow: EventEmitter<{ first?: boolean }>;
@@ -114,38 +148,6 @@ export class PostPopovercontainer {
    */
   @Event() postToggle: EventEmitter<{ isOpen: boolean }>;
 
-  /**
-   * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   * Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted
-   * towards the viewport if they would overlap edge boundaries.
-   */
-  @Prop() readonly placement?: Placement = 'top';
-
-  /**
-   * Gap between the edge of the page and the popovercontainer
-   */
-  @Prop() readonly edgeGap?: number = 8;
-
-  /**
-   * Animation style
-   */
-  @Prop() readonly animation?: AnimationName | null = null;
-
-  /**
-   * Whether or not to display a little pointer arrow
-   */
-  @Prop() readonly arrow?: boolean = false;
-
-  /**
-   * Whether or not the popovercontainer should close when user clicks outside of it
-   */
-  @Prop() manualClose: boolean = false;
-
-  @State() dynamicPlacement?: string;
-  /**
-   * Enables a safespace through which the cursor can be moved without the popover being disabled
-   */
-  @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
   @Watch('placement')
   validatePlacement() {
     checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
@@ -166,6 +168,13 @@ export class PostPopovercontainer {
     checkEmptyOrOneOf(this, 'animation', Object.keys(ANIMATIONS));
   }
 
+  /** The popovercontainer content */
+  private contentEl: HTMLElement;
+
+  /** Used to cancel already running animations */
+  private currentOpenAnimation: Animation | null = null;
+  private currentClosingAnimation: Animation | null = null;
+
   /**
    * Updates cursor position for safe space feature when popover is open.
    * Sets CSS custom properties for dynamic styling of safe area.
@@ -176,102 +185,29 @@ export class PostPopovercontainer {
     this.host.style.setProperty('--post-safe-space-cursor-y', `${event.clientY}px`);
   }
 
-  private currentOpenAnimation: Animation | null = null;
-  private currentClosingAnimation: Animation | null = null;
-
-  connectedCallback() {
-    if (IS_BROWSER && !isSupported()) {
-      apply();
-    }
-    this.host.addEventListener('beforetoggle', this.beforeToggleHandler);
-  }
-
-  disconnectedCallback() {
-    if (typeof this.clearAutoUpdate === 'function') {
-      this.clearAutoUpdate();
-    }
-    this.host.removeEventListener('beforetoggle', this.beforeToggleHandler);
-  }
-
   /**
    * Programmatically display the popovercontainer
    * @param target A focusable element inside the trigger component that controls the popover
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.toggleTimeoutId) return;
     this.eventTarget = target;
-    this.calculatePosition();
-    this.host.showPopover();
-  }
-
-  /**
-   * Handles the popover opening process and emits related events.
-   */
-  @Method()
-  async open() {
-    const content: HTMLElement = this.host.querySelector('.popover-content');
-    this.startAutoupdates();
-
-    if (content) {
-      // Only run animation and emit related events if animation is defined
-      if (this.animation === null) {
-        // No animation case
-        this.postBeforeToggle.emit({ willOpen: true });
-        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
-        this.postToggle.emit({ isOpen: true });
-        this.postShow.emit({ first: this.hasOpenedOnce });
-        if (this.hasOpenedOnce) this.hasOpenedOnce = false;
-      } else {
-        const animationFn = ANIMATIONS[this.animation].open;
-        this.runOpenAnimation(animationFn, content);
-      }
-    }
-
-    if (this.safeSpace) {
-      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    if (!this.toggleTimeoutId) {
+      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
+      this.calculatePosition();
+      this.host.showPopover();
     }
   }
 
-  /**
-   * Handles the popover closing process and emits related events.
-   */
-  @Method()
-  async close() {
-    const content: HTMLElement = this.host.querySelector('.popover-content');
-
-    if (typeof this.clearAutoUpdate === 'function') {
-      this.clearAutoUpdate();
-    }
-
-    if (this.safeSpace) {
-      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
-    }
-
-    if (this.animation === null) {
-      this.postBeforeToggle.emit({ willOpen: false });
-      this.postToggle.emit({ isOpen: false });
-      this.postBeforeHide.emit();
-      this.postHide.emit();
-    } else {
-      if (this.currentOpenAnimation) {
-        this.currentOpenAnimation.cancel();
-        this.currentOpenAnimation = null;
-      }
-
-      if (content) {
-        const animationFn = ANIMATIONS[this.animation].close;
-        await this.runCloseAnimation(animationFn, content);
-      }
-    }
-  }
   /**
    * Programmatically hide the popovercontainer
    */
   @Method()
   async hide() {
     if (!this.toggleTimeoutId) {
-      this.eventTarget = null;
+      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
+      this.calculatePosition();
+      await this.close();
       this.host.hidePopover();
     }
   }
@@ -286,37 +222,119 @@ export class PostPopovercontainer {
     this.eventTarget = target;
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
+      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
       this.calculatePosition();
+      // Run an toggle actions or animations before popover API actually toggles the popover
       if (!force) await this.close();
       this.host.togglePopover(force);
-      this.toggleTimeoutId = null;
     }
     return this.host.matches(':where(:popover-open, .popover-open)');
+  }
+
+  connectedCallback() {
+    if (IS_BROWSER && !isSupported()) {
+      apply();
+    }
+    /** Listens to the popoverApi 'beforeToggle' event */
+    this.host.addEventListener('beforetoggle', this.beforeOpenHandler);
+  }
+
+  disconnectedCallback() {
+    if (typeof this.clearAutoUpdate === 'function') {
+      this.clearAutoUpdate();
+    }
+    this.host.removeEventListener('beforetoggle', this.beforeOpenHandler);
+  }
+
+  private boundMouseTrackingHandler = this.mouseTrackingHandler.bind(this);
+
+  /**
+   *  Handles the pre-open phase of the popover
+   * @param e ToggleEvent
+   */
+  private beforeOpenHandler = async (event: ToggleEvent) => {
+    if (event.newState === 'open') {
+      await this.open();
+      console.log('open handler');
+      return;
+    }
+  };
+
+  /**
+   * Handles the popover opening process and emits related events.
+   */
+  private async open() {
+    this.startAutoupdates();
+    console.log(this.animation);
+    if (this.contentEl) {
+      if (this.animation === null) {
+        // No animation
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+        this.postToggle.emit({ isOpen: true });
+        this.postShow.emit({ first: this.hasOpenedOnce });
+        if (this.hasOpenedOnce) this.hasOpenedOnce = false;
+      } else {
+        // Cancel any runninc closing animation
+        if (this.currentClosingAnimation) {
+          this.currentClosingAnimation.cancel();
+          this.currentClosingAnimation = null;
+        }
+        // Run open animation
+        const animationFn = ANIMATIONS[this.animation].open;
+        await this.runOpenAnimation(animationFn, this.contentEl);
+      }
+    }
+    if (this.safeSpace) {
+      window.addEventListener('mousemove', this.boundMouseTrackingHandler);
+    }
+  }
+
+  /**
+   * Handles the popover closing process and emits related events.
+   */
+  private async close() {
+    if (typeof this.clearAutoUpdate === 'function') {
+      this.clearAutoUpdate();
+    }
+    // No animation
+    if (this.animation === null) {
+      this.postBeforeToggle.emit({ willOpen: false });
+      this.postToggle.emit({ isOpen: false });
+      this.postBeforeHide.emit();
+      this.postHide.emit();
+    } else {
+      // Cancel any runninc open animation
+      if (this.currentOpenAnimation) {
+        this.currentOpenAnimation.cancel();
+        this.currentOpenAnimation = null;
+      }
+      // Run closing animation
+      if (this.contentEl) {
+        const animationFn = ANIMATIONS[this.animation].close;
+        await this.runCloseAnimation(animationFn, this.contentEl);
+      }
+    }
+
+    if (this.safeSpace) {
+      window.removeEventListener('mousemove', this.boundMouseTrackingHandler);
+    }
   }
 
   /**
    * Runs the opening animation of the popovercontainer and emits the toggle/show/hide events in the correct timing
    */
-
   private async runOpenAnimation(
     animationFn: (el: HTMLElement) => Animation | undefined,
     element: HTMLElement,
   ) {
     const animation = animationFn(element);
     try {
-      if (!animation) {
-        // Fallback: no animation, just emit open events directly
-        this.postBeforeToggle.emit({ willOpen: true });
-        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
-        this.postToggle.emit({ isOpen: true });
-        this.postShow.emit({ first: this.hasOpenedOnce });
-
-        return;
-      }
-
       this.currentOpenAnimation = animation;
 
+      // Animation has started running → emit BEFORE events
       if (animation.playState === 'running') {
+        console.log('running open animation');
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
       }
@@ -356,6 +374,7 @@ export class PostPopovercontainer {
 
       // Animation has started running → emit BEFORE events
       if (animation.playState === 'running') {
+        console.log('running close animation');
         this.postBeforeToggle.emit({ willOpen: false });
         this.postBeforeHide.emit();
       }
@@ -379,20 +398,6 @@ export class PostPopovercontainer {
       }
     }
   }
-  /**
-   * Start or stop auto updates based on popovercontainer events.
-   * Popovercontainers can be closed or opened with other methods than class members,
-   * therefore listening to the toggle event is safer for cleaning up.
-   * @param e ToggleEvent
-   */
-
-  private beforeToggleHandler = async (event: ToggleEvent) => {
-    if (event.newState === 'open') {
-      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
-      this.open();
-      return;
-    }
-  };
 
   /**
    * Start listening for DOM updates, scroll events etc. that have
@@ -571,7 +576,7 @@ export class PostPopovercontainer {
   render() {
     return (
       <Host data-version={version} popover={'manual'}>
-        <div class="popover-content">
+        <div class="popover-content" ref={el => (this.contentEl = el as HTMLElement)}>
           {this.arrow && (
             <span
               dynamic-placement={this.dynamicPlacement}

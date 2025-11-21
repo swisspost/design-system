@@ -60,7 +60,7 @@ export class PostTooltip {
   @Method()
   async show(target: HTMLElement) {
     if (this.open) return;
-    this.popoverRef.show(target);
+    await this.popoverRef.show(target);
   }
 
   /**
@@ -68,7 +68,7 @@ export class PostTooltip {
    */
   @Method()
   async hide() {
-    this.popoverRef.hide();
+    await this.popoverRef.hide();
   }
 
   /**
@@ -78,7 +78,7 @@ export class PostTooltip {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
-    this.popoverRef.toggle(target, force);
+    await this.popoverRef.toggle(target, force);
   }
 
   /**
