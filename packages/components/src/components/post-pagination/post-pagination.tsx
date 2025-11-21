@@ -685,7 +685,7 @@ export class PostPagination {
           </ul>
 
           {/* Hidden items container for width measurement */}
-          <div class="hidden-items" ref={el => (this.hiddenItemsRef = el)}>
+          <div class="hidden-items" aria-hidden="true" ref={el => (this.hiddenItemsRef = el)}>
             {this.renderHiddenItems(totalPages)}
           </div>
         </nav>
