@@ -30,7 +30,7 @@ export class PostPagination {
   @State() private items: PaginationItem[] = [];
   
   /**
-   * The current active page number.
+   * **The current active page number. If not passed, defaults to the first page.**
    */
   @Prop({ mutable: true }) page?: number;
   
