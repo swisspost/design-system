@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { collapse, expand } from '@/animations/collapse';
-import { checkEmptyOrType, isMotionReduced } from '@/utils';
+import { checkEmptyOrType, IS_SERVER } from '@/utils';
 
 /**
  * @slot default - Slot for placing content within the collapsible element.
@@ -23,7 +23,6 @@ import { checkEmptyOrType, isMotionReduced } from '@/utils';
   shadow: true,
 })
 export class PostCollapsible {
-  private isLoaded = false;
   private isOpen = true;
 
   @Element() host: HTMLPostCollapsibleElement;
@@ -48,42 +47,38 @@ export class PostCollapsible {
 
   componentDidLoad() {
     this.collapsedChange();
-    this.isLoaded = true;
-
     this.updateTriggers();
   }
 
   /**
    * Triggers the collapse programmatically.
-   *
    * If there is a collapsing transition running already, it will be reversed.
+   * If is called accidentally on the server or if the requested state is already set, it will do nothing.
    */
   @Method()
   async toggle(open = !this.isOpen): Promise<boolean> {
-    if (open === this.isOpen) return open;
+    if (IS_SERVER || open === this.isOpen) return open;
 
     this.isOpen = open;
     this.collapsed = !open;
-    if (this.isLoaded) this.postToggle.emit(open);
 
     const animation = open ? expand(this.host) : collapse(this.host);
-
-    if (!this.isLoaded || isMotionReduced()) animation.finish();
-
     await animation.finished;
-
-    const isHostRendered = this.host.offsetParent;
-    if (isHostRendered) animation.commitStyles();
+    animation.commitStyles();
 
     this.updateTriggers();
+    this.postToggle.emit(open);
 
     return open;
   }
 
   /**
-   * Update all post-collapsible-trigger elements referring to the collapsible
+   * Update all `<post-collapsible-trigger>` aria attributes, referring to this collapsible
+   * If is called accidentally on the server, it will do nothing.
    */
   private updateTriggers() {
+    if (IS_SERVER) return;
+
     const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
       `post-collapsible-trigger[for="${this.host.id}"]`,
     );

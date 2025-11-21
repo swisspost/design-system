@@ -94,6 +94,7 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
   }
 
@@ -173,7 +174,7 @@ export class PostHeader {
   }
 
   private async closeBurgerMenu() {
-    this.burgerMenuAnimation.finish();
+    this.burgerMenuAnimation?.finish();
 
     const menuButton = this.getMenuButton();
     if (menuButton) {
@@ -215,9 +216,9 @@ export class PostHeader {
   }
 
   @EventFrom('post-megadropdown')
-  private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+  private megadropdownStateHandler(event: CustomEvent) {
+    this.megadropdownOpen = event.detail.isVisible;
+  }
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {

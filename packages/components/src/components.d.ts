@@ -183,7 +183,7 @@ export namespace Components {
          */
         "collapsed"?: boolean;
         /**
-          * Triggers the collapse programmatically.  If there is a collapsing transition running already, it will be reversed.
+          * Triggers the collapse programmatically. If there is a collapsing transition running already, it will be reversed. If is called accidentally on the server or if the requested state is already set, it will do nothing.
          */
         "toggle": (open?: boolean) => Promise<boolean>;
     }
