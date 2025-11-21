@@ -543,7 +543,7 @@ export namespace Components {
         /**
           * Choose a tooltip animation
          */
-        "animation"?: 'pop';
+        "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -1485,7 +1485,7 @@ declare namespace LocalJSX {
         /**
           * Choose a tooltip animation
          */
-        "animation"?: 'pop';
+        "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
           * @default false

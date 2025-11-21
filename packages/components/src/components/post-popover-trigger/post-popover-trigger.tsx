@@ -84,7 +84,6 @@ export class PostPopoverTrigger {
   }
 
   private async handleToggle() {
-    console.log('popover trigger was clicked -> handlePostToggle()');
     const popoverEl = this.popover;
     if (popoverEl) {
       await popoverEl.toggle(this.trigger);
