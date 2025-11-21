@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.56
+
+### Major Changes
+
+- Updated `post-header` to prevent unnecessary h-tags. An h-tag can now only be used for the header title in microsite or one-page variants, other elements no longer use h-tags. (by [@alizedebray](https://github.com/alizedebray) with [#6693](https://github.com/swisspost/design-system/pull/6693))
+
+### Patch Changes
+
+- Fixed console error "Cannot read properties of undefined" appearing when using the `post-stepper` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6685](https://github.com/swisspost/design-system/pull/6685))
+
+- Added High Contrast border around the arrow element used in tooltip and popover components. (by [@myrta2302](https://github.com/myrta2302) with [#6623](https://github.com/swisspost/design-system/pull/6623))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.56
+  - @swisspost/design-system-styles@10.0.0-next.56
+
 ## 10.0.0-next.55
 
 ### Major Changes
