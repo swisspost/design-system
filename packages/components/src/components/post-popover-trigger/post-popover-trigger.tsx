@@ -64,7 +64,7 @@ export class PostPopoverTrigger {
 
     if (!ref) {
       const target = this.for ? `with ID: ${this.for}` : 'inside the <post-popover-trigger>';
-      console.error(`No post-popover found ${target}.`);
+      console.warn(`No post-popover found ${target}.`);
       return null;
     }
     return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
@@ -115,7 +115,12 @@ export class PostPopoverTrigger {
     this.focusTrigger();
   }
 
-  private focusTrigger() {}
+  private focusTrigger() {
+    // Restores focus to the trigger
+    if (!this.popoverOpen && this.trigger) {
+      this.trigger.focus();
+    }
+  }
 
   private readonly handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
