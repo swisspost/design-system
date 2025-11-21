@@ -155,28 +155,6 @@
     }
   }
 
-  h2 {
-    display: none;
-    margin-block: 0 8px;
-    font-weight: 900;
-
-    a {
-      text-decoration: none;
-      display: none;
-      font-weight: inherit;
-      border-block: 0;
-    }
-
-    @include media.max(lg) {
-      display: block;
-      font-size: 1.25rem;
-    }
-
-    @include media.max(sm) {
-      font-size: 1.125rem;
-    }
-  }
-
   post-list {
     display: grid;
     grid-row: span 2;
@@ -197,7 +175,7 @@
       flex-direction: column-reverse;
       height: 100%;
 
-      h3 {
+      p {
         font-size: 20px;
         display: block;
         font-weight: 900;
