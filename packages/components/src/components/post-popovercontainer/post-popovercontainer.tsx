@@ -249,7 +249,6 @@ export class PostPopovercontainer {
     }
 
     if (this.animation === null) {
-      console.log('no animation');
       this.postBeforeToggle.emit({ willOpen: false });
       this.postToggle.emit({ isOpen: false });
       this.postBeforeHide.emit();
