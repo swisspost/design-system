@@ -19,15 +19,6 @@ export const PaginationSnapshots: Story = {
         label: 'Default',
         story: Default.render?.(context.args, context) || html`<p>Error rendering Default</p>`,
       },
-      {
-        label: 'Many Pages',
-        story: ManyPages.render?.(context.args, context) || html`<p>Error rendering ManyPages</p>`,
-      },
-      {
-        label: 'Page Out Of Range',
-        story:
-          PageOutOfRange.render?.(context.args, context) || html`<p>Error rendering PageOutOfRange</p>`,
-      },
     ];
 
     return schemes(

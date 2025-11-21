@@ -27,7 +27,7 @@ export class PostPagination {
   @Element() host: HTMLPostPaginationElement;
   
   @State() private paginationId: string;
-  @State() private maxVisiblePages: number = 7;
+  @State() private maxVisiblePages: number;
   @State() private items: PaginationItem[] = [];
   
   /**
@@ -97,12 +97,12 @@ export class PostPagination {
   
   @Watch('pageSize')
   validatePageSize() {
-    checkEmptyOrType(this, 'pageSize', 'number');
+    checkRequiredAndType(this, 'pageSize', 'number');
   }
   
   @Watch('collectionSize')
   validateCollectionSize() {
-    checkEmptyOrType(this, 'collectionSize', 'number');
+    checkRequiredAndType(this, 'collectionSize', 'number');
   }
   
   @Watch('label')
