@@ -1,5 +1,12 @@
 const PAGINATION_ID = 'd6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f';
 
+interface PaginationEl {
+  page: number;
+  pageSize: number;
+  collectionSize: number;
+  disabled?: boolean;
+}
+
 describe('pagination', () => {
   describe('default', () => {
     beforeEach(() => {
@@ -142,7 +149,7 @@ describe('pagination', () => {
 
     it('updates active page when `page` prop changes programmatically', () => {
       cy.get('@pagination').then($el => {
-        ( $el[0] as any ).page = 4;
+        ( $el[0] as unknown as PaginationEl ).page = 4;
       });
 
       cy.wait(200);
@@ -154,15 +161,15 @@ describe('pagination', () => {
 
     it('recalculates visible pages when `collectionSize` changes', () => {
       cy.get('@pagination').then($el => {
-        ( $el[0] as any ).pageSize = 1;
-        ( $el[0] as any ).collectionSize = 50;
+        ( $el[0] as unknown as PaginationEl ).pageSize = 1;
+        ( $el[0] as unknown as PaginationEl ).collectionSize = 50;
       });
       cy.wait(300);
 
       cy.get('.pagination-link').not('.pagination-control-button').then($initial => {
         const initialCount = $initial.length;
 
-        cy.get('@pagination').then($el => { ( $el[0] as any ).collectionSize = 2; });
+        cy.get('@pagination').then($el => { ( $el[0] as unknown as PaginationEl ).collectionSize = 2; });
         cy.wait(300);
 
         cy.get('.pagination-link').not('.pagination-control-button').should('have.length.at.most', initialCount - 1);
@@ -283,7 +290,7 @@ describe('pagination', () => {
       
       // Set the disabled attribute programmatically
       cy.get('@pagination').then($el => {
-        $el[0].disabled = true;
+        ( $el[0] as unknown as PaginationEl ).disabled = true;
       });
       
       cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
