@@ -4,7 +4,6 @@ import { nanoid } from 'nanoid';
 import { checkEmptyOrType, checkRequiredAndType, debounce } from '@/utils';
 
 const ELLIPSIS = '...';
-const MAX_PAGINATION_ITERATIONS = 20;
 const MEASUREMENT_DEBOUNCE_MS = 50;
 const RESIZE_DEBOUNCE_MS = 150;
 const MIN_VISIBLE_PAGES = 3;
@@ -89,6 +88,9 @@ export class PostPagination {
   private hiddenItemsRef?: HTMLElement;
   private lastWindowWidth: number;
   private connected: boolean = false;
+  
+  private debouncedResize: (() => void) | null = null;
+  private measurementTimeoutId: number | null = null;
 
   @Watch('page')
   validatePage() {
@@ -159,13 +161,26 @@ export class PostPagination {
 
   componentDidLoad() {
     this.connected = true;
-    window.addEventListener('resize', this.handleResize);
-    this.waitForMeasurement();
+    
+    this.debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
+    
+    window.addEventListener('resize', this.debouncedResize);
+    this.lastWindowWidth = window.innerWidth;
+    
+    this.scheduleMeasurement();
   }
 
   disconnectedCallback() {
     this.connected = false;
-    window.removeEventListener('resize', this.handleResize);
+    
+    if (this.debouncedResize) {
+      window.removeEventListener('resize', this.debouncedResize);
+    }
+    
+    if (this.measurementTimeoutId !== null) {
+      clearTimeout(this.measurementTimeoutId);
+      this.measurementTimeoutId = null;
+    }
   }
 
   /**
@@ -185,28 +200,52 @@ export class PostPagination {
   }
 
   /**
-   * Waits for the pagination elements to be available and measures them
+   * Schedule measurement attempt with timeout
    */
-  private waitForMeasurement = debounce(() => {
-    if (!this.connected) return;
-    
-    if (this.navRef?.clientWidth > 0 && this.hiddenItemsRef) {
-      this.measureAndCalculateVisiblePages();
-    } else {
-      this.waitForMeasurement();
+  private scheduleMeasurement() {
+    if (!this.connected) {
+      return;
     }
-  }, MEASUREMENT_DEBOUNCE_MS);
+    
+    this.measurementTimeoutId = window.setTimeout(() => {
+      this.attemptMeasurement();
+    }, MEASUREMENT_DEBOUNCE_MS);
+  }
 
   /**
-   * Handles window resize events
+   * Attempt to measure, reschedule if not ready
    */
-  private handleResize = debounce(() => {
-    if (!this.connected) return;
-    if (window.innerWidth === this.lastWindowWidth) return;
+  private attemptMeasurement() {
+    if (!this.connected) {
+      return;
+    }
     
-    this.lastWindowWidth = window.innerWidth;
+    const canMeasure = this.navRef?.clientWidth > 0 && this.hiddenItemsRef;
+    
+    if (canMeasure) {
+      this.measureAndCalculateVisiblePages();
+    } else {
+      this.scheduleMeasurement();
+    }
+  }
+
+  /**
+   * Internal resize handler
+   */
+  private handleResizeInternal() {
+    if (!this.connected) {
+      return;
+    }
+    
+    const newWidth = window.innerWidth;
+    
+    if (newWidth === this.lastWindowWidth) {
+      return;
+    }
+    
+    this.lastWindowWidth = newWidth;
     this.measureAndCalculateVisiblePages();
-  }, RESIZE_DEBOUNCE_MS);
+  }
 
   /**
    * Calculates gap between two elements
@@ -221,27 +260,36 @@ export class PostPagination {
    * Measures actual rendered elements to determine how many pages can fit
    */
   private measureAndCalculateVisiblePages() {
-    if (!this.navRef || !this.hiddenItemsRef || !this.connected) return;
+    if (!this.navRef || !this.hiddenItemsRef || !this.connected) {
+      return;
+    }
 
     const totalPages = this.getTotalPages();
-    if (totalPages <= 1) return;
+    if (totalPages <= 1) {
+      return;
+    }
 
     const paginationPadding = this.getPaginationPadding();
-    const availableWidth = this.getAvailableWidth() - paginationPadding;
+    const availableWidth = this.getAvailableWidth();
+    const netWidth = availableWidth - paginationPadding;
 
     const controlButtonsWidth = this.getControlButtonsWidth();
-    const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button');
-    const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis');
+    const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button') as HTMLElement;
+    const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis') as HTMLElement;
     
-    if (!pageButton) return;
+    if (!pageButton) {
+      return;
+    }
 
     const singleButtonWidth = pageButton.getBoundingClientRect().width;
-    const widthForPages = availableWidth - controlButtonsWidth;
     const gap = pageButton && ellipsis ? this.calculateGap(pageButton, ellipsis) : 0;
+    const widthForPages = netWidth - controlButtonsWidth;
 
+    // Calculate how many page buttons can fit
     const maxPages = Math.floor((widthForPages + gap) / (singleButtonWidth + gap));
-    this.maxVisiblePages = Math.max(MIN_VISIBLE_PAGES, Math.min(maxPages, totalPages));
-
+    const clampedMaxPages = Math.max(MIN_VISIBLE_PAGES, Math.min(maxPages, totalPages));
+    
+    this.maxVisiblePages = clampedMaxPages;
     this.validateAndUpdatePages();
   }
 
@@ -253,9 +301,13 @@ export class PostPagination {
     
     const controlButtons = Array.from(
       this.hiddenItemsRef.querySelectorAll('.hidden-control-button')
-    );
+    ) as HTMLElement[];
     
-    return controlButtons.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
+    const totalWidth = controlButtons.reduce((sum, el) => {
+      return sum + el.getBoundingClientRect().width;
+    }, 0);
+    
+    return totalWidth;
   }
 
   /** 
@@ -289,10 +341,10 @@ export class PostPagination {
   private validateAndUpdatePages() {
     const totalPages = this.getTotalPages();
     
-    // Clamp page to valid range
-    if (totalPages === 0 || this.collectionSize === 0) {
+    // Clamp page to valid range with better edge case handling
+    if (totalPages === 0 || this.collectionSize === 0 || isNaN(totalPages)) {
       this.page = 1;
-    } else if (this.page < 1) {
+    } else if (!this.page || this.page < 1 || isNaN(this.page)) {
       this.page = 1;
     } else if (this.page > totalPages) {
       this.page = totalPages;
@@ -350,34 +402,25 @@ export class PostPagination {
    * Calculate optimal page range centered around current page
    */
   private calculatePageRange(totalPages: number, maxVisible: number) {
-    const middleSlots = Math.max(1, maxVisible - 4);
-    const delta = Math.floor(middleSlots / 2);
+    // Reserve slots for first, last, and potential ellipses
+    // maxVisible includes: first + last + up to 2 ellipses + middle pages
+    const reservedSlots = 2; // first and last pages
+    const ellipsisSlots = 2; // maximum possible ellipses
+    const middleSlots = Math.max(0, maxVisible - reservedSlots - ellipsisSlots);
     
-    let startPage = Math.max(2, this.page - delta);
-    let endPage = Math.min(totalPages - 1, this.page + delta);
-
-    // Iteratively adjust range to fill available slots
-    for (let iter = 0; iter < MAX_PAGINATION_ITERATIONS; iter++) {
-      const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
-      
-      const slotsTaken = 2 + (leftSection !== 'none' ? 1 : 0) + (rightSection !== 'none' ? 1 : 0);
-      const middleCount = maxVisible - slotsTaken;
-
-      const newStart = Math.max(2, this.page - Math.floor((middleCount - 1) / 2));
-      let newEnd = newStart + middleCount - 1;
-      
-      if (newEnd > totalPages - 1) {
-        newEnd = totalPages - 1;
-        startPage = Math.max(2, newEnd - middleCount + 1);
-      } else {
-        startPage = newStart;
-      }
-      
-      endPage = newEnd;
-
-      // Break if range stabilized
-      if (newStart === startPage && newEnd === endPage) break;
+    // Calculate ideal range centered on current page
+    const halfMiddle = Math.floor(middleSlots / 2);
+    let startPage = Math.max(2, this.page - halfMiddle);
+    let endPage = Math.min(totalPages - 1, startPage + middleSlots - 1);
+    
+    // If we're near the end, shift the window left
+    if (endPage === totalPages - 1) {
+      startPage = Math.max(2, endPage - middleSlots + 1);
     }
+    
+    // Ensure we don't exceed bounds
+    startPage = Math.max(2, startPage);
+    endPage = Math.min(totalPages - 1, endPage);
 
     return { startPage, endPage };
   }
@@ -436,7 +479,9 @@ export class PostPagination {
    * Handles page change when a page button is clicked.
    */
   private handlePageClick(pageNumber: number) {
-    if (this.disabled || pageNumber === this.page) return;
+    if (this.disabled || pageNumber === this.page) {
+      return;
+    }
     
     this.page = pageNumber;
     this.postChange.emit(pageNumber);
@@ -446,7 +491,9 @@ export class PostPagination {
    * Handles previous button click.
    */
   private handlePrevious() {
-    if (this.disabled || this.page <= 1) return;
+    if (this.disabled || this.page <= 1) {
+      return;
+    }
     
     const newPage = this.page - 1;
     this.page = newPage;
@@ -458,7 +505,9 @@ export class PostPagination {
    */
   private handleNext() {
     const totalPages = this.getTotalPages();
-    if (this.disabled || this.page >= totalPages) return;
+    if (this.disabled || this.page >= totalPages) {
+      return;
+    }
     
     const newPage = this.page + 1;
     this.page = newPage;
@@ -579,10 +628,14 @@ export class PostPagination {
       <button class="pagination-link pagination-control-button hidden-control-button" disabled>
         <post-icon name="chevronleft" aria-hidden="true"></post-icon>
       </button>,
-      <button class="pagination-link hidden-page-button" disabled>
-        <span>{totalPages}</span>
+      <button
+        class="pagination-link pagination-control-button hidden-page-button"
+        aria-label={this.buildPageLabel(totalPages)}
+        disabled
+      >
+        <span aria-hidden="true">{totalPages}</span>
       </button>,
-      <span class="pagination-ellipsis-content hidden-ellipsis">
+      <span class="pagination-ellipsis-content hidden-ellipsis" aria-hidden="true">
         {ELLIPSIS}
       </span>,
       <button class="pagination-link pagination-control-button hidden-control-button" disabled>
@@ -594,7 +647,9 @@ export class PostPagination {
   render() {
     const totalPages = this.getTotalPages();
     
-    if (totalPages <= 1) return null;
+    if (totalPages <= 1) {
+      return null;
+    }
 
     const isPrevDisabled = this.disabled || this.page <= 1;
     const isNextDisabled = this.disabled || this.page >= totalPages;

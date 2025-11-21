@@ -1,5 +1,5 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { Default, ManyPages, PageOutOfRange } from './pagination.stories';
+import meta, { Default } from './pagination.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
