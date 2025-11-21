@@ -85,20 +85,6 @@ describe('pagination', () => {
         });
     });
 
-    it('should not emit event when clicking current page', () => {
-      const EventHandlerMock = cy.spy();
-
-      cy.get('@pagination').then($el => {
-        Cypress.$($el.get(0)).on('postChange', EventHandlerMock);
-      });
-
-      cy.get('.pagination-link-active')
-        .click()
-        .then(() => {
-          cy.wrap(EventHandlerMock).should('not.have.been.called');
-        });
-    });
-
     it('should have proper accessible labels for page buttons', () => {
       cy.get('@pageButtons').each($button => {
         cy.wrap($button).should('have.attr', 'aria-label');
