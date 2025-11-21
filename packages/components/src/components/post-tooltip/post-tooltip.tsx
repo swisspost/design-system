@@ -34,7 +34,7 @@ export class PostTooltip {
   /**
    * Choose a tooltip animation
    */
-  @Prop() readonly animation?: 'pop';
+  @Prop() readonly animation?: 'pop-in';
   /**
    * Indicates the open state of the tooltip
    */
@@ -60,7 +60,6 @@ export class PostTooltip {
   @Method()
   async show(target: HTMLElement) {
     if (this.open) return;
-    console.log('tooltip: show');
     this.popoverRef.show(target);
   }
 
@@ -69,7 +68,6 @@ export class PostTooltip {
    */
   @Method()
   async hide() {
-    console.log('tooltip: hide');
     this.popoverRef.hide();
   }
 
@@ -81,7 +79,6 @@ export class PostTooltip {
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
     this.popoverRef.toggle(target, force);
-    console.log('tooltip: toggle');
   }
 
   /**
