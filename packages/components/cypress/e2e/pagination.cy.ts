@@ -141,8 +141,13 @@ describe('pagination', () => {
       cy.get('@pagination').find('.pagination-control .pagination-control-button').first().as('prevButton');
       cy.get('@pagination').find('.pagination-control .pagination-control-button').last().as('nextButton');
       
-      // Navigate to last page
-      cy.get('@pageButtons').last().click();
+      cy.get('@pageButtons').last().invoke('text').then(lastText => {
+        const lastLabel = lastText.trim();
+        cy.get('@pageButtons').last().click();
+        cy.get('.pagination-link-active')
+          .find('span[aria-hidden="true"]')
+          .should('contain', lastLabel);
+      });
     });
 
     it('should disable next button on last page', () => {
