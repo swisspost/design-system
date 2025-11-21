@@ -274,8 +274,8 @@ export class PostPagination {
     const netWidth = availableWidth - paginationPadding;
 
     const controlButtonsWidth = this.getControlButtonsWidth();
-    const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button') as HTMLElement;
-    const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis') as HTMLElement;
+    const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button');
+    const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis');
     
     if (!pageButton) {
       return;
@@ -301,7 +301,7 @@ export class PostPagination {
     
     const controlButtons = Array.from(
       this.hiddenItemsRef.querySelectorAll('.hidden-control-button')
-    ) as HTMLElement[];
+    );
     
     const totalWidth = controlButtons.reduce((sum, el) => {
       return sum + el.getBoundingClientRect().width;
