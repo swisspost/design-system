@@ -1,9 +1,9 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { Default } from './pagination.stories';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import meta, * as PaginationStories from './pagination.stories';
 import { schemes } from '@/shared/snapshots/schemes';
 
-const { id, ...metaWithoutId } = meta as unknown as { id?: string } & Record<string, unknown>;
+const { id, ...metaWithoutId } = meta;
 
 export default {
   ...metaWithoutId,
@@ -12,28 +12,21 @@ export default {
 
 type Story = StoryObj;
 
-export const PaginationSnapshots: Story = {
-  render: (_args: Args, context: StoryContext) => {
-    const scenarios = [
-      {
-        label: 'Default',
-        story: Default.render?.(context.args, context) || html`<p>Error rendering Default</p>`,
-      },
-    ];
-
+export const Pagination: Story = {
+  render: () => {
     return schemes(
       () => html`
-        <div class="d-flex flex-column gap-24">
-          ${scenarios.map(
-            scenario => html`
-              <div>
-                <h4>${scenario.label}</h4>
-                ${scenario.story}
-              </div>
-            `,
-          )}
+        <div class="snapshot d-flex flex-column gap-16 p-16">
+          ${PaginationStories.Default.render?.({}, {} as any)}
+          ${PaginationStories.ManyPages.render?.({}, {} as any)}
+          ${PaginationStories.PageOutOfRange.render?.({}, {} as any)}
+          ${PaginationStories.Disabled.render?.({}, {} as any)}
         </div>
       `,
+      {
+        // exclude dark scheme from snapshots
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };

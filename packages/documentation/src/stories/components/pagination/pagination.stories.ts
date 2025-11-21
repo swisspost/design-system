@@ -6,9 +6,9 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'd6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f',
-  title: 'Components/Pagination',
+  title: 'Raw Components/Pagination',
   component: 'post-pagination',
-  tags: ['package:WebComponents', 'status:Experimental'],
+  tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
   parameters: {
     badges: [],
     design: {
@@ -64,6 +64,21 @@ export const PageOutOfRange: Story = {
         page=50
         page-size=10
         collection-size=40
+        label="Pagination"
+        label-page="Page"
+        label-first="First page"
+        label-last="Last page"
+      ></post-pagination>
+  `,
+};
+
+export const Disabled: Story = {
+  render: () => html`
+      <post-pagination
+        page=1
+        page-size=10
+        collection-size=100
+        disabled
         label="Pagination"
         label-page="Page"
         label-first="First page"
