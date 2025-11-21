@@ -255,7 +255,6 @@ export class PostPopovercontainer {
   private beforeOpenHandler = async (event: ToggleEvent) => {
     if (event.newState === 'open') {
       await this.open();
-      return;
     }
   };
 
