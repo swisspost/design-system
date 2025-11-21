@@ -1,15 +1,15 @@
 @use '@swisspost/design-system-styles/functions/breakpoint' as breakpoint;
 @use '@swisspost/design-system-styles/mixins/media';
 
-// Colors (adjust to match your design system)
+// Colors
 $pagination-color-text: #050400;
 $pagination-color-border: #ccc;
 $pagination-color-hover-bg: #f5f5f5;
-$pagination-color-hover-stroke: #504F4B;
-$pagination-color-hover-fg: #504F4B;
+$pagination-color-hover-stroke: #504f4b;
+$pagination-color-hover-fg: #504f4b;
 $pagination-color-active-bg: #050400;
 $pagination-color-active-text: #fff;
-$pagination-color-disabled: #6B6B6B;
+$pagination-color-disabled: #6b6b6b;
 $pagination-color-disabled-bg: #f0f0f0;
 
 // Typography
@@ -23,29 +23,30 @@ $pagination-transition: all 0.2s ease;
 // Border radius
 $pagination-border-radius: 100%;
 
+// Spacing
 $pagination-gap: 4px;
 
 .pagination {
-  width: 100%;
-  display: flex;
-  padding: 8px;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  overflow: hidden;
 }
 
 .pagination-list {
   display: flex;
   align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   gap: $pagination-gap;
-  flex-wrap: nowrap;
   min-width: 0;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: nowrap;
 }
 
 .pagination-item {
@@ -61,58 +62,61 @@ $pagination-gap: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
   box-sizing: border-box;
   width: 32px;
   height: 32px;
   min-width: 32px;
-  border-width: 1px;
-  border-style: solid;
-  
   padding: 0;
   margin: 0;
-  
   font-size: $pagination-font-size;
   font-weight: $pagination-font-weight;
   color: $pagination-color-text;
   text-decoration: none;
-  
   background-color: transparent;
-  border-color: $pagination-color-border;
+  border: 1px solid $pagination-color-border;
   border-radius: $pagination-border-radius;
-  
   cursor: pointer;
   transition: $pagination-transition;
-  
   appearance: none;
   outline: none;
-  
+
   &:hover:not(:disabled):not(.pagination-link-disabled) {
-    background-color: $pagination-color-hover-bg;
-    border-color: $pagination-color-hover-stroke;
     color: $pagination-color-hover-fg;
-    border-width: 2px;
+    background-color: $pagination-color-hover-bg;
+    border: 2px solid $pagination-color-hover-stroke;
   }
-  
+
+  &:active:not(:disabled):not(.pagination-link-disabled):not(.pagination-link-active) {
+    color: $pagination-color-hover-fg;
+    background-color: $pagination-color-hover-bg;
+    border: 2px solid $pagination-color-hover-stroke;
+    transform: scale(0.95);
+  }
+
   &:focus-visible {
+    z-index: 1;
     outline: 2px solid $pagination-color-active-bg;
     outline-offset: 2px;
-    z-index: 1;
   }
-  
+
+  // Remove focus ring for mouse clicks, keep it for keyboard
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
   &.pagination-link-active {
-    background-color: $pagination-color-active-bg;
-    color: $pagination-color-active-text;
-    border-color: $pagination-color-active-bg;
     font-weight: $pagination-font-weight-active;
+    color: $pagination-color-active-text;
+    background-color: $pagination-color-active-bg;
+    border-color: $pagination-color-active-bg;
     cursor: default;
-    
+
     &:hover {
       background-color: $pagination-color-hover-stroke;
       border-color: $pagination-color-hover-stroke;
     }
   }
-  
+
   &:disabled,
   &.pagination-link-disabled {
     color: $pagination-color-disabled;
@@ -121,14 +125,14 @@ $pagination-gap: 4px;
     cursor: not-allowed;
     opacity: 0.6;
   }
-  
+
   @media (min-width: breakpoint.min-width(sm)) {
     width: 40px;
     height: 40px;
     min-width: 40px;
     font-size: 16px;
   }
-  
+
   @media (min-width: breakpoint.min-width(lg)) {
     width: 48px;
     height: 48px;
@@ -145,16 +149,22 @@ $pagination-gap: 4px;
       justify-content: center;
       width: 16px;
       height: 16px;
-      
+
       @media (min-width: breakpoint.min-width(sm)) {
         width: 18px;
         height: 18px;
       }
-      
+
       @media (min-width: breakpoint.min-width(lg)) {
         width: 20px;
         height: 20px;
       }
+    }
+
+    &:active:not(:disabled):not(.pagination-link-disabled) {
+      background-color: $pagination-color-hover-bg;
+      border: 2px solid $pagination-color-hover-stroke;
+      transform: scale(0.95);
     }
   }
 }
@@ -171,36 +181,33 @@ $pagination-gap: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  // Match button sizes for proper spacing
   width: 32px;
   height: 32px;
-  
   font-size: $pagination-font-size;
   color: $pagination-color-text;
   user-select: none;
-  
+
   @media (min-width: breakpoint.min-width(sm)) {
     width: 40px;
     height: 40px;
   }
-  
+
   @media (min-width: breakpoint.min-width(lg)) {
     width: 48px;
     height: 48px;
   }
 }
 
-// Hidden items container for measurement (like breadcrumbs)
+// Hidden items container for measurement
 .hidden-items {
   position: absolute;
+  display: flex;
+  gap: $pagination-gap;
   height: 0;
   overflow: hidden;
   white-space: nowrap;
-  display: flex;
-  gap: $pagination-gap;
-  pointer-events: none;
   visibility: hidden;
+  pointer-events: none;
 }
 
 .pagination-icon-rotated {
