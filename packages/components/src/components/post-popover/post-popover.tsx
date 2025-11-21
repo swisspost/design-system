@@ -45,6 +45,11 @@ export class PostPopover {
   // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() readonly arrow?: boolean = true;
 
+  /**
+   * Whether or not the popovercontainer should close when user clicks outside of it
+   */
+  @Prop({ reflect: true }) manualClose: boolean = false;
+
   componentDidLoad() {
     this.validatePlacement();
     this.validateCloseButtonCaption();
@@ -56,7 +61,7 @@ export class PostPopover {
    */
   @Method()
   async show(target: HTMLElement) {
-    this.popoverRef.show(target);
+    await this.popoverRef.show(target);
   }
 
   /**
@@ -64,7 +69,7 @@ export class PostPopover {
    */
   @Method()
   async hide() {
-    this.popoverRef.hide();
+    await this.popoverRef.hide();
   }
 
   /**
@@ -77,7 +82,6 @@ export class PostPopover {
     await this.popoverRef.toggle(target, force);
 
     const focusableChildren = getDeepFocusableChildren(this.host);
-
     // find first focusable element
     const firstFocusable = focusableChildren[0];
 
@@ -93,6 +97,8 @@ export class PostPopover {
           arrow={this.arrow}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
+          animation="pop"
+          manual-close={this.manualClose}
         >
           <div class="popover-container">
             <div class="popover-content">

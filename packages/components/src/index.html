@@ -195,5 +195,73 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+    <h4>Popove 1 [popover="auto"]</h4>
+    <post-popover-trigger for="popover-one">
+      <button class="btn btn-secondary">Popover Trigger</button>
+    </post-popover-trigger>
+    <post-popover
+      class="palette palette-accent"
+      id="popover-one"
+      placement="top"
+      close-button-caption="Close"
+      arrow=""
+    >
+      <h2 class="h6">Optional title</h2>
+      <p class="mb-0">
+        A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+      </p>
+    </post-popover>
+
+    <h4>Popover 2 [popover="manual"]</h4>
+    <post-popover-trigger for="popover-two">
+      <button class="btn btn-secondary">Popover Trigger</button>
+    </post-popover-trigger>
+    <post-popover
+      class="palette palette-accent"
+      id="popover-two"
+      placement="top"
+      close-button-caption="Close"
+      arrow=""
+      manual-close="true"
+    >
+      <h2 class="h6">Optional title</h2>
+      <p class="mb-0">
+        A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+      </p>
+    </post-popover>
+
+    <h4>Menu Button [popover="manual"]</h4>
+    <post-menu-trigger for="menu-one">
+      <button class="btn btn-primary">Menu button</button>
+    </post-menu-trigger>
+    <post-menu label="Example menu" id="menu-one">
+      <post-menu-item><button>Example 1</button></post-menu-item>
+      <post-menu-item><a href="#">Example 2</a></post-menu-item>
+    </post-menu>
+    <!-- <h4>Tooltip [no animation]</h4>
+    <post-tooltip-trigger for="tooltip-one">
+      <button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger
+    >
+    <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top">
+      Hi there 👋
+    </post-tooltip> -->
+
+    <h3>Options</h3>
+    <ol>
+      <li>
+        <b>popover="manual"</b> everywhere - handle light dismiss {Listen for outside clicks/escape
+        key etc}
+      </li>
+      <li>
+        <b>popover="this.manualClose ? 'manual': 'auto'"</b> expose manualClose, disable the trigger
+        click when 'auto' and document that closing animation will not be effective via light
+        dismiss (only via programmatic close e.g. close-button)
+      </li>
+      <li>
+        <b>popover="this.manualClose ? 'manual': 'auto'"</b> expose manualClose and document that in
+        the 'auto' case the closing animations are not effective.
+      </li>
+    </ol>
+    * Do we generally want to expose the <b>manualClose</b> as @prop?
   </body>
 </html>

@@ -338,9 +338,9 @@ export namespace Components {
     interface PostMenu {
         /**
           * Sets the animation type
-          * @default 'pop-in'
+          * @default 'pop'
          */
-        "animation": 'pop-in' | null;
+        "animation": 'pop' | null;
         /**
           * Hides the popover menu and restores focus to the previously focused element.
          */
@@ -387,6 +387,11 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Whether or not the popovercontainer should close when user clicks outside of it
+          * @default false
+         */
+        "manualClose": boolean;
+        /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
@@ -421,10 +426,6 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Handles the popover closing process and emits related events.
-         */
-        "close": () => Promise<void>;
-        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -438,10 +439,6 @@ export namespace Components {
           * @default false
          */
         "manualClose": boolean;
-        /**
-          * Handles the popover opening process and emits related events.
-         */
-        "open": () => Promise<void>;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -543,7 +540,7 @@ export namespace Components {
         /**
           * Choose a tooltip animation
          */
-        "animation"?: 'pop-in';
+        "animation"?: 'pop';
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -869,6 +866,7 @@ declare global {
     interface HTMLPostPopovercontainerElementEventMap {
         "postBeforeShow": { first?: boolean };
         "postShow": { first?: boolean };
+        "postBeforeHide": any;
         "postHide": any;
         "postBeforeToggle": { willOpen: boolean };
         "postToggle": { isOpen: boolean };
@@ -1294,9 +1292,9 @@ declare namespace LocalJSX {
     interface PostMenu {
         /**
           * Sets the animation type
-          * @default 'pop-in'
+          * @default 'pop'
          */
-        "animation"?: 'pop-in' | null;
+        "animation"?: 'pop' | null;
         /**
           * An accessible name for the menu.
          */
@@ -1330,6 +1328,11 @@ declare namespace LocalJSX {
          */
         "closeButtonCaption": string;
         /**
+          * Whether or not the popovercontainer should close when user clicks outside of it
+          * @default false
+         */
+        "manualClose"?: boolean;
+        /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
@@ -1362,6 +1365,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "manualClose"?: boolean;
+        /**
+          * Fires whenever the popovercontainer is about to be hidden.
+         */
+        "onPostBeforeHide"?: (event: PostPopovercontainerCustomEvent<any>) => void;
         /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
@@ -1480,7 +1487,7 @@ declare namespace LocalJSX {
         /**
           * Choose a tooltip animation
          */
-        "animation"?: 'pop-in';
+        "animation"?: 'pop';
         /**
           * Whether or not to display a little pointer arrow
           * @default false
