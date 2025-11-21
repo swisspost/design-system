@@ -10,19 +10,16 @@
 
 tokens.$default-map: components.$post-accordion;
 
-.accordion-item {
-  &::after {
-    display: block;
-    content: '';
-    margin-block-start: calc(tokens.get('accordion-border-bottom-width') * -1);
-    border-block-end: tokens.get('accordion-border-bottom-width')
-      tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
-  }
+:host {
+  display: block;
+  border-block-end: tokens.get('accordion-border-bottom-width')
+    tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
 
-  &:has(.accordion-button:hover)::after {
-    border-color: tokens.get('accordion-hover-border');
+  &:has(.accordion-button:hover) {
+    border-block-end-color: tokens.get('accordion-hover-border');
+
     @include utility-mx.high-contrast-mode() {
-      border-color: Highlight;
+      border-block-end-color: Highlight;
     }
   }
 }
@@ -43,28 +40,19 @@ tokens.$default-map: components.$post-accordion;
   align-items: center;
   text-align: start;
   gap: tokens.get('accordion-header-content-gap-inline');
-  padding: calc(
-      tokens.get('accordion-header-padding-block-open') +
-        tokens.get('accordion-group-border-top-width')
-    )
-    calc(
-      tokens.get('accordion-header-padding-inline') + tokens.get('accordion-border-bottom-width')
-    );
+  padding-block: tokens.get('accordion-header-padding-block-open');
+  padding-inline: tokens.get('accordion-header-padding-inline');
+  border-block-end: tokens.get('accordion-border-bottom-width')
+    tokens.get('accordion-border-bottom-style') transparent;
   cursor: pointer;
+  @include utility-mx.focus-style-none;
 
-  &::before {
+  @include utility-mx.focus-style('::before') {
     display: block;
-    position: absolute;
     content: '';
-    inset: 0;
-    inset-block-end: auto;
-
-    border-block-start-width: tokens.get('accordion-group-border-top-width');
-    border-block-start-style: tokens.get('accordion-border-top-style');
-    border-block-start-color: tokens.get('accordion-enabled-border');
-  }
-
-  @include utility-mx.focus-style() {
+    position: absolute;
+    inset: calc(tokens.get('accordion-group-border-top-width') * -1) 0
+      calc(tokens.get('accordion-border-bottom-width') * -1);
     border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
   }
 
@@ -80,14 +68,8 @@ tokens.$default-map: components.$post-accordion;
   }
 
   &.collapsed {
-    padding-block-start: calc(
-      tokens.get('accordion-header-padding-block-closed') +
-        tokens.get('accordion-group-border-top-width')
-    );
-    padding-block-end: calc(
-      tokens.get('accordion-header-padding-block-closed') +
-        tokens.get('accordion-border-bottom-width')
-    );
+    padding-block-start: tokens.get('accordion-header-padding-block-closed');
+    padding-block-end: tokens.get('accordion-header-padding-block-closed');
 
     post-icon {
       transform: accordion.$accordion-icon-transform;
@@ -110,11 +92,13 @@ tokens.$default-map: components.$post-accordion;
   }
 }
 
+post-collapsible {
+  margin-block-end: calc(tokens.get('accordion-border-bottom-width') * -1);
+}
+
 .accordion-body {
   padding-block-start: tokens.get('accordion-content-padding-block-start');
-  padding-block-end: calc(
-    tokens.get('accordion-content-padding-block-end') + tokens.get('accordion-border-bottom-width')
-  );
+  padding-block-end: tokens.get('accordion-content-padding-block-end');
   padding-inline: tokens.get('accordion-content-padding-inline');
 }
 
