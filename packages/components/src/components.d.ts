@@ -10,11 +10,13 @@ import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType } from "./components/post-closebutton/button-types";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
+import { AnimationName } from "./components/post-popovercontainer/post-popovercontainer";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType } from "./components/post-closebutton/button-types";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
+export { AnimationName } from "./components/post-popovercontainer/post-popovercontainer";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -335,6 +337,11 @@ export namespace Components {
     }
     interface PostMenu {
         /**
+          * Sets the animation type
+          * @default 'pop-in'
+         */
+        "animation": 'pop-in' | null;
+        /**
           * Hides the popover menu and restores focus to the previously focused element.
          */
         "hide": () => Promise<void>;
@@ -407,7 +414,7 @@ export namespace Components {
           * Animation style
           * @default null
          */
-        "animation"?: 'pop-in' | null;
+        "animation"?: AnimationName | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -446,12 +453,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the trigger component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the trigger component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -1286,6 +1293,11 @@ declare namespace LocalJSX {
     }
     interface PostMenu {
         /**
+          * Sets the animation type
+          * @default 'pop-in'
+         */
+        "animation"?: 'pop-in' | null;
+        /**
           * An accessible name for the menu.
          */
         "label": string;
@@ -1334,7 +1346,7 @@ declare namespace LocalJSX {
           * Animation style
           * @default null
          */
-        "animation"?: 'pop-in' | null;
+        "animation"?: AnimationName | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
