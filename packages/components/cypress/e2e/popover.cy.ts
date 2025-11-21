@@ -14,7 +14,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@popover').find('post-closebutton').as('closebutton');
 
       // Wrapped popover case
-      cy.get('post-popover-trigger[data-hydrated][id="popover-two"]').as('popoverTrigger2');
+      cy.get('post-popover-trigger[data-hydrated][data-cy-id="popover-two"]').as('popoverTrigger2');
     });
 
     it('if the element inside the trigger is not interactive, it should at least have a set tabindex="0" and role="button"', () => {
