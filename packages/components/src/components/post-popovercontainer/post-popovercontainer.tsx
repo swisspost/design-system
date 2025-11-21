@@ -193,7 +193,7 @@ export class PostPopovercontainer {
   async show(target: HTMLElement) {
     this.eventTarget = target;
     if (!this.toggleTimeoutId) {
-      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
+      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 50);
       this.calculatePosition();
       this.host.showPopover();
     }
@@ -205,7 +205,7 @@ export class PostPopovercontainer {
   @Method()
   async hide() {
     if (!this.toggleTimeoutId) {
-      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
+      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 50);
       this.calculatePosition();
       await this.close();
       this.host.hidePopover();
@@ -222,11 +222,14 @@ export class PostPopovercontainer {
     this.eventTarget = target;
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
-      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
-      this.calculatePosition();
+      this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 50);
+
       // Run an toggle actions or animations before popover API actually toggles the popover
-      if (!force) await this.close();
+      if (this.host.matches(':where(:popover-open, .popover-open)') && !force) await this.close();
       this.host.togglePopover(force);
+
+      // Calculate position should come after togglePopover
+      this.calculatePosition();
     }
     return this.host.matches(':where(:popover-open, .popover-open)');
   }
@@ -236,14 +239,14 @@ export class PostPopovercontainer {
       apply();
     }
     /** Listens to the popoverApi 'beforeToggle' event */
-    this.host.addEventListener('beforetoggle', this.beforeOpenHandler);
+    this.host.addEventListener('beforetoggle', this.beforeToggleHandler);
   }
 
   disconnectedCallback() {
     if (typeof this.clearAutoUpdate === 'function') {
       this.clearAutoUpdate();
     }
-    this.host.removeEventListener('beforetoggle', this.beforeOpenHandler);
+    this.host.removeEventListener('beforetoggle', this.beforeToggleHandler);
   }
 
   private boundMouseTrackingHandler = this.mouseTrackingHandler.bind(this);
@@ -252,9 +255,14 @@ export class PostPopovercontainer {
    *  Handles the pre-open phase of the popover
    * @param e ToggleEvent
    */
-  private beforeOpenHandler = async (event: ToggleEvent) => {
+  private beforeToggleHandler = async (event: ToggleEvent) => {
+    console.log('beforetoggle popover api');
     if (event.newState === 'open') {
       await this.open();
+    } else {
+      console.log('ligt dismiss close');
+      // only for light dismiss case
+      await this.close();
     }
   };
 
@@ -262,6 +270,7 @@ export class PostPopovercontainer {
    * Handles the popover opening process and emits related events.
    */
   private async open() {
+    console.log('opening');
     this.startAutoupdates();
     if (this.contentEl) {
       if (this.animation === null) {
@@ -298,8 +307,8 @@ export class PostPopovercontainer {
     // No animation
     if (this.animation === null) {
       this.postBeforeToggle.emit({ willOpen: false });
-      this.postToggle.emit({ isOpen: false });
       this.postBeforeHide.emit();
+      this.postToggle.emit({ isOpen: false });
       this.postHide.emit();
     } else {
       // Cancel any runninc open animation

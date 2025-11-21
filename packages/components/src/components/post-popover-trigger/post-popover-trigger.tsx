@@ -86,6 +86,13 @@ export class PostPopoverTrigger {
   private async handleToggle() {
     const popoverEl = this.popover;
     if (popoverEl) {
+      console.log('popoverOPen:', this.popoverOpen);
+      console.log('manualClose:', popoverEl.manualClose);
+      // Ignore the trigger click if popover is already open AND manualClose is off so lightdismiss will trigger toggle anyways
+      if (this.popoverOpen && !popoverEl.manualClose) {
+        this.focusTrigger();
+        return;
+      }
       await popoverEl.toggle(this.trigger);
       this.focusTrigger();
     } else {
@@ -111,6 +118,7 @@ export class PostPopoverTrigger {
     this.boundHandleToggle = this.handleToggle.bind(this);
     this.boundHandleKeyDown = this.handleKeyDown.bind(this);
     this.boundHandlePostToggle = (event: CustomEvent<{ isOpen: boolean }>) => {
+      console.log('post toggle emitted, this.popoverOpen:', this.popoverOpen);
       this.popoverOpen = event.detail.isOpen;
       this.focusTrigger();
     };
