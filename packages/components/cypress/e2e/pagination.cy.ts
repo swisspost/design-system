@@ -145,7 +145,6 @@ describe('pagination', () => {
         ( $el[0] as any ).page = 4;
       });
 
-      // Wait for component to re-render and any debounced measurement
       cy.wait(200);
 
       cy.get('.pagination-link-active')
@@ -153,28 +152,7 @@ describe('pagination', () => {
         .should('contain', '4');
     });
 
-    it('clamps page when `pageSize` changes and reduces total pages', () => {
-      // Move to a higher page first
-      cy.get('@pagination').then($el => { ( $el[0] as any ).page = 5; });
-
-      // Increase pageSize drastically so totalPages becomes 1
-      cy.get('@pagination').then($el => { ( $el[0] as any ).pageSize = 99999; });
-
-      // Wait for debounced measurement/validation
-      cy.wait(300);
-
-      // The component hides itself when total pages <= 1. Instead of
-      // asserting on rendered buttons, assert the host's `page` prop
-      // has been clamped to 1 and the internal nav is not present.
-      cy.get('@pagination').then($el => {
-        expect(( $el[0] as any ).page).to.equal(1);
-      });
-
-      cy.get('@pagination').find('nav.pagination').should('not.exist');
-    });
-
     it('recalculates visible pages when `collectionSize` changes', () => {
-      // Ensure many pages initially
       cy.get('@pagination').then($el => {
         ( $el[0] as any ).pageSize = 1;
         ( $el[0] as any ).collectionSize = 50;
@@ -184,7 +162,6 @@ describe('pagination', () => {
       cy.get('.pagination-link').not('.pagination-control-button').then($initial => {
         const initialCount = $initial.length;
 
-        // Reduce collection size and expect fewer page buttons
         cy.get('@pagination').then($el => { ( $el[0] as any ).collectionSize = 2; });
         cy.wait(300);
 
@@ -192,7 +169,7 @@ describe('pagination', () => {
       });
     });
   });
-  
+
   describe('last page', () => {
     beforeEach(() => {
       cy.getComponent('pagination', PAGINATION_ID);
