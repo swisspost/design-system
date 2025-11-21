@@ -257,6 +257,7 @@ export class PostMenu {
           placement={this.placement}
           animation={this.animation || null}
           ref={e => (this.popoverRef = e)}
+          manual-close={true}
         >
           <div part="menu">
             <slot name="header"></slot>

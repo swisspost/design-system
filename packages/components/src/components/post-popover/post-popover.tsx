@@ -45,6 +45,11 @@ export class PostPopover {
   // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() readonly arrow?: boolean = true;
 
+  /**
+   * Whether or not the popovercontainer should close when user clicks outside of it
+   */
+  @Prop({ reflect: true }) manualClose: boolean = false;
+
   componentDidLoad() {
     this.validatePlacement();
     this.validateCloseButtonCaption();
@@ -93,6 +98,7 @@ export class PostPopover {
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
           animation="pop"
+          manual-close={this.manualClose}
         >
           <div class="popover-container">
             <div class="popover-content">

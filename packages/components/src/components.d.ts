@@ -387,6 +387,11 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Whether or not the popovercontainer should close when user clicks outside of it
+          * @default false
+         */
+        "manualClose": boolean;
+        /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
@@ -1322,6 +1327,11 @@ declare namespace LocalJSX {
           * Define the caption of the close button for assistive technology
          */
         "closeButtonCaption": string;
+        /**
+          * Whether or not the popovercontainer should close when user clicks outside of it
+          * @default false
+         */
+        "manualClose"?: boolean;
         /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'

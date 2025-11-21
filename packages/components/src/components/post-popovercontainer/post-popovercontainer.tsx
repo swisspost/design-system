@@ -277,6 +277,7 @@ export class PostPopovercontainer {
           this.currentClosingAnimation.cancel();
           this.currentClosingAnimation = null;
         }
+
         // Run open animation
         const animationFn = ANIMATIONS[this.animation].open;
         await this.runOpenAnimation(animationFn, this.contentEl);
@@ -325,6 +326,11 @@ export class PostPopovercontainer {
     animationFn: (el: HTMLElement) => Animation | undefined,
     element: HTMLElement,
   ) {
+    // Cancel any other open animation
+    if (this.currentOpenAnimation) {
+      this.currentOpenAnimation.cancel();
+      this.currentOpenAnimation = null;
+    }
     const animation = animationFn(element);
     try {
       this.currentOpenAnimation = animation;
@@ -364,7 +370,11 @@ export class PostPopovercontainer {
     element: HTMLElement,
   ) {
     const animation = animationFn(element);
-
+    // Cancel any other close animation
+    if (this.currentClosingAnimation) {
+      this.currentClosingAnimation.cancel();
+      this.currentClosingAnimation = null;
+    }
     try {
       this.currentClosingAnimation = animation;
 
@@ -570,7 +580,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version} popover={'manual'}>
+      <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
         <div class="popover-content" ref={el => (this.contentEl = el as HTMLElement)}>
           {this.arrow && (
             <span
