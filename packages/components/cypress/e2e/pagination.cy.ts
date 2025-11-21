@@ -408,4 +408,4 @@ describe('Accessibility', () => {
       cy.checkA11y('#root-inner');
     });
   });
-})
+});
