@@ -24,7 +24,7 @@ tokens.$default-map: utilities.$post-spacing;
 
   .addon-dropdown__item {
     display: block;
-    padding: tokens.get('utility-gap-8') tokens.get('utility-gap-12');
+    padding: 0.5rem 0.75rem;
     border-radius: post.$border-radius-sm;
     text-decoration: none;
     color: var(--post-current-fg) !important;
