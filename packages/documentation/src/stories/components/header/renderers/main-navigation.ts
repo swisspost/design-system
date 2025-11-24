@@ -22,10 +22,9 @@ export function renderMainnavigation() {
               Back
             </button>
             <post-closebutton slot="close-button">Close</post-closebutton>
-            <h2 slot="megadropdown-title">Letters title</h2>
             <a slot="megadropdown-overview-link" href="/letters">Overview Letters</a>
             <post-list>
-              <h3>Send letters</h3>
+              <p>Send letters</p>
               <post-list-item slot="post-list-item">
                 <a href="/sch">Letters Switzerland</a>
               </post-list-item>
@@ -40,7 +39,7 @@ export function renderMainnavigation() {
               </post-list-item>
             </post-list>
             <post-list>
-              <h3><a href="/step-by-step">Step by step</a></h3>
+              <p><a href="/step-by-step">Step by step</a></p>
               <post-list-item slot="post-list-item">
                 <a href="/sch">Packages Switzerland</a>
               </post-list-item>
@@ -64,10 +63,9 @@ export function renderMainnavigation() {
               Back
             </button>
             <post-closebutton slot="close-button">Close</post-closebutton>
-            <h2 slot="megadropdown-title">Packages title</h2>
             <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
             <post-list>
-              <h3>Send packages</h3>
+              <p>Send packages</p>
               <post-list-item slot="post-list-item">
                 <a href="/sch">Packages Switzerland</a>
               </post-list-item>
@@ -82,7 +80,7 @@ export function renderMainnavigation() {
               </post-list-item>
             </post-list>
             <post-list>
-              <h3><a href="/step-by-step">Step by step</a></h3>
+              <p><a href="/step-by-step">Step by step</a></p>
               <post-list-item slot="post-list-item">
                 <a href="/sch">Packages Switzerland</a>
               </post-list-item>
