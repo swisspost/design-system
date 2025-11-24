@@ -211,17 +211,18 @@ export class PostPopovercontainer {
     this.startAutoupdates();
 
     if (content) {
-      // Only run animation and emit related events if animation is defined
-      if (this.animation === null) {
+      const animationFn = ANIMATIONS[this.animation];
+
+      // Only run the animation if it corresponds to a valid, registered animation
+      if (ANIMATIONS[this.animation as keyof typeof ANIMATIONS]) {
+        this.runOpenAnimation(animationFn, content);
+      } else {
         // No animation case
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
-      } else {
-        const animationFn = ANIMATIONS[this.animation];
-        this.runOpenAnimation(animationFn, content);
       }
     }
 

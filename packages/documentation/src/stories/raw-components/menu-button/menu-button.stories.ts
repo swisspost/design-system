@@ -45,7 +45,6 @@ const meta: MetaComponent = {
 };
 
 function render(args: Args) {
-  console.log(args.animation);
   // Construct the style string conditionally based on padding and backgroundColor
   const styles = [
     args.padding ? `--post-menu-padding: ${args.padding};` : '',
