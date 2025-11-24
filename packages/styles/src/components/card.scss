@@ -56,7 +56,9 @@ tokens.$default-map: components.$post-cards;
   .card-body {
     padding: tokens.get('card-padding-1');
   }
-
+  a {
+    padding: 0;
+  }
   button {
     width: 100%;
   }
@@ -84,14 +86,7 @@ tokens.$default-map: components.$post-cards;
     gap: tokens.get('utility-gap-8', utilities.$post-spacing);
     text-decoration: none;
     -ms-flex-align: center;
-
-    &::after {
-      @include icons-mx.mask-image('arrowright');
-      content: '';
-      display: inline-block;
-      width: 1.5rem;
-      height: 1.5rem;
-    }
+    padding: 0;
   }
 }
 

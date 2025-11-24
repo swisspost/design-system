@@ -23,7 +23,6 @@ const meta: MetaComponent = {
     action: 'button',
     interactiveAction: 'button',
     label: 'Button Text',
-    variant: 'btn-primary',
   },
   argTypes: {
     title: {
@@ -71,21 +70,6 @@ const meta: MetaComponent = {
       if: { arg: 'interactive', eq: true },
       table: { category: 'Card Content' },
     },
-    variant: {
-      name: 'Variant',
-      description: 'Defines a style variant.',
-      control: {
-        type: 'inline-radio',
-        labels: {
-          'btn-primary': 'Primary',
-          'btn-secondary': 'Secondary',
-          'btn-tertiary': 'Tertiary',
-        },
-      },
-      options: ['btn-primary', 'btn-secondary', 'btn-tertiary'],
-      table: { category: 'Card Content' },
-      if: { arg: 'action', eq: 'button' },
-    },
   },
 };
 
@@ -111,17 +95,28 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 // RENDERER
 function getCardLinks() {
   return html`
-    <div class="card-links">
-      <a href="#" class="btn-link px-0">Link Text</a>
+    <div class="">
+      <a class="btn btn-tertiary" href="#">
+        Button
+        <post-icon aria-hidden="true" name="3020"></post-icon>
+      </a>
     </div>
   `;
 }
 
-function getCardButton({ label, variant }: Args) {
+function getCardButton({ label }: Args) {
   return html`
-    <button class="btn ${variant}">
-      <span>${label}</span>
-    </button>
+    <div class="d-flex flex-column gap-2 mt-6">
+      <button class="btn btn-primary">
+        <span>${label}</span>
+      </button>
+      <button class="btn btn-secondary">
+        <span>${label}</span>
+      </button>
+      <button class="btn btn-tertiary">
+        <span>${label}</span>
+      </button>
+    </div>
   `;
 }
 
