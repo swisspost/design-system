@@ -1,24 +1,30 @@
-import * as Components from '@swisspost/design-system-components/dist';
+import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
+import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
 
-const COMPONENT_TAG_NAMES = Object.keys(Components)
-  .filter(c => /^Post([A-Z][a-z]+)+$/.test(c))
-  .map(c => c.replace(/([a-z0–9])([A-Z])/g, '$1-$2').toLowerCase());
-
-describe('Components', () => {
+describe('components-angular (consumer-app)', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.window().then(win => {
-      cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
+  });
+
+  it('components-angular: should contain all components', () => {
+    componentNames.forEach(componentName => {
+      cy.get(componentName).first().should('exist');
     });
   });
 
-  it('should not log any error', () => {
-    cy.get('@consoleError').should('not.have.been.called');
+  it('components-angular: all components should be hydrated', () => {
+    componentNames.forEach(componentName => {
+      cy.get(componentName).first().should('have.class', 'hydrated');
+    });
   });
 
-  COMPONENT_TAG_NAMES.forEach(tagName => {
-    it(`should contain <${tagName}>`, () => {
-      cy.get(tagName).should('exist');
+  it('components-angular: should not have console errors', () => {
+    const errorCapture = setupComponentErrorCapture(componentNames as string[]);
+
+    cy.visit('/', {
+      onBeforeLoad: errorCapture.onBeforeLoad
     });
+
+    assertNoComponentErrors(errorCapture.errors, componentNames as string[]);
   });
 });
