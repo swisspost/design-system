@@ -180,6 +180,10 @@ export class PostPopovercontainer {
   }
 
   componentDidLoad() {
+    this.validatePlacement();
+    this.validateEdgeGap();
+    this.validateSafeSpace();
+    this.validateAnimation();
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
