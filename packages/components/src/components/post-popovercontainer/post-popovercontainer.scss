@@ -138,7 +138,7 @@
     $border-width-rem: 0.125rem;
 
     // the actual offset when the 2px border is rotated by 45deg
-    $offset: -(math.cos($angle-rad) * $border-width-rem) - $arrow-size / 2;
+    $offset: -(math.cos($angle-rad) * $border-width-rem) - 0.5 * $arrow-size;
 
     @include utilities.high-contrast-mode {
       &[dynamic-placement='top'] {
