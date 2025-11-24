@@ -213,8 +213,8 @@ export class PostPopovercontainer {
     if (content) {
       const animationFn = ANIMATIONS[this.animation];
 
-      // Only run the animation if it corresponds to a valid, registered animation
-      if (ANIMATIONS[this.animation as keyof typeof ANIMATIONS]) {
+      // Only run the animation if it corresponds to a valid, registered animation function
+      if (typeof animationFn === 'function') {
         this.runOpenAnimation(animationFn, content);
       } else {
         // No animation case
