@@ -28,29 +28,9 @@
 
 ## Methods
 
-### `close() => Promise<void>`
-
-Handles the popover closing process and emits related events.
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 ### `hide() => Promise<void>`
 
 Programmatically hide the popovercontainer
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `open() => Promise<void>`
-
-Handles the popover opening process and emits related events.
 
 #### Returns
 

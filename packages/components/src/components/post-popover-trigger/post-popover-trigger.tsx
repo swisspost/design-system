@@ -64,7 +64,7 @@ export class PostPopoverTrigger {
 
     if (!ref) {
       const target = this.for ? `with ID: ${this.for}` : 'inside the <post-popover-trigger>';
-      console.warn(`No post-popover found ${target}.`);
+      console.error(`No post-popover found ${target}.`);
       return null;
     }
     return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
