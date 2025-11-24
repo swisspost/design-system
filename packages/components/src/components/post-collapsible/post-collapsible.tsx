@@ -11,12 +11,11 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { collapse, expand } from '@/animations/collapse';
-import { checkEmptyOrType, IS_SERVER } from '@/utils';
+import { checkEmptyOrType } from '@/utils';
 
 /**
  * @slot default - Slot for placing content within the collapsible element.
  */
-
 @Component({
   tag: 'post-collapsible',
   styleUrl: 'post-collapsible.scss',
@@ -57,19 +56,24 @@ export class PostCollapsible {
    */
   @Method()
   async toggle(open = !this.isOpen): Promise<boolean> {
-    if (IS_SERVER || open === this.isOpen) return open;
-
-    this.isOpen = open;
-    this.collapsed = !open;
+    if (open === this.isOpen) return open;
 
     const animation = open ? expand(this.host) : collapse(this.host);
-    await animation.finished;
-    animation.commitStyles();
 
-    this.updateTriggers();
-    this.postToggle.emit(open);
+    if (animation && animation.finished) {
+      this.isOpen = open;
+      this.collapsed = !open;
 
-    return open;
+      await animation.finished;
+      animation.commitStyles();
+
+      this.updateTriggers();
+      this.postToggle.emit(open);
+
+      return open;
+    } else {
+      return this.isOpen;
+    }
   }
 
   /**
@@ -77,8 +81,6 @@ export class PostCollapsible {
    * If is called accidentally on the server, it will do nothing.
    */
   private updateTriggers() {
-    if (IS_SERVER) return;
-
     const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
       `post-collapsible-trigger[for="${this.host.id}"]`,
     );
