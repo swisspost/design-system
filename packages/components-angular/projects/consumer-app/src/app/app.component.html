@@ -69,7 +69,7 @@
   <!-- Main navigation -->
   <post-mainnavigation caption="Main navigation">
     <post-list title-hidden="">
-      <h2>Main Navigation</h2>
+      <p>Main Navigation</p>
       <!-- Link only level 1 -->
       <post-list-item slot="post-list-item">
         <a href="/letters">Letters</a>
@@ -90,18 +90,17 @@
             Back
           </button>
           <post-closebutton slot="close-button">Close</post-closebutton>
-          <h2 slot="megadropdown-title">{{ dropdown.title }}</h2>
           <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink"
             >Overview {{ dropdown.trigger }}</a
           >
           @for (section of dropdown.sections; track section.title) {
           <post-list>
             @if (section.titleLink) {
-            <h3>
+            <p>
               <a [href]="section.titleLink">{{ section.title }}</a>
-            </h3>
+            </p>
             } @else {
-            <h3>{{ section.title }}</h3>
+            <p>{{ section.title }}</p>
             } @for (link of section.links; track link.text) {
             <post-list-item slot="post-list-item">
               <a [href]="link.url">{{ link.text }}</a>
