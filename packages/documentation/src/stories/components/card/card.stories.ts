@@ -19,9 +19,8 @@ const meta: MetaComponent = {
   args: {
     title: "This is my card's title",
     body: "This is my card's content.",
+    action: 'buttons',
     interactive: false,
-    action: 'button',
-    interactiveAction: 'button',
     label: 'Button Text',
   },
   argTypes: {
@@ -55,7 +54,7 @@ const meta: MetaComponent = {
         type: 'inline-radio',
         labels: { button: 'Button', link: 'Link', none: 'None' },
       },
-      options: ['button', 'link', 'none'],
+      options: ['button', 'buttons', 'link', 'links', 'none'],
       if: { arg: 'interactive', eq: false },
       table: { category: 'Card Content' },
     },
@@ -93,7 +92,7 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 }
 
 // RENDERER
-function getCardLinks() {
+function getCardLink() {
   return html`
     <div class="">
       <a class="btn btn-tertiary" href="#">
@@ -103,8 +102,17 @@ function getCardLinks() {
     </div>
   `;
 }
-
 function getCardButton({ label }: Args) {
+  return html`
+    <div class="d-flex flex-column gap-2 mt-6">
+      <button class="btn btn-primary">
+        <span>${label}</span>
+      </button>
+    </div>
+  `;
+}
+
+function getCardButtons({ label }: Args) {
   return html`
     <div class="d-flex flex-column gap-2 mt-6">
       <button class="btn btn-primary">
@@ -120,6 +128,21 @@ function getCardButton({ label }: Args) {
   `;
 }
 
+function getCardLinks() {
+  return html`
+    <div class="card-links d-flex gap-3">
+      <a class="btn btn-tertiary px-0" href="#">
+        Link 1
+        <post-icon aria-hidden="true" name="3020"></post-icon>
+      </a>
+      <a class="btn btn-tertiary px-0" href="#">
+        Link 2
+        <post-icon aria-hidden="true" name="3020"></post-icon>
+      </a>
+    </div>
+  `;
+}
+
 function getCardContent(args: Args) {
   const { action, title, body = '' } = args;
   return html`
@@ -129,7 +152,9 @@ function getCardContent(args: Args) {
         action,
         [
           ['button', () => getCardButton(args)],
-          ['link', getCardLinks],
+          ['link', getCardLink],
+          ['buttons', () => getCardButtons(args)],
+          ['links', getCardLinks],
         ],
         () => html` ${nothing} `,
       )}
@@ -141,12 +166,15 @@ function renderCardContent(args: Args) {
   return html` ${getCardContent(args)} `;
 }
 
-function renderNoninteractiveCard(args: Args) {
-  return html` <div class="card">${renderCardContent(args)}</div> `;
-}
+function renderCard(args: Args) {
+  const { action } = args;
+  const isInteractive = action === 'button' || action === 'link';
 
-function renderInteractiveCard(args: Args) {
-  return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
+  if (isInteractive) {
+    return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
+  } else {
+    return html`<div class="card">${renderCardContent(args)}</div>`;
+  }
 }
 
 const renderSimpleInteractiveCard = html`
@@ -164,8 +192,7 @@ type Story = StoryObj;
 
 export const Default: Story = {
   decorators: [gridContainer],
-  render: (args: Args) =>
-    html`${args.interactive ? renderInteractiveCard(args) : renderNoninteractiveCard(args)}`,
+  render: (args: Args) => renderCard(args),
 };
 
 export const Foundation: Story = {
