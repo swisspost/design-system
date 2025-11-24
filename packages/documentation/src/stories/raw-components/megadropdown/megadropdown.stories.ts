@@ -56,7 +56,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </post-language-switch>
 
       <!-- Application title (optional) -->
-      <h1 slot="title">Application title</h1>
+      <p slot="title">Application title</p>
 
       <!-- Custom content (optional) -->
       <ul slot="local-controls" class="list-inline">
@@ -77,7 +77,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <!-- Main navigation -->
       <post-mainnavigation slot="post-mainnavigation" caption="Main Navigation">
         <post-list title-hidden="">
-          <h2>Main Navigation</h2>
+          <p>Main Navigation</p>
           <post-list-item> ${story(context.args, context)} </post-list-item>
         </post-list>
       </post-mainnavigation>
@@ -98,17 +98,16 @@ function render() {
         Back
       </button>
       <post-closebutton slot="close-button">Close</post-closebutton>
-      <h2 slot="megadropdown-title"><a href="">Packages title</a></h2>
       <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
       <post-list>
-        <h3>Send packages</h3>
+        <p>Send packages</p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
         <post-list-item><a href="/kl">Small goods international</a></post-list-item>
         <post-list-item><a href="">Goods international</a></post-list-item>
         <post-list-item><a href="">Express and courier</a></post-list-item>
       </post-list>
       <post-list>
-        <h3><a href="/step-by-step">Step by step</a></h3>
+        <p><a href="/step-by-step">Step by step</a></p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
         <post-list-item><a href="/kl">Small goods international</a></post-list-item>
         <post-list-item><a href="">Goods international</a></post-list-item>
