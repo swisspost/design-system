@@ -3,12 +3,27 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
 
-      // Ensure the component is hydrated, which is necessary to ensure the component is ready for interaction
       cy.get('post-popover[data-hydrated]');
 
-      // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
-      cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
+      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+        .children()
+        .first()
+        .as('trigger');
       cy.get('#testtext').as('popover');
+
+      // Alternative popover trigger with no interactive element
+      cy.get('post-popover-trigger[data-hydrated][for="popover-two"]')
+        .children()
+        .first()
+        .as('trigger2');
+    });
+
+    it('if the element inside the trigger is not interactive, it should at least have a set tabindex="0" and role="button"', () => {
+      cy.get('@trigger2').then($child => {
+        const child = $child[0];
+        cy.wrap(child).should('have.attr', 'tabindex', '0');
+        cy.wrap(child).should('have.attr', 'role', 'button');
+      });
     });
 
     it('should show up on click', () => {
@@ -17,6 +32,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@trigger').click();
       cy.get('@popover').should('be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
+
       // Void click light dismiss does not work in cypress for closing
     });
 
@@ -32,7 +48,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('.nested-element').click();
       cy.get('@popover').should('be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
-      cy.get('.btn-close').click();
+      cy.get('post-closebutton').click();
       cy.get('@popover').should('not.be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
     });
@@ -42,12 +58,12 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@trigger').then($trigger => {
         const originalText = $trigger.text();
         $trigger.html(`
-          <div class="level-1">
-            <div class="level-2">
-              <span class="level-3">${originalText}</span>
-            </div>
-          </div>
-        `);
+              <div class="level-1">
+                <div class="level-2">
+                  <span class="level-3">${originalText}</span>
+                </div>
+              </div>
+            `);
       });
 
       cy.get('@popover').should('not.be.visible');
@@ -59,16 +75,20 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     it('should close on X click', () => {
       cy.get('@trigger').click();
       cy.get('@popover').should('be.visible');
-      cy.get('.btn-close').click();
+      cy.get('post-closebutton').click();
       cy.get('@popover').should('not.be.visible');
     });
 
-    it('should open and close on enter', () => {
+    it('should open on enter and first focusable element should be focused', () => {
       cy.get('@popover').should('not.be.visible');
       cy.get('@trigger').focus().type('{enter}');
       cy.get('@popover').should('be.visible');
-      cy.get('@trigger').type('{enter}');
-      cy.get('@popover').should('not.be.visible');
+
+      // find the first focusable element (e.g., button, input, link, etc.)
+      cy.get('@popover')
+        .find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+        .first()
+        .should('have.focus');
     });
 
     it('should open and close with the API', () => {
@@ -114,13 +134,6 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
   describe('Accessibility', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
-
-      // Ensure the component is hydrated, which is necessary to ensure the component is ready for interaction
-      cy.get('post-popover[data-hydrated]');
-
-      // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
-      cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
-
       cy.injectAxe();
     });
 

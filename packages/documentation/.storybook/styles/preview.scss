@@ -12,6 +12,8 @@
 
 tokens.$default-map: utilities.$post-color;
 
+@include post.custom-property(('chevrondown', 'resizeexpand', 'link', 'code'));
+
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 // Mixin for toolbar button icons
@@ -70,6 +72,8 @@ $toolbar-icons: (
       }
     }
   }
+
+
 
   .sbdocs-content .container {
     // Support for autolink-headings
@@ -133,12 +137,16 @@ $toolbar-icons: (
   }
 
   pre {
-    font-size: 100%;
+    font-size: 0.875rem;
 
     .token.comment,
     .token.doctype {
       color: #888;
     }
+  }
+
+  small {
+    font-size: 90%;
   }
 
   code {
@@ -151,7 +159,7 @@ $toolbar-icons: (
     border: 1px solid rgba(#000, 0.3);
     border-radius: 0.2em;
     font-family: $monospace;
-    font-size: 0.75em;
+    font-size: 0.975em;
     white-space: nowrap;
     line-height: 1;
 
@@ -192,15 +200,8 @@ $toolbar-icons: (
   }
 
   .docs-story {
-    padding: 1rem;
-    padding-block-end: 2rem;
-
     [scale] {
       transform: none;
-    }
-
-    > :first-child {
-      padding: 0;
     }
 
     > :last-child {
@@ -218,14 +219,35 @@ $toolbar-icons: (
         &:nth-of-type(2) {
           border-top-left-radius: 4px;
         }
+
+        font-size: 0.875rem;
       }
     }
   }
 
+  .docblock-argstable-head tr th span {
+    font-size: 0.875rem !important;
+  }
+
   .docblock-argstable-body td a,
-  // targets only the visible buttons
+    // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
     color: #0073bc;
+    font-size: 0.875rem;
+  }
+
+  .docblock-argstable-body tr td textarea,
+  .docblock-argstable-body tr td select {
+    font-size: 0.875rem;
+  }
+
+  .docblock-argstable-body tr td button {
+    font-size: 0.8125rem;
+  }
+
+  .docblock-argstable-body tr td span,
+  .docblock-argstable-body tr td p {
+    font-size: 0.9375rem;
   }
 
   @include media.max(sm) {
@@ -240,7 +262,9 @@ $toolbar-icons: (
         &::before {
           content: '';
           margin-right: 0.5rem;
-          @include post.post-icon($name: $icon-name);
+          width: 1em;
+          height: 1em;
+          @include post.mask-image($icon-name);
         }
       }
     }
@@ -249,6 +273,7 @@ $toolbar-icons: (
   .docblock-code-toggle {
     margin-right: auto;
     border-radius: 0 4px 0 0;
+    font-size: 0.875rem;
 
     @include media.min(md) {
       &::before {
@@ -314,6 +339,11 @@ $toolbar-icons: (
         color: inherit;
       }
     }
+  }
+
+  // targets the Copy button
+  .docs-story + div button {
+    font-size: 0.875rem;
   }
 
   &[data-color-scheme='light'] {

@@ -8,6 +8,7 @@ import {
   Prop,
   h,
   Watch,
+  State,
 } from '@stencil/core';
 
 import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
@@ -75,12 +76,32 @@ export class PostPopovercontainer {
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
   private toggleTimeoutId: number;
-  private firstOpen: boolean = true;
+  private hasOpenedOnce: boolean = true;
 
   /**
-   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing two booleans: `isOpen`, which is true if the popovercontainer was opened and false if it was closed, and `first`, which is true if it was opened for the first time.
+   * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
    */
-  @Event() postToggle: EventEmitter<{ isOpen: boolean; first?: boolean }>;
+  @Event() postBeforeShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+   */
+  @Event() postShow: EventEmitter<{ first?: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer is hidden.
+   */
+  @Event() postHide: EventEmitter;
+
+  /**
+   * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
+   */
+  @Event() postBeforeToggle: EventEmitter<{ willOpen: boolean }>;
+
+  /**
+   * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
+   */
+  @Event() postToggle: EventEmitter<{ isOpen: boolean }>;
 
   /**
    * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -109,6 +130,7 @@ export class PostPopovercontainer {
    */
   @Prop() manualClose: boolean = false;
 
+  @State() dynamicPlacement?: string;
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
@@ -138,6 +160,8 @@ export class PostPopovercontainer {
     this.host.style.setProperty('--post-safe-space-cursor-y', `${event.clientY}px`);
   }
 
+  private currentAnimation: Animation | null = null;
+
   connectedCallback() {
     if (IS_BROWSER && !isSupported()) {
       apply();
@@ -152,19 +176,106 @@ export class PostPopovercontainer {
     if (typeof this.clearAutoUpdate === 'function') {
       this.clearAutoUpdate();
     }
+    this.host.removeEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
   /**
    * Programmatically display the popovercontainer
-   * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
    */
   @Method()
   async show(target: HTMLElement) {
     if (this.toggleTimeoutId) return;
-
     this.eventTarget = target;
     this.calculatePosition();
     this.host.showPopover();
+  }
+
+  /**
+   * Handles the popover opening process and emits related events.
+   */
+  @Method()
+  async open() {
+    const content: HTMLElement = this.host.querySelector('.popover-content');
+    this.startAutoupdates();
+
+    if (content) {
+      // Only run animation and emit related events if animation is defined
+      if (this.animation === null) {
+        // No animation case
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+        this.postToggle.emit({ isOpen: true });
+        this.postShow.emit({ first: this.hasOpenedOnce });
+        if (this.hasOpenedOnce) this.hasOpenedOnce = false;
+      } else {
+        this.runOpenAnimation(content);
+      }
+    }
+
+    if (this.safeSpace) {
+      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+  }
+
+  /**
+   * Handles the popover closing process and emits related events.
+   */
+  @Method()
+  async close() {
+    if (typeof this.clearAutoUpdate === 'function') {
+      this.clearAutoUpdate();
+    }
+
+    if (this.safeSpace) {
+      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+    }
+
+    // Cancel any running animation
+    if (this.animation !== null && this.currentAnimation) {
+      this.currentAnimation.cancel();
+      this.currentAnimation = null;
+    }
+
+    this.postBeforeToggle.emit({ willOpen: false });
+    this.postToggle.emit({ isOpen: false });
+    this.postHide.emit();
+  }
+
+  /**
+   * Runs the animation and emits the toggle/show/hide events in the correct timing
+   */
+
+  private async runOpenAnimation(element: HTMLElement) {
+    let animation: Animation | undefined;
+
+    try {
+      animation = popIn(element);
+
+      this.currentAnimation = animation;
+
+      if (animation.playState === 'running') {
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+      }
+
+      await animation.finished;
+
+      this.postToggle.emit({ isOpen: true });
+      this.postShow.emit({ first: this.hasOpenedOnce });
+
+      this.hasOpenedOnce = true;
+    } catch (err) {
+      console.warn('Animation failed or was interrupted:', err);
+      // Reset all states to closing
+      this.postBeforeToggle.emit({ willOpen: false });
+      this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+      this.postToggle.emit({ isOpen: false });
+    } finally {
+      if (this.currentAnimation === animation) {
+        this.currentAnimation = null;
+      }
+    }
   }
 
   /**
@@ -175,23 +286,25 @@ export class PostPopovercontainer {
     if (!this.toggleTimeoutId) {
       this.eventTarget = null;
       this.host.hidePopover();
+      this.postHide.emit();
     }
   }
 
   /**
    * Toggle popovercontainer display
-   * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    this.eventTarget = target;
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
       this.calculatePosition();
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
     }
+
     return this.host.matches(':where(:popover-open, .popover-open)');
   }
 
@@ -203,30 +316,13 @@ export class PostPopovercontainer {
    */
   private handleToggle(e: ToggleEvent) {
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
-
     const isOpen = e.newState === 'open';
+
     if (isOpen) {
-      const content = this.host.querySelector('.popover-content');
-      this.startAutoupdates();
-      if (content && this.animation === 'pop-in') {
-        popIn(content);
-      }
-
-      if (this.safeSpace)
-        window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
-
-      // Emit event with `first` flag only true on the first open
-      if (this.firstOpen) {
-        this.postToggle.emit({ isOpen, first: this.firstOpen });
-        this.firstOpen = false;
-        return;
-      }
+      this.open();
     } else {
-      if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-      if (this.safeSpace)
-        window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      this.close();
     }
-    this.postToggle.emit({ isOpen: isOpen, first: false });
   }
 
   /**
@@ -252,7 +348,7 @@ export class PostPopovercontainer {
   private async calculatePosition() {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
-
+    this.dynamicPlacement = currentPlacement;
     // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
@@ -260,13 +356,27 @@ export class PostPopovercontainer {
     // Position arrow if enabled
     if (this.arrow && middlewareData.arrow) {
       const { x: arrowX, y: arrowY } = middlewareData.arrow;
+
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
+
+      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+      // Calculate dynamically the half side which provides the static side offset
+      const arrowSizeValue = getComputedStyle(this.arrowRef)
+        .getPropertyValue('--arrow-size')
+        .trim();
+
+      const arrowSizePx = arrowSizeValue.endsWith('rem')
+        ? Number.parseFloat(arrowSizeValue) * rootFontSize
+        : Number.parseFloat(arrowSizeValue);
+
+      const halfSide = -0.5 * arrowSizePx;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {
           left: arrowX ? `${arrowX}px` : '',
           top: arrowY ? `${arrowY}px` : '',
-          [staticSide]: '-5px',
+          [staticSide]: `${halfSide}px`,
         });
       }
     }
@@ -394,6 +504,7 @@ export class PostPopovercontainer {
         <div class="popover-content">
           {this.arrow && (
             <span
+              dynamic-placement={this.dynamicPlacement}
               class="arrow"
               ref={el => {
                 this.arrowRef = el;

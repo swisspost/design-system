@@ -29,7 +29,7 @@
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
+        <span>Menu</span>
         <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
         <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
       </post-togglebutton>
@@ -49,41 +49,38 @@
       </post-language-switch>
 
       <!-- Application title (optional) -->
-      <h1 slot="title">Application title</h1>
+      <p slot="title">Application title</p>
 
       <!-- Target group -->
       <ul slot="target-group" class="target-group">
         <li>
-          <a href="#" class="active">Private customers</a>
+          <a href="#" aria-current="location">Private customers</a>
         </li>
         <li>
           <a href="#">Business customers</a>
         </li>
-        <li>
-          <a href="#">Authorities</a>
-        </li>
       </ul>
 
-      <!-- Custom content (optional) -->
-      <ul class="list-inline">
+      <!-- Local controls (optional) -->
+      <ul slot="local-controls" class="list-inline">
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Search</span>
+            <span>Search</span>
             <post-icon aria-hidden="true" name="search"></post-icon>
           </a>
         </li>
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Login</span>
+            <span>Login</span>
             <post-icon aria-hidden="true" name="login"></post-icon>
           </a>
         </li>
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Hauptnavigation">
+      <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
         <post-list title-hidden="">
-          <h2>Main Navigation</h2>
+          <p>Main Navigation</p>
 
           <!-- Link only level 1 -->
           <post-list-item slot="post-list-item"
@@ -106,9 +103,9 @@
                 Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Briefe title</h2>
+              <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
               <post-list>
-                <h3>Briefe senden</h3>
+                <p>Briefe senden</p>
                 <post-list-item slot="post-list-item"
                   ><a href="/sch">Briefe Schweiz</a></post-list-item
                 >
@@ -121,7 +118,7 @@
                 >
               </post-list>
               <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <p><a href="/schritt-für-schritt">Schritt für Schritt</a></p>
                 <post-list-item slot="post-list-item"
                   ><a href="/sch">Pakete Schweiz</a></post-list-item
                 >
@@ -143,11 +140,11 @@
                 Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Pakete title</h2>
+              <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
               <post-list>
-                <h3>Pakete senden</h3>
+                <p>Pakete senden</p>
                 <post-list-item slot="post-list-item"
-                  ><a aria-current="page" href="/sch">Pakete Schweiz</a></post-list-item
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
                 >
                 <post-list-item slot="post-list-item"
                   ><a href="/kl">Kleinwaren Ausland</a></post-list-item
@@ -158,7 +155,7 @@
                 >
               </post-list>
               <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <p><a href="/schritt-für-schritt">Schritt für Schritt</a></p>
                 <post-list-item slot="post-list-item"
                   ><a href="/sch">Pakete Schweiz</a></post-list-item
                 >

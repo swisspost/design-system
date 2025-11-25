@@ -14,12 +14,12 @@ htmlRuleTester.run(name, rule, {
     {
       code: '<p class="form-text">This is a hint.</p>',
       output: '<p class="form-hint">This is a hint.</p>',
-      errors: [{ messageId: 'stopUsingFormText' }],
+      errors: [{ messageId: 'form-text' }],
     },
     {
       code: '<div class="form-text">This is a hint.</div>',
       output: '<div class="form-hint">This is a hint.</div>',
-      errors: [{ messageId: 'stopUsingFormText' }],
+      errors: [{ messageId: 'form-text' }],
     },
   ],
 });

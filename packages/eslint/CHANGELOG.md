@@ -1,5 +1,17 @@
 # @swisspost/design-system-eslint
 
+## 10.0.0-next.55
+
+## 10.0.0-next.54
+
+## 1.1.0-next.2
+
+### Minor Changes
+
+- Added the automigration rule to update the HTML class `h-visibilityhidden` to `visibility-hidden`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6141](https://github.com/swisspost/design-system/pull/6141))
+
+- Added the automigration rule to update the HTML class `h-clearfix` to `clearfix`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6141](https://github.com/swisspost/design-system/pull/6141))
+
 ## 1.0.1-next.1
 
 ### Patch Changes

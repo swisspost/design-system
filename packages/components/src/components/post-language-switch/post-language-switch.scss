@@ -34,7 +34,7 @@ tokens.$default-map: components.$post-button;
   @include utilities-mx.not-disabled-hover() {
     @include button-mx.button-variant-def('hover', 'tertiary');
   }
-  
+
   post-icon {
     height: 24px;
     width: 24px;
@@ -68,4 +68,8 @@ tokens.$default-map: components.$post-button;
 
 post-menu::part(menu) {
   padding-block: 0;
+}
+
+.post-language-switch-list {
+  margin-top: 1rem;
 }

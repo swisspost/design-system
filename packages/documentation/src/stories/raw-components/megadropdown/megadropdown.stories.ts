@@ -6,7 +6,7 @@ import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   id: '212efc4e-875b-4497-912d-d28c6baf32f5',
   title: 'Raw Components/Megadropdown',
-  tags: ['package:WebComponents', 'devOnly'],
+  tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
   component: 'post-megadropdown',
   render: render,
   parameters: {
@@ -36,7 +36,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 
       <!-- Menu button for mobile -->
       <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
+        <span>Menu</span>
         <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
         <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
       </post-togglebutton>
@@ -56,28 +56,28 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </post-language-switch>
 
       <!-- Application title (optional) -->
-      <h1 slot="title">Application title</h1>
+      <p slot="title">Application title</p>
 
       <!-- Custom content (optional) -->
-      <ul class="list-inline">
+      <ul slot="local-controls" class="list-inline">
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Search</span>
+            <span>Search</span>
             <post-icon aria-hidden="true" name="search"></post-icon>
           </a>
         </li>
         <li>
           <a href="#">
-            <span class="visually-hidden-sm">Login</span>
+            <span>Login</span>
             <post-icon aria-hidden="true" name="login"></post-icon>
           </a>
         </li>
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Main Navigation">
+      <post-mainnavigation slot="post-mainnavigation" caption="Main Navigation">
         <post-list title-hidden="">
-          <h2>Main Navigation</h2>
+          <p>Main Navigation</p>
           <post-list-item> ${story(context.args, context)} </post-list-item>
         </post-list>
       </post-mainnavigation>
@@ -98,16 +98,16 @@ function render() {
         Back
       </button>
       <post-closebutton slot="close-button">Close</post-closebutton>
-      <h2 slot="megadropdown-title"><a href="">Packages title</a></h2>
+      <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
       <post-list>
-        <h3>Send packages</h3>
+        <p>Send packages</p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
         <post-list-item><a href="/kl">Small goods international</a></post-list-item>
         <post-list-item><a href="">Goods international</a></post-list-item>
         <post-list-item><a href="">Express and courier</a></post-list-item>
       </post-list>
       <post-list>
-        <h3><a href="/step-by-step">Step by step</a></h3>
+        <p><a href="/step-by-step">Step by step</a></p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
         <post-list-item><a href="/kl">Small goods international</a></post-list-item>
         <post-list-item><a href="">Goods international</a></post-list-item>

@@ -1,4 +1,4 @@
-export interface TodoListChecks {
+export interface V45Checks {
   general: {
     naming_cwfpackagename: boolean;
     naming_entryfiles: boolean;
@@ -82,4 +82,79 @@ export interface TodoListChecks {
     topicteasers_contentcontainergridclasses: boolean;
     topicteasers_linklistfontcurve: boolean;
   };
+}
+
+export interface V910Checks {
+  general: {
+    hide_automigration: boolean;
+  };
+  ngbootstrap: {
+    removed_components: boolean;
+  };
+  forms: {
+    tooltip_validation: boolean;
+    input_sizes: boolean;
+    form_text: boolean;
+  };
+  grid: {
+    breakpoints: boolean;
+    gutter: boolean;
+    gap: boolean;
+  };
+  utilities: {
+    percentage_sizing: boolean;
+    removed_pixel_sizing: boolean;
+    renamed_pixel_sizing: boolean;
+    max_size: boolean;
+    shadow: boolean;
+    elevation: boolean;
+    removed_spacing: boolean;
+    renamed_spacing: boolean;
+    background: boolean;
+    renamed_various_utilities: boolean;
+    removed_various_utilities: boolean;
+    border_radius: boolean;
+    position_helper: boolean;
+    text_color: boolean;
+  };
+  typography: {
+    font_sizes_variables: boolean;
+    font_sizes_classes: boolean;
+    font_curves_classes: boolean;
+    font_curves_variables: boolean;
+    line_height_variables: boolean;
+    weight_light: boolean;
+    font_weight: boolean;
+    monospace: boolean;
+  };
+  others: {
+    card: boolean;
+    card_group: boolean;
+    button_regular: boolean;
+    button_animated: boolean;
+    icon_pi: boolean;
+    breadcrumb_item: boolean;
+    alert_fixed_bottom: boolean;
+    topic_teaser: boolean;
+    chip: boolean;
+    accent_colors: boolean;
+    spinner_sizes: boolean;
+    standard_html_alert: boolean;
+    stepper: boolean;
+    spinner: boolean;
+    dialog_icon: boolean;
+  };
+  components: {
+    alert: boolean;
+    accordion_heading: boolean;
+    hydrated_flag: boolean;
+    accordion_item_part: boolean;
+    popover_trigger: boolean;
+  };
+}
+
+export interface GlobalStateData {
+  currentVersion: number;
+  environment: string;
+  angular: boolean;
 }

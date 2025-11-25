@@ -4,18 +4,18 @@ import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
-import { getLabelText } from '@/utils/form-elements';
+import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Form Checkbox',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderCheckbox,
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21763-60082&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=18-14',
     },
   },
   args: {
@@ -113,12 +113,12 @@ const meta: MetaComponent = {
       control: {
         type: 'radio',
         labels: {
-          null: 'Default',
-          valid: 'Valid',
-          invalid: 'Invalid',
+          'null': 'Default',
+          'is-valid': 'Valid',
+          'is-invalid': 'Invalid',
         },
       },
-      options: ['null', 'valid', 'invalid'],
+      options: ['null', 'is-valid', 'is-invalid'],
       table: {
         category: 'States',
       },
@@ -159,20 +159,6 @@ const CHECKED_STATE_TOGGLE_MAP: Record<string, string> = {
   checked: 'unchecked',
 };
 
-const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
-  null: undefined,
-  valid: false,
-  invalid: true,
-};
-
-function getValidationFeedback({ validation }: Args, context: StoryContext) {
-  return html`
-    <p class="${validation + '-feedback'}" id="is-${validation}-id-${context.id}-">
-      ${validation === 'valid' ? 'Great success!' : 'An error occurred!'}
-    </p>
-  `;
-}
-
 function renderCheckbox(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
@@ -182,8 +168,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     'form-check-inline': args.inline,
   });
 
-  const validationClass =
-    args.validation !== 'null' ? `${context.id}-is-${args.validation}` : undefined;
+  const validationClass = args.validation !== 'null' ? args.validation : undefined;
 
   const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
@@ -203,7 +188,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
         aria-describedby="${args.validation != 'null'
-          ? `is-${args.validation}-id-${context.id}`
+          ? `${args.validation}-id-${context.id}`
           : nothing}"
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
@@ -211,7 +196,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
         ?required="${args.requiredOptional === 'required'}"
       />
       ${args.hiddenLabel ? nothing : html`<label for="${context.id}">${getLabelText(args)}</label>`}
-      ${args.validation !== 'null' ? getValidationFeedback(args, context) : nothing}
+      ${args.validation !== 'null' ? getValidationMessages(args, context, false) : nothing}
     </div>
   `;
 }
@@ -234,7 +219,7 @@ export const Validation: Story = {
     },
   },
   args: {
-    validation: 'invalid',
+    validation: 'is-invalid',
   },
 };
 

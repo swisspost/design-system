@@ -23,7 +23,7 @@ export class PostLanguageSwitch {
   /**
    * A title for the list of language options
    */
-  @Prop() caption!: string;
+  @Prop({ reflect: true }) caption!: string;
 
   @Watch('caption')
   validateCaption() {
@@ -33,7 +33,7 @@ export class PostLanguageSwitch {
   /**
    * A descriptive text for the list of language options
    */
-  @Prop() description!: string;
+  @Prop({ reflect: true }) description!: string;
 
   @Watch('description')
   validateDescription() {
@@ -135,7 +135,7 @@ export class PostLanguageSwitch {
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-switch-dropdown-container">
+        <post-menu id={this.menuId} class="post-language-switch-dropdown-container" label={this.caption}>
           <slot></slot>
         </post-menu>
       </Host>
