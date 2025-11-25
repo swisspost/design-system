@@ -405,6 +405,11 @@ export namespace Components {
     }
     interface PostPopoverTrigger {
         /**
+          * Delay (in milliseconds) before the popover is shown.
+          * @default 0
+         */
+        "delay": number;
+        /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
         "for": string;
@@ -1336,6 +1341,11 @@ declare namespace LocalJSX {
         "placement"?: Placement;
     }
     interface PostPopoverTrigger {
+        /**
+          * Delay (in milliseconds) before the popover is shown.
+          * @default 0
+         */
+        "delay"?: number;
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */

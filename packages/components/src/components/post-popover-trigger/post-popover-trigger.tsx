@@ -17,6 +17,11 @@ export class PostPopoverTrigger {
   @Prop({ reflect: true }) for!: string;
 
   /**
+   * Delay (in milliseconds) before the popover is shown.
+   */
+  @Prop() delay: number = 0;
+
+  /**
    * Manages the accessibility attribute `aria-expanded` to indicate whether the associated popover is expanded or collapsed.
    */
   @State() ariaExpanded: boolean = false;
@@ -86,8 +91,13 @@ export class PostPopoverTrigger {
   private handleToggle() {
     const popoverEl = this.popover;
     if (popoverEl) {
-      popoverEl.toggle(this.trigger);
-      this.focusTrigger();
+      setTimeout(
+        () => {
+          popoverEl.toggle(this.trigger);
+          this.focusTrigger();
+        },
+        this.popoverOpen ? 0 : this.delay,
+      );
     } else {
       console.warn(`No post-popover found with ID: ${this.for}`);
     }
