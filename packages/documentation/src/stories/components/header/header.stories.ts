@@ -5,7 +5,7 @@ import { fakeContent } from '@/utils';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
 import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
-import { renderLocalControls } from '@/stories/components/header/renderers/custom-controls';
+import { renderLocalControls } from '@/stories/components/header/renderers/local-controls';
 import { renderNavigationControls } from '@/stories/components/header/renderers/navigation-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 import { renderTitle } from '@/stories/components/header/renderers/title';
