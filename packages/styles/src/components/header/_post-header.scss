@@ -181,14 +181,14 @@ post-header {
   }
 
   button:where(
-      :not(
-          post-mainnavigation *,
-          post-language-switch *,
-          [slot='global-login'] *,
-          .local-login post-menu *,
-          .local-login post-menu-trigger *
-        )
-    ) {
+    :not(
+      post-mainnavigation *,
+      post-language-switch *,
+      [slot='global-login'] *,
+      .local-login post-menu *,
+      .local-login post-menu-trigger *
+    )
+  ) {
     @include button-mx.reset-button;
 
     &:hover {
@@ -218,14 +218,14 @@ post-header {
   button,
   post-togglebutton {
     &:where(
-        :not(
-            post-mainnavigation *,
-            post-language-switch *,
-            [slot='global-login'] *,
-            .local-login post-menu *,
-            .local-login post-menu-trigger *
-          )
-      ) {
+      :not(
+        post-mainnavigation *,
+        post-language-switch *,
+        [slot='global-login'] *,
+        .local-login post-menu *,
+        .local-login post-menu-trigger *
+      )
+    ) {
       @include subsidiary-header-interactive;
 
       post-icon {
@@ -242,14 +242,14 @@ post-header {
   button,
   a {
     &:where(
-        :not(
-            post-mainnavigation *,
-            post-language-switch *,
-            [slot='global-login'] *,
-            .local-login post-menu *,
-            .local-login post-menu-trigger *
-          )
-      ) {
+      :not(
+        post-mainnavigation *,
+        post-language-switch *,
+        [slot='global-login'] *,
+        .local-login post-menu *,
+        .local-login post-menu-trigger *
+      )
+    ) {
       display: flex;
 
       @include media.max(sm) {
@@ -299,11 +299,11 @@ post-header {
   }
 
   > :is(
-      [slot='global-controls'],
-      [slot='global-login'],
-      [slot='post-togglebutton'],
-      [slot='local-controls']
-    ) {
+    [slot='global-controls'],
+    [slot='global-login'],
+    [slot='post-togglebutton'],
+    [slot='local-controls']
+  ) {
     @include media.only(mobile) {
       &:where(ul) > li > a,
       &:where(a, post-togglebutton) {
