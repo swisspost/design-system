@@ -116,9 +116,6 @@ importers:
       '@types/jest':
         specifier: 29.5.14
         version: 29.5.14
-      '@types/mock-fs':
-        specifier: 4.13.4
-        version: 4.13.4
       '@types/node':
         specifier: 22.10.5
         version: 22.10.5

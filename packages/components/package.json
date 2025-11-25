@@ -107,7 +107,6 @@
     "@stencil/sass": "3.0.12",
     "@swisspost/design-system-eslint": "workspace:10.0.0-next.55",
     "@types/jest": "29.5.14",
-    "@types/mock-fs": "4.13.4",
     "@types/node": "22.10.5",
     "@typescript-eslint/parser": "7.18.0",
     "copyfiles": "2.4.1",

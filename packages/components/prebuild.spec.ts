@@ -1,4 +1,3 @@
-/// <reference types='jest' />
 import { vol, fs as memfs } from 'memfs';
 
 // Mock the built-in 'fs' module so all fs calls inside prebuild use memfs
