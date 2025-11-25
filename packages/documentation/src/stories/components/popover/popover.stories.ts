@@ -31,6 +31,7 @@ const meta: MetaComponent = {
     arrow: true,
     title: true,
     maxWidth: '',
+    triggerDelay: null,
   },
   argTypes: {
     id: {
@@ -90,12 +91,22 @@ const meta: MetaComponent = {
     placement: {
       name: 'Placement',
     },
+    triggerDelay: {
+      name: 'delay',
+      description: 'Delay (in milliseconds) before the popover is shown.',
+      table: {
+        category: 'General',
+      },
+      control: {
+        type: 'number',
+      },
+    },
   },
 };
 
 function render(args: Args) {
   return html`
-    <post-popover-trigger for="${args.id}">
+    <post-popover-trigger for="${args.id}" delay="${args.triggerDelay ?? nothing}">
       <button class="btn btn-secondary">Popover Trigger</button>
     </post-popover-trigger>
     <post-popover
