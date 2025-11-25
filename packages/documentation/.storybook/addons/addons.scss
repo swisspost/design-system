@@ -12,11 +12,11 @@ tokens.$default-map: utilities.$post-spacing;
   min-width: 12rem;
   display: flex;
   flex-flow: column nowrap;
-  gap: tokens.get('utility-gap-2');
+  gap: 0.125rem;
   position: absolute;
   top: -5px;
   right: 0;
-  padding: tokens.get('utility-gap-8');
+  padding: 0.5rem;
   background-color: post.$white;
   border: post.$border-width solid post.$border-color;
   border-radius: post.$border-radius;
@@ -42,6 +42,6 @@ tokens.$default-map: utilities.$post-spacing;
 .addon-button {
   post-icon {
     font-size: 1.25rem;
-    margin-inline-end: tokens.get('utility-gap-2');
+    margin-inline-end: 0.125rem;
   }
 }
