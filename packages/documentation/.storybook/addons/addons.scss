@@ -1,6 +1,4 @@
 @use '@swisspost/design-system-styles/core' as post;
-@use '@swisspost/design-system-styles/functions/tokens' as tokens;
-@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
 
 tokens.$default-map: utilities.$post-spacing;
 
