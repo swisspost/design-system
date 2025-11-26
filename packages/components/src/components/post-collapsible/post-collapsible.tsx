@@ -10,8 +10,10 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { collapse, expand } from '@/animations/collapse';
-import { checkEmptyOrType } from '@/utils';
+import { collapsedKeyframe, collapse, expand } from '@/animations/collapse';
+import { IS_BROWSER, IS_SERVER, checkEmptyOrType } from '@/utils';
+
+type InlineStyles = { [key: string]: string };
 
 /**
  * @slot default - Slot for placing content within the collapsible element.
@@ -57,22 +59,19 @@ export class PostCollapsible {
   async toggle(open = !this.isOpen): Promise<boolean> {
     if (open === this.isOpen) return open;
 
-    const animation = open ? expand(this.host) : collapse(this.host);
+    this.isOpen = open;
+    this.collapsed = !open;
 
-    if (animation && animation.finished) {
-      this.isOpen = open;
-      this.collapsed = !open;
-
+    if (IS_BROWSER) {
+      const animation = open ? expand(this.host) : collapse(this.host);
       await animation.finished;
       animation.commitStyles();
 
       this.updateTriggers();
       this.postToggle.emit(open);
-
-      return open;
-    } else {
-      return this.isOpen;
     }
+
+    return open;
   }
 
   /**
@@ -89,7 +88,11 @@ export class PostCollapsible {
 
   render() {
     return (
-      <Host data-version={version} tabindex={this.collapsed ? -1 : undefined}>
+      <Host
+        data-version={version}
+        tabindex={this.collapsed ? -1 : undefined}
+        style={IS_SERVER && this.collapsed ? (collapsedKeyframe as InlineStyles) : undefined}
+      >
         <slot />
       </Host>
     );

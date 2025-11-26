@@ -2,7 +2,7 @@ import { IS_BROWSER, isMotionReduced } from '@/utils';
 
 const collapseDuration = 350;
 const collapseEasing = 'ease';
-const collapsedKeyframe: Keyframe = { height: '0', overflow: 'hidden' };
+export const collapsedKeyframe: Keyframe = { height: '0', overflow: 'hidden' };
 
 const animationOptions: KeyframeAnimationOptions = {
   duration: isMotionReduced() ? 0 : collapseDuration,
