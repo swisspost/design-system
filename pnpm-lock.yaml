@@ -747,8 +747,8 @@ importers:
         specifier: 4.0.1
         version: 4.0.1
       rollup-plugin-visualizer:
-        specifier: 5.12.0
-        version: 5.12.0(rollup@4.52.5)
+        specifier: 6.0.5
+        version: 6.0.5(rollup@4.52.5)
       sass:
         specifier: 1.89.2
         version: 1.89.2
@@ -7106,8 +7106,8 @@ packages:
   electron-to-chromium@1.5.240:
     resolution: {integrity: sha512-OBwbZjWgrCOH+g6uJsA2/7Twpas2OlepS9uvByJjR2datRDuKGYeD+nP8lBBks2qnB7bGJNHDUx7c/YLaT3QMQ==}
 
-  electron-to-chromium@1.5.259:
-    resolution: {integrity: sha512-I+oLXgpEJzD6Cwuwt1gYjxsDmu/S/Kd41mmLA3O+/uH2pFRO/DvOjUyGozL8j3KeLV6WyZ7ssPwELMsXCcsJAQ==}
+  electron-to-chromium@1.5.260:
+    resolution: {integrity: sha512-ov8rBoOBhVawpzdre+Cmz4FB+y66Eqrk6Gwqd8NGxuhv99GQ8XqMAr351KEkOt7gukXWDg6gJWEMKgL2RLMPtA==}
 
   emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -10135,10 +10135,6 @@ packages:
     resolution: {integrity: sha512-mnkeQ1qP5Ue2wd+aivTD3NHd/lZ96Lu0jgf0pwktLPtx6cTZiH7tyeGRRHs0zX0rbrahXPnXlUnbeXyaBBuIaw==}
     engines: {node: '>=18'}
 
-  open@10.1.2:
-    resolution: {integrity: sha512-cxN6aIDPz6rm8hbebcP7vrQNhvRcveZoJU72Y7vskh4oIm+BZwBECnx5nTmrlres1Qapvx27Qo1Auukpf8PKXw==}
-    engines: {node: '>=18'}
-
   open@7.4.2:
     resolution: {integrity: sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==}
     engines: {node: '>=8'}
@@ -11283,13 +11279,16 @@ packages:
   rollup-plugin-scss@4.0.1:
     resolution: {integrity: sha512-3W3+3OzR+shkDl3hJ1XTAuGkP4AfiLgIjie2GtcoZ9pHfRiNqeDbtCu1EUnkjZ98EPIM6nnMIXkKlc7Sx5bRvA==}
 
-  rollup-plugin-visualizer@5.12.0:
-    resolution: {integrity: sha512-8/NU9jXcHRs7Nnj07PF2o4gjxmm9lXIrZ8r175bT9dK8qoLlvKTwRMArRCMgpMGlq8CTLugRvEmyMeMXIU2pNQ==}
-    engines: {node: '>=14'}
+  rollup-plugin-visualizer@6.0.5:
+    resolution: {integrity: sha512-9+HlNgKCVbJDs8tVtjQ43US12eqaiHyyiLMdBwQ7vSZPiHMysGNo2E88TAp1si5wx8NAoYriI2A5kuKfIakmJg==}
+    engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
+      rolldown: 1.x || ^1.0.0-beta
       rollup: 2.x || 3.x || 4.x
     peerDependenciesMeta:
+      rolldown:
+        optional: true
       rollup:
         optional: true
 
@@ -19161,7 +19160,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.8.31
       caniuse-lite: 1.0.30001757
-      electron-to-chromium: 1.5.259
+      electron-to-chromium: 1.5.260
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.28.0)
 
@@ -20118,7 +20117,7 @@ snapshots:
 
   electron-to-chromium@1.5.240: {}
 
-  electron-to-chromium@1.5.259: {}
+  electron-to-chromium@1.5.260: {}
 
   emittery@0.13.1: {}
 
@@ -20966,10 +20965,6 @@ snapshots:
   fd-slicer@1.1.0:
     dependencies:
       pend: 1.2.0
-
-  fdir@6.5.0(picomatch@4.0.2):
-    optionalDependencies:
-      picomatch: 4.0.2
 
   fdir@6.5.0(picomatch@4.0.3):
     optionalDependencies:
@@ -24255,13 +24250,6 @@ snapshots:
       is-inside-container: 1.0.0
       is-wsl: 3.1.0
 
-  open@10.1.2:
-    dependencies:
-      default-browser: 5.2.1
-      define-lazy-prop: 3.0.0
-      is-inside-container: 1.0.0
-      is-wsl: 3.1.0
-
   open@7.4.2:
     dependencies:
       is-docker: 2.2.1
@@ -25510,11 +25498,11 @@ snapshots:
     dependencies:
       rollup-pluginutils: 2.8.2
 
-  rollup-plugin-visualizer@5.12.0(rollup@4.52.5):
+  rollup-plugin-visualizer@6.0.5(rollup@4.52.5):
     dependencies:
       open: 8.4.2
-      picomatch: 2.3.1
-      source-map: 0.7.4
+      picomatch: 4.0.3
+      source-map: 0.7.6
       yargs: 17.7.2
     optionalDependencies:
       rollup: 4.52.5
@@ -27474,8 +27462,8 @@ snapshots:
   vite@6.4.1(@types/node@22.10.5)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.7.0):
     dependencies:
       esbuild: 0.25.11
-      fdir: 6.5.0(picomatch@4.0.2)
-      picomatch: 4.0.2
+      fdir: 6.5.0(picomatch@4.0.3)
+      picomatch: 4.0.3
       postcss: 8.5.6
       rollup: 4.52.5
       tinyglobby: 0.2.15
@@ -27630,7 +27618,7 @@ snapshots:
       http-proxy-middleware: 2.0.9(@types/express@4.17.21)
       ipaddr.js: 2.2.0
       launch-editor: 2.8.0
-      open: 10.1.2
+      open: 10.1.0
       p-retry: 6.2.0
       schema-utils: 4.3.3
       selfsigned: 2.4.1
