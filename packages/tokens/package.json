@@ -36,7 +36,7 @@
     "eslint": "9.18.0",
     "globals": "16.0.0",
     "rimraf": "6.0.1",
-    "style-dictionary": "4.3.0",
+    "style-dictionary": "5.1.1",
     "typescript": "5.8.3",
     "typescript-eslint": "8.20.0"
   },
