@@ -1,5 +1,5 @@
 import { Source } from '@storybook/addon-docs/blocks';
-import { getComponentStyleImports } from './styles-package-import-individual.sample';
+import { getComponentStyleImports, getStyleImportText } from './styles-package-import-individual.sample';
 
 ## Style Imports
 
@@ -13,7 +13,7 @@ To import all Design System styles:
   <Source code={`@use '@swisspost/design-system-styles/post-compact.scss';`} language="scss" />
 </div>
 
-To import only the styles required for this component:
+<p>{getStyleImportText(props)}</p>
 
 {/* eslint-disable-next-line no-undef */}
 <Source code={getComponentStyleImports(props)} language="scss" />
