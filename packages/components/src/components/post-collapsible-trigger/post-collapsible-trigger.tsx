@@ -26,6 +26,10 @@ export class PostCollapsibleTrigger {
     checkRequiredAndType(this, 'for', 'string');
   }
 
+  constructor() {
+    this.handlePostToggle = this.handlePostToggle.bind(this);
+  }
+
   /**
    * Initiate a mutation observer that updates the trigger whenever necessary
    */
@@ -43,7 +47,7 @@ export class PostCollapsibleTrigger {
 
   disconnectedCallback() {
     this.observer.disconnect();
-    this.root.removeEventListener('postToggle', this.handlePostToggle);
+    this.root?.removeEventListener('postToggle', this.handlePostToggle);
   }
 
   /**

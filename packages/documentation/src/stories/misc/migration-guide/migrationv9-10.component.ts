@@ -69,6 +69,7 @@ export class MigrationV99Component extends LitElement {
       standard_html_alert: false,
       spinner: false,
       stepper: false,
+      dialog_icon: false,
     },
     components: {
       alert: false,
@@ -1476,7 +1477,6 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
-
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -1488,8 +1488,25 @@ export class MigrationV99Component extends LitElement {
                       <label class="form-check-label" for="others.stepper">
                         Removed the stepper HTML component.
                         <span class="info"
-                          >You can now use the <code>post-stepper</code> web component.</span
+                        >You can now use the <code>post-stepper</code> web component.</span
                         >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-dialog_icon"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.dialog_icon}"
+                      />
+                      <label class="form-check-label" for="others-dialog_icon">
+                        <code>dialog</code> icons can no longer be set manually. They are now
+                        automatically determined by the <code>data-type</code> attribute defined on
+                        the component. The data-type attribute supports only the four standard
+                        signal types: <code>info</code>, <code>success</code>, <code>warning</code>,
+                        and <code>error</code>.
                       </label>
                     </div>
                   </li>

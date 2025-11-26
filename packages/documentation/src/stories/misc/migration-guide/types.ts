@@ -142,6 +142,7 @@ export interface V910Checks {
     standard_html_alert: boolean;
     stepper: boolean;
     spinner: boolean;
+    dialog_icon: boolean;
   };
   components: {
     alert: boolean;
