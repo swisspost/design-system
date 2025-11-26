@@ -24,7 +24,7 @@ export function getComponentStyleImports(props: Props) {
   return `${basics}\n${components}\n${required}`;
 }
 
-export function getStyleImportText(props: Props): any {
+export function getStyleImportsText(props: Props): any {
   if (props.components.filter(c => c === 'lead').length > 0) {
     return `To import only the styles required for typography elements:`;
   }
