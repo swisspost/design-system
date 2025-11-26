@@ -1,7 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-tokens.$default-map: utilities.$post-spacing;
-
 .addon-label {
   color: var(--post-current-fg) !important;
 }
