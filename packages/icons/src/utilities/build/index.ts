@@ -11,14 +11,14 @@ const iconOutputDirectory = path.resolve(OUTPUT_PATH_ICONS);
 const reportOutputDirectory = path.resolve(OUTPUT_PATH);
 const cssOutputDirectory = path.resolve(OUTPUT_PATH_CSS);
 
-export default function buildSVGs() {
+export default async function buildSVGs() {
   console.log(coloredLogMessage('<blue>Building icons...</blue>'));
 
   setup(iconOutputDirectory, reportOutputDirectory);
 
   const iconSetGroups = getIconSetGroups();
   createSvgs(iconOutputDirectory, iconSetGroups);
-  createCssFiles(iconOutputDirectory, cssOutputDirectory);
+  await createCssFiles(iconOutputDirectory, cssOutputDirectory);
   const report = writeReport(reportOutputDirectory, iconSetGroups);
 
   console.log(

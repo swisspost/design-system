@@ -16,9 +16,9 @@ ul.list-check {
   list-style: none;
   padding-block: tokens.get('list-check-margin-block') tokens.get('list-check-margin-block');
   padding-inline-start: calc(
-    #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} + #{tokens.get(
-        'list-check-icon-gap-inline'
-      )} + 2 * #{tokens.get('list-check-icon-container-inline')}
+    #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} +
+      #{tokens.get('list-check-icon-gap-inline')} + 2 *
+      #{tokens.get('list-check-icon-container-inline')}
   );
   gap: tokens.get('list-check-item-gap-block-text');
 
@@ -33,10 +33,12 @@ ul.list-check {
       top: 0;
       left: 0;
       margin-inline-start: calc(
-        -1 * (#{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} +
-              #{tokens.get('list-check-icon-gap-inline')} + #{tokens.get(
-                'list-check-icon-container-inline'
-              )})
+        -1 *
+          (
+            #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} +
+              #{tokens.get('list-check-icon-gap-inline')} +
+              #{tokens.get('list-check-icon-container-inline')}
+          )
       );
       margin-block: calc(-1 * tokens.get('list-check-text-padding'));
 
@@ -59,10 +61,12 @@ ul.list-check {
       display: block;
       position: absolute;
       margin-inline-start: calc(
-        -1 * (#{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} +
-              #{tokens.get('list-check-icon-gap-inline')} + #{tokens.get(
-                'list-check-icon-container-inline'
-              )})
+        -1 *
+          (
+            #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} +
+              #{tokens.get('list-check-icon-gap-inline')} +
+              #{tokens.get('list-check-icon-container-inline')}
+          )
       );
       margin-block: calc(-1 * tokens.get('list-check-text-padding'));
       top: tokens.get('list-check-padding-icon');
