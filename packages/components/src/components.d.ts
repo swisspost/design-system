@@ -523,7 +523,7 @@ export namespace Components {
         /**
           * The accessible label for the tabs component in navigation mode.
          */
-        "label": string;
+        "label"?: string;
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
@@ -1459,7 +1459,7 @@ declare namespace LocalJSX {
         /**
           * The accessible label for the tabs component in navigation mode.
          */
-        "label": string;
+        "label"?: string;
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
          */

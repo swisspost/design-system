@@ -25,7 +25,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 ## Navigation Variant
 
-#### Indicating the Current Page
+### Indicating the Current Page
 
 **The `aria-current="page"` attribute highlights the currently active page.**
 
@@ -37,20 +37,20 @@ Navigation is handled by your application's router. When users click a tab, they
 
 ## Panels Variant
 
-#### Initially Active Tab
+### Initially Active Tab
 
 By default, the first tab is active. To have a different tab active initially, use the `active-tab` property.
 
 <Canvas of={TabStories.ActiveTab} />
 
 
-#### Tab Changes
+### Tab Changes
 
 Use the `postChange` event to run a function anytime a new tab gets activated.
 
 <Source code={SampleTabChange} language="typescript" />
 
-#### Custom Trigger
+### Custom Trigger
 
 To trigger a tab change, use the `show()` method specifying the name of the tab to activate and show its content.
 
