@@ -96,7 +96,7 @@ export const ReferencingData = [
     ],
   },
   {
-    attribute: 'Aria-Role: List ',
+    attribute: 'Role: List ',
     cases: [
       {
         case: 'All cases',

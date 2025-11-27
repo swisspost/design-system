@@ -4,10 +4,8 @@ import * as CCR from './aria-role-list.stories';
 import DefaultExample from './examples/default-example.sample.html?raw';
 import DefaultExample2 from './examples/default-example-2.sample.html?raw';
 import DefaultExample3 from './examples/default-example-3.sample.html?raw';
-import WorkingExampleIIa from './examples/working-example-IIa.sample.html?raw';
-import WorkingExampleIIb from './examples/working-example-IIb.sample.html?raw';
-import WorkingExampleIIIa from './examples/working-example-IIIa.sample.html?raw';
-import WorkingExampleIIIb from './examples/working-example-IIIb.sample.html?raw';
+import WorkingExampleII from './examples/working-example-II.sample.html?raw';
+import WorkingExampleIII from './examples/working-example-III.sample.html?raw';
 import WorkingExampleIVa from './examples/working-example-IVa.sample.html?raw';
 import WorkingExampleIVb from './examples/working-example-IVb.sample.html?raw';
 import WorkingExampleIVc from './examples/working-example-IVc.sample.html?raw';
@@ -60,43 +58,22 @@ import WorkingExampleIVc from './examples/working-example-IVc.sample.html?raw';
 
 • <b>Parent in the light DOM and children in the ShadowDOM</b> ✔️
 
-<Source language="html" dark code={WorkingExampleIIa}></Source>
+<Source language="html" dark code={WorkingExampleII}></Source>
 
-<Canvas of={CCR.Example2a} sourceState="hide" />
+<Canvas of={CCR.Example2} sourceState="hide" />
 
 <p>
   In the case a component with `role="list"` in the host with `listitem` elements within its Shadow
   DOM, the relationship is valid.
 </p>
 
-• <b>Slotted parent and children in the ShadowDOM</b> ❌
-
-<Source language="html" dark code={WorkingExampleIIb}></Source>
-<Canvas of={CCR.Example2b} sourceState="hide" />
-
-<p>
-  ⚠️ The above structure does not comply with accessibility standards, as `listitems` must be
-  children of an element with `role="list"`. The relationship fails not because of the Shadow DOM
-  boundary, but due to the incorrect structure itself.
-</p>
-
 ### III. Parent in the Shadow DOM - Children Out to the Light DOM
-
-• <b>Parent in the Shadow DOM and children in the Light DOM</b> ❌
-
-<Source language="html" dark code={WorkingExampleIIIa}></Source>
-
-<p>
-  ⚠️ The above structure does not comply with accessibility standards, as `listitems` must be
-  children of an element with `role="list"`. The relationship fails not because of the Shadow DOM
-  boundary, but due to the incorrect structure itself.
-</p>
 
 • <b>Parent in the Shadow DOM with slotted children </b> ✔️
 
-<Source language="html" dark code={WorkingExampleIIIb}></Source>
+<Source language="html" dark code={WorkingExampleIII}></Source>
 
-<Canvas of={CCR.Example3b} sourceState="hide" />
+<Canvas of={CCR.Example3} sourceState="hide" />
 
 <p>
   When a component applies `role="list"` to an internal element and its children with

@@ -1,8 +1,11 @@
+type ButtonVersion = '1' | '2' | '3' | '4';
+
 export class DemoButton extends HTMLElement {
   static get observedAttributes() {
     return ['button-version', 'workaround', 'arialabelledby-id', 'ariadescribedby-id'];
   }
-  private buttonVersion?: '1' | '2' | '3' | '4';
+
+  private buttonVersion?: ButtonVersion;
   private workaround?: string;
   private internalButton?: HTMLElement;
   private arialabelledbyId?: string;
@@ -22,7 +25,7 @@ export class DemoButton extends HTMLElement {
     const member = name.replace(/-([a-z])/g, (_, p) => p.toUpperCase());
 
     if (member === 'buttonVersion') {
-      this.buttonVersion = newValue as '1' | '2' | '3' | '4';
+      this.buttonVersion = newValue as ButtonVersion;
     } else {
       this[member as keyof this] = newValue as this[keyof this];
     }
