@@ -1,6 +1,7 @@
 interface Props {
   components: string[];
   required?: { icons: boolean; floatingLabel: boolean; formFeedback: boolean };
+  importText?: string;
 }
 
 const requiredLabels: { [key: string]: string } = {
@@ -24,10 +25,6 @@ export function getComponentStyleImports(props: Props) {
   return `${basics}\n${components}\n${required}`;
 }
 
-export function getStyleImportsText(props: Props): any {
-  if (props.components.filter(c => c === 'lead').length > 0) {
-    return `To import only the styles required for typography elements:`;
-  }
-
-  return `To import only the styles required for this component:`;
+export function getStyleImportsText(props: Props): string {
+  return props.importText ?? 'To import only the styles required for this component:';
 }
