@@ -2,6 +2,7 @@ import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
+import { fadeIn, fadeOut } from '@/animations';
 
 @Component({
   tag: 'post-megadropdown',
@@ -17,6 +18,12 @@ export class PostMegadropdown {
 
   private defaultSlotObserver: MutationObserver;
 
+  private currentAnimation: Animation | null = null;
+
+  private animatedContainer: HTMLElement;
+
+  // private animation {entry:string'fadein', duration:number, easing:string="ease-inf//"} = {600, 'ease';
+
   @Element() host: HTMLPostMegadropdownElement;
 
   @State() device: Device = breakpoint.get('device');
@@ -29,9 +36,6 @@ export class PostMegadropdown {
   @State() isVisible: boolean = false;
 
   @State() trigger: boolean = false;
-
-  /** Holds the current animation class. */
-  @State() animationClass: string | null = null;
 
   private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
@@ -69,7 +73,7 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
-    
+
     if (this.defaultSlotObserver) {
       this.defaultSlotObserver.disconnect();
     }
@@ -81,7 +85,7 @@ export class PostMegadropdown {
   @Method()
   async toggle() {
     if (this.isVisible) {
-      this.hide();
+      await this.hide();
     } else {
       await this.show();
     }
@@ -96,11 +100,18 @@ export class PostMegadropdown {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
     }
-    this.animationClass = 'slide-in';
 
     this.isVisible = true;
+    this.currentAnimation?.cancel();
+    this.currentAnimation = fadeIn(this.animatedContainer, 600, 'ease-in');
+
+    await this.currentAnimation.finished;
+    this.currentAnimation = null;
+    // After the megadropdown container becomes visible
     PostMegadropdown.activeDropdown = this;
+
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+
     if (
       this.firstFocusableEl &&
       window.getComputedStyle(this.firstFocusableEl).display !== 'none'
@@ -116,10 +127,21 @@ export class PostMegadropdown {
   @Method()
   async hide(focusParent = true, forceClose = false) {
     this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
+
     if (forceClose) {
       this.forceClose();
     } else {
-      this.animationClass = 'slide-out';
+      this.currentAnimation?.cancel();
+      this.currentAnimation = fadeOut(this.animatedContainer, 1600, 'ease-out');
+
+      await this.currentAnimation.finished;
+
+      // After the megadropdown container is hidden
+      this.currentAnimation = null;
+      this.isVisible = false;
+
+      PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
     }
   }
 
@@ -134,7 +156,8 @@ export class PostMegadropdown {
   private breakpointChange(e: CustomEvent) {
     this.device = e.detail;
     if (this.device === 'desktop' && this.isVisible) {
-      this.animationClass = null;
+      this.currentAnimation?.cancel();
+      this.currentAnimation = null;
     }
   }
   /**
@@ -142,26 +165,24 @@ export class PostMegadropdown {
    */
   private forceClose() {
     this.isVisible = false;
-    this.animationClass = null;
+    this.currentAnimation?.cancel();
+    this.currentAnimation = null;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible, focusParent: false });
     this.removeListeners();
   }
 
-  private handleAnimationEnd() {
-    if (this.animationClass === 'slide-out') {
-      this.isVisible = false;
-      this.animationClass = null;
-      PostMegadropdown.activeDropdown = null;
-      this.removeListeners();
-    }
-  }
-
-  private readonly handleClickOutside = (event: MouseEvent) => {
+  private readonly handleClickOutside = async (event: MouseEvent) => {
     if (this.device !== 'desktop') return;
 
     const target = event.target as Node;
 
     if (this.host.contains(target)) {
+      return;
+    }
+
+    // Ignore clicks on the trigger
+    const trigger = this.megadropdownTrigger;
+    if (trigger == target) {
       return;
     }
 
@@ -177,7 +198,7 @@ export class PostMegadropdown {
       }
     }
 
-    this.hide(false);
+    await this.hide(false);
   };
 
   private addListeners() {
@@ -292,9 +313,9 @@ export class PostMegadropdown {
     return (
       <Host version={version}>
         <div
-          class={`megadropdown-container ${this.animationClass || ''}`}
+          ref={el => (this.animatedContainer = el)}
+          class="megadropdown-container"
           style={containerStyle}
-          onAnimationEnd={() => this.handleAnimationEnd()}
         >
           <div class="megadropdown">
             <slot name="megadropdown-title"></slot>
