@@ -4,7 +4,7 @@
 tokens.$default-map: components.$post-divider;
 
 hr {
-  border-color: tokens.get('post-divider-border');
-  border-width: tokens.get('post-divider-border-width');
+  border-color: red;
+  border-width: 50px;
   margin-block: tokens.get('post-divider-margin-block');
 }

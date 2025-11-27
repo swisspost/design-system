@@ -1,6 +1,7 @@
 import { MetaComponent } from '@root/types';
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
+import { nothing } from 'lit';
 
 const meta: MetaComponent = {
   id: 'a1eef11e-b5db-4066-99a8-9723a6cdef12',
@@ -34,6 +35,9 @@ const meta: MetaComponent = {
         },
       },
       options: ['mt-4', 'null', 'mt-16', 'mt-24', 'mt-32', 'mt-40'],
+      table: {
+        category: 'General',
+      },
     },
     marginBottom: {
       name: 'Margin bottom',
@@ -50,6 +54,9 @@ const meta: MetaComponent = {
         },
       },
       options: ['mb-4', 'null', 'mb-16', 'mb-24', 'mb-32', 'mb-40'],
+      table: {
+        category: 'General',
+      },
     },
   },
 };
@@ -70,11 +77,11 @@ function render(args: Args) {
     .join(' ');
 
   return html`
-    <p>The first rule of Fight Club is: You do not talk about Fight Club.</p>
+    <p>This is some content above the divider.</p>
 
-    ${classes ? html`<hr class="${classes}" />` : html`<hr />`}
+    <hr class="${classes || nothing}" />
 
-    <p>The second rule of Fight Club is: Always bring cupcakes.</p>
+    <p>This is some content below the divider.</p>
   `;
 }
 export const Default: Story = {};
