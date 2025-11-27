@@ -435,7 +435,7 @@ export class PostPagination {
    * Adjust start/end pages to avoid gap=2 scenarios
    */
   private adjustForGapTwo(startPage: number, endPage: number, totalPages: number, middleSlots: number) {
-    let adjusted = { startPage, endPage };
+    const adjusted = { startPage, endPage };
     
     // Fix rightGap=2 to maintain visual consistency
     const rightGap = totalPages - endPage;
@@ -458,7 +458,7 @@ export class PostPagination {
    * Ensure we have the desired number of middle slots
    */
   private ensureMiddleSlots(startPage: number, endPage: number, totalPages: number, middleSlots: number) {
-    let adjusted = { startPage, endPage };
+    const adjusted = { startPage, endPage };
     const actualSlots = endPage - startPage + 1;
 
     if (actualSlots < middleSlots && endPage < totalPages - 1) {
@@ -481,7 +481,7 @@ export class PostPagination {
     maxVisible: number, 
     currentPage: number
   ) {
-    let adjusted = { startPage, endPage };
+    const adjusted = { startPage, endPage };
     let totalItems = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
 
     // Trim if too many items
