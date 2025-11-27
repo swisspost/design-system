@@ -445,7 +445,7 @@ export class PostPagination {
     // To maintain consistent visual count, we need to ensure we're always in a state
     // where rightGap is either 1 (no extra page) or >=3 (ellipsis).
     // Solution: When rightGap would be 2, extend endPage to totalPages-1 to make it 1.
-    let rightGap = totalPages - endPage;
+    const rightGap = totalPages - endPage;
     if (rightGap === 2) {
       endPage = totalPages - 1;
       startPage = endPage - middleSlots + 1;
@@ -453,7 +453,7 @@ export class PostPagination {
     }
 
     // Similarly for leftGap=2 to maintain symmetry
-    let leftGap = startPage - 1;
+    const leftGap = startPage - 1;
     if (leftGap === 2) {
       startPage = 2;
       endPage = startPage + middleSlots - 1;
