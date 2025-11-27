@@ -149,7 +149,7 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
-      // Only for the first open
+    // Only for the first open
       if (event.detail.first) {
         // Add "menu" and "menuitem" aria roles and aria-label
         this.host.setAttribute('role', 'menu');
@@ -164,10 +164,9 @@ export class PostMenu {
     };
 
   @EventFrom('post-popovercontainer')
-  private readonly handlePostToggled = (event: CustomEvent<{ isOpen: boolean }>) => {
-      this.isVisible = event.detail.isOpen;
+  private readonly handlePostBeforeToggle = (event: CustomEvent<{ willOpen: boolean }>) => {
+      this.isVisible = event.detail.willOpen;
       this.toggleMenu.emit(this.isVisible);
-
       if (this.isVisible) {
         this.lastFocusedElement = this.root?.activeElement as HTMLElement;
         requestAnimationFrame(() => {
@@ -249,8 +248,9 @@ export class PostMenu {
       <Host data-version={version}>
         <post-popovercontainer
           onPostShow={this.handlePostShown}
-          onPostToggle={this.handlePostToggled}
+          onPostBeforeToggle={this.handlePostBeforeToggle}
           placement={this.placement}
+          animation="pop-in"
           ref={e => (this.popoverRef = e)}
         >
           <div part="menu">
