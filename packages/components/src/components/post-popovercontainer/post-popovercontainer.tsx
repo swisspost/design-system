@@ -8,6 +8,7 @@ import {
   Prop,
   h,
   Watch,
+  State,
 } from '@stencil/core';
 
 import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
@@ -129,6 +130,7 @@ export class PostPopovercontainer {
    */
   @Prop() manualClose: boolean = false;
 
+  @State() dynamicPlacement?: string;
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
@@ -344,7 +346,7 @@ export class PostPopovercontainer {
   private async calculatePosition() {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
-
+    this.dynamicPlacement = currentPlacement;
     // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
@@ -352,13 +354,27 @@ export class PostPopovercontainer {
     // Position arrow if enabled
     if (this.arrow && middlewareData.arrow) {
       const { x: arrowX, y: arrowY } = middlewareData.arrow;
+
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
+
+      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+      // Calculate dynamically the half side which provides the static side offset
+      const arrowSizeValue = getComputedStyle(this.arrowRef)
+        .getPropertyValue('--arrow-size')
+        .trim();
+
+      const arrowSizePx = arrowSizeValue.endsWith('rem')
+        ? Number.parseFloat(arrowSizeValue) * rootFontSize
+        : Number.parseFloat(arrowSizeValue);
+
+      const halfSide = -0.5 * arrowSizePx;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {
           left: arrowX ? `${arrowX}px` : '',
           top: arrowY ? `${arrowY}px` : '',
-          [staticSide]: '-5px',
+          [staticSide]: `${halfSide}px`,
         });
       }
     }
@@ -486,6 +502,7 @@ export class PostPopovercontainer {
         <div class="popover-content">
           {this.arrow && (
             <span
+              dynamic-placement={this.dynamicPlacement}
               class="arrow"
               ref={el => {
                 this.arrowRef = el;

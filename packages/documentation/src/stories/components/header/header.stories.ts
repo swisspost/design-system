@@ -1,13 +1,14 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
-import { html, nothing } from 'lit';
+import { html, nothing, TemplateResult } from 'lit';
 import { fakeContent } from '@/utils';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
 import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
-import { renderLocalControls } from '@/stories/components/header/renderers/custom-controls';
+import { renderLocalControls } from '@/stories/components/header/renderers/local-controls';
 import { renderNavigationControls } from '@/stories/components/header/renderers/navigation-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { renderTitle } from '@/stories/components/header/renderers/title';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
@@ -24,6 +25,7 @@ const meta: MetaComponent = {
   },
   args: {
     title: '',
+    titleTag: 'p',
     mainNavigation: true,
     metaNavigation: true,
     globalControls: true,
@@ -39,6 +41,21 @@ const meta: MetaComponent = {
       description: 'Title of the webpage or application.',
       control: {
         type: 'text',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    titleTag: {
+      name: 'Application title tag',
+      description: 'HTML tag used for the title of the webpage or application.',
+      control: {
+        type: 'inline-radio',
+      },
+      options: ['p', 'h1'],
+      if: {
+        arg: 'title',
+        neq: '',
       },
       table: {
         category: 'Content',
@@ -131,12 +148,17 @@ const meta: MetaComponent = {
   render: getHeaderRenderer(),
 };
 
-function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = renderUserMenu()) {
+function getHeaderRenderer(
+  subComponents: {
+    mainnavigation?: TemplateResult;
+    userMenu?: TemplateResult;
+    title?: TemplateResult;
+  } = {},
+) {
   return (args: Args) => {
-    const title = html`
-      <!-- Application title (optional) -->
-      <h1 slot="title">${args.title}</h1>
-    `;
+    const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
+    const userMenu = subComponents.userMenu ?? renderUserMenu();
+    const title = subComponents.title ?? renderTitle(args);
 
     const globalLogin = args.isLoggedIn
       ? html` <div slot="global-login">${userMenu}</div> `
@@ -149,7 +171,7 @@ function getHeaderRenderer(mainnavigation = renderMainnavigation(), userMenu = r
 
     const globalControls = html`
       <!-- Global controls (Search) -->
-      <ul class="list-inline" slot="global-controls">
+      <ul slot="global-controls">
         <li>
           <a href="">
             <span>Search</span>
@@ -228,14 +250,16 @@ export const ActiveNavigationItem: Story = {
   ...getIframeParameters(250),
   decorators: [
     (story: StoryFn, context: StoryContext) => {
-      const renderHeader = getHeaderRenderer(html` ${story(context.args, context)} `);
+      const renderHeader = getHeaderRenderer({
+        mainnavigation: html` ${story(context.args, context)} `,
+      });
       return renderHeader(context.args);
     },
   ],
   render: () => html`
     <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
       <post-list title-hidden="">
-        <h2>Main Navigation</h2>
+        <p>Main Navigation</p>
         <post-list-item slot="post-list-item">
           <a href="/letters">Letters</a>
         </post-list-item>
@@ -286,6 +310,23 @@ export const OnePager: Story = {
   },
 };
 
+export const OnePagerH1: Story = {
+  ...getIframeParameters(250),
+  args: {
+    ...OnePager.args,
+    titleTag: 'h1',
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer({
+        title: html` ${story(context.args, context)} `,
+      });
+      return renderHeader(context.args);
+    },
+  ],
+  render: renderTitle,
+};
+
 // Used in target group documentation
 export const WithTargetGroup: Story = {
   args: {
@@ -301,7 +342,9 @@ export const LoggedIn: Story = {
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
-      const renderHeader = getHeaderRenderer(undefined, html` ${story(context.args, context)} `);
+      const renderHeader = getHeaderRenderer({
+        userMenu: html` ${story(context.args, context)} `,
+      });
       return renderHeader({ ...context.args, localControls: true });
     },
   ],

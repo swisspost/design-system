@@ -23,38 +23,63 @@ export default function Layout({ children }: { readonly children: React.ReactNod
     <>
       {/* Throws Hydration Errors */}
       <PostHeader>
+        {/* Logo */}
         <PostLogo slot="post-logo" url="/">
           Homepage
         </PostLogo>
 
-        <ul className="list-inline" slot="meta-navigation">
-          <li>
-            <a href="#test">Jobs</a>
-          </li>
-          <li>
-            <a href="#test">Über uns</a>
-          </li>
-        </ul>
+      {/* Target Group */}
+      <ul slot="target-group">
+        <li>
+          <a href="#" aria-current="location">
+            Private customers
+          </a>
+        </li>
+        <li>
+          <a href="#">Business customers</a>
+        </li>
+      </ul>
 
-        <PostTogglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled"></PostIcon>
-          <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled"></PostIcon>
-        </PostTogglebutton>
+      {/* Global controls (Search) */}
+      <ul slot="global-controls">
+        <li>
+          <a href="">
+            <span>Search</span>
+            <PostIcon aria-hidden="true" name="search" />
+          </a>
+        </li>
+      </ul>
 
+      {/* Meta navigation */}
+      <ul slot="meta-navigation">
+        <li>
+          <a href="">
+            Jobs
+            <PostIcon name="jobs" aria-hidden="true" />
+          </a>
+        </li>
+        <li>
+          <a href="">
+            Create Account
+            <PostIcon name="adduser" aria-hidden="true" />
+          </a>
+        </li>
+      </ul>
+
+        {/* Language switch */}
         <PostLanguageSwitch
           caption="Change the language"
           description="The currently selected language is English."
-          variant="menu"
+          variant="list"
           slot="post-language-switch"
         >
-          <PostLanguageOption active={false} code="de" name="Deutsch">
+          <PostLanguageOption code="de" name="German">
             de
           </PostLanguageOption>
-          <PostLanguageOption active={false} code="fr" name="French">
+          <PostLanguageOption code="fr" name="French">
             fr
           </PostLanguageOption>
-          <PostLanguageOption active={false} code="it" name="Italiano">
+          <PostLanguageOption code="it" name="Italian">
             it
           </PostLanguageOption>
           <PostLanguageOption active={true} code="en" name="English">
@@ -62,118 +87,121 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           </PostLanguageOption>
         </PostLanguageSwitch>
 
-        <h1 slot="title">Application title</h1>
+        {/* Global header login/user menu */}
+        <a href="" slot="global-login">
+          <span>Login</span>
+          <PostIcon name="login" />
+        </a>
 
-        <ul slot="local-controls" className="list-inline">
-          <li>
-            <a href="#test">
-              <span>Search</span>
-              <PostIcon aria-hidden="true" name="search"></PostIcon>
-            </a>
-          </li>
-          <li>
-            <a href="#test">
-              <span>Login</span>
-              <PostIcon aria-hidden="true" name="login"></PostIcon>
-            </a>
-          </li>
-        </ul>
+        {/* Menu button for mobile */}
+        <PostTogglebutton slot="post-togglebutton">
+          <span>Menu</span>
+          <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled" />
+          <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled" />
+        </PostTogglebutton>
 
-        {/* Throws Hydration Errors */}
-        <PostMainnavigation slot="post-mainnavigation">
-          {/* Throws Hydration Errors */}
-          <PostList title-hidden="">
-            <h2>Main Navigation</h2>
-            <PostListItem slot="post-list-item">
-              <a href="/briefe">Briefe</a>
-            </PostListItem>
-            <PostListItem slot="post-list-item">
-              <a href="/pakete">Pakete</a>
-            </PostListItem>
+      {/* Main navigation */}
+      <PostMainnavigation slot="post-mainnavigation">
+        <PostList title-hidden="">
+          <p>Main Navigation</p>
 
+          {/* Link only level 1 */}
+          <PostListItem slot="post-list-item">
+            <a href="/letters">Letters</a>
+          </PostListItem>
+          <PostListItem slot="post-list-item">
+            <a href="/packages">Packages</a>
+          </PostListItem>
+
+            {/* Level 1 with megadropdown - Letters */}
             <PostListItem slot="post-list-item">
-              <PostMegadropdownTrigger for="briefe">Briefe</PostMegadropdownTrigger>
-              {/* Throws Hydration Errors */}
-              <PostMegadropdown id="briefe">
+              <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
+              <PostMegadropdown id="letters">
                 <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowright"></PostIcon>
+                  <PostIcon name="arrowleft" />
                   Back
                 </button>
-                <PostClosebutton slot="close-button">Schliessen</PostClosebutton>
-                <h2 slot="megadropdown-title">Briefe title</h2>
+                <PostClosebutton slot="close-button">Close</PostClosebutton>
+                <a slot="megadropdown-overview-link" href="/letters">
+                  Overview Letters
+                </a>
                 <PostList>
-                  <h3>Briefe senden</h3>
+                  <p>Send letters</p>
                   <PostListItem slot="post-list-item">
-                    <a href="/sch">Briefe Schweiz</a>
+                    <a href="/sch">Letters Switzerland</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="/kl">Kleinwaren Ausland</a>
+                    <a href="/kl">Small items abroad</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="#test">Waren Ausland</a>
+                    <a href="">Goods abroad</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="#test">Express und Kurier</a>
+                    <a href="">Express and courier</a>
                   </PostListItem>
                 </PostList>
                 <PostList>
-                  <h3>
-                    <a href="/schritt-für-schritt">Schritt für Schritt</a>
-                  </h3>
+                  <p>
+                    <a href="/step-by-step">Step by step</a>
+                  </p>
                   <PostListItem slot="post-list-item">
-                    <a href="/sch">Pakete Schweiz</a>
+                    <a href="/sch">Packages Switzerland</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="/kl">Kleinwaren Ausland</a>
+                    <a href="/kl">Small items abroad</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="#test">Waren Ausland</a>
+                    <a href="">Goods abroad</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="#test">Express und Kurier</a>
+                    <a href="">Express and courier</a>
                   </PostListItem>
                 </PostList>
               </PostMegadropdown>
             </PostListItem>
+
+            {/* Level 1 with megadropdown - Packages */}
             <PostListItem slot="post-list-item">
-              <PostMegadropdownTrigger for="pakete">Pakete</PostMegadropdownTrigger>
-              <PostMegadropdown id="pakete">
+              <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
+              <PostMegadropdown id="packages">
                 <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowright"></PostIcon>
+                  <PostIcon name="arrowleft" />
                   Back
                 </button>
-                <PostClosebutton slot="close-button">Schliessen</PostClosebutton>
-                <h2 slot="megadropdown-title">Pakete title</h2>
+                <PostClosebutton slot="close-button">Close</PostClosebutton>
+                <a slot="megadropdown-overview-link" href="/packages">
+                  Overview Packages
+                </a>
                 <PostList>
-                  <h3>Pakete senden</h3>
+                  <p>Send packages</p>
                   <PostListItem slot="post-list-item">
-                    <a href="/sch">Pakete Schweiz</a>
+                    <a href="/sch">Packages Switzerland</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="/kl">Kleinwaren Ausland</a>
+                    <a href="/kl">Small items abroad</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="#test">Waren Ausland</a>
+                    <a href="">Goods abroad</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="#test">Express und Kurier</a>
+                    <a href="">Express and courier</a>
                   </PostListItem>
                 </PostList>
                 <PostList>
-                  <h3>
-                    <a href="/schritt-für-schritt">Schritt für Schritt</a>
-                  </h3>
+                  <p>
+                    <a href="/step-by-step">Step by step</a>
+                  </p>
                   <PostListItem slot="post-list-item">
-                    <a href="/sch">Pakete Schweiz</a>
+                    <a href="/sch">Packages Switzerland</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="/kl">Kleinwaren Ausland</a>
+                    <a href="/kl">Small items abroad</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="#test">Waren Ausland</a>
+                    <a href="">Goods abroad</a>
                   </PostListItem>
                   <PostListItem slot="post-list-item">
-                    <a href="#test">Express und Kurier</a>
+                    <a href="">Express and courier</a>
                   </PostListItem>
                 </PostList>
               </PostMegadropdown>
@@ -201,7 +229,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       <PostFooter label="Footer label">
         <span slot="grid-1-title">Title 1</span>
         <PostList slot="grid-1" id="grid-1">
-          <h3>Title 1</h3>
+          <p>Title 1</p>
 
           <PostListItem>
             <a href="#test">Text link 1</a>
@@ -230,7 +258,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         <span slot="grid-2-title">Title 2</span>
         <PostList slot="grid-2">
-          <h3>Title 2</h3>
+          <p>Title 2</p>
 
           <PostListItem>
             <a href="#test">Text link 1</a>
@@ -267,7 +295,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         <span slot="grid-3-title">Title 3</span>
         <PostList slot="grid-3">
-          <h3>Title 3</h3>
+          <p>Title 3</p>
 
           <PostListItem>
             <a href="#test">Text link 1</a>
@@ -304,7 +332,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         <span slot="grid-4-title">Title 4</span>
         <PostList slot="grid-4">
-          <h3>Title 4</h3>
+          <p>Title 4</p>
 
           <PostListItem>
             <a href="#test">Text link 1</a>
@@ -328,7 +356,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostList>
 
         <PostList slot="socialmedia">
-          <h3>Follow us</h3>
+          <p>Follow us</p>
           <PostListItem>
             <a href="#facebook" className="btn btn-primary btn-icon">
               <PostIcon aria-hidden="true" name="8004"></PostIcon>
@@ -380,7 +408,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostList>
 
         <PostList slot="app">
-          <h3>Download app</h3>
+          <p>Download app</p>
           <PostListItem>
             <a
               className="app-store-badge"
@@ -412,7 +440,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostList>
 
         <PostList slot="businesssectors">
-          <h3>Die schweizerische Post AG</h3>
+          <p>Die schweizerische Post AG</p>
           <PostListItem>
             <a href="https://www.postauto.ch">PostAuto</a>
           </PostListItem>
@@ -422,7 +450,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostList>
 
         <PostList slot="meta" title-hidden="">
-          <h3>Meta</h3>
+          <p>Meta</p>
           <PostListItem>
             <a href="https://www.post.ch/en/pages/footer/accessibility-at-swiss-post">
               Accessibility
