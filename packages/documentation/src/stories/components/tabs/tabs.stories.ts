@@ -58,7 +58,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
     },
     fullWidth: {
       name: 'full-width',
-      description: 'When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.',
+      description: 'When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.\n\n**Changing this value after initialization has no effect.**',
       control: 'boolean',
       table: {
         category: 'Props',

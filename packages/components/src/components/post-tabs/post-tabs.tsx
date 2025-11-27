@@ -47,9 +47,10 @@ export class PostTabs {
 
   /**
    * When set to true, this property allows the tabs container to span the
+   * Changing this value after initialization has no effect.
    * full width of the screen, from edge to edge.
    */
-  @Prop({ reflect: true }) fullWidth?: boolean;
+  @Prop({ reflect: true }) fullWidth?: boolean = false;
 
   /**
    * The accessible label for the tabs component in navigation mode.
@@ -76,7 +77,7 @@ export class PostTabs {
 
   componentDidLoad() {
     this.moveMisplacedTabs();
-    this.isLoaded = true;
+    this.moveMisplacedPanels();
     this.enableTabs();
     this.setupContentObserver();
     this.validateLabel();
@@ -228,8 +229,8 @@ export class PostTabs {
 
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
     if (this.showing) {
-      this.showing.effect['target'].style.display = 'none';
       this.showing.finish();
+      this.showing = null;
     }
 
     // hide the currently visible panel only if no other animation is running
@@ -257,8 +258,17 @@ export class PostTabs {
     });
   }
 
+  private moveMisplacedPanels() {
+    if (!this.panels) return;
+
+    this.panels.forEach(panel => {
+      if (panel.getAttribute('slot') !== 'panels') {
+        panel.setAttribute('slot', 'panels');
+      }
+    });
+  }
+
   private enableTabs() {
-    if (!this.isLoaded) return;
     if (!this.tabs) return;
 
     this.tabs.forEach(async tab => {
@@ -359,10 +369,10 @@ export class PostTabs {
     } else {
       nextTab = this.tabs[activeTabIndex - 1] || this.tabs[this.tabs.length - 1];
     }
-
     if (!nextTab) return;
 
     nextTab.focus();
+    void this.show(nextTab.name);
   }
 
   render() {
@@ -376,12 +386,15 @@ export class PostTabs {
             role={this.isNavigationMode ? undefined : 'tablist'}
             aria-label={this.isNavigationMode ? this.label : undefined}
           >
-            <slot onSlotchange={() => this.enableTabs()} />
+            <slot onSlotchange={() => {
+              this.moveMisplacedTabs();
+              this.enableTabs();
+            }} />
           </TabsContainer>
         </div>
         {!this.isNavigationMode && (
           <div class="tab-content" part="content">
-            <slot name="panels" onSlotchange={() => this.moveMisplacedTabs()} />
+            <slot name="panels" onSlotchange={() => this.moveMisplacedPanels()} />
           </div>
         )}
       </Host>

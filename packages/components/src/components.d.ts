@@ -516,7 +516,8 @@ export namespace Components {
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
+          * @default false
          */
         "fullWidth"?: boolean;
         /**
@@ -1451,7 +1452,8 @@ declare namespace LocalJSX {
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
+          * @default false
          */
         "fullWidth"?: boolean;
         /**
