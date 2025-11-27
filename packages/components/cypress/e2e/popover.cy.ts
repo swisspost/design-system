@@ -207,14 +207,14 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     });
   });
 
-  // describe('Accessibility', () => {
-  //   beforeEach(() => {
-  //     cy.visit('./cypress/fixtures/post-popover.test.html');
-  //     cy.injectAxe();
-  //   });
+  describe('Accessibility', () => {
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-popover.test.html');
+      cy.injectAxe();
+    });
 
-  //   it('Has no detectable a11y violations on load', () => {
-  //     cy.checkA11y('post-popover');
-  //   });
-  // });
+    it('Has no detectable a11y violations on load', () => {
+      cy.checkA11y('post-popover');
+    });
+  });
 });
