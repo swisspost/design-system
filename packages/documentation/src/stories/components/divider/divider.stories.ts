@@ -3,7 +3,7 @@ import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 
 const meta: MetaComponent = {
-  id: '',
+  id: 'a1eef11e-b5db-4066-99a8-9723a6cdef12',
   title: 'Components/Divider',
   tags: ['package:Styles', 'status:Experimental'],
   render,
@@ -26,7 +26,7 @@ const meta: MetaComponent = {
         type: 'select',
         labels: {
           'mt-4': '4',
-          'null': 'Default (8)',
+          'null': '8 (default)',
           'mt-16': '16',
           'mt-24': '24',
           'mt-32': '32',
@@ -42,7 +42,7 @@ const meta: MetaComponent = {
         type: 'select',
         labels: {
           'mb-4': '4',
-          'null': 'Default (8)',
+          'null': '8 (default)',
           'mb-16': '16',
           'mb-24': '24',
           'mb-32': '32',
@@ -72,7 +72,7 @@ function render(args: Args) {
   return html`
     <p>The first rule of Fight Club is: You do not talk about Fight Club.</p>
 
-    <hr class="${classes}" />
+    ${classes ? html`<hr class="${classes}" />` : html`<hr />`}
 
     <p>The second rule of Fight Club is: Always bring cupcakes.</p>
   `;

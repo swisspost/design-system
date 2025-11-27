@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import meta, * as DividerStories from './divider.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={DividerStories} />
+
+<div className="docs-title">
+  # Divider
+
+  <link-design of={JSON.stringify(DividerStories)}></link-design>
+</div>
+
+<PackageTag meta={meta}/>
+
+<p>some text...</p>
+
+<Canvas sourceState="shown" of={DividerStories.Default} />
+<div className="hide-col-default">
+  <Controls of={DividerStories.Default} />
+</div>
+
+<StylesPackageImport components={['divider']} />
