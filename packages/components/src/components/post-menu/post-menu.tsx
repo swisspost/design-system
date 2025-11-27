@@ -66,11 +66,6 @@ export class PostMenu {
   }
 
   /**
-   * Sets the animation type
-   */
-  @Prop() readonly animation: 'pop-in' | null = 'pop-in';
-
-  /**
    * Holds the current visibility state of the menu.
    * This state is internally managed to track whether the menu is open (`true`) or closed (`false`),
    * and updates automatically when the menu is toggled.
@@ -255,7 +250,7 @@ export class PostMenu {
           onPostShow={this.handlePostShown}
           onPostBeforeToggle={this.handlePostBeforeToggle}
           placement={this.placement}
-          animation={this.animation || null}
+          animation="pop-in"
           ref={e => (this.popoverRef = e)}
         >
           <div part="menu">

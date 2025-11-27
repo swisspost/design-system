@@ -337,11 +337,6 @@ export namespace Components {
     }
     interface PostMenu {
         /**
-          * Sets the animation type
-          * @default 'pop-in'
-         */
-        "animation": 'pop-in' | null;
-        /**
           * Hides the popover menu and restores focus to the previously focused element.
          */
         "hide": () => Promise<void>;
@@ -1292,11 +1287,6 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostMenu {
-        /**
-          * Sets the animation type
-          * @default 'pop-in'
-         */
-        "animation"?: 'pop-in' | null;
         /**
           * An accessible name for the menu.
          */
