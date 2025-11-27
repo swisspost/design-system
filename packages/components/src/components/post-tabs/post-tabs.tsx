@@ -50,7 +50,7 @@ export class PostTabs {
    * Changing this value after initialization has no effect.
    * full width of the screen, from edge to edge.
    */
-  @Prop({ reflect: true }) fullWidth?: boolean = false;
+  @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
    * The accessible label for the tabs component in navigation mode.
