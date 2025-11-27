@@ -412,7 +412,7 @@ export class PostPagination {
   /**
    * Calculate optimal page range centered around current page
    */
-  private calculatePageRange(totalPages: number, maxVisible: number) {
+  private calculatePageRange(currentPage: number, totalPages: number, maxVisible: number) {
     // Reserve slots for first, last, and potential ellipses
     // maxVisible includes: first + last + up to 2 ellipses + middle pages
     const reservedSlots = 2; // first and last pages
@@ -425,7 +425,7 @@ export class PostPagination {
 
     const halfMiddle = Math.floor(middleSlots / 2);
 
-    let startPage = this.page - halfMiddle;
+    let startPage = currentPage - halfMiddle;
     let endPage = startPage + middleSlots - 1;
 
     if (startPage < 2) {
@@ -487,8 +487,8 @@ export class PostPagination {
     // If we have too many items, trim the middle range preferentially from the side
     // that is further away from the current page to keep current page centered.
     while (totalItems > MAX_VISIBLE) {
-      const distLeft = this.page - startPage;
-      const distRight = endPage - this.page;
+        const distLeft = currentPage - startPage;
+        const distRight = endPage - currentPage;
       // Prefer trimming the side that has more spare pages
       if (distRight >= distLeft && endPage > startPage) {
         endPage = Math.max(startPage - 1, endPage - 1);
@@ -567,7 +567,7 @@ export class PostPagination {
       return;
     }
 
-    const { startPage, endPage } = this.calculatePageRange(totalPages, maxVisible);
+    const { startPage, endPage } = this.calculatePageRange(this.page || 1, totalPages, maxVisible);
     this.items = this.buildPaginationItems(startPage, endPage, totalPages);
   }
 
