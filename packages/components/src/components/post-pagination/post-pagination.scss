@@ -115,7 +115,7 @@ $pagination-transition: all 0.2s ease;
     border-color: $pagination-color-active-bg;
     cursor: default;
 
-    &:hover {
+    &:hover:not(:disabled):not(.pagination-link-disabled) {
       background-color: $pagination-color-hover-stroke;
       border-color: $pagination-color-hover-stroke;
     }
