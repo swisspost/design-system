@@ -1,5 +1,6 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { useArgs } from 'storybook/preview-api';
 import { spread } from '@open-wc/lit-helpers';
 import { getAttributes } from '@/utils';
 import { MetaComponent } from '@root/types';
@@ -37,8 +38,15 @@ type Story = StoryObj;
 export const Default: Story = {
   render: (args: Args) => {
     const attributes = getAttributes(args, (v) => v !== null && v !== undefined);
+    const [, updateArgs] = useArgs();
     return html`
-      <post-pagination ${spread(attributes)}></post-pagination>
+      <post-pagination
+        ${spread(attributes)}
+        @postChange=${(e: CustomEvent) => {
+          const newPage = e.detail;
+          updateArgs({ page: newPage });
+        }}
+      ></post-pagination>
     `;
   },
 };

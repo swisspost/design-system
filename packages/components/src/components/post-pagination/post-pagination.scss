@@ -118,6 +118,7 @@ $pagination-transition: all 0.2s ease;
     &:hover:not(:disabled):not(.pagination-link-disabled) {
       background-color: $pagination-color-hover-stroke;
       border-color: $pagination-color-hover-stroke;
+      color: $pagination-color-active-text;
     }
   }
 
