@@ -12,10 +12,12 @@
 }
 
 nav {
-  scroll-behavior: smooth;
   flex: 1 1 auto;
-
+  
   @include media.only(desktop) {
+    scroll-behavior: smooth;
+    max-width: 100vw;
+    overflow: hidden;
     height: var(--post-main-navigation-height);
   }
 }

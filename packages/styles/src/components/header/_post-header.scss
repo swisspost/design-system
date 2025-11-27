@@ -123,6 +123,7 @@ post-header {
       height: 100%;
       align-items: stretch;
       gap: 0;
+      flex-wrap: nowrap;
 
       @include media.max(desktop) {
         flex-direction: column;
