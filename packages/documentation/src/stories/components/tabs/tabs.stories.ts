@@ -71,9 +71,10 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       if: { arg: 'variant', eq: 'navigation' },
       table: {
         category: 'Props',
-        type: {
-          summary: 'string',
-        },
+      },
+      type: {
+        name: 'string',
+        required: true,
       },
     },
     postChange: {
