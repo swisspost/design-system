@@ -1,11 +1,11 @@
 <custom-component>
   ⏷ #shadow-root (open)
-  <slot name="aria-slot"></slot>
-  <div ref="targetRef" role="button" tabindex="0" aria-labelledby>
-    <!--The aria-labelledby attribute is set automatically by the browser -->
-    <custom-icon />
-  </div>
-  <!-- slotted label element -->
+    <slot name="aria-slot"></slot>
+    <div ref="targetRef" role="button" tabindex="0" aria-labelledby>
+      <!--The aria-labelledby attribute is set automatically by the browser -->
+      <custom-icon />
+    </div>
+
   <span slot="aria-slot">My Text</span>
 </custom-component>
 
