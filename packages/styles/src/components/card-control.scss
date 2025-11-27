@@ -253,11 +253,11 @@ fieldset {
         }
 
         &:where(
-            :has(input:invalid),
-            :has(input[aria-invalid]),
-            :has(input.is-invalid),
-            .is-invalid
-          ) {
+          :has(input:invalid),
+          :has(input[aria-invalid]),
+          :has(input.is-invalid),
+          .is-invalid
+        ) {
           --post-card-control-border-color: #{color.$error};
           --post-card-control-bg: #{color.$error-background};
           --post-card-control-color: #{color.$error};

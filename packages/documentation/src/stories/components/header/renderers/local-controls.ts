@@ -12,7 +12,7 @@ export function renderLocalControls(args: Args) {
 
   return html`
     <!-- Custom controls (optional) -->
-    <ul class="list-inline" slot="local-controls">
+    <ul slot="local-controls">
       <li>
         <a href="#">
           <span>Search</span>

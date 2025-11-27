@@ -29,7 +29,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
       <!-- Meta navigation -->
-      <ul class="list-inline" slot="meta-navigation">
+      <ul slot="meta-navigation">
         <li><a href="">Jobs</a></li>
         <li><a href="">About us</a></li>
       </ul>
@@ -59,7 +59,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <p slot="title">Application title</p>
 
       <!-- Custom content (optional) -->
-      <ul slot="local-controls" class="list-inline">
+      <ul slot="local-controls">
         <li>
           <a href="#">
             <span>Search</span>
