@@ -146,7 +146,17 @@ export class PostPagination {
   @Watch('pageSize')
   @Watch('collectionSize')
   handlePropsChange() {
-    this.validateAndUpdatePages();
+    const totalPages = this.getTotalPages();
+    
+    // Clamp page to valid range
+    if (totalPages === 0 || this.collectionSize === 0 || isNaN(totalPages)) {
+      this.page = 1;
+    } else if (!this.page || this.page < 1 || isNaN(this.page)) {
+      this.page = 1;
+    } else if (this.page > totalPages) {
+      this.page = totalPages;
+    }
+    this.generatePages(totalPages);
   }
 
   componentWillLoad() {
@@ -367,7 +377,8 @@ export class PostPagination {
    * Convert numeric gap to a section type
    */
   private sectionForGap(gap: number): SectionType {
-    if (gap <= 1) return 'none';
+    if (gap <= 0) return 'none';
+    if (gap === 1) return 'none'; // Only one page gap - it's already shown as first/last
     if (gap === 2) return 'page';
     return 'ellipsis';
   }
@@ -407,20 +418,105 @@ export class PostPagination {
     const reservedSlots = 2; // first and last pages
     const ellipsisSlots = 2; // maximum possible ellipses
     const middleSlots = Math.max(0, maxVisible - reservedSlots - ellipsisSlots);
-    
-    // Calculate ideal range centered on current page
-    const halfMiddle = Math.floor(middleSlots / 2);
-    let startPage = Math.max(2, this.page - halfMiddle);
-    let endPage = Math.min(totalPages - 1, startPage + middleSlots - 1);
-    
-    // If we're near the end, shift the window left
-    if (endPage === totalPages - 1) {
-      startPage = Math.max(2, endPage - middleSlots + 1);
+
+    if (middleSlots <= 0) {
+      return { startPage: 2, endPage: 1 };
     }
-    
-    // Ensure we don't exceed bounds
+
+    const halfMiddle = Math.floor(middleSlots / 2);
+
+    let startPage = this.page - halfMiddle;
+    let endPage = startPage + middleSlots - 1;
+
+    if (startPage < 2) {
+      startPage = 2;
+      endPage = startPage + middleSlots - 1;
+    }
+
+    if (endPage > totalPages - 1) {
+      endPage = totalPages - 1;
+      startPage = endPage - middleSlots + 1;
+    }
     startPage = Math.max(2, startPage);
     endPage = Math.min(totalPages - 1, endPage);
+
+    // CRITICAL FIX: Prevent rightGap=2 scenario which causes visual inconsistency
+    // When rightGap is 2, the buildPaginationItems adds (totalPages-1) as a separate item.
+    // To maintain consistent visual count, we need to ensure we're always in a state
+    // where rightGap is either 1 (no extra page) or >=3 (ellipsis).
+    // Solution: When rightGap would be 2, extend endPage to totalPages-1 to make it 1.
+    let rightGap = totalPages - endPage;
+    if (rightGap === 2) {
+      endPage = totalPages - 1;
+      startPage = endPage - middleSlots + 1;
+      startPage = Math.max(2, startPage);
+    }
+
+    // Similarly for leftGap=2 to maintain symmetry
+    let leftGap = startPage - 1;
+    if (leftGap === 2) {
+      startPage = 2;
+      endPage = startPage + middleSlots - 1;
+      endPage = Math.min(totalPages - 1, endPage);
+    }
+
+    // Ensure we maintain middleSlots pages if possible
+    const actualSlots = endPage - startPage + 1;
+
+    if (actualSlots < middleSlots && endPage < totalPages - 1) {
+      endPage = Math.min(totalPages - 1, startPage + middleSlots - 1);
+    }
+    if (actualSlots < middleSlots && startPage > 2) {
+      startPage = Math.max(2, endPage - middleSlots + 1);
+    }
+
+    // Post-process to keep the total number of rendered items stable (when possible).
+    // totalItems = first + last + leftSection(if any) + rightSection(if any) + middle pages
+    // Try to adjust start/end so that totalItems === maxVisible (if space allows).
+    const MAX_VISIBLE = this.maxVisiblePages || maxVisible;
+    const computeTotalItems = (s: number, e: number) => {
+      const { leftSection, rightSection } = this.getSections(s, e, totalPages);
+      const middle = Math.max(0, e - s + 1);
+      const leftCount = leftSection === 'none' ? 0 : 1;
+      const rightCount = rightSection === 'none' ? 0 : 1;
+      return 2 + leftCount + rightCount + middle; // first + last
+    };
+
+    let totalItems = computeTotalItems(startPage, endPage);
+
+    // If we have too many items, trim the middle range preferentially from the side
+    // that is further away from the current page to keep current page centered.
+    while (totalItems > MAX_VISIBLE) {
+      const distLeft = this.page - startPage;
+      const distRight = endPage - this.page;
+      // Prefer trimming the side that has more spare pages
+      if (distRight >= distLeft && endPage > startPage) {
+        endPage = Math.max(startPage - 1, endPage - 1);
+      } else if (startPage < endPage) {
+        startPage = Math.min(endPage + 1, startPage + 1);
+      } else {
+        break;
+      }
+      const newTotal = computeTotalItems(startPage, endPage);
+      if (newTotal === totalItems) break; // no progress
+      totalItems = newTotal;
+    }
+
+    // If we have too few items, try to expand middle into available space.
+    while (totalItems < MAX_VISIBLE) {
+      const canExpandLeft = startPage > 2;
+      const canExpandRight = endPage < totalPages - 1;
+      if (canExpandLeft) {
+        startPage = Math.max(2, startPage - 1);
+      } else if (canExpandRight) {
+        endPage = Math.min(totalPages - 1, endPage + 1);
+      } else {
+        break;
+      }
+      const newTotal = computeTotalItems(startPage, endPage);
+      if (newTotal === totalItems) break; // no progress
+      totalItems = newTotal;
+    }
 
     return { startPage, endPage };
   }
@@ -482,7 +578,7 @@ export class PostPagination {
     if (this.disabled || pageNumber === this.page) {
       return;
     }
-    
+
     this.page = pageNumber;
     this.postChange.emit(pageNumber);
   }
