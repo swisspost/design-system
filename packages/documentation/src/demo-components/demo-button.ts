@@ -19,7 +19,7 @@ export class DemoButton extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
-    const member = name.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    const member = name.replace(/-([a-z])/g, (_, p) => p.toUpperCase());
 
     if (member === 'buttonVersion') {
       this.buttonVersion = newValue as '1' | '2' | '3' | '4';
