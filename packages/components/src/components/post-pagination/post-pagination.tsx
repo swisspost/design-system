@@ -17,6 +17,11 @@ type PaginationItem =
 
 type SectionType = 'none' | 'page' | 'ellipsis';
 
+/**
+ * Valid prop names for validation
+ */
+type ValidatableProp = 'page' | 'pageSize' | 'collectionSize' | 'label' | 'labelPrevious' | 'labelNext' | 'labelPage' | 'labelFirst' | 'labelLast' | 'disabled';
+
 @Component({
   tag: 'post-pagination',
   styleUrl: './post-pagination.scss',
@@ -94,69 +99,59 @@ export class PostPagination {
 
   @Watch('page')
   validatePage() {
-    checkEmptyOrType(this, 'page', 'number');
+    this.validateProp('page', 'number', false);
   }
   
   @Watch('pageSize')
   validatePageSize() {
-    checkRequiredAndType(this, 'pageSize', 'number');
+    this.validateProp('pageSize', 'number', true);
   }
   
   @Watch('collectionSize')
   validateCollectionSize() {
-    checkRequiredAndType(this, 'collectionSize', 'number');
+    this.validateProp('collectionSize', 'number', true);
   }
   
   @Watch('label')
   validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
+    this.validateProp('label', 'string', true);
   }
   
   @Watch('labelPrevious')
   validateLabelPrevious() {
-    checkRequiredAndType(this, 'labelPrevious', 'string');
+    this.validateProp('labelPrevious', 'string', true);
   }
   
   @Watch('labelNext')
   validateLabelNext() {
-    checkRequiredAndType(this, 'labelNext', 'string');
+    this.validateProp('labelNext', 'string', true);
   }
   
   @Watch('labelPage')
   validateLabelPage() {
-    checkRequiredAndType(this, 'labelPage', 'string');
+    this.validateProp('labelPage', 'string', true);
   }
   
   @Watch('labelFirst')
   validateLabelFirst() {
-    checkRequiredAndType(this, 'labelFirst', 'string');
+    this.validateProp('labelFirst', 'string', true);
   }
   
   @Watch('labelLast')
   validateLabelLast() {
-    checkRequiredAndType(this, 'labelLast', 'string');
+    this.validateProp('labelLast', 'string', true);
   }
   
   @Watch('disabled')
   validateDisabled() {
-    checkEmptyOrType(this, 'disabled', 'boolean');
+    this.validateProp('disabled', 'boolean', false);
   }
   
   @Watch('page')
   @Watch('pageSize')
   @Watch('collectionSize')
   handlePropsChange() {
-    const totalPages = this.getTotalPages();
-    
-    // Clamp page to valid range
-    if (totalPages === 0 || this.collectionSize === 0 || isNaN(totalPages)) {
-      this.page = 1;
-    } else if (!this.page || this.page < 1 || isNaN(this.page)) {
-      this.page = 1;
-    } else if (this.page > totalPages) {
-      this.page = totalPages;
-    }
-    this.generatePages(totalPages);
+    this.updatePagesWithValidation();
   }
 
   componentWillLoad() {
@@ -194,19 +189,30 @@ export class PostPagination {
   }
 
   /**
+   * Validate a prop with the appropriate check function
+   */
+  private validateProp(propName: ValidatableProp, type: 'string' | 'number' | 'boolean', required: boolean = true) {
+    if (required) {
+      checkRequiredAndType(this, propName, type);
+    } else {
+      checkEmptyOrType(this, propName, type);
+    }
+  }
+
+  /**
    * Run all prop validations
    */
   private runAllValidations() {
-    this.validatePage();
-    this.validatePageSize();
-    this.validateCollectionSize();
-    this.validateLabel();
-    this.validateLabelPrevious();
-    this.validateLabelNext();
-    this.validateLabelPage();
-    this.validateLabelFirst();
-    this.validateLabelLast();
-    this.validateDisabled();
+    this.validateProp('page', 'number', false);
+    this.validateProp('pageSize', 'number', true);
+    this.validateProp('collectionSize', 'number', true);
+    this.validateProp('label', 'string', true);
+    this.validateProp('labelPrevious', 'string', true);
+    this.validateProp('labelNext', 'string', true);
+    this.validateProp('labelPage', 'string', true);
+    this.validateProp('labelFirst', 'string', true);
+    this.validateProp('labelLast', 'string', true);
+    this.validateProp('disabled', 'boolean', false);
   }
 
   /**
@@ -300,7 +306,7 @@ export class PostPagination {
     const clampedMaxPages = Math.max(MIN_VISIBLE_PAGES, Math.min(maxPages, totalPages));
     
     this.maxVisiblePages = clampedMaxPages;
-    this.validateAndUpdatePages();
+    this.updatePagesWithValidation();
   }
 
   /**
@@ -346,20 +352,27 @@ export class PostPagination {
   }
 
   /**
-   * Validates and clamps the page number to valid range.
+   * Clamps the page number to valid range
    */
-  private validateAndUpdatePages() {
-    const totalPages = this.getTotalPages();
-    
-    // Clamp page to valid range with better edge case handling
+  private clampPageToValidRange(totalPages: number): number {
     if (totalPages === 0 || this.collectionSize === 0 || isNaN(totalPages)) {
-      this.page = 1;
-    } else if (!this.page || this.page < 1 || isNaN(this.page)) {
-      this.page = 1;
-    } else if (this.page > totalPages) {
-      this.page = totalPages;
+      return 1;
     }
-    
+    if (!this.page || this.page < 1 || isNaN(this.page)) {
+      return 1;
+    }
+    if (this.page > totalPages) {
+      return totalPages;
+    }
+    return this.page;
+  }
+
+  /**
+   * Validates and updates pages with clamped page number
+   */
+  private updatePagesWithValidation() {
+    const totalPages = this.getTotalPages();
+    this.page = this.clampPageToValidRange(totalPages);
     this.generatePages(totalPages);
   }
 
@@ -377,10 +390,8 @@ export class PostPagination {
    * Convert numeric gap to a section type
    */
   private sectionForGap(gap: number): SectionType {
-    if (gap <= 0) return 'none';
-    if (gap === 1) return 'none'; // Only one page gap - it's already shown as first/last
-    if (gap === 2) return 'page';
-    return 'ellipsis';
+    if (gap <= 1) return 'none';
+    return gap === 2 ? 'page' : 'ellipsis';
   }
 
   /**
@@ -399,6 +410,17 @@ export class PostPagination {
   }
 
   /**
+   * Compute total items that would be rendered for a given range
+   */
+  private computeTotalItems(startPage: number, endPage: number, totalPages: number): number {
+    const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
+    const middle = Math.max(0, endPage - startPage + 1);
+    const leftCount = leftSection === 'none' ? 0 : 1;
+    const rightCount = rightSection === 'none' ? 0 : 1;
+    return 2 + leftCount + rightCount + middle; // first + last + sections + middle
+  }
+
+  /**
    * Build a full list of pages (1..totalPages)
    */
   private buildAllPages(totalPages: number): PaginationItem[] {
@@ -410,11 +432,102 @@ export class PostPagination {
   }
 
   /**
+   * Adjust start/end pages to avoid gap=2 scenarios
+   */
+  private adjustForGapTwo(startPage: number, endPage: number, totalPages: number, middleSlots: number) {
+    let adjusted = { startPage, endPage };
+    
+    // Fix rightGap=2 to maintain visual consistency
+    const rightGap = totalPages - endPage;
+    if (rightGap === 2) {
+      adjusted.endPage = totalPages - 1;
+      adjusted.startPage = Math.max(2, adjusted.endPage - middleSlots + 1);
+    }
+    
+    // Fix leftGap=2 to maintain symmetry
+    const leftGap = adjusted.startPage - 1;
+    if (leftGap === 2) {
+      adjusted.startPage = 2;
+      adjusted.endPage = Math.min(totalPages - 1, adjusted.startPage + middleSlots - 1);
+    }
+    
+    return adjusted;
+  }
+
+  /**
+   * Ensure we have the desired number of middle slots
+   */
+  private ensureMiddleSlots(startPage: number, endPage: number, totalPages: number, middleSlots: number) {
+    let adjusted = { startPage, endPage };
+    const actualSlots = endPage - startPage + 1;
+
+    if (actualSlots < middleSlots && endPage < totalPages - 1) {
+      adjusted.endPage = Math.min(totalPages - 1, startPage + middleSlots - 1);
+    }
+    if (actualSlots < middleSlots && startPage > 2) {
+      adjusted.startPage = Math.max(2, endPage - middleSlots + 1);
+    }
+
+    return adjusted;
+  }
+
+  /**
+   * Balance total items to match maxVisible by trimming or expanding
+   */
+  private balanceTotalItems(
+    startPage: number, 
+    endPage: number, 
+    totalPages: number, 
+    maxVisible: number, 
+    currentPage: number
+  ) {
+    let adjusted = { startPage, endPage };
+    let totalItems = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
+
+    // Trim if too many items
+    while (totalItems > maxVisible) {
+      const distLeft = currentPage - adjusted.startPage;
+      const distRight = adjusted.endPage - currentPage;
+      
+      if (distRight >= distLeft && adjusted.endPage > adjusted.startPage) {
+        adjusted.endPage = Math.max(adjusted.startPage - 1, adjusted.endPage - 1);
+      } else if (adjusted.startPage < adjusted.endPage) {
+        adjusted.startPage = Math.min(adjusted.endPage + 1, adjusted.startPage + 1);
+      } else {
+        break;
+      }
+      
+      const newTotal = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
+      if (newTotal === totalItems) break;
+      totalItems = newTotal;
+    }
+
+    // Expand if too few items
+    while (totalItems < maxVisible) {
+      const canExpandLeft = adjusted.startPage > 2;
+      const canExpandRight = adjusted.endPage < totalPages - 1;
+      
+      if (canExpandLeft) {
+        adjusted.startPage = Math.max(2, adjusted.startPage - 1);
+      } else if (canExpandRight) {
+        adjusted.endPage = Math.min(totalPages - 1, adjusted.endPage + 1);
+      } else {
+        break;
+      }
+      
+      const newTotal = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
+      if (newTotal === totalItems) break;
+      totalItems = newTotal;
+    }
+
+    return adjusted;
+  }
+
+  /**
    * Calculate optimal page range centered around current page
    */
   private calculatePageRange(currentPage: number, totalPages: number, maxVisible: number) {
     // Reserve slots for first, last, and potential ellipses
-    // maxVisible includes: first + last + up to 2 ellipses + middle pages
     const reservedSlots = 2; // first and last pages
     const ellipsisSlots = 2; // maximum possible ellipses
     const middleSlots = Math.max(0, maxVisible - reservedSlots - ellipsisSlots);
@@ -423,11 +536,12 @@ export class PostPagination {
       return { startPage: 2, endPage: 1 };
     }
 
+    // Center around current page
     const halfMiddle = Math.floor(middleSlots / 2);
-
     let startPage = currentPage - halfMiddle;
     let endPage = startPage + middleSlots - 1;
 
+    // Adjust if out of bounds
     if (startPage < 2) {
       startPage = 2;
       endPage = startPage + middleSlots - 1;
@@ -437,88 +551,24 @@ export class PostPagination {
       endPage = totalPages - 1;
       startPage = endPage - middleSlots + 1;
     }
+    
     startPage = Math.max(2, startPage);
     endPage = Math.min(totalPages - 1, endPage);
 
-    // CRITICAL FIX: Prevent rightGap=2 scenario which causes visual inconsistency
-    // When rightGap is 2, the buildPaginationItems adds (totalPages-1) as a separate item.
-    // To maintain consistent visual count, we need to ensure we're always in a state
-    // where rightGap is either 1 (no extra page) or >=3 (ellipsis).
-    // Solution: When rightGap would be 2, extend endPage to totalPages-1 to make it 1.
-    const rightGap = totalPages - endPage;
-    if (rightGap === 2) {
-      endPage = totalPages - 1;
-      startPage = endPage - middleSlots + 1;
-      startPage = Math.max(2, startPage);
-    }
+    // Fix gap=2 scenarios
+    const gapAdjusted = this.adjustForGapTwo(startPage, endPage, totalPages, middleSlots);
+    startPage = gapAdjusted.startPage;
+    endPage = gapAdjusted.endPage;
 
-    // Similarly for leftGap=2 to maintain symmetry
-    const leftGap = startPage - 1;
-    if (leftGap === 2) {
-      startPage = 2;
-      endPage = startPage + middleSlots - 1;
-      endPage = Math.min(totalPages - 1, endPage);
-    }
+    // Ensure we have the desired middle slots
+    const slotAdjusted = this.ensureMiddleSlots(startPage, endPage, totalPages, middleSlots);
+    startPage = slotAdjusted.startPage;
+    endPage = slotAdjusted.endPage;
 
-    // Ensure we maintain middleSlots pages if possible
-    const actualSlots = endPage - startPage + 1;
+    // Balance total items to match maxVisible
+    const balanced = this.balanceTotalItems(startPage, endPage, totalPages, maxVisible, currentPage);
 
-    if (actualSlots < middleSlots && endPage < totalPages - 1) {
-      endPage = Math.min(totalPages - 1, startPage + middleSlots - 1);
-    }
-    if (actualSlots < middleSlots && startPage > 2) {
-      startPage = Math.max(2, endPage - middleSlots + 1);
-    }
-
-    // Post-process to keep the total number of rendered items stable (when possible).
-    // totalItems = first + last + leftSection(if any) + rightSection(if any) + middle pages
-    // Try to adjust start/end so that totalItems === maxVisible (if space allows).
-    const MAX_VISIBLE = this.maxVisiblePages || maxVisible;
-    const computeTotalItems = (s: number, e: number) => {
-      const { leftSection, rightSection } = this.getSections(s, e, totalPages);
-      const middle = Math.max(0, e - s + 1);
-      const leftCount = leftSection === 'none' ? 0 : 1;
-      const rightCount = rightSection === 'none' ? 0 : 1;
-      return 2 + leftCount + rightCount + middle; // first + last
-    };
-
-    let totalItems = computeTotalItems(startPage, endPage);
-
-    // If we have too many items, trim the middle range preferentially from the side
-    // that is further away from the current page to keep current page centered.
-    while (totalItems > MAX_VISIBLE) {
-        const distLeft = currentPage - startPage;
-        const distRight = endPage - currentPage;
-      // Prefer trimming the side that has more spare pages
-      if (distRight >= distLeft && endPage > startPage) {
-        endPage = Math.max(startPage - 1, endPage - 1);
-      } else if (startPage < endPage) {
-        startPage = Math.min(endPage + 1, startPage + 1);
-      } else {
-        break;
-      }
-      const newTotal = computeTotalItems(startPage, endPage);
-      if (newTotal === totalItems) break; // no progress
-      totalItems = newTotal;
-    }
-
-    // If we have too few items, try to expand middle into available space.
-    while (totalItems < MAX_VISIBLE) {
-      const canExpandLeft = startPage > 2;
-      const canExpandRight = endPage < totalPages - 1;
-      if (canExpandLeft) {
-        startPage = Math.max(2, startPage - 1);
-      } else if (canExpandRight) {
-        endPage = Math.min(totalPages - 1, endPage + 1);
-      } else {
-        break;
-      }
-      const newTotal = computeTotalItems(startPage, endPage);
-      if (newTotal === totalItems) break; // no progress
-      totalItems = newTotal;
-    }
-
-    return { startPage, endPage };
+    return balanced;
   }
 
   /**
@@ -572,6 +622,14 @@ export class PostPagination {
   }
 
   /**
+   * Emit page change event and update page
+   */
+  private emitPageChange(newPage: number) {
+    this.page = newPage;
+    this.postChange.emit(newPage);
+  }
+
+  /**
    * Handles page change when a page button is clicked.
    */
   private handlePageClick(pageNumber: number) {
@@ -579,8 +637,7 @@ export class PostPagination {
       return;
     }
 
-    this.page = pageNumber;
-    this.postChange.emit(pageNumber);
+    this.emitPageChange(pageNumber);
   }
 
   /**
@@ -591,9 +648,7 @@ export class PostPagination {
       return;
     }
     
-    const newPage = this.page - 1;
-    this.page = newPage;
-    this.postChange.emit(newPage);
+    this.emitPageChange(this.page - 1);
   }
 
   /**
@@ -605,9 +660,7 @@ export class PostPagination {
       return;
     }
     
-    const newPage = this.page + 1;
-    this.page = newPage;
-    this.postChange.emit(newPage);
+    this.emitPageChange(this.page + 1);
   }
 
   /**
