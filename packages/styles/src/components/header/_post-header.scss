@@ -4,6 +4,7 @@
 @use '../../tokens/components';
 
 @use 'custom-properties';
+
 @use 'mixins' as *;
 
 body:has(post-header) {

@@ -213,7 +213,7 @@ $toolbar-icons: (
 
       button {
         &:hover {
-          background-color: rgba(0, 115, 188, 0.08);
+          background-color: post.$white;
         }
 
         &:nth-of-type(2) {
