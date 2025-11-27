@@ -81,7 +81,6 @@ $pagination-transition: all 0.2s ease;
   border: 1px solid $pagination-color-border;
   border-radius: $pagination-border-radius;
   cursor: pointer;
-  transition: $pagination-transition;
   appearance: none;
   outline: none;
 
@@ -95,7 +94,6 @@ $pagination-transition: all 0.2s ease;
     color: $pagination-color-hover-fg;
     background-color: $pagination-color-hover-bg;
     border: 2px solid $pagination-color-hover-stroke;
-    transform: scale(0.95);
   }
 
   &:focus-visible {
@@ -168,7 +166,6 @@ $pagination-transition: all 0.2s ease;
   &:active:not(:disabled):not(.pagination-link-disabled) {
     background-color: $pagination-color-hover-bg;
     border: 2px solid $pagination-color-hover-stroke;
-    transform: scale(0.95);
   }
 }
 
