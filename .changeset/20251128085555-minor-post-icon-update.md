@@ -1,0 +1,6 @@
+---
+'@swisspost/design-system-icons': minor
+---
+
+Added icons:
+`2745`, `2746`, `2747` and `2748`

@@ -149,4 +149,31 @@ describe('header', () => {
       cy.get('@packagesTrigger').should('have.class', 'active');
     });
   });
+
+  describe('local navigation', () => {
+    const localNavNextToTitle = 'slot[name="title"] + slot[name="local-nav"]';
+    const localNavInNavigation = '.navigation slot[name="local-nav"]';
+
+    beforeEach(() => {
+      cy.getComponent('header', HEADER_ID, 'microsite');
+    });
+
+    it('should show the local navigation next to the title', () => {
+      cy.get('@header').shadow().find(localNavNextToTitle).should('exist');
+      cy.get('@header').shadow().find(localNavInNavigation).should('not.exist');
+    });
+
+    it('should show the local navigation next to the title', () => {
+      cy.get('@header')
+        .find('[slot="title"]')
+        .then($title => {
+          $title[0].remove();
+        });
+
+      cy.wait(300);
+
+      cy.get('@header').shadow().find(localNavNextToTitle).should('not.exist');
+      cy.get('@header').shadow().find(localNavInNavigation).should('exist');
+    });
+  });
 });
