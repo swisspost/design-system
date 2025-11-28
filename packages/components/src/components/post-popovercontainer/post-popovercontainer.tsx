@@ -125,11 +125,6 @@ export class PostPopovercontainer {
    */
   @Prop() readonly arrow?: boolean = false;
 
-  /**
-   * Whether or not the popovercontainer should close when user clicks outside of it
-   */
-  @Prop() manualClose: boolean = false;
-
   @State() dynamicPlacement?: string;
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
@@ -500,7 +495,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
+      <Host data-version={version} popover="auto">
         <div class="popover-content">
           {this.arrow && (
             <span
