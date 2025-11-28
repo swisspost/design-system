@@ -52,7 +52,7 @@ const meta: MetaComponent = {
         <p slot="title">Application title</p>
 
         <!-- Local controls (optional) -->
-        <ul slot="local-controls">
+        <ul slot="local-nav">
           <li>
             <a href="#">
               <span>Search</span>
