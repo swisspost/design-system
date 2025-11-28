@@ -19,7 +19,6 @@ export class PostMegadropdown {
   private defaultSlotObserver: MutationObserver;
 
   private currentAnimation: Animation | null = null;
-
   private animatedContainer: HTMLElement;
 
   private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);
@@ -103,7 +102,7 @@ export class PostMegadropdown {
       PostMegadropdown.activeDropdown.forceClose();
     }
 
-    // First set it as visible then animate
+    // First set the megadropdown to be visible, then animate
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
@@ -117,7 +116,7 @@ export class PostMegadropdown {
 
     try {
       await this.currentAnimation.finished;
-      // After the megadropdown container becomes visible
+      // After the megadropdown becomes visible
       this.currentAnimation = null;
 
       if (
@@ -128,7 +127,7 @@ export class PostMegadropdown {
       }
       this.addListeners();
     } catch {
-      // animation was cancelled
+      // Open animation was cancelled
       this.isVisible = false;
       this.currentAnimation = null;
       PostMegadropdown.activeDropdown = null;
@@ -154,6 +153,7 @@ export class PostMegadropdown {
 
     try {
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
+
       await this.currentAnimation.finished;
 
       // After the megadropdown container is hidden
@@ -162,8 +162,10 @@ export class PostMegadropdown {
       PostMegadropdown.activeDropdown = null;
       this.removeListeners();
     } catch {
-      // animation was cancelled
+      // Closing animation was cancelled
+      this.isVisible = true;
       this.currentAnimation = null;
+      PostMegadropdown.activeDropdown = null;
       this.postToggleMegadropdown.emit({ isVisible: true, focusParent: focusParent });
     }
   }
