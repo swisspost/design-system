@@ -2,6 +2,10 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/list';
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
+
+tokens.$default-map: elements.$post-heading;
 
 :host {
   display: block;
@@ -81,6 +85,20 @@ footer {
   }
 }
 
+:is(h3, .h3) {
+  margin: 0;
+  font-size: tokens.get('h6-font-size');
+  line-height: tokens.get('heading-line-height');
+  font-weight: tokens.get('heading-font-weight');
+  text-wrap: balance;
+}
+
+::slotted(ul) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .visually-hidden {
   @include utilities.visuallyhidden();
 }
@@ -120,7 +138,7 @@ footer {
 .footer-app,
 .footer-businesssectors,
 .footer-meta {
-  ::slotted(post-list) {
+  ::slotted(div) {
     display: flex !important;
     flex-direction: var(--post-footer-post-list-flex-direction) !important;
     gap: var(--post-footer-post-list-gap) !important;
@@ -155,4 +173,3 @@ footer {
 .d-none {
   display: none;
 }
-
