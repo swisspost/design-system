@@ -92,7 +92,7 @@ export class PostPagination {
   private navRef?: HTMLElement;
   private hiddenItemsRef?: HTMLElement;
   private lastWindowWidth: number;
-  private connected: boolean = false;
+  private loaded: boolean = false;
   
   private debouncedResize: (() => void) | null = null;
   private measurementTimeoutId: number | null = null;
@@ -163,7 +163,7 @@ export class PostPagination {
   }
 
   componentDidLoad() {
-    this.connected = true;
+    this.loaded = true;
     this.runAllValidations();
 
     this.debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
@@ -175,7 +175,7 @@ export class PostPagination {
   }
 
   disconnectedCallback() {
-    this.connected = false;
+    this.loaded = false;
     
     if (this.debouncedResize) {
       window.removeEventListener('resize', this.debouncedResize);
@@ -218,7 +218,7 @@ export class PostPagination {
    * Schedule measurement attempt with timeout
    */
   private scheduleMeasurement() {
-    if (!this.connected) {
+    if (!this.loaded) {
       return;
     }
     
@@ -231,7 +231,7 @@ export class PostPagination {
    * Attempt to measure, reschedule if not ready
    */
   private attemptMeasurement() {
-    if (!this.connected) {
+    if (!this.loaded) {
       return;
     }
     
@@ -248,7 +248,7 @@ export class PostPagination {
    * Internal resize handler
    */
   private handleResizeInternal() {
-    if (!this.connected) {
+    if (!this.loaded) {
       return;
     }
     
@@ -275,7 +275,7 @@ export class PostPagination {
    * Measures actual rendered elements to determine how many pages can fit
    */
   private measureAndCalculateVisiblePages() {
-    if (!this.navRef || !this.hiddenItemsRef || !this.connected) {
+    if (!this.navRef || !this.hiddenItemsRef || !this.loaded) {
       return;
     }
 
