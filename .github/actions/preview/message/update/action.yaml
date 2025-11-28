@@ -46,7 +46,9 @@ runs:
             });
 
             if (issue?.data?.title.includes(iconsUpdateTitle)) {
-              updates.push(`- ${PREVIEW_URL}?path=/docs/health-icons--docs\n`)
+              const iconHealthURL = URL.parse(PREVIEW_URL)
+              iconHealthURL.searchParams.set('path', '/docs/health-icons--docs')
+              updates.push(`- ${iconHealthURL.toString()}\n`)
             }
 
             await github.rest.issues.updateComment({
