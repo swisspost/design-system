@@ -9,7 +9,6 @@ Refactored `<post-tabs>` component:
 - Renamed `panel` property to `name` in `post-tab-item` component
 - Renamed `name` property to `for` in `post-tab-panel` component  
 - Renamed `activePanel` property to `activeTab` in `post-tabs` component
-- Changed slot structure: `post-tab-item` elements now use the default slot and `post-tab-panel` elements use the `panels` slot
 
 BEFORE:
 
@@ -39,13 +38,13 @@ AFTER:
   <post-tab-item name="second">Second tab</post-tab-item>
   <post-tab-item name="third">Third tab</post-tab-item>
 
-  <post-tab-panel for="first" slot="panels">
+  <post-tab-panel for="first">
     This is the content of the first tab.
   </post-tab-panel>
-  <post-tab-panel for="second" slot="panels">
+  <post-tab-panel for="second">
     This is the content of the second tab.
   </post-tab-panel>
-  <post-tab-panel for="third" slot="panels">
+  <post-tab-panel for="third">
     This is the content of the third tab.
   </post-tab-panel>
 </post-tabs>
