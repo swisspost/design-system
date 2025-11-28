@@ -429,11 +429,6 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Whether or not the popovercontainer should close when user clicks outside of it
-          * @default false
-         */
-        "manualClose": boolean;
-        /**
           * Handles the popover opening process and emits related events.
          */
         "open": () => Promise<void>;
@@ -1360,11 +1355,6 @@ declare namespace LocalJSX {
           * @default 8
          */
         "edgeGap"?: number;
-        /**
-          * Whether or not the popovercontainer should close when user clicks outside of it
-          * @default false
-         */
-        "manualClose"?: boolean;
         /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
