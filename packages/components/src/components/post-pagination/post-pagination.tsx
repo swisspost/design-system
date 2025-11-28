@@ -319,9 +319,8 @@ export class PostPagination {
       this.hiddenItemsRef.querySelectorAll('.hidden-control-button')
     );
     
-    const totalWidth = controlButtons.reduce((sum, el) => {
-      return sum + el.getBoundingClientRect().width;
-    }, 0);
+    const totalWidth = controlButtons
+      .reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
     
     return totalWidth;
   }
