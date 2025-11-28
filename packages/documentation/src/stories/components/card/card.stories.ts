@@ -20,7 +20,6 @@ const meta: MetaComponent = {
     title: "This is my card's title",
     body: "This is my card's content.",
     action: 'buttons',
-    interactive: false,
     label: 'Button Text',
   },
   argTypes: {
@@ -41,32 +40,13 @@ const meta: MetaComponent = {
       control: { type: 'text' },
       table: { category: 'Card Content' },
     },
-    interactive: {
-      name: 'Interactive',
-      description: 'Wrap in <post-linkarea> and use Interactive Action.',
-      control: { type: 'boolean' },
-      table: { category: 'General' },
-    },
     action: {
       name: 'Action',
-      description: 'Non-interactive card action.',
       control: {
         type: 'inline-radio',
         labels: { button: 'Button', link: 'Link', none: 'None' },
       },
       options: ['button', 'buttons', 'link', 'links', 'none'],
-      if: { arg: 'interactive', eq: false },
-      table: { category: 'Card Content' },
-    },
-    interactiveAction: {
-      name: 'Interactive Action',
-      description: 'Interactive card action.',
-      control: {
-        type: 'inline-radio',
-        labels: { button: 'Button', link: 'Link' },
-      },
-      options: ['button', 'link'],
-      if: { arg: 'interactive', eq: true },
       table: { category: 'Card Content' },
     },
   },
@@ -94,7 +74,7 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 // RENDERER
 function getCardLink() {
   return html`
-    <div class="">
+    <div>
       <a class="btn btn-tertiary" href="#">
         Button
         <post-icon aria-hidden="true" name="3020"></post-icon>
@@ -130,16 +110,25 @@ function getCardButtons({ label }: Args) {
 
 function getCardLinks() {
   return html`
-    <div class="card-links d-flex gap-3">
-      <a class="btn btn-tertiary px-0" href="#">
-        Link 1
-        <post-icon aria-hidden="true" name="3020"></post-icon>
-      </a>
-      <a class="btn btn-tertiary px-0" href="#">
-        Link 2
-        <post-icon aria-hidden="true" name="3020"></post-icon>
-      </a>
-    </div>
+    <ul class="list-interactive w-100">
+      <li>
+        <a href="#" download="" class="list-interactive-link">
+          Label<post-icon name="arrowright"></post-icon>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" download="" class="list-interactive-link">
+          Label<post-icon name="arrowright"></post-icon>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" download="" class="list-interactive-link">
+          Label<post-icon name="arrowright"></post-icon>
+        </a>
+      </li>
+    </ul>
   `;
 }
 
