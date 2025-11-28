@@ -8,7 +8,7 @@ const code = `
   {{logoLink}}
 
   <!-- Meta navigation -->
-  <ul class="list-inline" slot="meta-navigation">
+  <ul slot="meta-navigation">
     <li><a href="#">Jobs</a></li>
     <li><a href="#">Über uns</a></li>
   </ul>
@@ -34,10 +34,10 @@ const code = `
   </post-language-switch>
 
   <!-- Application title (optional) -->
-  <h1 slot="title">Application title</h1>
+  <p slot="title">Application title</p>
 
   <!-- Custom content (optional) -->
-  <ul slot="local-controls" class="list-inline">
+  <ul slot="local-controls">
     <li>
       <a href="#">
         <span>Search</span>
@@ -55,7 +55,7 @@ const code = `
   <!-- Main navigation -->
   <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
     <post-list title-hidden="">
-      <h2>Main Navigation</h2>
+      <p>Main Navigation</p>
       <!-- Link only level 1 -->
       <post-list-item slot="post-list-item"><a href="#">Briefe</a></post-list-item>
       <post-list-item slot="post-list-item"><a href="#">Pakete</a></post-list-item>
@@ -69,10 +69,9 @@ const code = `
             Back
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <h2 slot="megadropdown-title">Briefe title</h2>
           <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
           <post-list>
-            <h3>Briefe senden</h3>
+            <p>Briefe senden</p>
             <post-list-item slot="post-list-item"><a href="#">Briefe Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
               ><a href="#">Kleinwaren Ausland</a></post-list-item
@@ -81,7 +80,7 @@ const code = `
             <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
           <post-list>
-            <h3><a href="#">Schritt für Schritt</a></h3>
+            <p><a href="#">Schritt für Schritt</a></p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
               ><a href="#">Kleinwaren Ausland</a></post-list-item
@@ -99,10 +98,9 @@ const code = `
             Back
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <h2 slot="megadropdown-title">Pakete title</h2>
           <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
           <post-list>
-            <h3>Pakete senden</h3>
+            <p>Pakete senden</p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
               ><a href="#">Kleinwaren Ausland</a></post-list-item
@@ -111,7 +109,7 @@ const code = `
             <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
           <post-list>
-            <h3><a href="#">Schritt für Schritt</a></h3>
+            <p><a href="#">Schritt für Schritt</a></p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
               ><a href="#">Kleinwaren Ausland</a></post-list-item

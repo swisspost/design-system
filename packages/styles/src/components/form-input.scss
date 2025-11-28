@@ -150,9 +150,9 @@ input.form-control {
     &.is-invalid {
       &::file-selector-button {
         padding-inline-end: calc(
-          #{tokens.get('input-padding-inline-end')} + #{tokens.get(
-              'input-validation-icon-position-inline-end'
-            )} + #{tokens.get('input-sizing-icon')}
+          #{tokens.get('input-padding-inline-end')} +
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-sizing-icon')}
         );
       }
     }
@@ -188,9 +188,9 @@ input.form-control {
   &.is-invalid {
     &:not(:disabled) {
       padding-inline-end: calc(
-        #{tokens.get('input-padding-inline-end')} + #{tokens.get(
-            'input-validation-icon-position-inline-end'
-          )} + #{tokens.get('input-sizing-icon')}
+        #{tokens.get('input-padding-inline-end')} +
+          #{tokens.get('input-validation-icon-position-inline-end')} +
+          #{tokens.get('input-sizing-icon')}
       );
     }
   }
