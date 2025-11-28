@@ -22,7 +22,7 @@ const meta: MetaComponent = {
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
         <!-- Meta navigation -->
-        <ul class="list-inline" slot="meta-navigation">
+        <ul slot="meta-navigation">
           <li><a href="">Jobs</a></li>
           <li><a href="">Über uns</a></li>
         </ul>
@@ -52,7 +52,7 @@ const meta: MetaComponent = {
         <p slot="title">Application title</p>
 
         <!-- Local controls (optional) -->
-        <ul slot="local-controls" class="list-inline">
+        <ul slot="local-controls">
           <li>
             <a href="#">
               <span>Search</span>

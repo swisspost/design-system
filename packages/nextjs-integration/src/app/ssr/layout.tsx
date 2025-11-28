@@ -28,43 +28,43 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           Homepage
         </PostLogo>
 
-        {/* Target Group */}
-        <ul slot="target-group" className="target-group">
-          <li>
-            <a href="#" aria-current="location">
-              Private customers
-            </a>
-          </li>
-          <li>
-            <a href="#">Business customers</a>
-          </li>
-        </ul>
+      {/* Target Group */}
+      <ul slot="target-group">
+        <li>
+          <a href="#" aria-current="location">
+            Private customers
+          </a>
+        </li>
+        <li>
+          <a href="#">Business customers</a>
+        </li>
+      </ul>
 
-        {/* Global controls (Search) */}
-        <ul className="list-inline" slot="global-controls">
-          <li>
-            <a href="">
-              <span>Search</span>
-              <PostIcon aria-hidden="true" name="search" />
-            </a>
-          </li>
-        </ul>
+      {/* Global controls (Search) */}
+      <ul slot="global-controls">
+        <li>
+          <a href="">
+            <span>Search</span>
+            <PostIcon aria-hidden="true" name="search" />
+          </a>
+        </li>
+      </ul>
 
-        {/* Meta navigation */}
-        <ul className="list-inline" slot="meta-navigation">
-          <li>
-            <a href="">
-              Jobs
-              <PostIcon name="jobs" aria-hidden="true" />
-            </a>
-          </li>
-          <li>
-            <a href="">
-              Create Account
-              <PostIcon name="adduser" aria-hidden="true" />
-            </a>
-          </li>
-        </ul>
+      {/* Meta navigation */}
+      <ul slot="meta-navigation">
+        <li>
+          <a href="">
+            Jobs
+            <PostIcon name="jobs" aria-hidden="true" />
+          </a>
+        </li>
+        <li>
+          <a href="">
+            Create Account
+            <PostIcon name="adduser" aria-hidden="true" />
+          </a>
+        </li>
+      </ul>
 
         {/* Language switch */}
         <PostLanguageSwitch
@@ -100,18 +100,18 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled" />
         </PostTogglebutton>
 
-        {/* Main navigation */}
-        <PostMainnavigation slot="post-mainnavigation">
-          <PostList title-hidden="">
-            <p>Main Navigation</p>
+      {/* Main navigation */}
+      <PostMainnavigation slot="post-mainnavigation">
+        <PostList title-hidden="">
+          <p>Main Navigation</p>
 
-            {/* Link only level 1 */}
-            <PostListItem slot="post-list-item">
-              <a href="/letters">Letters</a>
-            </PostListItem>
-            <PostListItem slot="post-list-item">
-              <a href="/packages">Packages</a>
-            </PostListItem>
+          {/* Link only level 1 */}
+          <PostListItem slot="post-list-item">
+            <a href="/letters">Letters</a>
+          </PostListItem>
+          <PostListItem slot="post-list-item">
+            <a href="/packages">Packages</a>
+          </PostListItem>
 
             {/* Level 1 with megadropdown - Letters */}
             <PostListItem slot="post-list-item">
