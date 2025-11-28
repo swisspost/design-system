@@ -110,25 +110,16 @@ function getCardButtons({ label }: Args) {
 
 function getCardLinks() {
   return html`
-    <ul class="list-interactive w-100">
-      <li>
-        <a href="#" download="" class="list-interactive-link">
-          Label<post-icon name="arrowright"></post-icon>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" download="" class="list-interactive-link">
-          Label<post-icon name="arrowright"></post-icon>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" download="" class="list-interactive-link">
-          Label<post-icon name="arrowright"></post-icon>
-        </a>
-      </li>
-    </ul>
+    <div class="card-links">
+      <a class="btn-tertiary" href="#">
+        Link 1
+        <post-icon aria-hidden="true" name="3020"></post-icon>
+      </a>
+      <a class="btn-tertiary" href="#">
+        Link 2
+        <post-icon aria-hidden="true" name="3020"></post-icon>
+      </a>
+    </div>
   `;
 }
 

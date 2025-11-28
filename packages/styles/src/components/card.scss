@@ -72,6 +72,24 @@ tokens.$default-map: components.$post-cards;
   }
 }
 
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-inline: 0.5rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    padding-inline: tokens.get('utility-gap-8', utilities.$post-spacing);
+    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
+    text-decoration: none;
+    -ms-flex-align: center;
+    padding: 0;
+  }
+}
+
 // Card product
 .product-card {
   text-decoration: none;
