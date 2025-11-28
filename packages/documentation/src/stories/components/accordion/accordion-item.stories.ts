@@ -22,21 +22,21 @@ const meta: Meta = {
         disable: true,
       },
     },
-    'css-shadow-parts-button': {
-      name: 'button',
+    'css-shadow-parts-accordion-button': {
+      name: 'post-accordion-button',
       table: {
         type: {
           summary: 'css selector',
-          detail: '::part(button) { ... }',
+          detail: '::part(post-accordion-button) { ... }',
         },
       },
     },
-    'css-shadow-parts-body': {
-      name: 'body',
+    'css-shadow-parts-accordion-body': {
+      name: 'post-accordion-body',
       table: {
         type: {
           summary: 'css selector',
-          detail: '::part(body) { ... }',
+          detail: '::part(post-accordion-body) { ... }',
         },
       },
     },
