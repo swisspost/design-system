@@ -24,10 +24,11 @@
  */
 
 const MOCKED_USERAGENT = 'MockNavigator';
-const HYDRATEAPP_MOCKED_ORIGIN = 'http://mockdoc.stenciljs.com';
+const MOCKED_ORIGIN = 'http://mockdoc.stenciljs.com';
 
-const isMockedUserAgent = window?.navigator.userAgent === MOCKED_USERAGENT;
-const isMockedOrigin = window?.location.origin === HYDRATEAPP_MOCKED_ORIGIN;
+const hasWindow = typeof window !== 'undefined';
+const isMockedUserAgent = hasWindow && window.navigator.userAgent === MOCKED_USERAGENT;
+const isMockedOrigin = hasWindow && window.location.origin === MOCKED_ORIGIN;
 const isNodeEnv = typeof process !== 'undefined';
 
 /**
@@ -48,5 +49,5 @@ const isTestAppServerTestEnv = isNodeEnv && global.IS_HYDRATEAPP_SERVERTEST;
  */
 const isHydrateApp = isHydrateAppEnv || isTestAppServerTestEnv;
 
-export const IS_BROWSER: boolean = typeof window !== 'undefined' && !isHydrateApp;
+export const IS_BROWSER: boolean = hasWindow && !isHydrateApp;
 export const IS_SERVER: boolean = !IS_BROWSER;
