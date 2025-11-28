@@ -402,7 +402,7 @@ export namespace Components {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
@@ -416,10 +416,6 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Handles the popover closing process and emits related events.
-         */
-        "close": () => Promise<void>;
-        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -428,10 +424,6 @@ export namespace Components {
           * Programmatically hide the popovercontainer
          */
         "hide": () => Promise<void>;
-        /**
-          * Handles the popover opening process and emits related events.
-         */
-        "open": () => Promise<void>;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -1337,7 +1329,7 @@ declare namespace LocalJSX {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
