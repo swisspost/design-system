@@ -75,8 +75,7 @@ export class PostCollapsible {
   }
 
   /**
-   * Update all `<post-collapsible-trigger>` aria attributes, referring to this collapsible
-   * If is called accidentally on the server, it will do nothing.
+   * Update all post-collapsible-trigger elements referring to the collapsible
    */
   private updateTriggers() {
     const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
