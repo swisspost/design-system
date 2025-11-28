@@ -18,23 +18,24 @@ export class PostTabPanel {
   @State() panelId: string;
 
   /**
-   * The name of the panel, used to associate it with a tab header.
+   * The name of the tab that this panel is associated with.
    */
-  @Prop({ reflect: true }) readonly name!: string;
+  @Prop({ reflect: true }) readonly for!: string;
 
-  @Watch('name')
-  validateName() {
-    checkRequiredAndType(this, 'name', 'string');
+  @Watch('for')
+  validateFor() {
+    checkRequiredAndType(this, 'for', 'string');
   }
+  
   componentWillLoad() {
-    this.validateName();
+    this.validateFor();
     // get the id set on the host element or use a random id by default
     this.panelId = `panel-${this.host.id || nanoid(6)}`;
   }
 
   render() {
     return (
-      <Host data-version={version} id={this.panelId} role="tabpanel">
+      <Host data-version={version} id={this.panelId} role="tabpanel" slot="panels">
         <slot />
       </Host>
     );
