@@ -3,7 +3,7 @@
   <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
   <!-- Target Group -->
-  <ul slot="target-group" class="target-group">
+  <ul slot="target-group">
     <li>
       <a href="#" class="active">Private customers</a>
     </li>
@@ -13,7 +13,7 @@
   </ul>
 
   <!-- Global controls (Search) -->
-  <ul class="list-inline" slot="global-controls">
+  <ul slot="global-controls">
     <li>
       <a href="">
         <span>Search</span>
@@ -23,7 +23,7 @@
   </ul>
 
   <!-- Meta navigation -->
-  <ul class="list-inline" slot="meta-navigation">
+  <ul slot="meta-navigation">
     <li>
       <a href="">
         Jobs
@@ -69,7 +69,7 @@
   <!-- Main navigation -->
   <post-mainnavigation caption="Main navigation">
     <post-list title-hidden="">
-      <h2>Main Navigation</h2>
+      <p>Main Navigation</p>
       <!-- Link only level 1 -->
       <post-list-item slot="post-list-item">
         <a href="/letters">Letters</a>
@@ -80,32 +80,36 @@
 
       <!-- Level 1 with megadropdown -->
       @for (dropdown of megadropdowns; track dropdown.id) {
-        <post-list-item slot="post-list-item">
-          <post-megadropdown-trigger [for]="dropdown.id">{{ dropdown.trigger }}</post-megadropdown-trigger>
-          <post-megadropdown [id]="dropdown.id">
-            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-              <post-icon name="arrowleft"></post-icon>
-              Back
-            </button>
-            <post-closebutton slot="close-button">Close</post-closebutton>
-            <h2 slot="megadropdown-title">{{ dropdown.title }}</h2>
-            <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink">Overview {{ dropdown.trigger }}</a>
-            @for (section of dropdown.sections; track section.title) {
-              <post-list>
-                @if (section.titleLink) {
-                  <h3><a [href]="section.titleLink">{{ section.title }}</a></h3>
-                } @else {
-                  <h3>{{ section.title }}</h3>
-                }
-                @for (link of section.links; track link.text) {
-                  <post-list-item slot="post-list-item">
-                    <a [href]="link.url">{{ link.text }}</a>
-                  </post-list-item>
-                }
-              </post-list>
+      <post-list-item slot="post-list-item">
+        <post-megadropdown-trigger [for]="dropdown.id">{{
+          dropdown.trigger
+        }}</post-megadropdown-trigger>
+        <post-megadropdown [id]="dropdown.id">
+          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+            <post-icon name="arrowleft"></post-icon>
+            Back
+          </button>
+          <post-closebutton slot="close-button">Close</post-closebutton>
+          <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink"
+            >Overview {{ dropdown.trigger }}</a
+          >
+          @for (section of dropdown.sections; track section.title) {
+          <post-list>
+            @if (section.titleLink) {
+            <p>
+              <a [href]="section.titleLink">{{ section.title }}</a>
+            </p>
+            } @else {
+            <p>{{ section.title }}</p>
+            } @for (link of section.links; track link.text) {
+            <post-list-item slot="post-list-item">
+              <a [href]="link.url">{{ link.text }}</a>
+            </post-list-item>
             }
-          </post-megadropdown>
-        </post-list-item>
+          </post-list>
+          }
+        </post-megadropdown>
+      </post-list-item>
       }
     </post-list>
   </post-mainnavigation>
@@ -124,10 +128,10 @@
 
 <div class="container">
   <post-breadcrumbs
-    home-url="/"
-    home-text="Home"
+    homeUrl="/"
+    homeText="Home"
     label="Breadcrumbs"
-    menu-label="More breadcrumb items"
+    menuLabel="More breadcrumb items"
   >
     <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
     <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -144,89 +148,92 @@
 
 <post-footer label="Footer label">
   @for (grid of footerGrids; track grid.slot) {
-    <span [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
-    <post-list [attr.slot]="grid.slot" [attr.id]="grid.slot">
-      <h3>{{ grid.title }}</h3>
-      @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
-        <post-list-item>
-          <a [href]="link.url">{{ link.text }}</a>
-        </post-list-item>
-      }
-    </post-list>
+  <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
+  <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">
+    @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
+    <li>
+      <a [href]="link.url">{{ link.text }}</a>
+    </li>
+    }
+  </ul>
   }
 
-  <post-list slot="socialmedia">
-    <h3>Follow us</h3>
-    @for (social of socialMediaLinks; track social.name) {
-      <post-list-item>
+  <div slot="socialmedia">
+    <h3 id="socialmedia">Follow us</h3>
+    <ul aria-labelledby="socialmedia">
+      @for (social of socialMediaLinks; track social.name) {
+      <li>
         <a [href]="social.url" class="btn btn-primary btn-icon">
           <post-icon aria-hidden="true" [name]="social.icon"></post-icon>
           <span class="visually-hidden">{{ social.name }}</span>
         </a>
-      </post-list-item>
-    }
-  </post-list>
+      </li>
+      }
+    </ul>
+  </div>
 
-  <post-list slot="app">
-    <h3>Download app</h3>
-    <post-list-item>
-      <a
-        class="app-store-badge"
-        href="https://play.google.com/store/apps/details?id=com.nth.swisspost&amp;hl=de_CH&amp;pli=1"
-      >
-        <img
-          width="135"
-          height="40"
-          src="https://next.design-system.post.ch/assets/images/google-play-badge.svg"
-          alt="Google Play Store badge"
-        />
-        <span class="visually-hidden">Download the App on Google Play</span>
-      </a>
-    </post-list-item>
-    <post-list-item>
-      <a
-        class="app-store-badge"
-        href="https://apps.apple.com/ch/app/die-post/id378676700"
-      >
-        <img
-          width="120"
-          height="40"
-          src="https://next.design-system.post.ch/assets/images/apple-store-badge.svg"
-          alt="Apple App Store badge"
-        />
-        <span class="visually-hidden">Download the App on the Apple Store</span>
-      </a>
-    </post-list-item>
-  </post-list>
+  <div slot="app">
+    <h3 id="app">Download app</h3>
+    <ul aria-labelledby="app">
+      <li>
+        <a
+          class="app-store-badge"
+          href="https://play.google.com/store/apps/details?id=com.nth.swisspost&amp;hl=de_CH&amp;pli=1"
+        >
+          <img
+            width="135"
+            height="40"
+            src="https://next.design-system.post.ch/assets/images/google-play-badge.svg"
+            alt="Google Play Store badge"
+          />
+          <span class="visually-hidden">Download the App on Google Play</span>
+        </a>
+      </li>
+      <li>
+        <a class="app-store-badge" href="https://apps.apple.com/ch/app/die-post/id378676700">
+          <img
+            width="120"
+            height="40"
+            src="https://next.design-system.post.ch/assets/images/apple-store-badge.svg"
+            alt="Apple App Store badge"
+          />
+          <span class="visually-hidden">Download the App on the Apple Store</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
-  <post-list slot="businesssectors">
-    <h3>Die schweizerische Post AG</h3>
-    <post-list-item>
-      <a href="https://www.postauto.ch">PostAuto</a>
-    </post-list-item>
-    <post-list-item>
-      <a href="https://www.postfinance.ch">PostFinance</a>
-    </post-list-item>
-  </post-list>
+  <div slot="businesssectors">
+    <h3 id="businesssectors">Die schweizerische Post AG</h3>
+    <ul aria-labelledby="businesssectors">
+      <li>
+        <a href="https://www.postauto.ch">PostAuto</a>
+      </li>
+      <li>
+        <a href="https://www.postfinance.ch">PostFinance</a>
+      </li>
+    </ul>
+  </div>
 
-  <post-list slot="meta" title-hidden="">
-    <h3>Meta</h3>
-    @for (meta of metaLinks; track meta.text) {
-      <post-list-item>
+  <div slot="meta">
+    <ul aria-label="Meta">
+      @for (meta of metaLinks; track meta.text) {
+      <li>
         <a [href]="meta.url">{{ meta.text }}</a>
-      </post-list-item>
-    }
-    <post-list-item>
-      <button
-        class="btn btn-link"
-        [style.minHeight]="0"
-        [style.border]="'0 none'"
-        [style.fontWeight]="'inherit'"
-      >
-        Cookie Settings
-      </button>
-    </post-list-item>
-  </post-list>
+      </li>
+      }
+      <li>
+        <button
+          class="btn btn-link"
+          [style.minHeight]="0"
+          [style.border]="'0 none'"
+          [style.fontWeight]="'inherit'"
+        >
+          Cookie Settings
+        </button>
+      </li>
+    </ul>
+  </div>
 
   <span slot="copyright">© Copyright 2024 by Swiss Post Ltd.</span>
   <span slot="copyright">All rights reserved.</span>

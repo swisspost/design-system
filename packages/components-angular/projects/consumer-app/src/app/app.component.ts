@@ -45,7 +45,7 @@ import { CommonModule } from '@angular/common';
     PostMegadropdown,
     PostMegadropdownTrigger,
     PostTogglebutton,
-  ]
+  ],
 })
 export class AppComponent implements OnInit {
   title = 'consumer-app';
@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
       { text: 'Small items abroad', url: '/kl' },
       { text: 'Goods abroad', url: '' },
       { text: 'Express and courier', url: '' },
-    ]
+    ],
   };
 
   // Header megadropdown data
@@ -77,14 +77,14 @@ export class AppComponent implements OnInit {
       sections: [
         {
           title: 'Send letters',
-          links: this.megadropdownLinks.standard
+          links: this.megadropdownLinks.standard,
         },
         {
           title: 'Step by step',
           titleLink: '/step-by-step',
-          links: this.megadropdownLinks.packages
-        }
-      ]
+          links: this.megadropdownLinks.packages,
+        },
+      ],
     },
     {
       id: 'packages',
@@ -94,15 +94,15 @@ export class AppComponent implements OnInit {
       sections: [
         {
           title: 'Send packages',
-          links: this.megadropdownLinks.packages
+          links: this.megadropdownLinks.packages,
         },
         {
           title: 'Step by step',
           titleLink: '/step-by-step',
-          links: this.megadropdownLinks.packages
-        }
-      ]
-    }
+          links: this.megadropdownLinks.packages,
+        },
+      ],
+    },
   ];
 
   // Reusable links array for footer grids
@@ -127,21 +127,30 @@ export class AppComponent implements OnInit {
 
   // Social media links (Footer)
   public socialMediaLinks = [
-    { name: 'Facebook', url: '#facebook', icon: '8004' },
-    { name: 'Instagram', url: '#instagram', icon: '8007' },
-    { name: 'Youtube', url: '#youtube', icon: '8002' },
-    { name: 'Snapchat', url: '#snapchat', icon: '8017' },
-    { name: 'Twitter X', url: '#twitter-x', icon: '8000' },
-    { name: 'Linkedin', url: '#linkedin', icon: '8005' },
-    { name: 'Xing', url: '#xing', icon: '8001' },
+    { name: 'Facebook', url: '#facebook', icon: 'facebook' },
+    { name: 'Instagram', url: '#instagram', icon: 'instagram' },
+    { name: 'Youtube', url: '#youtube', icon: 'youtube' },
+    { name: 'Snapchat', url: '#snapchat', icon: 'snapchat' },
+    { name: 'Twitter X', url: '#twitter-x', icon: 'twitterx' },
+    { name: 'Linkedin', url: '#linkedin', icon: 'linkedin' },
+    { name: 'Xing', url: '#xing', icon: 'xing' },
     { name: 'E-Mail', url: 'mailto:noreply@post.ch', icon: 'letter' },
   ];
 
   // Meta links (Footer)
   public metaLinks = [
-    { text: 'Accessibility', url: 'https://www.post.ch/en/pages/footer/accessibility-at-swiss-post' },
-    { text: 'General Terms and Conditions', url: 'https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc' },
-    { text: 'Data protection and disclaimer', url: 'https://www.post.ch/en/pages/footer/data-protection-and-disclaimer' },
+    {
+      text: 'Accessibility',
+      url: 'https://www.post.ch/en/pages/footer/accessibility-at-swiss-post',
+    },
+    {
+      text: 'General Terms and Conditions',
+      url: 'https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc',
+    },
+    {
+      text: 'Data protection and disclaimer',
+      url: 'https://www.post.ch/en/pages/footer/data-protection-and-disclaimer',
+    },
     { text: 'Publication details', url: 'https://www.post.ch/en/pages/footer/publication-details' },
   ];
 
