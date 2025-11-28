@@ -17,65 +17,37 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    showImage: false,
-    imagePosition: 'top',
-    content: "<h5>This is my card's title</h5><p>This is my card's content.</p>",
-    action: 'button',
+    title: "This is my card's title",
+    body: "This is my card's content.",
+    action: 'buttons',
+    label: 'Button Text',
   },
   argTypes: {
-    showImage: {
-      name: 'Show Image',
-      description: 'When set to `true`, an image is shown in the card.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Card Image',
-      },
+    title: {
+      name: 'Title',
+      control: { type: 'text' },
+      table: { category: 'Card Content' },
     },
-    imagePosition: {
-      name: 'Image Position',
-      description: 'Defines the position of the image within the card.',
-      if: {
-        arg: 'showImage',
-      },
-      control: {
-        type: 'inline-radio',
-        labels: {
-          top: 'Top',
-          bottom: 'Bottom',
-        },
-      },
-      options: ['top', 'bottom'],
-      table: {
-        category: 'Card Image',
-      },
-    },
-    content: {
-      name: 'Content',
+    body: {
+      name: 'Body',
       description: 'The content within the card.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Card Content',
-      },
+      control: { type: 'text' },
+      table: { category: 'Card Content' },
+    },
+    label: {
+      name: 'label',
+      description: 'The content button',
+      control: { type: 'text' },
+      table: { category: 'Card Content' },
     },
     action: {
       name: 'Action',
-      description: 'Defines the call-to-action to show in the card.',
       control: {
         type: 'inline-radio',
-        labels: {
-          button: 'Button',
-          links: 'Links',
-          none: 'None',
-        },
+        labels: { button: 'Button', link: 'Link', none: 'None' },
       },
-      options: ['button', 'links', 'none'],
-      table: {
-        category: 'Card Content',
-      },
+      options: ['button', 'buttons', 'link', 'links', 'none'],
+      table: { category: 'Card Content' },
     },
   },
 };
@@ -91,35 +63,77 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
 
 function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
-    <div class="row gy-16">
-      <div class="col-lg-4 col-sm-6 col-12">${story(context.args, context)}</div>
+    <div class="container">
+      <div class="row gy-16 ">
+        <div class="col-lg-4 col-sm-6 col-12">${story(context.args, context)}</div>
+      </div>
     </div>
   `;
 }
 
 // RENDERER
+function getCardLink() {
+  return html`
+    <div>
+      <a class="btn btn-tertiary" href="#">
+        Button
+        <post-icon aria-hidden="true" name="3020"></post-icon>
+      </a>
+    </div>
+  `;
+}
+function getCardButton({ label }: Args) {
+  return html`
+    <div class="d-flex flex-column gap-2 mt-6">
+      <button class="btn btn-primary">
+        <span>${label}</span>
+      </button>
+    </div>
+  `;
+}
+
+function getCardButtons({ label }: Args) {
+  return html`
+    <div class="d-flex flex-column gap-2 mt-6">
+      <button class="btn btn-primary">
+        <span>${label}</span>
+      </button>
+      <button class="btn btn-secondary">
+        <span>${label}</span>
+      </button>
+      <button class="btn btn-tertiary">
+        <span>${label}</span>
+      </button>
+    </div>
+  `;
+}
+
 function getCardLinks() {
   return html`
-    ${['Link Text', 'More Link'].map(label => html` <a class="card-link" href="#">${label}</a> `)}
+    <div class="card-links">
+      <a class="btn-tertiary" href="#">
+        Link 1
+        <post-icon aria-hidden="true" name="3020"></post-icon>
+      </a>
+      <a class="btn-tertiary" href="#">
+        Link 2
+        <post-icon aria-hidden="true" name="3020"></post-icon>
+      </a>
+    </div>
   `;
 }
 
-function getCardButton() {
-  return html`
-    <button class="btn btn-primary">
-      <span>Button Text</span>
-    </button>
-  `;
-}
-
-function getCardContent({ content, action }: Args) {
+function getCardContent(args: Args) {
+  const { action, title, body = '' } = args;
   return html`
     <div class="card-body">
-      ${unsafeHTML(content)}
+      ${title ? html`<h3 class="card-title">${title}</h3>` : nothing} ${unsafeHTML(body)}
       ${choose(
         action,
         [
-          ['button', getCardButton],
+          ['button', () => getCardButton(args)],
+          ['link', getCardLink],
+          ['buttons', () => getCardButtons(args)],
           ['links', getCardLinks],
         ],
         () => html` ${nothing} `,
@@ -128,31 +142,27 @@ function getCardContent({ content, action }: Args) {
   `;
 }
 
-function getCardImage() {
-  return html` <img src="https://picsum.photos/id/38/500/300" alt="" /> `;
-}
-
 function renderCardContent(args: Args) {
-  const { showImage, imagePosition } = args;
-
-  return html`
-    ${showImage && imagePosition === 'top' ? getCardImage() : nothing} ${getCardContent(args)}
-    ${showImage && imagePosition === 'bottom' ? getCardImage() : nothing}
-  `;
+  return html` ${getCardContent(args)} `;
 }
 
-function renderNoninteractiveCard(args: Args) {
-  return html` <div class="card">${renderCardContent(args)}</div> `;
-}
+function renderCard(args: Args) {
+  const { action } = args;
+  const isInteractive = action === 'button' || action === 'link';
 
-function renderInteractiveCard(args: Args) {
-  return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
+  if (isInteractive) {
+    return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
+  } else {
+    return html`<div class="card">${renderCardContent(args)}</div>`;
+  }
 }
 
 const renderSimpleInteractiveCard = html`
   <post-linkarea class="card">
     <div class="card-body">
-      <p><a href="http://google.com">Interactive card</a></p>
+      <p class="card-links">
+        <a href="http://google.com" class="btn-link px-0">Interactive card</a>
+      </p>
     </div>
   </post-linkarea>
 `;
@@ -162,8 +172,7 @@ type Story = StoryObj;
 
 export const Default: Story = {
   decorators: [gridContainer],
-  render: (args: Args) =>
-    html`${args.action === 'button' ? renderInteractiveCard(args) : renderNoninteractiveCard(args)}`,
+  render: (args: Args) => renderCard(args),
 };
 
 export const Foundation: Story = {
@@ -176,82 +185,4 @@ export const Foundation: Story = {
     </div>
     ${renderSimpleInteractiveCard}
   `,
-};
-
-export const Palette: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
-  render: () => html`
-    <div class="palette palette-default">
-      <div class="container py-32">
-        <div class="row gy-16">
-          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-        </div>
-      </div>
-    </div>
-    <div class="palette palette-alternate">
-      <div class="container py-32">
-        <div class="row gy-16">
-          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-        </div>
-      </div>
-    </div>
-  `,
-};
-
-export const ListGroup: Story = {
-  decorators: [gridContainer],
-  render: () => {
-    return html`
-      <div class="card">
-        <ul class="list-interactive">
-          ${['First Item', 'Second Item', 'Another Item'].map(
-            label => html` <li class="list-interactive-item">${label}</li> `,
-          )}
-        </ul>
-      </div>
-    `;
-  },
-};
-
-export const CustomContent: Story = {
-  decorators: [gridContainer],
-  render: () => {
-    return html`
-      <div class="card">
-        <div class="d-flex px-16 py-32 gap-16 align-items-center">
-          <post-icon aria-hidden="true" scale="1.5" name="profile"></post-icon>
-          <h3 class="fw-bold my-0 me-auto">User Details</h3>
-          <a href="#" aria-labelledby="details-title">
-            <post-icon aria-hidden="true" name="arrowright"></post-icon>
-            <span class="visually-hidden">Account Management</span>
-          </a>
-        </div>
-        <ul class="list-interactive">
-          <li class="list-interactive-item d-flex align-items-center justify-content-between">
-            <address class="mb-0">
-              Mr<br />First Name Last Name<br />Street 1<br />1234 City
-            </address>
-            <a href="#">
-              <post-icon aria-label="Edit Address" name="edit"></post-icon>
-              <span class="visually-hidden">Edit Address</span>
-            </a>
-          </li>
-          <li class="list-interactive-item d-flex align-items-center justify-content-between">
-            <p class="mb-0">Language: <span class="fw-bold">English</span></p>
-            <a href="#">
-              <post-icon aria-label="Edit Language" name="edit"></post-icon>
-              <span class="visually-hidden">Edit Language</span>
-            </a>
-          </li>
-        </ul>
-        <div class="card-links p-16">
-          <a href="#">Add Address</a>
-        </div>
-      </div>
-    `;
-  },
 };
