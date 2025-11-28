@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/functions/breakpoint' as breakpoint;
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/core' as post;
 
 // === Sizing ===
 $pagination-size-base: 32px;
@@ -125,7 +126,6 @@ $pagination-transition: all 0.2s ease;
     color: $pagination-color-disabled;
     background-color: $pagination-color-disabled-bg;
     border-color: $pagination-color-border;
-    cursor: not-allowed;
     opacity: 0.6;
   }
 
@@ -216,13 +216,5 @@ $pagination-transition: all 0.2s ease;
 }
 
 .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  @include post.visuallyhidden;
 }

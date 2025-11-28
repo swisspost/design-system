@@ -25,7 +25,7 @@ type ValidatableProp = 'page' | 'pageSize' | 'collectionSize' | 'label' | 'label
 @Component({
   tag: 'post-pagination',
   styleUrl: './post-pagination.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostPagination {
   @Element() host: HTMLPostPaginationElement;
