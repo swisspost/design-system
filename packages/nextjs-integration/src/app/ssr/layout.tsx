@@ -28,43 +28,43 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           Homepage
         </PostLogo>
 
-        {/* Target Group */}
-        <ul slot="target-group" className="target-group">
-          <li>
-            <a href="#" aria-current="location">
-              Private customers
-            </a>
-          </li>
-          <li>
-            <a href="#">Business customers</a>
-          </li>
-        </ul>
+      {/* Target Group */}
+      <ul slot="target-group">
+        <li>
+          <a href="#" aria-current="location">
+            Private customers
+          </a>
+        </li>
+        <li>
+          <a href="#">Business customers</a>
+        </li>
+      </ul>
 
-        {/* Global controls (Search) */}
-        <ul className="list-inline" slot="global-controls">
-          <li>
-            <a href="">
-              <span>Search</span>
-              <PostIcon aria-hidden="true" name="search" />
-            </a>
-          </li>
-        </ul>
+      {/* Global controls (Search) */}
+      <ul slot="global-controls">
+        <li>
+          <a href="">
+            <span>Search</span>
+            <PostIcon aria-hidden="true" name="search" />
+          </a>
+        </li>
+      </ul>
 
-        {/* Meta navigation */}
-        <ul className="list-inline" slot="meta-navigation">
-          <li>
-            <a href="">
-              Jobs
-              <PostIcon name="jobs" aria-hidden="true" />
-            </a>
-          </li>
-          <li>
-            <a href="">
-              Create Account
-              <PostIcon name="adduser" aria-hidden="true" />
-            </a>
-          </li>
-        </ul>
+      {/* Meta navigation */}
+      <ul slot="meta-navigation">
+        <li>
+          <a href="">
+            Jobs
+            <PostIcon name="jobs" aria-hidden="true" />
+          </a>
+        </li>
+        <li>
+          <a href="">
+            Create Account
+            <PostIcon name="adduser" aria-hidden="true" />
+          </a>
+        </li>
+      </ul>
 
         {/* Language switch */}
         <PostLanguageSwitch
@@ -100,18 +100,18 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled" />
         </PostTogglebutton>
 
-        {/* Main navigation */}
-        <PostMainnavigation slot="post-mainnavigation">
-          <PostList title-hidden="">
-            <p>Main Navigation</p>
+      {/* Main navigation */}
+      <PostMainnavigation slot="post-mainnavigation">
+        <PostList title-hidden="">
+          <p>Main Navigation</p>
 
-            {/* Link only level 1 */}
-            <PostListItem slot="post-list-item">
-              <a href="/letters">Letters</a>
-            </PostListItem>
-            <PostListItem slot="post-list-item">
-              <a href="/packages">Packages</a>
-            </PostListItem>
+          {/* Link only level 1 */}
+          <PostListItem slot="post-list-item">
+            <a href="/letters">Letters</a>
+          </PostListItem>
+          <PostListItem slot="post-list-item">
+            <a href="/packages">Packages</a>
+          </PostListItem>
 
             {/* Level 1 with megadropdown - Letters */}
             <PostListItem slot="post-list-item">
@@ -227,259 +227,266 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </main>
 
       <PostFooter label="Footer label">
-        <span slot="grid-1-title">Title 1</span>
-        <PostList slot="grid-1" id="grid-1">
-          <p>Title 1</p>
-
-          <PostListItem>
+        <span id="grid-1-title" slot="grid-1-title">
+          Title 1
+        </span>
+        <ul slot="grid-1" aria-labelledby="grid-1-title">
+          <li>
             <a href="#test">Text link 1</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 2</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 3</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 4</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 5</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 6</a>
-          </PostListItem>
-        </PostList>
+          </li>
+        </ul>
 
-        <span slot="grid-2-title">Title 2</span>
-        <PostList slot="grid-2">
-          <p>Title 2</p>
-
-          <PostListItem>
+        <span id="grid-2-title" slot="grid-2-title">
+          Title 2
+        </span>
+        <ul slot="grid-2" aria-labelledby="grid-2-title">
+          <li>
             <a href="#test">Text link 1</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 2</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 3</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 4</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 5</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 6</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 7</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 8</a>
-          </PostListItem>
-        </PostList>
+          </li>
+        </ul>
 
-        <span slot="grid-3-title">Title 3</span>
-        <PostList slot="grid-3">
-          <p>Title 3</p>
-
-          <PostListItem>
+        <span id="grid-3-title" slot="grid-3-title">
+          Title 3
+        </span>
+        <ul slot="grid-3" aria-labelledby="grid-3-title">
+          <li>
             <a href="#test">Text link 1</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 2</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 3</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 4</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 5</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 6</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 7</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 8</a>
-          </PostListItem>
-        </PostList>
+          </li>
+        </ul>
 
-        <span slot="grid-4-title">Title 4</span>
-        <PostList slot="grid-4">
-          <p>Title 4</p>
-
-          <PostListItem>
+        <span id="grid-4-titles" slot="grid-4-title">
+          Title 4
+        </span>
+        <ul slot="grid-4" aria-labelledby="grid-4-title">
+          <li>
             <a href="#test">Text link 1</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 2</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 3</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 4</a>
-          </PostListItem>
+          </li>
 
-          <PostListItem>
+          <li>
             <a href="#test">Text link 5</a>
-          </PostListItem>
-        </PostList>
+          </li>
+        </ul>
 
-        <PostList slot="socialmedia">
-          <p>Follow us</p>
-          <PostListItem>
-            <a href="#facebook" className="btn btn-primary btn-icon">
-              <PostIcon aria-hidden="true" name="8004"></PostIcon>
-              <span className="visually-hidden">Facebook</span>
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="#instagram" className="btn btn-primary btn-icon">
-              <PostIcon aria-hidden="true" name="8007"></PostIcon>
-              <span className="visually-hidden">Instagram</span>
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="#youtube" className="btn btn-primary btn-icon">
-              <PostIcon aria-hidden="true" name="8002"></PostIcon>
-              <span className="visually-hidden">Youtube</span>
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="#snapchat" className="btn btn-primary btn-icon">
-              <PostIcon aria-hidden="true" name="8017"></PostIcon>
-              <span className="visually-hidden">Snapchat</span>
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="#twitter-x" className="btn btn-primary btn-icon">
-              <PostIcon aria-hidden="true" name="8000"></PostIcon>
-              <span className="visually-hidden">Twitter X</span>
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="#linkedin" className="btn btn-primary btn-icon">
-              <PostIcon aria-hidden="true" name="8005"></PostIcon>
-              <span className="visually-hidden">Linkedin</span>
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="#xing" className="btn btn-primary btn-icon">
-              <PostIcon aria-hidden="true" name="8001"></PostIcon>
-              <span className="visually-hidden">Xing</span>
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="mailto:noreply@post.ch" className="btn btn-primary btn-icon">
-              <PostIcon aria-hidden="true" name="letter"></PostIcon>
-              <span className="visually-hidden">E-Mail</span>
-            </a>
-          </PostListItem>
-        </PostList>
+        <div slot="socialmedia">
+          <h3 id="socialmedia">Follow us</h3>
+          <ul aria-labelledby="socialmedia">
+            <li>
+              <a href="#facebook" className="btn btn-primary btn-icon">
+                <PostIcon aria-hidden="true" name="facebook"></PostIcon>
+                <span className="visually-hidden">Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="#instagram" className="btn btn-primary btn-icon">
+                <PostIcon aria-hidden="true" name="instagram"></PostIcon>
+                <span className="visually-hidden">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#youtube" className="btn btn-primary btn-icon">
+                <PostIcon aria-hidden="true" name="youtube"></PostIcon>
+                <span className="visually-hidden">Youtube</span>
+              </a>
+            </li>
+            <li>
+              <a href="#snapchat" className="btn btn-primary btn-icon">
+                <PostIcon aria-hidden="true" name="snapchat"></PostIcon>
+                <span className="visually-hidden">Snapchat</span>
+              </a>
+            </li>
+            <li>
+              <a href="#twitter-x" className="btn btn-primary btn-icon">
+                <PostIcon aria-hidden="true" name="twitterx"></PostIcon>
+                <span className="visually-hidden">Twitter X</span>
+              </a>
+            </li>
+            <li>
+              <a href="#linkedin" className="btn btn-primary btn-icon">
+                <PostIcon aria-hidden="true" name="linkedin"></PostIcon>
+                <span className="visually-hidden">Linkedin</span>
+              </a>
+            </li>
+            <li>
+              <a href="#xing" className="btn btn-primary btn-icon">
+                <PostIcon aria-hidden="true" name="xing"></PostIcon>
+                <span className="visually-hidden">Xing</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:noreply@post.ch" className="btn btn-primary btn-icon">
+                <PostIcon aria-hidden="true" name="letter"></PostIcon>
+                <span className="visually-hidden">E-Mail</span>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-        <PostList slot="app">
-          <p>Download app</p>
-          <PostListItem>
-            <a
-              className="app-store-badge"
-              href="https://play.google.com/store/apps/details?id=com.nth.swisspost&amp;hl=de_CH&amp;pli=1"
-            >
-              <Image
-                width="135"
-                height="40"
-                src="https://next.design-system.post.ch/assets/images/google-play-badge.svg"
-                alt="Google Play Store badge"
-              />
-              <span className="visually-hidden">Download the App on Google Play</span>
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a
-              className="app-store-badge"
-              href="https://apps.apple.com/ch/app/die-post/id378676700"
-            >
-              <Image
-                width="120"
-                height="40"
-                src="https://next.design-system.post.ch/assets/images/apple-store-badge.svg"
-                alt="Apple App Store badge"
-              />
-              <span className="visually-hidden">Download the App on the Apple Store</span>
-            </a>
-          </PostListItem>
-        </PostList>
+        <div slot="app">
+          <h3 id="app">Download app</h3>
+          <ul aria-labelledby="app">
+            <li>
+              <a
+                className="app-store-badge"
+                href="https://play.google.com/store/apps/details?id=com.nth.swisspost&amp;hl=de_CH&amp;pli=1"
+              >
+                <Image
+                  width="135"
+                  height="40"
+                  src="https://next.design-system.post.ch/assets/images/google-play-badge.svg"
+                  alt="Google Play Store badge"
+                />
+                <span className="visually-hidden">Download the App on Google Play</span>
+              </a>
+            </li>
+            <li>
+              <a
+                className="app-store-badge"
+                href="https://apps.apple.com/ch/app/die-post/id378676700"
+              >
+                <Image
+                  width="120"
+                  height="40"
+                  src="https://next.design-system.post.ch/assets/images/apple-store-badge.svg"
+                  alt="Apple App Store badge"
+                />
+                <span className="visually-hidden">Download the App on the Apple Store</span>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-        <PostList slot="businesssectors">
-          <p>Die schweizerische Post AG</p>
-          <PostListItem>
-            <a href="https://www.postauto.ch">PostAuto</a>
-          </PostListItem>
-          <PostListItem>
-            <a href="https://www.postfinance.ch">PostFinance</a>
-          </PostListItem>
-        </PostList>
+        <div slot="businesssectors">
+          <h3 id="businesssectors">Die schweizerische Post AG</h3>
+          <ul aria-labelledby="businesssectors">
+            <li>
+              <a href="https://www.postauto.ch">PostAuto</a>
+            </li>
+            <li>
+              <a href="https://www.postfinance.ch">PostFinance</a>
+            </li>
+          </ul>
+        </div>
 
-        <PostList slot="meta" title-hidden="">
-          <p>Meta</p>
-          <PostListItem>
-            <a href="https://www.post.ch/en/pages/footer/accessibility-at-swiss-post">
-              Accessibility
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc">
-              General Terms and Conditions
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer">
-              Data protection and disclaimer
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <a href="https://www.post.ch/en/pages/footer/publication-details">
-              Publication details
-            </a>
-          </PostListItem>
-          <PostListItem>
-            <button
-              className="btn btn-link"
-              style={{ minHeight: 0, border: '0 none', fontWeight: 'inherit' }}
-            >
-              Cookie Settings
-            </button>
-          </PostListItem>
-        </PostList>
+        <div slot="meta">
+          <ul aria-label="Meta">
+            <li>
+              <a href="https://www.post.ch/en/pages/footer/accessibility-at-swiss-post">
+                Accessibility
+              </a>
+            </li>
+            <li>
+              <a href="https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc">
+                General Terms and Conditions
+              </a>
+            </li>
+            <li>
+              <a href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer">
+                Data protection and disclaimer
+              </a>
+            </li>
+            <li>
+              <a href="https://www.post.ch/en/pages/footer/publication-details">
+                Publication details
+              </a>
+            </li>
+            <li>
+              <button
+                className="btn btn-link"
+                style={{ minHeight: 0, border: '0 none', fontWeight: 'inherit' }}
+              >
+                Cookie Settings
+              </button>
+            </li>
+          </ul>
+        </div>
 
         <span slot="copyright">© Copyright 2024 by Swiss Post Ltd.</span>
         <span slot="copyright">All rights reserved.</span>
