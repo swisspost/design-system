@@ -3,6 +3,8 @@
 @use '../../functions/tokens';
 @use '../../tokens/components';
 
+@use 'custom-properties';
+
 @use 'mixins' as *;
 
 body:has(post-header) {
@@ -26,7 +28,8 @@ post-header {
   }
 
   // all header lists
-  > ul {
+  > ul,
+  > post-mainnavigation > ul {
     @include list.list-inline;
     gap: 0 0.25rem;
     margin: 0;
@@ -41,9 +44,10 @@ post-header {
   }
 
   // all slotted links and buttons
-  > [slot] {
+  > *,
+  > post-mainnavigation > * {
     @include slotted-controls {
-      @include header-control-base;
+      @include header-control-styles;
     }
   }
 
@@ -51,7 +55,7 @@ post-header {
   > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
     @include media.only(mobile) {
       @include slotted-controls {
-        @include header-control-icon-only;
+        @include icon-only-control-styles;
       }
     }
   }
@@ -69,13 +73,19 @@ post-header {
   }
 
   // meta navigation on desktop
-  > ul[slot='meta-navigation'] {
+  > [slot='meta-navigation'] {
     @include media.max(desktop) {
-      flex-direction: column;
+      &:where(ul) {
+        flex-direction: column;
+      }
 
-      > li > a {
+      @include slotted-controls {
         flex-direction: row-reverse;
-        @include header-control-navigation;
+        @include navigation-control-styles;
+
+        > post-icon {
+          margin: unset;
+        }
       }
     }
   }
@@ -105,5 +115,28 @@ post-header {
     margin-block: calc(
       (#{$header-title-line-height} - #{tokens.get('avatar-size', components.$post-avatar)}) / 2
     );
+  }
+
+  // main navigation
+  > post-mainnavigation {
+    > ul {
+      height: 100%;
+      align-items: stretch;
+      gap: 0;
+      flex-wrap: nowrap;
+
+      @include media.max(desktop) {
+        flex-direction: column;
+      }
+    }
+
+    > * {
+      @include slotted-controls {
+        height: 100%;
+
+        @include navigation-control-styles;
+        @include bold-hover-control-styles;
+      }
+    }
   }
 }

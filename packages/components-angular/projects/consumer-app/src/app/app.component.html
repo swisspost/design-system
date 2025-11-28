@@ -68,50 +68,50 @@
 
   <!-- Main navigation -->
   <post-mainnavigation caption="Main navigation">
-    <post-list title-hidden="">
-      <p>Main Navigation</p>
+    <ul>
       <!-- Link only level 1 -->
-      <post-list-item slot="post-list-item">
+      <li>
         <a href="/letters">Letters</a>
-      </post-list-item>
-      <post-list-item slot="post-list-item">
+      </li>
+      <li>
         <a href="/packages">Packages</a>
-      </post-list-item>
+      </li>
 
       <!-- Level 1 with megadropdown -->
       @for (dropdown of megadropdowns; track dropdown.id) {
-      <post-list-item slot="post-list-item">
-        <post-megadropdown-trigger [for]="dropdown.id">{{
-          dropdown.trigger
-        }}</post-megadropdown-trigger>
-        <post-megadropdown [id]="dropdown.id">
-          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-            <post-icon name="arrowleft"></post-icon>
-            Back
-          </button>
-          <post-closebutton slot="close-button">Close</post-closebutton>
-          <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink"
-            >Overview {{ dropdown.trigger }}</a
-          >
-          @for (section of dropdown.sections; track section.title) {
-          <post-list>
-            @if (section.titleLink) {
-            <p>
-              <a [href]="section.titleLink">{{ section.title }}</a>
-            </p>
-            } @else {
-            <p>{{ section.title }}</p>
-            } @for (link of section.links; track link.text) {
-            <post-list-item slot="post-list-item">
-              <a [href]="link.url">{{ link.text }}</a>
-            </post-list-item>
+        <li>
+          <post-megadropdown-trigger [for]="dropdown.id">{{
+            dropdown.trigger
+          }}</post-megadropdown-trigger>
+          <post-megadropdown [id]="dropdown.id">
+            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+              <post-icon name="arrowleft"></post-icon>
+              Back
+            </button>
+            <post-closebutton slot="close-button">Close</post-closebutton>
+            <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink"
+              >Overview {{ dropdown.trigger }}</a
+            >
+            @for (section of dropdown.sections; track section.title) {
+              <post-list>
+                @if (section.titleLink) {
+                  <p>
+                    <a [href]="section.titleLink">{{ section.title }}</a>
+                  </p>
+                } @else {
+                  <p>{{ section.title }}</p>
+                }
+                @for (link of section.links; track link.text) {
+                  <post-list-item slot="post-list-item">
+                    <a [href]="link.url">{{ link.text }}</a>
+                  </post-list-item>
+                }
+              </post-list>
             }
-          </post-list>
-          }
-        </post-megadropdown>
-      </post-list-item>
+          </post-megadropdown>
+        </li>
       }
-    </post-list>
+    </ul>
   </post-mainnavigation>
 </post-header>
 
@@ -148,26 +148,26 @@
 
 <post-footer label="Footer label">
   @for (grid of footerGrids; track grid.slot) {
-  <span [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
-  <post-list [attr.slot]="grid.slot" [attr.id]="grid.slot">
-    <h3>{{ grid.title }}</h3>
-    @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
-    <post-list-item>
-      <a [href]="link.url">{{ link.text }}</a>
-    </post-list-item>
-    }
-  </post-list>
+    <span [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
+    <post-list [attr.slot]="grid.slot" [attr.id]="grid.slot">
+      <h3>{{ grid.title }}</h3>
+      @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
+        <post-list-item>
+          <a [href]="link.url">{{ link.text }}</a>
+        </post-list-item>
+      }
+    </post-list>
   }
 
   <post-list slot="socialmedia">
     <h3>Follow us</h3>
     @for (social of socialMediaLinks; track social.name) {
-    <post-list-item>
-      <a [href]="social.url" class="btn btn-primary btn-icon">
-        <post-icon aria-hidden="true" [name]="social.icon"></post-icon>
-        <span class="visually-hidden">{{ social.name }}</span>
-      </a>
-    </post-list-item>
+      <post-list-item>
+        <a [href]="social.url" class="btn btn-primary btn-icon">
+          <post-icon aria-hidden="true" [name]="social.icon"></post-icon>
+          <span class="visually-hidden">{{ social.name }}</span>
+        </a>
+      </post-list-item>
     }
   </post-list>
 
@@ -213,9 +213,9 @@
   <post-list slot="meta" title-hidden="">
     <h3>Meta</h3>
     @for (meta of metaLinks; track meta.text) {
-    <post-list-item>
-      <a [href]="meta.url">{{ meta.text }}</a>
-    </post-list-item>
+      <post-list-item>
+        <a [href]="meta.url">{{ meta.text }}</a>
+      </post-list-item>
     }
     <post-list-item>
       <button
