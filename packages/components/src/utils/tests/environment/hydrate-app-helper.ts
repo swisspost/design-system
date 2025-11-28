@@ -1,5 +1,5 @@
 export async function getAppEnv() {
-  global.IS_HYDRATEAPP_TEST = true;
+  global.IS_HYDRATEAPP_SERVERTEST = true;
 
   // keep this, to have runtime-only import (otherwise the build fails)
   const HYDRATE_ID = '@swisspost/design-system-components/hydrate';
@@ -17,5 +17,5 @@ export async function getAppEnv() {
 }
 
 export function afterTestCleanup() {
-  delete global.IS_HYDRATEAPP_TEST;
+  delete global.IS_HYDRATEAPP_SERVERTEST;
 }

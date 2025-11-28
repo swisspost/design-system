@@ -15,20 +15,38 @@
  *   That's why comparing the origin is aboslutely mandatory.
  * - Since we test the hydrate app in the test context, the origin is getting
  *   overwritten by the test setup, leading to a false positive in the
- *   IS_HYDRATEAPP detection.
- *   To circumvent this, we use a global flag (`IS_HYDRATEAPP_TEST`),
+ *   `isHydrateApp` detection.
+ *   To circumvent this, we use a global flag (`isHydrateAppTestEnv`),
  *   that we set/reset during the server test, so we can correctly identify
  *   the hydrate app in the test context.
  *   As a drawback, we can't properly test if the hydrate app is detected as
  *   expected, in a real world scenario (elsewhere than in our tests).
  */
 
-const HYDRATEAPP_USERAGENT = 'MockNavigator';
-const HYDRATEAPP_ORIGIN = 'http://mockdoc.stenciljs.com';
-const IS_HYDRATEAPP =
-  global?.IS_HYDRATEAPP_TEST ||
-  (window?.navigator.userAgent === HYDRATEAPP_USERAGENT &&
-    window?.location.origin === HYDRATEAPP_ORIGIN);
+const MOCKED_USERAGENT = 'MockNavigator';
+const HYDRATEAPP_MOCKED_ORIGIN = 'http://mockdoc.stenciljs.com';
 
-export const IS_BROWSER: boolean = typeof window !== 'undefined' && !IS_HYDRATEAPP;
+const isMockedUserAgent = window?.navigator.userAgent === MOCKED_USERAGENT;
+const isMockedOrigin = window?.location.origin === HYDRATEAPP_MOCKED_ORIGIN;
+const isNodeEnv = typeof process !== 'undefined';
+
+/**
+ * This is the natural hydrate app environment
+ * Is `true` if the hydrate app runs on server
+ */
+const isHydrateAppEnv = isNodeEnv && isMockedUserAgent && isMockedOrigin;
+
+/**
+ * This is the test app server test env
+ * Is `true` if the server unit test runs (`false` if the browser unit test runs)
+ */
+const isTestAppServerTestEnv = isNodeEnv && global.IS_HYDRATEAPP_SERVERTEST;
+
+/**
+ * This is the final hydrate app flag
+ * if it`s `true`, IS_BROWSER equals `false` and IS_SERVER equals `true
+ */
+const isHydrateApp = isHydrateAppEnv || isTestAppServerTestEnv;
+
+export const IS_BROWSER: boolean = typeof window !== 'undefined' && !isHydrateApp;
 export const IS_SERVER: boolean = !IS_BROWSER;
