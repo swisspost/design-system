@@ -27267,6 +27267,86 @@
       "modifiedAt": "2025-11-15T06:05:01.223Z"
     },
     {
+      "uuid": "eff14c70-cc25-11f0-b1fa-0050568d2654",
+      "id": 7667908,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7667908/storage/MDA3NjY3OTA4LzAvbWFzdGVy",
+        "keywords": [
+          "shrug shoulder",
+          "Schulter zucken",
+          "Hausser l’épaule",
+          "Alzare la spalla",
+          "Schulter",
+          "Shoulder",
+          "Spalla",
+          "Épaule"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2745.svg",
+        "basename": "2745",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-28T06:46:15.000Z",
+      "modifiedAt": "2025-11-28T08:05:06.074Z"
+    },
+    {
+      "uuid": "88094da0-cc26-11f0-b1fa-0050568d2654",
+      "id": 7667979,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7667979/storage/MDA3NjY3OTc5LzAvbWFzdGVy",
+        "keywords": [
+          "to left",
+          "nach Links",
+          "Vers la gauche",
+          "verso sinistra",
+          "Point left",
+          "Nach Links zeigen",
+          "Montrer vers la gauche",
+          "Mostrare verso sinistra"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2746.svg",
+        "basename": "2746",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-28T06:50:31.000Z",
+      "modifiedAt": "2025-11-28T08:05:06.074Z"
+    },
+    {
+      "uuid": "cf836440-cc2b-11f0-b1fa-0050568d2654",
+      "id": 7668450,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7668450/storage/MDA3NjY4NDUwLzAvbWFzdGVy",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2747.svg",
+        "basename": "2747",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-28T07:28:18.000Z",
+      "modifiedAt": "2025-11-28T07:31:27.000Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40505,13 +40585,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1066,
+    "success": 1069,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-11-24T13:59:26.222Z",
+  "created": "2025-11-28T08:11:22.709Z",
   "version": "10.0.0-next.55"
 }
