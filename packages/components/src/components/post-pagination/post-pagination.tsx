@@ -160,13 +160,12 @@ export class PostPagination {
     if (this.page == null) {
       this.page = 1;
     }
-
-    this.runAllValidations();
   }
 
   componentDidLoad() {
     this.connected = true;
-    
+    this.runAllValidations();
+
     this.debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
     
     window.addEventListener('resize', this.debouncedResize);

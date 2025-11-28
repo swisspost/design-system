@@ -127,6 +127,7 @@ $pagination-transition: all 0.2s ease;
     background-color: $pagination-color-disabled-bg;
     border-color: $pagination-color-border;
     opacity: 0.6;
+    cursor: default;
   }
 
   @media (min-width: breakpoint.min-width(sm)) {
