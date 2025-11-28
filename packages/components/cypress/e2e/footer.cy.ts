@@ -18,13 +18,12 @@ describe('Footer', () => {
     it('should have all required grid sections with proper structure', () => {
       // Should have 4 grid sections with title-content pairs
       cy.get('@footer').find('[slot^="grid-"]').should('have.length', 8); // 4 titles + 4 lists
-      cy.get('@footer').find('post-list[slot^="grid-"]').should('have.length', 4);
+      cy.get('@footer').find('ul[slot^="grid-"]').should('have.length', 4);
 
       // Each grid should have title-content pairs
       for (let i = 1; i <= 4; i++) {
         cy.get('@footer').find(`[slot="grid-${i}-title"]`).should('exist');
-        cy.get('@footer').find(`post-list[slot="grid-${i}"]`).should('exist');
-        cy.get('@footer').find(`post-list[slot="grid-${i}"] h3`).should('exist');
+        cy.get('@footer').find(`ul[slot="grid-${i}"]`).should('exist');
       }
     });
 
@@ -32,8 +31,14 @@ describe('Footer', () => {
       const requiredSections = ['socialmedia', 'app', 'businesssectors', 'meta'];
 
       requiredSections.forEach(section => {
-        cy.get('@footer').find(`post-list[slot="${section}"]`).should('exist');
-        cy.get('@footer').find(`post-list[slot="${section}"] h3`).should('exist');
+        cy.get('@footer').find(`div[slot="${section}"]`).should('exist');
+
+        // Meta should have an aria-label as it has no visible title
+        if (section === 'meta') {
+          cy.get('@footer').find(`div[slot="${section}"] ul`).should('have.attr', 'aria-label', 'Meta');
+        } else {
+          cy.get('@footer').find(`div[slot="${section}"] h3`).should('exist');
+        }
       });
 
       cy.get('@footer').find('span[slot="copyright"]').should('have.length.at.least', 1);
@@ -50,14 +55,14 @@ describe('Footer', () => {
     it('should have interactive elements', () => {
       // Cookie settings button
       cy.get('@footer')
-        .find('post-list[slot="meta"] button')
+        .find('div[slot="meta"] button')
         .should('exist')
         .should('be.visible')
         .click(); // Test it's clickable
 
       // Social media links with proper styling
       cy.get('@footer')
-        .find('post-list[slot="socialmedia"] a')
+        .find('div[slot="socialmedia"] a')
         .each($link => {
           cy.wrap($link)
             .should('have.class', 'btn')
@@ -74,7 +79,7 @@ describe('Footer', () => {
 
     it('should display grid layout on desktop', () => {
       cy.viewport(1200, 800);
-      cy.get('@footer').find('post-list[slot^="grid-"]').should('be.visible');
+      cy.get('@footer').find('ul[slot^="grid-"]').should('be.visible');
       cy.get('@footer').find('post-accordion').should('not.exist');
     });
 
@@ -135,7 +140,7 @@ describe('Footer', () => {
 
       // Social media icons marked as decorative
       cy.get('@footer')
-        .find('post-list[slot="socialmedia"] post-icon')
+        .find('div[slot="socialmedia"] post-icon')
         .each($icon => {
           cy.wrap($icon).should('have.attr', 'aria-hidden', 'true');
         });

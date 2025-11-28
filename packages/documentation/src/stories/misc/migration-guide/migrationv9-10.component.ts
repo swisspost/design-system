@@ -77,6 +77,7 @@ export class MigrationV99Component extends LitElement {
       hydrated_flag: false,
       accordion_item_part: false,
       popover_trigger: false,
+      tabs_anchor_navigation: false,
     },
   };
 
@@ -368,6 +369,32 @@ export class MigrationV99Component extends LitElement {
                         The <code>post-popover</code> now uses its own
                         <code>post-popover-trigger</code> component instead of an element with a
                         <code>data-popover-target</code> attribute.
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-tabs_anchor_navigation"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.tabs_anchor_navigation}"
+                      />
+                      <label class="form-check-label" for="components-tabs_anchor_navigation">
+        
+                        <div>
+                          The markup of the <code>post-tabs</code> component has changed.
+                        </div>
+                         <span class="info">
+                          If you were using this component, you should:
+                          <ul>
+                            <li>Rename <code>post-tab-header</code> component to <code>post-tab-item</code></li>
+                            <li>Rename <code>panel</code> property to <code>name</code> in <code>post-tab-item</code> component</li>
+                            <li>Rename <code>name</code> property to <code>for</code> in <code>post-tab-panel</code> component</li>
+                            <li>Rename <code>activePanel</code> property to <code>activeTab</code> in <code>post-tabs</code> component</li>
+                          </ul>
+                        </span>
+
                       </label>
                     </div>
                   </li>
