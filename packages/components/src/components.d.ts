@@ -443,7 +443,7 @@ export namespace Components {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
@@ -457,10 +457,6 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Handles the popover closing process and emits related events.
-         */
-        "close": () => Promise<void>;
-        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -469,15 +465,6 @@ export namespace Components {
           * Programmatically hide the popovercontainer
          */
         "hide": () => Promise<void>;
-        /**
-          * Whether or not the popovercontainer should close when user clicks outside of it
-          * @default false
-         */
-        "manualClose": boolean;
-        /**
-          * Handles the popover opening process and emits related events.
-         */
-        "open": () => Promise<void>;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -541,32 +528,36 @@ export namespace Components {
     }
     interface PostStepperItem {
     }
-    interface PostTabHeader {
+    interface PostTabItem {
         /**
-          * The name of the panel controlled by the tab header.
-         */
-        "panel": string;
-    }
-    interface PostTabPanel {
-        /**
-          * The name of the panel, used to associate it with a tab header.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth": boolean;
         /**
+          * The accessible label for the tabs component in navigation mode.
+         */
+        "label"?: string;
+        /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
-        "show": (panelName: string) => Promise<void>;
+        "show": (tabName: string) => Promise<void>;
     }
     interface PostTogglebutton {
         /**
@@ -974,11 +965,11 @@ declare global {
         prototype: HTMLPostStepperItemElement;
         new (): HTMLPostStepperItemElement;
     };
-    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    interface HTMLPostTabItemElement extends Components.PostTabItem, HTMLStencilElement {
     }
-    var HTMLPostTabHeaderElement: {
-        prototype: HTMLPostTabHeaderElement;
-        new (): HTMLPostTabHeaderElement;
+    var HTMLPostTabItemElement: {
+        prototype: HTMLPostTabItemElement;
+        new (): HTMLPostTabItemElement;
     };
     interface HTMLPostTabPanelElement extends Components.PostTabPanel, HTMLStencilElement {
     }
@@ -1055,7 +1046,7 @@ declare global {
         "post-rating": HTMLPostRatingElement;
         "post-stepper": HTMLPostStepperElement;
         "post-stepper-item": HTMLPostStepperItemElement;
-        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-tab-item": HTMLPostTabItemElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
@@ -1439,7 +1430,7 @@ declare namespace LocalJSX {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
@@ -1457,11 +1448,6 @@ declare namespace LocalJSX {
           * @default 8
          */
         "edgeGap"?: number;
-        /**
-          * Whether or not the popovercontainer should close when user clicks outside of it
-          * @default false
-         */
-        "manualClose"?: boolean;
         /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
@@ -1542,30 +1528,34 @@ declare namespace LocalJSX {
     }
     interface PostStepperItem {
     }
-    interface PostTabHeader {
+    interface PostTabItem {
         /**
-          * The name of the panel controlled by the tab header.
-         */
-        "panel": string;
-    }
-    interface PostTabPanel {
-        /**
-          * The name of the panel, used to associate it with a tab header.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth"?: boolean;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
+          * The accessible label for the tabs component in navigation mode.
+         */
+        "label"?: string;
+        /**
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
@@ -1642,7 +1632,7 @@ declare namespace LocalJSX {
         "post-rating": PostRating;
         "post-stepper": PostStepper;
         "post-stepper-item": PostStepperItem;
-        "post-tab-header": PostTabHeader;
+        "post-tab-item": PostTabItem;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-togglebutton": PostTogglebutton;
@@ -1693,7 +1683,7 @@ declare module "@stencil/core" {
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-stepper": LocalJSX.PostStepper & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
             "post-stepper-item": LocalJSX.PostStepperItem & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
-            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;

@@ -17,7 +17,7 @@ import {
   PostPopoverTrigger,
   PostRating,
   PostTabs,
-  PostTabHeader,
+  PostTabItem,
   PostTabPanel,
   PostTooltipTrigger,
   PostTooltip,
@@ -146,21 +146,34 @@ export default function Home() {
       <h2>Rating</h2>
       <PostRating label="Rating"></PostRating>
 
-      <h2>Tabs</h2>
+      <h2>Tabs - Panel Variant</h2>
       <PostTabs>
-        <PostTabHeader panel="unua">Unua langeto</PostTabHeader>
-        <PostTabHeader panel="dua">Dua langeto</PostTabHeader>
-        <PostTabHeader panel="tria">Tria langeto</PostTabHeader>
+        <PostTabItem name="unua">Unua langeto</PostTabItem>
+        <PostTabItem name="dua">Dua langeto</PostTabItem>
+        <PostTabItem name="tria">Tria langeto</PostTabItem>
 
-        <PostTabPanel name="unua">
+        <PostTabPanel for="unua">
           Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
         </PostTabPanel>
-        <PostTabPanel name="dua">
+        <PostTabPanel for="dua">
           Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
         </PostTabPanel>
-        <PostTabPanel name="tria">
+        <PostTabPanel for="tria">
           Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
         </PostTabPanel>
+      </PostTabs>
+
+      <h2>Tabs - Navigation Variant</h2>
+      <PostTabs label="Tabs navigation">
+        <PostTabItem name="nav-first">
+          <a href="#first" aria-current="page">First</a>
+        </PostTabItem>
+        <PostTabItem name="nav-second">
+          <a href="#second">Second</a>
+        </PostTabItem>
+        <PostTabItem name="nav-third">
+          <a href="#third">Third</a>
+        </PostTabItem>
       </PostTabs>
 
       <h2>Tag</h2>
