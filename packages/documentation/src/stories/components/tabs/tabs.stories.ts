@@ -248,7 +248,7 @@ function renderPanelsVariant(
       <post-tab-panel for="second" slot="panels">
         This is the content of the second tab. By default it is hidden initially.
       </post-tab-panel>
-      <post-tab-panel for="third" slot="panels">
+      <post-tab-panel for="third">
         This is the content of the third tab. By default it is also hidden initially.
       </post-tab-panel>
     </post-tabs>
