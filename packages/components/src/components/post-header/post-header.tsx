@@ -3,7 +3,7 @@ import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { slideDown, slideUp } from '@/animations/slide';
+import { fadeIn, fadeOut } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 
@@ -190,8 +190,8 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? slideUp(this.burgerMenu)
-      : slideDown(this.burgerMenu);
+      ? fadeOut(this.burgerMenu, 600, 'ease-out')
+      : fadeIn(this.burgerMenu, 600, 'ease-in');
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');

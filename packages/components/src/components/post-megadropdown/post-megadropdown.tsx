@@ -2,7 +2,7 @@ import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { fadeIn, fadeOut } from '@/animations';
+import { fadeIn, fadeOut, slideIn, slideOut } from '@/animations';
 
 @Component({
   tag: 'post-megadropdown',
@@ -21,8 +21,6 @@ export class PostMegadropdown {
   private currentAnimation: Animation | null = null;
 
   private animatedContainer: HTMLElement;
-
-  // private animation {entry:string'fadein', duration:number, easing:string="ease-inf//"} = {600, 'ease';
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -85,8 +83,10 @@ export class PostMegadropdown {
   @Method()
   async toggle() {
     if (this.isVisible) {
+      console.log('hide');
       await this.hide();
     } else {
+      console.log('show');
       await this.show();
     }
   }
@@ -101,47 +101,71 @@ export class PostMegadropdown {
       PostMegadropdown.activeDropdown.forceClose();
     }
 
+    // First set it as visible then animate
     this.isVisible = true;
-    this.currentAnimation?.cancel();
-    this.currentAnimation = fadeIn(this.animatedContainer, 600, 'ease-in');
 
-    await this.currentAnimation.finished;
-    this.currentAnimation = null;
-    // After the megadropdown container becomes visible
-    PostMegadropdown.activeDropdown = this;
+    this.animatedContainer.getAnimations().forEach(a => a.cancel());
 
-    this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
-
-    if (
-      this.firstFocusableEl &&
-      window.getComputedStyle(this.firstFocusableEl).display !== 'none'
-    ) {
-      this.firstFocusableEl.focus();
+    if (this.device === 'desktop') {
+      this.currentAnimation = fadeIn(this.animatedContainer, 600, 'ease-in');
+    } else {
+      this.currentAnimation = slideIn(this.animatedContainer, '100%', 350, 'ease-in');
     }
-    this.addListeners();
-  }
 
+    try {
+      await this.currentAnimation.finished;
+
+      // After the megadropdown container becomes visible
+      this.currentAnimation = null;
+      PostMegadropdown.activeDropdown = this;
+      this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+
+      if (
+        this.firstFocusableEl &&
+        window.getComputedStyle(this.firstFocusableEl).display !== 'none'
+      ) {
+        this.firstFocusableEl.focus();
+      }
+      this.addListeners();
+    } catch {
+      // animation was cancelled
+      this.isVisible = false;
+      this.currentAnimation = null;
+      PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
+      this.postToggleMegadropdown.emit({ isVisible: false });
+    }
+  }
   /**
    * Hides the dropdown with an animation.
    */
   @Method()
   async hide(focusParent = true, forceClose = false) {
-    this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
-
     if (forceClose) {
       this.forceClose();
-    } else {
-      this.currentAnimation?.cancel();
-      this.currentAnimation = fadeOut(this.animatedContainer, 600, 'ease-out');
+      return;
+    }
 
+    this.currentAnimation?.cancel();
+    this.animatedContainer.getAnimations().forEach(a => a.cancel());
+
+    if (this.device === 'desktop') {
+      this.currentAnimation = fadeOut(this.animatedContainer, 600, 'ease-out');
+    } else {
+      this.currentAnimation = slideOut(this.animatedContainer, '100%', 350, 'ease-out');
+    }
+    try {
       await this.currentAnimation.finished;
+      this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
 
       // After the megadropdown container is hidden
       this.currentAnimation = null;
       this.isVisible = false;
-
       PostMegadropdown.activeDropdown = null;
       this.removeListeners();
+    } catch {
+      // animation was cancelled
+      this.currentAnimation = null;
     }
   }
 
@@ -197,7 +221,6 @@ export class PostMegadropdown {
         }
       }
     }
-
     await this.hide(false);
   };
 
