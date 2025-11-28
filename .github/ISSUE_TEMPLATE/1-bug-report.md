@@ -28,6 +28,10 @@ Steps to reproduce the behavior:
 
 <!-- If applicable, add screenshots to help explain your problem. -->
 
+### 🏷️ Versoin of the Design System
+
+<!-- Please specify the Design System version where the bug occurs. This information can be found in your project's package.json file -->
+
 ### 💻 Desktop
 
 <!-- Please complete the following information -->
