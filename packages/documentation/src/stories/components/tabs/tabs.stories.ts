@@ -242,7 +242,7 @@ function renderPanelsVariant(
       <post-tab-item name="second">Second tab</post-tab-item>
       <post-tab-item name="third">Third tab</post-tab-item>
 
-      <post-tab-panel for="first" slot="panels">
+      <post-tab-panel for="first">
         This is the content of the first tab. By default it is shown initially.
       </post-tab-panel>
       <post-tab-panel for="second">
