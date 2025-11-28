@@ -59,7 +59,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <p slot="title">Application title</p>
 
       <!-- Custom content (optional) -->
-      <ul slot="local-controls">
+      <ul slot="local-nav">
         <li>
           <a href="#">
             <span>Search</span>

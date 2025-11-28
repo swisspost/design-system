@@ -5,8 +5,8 @@ import { fakeContent } from '@/utils';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
 import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
-import { renderLocalControls } from '@/stories/components/header/renderers/local-controls';
-import { renderNavigationControls } from '@/stories/components/header/renderers/navigation-controls';
+import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
+import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 import { renderTitle } from '@/stories/components/header/renderers/title';
 
@@ -31,7 +31,7 @@ const meta: MetaComponent = {
     globalControls: true,
     targetGroup: true,
     globalLogin: true,
-    localControls: false,
+    localNav: false,
     isLoggedIn: false,
     jobs: false,
   },
@@ -112,14 +112,19 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    localControls: {
-      name: 'Custom controls',
-      description: 'Whether or not the custom controls are displayed ("search" and "login").',
+    localNav: {
+      name: 'Local controls',
+      description:
+        'Whether or not application-specific controls are displayed ("search" and "login").',
       control: {
         type: 'boolean',
       },
       table: {
         category: 'Content',
+      },
+      if: {
+        arg: 'jobs',
+        truthy: false,
       },
     },
     isLoggedIn: {
@@ -219,9 +224,9 @@ function getHeaderRenderer(
         </post-togglebutton>
 
         ${args.title !== '' ? title : nothing}
-        ${args.localControls ? renderLocalControls(args) : nothing}
+        ${args.localNav ? renderMicrositeControls(args) : nothing}
         ${args.mainNavigation ? mainnavigation : nothing}
-        ${args.jobs ? renderNavigationControls() : nothing}
+        ${args.jobs ? renderJobControls() : nothing}
       </post-header>
     `;
   };
@@ -293,7 +298,7 @@ export const Microsite: Story = {
     metaNavigation: false,
     globalLogin: false,
     targetGroup: false,
-    localControls: true,
+    localNav: true,
   },
 };
 
@@ -304,7 +309,7 @@ export const OnePager: Story = {
     mainNavigation: false,
     metaNavigation: false,
     globalControls: false,
-    localControls: false,
+    localNav: false,
     globalLogin: false,
     targetGroup: false,
   },
@@ -345,7 +350,7 @@ export const LoggedIn: Story = {
       const renderHeader = getHeaderRenderer({
         userMenu: html` ${story(context.args, context)} `,
       });
-      return renderHeader({ ...context.args, localControls: true });
+      return renderHeader(context.args);
     },
   ],
   render: () => renderUserMenu(),
