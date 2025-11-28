@@ -9,9 +9,8 @@
   margin: auto;
 }
 
-.error-401 img{
-
-  margin-right: 0px !important;
+.error-401 img {
+  margin-right: 0 !important;
 }
 
 @media (max-width: 1024px) {
@@ -36,9 +35,10 @@
     margin-top: 1rem;
     margin-bottom: 2rem;
   }
-  .error-400{
+
+  .error-400 {
     align-items: stretch;
-    rotate: 90deg;
+    transform: rotate(90deg);
     width: 100%;
   }
 }
