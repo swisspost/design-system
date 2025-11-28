@@ -4,14 +4,14 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
-const meta: MetaComponent<HTMLPostTabsElement & { 
-  variant: string; 
+const meta: MetaComponent<HTMLPostTabsElement & {
+  variant: string;
   activeTabPanels?: string;
   postChange: string,
   content?: string,
   tabs?: string,
-  'slots-default'?: string; 
-  'slots-panels'?: string; 
+  'slots-default'?: string;
+  'slots-panels'?: string;
 }> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
@@ -180,7 +180,7 @@ function renderNavigationVariant(
       </post-tabs>
     `;
   }
-  
+
   // Default navigation example - first link is active
   return html`
     <post-tabs
@@ -217,7 +217,7 @@ function renderPanelsVariant(
       </post-tabs>
     `;
   }
-  
+
   if (panelSlots) {
     return html`
       <post-tabs
@@ -227,12 +227,12 @@ function renderPanelsVariant(
         <post-tab-item name="first">First tab</post-tab-item>
         <post-tab-item name="second">Second tab</post-tab-item>
         <post-tab-item name="third">Third tab</post-tab-item>
-        
+
         ${unsafeHTML(panelSlots)}
       </post-tabs>
     `;
   }
-  
+
   return html`
     <post-tabs
       active-tab="${ifDefined(activeTab)}"
@@ -255,24 +255,24 @@ function renderPanelsVariant(
   `;
 }
 
-function renderTabs(args: Partial<HTMLPostTabsElement & { 
-  variant: string; 
+function renderTabs(args: Partial<HTMLPostTabsElement & {
+  variant: string;
   activeTabPanels?: string;
-  'slots-default'?: string; 
+  'slots-default'?: string;
   'slots-panels'?: string;
 }>) {
   const variant = args.variant || 'panels';
-  
+
   return variant === 'navigation'
     ? renderNavigationVariant(args.fullWidth, args.label, args['slots-default'] || '')
     : renderPanelsVariant(args.activeTabPanels, args.fullWidth, args['slots-default'] || '', args['slots-panels'] || '');
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostTabsElement & { 
-  variant: string; 
+type Story = StoryObj<HTMLPostTabsElement & {
+  variant: string;
   activeTabPanels?: string;
-  'slots-default'?: string; 
+  'slots-default'?: string;
   'slots-panels'?: string;
 }>;
 
@@ -309,7 +309,7 @@ export const FullWidth: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  args: { 
+  args: {
     fullWidth: true,
     variant: 'panels',
   },
@@ -356,67 +356,4 @@ export const ActiveNavigationItem: Story = {
       </post-tab-item>
     `,
   },
-};
-
-export const Async: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: 'Dynamically add or remove tabs in panels mode. The component handles DOM mutations and updates accordingly.',
-      },
-    },
-  },
-  decorators: [
-    story => {
-      let tabIndex = 3;
-      const addTab = () => {
-        const tabs = document.querySelector('post-tabs');
-
-        tabIndex++;
-        const newTab = `
-          <post-tab-item name="tab-${tabIndex}">New tab ${tabIndex}</post-tab-item>
-          <post-tab-panel for="tab-${tabIndex}" slot="panels">This is the content of the new tab ${tabIndex}.</post-tab-panel>
-        `;
-
-        tabs?.insertAdjacentHTML('beforeend', newTab);
-      };
-
-      const removeActiveTab = () => {
-        const items: NodeListOf<HTMLPostTabItemElement> | undefined =
-          document.querySelectorAll('post-tab-item');
-
-        const activeItem: HTMLPostTabItemElement | undefined = Array.from(items ?? []).find(
-          item => item.classList.contains('active'),
-        );
-        
-        if (!activeItem) return;
-
-        const activePanel: HTMLPostTabPanelElement | null =
-          document.querySelector(`post-tab-panel[for="${activeItem.name}"]`) ?? null;
-        
-        activeItem?.remove();
-        activePanel?.remove();
-      };
-
-      return html`
-        ${story()}
-        <hr />
-        <div class="d-flex gap-8">
-          <button class="btn btn-default" id="add-tab" type="button" @click="${addTab}">
-            <post-icon name="plus"></post-icon>
-            Add tab
-          </button>
-          <button
-            class="btn btn-default"
-            id="remove-active-tab"
-            type="button"
-            @click="${removeActiveTab}"
-          >
-            <post-icon name="minus"></post-icon>
-            Remove active tab
-          </button>
-        </div>
-      `;
-    },
-  ],
 };
