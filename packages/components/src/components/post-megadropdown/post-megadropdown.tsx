@@ -132,7 +132,7 @@ export class PostMegadropdown {
       this.forceClose();
     } else {
       this.currentAnimation?.cancel();
-      this.currentAnimation = fadeOut(this.animatedContainer, 1600, 'ease-out');
+      this.currentAnimation = fadeOut(this.animatedContainer, 600, 'ease-out');
 
       await this.currentAnimation.finished;
 
