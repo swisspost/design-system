@@ -1,21 +1,21 @@
-import { Meta, Source } from '@storybook/addon-docs/blocks';
+import { Meta, Source, Canvas } from '@storybook/addon-docs/blocks';
 import meta, * as TypographyStories from './typography.stories';
 import {
   FontFace,
   FontFaceWrapper,
-  Headings,
-  Inlines,
-  Links,
-  Lists,
-  Paragraphs,
 } from './typography.blocks';
 import './typography.styles.scss';
 import SampleStandalone from './typography-standalone.sample.css?raw';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import PackageTag from '@/shared/package-tag';
 
 <Meta of={TypographyStories} />
 
+<div className="docs-title">
 # Typography
+
+  <link-design of={JSON.stringify(TypographyStories)}></link-design>
+ </div>
 
 <PackageTag meta={meta}/>
 
@@ -60,32 +60,43 @@ The following sections show what specific elements look like.
 
 ### Headings
 
-<Headings />
+All HTML headings are available, from `h1` the highest section level to `h6` the lowest.<br/>
+If you need to match the font styling of a heading but cannot use the associated HTML element,
+use the override classes.
+
+<Canvas of={TypographyStories.Heading} sourceState="shown" />
 
 Sometimes the document heading structure requires you
 to use a heading tag that should look like another in order to maintain a consistency.
 In those cases you can use the heading helper classes `.h1` through `.h6`.<br/>
-For more details, check out [heading docs](/?path=/docs/7ecd87f1-de96-4e39-a057-ba1798eb6959--docs).
 
 ### Paragraphs
 
-<Paragraphs />
+<Canvas of={TypographyStories.Paragraph} sourceState="shown" />
+
+A lead provides the reader with a summary of the most important information about the subsequent paragraph or content. A paragraph is a group of sentences which belong to the same context.
 
 ### Links
+
+Use links to navigate users to another location, such as a different site, resource, or section within the same page.
 
 <post-banner>
   The examples below are dummy links for visual demonstration only — they do not navigate anywhere.
 </post-banner>
 
-<Links />
+<Canvas of={TypographyStories.Link} sourceState="shown" />
 
 ### Inline Elements
 
-<Inlines />
+<Canvas of={TypographyStories.Inline} sourceState="shown" />
 
-### Lists
+### Legends
 
-<Lists />
+A legend is in general the title of a group of related (interactive) elements in a form. Not to be confused with caption.
 
-For more details on how to change the look of lists,
-visit our [list utilities docs](/?path=/docs/e76192bb-b2eb-487a-b9c1-ef938bccdfc4--docs).
+<Canvas of={TypographyStories.Legend} sourceState="shown" />
+
+<StylesPackageImport
+  components={['lead']}
+  importText="To import only the styles required for typography elements:"
+/>
