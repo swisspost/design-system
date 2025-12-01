@@ -201,7 +201,7 @@ function getHeaderRenderer(
           description="The currently selected language is English."
           variant="list"
           name="language-switch-example"
-          slot="post-language-menu"
+          slot="post-language-switch"
         >
           <post-language-menu-item code="de" name="German">de</post-language-menu-item>
           <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
