@@ -355,16 +355,17 @@ export class PostPagination {
    * Clamps the page number to valid range
    */
   private clampPageToValidRange(totalPages: number): number {
-    if (totalPages === 0 || this.invalidSize || isNaN(totalPages)) {
+    const invalidTotalPages = totalPages === 0 || this.invalidSize || isNaN(totalPages);
+    const invalidPage = !this.page || this.page < 1 || isNaN(this.page);
+    const pageExceedsTotal = this.page > totalPages;
+
+    if (invalidTotalPages || invalidPage) {
       return 1;
-    }
-    if (!this.page || this.page < 1 || isNaN(this.page)) {
-      return 1;
-    }
-    if (this.page > totalPages) {
+    } else if (pageExceedsTotal) {
       return totalPages;
+    } else {
+      return this.page;
     }
-    return this.page;
   }
 
   /**
