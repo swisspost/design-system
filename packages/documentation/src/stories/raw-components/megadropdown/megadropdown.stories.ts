@@ -46,7 +46,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
         caption="Caption"
         description="Description"
         variant="list"
-        name="language-switch-example"
+        name="language-menu-example"
         slot="post-language-switch"
       >
         <post-language-menu-item active="true" code="de" name="German">DE</post-language-menu-item>

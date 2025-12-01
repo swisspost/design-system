@@ -39,7 +39,7 @@ const meta: MetaComponent = {
           caption="Change the language"
           description="The currently selected language is English."
           variant="list"
-          name="language-switch-example"
+          name="language-menu-example"
           slot="post-language-switch"
         >
           <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>

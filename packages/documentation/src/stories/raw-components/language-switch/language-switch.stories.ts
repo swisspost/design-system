@@ -7,7 +7,7 @@ const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   title: 'Raw Components/Language Menu',
   tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-language-menu',
-  render: renderLanguageSwitch,
+  render: renderLanguageMenu,
   parameters: {
     design: {
       type: 'figma',
@@ -24,7 +24,7 @@ const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
 
 export default meta;
 
-function renderLanguageSwitch(args: Partial<HTMLPostLanguageMenuElement>) {
+function renderLanguageMenu(args: Partial<HTMLPostLanguageMenuElement>) {
   return html`<post-language-menu
     caption=${args.caption}
     description=${args.description}
@@ -37,7 +37,7 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageMenuElement>) {
   </post-language-menu> `;
 }
 
-function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageMenuElement>) {
+function renderLanguageMenuAsLinks(args: Partial<HTMLPostLanguageMenuElement>) {
   return html`<post-language-menu
     caption=${args.caption}
     description=${args.description}
@@ -57,5 +57,5 @@ type Story = StoryObj<HTMLPostLanguageMenuElement>;
 export const Default: Story = {};
 
 export const Links: Story = {
-  render: renderLanguageSwitchAsLinks,
+  render: renderLanguageMenuAsLinks,
 };

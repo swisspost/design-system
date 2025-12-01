@@ -1,28 +1,28 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import meta, * as languageSwitchStories from './language-switch.stories';
+import meta, * as languageMenuStories from './language-switch.stories';
 import { PostBanner } from '@swisspost/design-system-components-react';
 import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
-<Meta of={languageSwitchStories} />
+<Meta of={languageMenuStories} />
 
 <div className="docs-title">
-  # Language Switch
+  # Language Menu
 
-<link-design of={JSON.stringify(languageSwitchStories)}></link-design>
+<link-design of={JSON.stringify(languageMenuStories)}></link-design>
 
 </div>
 
 <PackageTag meta={meta}/>
 
 <p className="lead">
-  The language option switch is a web component which enables users to select their preferred
+  The language menu is a web component which enables users to select their preferred
   language.
 </p>
 
-<Canvas sourceState="shown" of={languageSwitchStories.Default} />
+<Canvas sourceState="shown" of={languageMenuStories.Default} />
 
-<Controls of={languageSwitchStories.Default} />
+<Controls of={languageMenuStories.Default} />
 
 <PostBanner>
   <p>
@@ -33,10 +33,10 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
   </p>
 </PostBanner>
 
-<ComponentsPackageInstall component="<post-language-switch>" />
+<ComponentsPackageInstall component="<post-language-menu>" />
 
 ## Links
 
 The language options can be used as links, which will navigate to a different page upon selection.
 
-<Canvas sourceState="shown" of={languageSwitchStories.Links} />
+<Canvas sourceState="shown" of={languageMenuStories.Links} />

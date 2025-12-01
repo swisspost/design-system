@@ -169,10 +169,10 @@ describe('post-language-menu', () => {
     });
 
     it('Has no detectable a11y violations for all variants', () => {
-      cy.get('post-language-menu').as('languageSwitch');
-      cy.get('@languageSwitch').invoke('prop', 'variant', 'menu');
+      cy.get('post-language-menu').as('languageMenu');
+      cy.get('@languageMenu').invoke('prop', 'variant', 'menu');
       cy.checkA11y('#root-inner');
-      cy.get('@languageSwitch').invoke('prop', 'variant', 'list');
+      cy.get('@languageMenu').invoke('prop', 'variant', 'list');
       cy.checkA11y('#root-inner');
     });
   });
