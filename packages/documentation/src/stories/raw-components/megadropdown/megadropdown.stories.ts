@@ -118,7 +118,7 @@ function render() {
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostLanguageOptionElement>;
+type Story = StoryObj<HTMLPostLanguageMenuItemElement>;
 
 export const Default: Story = {
   decorators: [megadropdownDecorator],

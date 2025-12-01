@@ -7,8 +7,8 @@ import {
   PostFooter,
   PostHeader,
   PostIcon,
-  PostLanguageOption,
-  PostLanguageSwitch,
+  PostLanguageMenuItem,
+  PostLanguageMenu,
   PostList,
   PostListItem,
   PostLogo,
@@ -66,26 +66,26 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </li>
       </ul>
 
-        {/* Language switch */}
-        <PostLanguageSwitch
-          caption="Change the language"
-          description="The currently selected language is English."
-          variant="list"
-          slot="post-language-menu"
-        >
-          <PostLanguageOption code="de" name="German">
-            de
-          </PostLanguageOption>
-          <PostLanguageOption code="fr" name="French">
-            fr
-          </PostLanguageOption>
-          <PostLanguageOption code="it" name="Italian">
-            it
-          </PostLanguageOption>
-          <PostLanguageOption active={true} code="en" name="English">
-              en
-            </PostLanguageOption>
-          </PostLanguageSwitch>
+      {/* Language switch */}
+      <PostLanguageMenu
+        caption="Change the language"
+        description="The currently selected language is English."
+        variant="list"
+        slot="post-language-menu"
+      >
+        <PostLanguageMenuItem code="de" name="German">
+          de
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem code="fr" name="French">
+          fr
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem code="it" name="Italian">
+          it
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem active={true} code="en" name="English">
+          en
+        </PostLanguageMenuItem>
+      </PostLanguageMenu>
 
         {/* Global header login/user menu */}
         <a href="" slot="global-login">

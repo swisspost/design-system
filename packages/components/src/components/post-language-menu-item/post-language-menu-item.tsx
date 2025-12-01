@@ -86,7 +86,7 @@ export class PostLanguageMenuItem {
     }
 
     if (this.active) {
-      this.postLanguageOptionInitiallyActive.emit(this.code);
+      this.postLanguageMenuItemInitiallyActive.emit(this.code);
     }
   }
 
@@ -98,7 +98,7 @@ export class PostLanguageMenuItem {
   /**
    * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
    */
-  @Event() postLanguageOptionInitiallyActive: EventEmitter<string>;
+  @Event() postLanguageMenuItemInitiallyActive: EventEmitter<string>;
 
   /**
    * Selects the language option programmatically.

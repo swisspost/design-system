@@ -94,7 +94,7 @@ export class PostLanguageMenu {
    * Handles cases where the language switch is being rendered before options are available
    * @param event Initially emitted by <post-language-menu-item>
    */
-  @Listen('postLanguageOptionInitiallyActive')
+  @Listen('postLanguageMenuItemInitiallyActive')
   handleInitiallyActive(event: CustomEvent<string>) {
     this.activeLang = event.detail;
   }
