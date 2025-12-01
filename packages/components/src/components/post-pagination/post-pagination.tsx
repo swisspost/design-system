@@ -341,12 +341,7 @@ export class PostPagination {
   private getAvailableWidth(): number {
     if (!this.navRef) return 0;
     
-    let parent = this.host.parentNode;
-    while (parent && !(parent instanceof HTMLElement)) {
-      parent = parent.parentNode;
-    }
-    
-    return parent instanceof HTMLElement ? parent.clientWidth : window.innerWidth;
+    return this.host.parentElement?.clientWidth ?? window.innerWidth;
   }
 
   /**
