@@ -220,25 +220,14 @@ export class PostPagination {
     }
     
     this.measurementTimeoutId = window.setTimeout(() => {
-      this.attemptMeasurement();
+      const canMeasure = this.navRef?.clientWidth > 0 && this.hiddenItemsRef;
+      
+      if (canMeasure) {
+        this.measureAndCalculateVisiblePages();
+      } else {
+        this.scheduleMeasurement();
+      }
     }, MEASUREMENT_DEBOUNCE_MS);
-  }
-
-  /**
-   * Attempt to measure, reschedule if not ready
-   */
-  private attemptMeasurement() {
-    if (!this.loaded) {
-      return;
-    }
-    
-    const canMeasure = this.navRef?.clientWidth > 0 && this.hiddenItemsRef;
-    
-    if (canMeasure) {
-      this.measureAndCalculateVisiblePages();
-    } else {
-      this.scheduleMeasurement();
-    }
   }
 
   /**
