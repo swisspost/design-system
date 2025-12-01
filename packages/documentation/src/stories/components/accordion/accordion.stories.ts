@@ -19,7 +19,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
   },
   args: {
     multiple: false,
-    headingLevel: '4' as unknown as HeadingLevel, // needs to be a string for the control to properly initialize
+    headingLevel: 4 as HeadingLevel, // needs to be a string for the control to properly initialize
     logoSrc: '',
   },
   argTypes: {
