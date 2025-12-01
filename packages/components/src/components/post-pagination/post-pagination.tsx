@@ -215,9 +215,7 @@ export class PostPagination {
    * Schedule measurement attempt with timeout
    */
   private scheduleMeasurement() {
-    if (!this.loaded) {
-      return;
-    }
+    if (!this.loaded) return;
     
     this.measurementTimeoutId = window.setTimeout(() => {
       const canMeasure = this.navRef?.clientWidth > 0 && this.hiddenItemsRef;
@@ -234,13 +232,9 @@ export class PostPagination {
    * Internal resize handler
    */
   private handleResizeInternal() {
-    if (!this.loaded) {
-      return;
-    }
+    if (!this.loaded) return;
     
-    if (window.innerWidth === this.lastWindowWidth) {
-      return;
-    }
+    if (window.innerWidth === this.lastWindowWidth) return;
     
     this.lastWindowWidth = window.innerWidth;
     this.measureAndCalculateVisiblePages();
@@ -259,14 +253,10 @@ export class PostPagination {
    * Measures actual rendered elements to determine how many pages can fit
    */
   private measureAndCalculateVisiblePages() {
-    if (!this.navRef || !this.hiddenItemsRef || !this.loaded) {
-      return;
-    }
+    if (!this.navRef || !this.hiddenItemsRef || !this.loaded) return;
 
     const totalPages = this.getTotalPages();
-    if (totalPages <= 1) {
-      return;
-    }
+    if (totalPages <= 1) return;
 
     const paginationPadding = this.getPaginationPadding();
     const availableWidth = this.getAvailableWidth();
@@ -276,9 +266,7 @@ export class PostPagination {
     const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button');
     const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis');
     
-    if (!pageButton) {
-      return;
-    }
+    if (!pageButton) return;
 
     const singleButtonWidth = pageButton.getBoundingClientRect().width;
     const gap = pageButton && ellipsis ? this.calculateGap(pageButton, ellipsis) : 0;
@@ -365,9 +353,7 @@ export class PostPagination {
    * Calculates the total number of pages.
    */
   private getTotalPages(): number {
-    if (this.invalidSize) {
-      return 1;
-    }
+    if (this.invalidSize) return 1;
     return Math.ceil(this.collectionSize / this.pageSize);
   }
 
@@ -618,9 +604,7 @@ export class PostPagination {
    * Handles page change when a page button is clicked.
    */
   private handlePageClick(pageNumber: number) {
-    if (this.disabled || pageNumber === this.page) {
-      return;
-    }
+    if (this.disabled || pageNumber === this.page) return;
 
     this.emitPageChange(pageNumber);
   }
@@ -629,9 +613,7 @@ export class PostPagination {
    * Handles previous button click.
    */
   private handlePrevious() {
-    if (this.disabled || this.page <= 1) {
-      return;
-    }
+    if (this.disabled || this.page <= 1) return;
     
     this.emitPageChange(this.page - 1);
   }
@@ -641,9 +623,7 @@ export class PostPagination {
    */
   private handleNext() {
     const totalPages = this.getTotalPages();
-    if (this.disabled || this.page >= totalPages) {
-      return;
-    }
+    if (this.disabled || this.page >= totalPages) return;
     
     this.emitPageChange(this.page + 1);
   }
