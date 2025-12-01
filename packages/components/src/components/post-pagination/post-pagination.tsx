@@ -345,10 +345,17 @@ export class PostPagination {
   }
 
   /**
+   * Returns true if collection size or page size is invalid
+   */
+  private get invalidSize(): boolean {
+    return this.collectionSize === 0 || this.pageSize === 0;
+  }
+
+  /**
    * Clamps the page number to valid range
    */
   private clampPageToValidRange(totalPages: number): number {
-    if (totalPages === 0 || this.collectionSize === 0 || isNaN(totalPages)) {
+    if (totalPages === 0 || this.invalidSize || isNaN(totalPages)) {
       return 1;
     }
     if (!this.page || this.page < 1 || isNaN(this.page)) {
@@ -373,7 +380,7 @@ export class PostPagination {
    * Calculates the total number of pages.
    */
   private getTotalPages(): number {
-    if (this.collectionSize === 0 || this.pageSize === 0) {
+    if (this.invalidSize) {
       return 1;
     }
     return Math.ceil(this.collectionSize / this.pageSize);
