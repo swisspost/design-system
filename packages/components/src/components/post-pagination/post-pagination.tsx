@@ -7,6 +7,10 @@ const ELLIPSIS = '...';
 const MEASUREMENT_DEBOUNCE_MS = 50;
 const RESIZE_DEBOUNCE_MS = 150;
 const MIN_VISIBLE_PAGES = 3;
+const EDGE_ITEM_COUNT = 2; // Always show first and last page
+const MAX_ELLIPSIS_COUNT = 2; // Maximum ellipsis elements
+const GAP_THRESHOLD_FOR_PAGE = 2; // Show page number instead of ellipsis when gap is this value
+const MIDDLE_RANGE_START = 2; // Middle range starts from page 2 (page 1 is always shown separately)
 
 /**
  * Type-safe pagination item definition using discriminated union.
@@ -362,7 +366,7 @@ export class PostPagination {
    */
   private sectionForGap(gap: number): SectionType {
     if (gap <= 1) return 'none';
-    return gap === 2 ? 'page' : 'ellipsis';
+    return gap === GAP_THRESHOLD_FOR_PAGE ? 'page' : 'ellipsis';
   }
 
   /**
@@ -389,9 +393,9 @@ export class PostPagination {
     const leftCount = leftSection === 'none' ? 0 : 1;
     const rightCount = rightSection === 'none' ? 0 : 1;
     
-    // Always include first page (1) and last page (totalPages) = 2 pages
+    // Always include first page (1) and last page (totalPages) = EDGE_ITEM_COUNT pages
     // Plus any left/right sections (ellipsis or pages) and middle pages
-    return 2 + leftCount + rightCount + middle;
+    return EDGE_ITEM_COUNT + leftCount + rightCount + middle;
   }
 
   /**
@@ -411,17 +415,17 @@ export class PostPagination {
   private adjustForGapTwo(startPage: number, endPage: number, totalPages: number, middleSlots: number) {
     const adjusted = { startPage, endPage };
     
-    // Fix rightGap=2 to maintain visual consistency
+    // Fix rightGap=GAP_THRESHOLD_FOR_PAGE to maintain visual consistency
     const rightGap = totalPages - endPage;
-    if (rightGap === 2) {
+    if (rightGap === GAP_THRESHOLD_FOR_PAGE) {
       adjusted.endPage = totalPages - 1;
-      adjusted.startPage = Math.max(2, adjusted.endPage - middleSlots + 1);
+      adjusted.startPage = Math.max(MIDDLE_RANGE_START, adjusted.endPage - middleSlots + 1);
     }
     
-    // Fix leftGap=2 to maintain symmetry
+    // Fix leftGap=GAP_THRESHOLD_FOR_PAGE to maintain symmetry
     const leftGap = adjusted.startPage - 1;
-    if (leftGap === 2) {
-      adjusted.startPage = 2;
+    if (leftGap === GAP_THRESHOLD_FOR_PAGE) {
+      adjusted.startPage = MIDDLE_RANGE_START;
       adjusted.endPage = Math.min(totalPages - 1, adjusted.startPage + middleSlots - 1);
     }
     
@@ -438,8 +442,8 @@ export class PostPagination {
     if (actualSlots < middleSlots && endPage < totalPages - 1) {
       adjusted.endPage = Math.min(totalPages - 1, startPage + middleSlots - 1);
     }
-    if (actualSlots < middleSlots && startPage > 2) {
-      adjusted.startPage = Math.max(2, endPage - middleSlots + 1);
+    if (actualSlots < middleSlots && startPage > MIDDLE_RANGE_START) {
+      adjusted.startPage = Math.max(MIDDLE_RANGE_START, endPage - middleSlots + 1);
     }
 
     return adjusted;
@@ -478,11 +482,11 @@ export class PostPagination {
 
     // Expand if too few items
     while (totalItems < maxVisible) {
-      const canExpandLeft = adjusted.startPage > 2;
+      const canExpandLeft = adjusted.startPage > MIDDLE_RANGE_START;
       const canExpandRight = adjusted.endPage < totalPages - 1;
       
       if (canExpandLeft) {
-        adjusted.startPage = Math.max(2, adjusted.startPage - 1);
+        adjusted.startPage = Math.max(MIDDLE_RANGE_START, adjusted.startPage - 1);
       } else if (canExpandRight) {
         adjusted.endPage = Math.min(totalPages - 1, adjusted.endPage + 1);
       } else {
@@ -502,12 +506,12 @@ export class PostPagination {
    */
   private calculatePageRange(currentPage: number, totalPages: number, maxVisible: number) {
     // Reserve slots for first, last, and potential ellipses
-    const reservedSlots = 2; // first and last pages
-    const ellipsisSlots = 2; // maximum possible ellipses
+    const reservedSlots = EDGE_ITEM_COUNT;
+    const ellipsisSlots = MAX_ELLIPSIS_COUNT;
     const middleSlots = Math.max(0, maxVisible - reservedSlots - ellipsisSlots);
 
     if (middleSlots <= 0) {
-      return { startPage: 2, endPage: 1 };
+      return { startPage: MIDDLE_RANGE_START, endPage: 1 };
     }
 
     // Center around current page
@@ -516,8 +520,8 @@ export class PostPagination {
     let endPage = startPage + middleSlots - 1;
 
     // Adjust if out of bounds
-    if (startPage < 2) {
-      startPage = 2;
+    if (startPage < MIDDLE_RANGE_START) {
+      startPage = MIDDLE_RANGE_START;
       endPage = startPage + middleSlots - 1;
     }
 
@@ -526,7 +530,7 @@ export class PostPagination {
       startPage = endPage - middleSlots + 1;
     }
     
-    startPage = Math.max(2, startPage);
+    startPage = Math.max(MIDDLE_RANGE_START, startPage);
     endPage = Math.min(totalPages - 1, endPage);
 
     // Fix gap=2 scenarios
