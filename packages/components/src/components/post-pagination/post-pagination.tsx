@@ -238,13 +238,11 @@ export class PostPagination {
       return;
     }
     
-    const newWidth = window.innerWidth;
-    
-    if (newWidth === this.lastWindowWidth) {
+    if (window.innerWidth === this.lastWindowWidth) {
       return;
     }
     
-    this.lastWindowWidth = newWidth;
+    this.lastWindowWidth = window.innerWidth;
     this.measureAndCalculateVisiblePages();
   }
 
