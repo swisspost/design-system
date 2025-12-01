@@ -146,4 +146,3 @@ export class PostLanguageMenu {
     return this.variant === 'list' ? this.renderList() : this.renderDropdown();
   }
 }
-
