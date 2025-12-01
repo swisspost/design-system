@@ -91,10 +91,10 @@ export class PostPagination {
 
   private navRef?: HTMLElement;
   private hiddenItemsRef?: HTMLElement;
-  private lastWindowWidth: number;
+  private lastWindowWidth = window.innerWidth;
   private loaded: boolean = false;
   
-  private debouncedResize: (() => void) | null = null;
+  private debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
   private measurementTimeoutId: number | null = null;
 
   @Watch('page')
@@ -165,11 +165,7 @@ export class PostPagination {
   componentDidLoad() {
     this.loaded = true;
     this.runAllValidations();
-
-    this.debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
-    
     window.addEventListener('resize', this.debouncedResize);
-    this.lastWindowWidth = window.innerWidth;
     
     this.scheduleMeasurement();
   }
@@ -177,9 +173,7 @@ export class PostPagination {
   disconnectedCallback() {
     this.loaded = false;
     
-    if (this.debouncedResize) {
-      window.removeEventListener('resize', this.debouncedResize);
-    }
+    window.removeEventListener('resize', this.debouncedResize);
     
     if (this.measurementTimeoutId !== null) {
       clearTimeout(this.measurementTimeoutId);
