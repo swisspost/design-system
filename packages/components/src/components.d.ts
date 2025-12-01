@@ -372,9 +372,8 @@ export namespace Components {
         "collectionSize": number;
         /**
           * If true, the pagination is disabled.
-          * @default false
          */
-        "disabled": boolean;
+        "disabled"?: boolean;
         /**
           * Accessible label for the pagination navigation.
          */
@@ -400,7 +399,7 @@ export namespace Components {
          */
         "labelPrevious": string;
         /**
-          * **The current active page number. If not passed, defaults to the first page.**
+          * The current active page number.  **If not specified, defaults to the first page.**
          */
         "page"?: number;
         /**
@@ -1370,7 +1369,6 @@ declare namespace LocalJSX {
         "collectionSize": number;
         /**
           * If true, the pagination is disabled.
-          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -1402,7 +1400,7 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostPaginationCustomEvent<number>) => void;
         /**
-          * **The current active page number. If not passed, defaults to the first page.**
+          * The current active page number.  **If not specified, defaults to the first page.**
          */
         "page"?: number;
         /**

@@ -39,7 +39,9 @@ export class PostPagination {
   @State() private items: PaginationItem[] = [];
   
   /**
-   * **The current active page number. If not passed, defaults to the first page.**
+   * The current active page number.
+   * 
+   * **If not specified, defaults to the first page.**
    */
   @Prop({ mutable: true }) page?: number;
   
@@ -86,7 +88,7 @@ export class PostPagination {
   /**
    * If true, the pagination is disabled.
    */
-  @Prop() readonly disabled: boolean = false;
+  @Prop() readonly disabled?: boolean;
 
   /**
    * Event emitted when the page changes.
@@ -691,7 +693,7 @@ export class PostPagination {
           aria-current={isCurrent ? 'page' : undefined}
           onClick={() => this.handlePageClick(pageNumber)}
           onKeyDown={(e) => this.handleKeyDown(e, () => this.handlePageClick(pageNumber))}
-          disabled={this.disabled}
+          disabled={this.disabled ? true : undefined}
           tabIndex={this.disabled ? -1 : 0}
         >
           <span aria-hidden="true">{pageNumber}</span>
