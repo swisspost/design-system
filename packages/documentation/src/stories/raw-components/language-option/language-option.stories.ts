@@ -3,11 +3,11 @@ import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 
-const meta: MetaComponent<HTMLPostLanguageOptionElement> = {
+const meta: MetaComponent<HTMLPostLanguageMenuItemElement> = {
   id: '3753ab83-a659-47b5-a2f2-ac452ec97916',
-  title: 'Raw Components/Language Option',
+  title: 'Raw Components/Language Menu Item',
   tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
-  component: 'post-language-option',
+  component: 'post-language-menu-item',
   render: renderLanguageOption,
   decorators: [listContainer],
   parameters: {
@@ -43,8 +43,8 @@ function listContainer(story: StoryFn, context: StoryContext) {
 }
 
 // RENDERERS
-function renderLanguageOption(args: Partial<HTMLPostLanguageOptionElement>) {
-  return html`<post-language-option
+function renderLanguageOption(args: Partial<HTMLPostLanguageMenuItemElement>) {
+  return html`<post-language-menu-item
     code=${args.code}
     name=${args.name ? args.name : nothing}
     active=${args.active ? args.active : nothing}
@@ -52,11 +52,11 @@ function renderLanguageOption(args: Partial<HTMLPostLanguageOptionElement>) {
     onClick=${args.url ? nothing : 'e => changeLangTo(e.detail)'}
   >
     ${args.innerHTML}
-  </post-language-option>`;
+  </post-language-menu-item>`;
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostLanguageOptionElement>;
+type Story = StoryObj<HTMLPostLanguageMenuItemElement>;
 
 export const Default: Story = {};
 

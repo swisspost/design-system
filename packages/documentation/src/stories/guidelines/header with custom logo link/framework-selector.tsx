@@ -21,17 +21,17 @@ const code = `
   </post-togglebutton>
 
   <!-- Language switch -->
-  <post-language-switch
+  <post-language-menu
     caption="Change the language"
     description="The currently selected language is English."
     variant="list"
     name="language-switch-example"
-    slot="post-language-switch">
-    <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
-    <post-language-option active="false" code="fr" name="French">fr</post-language-option>
-    <post-language-option active="false" code="it" name="Italiano">it</post-language-option>
-    <post-language-option active="true" code="en" name="English">en</post-language-option>
-  </post-language-switch>
+    slot="post-language-menu">
+    <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
+    <post-language-menu-item active="false" code="fr" name="French">fr</post-language-menu-item>
+    <post-language-menu-item active="false" code="it" name="Italiano">it</post-language-menu-item>
+    <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+  </post-language-menu>
 
   <!-- Application title (optional) -->
   <p slot="title">Application title</p>

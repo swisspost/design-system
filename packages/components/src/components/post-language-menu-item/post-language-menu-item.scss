@@ -1,0 +1,5 @@
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+
+.visually-hidden {
+  @include utilities-mx.visuallyhidden();
+}

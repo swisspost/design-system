@@ -2,11 +2,11 @@ import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
-const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
+const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
-  title: 'Raw Components/Language Switch',
+  title: 'Raw Components/Language Menu',
   tags: ['package:WebComponents', 'status:InProgress'],
-  component: 'post-language-switch',
+  component: 'post-language-menu',
   render: renderLanguageSwitch,
   parameters: {
     design: {
@@ -24,35 +24,35 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
 
 export default meta;
 
-function renderLanguageSwitch(args: Partial<HTMLPostLanguageSwitchElement>) {
-  return html`<post-language-switch
+function renderLanguageSwitch(args: Partial<HTMLPostLanguageMenuElement>) {
+  return html`<post-language-menu
     caption=${args.caption}
     description=${args.description}
     variant=${args.variant}
     type=${args.type}
   >
-    <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
-    <post-language-option active="true" code="en" name="English">en</post-language-option>
-    <post-language-option active="false" code="fr" name="French">fr</post-language-option>
-  </post-language-switch> `;
+    <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
+    <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+    <post-language-menu-item active="false" code="fr" name="French">fr</post-language-menu-item>
+  </post-language-menu> `;
 }
 
-function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageSwitchElement>) {
-  return html`<post-language-switch
+function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageMenuElement>) {
+  return html`<post-language-menu
     caption=${args.caption}
     description=${args.description}
     variant="menu"
   >
-    <post-language-option url="/de" active="false" code="de" name="Deutsch"
-      >DE</post-language-option
+    <post-language-menu-item url="/de" active="false" code="de" name="Deutsch"
+      >DE</post-language-menu-item
     >
-    <post-language-option url="/en" active="true" code="en" name="English">EN</post-language-option>
-    <post-language-option url="/fr" active="false" code="fr" name="French">FR</post-language-option>
-  </post-language-switch> `;
+    <post-language-menu-item url="/en" active="true" code="en" name="English">EN</post-language-menu-item>
+    <post-language-menu-item url="/fr" active="false" code="fr" name="French">FR</post-language-menu-item>
+  </post-language-menu> `;
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostLanguageSwitchElement>;
+type Story = StoryObj<HTMLPostLanguageMenuElement>;
 
 export const Default: Story = {};
 

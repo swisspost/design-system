@@ -71,7 +71,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           caption="Change the language"
           description="The currently selected language is English."
           variant="list"
-          slot="post-language-switch"
+          slot="post-language-menu"
         >
           <PostLanguageOption code="de" name="German">
             de
@@ -83,9 +83,9 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             it
           </PostLanguageOption>
           <PostLanguageOption active={true} code="en" name="English">
-            en
-          </PostLanguageOption>
-        </PostLanguageSwitch>
+              en
+            </PostLanguageOption>
+          </PostLanguageSwitch>
 
         {/* Global header login/user menu */}
         <a href="" slot="global-login">
