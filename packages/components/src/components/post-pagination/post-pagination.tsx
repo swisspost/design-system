@@ -388,7 +388,10 @@ export class PostPagination {
     const middle = Math.max(0, endPage - startPage + 1);
     const leftCount = leftSection === 'none' ? 0 : 1;
     const rightCount = rightSection === 'none' ? 0 : 1;
-    return 2 + leftCount + rightCount + middle; // first + last + sections + middle
+    
+    // Always include first page (1) and last page (totalPages) = 2 pages
+    // Plus any left/right sections (ellipsis or pages) and middle pages
+    return 2 + leftCount + rightCount + middle;
   }
 
   /**
