@@ -2,5 +2,5 @@
 '@swisspost/design-system-components': major
 ---
 
-Fixed the `post-accordion` and `post-accordion-item` styles, so that they fully meet the design requirements.
-This allowed the `accordion-item` part to be removed from the `post-accordion-item` component as a small optimization. However, all relevant styles remain editable from outside the web-components, either by overriding the border styles on the `post-accordion` and `post-accordion-item` hosts, or by using the corresponding parts for the `post-accordion-item` trigger button and the body shadow elements (e.g. `::part(part-name) { ... }`).
+Updated the `post-accordion` and `post-accordion-item` styles to fully align with the design specification.
+As part of this cleanup, the `accordion-item` part has been removed from `post-accordion-item`. The component’s styles can now be customized directly by targeting the host or by using the exposed parts for the trigger button and body elements (e.g., `::part(post-accordion-body) { ... }`).
