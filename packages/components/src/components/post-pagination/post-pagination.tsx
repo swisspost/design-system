@@ -162,10 +162,13 @@ export class PostPagination {
     }
   }
 
+  connectedCallback() {
+    window.addEventListener('resize', this.debouncedResize);
+  }
+
   componentDidLoad() {
     this.loaded = true;
     this.runAllValidations();
-    window.addEventListener('resize', this.debouncedResize);
     
     this.scheduleMeasurement();
   }
