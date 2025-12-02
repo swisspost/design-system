@@ -20,7 +20,7 @@ jobs:
     steps:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -95,7 +95,7 @@ jobs:
     steps:
       # Checkout the Branch which has been pushed ('main' or 'release/v*')
       - name: Checkout
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -180,7 +180,7 @@ jobs:
 
       - name: Checkout previous Major Version
         if: fromJSON(steps.release-data-pre.outputs.result).isMajor == true
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           ref: ${{ steps.release-branch-exists.outputs.exists == 'true' && fromJSON(steps.release-data-pre.outputs.result).branchName || steps.previous-major-version.outputs.tagName }}
 
@@ -248,7 +248,7 @@ jobs:
     steps:
       # Checkout the changeset Branch
       - name: Checkout
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: changeset-release/main
@@ -358,7 +358,7 @@ jobs:
     steps:
       # Checkout the commit with the release.old.version tag (e.g. @swisspost/design-system-styles@5.3.2)
       - name: Checkout
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: ${{ fromJSON(needs.collect-release-data.outputs.release-data).tagName }}
@@ -490,7 +490,7 @@ jobs:
     if: github.ref_name == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
     steps:
       - name: Checkout
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 

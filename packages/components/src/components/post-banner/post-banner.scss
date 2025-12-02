@@ -26,6 +26,11 @@ tokens.$default-map: components.$post-banner;
   border-width: tokens.get('banner-border-width');
   border-radius: tokens.get('banner-border-radius');
   box-shadow: tokens.get('banner-elevation');
+  
+  // Default to info styles when no type attribute is present
+  background-color: tokens.get('banner-info-bg');
+  border-color: tokens.get('banner-info-border-color');
+  @include color-scheme.set(tokens.get('post-banner-info-bg-scheme'));
 
   &::before {
     content: '';
@@ -35,6 +40,7 @@ tokens.$default-map: components.$post-banner;
     width: tokens.get('banner-icon-size');
     inset-block-start: tokens.get('banner-padding');
     inset-inline-start: tokens.get('banner-padding');
+    background-image: var(--post-signal-icon-info);
   }
 }
 
