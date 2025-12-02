@@ -166,9 +166,9 @@ function getHeaderRenderer(
     const title = subComponents.title ?? renderTitle(args);
 
     const globalLogin = args.isLoggedIn
-      ? html` <div slot="global-login">${userMenu}</div> `
+      ? html` <div slot="post-login">${userMenu}</div> `
       : html`
-          <a href="" slot="global-login">
+          <a href="" slot="post-login">
             <span>Login</span>
             <post-icon name="login"></post-icon>
           </a>
@@ -176,7 +176,7 @@ function getHeaderRenderer(
 
     const globalControls = html`
       <!-- Global controls (Search) -->
-      <ul slot="global-controls">
+      <ul slot="global-nav-primary">
         <li>
           <a href="">
             <span>Search</span>
@@ -201,7 +201,7 @@ function getHeaderRenderer(
           description="The currently selected language is English."
           variant="list"
           name="language-switch-example"
-          slot="post-language-switch"
+          slot="language-menu"
         >
           <post-language-option code="de" name="German">de</post-language-option>
           <post-language-option code="fr" name="French">fr</post-language-option>
@@ -262,7 +262,7 @@ export const ActiveNavigationItem: Story = {
     },
   ],
   render: () => html`
-    <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
+    <post-mainnavigation slot="main-nav" caption="Main navigation">
       <post-list title-hidden="">
         <p>Main Navigation</p>
         <post-list-item slot="post-list-item">

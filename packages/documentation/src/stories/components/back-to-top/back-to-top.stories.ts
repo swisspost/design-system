@@ -22,7 +22,7 @@ const meta: MetaComponent = {
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
         <!-- Meta navigation -->
-        <ul slot="meta-navigation">
+        <ul slot="global-nav-secondary">
           <li><a href="">Jobs</a></li>
           <li><a href="">Über uns</a></li>
         </ul>
@@ -40,7 +40,7 @@ const meta: MetaComponent = {
           description="The currently selected language is English."
           variant="list"
           name="language-switch-example"
-          slot="post-language-switch"
+          slot="language-menu"
         >
           <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
           <post-language-option active="false" code="fr" name="French">fr</post-language-option>
@@ -68,7 +68,7 @@ const meta: MetaComponent = {
         </ul>
 
         <!-- Main navigation -->
-        <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
+        <post-mainnavigation slot="main-nav" caption="Hauptnavigation">
           <post-list title-hidden="">
             <p>Main Navigation</p>
             <!-- Link only level 1 -->
