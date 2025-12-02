@@ -1,23 +1,23 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import meta, * as languageOptionStories from './language-option.stories';
+import meta, * as languageMenuItemStories from './language-menu-item.stories';
 import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
-<Meta of={languageOptionStories} />
+<Meta of={languageMenuItemStories} />
 
 <div className="docs-title">
-  # Language Option
+  # Language Menu Item
 
-  <link-design of={JSON.stringify(languageOptionStories)}></link-design>
+  <link-design of={JSON.stringify(languageMenuItemStories)}></link-design>
 </div>
 
 <PackageTag meta={meta}/>
 
 <p className="lead">Enable users to select their preferred language.</p>
 
-<Canvas sourceState="shown" of={languageOptionStories.Default} />
+<Canvas sourceState="shown" of={languageMenuItemStories.Default} />
 
-<Controls of={languageOptionStories.Default} />
+<Controls of={languageMenuItemStories.Default} />
 
 <ComponentsPackageInstall component="<post-language-menu-item>" />
 
@@ -27,10 +27,10 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 Use the `onClick` event to change the language of your page programmatically whenever the user clicks on the `post-language-menu-item`.
 
-<Canvas sourceState="shown" of={languageOptionStories.Default} />
+<Canvas sourceState="shown" of={languageMenuItemStories.Default} />
 
 ### Link
 
 Provide a `url` property in the `post-language-menu-item` component to redirect the user to another page.
 
-<Canvas sourceState="shown" of={languageOptionStories.Anchor} />
+<Canvas sourceState="shown" of={languageMenuItemStories.Anchor} />
