@@ -69,11 +69,11 @@
     inset-block-start: var(--post-global-controls-top);
   }
 
-  .target-group {
+  .audience {
     margin-inline-end: auto;
   }
 
-  &.no-target-group .target-group {
+  &.no-audience .audience {
     display: none;
   }
 }
