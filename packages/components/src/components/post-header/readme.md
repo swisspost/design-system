@@ -28,15 +28,15 @@ Type: `Promise<void>`
 
 | Slot                     | Description                                                                   |
 | ------------------------ | ----------------------------------------------------------------------------- |
-| `"global-controls"`      | Holds search button in the global header.                                     |
-| `"global-login"`         | Holds the user menu or login button in the global header.                     |
+| `"audience"`             | Holds the list of buttons to choose the target group.                         |
+| `"global-nav-primary"`   | Holds search button in the global header.                                     |
+| `"global-nav-secondary"` | Holds an `<ul>` with meta navigation links.                                   |
+| `"language-menu"`        | Should be used with the `<post-language-switch>` component.                   |
 | `"local-nav"`            | Holds controls specific to the current application.                           |
-| `"meta-navigation"`      | Holds an `<ul>` with meta navigation links.                                   |
-| `"post-language-switch"` | Should be used with the `<post-language-switch>` component.                   |
+| `"main-nav"`             | Has a default slot because it's only meant to be used in the `<post-header>`. |
+| `"post-login"`           | Holds the user menu or login button in the global header.                     |
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
-| `"post-mainnavigation"`  | Has a default slot because it's only meant to be used in the `<post-header>`. |
 | `"post-togglebutton"`    | Holds the burger menu toggler.                                                |
-| `"target-group"`         | Holds the list of buttons to choose the target group.                         |
 | `"title"`                | Holds the application title.                                                  |
 
 
