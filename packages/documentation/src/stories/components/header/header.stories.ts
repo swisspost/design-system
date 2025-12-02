@@ -34,8 +34,55 @@ const meta: MetaComponent = {
     localNav: false,
     isLoggedIn: false,
     jobs: false,
+    x1: 0.4,
+    y1: 0,
+    x2: 0.8,
+    y2: 1,
+    duration: 2000,
   },
   argTypes: {
+    x1: {
+      control: {
+        type: 'number',
+      },
+      table: {
+        category: 'Mobile Header Animation',
+      },
+    },
+
+    y1: {
+      control: {
+        type: 'number',
+      },
+      table: {
+        category: 'Mobile Header Animation',
+      },
+    },
+    x2: {
+      control: {
+        type: 'number',
+      },
+      table: {
+        category: 'Mobile Header Animation',
+      },
+    },
+
+    y2: {
+      control: {
+        type: 'number',
+      },
+      table: {
+        category: 'Mobile Header Animation',
+      },
+    },
+    duration: {
+      control: {
+        type: 'number',
+      },
+      table: {
+        category: 'Mobile Header Animation',
+      },
+    },
     title: {
       name: 'Application title',
       description: 'Title of the webpage or application.',

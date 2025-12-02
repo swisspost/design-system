@@ -1,5 +1,15 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  State,
+  Prop,
+} from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { fadeIn, fadeOut, slideIn, slideOut } from '@/animations';
@@ -37,6 +47,20 @@ export class PostMegadropdown {
   @State() isVisible: boolean = false;
 
   @State() trigger: boolean = false;
+
+  @Prop() x1_entry?: number;
+  @Prop() y1_entry?: number;
+  @Prop() x2_entry?: number;
+  @Prop() y2_entry?: number;
+  @Prop() duration_entry?: number;
+  @Prop() slide_down?: number;
+
+  @Prop() x1_exit?: number;
+  @Prop() y1_exit?: number;
+  @Prop() x2_exit?: number;
+  @Prop() y2_exit?: number;
+  @Prop() duration_exit?: number;
+  @Prop() slide_up?: number;
 
   private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
@@ -111,7 +135,12 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeIn(this.animatedContainer, 350, 'ease-in')
+        ? fadeIn(this.animatedContainer, this.slide_down, this.duration_entry, {
+          x1: this.x1_entry,
+          y1: this.y1_entry,
+          x2: this.x2_entry,
+          y2: this.y2_entry,
+        })
         : slideIn(this.animatedContainer, '100%', 350, 'ease-in');
 
     try {
@@ -148,7 +177,12 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeOut(this.animatedContainer, 350, 'ease-out')
+        ? fadeOut(this.animatedContainer, this.slide_up, this.duration_exit, {
+          x1: this.x1_exit,
+          y1: this.y1_exit,
+          x2: this.x2_exit,
+          y2: this.y2_exit,
+        })
         : slideOut(this.animatedContainer, '100%', 350, 'ease-out');
 
     try {

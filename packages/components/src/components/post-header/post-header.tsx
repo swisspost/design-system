@@ -1,4 +1,4 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch, Listen, Prop } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -70,6 +70,12 @@ export class PostHeader {
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
+
+  @Prop() duration?: number;
+  @Prop() x1?: number;
+  @Prop() y1?: number;
+  @Prop() x2?: number;
+  @Prop() y2?: number;
 
   @Watch('device')
   @Watch('burgerMenuExtended')
@@ -189,8 +195,18 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? fadeOut(this.burgerMenu, 350, 'ease-out')
-      : fadeIn(this.burgerMenu, 350, 'ease-in');
+      ? fadeOut(this.burgerMenu, -10, this.duration, {
+        x1: this.x1,
+        y1: this.y1,
+        x2: this.x2,
+        y2: this.y2,
+      })
+      : fadeIn(this.burgerMenu, -10, this.duration, {
+        x1: this.x1,
+        y1: this.y1,
+        x2: this.x2,
+        y2: this.y2,
+      });
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
