@@ -1,5 +1,5 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta from './language-switch.stories';
+import meta from './language-menu.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
