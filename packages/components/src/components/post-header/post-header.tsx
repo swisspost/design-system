@@ -427,17 +427,16 @@ export class PostHeader {
           </div>
           <div class="sliding-controls">
             {this.device === 'desktop' && (
-                <div class="target-group">
-                  <slot name="audience"></slot>
-                  <slot name="target-group"></slot>
-                </div>
-              )}
-              <slot name="global-nav-primary"></slot>
-              {!this.hasBurgerMenu && [
-                <slot name="global-nav-secondary"></slot>,
-                <slot name="language-menu"></slot>,
-              ]}
-              <slot name="post-login"></slot>
+              <div class="target-group">
+                <slot name="audience"></slot>
+              </div>
+            )}
+            <slot name="global-nav-primary"></slot>
+            {!this.hasBurgerMenu && [
+              <slot name="global-nav-secondary"></slot>,
+              <slot name="language-menu"></slot>,
+            ]}
+            <slot name="post-login"></slot>
             {this.hasNavigation && this.device !== 'desktop' && (
               <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
                 <slot name="post-togglebutton"></slot>
