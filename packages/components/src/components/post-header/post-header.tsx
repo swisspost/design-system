@@ -222,7 +222,7 @@ export class PostHeader {
   private getFocusableElements() {
     // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
-      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li, .list-inline:not([slot="meta-navigation"]) > li')),
+      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li')),
       ...Array.from(
         this.host.querySelectorAll(
           'nav > post-list > div > post-list-item, post-megadropdown-trigger',
@@ -230,7 +230,7 @@ export class PostHeader {
       ),
       ...Array.from(
         this.host.querySelectorAll(
-          '.list-inline[slot="global-nav-secondary"] > li, .list-inline[slot="meta-navigation"] > li, post-language-option',
+          '.list-inline[slot="global-nav-secondary"] > li, post-language-option',
         ),
       ),
     ];
@@ -345,9 +345,9 @@ export class PostHeader {
   }
 
   private checkSlottedContent() {
-    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"], [slot="post-mainnavigation"]');
+    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasTargetGroup = !!this.host.querySelector('[slot="audience"], [slot="target-group"]');
+    this.hasTargetGroup = !!this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
 
@@ -385,7 +385,6 @@ export class PostHeader {
       return (
         <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
           <slot name="main-nav"></slot>
-          <slot name="post-mainnavigation"></slot>
           {localNav}
         </div>
       );
@@ -404,15 +403,11 @@ export class PostHeader {
         {localNav}
         <div class="burger-menu-body">
           <slot name="audience"></slot>
-          <slot name="target-group"></slot>
           <slot name="main-nav"></slot>
-          <slot name="post-mainnavigation"></slot>
         </div>
         <div class="burger-menu-footer">
           <slot name="global-nav-secondary"></slot>
-          <slot name="meta-navigation"></slot>
           <slot name="language-menu"></slot>
-          <slot name="post-language-switch"></slot>
         </div>
       </div>
     );
@@ -438,15 +433,11 @@ export class PostHeader {
                 </div>
               )}
               <slot name="global-nav-primary"></slot>
-              <slot name="global-controls"></slot>
               {!this.hasBurgerMenu && [
                 <slot name="global-nav-secondary"></slot>,
-                <slot name="meta-navigation"></slot>,
                 <slot name="language-menu"></slot>,
-                <slot name="post-language-switch"></slot>,
               ]}
               <slot name="post-login"></slot>
-              <slot name="global-login"></slot>
             {this.hasNavigation && this.device !== 'desktop' && (
               <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
                 <slot name="post-togglebutton"></slot>
