@@ -1,6 +1,6 @@
 ---
 '@swisspost/design-system-components': major
-'@swisspost/design-system-documentation': major
+'@swisspost/design-system-documentation': patch
 ---
 
 Renamed language components for improved semantic clarity:
