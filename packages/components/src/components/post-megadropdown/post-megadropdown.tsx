@@ -111,7 +111,7 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeIn(this.animatedContainer, 600, 'ease-in')
+        ? fadeIn(this.animatedContainer, 350, 'ease-in')
         : slideIn(this.animatedContainer, '100%', 350, 'ease-in');
 
     try {
@@ -148,7 +148,7 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeOut(this.animatedContainer, 600, 'ease-out')
+        ? fadeOut(this.animatedContainer, 350, 'ease-out')
         : slideOut(this.animatedContainer, '100%', 350, 'ease-out');
 
     try {

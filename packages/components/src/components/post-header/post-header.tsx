@@ -189,8 +189,8 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? fadeOut(this.burgerMenu, 600, 'ease-out')
-      : fadeIn(this.burgerMenu, 600, 'ease-in');
+      ? fadeOut(this.burgerMenu, 350, 'ease-out')
+      : fadeIn(this.burgerMenu, 350, 'ease-in');
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');

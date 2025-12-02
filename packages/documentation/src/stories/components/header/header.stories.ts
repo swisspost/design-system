@@ -147,7 +147,69 @@ const meta: MetaComponent = {
   decorators: [
     story =>
       html` <div class="header-story-wrapper">
-        <div class="virtual-body">${story()} ${fakeContent()}</div>
+        <div class="virtual-body">
+          ${story()}
+          <section
+            class="group palette py-32 sm:py-40 md:py-48 lg:py-56 xl:py-64 palette-default scroll-mt-[var(--post-header-reduced-height)]"
+          >
+            <div class="container">
+              <div>
+                <p class="lead">
+                  Swiss Post Cargo bietet Ihnen flexible und auf Ihre Branche zugeschnittene
+                  Transport- und Lagerlösungen in ganz Europa. Mit projektbezogenen Dienstleistungen
+                  unterstützen wir Industrie und Handel. Von der Automobil- und Pharmaindustrie über
+                  Lebensmittel-, Möbel- und Modeunternehmen bis zur Bau- und Elektronikbranche: Wir
+                  kümmern uns um die Verzollung, führen Nacht- und Expresslieferungen durch und
+                  bieten effizientes Crossdocking sowie branchenspezifische Lösungen. Zuverlässig,
+                  umweltbewusst und vollintegriert in die Prozesse Ihrer Value Chain.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section
+            class="group palette py-32 sm:py-40 md:py-48 lg:py-56 xl:py-64 palette-alternate scroll-mt-[var(--post-header-reduced-height)]"
+            id="die-passende-logistikpartnerin-fur-ihre-branche"
+          >
+            <div class="container">
+              <header class="mb-16 sm:bt-24 lg:mb-32 last:mb-0">
+                <div
+                  class="flex flex-col xl:gap-32 gap-24 lg:flex-row lg:items-end lg:justify-between"
+                >
+                  <div class="w-full sm:col-lg-9">
+                    <h2 class="h2 palette-text palette-text !mb-4 sm:!mb-8">
+                      Die passende Logistikpartnerin für Ihre Branche
+                    </h2>
+                  </div>
+                </div>
+              </header>
+              <div>
+                <ul class="list-bullet">
+                  <li>
+                    Einbindung in Ihre Value Chain und Unterstützung bei branchenspezifischen
+                    Lösungen wie Konfektionierung, Aufstellservice, Rücknahmen und Entsorgung
+                  </li>
+                  <li>
+                    Zertifizierte Lager- und Transportlösungen für Gefahrgut und
+                    temperaturempfindliche Güter
+                  </li>
+                  <li>
+                    Erforderliche Zulassungen für Gefahrgut (ADR Dangerous Goods by Road) in festem,
+                    flüssigem oder pastösem Zustand sind vorhanden
+                  </li>
+                  <li>
+                    Lagerung erfolgt gekühlt, temperaturgeführt und bei Bedarf in
+                    High-Security-Zonen
+                  </li>
+                  <li>
+                    Flexibler Lagerplatz für Lang-, Schwer- und Gefahrgut mit passender
+                    Infrastruktur wie Kran, Innen- und Aussenlager, Umschlagplätzen und Autostore
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          ${fakeContent()}
+        </div>
       </div>`,
   ],
   render: getHeaderRenderer(),
