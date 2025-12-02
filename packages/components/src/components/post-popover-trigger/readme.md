@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property           | Attribute | Description                                                                                   | Type     | Default     |
-| ------------------ | --------- | --------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `for` _(required)_ | `for`     | ID of the popover element that this trigger is linked to. Used to open and close the popover. | `string` | `undefined` |
+| Property | Attribute | Description                                                                                   | Type     | Default     |
+| -------- | --------- | --------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `for`    | `for`     | ID of the popover element that this trigger is linked to. Used to open and close the popover. | `string` | `undefined` |
 
 
 ----------------------------------------------

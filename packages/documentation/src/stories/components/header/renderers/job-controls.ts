@@ -1,9 +1,9 @@
 import { html } from 'lit';
 
-export function renderNavigationControls() {
+export function renderJobControls() {
   return html`
     <!-- Navigation controls -->
-    <ul slot="navigation-controls">
+    <ul slot="local-nav">
       <li>
         <a href="">
           Jobs Search

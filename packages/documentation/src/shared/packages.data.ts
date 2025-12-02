@@ -30,7 +30,7 @@ export const packages: IPackage[] = [
   {
     name: 'Styles',
     docsStoryId: metaStyles.id,
-    type: PackageType.Html,
+    type: PackageType.Styles,
     link: {
       github: {
         href: 'https://github.com/swisspost/design-system/tree/main/packages/styles',
