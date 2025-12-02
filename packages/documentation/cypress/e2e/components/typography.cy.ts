@@ -17,6 +17,7 @@ describe('Typography', () => {
       cy.get('code', { timeout: 30000 }).should('be.visible');
       cy.get('kbd', { timeout: 30000 }).should('be.visible');
       cy.get('del', { timeout: 30000 }).should('be.visible');
+      cy.get('hr', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 
