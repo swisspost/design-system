@@ -276,7 +276,8 @@ export class PostPagination {
 
     const singleButtonWidth = pageButton.getBoundingClientRect().width;
     const gap = pageButton && ellipsis ? this.calculateGap(pageButton, ellipsis) : 0;
-    const widthForPages = netWidth - controlButtonsWidth;
+    const controlButtonGaps = gap * 2; // Gap after prev and before next
+    const widthForPages = netWidth - controlButtonsWidth - controlButtonGaps;
 
     // Calculate how many page buttons can fit
     const maxPages = Math.floor((widthForPages + gap) / (singleButtonWidth + gap));
@@ -508,9 +509,7 @@ export class PostPagination {
    */
   private calculatePageRange(currentPage: number, totalPages: number, maxVisible: number) {
     // Reserve slots for first, last, and potential ellipses
-    const reservedSlots = EDGE_ITEM_COUNT;
-    const ellipsisSlots = MAX_ELLIPSIS_COUNT;
-    const middleSlots = Math.max(0, maxVisible - reservedSlots - ellipsisSlots);
+    const middleSlots = Math.max(0, maxVisible - EDGE_ITEM_COUNT - MAX_ELLIPSIS_COUNT);
 
     if (middleSlots <= 0) {
       return { startPage: MIDDLE_RANGE_START, endPage: 1 };
@@ -521,7 +520,7 @@ export class PostPagination {
     let startPage = currentPage - halfMiddle;
     let endPage = startPage + middleSlots - 1;
 
-    // Adjust if out of bounds
+    // Clamp to valid range
     if (startPage < MIDDLE_RANGE_START) {
       startPage = MIDDLE_RANGE_START;
       endPage = startPage + middleSlots - 1;
@@ -531,24 +530,14 @@ export class PostPagination {
       endPage = totalPages - 1;
       startPage = endPage - middleSlots + 1;
     }
-    
+
     startPage = Math.max(MIDDLE_RANGE_START, startPage);
     endPage = Math.min(totalPages - 1, endPage);
 
-    // Fix gap=2 scenarios
+    // Adjust for gap=2 scenarios and balance items
     const gapAdjusted = this.adjustForGapTwo(startPage, endPage, totalPages, middleSlots);
-    startPage = gapAdjusted.startPage;
-    endPage = gapAdjusted.endPage;
-
-    // Ensure we have the desired middle slots
-    const slotAdjusted = this.ensureMiddleSlots(startPage, endPage, totalPages, middleSlots);
-    startPage = slotAdjusted.startPage;
-    endPage = slotAdjusted.endPage;
-
-    // Balance total items to match maxVisible
-    const balanced = this.balanceTotalItems(startPage, endPage, totalPages, maxVisible, currentPage);
-
-    return balanced;
+    const slotAdjusted = this.ensureMiddleSlots(gapAdjusted.startPage, gapAdjusted.endPage, totalPages, middleSlots);
+    return this.balanceTotalItems(slotAdjusted.startPage, slotAdjusted.endPage, totalPages, maxVisible, currentPage);
   }
 
   /**
@@ -556,34 +545,61 @@ export class PostPagination {
    */
   private buildPaginationItems(startPage: number, endPage: number, totalPages: number): PaginationItem[] {
     const items: PaginationItem[] = [];
-    const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
+    const hasMiddlePages = startPage <= endPage;
 
     // First page
     items.push({ type: 'page', page: 1 });
     
-    // Left section (ellipsis or page 2)
-    if (leftSection === 'page') {
-      items.push({ type: 'page', page: 2 });
-    } else if (leftSection === 'ellipsis') {
-      items.push({ type: 'ellipsis' });
-    }
+    if (hasMiddlePages) {
+      const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
+      
+      // Left section (ellipsis or page 2)
+      if (leftSection === 'page') {
+        items.push({ type: 'page', page: 2 });
+      } else if (leftSection === 'ellipsis') {
+        items.push({ type: 'ellipsis' });
+      }
     
-    // Middle pages
-    for (let i = startPage; i <= endPage; i++) {
-      items.push({ type: 'page', page: i });
-    }
+      // Middle pages
+      for (let i = startPage; i <= endPage; i++) {
+        items.push({ type: 'page', page: i });
+      }
     
-    // Right section (ellipsis or second-to-last page)
-    if (rightSection === 'page') {
-      items.push({ type: 'page', page: totalPages - 1 });
-    } else if (rightSection === 'ellipsis') {
-      items.push({ type: 'ellipsis' });
-    }
+      // Right section (ellipsis or second-to-last page)
+      if (rightSection === 'page') {
+        items.push({ type: 'page', page: totalPages - 1 });
+      } else if (rightSection === 'ellipsis') {
+        items.push({ type: 'ellipsis' });
+      }
     
-    // Last page
-    items.push({ type: 'page', page: totalPages });
+      // Last page
+      items.push({ type: 'page', page: totalPages });
 
-    return items;
+      return items;
+    }
+  }
+
+  /**
+   * Generates pagination items for small slot counts (3 or 4 items).
+   * Ensures current page is always visible.
+   */
+  private generateSmallPagination(currentPage: number, totalPages: number, maxVisible: number): PaginationItem[] {
+
+    if (maxVisible === MIN_VISIBLE_PAGES) {
+      // 3 items: [1] [...] [last] or [...] [current] [...]
+      if (currentPage === 1 || currentPage === totalPages) {
+        return [
+          { type: 'page', page: 1 },
+          { type: 'ellipsis' },
+          { type: 'page', page: totalPages },
+        ];
+      }
+      return [
+        { type: 'ellipsis' },
+        { type: 'page', page: currentPage },
+        { type: 'ellipsis' },
+      ];
+    }
   }
 
   /**
@@ -591,13 +607,21 @@ export class PostPagination {
    */
   private generatePages(totalPages: number) {
     const maxVisible = this.maxVisiblePages;
+    const currentPage = this.page || 1;
 
     if (totalPages <= maxVisible) {
       this.items = this.buildAllPages(totalPages);
       return;
     }
 
-    const { startPage, endPage } = this.calculatePageRange(this.page || 1, totalPages, maxVisible);
+    // Use simplified logic for small slot counts
+    if (maxVisible <= 4) {
+      this.items = this.generateSmallPagination(currentPage, totalPages, maxVisible);
+      return;
+    }
+
+    // Use full algorithm for larger slot counts
+    const { startPage, endPage } = this.calculatePageRange(currentPage, totalPages, maxVisible);
     this.items = this.buildPaginationItems(startPage, endPage, totalPages);
   }
 
