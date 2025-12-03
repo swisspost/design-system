@@ -25,6 +25,13 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
   This is particularly useful when a simple text label isn’t directly linked to the element, or when
   the accessible name needs to be composed from multiple pieces of text.
 </p>
+
+<p>
+  ℹ️ The `aria-labelledby` attribute is not intended to reference content from external sources.
+  Its value must consist of one or more element IDs (space-separated if multiple), and each ID must
+  correspond to an element within the same DOM document.
+</p>
+
 ### I. Referencing Within the Same DOM Tree
 
 • <b>Both elements in Light DOM</b> ✔️
@@ -72,12 +79,10 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
 
 #### Workaround: `Element:ariaLabelledByElements`
 
-<p>
-  `ariaLabelledByElements` is a property of the{' '}
+<p>`ariaLabelledByElements` is a property of the
   <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="blank">
     Element API
-  </a>{' '}
-  that returns an array of elements labeling the element. It provides direct references to these
+  </a> that returns an array of elements labeling the element. It provides direct references to these
   elements rather than just their ID strings.
   <a
     target="blank"
@@ -140,7 +145,7 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
 <p>
   Referencing an element in the shadow DOM from the light DOM using the standard `aria-labelledby`
   is not possible. The `ariaLabelledByElements` property neither works in this case because, for it
-  to work, the label element shoul be in the same DOM or in a parent DOM of the target element.
+  to work, the label element should be in the same DOM or in a parent DOM of the target element.
 </p>
 <Source language="html" dark code={NonWorkingExampleIII}></Source>
 
