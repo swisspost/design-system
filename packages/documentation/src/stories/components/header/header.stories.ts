@@ -34,11 +34,12 @@ const meta: MetaComponent = {
     localNav: false,
     isLoggedIn: false,
     jobs: false,
-    x1: 0.4,
-    y1: 0,
+    x1: 0.8,
+    y1: 0.2,
     x2: 0.8,
-    y2: 1,
-    duration: 2000,
+    y2: 0.7,
+    duration: 350,
+    slide: 0,
   },
   argTypes: {
     x1: {
@@ -296,7 +297,14 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header>
+      <post-header
+        x1="${args.x1}"
+        y1="${args.y1}"
+        x2="${args.x2}"
+        y2="${args.y2}"
+        duration="${args.duration}"
+        slide="${args.slide}"
+      >
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 

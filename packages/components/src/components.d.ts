@@ -205,6 +205,7 @@ export namespace Components {
     }
     interface PostHeader {
         "duration"?: number;
+        "slide"?: number;
         /**
           * Toggles the burger navigation menu.
          */
@@ -1176,6 +1177,7 @@ declare namespace LocalJSX {
     }
     interface PostHeader {
         "duration"?: number;
+        "slide"?: number;
         "x1"?: number;
         "x2"?: number;
         "y1"?: number;

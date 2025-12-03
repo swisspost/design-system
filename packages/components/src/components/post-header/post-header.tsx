@@ -76,6 +76,7 @@ export class PostHeader {
   @Prop() y1?: number;
   @Prop() x2?: number;
   @Prop() y2?: number;
+  @Prop() slide?: number;
 
   @Watch('device')
   @Watch('burgerMenuExtended')
@@ -195,13 +196,13 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? fadeOut(this.burgerMenu, -10, this.duration, {
+      ? fadeOut(this.burgerMenu, this.slide, this.duration, {
         x1: this.x1,
         y1: this.y1,
         x2: this.x2,
         y2: this.y2,
       })
-      : fadeIn(this.burgerMenu, -10, this.duration, {
+      : fadeIn(this.burgerMenu, this.slide, this.duration, {
         x1: this.x1,
         y1: this.y1,
         x2: this.x2,
