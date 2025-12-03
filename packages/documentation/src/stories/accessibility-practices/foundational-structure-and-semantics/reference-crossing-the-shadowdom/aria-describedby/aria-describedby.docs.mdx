@@ -25,11 +25,8 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
   This is useful when a simple text label isn't enough or when the description needs to be combined
   from different pieces of text.
 </p>
-<p>
-  ℹ️ The `aria-describedby` attribute is not intended to reference content from external sources.
-  Its value must consist of one or more element IDs (space-separated if multiple), and each ID must
-  correspond to an element within the same DOM document.
-</p>
+<p>ⓘ The `aria-describedby` attribute is not intended to reference content from external sources. Its value must consist of one or more element IDs (space-separated if multiple), and each ID must
+  correspond to an element within the same DOM document.</p>
 
 ### I. Referencing Within the Same DOM Tree
 
@@ -78,13 +75,17 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
 
 #### Workaround: `Element:ariaDescribedByElements`
 
-<p>`ariaDescribedByElements` is a property of the <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="blank">Element API</a> that returns an array of elements
+<p>
+  `ariaDescribedByElements` is a property of the <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="blank">Element API</a> that returns an array of elements
   describing the element. It provides direct references to these elements rather than just their ID
-  strings. <a
+  strings.
+  <a
     target="blank"
     href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaDescribedByElements"
   >
-    🔗ariaDescribedByElements</a></p>
+    🔗ariaDescribedByElements
+  </a>
+</p>
 
 <div className="lead">Basic usage of `ariaDescribedByElements` </div>
 <Source language="html" dark code={AriaDescribedbyElementsPropertyHTML}></Source>

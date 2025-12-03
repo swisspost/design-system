@@ -21,16 +21,11 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
   In the Light DOM, the `aria-labelledby` attribute assigns an accessible name to an element by
   referencing the ID of one or more elements that provide the descriptive text.
 </div>
-<p>
-  This is particularly useful when a simple text label isn’t directly linked to the element, or when
-  the accessible name needs to be composed from multiple pieces of text.
-</p>
+<p>This is particularly useful when a simple text label isn’t directly linked to the element, or when
+  the accessible name needs to be composed from multiple pieces of text.</p>
 
-<p>
-  ℹ️ The `aria-labelledby` attribute is not intended to reference content from external sources.
-  Its value must consist of one or more element IDs (space-separated if multiple), and each ID must
-  correspond to an element within the same DOM document.
-</p>
+<p>ⓘ The `aria-labelledby` attribute is not intended to reference content from external sources.
+  Its value must consist of one or more element IDs (space-separated if multiple), and each ID must correspond to an element within the same DOM document.</p>
 
 ### I. Referencing Within the Same DOM Tree
 
@@ -41,12 +36,7 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
 • <b>Both elements in same Shadow DOM</b> ✔️
 
 <Source language="html" dark code={DefaultExample2}></Source>
-<p>
-  <b>
-    The above relationships are valid because in both cases the label and its associated target
-    element are part of the same tree.
-  </b>
-</p>
+<p><b>The above relationships are valid because in both cases the label and its associated target element are part of the same tree.</b></p>
 
 <p>
   Below is a working example of an `aria-labelledby`/`id` relationship within the shadowDom of a
@@ -79,15 +69,8 @@ import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
 
 #### Workaround: `Element:ariaLabelledByElements`
 
-<p>`ariaLabelledByElements` is a property of the <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="blank">
-    Element API</a> that returns an array of elements labeling the element. It provides direct references to these
-  elements rather than just their ID strings.<a
-    target="blank"
-    href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaLabelledByElements"
-  >
-    🔗ariaLabelledByElements
-  </a></p>
-
+<p>`ariaLabelledByElements` is a property of the <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="blank">Element API</a> that returns an array of elements labeling the element. It provides direct references to these
+  elements rather than just their ID strings. <a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaLabelledByElements">🔗ariaLabelledByElements</a></p>
 <div className="lead">Basic usage of `ariaLabelledByElements` </div>
 <p>
   Instead of adding the `aria-labelledby` attribute on the element, we can set it using the
