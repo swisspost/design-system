@@ -14,11 +14,10 @@ import { EventFrom } from '@/utils/event-from';
  * @slot post-togglebutton - Holds the burger menu toggler.
  * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
- * @slot local-controls - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot target-group - Holds the list of buttons to choose the target group.
  * @slot global-login - Holds the user menu or login button in the global header.
- * @slot navigation-controls - Custom controls, right aligned with the main navigation.
+ * @slot local-nav - Holds controls specific to the current application.
  */
 
 @Component({
@@ -66,7 +65,7 @@ export class PostHeader {
 
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
-  @State() hasNavigationControls: boolean = false;
+  @State() hasLocalNav: boolean = false;
   @State() hasTargetGroup: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
@@ -347,7 +346,7 @@ export class PostHeader {
 
   private checkSlottedContent() {
     this.hasNavigation = !!this.host.querySelector('[slot="post-mainnavigation"]');
-    this.hasNavigationControls = !!this.host.querySelector('[slot="navigation-controls"]');
+    this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
     this.hasTargetGroup = !!this.host.querySelector('[slot="target-group"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
@@ -376,13 +375,17 @@ export class PostHeader {
   }
 
   private renderNavigation() {
+    const localNav = !this.hasTitle && (
+      <div class="local-nav">
+        <slot name="local-nav"></slot>
+      </div>
+    );
+
     if (this.device === 'desktop') {
       return (
         <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
           <slot name="post-mainnavigation"></slot>
-          <div class="navigation-controls">
-            <slot name="navigation-controls"></slot>
-          </div>
+          {localNav}
         </div>
       );
     }
@@ -392,14 +395,13 @@ export class PostHeader {
         class={{
           'burger-menu': true,
           'extended': this.burgerMenuExtended,
-          'no-navigation-controls': !this.hasNavigationControls,
+          'no-local-nav': !this.hasLocalNav,
+          'megadropdown-open': this.megadropdownOpen,
         }}
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
       >
-        <div class="navigation-controls">
-          <slot name="navigation-controls"></slot>
-        </div>
+        {localNav}
         <div class="burger-menu-body">
           <slot name="target-group"></slot>
           <slot name="post-mainnavigation"></slot>
@@ -449,11 +451,11 @@ export class PostHeader {
             'no-title': !this.hasTitle,
             'no-target-group': !this.hasTargetGroup,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
-            'no-navigation-controls': !this.hasNavigationControls,
+            'no-local-nav': !this.hasLocalNav,
           }}
         >
           <slot name="title"></slot>
-          {this.hasTitle && <slot name="local-controls"></slot>}
+          {this.hasTitle && <slot name="local-nav"></slot>}
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}

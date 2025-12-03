@@ -5,6 +5,7 @@ on:
       - 'packages/documentation/**'
       - 'packages/styles/**'
       - 'packages/components/**'
+      - 'packages/components-angular/**'
       - 'packages/internet-header/**'
       - 'packages/icons/**'
       - 'packages/tokens/tokensstudio-generated/tokens.json'
@@ -19,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           fetch-depth: 0
 

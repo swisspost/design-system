@@ -20,39 +20,36 @@ function removeExistingCssFiles(dir: string): number {
   return existingFiles.length;
 }
 
-export function createCssFiles(
+export async function createCssFiles(
   iconOutputDirectory: string,
-  cssOutputDirectory: string
-): void {
+  cssOutputDirectory: string,
+): Promise<void> {
   fs.mkdirSync(cssOutputDirectory, { recursive: true });
 
   const removedCount = removeExistingCssFiles(cssOutputDirectory);
 
-  const svgFiles = fs
-    .readdirSync(iconOutputDirectory)
-    .filter(f => f.endsWith('.svg'));
+  const svgFiles = fs.readdirSync(iconOutputDirectory).filter(f => f.endsWith('.svg'));
 
   let createdCount = 0;
 
-  svgFiles.forEach(file => {
-    const filePath = path.join(iconOutputDirectory, file);
-    const baseName = sanitizeForCSSVariable(path.parse(file).name);
-    const svgContent = fs.readFileSync(filePath, 'utf8');
+  await Promise.all(
+    svgFiles.map(async file => {
+      const filePath = path.join(iconOutputDirectory, file);
+      const baseName = sanitizeForCSSVariable(path.parse(file).name);
+      const svgContent = fs.readFileSync(filePath, 'utf8');
 
-    let cssContent = `:root { --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}"); }`;
+      let cssContent = `:root { --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}"); }`;
 
-    cssContent = format(cssContent, { parser: 'css' });
+      cssContent = await format(cssContent, { parser: 'css' });
 
-    fs.writeFileSync(
-      path.join(cssOutputDirectory, `${baseName}.css`),
-      cssContent
-    );
-    createdCount++;
-  });
+      fs.writeFileSync(path.join(cssOutputDirectory, `${baseName}.css`), cssContent);
+      createdCount++;
+    }),
+  );
 
   console.log(
     coloredLogMessage(
-      `<green>[createCSSFiles]</green> Created ${createdCount} CSS files (removed <red>${removedCount}</red> old files)`
-    )
+      `<green>[createCSSFiles]</green> Created ${createdCount} CSS files (removed <red>${removedCount}</red> old files)`,
+    ),
   );
 }
