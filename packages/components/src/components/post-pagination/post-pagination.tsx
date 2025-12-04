@@ -583,23 +583,22 @@ export class PostPagination {
    * Generates pagination items for small slot counts (3 or 4 items).
    * Ensures current page is always visible.
    */
-  private generateSmallPagination(currentPage: number, totalPages: number, maxVisible: number): PaginationItem[] {
+  private generateSmallPagination(currentPage: number, totalPages: number): PaginationItem[] {
 
-    if (maxVisible === MIN_VISIBLE_PAGES) {
-      // 3 items: [1] [...] [last] or [...] [current] [...]
-      if (currentPage === 1 || currentPage === totalPages) {
-        return [
-          { type: 'page', page: 1 },
-          { type: 'ellipsis' },
-          { type: 'page', page: totalPages },
-        ];
-      }
+    // For maxVisible === 3 or 4: use same logic
+    // 3 items: [1] [...] [last] or [...] [current] [...]
+    if (currentPage === 1 || currentPage === totalPages) {
       return [
+        { type: 'page', page: 1 },
         { type: 'ellipsis' },
-        { type: 'page', page: currentPage },
-        { type: 'ellipsis' },
+        { type: 'page', page: totalPages },
       ];
     }
+    return [
+      { type: 'ellipsis' },
+      { type: 'page', page: currentPage },
+      { type: 'ellipsis' },
+    ];
   }
 
   /**
@@ -616,7 +615,7 @@ export class PostPagination {
 
     // Use simplified logic for small slot counts
     if (maxVisible <= 4) {
-      this.items = this.generateSmallPagination(currentPage, totalPages, maxVisible);
+      this.items = this.generateSmallPagination(currentPage, totalPages);
       return;
     }
 
