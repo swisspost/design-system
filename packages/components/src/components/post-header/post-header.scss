@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use './custom-properties';
 
 *,
@@ -38,6 +39,10 @@
   position: sticky;
   inset-block-start: var(--post-header-top);
   z-index: commons.$zindex-header;
+
+  post-togglebutton {
+    @include header-mx.header-control-base;
+  }
 }
 
 .global-header {

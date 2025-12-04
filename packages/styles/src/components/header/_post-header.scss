@@ -48,7 +48,7 @@ post-header {
   }
 
   // links and buttons remaining in the global header on tablet and mobile
-  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
+  > :is([slot='global-controls'], [slot='global-login']) {
     @include media.only(mobile) {
       @include slotted-controls {
         @include header-control-icon-only;

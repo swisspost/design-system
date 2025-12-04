@@ -187,7 +187,7 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header>
+      <post-header burger-menu-label="Menu">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
@@ -217,8 +217,8 @@ function getHeaderRenderer(
           : nothing}
 
         <!-- Menu button for mobile -->
-        <post-togglebutton slot="post-togglebutton">
-          <span>Menu</span>
+        <post-togglebutton>
+          <span> ${args.burgerMenuLabel}</span>
           <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
           <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
         </post-togglebutton>

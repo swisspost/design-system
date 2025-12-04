@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property                       | Attribute           | Description                                   | Type     | Default     |
+| ------------------------------ | ------------------- | --------------------------------------------- | -------- | ----------- |
+| `burgerMenuLabel` _(required)_ | `burger-menu-label` | Defines the label for the burger menu button. | `string` | `undefined` |
+
+
 ## Methods
 
 ### `toggleBurgerMenu(force?: boolean) => Promise<void>`
@@ -35,10 +42,24 @@ Type: `Promise<void>`
 | `"post-language-switch"` | Should be used with the `<post-language-switch>` component.                   |
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
 | `"post-mainnavigation"`  | Has a default slot because it's only meant to be used in the `<post-header>`. |
-| `"post-togglebutton"`    | Holds the burger menu toggler.                                                |
 | `"target-group"`         | Holds the list of buttons to choose the target group.                         |
 | `"title"`                | Holds the application title.                                                  |
 
+
+## Dependencies
+
+### Depends on
+
+- [post-togglebutton](../post-togglebutton)
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-header --> post-togglebutton
+  post-header --> post-icon
+  style post-header fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
