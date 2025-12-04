@@ -448,7 +448,7 @@ export class PostHeader {
           class={{
             'local-header': true,
             'no-title': !this.hasTitle,
-              'no-audience': !this.hasAudience,
+            'no-audience': !this.hasAudience,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
             'no-local-nav': !this.hasLocalNav,
           }}
