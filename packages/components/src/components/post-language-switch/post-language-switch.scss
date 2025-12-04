@@ -22,8 +22,8 @@ tokens.$default-map: components.$post-button;
 }
 
 .post-language-switch-trigger {
-  @include header-mx.header-control-styles;
-  @include header-mx.rotation-chevron-control-styles;
+  @include header-mx.nav-item-base;
+  @include header-mx.nav-item-rotating-chevron;
   text-transform: uppercase;
   cursor: pointer;
 }

@@ -6,7 +6,7 @@ post-megadropdown-trigger {
   position: relative;
 
   button {
-    @include header-mx.rotation-chevron-control-styles;
+    @include header-mx.nav-item-rotating-chevron;
 
     @include media.max(desktop) {
       post-icon {
