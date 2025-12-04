@@ -28,7 +28,7 @@ some content
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
- - [post-language-switch](../post-language-switch)
+ - [post-language-menu](../post-language-menu)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-rating](../post-rating)
 
@@ -41,7 +41,7 @@ graph TD;
   post-breadcrumbs --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
-  post-language-switch --> post-icon
+  post-language-menu --> post-icon
   post-mainnavigation --> post-icon
   post-rating --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px

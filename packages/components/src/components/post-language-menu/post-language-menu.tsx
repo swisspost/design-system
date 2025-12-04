@@ -5,20 +5,20 @@ import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { nanoid } from 'nanoid';
 
 @Component({
-  tag: 'post-language-switch',
-  styleUrl: 'post-language-switch.scss',
+  tag: 'post-language-menu',
+  styleUrl: 'post-language-menu.scss',
   shadow: true,
 })
-export class PostLanguageSwitch {
+export class PostLanguageMenu {
   private readonly menuId = `p${nanoid(11)}`;
   private readonly listSpanId = `list-span-${nanoid(11)}`;
-  private get languageOptions(): HTMLPostLanguageOptionElement[] {
+  private get languageOptions(): HTMLPostLanguageMenuItemElement[] {
     return Array.from(
-      this.host.querySelectorAll<HTMLPostLanguageOptionElement>('post-language-option'),
+      this.host.querySelectorAll<HTMLPostLanguageMenuItemElement>('post-language-menu-item'),
     );
   }
 
-  @Element() host: HTMLPostLanguageSwitchElement;
+  @Element() host: HTMLPostLanguageMenuElement;
 
   /**
    * A title for the list of language options
@@ -67,14 +67,14 @@ export class PostLanguageSwitch {
   }
 
   /**
-   * Listen for the postChange event and guard it to run only for events originating from a <post-language-option> element.
+   * Listen for the postChange event and guard it to run only for events originating from a <post-language-menu-item> element.
    */
   @Listen('postChange')
-  @EventFrom('post-language-option')
+  @EventFrom('post-language-menu-item')
   handlePostChange(event: CustomEvent<string>) {
     this.activeLang = event.detail;
 
-    // Update the active state in the children post-language-option components
+    // Update the active state in the children post-language-menu-item components
     this.languageOptions.forEach(lang => {
       if (lang.code && lang.code === this.activeLang) {
         lang.setAttribute('active', '');
@@ -92,14 +92,14 @@ export class PostLanguageSwitch {
 
   /**
    * Handles cases where the language switch is being rendered before options are available
-   * @param event Initially emitted by <post-langauge-option>
+   * @param event Initially emitted by <post-language-menu-item>
    */
-  @Listen('postLanguageOptionInitiallyActive')
+  @Listen('postLanguageMenuItemInitiallyActive')
   handleInitiallyActive(event: CustomEvent<string>) {
     this.activeLang = event.detail;
   }
 
-  // Update post-language-option variant to have the correct style
+  // Update post-language-menu-item variant to have the correct style
   private updateChildrenVariant() {
     this.languageOptions.forEach(el => {
       el.setAttribute('variant', this.variant);
@@ -110,7 +110,7 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         <div
-          class="post-language-switch-list"
+          class="post-language-menu-list"
           role="list"
           aria-label={this.caption}
           aria-describedby={this.listSpanId}
@@ -128,14 +128,14 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
-          <button class="post-language-switch-trigger">
+          <button class="post-language-menu-trigger">
             {this.activeLang}
             <span class="visually-hidden">{this.caption}</span>
             <span class="visually-hidden">{this.description}</span>
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-switch-dropdown-container" label={this.caption}>
+        <post-menu id={this.menuId} class="post-language-menu-dropdown-container" label={this.caption}>
           <slot></slot>
         </post-menu>
       </Host>
