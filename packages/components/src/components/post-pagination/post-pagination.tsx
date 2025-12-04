@@ -453,19 +453,18 @@ export class PostPagination {
   }
 
   /**
-   * Balance total items to match maxVisible by trimming or expanding
+   * Trim excess items by shrinking the range away from current page
    */
-  private balanceTotalItems(
-    startPage: number, 
-    endPage: number, 
-    totalPages: number, 
-    maxVisible: number, 
+  private trimExcessItems(
+    startPage: number,
+    endPage: number,
+    totalPages: number,
+    maxVisible: number,
     currentPage: number
-  ) {
+  ): { startPage: number; endPage: number } {
     const adjusted = { startPage, endPage };
     let totalItems = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
 
-    // Trim if too many items
     while (totalItems > maxVisible) {
       const distLeft = currentPage - adjusted.startPage;
       const distRight = adjusted.endPage - currentPage;
@@ -483,7 +482,21 @@ export class PostPagination {
       totalItems = newTotal;
     }
 
-    // Expand if too few items
+    return adjusted;
+  }
+
+  /**
+   * Expand range to fill available slots
+   */
+  private expandToFillSlots(
+    startPage: number,
+    endPage: number,
+    totalPages: number,
+    maxVisible: number
+  ): { startPage: number; endPage: number } {
+    const adjusted = { startPage, endPage };
+    let totalItems = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
+
     while (totalItems < maxVisible) {
       const canExpandLeft = adjusted.startPage > MIDDLE_RANGE_START;
       const canExpandRight = adjusted.endPage < totalPages - 1;
@@ -502,6 +515,20 @@ export class PostPagination {
     }
 
     return adjusted;
+  }
+
+  /**
+   * Balance total items to match maxVisible by trimming or expanding
+   */
+  private balanceTotalItems(
+    startPage: number, 
+    endPage: number, 
+    totalPages: number, 
+    maxVisible: number, 
+    currentPage: number
+  ) {
+    const trimmed = this.trimExcessItems(startPage, endPage, totalPages, maxVisible, currentPage);
+    return this.expandToFillSlots(trimmed.startPage, trimmed.endPage, totalPages, maxVisible);
   }
 
   /**
