@@ -125,3 +125,42 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     }
   }
 }
+
+.form-check-sm {
+  > input[type='checkbox'] {
+    appearance: none;
+    flex: none;
+    display: inline-flex;
+
+    width: tokens.get('post-checkbox-small-icon-size');
+    height: tokens.get('post-checkbox-small-icon-size');
+
+    margin: tokens.get('post-checkbox-small-icon-padding');
+    margin-block: calc(
+      tokens.get('post-checkbox-small-icon-padding') + tokens.get('post-checkbox-small-icon-container-padding')
+    );
+
+    background-color: tokens.get('checkbox-enabled-bg');
+    border: tokens.get('checkbox-icon-border-width') tokens.get('checkbox-border-style-default')
+      tokens.get('checkbox-enabled-stroke');
+    border-radius: tokens.get('checkbox-border-radius');
+    color: tokens.get('checkbox-enabled-fg');
+
+    &::after {
+      mask-size: tokens.get('post-checkbox-small-icon-size');
+    }
+  }
+
+  > label {
+    padding-block: tokens.get('post-checkbox-small-label-padding-block');
+  }
+
+  &.form-check-group {
+    gap: tokens.get('post-checkbox-small-group-gap-block');
+
+    .form-check {
+      gap: tokens.get('post-checkbox-small-group-items-gap-block');
+      row-gap: tokens.get('post-checkbox-small-group-items-gap-inline');
+    }
+  }
+}

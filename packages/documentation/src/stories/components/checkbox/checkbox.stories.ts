@@ -46,10 +46,10 @@ const meta: MetaComponent = {
         type: 'radio',
         labels: {
           'null': 'Default',
-          'tag-sm': 'Small',
+          'form-check-sm': 'Small',
         },
       },
-      options: ['null', 'tag-sm'],
+      options: ['null', 'form-check-sm'],
       table: {
         category: 'General',
       },
