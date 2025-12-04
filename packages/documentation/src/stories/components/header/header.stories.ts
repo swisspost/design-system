@@ -191,9 +191,9 @@ function getHeaderRenderer(
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${audienceEnabled ? renderAudience(args) : nothing}
-        ${globalNavPrimaryEnabled && !args.jobs ? globalControls : nothing}
-        ${globalNavSecondaryEnabled ? renderGlobalNavSecondary(args) : nothing}
+        ${args.audience ? renderAudience(args) : nothing}
+        ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
+        ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
         <!-- Language switch -->
         <post-language-switch
@@ -225,7 +225,7 @@ function getHeaderRenderer(
 
         ${args.title !== '' ? title : nothing}
         ${args.localNav ? renderMicrositeControls(args) : nothing}
-        ${args.mainNavigation ? mainnavigation : nothing}
+        ${args.mainNav ? mainnavigation : nothing}
         ${args.jobs ? renderJobControls() : nothing}
       </post-header>
     `;
