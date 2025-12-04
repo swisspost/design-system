@@ -1,5 +1,5 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta from './language-option.stories';
+import meta from './language-menu-item.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -11,12 +11,12 @@ export default {
   decorators: [],
 };
 
-type Story = StoryObj<HTMLPostLanguageOptionElement>;
+type Story = StoryObj<HTMLPostLanguageMenuItemElement>;
 
 export const LanguageOption: Story = {
   render: (
-    _args: HTMLPostLanguageOptionElement,
-    context: StoryContext<HTMLPostLanguageOptionElement>,
+    _args: HTMLPostLanguageMenuItemElement,
+    context: StoryContext<HTMLPostLanguageMenuItemElement>,
   ) => {
     return schemes(() => html` ${meta.render?.({ ...context.args }, context)} `);
   },
