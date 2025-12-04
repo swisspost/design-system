@@ -39,6 +39,21 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the component.',
+      control: {
+        type: 'radio',
+        labels: {
+          'null': 'Default',
+          'tag-sm': 'Small',
+        },
+      },
+      options: ['null', 'tag-sm'],
+      table: {
+        category: 'General',
+      },
+    },
     inline: {
       name: 'Inline Layout',
       description:
