@@ -396,6 +396,7 @@ export class PostHeader {
           'burger-menu': true,
           'extended': this.burgerMenuExtended,
           'no-local-nav': !this.hasLocalNav,
+          'megadropdown-open': this.megadropdownOpen,
         }}
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
