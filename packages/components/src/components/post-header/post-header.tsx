@@ -419,7 +419,7 @@ export class PostHeader {
         <div
           class={{
             'global-header': true,
-            'no-target-group': !this.hasAudience,
+            'no-audience': !this.hasAudience,
           }}
         >
           <div class="logo">
