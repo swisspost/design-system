@@ -584,9 +584,6 @@ export class PostPagination {
    * Ensures current page is always visible.
    */
   private generateSmallPagination(currentPage: number, totalPages: number): PaginationItem[] {
-
-    // For maxVisible === 3 or 4: use same logic
-    // 3 items: [1] [...] [last] or [...] [current] [...]
     if (currentPage === 1 || currentPage === totalPages) {
       return [
         { type: 'page', page: 1 },
