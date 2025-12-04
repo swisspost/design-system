@@ -1,5 +1,5 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta from './language-switch.stories';
+import meta from './language-menu.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -11,12 +11,12 @@ export default {
   decorators: [],
 };
 
-type Story = StoryObj<HTMLPostLanguageSwitchElement>;
+type Story = StoryObj<HTMLPostLanguageMenuElement>;
 
 export const LanguageSwitch: Story = {
   render: (
-    _args: HTMLPostLanguageSwitchElement,
-    context: StoryContext<HTMLPostLanguageSwitchElement>,
+    _args: HTMLPostLanguageMenuElement,
+    context: StoryContext<HTMLPostLanguageMenuElement>,
   ) => {
     return html`
       <div class="language-switch">
@@ -24,10 +24,7 @@ export const LanguageSwitch: Story = {
           () => html`
             <div class="d-flex flex-wrap align-items-center gap-16">
               ${meta.render?.({ ...context.args }, context)}
-              ${meta.render?.(
-                { ...context.args, variant: 'dropdown', name: `language-switch-example` },
-                context,
-              )}
+              ${meta.render?.({ ...context.args, variant: 'menu' }, context)}
             </div>
           `,
         )}
