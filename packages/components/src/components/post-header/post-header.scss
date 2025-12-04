@@ -12,7 +12,8 @@
 :host,
 .global-header,
 .local-header {
-  transition: inset-block-start animation.$transition-time-simple animation.$transition-easing-default;
+  transition: inset-block-start animation.$transition-time-simple
+    animation.$transition-easing-default;
 }
 
 .global-header,
@@ -150,6 +151,10 @@
   display: flex;
   flex-direction: column;
   background-color: #fafafa;
+
+  &.extended.megadropdown-open {
+    overflow: hidden;
+  }
 
   &:not(.extended) {
     transform: translateY(-100%);
