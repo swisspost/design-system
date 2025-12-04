@@ -4,42 +4,6 @@
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use '@swisspost/design-system-styles/mixins/utilities';
 
-@keyframes slide-in {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes slide-out {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes slide-down {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0%);
-  }
-}
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
 *,
 ::before,
 ::after {
@@ -60,14 +24,6 @@
     border-block-end: 1px solid CanvasText;
   }
 
-  &.slide-in {
-    animation: slide-down 350ms forwards;
-  }
-
-  &.slide-out {
-    animation: slide-up 350ms forwards;
-  }
-
   @include media.max(lg) {
     z-index: 1;
     position: absolute;
@@ -80,14 +36,6 @@
     border-block-start: unset;
     overflow-y: auto;
     overscroll-behavior: contain;
-
-    &.slide-in {
-      animation: slide-in 350ms forwards;
-    }
-
-    &.slide-out {
-      animation: slide-out 350ms forwards;
-    }
   }
 
   @include media.min(lg) {
