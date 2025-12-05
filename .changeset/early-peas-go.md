@@ -1,6 +1,6 @@
 ---
 '@swisspost/design-system-documentation': major
-'@swisspost/design-system-components': major
+'@swisspost/design-system-components': patch
 '@swisspost/design-system-styles': patch
 ---
 
