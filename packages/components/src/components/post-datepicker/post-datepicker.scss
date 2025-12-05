@@ -1,0 +1,297 @@
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/validation.scss';
+@use '@swisspost/design-system-styles/components/form-input.scss';
+@use '@swisspost/design-system-styles/mixins/button' as button-mx;
+@use '@swisspost/design-system-styles/tokens/helpers';
+@use 'air-datepicker/air-datepicker.css';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+tokens.$default-map: components.$post-breadcrumb;
+
+.air-datepicker {
+  /* --------------------------------------------
+   * Variables
+   * ------------------------------------------ */
+  --adp-padding: 8px; // post.datepicker.padding
+  --adp-font-family: var(--post-device-font-family-default);
+  --adp-font-size: 16px;
+  --adp-width: 296px; // post.datepicker.width
+  --adp-border-radius: 4px; // post.datepicker.border-radius
+  // --adp-color: #050400; // font color interaction/enabled
+  // --adp-color-disabled: #696864; // post.datepicker.color.disabled interaction/disabled-foreground
+  --adp-color-disabled-in-range: #696864; //post.datepicker.in-range.grid.cell.disabled.color.fg
+  --adp-color-current-date: #050400; // post.datepicker.grid.cell.current.color.fg
+  --adp-day-name-color: #050400; //post.datepicker.header.weekdays.color
+  --adp-day-name-color-hover: #fff; // post.datepicker.header.weekdays.color.hover (#fff)
+  // --adp-accent-color: #ffcc00; // post.datepicker.color.highlight surface/highlight
+  // --adp-border-color: #050400; //post.datepicker.border.color
+  // --hover-color: #504f4b; // post.datepicker.color.hover interaction/hovered
+  --adp-nav-height: 24px; // 1.5 line-height of 16px ???
+  --adp-nav-arrow-color: #050400; // post.datepicker.header.arrow.button.icon.color
+  --adp-nav-action-size: 40px; // post.datepicker.header.arrow.button.size
+  --adp-day-cell-width: 40px; // post.datepicker.grid.cell.size
+  --adp-day-cell-height: 40px; // post.datepicker.grid.cell.size
+  --adp-month-cell-height: 40px; // post.datepicker.grid.cell.size
+  --adp-year-cell-height: 40px; // post.datepicker.grid.cell.size
+  --adp-cell-border-radius: 100px; // post.datepicker.grid.cell.border-radius
+  --adp-cell-background-color-hover: #504f4b; // post.datepicker.grid.cell.hover.color.bg
+  --adp-cell-background-color-selected: #050400; // post.datepicker.grid.cell.selected.color.bg
+  --adp-cell-background-color-selected-hover: #504f4b; // post.datepicker.grid.cell.selected.hover.color.bg
+  --adp-cell-background-color-in-range: unset; // post.datepicker.grid.cell.in-range.color.bg
+  --adp-cell-background-color-in-range-hover: #050400; // post.datepicker.grid.cell.in-range.hover.color.bg
+
+  font-weight: 700;
+  border: none;
+
+  /* --------------------------------------------
+   * Navigation
+   * ------------------------------------------ */
+  .air-datepicker-nav {
+    border-bottom: none;
+    background: #e1e0dc; // post.datepicker.header.color.bg color/sandgray
+
+    .air-datepicker-nav--title {
+      margin-right: auto;
+      margin-inline-start: 0;
+      justify-content: flex-start;
+      padding: 0 0 0 8px; // post.datepicker.header.padding-left
+
+      &:hover {
+        background: unset;
+      }
+
+      &:focus {
+        border-radius: tokens.get(
+          'focus-border-radius',
+          helpers.$post-focus
+        ); // post.datepicker.focus
+        outline-offset: 4px;
+      }
+
+      .month-nav {
+        display: flex;
+        gap: 6px; // post.datepicker.header.dropdown.gap
+
+        &:hover {
+          color: #504f4b; //post.datepicker.header.dropdown.hover.color
+        }
+      }
+
+      .placeholder {
+        flex-grow: 2;
+        pointer-events: none;
+      }
+    }
+
+    .air-datepicker-nav--action {
+      order: 2;
+      font-size: var(--adp-font-size);
+      height: var(--adp-nav-action-size); // ???
+
+      &[data-action='next'] {
+        margin-inline-start: 5px; // post.datepicker.header.arrow.gap
+      }
+
+      button {
+        @include button-mx.reset-button;
+      }
+
+      &:hover {
+        color: #504f4b; //post.datepicker.header.arrow.hover.color.bg
+        background: unset;
+      }
+    }
+  }
+
+  /* --------------------------------------------
+   * Content
+   * ------------------------------------------ */
+  .air-datepicker--content {
+    padding: 0 !important;
+
+    .air-datepicker-body--day-names {
+      background: #e1e0dc; // post.datepicker.header.color.bg
+      margin: 0;
+      padding: 0 8px 16px 8px; //post.datepicker.header.weekdays.padding
+    }
+
+    .air-datepicker-body--day-name {
+      text-transform: capitalize; // post.datepicker.header.weekdays.text-transform
+      font-size: var(--adp-font-size);
+    }
+
+    .air-datepicker-body--cells {
+      &.-days- {
+        padding: 8px; // post.datepicker.day.grid.padding
+      }
+
+      &.-years- {
+        padding: 8px; //post.datepicker.year.grid.padding (8px)
+        column-gap: 8px; // post.datepicker.year.grid.column-gap
+        min-height: 216px; // post.datepicker.year.grid.min-height
+        text-transform: uppercase;
+
+        .-year- {
+          width: 64px; // post.datepicker.year.grid.width
+          height: 40px; // post.datepicker.year.grid.height
+        }
+      }
+
+      &.-months- {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 8px; // post.datepicker.month.grid.padding
+        column-gap: 8px; // post.datepicker.month.grid.column-gap
+        height: 216px; // post.datepicker.year.grid.height
+        text-transform: uppercase;
+
+        .-month- {
+          width: 64px; // post.datepicker.month.grid.width
+          height: 40px; // post.datepicker.month.grid.height
+        }
+      }
+    }
+
+    /* --------------------------------------------
+     * Date Cells
+     * ------------------------------------------ */
+    .air-datepicker-cell {
+      z-index: 0;
+      position: relative;
+
+      &:focus,
+      &:focus-visible {
+        background: blue !important;
+      }
+
+      &.-selected- {
+        z-index: 2;
+        background-color: #050400; //post.datepicker.grid.cell.selected.color.bg
+      }
+
+      &.-in-range-,
+      &.-range-from-,
+      &.-range-to- {
+        position: relative;
+        z-index: 0;
+
+        &::before {
+          content: '';
+          z-index: -2;
+          width: 40px;
+          height: 40px;
+          display: block;
+          position: absolute;
+          inset: 0;
+          // post.datepicker.day.range.grid.cell.highlight.border.block.color
+
+          &.-disabled- {
+            user-select: none;
+          }
+        }
+      }
+
+      &.-in-range- {
+        &::before {
+          content: '';
+          background: #ffcc00; // full yellow
+          border-block: 2px solid #050400; // top & bottom border
+        }
+      }
+
+      &.-range-from- {
+        &::before {
+          content: '';
+          background: linear-gradient(to right, #fff 50%, #ffcc00 50%); // left half yellow
+          border-block: 2px solid #050400; // top & bottom border
+          border-inline-start: none; // remove left border
+          border-radius: var(--adp-cell-border-radius) 0 0 var(--adp-cell-border-radius);
+        }
+      }
+
+      &.-range-to- {
+        &::before {
+          content: '';
+          background: linear-gradient(to right, #ffcc00 50%, #fff 50%); // right half yellow
+          border-block: 2px solid #050400; // top & bottom border
+          border-inline-end: none; // remove right border
+          border-radius: 0 var(--adp-cell-border-radius) var(--adp-cell-border-radius) 0;
+        }
+      }
+
+      &.-range-from-,
+      &.-range-to- {
+        border: none;
+        //
+        // border-inline-end: none;\
+        &::after {
+          content: '';
+          z-index: -1;
+          width: 40px;
+          height: 40px;
+          display: block;
+          position: absolute;
+          border-radius: 100px;
+          inset: 0;
+          background: #050400;
+        }
+      }
+
+      &.-range-to- {
+        // border: 2px solid #050400;
+        // border-inline-start: none;
+        // border-radius: 0 var(--adp-cell-border-radius) var(--adp-cell-border-radius) 0;
+      }
+
+      &:not(.-range-from-):not(.-range-to-):hover {
+        color: #fff; // surface / lightest post.datepicker.in-range.edge.hover.color
+      }
+
+      &.-current-:not(.-range-from-):not(.-range-to-):hover {
+        color: #fff; // surface / lightest post.datepicker.in-range.edge.hover.color
+      }
+
+      &.-year-.-current-,
+      &.-month-.-current-,
+      &.-day-.-current- {
+        border: 2px solid #050400; // post.datepicker.grid.cell.current.border
+        border-radius: var(
+          --adp-cell-border-radius
+        ); // post.datepicker.grid.cell.current.border-radius
+      }
+
+      &.-day {
+        &:focus {
+          border-radius: tokens.get(
+            'focus-border-radius',
+            helpers.$post-focus
+          ); // post.datepicker.grid.cell.focused.border-radius
+          outline-offset: 2px; // post.datepicker.grid.cell.focused.outline-offset
+        }
+      }
+
+      &.-disabled-:not(.-day-.-other-month-) {
+        color: #504f4b;
+        border: 2px dashed #504f4b; // post.datepicker.grid.cell.disabled.border
+        width: 38px; // post.datepicker.grid.cell.disabled.size
+        height: 38px; // post.datepicker.grid.cell.disabled.size
+      }
+
+      &.-year-.-other-decade-:not(.-selected-),
+      &.-day-.-other-month-:not(.-selected-) {
+        color: rgba(0, 0, 0, 0.3) !important;
+
+        &:hover {
+          color: #fff; //
+        }
+      }
+    }
+
+    /* --------------------------------------------
+     * Misc
+     * ------------------------------------------ */
+    .-day-.-other-month- {
+      pointer-events: none;
+    }
+  }
+}

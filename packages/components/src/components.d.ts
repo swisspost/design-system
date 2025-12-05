@@ -197,6 +197,32 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostDatepicker {
+        /**
+          * Hides the popover calendar and restores focus to the previously focused element.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Whether the calendar is inline in the page (not showing in a popover when input clicked)
+          * @default false
+         */
+        "inline": boolean;
+        /**
+          * Locale prop to set translations
+          * @default 'en'
+         */
+        "locale": string;
+        /**
+          * Displays the popover calendar, focusing the first calendar item.
+          * @param target - The HTML element relative to which the popover calendar should be displayed.
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * The predefined start date of the calendar Default is today
+          * @default new Date()
+         */
+        "startDate"?: Date;
+    }
     interface PostFooter {
         /**
           * The label to add to the footer (visually hidden).
@@ -571,6 +597,10 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostDatepickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostDatepickerElement;
+}
 export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
@@ -698,6 +728,23 @@ declare global {
     var HTMLPostCollapsibleTriggerElement: {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
+    };
+    interface HTMLPostDatepickerElementEventMap {
+        "toggleCalendar": boolean;
+    }
+    interface HTMLPostDatepickerElement extends Components.PostDatepicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostDatepickerElement: {
+        prototype: HTMLPostDatepickerElement;
+        new (): HTMLPostDatepickerElement;
     };
     interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
     }
@@ -936,6 +983,7 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-datepicker": HTMLPostDatepickerElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
@@ -1124,6 +1172,27 @@ declare namespace LocalJSX {
           * Link the trigger to a post-collapsible with this id
          */
         "for": string;
+    }
+    interface PostDatepicker {
+        /**
+          * Whether the calendar is inline in the page (not showing in a popover when input clicked)
+          * @default false
+         */
+        "inline"?: boolean;
+        /**
+          * Locale prop to set translations
+          * @default 'en'
+         */
+        "locale"?: string;
+        /**
+          * Emits when the calendar is shown or hidden. The event payload is a boolean: `true` when the calendar was opened, `false` when it was closed.
+         */
+        "onToggleCalendar"?: (event: PostDatepickerCustomEvent<boolean>) => void;
+        /**
+          * The predefined start date of the calendar Default is today
+          * @default new Date()
+         */
+        "startDate"?: Date;
     }
     interface PostFooter {
         /**
@@ -1452,6 +1521,7 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-datepicker": PostDatepicker;
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
@@ -1497,6 +1567,7 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-datepicker": LocalJSX.PostDatepicker & JSXBase.HTMLAttributes<HTMLPostDatepickerElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**

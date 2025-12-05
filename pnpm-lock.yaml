@@ -76,6 +76,9 @@ importers:
       '@swisspost/design-system-styles':
         specifier: workspace:10.0.0-next.53
         version: link:../styles/dist
+      air-datepicker:
+        specifier: 3.6.0
+        version: 3.6.0
       ally.js:
         specifier: 1.4.1
         version: 1.4.1
@@ -5647,6 +5650,9 @@ packages:
   aggregate-error@3.1.0:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
+
+  air-datepicker@3.6.0:
+    resolution: {integrity: sha512-+txUkqa949rXBJDmkQAIb/GehZECJYF4rm9XJxVYtEX22C9WvBpE/XwCUQZBopKIkpg4ycAySJ9lH3JOg9qQTw==}
 
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
@@ -18228,6 +18234,8 @@ snapshots:
     dependencies:
       clean-stack: 2.2.0
       indent-string: 4.0.0
+
+  air-datepicker@3.6.0: {}
 
   ajv-formats@2.1.1(ajv@8.17.1):
     optionalDependencies:
