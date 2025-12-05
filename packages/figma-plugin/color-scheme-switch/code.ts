@@ -125,13 +125,15 @@ class SPDSColorSchemeSwitchPlugin {
 
   updateScheme(colorScheme: ColorScheme): void {
     if (this.selectedFrame && this.hasSchemeCollections) {
-      const pC = this.schemePageCollection!;
-      const pModeId = pC.modes.find(m => m.name.toLowerCase() === colorScheme)!.modeId;
-      this.selectedFrame.setExplicitVariableModeForCollection(pC, pModeId);
+      const pModeId = this.schemePageCollection!.modes.find(
+        m => m.name.toLowerCase() === colorScheme,
+      )!.modeId;
+      this.selectedFrame.setExplicitVariableModeForCollection(this.schemePageCollection!, pModeId);
 
-      const sC = this.schemeCollection!;
-      const sModeId = sC.modes.find(m => m.name.toLowerCase() === colorScheme)!.modeId;
-      this.selectedFrame.setExplicitVariableModeForCollection(sC, sModeId);
+      const sModeId = this.schemeCollection!.modes.find(
+        m => m.name.toLowerCase() === colorScheme,
+      )!.modeId;
+      this.selectedFrame.setExplicitVariableModeForCollection(this.schemeCollection!, sModeId);
     }
 
     this.updateStaticComponents();
@@ -140,7 +142,7 @@ class SPDSColorSchemeSwitchPlugin {
   updateStaticComponents(): void {
     // ugly as hell, with a lot of potential for optimization, but works for now
     if (this.selectedFrame && this.hasSchemeCollections) {
-      const cId = this.schemeCollection?.id ?? '';
+      const cId = this.schemeCollection!.id;
 
       this.selectedFrame
         .findAll(node => {
@@ -173,11 +175,11 @@ class SPDSColorSchemeSwitchPlugin {
                     const schemeMode = variable.valuesByMode[
                       this.schemePageMode.id ?? ''
                     ] as string;
+                    const sModeId = this.schemeCollection!.modes.find(
+                      m => m.name.toLowerCase() === schemeMode,
+                    )!.modeId;
 
-                    const sC = this.schemeCollection!;
-                    const sModeId = sC.modes.find(m => m.name.toLowerCase() === schemeMode)!.modeId;
-
-                    component.setExplicitVariableModeForCollection(sC, sModeId);
+                    component.setExplicitVariableModeForCollection(this.schemeCollection!, sModeId);
                   }
                 });
               });
