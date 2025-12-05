@@ -131,7 +131,8 @@ tokens.$default-map: components.$post-radio-button;
 
     margin-inline: tokens.get('radio-button-small-icon-padding');
     margin-block: calc(
-      tokens.get('radio-button-small-icon-padding') + tokens.get('radio-button-small-icon-container-padding')
+      tokens.get('radio-button-small-icon-padding') +
+      tokens.get('radio-button-small-icon-container-padding')
     );
 
     &::after {
@@ -144,4 +145,3 @@ tokens.$default-map: components.$post-radio-button;
     padding-block: tokens.get('radio-button-small-label-padding-block');
   }
 }
-
