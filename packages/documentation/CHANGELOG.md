@@ -1,5 +1,58 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.57
+
+### Major Changes
+
+- Removed the language switch from the documented components since it belongs to the `post-header` and should not be used independently. (by [@alizedebray](https://github.com/alizedebray) with [#6622](https://github.com/swisspost/design-system/pull/6622))
+
+- Renamed `post-accordion-item` parts to avoid naming confusions with other components.
+  - `::part(button)` is now `::part(post-accordion-button)`.
+  - `::part(body)` is now `::part(post-accordion-body)`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6676](https://github.com/swisspost/design-system/pull/6676))
+
+### Minor Changes
+
+- Moved the base typography elements into one single `Foundations > Typography` page and the "Text Highlighted" and "List" elements into the `Components` folder to align with Figma. (by [@bucknatt](https://github.com/bucknatt) with [#6508](https://github.com/swisspost/design-system/pull/6508))
+
+- Added navigation variant to the `post-tabs` component, enabling anchor-based navigation. The component now automatically detects whether `post-tab-item` elements contain anchor links and switches between panels and navigation variants accordingly. The `aria-current="page"` attribute must be manually added to the anchor element representing the current page to ensure proper styling and accessibility. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6350](https://github.com/swisspost/design-system/pull/6350))
+
+### Patch Changes
+
+- Updated `post-header` to prevent unnecessary h-tags. An h-tag can now only be used for the header title in microsite or one-page variants, other elements no longer use h-tags. (by [@alizedebray](https://github.com/alizedebray) with [#6693](https://github.com/swisspost/design-system/pull/6693))
+
+- Improved accessibility by updating minimum font-size to 14px and converting font-size units from px to rem. (by [@bucknatt](https://github.com/bucknatt) with [#5964](https://github.com/swisspost/design-system/pull/5964))
+
+- Fixed `post-banner` becoming unstyled when changing the type control in Storybook. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6756](https://github.com/swisspost/design-system/pull/6756))
+
+- Updated styles for elements slotted in the `post-header` component. Slotted lists should now omit the `.list-inline` class and will be automatically styled as part of the `post-header`.
+  Keeping the `.list-inline` class will cause incorrect spacing between header elements. (by [@alizedebray](https://github.com/alizedebray) with [#6661](https://github.com/swisspost/design-system/pull/6661))
+
+- Removed `local-controls` and `navigation-controls` slots from the `post-header` component. Use the new `local-nav` slot for all application-specific controls. (by [@alizedebray](https://github.com/alizedebray) with [#6747](https://github.com/swisspost/design-system/pull/6747))
+
+- Changed hover background color of buttons in previews for better readability. (by [@leagrdv](https://github.com/leagrdv) with [#6748](https://github.com/swisspost/design-system/pull/6748))
+
+- Renamed language components for improved semantic clarity: - `post-language-switch` → `post-language-menu`
+  - `post-language-option` → `post-language-menu-item`
+
+  Component tags must be updated accordingly. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6773](https://github.com/swisspost/design-system/pull/6773))
+
+- Simplified the `post-footer` component by removing the `post-list` and `post-list-item`. The footer now only uses simple `ul` and `li` tags. (by [@leagrdv](https://github.com/leagrdv) with [#6740](https://github.com/swisspost/design-system/pull/6740))
+
+- Added padding in the version selector for better readability. (by [@bucknatt](https://github.com/bucknatt) with [#6698](https://github.com/swisspost/design-system/pull/6698))
+
+- Updated documentation:
+  - Changed the main Figma link in the `Introduction` page
+  - Restored the list of HTML components in the `Getting Started > Developer` page (by [@leagrdv](https://github.com/leagrdv) with [#6755](https://github.com/swisspost/design-system/pull/6755))
+
+- Fixed theme in storybook not being added correctly in production mode. (by [@leagrdv](https://github.com/leagrdv) with [#6717](https://github.com/swisspost/design-system/pull/6717))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.56
+  - @swisspost/design-system-components@10.0.0-next.56
+  - @swisspost/design-system-styles@10.0.0-next.56
+  - @swisspost/design-system-components-react@10.0.0-next.56
+  - @swisspost/internet-header@10.0.0-next.56
+  - @swisspost/design-system-tokens@10.0.0-next.56
+
 ## 6.0.0-next.56
 
 ### Patch Changes
@@ -60,7 +113,6 @@
 ### Minor Changes
 
 - Removed default svg-icons from all navigation entries. Introduced state-specific icons for individual components to indicate their current development status:
-
   - In Progress ⏳: This component has open issues or tasks that need to be fixed before it can be used.
   - Experimental 🧪: This component has been newly introduced and you might experience some bumps while using it.
   - Stable (No icon): This component is tested, has some mileage, other projects are already successfully implementing it, it's safe to use this.
@@ -154,7 +206,6 @@
 - Added an auto migration filter to the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#6251](https://github.com/swisspost/design-system/pull/6251))
 
 - Updated the migration guide:
-
   - Added information regarding the removal of bootstrap and ng-bootstrap in one place
   - Cleaned up scattered informations regarding bootstrap removal in the rest of the page
   - Removed all informations of removed elements that were never previously documented (by [@leagrdv](https://github.com/leagrdv) with [#6208](https://github.com/swisspost/design-system/pull/6208))
@@ -263,7 +314,6 @@
 - Added the `.z-header`, `.z-spinner`, `.z-toast` and `.z-fixed` z-index utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6012](https://github.com/swisspost/design-system/pull/6012))
 
 - Removed classes for the card CSS component, following the removal of bootstrap:
-
   - `.card-header`
   - `.card-footer`
   - `.card-img`
@@ -371,7 +421,6 @@
 - Added Nattaya's photo and info on the documentation footer. (by [@bucknatt](https://github.com/bucknatt) with [#5935](https://github.com/swisspost/design-system/pull/5935))
 
 - Removed deprecated classes and SCSS variables for the spinner:
-
   - `.loader-xs`
   - `.loader-sm`
   - `$spinner-size-xs`
@@ -1133,7 +1182,6 @@
 
 - Removed the `rg` and `xxl` grid breakpoints, reducing the grid to 5 breakpoints instead of the previous 7. This change affects all CSS classes tied to specific breakpoints (e.g., `col-rg-2`, `m-xxl-4`).  
   **Previous Breakpoints**:
-
   - `xs: 0px`
   - `sm: 400px`
   - `rg: 600px`
@@ -1143,7 +1191,6 @@
   - `xxl: 1440px`
 
   **New Breakpoints**:
-
   - `xs: 0px`
   - `sm: 600px`
   - `md: 780px`
@@ -1151,7 +1198,6 @@
   - `xl: 1280px`
 
   To maintain compatibility with the updated grid system, you need to update your code by replacing any `*-rg-*` classes with `*-sm-*`, and any `*-xxl-*` classes with `*-xl-*`. For example:
-
   - `col-rg-2` → `col-sm-2`
   - `m-xxl-4` → `m-xl-4` (by [@alizedebray](https://github.com/alizedebray) with [#3982](https://github.com/swisspost/design-system/pull/3982))
 
@@ -1567,7 +1613,6 @@
 - Merged toast live region section with accessibility page. (by [@imagoiq](https://github.com/imagoiq) with [#2731](https://github.com/swisspost/design-system/pull/2731))
 
 - Prefixed all web-component custom-events with the keyword `post`.
-
   - Changed `post-alert` component `dismissed` event to `postDismissed`.
   - Changed `post-card-control` component `input` and `change` events to `postInput` and `postChange`.
   - Changed `post-collapsible` component `collapseChange` event to `postToggle`.
@@ -1582,7 +1627,6 @@
 
 - Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
   Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
-
   - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
   - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
 
