@@ -60,6 +60,21 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the component.',
+      control: {
+        type: 'radio',
+        labels: {
+          'null': 'Default',
+          'form-check-sm': 'Small',
+        },
+      },
+      options: ['null', 'form-check-sm'],
+      table: {
+        category: 'General',
+      },
+    },
     checked: {
       name: 'Checked',
       description: 'When set to `true`, places the component in the checked state.',
