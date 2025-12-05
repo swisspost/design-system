@@ -595,6 +595,10 @@ export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMenuElement;
 }
+export interface PostPaginationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostPaginationElement;
+}
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
