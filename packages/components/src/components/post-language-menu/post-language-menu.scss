@@ -1,0 +1,37 @@
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/mixins/button' as button-mx;
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/mixins/media';
+
+tokens.$default-map: components.$post-button;
+
+:host {
+  display: flex !important;
+}
+
+.visually-hidden {
+  @include utilities-mx.visuallyhidden();
+}
+
+// Style for dropdown variant
+.post-language-menu-dropdown-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-language-menu-trigger {
+  @include header-mx.nav-item-base;
+  @include header-mx.nav-item-rotating-chevron;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+post-menu::part(menu) {
+  padding-block: 0;
+}
+
+.post-language-menu-list {
+  margin-top: 1rem;
+}

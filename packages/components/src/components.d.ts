@@ -8,12 +8,12 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType } from "./components/post-closebutton/button-types";
-import { SwitchVariant } from "./components/post-language-switch/switch-variants";
+import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType } from "./components/post-closebutton/button-types";
-export { SwitchVariant } from "./components/post-language-switch/switch-variants";
+export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -244,7 +244,22 @@ export namespace Components {
          */
         "scale"?: number;
     }
-    interface PostLanguageOption {
+    interface PostLanguageMenu {
+        /**
+          * A title for the list of language options
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description": string;
+        /**
+          * Whether the component is rendered as a list or a menu
+          * @default 'list'
+         */
+        "variant": SwitchVariant;
+    }
+    interface PostLanguageMenuItem {
         /**
           * If set to `true`, the language option is considered the current language for the page.
          */
@@ -266,24 +281,9 @@ export namespace Components {
          */
         "url"?: string;
         /**
-          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+          * To communicate the variant prop from the parent (post-language-menu) component to the child (post-language-menu-item) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant;
-    }
-    interface PostLanguageSwitch {
-        /**
-          * A title for the list of language options
-         */
-        "caption": string;
-        /**
-          * A descriptive text for the list of language options
-         */
-        "description": string;
-        /**
-          * Whether the component is rendered as a list or a menu
-          * @default 'list'
-         */
-        "variant": SwitchVariant;
     }
     interface PostLinkarea {
     }
@@ -400,7 +400,7 @@ export namespace Components {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
@@ -414,10 +414,6 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Handles the popover closing process and emits related events.
-         */
-        "close": () => Promise<void>;
-        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -426,15 +422,6 @@ export namespace Components {
           * Programmatically hide the popovercontainer
          */
         "hide": () => Promise<void>;
-        /**
-          * Whether or not the popovercontainer should close when user clicks outside of it
-          * @default false
-         */
-        "manualClose": boolean;
-        /**
-          * Handles the popover opening process and emits related events.
-         */
-        "open": () => Promise<void>;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -498,32 +485,36 @@ export namespace Components {
     }
     interface PostStepperItem {
     }
-    interface PostTabHeader {
+    interface PostTabItem {
         /**
-          * The name of the panel controlled by the tab header.
-         */
-        "panel": string;
-    }
-    interface PostTabPanel {
-        /**
-          * The name of the panel, used to associate it with a tab header.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth": boolean;
         /**
+          * The accessible label for the tabs component in navigation mode.
+         */
+        "label"?: string;
+        /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
-        "show": (panelName: string) => Promise<void>;
+        "show": (tabName: string) => Promise<void>;
     }
     interface PostTogglebutton {
         /**
@@ -592,9 +583,9 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
+export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostLanguageOptionElement;
+    target: HTMLPostLanguageMenuItemElement;
 }
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -741,29 +732,29 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
-    interface HTMLPostLanguageOptionElementEventMap {
-        "postChange": string;
-        "postLanguageOptionInitiallyActive": string;
+    interface HTMLPostLanguageMenuElement extends Components.PostLanguageMenu, HTMLStencilElement {
     }
-    interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    var HTMLPostLanguageMenuElement: {
+        prototype: HTMLPostLanguageMenuElement;
+        new (): HTMLPostLanguageMenuElement;
+    };
+    interface HTMLPostLanguageMenuItemElementEventMap {
+        "postChange": string;
+        "postLanguageMenuItemInitiallyActive": string;
+    }
+    interface HTMLPostLanguageMenuItemElement extends Components.PostLanguageMenuItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageMenuItemElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuItemElement, ev: PostLanguageMenuItemCustomEvent<HTMLPostLanguageMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageMenuItemElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuItemElement, ev: PostLanguageMenuItemCustomEvent<HTMLPostLanguageMenuItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPostLanguageOptionElement: {
-        prototype: HTMLPostLanguageOptionElement;
-        new (): HTMLPostLanguageOptionElement;
-    };
-    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
-    }
-    var HTMLPostLanguageSwitchElement: {
-        prototype: HTMLPostLanguageSwitchElement;
-        new (): HTMLPostLanguageSwitchElement;
+    var HTMLPostLanguageMenuItemElement: {
+        prototype: HTMLPostLanguageMenuItemElement;
+        new (): HTMLPostLanguageMenuItemElement;
     };
     interface HTMLPostLinkareaElement extends Components.PostLinkarea, HTMLStencilElement {
     }
@@ -910,11 +901,11 @@ declare global {
         prototype: HTMLPostStepperItemElement;
         new (): HTMLPostStepperItemElement;
     };
-    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    interface HTMLPostTabItemElement extends Components.PostTabItem, HTMLStencilElement {
     }
-    var HTMLPostTabHeaderElement: {
-        prototype: HTMLPostTabHeaderElement;
-        new (): HTMLPostTabHeaderElement;
+    var HTMLPostTabItemElement: {
+        prototype: HTMLPostTabItemElement;
+        new (): HTMLPostTabItemElement;
     };
     interface HTMLPostTabPanelElement extends Components.PostTabPanel, HTMLStencilElement {
     }
@@ -972,8 +963,8 @@ declare global {
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
-        "post-language-option": HTMLPostLanguageOptionElement;
-        "post-language-switch": HTMLPostLanguageSwitchElement;
+        "post-language-menu": HTMLPostLanguageMenuElement;
+        "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
@@ -990,7 +981,7 @@ declare global {
         "post-rating": HTMLPostRatingElement;
         "post-stepper": HTMLPostStepperElement;
         "post-stepper-item": HTMLPostStepperItemElement;
-        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-tab-item": HTMLPostTabItemElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
@@ -1203,7 +1194,22 @@ declare namespace LocalJSX {
          */
         "scale"?: number;
     }
-    interface PostLanguageOption {
+    interface PostLanguageMenu {
+        /**
+          * A title for the list of language options
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description": string;
+        /**
+          * Whether the component is rendered as a list or a menu
+          * @default 'list'
+         */
+        "variant"?: SwitchVariant;
+    }
+    interface PostLanguageMenuItem {
         /**
           * If set to `true`, the language option is considered the current language for the page.
          */
@@ -1219,32 +1225,17 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
          */
-        "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        "onPostChange"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
         /**
           * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
          */
-        "onPostLanguageOptionInitiallyActive"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        "onPostLanguageMenuItemInitiallyActive"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
         /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
         /**
-          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
-         */
-        "variant"?: SwitchVariant;
-    }
-    interface PostLanguageSwitch {
-        /**
-          * A title for the list of language options
-         */
-        "caption": string;
-        /**
-          * A descriptive text for the list of language options
-         */
-        "description": string;
-        /**
-          * Whether the component is rendered as a list or a menu
-          * @default 'list'
+          * To communicate the variant prop from the parent (post-language-menu) component to the child (post-language-menu-item) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant;
     }
@@ -1327,7 +1318,7 @@ declare namespace LocalJSX {
         /**
           * ID of the popover element that this trigger is linked to. Used to open and close the popover.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
@@ -1345,11 +1336,6 @@ declare namespace LocalJSX {
           * @default 8
          */
         "edgeGap"?: number;
-        /**
-          * Whether or not the popovercontainer should close when user clicks outside of it
-          * @default false
-         */
-        "manualClose"?: boolean;
         /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
@@ -1430,30 +1416,34 @@ declare namespace LocalJSX {
     }
     interface PostStepperItem {
     }
-    interface PostTabHeader {
+    interface PostTabItem {
         /**
-          * The name of the panel controlled by the tab header.
-         */
-        "panel": string;
-    }
-    interface PostTabPanel {
-        /**
-          * The name of the panel, used to associate it with a tab header.
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth"?: boolean;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
+          * The accessible label for the tabs component in navigation mode.
+         */
+        "label"?: string;
+        /**
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
@@ -1511,8 +1501,8 @@ declare namespace LocalJSX {
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
-        "post-language-option": PostLanguageOption;
-        "post-language-switch": PostLanguageSwitch;
+        "post-language-menu": PostLanguageMenu;
+        "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
         "post-list": PostList;
         "post-list-item": PostListItem;
@@ -1529,7 +1519,7 @@ declare namespace LocalJSX {
         "post-rating": PostRating;
         "post-stepper": PostStepper;
         "post-stepper-item": PostStepperItem;
-        "post-tab-header": PostTabHeader;
+        "post-tab-item": PostTabItem;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-togglebutton": PostTogglebutton;
@@ -1561,8 +1551,8 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
-            "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
-            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
+            "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
+            "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
@@ -1579,7 +1569,7 @@ declare module "@stencil/core" {
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-stepper": LocalJSX.PostStepper & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
             "post-stepper-item": LocalJSX.PostStepperItem & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
-            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
