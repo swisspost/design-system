@@ -1,0 +1,199 @@
+<style>
+  :root {
+    --post-bg-color: #e7e7e7;
+    --post-fg-color: #000;
+
+    --post-border-width: 2px;
+    --post-border-radius: 4px;
+
+    --post-form-control-bg: #fff;
+    --post-form-control-border-color: #696864;
+
+    --post-scheme-switch-control-light-bg: #ddd;
+    --post-scheme-switch-control-dark-bg: #222;
+
+    --post-scheme-switch-handle-padding-inline: 0.5rem;
+    --post-scheme-switch-handle-size: 5rem;
+    --post-scheme-switch-handle-light-bg: #fff;
+    --post-scheme-switch-handle-light-fg: var(--post-fg-color);
+    --post-scheme-switch-handle-dark-bg: #000;
+    --post-scheme-switch-handle-dark-fg: #eee;
+  }
+
+  body {
+    margin: 0;
+    padding: 1rem;
+    font-family: sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    background-color: var(--post-bg-color);
+    color: var(--post-fg-color);
+  }
+
+  .form-control {
+    margin-block-end: 1rem;
+
+    label {
+      display: block;
+      margin-block-end: 0.2rem;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      display: block;
+      padding: 0.5rem 0.65rem;
+      width: 100%;
+      background-color: var(--post-form-control-bg);
+      border: var(--post-border-width) solid var(--post-form-control-border-color);
+      border-radius: var(--post-border-radius);
+    }
+
+    .hint {
+      margin: 0.4rem 0 0;
+      font-size: 0.75rem;
+      opacity: 0.75;
+    }
+
+    &:has(#SchemeSwitch) {
+      text-align: center;
+
+      .hint {
+        display: none;
+      }
+    }
+
+    &:has(#SchemeSwitch:indeterminate) .hint {
+      display: block;
+    }
+  }
+
+  #SchemeSwitch {
+    appearance: none;
+    position: relative;
+    margin: 0;
+    padding-inline: 0;
+    background-color: var(--post-scheme-switch-control-light-bg);
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: background-color 300ms ease-in-out;
+
+    &::before,
+    &::after {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      content: '';
+      position: relative;
+      left: var(--post-scheme-switch-handle-padding-inline);
+      width: var(--post-scheme-switch-handle-size);
+      aspect-ratio: 1;
+      border: var(--post-border-width) solid var(--post-form-control-border-color);
+      border-radius: 50%;
+      transition: inherit;
+      transition-property: left, opacity;
+    }
+
+    &::before {
+      content: 'Light';
+      opacity: 1;
+      background-color: var(--post-scheme-switch-handle-light-bg);
+      color: var(--post-scheme-switch-handle-light-fg);
+      z-index: 1;
+    }
+
+    &::after {
+      content: 'Dark';
+      position: absolute;
+      top: 0.5rem;
+      opacity: 0;
+      background-color: var(--post-scheme-switch-handle-dark-bg);
+      color: var(--post-scheme-switch-handle-dark-fg);
+      z-index: 2;
+    }
+
+    &:checked {
+      background-color: var(--post-scheme-switch-control-dark-bg);
+
+      &::before,
+      &::after {
+        left: calc(100% - var(--post-scheme-switch-handle-size) - var(--post-scheme-switch-handle-padding-inline) - var(--post-border-width) * 2);
+      }
+
+      &::before {
+        opacity: 0;
+        z-index: 2;
+      }
+
+      &::after {
+        opacity: 1;
+        z-index: 1;
+      }
+    }
+
+    &:indeterminate {
+      cursor: not-allowed;
+
+      &::before,
+      &::after {
+        content: 'light/dark';
+        left: calc(50% - var(--post-scheme-switch-handle-size) * 0.5 - var(--post-scheme-switch-handle-padding-inline) * 0.5 - var(--post-border-width));
+      }
+    }
+  }
+</style>
+
+<form>
+  <div class="form-control">
+    <label>Color Scheme</label>
+    <input type="checkbox" id="SchemeSwitch">
+    <p class="hint">Select a node to change the color scheme.</p>
+  </div>
+</form>
+
+<script>
+  class SPDSColorSchemeSwitchPlugin_UI {
+    schemeSwitch = document.getElementById('SchemeSwitch');
+
+    constructor() {
+      this.schemeSwitch.addEventListener('change', this.schemeChange.bind(this));
+
+      this.listen();
+    }
+
+    listen() {
+      window.onmessage = (event) => {
+        const { type, data } = event.data.pluginMessage;
+
+        switch (type) {
+          case 'scheme:update':
+            this.schemeUpdate(data.currentScheme);
+            break;
+        }
+      }
+    }
+
+    emit(type, data) {
+      parent.postMessage({ pluginMessage: { type, data } }, '*');
+    }
+
+    schemeUpdate(currentScheme) {
+      if (currentScheme === null) {
+        this.schemeSwitch.indeterminate = true;
+        this.schemeSwitch.disabled = true;
+      } else {
+        this.schemeSwitch.indeterminate = false;
+        this.schemeSwitch.disabled = false;
+        this.schemeSwitch.checked = currentScheme === 'dark';
+      }
+    }
+
+    schemeChange(event) {
+      this.emit('scheme:change', { colorScheme: event.target.checked ? 'dark' : 'light' });
+    }
+  }
+
+  new SPDSColorSchemeSwitchPlugin_UI();
+</script>
