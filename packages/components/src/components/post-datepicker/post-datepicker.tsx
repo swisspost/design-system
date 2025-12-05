@@ -10,7 +10,7 @@ import {
   EventEmitter,
   State,
 } from '@stencil/core';
-import AirDatepicker, { AirDatepickerOptions } from 'air-datepicker';
+import AirDatepicker, { AirDatepickerOptions, AirDatepickerViews } from 'air-datepicker';
 
 import { EventFrom } from '@/utils';
 import { localesMap } from './locales';
@@ -103,6 +103,7 @@ export class PostDatepicker {
 
   private currentViewMonth: number;
   private currentViewYear: number;
+  private currentViewType: AirDatepickerViews = 'days';
 
   @EventFrom('post-popovercontainer')
   private readonly handlePostToggle = (event: CustomEvent<boolean>) => {
@@ -116,36 +117,67 @@ export class PostDatepicker {
   private datepickerContainerEl: HTMLDivElement;
 
   private gridObserver: MutationObserver;
-  private getDayCells(): HTMLElement[] {
-    return Array.from(this.datepickerContainerEl.querySelectorAll('.air-datepicker-cell.-day-'));
+
+  private getCells(): HTMLElement[] {
+    if (!this.datepickerContainerEl) return [];
+
+    let selector = '';
+    switch (this.currentViewType) {
+      case 'days':
+        selector = '.air-datepicker-cell.-day-';
+        break;
+      case 'months':
+        selector = '.air-datepicker-cell.-month-';
+        break;
+      case 'years':
+        selector = '.air-datepicker-cell.-year-';
+        break;
+    }
+
+    return Array.from(this.datepickerContainerEl.querySelectorAll(selector));
   }
 
-  private setActiveDateCell(date: Date, focusOnDate: boolean = true) {
-    const cells = this.getDayCells();
+  private setActiveCell(date: Date, focusOnDate: boolean = true) {
+    const cells = this.getCells();
     if (!cells.length) return;
 
     let target: HTMLElement | undefined;
 
     // If selected date is visible
     if (focusOnDate) {
-      // Keyboard / initial load: follow selectedDate
-      target = cells.find(
-        cell =>
-          Number(cell.dataset.date) === date.getDate() &&
-          Number(cell.dataset.month) === date.getMonth() &&
-          Number(cell.dataset.year) === date.getFullYear(),
-      );
+      if (this.currentViewType === 'days') {
+        target = cells.find(
+          cell =>
+            Number(cell.dataset.date) === date.getDate() &&
+            Number(cell.dataset.month) === date.getMonth() &&
+            Number(cell.dataset.year) === date.getFullYear(),
+        );
+      } else if (this.currentViewType === 'months') {
+        target = cells.find(
+          cell =>
+            Number(cell.dataset.month) === date.getMonth() &&
+            Number(cell.dataset.year) === date.getFullYear(),
+        );
+      } else {
+        target = cells.find(cell => Number(cell.dataset.year) === date.getFullYear());
+      }
     } else {
-      // If not, should focus the first day of the month
-      const firstOfMonth = new Date(this.currentViewYear, this.currentViewMonth, 1);
+      if (this.currentViewType === 'days') {
+        // If not, should focus the first day of the month
+        const firstOfMonth = new Date(this.currentViewYear, this.currentViewMonth, 1);
 
-      target = cells.find(
-        cell =>
-          Number(cell.dataset.date) === 1 &&
-          Number(cell.dataset.month) === firstOfMonth.getMonth() &&
-          Number(cell.dataset.year) === firstOfMonth.getFullYear() &&
-          !cell.classList.contains('-other-month-'),
-      );
+        target = cells.find(
+          cell =>
+            Number(cell.dataset.date) === 1 &&
+            Number(cell.dataset.month) === firstOfMonth.getMonth() &&
+            Number(cell.dataset.year) === firstOfMonth.getFullYear() &&
+            !cell.classList.contains('-other-month-'),
+        );
+      } else if (this.currentViewType === 'months') {
+        target = cells.find(cell => !cell.classList.contains('-other-year-'));
+      } else {
+        target = cells.find(cell => !cell.classList.contains('-other-decade-'));
+      }
     }
 
     // fallback
@@ -177,20 +209,52 @@ export class PostDatepicker {
     const newDate = new Date(current);
 
     const move = {
-      ArrowLeft: () => newDate.setDate(current.getDate() - 1),
-      ArrowRight: () => newDate.setDate(current.getDate() + 1),
-      ArrowUp: () => newDate.setDate(current.getDate() - 7),
-      ArrowDown: () => newDate.setDate(current.getDate() + 7),
-      Home: () => newDate.setDate(1),
-      End: () => newDate.setMonth(current.getMonth() + 1, 0), // last day
-      PageUp: () => newDate.setMonth(current.getMonth() - 1),
-      PageDown: () => newDate.setMonth(current.getMonth() + 1),
+      ArrowLeft: {
+        days: () => newDate.setDate(current.getDate() - 1),
+        months: () => newDate.setMonth(current.getMonth() - 1),
+        years: () => newDate.setFullYear(current.getFullYear() - 1),
+      },
+      ArrowRight: {
+        days: () => newDate.setDate(current.getDate() + 1),
+        months: () => newDate.setMonth(current.getMonth() + 1),
+        years: () => newDate.setFullYear(current.getFullYear() + 1),
+      },
+      ArrowUp: {
+        days: () => newDate.setDate(current.getDate() - 7),
+        months: () => newDate.setMonth(current.getMonth() - 4),
+        years: () => newDate.setFullYear(current.getFullYear() - 4),
+      },
+      ArrowDown: {
+        days: () => newDate.setDate(current.getDate() + 7),
+        months: () => newDate.setMonth(current.getMonth() + 4),
+        years: () => newDate.setFullYear(current.getFullYear() + 4),
+      },
+      Home: {
+        days: () => newDate.setDate(1),
+        months: () => newDate.setMonth(0),
+        years: () => newDate.setFullYear(current.getFullYear() - (current.getFullYear() % 10)),
+      },
+      End: {
+        days: () => newDate.setMonth(current.getMonth() + 1, 0),
+        months: () => newDate.setMonth(11),
+        years: () => newDate.setFullYear(current.getFullYear() - (current.getFullYear() % 10) + 9),
+      },
+      PageUp: {
+        days: () => newDate.setMonth(current.getMonth() - 1),
+        months: () => newDate.setFullYear(current.getFullYear() - 1),
+        years: () => newDate.setFullYear(current.getFullYear() - 10),
+      },
+      PageDown: {
+        days: () => newDate.setMonth(current.getMonth() + 1),
+        months: () => newDate.setFullYear(current.getFullYear() + 1),
+        years: () => newDate.setFullYear(current.getFullYear() + 10),
+      },
     };
 
-    if (!move[key]) return;
+    if (!move[key] || !move[key][this.currentViewType]) return;
 
     e.preventDefault();
-    move[key]();
+    move[key][this.currentViewType]();
 
     // If month has changed, update view date
     const monthChanged =
@@ -200,29 +264,35 @@ export class PostDatepicker {
       this.datepickerInstance.setViewDate(newDate);
 
       requestAnimationFrame(() => {
-        this.setActiveDateCell(newDate, true);
+        this.setActiveCell(newDate, true);
       });
     } else {
-      this.setActiveDateCell(newDate, true);
+      this.setActiveCell(newDate, true);
     }
   };
 
   private skipFocusOnNextRender = false;
 
   private enhanceAccessibility(focusOnDate: boolean = true) {
-    const body = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells');
+    let body = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells');
+
+    if (this.currentViewType === 'months') {
+      body = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells.-months-');
+    } else if (this.currentViewType === 'years') {
+      body = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells.-years-');
+    }
     if (!body) return;
 
     body.setAttribute('role', 'grid');
 
-    this.getDayCells().forEach(cell => {
+    this.getCells().forEach(cell => {
       cell.setAttribute('aria-selected', cell.classList.contains('-selected-') ? 'true' : 'false');
     });
 
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    this.setActiveDateCell(this.selectedDate, focusOnDate);
+    this.setActiveCell(this.selectedDate, focusOnDate);
   }
 
   private configDatepicker() {
@@ -255,14 +325,22 @@ export class PostDatepicker {
         locale: locale,
         dateFormat: (localesMap[this.locale] || localesMap.en).dateFormat,
         view: 'days',
-        onChangeView(view) {
-          console.log('on change view', view);
+        onChangeView: view => {
+          this.currentViewType = view;
+          console.log('changing view to', view);
+          requestAnimationFrame(() => {
+            this.enhanceAccessibility(); // now getCells() will be correct
+          });
         },
         onChangeViewDate: ({ month, year }) => {
           this.currentViewYear = year;
           this.currentViewMonth = month;
+          console.log('changing viewdate to', month, year);
 
-          this.enhanceAccessibility(false);
+          requestAnimationFrame(() => {
+            this.enhanceAccessibility(!this.skipFocusOnNextRender);
+            this.skipFocusOnNextRender = false;
+          });
         },
         onSelect: ({ date, formattedDate }) => {
           console.log('select', formattedDate, date);
@@ -303,9 +381,27 @@ export class PostDatepicker {
                   month: 'long',
                   day: 'numeric',
                 }),
-                'data-year': date.getFullYear(),
-                'data-month': date.getMonth(),
-                'data-date': date.getDate(),
+              },
+            };
+          } else if (cellType === 'month') {
+            return {
+              attrs: {
+                'role': 'gridcell',
+                // todolea: this should use the "locale"
+                'aria-label': date.toLocaleDateString(undefined, {
+                  year: 'numeric',
+                  month: 'long',
+                }),
+              },
+            };
+          } else if (cellType === 'year') {
+            return {
+              attrs: {
+                'role': 'gridcell',
+                // todolea: this should use the "locale"
+                'aria-label': date.toLocaleDateString(undefined, {
+                  year: 'numeric',
+                }),
               },
             };
           }
