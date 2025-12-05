@@ -16,17 +16,17 @@ import {
   checkEmptyOrUrl,
 } from '@/utils';
 import { version } from '@root/package.json';
-import { SwitchVariant, SWITCH_VARIANTS } from '../post-language-switch/switch-variants';
+import { SwitchVariant, SWITCH_VARIANTS } from '../post-language-menu/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
  */
 @Component({
-  tag: 'post-language-option',
-  styleUrl: 'post-language-option.scss',
+  tag: 'post-language-menu-item',
+  styleUrl: 'post-language-menu-item.scss',
 })
-export class PostLanguageOption {
-  @Element() host: HTMLPostLanguageOptionElement;
+export class PostLanguageMenuItem {
+  @Element() host: HTMLPostLanguageMenuItemElement;
 
   /**
    *  The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
@@ -44,7 +44,7 @@ export class PostLanguageOption {
   @Prop({ mutable: true, reflect: true }) active?: boolean;
 
   /**
-   * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+   * To communicate the variant prop from the parent (post-language-menu) component to the child (post-language-menu-item) component. See parent docs for a description about the property itself.
    */
   @Prop() variant?: SwitchVariant;
 
@@ -81,12 +81,12 @@ export class PostLanguageOption {
 
     if (!this.name && this.isNameRequired()) {
       throw new Error(
-        'The "name" property of the post-language-option component is required when the full language name is not displayed.',
+        'The "name" property of the post-language-menu-item component is required when the full language name is not displayed.',
       );
     }
 
     if (this.active) {
-      this.postLanguageOptionInitiallyActive.emit(this.code);
+      this.postLanguageMenuItemInitiallyActive.emit(this.code);
     }
   }
 
@@ -98,7 +98,7 @@ export class PostLanguageOption {
   /**
    * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
    */
-  @Event() postLanguageOptionInitiallyActive: EventEmitter<string>;
+  @Event() postLanguageMenuItemInitiallyActive: EventEmitter<string>;
 
   /**
    * Selects the language option programmatically.

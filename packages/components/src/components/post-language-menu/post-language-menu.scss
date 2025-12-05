@@ -16,12 +16,12 @@ tokens.$default-map: components.$post-button;
 }
 
 // Style for dropdown variant
-.post-language-switch-dropdown-container {
+.post-language-menu-dropdown-container {
   display: flex;
   flex-direction: column;
 }
 
-.post-language-switch-trigger {
+.post-language-menu-trigger {
   @include header-mx.header-control-base;
   @include header-mx.header-control-icon-rotate;
   text-transform: uppercase;
@@ -32,6 +32,6 @@ post-menu::part(menu) {
   padding-block: 0;
 }
 
-.post-language-switch-list {
+.post-language-menu-list {
   margin-top: 1rem;
 }

@@ -23,11 +23,11 @@
 ### Graph
 ```mermaid
 graph TD;
-  post-language-switch --> post-menu-trigger
-  post-language-switch --> post-icon
-  post-language-switch --> post-menu
+  post-language-menu --> post-menu-trigger
+  post-language-menu --> post-icon
+  post-language-menu --> post-menu
   post-menu --> post-popovercontainer
-  style post-language-switch fill:#f9f,stroke:#333,stroke-width:4px
+  style post-language-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
