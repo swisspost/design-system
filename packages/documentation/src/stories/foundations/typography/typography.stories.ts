@@ -121,11 +121,3 @@ export const Inline: Story = {
     <p>This shows <del>deleted text</del> for tracking changes or corrections.</p>
   `,
 };
-
-export const Divider: Story = {
-  render: () => html`
-    <p>This is some content above the divider.</p>
-    <hr />
-    <p>This is some content below the divider.</p>
-  `,
-};
