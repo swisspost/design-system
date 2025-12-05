@@ -12,7 +12,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=13943-50752&p=f&t=EDT8yApWFC3hDXlb-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=13995-180113&t=w6yq9dykdA3NLIPh-4',
     },
   },
   args: {
