@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/mixins/media' as media-mx;
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use './custom-properties';
 
@@ -42,6 +43,9 @@
 
   post-togglebutton {
     @include header-mx.header-control-base;
+    @include media-mx.only(mobile) {
+      @include header-mx.header-control-icon-only;
+    }
   }
 }
 

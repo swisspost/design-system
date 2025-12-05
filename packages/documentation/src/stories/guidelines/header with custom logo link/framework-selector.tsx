@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Source } from '@storybook/addon-docs/blocks';
 
 const code = `
-<post-header>
+<post-header burger-menu-label="Menu">
 
   <!-- Logo -->
   {{logoLink}}
@@ -12,13 +12,6 @@ const code = `
     <li><a href="#">Jobs</a></li>
     <li><a href="#">Über uns</a></li>
   </ul>
-
-  <!-- Menu button mobile -->
-  <post-togglebutton slot="post-togglebutton">
-    <span>Menu</span>
-    <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-  </post-togglebutton>
 
   <!-- Language switch -->
   <post-language-switch

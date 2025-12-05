@@ -12,7 +12,7 @@
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
   <body>
-    <post-header>
+    <post-header burger-menu-label="Menu">
       <!-- Logo -->
       <post-logo slot="post-logo">Homepage</post-logo>
 
@@ -21,13 +21,6 @@
         <li><a href="">Jobs</a></li>
         <li><a href="">Über uns</a></li>
       </ul>
-
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span>Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-      </post-togglebutton>
 
       <!-- Language switch -->
       <post-language-switch

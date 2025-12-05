@@ -215,14 +215,6 @@ function getHeaderRenderer(
               ${globalLogin}
             `
           : nothing}
-
-        <!-- Menu button for mobile -->
-        <post-togglebutton>
-          <span> ${args.burgerMenuLabel}</span>
-          <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-          <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-        </post-togglebutton>
-
         ${args.title !== '' ? title : nothing}
         ${args.localNav ? renderMicrositeControls(args) : nothing}
         ${args.mainNavigation ? mainnavigation : nothing}

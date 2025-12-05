@@ -84,25 +84,18 @@ describe('header', () => {
       cy.get('[data-post-scroll-locked]').should('not.exist');
     });
 
-    it('should throw an error if the burgerMenuLabel is not set', () => {
-      // Spy on console.error BEFORE interacting with the component
+    it('should log an error if the burgerMenuLabel is not set', () => {
       cy.window().then(win => {
         cy.spy(win.console, 'error').as('consoleError');
       });
-
       cy.get('@header')
         .invoke('attr', 'burger-menu-label')
         .should('not.be.empty')
         .and('not.eq', '0');
-
-      // Remove the burgerMenuLabel
+      cy.get('@consoleError').should('not.be.called');
+      // Remove burger menu label
       cy.get('@header').invoke('removeAttr', 'burger-menu-label');
-
-      // Check that a console error is thrown
-      cy.get('@consoleError').should(
-        'have.been.calledWithMatch',
-        'The prop `burgerMenuLabel` of the `post-header` component is not defined.',
-      );
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should close both megadropdown and mobile menu with one click', () => {
