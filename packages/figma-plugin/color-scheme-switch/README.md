@@ -1,14 +1,31 @@
 # The Swiss Post Design System - Color Scheme Switch - Figma Plugin
 
+:warning: This is only a POC and not an official Swiss Post Design System Plugin yet.
+
+- Do not publish it yet!
+- Do not use it in production!
+
+---
+
 ## Setup Instructions
 
 For the basic setup, follow the "Figma Plugin Quickstart Guide" instructions below
 
 ### Use the plugin locally in your Figma
 
-For this to work, you need to have access to all the related tools...
+For this to work, you need a github account and a full seat in the Swiss Post Figma organisation.
 
-1. Open the [POC - SPDS Color Scheme Switch - Figma Plugin](https://www.figma.com/design/IHkLqX69CyIkhA1Wg6MI3b/POC---SPDS-Color-Scheme-Switch---Figma-Plugin?m=draw) Document
+1. Clone the [Swiss Post Design System Repository](https://github.com/swisspost/design-system).
+2. Checkout the branch `poc/figma-plugin/color-scheme-switch`.
+3. Open the project in your IDE and navigate to the respositories root folder.
+4. Run `pnpm install` to install dependencies.
+5. Run `pnpm --filter color-scheme-switch build` to build the plugin.
+6. Open [figma.com](https://figma.com) with your Swiss Post account and open the document [POC - SPDS Color Scheme Switch - Figma Plugin](https://www.figma.com/design/IHkLqX69CyIkhA1Wg6MI3b/POC---SPDS-Color-Scheme-Switch---Figma-Plugin?m=draw) in your local Figma client (:warning: this won't work in the browser).
+7. Make sure you have nothing selected (e.g. click into the abyss or press `esc` until nothing is selected).
+8. Right click anywhere empty and select `Plugins` > `Development` > `Import Plugin from Manifest...`.
+9. Navigate to the folder `design-system/packages/figma-plugin/color-scheme-switch` and select the `manifest.json` file.
+10. The plugin is now installed and can be run in that Figma file as usually.
+11. Click on any element or select a frame and switch the scheme with the SPDS Color Scheme Switch Figma plugin.
 
 ## Figma Plugin Quickstart Guide
 
