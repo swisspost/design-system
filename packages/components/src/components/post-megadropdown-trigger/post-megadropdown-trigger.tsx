@@ -67,7 +67,9 @@ export class PostMegadropdownTrigger {
   };
 
   @EventFrom('post-megadropdown', { ignoreNestedComponents: false })
-  private handleToggleMegadropdown = (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) => {
+  private handleToggleMegadropdown = (
+      event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>,
+    ) => {
       if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
         this.ariaExpanded = event.detail.isVisible;
 
@@ -111,7 +113,10 @@ export class PostMegadropdownTrigger {
     return (
       <Host data-version={version} tab-index="-1">
         <button>
-          <slot></slot>
+          <span>
+            <slot></slot>
+          </span>
+          <post-icon aria-hidden="true" name="chevrondown"></post-icon>
         </button>
       </Host>
     );

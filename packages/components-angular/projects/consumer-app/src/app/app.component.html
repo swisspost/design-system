@@ -68,50 +68,50 @@
 
   <!-- Main navigation -->
   <post-mainnavigation caption="Main navigation">
-    <post-list title-hidden="">
-      <p>Main Navigation</p>
+    <ul>
       <!-- Link only level 1 -->
-      <post-list-item slot="post-list-item">
+      <li>
         <a href="/letters">Letters</a>
-      </post-list-item>
-      <post-list-item slot="post-list-item">
+      </li>
+      <li>
         <a href="/packages">Packages</a>
-      </post-list-item>
+      </li>
 
       <!-- Level 1 with megadropdown -->
       @for (dropdown of megadropdowns; track dropdown.id) {
-      <post-list-item slot="post-list-item">
-        <post-megadropdown-trigger [for]="dropdown.id">{{
-          dropdown.trigger
-        }}</post-megadropdown-trigger>
-        <post-megadropdown [id]="dropdown.id">
-          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-            <post-icon name="arrowleft"></post-icon>
-            Back
-          </button>
-          <post-closebutton slot="close-button">Close</post-closebutton>
-          <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink"
-            >Overview {{ dropdown.trigger }}</a
-          >
-          @for (section of dropdown.sections; track section.title) {
-          <post-list>
-            @if (section.titleLink) {
-            <p>
-              <a [href]="section.titleLink">{{ section.title }}</a>
-            </p>
-            } @else {
-            <p>{{ section.title }}</p>
-            } @for (link of section.links; track link.text) {
-            <post-list-item slot="post-list-item">
-              <a [href]="link.url">{{ link.text }}</a>
-            </post-list-item>
+        <li>
+          <post-megadropdown-trigger [for]="dropdown.id">{{
+            dropdown.trigger
+          }}</post-megadropdown-trigger>
+          <post-megadropdown [id]="dropdown.id">
+            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+              <post-icon name="arrowleft"></post-icon>
+              Back
+            </button>
+            <post-closebutton slot="close-button">Close</post-closebutton>
+            <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink"
+              >Overview {{ dropdown.trigger }}</a
+            >
+            @for (section of dropdown.sections; track section.title) {
+              <post-list>
+                @if (section.titleLink) {
+                  <p>
+                    <a [href]="section.titleLink">{{ section.title }}</a>
+                  </p>
+                } @else {
+                  <p>{{ section.title }}</p>
+                }
+                @for (link of section.links; track link.text) {
+                  <post-list-item slot="post-list-item">
+                    <a [href]="link.url">{{ link.text }}</a>
+                  </post-list-item>
+                }
+              </post-list>
             }
-          </post-list>
-          }
-        </post-megadropdown>
-      </post-list-item>
+          </post-megadropdown>
+        </li>
       }
-    </post-list>
+    </ul>
   </post-mainnavigation>
 </post-header>
 
