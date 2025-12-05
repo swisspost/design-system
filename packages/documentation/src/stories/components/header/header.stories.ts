@@ -206,18 +206,18 @@ function getHeaderRenderer(
         ${args.metaNavigation ? renderMetaNavigation(args) : nothing}
 
         <!-- Language switch -->
-        <post-language-switch
+        <post-language-menu
           caption="Change the language"
           description="The currently selected language is English."
           variant="list"
-          name="language-switch-example"
+          name="language-menu-example"
           slot="post-language-switch"
         >
-          <post-language-option code="de" name="German">de</post-language-option>
-          <post-language-option code="fr" name="French">fr</post-language-option>
-          <post-language-option code="it" name="Italian">it</post-language-option>
-          <post-language-option active="true" code="en" name="English">en</post-language-option>
-        </post-language-switch>
+          <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+          <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+          <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+          <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+        </post-language-menu>
 
         ${!args.title && !args.jobs
           ? html`

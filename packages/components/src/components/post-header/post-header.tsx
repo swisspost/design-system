@@ -245,7 +245,7 @@ export class PostHeader {
       ),
       ...Array.from(
         this.host.querySelectorAll(
-          '.list-inline[slot="meta-navigation"] > li, post-language-option',
+          '.list-inline[slot="meta-navigation"] > li, post-language-menu-item',
         ),
       ),
     ];
@@ -364,7 +364,7 @@ export class PostHeader {
 
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.hasBurgerMenu ? 'list' : 'menu';
-    Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
+    Array.from(this.host.querySelectorAll('post-language-menu')).forEach(languageSwitch => {
       languageSwitch?.setAttribute('variant', variant);
     });
   }
