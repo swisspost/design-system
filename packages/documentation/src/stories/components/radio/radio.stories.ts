@@ -27,6 +27,7 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     hiddenLegend: {
@@ -56,6 +57,21 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the component.',
+      control: {
+        type: 'radio',
+        labels: {
+          'null': 'Default',
+          'form-check-sm': 'Small',
+        },
+      },
+      options: ['null', 'form-check-sm'],
       table: {
         category: 'General',
       },
