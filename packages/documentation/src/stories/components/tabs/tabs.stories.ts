@@ -8,8 +8,8 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   variant: string;
   activeTabPanels?: string;
   postChange: string,
-  content?: string,
-  tabs?: string,
+  'post-tabs-content'?: string,
+  'post-tabs'?: string,
   'slots-default'?: string;
   'slots-panels'?: string;
 }> = {
@@ -25,7 +25,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
     },
     controls: {
-      exclude: ['postChange', 'show', 'content', 'tabs'],
+      exclude: ['postChange', 'show', 'post-tabs-content', 'post-tabs'],
     },
   },
   argTypes: {
@@ -88,8 +88,8 @@ const meta: MetaComponent<HTMLPostTabsElement & {
         },
       },
     },
-    content: {
-      name: 'content ',
+    'post-tabs-content': {
+      name: 'post-tabs-content ',
       description: 'The container element that displays the content of the currently active tab.',
       control: false,
       if: { arg: 'variant', eq: 'panels' },
@@ -100,8 +100,8 @@ const meta: MetaComponent<HTMLPostTabsElement & {
         },
       },
     },
-    tabs: {
-      name: 'tabs ',
+    'post-tabs': {
+      name: 'post-tabs ',
       description: 'The container element that holds the set of tabs.',
       control: false,
       table: {
@@ -155,7 +155,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
   args: {
     variant: 'panels',
     postChange: 'postChange',
-    content: 'content',
+    'post-tabs-content': 'post-tabs-content',
     activeTabPanels: undefined,
     label: 'Tabs navigation',
     'slots-default': '',

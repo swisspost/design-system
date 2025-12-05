@@ -28,7 +28,7 @@ tokens.$default-map: components.$post-button;
   cursor: pointer;
 }
 
-post-menu::part(menu) {
+post-menu::part(post-menu) {
   padding-block: 0;
 }
 

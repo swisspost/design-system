@@ -6,8 +6,8 @@ import { componentOnReady, checkRequiredAndType } from '@/utils';
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
  * @slot panels - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
- * @part tabs - The container element that holds the set of tabs.
- * @part content - The container element that displays the content of the currently active tab. Only available in panels mode.
+ * @part post-tabs - The container element that holds the set of tabs.
+ * @part post-tabs-content - The container element that displays the content of the currently active tab. Only available in panels mode.
  */
 
 @Component({
@@ -380,7 +380,7 @@ export class PostTabs {
 
     return (
       <Host data-version={version}>
-        <div class="tabs-wrapper" part="tabs">
+        <div class="tabs-wrapper" part="post-tabs">
           <TabsContainer
             class="tabs"
             role={this.isNavigationMode ? undefined : 'tablist'}
@@ -393,7 +393,7 @@ export class PostTabs {
           </TabsContainer>
         </div>
         {!this.isNavigationMode && (
-          <div class="tab-content" part="content">
+          <div class="tab-content" part="post-tabs-content">
             <slot name="panels" onSlotchange={() => this.moveMisplacedPanels()} />
           </div>
         )}

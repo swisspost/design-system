@@ -17,7 +17,7 @@ import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot, checkEmptyOrOneOf, checkRequiredAndType, EventFrom } from '@/utils';
 
 /**
- * @part menu - The container element that holds the list of menu items.
+ * @part post-menu - The container element that holds the list of menu items.
  * @slot header - Holds the header part of the menu.
  */
 
@@ -253,7 +253,7 @@ export class PostMenu {
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
         >
-          <div part="menu">
+          <div part="post-menu">
             <slot name="header"></slot>
             <slot></slot>
           </div>

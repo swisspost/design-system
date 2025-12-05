@@ -106,7 +106,7 @@ describe('tabs', () => {
     it('should not render content part in navigation mode', () => {
       cy.get('@tabs')
         .shadow()
-        .find('[part="content"]')
+        .find('[part="post-tabs-content"]')
         .should('not.exist');
     });
 
@@ -249,7 +249,7 @@ describe('tabs', () => {
       cy.get('post-tab-panel').should('exist');
       cy.get('post-tabs')
         .shadow()
-        .find('[part="content"]')
+        .find('[part="post-tabs-content"]')
         .should('exist');
     });
 
