@@ -206,6 +206,17 @@ export class PostDatepicker {
     const current = this.selectedDate;
     if (!current) return;
 
+    // If user clicks ENTER, trigger click on the cell
+    if (key === 'Enter' || key === ' ') {
+      e.preventDefault();
+
+      const activeCell = this.getCells().find(c => c.tabIndex === 0);
+      if (activeCell) {
+        activeCell.click();
+      }
+      return;
+    }
+
     const newDate = new Date(current);
 
     const move = {
