@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property                       | Attribute           | Description                                   | Type     | Default     |
-| ------------------------------ | ------------------- | --------------------------------------------- | -------- | ----------- |
-| `burgerMenuLabel` _(required)_ | `burger-menu-label` | Defines the label for the burger menu button. | `string` | `undefined` |
+| Property                       | Attribute           | Description                          | Type     | Default     |
+| ------------------------------ | ------------------- | ------------------------------------ | -------- | ----------- |
+| `burgerMenuLabel` _(required)_ | `burger-menu-label` | The label of the burger menu button. | `string` | `undefined` |
 
 
 ## Methods

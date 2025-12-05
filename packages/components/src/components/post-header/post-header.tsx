@@ -73,7 +73,7 @@ export class PostHeader {
   @State() megadropdownOpen: boolean = false;
 
   /**
-   * Defines the label for the burger menu button.
+   * The label of the burger menu button.
    */
   @Prop({ reflect: true }) burgerMenuLabel!: string;
 
@@ -138,6 +138,7 @@ export class PostHeader {
     this.handleScrollParentResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
   }
+
   componentWillLoad() {
     this.validateBurgerMenuLabel();
   }
