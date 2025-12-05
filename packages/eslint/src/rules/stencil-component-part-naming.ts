@@ -14,7 +14,7 @@ export default createRule({
     },
     messages: {
       [messageId]:
-        "The part name '{{partName}}' must start with 'post-' (e.g., 'post-menu', 'post-button', 'post-content').",
+        "The part name '{{partName}}' must start with 'post-' (e.g., 'post-menu', 'post-tabs-content', 'post-accordion-button').",
     },
     type: 'problem',
     schema: [],
