@@ -1,10 +1,10 @@
 import { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
-export function renderTargetGroup(args: Args) {
+export function renderAudience(args: Args) {
   return html`
-    <!-- Target Group -->
-    <ul slot="target-group">
+    <!-- Target Group / Audience -->
+    <ul slot="audience">
       <li>
         <a href="#" aria-current=${args.jobs ? nothing : 'location'}>Private customers</a>
       </li>

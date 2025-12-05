@@ -3,7 +3,7 @@
   <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
   <!-- Target Group -->
-  <ul slot="target-group">
+  <ul slot="audience">
     <li>
       <a href="#" class="active">Private customers</a>
     </li>
@@ -13,7 +13,7 @@
   </ul>
 
   <!-- Global controls (Search) -->
-  <ul slot="global-controls">
+  <ul slot="global-nav-primary">
     <li>
       <a href="">
         <span>Search</span>
@@ -23,7 +23,7 @@
   </ul>
 
   <!-- Meta navigation -->
-  <ul slot="meta-navigation">
+  <ul slot="global-nav-secondary">
     <li>
       <a href="">
         Jobs
@@ -44,7 +44,7 @@
     description="The currently selected language is English."
     variant="list"
     name="language-menu-example"
-    slot="post-language-switch"
+    slot="language-menu"
   >
     <post-language-menu-item code="de" name="German">de</post-language-menu-item>
     <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
@@ -54,7 +54,7 @@
 
   <!-- Global header login/user menu -->
 
-  <a href="" slot="global-login">
+  <a href="" slot="post-login">
     <span>Login</span>
     <post-icon name="login"></post-icon>
   </a>

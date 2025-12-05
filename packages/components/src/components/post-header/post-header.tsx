@@ -9,14 +9,14 @@ import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
- * @slot global-controls - Holds search button in the global header.
- * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
+ * @slot global-nav-primary - Holds search button in the global header.
+ * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
  * @slot post-togglebutton - Holds the burger menu toggler.
- * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
+ * @slot language-menu - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
- * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
- * @slot target-group - Holds the list of buttons to choose the target group.
- * @slot global-login - Holds the user menu or login button in the global header.
+ * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
+ * @slot audience - Holds the list of buttons to choose the target group.
+ * @slot post-login - Holds the user menu or login button in the global header.
  * @slot local-nav - Holds controls specific to the current application.
  */
 
@@ -66,7 +66,7 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
   @State() hasLocalNav: boolean = false;
-  @State() hasTargetGroup: boolean = false;
+  @State() hasAudience: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -222,7 +222,7 @@ export class PostHeader {
   private getFocusableElements() {
     // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
-      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="meta-navigation"]) > li')),
+      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li')),
       ...Array.from(
         this.host.querySelectorAll(
           'nav > post-list > div > post-list-item, post-megadropdown-trigger',
@@ -230,7 +230,7 @@ export class PostHeader {
       ),
       ...Array.from(
         this.host.querySelectorAll(
-          '.list-inline[slot="meta-navigation"] > li, post-language-menu-item',
+          '.list-inline[slot="global-nav-secondary"] > li, post-language-menu-item',
         ),
       ),
     ];
@@ -345,9 +345,9 @@ export class PostHeader {
   }
 
   private checkSlottedContent() {
-    this.hasNavigation = !!this.host.querySelector('[slot="post-mainnavigation"]');
+    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasTargetGroup = !!this.host.querySelector('[slot="target-group"]');
+    this.hasAudience = !!this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
 
@@ -384,7 +384,7 @@ export class PostHeader {
     if (this.device === 'desktop') {
       return (
         <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
-          <slot name="post-mainnavigation"></slot>
+          <slot name="main-nav"></slot>
           {localNav}
         </div>
       );
@@ -403,12 +403,12 @@ export class PostHeader {
       >
         {localNav}
         <div class="burger-menu-body">
-          <slot name="target-group"></slot>
-          <slot name="post-mainnavigation"></slot>
+          <slot name="audience"></slot>
+          <slot name="main-nav"></slot>
         </div>
         <div class="burger-menu-footer">
-          <slot name="meta-navigation"></slot>
-          <slot name="post-language-switch"></slot>
+          <slot name="global-nav-secondary"></slot>
+          <slot name="language-menu"></slot>
         </div>
       </div>
     );
@@ -420,7 +420,7 @@ export class PostHeader {
         <div
           class={{
             'global-header': true,
-            'no-target-group': !this.hasTargetGroup,
+            'no-audience': !this.hasAudience,
           }}
         >
           <div class="logo">
@@ -428,16 +428,16 @@ export class PostHeader {
           </div>
           <div class="sliding-controls">
             {this.device === 'desktop' && (
-              <div class="target-group">
-                <slot name="target-group"></slot>
+              <div class="audience">
+                <slot name="audience"></slot>
               </div>
             )}
-            <slot name="global-controls"></slot>
+            <slot name="global-nav-primary"></slot>
             {!this.hasBurgerMenu && [
-              <slot name="meta-navigation"></slot>,
-              <slot name="post-language-switch"></slot>,
+              <slot name="global-nav-secondary"></slot>,
+              <slot name="language-menu"></slot>,
             ]}
-            <slot name="global-login"></slot>
+            <slot name="post-login"></slot>
             {this.hasNavigation && this.device !== 'desktop' && (
               <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
                 <slot name="post-togglebutton"></slot>
@@ -449,7 +449,7 @@ export class PostHeader {
           class={{
             'local-header': true,
             'no-title': !this.hasTitle,
-            'no-target-group': !this.hasTargetGroup,
+            'no-audience': !this.hasAudience,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
             'no-local-nav': !this.hasLocalNav,
           }}
