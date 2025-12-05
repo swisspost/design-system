@@ -40,7 +40,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.6.8",
     "@oddbird/popover-polyfill": "0.3.7",
-    "@stencil/core": "4.35.0",
+    "@stencil/core": "4.19.2",
     "@swisspost/design-system-styles": "workspace:9.5.1",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0"
