@@ -27,6 +27,7 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     hiddenLegend: {

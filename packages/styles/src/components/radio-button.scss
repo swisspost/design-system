@@ -123,3 +123,27 @@ tokens.$default-map: components.$post-radio-button;
     }
   }
 }
+
+.form-check-sm:not(.form-switch):has(input[type='radio']) {
+
+  > input[type='radio'] {
+    width: tokens.get('radio-button-small-icon-size');
+    height: tokens.get('radio-button-small-icon-size');
+
+    margin-inline: tokens.get('radio-button-small-icon-padding');
+    margin-block: calc(
+      tokens.get('radio-button-small-icon-padding') +
+      tokens.get('radio-button-small-icon-container-padding')
+    );
+
+    &::after {
+      width: tokens.get('radio-button-small-icon-dot');
+      height: tokens.get('radio-button-small-icon-dot');
+    }
+  }
+
+  > label {
+    padding-block: tokens.get('radio-button-small-label-padding-block');
+  }
+}
+
