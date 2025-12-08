@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Enabled a 'pop-in' animation for the `post-breadcrumbs` concatenated version and the `post-language-switch` menu variant components.
+Enabled pop-in animations for the concatenated `post-breadcrumbs`, the `post-language-menu`, and the header's user menu components.
