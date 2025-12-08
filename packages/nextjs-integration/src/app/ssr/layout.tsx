@@ -3,7 +3,6 @@ import {
   PostBackToTop,
   PostBreadcrumbs,
   PostBreadcrumbItem,
-  PostClosebutton,
   PostFooter,
   PostHeader,
   PostIcon,
@@ -28,64 +27,64 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           Homepage
         </PostLogo>
 
-      {/* Target Group */}
-      <ul slot="target-group">
-        <li>
-          <a href="#" aria-current="location">
-            Private customers
-          </a>
-        </li>
-        <li>
-          <a href="#">Business customers</a>
-        </li>
-      </ul>
+        {/* Target Group */}
+        <ul slot="target-group">
+          <li>
+            <a href="#" aria-current="location">
+              Private customers
+            </a>
+          </li>
+          <li>
+            <a href="#">Business customers</a>
+          </li>
+        </ul>
 
-      {/* Global controls (Search) */}
-      <ul slot="global-controls">
-        <li>
-          <a href="">
-            <span>Search</span>
-            <PostIcon aria-hidden="true" name="search" />
-          </a>
-        </li>
-      </ul>
+        {/* Global controls (Search) */}
+        <ul slot="global-controls">
+          <li>
+            <a href="">
+              <span>Search</span>
+              <PostIcon aria-hidden="true" name="search" />
+            </a>
+          </li>
+        </ul>
 
-      {/* Meta navigation */}
-      <ul slot="meta-navigation">
-        <li>
-          <a href="">
-            Jobs
-            <PostIcon name="jobs" aria-hidden="true" />
-          </a>
-        </li>
-        <li>
-          <a href="">
-            Create Account
-            <PostIcon name="adduser" aria-hidden="true" />
-          </a>
-        </li>
-      </ul>
+        {/* Meta navigation */}
+        <ul slot="meta-navigation">
+          <li>
+            <a href="">
+              Jobs
+              <PostIcon name="jobs" aria-hidden="true" />
+            </a>
+          </li>
+          <li>
+            <a href="">
+              Create Account
+              <PostIcon name="adduser" aria-hidden="true" />
+            </a>
+          </li>
+        </ul>
 
-      {/* Language switch */}
-      <PostLanguageMenu
-        caption="Change the language"
-        description="The currently selected language is English."
-        variant="list"
-        slot="post-language-switch"
-      >
-        <PostLanguageMenuItem code="de" name="German">
-          de
-        </PostLanguageMenuItem>
-        <PostLanguageMenuItem code="fr" name="French">
-          fr
-        </PostLanguageMenuItem>
-        <PostLanguageMenuItem code="it" name="Italian">
-          it
-        </PostLanguageMenuItem>
-        <PostLanguageMenuItem active={true} code="en" name="English">
-          en
-        </PostLanguageMenuItem>
-      </PostLanguageMenu>
+        {/* Language switch */}
+        <PostLanguageMenu
+          caption="Change the language"
+          description="The currently selected language is English."
+          variant="list"
+          slot="post-language-switch"
+        >
+          <PostLanguageMenuItem code="de" name="German">
+            de
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem code="fr" name="French">
+            fr
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem code="it" name="Italian">
+            it
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem active={true} code="en" name="English">
+            en
+          </PostLanguageMenuItem>
+        </PostLanguageMenu>
 
         {/* Global header login/user menu */}
         <a href="" slot="global-login">
@@ -100,31 +99,26 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled" />
         </PostTogglebutton>
 
-      {/* Main navigation */}
-      <PostMainnavigation slot="post-mainnavigation">
-        <PostList title-hidden="">
-          <p>Main Navigation</p>
+        {/* Main navigation */}
+        <PostMainnavigation slot="post-mainnavigation">
+          <PostList title-hidden="">
+            <p>Main Navigation</p>
 
-          {/* Link only level 1 */}
-          <PostListItem slot="post-list-item">
-            <a href="/letters">Letters</a>
-          </PostListItem>
-          <PostListItem slot="post-list-item">
-            <a href="/packages">Packages</a>
-          </PostListItem>
+            {/* Link only level 1 */}
+            <PostListItem slot="post-list-item">
+              <a href="/letters">Letters</a>
+            </PostListItem>
+            <PostListItem slot="post-list-item">
+              <a href="/packages">Packages</a>
+            </PostListItem>
 
             {/* Level 1 with megadropdown - Letters */}
             <PostListItem slot="post-list-item">
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
-              <PostMegadropdown id="letters">
-                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowleft" />
-                  Back
-                </button>
-                <PostClosebutton slot="close-button">Close</PostClosebutton>
-                <a slot="megadropdown-overview-link" href="/letters">
-                  Overview Letters
-                </a>
+              <PostMegadropdown id="letters" closeLabel="Close" backLabel="Back">
+                <p className="megadropdown-overview-link">
+                  <a href="/letters">Overview Letters</a>
+                </p>
                 <PostList>
                   <p>Send letters</p>
                   <PostListItem slot="post-list-item">
@@ -163,15 +157,10 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Packages */}
             <PostListItem slot="post-list-item">
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
-              <PostMegadropdown id="packages">
-                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowleft" />
-                  Back
-                </button>
-                <PostClosebutton slot="close-button">Close</PostClosebutton>
-                <a slot="megadropdown-overview-link" href="/packages">
-                  Overview Packages
-                </a>
+              <PostMegadropdown id="packages" closeLabel="Close" backLabel="Back">
+                <p className="megadropdown-overview-link">
+                  <a href="/packages">Overview Packages</a>
+                </p>
                 <PostList>
                   <p>Send packages</p>
                   <PostListItem slot="post-list-item">

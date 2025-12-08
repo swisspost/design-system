@@ -51,8 +51,12 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       >
         <post-language-menu-item active="true" code="de" name="German">DE</post-language-menu-item>
         <post-language-menu-item active="false" code="fr" name="French">FR</post-language-menu-item>
-        <post-language-menu-item active="false" code="it" name="Italian">IT</post-language-menu-item>
-        <post-language-menu-item active="false" code="en" name="English">EN</post-language-menu-item>
+        <post-language-menu-item active="false" code="it" name="Italian"
+          >IT</post-language-menu-item
+        >
+        <post-language-menu-item active="false" code="en" name="English"
+          >EN</post-language-menu-item
+        >
       </post-language-menu>
 
       <!-- Application title (optional) -->
@@ -92,13 +96,10 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 function render() {
   return html`
     <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-    <post-megadropdown id="packages">
-      <button slot="back-button" class="btn btn-tertiary px-0">
-        <post-icon name="arrowleft"></post-icon>
-        Back
-      </button>
-      <post-closebutton slot="close-button">Close</post-closebutton>
-      <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
+    <post-megadropdown id="packages" closeLabel="Close" backLabel="Back">
+      <p class="megadropdown-overview-link">
+        <a href="/packages">Overview Packages</a>
+      </p>
       <post-list>
         <p>Send packages</p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>

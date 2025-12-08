@@ -23,6 +23,7 @@
 
 ### Used by
 
+ - [post-megadropdown](../post-megadropdown)
  - [post-popover](../post-popover)
 
 ### Depends on
@@ -33,6 +34,7 @@
 ```mermaid
 graph TD;
   post-closebutton --> post-icon
+  post-megadropdown --> post-closebutton
   post-popover --> post-closebutton
   style post-closebutton fill:#f9f,stroke:#333,stroke-width:4px
 ```

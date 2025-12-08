@@ -63,13 +63,10 @@ const code = `
       <!-- Level 1 with megadropdown -->
       <post-list-item slot="post-list-item">
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-        <post-megadropdown id="briefe">
-          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-            <post-icon name="arrowright"></post-icon>
-            Back
-          </button>
-          <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
+        <post-megadropdown id="briefe" closeLabel="Schliessen" backLabel="Back">
+          <p class="megadropdown-overview-link">
+            <a href="/briefe">Übersicht Briefe</a>
+          </p>
           <post-list>
             <p>Briefe senden</p>
             <post-list-item slot="post-list-item"><a href="#">Briefe Schweiz</a></post-list-item>
@@ -92,13 +89,10 @@ const code = `
       </post-list-item>
       <post-list-item slot="post-list-item">
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-        <post-megadropdown id="pakete">
-          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-            <post-icon name="arrowright"></post-icon>
-            Back
-          </button>
-          <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
+        <post-megadropdown id="pakete" closeLabel="Schliessen" backLabel="Back">
+          <p class="megadropdown-overview-link">
+            <a href="/pakete">Übersicht Pakete</a>
+          </p>
           <post-list>
             <p>Pakete senden</p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>

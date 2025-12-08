@@ -1,7 +1,19 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
+import { checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown',
@@ -16,6 +28,25 @@ export class PostMegadropdown {
   private static activeDropdown: PostMegadropdown | null = null;
 
   private defaultSlotObserver: MutationObserver;
+
+  /**
+   * A label for the back button visible on tablet and mobile
+   */
+  @Prop({ reflect: true }) backLabel!: string;
+
+  @Watch('backLabel')
+  validateBackLabel() {
+    checkRequiredAndType(this, 'backLabel', 'string');
+  }
+  /**
+   * An accessible label for the close button visible on desktop
+   */
+  @Prop({ reflect: true }) closeLabel!: string;
+
+  @Watch('closeLabel')
+  validateCloseLabel() {
+    checkRequiredAndType(this, 'closeLabel', 'string');
+  }
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -57,6 +88,8 @@ export class PostMegadropdown {
   }
 
   componentDidLoad() {
+    this.validateBackLabel();
+    this.validateCloseLabel();
     this.checkInitialAriaCurrent();
     this.setupObserver();
     this.handleAriaCurrentChange([]);
@@ -69,7 +102,7 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
-    
+
     if (this.defaultSlotObserver) {
       this.defaultSlotObserver.disconnect();
     }
@@ -289,6 +322,19 @@ export class PostMegadropdown {
   render() {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
+    const backButton = (
+      <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary px-0 btn-sm">
+        <post-icon name="arrowleft"></post-icon>
+        {this.backLabel}
+      </button>
+    );
+
+    const closeButton = (
+      <post-closebutton onClick={() => this.hide(true)} class="close-button">
+        {this.closeLabel}
+      </post-closebutton>
+    );
+
     return (
       <Host version={version}>
         <div
@@ -297,17 +343,11 @@ export class PostMegadropdown {
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
           <div class="megadropdown">
-            <slot name="megadropdown-title"></slot>
-            <slot name="megadropdown-overview-link"></slot>
             <div class="megadropdown-content">
               <slot></slot>
             </div>
-            <div onClick={() => this.hide(true)} class="back-button">
-              <slot name="back-button"></slot>
-            </div>
-            <div onClick={() => this.hide(true)} class="close-button">
-              <slot name="close-button"></slot>
-            </div>
+
+            {this.device === 'desktop' ? closeButton : backButton}
           </div>
         </div>
       </Host>

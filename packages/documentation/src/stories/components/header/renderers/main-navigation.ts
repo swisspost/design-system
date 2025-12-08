@@ -17,13 +17,10 @@ export function renderMainnavigation() {
         <!-- Level 1 with megadropdown -->
         <post-list-item slot="post-list-item">
           <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-          <post-megadropdown id="letters">
-            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-              <post-icon name="arrowleft"></post-icon>
-              Back
-            </button>
-            <post-closebutton slot="close-button">Close</post-closebutton>
-            <a slot="megadropdown-overview-link" href="/letters">Overview Letters</a>
+          <post-megadropdown id="letters" closeLabel="Close" backLabel="Back">
+            <p class="megadropdown-overview-link">
+              <a href="/letters">Overview Letters</a>
+            </p>
             <post-list>
               <p>Send letters</p>
               <post-list-item slot="post-list-item">
@@ -64,7 +61,9 @@ export function renderMainnavigation() {
               Back
             </button>
             <post-closebutton slot="close-button">Close</post-closebutton>
-            <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
+            <p class="megadropdown-overview-link" closeLabel="Close" backLabel="Back">
+              <a href="/packages">Overview Packages</a>
+            </p>
             <post-list>
               <p>Send packages</p>
               <post-list-item slot="post-list-item">
