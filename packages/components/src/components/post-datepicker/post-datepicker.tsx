@@ -230,21 +230,25 @@ export class PostDatepicker {
         months: () => newDate.setMonth(current.getMonth() + 1),
         years: () => newDate.setFullYear(current.getFullYear() + 1),
       },
+      // Move up on line
       ArrowUp: {
         days: () => newDate.setDate(current.getDate() - 7),
         months: () => newDate.setMonth(current.getMonth() - 4),
         years: () => newDate.setFullYear(current.getFullYear() - 4),
       },
+      // Move down one line
       ArrowDown: {
         days: () => newDate.setDate(current.getDate() + 7),
         months: () => newDate.setMonth(current.getMonth() + 4),
         years: () => newDate.setFullYear(current.getFullYear() + 4),
       },
+      // Go to the first element
       Home: {
         days: () => newDate.setDate(1),
         months: () => newDate.setMonth(0),
         years: () => newDate.setFullYear(current.getFullYear() - (current.getFullYear() % 10)),
       },
+      // Go to the last element
       End: {
         days: () => newDate.setMonth(current.getMonth() + 1, 0),
         months: () => newDate.setMonth(11),
@@ -319,12 +323,12 @@ export class PostDatepicker {
     if (this.datepickerContainerEl) {
       const options: AirDatepickerCustomOptions = {
         navTitles: {
-          days: '<button><div class="month-nav"><div><strong>MMMM yyyy</strong></div><div><post-icon size="small" name="2052"></div></post-icon></div><div class="no-hover"></div></button>',
+          days: '<button tabIndex="1"><div class="month-nav"><div><strong>MMMM yyyy</strong></div><div><post-icon size="small" name="2052"></div></post-icon></div><div class="no-hover"></div></button>',
           months:
-            '<button><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>',
+            '<button tabIndex="1"><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>',
         },
-        prevHtml: '<button><post-icon size="small" name="2049" ></post-icon></button>',
-        nextHtml: '<button><post-icon size="small" name="2050" ></post-icon></button>',
+        prevHtml: '<button tabIndex="2"><post-icon size="small" name="2049" ></post-icon></button>',
+        nextHtml: '<button tabIndex="3"><post-icon size="small" name="2050" ></post-icon></button>',
         range: false,
         inline: true,
         autoClose: true,
@@ -340,7 +344,7 @@ export class PostDatepicker {
           this.currentViewType = view;
           console.log('changing view to', view);
           requestAnimationFrame(() => {
-            this.enhanceAccessibility(); // now getCells() will be correct
+            this.enhanceAccessibility();
           });
         },
         onChangeViewDate: ({ month, year }) => {
