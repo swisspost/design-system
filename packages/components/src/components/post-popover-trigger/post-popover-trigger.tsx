@@ -1,7 +1,7 @@
 import { Component, h, Host, Prop, Watch, Element, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
-import { checkRequiredAndType } from '@/utils';
+import { checkEmptyOrType } from '@/utils';
 
 @Component({
   tag: 'post-popover-trigger',
@@ -14,7 +14,7 @@ export class PostPopoverTrigger {
   /**
    * ID of the popover element that this trigger is linked to. Used to open and close the popover.
    */
-  @Prop({ reflect: true }) for!: string;
+  @Prop({ reflect: true }) for?: string;
 
   /**
    * Manages the accessibility attribute `aria-expanded` to indicate whether the associated popover is expanded or collapsed.
@@ -40,7 +40,7 @@ export class PostPopoverTrigger {
    */
   @Watch('for')
   validateFor() {
-    checkRequiredAndType(this, 'for', 'string');
+    checkEmptyOrType(this, 'for', 'string');
   }
 
   /**
@@ -48,49 +48,71 @@ export class PostPopoverTrigger {
    */
   private trigger: HTMLElement;
 
+  private hasAriaControlsElements(
+    el: HTMLElement,
+  ): el is HTMLElement & { ariaControlsElements: HTMLElement[] } {
+    return 'ariaControlsElements' in el;
+  }
+
   private readonly boundHandleToggle: (event: Event) => void;
   private readonly boundHandleKeyDown: (event: Event) => void;
   private readonly boundHandlePostToggle: (event: CustomEvent<{ isOpen: boolean }>) => void;
 
-  // Gets the associated popover element to the trigger based on 'for'
+  // Gets the associated to the trigger popover element
   private get popover(): HTMLPostPopoverElement | null {
-    const ref = document.getElementById(this.for);
+    const ref = this.host.querySelector('post-popover') ?? document.getElementById(this.for);
+
+    if (!ref) {
+      const target = this.for ? `with ID: ${this.for}` : 'inside the <post-popover-trigger>';
+      console.error(`No post-popover found ${target}.`);
+      return null;
+    }
     return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
   }
 
   private setupTrigger() {
+    const popover = this.popover;
     this.trigger = this.host.querySelector('*');
 
-    if (this.trigger) {
-      this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
-
-      // check if its not focusable and add aria role and tabindex
-      if (!isFocusable(this.trigger)) {
-        this.trigger.setAttribute('tabindex', '0');
-        this.trigger.setAttribute('role', 'button');
-      }
-
-      // Set aria attributes
-      this.trigger.setAttribute('aria-haspopup', 'true');
-      this.trigger.setAttribute('aria-controls', this.for);
-
-      this.trigger.addEventListener('click', this.boundHandleToggle);
-      this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
-    } else {
+    if (!this.trigger) {
       console.error(
         'No content found in the post-popover-trigger slot. Please insert a focusable element or content that can receive focus.',
       );
+      return;
     }
+
+    // check if its not focusable and add aria role and tabindex
+    if (!isFocusable(this.trigger)) {
+      this.trigger.setAttribute('tabindex', '0');
+      this.trigger.setAttribute('role', 'button');
+    }
+
+    if (!popover) return;
+
+    // Set aria attributes
+    this.trigger.setAttribute('aria-expanded', this.ariaExpanded.toString());
+    this.trigger.setAttribute('aria-haspopup', 'true');
+
+    // Set aria-controls depending on the popover/trigger relationship
+
+    if (this.for) {
+      this.trigger.setAttribute('aria-controls', this.for);
+    } else {
+      if (this.hasAriaControlsElements(this.trigger)) {
+        this.trigger.ariaControlsElements = [popover];
+      } else {
+        popover.id ||= `popover-${crypto.randomUUID()}`;
+        this.trigger.setAttribute('aria-controls', popover.id);
+      }
+    }
+
+    this.trigger.addEventListener('click', this.boundHandleToggle);
+    this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
   }
 
   private handleToggle() {
-    const popoverEl = this.popover;
-    if (popoverEl) {
-      popoverEl.toggle(this.trigger);
-      this.focusTrigger();
-    } else {
-      console.warn(`No post-popover found with ID: ${this.for}`);
-    }
+    this.popover?.toggle(this.trigger);
+    this.focusTrigger();
   }
 
   private focusTrigger() {

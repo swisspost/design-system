@@ -114,3 +114,24 @@ function render(args: Args) {
 
 export default meta;
 export const Default: StoryObj = {};
+
+export const Wrapped: StoryObj = {
+  render: () => {
+    return html`
+      <post-popover-trigger>
+        <button class="btn btn-secondary">Popover Trigger</button>
+        <post-popover
+          class="palette palette-accent"
+          placement="top"
+          close-button-caption="Close"
+          arrow=""
+        >
+          <h2 class="h6">Optional title</h2>
+          <p class="mb-0">
+            A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+          </p>
+        </post-popover>
+      </post-popover-trigger>
+    `;
+  },
+};
