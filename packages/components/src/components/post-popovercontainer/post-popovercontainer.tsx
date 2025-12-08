@@ -283,18 +283,6 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically hide the popovercontainer
-   */
-  @Method()
-  async hide() {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = null;
-      this.host.hidePopover();
-      this.postHide.emit();
-    }
-  }
-
-  /**
    * Toggle popovercontainer display
    * @param target A focusable element inside the trigger component that controls the popover
    * @param force Pass true to always show or false to always hide
