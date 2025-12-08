@@ -46,7 +46,7 @@
     "@types/eslint-scope": "3.7.7",
     "@types/jest": "29.5.14",
     "@typescript-eslint/rule-tester": "8.22.0",
-    "concurrently": "9.1.2",
+    "concurrently": "9.2.1",
     "domhandler": "5.0.3",
     "eslint": "9.19.0",
     "globals": "16.0.0",

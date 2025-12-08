@@ -27267,6 +27267,111 @@
       "modifiedAt": "2025-11-15T06:05:01.223Z"
     },
     {
+      "uuid": "eff14c70-cc25-11f0-b1fa-0050568d2654",
+      "id": 7667908,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7667908/storage/MDA3NjY3OTA4LzAvbWFzdGVy",
+        "keywords": [
+          "shrug shoulder",
+          "Schulter zucken",
+          "Hausser l’épaule",
+          "Alzare la spalla",
+          "Schulter",
+          "Shoulder",
+          "Spalla",
+          "Épaule"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2745.svg",
+        "basename": "2745",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-28T06:46:15.000Z",
+      "modifiedAt": "2025-11-29T06:05:03.988Z"
+    },
+    {
+      "uuid": "88094da0-cc26-11f0-b1fa-0050568d2654",
+      "id": 7667979,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7667979/storage/MDA3NjY3OTc5LzAvbWFzdGVy",
+        "keywords": [
+          "to left",
+          "nach Links",
+          "Vers la gauche",
+          "verso sinistra",
+          "Point left",
+          "Nach Links zeigen",
+          "Montrer vers la gauche",
+          "Mostrare verso sinistra"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2746.svg",
+        "basename": "2746",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-28T06:50:31.000Z",
+      "modifiedAt": "2025-11-29T06:05:03.988Z"
+    },
+    {
+      "uuid": "cf836440-cc2b-11f0-b1fa-0050568d2654",
+      "id": 7668450,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7668450/storage/MDA3NjY4NDUwLzAvbWFzdGVy",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2747.svg",
+        "basename": "2747",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-28T07:28:18.000Z",
+      "modifiedAt": "2025-11-28T08:26:30.000Z"
+    },
+    {
+      "uuid": "9a61b400-cc36-11f0-b1fa-0050568d2654",
+      "id": 7669375,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7669375/storage/MDA3NjY5Mzc1LzAvbWFzdGVy",
+        "keywords": [
+          "Denken",
+          "contemplative",
+          "Nachdenklich",
+          "Réfléchi",
+          "Pensieroso"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2748.svg",
+        "basename": "2748",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2025-11-28T08:45:33.000Z",
+      "modifiedAt": "2025-11-29T08:05:04.073Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40505,13 +40610,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1066,
+    "success": 1070,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-11-24T13:59:26.222Z",
+  "created": "2025-12-03T08:41:31.748Z",
   "version": "10.0.0-next.55"
 }

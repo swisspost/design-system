@@ -29,7 +29,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
       <!-- Meta navigation -->
-      <ul class="list-inline" slot="meta-navigation">
+      <ul slot="meta-navigation">
         <li><a href="">Jobs</a></li>
         <li><a href="">About us</a></li>
       </ul>
@@ -42,24 +42,24 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </post-togglebutton>
 
       <!-- Language switch -->
-      <post-language-switch
+      <post-language-menu
         caption="Caption"
         description="Description"
         variant="list"
-        name="language-switch-example"
+        name="language-menu-example"
         slot="post-language-switch"
       >
-        <post-language-option active="true" code="de" name="German">DE</post-language-option>
-        <post-language-option active="false" code="fr" name="French">FR</post-language-option>
-        <post-language-option active="false" code="it" name="Italian">IT</post-language-option>
-        <post-language-option active="false" code="en" name="English">EN</post-language-option>
-      </post-language-switch>
+        <post-language-menu-item active="true" code="de" name="German">DE</post-language-menu-item>
+        <post-language-menu-item active="false" code="fr" name="French">FR</post-language-menu-item>
+        <post-language-menu-item active="false" code="it" name="Italian">IT</post-language-menu-item>
+        <post-language-menu-item active="false" code="en" name="English">EN</post-language-menu-item>
+      </post-language-menu>
 
       <!-- Application title (optional) -->
       <p slot="title">Application title</p>
 
       <!-- Custom content (optional) -->
-      <ul slot="local-controls" class="list-inline">
+      <ul slot="local-nav">
         <li>
           <a href="#">
             <span>Search</span>
@@ -118,7 +118,7 @@ function render() {
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostLanguageOptionElement>;
+type Story = StoryObj<HTMLPostLanguageMenuItemElement>;
 
 export const Default: Story = {
   decorators: [megadropdownDecorator],
