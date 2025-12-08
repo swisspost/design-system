@@ -28,3 +28,15 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
+
+test-results/
+test-results-*
+playwright-report/
+
+**/visual-tests/__screenshots__/**/*-actual.png
+**/visual-tests/__screenshots__/**/*-diff.png
+**/visual-tests/__screenshots__/**/*-expected.png
+
+/playwright/.cache/
+playwright/.auth/
+*.tsbuildinfo

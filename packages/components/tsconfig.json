@@ -7,7 +7,7 @@
     "include": ["prebuild.ts", "prebuild.spec.ts"]
   },
   "compilerOptions": {
-    "types": ["node", "jest"],
+    "types": ["node", "jest", "@playwright/test"],
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"]
@@ -28,6 +28,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": [".config/*", "src", "types", "prebuild.spec.ts"],
+  "include": ["prebuild.ts", "prebuild.spec.ts", ".config/*", "src", "types", "visual-tests/**/*", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }
