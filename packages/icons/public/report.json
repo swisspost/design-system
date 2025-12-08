@@ -32210,7 +32210,11 @@
         "name": "2742.svg",
         "basename": "2742",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2025-11-14T06:45:49.000Z",
       "modifiedAt": "2025-11-15T06:05:01.223Z"
@@ -32233,10 +32237,135 @@
         "name": "2744.svg",
         "basename": "2744",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2025-11-14T06:53:47.000Z",
       "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
+      "uuid": "f00e9870-cc25-11f0-b1fa-0050568d2654",
+      "id": 7667909,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7667909/storage/MDA3NjY3OTA4LzAvbWFzdGVy",
+        "keywords": [
+          "Schulter",
+          "Shoulder",
+          "Spalla",
+          "Épaule",
+          "shrug shoulder",
+          "Schulter zucken",
+          "Hausser l’épaule",
+          "Alzare la spalla"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2745.svg",
+        "basename": "2745",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-28T06:46:16.000Z",
+      "modifiedAt": "2025-11-29T06:05:03.988Z"
+    },
+    {
+      "uuid": "8827f930-cc26-11f0-b1fa-0050568d2654",
+      "id": 7667980,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7667980/storage/MDA3NjY3OTc5LzAvbWFzdGVy",
+        "keywords": [
+          "to left",
+          "nach Links",
+          "Vers la gauche",
+          "verso sinistra",
+          "Point left",
+          "Nach Links zeigen",
+          "Montrer vers la gauche",
+          "Mostrare verso sinistra"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2746.svg",
+        "basename": "2746",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-28T06:50:31.000Z",
+      "modifiedAt": "2025-11-29T06:05:03.988Z"
+    },
+    {
+      "uuid": "cf94f070-cc2b-11f0-b1fa-0050568d2654",
+      "id": 7668451,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7668451/storage/MDA3NjY4NDUwLzAvbWFzdGVy",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2747.svg",
+        "basename": "2747",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-28T07:28:18.000Z",
+      "modifiedAt": "2025-11-28T08:26:08.000Z"
+    },
+    {
+      "uuid": "9a8b8320-cc36-11f0-b1fa-0050568d2654",
+      "id": 7669376,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7669376/storage/MDA3NjY5Mzc1LzAvbWFzdGVy",
+        "keywords": [
+          "contemplative",
+          "Nachdenklich",
+          "Réfléchi",
+          "Pensieroso",
+          "Denken"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2748.svg",
+        "basename": "2748",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-28T08:45:34.000Z",
+      "modifiedAt": "2025-11-29T08:05:04.073Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -44850,11 +44979,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2025-11-16T02:26:42.986Z",
+  "created": "2025-12-07T02:34:29.901Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1064
+    "success": 1068
   },
-  "version": "9.5.0"
+  "version": "9.5.1"
 }
