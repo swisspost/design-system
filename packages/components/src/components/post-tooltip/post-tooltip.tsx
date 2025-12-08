@@ -31,10 +31,7 @@ export class PostTooltip {
    * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
-  /**
-   * Choose a tooltip animation
-   */
-  @Prop() readonly animation?: 'pop-in';
+
   /**
    * Indicates the open state of the tooltip
    */

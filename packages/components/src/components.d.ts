@@ -562,10 +562,6 @@ export namespace Components {
     }
     interface PostTooltip {
         /**
-          * Choose a tooltip animation
-         */
-        "animation"?: 'pop-in';
-        /**
           * Whether or not to display a little pointer arrow
           * @default false
          */
@@ -1555,10 +1551,6 @@ declare namespace LocalJSX {
         "toggled"?: boolean;
     }
     interface PostTooltip {
-        /**
-          * Choose a tooltip animation
-         */
-        "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
           * @default false
