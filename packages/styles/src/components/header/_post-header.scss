@@ -38,7 +38,16 @@ post-header {
   }
 
   // links and buttons remaining in the global header on tablet and mobile
-  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
+  > :is(
+    [slot='global-controls'],
+    [slot='global-login'],
+    [slot='post-togglebutton'],
+    [slot='local-nav']
+  ) {
+    @include media.max(desktop) {
+      flex-direction: row;
+    }
+
     @include media.only(mobile) {
       @include interactive-elements {
         @include nav-item-icon-only;
