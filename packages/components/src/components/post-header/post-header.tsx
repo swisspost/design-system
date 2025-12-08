@@ -139,10 +139,6 @@ export class PostHeader {
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
   }
 
-  componentWillLoad() {
-    this.validateBurgerMenuLabel();
-  }
-
   componentWillRender() {
     this.handleScrollEvent();
     this.handleSlottedContentChanges();
@@ -150,6 +146,7 @@ export class PostHeader {
   }
 
   componentDidRender() {
+    this.validateBurgerMenuLabel();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
@@ -189,9 +186,8 @@ export class PostHeader {
   private async closeBurgerMenu() {
     this.burgerMenuAnimation.finish();
 
-    const menuButton = this.burgerMenuButton;
-    if (menuButton) {
-      menuButton.toggled = false;
+    if (this.burgerMenuButton) {
+      this.burgerMenuButton.toggled = false;
     }
 
     this.burgerMenuExtended = false;
@@ -208,8 +204,7 @@ export class PostHeader {
       : slideDown(this.burgerMenu);
 
     // Update the state of the toggle button
-    const menuButton = this.burgerMenuButton;
-    if (menuButton) menuButton.toggled = force ?? !this.burgerMenuExtended;
+    if (this.burgerMenuButton) this.burgerMenuButton.toggled = force ?? !this.burgerMenuExtended;
 
     if (this.burgerMenuExtended) {
       // Wait for the close animation to finish before hiding megadropdowns
@@ -230,8 +225,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
