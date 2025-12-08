@@ -186,9 +186,7 @@ export class PostHeader {
   private async closeBurgerMenu() {
     this.burgerMenuAnimation.finish();
 
-    if (this.burgerMenuButton) {
-      this.burgerMenuButton.toggled = false;
-    }
+    if (this.burgerMenuButton) this.burgerMenuButton.toggled = false;
 
     this.burgerMenuExtended = false;
   }
@@ -225,8 +223,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
