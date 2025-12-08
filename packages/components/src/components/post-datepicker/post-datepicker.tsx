@@ -1,27 +1,7 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  Watch,
-  Method,
-  Event,
-  EventEmitter,
-  State,
-} from '@stencil/core';
+import { Component, Element, h, Host, Prop, Method, State } from '@stencil/core';
 import AirDatepicker, { AirDatepickerOptions, AirDatepickerViews } from 'air-datepicker';
 
-import { EventFrom } from '@/utils';
 import { localesMap } from './locales';
-
-/**
- * Questions:
- * Create datepicker from scratch instead?
- * Look for other libraries instead
- * Small hacks -> Elements are focusable so can be "travelled" with tabs but it would be more complex with keyboard
- * Library offers keyboard navigation but not with inline datepickers -> Use their implementation?
- */
 
 interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -35,24 +15,10 @@ interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement
 export class PostDatepicker {
   @Element() host: HTMLPostDatepickerElement;
 
-  /**
-   * Emits when the calendar is shown or hidden.
-   * The event payload is a boolean: `true` when the calendar was opened, `false` when it was closed.
-   **/
-  @Event() toggleCalendar: EventEmitter<boolean>;
-
-  /**
-   * Holds the current visibility state of the calendar.
-   * This state is internally managed to track whether the calendar is open (`true`) or closed (`false`),
-   * and updates automatically when the calendar is toggled.
-   */
-  @State() isVisible: boolean = false;
-
   // todolea: handle range
   @State() selectedDate: Date;
 
-  /**Locale prop to set translations */
-  @Prop() locale: string = 'en';
+  @State() locale: string = document.documentElement.lang;
 
   /**
    * Whether the calendar is inline in the page (not showing in a popover when input clicked)
@@ -65,16 +31,6 @@ export class PostDatepicker {
    */
   @Prop() startDate?: Date = new Date();
 
-  @Watch('locale')
-  localeChangedHandler(newValue: string, oldValue: string) {
-    if (newValue !== oldValue) {
-      this.datepickerInstance.update({
-        locale: localesMap[newValue] || localesMap.en,
-        dateFormat: (localesMap[newValue] || localesMap.en).dateFormat,
-      });
-    }
-  }
-
   /**
    * Displays the popover calendar, focusing the first calendar item.
    *
@@ -84,6 +40,7 @@ export class PostDatepicker {
   async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
+      this.enhanceAccessibility();
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -105,14 +62,8 @@ export class PostDatepicker {
   private currentViewYear: number;
   private currentViewType: AirDatepickerViews = 'days';
 
-  @EventFrom('post-popovercontainer')
-  private readonly handlePostToggle = (event: CustomEvent<boolean>) => {
-    this.isVisible = event.detail;
-    this.toggleCalendar.emit(this.isVisible);
-  };
-
   private popoverRef: HTMLPostPopovercontainerElement;
-  private datepickerEl: HTMLInputElement;
+  private datepickerInput: HTMLInputElement;
   private datepickerInstance: AirDatepicker<HTMLDivElement>;
   private datepickerContainerEl: HTMLDivElement;
 
@@ -314,7 +265,7 @@ export class PostDatepicker {
     const slot = this.host.shadowRoot.querySelector('slot');
     const assignedNodes = slot && (slot as HTMLSlotElement).assignedElements();
     const locale = localesMap[this.locale] || localesMap.en;
-    this.datepickerEl = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
+    this.datepickerInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
     this.datepickerContainerEl = this.host.shadowRoot.querySelector('.datepicker-container');
     if (!this.selectedDate) {
       this.selectedDate = this.startDate;
@@ -367,19 +318,20 @@ export class PostDatepicker {
           const selectedCell = this.datepickerContainerEl.querySelector('.-selected-');
 
           this.selectedDate = date instanceof Array ? date[0] : date;
-          //this.enhanceAccessibility();
           if (selectedCell) {
             selectedCell.setAttribute('aria-selected', 'true');
           }
 
           const val = Array.isArray(formattedDate) ? formattedDate.join(' - ') : formattedDate;
-          if (this.datepickerEl) {
-            this.datepickerEl.value = val;
+          if (this.datepickerInput) {
+            // Assign value to the input, close the popover and focus on the input
+            this.datepickerInput.value = val;
+            this.popoverRef?.hide();
+            requestAnimationFrame(() => this.datepickerInput.focus());
           } else {
             // Should emit value here
             console.log('inline selection of date: ', val);
           }
-          //this.popoverRef?.hide();
         },
         onShow: () => {
           this.enhanceAccessibility();
@@ -389,8 +341,7 @@ export class PostDatepicker {
             return {
               attrs: {
                 'role': 'gridcell',
-                // todolea: this should use the "locale"
-                'aria-label': date.toLocaleDateString(undefined, {
+                'aria-label': date.toLocaleDateString(this.locale, {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
@@ -402,8 +353,7 @@ export class PostDatepicker {
             return {
               attrs: {
                 'role': 'gridcell',
-                // todolea: this should use the "locale"
-                'aria-label': date.toLocaleDateString(undefined, {
+                'aria-label': date.toLocaleDateString(this.locale, {
                   year: 'numeric',
                   month: 'long',
                 }),
@@ -413,8 +363,7 @@ export class PostDatepicker {
             return {
               attrs: {
                 'role': 'gridcell',
-                // todolea: this should use the "locale"
-                'aria-label': date.toLocaleDateString(undefined, {
+                'aria-label': date.toLocaleDateString(this.locale, {
                   year: 'numeric',
                 }),
               },
@@ -437,14 +386,12 @@ export class PostDatepicker {
 
       if (prevButton) {
         prevButton.addEventListener('click', () => {
-          console.log('should skip focus');
           this.skipFocusOnNextRender = true;
         });
       }
 
       if (nextButton) {
         nextButton.addEventListener('click', () => {
-          console.log('should skip focus');
           this.skipFocusOnNextRender = true;
         });
       }
@@ -490,18 +437,33 @@ export class PostDatepicker {
     });
   }
 
+  // Listen to click on the button within the slot to open the datepicker
+  private attachTriggerListener() {
+    const slotEl = this.host.shadowRoot.querySelector('slot');
+    if (!slotEl) return;
+
+    const assigned = (slotEl as HTMLSlotElement).assignedElements({ flatten: true });
+    const trigger = assigned.find(el => el.tagName === 'BUTTON');
+
+    if (!trigger) return;
+
+    trigger.addEventListener('click', ev => {
+      ev.stopPropagation();
+      this.show(trigger as HTMLElement);
+    });
+  }
+
   async componentDidLoad() {
     this.configDatepicker();
     this.setupGridObserver();
     if (!this.inline && this.popoverRef) {
-      // this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
+      this.attachTriggerListener();
     }
 
     requestAnimationFrame(() => this.enhanceAccessibility());
   }
 
   disconnectedCallback() {
-    //this.popoverRef?.removeEventListener('postToggle', this.handlePostToggle);
     if (this.gridObserver) {
       this.gridObserver.disconnect();
     }
@@ -511,10 +473,11 @@ export class PostDatepicker {
       this.datepickerInstance = null;
     }
   }
+
   render() {
     return (
       <Host>
-        <div class="calendar" onClick={e => this.show(e.currentTarget as HTMLElement)}>
+        <div class="calendar">
           <slot></slot>
           {this.inline && <div class="datepicker-container"></div>}
           {!this.inline && (

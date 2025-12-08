@@ -295,3 +295,15 @@ tokens.$default-map: components.$post-breadcrumb;
     }
   }
 }
+
+:host {
+  position: relative;
+}
+
+::slotted(button) {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  border: none;
+  background-color: transparent;
+}

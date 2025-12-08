@@ -10,15 +10,7 @@
 | Property    | Attribute    | Description                                                                              | Type      | Default      |
 | ----------- | ------------ | ---------------------------------------------------------------------------------------- | --------- | ------------ |
 | `inline`    | `inline`     | Whether the calendar is inline in the page (not showing in a popover when input clicked) | `boolean` | `false`      |
-| `locale`    | `locale`     | Locale prop to set translations                                                          | `string`  | `'en'`       |
 | `startDate` | `start-date` | The predefined start date of the calendar Default is today                               | `Date`    | `new Date()` |
-
-
-## Events
-
-| Event            | Description                                                                                                                                  | Type                   |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `toggleCalendar` | Emits when the calendar is shown or hidden. The event payload is a boolean: `true` when the calendar was opened, `false` when it was closed. | `CustomEvent<boolean>` |
 
 
 ## Methods
