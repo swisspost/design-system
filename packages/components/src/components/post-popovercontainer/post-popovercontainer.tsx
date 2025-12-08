@@ -131,11 +131,6 @@ export class PostPopovercontainer {
    */
   @Prop() readonly arrow?: boolean = false;
 
-  /**
-   * Whether or not the popovercontainer should close when user clicks outside of it
-   */
-  @Prop() manualClose: boolean = false;
-
   @State() dynamicPlacement?: string;
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
@@ -207,10 +202,39 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Handles the popover opening process and emits related events.
+   * Programmatically hide the popovercontainer
    */
   @Method()
-  async open() {
+  async hide() {
+    if (!this.toggleTimeoutId) {
+      this.eventTarget = null;
+      this.host.hidePopover();
+      this.postHide.emit();
+    }
+  }
+
+  /**
+   * Toggle popovercontainer display
+   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * @param force Pass true to always show or false to always hide
+   */
+  @Method()
+  async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    this.eventTarget = target;
+    // Prevent instant double toggle
+    if (!this.toggleTimeoutId) {
+      this.calculatePosition();
+      this.host.togglePopover(force);
+      this.toggleTimeoutId = null;
+    }
+
+    return this.host.matches(':where(:popover-open, .popover-open)');
+  }
+
+  /**
+   * Handles the popover opening process and emits related events.
+   */
+  private open() {
     const content: HTMLElement = this.host.querySelector('.popover-content');
     this.startAutoupdates();
 
@@ -238,8 +262,7 @@ export class PostPopovercontainer {
   /**
    * Handles the popover closing process and emits related events.
    */
-  @Method()
-  async close() {
+  private close() {
     if (typeof this.clearAutoUpdate === 'function') {
       this.clearAutoUpdate();
     }
@@ -530,7 +553,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
+      <Host data-version={version} popover="auto">
         <div class="popover-content">
           {this.arrow && (
             <span
