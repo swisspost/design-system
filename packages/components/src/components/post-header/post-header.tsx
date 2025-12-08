@@ -231,7 +231,7 @@ export class PostHeader {
       ),
       ...Array.from(
         this.host.querySelectorAll(
-          '.list-inline[slot="meta-navigation"] > li, post-language-option',
+          '.list-inline[slot="meta-navigation"] > li, post-language-menu-item',
         ),
       ),
     ];
@@ -354,7 +354,7 @@ export class PostHeader {
 
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.hasBurgerMenu ? 'list' : 'menu';
-    Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
+    Array.from(this.host.querySelectorAll('post-language-menu')).forEach(languageSwitch => {
       languageSwitch?.setAttribute('variant', variant);
     });
   }
@@ -397,6 +397,7 @@ export class PostHeader {
           'burger-menu': true,
           'extended': this.burgerMenuExtended,
           'no-local-nav': !this.hasLocalNav,
+          'megadropdown-open': this.megadropdownOpen,
         }}
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
