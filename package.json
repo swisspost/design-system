@@ -106,7 +106,11 @@
     "tokens:lint:fix": "pnpm --filter design-system-tokens lint:fix",
     "tokens:usage": "node ./utilities/token-checker.cjs",
     "changeset:publish": "pnpm changeset publish",
-    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
+    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
+    "figma:switch:start": "pnpm -F design-system-figma-plugin-color-scheme-switch watch",
+    "figma:switch:build": "pnpm --filter design-system-figma-plugin-color-scheme-switch build",
+    "figma:switch:lint": "pnpm --filter design-system-figma-plugin-color-scheme-switch lint",
+    "figma:switch:lint:fix": "pnpm --filter design-system-figma-plugin-color-scheme-switch lint:fix"
   },
   "devDependencies": {
     "@changesets/cli": "2.29.7",

@@ -1,5 +1,5 @@
 {
-  "name": "@swisspost/figma-plugin/color-scheme-switch",
+  "name": "@swisspost/design-system-figma-plugin-color-scheme-switch",
   "version": "1.0.0",
   "description": "The official ColorScheme Switch Figma Plugin by Swiss Post Design System",
   "main": "code.js",
