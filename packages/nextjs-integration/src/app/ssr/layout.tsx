@@ -115,7 +115,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Letters */}
             <PostListItem slot="post-list-item">
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
-              <PostMegadropdown id="letters" closeLabel="Close" backLabel="Back">
+              <PostMegadropdown id="letters" close-label="Close" back-label="Back">
                 <p className="megadropdown-overview-link">
                   <a href="/letters">Overview Letters</a>
                 </p>
@@ -157,7 +157,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Packages */}
             <PostListItem slot="post-list-item">
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
-              <PostMegadropdown id="packages" closeLabel="Close" backLabel="Back">
+              <PostMegadropdown id="packages" close-label="Close" back-label="Back">
                 <p className="megadropdown-overview-link">
                   <a href="/packages">Overview Packages</a>
                 </p>

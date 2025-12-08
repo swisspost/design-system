@@ -22,7 +22,7 @@ BEFORE:
 
 AFTER:
 ```html
-<post-megadropdown closeLabel="Close" backLabel="Back">
+<post-megadropdown close-label="Close" back-label="Back">
   <p class="megadropdown-overview-link">
     <a href="/letters">Overview Letters</a>
   </p>

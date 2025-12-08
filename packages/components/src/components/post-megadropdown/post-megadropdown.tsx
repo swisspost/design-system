@@ -322,6 +322,8 @@ export class PostMegadropdown {
   render() {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
+    const triggerLabel = this.megadropdownTrigger.querySelector('.nav-el-active');
+
     const backButton = (
       <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary px-0 btn-sm">
         <post-icon name="arrowleft"></post-icon>
@@ -344,6 +346,7 @@ export class PostMegadropdown {
         >
           <div class="megadropdown">
             <div class="megadropdown-content">
+              {triggerLabel && <p class="megadropdown-title">{triggerLabel.innerHTML}</p>}
               <slot></slot>
             </div>
 

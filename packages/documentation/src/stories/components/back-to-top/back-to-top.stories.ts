@@ -42,10 +42,18 @@ const meta: MetaComponent = {
           name="language-menu-example"
           slot="post-language-switch"
         >
-          <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
-          <post-language-menu-item active="false" code="fr" name="French">fr</post-language-menu-item>
-          <post-language-menu-item active="false" code="it" name="Italiano">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+          <post-language-menu-item active="false" code="de" name="Deutsch"
+            >de</post-language-menu-item
+          >
+          <post-language-menu-item active="false" code="fr" name="French"
+            >fr</post-language-menu-item
+          >
+          <post-language-menu-item active="false" code="it" name="Italiano"
+            >it</post-language-menu-item
+          >
+          <post-language-menu-item active="true" code="en" name="English"
+            >en</post-language-menu-item
+          >
         </post-language-menu>
 
         <!-- Application title (optional) -->
@@ -78,12 +86,7 @@ const meta: MetaComponent = {
             <!-- Level 1 with megadropdown -->
             <post-list-item slot="post-list-item">
               <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-              <post-megadropdown id="briefe">
-                <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                  <post-icon name="arrowleft"></post-icon>
-                  Back
-                </button>
-                <post-closebutton slot="close-button">Schliessen</post-closebutton>
+              <post-megadropdown id="briefe" close-label="Schliessen" back-label="Back">
                 <post-list>
                   <p>Briefe senden</p>
                   <post-list-item slot="post-list-item"
@@ -118,12 +121,7 @@ const meta: MetaComponent = {
             </post-list-item>
             <post-list-item slot="post-list-item">
               <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-              <post-megadropdown id="pakete">
-                <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                  <post-icon name="arrowleft"></post-icon>
-                  Back
-                </button>
-                <post-closebutton slot="close-button">Schliessen</post-closebutton>
+              <post-megadropdown id="pakete" close-label="Schliessen" back-label="Back">
                 <post-list>
                   <p>Pakete senden</p>
                   <post-list-item slot="post-list-item"
