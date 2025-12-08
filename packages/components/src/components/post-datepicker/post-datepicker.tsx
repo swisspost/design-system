@@ -1,4 +1,14 @@
-import { Component, Element, h, Host, Prop, Method, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  Method,
+  State,
+  EventEmitter,
+  Event,
+} from '@stencil/core';
 import AirDatepicker, { AirDatepickerOptions, AirDatepickerViews } from 'air-datepicker';
 
 import { localesMap } from './locales';
@@ -19,6 +29,11 @@ export class PostDatepicker {
   // todolea: handle range
   @State() selectedDate: Date;
 
+  /**
+   * Whether the datepicker expects a range selection or a single date selection
+   */
+  @Prop() range?: boolean = false;
+
   @State() locale: string = document.documentElement.lang;
 
   /**
@@ -31,6 +46,11 @@ export class PostDatepicker {
    * Default is today
    */
   @Prop() startDate?: Date = new Date();
+
+  /**
+   * An event emitted when a date has been selected
+   */
+  @Event() postSelectedDate: EventEmitter<Date | Date[]>;
 
   /**
    * Displays the popover calendar, focusing the first calendar item.
@@ -49,7 +69,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Hides the popover calendar and restores focus to the previously focused element.
+   * Hides the popover calendar
    */
   @Method()
   async hide() {
@@ -154,6 +174,7 @@ export class PostDatepicker {
     );
   }
 
+  //todolea: listener is still there when exiting the DP
   /**
    * Correct the tab flow loop
    * 1) Title -> 2) Previous button -> 3) Next button -> 4) Grid active element
@@ -217,7 +238,7 @@ export class PostDatepicker {
       }
     }
 
-    if (active.getAttribute('role') === 'gridcell' && !this.inline && !e.shiftKey) {
+    if (active?.getAttribute('role') === 'gridcell' && !this.inline && !e.shiftKey) {
       e.preventDefault();
       if (this.currentViewType === 'years') {
         prev.focus();
@@ -338,14 +359,19 @@ export class PostDatepicker {
 
     body.setAttribute('role', 'grid');
 
-    this.getCells().forEach(cell => {
-      cell.setAttribute('aria-selected', cell.classList.contains('-selected-') ? 'true' : 'false');
-    });
+    this.updateAriaSelected();
 
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
     this.setActiveCell(this.selectedDate, focusOnDate);
+  }
+
+  // Update the cells aria-selected value
+  private updateAriaSelected() {
+    this.getCells().forEach(cell => {
+      cell.setAttribute('aria-selected', cell.classList.contains('-selected-') ? 'true' : 'false');
+    });
   }
 
   private configDatepicker() {
@@ -367,7 +393,7 @@ export class PostDatepicker {
         },
         prevHtml: '<button><post-icon size="small" name="2049" ></post-icon></button>',
         nextHtml: '<button><post-icon size="small" name="2050" ></post-icon></button>',
-        range: false,
+        range: this.range,
         inline: true,
         autoClose: true,
         showOtherYears: true,
@@ -390,29 +416,22 @@ export class PostDatepicker {
           this.currentViewMonth = month;
         },
         onSelect: ({ date, formattedDate }) => {
-          console.log('select', formattedDate, date);
-          // todolea: If range, this would be two dates
-          this.datepickerContainerEl
-            .querySelectorAll('[aria-selected]')
-            .forEach(el => el.setAttribute('aria-selected', 'false'));
+          this.updateAriaSelected();
 
-          const selectedCell = this.datepickerContainerEl.querySelector('.-selected-');
-
-          this.selectedDate = date instanceof Array ? date[0] : date;
-          if (selectedCell) {
-            selectedCell.setAttribute('aria-selected', 'true');
+          // If range & only one date has been selected, user should stay in the DP
+          if (this.range && Array.isArray(date) && date.length === 1) {
+            return;
           }
 
-          const val = Array.isArray(formattedDate) ? formattedDate.join(' - ') : formattedDate;
+          // Assign value to the input, close the popover and focus on the input
           if (this.datepickerInput) {
-            // Assign value to the input, close the popover and focus on the input
+            const val = Array.isArray(formattedDate) ? formattedDate.join(' - ') : formattedDate;
             this.datepickerInput.value = val;
             this.popoverRef?.hide();
             requestAnimationFrame(() => this.datepickerInput.focus());
-          } else {
-            //todolea: Should emit value here
-            console.log('inline selection of date: ', val);
           }
+
+          this.postSelectedDate.emit(date);
         },
         onShow: () => {
           this.enhanceAccessibility();
@@ -537,13 +556,13 @@ export class PostDatepicker {
     if (!this.inline && this.popoverRef) {
       this.attachTriggerListener();
     } else {
-      this.host.shadowRoot.addEventListener('keydown', this.handleTab, true);
+      this.host.shadowRoot.addEventListener('keydown', this.handleTab);
       requestAnimationFrame(() => this.enhanceAccessibility());
     }
   }
 
   disconnectedCallback() {
-    this.host.shadowRoot.removeEventListener('keydown', this.handleTab, true);
+    this.host.shadowRoot.removeEventListener('keydown', this.handleTab);
 
     if (this.gridObserver) {
       this.gridObserver.disconnect();

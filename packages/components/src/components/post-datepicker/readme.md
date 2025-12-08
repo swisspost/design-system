@@ -10,14 +10,22 @@
 | Property    | Attribute    | Description                                                                              | Type      | Default      |
 | ----------- | ------------ | ---------------------------------------------------------------------------------------- | --------- | ------------ |
 | `inline`    | `inline`     | Whether the calendar is inline in the page (not showing in a popover when input clicked) | `boolean` | `false`      |
+| `range`     | `range`      | Whether the datepicker expects a range selection or a single date selection              | `boolean` | `false`      |
 | `startDate` | `start-date` | The predefined start date of the calendar Default is today                               | `Date`    | `new Date()` |
+
+
+## Events
+
+| Event              | Description                                    | Type                          |
+| ------------------ | ---------------------------------------------- | ----------------------------- |
+| `postSelectedDate` | An event emitted when a date has been selected | `CustomEvent<Date \| Date[]>` |
 
 
 ## Methods
 
 ### `hide() => Promise<void>`
 
-Hides the popover calendar and restores focus to the previously focused element.
+Hides the popover calendar
 
 #### Returns
 
