@@ -114,29 +114,31 @@
 
   .megadropdown-overview-link {
     flex: 1 1 100%;
-    margin-block: 0 16px;
-    text-decoration: none;
-    border-radius: 0;
-    padding-block: 13px 12px;
-    display: flex;
-    align-items: center;
-    min-height: 56px;
 
-    &:focus-visible {
-      border-radius: 4px;
-    }
+    > a {
+      text-decoration: none;
+      border-radius: 0;
+      padding-block: 13px 12px;
+      display: flex;
+      align-items: center;
+      min-height: 56px;
 
-    @include header-mx.mobile-header-interactive() {
-      height: unset;
-    }
+      &:focus-visible {
+        border-radius: 4px;
+      }
 
-    @include media.max(lg) {
-      padding-block: 12px 11px;
-      min-height: unset;
-    }
+      @include header-mx.mobile-header-interactive() {
+        height: unset;
+      }
 
-    @include media.max(sm) {
-      padding-block: 10px 9px;
+      @include media.max(lg) {
+        padding-block: 12px 11px;
+        min-height: unset;
+      }
+
+      @include media.max(sm) {
+        padding-block: 10px 9px;
+      }
     }
   }
 
@@ -144,40 +146,21 @@
     display: flex;
     flex-wrap: wrap;
     column-gap: 1.5rem;
-  }
 
-  .megadropdown-title {
-    display: none;
-    margin-block: 0 8px;
-    font-weight: 900;
 
-    a {
-      text-decoration: none;
-      display: none;
-      font-weight: inherit;
-      border-block: 0;
-    }
-
-    @include media.max(lg) {
-      display: block;
-      font-size: 1.25rem;
-    }
-
-    @include media.max(sm) {
-      font-size: 1.125rem;
-    }
   }
 
   post-list {
-    flex: 1 0 auto;
-    width: 15vw;
+    flex: 1 1 auto;
+    min-width: 15vw;
 
     @include media.max(lg) {
-      width: 35vw;
+
+      min-width: 35vw;
     }
 
     @include media.max(sm) {
-      width: 100%;
+      flex-basis: 100%;
     }
 
     > [role='list'] {
@@ -192,7 +175,7 @@
     .list-title {
       display: flex;
       flex-direction: column-reverse;
-      height: fit-content;
+      height: 100%;
 
       p {
         font-size: 20px;
@@ -235,10 +218,6 @@
           &::before {
             height: 2px;
           }
-        }
-
-        @include media.min(lg) {
-          line-height: 24px;
         }
 
         @include media.max(lg) {
@@ -298,8 +277,7 @@
 
     @include media.max(lg) {
       order: -1;
-      display: inline-flex;
-      width: fit-content;
+      display: block;
     }
   }
 
