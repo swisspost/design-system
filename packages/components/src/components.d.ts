@@ -10,13 +10,11 @@ import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType } from "./components/post-closebutton/button-types";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement } from "@floating-ui/dom";
-import { AnimationName } from "./components/post-popovercontainer/post-popovercontainer";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType } from "./components/post-closebutton/button-types";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement } from "@floating-ui/dom";
-export { AnimationName } from "./components/post-popovercontainer/post-popovercontainer";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -367,6 +365,48 @@ export namespace Components {
          */
         "for": string;
     }
+    interface PostPagination {
+        /**
+          * The total number of items in the collection.
+         */
+        "collectionSize": number;
+        /**
+          * If true, the pagination is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Accessible label for the pagination navigation.
+         */
+        "label": string;
+        /**
+          * Prefix text for the first page label.
+         */
+        "labelFirst": string;
+        /**
+          * Prefix text for the last page label.
+         */
+        "labelLast": string;
+        /**
+          * Accessible label for the next page button.
+         */
+        "labelNext": string;
+        /**
+          * Prefix text for page number labels.
+         */
+        "labelPage": string;
+        /**
+          * Accessible label for the previous page button.
+         */
+        "labelPrevious": string;
+        /**
+          * The current active page number.  **If not specified, defaults to the first page.**
+         */
+        "page"?: number;
+        /**
+          * The number of items per page.
+         */
+        "pageSize": number;
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -406,11 +446,6 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Animation style
-          * @default null
-         */
-        "animation"?: AnimationName | null;
-        /**
           * Whether or not to display a little pointer arrow
           * @default false
          */
@@ -440,7 +475,7 @@ export namespace Components {
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target A focusable element inside the trigger component that controls the popover
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -844,6 +879,23 @@ declare global {
         prototype: HTMLPostMenuTriggerElement;
         new (): HTMLPostMenuTriggerElement;
     };
+    interface HTMLPostPaginationElementEventMap {
+        "postChange": number;
+    }
+    interface HTMLPostPaginationElement extends Components.PostPagination, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostPaginationElementEventMap>(type: K, listener: (this: HTMLPostPaginationElement, ev: PostPaginationCustomEvent<HTMLPostPaginationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostPaginationElementEventMap>(type: K, listener: (this: HTMLPostPaginationElement, ev: PostPaginationCustomEvent<HTMLPostPaginationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostPaginationElement: {
+        prototype: HTMLPostPaginationElement;
+        new (): HTMLPostPaginationElement;
+    };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
     var HTMLPostPopoverElement: {
@@ -981,6 +1033,7 @@ declare global {
         "post-menu": HTMLPostMenuElement;
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
+        "post-pagination": HTMLPostPaginationElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
@@ -1304,6 +1357,52 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostPagination {
+        /**
+          * The total number of items in the collection.
+         */
+        "collectionSize": number;
+        /**
+          * If true, the pagination is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Accessible label for the pagination navigation.
+         */
+        "label": string;
+        /**
+          * Prefix text for the first page label.
+         */
+        "labelFirst": string;
+        /**
+          * Prefix text for the last page label.
+         */
+        "labelLast": string;
+        /**
+          * Accessible label for the next page button.
+         */
+        "labelNext": string;
+        /**
+          * Prefix text for page number labels.
+         */
+        "labelPage": string;
+        /**
+          * Accessible label for the previous page button.
+         */
+        "labelPrevious": string;
+        /**
+          * Event emitted when the page changes.
+         */
+        "onPostChange"?: (event: PostPaginationCustomEvent<number>) => void;
+        /**
+          * The current active page number.  **If not specified, defaults to the first page.**
+         */
+        "page"?: number;
+        /**
+          * The number of items per page.
+         */
+        "pageSize": number;
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -1327,11 +1426,6 @@ declare namespace LocalJSX {
         "for"?: string;
     }
     interface PostPopovercontainer {
-        /**
-          * Animation style
-          * @default null
-         */
-        "animation"?: AnimationName | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -1519,6 +1613,7 @@ declare namespace LocalJSX {
         "post-menu": PostMenu;
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
+        "post-pagination": PostPagination;
         "post-popover": PostPopover;
         "post-popover-trigger": PostPopoverTrigger;
         "post-popovercontainer": PostPopovercontainer;
@@ -1569,6 +1664,7 @@ declare module "@stencil/core" {
             "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
+            "post-pagination": LocalJSX.PostPagination & JSXBase.HTMLAttributes<HTMLPostPaginationElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;

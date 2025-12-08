@@ -7,7 +7,6 @@
 
 | Property    | Attribute    | Description                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                 | Default     |
 | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `animation` | `animation`  | Animation style                                                                                                                                                                                                                                                                                                                             | `"pop-in"`                                                                                                                                                           | `null`      |
 | `arrow`     | `arrow`      | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                                            | `boolean`                                                                                                                                                            | `false`     |
 | `edgeGap`   | `edge-gap`   | Gap between the edge of the page and the popovercontainer                                                                                                                                                                                                                                                                                   | `number`                                                                                                                                                             | `8`         |
 | `placement` | `placement`  | Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
@@ -59,10 +58,10 @@ Toggle popovercontainer display
 
 #### Parameters
 
-| Name     | Type          | Description                                                                |
-| -------- | ------------- | -------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | A focusable element inside the trigger component that controls the popover |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                           |
+| Name     | Type          | Description                                                                               |
+| -------- | ------------- | ----------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                                          |
 
 #### Returns
 

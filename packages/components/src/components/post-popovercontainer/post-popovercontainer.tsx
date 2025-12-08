@@ -122,11 +122,6 @@ export class PostPopovercontainer {
   @Prop() readonly edgeGap?: number = 8;
 
   /**
-   * Animation style
-   */
-  @Prop() readonly animation?: AnimationName | null = null;
-
-  /**
    * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
@@ -136,6 +131,7 @@ export class PostPopovercontainer {
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
   @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
+
   @Watch('placement')
   validatePlacement() {
     checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
@@ -151,10 +147,10 @@ export class PostPopovercontainer {
     checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
   }
 
-  @Watch('animation')
-  validateAnimation() {
-    checkEmptyOrOneOf(this, 'animation', Object.keys(ANIMATIONS));
-  }
+  /**
+   * Animation style
+   */
+  private readonly animation: AnimationName = 'pop-in';
 
   /**
    * Updates cursor position for safe space feature when popover is open.
@@ -178,7 +174,6 @@ export class PostPopovercontainer {
     this.validatePlacement();
     this.validateEdgeGap();
     this.validateSafeSpace();
-    this.validateAnimation();
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 

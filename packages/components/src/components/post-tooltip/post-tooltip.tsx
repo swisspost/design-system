@@ -98,7 +98,6 @@ export class PostTooltip {
           class={popoverClass}
           role="tooltip"
           arrow={this.arrow}
-          animation={this.animation}
           placement={this.placement}
           onPostToggle={e => this.handleToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}

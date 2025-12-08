@@ -250,7 +250,6 @@ export class PostMenu {
           onPostShow={this.handlePostShown}
           onPostBeforeToggle={this.handlePostBeforeToggle}
           placement={this.placement}
-          animation="pop-in"
           ref={e => (this.popoverRef = e)}
         >
           <div part="menu">
