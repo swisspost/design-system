@@ -1,0 +1,42 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as PaginationStories from './pagination.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={PaginationStories} />
+
+<div className="docs-title">
+  # Pagination
+
+  <link-design of={JSON.stringify(PaginationStories)}></link-design>
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">A pagination splits content into multiple pages and contains controls to navigate between these pages.</div>
+
+<Canvas sourceState="shown" of={PaginationStories.Default} />
+
+<Controls of={PaginationStories.Default} />
+
+<ComponentsPackageInstall component="<post-pagination>" />
+
+## Examples
+
+### Many Pages
+
+When there are many pages, the component collapses intermediate pages into ellipses.
+
+<Canvas of={PaginationStories.ManyPages} />
+
+### Page Out Of Range
+
+If the provided `page` is outside the nearest valid range, the component clamps it to the valid page.
+
+<Canvas of={PaginationStories.PageOutOfRange} sourceState="shown" />
+
+### Disabled
+
+Render the pagination in a disabled state to prevent interaction.
+
+<Canvas of={PaginationStories.Disabled} />
