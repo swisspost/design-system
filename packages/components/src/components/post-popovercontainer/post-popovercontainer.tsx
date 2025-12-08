@@ -283,24 +283,6 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Toggle popovercontainer display
-   * @param target A focusable element inside the trigger component that controls the popover
-   * @param force Pass true to always show or false to always hide
-   */
-  @Method()
-  async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
-    this.eventTarget = target;
-    // Prevent instant double toggle
-    if (!this.toggleTimeoutId) {
-      this.calculatePosition();
-      this.host.togglePopover(force);
-      this.toggleTimeoutId = null;
-    }
-
-    return this.host.matches(':where(:popover-open, .popover-open)');
-  }
-
-  /**
    * Runs the animation and emits the toggle/show/hide events in the correct timing
    */
 
