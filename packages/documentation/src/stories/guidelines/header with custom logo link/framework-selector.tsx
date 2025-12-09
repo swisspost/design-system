@@ -64,9 +64,7 @@ const code = `
       <post-list-item slot="post-list-item">
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
         <post-megadropdown id="briefe" close-label="Schliessen" back-label="Back">
-          <p class="megadropdown-overview-link">
-            <a href="/briefe">Übersicht Briefe</a>
-          </p>
+          <a class="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
           <post-list>
             <p>Briefe senden</p>
             <post-list-item slot="post-list-item"><a href="#">Briefe Schweiz</a></post-list-item>
@@ -90,9 +88,7 @@ const code = `
       <post-list-item slot="post-list-item">
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
         <post-megadropdown id="pakete" close-label="Schliessen" backLabel="Back">
-          <p class="megadropdown-overview-link">
-            <a href="/pakete">Übersicht Pakete</a>
-          </p>
+          <a class="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
           <post-list>
             <p>Pakete senden</p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>

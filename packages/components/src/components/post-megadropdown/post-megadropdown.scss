@@ -115,31 +115,28 @@
   .megadropdown-overview-link {
     flex: 1 1 100%;
     margin-block: 0 16px;
+    text-decoration: none;
+    border-radius: 0;
+    padding-block: 13px 12px;
+    display: flex;
+    align-items: center;
+    min-height: 56px;
 
-    > a {
-      text-decoration: none;
-      border-radius: 0;
-      padding-block: 13px 12px;
-      display: flex;
-      align-items: center;
-      min-height: 56px;
+    &:focus-visible {
+      border-radius: 4px;
+    }
 
-      &:focus-visible {
-        border-radius: 4px;
-      }
+    @include header-mx.mobile-header-interactive() {
+      height: unset;
+    }
 
-      @include header-mx.mobile-header-interactive() {
-        height: unset;
-      }
+    @include media.max(lg) {
+      padding-block: 12px 11px;
+      min-height: unset;
+    }
 
-      @include media.max(lg) {
-        padding-block: 12px 11px;
-        min-height: unset;
-      }
-
-      @include media.max(sm) {
-        padding-block: 10px 9px;
-      }
+    @include media.max(sm) {
+      padding-block: 10px 9px;
     }
   }
 

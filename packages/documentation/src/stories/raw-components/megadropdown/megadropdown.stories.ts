@@ -97,9 +97,7 @@ function render() {
   return html`
     <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
     <post-megadropdown id="packages" close-label="Close" back-label="Back">
-      <p class="megadropdown-overview-link">
-        <a href="/packages">Overview Packages</a>
-      </p>
+      <a class="megadropdown-overview-link" href="/packages">Overview Packages</a>
       <post-list>
         <p>Send packages</p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>

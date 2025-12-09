@@ -5,7 +5,7 @@
 
 Updated the `post-megadropdown` component to no longer uses named slots, it now provides only a default slot for its content.
 The close and back buttons are built into the component and are configured using the `closeLabel` and `backLabel` properties instead of slotted markup.
-For accessibility, the overview link must be wrapped in a `<p>` element, and to preserve styling this element should use the `.megadropdown-overview-link` class.
+To preserve styling, the overview link should use the `.megadropdown-overview-link` class.
 
 BEFORE:
 ```html
@@ -23,9 +23,7 @@ BEFORE:
 AFTER:
 ```html
 <post-megadropdown close-label="Close" back-label="Back">
-  <p class="megadropdown-overview-link">
-    <a href="/letters">Overview Letters</a>
-  </p>
+  <a class="megadropdown-overview-link" href="/letters">Overview Letters</a>
   <!-- Mega drop-down links -->
 </post-megadropdown>
 ```
