@@ -10,7 +10,7 @@
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
 
-tokens.$default-map: utilities.$post-color;
+tokens.$default-map: utilities.$post-spacing;
 
 @include post.custom-property(('chevrondown', 'resizeexpand', 'link', 'code'));
 
@@ -21,7 +21,7 @@ $toolbar-icons: (
   '.docblock-code-toggle': 'chevrondown',
   '.docblock-code-toggle + button': 'resizeexpand',
   '.docblock-code-toggle + button + button': 'link',
-  '.docblock-code-toggle + button + button + button': 'code'
+  '.docblock-code-toggle + button + button + button': 'code',
 );
 
 #storybook-root,
@@ -73,8 +73,6 @@ $toolbar-icons: (
     }
   }
 
-
-
   .sbdocs-content .container {
     // Support for autolink-headings
     .docs-title :is(h1, h2, h3, h4, h5, h6),
@@ -109,7 +107,7 @@ $toolbar-icons: (
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
+    gap: tokens.get('utility-gap-8');
   }
 
   // aligns figma button to the title
@@ -124,7 +122,7 @@ $toolbar-icons: (
   }
 
   .docs-title {
-    margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
+    margin-bottom: tokens.get('utility-gap-8');
 
     :first-child {
       margin-right: auto;
