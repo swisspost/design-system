@@ -159,10 +159,14 @@ fieldset .form-check {
 
 /* Radio Group/Vertical small */
 fieldset .form-check-sm:not(.form-switch) {
+  display: flex;
+  align-items: center;
   margin-block: tokens.get('radio-button-small-group-items-gap-block');
 }
 
 /* Radio Group/Horizontal small */
 fieldset .form-check-sm.form-check-inline:not(.form-switch) {
+  display: inline-flex;
+  align-items: center;
   margin-inline-end: tokens.get('radio-button-small-group-items-gap-inline');
 }
