@@ -56,7 +56,8 @@ export class PostPopover {
    */
   @Method()
   async show(target: HTMLElement) {
-    this.popoverRef.show(target);
+    await this.popoverRef.show(target);
+    this.focusFirstEl();
   }
 
   /**
@@ -75,10 +76,13 @@ export class PostPopover {
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
     await this.popoverRef.toggle(target, force);
+    this.focusFirstEl();
+  }
 
+  private focusFirstEl() {
     const focusableChildren = getDeepFocusableChildren(this.host);
 
-    // find first focusable element
+    // Find first focusable element
     const firstFocusable = focusableChildren[0];
 
     if (firstFocusable) {
