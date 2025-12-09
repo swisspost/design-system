@@ -84,7 +84,7 @@ describe('header', () => {
       cy.get('[data-post-scroll-locked]').should('not.exist');
     });
 
-    it('should log an error if the burgerMenuLabel is not set', () => {
+    it('should log an error if the labelBurgerMenu is not set', () => {
       cy.window().then(win => {
         cy.spy(win.console, 'error').as('consoleError');
       });
