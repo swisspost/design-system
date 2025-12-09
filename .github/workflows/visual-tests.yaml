@@ -1,12 +1,18 @@
 name: Visual Regression Tests
+
 on:
   pull_request:
+    paths:
+      - 'packages/components/**'
+  push:
+    branches:
+      - main
     paths:
       - 'packages/components/**'
   workflow_dispatch:
     inputs:
       update-snapshots:
-        description: 'Update visual snapshots'
+        description: 'Force update visual snapshots'
         type: boolean
         default: false
 
@@ -36,21 +42,32 @@ jobs:
         working-directory: packages/components
         run: npx playwright install --with-deps
 
-      - name: Get snapshot cache
+      - name: Get baseline snapshots from cache
         id: snapshot-cache
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
         with:
           path: packages/components/visual-tests/__screenshots__
-          key: visual-snapshots-components-${{ github.ref }}
+          key: visual-snapshots-main-${{ hashFiles('packages/components/src/**/*.{tsx,ts,scss}') }}
           restore-keys: |
-            visual-snapshots-components-refs/heads/main
+            visual-snapshots-main-
       
-      - name: Update Snapshots
-        if: github.event.inputs.update-snapshots == 'true' || steps.snapshot-cache.outputs.cache-hit != 'true'
+      - name: Generate baseline snapshots
+        if: |
+          (github.ref == 'refs/heads/main' && steps.snapshot-cache.outputs.cache-hit != 'true') ||
+          github.event.inputs.update-snapshots == 'true'
         working-directory: packages/components
         run: pnpm test:visual:update
 
-      - name: Run visual tests
+      - name: Optimize PNG screenshots
+        if: |
+          (github.ref == 'refs/heads/main' && steps.snapshot-cache.outputs.cache-hit != 'true') ||
+          github.event.inputs.update-snapshots == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pngquant
+          find packages/components/visual-tests/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 80-95 {} \;
+
+      - name: Run visual regression tests
         working-directory: packages/components
         run: pnpm test:visual
 
