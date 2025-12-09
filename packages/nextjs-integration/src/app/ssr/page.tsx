@@ -19,6 +19,7 @@ import {
   PostTabs,
   PostTabItem,
   PostTabPanel,
+  PostTogglebutton,
   PostTooltipTrigger,
   PostTooltip,
   PostStepper,
@@ -112,7 +113,7 @@ export default function Home() {
       <PostMenuTrigger for="menu-one">
         <button className="btn btn-primary">Menu button</button>
       </PostMenuTrigger>
-      <PostMenu id="menu-one" label='Menu'>
+      <PostMenu id="menu-one" label="Menu">
         <PostMenuItem>
           <button>Example 1</button>
         </PostMenuItem>
@@ -166,7 +167,9 @@ export default function Home() {
       <h2>Tabs - Navigation Variant</h2>
       <PostTabs label="Tabs navigation">
         <PostTabItem name="nav-first">
-          <a href="#first" aria-current="page">First</a>
+          <a href="#first" aria-current="page">
+            First
+          </a>
         </PostTabItem>
         <PostTabItem name="nav-second">
           <a href="#second">Second</a>
@@ -177,6 +180,12 @@ export default function Home() {
       </PostTabs>
 
       <h2>Tag</h2>
+
+      <h2>Toggle Button</h2>
+      <PostTogglebutton className="btn btn-primary">
+        <span data-showwhen="untoggled">Untoggled</span>
+        <span data-showwhen="toggled">Toggled</span>
+      </PostTogglebutton>
 
       <h2>Tooltip</h2>
       <PostTooltipTrigger for="tooltip-one">

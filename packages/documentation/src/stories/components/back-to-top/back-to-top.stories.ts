@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   render: () =>
     html`<div>
-      <post-header>
+      <post-header label-burger-menu="Menu">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
@@ -27,13 +27,6 @@ const meta: MetaComponent = {
           <li><a href="">Über uns</a></li>
         </ul>
 
-        <!-- Menu button for mobile -->
-        <post-togglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-          <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-        </post-togglebutton>
-
         <!-- Language switch -->
         <post-language-menu
           caption="Change the language"
@@ -42,10 +35,18 @@ const meta: MetaComponent = {
           name="language-menu-example"
           slot="post-language-switch"
         >
-          <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
-          <post-language-menu-item active="false" code="fr" name="French">fr</post-language-menu-item>
-          <post-language-menu-item active="false" code="it" name="Italiano">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+          <post-language-menu-item active="false" code="de" name="Deutsch"
+            >de</post-language-menu-item
+          >
+          <post-language-menu-item active="false" code="fr" name="French"
+            >fr</post-language-menu-item
+          >
+          <post-language-menu-item active="false" code="it" name="Italiano"
+            >it</post-language-menu-item
+          >
+          <post-language-menu-item active="true" code="en" name="English"
+            >en</post-language-menu-item
+          >
         </post-language-menu>
 
         <!-- Application title (optional) -->

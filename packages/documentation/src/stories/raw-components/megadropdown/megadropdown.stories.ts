@@ -24,7 +24,7 @@ export default meta;
 
 export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
   return html`
-    <post-header>
+    <post-header label-burger-menu="Menu">
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
@@ -33,13 +33,6 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
         <li><a href="">Jobs</a></li>
         <li><a href="">About us</a></li>
       </ul>
-
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span>Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-      </post-togglebutton>
 
       <!-- Language switch -->
       <post-language-menu
@@ -51,8 +44,12 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       >
         <post-language-menu-item active="true" code="de" name="German">DE</post-language-menu-item>
         <post-language-menu-item active="false" code="fr" name="French">FR</post-language-menu-item>
-        <post-language-menu-item active="false" code="it" name="Italian">IT</post-language-menu-item>
-        <post-language-menu-item active="false" code="en" name="English">EN</post-language-menu-item>
+        <post-language-menu-item active="false" code="it" name="Italian"
+          >IT</post-language-menu-item
+        >
+        <post-language-menu-item active="false" code="en" name="English"
+          >EN</post-language-menu-item
+        >
       </post-language-menu>
 
       <!-- Application title (optional) -->
