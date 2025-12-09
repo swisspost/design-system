@@ -29,7 +29,7 @@ const meta: MetaComponent = {
     mainNav: true,
     globalNavSecondary: true,
     globalNavPrimary: true,
-    audience: true,
+    targetGroup: true,
     postLogin: true,
     localNav: false,
     isLoggedIn: false,
@@ -102,9 +102,9 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    audience: {
-      name: 'Audience',
-      description: 'Whether or not the audience buttons are visible.',
+    targetGroup: {
+      name: 'targetGroup',
+      description: 'Whether or not the targetGroup buttons are visible.',
       control: {
         type: 'boolean',
       },
@@ -191,7 +191,7 @@ function getHeaderRenderer(
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.audience ? renderTargetGroup(args) : nothing}
+        ${args.targetGroup ? renderTargetGroup(args) : nothing}
         ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
@@ -297,7 +297,7 @@ export const Microsite: Story = {
     globalNavPrimary: false,
     globalNavSecondary: false,
     postLogin: false,
-    audience: false,
+    targetGroup: false,
     localNav: true,
   },
 };
@@ -311,7 +311,7 @@ export const OnePager: Story = {
     globalNavPrimary: false,
     localNav: false,
     postLogin: false,
-    audience: false,
+    targetGroup: false,
   },
 };
 
@@ -335,7 +335,7 @@ export const OnePagerH1: Story = {
 // Used in target group documentation
 export const WithTargetGroup: Story = {
   args: {
-    audience: true,
+    targetGroup: true,
   },
 };
 

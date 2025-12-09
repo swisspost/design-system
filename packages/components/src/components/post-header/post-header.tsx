@@ -66,7 +66,7 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
   @State() hasLocalNav: boolean = false;
-  @State() hasAudience: boolean = false;
+  @State() hasTargetGroup: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -347,7 +347,7 @@ export class PostHeader {
   private checkSlottedContent() {
     this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasAudience = !!this.host.querySelector('[slot="audience"]');
+    this.hasTargetGroup = !!this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
 
@@ -420,7 +420,7 @@ export class PostHeader {
         <div
           class={{
             'global-header': true,
-            'no-target-group': !this.hasAudience,
+            'no-target-group': !this.hasTargetGroup,
           }}
         >
           <div class="logo">
@@ -449,7 +449,7 @@ export class PostHeader {
           class={{
             'local-header': true,
             'no-title': !this.hasTitle,
-            'no-target-group': !this.hasAudience,
+            'no-target-group': !this.hasTargetGroup,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
             'no-local-nav': !this.hasLocalNav,
           }}
