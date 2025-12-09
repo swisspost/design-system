@@ -124,6 +124,11 @@ tokens.$default-map: components.$post-radio-button;
   }
 }
 
+/* Radio Group/Vertical default */
+fieldset .form-check {
+  margin-block: tokens.get('post-radio-button-gap-block-group');
+}
+
 .form-check-sm:not(.form-switch):has(input[type='radio']) {
   > input[type='radio'] {
     width: tokens.get('radio-button-small-icon-size');
@@ -144,4 +149,14 @@ tokens.$default-map: components.$post-radio-button;
   > label {
     padding-block: tokens.get('radio-button-small-label-padding-block');
   }
+}
+
+/* Radio Group/Vertical small */
+fieldset .form-check-sm:not(.form-switch) {
+  margin-block: tokens.get('radio-button-small-group-items-gap-block');
+}
+
+/* Radio Group/Horizontal small */
+fieldset .form-check-sm.form-check-inline:not(.form-switch) {
+  margin-inline-end: tokens.get('radio-button-small-group-items-gap-inline');
 }
