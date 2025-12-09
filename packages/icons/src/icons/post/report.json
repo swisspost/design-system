@@ -27289,7 +27289,11 @@
         "name": "2745.svg",
         "basename": "2745",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2025-11-28T06:46:15.000Z",
       "modifiedAt": "2025-11-29T06:05:03.988Z"
@@ -27317,7 +27321,11 @@
         "name": "2746.svg",
         "basename": "2746",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2025-11-28T06:50:31.000Z",
       "modifiedAt": "2025-11-29T06:05:03.988Z"
@@ -27341,7 +27349,11 @@
         "name": "2747.svg",
         "basename": "2747",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2025-11-28T07:28:18.000Z",
       "modifiedAt": "2025-11-28T08:26:30.000Z"
@@ -27366,7 +27378,11 @@
         "name": "2748.svg",
         "basename": "2748",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2025-11-28T08:45:33.000Z",
       "modifiedAt": "2025-11-29T08:05:04.073Z"
@@ -40617,6 +40633,6 @@
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-12-03T08:41:31.748Z",
+  "created": "2025-12-07T02:29:31.830Z",
   "version": "10.0.0-next.55"
 }
