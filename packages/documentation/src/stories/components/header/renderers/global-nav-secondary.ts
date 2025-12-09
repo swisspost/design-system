@@ -3,7 +3,7 @@ import { html, nothing } from 'lit';
 
 export function renderGlobalNavSecondary(args: Args) {
   return html`
-    <!-- Meta navigation / Global secondary navigation -->
+    <!-- Global secondary navigation -->
     <ul slot="global-nav-secondary">
       <li>
         <a href="" aria-current=${args.jobs ? 'location' : nothing}>
