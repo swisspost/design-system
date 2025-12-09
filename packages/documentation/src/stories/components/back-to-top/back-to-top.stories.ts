@@ -86,7 +86,7 @@ const meta: MetaComponent = {
             <!-- Level 1 with megadropdown -->
             <post-list-item slot="post-list-item">
               <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-              <post-megadropdown id="briefe" close-label="Schliessen" back-label="Back">
+              <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
                 <post-list>
                   <p>Briefe senden</p>
                   <post-list-item slot="post-list-item"
@@ -121,7 +121,7 @@ const meta: MetaComponent = {
             </post-list-item>
             <post-list-item slot="post-list-item">
               <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-              <post-megadropdown id="pakete" close-label="Schliessen" back-label="Back">
+              <post-megadropdown id="pakete" label-close="Schliessen" label-back="Back">
                 <post-list>
                   <p>Pakete senden</p>
                   <post-list-item slot="post-list-item"
