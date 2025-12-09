@@ -420,7 +420,7 @@ export class PostHeader {
         <div
           class={{
             'global-header': true,
-            'no-audience': !this.hasAudience,
+            'no-target-group': !this.hasAudience,
           }}
         >
           <div class="logo">
@@ -428,7 +428,7 @@ export class PostHeader {
           </div>
           <div class="sliding-controls">
             {this.device === 'desktop' && (
-              <div class="audience">
+              <div class="target-group">
                 <slot name="audience"></slot>
               </div>
             )}
@@ -449,7 +449,7 @@ export class PostHeader {
           class={{
             'local-header': true,
             'no-title': !this.hasTitle,
-            'no-audience': !this.hasAudience,
+            'no-target-group': !this.hasAudience,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
             'no-local-nav': !this.hasLocalNav,
           }}

@@ -70,11 +70,11 @@
     inset-block-start: var(--post-global-controls-top);
   }
 
-  .audience {
+  .target-group {
     margin-inline-end: auto;
   }
 
-  &.no-audience .audience {
+  &.no-target-group .target-group {
     display: none;
   }
 }
