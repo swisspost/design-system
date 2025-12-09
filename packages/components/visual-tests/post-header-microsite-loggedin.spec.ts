@@ -1,215 +1,26 @@
 import { expect, test } from '@playwright/test';
-import { Page } from '@playwright/test';
+import {
+  BREAKPOINTS,
+  WAIT_TIMES,
+  openMegadropdown,
+  closeMegadropdown,
+  hoverMegadropdownTrigger,
+  focusMegadropdownTrigger,
+  hoverMegadropdownItem,
+  focusMegadropdownItem,
+  openLanguageMenu,
+  closeLanguageMenu,
+  openBurgerMenu,
+  closeBurgerMenu,
+  focusBurgerMenu,
+  hoverBurgerMenu,
+  hoverSlotItem,
+  focusSlotItem,
+  hoverMainNavItem,
+  focusMainNavItem,
+} from './helpers/post-header-helpers';
 
-const BREAKPOINTS = [
-  { name: 'desktop', width: 1280, height: 800 },
-  { name: 'tablet', width: 780, height: 1024 },
-  { name: 'mobile', width: 375, height: 667 },
-];
-
-const WAIT_TIMES = {
-  component: 500,
-  interaction: 200,
-  animation: 500,
-};
-
-// Helper functions for interactions
-async function openMegadropdown(page: Page, id: string): Promise<void> {
-  const trigger = page.locator(`post-megadropdown-trigger[for="${id}"]`);
-  await trigger.click();
-  await page.waitForTimeout(WAIT_TIMES.animation);
-}
-
-async function closeMegadropdown(page: Page): Promise<void> {
-  const closeButton = page.locator('post-closebutton');
-  await closeButton.click();
-  await page.waitForTimeout(WAIT_TIMES.animation);
-}
-
-async function hoverMegadropdownTrigger(page: Page, id: string): Promise<void> {
-  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
-  await page.waitForTimeout(100);
-  const coords = await page.evaluate((triggerId) => {
-    const element = document.querySelector<HTMLElement>(`post-megadropdown-trigger[for="${triggerId}"]`);
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, id);
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-async function focusMegadropdownTrigger(page: Page, id: string): Promise<void> {
-  const trigger = page.locator(`post-megadropdown-trigger[for="${id}"]`);
-  await trigger.focus();
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-async function hoverMegadropdownItem(page: Page, index: number): Promise<void> {
-  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
-  await page.waitForTimeout(100);
-  const coords = await page.evaluate((itemIndex) => {
-    const items = document.querySelectorAll<HTMLElement>('post-megadropdown a');
-    if (items[itemIndex]) {
-      const rect = items[itemIndex].getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, index);
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-async function focusMegadropdownItem(page: Page, index: number): Promise<void> {
-  const items = page.locator('post-megadropdown a');
-  await items.nth(index).focus();
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-async function openLanguageMenu(page: Page): Promise<void> {
-  const trigger = page.locator('post-language-menu').locator('button').first();
-  const shadowRoot = await page.evaluate(() => {
-    const menu = document.querySelector<any>('post-language-menu');
-    return menu?.shadowRoot?.querySelector('button')?.offsetHeight;
-  });
-  if (shadowRoot) {
-    await page.evaluate(() => {
-      const menu = document.querySelector<any>('post-language-menu');
-      const button = menu?.shadowRoot?.querySelector<HTMLElement>('button');
-      button?.click();
-    });
-  } else {
-    await trigger.click();
-  }
-  await page.waitForTimeout(WAIT_TIMES.animation);
-}
-
-async function closeLanguageMenu(page: Page): Promise<void> {
-  await page.keyboard.press('Escape');
-  await page.waitForTimeout(WAIT_TIMES.animation);
-}
-
-async function openBurgerMenu(page: Page): Promise<void> {
-  const burger = page.locator('post-togglebutton');
-  const isToggled = await page.evaluate(() => {
-    const element = document.querySelector('post-togglebutton') as any;
-    return element?.toggled;
-  });
-  if (!isToggled) {
-    await burger.click();
-    await page.waitForTimeout(WAIT_TIMES.animation);
-  }
-}
-
-async function closeBurgerMenu(page: Page): Promise<void> {
-  const burger = page.locator('post-togglebutton');
-  const isToggled = await page.evaluate(() => {
-    const element = document.querySelector('post-togglebutton') as any;
-    return element?.toggled;
-  });
-  if (isToggled) {
-    await burger.click();
-    await page.waitForTimeout(WAIT_TIMES.animation);
-  }
-}
-
-async function focusBurgerMenu(page: Page): Promise<void> {
-  const burger = page.locator('post-togglebutton');
-  await burger.focus();
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-async function hoverBurgerMenu(page: Page): Promise<void> {
-  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
-  await page.waitForTimeout(100);
-  const coords = await page.evaluate(() => {
-    const element = document.querySelector<HTMLElement>('post-togglebutton');
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  });
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-async function hoverTargetGroupItem(page: Page, index: number): Promise<void> {
-  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
-  await page.waitForTimeout(100);
-  const coords = await page.evaluate((itemIndex) => {
-    const items = document.querySelectorAll<HTMLElement>('[slot="target-group"] a');
-    if (items[itemIndex]) {
-      const rect = items[itemIndex].getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, index);
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-async function focusTargetGroupItem(page: Page, index: number): Promise<void> {
-  const items = page.locator('[slot="target-group"] a');
-  await items.nth(index).focus();
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-async function hoverMetaNavigationItem(page: Page, index: number): Promise<void> {
-  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
-  await page.waitForTimeout(100);
-  const coords = await page.evaluate((itemIndex) => {
-    const items = document.querySelectorAll<HTMLElement>('[slot="meta-navigation"] a');
-    if (items[itemIndex]) {
-      const rect = items[itemIndex].getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, index);
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-async function focusMetaNavigationItem(page: Page, index: number): Promise<void> {
-  const items = page.locator('[slot="meta-navigation"] a');
-  await items.nth(index).focus();
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-async function focusMainNavItem(page: Page, index: number): Promise<void> {
-  const items = page.locator('post-mainnavigation a');
-  await items.nth(index).focus();
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-async function hoverMainNavItem(page: Page, index: number): Promise<void> {
-  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
-  await page.waitForTimeout(100);
-  const coords = await page.evaluate((itemIndex) => {
-    const items = document.querySelectorAll<HTMLElement>('post-mainnavigation a');
-    if (items[itemIndex]) {
-      const rect = items[itemIndex].getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, index);
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
+// Test suites
 
 // Test suites
 BREAKPOINTS.forEach(({ name, width, height }) => {
@@ -320,7 +131,7 @@ BREAKPOINTS.forEach(({ name, width, height }) => {
         if (name !== 'desktop') {
           await openBurgerMenu(page);
         }
-        await hoverTargetGroupItem(page, 0);
+        await hoverSlotItem(page, 'target-group', 0);
         await expect(page).toHaveScreenshot(`${name}-target-group-item-hover.png`);
         if (name !== 'desktop') {
           await closeBurgerMenu(page);
@@ -331,7 +142,7 @@ BREAKPOINTS.forEach(({ name, width, height }) => {
         if (name !== 'desktop') {
           await openBurgerMenu(page);
         }
-        await focusTargetGroupItem(page, 0);
+        await focusSlotItem(page, 'target-group', 0);
         await expect(page).toHaveScreenshot(`${name}-target-group-item-focus.png`);
         if (name !== 'desktop') {
           await closeBurgerMenu(page);
@@ -345,7 +156,7 @@ BREAKPOINTS.forEach(({ name, width, height }) => {
         if (name !== 'desktop') {
           await openBurgerMenu(page);
         }
-        await hoverMetaNavigationItem(page, 0);
+        await hoverSlotItem(page, 'meta-navigation', 0);
         await expect(page).toHaveScreenshot(`${name}-meta-navigation-item-hover.png`);
         if (name !== 'desktop') {
           await closeBurgerMenu(page);
@@ -356,7 +167,7 @@ BREAKPOINTS.forEach(({ name, width, height }) => {
         if (name !== 'desktop') {
           await openBurgerMenu(page);
         }
-        await focusMetaNavigationItem(page, 0);
+        await focusSlotItem(page, 'meta-navigation', 0);
         await expect(page).toHaveScreenshot(`${name}-meta-navigation-item-focus.png`);
         if (name !== 'desktop') {
           await closeBurgerMenu(page);
