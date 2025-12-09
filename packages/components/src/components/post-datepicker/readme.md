@@ -9,7 +9,7 @@
 
 | Property       | Attribute       | Description                                                                              | Type                       | Default      |
 | -------------- | --------------- | ---------------------------------------------------------------------------------------- | -------------------------- | ------------ |
-| `disableDates` | `disable-dates` | todolea: make it work, also arrays? List of disabled dates                               | `Date \| Date[]`           | `undefined`  |
+| `disableDates` | `disable-dates` | List of disabled dates Should be set in a string, comma separated                        | `string`                   | `undefined`  |
 | `inline`       | `inline`        | Whether the calendar is inline in the page (not showing in a popover when input clicked) | `boolean`                  | `false`      |
 | `maxDate`      | `max-date`      | Maximum possible date to select                                                          | `Date \| number \| string` | `undefined`  |
 | `minDate`      | `min-date`      | Minimun possible date to select                                                          | `Date \| number \| string` | `undefined`  |

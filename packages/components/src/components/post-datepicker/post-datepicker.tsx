@@ -47,10 +47,10 @@ export class PostDatepicker {
   @Prop() maxDate?: Date | string | number;
 
   /**
-   * todolea: make it work, also arrays?
    * List of disabled dates
+   * Should be in a string, comma separated
    */
-  @Prop() disableDates?: Date | Date[];
+  @Prop() disableDates?: string;
 
   @State() locale: string = document.documentElement.lang;
 
@@ -397,6 +397,7 @@ export class PostDatepicker {
     const locale = localesMap[this.locale] || localesMap.en;
     this.datepickerInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
     this.datepickerContainerEl = this.host.shadowRoot.querySelector('.datepicker-container');
+    console.log('should disable: ', this.disableDates);
 
     if (this.datepickerContainerEl) {
       const options: AirDatepickerCustomOptions = {
@@ -515,8 +516,8 @@ export class PostDatepicker {
       }
 
       if (this.disableDates) {
-        console.log('there are some dates to disable', this.disableDates);
-        this.datepickerInstance.disableDate(this.disableDates);
+        const disableDatesArray = this.disableDates.split(',');
+        this.datepickerInstance.disableDate(disableDatesArray);
       }
 
       if (this.selectedDate) {

@@ -199,9 +199,9 @@ export namespace Components {
     }
     interface PostDatepicker {
         /**
-          * todolea: make it work, also arrays? List of disabled dates
+          * List of disabled dates Should be in a string, comma separated
          */
-        "disableDates"?: Date | Date[];
+        "disableDates"?: string;
         /**
           * Hides the popover calendar
          */
@@ -1191,9 +1191,9 @@ declare namespace LocalJSX {
     }
     interface PostDatepicker {
         /**
-          * todolea: make it work, also arrays? List of disabled dates
+          * List of disabled dates Should be in a string, comma separated
          */
-        "disableDates"?: Date | Date[];
+        "disableDates"?: string;
         /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked)
           * @default false
