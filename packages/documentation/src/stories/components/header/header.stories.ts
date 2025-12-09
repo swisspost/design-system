@@ -4,7 +4,7 @@ import { html, nothing, TemplateResult } from 'lit';
 import { fakeContent } from '@/utils';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
-import { renderAudience } from '@/stories/components/header/renderers/audience';
+import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
 import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
@@ -191,7 +191,7 @@ function getHeaderRenderer(
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.audience ? renderAudience(args) : nothing}
+        ${args.audience ? renderTargetGroup(args) : nothing}
         ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
