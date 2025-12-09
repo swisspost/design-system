@@ -68,7 +68,7 @@
   <post-menu-trigger for="menu-one">
     <button class="btn btn-primary">Menu button</button>
   </post-menu-trigger>
-  <post-menu id="menu-one">
+  <post-menu id="menu-one" label="Menu">
     <post-menu-item>
       <button>Example 1</button>
     </post-menu-item>
@@ -90,7 +90,7 @@
     class="palette palette-accent"
     id="popover-one"
     placement="top"
-    close-button-caption="Close"
+    closeButtonCaption="Close"
     ><div id="popoverContent">
       <h2 class="h6">Optional title</h2>
       <p class="mb-0">
@@ -107,25 +107,38 @@
 
 <div class="my-24">
   <h2>Post Rating</h2>
-  <post-rating></post-rating>
+  <post-rating label="Rating"></post-rating>
 </div>
 
 <div class="my-24">
-  <h2>Post Tabs</h2>
+  <h2>Post Tabs - Panel Variant</h2>
   <post-tabs>
-    <post-tab-header panel="unua">Unua langeto</post-tab-header>
-    <post-tab-header panel="dua">Dua langeto</post-tab-header>
-    <post-tab-header panel="tria">Tria langeto</post-tab-header>
+    <post-tab-item name="unua">Unua langeto</post-tab-item>
+    <post-tab-item name="dua">Dua langeto</post-tab-item>
+    <post-tab-item name="tria">Tria langeto</post-tab-item>
 
-    <post-tab-panel name="unua">
+    <post-tab-panel for="unua">
       Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
     </post-tab-panel>
-    <post-tab-panel name="dua">
+    <post-tab-panel for="dua">
       Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
     </post-tab-panel>
-    <post-tab-panel name="tria">
+    <post-tab-panel for="tria">
       Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
     </post-tab-panel>
+  </post-tabs>
+
+  <h2>Post Tabs - Navigation Variant</h2>
+  <post-tabs label="Tabs navigation">
+    <post-tab-item name="nav-first">
+      <a href="#first">First</a>
+    </post-tab-item>
+    <post-tab-item name="nav-second">
+      <a href="#second">Second</a>
+    </post-tab-item>
+    <post-tab-item name="nav-third">
+      <a href="#third" aria-current="page">Third</a>
+    </post-tab-item>
   </post-tabs>
 </div>
 
@@ -154,4 +167,19 @@
     <post-stepper-item> Step 3 </post-stepper-item>
     <post-stepper-item> Step 4 </post-stepper-item>
   </post-stepper>
+</div>
+
+<div class="my-24">
+  <h2>Post Pagination</h2>
+  <post-pagination
+    page="1"
+    pageSize="10"
+    collectionSize="100"
+    label="Pagination"
+    labelPrevious="Previous page"
+    labelNext="Next page"
+    labelPage="Page"
+    labelFirst="First page"
+    labelLast="Last page"
+  ></post-pagination>
 </div>

@@ -46,11 +46,8 @@ describe('accordion', () => {
 
     describe('icon rotation behavior', () => {
       it('should have icons in all accordion items', () => {
-        cy.get('@collapsibles').each(($item) => {
-          cy.wrap($item)
-            .shadow()
-            .find('post-icon[name="chevrondown"]')
-            .should('exist');
+        cy.get('@collapsibles').each($item => {
+          cy.wrap($item).shadow().find('post-icon[name="chevronup"]').should('exist');
         });
       });
 
@@ -65,15 +62,11 @@ describe('accordion', () => {
       it('should show collapsed icons (collapsed class) for non-expanded items initially', () => {
         cy.get('@collapsibles')
           .not(':first')
-          .each(($item) => {
-            cy.wrap($item)
-              .shadow()
-              .find('.accordion-button')
-              .should('have.class', 'collapsed');
+          .each($item => {
+            cy.wrap($item).shadow().find('.accordion-button').should('have.class', 'collapsed');
           });
       });
 
-      
       it('should rotate icon when clicking to expand collapsed item', () => {
         cy.get('@collapsibles')
           .last()
@@ -81,11 +74,7 @@ describe('accordion', () => {
           .find('.accordion-button')
           .should('have.class', 'collapsed');
 
-        cy.get('@collapsibles')
-          .last()
-          .shadow()
-          .find('.accordion-button')
-          .click({ force: true });
+        cy.get('@collapsibles').last().shadow().find('.accordion-button').click({ force: true });
 
         cy.get('@collapsibles')
           .last()
@@ -100,11 +89,7 @@ describe('accordion', () => {
           .shadow()
           .find('.accordion-button')
           .should('not.have.class', 'collapsed');
-        cy.get('@collapsibles')
-          .first()
-          .shadow()
-          .find('.accordion-button')
-          .click({ force: true });
+        cy.get('@collapsibles').first().shadow().find('.accordion-button').click({ force: true });
 
         cy.get('@collapsibles')
           .first()
@@ -118,16 +103,16 @@ describe('accordion', () => {
           .first()
           .shadow()
           .find('post-icon')
-          .then(($expandedIcon) => {
+          .then($expandedIcon => {
             const expandedTransform = $expandedIcon.css('transform');
 
             cy.get('@collapsibles')
               .last()
               .shadow()
               .find('post-icon')
-              .then(($collapsedIcon) => {
+              .then($collapsedIcon => {
                 const collapsedTransform = $collapsedIcon.css('transform');
-                
+
                 expect(expandedTransform).to.not.equal(collapsedTransform);
               });
           });

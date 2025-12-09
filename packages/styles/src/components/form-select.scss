@@ -197,7 +197,8 @@ tokens.$default-map: components.$post-select;
       border-radius: tokens.get('select-border-radius');
       color: tokens.get('select-color-enabled-fg');
       max-width: calc(
-        100% - (#{tokens.get('select-border-width')} * 2) - tokens.get(
+        100% -
+          (#{tokens.get('select-border-width')} * 2) - tokens.get(
             'select-label-empty-padding-inline-end'
           )
       );
@@ -249,9 +250,8 @@ tokens.$default-map: components.$post-select;
         ~ label {
           padding-block: tokens.get('select-standalone-padding-block');
           width: calc(
-            100% - (#{tokens.get('select-border-width')} * 2) - #{tokens.get(
-                'select-label-empty-padding-inline-start'
-              )}
+            100% - (#{tokens.get('select-border-width')} * 2) -
+              #{tokens.get('select-label-empty-padding-inline-start')}
           );
         }
       }
@@ -278,30 +278,32 @@ tokens.$default-map: components.$post-select;
     }
 
     &.is-valid:not(:disabled) {
-      background-image: forms-fx.select-arrow-icon('enabled', 'dark'),
-        var(--post-signal-icon-success);
+      background-image:
+        forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-success);
 
       &:focus {
-        background-image: forms-fx.select-arrow-icon('selected', 'dark'),
-          var(--post-signal-icon-success);
+        background-image:
+          forms-fx.select-arrow-icon('selected', 'dark'), var(--post-signal-icon-success);
       }
 
       &:hover {
-        background-image: forms-fx.select-arrow-icon('hover', 'dark'),
-          var(--post-signal-icon-success);
+        background-image:
+          forms-fx.select-arrow-icon('hover', 'dark'), var(--post-signal-icon-success);
       }
     }
 
     &.is-invalid:not(:disabled) {
-      background-image: forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-error);
+      background-image:
+        forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-error);
 
       &:focus {
-        background-image: forms-fx.select-arrow-icon('selected', 'dark'),
-          var(--post-signal-icon-error);
+        background-image:
+          forms-fx.select-arrow-icon('selected', 'dark'), var(--post-signal-icon-error);
       }
 
       &:hover {
-        background-image: forms-fx.select-arrow-icon('hover', 'dark'), var(--post-signal-icon-error);
+        background-image:
+          forms-fx.select-arrow-icon('hover', 'dark'), var(--post-signal-icon-error);
       }
     }
   }
