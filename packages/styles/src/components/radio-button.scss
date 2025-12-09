@@ -151,6 +151,12 @@ fieldset .form-check {
   }
 }
 
+/* Align the Label with the Radio Button small */
+.form-check-sm:not(.form-switch) {
+  display: flex;
+  align-items: center;
+}
+
 /* Radio Group/Vertical small */
 fieldset .form-check-sm:not(.form-switch) {
   margin-block: tokens.get('radio-button-small-group-items-gap-block');
