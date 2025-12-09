@@ -75,11 +75,11 @@ export class PostHeader {
   /**
    * The label of the burger menu button.
    */
-  @Prop({ reflect: true }) burgerMenuLabel!: string;
+  @Prop({ reflect: true }) labelBurgerMenu!: string;
 
-  @Watch('burgerMenuLabel')
-  validateBurgerMenuLabel() {
-    checkRequiredAndType(this, 'burgerMenuLabel', 'string');
+  @Watch('labelBurgerMenu')
+  validateLabelBurgerMenu() {
+    checkRequiredAndType(this, 'labelBurgerMenu', 'string');
   }
 
   @Watch('device')
@@ -146,7 +146,7 @@ export class PostHeader {
   }
 
   componentDidRender() {
-    this.validateBurgerMenuLabel();
+    this.validateLabelBurgerMenu();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
@@ -223,8 +223,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
@@ -447,7 +447,7 @@ export class PostHeader {
                 ref={el => (this.burgerMenuButton = el)}
                 onClick={() => this.toggleBurgerMenu()}
               >
-                <span>{this.burgerMenuLabel}</span>
+                <span>{this.labelBurgerMenu}</span>
                 <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
                 <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
               </post-togglebutton>

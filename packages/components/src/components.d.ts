@@ -207,7 +207,7 @@ export namespace Components {
         /**
           * The label of the burger menu button.
          */
-        "burgerMenuLabel": string;
+        "labelBurgerMenu": string;
         /**
           * Toggles the burger navigation menu.
          */
@@ -1229,7 +1229,7 @@ declare namespace LocalJSX {
         /**
           * The label of the burger menu button.
          */
-        "burgerMenuLabel": string;
+        "labelBurgerMenu": string;
     }
     /**
      * @class PostIcon - representing a stencil component

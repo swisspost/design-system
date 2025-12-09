@@ -89,12 +89,12 @@ describe('header', () => {
         cy.spy(win.console, 'error').as('consoleError');
       });
       cy.get('@header')
-        .invoke('attr', 'burger-menu-label')
+        .invoke('attr', 'label-burger-menu')
         .should('not.be.empty')
         .and('not.eq', '0');
       cy.get('@consoleError').should('not.be.called');
       // Remove burger menu label
-      cy.get('@header').invoke('removeAttr', 'burger-menu-label');
+      cy.get('@header').invoke('removeAttr', 'label-burger-menu');
       cy.get('@consoleError').should('be.called');
     });
 

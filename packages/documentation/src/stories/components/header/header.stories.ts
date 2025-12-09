@@ -26,7 +26,7 @@ const meta: MetaComponent = {
   args: {
     title: '',
     titleTag: 'p',
-    burgerMenuLabel: 'Menu',
+    labelBurgerMenu: 'Menu',
     mainNavigation: true,
     metaNavigation: true,
     globalControls: true,
@@ -62,7 +62,7 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    burgerMenuLabel: {
+    labelBurgerMenu: {
       description: 'The label of the burger menu button.',
       control: {
         type: 'text',
@@ -197,7 +197,7 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header burger-menu-label="${args.burgerMenuLabel}">
+      <post-header label-burger-menu="${args.labelBurgerMenu}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
@@ -216,7 +216,9 @@ function getHeaderRenderer(
           <post-language-menu-item code="de" name="German">de</post-language-menu-item>
           <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
           <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+          <post-language-menu-item active="true" code="en" name="English"
+            >en</post-language-menu-item
+          >
         </post-language-menu>
 
         ${!args.title && !args.jobs

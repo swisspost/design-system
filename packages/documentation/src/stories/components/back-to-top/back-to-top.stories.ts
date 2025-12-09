@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   render: () =>
     html`<div>
-      <post-header burger-menu-label="Menu">
+      <post-header label-burger-menu="Menu">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
@@ -35,10 +35,18 @@ const meta: MetaComponent = {
           name="language-menu-example"
           slot="post-language-switch"
         >
-          <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
-          <post-language-menu-item active="false" code="fr" name="French">fr</post-language-menu-item>
-          <post-language-menu-item active="false" code="it" name="Italiano">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+          <post-language-menu-item active="false" code="de" name="Deutsch"
+            >de</post-language-menu-item
+          >
+          <post-language-menu-item active="false" code="fr" name="French"
+            >fr</post-language-menu-item
+          >
+          <post-language-menu-item active="false" code="it" name="Italiano"
+            >it</post-language-menu-item
+          >
+          <post-language-menu-item active="true" code="en" name="English"
+            >en</post-language-menu-item
+          >
         </post-language-menu>
 
         <!-- Application title (optional) -->

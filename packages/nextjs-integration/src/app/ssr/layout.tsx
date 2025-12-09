@@ -21,7 +21,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
   return (
     <>
       {/* Throws Hydration Errors */}
-      <PostHeader burgerMenuLabel="Menu">
+      <PostHeader labelBurgerMenu="Menu">
         {/* Logo */}
         <PostLogo slot="post-logo" url="/">
           Homepage
@@ -65,26 +65,26 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           </li>
         </ul>
 
-      {/* Language switch */}
-      <PostLanguageMenu
-        caption="Change the language"
-        description="The currently selected language is English."
-        variant="list"
-        slot="post-language-switch"
-      >
-        <PostLanguageMenuItem code="de" name="German">
-          de
-        </PostLanguageMenuItem>
-        <PostLanguageMenuItem code="fr" name="French">
-          fr
-        </PostLanguageMenuItem>
-        <PostLanguageMenuItem code="it" name="Italian">
-          it
-        </PostLanguageMenuItem>
-        <PostLanguageMenuItem active={true} code="en" name="English">
-          en
-        </PostLanguageMenuItem>
-      </PostLanguageMenu>
+        {/* Language switch */}
+        <PostLanguageMenu
+          caption="Change the language"
+          description="The currently selected language is English."
+          variant="list"
+          slot="post-language-switch"
+        >
+          <PostLanguageMenuItem code="de" name="German">
+            de
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem code="fr" name="French">
+            fr
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem code="it" name="Italian">
+            it
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem active={true} code="en" name="English">
+            en
+          </PostLanguageMenuItem>
+        </PostLanguageMenu>
 
         {/* Global header login/user menu */}
         <a href="" slot="global-login">
