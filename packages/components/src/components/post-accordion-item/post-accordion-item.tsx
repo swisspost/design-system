@@ -5,8 +5,8 @@ import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
- * @part button - The element that toggles the accordion item (header button).
- * @part body - The container element that holds the accordion item's content.
+ * @part post-accordion-button - The element that toggles the accordion item (header button).
+ * @part post-accordion-body - The element that holds the accordion item's content.
  * @slot logo - Slot for placing a logo in the accordion item’s header, before the content.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
@@ -79,38 +79,36 @@ export class PostAccordionItem {
 
     return (
       <Host id={this.id} data-version={version}>
-        <div part="accordion-item" class="accordion-item">
-          <post-collapsible-trigger for={`${this.id}--collapse`}>
-            <HeadingTag class="accordion-header" id={`${this.id}--header`}>
-              <button
-                type="button"
-                class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
-                part="button"
+        <post-collapsible-trigger for={`${this.id}--collapse`}>
+          <HeadingTag class="accordion-header" id={`${this.id}--header`}>
+            <button
+              type="button"
+              class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
+              part="post-accordion-button"
+            >
+              <span
+                class={{
+                  'logo-container': true,
+                  'has-image': !!this.slottedLogo,
+                }}
               >
-                <span
-                  class={{
-                    'logo-container': true,
-                    'has-image': !!this.slottedLogo,
-                  }}
-                >
-                  <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
-                </span>
-                <slot name="header" />
-                <post-icon name="2051"></post-icon>
-              </button>
-            </HeadingTag>
-          </post-collapsible-trigger>
+                <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
+              </span>
+              <slot name="header" />
+              <post-icon name="chevronup"></post-icon>
+            </button>
+          </HeadingTag>
+        </post-collapsible-trigger>
 
-          <post-collapsible
-            id={`${this.id}--collapse`}
-            collapsed={this.collapsed}
-            ref={el => (this.collapsible = el)}
-          >
-            <div class="accordion-body" part="body">
-              <slot />
-            </div>
-          </post-collapsible>
-        </div>
+        <post-collapsible
+          id={`${this.id}--collapse`}
+          collapsed={this.collapsed}
+          ref={el => (this.collapsible = el)}
+        >
+          <div class="accordion-body" part="post-accordion-body">
+            <slot />
+          </div>
+        </post-collapsible>
       </Host>
     );
   }

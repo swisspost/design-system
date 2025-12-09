@@ -30,26 +30,6 @@ $position-values: (
   100: 100%,
 );
 
-$vw-values: (
-  0: 0,
-  25: 25vw,
-  33: 25vw,
-  50: 50vw,
-  66: 66vw,
-  75: 75vw,
-  100: 100vw,
-);
-
-$vh-values: (
-  0: 0,
-  25: 25vh,
-  33: 33vh,
-  50: 50vh,
-  66: 66vh,
-  75: 75vh,
-  100: 100vh,
-);
-
 $utilities: (
   'border': (
     property: border,
@@ -105,8 +85,7 @@ $utilities: (
   'rounded': (
     property: border-radius,
     class: rounded,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -117,8 +96,7 @@ $utilities: (
   'rounded-top': (
     property: border-start-start-radius border-start-end-radius,
     class: rounded-top,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -129,8 +107,7 @@ $utilities: (
   'rounded-end': (
     property: border-start-end-radius border-end-end-radius,
     class: rounded-end,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -141,8 +118,7 @@ $utilities: (
   'rounded-bottom': (
     property: border-end-end-radius border-end-start-radius,
     class: rounded-bottom,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -153,8 +129,7 @@ $utilities: (
   'rounded-start': (
     property: border-end-start-radius border-start-start-radius,
     class: rounded-start,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -214,37 +189,42 @@ $utilities: (
     responsive: true,
     property: width,
     class: vw,
-    values: $vw-values,
+    values: $post-viewport-width-sizes,
   ),
+
   'viewport-height': (
     responsive: true,
     property: height,
     class: vh,
-    values: $vh-values,
+    values: $post-viewport-height-sizes,
   ),
+
   'min-viewport-width': (
     responsive: true,
     property: min-width,
     class: min-vw,
-    values: $vw-values,
+    values: $post-viewport-width-sizes,
   ),
+
   'min-viewport-height': (
     responsive: true,
     property: min-height,
     class: min-vh,
-    values: $vh-values,
+    values: $post-viewport-height-sizes,
   ),
+
   'max-viewport-width': (
     responsive: true,
     property: max-width,
     class: max-vw,
-    values: $vw-values,
+    values: $post-viewport-width-sizes,
   ),
+
   'max-viewport-height': (
     responsive: true,
     property: max-height,
     class: max-vh,
-    values: $vh-values,
+    values: $post-viewport-height-sizes,
   ),
   'align': (
     property: vertical-align,

@@ -10,6 +10,8 @@
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/variables/color';
 
+@include icons.custom-property('chevrondown');
+
 post-mainnavigation {
   // reset links and buttons
   post-list-item {
@@ -37,7 +39,7 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: 4px;
-        outline-offset: -2px !important;
+        z-index: 2;
       }
     }
   }
@@ -47,9 +49,17 @@ post-mainnavigation {
   post-megadropdown-trigger button {
     &::after {
       content: '';
-      @include icons.icon(2113);
-      height: 24px;
-      width: 24px;
+      @include icons.mask-image('chevrondown');
+      height: 1em;
+      width: 1em;
+
+      @include media.only(tablet) {
+        font-size: 1.5rem;
+      }
+
+      @include media.only(mobile) {
+        font-size: 1rem;
+      }
     }
 
     @include utilities.high-contrast-mode() {
@@ -63,35 +73,40 @@ post-mainnavigation {
   }
 
   // desktop styles
-  @include media.min(lg) {
-    display: block;
-    position: relative;
+  post-header:not([data-burger-menu]) > & {
+    display: flex;
     height: var(--post-main-navigation-height, 0);
     background: color.$white;
     user-select: none;
 
     nav {
       flex: 1 1 auto;
-      overflow: hidden;
       scroll-behavior: smooth;
     }
 
+    &.scrollable,
+    &.scrollable nav {
+      overflow: hidden;
+    }
+
     .scroll-control {
+      $icon-size: 1rem;
+      $button-padding: 1rem;
+      $button-width: $icon-size + 2 * $button-padding;
+
+      z-index: 2;
       cursor: pointer;
-      position: absolute;
-      inset-block: 0;
-      z-index: 5;
-      padding: 16px;
+      padding: $button-padding;
       background: color.$white;
       box-shadow: elevation.$elevation-500;
       line-height: 1;
 
       &.scroll-left {
-        inset-inline-start: 0;
+        margin-inline-end: -1 * $button-width;
       }
 
       &.scroll-right {
-        inset-inline-end: 0;
+        margin-inline-start: -1 * $button-width;
       }
 
       &.d-none {
@@ -99,7 +114,7 @@ post-mainnavigation {
       }
 
       post-icon {
-        font-size: 1rem;
+        font-size: $icon-size;
       }
     }
 
@@ -115,13 +130,8 @@ post-mainnavigation {
         position: sticky;
         padding-inline: 12px;
         height: var(--post-main-navigation-height, 0);
-        gap: 4px;
+        gap: 8px;
         font-size: 16px;
-        z-index: 4;
-
-        @include media.max(lg) {
-          z-index: 5;
-        }
 
         .nav-el-active {
           font-weight: 700;
@@ -137,7 +147,7 @@ post-mainnavigation {
           inset-inline-start: 0;
         }
 
-        &.selected,
+        &.active,
         &[aria-current='page']:not(post-megadropdown *),
         &[aria-expanded='true'] {
           background-color: #050400;
@@ -170,7 +180,7 @@ post-mainnavigation {
         transition: border-block-end-color animation.$transition-base-timing;
 
         .nav-el-inactive {
-          width: calc(100% - 28px);
+          width: calc(100% - 1em - 8px);
         }
 
         &::after {
@@ -184,7 +194,7 @@ post-mainnavigation {
     }
 
     post-megadropdown {
-      button:not(.btn-icon-close),
+      button:not(:is(post-closebutton *)),
       a {
         @include header-mx.mobile-header-interactive;
       }
@@ -192,7 +202,7 @@ post-mainnavigation {
   }
 
   // tablet/mobile styles
-  @include media.max(lg) {
+  post-header[data-burger-menu] > & {
     nav {
       transform: none !important;
     }

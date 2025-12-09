@@ -1,7 +1,4 @@
-import rule, {
-  name,
-  messageId,
-} from '../../../../src/rules/html/migrations/no-deprecated-chip-filter';
+import rule, { name } from '../../../../src/rules/html/migrations/no-deprecated-chip-filter';
 import { htmlRuleTester } from '../../../utils/html-rule-tester';
 
 htmlRuleTester.run(name, rule, {
@@ -14,7 +11,7 @@ htmlRuleTester.run(name, rule, {
     {
       code: '<div class="chip chip-filter">Chip content</div>',
       output: '<div class="chip chip-selectable">Chip content</div>',
-      errors: [{ messageId }],
+      errors: [{ messageId: 'chip-filter' }],
     },
   ],
 });

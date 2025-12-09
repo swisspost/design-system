@@ -8,54 +8,54 @@ const code = `
   {{logoLink}}
 
   <!-- Meta navigation -->
-  <ul class="list-inline" slot="meta-navigation">
+  <ul slot="meta-navigation">
     <li><a href="#">Jobs</a></li>
     <li><a href="#">Über uns</a></li>
   </ul>
 
   <!-- Menu button mobile -->
   <post-togglebutton slot="post-togglebutton">
-    <span class="visually-hidden-sm">Menu</span>
+    <span>Menu</span>
     <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
     <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
   </post-togglebutton>
 
   <!-- Language switch -->
-  <post-language-switch
+  <post-language-menu
     caption="Change the language"
     description="The currently selected language is English."
     variant="list"
-    name="language-switch-example"
+    name="language-menu-example"
     slot="post-language-switch">
-    <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
-    <post-language-option active="false" code="fr" name="French">fr</post-language-option>
-    <post-language-option active="false" code="it" name="Italiano">it</post-language-option>
-    <post-language-option active="true" code="en" name="English">en</post-language-option>
-  </post-language-switch>
+    <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
+    <post-language-menu-item active="false" code="fr" name="French">fr</post-language-menu-item>
+    <post-language-menu-item active="false" code="it" name="Italiano">it</post-language-menu-item>
+    <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+  </post-language-menu>
 
   <!-- Application title (optional) -->
-  <h1 slot="title">Application title</h1>
+  <p slot="title">Application title</p>
 
   <!-- Custom content (optional) -->
-  <ul class="list-inline">
+  <ul slot="local-nav">
     <li>
       <a href="#">
-        <span class="visually-hidden-sm">Search</span>
+        <span>Search</span>
         <post-icon aria-hidden="true" name="search"></post-icon>
       </a>
     </li>
     <li>
       <a href="#">
-        <span class="visually-hidden-sm">Login</span>
+        <span>Login</span>
         <post-icon aria-hidden="true" name="login"></post-icon>
       </a>
     </li>
   </ul>
 
   <!-- Main navigation -->
-  <post-mainnavigation caption="Hauptnavigation">
+  <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
     <post-list title-hidden="">
-      <h2>Main Navigation</h2>
+      <p>Main Navigation</p>
       <!-- Link only level 1 -->
       <post-list-item slot="post-list-item"><a href="#">Briefe</a></post-list-item>
       <post-list-item slot="post-list-item"><a href="#">Pakete</a></post-list-item>
@@ -69,9 +69,9 @@ const code = `
             Back
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <h2 slot="megadropdown-title">Briefe title</h2>
+          <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
           <post-list>
-            <h3>Briefe senden</h3>
+            <p>Briefe senden</p>
             <post-list-item slot="post-list-item"><a href="#">Briefe Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
               ><a href="#">Kleinwaren Ausland</a></post-list-item
@@ -80,7 +80,7 @@ const code = `
             <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
           <post-list>
-            <h3><a href="#">Schritt für Schritt</a></h3>
+            <p><a href="#">Schritt für Schritt</a></p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
               ><a href="#">Kleinwaren Ausland</a></post-list-item
@@ -98,9 +98,9 @@ const code = `
             Back
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <h2 slot="megadropdown-title">Pakete title</h2>
+          <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
           <post-list>
-            <h3>Pakete senden</h3>
+            <p>Pakete senden</p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
               ><a href="#">Kleinwaren Ausland</a></post-list-item
@@ -109,7 +109,7 @@ const code = `
             <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
           <post-list>
-            <h3><a href="#">Schritt für Schritt</a></h3>
+            <p><a href="#">Schritt für Schritt</a></p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
               ><a href="#">Kleinwaren Ausland</a></post-list-item

@@ -11,11 +11,11 @@ const meta: MetaComponent = {
   id: '09aac03d-220e-4885-8fb8-1cfa01add188',
   title: 'Components/Avatar',
   component: 'post-avatar',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?node-id=17162-9642&t=TI8Z92QcZA8yAw58-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=17-160',
     },
   },
   args: {

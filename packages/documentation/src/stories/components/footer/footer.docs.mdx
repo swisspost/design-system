@@ -1,5 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as FooterStories from './footer.stories';
+import meta, * as FooterStories from './footer.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={FooterStories}/>
 
@@ -9,11 +11,14 @@ import * as FooterStories from './footer.stories';
   <link-design of={JSON.stringify(FooterStories)}></link-design>
 </div>
 
+<PackageTag meta={meta}/>
+
 <p className="lead">The composable footer component for your Swiss Post page.</p>
 
 Internally the `<post-footer>` component has a fix structure, but it offers a number of slots, which can be used to add your very own content, so it ultimatly fulfills everyones requirements.
 
 
-<Canvas of={FooterStories.Default} />
-
+<Canvas of={FooterStories.Default} sourceState="shown" />
 <Controls of={FooterStories.Default} />
+
+<ComponentsPackageInstall component="<post-footer>" />

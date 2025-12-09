@@ -76,7 +76,7 @@ textarea.form-control {
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
-      background-size: tokens.get('textarea-sizing-icon');
+      background-size: tokens.get('textarea-sizing-icon') tokens.get('textarea-sizing-icon');
       background-position: top tokens.get('textarea-position-block-start-validation') right
         tokens.get('textarea-position-inline-end-validation');
       background-repeat: no-repeat;
@@ -109,9 +109,8 @@ textarea.form-control {
     padding-inline-end: 0;
     padding-block-start: tokens.get('textarea-label-padding-block-start');
     width: calc(
-      100% - (#{tokens.get('textarea-border-width')} * 2) - #{tokens.get(
-          'textarea-label-padding-inline-end'
-        )}
+      100% - (#{tokens.get('textarea-border-width')} * 2) -
+        #{tokens.get('textarea-label-padding-inline-end')}
     );
     border: 0;
     color: tokens.get('textarea-enabled-fg');
@@ -167,9 +166,8 @@ textarea.form-control {
     &:is(.is-valid, .is-invalid) {
       ~ label {
         width: calc(
-          100% - (#{tokens.get('textarea-border-width')} * 2) - #{tokens.get(
-              'textarea-label-validated-padding-inline-end'
-            )}
+          100% - (#{tokens.get('textarea-border-width')} * 2) -
+            #{tokens.get('textarea-label-validated-padding-inline-end')}
         );
       }
     }

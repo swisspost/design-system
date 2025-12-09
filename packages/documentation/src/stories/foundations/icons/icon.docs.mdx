@@ -1,8 +1,10 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as IconStories from './icon.stories';
+import meta, * as IconStories from './icon.stories';
 import SampleMixin from './mixin.sample.scss?raw';
 import { POST_ICONS_COUNT, UI_ICONS_COUNT, Search } from './search/search-icons.blocks';
 import './icon.styles.scss';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={IconStories} />
 
@@ -12,19 +14,21 @@ import './icon.styles.scss';
   <link-design of={JSON.stringify(IconStories)}></link-design>
 </div>
 
+<PackageTag meta={meta}/>
+
 <div className="lead">
   The official Swiss Post Icon Library with {Math.floor(POST_ICONS_COUNT / 10) * 10}+ high-quality svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with {Math.floor(UI_ICONS_COUNT / 10) * 10}+ icons and responsive level-of-detail.
 </div>
 
-<post-tabs active-panel="search">
-  <post-tab-header panel="installation">Installation</post-tab-header>
-  <post-tab-panel name="installation">
-    ## Installation
+<post-tabs active-tab="search">
+  <post-tab-item name="search">Find your Icon</post-tab-item>
+  <post-tab-panel for="search">
+    <Search />
+  </post-tab-panel>
 
-    ### Icon Component
-
-    The `<post-icon>` element is part of the `@swisspost/design-system-components` package.
-    For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+  <post-tab-item name="installation">Installation</post-tab-item>
+  <post-tab-panel for="installation">
+    <ComponentsPackageInstall subtitle="Icon Component" component="<post-icon>" />
 
     ### Icon SVGs
 
@@ -32,8 +36,8 @@ import './icon.styles.scss';
     For guidelines on how to set this up, please refer to the [icon package documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs#usage).
   </post-tab-panel>
 
-  <post-tab-header panel="component">Usage as Web-Component</post-tab-header>
-  <post-tab-panel name="component">
+  <post-tab-item name="component">Usage as Web-Component</post-tab-item>
+  <post-tab-panel for="component">
     ## Usage as Web-Component
 
     Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
@@ -102,8 +106,8 @@ import './icon.styles.scss';
 
   </post-tab-panel>
 
-  <post-tab-header panel="scss">Usage as CSS-Background</post-tab-header>
-  <post-tab-panel name="scss">
+  <post-tab-item name="scss">Usage as CSS-Background</post-tab-item>
+  <post-tab-panel for="scss">
     ## Usage in CSS
 
     To define an icon in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
@@ -145,8 +149,4 @@ import './icon.styles.scss';
 
   </post-tab-panel>
 
-  <post-tab-header panel="search">Find your Icon</post-tab-header>
-  <post-tab-panel name="search">
-    <Search />
-  </post-tab-panel>
 </post-tabs>

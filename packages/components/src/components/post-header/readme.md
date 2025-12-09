@@ -7,9 +7,9 @@
 
 ## Methods
 
-### `toggleMobileMenu(force?: boolean) => Promise<void>`
+### `toggleBurgerMenu(force?: boolean) => Promise<void>`
 
-Toggles the mobile navigation.
+Toggles the burger navigation menu.
 
 #### Parameters
 
@@ -28,12 +28,14 @@ Type: `Promise<void>`
 
 | Slot                     | Description                                                                   |
 | ------------------------ | ----------------------------------------------------------------------------- |
-| `"default"`              | Custom controls or content, right aligned in the local header.                |
+| `"global-controls"`      | Holds search button in the global header.                                     |
+| `"global-login"`         | Holds the user menu or login button in the global header.                     |
+| `"local-nav"`            | Holds controls specific to the current application.                           |
 | `"meta-navigation"`      | Holds an `<ul>` with meta navigation links.                                   |
 | `"post-language-switch"` | Should be used with the `<post-language-switch>` component.                   |
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
 | `"post-mainnavigation"`  | Has a default slot because it's only meant to be used in the `<post-header>`. |
-| `"post-togglebutton"`    | Holds the mobile menu toggler.                                                |
+| `"post-togglebutton"`    | Holds the burger menu toggler.                                                |
 | `"target-group"`         | Holds the list of buttons to choose the target group.                         |
 | `"title"`                | Holds the application title.                                                  |
 

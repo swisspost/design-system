@@ -11,7 +11,7 @@ export class PostMegadropdownTrigger {
   /**
    * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
    */
-  @Prop() for!: string;
+  @Prop({ reflect: true }) for!: string;
 
   @Element() host: HTMLPostMegadropdownTriggerElement;
 

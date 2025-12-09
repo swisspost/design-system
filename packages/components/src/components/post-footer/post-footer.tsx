@@ -24,7 +24,7 @@ export class PostFooter {
   /**
    * The label to add to the footer (visually hidden).
    */
-  @Prop() readonly label!: string;
+  @Prop({ reflect: true }) readonly label!: string;
 
   @State() device: Device = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
@@ -90,6 +90,9 @@ export class PostFooter {
   private renderColumns() {
     return GRID_SLOTS.map(slotName => (
       <div class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}>
+        <h3>
+          <slot name={slotName + '-title'}></slot>
+        </h3>
         <slot onSlotchange={this.handleGridSlotChange('tablet', 'desktop')} name={slotName}></slot>
       </div>
     ));

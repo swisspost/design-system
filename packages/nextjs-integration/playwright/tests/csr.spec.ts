@@ -6,25 +6,32 @@ test.describe('CSR compatibility', () => {
     await page.goto('/csr');
   });
 
-  test('should contain every component tag at least once', async ({ page }) => {
+  test('all components should be hydrated', async ({ page }) => {
     for (const componentName of componentNames) {
-      const component = page.locator(componentName).first();
-      await expect(component).toHaveCount(1);
+      const component = page.locator(`${componentName}[data-hydrated]`).first();
+      await expect(component).toBeAttached();
     }
   });
 
   // Hydration errors should, if at all, only occur on the /ssr route.
-  // If a hydration error occurs on the /csr route, something is wrongly implemented in general!
+  // If a hydration error occurs here on the /csr route, something is wrongly implemented in general!
   test('should render without hydration errors', async ({ page }) => {
     const hydrationErrors: string[] = [];
+
     page.on('pageerror', error => {
       if (error.name === 'Error' && error.message.startsWith('Hydration failed')) {
         hydrationErrors.push(error.message);
       }
     });
 
-    // wait for page hydration
-    await page.waitForSelector('[data-hydrated]', { state: 'attached', timeout: 10000 });
+    const hydratedComponents = await page.locator('[data-hydrated]').all();
+
+    // wait for page hydration before checking for errors
+    await Promise.all(
+      hydratedComponents.map(component => component.waitFor({ state: 'attached' })),
+    );
+    await page.waitForLoadState('load');
+
     expect(hydrationErrors.length).toBe(0);
   });
 });

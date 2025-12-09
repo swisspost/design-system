@@ -1,12 +1,12 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '9a636763-de2d-4f72-bc81-98daf10871f7',
   title: 'Components/Popover',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-popover',
   parameters: {
     badges: [],
@@ -17,7 +17,7 @@ const meta: MetaComponent = {
     },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18199-9350&mode=design&t=38qLaYwWdirTcHdb-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21-173&m=dev',
     },
   },
   render,
@@ -36,7 +36,7 @@ const meta: MetaComponent = {
     id: {
       name: 'Id',
       description:
-        'The id is used to connect a trigger element with the popover. <post-banner data-size="sm"><p>`<button data-popover-target="...">` is the only valid trigger element for `post-popover`.</p></post-banner>',
+        'The id is used to associate the <post-popover-trigger> with the <post-popover>.',
       table: {
         category: 'General',
       },
@@ -95,18 +95,16 @@ const meta: MetaComponent = {
 
 function render(args: Args) {
   return html`
-    <div class="d-flex justify-content-center">
-      <button class="btn btn-secondary btn-large" data-popover-target="${args.id}">
-        Click here to see a popover
-      </button>
-    </div>
+    <post-popover-trigger for="${args.id}">
+      <button class="btn btn-secondary">Popover Trigger</button>
+    </post-popover-trigger>
     <post-popover
       class="palette ${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
       close-button-caption="${args.closeButtonCaption}"
       ?arrow="${args.arrow}"
-      style="${args.maxWidth ? '--post-popover-max-width: ' + args.maxWidth : ''}"
+      style="${args.maxWidth ? '--post-popover-max-width: ' + args.maxWidth : nothing}"
     >
       ${args.title ? html` <h2 class="h6">Optional title</h2> ` : null}
       <p class="mb-0">${unsafeHTML(args.innerHtml)}</p>
@@ -116,3 +114,24 @@ function render(args: Args) {
 
 export default meta;
 export const Default: StoryObj = {};
+
+export const Wrapped: StoryObj = {
+  render: () => {
+    return html`
+      <post-popover-trigger>
+        <button class="btn btn-secondary">Popover Trigger</button>
+        <post-popover
+          class="palette palette-accent"
+          placement="top"
+          close-button-caption="Close"
+          arrow=""
+        >
+          <h2 class="h6">Optional title</h2>
+          <p class="mb-0">
+            A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+          </p>
+        </post-popover>
+      </post-popover-trigger>
+    `;
+  },
+};
