@@ -15,8 +15,11 @@ permissions:
   contents: read
 
 jobs:
-  e2e:
+  setup:
     runs-on: ubuntu-latest
+
+    outputs:
+      packages: ${{ steps.packages.outputs.result }}
 
     steps:
       - name: Checkout
@@ -24,10 +27,66 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install & build dependencies
+        run: pnpm install --ignore-scripts && pnpm --filter design-system-documentation... build
+
+      - name: Create Status File
+        run: pnpm m ls --depth=0 --json > monorepo.json
+
+      - name: Get package names
+        id: packages
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const fs = require('fs')
+            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
+
+            fs.unlinkSync('monorepo.json')
+            return monorepo
+              .filter(pkg => pkg.devDependencies !== undefined && pkg.devDependencies.cypress !== undefined)
+              .map(pkg => pkg.name.replace('@swisspost/', ''))
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
+        with:
+          name: design-system-documentation-e2e-cypress
+          path: |
+            packages/documentation/storybook-static
+            packages/**/dist
+            packages/**/loader
+            packages/**/hydrate
+
+          # https://github.com/actions/upload-artifact?tab=readme-ov-file#altering-compressions-level-speed-v-size
+          compression-level: 6
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: setup
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.setup.outputs.packages) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+        with:
+          fetch-depth: 0
+
+      - name: Download artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: design-system-documentation-e2e-cypress
+
       - name: Setup
         uses: ./.github/actions/setup-pnpm
         with:
           use_cache: false
+
+      - name: Install & build dependencies
+        run: pnpm install
 
       - name: Cache cypress
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
@@ -36,9 +95,6 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-cypress-
 
-      - name: Install & build dependencies
-        run: pnpm install && pnpm -r build
-
       - name: Prepare Cypress – Spawn Xvfb server
         run: Xvfb :99 &
 
@@ -46,10 +102,10 @@ jobs:
         run: export DISPLAY=:99
 
       - name: Cypress info
-        run: pnpm --filter design-system-documentation exec cypress info
+        run: pnpm --filter ${{ matrix.package }} exec cypress info
 
       - name: Run tests
-        run: pnpm e2e:ci
+        run: pnpm start-server-and-test 'pnpm --filter design-system-documentation exec storybook dev -p 9001 --quiet --no-open --docs' 9001 'pnpm --filter ${{ matrix.package }} e2e:ci'
 
       - name: Upload screenshots
         uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47

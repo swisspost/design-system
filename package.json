@@ -16,7 +16,6 @@
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
-    "e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --stream e2e:ci'",
     "unit": "pnpm -r unit",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
