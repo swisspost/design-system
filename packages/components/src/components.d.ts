@@ -199,6 +199,10 @@ export namespace Components {
     }
     interface PostDatepicker {
         /**
+          * todolea: make it work, also arrays? List of disabled dates
+         */
+        "disableDates"?: Date | Date[];
+        /**
           * Hides the popover calendar
          */
         "hide": () => Promise<void>;
@@ -208,10 +212,22 @@ export namespace Components {
          */
         "inline": boolean;
         /**
+          * Maximum possible date to select
+         */
+        "maxDate"?: Date | string | number;
+        /**
+          * Minimun possible date to select
+         */
+        "minDate"?: Date | string | number;
+        /**
           * Whether the datepicker expects a range selection or a single date selection
           * @default false
          */
         "range"?: boolean;
+        /**
+          * Selected date (or selected date range)
+         */
+        "selectedDate"?: Date | Date[];
         /**
           * Displays the popover calendar, focusing the first calendar item.
           * @param target - The HTML element relative to which the popover calendar should be displayed.
@@ -1175,10 +1191,22 @@ declare namespace LocalJSX {
     }
     interface PostDatepicker {
         /**
+          * todolea: make it work, also arrays? List of disabled dates
+         */
+        "disableDates"?: Date | Date[];
+        /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked)
           * @default false
          */
         "inline"?: boolean;
+        /**
+          * Maximum possible date to select
+         */
+        "maxDate"?: Date | string | number;
+        /**
+          * Minimun possible date to select
+         */
+        "minDate"?: Date | string | number;
         /**
           * An event emitted when a date or a range of dates have been selected
          */
@@ -1188,6 +1216,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "range"?: boolean;
+        /**
+          * Selected date (or selected date range)
+         */
+        "selectedDate"?: Date | Date[];
         /**
           * The predefined start date of the calendar Default is today
           * @default new Date()

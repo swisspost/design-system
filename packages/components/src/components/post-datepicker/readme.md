@@ -9,12 +9,12 @@
 
 | Property       | Attribute       | Description                                                                              | Type                       | Default      |
 | -------------- | --------------- | ---------------------------------------------------------------------------------------- | -------------------------- | ------------ |
-| `disableDates` | `disable-dates` | todolea: array? List of disabled dates                                                   | `Date \| Date[]`           | `undefined`  |
+| `disableDates` | `disable-dates` | todolea: make it work, also arrays? List of disabled dates                               | `Date \| Date[]`           | `undefined`  |
 | `inline`       | `inline`        | Whether the calendar is inline in the page (not showing in a popover when input clicked) | `boolean`                  | `false`      |
 | `maxDate`      | `max-date`      | Maximum possible date to select                                                          | `Date \| number \| string` | `undefined`  |
 | `minDate`      | `min-date`      | Minimun possible date to select                                                          | `Date \| number \| string` | `undefined`  |
 | `range`        | `range`         | Whether the datepicker expects a range selection or a single date selection              | `boolean`                  | `false`      |
-| `selectedDate` | `selected-date` | Preselected date                                                                         | `Date \| Date[]`           | `undefined`  |
+| `selectedDate` | `selected-date` | Selected date (or selected date range)                                                   | `Date \| Date[]`           | `undefined`  |
 | `startDate`    | `start-date`    | The predefined start date of the calendar Default is today                               | `Date`                     | `new Date()` |
 
 

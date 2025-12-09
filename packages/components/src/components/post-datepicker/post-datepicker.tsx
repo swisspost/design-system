@@ -26,13 +26,31 @@ interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement
 export class PostDatepicker {
   @Element() host: HTMLPostDatepickerElement;
 
-  // todolea: handle range
-  @State() selectedDate: Date;
+  /**
+   * Selected date (or selected date range)
+   */
+  @Prop() selectedDate?: Date | Date[];
 
   /**
    * Whether the datepicker expects a range selection or a single date selection
    */
   @Prop() range?: boolean = false;
+
+  /**
+   * Minimun possible date to select
+   */
+  @Prop() minDate?: Date | string | number;
+
+  /**
+   * Maximum possible date to select
+   */
+  @Prop() maxDate?: Date | string | number;
+
+  /**
+   * todolea: make it work, also arrays?
+   * List of disabled dates
+   */
+  @Prop() disableDates?: Date | Date[];
 
   @State() locale: string = document.documentElement.lang;
 
@@ -48,9 +66,9 @@ export class PostDatepicker {
   @Prop() startDate?: Date = new Date();
 
   /**
-   * An event emitted when a date has been selected
+   * An event emitted when a date or a range of dates have been selected
    */
-  @Event() postSelectedDate: EventEmitter<Date | Date[]>;
+  @Event() postUpdateDates: EventEmitter<Date | Date[]>;
 
   /**
    * Displays the popover calendar, focusing the first calendar item.
@@ -166,8 +184,8 @@ export class PostDatepicker {
       target.focus();
     }
 
-    // Update selectedDate to match the active cell
-    this.selectedDate = new Date(
+    // Update start date to match the active cell
+    this.startDate = new Date(
       Number(target.dataset.year),
       Number(target.dataset.month),
       Number(target.dataset.date),
@@ -261,7 +279,7 @@ export class PostDatepicker {
 
   private handleGridKeydown = (e: KeyboardEvent) => {
     const key = e.key;
-    const current = this.selectedDate;
+    const current = this.startDate;
     if (!current) return;
 
     // If user clicks ENTER, trigger click on the cell
@@ -347,7 +365,6 @@ export class PostDatepicker {
   private skipFocusOnNextRender = false;
 
   private enhanceAccessibility(focusOnDate: boolean = true) {
-    console.log('Adding accessibility');
     let body = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells');
 
     if (this.currentViewType === 'months') {
@@ -364,7 +381,7 @@ export class PostDatepicker {
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    this.setActiveCell(this.selectedDate, focusOnDate);
+    this.setActiveCell(this.startDate, focusOnDate);
   }
 
   // Update the cells aria-selected value
@@ -380,9 +397,6 @@ export class PostDatepicker {
     const locale = localesMap[this.locale] || localesMap.en;
     this.datepickerInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
     this.datepickerContainerEl = this.host.shadowRoot.querySelector('.datepicker-container');
-    if (!this.selectedDate) {
-      this.selectedDate = this.startDate;
-    }
 
     if (this.datepickerContainerEl) {
       const options: AirDatepickerCustomOptions = {
@@ -401,12 +415,13 @@ export class PostDatepicker {
         showOtherMonths: false,
         moveToOtherMonthsOnSelect: true,
         startDate: this.startDate,
+        minDate: this.minDate,
+        maxDate: this.maxDate,
         locale: locale,
         dateFormat: (localesMap[this.locale] || localesMap.en).dateFormat,
         view: 'days',
         onChangeView: view => {
           this.currentViewType = view;
-          console.log('Changing view to: ', view);
           requestAnimationFrame(() => {
             this.enhanceAccessibility();
           });
@@ -417,21 +432,24 @@ export class PostDatepicker {
         },
         onSelect: ({ date, formattedDate }) => {
           this.updateAriaSelected();
-
-          // If range & only one date has been selected, user should stay in the DP
-          if (this.range && Array.isArray(date) && date.length === 1) {
-            return;
-          }
-
+          this.postUpdateDates.emit(date);
           // Assign value to the input, close the popover and focus on the input
           if (this.datepickerInput) {
-            const val = Array.isArray(formattedDate) ? formattedDate.join(' - ') : formattedDate;
-            this.datepickerInput.value = val;
+            if (Array.isArray(formattedDate)) {
+              this.datepickerInput.value =
+                formattedDate.length === 1 ? `${formattedDate} -` : formattedDate.join(' - ');
+            } else {
+              this.datepickerInput.value = formattedDate;
+            }
+
+            // If range & only one date has been selected, user should stay in the DP
+            if (this.range && Array.isArray(date) && date.length === 1) {
+              return;
+            }
+
             this.popoverRef?.hide();
             requestAnimationFrame(() => this.datepickerInput.focus());
           }
-
-          this.postSelectedDate.emit(date);
         },
         onShow: () => {
           this.enhanceAccessibility();
@@ -494,6 +512,15 @@ export class PostDatepicker {
         nextButton.addEventListener('click', () => {
           this.skipFocusOnNextRender = true;
         });
+      }
+
+      if (this.disableDates) {
+        console.log('there are some dates to disable', this.disableDates);
+        this.datepickerInstance.disableDate(this.disableDates);
+      }
+
+      if (this.selectedDate) {
+        this.datepickerInstance.selectDate(this.selectedDate);
       }
 
       // Override the title click to go to year view directly (skip month view)
