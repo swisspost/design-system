@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="/assets/css/index.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
+
+    <script>
+      setTimeout(() => {
+        document.querySelector('a[href="/sch"]').setAttribute('aria-current', 'page');
+      }, 3000);
+    </script>
   </head>
 
   <body style="min-height: 200vh">
