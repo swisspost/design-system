@@ -8,14 +8,24 @@ import {
   State,
   EventEmitter,
   Event,
+  Watch,
 } from '@stencil/core';
-import AirDatepicker, { AirDatepickerOptions, AirDatepickerViews } from 'air-datepicker';
+import AirDatepicker, {
+  AirDatepickerOptions,
+  AirDatepickerViews,
+  AirDatepickerViewsSingle,
+} from 'air-datepicker';
 
 import { localesMap } from './locales';
-import { getDeepFocusableChildren } from '@/utils';
+import { checkEmptyOrType, getDeepFocusableChildren } from '@/utils';
 
 interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
+  onRenderCell?: (data: {
+    date: Date;
+    cellType: AirDatepickerViewsSingle;
+    datepicker: AirDatepicker<HTMLDivElement>;
+  }) => void;
 }
 
 @Component({
@@ -26,10 +36,25 @@ interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement
 export class PostDatepicker {
   @Element() host: HTMLPostDatepickerElement;
 
+  @State() today = new Date();
+
   /**
    * Selected date (or selected date range)
    */
-  @Prop() selectedDate?: Date | Date[];
+  @Prop() selectedDate?: string | [string, string];
+  @Watch('selectedDate')
+  validateSelectedDate() {
+    if (this.selectedDate) {
+      if (this.range) {
+        // TODO: Update to checkEmptyOrArrayOf when PR #6436 is merged
+        if (this.selectedDate.length === 1 || typeof this.selectedDate === 'string') {
+          console.error('Selected date should be a tuple when datepicker is a range');
+        }
+      } else {
+        checkEmptyOrType(this, 'selectedDate', 'string');
+      }
+    }
+  }
 
   /**
    * Whether the datepicker expects a range selection or a single date selection
@@ -39,18 +64,23 @@ export class PostDatepicker {
   /**
    * Minimun possible date to select
    */
-  @Prop() minDate?: Date | string | number;
+  @Prop() min?: Date | string | number;
 
   /**
    * Maximum possible date to select
    */
-  @Prop() maxDate?: Date | string | number;
+  @Prop() max?: Date | string | number;
 
   /**
-   * List of disabled dates
-   * Should be in a string, comma separated
+   * List of fixed disabled dates
    */
-  @Prop() disableDates?: string;
+  @Prop() disabledDates?: string | string[];
+
+  /**
+   * Used to extend the existing on render cell to disable an infinite list of dates
+   * e.g. all weekends, all months of March, etc.
+   */
+  @Prop() onUserRenderCell?: AirDatepickerCustomOptions['onRenderCell'];
 
   @State() locale: string = document.documentElement.lang;
 
@@ -103,14 +133,15 @@ export class PostDatepicker {
   private currentViewType: AirDatepickerViews = 'days';
 
   private popoverRef: HTMLPostPopovercontainerElement;
-  private datepickerInput: HTMLInputElement;
-  private datepickerInstance: AirDatepicker<HTMLDivElement>;
-  private datepickerContainerEl: HTMLDivElement;
+  private dpInput: HTMLInputElement;
+  private dpInstance: AirDatepicker<HTMLDivElement>;
+  private dpContainer: HTMLDivElement;
 
   private gridObserver: MutationObserver;
+  private navObserver: MutationObserver;
 
   private getCells(): HTMLElement[] {
-    if (!this.datepickerContainerEl) return [];
+    if (!this.dpContainer) return [];
 
     let selector = '';
     switch (this.currentViewType) {
@@ -125,7 +156,7 @@ export class PostDatepicker {
         break;
     }
 
-    return Array.from(this.datepickerContainerEl.querySelectorAll(selector));
+    return Array.from(this.dpContainer.querySelectorAll(selector));
   }
 
   private setActiveCell(date: Date, focusOnDate: boolean = true) {
@@ -192,14 +223,33 @@ export class PostDatepicker {
     );
   }
 
-  //todolea: listener is still there when exiting the DP
+  private updateNavigationButtonLabels() {
+    let label = 'month';
+    if (this.currentViewType === 'months') {
+      label = 'year';
+    } else if (this.currentViewType === 'years') {
+      label = 'decade';
+    }
+
+    this.host.shadowRoot
+      .querySelector('.datepicker-container [data-action="prev"] button')
+      ?.setAttribute('aria-label', `Previous ${label}`);
+    this.host.shadowRoot
+      .querySelector('.datepicker-container [data-action="next"] button')
+      ?.setAttribute('aria-label', `Next ${label}`);
+  }
+
   /**
    * Correct the tab flow loop
    * 1) Title -> 2) Previous button -> 3) Next button -> 4) Grid active element
    * If datepicker is inline, remove the loop
    */
   private handleTab = (e: KeyboardEvent) => {
-    if (e.key !== 'Tab') return;
+    if (e.key !== 'Tab' && e.key !== 'Escape') return;
+
+    if (e.key === 'Escape') {
+      this.dpInput.focus();
+    }
 
     const active = this.host.shadowRoot.activeElement as HTMLElement;
 
@@ -352,7 +402,7 @@ export class PostDatepicker {
       current.getMonth() !== newDate.getMonth() || current.getFullYear() !== newDate.getFullYear();
     if (monthChanged) {
       this.skipFocusOnNextRender = false;
-      this.datepickerInstance.setViewDate(newDate);
+      this.dpInstance.setViewDate(newDate);
 
       requestAnimationFrame(() => {
         this.setActiveCell(newDate, true);
@@ -365,18 +415,23 @@ export class PostDatepicker {
   private skipFocusOnNextRender = false;
 
   private enhanceAccessibility(focusOnDate: boolean = true) {
-    let body = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells');
+    let body = this.dpContainer.querySelector('.air-datepicker-body--cells');
 
     if (this.currentViewType === 'months') {
-      body = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells.-months-');
+      body = this.dpContainer.querySelector('.air-datepicker-body--cells.-months-');
     } else if (this.currentViewType === 'years') {
-      body = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells.-years-');
+      body = this.dpContainer.querySelector('.air-datepicker-body--cells.-years-');
     }
     if (!body) return;
 
     body.setAttribute('role', 'grid');
 
-    this.updateAriaSelected();
+    this.getCells().forEach(cell => {
+      cell.setAttribute('aria-selected', cell.classList.contains('-selected-') ? 'true' : 'false');
+      if (cell.classList.contains('-current-')) {
+        cell.setAttribute('aria-current', 'date');
+      }
+    });
 
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
@@ -395,16 +450,15 @@ export class PostDatepicker {
     const slot = this.host.shadowRoot.querySelector('slot');
     const assignedNodes = slot && (slot as HTMLSlotElement).assignedElements();
     const locale = localesMap[this.locale] || localesMap.en;
-    this.datepickerInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
-    this.datepickerContainerEl = this.host.shadowRoot.querySelector('.datepicker-container');
-    console.log('should disable: ', this.disableDates);
+    this.dpInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
+    this.dpContainer = this.host.shadowRoot.querySelector('.datepicker-container');
 
-    if (this.datepickerContainerEl) {
+    if (this.dpContainer) {
       const options: AirDatepickerCustomOptions = {
         navTitles: {
-          days: '<button><div class="month-nav"><div><strong>MMMM yyyy</strong></div><div><post-icon size="small" name="2052"></div></post-icon></div><div class="no-hover"></div></button>',
+          days: '<button aria-label="Switch to year view"><div class="month-nav"><div><strong>MMMM yyyy</strong></div><div><post-icon size="small" name="2052"></div></post-icon></div><div class="no-hover"></div></button>',
           months:
-            '<button><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>',
+            '<button aria-label="Switch to year view"><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>',
         },
         prevHtml: '<button><post-icon size="small" name="2049" ></post-icon></button>',
         nextHtml: '<button><post-icon size="small" name="2050" ></post-icon></button>',
@@ -416,8 +470,8 @@ export class PostDatepicker {
         showOtherMonths: false,
         moveToOtherMonthsOnSelect: true,
         startDate: this.startDate,
-        minDate: this.minDate,
-        maxDate: this.maxDate,
+        minDate: this.min,
+        maxDate: this.max,
         locale: locale,
         dateFormat: (localesMap[this.locale] || localesMap.en).dateFormat,
         view: 'days',
@@ -430,17 +484,21 @@ export class PostDatepicker {
         onChangeViewDate: ({ month, year }) => {
           this.currentViewYear = year;
           this.currentViewMonth = month;
+          this.updateNavigationButtonLabels();
         },
         onSelect: ({ date, formattedDate }) => {
           this.updateAriaSelected();
           this.postUpdateDates.emit(date);
           // Assign value to the input, close the popover and focus on the input
-          if (this.datepickerInput) {
+          if (this.dpInput) {
             if (Array.isArray(formattedDate)) {
-              this.datepickerInput.value =
-                formattedDate.length === 1 ? `${formattedDate} -` : formattedDate.join(' - ');
+              const dotFormattedDate: string | string[] = formattedDate.map(d =>
+                d.split('/').join('.'),
+              );
+              this.dpInput.value =
+                formattedDate.length === 1 ? `${dotFormattedDate} -` : dotFormattedDate.join(' - ');
             } else {
-              this.datepickerInput.value = formattedDate;
+              this.dpInput.value = formattedDate.split('/').join('.');
             }
 
             // If range & only one date has been selected, user should stay in the DP
@@ -449,57 +507,26 @@ export class PostDatepicker {
             }
 
             this.popoverRef?.hide();
-            requestAnimationFrame(() => this.datepickerInput.focus());
+            requestAnimationFrame(() => this.dpInput.focus());
           }
         },
         onShow: () => {
           this.enhanceAccessibility();
         },
-        onRenderCell: ({ date, cellType }) => {
-          if (cellType === 'day') {
-            return {
-              attrs: {
-                'role': 'gridcell',
-                'aria-label': date.toLocaleDateString(this.locale, {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                }),
-              },
-            };
-          } else if (cellType === 'month') {
-            return {
-              attrs: {
-                'role': 'gridcell',
-                'aria-label': date.toLocaleDateString(this.locale, {
-                  year: 'numeric',
-                  month: 'long',
-                }),
-              },
-            };
-          } else if (cellType === 'year') {
-            return {
-              attrs: {
-                'role': 'gridcell',
-                'aria-label': date.toLocaleDateString(this.locale, {
-                  year: 'numeric',
-                }),
-              },
-            };
-          }
+        onRenderCell: data => {
+          const internal = this.internalOnRenderCell(data);
+          const custom = this.onUserRenderCell?.(data);
+
+          return this.mergeRenderCellResults(internal, custom);
         },
       };
 
-      this.datepickerInstance = new AirDatepicker(
-        this.datepickerContainerEl,
-        options as AirDatepickerOptions<HTMLDivElement>,
-      );
+      this.dpInstance = new AirDatepicker(this.dpContainer, options);
 
-      const prevButton = this.datepickerContainerEl.querySelector(
+      const prevButton = this.dpContainer.querySelector(
         '.air-datepicker-nav--action[data-action="prev"]',
       );
-      const nextButton = this.datepickerContainerEl.querySelector(
+      const nextButton = this.dpContainer.querySelector(
         '.air-datepicker-nav--action[data-action="next"]',
       );
 
@@ -515,29 +542,106 @@ export class PostDatepicker {
         });
       }
 
-      if (this.disableDates) {
-        const disableDatesArray = this.disableDates.split(',');
-        this.datepickerInstance.disableDate(disableDatesArray);
+      if (this.disabledDates) {
+        console.log('should disable', this.disabledDates);
+        this.dpInstance.disableDate(this.disabledDates);
       }
 
+      //todolea: handle array
       if (this.selectedDate) {
-        this.datepickerInstance.selectDate(this.selectedDate);
+        if (
+          (this.range && Array.isArray(this.selectedDate) && this.selectedDate.length === 2) ||
+          (!this.range && typeof this.selectedDate === 'string')
+        ) {
+          this.dpInstance.selectDate(this.selectedDate);
+        }
       }
 
       // Override the title click to go to year view directly (skip month view)
-      const navTitle = this.datepickerContainerEl.querySelector('.air-datepicker-nav--title');
+      const navTitle = this.dpContainer.querySelector('.air-datepicker-nav--title');
       if (navTitle) {
         navTitle.addEventListener('click', () => {
-          if (this.datepickerInstance) {
-            this.datepickerInstance.setCurrentView('years');
+          if (this.dpInstance) {
+            this.dpInstance.setCurrentView('years');
           }
         });
       }
     }
   }
 
+  private internalOnRenderCell({ date, cellType }) {
+    if (cellType === 'day') {
+      return {
+        attrs: {
+          'role': 'gridcell',
+          'aria-label': date.toLocaleDateString(this.locale, {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }),
+        },
+      };
+    } else if (cellType === 'month') {
+      return {
+        attrs: {
+          'role': 'gridcell',
+          'aria-label': date.toLocaleDateString(this.locale, {
+            year: 'numeric',
+            month: 'long',
+          }),
+        },
+      };
+    } else if (cellType === 'year') {
+      return {
+        attrs: {
+          'role': 'gridcell',
+          'aria-label': date.toLocaleDateString(this.locale, {
+            year: 'numeric',
+          }),
+        },
+      };
+    }
+  }
+
+  private mergeRenderCellResults(base, custom) {
+    if (!base) return custom;
+    if (!custom) return base;
+
+    return {
+      ...base,
+      ...custom,
+      attrs: {
+        ...(base.attrs ?? {}),
+        ...(custom.attrs ?? {}),
+      },
+      classes: [base.classes, custom.classes].filter(Boolean).join(' '),
+      disabled: base.disabled || custom.disabled,
+    };
+  }
+
+  private setupNavObserver() {
+    const nav = this.dpContainer.querySelector('.air-datepicker-nav');
+    if (!nav) return;
+
+    if (this.navObserver) {
+      this.navObserver.disconnect();
+    }
+
+    this.updateNavigationButtonLabels();
+
+    this.navObserver = new MutationObserver(() => {
+      this.updateNavigationButtonLabels();
+    });
+
+    this.navObserver.observe(nav, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
   private setupGridObserver() {
-    const grid = this.datepickerContainerEl.querySelector('.air-datepicker-body--cells');
+    const grid = this.dpContainer.querySelector('.air-datepicker-body--cells');
     if (!grid) return;
 
     // If reinitializing, disconnect previous observer
@@ -552,6 +656,7 @@ export class PostDatepicker {
       // Wait for AirDatepicker to finish rendering this frame
       requestAnimationFrame(() => {
         this.enhanceAccessibility(!this.skipFocusOnNextRender);
+
         this.skipFocusOnNextRender = false;
       });
     });
@@ -562,28 +667,12 @@ export class PostDatepicker {
     });
   }
 
-  // Listen to click on the button within the slot to open the datepicker
-  private attachTriggerListener() {
-    const slotEl = this.host.shadowRoot.querySelector('slot');
-    if (!slotEl) return;
-
-    const assigned = (slotEl as HTMLSlotElement).assignedElements({ flatten: true });
-    const trigger = assigned.find(el => el.tagName === 'BUTTON');
-
-    if (!trigger) return;
-
-    trigger.addEventListener('click', ev => {
-      ev.stopPropagation();
-      this.show(trigger as HTMLElement);
-    });
-  }
-
   async componentDidLoad() {
     this.configDatepicker();
     this.setupGridObserver();
-    if (!this.inline && this.popoverRef) {
-      this.attachTriggerListener();
-    } else {
+    this.setupNavObserver();
+    this.validateSelectedDate();
+    if (this.inline) {
       this.host.shadowRoot.addEventListener('keydown', this.handleTab);
       requestAnimationFrame(() => this.enhanceAccessibility());
     }
@@ -596,9 +685,9 @@ export class PostDatepicker {
       this.gridObserver.disconnect();
     }
 
-    if (this.datepickerInstance) {
-      this.datepickerInstance.destroy();
-      this.datepickerInstance = null;
+    if (this.dpInstance) {
+      this.dpInstance.destroy();
+      this.dpInstance = null;
     }
   }
 
@@ -606,16 +695,27 @@ export class PostDatepicker {
     return (
       <Host>
         <div class="calendar">
-          <slot></slot>
           {this.inline && <div class="datepicker-container"></div>}
           {!this.inline && (
-            <post-popovercontainer
-              placement="bottom"
-              ref={e => (this.popoverRef = e)}
-              manualClose={false}
-            >
-              <div class="datepicker-container"></div>
-            </post-popovercontainer>
+            <>
+              <div class="calendar-input">
+                <slot></slot>
+                <button
+                  onClick={e => this.show(e.currentTarget as HTMLElement)}
+                  aria-haspopup="true"
+                  aria-label="Toggle calendar"
+                >
+                  <post-icon name="calendar"></post-icon>
+                </button>
+              </div>
+              <post-popovercontainer
+                placement="bottom"
+                ref={e => (this.popoverRef = e)}
+                manualClose={false}
+              >
+                <div class="datepicker-container"></div>
+              </post-popovercontainer>
+            </>
           )}
         </div>
       </Host>

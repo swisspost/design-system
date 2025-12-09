@@ -293,17 +293,21 @@ tokens.$default-map: components.$post-breadcrumb;
     .-day-.-other-month- {
       pointer-events: none;
     }
+
+    .-selected-.-other-month- {
+      background-color: transparent;
+    }
   }
 }
 
-:host {
+.calendar-input {
   position: relative;
-}
 
-::slotted(button) {
-  position: absolute;
-  right: 16px;
-  top: 16px;
-  border: none;
-  background-color: transparent;
+  button {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    border: none;
+    background-color: transparent;
+  }
 }

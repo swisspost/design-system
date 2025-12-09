@@ -199,9 +199,9 @@ export namespace Components {
     }
     interface PostDatepicker {
         /**
-          * List of disabled dates Should be in a string, comma separated
+          * List of fixed disabled dates
          */
-        "disableDates"?: string;
+        "disabledDates"?: string | string[];
         /**
           * Hides the popover calendar
          */
@@ -214,11 +214,15 @@ export namespace Components {
         /**
           * Maximum possible date to select
          */
-        "maxDate"?: Date | string | number;
+        "max"?: Date | string | number;
         /**
           * Minimun possible date to select
          */
-        "minDate"?: Date | string | number;
+        "min"?: Date | string | number;
+        /**
+          * Used to extend the existing on render cell to disable an infinite list of dates e.g. all weekends, all months of March, etc.
+         */
+        "onUserRenderCell"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
           * Whether the datepicker expects a range selection or a single date selection
           * @default false
@@ -227,7 +231,7 @@ export namespace Components {
         /**
           * Selected date (or selected date range)
          */
-        "selectedDate"?: Date | Date[];
+        "selectedDate"?: string | [string, string];
         /**
           * Displays the popover calendar, focusing the first calendar item.
           * @param target - The HTML element relative to which the popover calendar should be displayed.
@@ -1191,9 +1195,9 @@ declare namespace LocalJSX {
     }
     interface PostDatepicker {
         /**
-          * List of disabled dates Should be in a string, comma separated
+          * List of fixed disabled dates
          */
-        "disableDates"?: string;
+        "disabledDates"?: string | string[];
         /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked)
           * @default false
@@ -1202,15 +1206,19 @@ declare namespace LocalJSX {
         /**
           * Maximum possible date to select
          */
-        "maxDate"?: Date | string | number;
+        "max"?: Date | string | number;
         /**
           * Minimun possible date to select
          */
-        "minDate"?: Date | string | number;
+        "min"?: Date | string | number;
         /**
           * An event emitted when a date or a range of dates have been selected
          */
         "onPostUpdateDates"?: (event: PostDatepickerCustomEvent<Date | Date[]>) => void;
+        /**
+          * Used to extend the existing on render cell to disable an infinite list of dates e.g. all weekends, all months of March, etc.
+         */
+        "onUserRenderCell"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
           * Whether the datepicker expects a range selection or a single date selection
           * @default false
@@ -1219,7 +1227,7 @@ declare namespace LocalJSX {
         /**
           * Selected date (or selected date range)
          */
-        "selectedDate"?: Date | Date[];
+        "selectedDate"?: string | [string, string];
         /**
           * The predefined start date of the calendar Default is today
           * @default new Date()
