@@ -29,26 +29,27 @@ export class PostMegadropdown {
 
   private defaultSlotObserver: MutationObserver;
 
-  /**
-   * A label for the back button visible on tablet and mobile
-   */
-  @Prop({ reflect: true }) backLabel!: string;
+  @Element() host: HTMLPostMegadropdownElement;
 
-  @Watch('backLabel')
-  validateBackLabel() {
-    checkRequiredAndType(this, 'backLabel', 'string');
-  }
   /**
    * An accessible label for the close button visible on desktop
    */
-  @Prop({ reflect: true }) closeLabel!: string;
+  @Prop({ reflect: true }) labelClose!: string;
 
-  @Watch('closeLabel')
+  @Watch('labelClose')
   validateCloseLabel() {
-    checkRequiredAndType(this, 'closeLabel', 'string');
+    checkRequiredAndType(this, 'labelClose', 'string');
   }
 
-  @Element() host: HTMLPostMegadropdownElement;
+  /**
+   * A label for the back button visible on tablet and mobile
+   */
+  @Prop({ reflect: true }) labelBack!: string;
+
+  @Watch('labelBack')
+  validateBackLabel() {
+    checkRequiredAndType(this, 'labelBack', 'string');
+  }
 
   @State() device: Device = breakpoint.get('device');
 
@@ -60,6 +61,8 @@ export class PostMegadropdown {
   @State() isVisible: boolean = false;
 
   @State() trigger: boolean = false;
+
+  @State() megadropdownTitle: string;
 
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
@@ -88,8 +91,8 @@ export class PostMegadropdown {
   }
 
   componentDidLoad() {
-    this.validateBackLabel();
     this.validateCloseLabel();
+    this.validateBackLabel();
     this.checkInitialAriaCurrent();
     this.setupObserver();
     this.handleAriaCurrentChange([]);
@@ -125,6 +128,11 @@ export class PostMegadropdown {
    */
   @Method()
   async show() {
+    if (this.device !== 'desktop') {
+      const triggerLabel = this.megadropdownTrigger?.querySelector('.nav-el-active');
+      if (triggerLabel) this.megadropdownTitle = triggerLabel.innerHTML;
+    }
+
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
@@ -322,21 +330,6 @@ export class PostMegadropdown {
   render() {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
-    const triggerLabel = this.megadropdownTrigger.querySelector('.nav-el-active');
-
-    const backButton = (
-      <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary px-0 btn-sm">
-        <post-icon name="arrowleft"></post-icon>
-        {this.backLabel}
-      </button>
-    );
-
-    const closeButton = (
-      <post-closebutton onClick={() => this.hide(true)} class="close-button">
-        {this.closeLabel}
-      </post-closebutton>
-    );
-
     return (
       <Host version={version}>
         <div
@@ -345,12 +338,22 @@ export class PostMegadropdown {
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
           <div class="megadropdown">
+            {this.megadropdownTitle && <p class="megadropdown-title">{this.megadropdownTitle}</p>}
+
             <div class="megadropdown-content">
-              {triggerLabel && <p class="megadropdown-title">{triggerLabel.innerHTML}</p>}
               <slot></slot>
             </div>
 
-            {this.device === 'desktop' ? closeButton : backButton}
+            {this.device === 'desktop' ? (
+              <post-closebutton onClick={() => this.hide(true)} class="close-button">
+                {this.labelClose}
+              </post-closebutton>
+            ) : (
+              <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary btn-sm">
+                <post-icon name="arrowleft"></post-icon>
+                {this.labelBack}
+              </button>
+            )}
           </div>
         </div>
       </Host>

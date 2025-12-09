@@ -311,14 +311,6 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
-          * A label for the back button visible on tablet and mobile
-         */
-        "backLabel": string;
-        /**
-          * An accessible label for the close button visible on desktop
-         */
-        "closeLabel": string;
-        /**
           * Sets focus to the first focusable element within the component.
          */
         "focusFirst": () => Promise<void>;
@@ -326,6 +318,14 @@ export namespace Components {
           * Hides the dropdown with an animation.
          */
         "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
+        /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "labelBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "labelClose": string;
         /**
           * Displays the dropdown.
          */
@@ -1339,11 +1339,11 @@ declare namespace LocalJSX {
         /**
           * A label for the back button visible on tablet and mobile
          */
-        "backLabel": string;
+        "labelBack": string;
         /**
           * An accessible label for the close button visible on desktop
          */
-        "closeLabel": string;
+        "labelClose": string;
         /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */

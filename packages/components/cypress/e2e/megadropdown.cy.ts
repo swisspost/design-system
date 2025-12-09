@@ -11,7 +11,6 @@ describe('megadropdown', () => {
           'post-megadropdown',
           'post-megadropdown-trigger',
         );
-        cy.get('@megadropdown').find('.back-button').as('back-btn');
         cy.get('@megadropdown').find('.close-button').as('close-btn');
         cy.get('@megadropdown').find('.megadropdown-container').as('megadropdown-container');
       });
@@ -36,7 +35,7 @@ describe('megadropdown', () => {
 
       it('should not show back button', () => {
         cy.get('@megadropdown-trigger').click();
-        cy.get('@back-btn').should('be.hidden');
+        cy.get('@megadropdown').find('.back-button').should('not.exist');
       });
 
       it('should close on close button click', () => {
@@ -56,7 +55,6 @@ describe('megadropdown', () => {
           'post-megadropdown-trigger',
         );
         cy.get('@megadropdown').find('.back-button').as('back-btn');
-        cy.get('@megadropdown').find('.close-button').as('close-btn');
       });
 
       it('should open on trigger click', () => {
@@ -71,7 +69,7 @@ describe('megadropdown', () => {
 
       it('should not show close button', () => {
         cy.get('@megadropdown-trigger').click();
-        cy.get('@close-btn').should('be.hidden');
+        cy.get('@megadropdown').find('.close-button').should('not.exist');
       });
     });
   });
