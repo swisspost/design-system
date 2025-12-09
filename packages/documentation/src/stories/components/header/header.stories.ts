@@ -103,8 +103,8 @@ const meta: MetaComponent = {
       },
     },
     targetGroup: {
-      name: 'targetGroup',
-      description: 'Whether or not the targetGroup buttons are visible.',
+      name: 'Target group',
+      description: 'Whether or not the target group buttons are visible.',
       control: {
         type: 'boolean',
       },
