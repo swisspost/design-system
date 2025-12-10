@@ -7,8 +7,8 @@ import {
   PostFooter,
   PostHeader,
   PostIcon,
-  PostLanguageOption,
-  PostLanguageSwitch,
+  PostLanguageMenuItem,
+  PostLanguageMenu,
   PostList,
   PostListItem,
   PostLogo,
@@ -28,8 +28,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           Homepage
         </PostLogo>
 
-      {/* Target Group */}
-      <ul slot="target-group">
+        {/* Target Group */}
+      <ul slot="audience">
         <li>
           <a href="#" aria-current="location">
             Private customers
@@ -41,7 +41,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </ul>
 
       {/* Global controls (Search) */}
-      <ul slot="global-controls">
+      <ul slot="global-nav-primary">
         <li>
           <a href="">
             <span>Search</span>
@@ -50,8 +50,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </li>
       </ul>
 
-      {/* Meta navigation */}
-      <ul slot="meta-navigation">
+      {/* Global secondary navigation */}
+      <ul slot="global-nav-secondary">
         <li>
           <a href="">
             Jobs
@@ -66,29 +66,29 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </li>
       </ul>
 
-        {/* Language switch */}
-        <PostLanguageSwitch
-          caption="Change the language"
-          description="The currently selected language is English."
-          variant="list"
-          slot="post-language-switch"
-        >
-          <PostLanguageOption code="de" name="German">
-            de
-          </PostLanguageOption>
-          <PostLanguageOption code="fr" name="French">
-            fr
-          </PostLanguageOption>
-          <PostLanguageOption code="it" name="Italian">
-            it
-          </PostLanguageOption>
-          <PostLanguageOption active={true} code="en" name="English">
-            en
-          </PostLanguageOption>
-        </PostLanguageSwitch>
+      {/* Language switch */}
+      <PostLanguageMenu
+        caption="Change the language"
+        description="The currently selected language is English."
+        variant="list"
+        slot="language-menu"
+      >
+        <PostLanguageMenuItem code="de" name="German">
+          de
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem code="fr" name="French">
+          fr
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem code="it" name="Italian">
+          it
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem active={true} code="en" name="English">
+          en
+        </PostLanguageMenuItem>
+      </PostLanguageMenu>
 
         {/* Global header login/user menu */}
-        <a href="" slot="global-login">
+        <a href="" slot="post-login">
           <span>Login</span>
           <PostIcon name="login" />
         </a>
@@ -101,7 +101,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostTogglebutton>
 
       {/* Main navigation */}
-      <PostMainnavigation slot="post-mainnavigation">
+      <PostMainnavigation slot="main-nav">
         <PostList title-hidden="">
           <p>Main Navigation</p>
 
