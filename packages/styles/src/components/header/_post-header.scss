@@ -39,8 +39,8 @@ post-header {
 
   // links and buttons remaining in the global header on tablet and mobile
   > :is(
-    [slot='global-controls'],
-    [slot='global-login'],
+    [slot='global-nav-primary'],
+    [slot='post-login'],
     [slot='post-togglebutton'],
     [slot='local-nav']
   ) {
@@ -56,7 +56,7 @@ post-header {
   }
 
   // target group on mobile
-  > ul[slot='target-group'] {
+  > ul[slot='audience'] {
     @include media.only(tablet) {
       margin-block: 1rem;
     }
@@ -68,7 +68,7 @@ post-header {
   }
 
   // meta navigation on desktop
-  > [slot='meta-navigation'] {
+  > ul[slot='meta-navigation'] {
     @include media.max(desktop) {
       &:where(ul) {
         flex-direction: column;
@@ -100,7 +100,7 @@ post-header {
   }
 
   // global user menu trigger
-  [slot='global-login'] > post-menu-trigger > button {
+  [slot='post-login'] > post-menu-trigger > button {
     display: block;
   }
 
