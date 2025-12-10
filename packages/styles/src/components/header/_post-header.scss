@@ -1,9 +1,9 @@
-@use '../../mixins/list';
 @use '../../mixins/media';
 @use '../../functions/tokens';
 @use '../../tokens/components';
 
-@use 'mixins' as *;
+@use './mixins' as *;
+@use './placeholders' as *;
 
 body:has(post-header) {
   scroll-padding-top: var(--post-header-height);
@@ -27,31 +27,30 @@ post-header {
 
   // all header lists
   > ul {
-    @include list.list-inline;
-    gap: 0 0.25rem;
-    margin: 0;
-
-    @include media.only(desktop) {
-      align-items: center;
-    }
-
-    > li {
-      flex: 1 0 auto !important;
-    }
+    @extend %header-list;
   }
 
   // all slotted links and buttons
-  > [slot] {
-    @include slotted-controls {
-      @include header-control-base;
+  > * {
+    @include interactive-elements {
+      @extend %header-control;
     }
   }
 
   // links and buttons remaining in the global header on tablet and mobile
-  > :is([slot='global-controls'], [slot='global-login'], [slot='post-togglebutton']) {
+  > :is(
+    [slot='global-controls'],
+    [slot='global-login'],
+    [slot='post-togglebutton'],
+    [slot='local-nav']
+  ) {
+    @include media.max(desktop) {
+      flex-direction: row;
+    }
+
     @include media.only(mobile) {
-      @include slotted-controls {
-        @include header-control-icon-only;
+      @include interactive-elements {
+        @include nav-item-icon-only;
       }
     }
   }
@@ -69,13 +68,19 @@ post-header {
   }
 
   // meta navigation on desktop
-  > ul[slot='meta-navigation'] {
+  > [slot='meta-navigation'] {
     @include media.max(desktop) {
-      flex-direction: column;
+      &:where(ul) {
+        flex-direction: column;
+      }
 
-      > li > a {
+      @include interactive-elements {
         flex-direction: row-reverse;
-        @include header-control-navigation;
+        @include nav-item-block-layout;
+
+        > post-icon {
+          margin: unset;
+        }
       }
     }
   }

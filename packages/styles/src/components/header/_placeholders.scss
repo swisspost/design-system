@@ -1,0 +1,22 @@
+@use '../../mixins/list';
+@use '../../mixins/media';
+
+@use './mixins' as *;
+
+%header-list {
+  @include list.list-inline;
+  gap: 0 0.25rem;
+  margin: 0;
+
+  @include media.max(desktop) {
+    flex-direction: column;
+  }
+
+  > li {
+    flex: 1 0 auto !important;
+  }
+}
+
+%header-control {
+  @include nav-item-base;
+}
