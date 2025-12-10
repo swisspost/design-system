@@ -36,7 +36,8 @@ playwright-report/
 **/visual-tests/__screenshots__/**/*-actual.png
 **/visual-tests/__screenshots__/**/*-diff.png
 **/visual-tests/__screenshots__/**/*-expected.png
-+**/visual-tests/__screenshots__/
+**/visual-tests/__screenshots__/
+**/visual-tests/components/post-header-*.html
 
 /playwright/.cache/
 playwright/.auth/

@@ -7,7 +7,7 @@
     "include": ["prebuild.ts", "prebuild.spec.ts"]
   },
   "compilerOptions": {
-    "types": ["node", "jest", "@playwright/test"],
+    "types": ["node", "jest"],
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"]
