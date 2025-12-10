@@ -121,7 +121,6 @@ export class PostHeader {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-    this.host.addEventListener('click', this.handleLinkClick);
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.handleScrollParentResize();
@@ -141,6 +140,7 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+    this.host.shadowRoot.addEventListener('click', this.handleLinkClick);
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -153,7 +153,9 @@ export class PostHeader {
     if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
-    this.host.removeEventListener('click', this.handleLinkClick);
+    if (this.host.shadowRoot) {
+      this.host.shadowRoot.removeEventListener('click', this.handleLinkClick);
+    }
 
     if (this.scrollParentResizeObserver) {
       this.scrollParentResizeObserver.disconnect();

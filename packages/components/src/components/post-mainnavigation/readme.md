@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property               | Attribute | Description | Type     | Default     |
+| ---------------------- | --------- | ----------- | -------- | ----------- |
+| `caption` _(required)_ | `caption` |             | `string` | `undefined` |
+
+
 ## Dependencies
 
 ### Depends on
