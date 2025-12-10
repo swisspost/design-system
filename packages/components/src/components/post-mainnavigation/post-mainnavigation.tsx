@@ -55,7 +55,11 @@ export class PostMainnavigation {
     this.resizeObserver.observe(this.navbar);
 
     // Observe the navabar for mutation changes
-    this.mutationObserver.observe(this.navbar, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
+    this.mutationObserver.observe(this.navbar, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+    }); // Recheck scrollability when navigation list changes
 
     // Ensure the scroll buttons are correctly displayed or hidden whenever the navbar is scrolled
     this.navbar.addEventListener('scrollend', this.checkScrollability);
