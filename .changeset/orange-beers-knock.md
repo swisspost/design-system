@@ -3,7 +3,7 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Updated the `post-megadropdown` component to no longer uses named slots, it now provides only a default slot for its content.
+Updated the `post-megadropdown` component to no longer use named slots, it now provides only a default slot for its content.
 The close and back buttons are built into the component and are configured using the `labelClose` and `labelBack` properties instead of slotted markup.
 To preserve styling, the overview link should use the `.megadropdown-overview-link` class.
 

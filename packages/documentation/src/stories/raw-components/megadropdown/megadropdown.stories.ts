@@ -16,7 +16,10 @@ const meta: MetaComponent<HTMLPostMegadropdownElement> = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=2908-30413&m=dev',
     },
   },
-  args: {},
+  args: {
+    labelClose: 'Close',
+    labelBack: 'Back',
+  },
   argTypes: {},
 };
 
