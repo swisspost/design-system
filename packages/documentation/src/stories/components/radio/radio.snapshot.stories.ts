@@ -1,5 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './radio.stories';
+import { renderGroup } from './radio.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -47,6 +48,45 @@ export const Radio: Story = {
               context.id = `${scheme}-${crypto.randomUUID()}`;
               return meta.render?.({ ...context.args, ...args }, context);
             })}
+        </div>
+
+        <!-- Radio Group/Vertical (Grouped) -->
+        <div class="mt-16">
+          ${(() => {
+            const groupContext = {
+              ...context,
+              id: `${scheme}-grouped-${crypto.randomUUID()}`,
+              name: 'Grouped',
+            };
+            return renderGroup(
+              {
+                label: 'Label',
+                hiddenLegend: false,
+                checkedRadio: null,
+              },
+              groupContext,
+            );
+          })()}
+        </div>
+
+        <!-- Radio Group/Horizontal (Inline) -->
+        <div class="mt-16">
+          ${(() => {
+            const inlineContext = {
+              ...context,
+              id: `${scheme}-inline-${crypto.randomUUID()}`,
+              name: 'Inline',
+            };
+            return renderGroup(
+              {
+                label: 'Label',
+                inline: true,
+                hiddenLegend: false,
+                checkedRadio: null,
+              },
+              inlineContext,
+            );
+          })()}
         </div>
       `,
     );
