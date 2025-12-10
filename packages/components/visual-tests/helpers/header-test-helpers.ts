@@ -355,7 +355,7 @@ export async function hoverUserMenuTrigger(page: Page): Promise<void> {
 
 export async function focusUserMenuTrigger(page: Page): Promise<void> {
   await page.evaluate(() => {
-    const trigger = document.querySelector('post-menu-trigger button') as HTMLElement;
+    const trigger = document.querySelector('post-menu-trigger button') as HTMLElement | null;
     trigger?.focus();
   });
   await page.waitForTimeout(WAIT_TIMES.interaction);
