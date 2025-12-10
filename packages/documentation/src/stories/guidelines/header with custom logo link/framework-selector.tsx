@@ -8,7 +8,7 @@ const code = `
   {{logoLink}}
 
   <!-- Meta navigation -->
-  <ul slot="meta-navigation">
+  <ul slot="global-nav-secondary">
     <li><a href="#">Jobs</a></li>
     <li><a href="#">Über uns</a></li>
   </ul>
@@ -26,7 +26,7 @@ const code = `
     description="The currently selected language is English."
     variant="list"
     name="language-menu-example"
-    slot="post-language-switch">
+    slot="language-menu">
     <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
     <post-language-menu-item active="false" code="fr" name="French">fr</post-language-menu-item>
     <post-language-menu-item active="false" code="it" name="Italiano">it</post-language-menu-item>
@@ -53,15 +53,14 @@ const code = `
   </ul>
 
   <!-- Main navigation -->
-  <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
-    <post-list title-hidden="">
-      <p>Main Navigation</p>
+  <post-mainnavigation slot="main-nav" caption="Hauptnavigation">
+    <ul>
       <!-- Link only level 1 -->
-      <post-list-item slot="post-list-item"><a href="#">Briefe</a></post-list-item>
-      <post-list-item slot="post-list-item"><a href="#">Pakete</a></post-list-item>
+      <li><a href="#">Briefe</a></li>
+      <li><a href="#">Pakete</a></li>
 
       <!-- Level 1 with megadropdown -->
-      <post-list-item slot="post-list-item">
+      <li>
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
         <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
           <a class="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
@@ -84,8 +83,8 @@ const code = `
             <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
         </post-megadropdown>
-      </post-list-item>
-      <post-list-item slot="post-list-item">
+      </li>
+      <li>
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
         <post-megadropdown id="pakete" label-close="Schliessen" labelBack="Back">
           <a class="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
@@ -108,8 +107,8 @@ const code = `
             <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
         </post-megadropdown>
-      </post-list-item>
-    </post-list>
+      </li>
+    </ul>
   </post-mainnavigation>
 </post-header>
 `;
