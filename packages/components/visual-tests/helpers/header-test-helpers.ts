@@ -177,8 +177,8 @@ export async function closeLanguageMenu(page: Page): Promise<void> {
 export async function hoverLanguageMenuTrigger(page: Page): Promise<void> {
   await blurActiveElement(page);
   await page.evaluate(() => {
-    const menu = document.querySelector<any>('post-language-menu');
-    const button = (menu?.shadowRoot as any)?.querySelector('button');
+    const menu = document.querySelector<HTMLElement>('post-language-menu');
+    const button = menu?.shadowRoot?.querySelector('button');
     const rect = button?.getBoundingClientRect();
     if (rect) {
       const event = new MouseEvent('mousemove', {
@@ -194,8 +194,8 @@ export async function hoverLanguageMenuTrigger(page: Page): Promise<void> {
 
 export async function focusLanguageMenuTrigger(page: Page): Promise<void> {
   await page.evaluate(() => {
-    const menu = document.querySelector<any>('post-language-menu');
-    const button = (menu?.shadowRoot as any)?.querySelector('button');
+    const menu = document.querySelector<HTMLElement>('post-language-menu');
+    const button = menu?.shadowRoot?.querySelector('button');
     button?.focus();
   });
   await page.waitForTimeout(WAIT_TIMES.interaction);
@@ -208,7 +208,7 @@ export async function hoverLanguageMenuItem(page: Page, code: string, isListMode
     // List mode - language items are directly in the DOM
     const coords = await page.evaluate((langCode) => {
       const item = document.querySelector(`post-language-menu-item[code="${langCode}"]`);
-      const link = item?.querySelector('a, button') as HTMLElement;
+      const link = item?.querySelector('a, button') as HTMLElement | null;
       if (link) {
         const rect = link.getBoundingClientRect();
         return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
@@ -226,7 +226,7 @@ export async function hoverLanguageMenuItem(page: Page, code: string, isListMode
       const menu = document.querySelector('post-language-menu');
       const item = Array.from(menu?.querySelectorAll('post-language-menu-item') || [])
         .find(el => el.getAttribute('code') === langCode);
-      const link = item?.querySelector('a, button') as HTMLElement;
+      const link = item?.querySelector('a, button') as HTMLElement | null;
       if (link) {
         const rect = link.getBoundingClientRect();
         return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
@@ -246,7 +246,7 @@ export async function focusLanguageMenuItem(page: Page, code: string, isListMode
     const menu = document.querySelector('post-language-menu');
     const item = Array.from(menu?.querySelectorAll('post-language-menu-item') || [])
       .find(el => el.getAttribute('code') === langCode);
-    const link = item?.querySelector('a, button') as HTMLElement;
+    const link = item?.querySelector('a, button') as HTMLElement | null;
     link?.focus();
   }, { langCode: code, listMode: isListMode });
   await page.waitForTimeout(WAIT_TIMES.interaction);

@@ -9,9 +9,9 @@
  *   npm run generate:header-html
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -396,11 +396,11 @@ function generateVariantHTML(variantName, config) {
 
   // Apply variant-specific replacements
   Object.entries(config.replacements || {}).forEach(([placeholder, value]) => {
-    html = html.replace(new RegExp(placeholder, 'g'), value);
+    html = html.replaceAll(placeholder, value);
   });
 
   // Clean up any remaining placeholders (set to empty)
-  html = html.replace(/\{\{[^}]+\}\}/g, '');
+  html = html.replaceAll(/\{\{[^}]+\}\}/g, '');
 
   return html;
 }
