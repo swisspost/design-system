@@ -50,7 +50,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </li>
       </ul>
 
-        {/* Meta navigation */}
+      {/* Global secondary navigation */}
       <ul slot="global-nav-secondary">
         <li>
           <a href="">
