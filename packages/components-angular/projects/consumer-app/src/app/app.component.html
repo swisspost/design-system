@@ -80,9 +80,9 @@
       <!-- Level 1 with megadropdown -->
       @for (dropdown of megadropdowns; track dropdown.id) {
         <li>
-          <post-megadropdown-trigger [for]="dropdown.id">{{
-            dropdown.trigger
-          }}</post-megadropdown-trigger>
+          <post-megadropdown-trigger [for]="dropdown.id">
+            <button>{{ dropdown.trigger }}</button>
+          </post-megadropdown-trigger>
           <post-megadropdown [id]="dropdown.id" labelClose="Close" labelBack="Back">
             <a class="megadropdown-overview-link" [href]="dropdown.overviewLink"
             >Overview {{ dropdown.trigger }}</a

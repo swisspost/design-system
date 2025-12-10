@@ -42,7 +42,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
 
       cy.get('@mainnavigation')
-        .find(':is(a,button):not(post-megadropdown *)')
+        .find(':is(a,button):not([inert], post-megadropdown *)')
         .should('have.length', 20)
         .as('navigationItems');
 
