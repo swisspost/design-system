@@ -35,7 +35,6 @@ export class PostMainnavigation {
 
   componentDidLoad() {
     setTimeout(() => {
-      this.fixLayoutShift();
       this.checkScrollability();
     });
 
@@ -43,7 +42,11 @@ export class PostMainnavigation {
     this.resizeObserver.observe(this.navbar);
 
     // Observe the navabar for mutation changes
-    this.mutationObserver.observe(this.navbar, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
+    this.mutationObserver.observe(this.navbar, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+    }); // Recheck scrollability when navigation list changes
 
     // Ensure the scroll buttons are correctly displayed or hidden whenever the navbar is scrolled
     this.navbar.addEventListener('scrollend', this.checkScrollability);
@@ -79,26 +82,11 @@ export class PostMainnavigation {
       ),
     );
 
-    this.fixLayoutShift();
     this.checkScrollability();
   }
 
   private get navigationItems(): HTMLElement[] {
     return Array.from(this.host.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
-  }
-
-  /**
-   * Hack to fix the layout shift due to bold text on active elements
-   */
-  private fixLayoutShift() {
-    this.navigationItems
-      .filter(item => !item.matches(':has(.shown-when-inactive)'))
-      .forEach(item => {
-        item.innerHTML = `
-          <span class="shown-when-inactive" aria-hidden="true">${item.innerHTML}</span>
-          ${item.innerHTML}
-        `;
-      });
   }
 
   /**

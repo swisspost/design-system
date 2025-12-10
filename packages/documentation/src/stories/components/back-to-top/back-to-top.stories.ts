@@ -76,7 +76,9 @@ const meta: MetaComponent = {
 
             <!-- Level 1 with megadropdown -->
             <li>
-              <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
+              <post-megadropdown-trigger for="briefe">
+                <button>Briefe</button>
+              </post-megadropdown-trigger>
               <post-megadropdown id="briefe">
                 <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                   <post-icon name="arrowleft"></post-icon>
@@ -116,7 +118,9 @@ const meta: MetaComponent = {
               </post-megadropdown>
             </li>
             <li>
-              <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
+              <post-megadropdown-trigger for="pakete">
+                <button>Pakete</button>
+              </post-megadropdown-trigger>
               <post-megadropdown id="pakete">
                 <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                   <post-icon name="arrowleft"></post-icon>
