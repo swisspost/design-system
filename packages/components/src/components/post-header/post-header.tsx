@@ -39,6 +39,21 @@ export class PostHeader {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
+  private animation: {
+  slide: number;
+  duration: number;
+  curve: { x1: number; y1: number; x2: number; y2: number };
+} = {
+      slide: 10,
+      duration: 350,
+      curve: {
+        x1: 0.8,
+        y1: 0.2,
+        x2: 0.8,
+        y2: 0.7,
+      },
+    };
+
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
@@ -70,13 +85,6 @@ export class PostHeader {
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
-
-  @Prop() duration?: number;
-  @Prop() x1?: number;
-  @Prop() y1?: number;
-  @Prop() x2?: number;
-  @Prop() y2?: number;
-  @Prop() slide?: number;
 
   @Watch('device')
   @Watch('burgerMenuExtended')
@@ -196,18 +204,18 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? fadeOut(this.burgerMenu, this.slide, this.duration, {
-        x1: this.x1,
-        y1: this.y1,
-        x2: this.x2,
-        y2: this.y2,
-      })
-      : fadeIn(this.burgerMenu, this.slide, this.duration, {
-        x1: this.x1,
-        y1: this.y1,
-        x2: this.x2,
-        y2: this.y2,
-      });
+      ? fadeOut(
+        this.burgerMenu,
+        this.animation['slide'],
+        this.animation['duration'],
+        this.animation['curve'],
+      )
+      : fadeIn(
+        this.burgerMenu,
+        this.animation['slide'],
+        this.animation['duration'],
+        this.animation['curve'],
+      );
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');

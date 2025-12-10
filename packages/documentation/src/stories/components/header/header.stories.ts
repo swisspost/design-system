@@ -34,56 +34,8 @@ const meta: MetaComponent = {
     localNav: false,
     isLoggedIn: false,
     jobs: false,
-    x1: 0.8,
-    y1: 0.2,
-    x2: 0.8,
-    y2: 0.7,
-    duration: 350,
-    slide: 0,
   },
   argTypes: {
-    x1: {
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'Mobile Header Animation',
-      },
-    },
-
-    y1: {
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'Mobile Header Animation',
-      },
-    },
-    x2: {
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'Mobile Header Animation',
-      },
-    },
-
-    y2: {
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'Mobile Header Animation',
-      },
-    },
-    duration: {
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'Mobile Header Animation',
-      },
-    },
     title: {
       name: 'Application title',
       description: 'Title of the webpage or application.',
@@ -297,14 +249,7 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header
-        x1="${args.x1}"
-        y1="${args.y1}"
-        x2="${args.x2}"
-        y2="${args.y2}"
-        duration="${args.duration}"
-        slide="${args.slide}"
-      >
+      <post-header>
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
