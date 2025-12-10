@@ -228,7 +228,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id3}"
-          name="Inline_ExampleRadio_Group"
+          name="${context.id}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 3}"
@@ -239,7 +239,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id4}"
-          name="Inline_ExampleRadio_Group"
+          name="${context.id}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 4}"
