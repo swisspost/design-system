@@ -22,7 +22,7 @@ const meta: MetaComponent = {
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
         <!-- Meta navigation -->
-        <ul slot="meta-navigation">
+        <ul slot="global-nav-secondary">
           <li><a href="">Jobs</a></li>
           <li><a href="">Über uns</a></li>
         </ul>
@@ -40,7 +40,7 @@ const meta: MetaComponent = {
           description="The currently selected language is English."
           variant="list"
           name="language-menu-example"
-          slot="post-language-switch"
+          slot="language-menu"
         >
           <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
           <post-language-menu-item active="false" code="fr" name="French">fr</post-language-menu-item>
@@ -68,15 +68,14 @@ const meta: MetaComponent = {
         </ul>
 
         <!-- Main navigation -->
-        <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
-          <post-list title-hidden="">
-            <p>Main Navigation</p>
+        <post-mainnavigation slot="main-nav" caption="Hauptnavigation">
+          <ul>
             <!-- Link only level 1 -->
-            <post-list-item slot="post-list-item"><a href="/briefe">Briefe</a></post-list-item>
-            <post-list-item slot="post-list-item"><a href="/pakete">Pakete</a></post-list-item>
+            <li><a href="/briefe">Briefe</a></li>
+            <li><a href="/pakete">Pakete</a></li>
 
             <!-- Level 1 with megadropdown -->
-            <post-list-item slot="post-list-item">
+            <li>
               <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
               <post-megadropdown id="briefe">
                 <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
@@ -115,8 +114,8 @@ const meta: MetaComponent = {
                   >
                 </post-list>
               </post-megadropdown>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
+            </li>
+            <li>
               <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
               <post-megadropdown id="pakete">
                 <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
@@ -156,7 +155,7 @@ const meta: MetaComponent = {
                 </post-list>
               </post-megadropdown>
             </post-list-item>
-          </post-list>
+          </ul>
         </post-mainnavigation>
       </post-header>
       ${fakeContent(17)}
