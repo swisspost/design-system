@@ -1,9 +1,9 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen} from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch, Listen } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { fadeIn, fadeOut } from '@/animations';
+import { fadeSlideIn, fadeSlideOut } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 
@@ -39,11 +39,11 @@ export class PostHeader {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
-  private fadeAnimation: {
-  slide: number;
-  duration: number;
-  curve: { x1: number; y1: number; x2: number; y2: number };
-} = {
+  private fadeSlideAnimation: {
+    slide: number;
+    duration: number;
+    curve: { x1: number; y1: number; x2: number; y2: number };
+  } = {
       slide: 10,
       duration: 350,
       curve: {
@@ -204,17 +204,17 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? fadeOut(
+      ? fadeSlideOut(
         this.burgerMenu,
-        this.fadeAnimation['slide'],
-        this.fadeAnimation['duration'],
-        this.fadeAnimation['curve'],
+        this.fadeSlideAnimation['slide'],
+        this.fadeSlideAnimation['duration'],
+        this.fadeSlideAnimation['curve'],
       )
-      : fadeIn(
+      : fadeSlideIn(
         this.burgerMenu,
-        this.fadeAnimation['slide'],
-        this.fadeAnimation['duration'],
-        this.fadeAnimation['curve'],
+        this.fadeSlideAnimation['slide'],
+        this.fadeSlideAnimation['duration'],
+        this.fadeSlideAnimation['curve'],
       );
 
     // Update the state of the toggle button

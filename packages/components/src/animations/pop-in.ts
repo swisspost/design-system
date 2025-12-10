@@ -1,3 +1,7 @@
+/**
+ * Used by PostPopovercontainer
+ */
+
 const duration = 250;
 const easing = 'ease-out';
 
