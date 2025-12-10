@@ -1,4 +1,4 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen, Prop } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch, Listen} from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -39,7 +39,7 @@ export class PostHeader {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
-  private animation: {
+  private fadeAnimation: {
   slide: number;
   duration: number;
   curve: { x1: number; y1: number; x2: number; y2: number };
@@ -206,15 +206,15 @@ export class PostHeader {
     this.burgerMenuAnimation = this.burgerMenuExtended
       ? fadeOut(
         this.burgerMenu,
-        this.animation['slide'],
-        this.animation['duration'],
-        this.animation['curve'],
+        this.fadeAnimation['slide'],
+        this.fadeAnimation['duration'],
+        this.fadeAnimation['curve'],
       )
       : fadeIn(
         this.burgerMenu,
-        this.animation['slide'],
-        this.animation['duration'],
-        this.animation['curve'],
+        this.fadeAnimation['slide'],
+        this.fadeAnimation['duration'],
+        this.fadeAnimation['curve'],
       );
 
     // Update the state of the toggle button

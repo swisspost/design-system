@@ -8,7 +8,6 @@ import {
   Host,
   Method,
   State,
-  Prop,
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
@@ -31,6 +30,34 @@ export class PostMegadropdown {
   private currentAnimation: Animation | null = null;
   private animatedContainer: HTMLElement;
 
+  
+  private fadeAnimation: {
+  slide: number;
+  duration: number;
+  curve: { x1: number; y1: number; x2: number; y2: number };
+} = {
+      slide: 10,
+      duration: 350,
+      curve: {
+        x1: 0.8,
+        y1: 0.2,
+        x2: 0.8,
+        y2: 0.7,
+      },
+    };
+
+    
+  private slideAnimation: {
+  translate: string,
+  duration: number;
+  curve: {in:string, out:string};
+} = {
+      translate: '100%',
+      duration: 350,
+      curve: {in:'ease-in', out:'ease-out'}
+    };
+
+
   private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);
   private onKeyup = (e: KeyboardEvent) => this.handleTabOutside(e);
   private onMousedown = (e: MouseEvent) => this.handleClickOutside(e);
@@ -48,20 +75,7 @@ export class PostMegadropdown {
 
   @State() trigger: boolean = false;
 
-  @Prop() x1_entry?: number;
-  @Prop() y1_entry?: number;
-  @Prop() x2_entry?: number;
-  @Prop() y2_entry?: number;
-  @Prop() duration_entry?: number;
-  @Prop() slide_down?: number;
-
-  @Prop() x1_exit?: number;
-  @Prop() y1_exit?: number;
-  @Prop() x2_exit?: number;
-  @Prop() y2_exit?: number;
-  @Prop() duration_exit?: number;
-  @Prop() slide_up?: number;
-
+  
   private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
     return hostId
@@ -135,13 +149,8 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeIn(this.animatedContainer, this.slide_down, this.duration_entry, {
-          x1: this.x1_entry,
-          y1: this.y1_entry,
-          x2: this.x2_entry,
-          y2: this.y2_entry,
-        })
-        : slideIn(this.animatedContainer, '100%', 350, 'ease-in');
+        ? fadeIn(this.animatedContainer, this.fadeAnimation['slide'], this.fadeAnimation['duration'], this.fadeAnimation['curve'])
+        : slideIn(this.animatedContainer, this.slideAnimation['translate'], this.slideAnimation['duration'], this.slideAnimation.curve['in']);
 
     try {
       await this.currentAnimation.finished;
@@ -177,13 +186,8 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeOut(this.animatedContainer, this.slide_up, this.duration_exit, {
-          x1: this.x1_exit,
-          y1: this.y1_exit,
-          x2: this.x2_exit,
-          y2: this.y2_exit,
-        })
-        : slideOut(this.animatedContainer, '100%', 350, 'ease-out');
+        ? fadeOut(this.animatedContainer, this.fadeAnimation['slide'], this.fadeAnimation['duration'], this.fadeAnimation['curve'])
+        : slideOut(this.animatedContainer, this.slideAnimation['translate'], this.slideAnimation['duration'],  this.slideAnimation.curve['out']);
 
     try {
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
