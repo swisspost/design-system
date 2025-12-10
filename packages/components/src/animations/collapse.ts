@@ -1,3 +1,7 @@
+/**
+ * Used by PostCollapsible
+ */
+
 import { IS_BROWSER } from '@/utils';
 
 const collapseDuration = 350;

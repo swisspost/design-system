@@ -1,4 +1,7 @@
-// Define common animation options
+/**
+ * Used by PostBackToTop button
+ */
+
 const easing: string = 'ease';
 const defaultDuration: number = 500;
 const fill: FillMode = 'forwards';

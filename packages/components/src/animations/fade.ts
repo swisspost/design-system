@@ -1,15 +1,36 @@
+/**
+ * Used by:
+ * 1. PostTabs (with default parameters)
+ * 2. PostHeader and PostMegadropdown (with custom parameters defined within the components)
+ */
+
+type CurveEasing = {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+};
+
+type PresetEasing = 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out';
+
 const defaultDuration = 200;
+const defaultSlidePx = 10;
+const defaultEasing: PresetEasing = 'linear';
+
+function resolveEasing(easing: CurveEasing | PresetEasing): string {
+  if (typeof easing === 'string') return easing;
+  const { x1, y1, x2, y2 } = easing;
+  return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`;
+}
 
 export function fadeIn(
   el: Element,
-  slideDownPx: number = 10,
+  slideDownPx: number = defaultSlidePx,
   fadeDuration: number = defaultDuration,
-  fadeEasing: { x1?: number; y1?: number; x2?: number; y2?: number } = {},
+  fadeEasing: CurveEasing | PresetEasing = defaultEasing,
   fadeFill: FillMode = 'forwards',
 ): Animation {
   if (!el) return;
-
-  const { x1 = 0, y1 = 0, x2 = 1, y2 = 1 } = fadeEasing;
 
   const fadedOut: Keyframe = {
     opacity: '0',
@@ -23,21 +44,19 @@ export function fadeIn(
 
   return el.animate([fadedOut, fadedIn], {
     duration: fadeDuration,
-    easing: `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`,
+    easing: resolveEasing(fadeEasing),
     fill: fadeFill,
   });
 }
 
 export function fadeOut(
   el: Element,
-  slideUpPx: number = 10,
+  slideUpPx: number = defaultSlidePx,
   fadeDuration: number = defaultDuration,
-  fadeEasing: { x1?: number; y1?: number; x2?: number; y2?: number } = {},
+  fadeEasing: CurveEasing | PresetEasing = defaultEasing,
   fadeFill: FillMode = 'forwards',
 ): Animation {
   if (!el) return;
-
-  const { x1 = 0, y1 = 0, x2 = 1, y2 = 1 } = fadeEasing;
 
   const fadedIn: Keyframe = {
     opacity: '1',
@@ -51,7 +70,7 @@ export function fadeOut(
 
   return el.animate([fadedIn, fadedOut], {
     duration: fadeDuration,
-    easing: `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`,
+    easing: resolveEasing(fadeEasing),
     fill: fadeFill,
   });
 }
