@@ -1,6 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta from './radio.stories';
-import { renderGroup } from './radio.stories';
+import meta, { renderGroup } from './radio.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
