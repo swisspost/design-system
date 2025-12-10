@@ -199,10 +199,6 @@ export namespace Components {
     }
     interface PostDatepicker {
         /**
-          * List of fixed disabled dates
-         */
-        "disabledDates"?: string | string[];
-        /**
           * Hides the popover calendar
          */
         "hide": () => Promise<void>;
@@ -212,36 +208,67 @@ export namespace Components {
          */
         "inline": boolean;
         /**
+          * Label for "Next decade" button
+         */
+        "labelNextDecade": string;
+        /**
+          * Label for "Next month" button
+         */
+        "labelNextMonth": string;
+        /**
+          * Label for "Next year" button
+         */
+        "labelNextYear": string;
+        /**
+          * Label for "Previous decade" button
+         */
+        "labelPreviousDecade": string;
+        /**
+          * Label for "Previous month" button
+         */
+        "labelPreviousMonth": string;
+        /**
+          * Label for "Previous year" button
+         */
+        "labelPreviousYear": string;
+        /**
+          * Label for the "Switch to year view" title button
+         */
+        "labelSwitchYear": string;
+        /**
+          * Label for the toggle button that opens the calendar
+         */
+        "labelToggleCalendar"?: string;
+        /**
           * Maximum possible date to select
          */
-        "max"?: Date | string | number;
+        "max"?: string;
         /**
           * Minimun possible date to select
          */
-        "min"?: Date | string | number;
-        /**
-          * Used to extend the existing on render cell to disable an infinite list of dates e.g. all weekends, all months of March, etc.
-         */
-        "onUserRenderCell"?: AirDatepickerCustomOptions['onRenderCell'];
+        "min"?: string;
         /**
           * Whether the datepicker expects a range selection or a single date selection
           * @default false
          */
         "range"?: boolean;
         /**
-          * Selected date (or selected date range)
+          * Used to extend the existing on render cell to disable dates
          */
-        "selectedDate"?: string | [string, string];
+        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * Displays the popover calendar, focusing the first calendar item.
-          * @param target - The HTML element relative to which the popover calendar should be displayed.
+          * Selected end date for range datepicker only
+         */
+        "selectedEndDate"?: string;
+        /**
+          * Selected date If range datepicker: Selected start date
+         */
+        "selectedStartDate"?: string;
+        /**
+          * Displays the popover calendar, focusing the first calendar item
+          * @param target - The HTML element relative to which the popover calendar should be displayed
          */
         "show": (target: HTMLElement) => Promise<void>;
-        /**
-          * The predefined start date of the calendar Default is today
-          * @default new Date()
-         */
-        "startDate"?: Date;
     }
     interface PostFooter {
         /**
@@ -1195,44 +1222,71 @@ declare namespace LocalJSX {
     }
     interface PostDatepicker {
         /**
-          * List of fixed disabled dates
-         */
-        "disabledDates"?: string | string[];
-        /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked)
           * @default false
          */
         "inline"?: boolean;
         /**
+          * Label for "Next decade" button
+         */
+        "labelNextDecade": string;
+        /**
+          * Label for "Next month" button
+         */
+        "labelNextMonth": string;
+        /**
+          * Label for "Next year" button
+         */
+        "labelNextYear": string;
+        /**
+          * Label for "Previous decade" button
+         */
+        "labelPreviousDecade": string;
+        /**
+          * Label for "Previous month" button
+         */
+        "labelPreviousMonth": string;
+        /**
+          * Label for "Previous year" button
+         */
+        "labelPreviousYear": string;
+        /**
+          * Label for the "Switch to year view" title button
+         */
+        "labelSwitchYear": string;
+        /**
+          * Label for the toggle button that opens the calendar
+         */
+        "labelToggleCalendar"?: string;
+        /**
           * Maximum possible date to select
          */
-        "max"?: Date | string | number;
+        "max"?: string;
         /**
           * Minimun possible date to select
          */
-        "min"?: Date | string | number;
+        "min"?: string;
         /**
           * An event emitted when a date or a range of dates have been selected
          */
         "onPostUpdateDates"?: (event: PostDatepickerCustomEvent<Date | Date[]>) => void;
-        /**
-          * Used to extend the existing on render cell to disable an infinite list of dates e.g. all weekends, all months of March, etc.
-         */
-        "onUserRenderCell"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
           * Whether the datepicker expects a range selection or a single date selection
           * @default false
          */
         "range"?: boolean;
         /**
-          * Selected date (or selected date range)
+          * Used to extend the existing on render cell to disable dates
          */
-        "selectedDate"?: string | [string, string];
+        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The predefined start date of the calendar Default is today
-          * @default new Date()
+          * Selected end date for range datepicker only
          */
-        "startDate"?: Date;
+        "selectedEndDate"?: string;
+        /**
+          * Selected date If range datepicker: Selected start date
+         */
+        "selectedStartDate"?: string;
     }
     interface PostFooter {
         /**

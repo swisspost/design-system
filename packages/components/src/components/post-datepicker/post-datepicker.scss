@@ -311,3 +311,15 @@ tokens.$default-map: components.$post-breadcrumb;
     background-color: transparent;
   }
 }
+
+.calendar-input-range {
+  border: 2px solid black;
+  border-radius: 4px;
+  display: block;
+  padding: 12px;
+}
+
+::slotted(input) {
+  border: none;
+  background-color: transparent;
+}

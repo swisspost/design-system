@@ -1,0 +1,13 @@
+post-datepicker input[type='date'] {
+  border: none;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &::-webkit-calendar-picker-indicator,
+  &::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+}

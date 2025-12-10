@@ -17,7 +17,7 @@ import AirDatepicker, {
 } from 'air-datepicker';
 
 import { localesMap } from './locales';
-import { checkEmptyOrType, getDeepFocusableChildren } from '@/utils';
+import { checkEmptyOrType, checkRequiredAndType, getDeepFocusableChildren } from '@/utils';
 
 interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -39,50 +39,53 @@ export class PostDatepicker {
   @State() today = new Date();
 
   /**
-   * Selected date (or selected date range)
+   * Selected date
+   * If range datepicker: Selected start date
    */
-  @Prop() selectedDate?: string | [string, string];
-  @Watch('selectedDate')
-  validateSelectedDate() {
-    if (this.selectedDate) {
-      if (this.range) {
-        // TODO: Update to checkEmptyOrArrayOf when PR #6436 is merged
-        if (this.selectedDate.length === 1 || typeof this.selectedDate === 'string') {
-          console.error('Selected date should be a tuple when datepicker is a range');
-        }
-      } else {
-        checkEmptyOrType(this, 'selectedDate', 'string');
-      }
-    }
+  @Prop() selectedStartDate?: string;
+  @Watch('selectedStartDate')
+  validateSelectedStartDate() {
+    checkEmptyOrType(this, 'selectedStartDate', 'string');
+  }
+
+  /**
+   * Selected end date for range datepicker only
+   */
+  @Prop() selectedEndDate?: string;
+  @Watch('selectedEndDate')
+  validateSelectedEndDate() {
+    checkEmptyOrType(this, 'selectedEndDate', 'string');
   }
 
   /**
    * Whether the datepicker expects a range selection or a single date selection
    */
   @Prop() range?: boolean = false;
+  @Watch('range')
+  validateRange() {
+    if (!this.inline) {
+      if (this.range && (!this.dpInputs || this.dpInputs.length !== 2)) {
+        console.error('A range datepicker should contain two inputs');
+      } else if (!this.range && (!this.dpInputs || this.dpInputs.length !== 1)) {
+        console.error('A non-range datepicker should contain one input');
+      }
+    }
+  }
 
   /**
    * Minimun possible date to select
    */
-  @Prop() min?: Date | string | number;
+  @Prop() min?: string;
 
   /**
    * Maximum possible date to select
    */
-  @Prop() max?: Date | string | number;
+  @Prop() max?: string;
 
   /**
-   * List of fixed disabled dates
+   * Used to extend the existing on render cell to disable dates
    */
-  @Prop() disabledDates?: string | string[];
-
-  /**
-   * Used to extend the existing on render cell to disable an infinite list of dates
-   * e.g. all weekends, all months of March, etc.
-   */
-  @Prop() onUserRenderCell?: AirDatepickerCustomOptions['onRenderCell'];
-
-  @State() locale: string = document.documentElement.lang;
+  @Prop() renderCellCallback?: AirDatepickerCustomOptions['onRenderCell'];
 
   /**
    * Whether the calendar is inline in the page (not showing in a popover when input clicked)
@@ -90,10 +93,81 @@ export class PostDatepicker {
   @Prop() inline = false;
 
   /**
-   * The predefined start date of the calendar
-   * Default is today
+   * Label for "Next month" button
    */
-  @Prop() startDate?: Date = new Date();
+  @Prop() labelNextMonth!: string;
+  @Watch('labelNextMonth')
+  validateLabelNextMonth() {
+    checkRequiredAndType(this, 'labelNextMonth', 'string');
+  }
+
+  /**
+   * Label for "Next year" button
+   */
+  @Prop() labelNextYear!: string;
+  @Watch('labelNextYear')
+  validateLabelNextYear() {
+    checkRequiredAndType(this, 'labelNextYear', 'string');
+  }
+
+  /**
+   * Label for "Next decade" button
+   */
+  @Prop() labelNextDecade!: string;
+  @Watch('labelNextDecade')
+  validateLabelNextDecade() {
+    checkRequiredAndType(this, 'labelNextDecade', 'string');
+  }
+
+  /**
+   * Label for "Previous month" button
+   */
+  @Prop() labelPreviousMonth!: string;
+  @Watch('labelPreviousMonth')
+  validateLabelPreviousMonth() {
+    checkRequiredAndType(this, 'labelPreviousMonth', 'string');
+  }
+
+  /**
+   * Label for "Previous year" button
+   */
+  @Prop() labelPreviousYear!: string;
+  @Watch('labelPreviousYear')
+  validateLabelPreviousYear() {
+    checkRequiredAndType(this, 'labelPreviousYear', 'string');
+  }
+
+  /**
+   * Label for "Previous decade" button
+   */
+  @Prop() labelPreviousDecade!: string;
+  @Watch('labelPreviousDecade')
+  validateLabelPreviousDecade() {
+    checkRequiredAndType(this, 'labelPreviousDecade', 'string');
+  }
+
+  /**
+   * Label for the "Switch to year view" title button
+   */
+  @Prop() labelSwitchYear!: string;
+  @Watch('labelSwitchYear')
+  validateLabelSwitchYear() {
+    checkRequiredAndType(this, 'labelSwitchYear', 'string');
+  }
+
+  /**
+   * Label for the toggle button that opens the calendar
+   */
+  @Prop() labelToggleCalendar?: string;
+  @Watch('labelToggleCalendar')
+  validateLabelToggleCalendar() {
+    if (!this.inline) {
+      checkRequiredAndType(this, 'labelToggleCalendar', 'string');
+    }
+  }
+
+  @State() startDate = new Date();
+  @State() locale: string = document.documentElement.lang;
 
   /**
    * An event emitted when a date or a range of dates have been selected
@@ -101,9 +175,8 @@ export class PostDatepicker {
   @Event() postUpdateDates: EventEmitter<Date | Date[]>;
 
   /**
-   * Displays the popover calendar, focusing the first calendar item.
-   *
-   * @param target - The HTML element relative to which the popover calendar should be displayed.
+   * Displays the popover calendar, focusing the first calendar item
+   * @param target - The HTML element relative to which the popover calendar should be displayed
    */
   @Method()
   async show(target: HTMLElement) {
@@ -133,13 +206,16 @@ export class PostDatepicker {
   private currentViewType: AirDatepickerViews = 'days';
 
   private popoverRef: HTMLPostPopovercontainerElement;
-  private dpInput: HTMLInputElement;
+  private dpInputs: HTMLInputElement[];
   private dpInstance: AirDatepicker<HTMLDivElement>;
   private dpContainer: HTMLDivElement;
 
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
 
+  /**
+   * Get all the active cells of the calendar
+   */
   private getCells(): HTMLElement[] {
     if (!this.dpContainer) return [];
 
@@ -165,6 +241,7 @@ export class PostDatepicker {
 
     let target: HTMLElement | undefined;
 
+    //todolea: comment that
     // If selected date is visible
     if (focusOnDate) {
       if (this.currentViewType === 'days') {
@@ -223,20 +300,37 @@ export class PostDatepicker {
     );
   }
 
-  private updateNavigationButtonLabels() {
-    let label = 'month';
-    if (this.currentViewType === 'months') {
-      label = 'year';
-    } else if (this.currentViewType === 'years') {
-      label = 'decade';
-    }
+  private get prevBtn() {
+    return this.host.shadowRoot.querySelector('[data-action="prev"] button') as HTMLButtonElement;
+  }
 
-    this.host.shadowRoot
-      .querySelector('.datepicker-container [data-action="prev"] button')
-      ?.setAttribute('aria-label', `Previous ${label}`);
-    this.host.shadowRoot
-      .querySelector('.datepicker-container [data-action="next"] button')
-      ?.setAttribute('aria-label', `Next ${label}`);
+  private get nextBtn() {
+    return this.host.shadowRoot.querySelector('[data-action="next"] button') as HTMLButtonElement;
+  }
+
+  private get titleBtn() {
+    return this.host.shadowRoot.querySelector(
+      '.air-datepicker-nav--title button',
+    ) as HTMLButtonElement;
+  }
+
+  private skipOnSelect = false;
+  private skipFocusOnNextRender = false;
+
+  /**
+   * Update previous and next button labels based on the current calendar view
+   */
+  private updateNavigationButtonLabels() {
+    if (this.currentViewType === 'months') {
+      this.prevBtn?.setAttribute('aria-label', this.labelPreviousYear);
+      this.nextBtn?.setAttribute('aria-label', this.labelNextYear);
+    } else if (this.currentViewType === 'years') {
+      this.prevBtn?.setAttribute('aria-label', this.labelPreviousDecade);
+      this.nextBtn?.setAttribute('aria-label', this.labelNextDecade);
+    } else {
+      this.prevBtn?.setAttribute('aria-label', this.labelPreviousMonth);
+      this.nextBtn?.setAttribute('aria-label', this.labelNextMonth);
+    }
   }
 
   /**
@@ -247,29 +341,20 @@ export class PostDatepicker {
   private handleTab = (e: KeyboardEvent) => {
     if (e.key !== 'Tab' && e.key !== 'Escape') return;
 
-    if (e.key === 'Escape') {
-      this.dpInput.focus();
+    // Focus on the input when escaping the calendar
+    if (e.key === 'Escape' && !this.inline) {
+      this.dpInputs[0].focus();
     }
 
     const active = this.host.shadowRoot.activeElement as HTMLElement;
 
-    const title = this.host.shadowRoot.querySelector(
-      '.datepicker-container .air-datepicker-nav--title button',
-    ) as HTMLElement;
-    const prev = this.host.shadowRoot.querySelector(
-      '.datepicker-container [data-action="prev"] button',
-    ) as HTMLElement;
-    const next = this.host.shadowRoot.querySelector(
-      '.datepicker-container [data-action="next"] button',
-    ) as HTMLElement;
-
-    if (active === next && e.shiftKey) {
+    if (active === this.nextBtn && e.shiftKey) {
       e.preventDefault();
-      prev.focus();
+      this.prevBtn.focus();
       return;
     }
 
-    if (active === prev) {
+    if (active === this.prevBtn) {
       e.preventDefault();
       if (e.shiftKey) {
         // No title in year view
@@ -283,14 +368,14 @@ export class PostDatepicker {
             }
           }
         } else {
-          title.focus();
+          this.titleBtn.focus();
         }
       } else {
-        next.focus();
+        this.nextBtn.focus();
       }
     }
 
-    if (active === title) {
+    if (active === this.titleBtn) {
       e.preventDefault();
       if (e.shiftKey) {
         if (this.inline) {
@@ -302,21 +387,26 @@ export class PostDatepicker {
           }
         }
       } else {
-        prev.focus();
+        this.prevBtn.focus();
       }
     }
 
     if (active?.getAttribute('role') === 'gridcell' && !this.inline && !e.shiftKey) {
       e.preventDefault();
       if (this.currentViewType === 'years') {
-        prev.focus();
+        this.prevBtn.focus();
       } else {
-        title.focus();
+        this.titleBtn.focus();
       }
     }
   };
 
-  // Inline mode: Exit the datepicker by focusing to the next/previous focusable element
+  /**
+   * Exit the datepicker by forcing focus to the previous/next focusable element
+   * Inline mode only
+   * @param activeElement Currently focused element
+   * @param next Whether focus needs to go before or after the datepicker element
+   */
   private exitDatepicker(activeElement: HTMLElement, next = true) {
     const focusables = getDeepFocusableChildren(document.body);
     const hostIndex = focusables.indexOf(activeElement);
@@ -327,12 +417,15 @@ export class PostDatepicker {
     }
   }
 
+  /**
+   * Handle keyboard/arrow navigation within the grid
+   */
   private handleGridKeydown = (e: KeyboardEvent) => {
     const key = e.key;
     const current = this.startDate;
     if (!current) return;
 
-    // If user clicks ENTER, trigger click on the cell
+    // If user clicks ENTER or Space, trigger click on the cell
     if (key === 'Enter' || key === ' ') {
       e.preventDefault();
 
@@ -380,11 +473,13 @@ export class PostDatepicker {
         months: () => newDate.setMonth(11),
         years: () => newDate.setFullYear(current.getFullYear() - (current.getFullYear() % 10) + 9),
       },
+      // Go to the previous month/year/decade
       PageUp: {
         days: () => newDate.setMonth(current.getMonth() - 1),
         months: () => newDate.setFullYear(current.getFullYear() - 1),
         years: () => newDate.setFullYear(current.getFullYear() - 10),
       },
+      // Go to the next month/year/decade
       PageDown: {
         days: () => newDate.setMonth(current.getMonth() + 1),
         months: () => newDate.setFullYear(current.getFullYear() + 1),
@@ -411,8 +506,6 @@ export class PostDatepicker {
       this.setActiveCell(newDate, true);
     }
   };
-
-  private skipFocusOnNextRender = false;
 
   private enhanceAccessibility(focusOnDate: boolean = true) {
     let body = this.dpContainer.querySelector('.air-datepicker-body--cells');
@@ -446,11 +539,28 @@ export class PostDatepicker {
     });
   }
 
+  /**
+   * Set the same min and max value to the datepicker input(s)
+   */
+  private setMinAndMaxToInputs() {
+    this.dpInputs?.forEach(input => {
+      if (this.min) {
+        input.min = this.formatAsDateInputValue(new Date(this.min));
+      }
+
+      if (this.max) {
+        input.max = this.formatAsDateInputValue(new Date(this.max));
+      }
+    });
+  }
+
   private configDatepicker() {
     const slot = this.host.shadowRoot.querySelector('slot');
     const assignedNodes = slot && (slot as HTMLSlotElement).assignedElements();
     const locale = localesMap[this.locale] || localesMap.en;
-    this.dpInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
+    this.dpInputs = assignedNodes?.filter(el => el.tagName === 'INPUT') as HTMLInputElement[];
+    this.setMinAndMaxToInputs();
+
     this.dpContainer = this.host.shadowRoot.querySelector('.datepicker-container');
 
     if (this.dpContainer) {
@@ -486,19 +596,22 @@ export class PostDatepicker {
           this.currentViewMonth = month;
           this.updateNavigationButtonLabels();
         },
-        onSelect: ({ date, formattedDate }) => {
+        onSelect: ({ date }) => {
           this.updateAriaSelected();
           this.postUpdateDates.emit(date);
+
+          // If selected date is added dynamically after user has typed it in the input
+          if (this.skipOnSelect) {
+            this.skipOnSelect = false;
+            return;
+          }
           // Assign value to the input, close the popover and focus on the input
-          if (this.dpInput) {
-            if (Array.isArray(formattedDate)) {
-              const dotFormattedDate: string | string[] = formattedDate.map(d =>
-                d.split('/').join('.'),
-              );
-              this.dpInput.value =
-                formattedDate.length === 1 ? `${dotFormattedDate} -` : dotFormattedDate.join(' - ');
+          if (this.dpInputs) {
+            if (Array.isArray(date)) {
+              //todolea: issue when already existing choice, does not unselect and update it again
+              date.forEach((d, i) => (this.dpInputs[i].value = this.formatAsDateInputValue(d)));
             } else {
-              this.dpInput.value = formattedDate.split('/').join('.');
+              this.dpInputs[0].value = this.formatAsDateInputValue(date);
             }
 
             // If range & only one date has been selected, user should stay in the DP
@@ -507,7 +620,7 @@ export class PostDatepicker {
             }
 
             this.popoverRef?.hide();
-            requestAnimationFrame(() => this.dpInput.focus());
+            requestAnimationFrame(() => this.dpInputs[0].focus());
           }
         },
         onShow: () => {
@@ -515,7 +628,7 @@ export class PostDatepicker {
         },
         onRenderCell: data => {
           const internal = this.internalOnRenderCell(data);
-          const custom = this.onUserRenderCell?.(data);
+          const custom = this.renderCellCallback?.(data);
 
           return this.mergeRenderCellResults(internal, custom);
         },
@@ -523,52 +636,50 @@ export class PostDatepicker {
 
       this.dpInstance = new AirDatepicker(this.dpContainer, options);
 
-      const prevButton = this.dpContainer.querySelector(
-        '.air-datepicker-nav--action[data-action="prev"]',
-      );
-      const nextButton = this.dpContainer.querySelector(
-        '.air-datepicker-nav--action[data-action="next"]',
-      );
+      this.prevBtn?.addEventListener('click', () => {
+        this.skipFocusOnNextRender = true;
+      });
 
-      if (prevButton) {
-        prevButton.addEventListener('click', () => {
-          this.skipFocusOnNextRender = true;
-        });
-      }
+      this.nextBtn?.addEventListener('click', () => {
+        this.skipFocusOnNextRender = true;
+      });
 
-      if (nextButton) {
-        nextButton.addEventListener('click', () => {
-          this.skipFocusOnNextRender = true;
-        });
-      }
-
-      if (this.disabledDates) {
-        console.log('should disable', this.disabledDates);
-        this.dpInstance.disableDate(this.disabledDates);
-      }
-
-      //todolea: handle array
-      if (this.selectedDate) {
+      if (this.range) {
         if (
-          (this.range && Array.isArray(this.selectedDate) && this.selectedDate.length === 2) ||
-          (!this.range && typeof this.selectedDate === 'string')
+          (this.selectedStartDate && !this.selectedEndDate) ||
+          (!this.selectedStartDate && this.selectedEndDate)
         ) {
-          this.dpInstance.selectDate(this.selectedDate);
+          console.error(
+            'The range datepicker expects either no selected dates or both of them defined.',
+          );
+        } else {
+          this.dpInstance.selectDate([this.selectedStartDate, this.selectedEndDate]);
+        }
+      } else {
+        if (this.selectedStartDate) {
+          this.dpInstance.selectDate(this.selectedStartDate);
         }
       }
 
       // Override the title click to go to year view directly (skip month view)
-      const navTitle = this.dpContainer.querySelector('.air-datepicker-nav--title');
-      if (navTitle) {
-        navTitle.addEventListener('click', () => {
-          if (this.dpInstance) {
-            this.dpInstance.setCurrentView('years');
-          }
-        });
-      }
+      this.titleBtn?.addEventListener('click', () => {
+        if (this.dpInstance) {
+          this.dpInstance.setCurrentView('years');
+        }
+      });
     }
   }
 
+  private formatAsDateInputValue(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  /**
+   * Add role and aria-label to each grid cell
+   */
   private internalOnRenderCell({ date, cellType }) {
     if (cellType === 'day') {
       return {
@@ -604,6 +715,12 @@ export class PostDatepicker {
     }
   }
 
+  /**
+   * Merge the internal render cell (adding of role + aria-label attributes) and the user's render cell (disabling dates, etc.)
+   * @param base Internal render cell
+   * @param custom User render cell
+   * @returns Merged render cell
+   */
   private mergeRenderCellResults(base, custom) {
     if (!base) return custom;
     if (!custom) return base;
@@ -644,7 +761,6 @@ export class PostDatepicker {
     const grid = this.dpContainer.querySelector('.air-datepicker-body--cells');
     if (!grid) return;
 
-    // If reinitializing, disconnect previous observer
     if (this.gridObserver) {
       this.gridObserver.disconnect();
     }
@@ -653,10 +769,9 @@ export class PostDatepicker {
       const changed = mutations.some(m => m.type === 'childList');
       if (!changed) return;
 
-      // Wait for AirDatepicker to finish rendering this frame
+      // Wait for AirDatepicker to finish rendering frame
       requestAnimationFrame(() => {
         this.enhanceAccessibility(!this.skipFocusOnNextRender);
-
         this.skipFocusOnNextRender = false;
       });
     });
@@ -667,14 +782,42 @@ export class PostDatepicker {
     });
   }
 
+  private addInputListeners() {
+    this.dpInputs.forEach(input => {
+      input.addEventListener('blur', () => {
+        this.skipOnSelect = true;
+
+        if (this.range) {
+          //todolea: issue with range
+          this.dpInstance.selectDate([this.dpInputs[0].value, this.dpInputs[1].value]);
+        } else {
+          this.dpInstance.selectDate(input.value);
+        }
+      });
+    });
+  }
+
   async componentDidLoad() {
     this.configDatepicker();
     this.setupGridObserver();
     this.setupNavObserver();
-    this.validateSelectedDate();
+    this.validateSelectedStartDate();
+    this.validateSelectedEndDate();
+    this.validateLabelToggleCalendar();
+    this.validateLabelNextDecade();
+    this.validateLabelNextMonth();
+    this.validateLabelNextYear();
+    this.validateLabelPreviousDecade();
+    this.validateLabelPreviousMonth();
+    this.validateLabelPreviousYear();
+    this.validateLabelSwitchYear();
+    this.validateRange();
+
     if (this.inline) {
       this.host.shadowRoot.addEventListener('keydown', this.handleTab);
       requestAnimationFrame(() => this.enhanceAccessibility());
+    } else {
+      this.addInputListeners();
     }
   }
 
@@ -694,30 +837,28 @@ export class PostDatepicker {
   render() {
     return (
       <Host>
-        <div class="calendar">
-          {this.inline && <div class="datepicker-container"></div>}
-          {!this.inline && (
-            <>
-              <div class="calendar-input">
-                <slot></slot>
-                <button
-                  onClick={e => this.show(e.currentTarget as HTMLElement)}
-                  aria-haspopup="true"
-                  aria-label="Toggle calendar"
-                >
-                  <post-icon name="calendar"></post-icon>
-                </button>
-              </div>
-              <post-popovercontainer
-                placement="bottom"
-                ref={e => (this.popoverRef = e)}
-                manualClose={false}
+        {this.inline && <div class="datepicker-container"></div>}
+        {!this.inline && (
+          <div>
+            <div class={this.range ? 'calendar-input-range' : 'calendar-input'}>
+              <slot></slot>
+              <button
+                onClick={e => this.show(e.currentTarget as HTMLElement)}
+                aria-haspopup="true"
+                aria-label="Toggle calendar"
               >
-                <div class="datepicker-container"></div>
-              </post-popovercontainer>
-            </>
-          )}
-        </div>
+                <post-icon name="calendar"></post-icon>
+              </button>
+            </div>
+            <post-popovercontainer
+              placement="bottom"
+              ref={e => (this.popoverRef = e)}
+              manualClose={false}
+            >
+              <div class="datepicker-container"></div>
+            </post-popovercontainer>
+          </div>
+        )}
       </Host>
     );
   }

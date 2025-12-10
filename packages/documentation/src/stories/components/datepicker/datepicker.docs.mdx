@@ -1,0 +1,22 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as DatepickerStories from './datepicker.stories';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={DatepickerStories} />
+
+<div className="docs-title">
+  # Datepicker
+
+  <link-design of={JSON.stringify(DatepickerStories)}></link-design>
+</div>
+
+<PackageTag meta={meta}/>
+
+<div className="lead mb-16">
+A date pickers enables the user to input a single date or a date range via regular text input or selection within a fly-out calendar.
+</div>
+
+<Canvas sourceState="shown" of={DatepickerStories.Default} />
+<div className="hide-col-default">
+  <Controls of={DatepickerStories.Default} />
+</div>
