@@ -5,18 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property   | Attribute  | Description | Type     | Default     |
-| ---------- | ---------- | ----------- | -------- | ----------- |
-| `duration` | `duration` |             | `number` | `undefined` |
-| `slide`    | `slide`    |             | `number` | `undefined` |
-| `x1`       | `x-1`      |             | `number` | `undefined` |
-| `x2`       | `x-2`      |             | `number` | `undefined` |
-| `y1`       | `y-1`      |             | `number` | `undefined` |
-| `y2`       | `y-2`      |             | `number` | `undefined` |
-
-
 ## Methods
 
 ### `toggleBurgerMenu(force?: boolean) => Promise<void>`

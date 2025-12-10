@@ -5,24 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property         | Attribute        | Description | Type     | Default     |
-| ---------------- | ---------------- | ----------- | -------- | ----------- |
-| `duration_entry` | `duration_entry` |             | `number` | `undefined` |
-| `duration_exit`  | `duration_exit`  |             | `number` | `undefined` |
-| `slide_down`     | `slide_down`     |             | `number` | `undefined` |
-| `slide_up`       | `slide_up`       |             | `number` | `undefined` |
-| `x1_entry`       | `x-1_entry`      |             | `number` | `undefined` |
-| `x1_exit`        | `x-1_exit`       |             | `number` | `undefined` |
-| `x2_entry`       | `x-2_entry`      |             | `number` | `undefined` |
-| `x2_exit`        | `x-2_exit`       |             | `number` | `undefined` |
-| `y1_entry`       | `y-1_entry`      |             | `number` | `undefined` |
-| `y1_exit`        | `y-1_exit`       |             | `number` | `undefined` |
-| `y2_entry`       | `y-2_entry`      |             | `number` | `undefined` |
-| `y2_exit`        | `y-2_exit`       |             | `number` | `undefined` |
-
-
 ## Events
 
 | Event                    | Description                                                                                                                                                                                                                                                                                                                                   | Type                                                          |
