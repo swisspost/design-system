@@ -208,7 +208,7 @@ export async function hoverLanguageMenuItem(page: Page, code: string, isListMode
     // List mode - language items are directly in the DOM
     const coords = await page.evaluate((langCode) => {
       const item = document.querySelector(`post-language-menu-item[code="${langCode}"]`);
-      const link = item?.querySelector('a, button') as HTMLElement | null;
+      const link = item?.querySelector('a, button');
       if (link) {
         const rect = link.getBoundingClientRect();
         return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
@@ -226,7 +226,7 @@ export async function hoverLanguageMenuItem(page: Page, code: string, isListMode
       const menu = document.querySelector('post-language-menu');
       const item = Array.from(menu?.querySelectorAll('post-language-menu-item') || [])
         .find(el => el.getAttribute('code') === langCode);
-      const link = item?.querySelector('a, button') as HTMLElement | null;
+      const link = item?.querySelector('a, button');
       if (link) {
         const rect = link.getBoundingClientRect();
         return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
@@ -333,7 +333,7 @@ export async function testBurgerMenuFlow(page: Page): Promise<void> {
 
 export async function openUserMenu(page: Page): Promise<void> {
   await page.evaluate(() => {
-    const trigger = document.querySelector('post-menu-trigger button') as HTMLElement;
+    const trigger = document.querySelector('post-menu-trigger button') as HTMLElement | null;
     trigger?.click();
   });
   await page.waitForTimeout(WAIT_TIMES.animation);
