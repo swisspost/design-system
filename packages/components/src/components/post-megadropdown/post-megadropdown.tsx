@@ -48,11 +48,11 @@ export class PostMegadropdown {
 
     
   private slideAnimation: {
-  translateY: string,
+  translateX: string,
   duration: number;
   curve: {in:string, out:string};
 } = {
-      translateY: '100%',
+      translateX: '100%',
       duration: 350,
       curve: {in:'ease-in', out:'ease-out'}
     };
@@ -150,7 +150,7 @@ export class PostMegadropdown {
     this.currentAnimation =
       this.device === 'desktop'
         ? fadeSlideIn(this.animatedContainer, this.fadeSlideAnimation['slide'], this.fadeSlideAnimation['duration'], this.fadeSlideAnimation['curve'])
-        : slideIn(this.animatedContainer, this.slideAnimation['translateY'], this.slideAnimation['duration'], this.slideAnimation.curve['in']);
+        : slideIn(this.animatedContainer, this.slideAnimation['translateX'], this.slideAnimation['duration'], this.slideAnimation.curve['in']);
 
     try {
       await this.currentAnimation.finished;
@@ -187,7 +187,7 @@ export class PostMegadropdown {
     this.currentAnimation =
       this.device === 'desktop'
         ? fadeSlideOut(this.animatedContainer, this.fadeSlideAnimation['slide'], this.fadeSlideAnimation['duration'], this.fadeSlideAnimation['curve'])
-        : slideOut(this.animatedContainer, this.slideAnimation['translate'], this.slideAnimation['duration'],  this.slideAnimation.curve['out']);
+        : slideOut(this.animatedContainer, this.slideAnimation['translateY'], this.slideAnimation['duration'],  this.slideAnimation.curve['out']);
 
     try {
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });

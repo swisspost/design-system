@@ -48,7 +48,7 @@ export function slideDown(
 
 export function slideIn(
   el: HTMLElement,
-  translateSize: string = '-100%',
+  translateSize: string = '100%',
   slideDuration: number = duration,
   slideEasing: string = easing,
   slideFill: FillMode = fill,
@@ -68,7 +68,7 @@ export function slideIn(
 
 export function slideOut(
   el: HTMLElement,
-  translateSize: string = '-100%',
+  translateSize: string = '100%',
   slideDuration: number = duration,
   slideEasing: string = easing,
   slideFill: FillMode = fill,
