@@ -263,17 +263,16 @@ export const ActiveNavigationItem: Story = {
   ],
   render: () => html`
     <post-mainnavigation slot="main-nav" caption="Main navigation">
-      <post-list title-hidden="">
-        <p>Main Navigation</p>
-        <post-list-item slot="post-list-item">
+      <ul>
+        <li>
           <a href="/letters">Letters</a>
-        </post-list-item>
+        </li>
 
-        <post-list-item slot="post-list-item">
+        <li>
           <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
           <a href="/packages" aria-current="page">Packages</a>
-        </post-list-item>
-      </post-list>
+        </li>
+      </ul>
     </post-mainnavigation>
   `,
 };

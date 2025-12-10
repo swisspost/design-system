@@ -30,6 +30,8 @@ some content
  - [post-closebutton](../post-closebutton)
  - [post-language-menu](../post-language-menu)
  - [post-mainnavigation](../post-mainnavigation)
+ - [post-megadropdown-trigger](../post-megadropdown-trigger)
+ - [post-pagination](../post-pagination)
  - [post-rating](../post-rating)
 
 ### Graph
@@ -43,6 +45,8 @@ graph TD;
   post-closebutton --> post-icon
   post-language-menu --> post-icon
   post-mainnavigation --> post-icon
+  post-megadropdown-trigger --> post-icon
+  post-pagination --> post-icon
   post-rating --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
