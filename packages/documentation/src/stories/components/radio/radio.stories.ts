@@ -139,6 +139,8 @@ function render(args: Args, context: StoryContext) {
 
   const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
 
+  const name = context.id ?? `${id}-name`;
+
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
 
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
@@ -154,6 +156,7 @@ function render(args: Args, context: StoryContext) {
   const control = html`
     <input
       id="${id}"
+      name="${name}"
       class="${ifDefined(radioClass)}"
       type="radio"
       ?checked="${args.checked}"
