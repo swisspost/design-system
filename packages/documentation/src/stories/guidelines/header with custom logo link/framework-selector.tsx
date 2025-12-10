@@ -54,14 +54,13 @@ const code = `
 
   <!-- Main navigation -->
   <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
-    <post-list title-hidden="">
-      <p>Main Navigation</p>
+    <ul>
       <!-- Link only level 1 -->
-      <post-list-item slot="post-list-item"><a href="#">Briefe</a></post-list-item>
-      <post-list-item slot="post-list-item"><a href="#">Pakete</a></post-list-item>
+      <li><a href="#">Briefe</a></li>
+      <li><a href="#">Pakete</a></li>
 
       <!-- Level 1 with megadropdown -->
-      <post-list-item slot="post-list-item">
+      <li>
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
         <post-megadropdown id="briefe">
           <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
@@ -89,8 +88,8 @@ const code = `
             <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
         </post-megadropdown>
-      </post-list-item>
-      <post-list-item slot="post-list-item">
+      </li>
+      <li>
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
         <post-megadropdown id="pakete">
           <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
@@ -118,8 +117,8 @@ const code = `
             <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
         </post-megadropdown>
-      </post-list-item>
-    </post-list>
+      </li>
+    </ul>
   </post-mainnavigation>
 </post-header>
 `;
