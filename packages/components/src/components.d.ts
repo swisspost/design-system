@@ -204,16 +204,10 @@ export namespace Components {
         "label": string;
     }
     interface PostHeader {
-        "duration"?: number;
-        "slide"?: number;
         /**
           * Toggles the burger navigation menu.
          */
         "toggleBurgerMenu": (force?: boolean) => Promise<void>;
-        "x1"?: number;
-        "x2"?: number;
-        "y1"?: number;
-        "y2"?: number;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -316,8 +310,6 @@ export namespace Components {
     interface PostMainnavigation {
     }
     interface PostMegadropdown {
-        "duration_entry"?: number;
-        "duration_exit"?: number;
         /**
           * Sets focus to the first focusable element within the component.
          */
@@ -330,20 +322,10 @@ export namespace Components {
           * Displays the dropdown.
          */
         "show": () => Promise<void>;
-        "slide_down"?: number;
-        "slide_up"?: number;
         /**
           * Toggles the dropdown visibility based on its current state.
          */
         "toggle": () => Promise<void>;
-        "x1_entry"?: number;
-        "x1_exit"?: number;
-        "x2_entry"?: number;
-        "x2_exit"?: number;
-        "y1_entry"?: number;
-        "y1_exit"?: number;
-        "y2_entry"?: number;
-        "y2_exit"?: number;
     }
     interface PostMegadropdownTrigger {
         /**
@@ -1176,12 +1158,6 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PostHeader {
-        "duration"?: number;
-        "slide"?: number;
-        "x1"?: number;
-        "x2"?: number;
-        "y1"?: number;
-        "y2"?: number;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -1288,22 +1264,10 @@ declare namespace LocalJSX {
     interface PostMainnavigation {
     }
     interface PostMegadropdown {
-        "duration_entry"?: number;
-        "duration_exit"?: number;
         /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
         "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
-        "slide_down"?: number;
-        "slide_up"?: number;
-        "x1_entry"?: number;
-        "x1_exit"?: number;
-        "x2_entry"?: number;
-        "x2_exit"?: number;
-        "y1_entry"?: number;
-        "y1_exit"?: number;
-        "y2_entry"?: number;
-        "y2_exit"?: number;
     }
     interface PostMegadropdownTrigger {
         /**

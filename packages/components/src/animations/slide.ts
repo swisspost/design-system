@@ -1,3 +1,7 @@
+/**
+ * Used by PostMegadropdown (only slideIn/slideOut)
+ */
+
 const easing: string = 'ease';
 const duration: number = 500;
 const fill: FillMode = 'forwards';
