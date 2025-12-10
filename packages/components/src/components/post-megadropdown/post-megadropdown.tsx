@@ -36,7 +36,7 @@ export class PostMegadropdown {
   duration: number;
   curve: { x1: number; y1: number; x2: number; y2: number };
 } = {
-      slide: 10,
+      slide: -10,
       duration: 350,
       curve: {
         x1: 0.8,
