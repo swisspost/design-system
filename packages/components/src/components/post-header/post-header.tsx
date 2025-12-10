@@ -417,6 +417,7 @@ export class PostHeader {
   render() {
     return (
       <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
+        <header>
         <div
           class={{
             'global-header': true,
@@ -459,6 +460,7 @@ export class PostHeader {
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}
+        </header>
       </Host>
     );
   }
