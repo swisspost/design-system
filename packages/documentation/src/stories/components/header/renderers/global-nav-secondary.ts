@@ -1,10 +1,10 @@
 import { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
-export function renderMetaNavigation(args: Args) {
+export function renderGlobalNavSecondary(args: Args) {
   return html`
-    <!-- Meta navigation -->
-    <ul slot="meta-navigation">
+    <!-- Global secondary navigation -->
+    <ul slot="global-nav-secondary">
       <li>
         <a href="" aria-current=${args.jobs ? 'location' : nothing}>
           Jobs

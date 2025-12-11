@@ -1,0 +1,30 @@
+@use '../../mixins/button';
+@use '../../mixins/media';
+
+@use './mixins' as *;
+@use './placeholders' as *;
+
+post-mainnavigation {
+  > ul {
+    @extend %header-list;
+    column-gap: 0;
+    height: 100%;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+
+  > *,
+  post-megadropdown-trigger > * {
+    @include interactive-elements {
+      @extend %header-control;
+      height: 100%;
+
+      @include nav-item-block-layout;
+      @include nav-item-bold-hover;
+
+      @include media.only(desktop) {
+        @include button.button-variant-def('enabled', 'secondary');
+      }
+    }
+  }
+}
