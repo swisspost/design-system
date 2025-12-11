@@ -132,10 +132,13 @@ export class PostLanguageMenu {
             {this.activeLang}
             <span class="visually-hidden">{this.caption}</span>
             <span class="visually-hidden">{this.description}</span>
-            <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-menu-dropdown-container" label={this.caption}>
+        <post-menu
+          id={this.menuId}
+          class="post-language-menu-dropdown-container"
+          label={this.caption}
+        >
           <slot></slot>
         </post-menu>
       </Host>

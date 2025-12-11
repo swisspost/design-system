@@ -1,17 +1,28 @@
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
-post-megadropdown-trigger {
-  width: 100%;
+:host {
   position: relative;
+  display: inline-block;
+}
 
-  button {
-    @include header-mx.nav-item-rotating-chevron;
+// On desktop, we need an inert button to stabilize layout.
+// This prevents layout shifts caused by the real button toggling between normal and bold font-weights.
+@include media.only(desktop) {
+  // The inert button provides size to the host but stays invisible.
+  ::slotted(button[inert]) {
+    visibility: hidden !important;
+  }
 
-    @include media.max(desktop) {
-      post-icon {
-        transform: rotate(-90deg);
-      }
-    }
+  // The interactive button is positioned on top of the inert one and adopts the same height and width.
+  ::slotted(button:not([inert], :only-child)) {
+    position: absolute !important;
+    inset: 0 !important;
+  }
+}
+
+// On mobile, the font-weight does not change so the inert button is unnecessary.
+@include media.max(desktop) {
+  ::slotted(button[inert]) {
+    display: none !important;
   }
 }

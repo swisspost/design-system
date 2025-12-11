@@ -17,14 +17,12 @@
 ### Depends on
 
 - [post-menu-trigger](../post-menu-trigger)
-- [post-icon](../post-icon)
 - [post-menu](../post-menu)
 
 ### Graph
 ```mermaid
 graph TD;
   post-language-menu --> post-menu-trigger
-  post-language-menu --> post-icon
   post-language-menu --> post-menu
   post-menu --> post-popovercontainer
   style post-language-menu fill:#f9f,stroke:#333,stroke-width:4px

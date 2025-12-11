@@ -68,7 +68,7 @@ post-header {
   }
 
   // meta navigation on desktop
-  > ul[slot='meta-navigation'] {
+  > ul[slot='global-nav-secondary'] {
     @include media.max(desktop) {
       &:where(ul) {
         flex-direction: column;
