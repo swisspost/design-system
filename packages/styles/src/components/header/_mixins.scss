@@ -1,16 +1,189 @@
-@use '../../mixins/icons';
+@use '../../functions/tokens';
+@use '../../mixins/button';
+@use '../../mixins/media';
+@use '../../mixins/utilities';
+@use '../../tokens/components';
+@use '../../tokens/helpers';
 
-@mixin subsidiary-header-interactive() {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border-radius: 24px;
-  font-size: 16px;
-  padding: 3px 10px;
+/**
+ selects all slotted nav items
+ */
+@mixin interactive-elements {
+  &:where(a, button, [role='link'], [role='button']),
+  &:where(ul) > li > :where(a, button, [role='link'], [role='button']) {
+    @content;
+  }
 }
 
-@mixin mobile-header-interactive() {
+/**
+ selects active nav items
+ */
+@mixin active-state {
+  &:is(.active, [aria-current], [aria-pressed='true'], [aria-expanded='true']) {
+    @content;
+  }
+}
+
+/**
+ default styles for header nav items
+ */
+@mixin nav-item-base {
+  @include button.button-base;
+  border: unset;
+  font-weight: unset;
+  display: flex;
+  padding: 0.25rem 0.625rem;
+  gap: 0.375rem;
+  font-size: 1rem;
+
+  @include button.button-variant-def('enabled', 'tertiary');
+
+  &:hover {
+    @include button.button-variant-def('hover', 'tertiary');
+  }
+
+  @include active-state {
+    box-shadow: tokens.get('button-elevation', components.$post-button);
+
+    @include button.button-variant-def('enabled', 'primary');
+
+    &:hover {
+      @include button.button-variant-def('hover', 'primary');
+    }
+  }
+}
+
+/**
+ styles for squared nav items (main navigation and burger menu)
+ */
+@mixin nav-item-block-layout {
+  border-radius: 0;
+  padding: 0 0.75rem;
+
+  &:hover {
+    @include button.button-variant-def('hover', 'primary');
+  }
+
+  @include active-state {
+    box-shadow: none;
+  }
+
+  @include utilities.focus-style-custom {
+    border-radius: 0.5rem;
+    outline-offset: calc(-1 * #{tokens.get('focus-outline-width', helpers.$post-focus)}) !important;
+  }
+
+  @include media.max(desktop) {
+    width: 100%;
+    justify-content: start;
+    position: relative;
+
+    &::before {
+      content: '';
+      background-color: #050400;
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      height: 1px;
+    }
+
+    > post-icon:where(:last-child) {
+      margin-inline-start: auto;
+    }
+  }
+
+  @include media.only(mobile) {
+    padding: 0.5rem 0.75rem calc(0.5rem - 1px) 0.5rem;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+
+    > post-icon {
+      font-size: 1rem;
+    }
+  }
+
+  @include media.only(tablet) {
+    padding: 0.75rem 0.75rem calc(0.75rem - 1px) 0.5rem;
+    gap: 1rem;
+
+    > post-icon {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+/**
+ styles for nav items that remain in the header on mobile and tablet
+ */
+@mixin nav-item-icon-only {
+  padding: 0.5rem;
+
+  > :not(post-icon) {
+    display: none;
+  }
+
+  > post-icon {
+    font-size: 1.5rem;
+  }
+}
+
+/**
+ styles for nav items with a rotating toggle arrow
+ */
+@mixin nav-item-rotating-chevron {
+  post-icon {
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @include active-state {
+    post-icon {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@mixin nav-item-bold-hover {
+  > .shown-when-inactive {
+    display: none;
+  }
+
+  @include media.only(desktop) {
+    &:has(> .shown-when-inactive) {
+      font-weight: 700;
+    }
+
+    > .shown-when-inactive {
+      all: inherit;
+      font-weight: 400;
+      position: absolute;
+      inset: 0;
+    }
+
+    @include active-state {
+      > .shown-when-inactive {
+        display: none;
+      }
+    }
+
+    &:where(post-megadropdown-trigger > *) {
+      display: grid;
+      grid-template-columns: 1fr auto;
+
+      > post-icon {
+        z-index: 1;
+      }
+
+      > .shown-when-inactive > post-icon {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+/**
+ deprecated
+ */
+@mixin mobile-header-interactive {
   width: 100%;
   min-width: 100%;
   height: 48px;
@@ -31,9 +204,7 @@
     left: 0;
   }
 
-  &.active,
-  &[aria-current='page'],
-  &[aria-expanded='true'] {
+  @include active-state {
     background-color: #050400;
     color: #fff;
   }

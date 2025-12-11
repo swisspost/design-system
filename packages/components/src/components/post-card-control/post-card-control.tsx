@@ -75,7 +75,7 @@ export class PostCardControl {
   /**
    * Defines the `type` attribute of the control.
    */
-  @Prop() readonly type!: 'checkbox' | 'radio';
+  @Prop({ reflect: true }) readonly type!: 'checkbox' | 'radio';
 
   /**
    * Defines the `name` attribute of the control.

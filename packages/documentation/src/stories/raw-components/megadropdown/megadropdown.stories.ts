@@ -29,7 +29,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
       <!-- Meta navigation -->
-      <ul class="list-inline" slot="meta-navigation">
+      <ul slot="global-nav-secondary">
         <li><a href="">Jobs</a></li>
         <li><a href="">About us</a></li>
       </ul>
@@ -42,24 +42,24 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </post-togglebutton>
 
       <!-- Language switch -->
-      <post-language-switch
+      <post-language-menu
         caption="Caption"
         description="Description"
         variant="list"
-        name="language-switch-example"
-        slot="post-language-switch"
+        name="language-menu-example"
+        slot="language-menu"
       >
-        <post-language-option active="true" code="de" name="German">DE</post-language-option>
-        <post-language-option active="false" code="fr" name="French">FR</post-language-option>
-        <post-language-option active="false" code="it" name="Italian">IT</post-language-option>
-        <post-language-option active="false" code="en" name="English">EN</post-language-option>
-      </post-language-switch>
+        <post-language-menu-item active="true" code="de" name="German">DE</post-language-menu-item>
+        <post-language-menu-item active="false" code="fr" name="French">FR</post-language-menu-item>
+        <post-language-menu-item active="false" code="it" name="Italian">IT</post-language-menu-item>
+        <post-language-menu-item active="false" code="en" name="English">EN</post-language-menu-item>
+      </post-language-menu>
 
       <!-- Application title (optional) -->
-      <h1 slot="title">Application title</h1>
+      <p slot="title">Application title</p>
 
       <!-- Custom content (optional) -->
-      <ul class="list-inline">
+      <ul slot="local-nav">
         <li>
           <a href="#">
             <span>Search</span>
@@ -75,11 +75,10 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Main Navigation">
-        <post-list title-hidden="">
-          <h2>Main Navigation</h2>
-          <post-list-item> ${story(context.args, context)} </post-list-item>
-        </post-list>
+      <post-mainnavigation slot="main-nav" caption="Main Navigation">
+        <ul>
+          <li>${story(context.args, context)}</li>
+        </ul>
       </post-mainnavigation>
     </post-header>
     <div class="container">
@@ -98,17 +97,16 @@ function render() {
         Back
       </button>
       <post-closebutton slot="close-button">Close</post-closebutton>
-      <h2 slot="megadropdown-title"><a href="">Packages title</a></h2>
       <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
       <post-list>
-        <h3>Send packages</h3>
+        <p>Send packages</p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
         <post-list-item><a href="/kl">Small goods international</a></post-list-item>
         <post-list-item><a href="">Goods international</a></post-list-item>
         <post-list-item><a href="">Express and courier</a></post-list-item>
       </post-list>
       <post-list>
-        <h3><a href="/step-by-step">Step by step</a></h3>
+        <p><a href="/step-by-step">Step by step</a></p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
         <post-list-item><a href="/kl">Small goods international</a></post-list-item>
         <post-list-item><a href="">Goods international</a></post-list-item>
@@ -119,7 +117,7 @@ function render() {
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostLanguageOptionElement>;
+type Story = StoryObj<HTMLPostLanguageMenuItemElement>;
 
 export const Default: Story = {
   decorators: [megadropdownDecorator],

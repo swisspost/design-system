@@ -27,28 +27,28 @@
     $stroke-pathlength-attribute: " pathLength='" + $stroke-pathlength + "'";
   }
   @return "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%' height='100%' " +
-    $svg-additional-attributes + " fill='none' stroke='" + #{color.encode-uri-color($color)} + "' stroke-width='" +
-    $stroke-width "' stroke-dasharray='" + $stroke-dasharray + "'" + $stroke-pathlength-attribute + ' /%3e%3c/svg%3e';
+    $svg-additional-attributes + " fill='none' stroke='" + #{color.encode-uri-color($color)} +
+    "' stroke-width='" + $stroke-width "' stroke-dasharray='" + $stroke-dasharray + "'" +
+    $stroke-pathlength-attribute + ' /%3e%3c/svg%3e';
 }
 
 @function select-arrow-icon($state: null, $mode: 'light') {
   // Hardcoded colors because CSS variables cannot be used as fill color of background-image
   $arrow-color-map: (
     'enabled-light': #050400,
-    'enabled-dark': #fff,
+    'enabled-dark': #050400,
     'hover-light': #504f4b,
-    'hover-dark': #fff,
+    'hover-dark': #504f4b,
     'selected-light': #050400,
-    'selected-dark': #fff,
+    'selected-dark': #050400,
     'disabled-light': #696864,
-    'disabled-dark': #fff,
+    'disabled-dark': #fcfcfc99,
     'enabled-hcm-light': #050400,
     'enabled-hcm-dark': #fff,
     'selected-hcm-dark': #fff,
     'hover-hcm-dark': #fff,
     'hover-hcm-light': #050400,
   );
-
   @if ($state) {
     $icon: icons.get-colored-svg-url('2052', map.get($arrow-color-map, '#{$state}-#{$mode}'));
     $state: url('#{$icon}');

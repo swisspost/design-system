@@ -140,7 +140,9 @@ export interface V910Checks {
     accent_colors: boolean;
     spinner_sizes: boolean;
     standard_html_alert: boolean;
+    stepper: boolean;
     spinner: boolean;
+    dialog_icon: boolean;
   };
   components: {
     alert: boolean;
@@ -148,6 +150,7 @@ export interface V910Checks {
     hydrated_flag: boolean;
     accordion_item_part: boolean;
     popover_trigger: boolean;
+    tabs_anchor_navigation: boolean;
   };
 }
 

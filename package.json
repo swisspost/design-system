@@ -109,7 +109,7 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.29.7",
+    "@changesets/cli": "2.29.8",
     "start-server-and-test": "2.1.2",
     "turbo": "2.5.8"
   },
@@ -117,7 +117,7 @@
     "@web-types/lit": "2.0.0-3"
   },
   "engines": {
-    "node": "22"
+    "node": "22||24"
   },
   "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af",
   "pnpm": {

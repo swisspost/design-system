@@ -3,19 +3,18 @@ import { html } from 'lit';
 export function renderMainnavigation() {
   return html`
     <!-- Main navigation -->
-    <post-mainnavigation caption="Main navigation">
-      <post-list title-hidden="">
-        <h2>Main Navigation</h2>
+    <post-mainnavigation slot="main-nav" caption="Main navigation">
+      <ul>
         <!-- Link only level 1 -->
-        <post-list-item slot="post-list-item">
+        <li>
           <a href="/letters">Letters</a>
-        </post-list-item>
-        <post-list-item slot="post-list-item">
+        </li>
+        <li>
           <a href="/packages">Packages</a>
-        </post-list-item>
+        </li>
 
         <!-- Level 1 with megadropdown -->
-        <post-list-item slot="post-list-item">
+        <li>
           <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
           <post-megadropdown id="letters">
             <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
@@ -23,10 +22,9 @@ export function renderMainnavigation() {
               Back
             </button>
             <post-closebutton slot="close-button">Close</post-closebutton>
-            <h2 slot="megadropdown-title">Letters title</h2>
             <a slot="megadropdown-overview-link" href="/letters">Overview Letters</a>
             <post-list>
-              <h3>Send letters</h3>
+              <p>Send letters</p>
               <post-list-item slot="post-list-item">
                 <a href="/sch">Letters Switzerland</a>
               </post-list-item>
@@ -41,7 +39,7 @@ export function renderMainnavigation() {
               </post-list-item>
             </post-list>
             <post-list>
-              <h3><a href="/step-by-step">Step by step</a></h3>
+              <p><a href="/step-by-step">Step by step</a></p>
               <post-list-item slot="post-list-item">
                 <a href="/sch">Packages Switzerland</a>
               </post-list-item>
@@ -56,8 +54,8 @@ export function renderMainnavigation() {
               </post-list-item>
             </post-list>
           </post-megadropdown>
-        </post-list-item>
-        <post-list-item slot="post-list-item">
+        </li>
+        <li>
           <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
           <post-megadropdown id="packages">
             <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
@@ -65,10 +63,9 @@ export function renderMainnavigation() {
               Back
             </button>
             <post-closebutton slot="close-button">Close</post-closebutton>
-            <h2 slot="megadropdown-title">Packages title</h2>
             <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
             <post-list>
-              <h3>Send packages</h3>
+              <p>Send packages</p>
               <post-list-item slot="post-list-item">
                 <a href="/sch">Packages Switzerland</a>
               </post-list-item>
@@ -83,7 +80,7 @@ export function renderMainnavigation() {
               </post-list-item>
             </post-list>
             <post-list>
-              <h3><a href="/step-by-step">Step by step</a></h3>
+              <p><a href="/step-by-step">Step by step</a></p>
               <post-list-item slot="post-list-item">
                 <a href="/sch">Packages Switzerland</a>
               </post-list-item>
@@ -98,8 +95,8 @@ export function renderMainnavigation() {
               </post-list-item>
             </post-list>
           </post-megadropdown>
-        </post-list-item>
-      </post-list>
+        </li>
+      </ul>
     </post-mainnavigation>
   `;
 }
