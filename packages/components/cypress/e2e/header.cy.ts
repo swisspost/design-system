@@ -112,7 +112,7 @@ describe('header', () => {
       cy.get('post-togglebutton').click();
       cy.get('div.burger-menu.extended').should('exist');
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
-      cy.wait(600);
+
       // Check if animation class is present
       cy.get('post-megadropdown .megadropdown-container')
         .should('be.visible')
