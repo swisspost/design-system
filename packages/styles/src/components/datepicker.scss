@@ -3,12 +3,12 @@ post-datepicker {
     &::-webkit-calendar-picker-indicator,
     &::-webkit-inner-spin-button {
       display: none;
-      -webkit-appearance: none;
+      appearance: none;
     }
   }
 
   .calendar-input-range input[type='date'] {
-    border: none;
+    border: unset;
 
     &:focus-visible {
       outline: none;

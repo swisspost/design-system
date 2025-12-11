@@ -85,9 +85,8 @@ tokens.$default-map: components.$post-breadcrumb;
     }
 
     .air-datepicker-nav--action {
-      order: 2;
       font-size: var(--adp-font-size);
-      height: var(--adp-nav-action-size); // ???
+      height: var(--adp-nav-action-size);
 
       &[data-action='next'] {
         margin-inline-start: 5px; // post.datepicker.header.arrow.gap
@@ -235,12 +234,6 @@ tokens.$default-map: components.$post-breadcrumb;
           inset: 0;
           background: #050400;
         }
-      }
-
-      &.-range-to- {
-        // border: 2px solid #050400;
-        // border-inline-start: none;
-        // border-radius: 0 var(--adp-cell-border-radius) var(--adp-cell-border-radius) 0;
       }
 
       &:not(.-range-from-):not(.-range-to-):hover {

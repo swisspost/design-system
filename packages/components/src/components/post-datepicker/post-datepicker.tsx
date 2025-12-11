@@ -17,7 +17,7 @@ import AirDatepicker, {
 } from 'air-datepicker';
 
 import { localesMap } from './locales';
-import { checkEmptyOrType, checkRequiredAndType, getDeepFocusableChildren } from '@/utils';
+import { checkEmptyOrType, checkRequiredAndType } from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -236,7 +236,6 @@ export class PostDatepicker {
   }
 
   private setActiveCell(date: Date, focusOnDate: boolean = true) {
-    console.log('NEW ACTIVE CELL IS', date);
     const cells = this.getCells();
     if (!cells.length) return;
 
@@ -300,18 +299,32 @@ export class PostDatepicker {
     );
   }
 
+  /**
+   * Move title before the previous button in the DOM
+   */
+  private reorderNavigation() {
+    const nav = this.dpContainer?.querySelector('.air-datepicker-nav');
+    if (!nav) return;
+
+    const prev = this.host.shadowRoot.querySelector('[data-action="prev"]');
+    const title = this.host.shadowRoot.querySelector('.air-datepicker-nav--title');
+    if (prev && title) {
+      nav.insertBefore(title, prev);
+    }
+  }
+
   private get prevBtn() {
-    return this.host.shadowRoot.querySelector('[data-action="prev"] button') as HTMLButtonElement;
+    return this.host.shadowRoot.querySelector<HTMLButtonElement>('[data-action="prev"] button');
   }
 
   private get nextBtn() {
-    return this.host.shadowRoot.querySelector('[data-action="next"] button') as HTMLButtonElement;
+    return this.host.shadowRoot.querySelector<HTMLButtonElement>('[data-action="next"] button');
   }
 
   private get titleBtn() {
-    return this.host.shadowRoot.querySelector(
+    return this.host.shadowRoot.querySelector<HTMLButtonElement>(
       '.air-datepicker-nav--title button',
-    ) as HTMLButtonElement;
+    );
   }
 
   private skipOnSelectCount = 0;
@@ -334,65 +347,29 @@ export class PostDatepicker {
   }
 
   /**
-   * Correct the tab flow loop
-   * 1) Title -> 2) Previous button -> 3) Next button -> 4) Grid active element
-   * If datepicker is inline, remove the loop
+   * Loop through the datepicker when not in inline mode
    */
   private handleTab = (e: KeyboardEvent) => {
-    if (e.key !== 'Tab' && e.key !== 'Escape') return;
+    if (this.inline || (e.key !== 'Tab' && e.key !== 'Escape')) return;
 
     // Focus on the input when escaping the calendar
-    if (e.key === 'Escape' && !this.inline) {
+    if (e.key === 'Escape') {
       this.dpInputs[0].focus();
     }
 
     const active = this.host.shadowRoot.activeElement as HTMLElement;
 
-    if (active === this.nextBtn && e.shiftKey) {
+    if (active === this.titleBtn && e.shiftKey) {
       e.preventDefault();
-      this.prevBtn.focus();
-      return;
-    }
-
-    if (active === this.prevBtn) {
-      e.preventDefault();
-      if (e.shiftKey) {
-        // No title in year view
-        if (this.currentViewType === 'years') {
-          if (this.inline) {
-            this.exitDatepicker(active, false);
-          } else {
-            const activeCell = this.getCells().find(c => c.tabIndex === 0);
-            if (activeCell) {
-              activeCell.focus();
-            }
-          }
-        } else {
-          this.titleBtn.focus();
-        }
-      } else {
-        this.nextBtn.focus();
+      const activeCell = this.getCells().find(c => c.tabIndex === 0);
+      if (activeCell) {
+        activeCell.focus();
       }
     }
 
-    if (active === this.titleBtn) {
+    if (active?.getAttribute('role') === 'gridcell' && !e.shiftKey) {
       e.preventDefault();
-      if (e.shiftKey) {
-        if (this.inline) {
-          this.exitDatepicker(active, false);
-        } else {
-          const activeCell = this.getCells().find(c => c.tabIndex === 0);
-          if (activeCell) {
-            activeCell.focus();
-          }
-        }
-      } else {
-        this.prevBtn.focus();
-      }
-    }
 
-    if (active?.getAttribute('role') === 'gridcell' && !this.inline && !e.shiftKey) {
-      e.preventDefault();
       if (this.currentViewType === 'years') {
         this.prevBtn.focus();
       } else {
@@ -400,22 +377,6 @@ export class PostDatepicker {
       }
     }
   };
-
-  /**
-   * Exit the datepicker by forcing focus to the previous/next focusable element
-   * Inline mode only
-   * @param activeElement Currently focused element
-   * @param next Whether focus needs to go before or after the datepicker element
-   */
-  private exitDatepicker(activeElement: HTMLElement, next = true) {
-    const focusables = getDeepFocusableChildren(document.body);
-    const hostIndex = focusables.indexOf(activeElement);
-
-    if (hostIndex > 0) {
-      const previous = focusables[hostIndex + (next ? 1 : -1)];
-      previous.focus();
-    }
-  }
 
   /**
    * Handle keyboard/arrow navigation within the grid
@@ -487,21 +448,16 @@ export class PostDatepicker {
       },
     };
 
-    console.log('before', key, newDate);
-
     if (!move[key] || !move[key][this.currentViewType]) return;
 
     e.preventDefault();
     move[key][this.currentViewType]();
-
-    console.log('after', newDate);
 
     // If month has changed, update view date
     const monthChanged =
       current.getMonth() !== newDate.getMonth() || current.getFullYear() !== newDate.getFullYear();
 
     if (monthChanged) {
-      console.log('month has changed', newDate);
       this.skipFocusOnNextRender = false;
       this.dpInstance.setViewDate(newDate);
 
@@ -509,7 +465,6 @@ export class PostDatepicker {
         this.setActiveCell(newDate, true);
       });
     } else {
-      console.log('-');
       this.setActiveCell(newDate, true);
     }
   };
@@ -558,8 +513,8 @@ export class PostDatepicker {
   }
 
   private configDatepicker() {
-    const slot = this.host.shadowRoot.querySelector('slot');
-    const assignedNodes = slot && (slot as HTMLSlotElement).assignedElements();
+    const slot = this.host.shadowRoot.querySelector<HTMLSlotElement>('slot');
+    const assignedNodes = slot && slot.assignedElements();
     const locale = localesMap[this.locale] || localesMap.en;
     this.dpInputs = assignedNodes?.filter(el => el.tagName === 'INPUT') as HTMLInputElement[];
     this.setMinAndMaxToInputs();
@@ -642,6 +597,7 @@ export class PostDatepicker {
       };
 
       this.dpInstance = new AirDatepicker(this.dpContainer, options);
+      this.reorderNavigation();
 
       this.prevBtn?.addEventListener('click', () => {
         this.skipFocusOnNextRender = true;
@@ -668,7 +624,6 @@ export class PostDatepicker {
         }
       }
 
-      console.log('Title button?', this.titleBtn);
       // Override the title click to go to year view directly (skip month view)
       this.titleBtn?.addEventListener('click', () => {
         if (this.dpInstance) {
@@ -833,8 +788,7 @@ export class PostDatepicker {
     this.validateRange();
 
     if (this.inline) {
-      this.host.shadowRoot.addEventListener('keydown', this.handleTab);
-      requestAnimationFrame(() => this.enhanceAccessibility());
+      requestAnimationFrame(() => this.enhanceAccessibility(false));
     } else {
       this.addInputListeners();
     }

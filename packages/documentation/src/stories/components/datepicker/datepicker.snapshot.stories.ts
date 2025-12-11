@@ -33,7 +33,7 @@ export const Datepicker: Story = {
             })}
         </div>
       `,
-      //TODO: Remove this when styling is done
+      // Remove this when styling is done
       {filter: scheme => scheme === COLOR_SCHEMES.light,
     });
   },
