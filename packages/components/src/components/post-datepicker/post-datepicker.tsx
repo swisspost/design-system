@@ -536,6 +536,7 @@ export class PostDatepicker {
         selectOtherYears: true,
         showOtherMonths: false,
         moveToOtherMonthsOnSelect: true,
+        firstDay: 1,
         startDate: this.startDate,
         minDate: this.min,
         maxDate: this.max,

@@ -1,6 +1,7 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
+import { StoryContext, StoryFn } from '@storybook/web-components-vite/dist';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
@@ -8,6 +9,7 @@ const meta: MetaComponent = {
   component: 'post-datepicker',
   tags: ['package:WebComponents'],
   render,
+  exclude: ['id'],
   parameters: {
     badges: [],
     design: {
@@ -16,6 +18,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
+    id: 'main',
     inline: false,
     range: false,
     labelToggleCalendar: "Open calendar" ,
@@ -90,7 +93,7 @@ export default meta;
 function render(args: Args) {
   console.log(args);
   return html`
-    <post-datepicker inline="${args.inline}" range="${args.range}" min="${args.min}" max="${args.max}"
+    <post-datepicker id=${args.id} inline="${args.inline}" range="${args.range}" min="${args.min}" max="${args.max}"
     label-toggle-calendar="${args.labelToggleCalendar}"
     label-next-decade="${args.labelNextDecade}"
     label-next-month="${args.labelNextMonth}"
@@ -110,25 +113,51 @@ function render(args: Args) {
     </post-datepicker>`
 }
 
-export const Default: StoryObj = {};
+type Story = StoryObj;
+
+export const Default: Story = {};
 
 // For testing purposes
-export const Inline: StoryObj = {
-  args: {
-    inline: true
-  },
-};
-
-export const InlineRange: StoryObj = {
+export const Inline: Story = {
   args: {
     inline: true,
-    range: true
+    id: 'inline'
   },
 };
 
-export const Range: StoryObj = {
+export const InlineRange: Story = {
   args: {
-    inline: false,
-    range: true
+    inline: true,
+    range: true,
+    id: 'inline-range'
   },
 };
+
+export const Range: Story = {
+  args: {
+    inline: false,
+    range: true,
+    id: 'range'
+  },
+};
+
+export const DisabledDates: Story = {
+  decorators: [(story:StoryFn, context: StoryContext) => {
+    return html`${story(context.args, context)}
+      <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          const dp = document.querySelector('post-datepicker#disabled-dates');
+          dp.renderCellCallback = ({ date, cellType }) => {
+            if (cellType === 'day' && date.getDay() === 0) {
+              return { disabled: true, classes: 'is-sunday' };
+            }
+          };
+        });
+      </script>`
+  }],
+  args: {
+    inline: true,
+    range: false,
+    id: 'disabled-dates'
+  },
+}
