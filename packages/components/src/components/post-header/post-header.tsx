@@ -420,48 +420,48 @@ export class PostHeader {
     return (
       <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
         <header role='banner'>
-        <div
-          class={{
-            'global-header': true,
-            'no-target-group': !this.hasTargetGroup,
-          }}
-        >
-          <div class="logo">
-            <slot name="post-logo"></slot>
+          <div
+            class={{
+              'global-header': true,
+              'no-target-group': !this.hasTargetGroup,
+            }}
+          >
+            <div class="logo">
+              <slot name="post-logo"></slot>
+            </div>
+            <div class="sliding-controls">
+              {this.device === 'desktop' && (
+                <div class="target-group">
+                  <slot name="audience"></slot>
+                </div>
+              )}
+              <slot name="global-nav-primary"></slot>
+              {!this.hasBurgerMenu && [
+                <slot name="global-nav-secondary"></slot>,
+                <slot name="language-menu"></slot>,
+              ]}
+              <slot name="post-login"></slot>
+              {this.hasNavigation && this.device !== 'desktop' && (
+                <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
+                  <slot name="post-togglebutton"></slot>
+                </div>
+              )}
+            </div>
           </div>
-          <div class="sliding-controls">
-            {this.device === 'desktop' && (
-              <div class="target-group">
-                <slot name="audience"></slot>
-              </div>
-            )}
-            <slot name="global-nav-primary"></slot>
-            {!this.hasBurgerMenu && [
-              <slot name="global-nav-secondary"></slot>,
-              <slot name="language-menu"></slot>,
-            ]}
-            <slot name="post-login"></slot>
-            {this.hasNavigation && this.device !== 'desktop' && (
-              <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
-                <slot name="post-togglebutton"></slot>
-              </div>
-            )}
+          <div
+            class={{
+              'local-header': true,
+              'no-title': !this.hasTitle,
+              'no-target-group': !this.hasTargetGroup,
+              'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
+              'no-local-nav': !this.hasLocalNav,
+            }}
+          >
+            <slot name="title"></slot>
+            {this.hasTitle && <slot name="local-nav"></slot>}
+            {this.device === 'desktop' && this.renderNavigation()}
           </div>
-        </div>
-        <div
-          class={{
-            'local-header': true,
-            'no-title': !this.hasTitle,
-            'no-target-group': !this.hasTargetGroup,
-            'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
-            'no-local-nav': !this.hasLocalNav,
-          }}
-        >
-          <slot name="title"></slot>
-          {this.hasTitle && <slot name="local-nav"></slot>}
-          {this.device === 'desktop' && this.renderNavigation()}
-        </div>
-        {this.device !== 'desktop' && this.renderNavigation()}
+          {this.device !== 'desktop' && this.renderNavigation()}
         </header>
       </Host>
     );
