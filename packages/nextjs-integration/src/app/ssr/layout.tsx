@@ -101,7 +101,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostTogglebutton>
 
       {/* Main navigation */}
-      <PostMainnavigation slot="main-nav">
+      <PostMainnavigation slot="main-nav" caption="Main">
         <PostList title-hidden="">
           <p>Main Navigation</p>
 
