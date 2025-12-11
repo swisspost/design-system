@@ -183,14 +183,16 @@ export const Default: Story = {};
 
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  // Ensure a unique suffix for ids: prefer provided context.id, otherwise use crypto.randomUUID() when available,
+  // Ensure a unique suffix for ids: prefer provided context.id, otherwise try crypto.randomUUID(),
   // fall back to a short random string. This prevents duplicate-id-aria issues when the story renders multiple groups/snapshots on the same page.
-  const uniqueSuffix =
-    context.id ??
-    (typeof crypto !== 'undefined' && (crypto as any).randomUUID
-      ? (crypto as any).randomUUID()
-      : Math.random().toString(36).slice(2, 9));
-  const baseId = crypto.randomUUID();
+  type CryptoWithRandomUUID = { randomUUID?: () => string };
+  const maybeCrypto = (globalThis as unknown as { crypto?: CryptoWithRandomUUID }).crypto;
+  const generatedUuid =
+    maybeCrypto && typeof maybeCrypto.randomUUID === 'function'
+      ? maybeCrypto.randomUUID()
+      : Math.random().toString(36).slice(2, 9);
+  const uniqueSuffix: string = context.id ?? generatedUuid;
+  const baseId = `${context.viewMode ?? 'view'}_${(context.name ?? '').replace(/\s/g, '-')}_${uniqueSuffix}_ExampleRadio`;
   const id1 = `${baseId}-1`;
   const id2 = `${baseId}-2`;
   const id3 = `${baseId}-3`;
