@@ -1,87 +1,39 @@
 /**
- * Used by PostMegadropdown (only slideIn/slideOut)
+ * Used by PostMegadropdown
  */
 
-const easing: string = 'ease';
-const duration: number = 500;
-const fill: FillMode = 'forwards';
+import { SlideOptions } from './types';
 
-export function slideUp(
-  el: HTMLElement,
-  translateSize: string = '-100%',
-  slideDuration: number = duration,
-  slideEasing: string = easing,
-  slideFill: FillMode = fill,
-): Animation {
-  return el.animate(
-    [
-      { transform: 'translateY(0)' }, // Starting position (no translation)
-      { transform: `translateY(${translateSize})` }, // End position
-    ],
-    {
-      duration: slideDuration,
-      easing: slideEasing,
-      fill: slideFill,
-    },
-  );
+// Global defaults
+const defaultSlideOptions: SlideOptions = {
+  translateX: 100,
+  duration: 500,
+  easing: 'ease',
+  fill: 'forwards',
+};
+
+export function slideIn(el: HTMLElement, options: SlideOptions = {}): Animation {
+  const { translateX, duration, easing, fill } = {
+    ...defaultSlideOptions,
+    ...options,
+  };
+
+  return el.animate([{ transform: `translateX(${translateX}%)` }, { transform: 'translateX(0)' }], {
+    duration,
+    easing,
+    fill,
+  });
 }
 
-export function slideDown(
-  el: HTMLElement,
-  translateSize: string = '-100%',
-  slideDuration: number = duration,
-  slideEasing: string = easing,
-  slideFill: FillMode = fill,
-): Animation {
-  return el.animate(
-    [
-      { transform: `translateY(${translateSize})` }, // Starting position (no translation)
-      { transform: 'translateY(0)' }, // End position
-    ],
-    {
-      duration: slideDuration,
-      easing: slideEasing,
-      fill: slideFill,
-    },
-  );
-}
+export function slideOut(el: HTMLElement, options: SlideOptions = {}): Animation {
+  const { translateX, duration, easing, fill } = {
+    ...defaultSlideOptions,
+    ...options,
+  };
 
-export function slideIn(
-  el: HTMLElement,
-  translateSize: string = '100%',
-  slideDuration: number = duration,
-  slideEasing: string = easing,
-  slideFill: FillMode = fill,
-): Animation {
-  return el.animate(
-    [
-      { transform: `translateX(${translateSize})` }, // Starting position
-      { transform: 'translateX(0)' }, // End position
-    ],
-    {
-      duration: slideDuration,
-      easing: slideEasing,
-      fill: slideFill,
-    },
-  );
-}
-
-export function slideOut(
-  el: HTMLElement,
-  translateSize: string = '100%',
-  slideDuration: number = duration,
-  slideEasing: string = easing,
-  slideFill: FillMode = fill,
-): Animation {
-  return el.animate(
-    [
-      { transform: 'translateX(0)' }, // Starting position
-      { transform: `translateX(${translateSize})` }, // End position
-    ],
-    {
-      duration: slideDuration,
-      easing: slideEasing,
-      fill: slideFill,
-    },
-  );
+  return el.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${translateX}%)` }], {
+    duration,
+    easing,
+    fill,
+  });
 }

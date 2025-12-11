@@ -1,17 +1,9 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Method,
-  State,
-} from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { fadeSlideIn, fadeSlideOut, slideIn, slideOut } from '@/animations';
+import { FadeSlideOptions } from '@/animations/types';
 
 @Component({
   tag: 'post-megadropdown',
@@ -30,33 +22,16 @@ export class PostMegadropdown {
   private currentAnimation: Animation | null = null;
   private animatedContainer: HTMLElement;
 
-  
-  private fadeSlideAnimation: {
-  slide: number;
-  duration: number;
-  curve: { x1: number; y1: number; x2: number; y2: number };
-} = {
-      slide: -10,
-      duration: 350,
-      curve: {
-        x1: 0.8,
-        y1: 0.2,
-        x2: 0.8,
-        y2: 0.7,
-      },
-    };
-
-    
-  private slideAnimation: {
-  translateX: string,
-  duration: number;
-  curve: {in:string, out:string};
-} = {
-      translateX: '100%',
-      duration: 350,
-      curve: {in:'ease-in', out:'ease-out'}
-    };
-
+  private fsAnimationOptions: FadeSlideOptions = {
+    translateY: -10,
+    duration: 350,
+    easing: {
+      x1: 0.8,
+      y1: 0.2,
+      x2: 0.8,
+      y2: 0.7,
+    },
+  };
 
   private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);
   private onKeyup = (e: KeyboardEvent) => this.handleTabOutside(e);
@@ -75,7 +50,6 @@ export class PostMegadropdown {
 
   @State() trigger: boolean = false;
 
-  
   private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
     return hostId
@@ -149,8 +123,8 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeSlideIn(this.animatedContainer, this.fadeSlideAnimation['slide'], this.fadeSlideAnimation['duration'], this.fadeSlideAnimation['curve'])
-        : slideIn(this.animatedContainer, this.slideAnimation['translateX'], this.slideAnimation['duration'], this.slideAnimation.curve['in']);
+        ? fadeSlideIn(this.animatedContainer, this.fsAnimationOptions)
+        : slideIn(this.animatedContainer, { translateX: 100, duration: 350, easing: 'ease-in' });
 
     try {
       await this.currentAnimation.finished;
@@ -186,8 +160,8 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeSlideOut(this.animatedContainer, this.fadeSlideAnimation['slide'], this.fadeSlideAnimation['duration'], this.fadeSlideAnimation['curve'])
-        : slideOut(this.animatedContainer, this.slideAnimation['translateY'], this.slideAnimation['duration'],  this.slideAnimation.curve['out']);
+        ? fadeSlideOut(this.animatedContainer, this.fsAnimationOptions)
+        : slideOut(this.animatedContainer, { translateX: 100, duration: 350, easing: 'ease-out' });
 
     try {
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });

@@ -6,6 +6,7 @@ import { breakpoint, Device } from '@/utils/breakpoints';
 import { fadeSlideIn, fadeSlideOut } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
+import { FadeSlideOptions } from '@/animations/types';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -39,20 +40,16 @@ export class PostHeader {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
-  private fadeSlideAnimation: {
-    slide: number;
-    duration: number;
-    curve: { x1: number; y1: number; x2: number; y2: number };
-  } = {
-      slide: 0,
-      duration: 350,
-      curve: {
-        x1: 0.8,
-        y1: 0.2,
-        x2: 0.8,
-        y2: 0.7,
-      },
-    };
+  private animationOptions: FadeSlideOptions = {
+    translateY: 0,
+    duration: 350,
+    easing: {
+      x1: 0.8,
+      y1: 0.2,
+      x2: 0.8,
+      y2: 0.7,
+    },
+  };
 
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
@@ -204,18 +201,8 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? fadeSlideOut(
-        this.burgerMenu,
-        this.fadeSlideAnimation['slide'],
-        this.fadeSlideAnimation['duration'],
-        this.fadeSlideAnimation['curve'],
-      )
-      : fadeSlideIn(
-        this.burgerMenu,
-        this.fadeSlideAnimation['slide'],
-        this.fadeSlideAnimation['duration'],
-        this.fadeSlideAnimation['curve'],
-      );
+      ? fadeSlideOut(this.burgerMenu, this.animationOptions)
+      : fadeSlideIn(this.burgerMenu, this.animationOptions);
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
@@ -240,14 +227,16 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
     // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
-      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li')),
+      ...Array.from(
+        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
+      ),
       ...Array.from(
         this.host.querySelectorAll(
           'nav > post-list > div > post-list-item, post-megadropdown-trigger',
