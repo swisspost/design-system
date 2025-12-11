@@ -184,13 +184,31 @@ export const Default: Story = {};
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
   // Ensure a unique suffix for ids: prefer provided context.id, otherwise try crypto.randomUUID(),
-  // fall back to a short random string. This prevents duplicate-id-aria issues when the story renders multiple groups/snapshots on the same page.
-  type CryptoWithRandomUUID = { randomUUID?: () => string };
-  const maybeCrypto = (globalThis as unknown as { crypto?: CryptoWithRandomUUID }).crypto;
-  const generatedUuid =
-    maybeCrypto && typeof maybeCrypto.randomUUID === 'function'
-      ? maybeCrypto.randomUUID()
-      : Math.random().toString(36).slice(2, 9);
+  // fall back to a short random string generated with crypto.getRandomValues() when available,
+  // otherwise a deterministic timestamp+counter fallback (no Math.random).
+  type CryptoLike = {
+    randomUUID?: () => string;
+    getRandomValues?: (arr: Uint8Array) => Uint8Array;
+  };
+  const maybeCrypto = (globalThis as unknown as { crypto?: CryptoLike }).crypto;
+  let generatedUuid: string;
+  if (maybeCrypto && typeof maybeCrypto.randomUUID === 'function') {
+    generatedUuid = maybeCrypto.randomUUID();
+  } else if (maybeCrypto && typeof maybeCrypto.getRandomValues === 'function') {
+    // Use getRandomValues to generate 8 bytes, convert to hex and take first 16 chars
+    const bytes = new Uint8Array(8);
+    maybeCrypto.getRandomValues(bytes);
+    generatedUuid = Array.from(bytes)
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('')
+      .slice(0, 16);
+  } else {
+    // Last-resort deterministic fallback (no Math.random) to keep ids unique per run.
+    // Use a timestamp + incrementing counter to avoid using insecure randomness.
+    const g = globalThis as unknown as { __radioIdFallbackCounter?: number };
+    g.__radioIdFallbackCounter = (g.__radioIdFallbackCounter || 0) + 1;
+    generatedUuid = `${Date.now().toString(36)}-${g.__radioIdFallbackCounter.toString(36)}`;
+  }
   const uniqueSuffix: string = context.id ?? generatedUuid;
   const baseId = `${context.viewMode ?? 'view'}_${(context.name ?? '').replace(/\s/g, '-')}_${uniqueSuffix}_ExampleRadio`;
   const id1 = `${baseId}-1`;
