@@ -70,6 +70,7 @@ export class PostHeader {
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
+  @State() isScrolled: boolean = false;
 
   @Watch('device')
   @Watch('burgerMenuExtended')
@@ -215,14 +216,16 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
     // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
-      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li')),
+      ...Array.from(
+        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
+      ),
       ...Array.from(
         this.host.querySelectorAll(
           'nav > post-list > div > post-list-item, post-megadropdown-trigger',
@@ -277,6 +280,9 @@ export class PostHeader {
       '--post-header-scroll-top',
       `${Math.max(scrollTop, 0)}px`,
     );
+
+    // Update the component state to reflect whether the header has been scrolled
+    this.isScrolled = scrollTop > 0;
   }
 
   private updateLocalHeaderHeight() {
@@ -452,6 +458,9 @@ export class PostHeader {
             'no-target-group': !this.hasTargetGroup,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
             'no-local-nav': !this.hasLocalNav,
+          }}
+          style={{
+            visibility: this.isScrolled ? 'hidden' : 'visible',
           }}
         >
           <slot name="title"></slot>
