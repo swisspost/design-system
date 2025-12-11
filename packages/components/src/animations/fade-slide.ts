@@ -4,9 +4,7 @@
  * 2. PostMegadropdown
  */
 
-import { CurveEasing, PresetEasing } from './types';
-
-import { FadeSlideOptions } from './types';
+import { CurveEasing, PresetEasing, FadeSlideOptions } from './types';
 
 const defaultOptions: FadeSlideOptions = {
   translateY: -10,

@@ -1,7 +1,3 @@
-/**
- * Used by PostTabs
- */
-
 const fadeDuration = 200;
 const fadedOutKeyframe: Keyframe = { opacity: '0' };
 const fadedInKeyframe: Keyframe = { opacity: '1' };
