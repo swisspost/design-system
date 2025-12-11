@@ -137,7 +137,7 @@ const meta: MetaComponent = {
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
+  const id = crypto.randomUUID();
 
   const name = `radio-name-${id}`;
 
@@ -164,9 +164,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.validation != 'null'
-        ? `${args.validation}-id-${context.id}`
-        : nothing}"
+      aria-describedby="${args.validation != 'null' ? `${args.validation}-desc-${id}` : nothing}"
       @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
       ?required="${args.requiredOptional === 'required'}"
     />
@@ -185,11 +183,18 @@ export const Default: Story = {};
 
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
-  const id1 = baseId + '1';
-  const id2 = baseId + '2';
-  const id3 = baseId + '3';
-  const id4 = baseId + '4';
+  // Ensure a unique suffix for ids: prefer provided context.id, otherwise use crypto.randomUUID() when available,
+  // fall back to a short random string. This prevents duplicate-id-aria issues when the story renders multiple groups/snapshots on the same page.
+  const uniqueSuffix =
+    context.id ??
+    (typeof crypto !== 'undefined' && (crypto as any).randomUUID
+      ? (crypto as any).randomUUID()
+      : Math.random().toString(36).slice(2, 9));
+  const baseId = crypto.randomUUID();
+  const id1 = `${baseId}-1`;
+  const id2 = `${baseId}-2`;
+  const id3 = `${baseId}-3`;
+  const id4 = `${baseId}-4`;
 
   function onChange(e: Event, value: number) {
     const changeTarget = e.target as HTMLElement;
@@ -209,7 +214,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id1}"
-          name="${context.id}-group"
+          name="${context.id ?? baseId}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 1}"
@@ -220,7 +225,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id2}"
-          name="${context.id}-group"
+          name="${context.id ?? baseId}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 2}"
@@ -231,7 +236,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id3}"
-          name="${context.id}-group"
+          name="${context.id ?? baseId}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 3}"
@@ -242,7 +247,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id4}"
-          name="${context.id}-group"
+          name="${context.id ?? baseId}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 4}"

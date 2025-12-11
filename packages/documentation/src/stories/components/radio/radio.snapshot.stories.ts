@@ -44,8 +44,11 @@ export const Radio: Story = {
                 !(args.requiredOptional === 'required' && args.disabled === true),
             )
             .map((args: Args) => {
-              context.id = `${scheme}-${crypto.randomUUID()}`;
-              return meta.render?.({ ...context.args, ...args }, context);
+              const id = `${scheme}-${crypto.randomUUID()}`;
+              return meta.render?.(
+                { ...context.args, ...args, name: `${scheme}-snapshot-group` },
+                { ...context, id },
+              );
             })}
         </div>
 
