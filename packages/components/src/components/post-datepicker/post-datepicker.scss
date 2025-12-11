@@ -307,6 +307,12 @@ tokens.$default-map: components.$post-breadcrumb;
     position: absolute;
     right: 16px;
     top: 16px;
+  }
+}
+
+.calendar-input,
+.calendar-input-range {
+  button {
     border: none;
     background-color: transparent;
   }

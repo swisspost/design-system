@@ -8,11 +8,13 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType } from "./components/post-closebutton/button-types";
+import { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType } from "./components/post-closebutton/button-types";
+export { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -702,7 +704,7 @@ export interface PostDatepickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostDatepickerElement;
 }
-export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
+export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageMenuItemElement;
 }

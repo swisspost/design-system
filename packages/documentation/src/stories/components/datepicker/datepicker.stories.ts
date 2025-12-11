@@ -17,15 +17,15 @@ const meta: MetaComponent = {
   },
   args: {
     inline: false,
-    range: true,
-    labelToggleCalendar: "Ouvrir calendrier" ,
-    labelNextDecade: "Prochaine décennie" ,
-    labelNextMonth: "Mois prochain" ,
-    labelNextYear: "Année prochaine" ,
-    labelPreviousDecade: "Décennie précédente" ,
-    labelPreviousMonth: "Mois précédent" ,
-    labelPreviousYear: "Année précédente" ,
-    labelSwitchYear: "Passer à la vue par année",
+    range: false,
+    labelToggleCalendar: "Open calendar" ,
+    labelNextDecade: "Next decade" ,
+    labelNextMonth: "Next month" ,
+    labelNextYear: "Next year" ,
+    labelPreviousDecade: "Previous decade" ,
+    labelPreviousMonth: "Previous month" ,
+    labelPreviousYear: "Previous year" ,
+    labelSwitchYear: "Switch to year view",
   },
   argTypes: {
     'min': {
@@ -90,8 +90,7 @@ export default meta;
 function render(args: Args) {
   console.log(args);
   return html`
-    <post-datepicker range="${args.range}" min="${args.min}" max="${args.max}"
-
+    <post-datepicker inline="${args.inline}" range="${args.range}" min="${args.min}" max="${args.max}"
     label-toggle-calendar="${args.labelToggleCalendar}"
     label-next-decade="${args.labelNextDecade}"
     label-next-month="${args.labelNextMonth}"
@@ -101,11 +100,35 @@ function render(args: Args) {
     label-previous-year="${args.labelPreviousYear}"
     label-switch-year="${args.labelSwitchYear}">
       ${!args.inline ? html`<input
-          id="datepicker-input"
-          class="form-control"
+          aria-label="Date"
+          type="date"
+        ></input>` : nothing }
+        ${!args.inline && args.range ? html`<input
+          aria-label="End date"
           type="date"
         ></input>` : nothing }
     </post-datepicker>`
 }
 
 export const Default: StoryObj = {};
+
+// For testing purposes
+export const Inline: StoryObj = {
+  args: {
+    inline: true
+  },
+};
+
+export const InlineRange: StoryObj = {
+  args: {
+    inline: true,
+    range: true
+  },
+};
+
+export const Range: StoryObj = {
+  args: {
+    inline: false,
+    range: true
+  },
+};

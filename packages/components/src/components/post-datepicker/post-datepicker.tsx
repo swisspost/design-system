@@ -19,7 +19,7 @@ import AirDatepicker, {
 import { localesMap } from './locales';
 import { checkEmptyOrType, checkRequiredAndType, getDeepFocusableChildren } from '@/utils';
 
-interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
+export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
   onRenderCell?: (data: {
     date: Date;
@@ -236,12 +236,12 @@ export class PostDatepicker {
   }
 
   private setActiveCell(date: Date, focusOnDate: boolean = true) {
+    console.log('NEW ACTIVE CELL IS', date);
     const cells = this.getCells();
     if (!cells.length) return;
 
     let target: HTMLElement | undefined;
 
-    //todolea: comment that
     // If selected date is visible
     if (focusOnDate) {
       if (this.currentViewType === 'days') {
@@ -261,8 +261,8 @@ export class PostDatepicker {
         target = cells.find(cell => Number(cell.dataset.year) === date.getFullYear());
       }
     } else {
+      // If not, should focus the first day of the month
       if (this.currentViewType === 'days') {
-        // If not, should focus the first day of the month
         const firstOfMonth = new Date(this.currentViewYear, this.currentViewMonth, 1);
 
         target = cells.find(
@@ -314,7 +314,7 @@ export class PostDatepicker {
     ) as HTMLButtonElement;
   }
 
-  private skipOnSelect = false;
+  private skipOnSelectCount = 0;
   private skipFocusOnNextRender = false;
 
   /**
@@ -362,7 +362,7 @@ export class PostDatepicker {
           if (this.inline) {
             this.exitDatepicker(active, false);
           } else {
-            const activeCell = this.getCells().find(cell => cell.tabIndex === 0);
+            const activeCell = this.getCells().find(c => c.tabIndex === 0);
             if (activeCell) {
               activeCell.focus();
             }
@@ -381,7 +381,7 @@ export class PostDatepicker {
         if (this.inline) {
           this.exitDatepicker(active, false);
         } else {
-          const activeCell = this.getCells().find(cell => cell.tabIndex === 0);
+          const activeCell = this.getCells().find(c => c.tabIndex === 0);
           if (activeCell) {
             activeCell.focus();
           }
@@ -487,15 +487,21 @@ export class PostDatepicker {
       },
     };
 
+    console.log('before', key, newDate);
+
     if (!move[key] || !move[key][this.currentViewType]) return;
 
     e.preventDefault();
     move[key][this.currentViewType]();
 
+    console.log('after', newDate);
+
     // If month has changed, update view date
     const monthChanged =
       current.getMonth() !== newDate.getMonth() || current.getFullYear() !== newDate.getFullYear();
+
     if (monthChanged) {
+      console.log('month has changed', newDate);
       this.skipFocusOnNextRender = false;
       this.dpInstance.setViewDate(newDate);
 
@@ -503,6 +509,7 @@ export class PostDatepicker {
         this.setActiveCell(newDate, true);
       });
     } else {
+      console.log('-');
       this.setActiveCell(newDate, true);
     }
   };
@@ -519,24 +526,20 @@ export class PostDatepicker {
 
     body.setAttribute('role', 'grid');
 
-    this.getCells().forEach(cell => {
-      cell.setAttribute('aria-selected', cell.classList.contains('-selected-') ? 'true' : 'false');
-      if (cell.classList.contains('-current-')) {
-        cell.setAttribute('aria-current', 'date');
+    this.getCells().forEach(c => {
+      c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
+      if (c.classList.contains('-current-')) {
+        c.setAttribute('aria-current', 'date');
       }
     });
 
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    this.setActiveCell(this.startDate, focusOnDate);
-  }
-
-  // Update the cells aria-selected value
-  private updateAriaSelected() {
-    this.getCells().forEach(cell => {
-      cell.setAttribute('aria-selected', cell.classList.contains('-selected-') ? 'true' : 'false');
-    });
+    this.setActiveCell(
+      this.selectedStartDate ? new Date(this.selectedStartDate) : this.startDate,
+      focusOnDate,
+    );
   }
 
   /**
@@ -566,9 +569,8 @@ export class PostDatepicker {
     if (this.dpContainer) {
       const options: AirDatepickerCustomOptions = {
         navTitles: {
-          days: '<button aria-label="Switch to year view"><div class="month-nav"><div><strong>MMMM yyyy</strong></div><div><post-icon size="small" name="2052"></div></post-icon></div><div class="no-hover"></div></button>',
-          months:
-            '<button aria-label="Switch to year view"><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>',
+          days: `<button aria-label="${this.labelSwitchYear}"><div class="month-nav"><div><strong>MMMM yyyy</strong></div><div><post-icon size="small" name="2052"></div></post-icon></div><div class="no-hover"></div></button>`,
+          months: `<button aria-label="${this.labelSwitchYear}"><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
         },
         prevHtml: '<button><post-icon size="small" name="2049" ></post-icon></button>',
         nextHtml: '<button><post-icon size="small" name="2050" ></post-icon></button>',
@@ -597,20 +599,25 @@ export class PostDatepicker {
           this.updateNavigationButtonLabels();
         },
         onSelect: ({ date }) => {
-          this.updateAriaSelected();
+          this.getCells().forEach(c => {
+            c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
+          });
+
           this.postUpdateDates.emit(date);
 
           // If selected date is added dynamically after user has typed it in the input
-          if (this.skipOnSelect) {
-            this.skipOnSelect = false;
+          if (this.skipOnSelectCount > 0) {
+            this.skipOnSelectCount--;
             return;
           }
+
           // Assign value to the input, close the popover and focus on the input
           if (this.dpInputs) {
             if (Array.isArray(date)) {
               //todolea: issue when already existing choice, does not unselect and update it again
               date.forEach((d, i) => (this.dpInputs[i].value = this.formatAsDateInputValue(d)));
-            } else {
+            } else if (date) {
+              // If there is a date, set it to the input. No date = same date as before
               this.dpInputs[0].value = this.formatAsDateInputValue(date);
             }
 
@@ -652,7 +659,7 @@ export class PostDatepicker {
           console.error(
             'The range datepicker expects either no selected dates or both of them defined.',
           );
-        } else {
+        } else if (this.selectedStartDate && this.selectedEndDate) {
           this.dpInstance.selectDate([this.selectedStartDate, this.selectedEndDate]);
         }
       } else {
@@ -661,6 +668,7 @@ export class PostDatepicker {
         }
       }
 
+      console.log('Title button?', this.titleBtn);
       // Override the title click to go to year view directly (skip month view)
       this.titleBtn?.addEventListener('click', () => {
         if (this.dpInstance) {
@@ -785,13 +793,24 @@ export class PostDatepicker {
   private addInputListeners() {
     this.dpInputs.forEach(input => {
       input.addEventListener('blur', () => {
-        this.skipOnSelect = true;
-
         if (this.range) {
           //todolea: issue with range
-          this.dpInstance.selectDate([this.dpInputs[0].value, this.dpInputs[1].value]);
+          const start = this.dpInputs[0].value;
+          const end = this.dpInputs[1].value;
+
+          if (start && end) {
+            // Because selectDate is called twice if there are two dates
+            this.skipOnSelectCount = 2;
+            // Select the dates in the datepicker
+            this.dpInstance.selectDate([new Date(start), new Date(end)]);
+          }
         } else {
-          this.dpInstance.selectDate(input.value);
+          if (input.value) {
+            this.skipOnSelectCount = 1;
+
+            // Select the date in the datepicker
+            this.dpInstance.selectDate(new Date(input.value));
+          }
         }
       });
     });
@@ -845,16 +864,12 @@ export class PostDatepicker {
               <button
                 onClick={e => this.show(e.currentTarget as HTMLElement)}
                 aria-haspopup="true"
-                aria-label="Toggle calendar"
+                aria-label={this.labelToggleCalendar}
               >
                 <post-icon name="calendar"></post-icon>
               </button>
             </div>
-            <post-popovercontainer
-              placement="bottom"
-              ref={e => (this.popoverRef = e)}
-              manualClose={false}
-            >
+            <post-popovercontainer placement="bottom" ref={e => (this.popoverRef = e)}>
               <div class="datepicker-container"></div>
             </post-popovercontainer>
           </div>

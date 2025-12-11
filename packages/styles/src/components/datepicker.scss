@@ -1,13 +1,17 @@
-post-datepicker input[type='date'] {
-  border: none;
-
-  &:focus-visible {
-    outline: none;
+post-datepicker {
+  input[type='date'] {
+    &::-webkit-calendar-picker-indicator,
+    &::-webkit-inner-spin-button {
+      display: none;
+      -webkit-appearance: none;
+    }
   }
 
-  &::-webkit-calendar-picker-indicator,
-  &::-webkit-inner-spin-button {
-    display: none;
-    -webkit-appearance: none;
+  .calendar-input-range input[type='date'] {
+    border: none;
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 }
