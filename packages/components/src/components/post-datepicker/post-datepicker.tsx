@@ -95,7 +95,7 @@ export class PostDatepicker {
   /**
    * Label for "Next month" button
    */
-  @Prop() labelNextMonth!: string;
+  @Prop({ reflect: true }) labelNextMonth!: string;
   @Watch('labelNextMonth')
   validateLabelNextMonth() {
     checkRequiredAndType(this, 'labelNextMonth', 'string');
@@ -104,7 +104,7 @@ export class PostDatepicker {
   /**
    * Label for "Next year" button
    */
-  @Prop() labelNextYear!: string;
+  @Prop({ reflect: true }) labelNextYear!: string;
   @Watch('labelNextYear')
   validateLabelNextYear() {
     checkRequiredAndType(this, 'labelNextYear', 'string');
@@ -113,7 +113,7 @@ export class PostDatepicker {
   /**
    * Label for "Next decade" button
    */
-  @Prop() labelNextDecade!: string;
+  @Prop({ reflect: true }) labelNextDecade!: string;
   @Watch('labelNextDecade')
   validateLabelNextDecade() {
     checkRequiredAndType(this, 'labelNextDecade', 'string');
@@ -122,7 +122,7 @@ export class PostDatepicker {
   /**
    * Label for "Previous month" button
    */
-  @Prop() labelPreviousMonth!: string;
+  @Prop({ reflect: true }) labelPreviousMonth!: string;
   @Watch('labelPreviousMonth')
   validateLabelPreviousMonth() {
     checkRequiredAndType(this, 'labelPreviousMonth', 'string');
@@ -131,7 +131,7 @@ export class PostDatepicker {
   /**
    * Label for "Previous year" button
    */
-  @Prop() labelPreviousYear!: string;
+  @Prop({ reflect: true }) labelPreviousYear!: string;
   @Watch('labelPreviousYear')
   validateLabelPreviousYear() {
     checkRequiredAndType(this, 'labelPreviousYear', 'string');
@@ -140,7 +140,7 @@ export class PostDatepicker {
   /**
    * Label for "Previous decade" button
    */
-  @Prop() labelPreviousDecade!: string;
+  @Prop({ reflect: true }) labelPreviousDecade!: string;
   @Watch('labelPreviousDecade')
   validateLabelPreviousDecade() {
     checkRequiredAndType(this, 'labelPreviousDecade', 'string');
@@ -149,7 +149,7 @@ export class PostDatepicker {
   /**
    * Label for the "Switch to year view" title button
    */
-  @Prop() labelSwitchYear!: string;
+  @Prop({ reflect: true }) labelSwitchYear!: string;
   @Watch('labelSwitchYear')
   validateLabelSwitchYear() {
     checkRequiredAndType(this, 'labelSwitchYear', 'string');
