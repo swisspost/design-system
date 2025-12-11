@@ -139,7 +139,7 @@ function render(args: Args, context: StoryContext) {
 
   const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
 
-  const name = context.id ?? `${id}-name`;
+  const name = `radio-name-${id}`;
 
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
 
