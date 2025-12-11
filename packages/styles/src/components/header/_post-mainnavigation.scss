@@ -33,15 +33,10 @@ post-mainnavigation {
     }
 
     @include media.only(desktop) {
-      position: relative;
-      display: block;
       height: 100%;
 
       > button {
         &:not([inert]) {
-          position: absolute;
-          inset: 0;
-          z-index: 1;
           display: grid;
           grid-template-columns: 1fr auto;
 

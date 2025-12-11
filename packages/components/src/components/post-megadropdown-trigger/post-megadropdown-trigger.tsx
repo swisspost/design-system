@@ -4,6 +4,7 @@ import { checkRequiredAndType, EventFrom } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
+  styleUrl: 'post-megadropdown-trigger.scss',
   shadow: true,
 })
 export class PostMegadropdownTrigger {
@@ -39,15 +40,13 @@ export class PostMegadropdownTrigger {
   }
 
   constructor() {
-    this.handleToggleMegadropdown = this.handleToggleMegadropdown.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.onMegadropdownToggled = this.onMegadropdownToggled.bind(this);
   }
 
   connectedCallback() {
-    this.mutationObserver.observe(this.host, {
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
+    this.mutationObserver.observe(this.host, { childList: true, subtree: true });
   }
 
   componentWillLoad() {
@@ -58,37 +57,54 @@ export class PostMegadropdownTrigger {
     this.validateFor();
 
     // Check if the mega dropdown attached to the trigger is expanded or not
-    document.addEventListener('postToggleMegadropdown', this.handleToggleMegadropdown);
+    document.addEventListener('postToggleMegadropdown', this.onMegadropdownToggled);
   }
 
   disconnectedCallback() {
-    document.removeEventListener('postToggleMegadropdown', this.handleToggleMegadropdown);
+    document.removeEventListener('postToggleMegadropdown', this.onMegadropdownToggled);
     this.mutationObserver.disconnect();
+
+    this.slottedButton.removeEventListener('click', this.handleToggle);
+    this.slottedButton.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  private cloneSlottedButton() {
-    if (this.host.querySelectorAll('button[inert]').length > 0) return;
+  private cloneSlottedButton(mutations: MutationRecord[] = []) {
+    const addedNodes = mutations.flatMap(mutation => Array.from(mutation.addedNodes));
+    const wasOnlyCloneAdded =
+      addedNodes.length !== 0 &&
+      addedNodes.every(node => node instanceof HTMLButtonElement && node.hasAttribute('inert'));
 
-    if (this.host.children.length !== 1 || this.host.children[0].localName !== 'button') {
-      console.warn('The post-megadropdown-trigger content must be a single button.');
+    if (wasOnlyCloneAdded) return;
+
+    const previousClone = this.host.querySelector('button[inert]');
+    if (previousClone) {
+      previousClone.remove();
     }
 
-    this.slottedButton = this.host.children[0] as HTMLButtonElement;
-    this.setInitialAttributes();
+    const wasTriggerAdded =
+      addedNodes.length === 0 ||
+      addedNodes.some(node => node instanceof HTMLButtonElement && !node.hasAttribute('inert'));
 
-    const clone = this.slottedButton.cloneNode(true) as HTMLButtonElement;
-    clone.setAttribute('inert', '');
+    if (wasTriggerAdded) {
+      if (this.host.children.length !== 1 || this.host.children[0].localName !== 'button') {
+        console.warn('The post-megadropdown-trigger content must be a single button.');
+        return;
+      }
 
-    this.host.append(clone);
+      this.slottedButton = this.host.children[0] as HTMLButtonElement;
+      this.setInitialAttributes();
+    }
+
+    const newClone = this.slottedButton.cloneNode(true) as HTMLButtonElement;
+    newClone.setAttribute('inert', '');
+    this.host.append(newClone);
   }
 
   private setInitialAttributes() {
     this.slottedButton.setAttribute('type', 'button');
     this.slottedButton.setAttribute('aria-haspopup', 'menu');
     this.slottedButton.setAttribute('aria-expanded', 'false');
-    this.slottedButton.addEventListener('click', () => {
-      this.handleToggle();
-    });
+    this.slottedButton.addEventListener('click', this.handleToggle);
     this.slottedButton.addEventListener('keydown', this.handleKeyDown);
   }
 
@@ -107,7 +123,7 @@ export class PostMegadropdownTrigger {
     }
   }
 
-  private handleKeyDown = (event: KeyboardEvent) => {
+  private handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       this.handleToggle();
@@ -115,12 +131,10 @@ export class PostMegadropdownTrigger {
         setTimeout(() => this.megadropdown.focusFirst(), 100);
       }
     }
-  };
+  }
 
   @EventFrom('post-megadropdown', { ignoreNestedComponents: false })
-  private handleToggleMegadropdown(
-    event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>,
-  ) {
+  private onMegadropdownToggled(event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) {
     if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
       const wasExpanded = this.ariaExpanded;
       this.ariaExpanded = event.detail.isVisible;
@@ -140,7 +154,7 @@ export class PostMegadropdownTrigger {
 
   render() {
     return (
-      <Host data-version={version} tab-index="-1">
+      <Host data-version={version}>
         <slot></slot>
       </Host>
     );
