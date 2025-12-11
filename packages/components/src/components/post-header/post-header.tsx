@@ -419,7 +419,7 @@ export class PostHeader {
   render() {
     return (
       <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
-        <header>
+        <header role='banner'>
         <div
           class={{
             'global-header': true,
