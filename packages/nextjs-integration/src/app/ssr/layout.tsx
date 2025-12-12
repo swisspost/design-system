@@ -3,7 +3,6 @@ import {
   PostBackToTop,
   PostBreadcrumbs,
   PostBreadcrumbItem,
-  PostClosebutton,
   PostFooter,
   PostHeader,
   PostIcon,
@@ -105,24 +104,19 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <PostList title-hidden="">
           <p>Main Navigation</p>
 
-          {/* Link only level 1 */}
-          <PostListItem slot="post-list-item">
-            <a href="/letters">Letters</a>
-          </PostListItem>
-          <PostListItem slot="post-list-item">
-            <a href="/packages">Packages</a>
-          </PostListItem>
+            {/* Link only level 1 */}
+            <PostListItem slot="post-list-item">
+              <a href="/letters">Letters</a>
+            </PostListItem>
+            <PostListItem slot="post-list-item">
+              <a href="/packages">Packages</a>
+            </PostListItem>
 
             {/* Level 1 with megadropdown - Letters */}
             <PostListItem slot="post-list-item">
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
-              <PostMegadropdown id="letters">
-                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowleft" />
-                  Back
-                </button>
-                <PostClosebutton slot="close-button">Close</PostClosebutton>
-                <a slot="megadropdown-overview-link" href="/letters">
+              <PostMegadropdown id="letters" label-close="Close" label-back="Back">
+                <a className="megadropdown-overview-link" href="/letters">
                   Overview Letters
                 </a>
                 <PostList>
@@ -163,13 +157,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Packages */}
             <PostListItem slot="post-list-item">
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
-              <PostMegadropdown id="packages">
-                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowleft" />
-                  Back
-                </button>
-                <PostClosebutton slot="close-button">Close</PostClosebutton>
-                <a slot="megadropdown-overview-link" href="/packages">
+              <PostMegadropdown id="packages" label-close="Close" label-back="Back">
+                <a className="megadropdown-overview-link" href="/packages">
                   Overview Packages
                 </a>
                 <PostList>

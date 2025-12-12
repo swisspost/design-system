@@ -16,13 +16,8 @@ export function renderMainnavigation() {
         <!-- Level 1 with megadropdown -->
         <li>
           <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-          <post-megadropdown id="letters">
-            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-              <post-icon name="arrowleft"></post-icon>
-              Back
-            </button>
-            <post-closebutton slot="close-button">Close</post-closebutton>
-            <a slot="megadropdown-overview-link" href="/letters">Overview Letters</a>
+          <post-megadropdown id="letters" label-close="Close" label-back="Back">
+            <a class="flex-grow-1" href="/letters">Overview Letters</a>
             <post-list>
               <p>Send letters</p>
               <post-list-item slot="post-list-item">
@@ -57,13 +52,8 @@ export function renderMainnavigation() {
         </li>
         <li>
           <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-          <post-megadropdown id="packages">
-            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-              <post-icon name="arrowleft"></post-icon>
-              Back
-            </button>
-            <post-closebutton slot="close-button">Close</post-closebutton>
-            <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
+          <post-megadropdown id="packages" label-close="Close" label-back="Back">
+            <a class="flex-grow-1" href="/packages">Overview Packages</a>
             <post-list>
               <p>Send packages</p>
               <post-list-item slot="post-list-item">
