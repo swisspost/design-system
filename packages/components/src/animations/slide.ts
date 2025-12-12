@@ -1,31 +1,33 @@
-const easing: string = 'ease';
-const duration: number = 500;
-const fill: FillMode = 'forwards';
+/**
+ * Used by PostMegadropdown
+ */
 
-export function slideUp(el: HTMLElement, translateSize: string = '-100%'): Animation {
-  return el.animate(
-    [
-      { transform: 'translateY(0)' }, // Starting position (no translation)
-      { transform: `translateY(${translateSize})` }, // End position
-    ],
-    {
-      duration: duration,
-      easing,
-      fill,
-    },
-  );
+import { AnimationOptions } from './types';
+import { resolveEasing } from './fade-slide';
+
+const defaultSlideOptions: AnimationOptions = {
+  translate: 100,
+  duration: 500,
+  easing: 'ease',
+  fill: 'forwards',
+};
+
+function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: AnimationOptions) {
+  const { duration, easing, fill } = { ...defaultSlideOptions, ...options };
+  return el.animate(keyframes, { duration, easing: resolveEasing(easing), fill });
 }
 
-export function slideDown(el: HTMLElement, translateSize: string = '-100%'): Animation {
-  return el.animate(
-    [
-      { transform: `translateY(${translateSize})` }, // Starting position (no translation)
-      { transform: 'translateY(0)' }, // End position
-    ],
-    {
-      duration: duration,
-      easing,
-      fill,
-    },
-  );
+export function slide(
+  el: HTMLElement,
+  direction: 'in' | 'out',
+  options: AnimationOptions = {},
+): Animation {
+  const { translate = defaultSlideOptions.translate } = options;
+
+  const keyframes: Keyframe[] =
+    direction === 'in'
+      ? [{ transform: `translateX(${translate}%)` }, { transform: 'translateX(0)' }]
+      : [{ transform: 'translateX(0)' }, { transform: `translateX(${translate}%)` }];
+
+  return animateSlide(el, keyframes, options);
 }

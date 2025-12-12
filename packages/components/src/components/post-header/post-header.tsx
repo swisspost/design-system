@@ -3,9 +3,10 @@ import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { slideDown, slideUp } from '@/animations/slide';
+import { fadeSlide } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
+import { AnimationOptions } from '@/animations/types';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -38,6 +39,17 @@ export class PostHeader {
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
   }
+
+  private animationOptions: AnimationOptions = {
+    translate: 0,
+    duration: 350,
+    easing: {
+      x1: 0.8,
+      y1: 0.2,
+      x2: 0.8,
+      y2: 0.7,
+    },
+  };
 
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
@@ -189,8 +201,8 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? slideUp(this.burgerMenu)
-      : slideDown(this.burgerMenu);
+      ? fadeSlide(this.burgerMenu, 'out', this.animationOptions)
+      : fadeSlide(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
@@ -222,7 +234,9 @@ export class PostHeader {
   private getFocusableElements() {
     // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
-      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li')),
+      ...Array.from(
+        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
+      ),
       ...Array.from(
         this.host.querySelectorAll(
           'nav > post-list > div > post-list-item, post-megadropdown-trigger',

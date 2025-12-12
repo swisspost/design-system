@@ -116,7 +116,7 @@ describe('header', () => {
       // Check if animation class is present
       cy.get('post-megadropdown .megadropdown-container')
         .should('be.visible')
-        .should('have.class', 'slide-in');
+        .should('have.css', 'opacity', '1');
     });
 
     it('should update active class when active link changes within the same or different megadropdown', () => {
