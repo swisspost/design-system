@@ -89,10 +89,18 @@ const meta: MetaComponent = {
 };
 export default meta;
 
+// Setting different instances of the post-datepicker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
-  console.log(args);
+  if (args.range) {
+    return args.inline ? renderInlineRange(args) : renderPopupRange(args);
+  } else {
+    return args.inline ? renderInlineSimple(args) : renderPopupSimple(args);
+  }
+}
+
+function renderPopupRange(args: Args) {
   return html`
-    <post-datepicker id=${args.id} inline="${args.inline}" range="${args.range}" min="${args.min}" max="${args.max}"
+    <post-datepicker id=${args.id} range="true" ?min="${args.min}" ?max="${args.max}"
     label-toggle-calendar="${args.labelToggleCalendar}"
     label-next-decade="${args.labelNextDecade}"
     label-next-month="${args.labelNextMonth}"
@@ -101,14 +109,61 @@ function render(args: Args) {
     label-previous-month="${args.labelPreviousMonth}"
     label-previous-year="${args.labelPreviousYear}"
     label-switch-year="${args.labelSwitchYear}">
-      ${!args.inline ? html`<input
-          aria-label="Date"
+    <input
+          aria-label="Start date"
           type="date"
-        ></input>` : nothing }
-        ${!args.inline && args.range ? html`<input
+        ></input>
+        <input
           aria-label="End date"
           type="date"
-        ></input>` : nothing }
+        ></input>
+    </post-datepicker>`
+}
+
+function renderInlineRange(args: Args) {
+    return html`
+    <post-datepicker id=${args.id} inline="true" range="true" ?min="${args.min}" ?max="${args.max}"
+    label-toggle-calendar="${args.labelToggleCalendar}"
+    label-next-decade="${args.labelNextDecade}"
+    label-next-month="${args.labelNextMonth}"
+    label-next-year="${args.labelNextYear}"
+    label-previous-decade="${args.labelPreviousDecade}"
+    label-previous-month="${args.labelPreviousMonth}"
+    label-previous-year="${args.labelPreviousYear}"
+    label-switch-year="${args.labelSwitchYear}">
+    </post-datepicker>`
+}
+
+function renderPopupSimple(args: Args) {
+  return html`
+    <post-datepicker id=${args.id} ?min="${args.min}" ?max="${args.max}"
+    label-toggle-calendar="${args.labelToggleCalendar}"
+    label-next-decade="${args.labelNextDecade}"
+    label-next-month="${args.labelNextMonth}"
+    label-next-year="${args.labelNextYear}"
+    label-previous-decade="${args.labelPreviousDecade}"
+    label-previous-month="${args.labelPreviousMonth}"
+    label-previous-year="${args.labelPreviousYear}"
+    label-switch-year="${args.labelSwitchYear}">
+      <input
+          aria-label="Date"
+          class="form-control"
+          type="date"
+        ></input>
+    </post-datepicker>`
+}
+
+function renderInlineSimple(args: Args) {
+    return html`
+    <post-datepicker id=${args.id} inline="true" ?min="${args.min}" ?max="${args.max}"
+    label-toggle-calendar="${args.labelToggleCalendar}"
+    label-next-decade="${args.labelNextDecade}"
+    label-next-month="${args.labelNextMonth}"
+    label-next-year="${args.labelNextYear}"
+    label-previous-decade="${args.labelPreviousDecade}"
+    label-previous-month="${args.labelPreviousMonth}"
+    label-previous-year="${args.labelPreviousYear}"
+    label-switch-year="${args.labelSwitchYear}">
     </post-datepicker>`
 }
 
