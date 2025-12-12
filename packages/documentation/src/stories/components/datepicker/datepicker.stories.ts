@@ -1,7 +1,6 @@
-import { Args, StoryObj } from '@storybook/web-components-vite';
+import { Args, StoryObj, StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
-import { StoryContext, StoryFn } from '@storybook/web-components-vite/dist';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
