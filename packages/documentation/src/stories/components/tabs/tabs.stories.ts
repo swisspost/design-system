@@ -89,7 +89,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       },
     },
     'post-tabs-content': {
-      name: 'post-tabs-content ',
+      name: 'post-tabs-content ', // trailing space is intentional to avoid conflict with auto-generated part
       description: 'The container element that displays the content of the currently active tab.',
       control: false,
       if: { arg: 'variant', eq: 'panels' },
@@ -101,7 +101,7 @@ const meta: MetaComponent<HTMLPostTabsElement & {
       },
     },
     'post-tabs': {
-      name: 'post-tabs ',
+      name: 'post-tabs ', // trailing space is intentional to avoid conflict with auto-generated part
       description: 'The container element that holds the set of tabs.',
       control: false,
       table: {
