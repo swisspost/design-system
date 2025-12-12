@@ -27,6 +27,7 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     hiddenLegend: {
@@ -56,6 +57,21 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the component.',
+      control: {
+        type: 'radio',
+        labels: {
+          'null': 'Default',
+          'form-check-sm': 'Small',
+        },
+      },
+      options: ['null', 'form-check-sm'],
       table: {
         category: 'General',
       },
@@ -121,7 +137,9 @@ const meta: MetaComponent = {
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
+  const id = crypto.randomUUID();
+
+  const name = `radio-name-${id}`;
 
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
 
@@ -138,6 +156,7 @@ function render(args: Args, context: StoryContext) {
   const control = html`
     <input
       id="${id}"
+      name="${name}"
       class="${ifDefined(radioClass)}"
       type="radio"
       ?checked="${args.checked}"
@@ -145,9 +164,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.validation != 'null'
-        ? `${args.validation}-id-${context.id}`
-        : nothing}"
+      aria-describedby="${args.validation != 'null' ? `${args.validation}-desc-${id}` : nothing}"
       @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
       ?required="${args.requiredOptional === 'required'}"
     />
@@ -166,11 +183,38 @@ export const Default: Story = {};
 
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
-  const id1 = baseId + '1';
-  const id2 = baseId + '2';
-  const id3 = baseId + '3';
-  const id4 = baseId + '4';
+  // Ensure a unique suffix for ids: prefer provided context.id, otherwise try crypto.randomUUID(),
+  // fall back to a short random string generated with crypto.getRandomValues() when available,
+  // otherwise a deterministic timestamp+counter fallback (no Math.random).
+  type CryptoLike = {
+    randomUUID?: () => string;
+    getRandomValues?: (arr: Uint8Array) => Uint8Array;
+  };
+  const maybeCrypto = (globalThis as unknown as { crypto?: CryptoLike }).crypto;
+  let generatedUuid: string;
+  if (maybeCrypto && typeof maybeCrypto.randomUUID === 'function') {
+    generatedUuid = maybeCrypto.randomUUID();
+  } else if (maybeCrypto && typeof maybeCrypto.getRandomValues === 'function') {
+    // Use getRandomValues to generate 8 bytes, convert to hex and take first 16 chars
+    const bytes = new Uint8Array(8);
+    maybeCrypto.getRandomValues(bytes);
+    generatedUuid = Array.from(bytes)
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('')
+      .slice(0, 16);
+  } else {
+    // Last-resort deterministic fallback (no Math.random) to keep ids unique per run.
+    // Use a timestamp + incrementing counter to avoid using insecure randomness.
+    const g = globalThis as unknown as { __radioIdFallbackCounter?: number };
+    g.__radioIdFallbackCounter = (g.__radioIdFallbackCounter || 0) + 1;
+    generatedUuid = `${Date.now().toString(36)}-${g.__radioIdFallbackCounter.toString(36)}`;
+  }
+  const uniqueSuffix: string = context.id ?? generatedUuid;
+  const baseId = `${context.viewMode ?? 'view'}_${(context.name ?? '').replace(/\s/g, '-')}_${uniqueSuffix}_ExampleRadio`;
+  const id1 = `${baseId}-1`;
+  const id2 = `${baseId}-2`;
+  const id3 = `${baseId}-3`;
+  const id4 = `${baseId}-4`;
 
   function onChange(e: Event, value: number) {
     const changeTarget = e.target as HTMLElement;
@@ -190,7 +234,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id1}"
-          name="Inline_ExampleRadio_Group"
+          name="${context.id ?? baseId}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 1}"
@@ -201,7 +245,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id2}"
-          name="Inline_ExampleRadio_Group"
+          name="${context.id ?? baseId}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 2}"
@@ -212,7 +256,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id3}"
-          name="Inline_ExampleRadio_Group"
+          name="${context.id ?? baseId}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 3}"
@@ -223,7 +267,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id4}"
-          name="Inline_ExampleRadio_Group"
+          name="${context.id ?? baseId}-group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 4}"
