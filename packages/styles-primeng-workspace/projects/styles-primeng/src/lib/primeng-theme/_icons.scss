@@ -1,22 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-// Load all icon CSS files used in this component
-@include post.custom-property(
-  (
-    'plus',
-    'trash',
-    'chevrondown',
-    'filter',
-    'updown',
-    'chevronup',
-    'arrowup',
-    'arrowdown',
-    'checkmark',
-    'closex',
-    'burger'
-  )
-);
-
 @mixin custom-icon($icon) {
   display: inline-block;
   height: 1rem;

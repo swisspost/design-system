@@ -9,8 +9,6 @@
 
 tokens.$default-map: components.$post-cards;
 
-@include icons-mx.custom-property('arrowright');
-
 .card {
   display: flex;
   flex-direction: column;

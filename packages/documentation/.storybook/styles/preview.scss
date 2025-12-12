@@ -12,8 +12,6 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
-@include post.custom-property(('chevrondown', 'resizeexpand', 'link', 'code'));
-
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 // Mixin for toolbar button icons
