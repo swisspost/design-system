@@ -8,7 +8,7 @@ export type CurveEasing = {
 export type PresetEasing = 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out';
 
 export interface AnimationOptions {
-  translateY?: number;
+  translate?: number;
   duration?: number;
   easing?: CurveEasing | PresetEasing;
   fill?: FillMode;
