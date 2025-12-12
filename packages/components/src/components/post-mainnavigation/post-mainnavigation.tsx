@@ -24,6 +24,9 @@ export class PostMainnavigation {
   @State() canScrollLeft = false;
   @State() canScrollRight = false;
 
+  /**
+   * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
+   */
   @Prop({ reflect: true }) caption!: string;
 
   @Watch('caption')
