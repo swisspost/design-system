@@ -158,7 +158,7 @@
 
   &:not(.extended) {
     transform: translateY(-100%);
-
+    visibility: hidden; // Prevents focusing in the mobile menu when it is not open
     > * {
       display: none;
     }
