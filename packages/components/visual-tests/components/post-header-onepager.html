@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="design-system-settings" data-post-icon-base="/www/assets/icons" />
+    <title>Post Header Component Visual Regression Test</title>
+    <link
+      href="../../node_modules/@swisspost/design-system-styles/post-default.css"
+      rel="stylesheet"
+    />
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+  </head>
+  <body>
+    <!-- One Pager Variant -->
+    <post-header>
+  <!-- Logo -->
+  <post-logo slot="post-logo" url="/">Homepage</post-logo>
+
+  <!-- Language switch -->
+  <post-language-menu
+    caption="Change the language"
+    description="The currently selected language is English."
+    variant="list"
+    name="language-menu-example"
+    slot="post-language-switch"
+  >
+    <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+    <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+    <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+    <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+  </post-language-menu>
+
+  <!-- Menu button for mobile -->
+  <post-togglebutton slot="post-togglebutton">
+    <span>Menu</span>
+    <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
+    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+  </post-togglebutton>
+
+  <!-- Application title (optional) -->
+  <p slot="title">[One Pager Title]</p>
+</post-header>
+  </body>
+</html>
