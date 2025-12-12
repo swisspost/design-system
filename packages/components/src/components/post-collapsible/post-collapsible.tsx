@@ -10,20 +10,20 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { collapse, expand } from '@/animations/collapse';
-import { checkEmptyOrType, isMotionReduced } from '@/utils';
+import { collapsedKeyframe, collapse, expand } from '@/animations/collapse';
+import { IS_BROWSER, IS_SERVER, checkEmptyOrType } from '@/utils';
+
+type InlineStyles = { [key: string]: string };
 
 /**
  * @slot default - Slot for placing content within the collapsible element.
  */
-
 @Component({
   tag: 'post-collapsible',
   styleUrl: 'post-collapsible.scss',
   shadow: true,
 })
 export class PostCollapsible {
-  private isLoaded = false;
   private isOpen = true;
 
   @Element() host: HTMLPostCollapsibleElement;
@@ -48,14 +48,11 @@ export class PostCollapsible {
 
   componentDidLoad() {
     this.collapsedChange();
-    this.isLoaded = true;
-
     this.updateTriggers();
   }
 
   /**
    * Triggers the collapse programmatically.
-   *
    * If there is a collapsing transition running already, it will be reversed.
    */
   @Method()
@@ -64,18 +61,15 @@ export class PostCollapsible {
 
     this.isOpen = open;
     this.collapsed = !open;
-    if (this.isLoaded) this.postToggle.emit(open);
 
-    const animation = open ? expand(this.host) : collapse(this.host);
+    if (IS_BROWSER) {
+      const animation = open ? expand(this.host) : collapse(this.host);
+      await animation.finished;
+      animation.commitStyles();
 
-    if (!this.isLoaded || isMotionReduced()) animation.finish();
-
-    await animation.finished;
-
-    const isHostRendered = this.host.offsetParent;
-    if (isHostRendered) animation.commitStyles();
-
-    this.updateTriggers();
+      this.updateTriggers();
+      this.postToggle.emit(open);
+    }
 
     return open;
   }
@@ -93,7 +87,11 @@ export class PostCollapsible {
 
   render() {
     return (
-      <Host data-version={version} tabindex={this.collapsed ? -1 : undefined}>
+      <Host
+        data-version={version}
+        tabindex={this.collapsed ? -1 : undefined}
+        style={IS_SERVER && this.collapsed ? (collapsedKeyframe as InlineStyles) : undefined}
+      >
         <slot />
       </Host>
     );
