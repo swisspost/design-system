@@ -102,19 +102,17 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
       {/* Main navigation */}
       <PostMainnavigation slot="main-nav" caption="Main">
-        <PostList title-hidden="">
-          <p>Main Navigation</p>
-
+        <ul>
           {/* Link only level 1 */}
-          <PostListItem slot="post-list-item">
+          <li>
             <a href="/letters">Letters</a>
-          </PostListItem>
-          <PostListItem slot="post-list-item">
+          </li>
+          <li>
             <a href="/packages">Packages</a>
-          </PostListItem>
+          </li>
 
             {/* Level 1 with megadropdown - Letters */}
-            <PostListItem slot="post-list-item">
+            <li>
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
               <PostMegadropdown id="letters">
                 <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
@@ -158,10 +156,10 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   </PostListItem>
                 </PostList>
               </PostMegadropdown>
-            </PostListItem>
+            </li>
 
             {/* Level 1 with megadropdown - Packages */}
-            <PostListItem slot="post-list-item">
+            <li>
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
               <PostMegadropdown id="packages">
                 <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
@@ -205,8 +203,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   </PostListItem>
                 </PostList>
               </PostMegadropdown>
-            </PostListItem>
-          </PostList>
+            </li>
+          </ul>
         </PostMainnavigation>
       </PostHeader>
 
