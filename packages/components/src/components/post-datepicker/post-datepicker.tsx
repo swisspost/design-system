@@ -242,26 +242,15 @@ export class PostDatepicker {
     let target: HTMLElement | undefined;
 
     // If selected date is visible
-    if (focusOnDate) {
-      if (this.currentViewType === 'days') {
-        target = cells.find(
-          cell =>
-            Number(cell.dataset.date) === date.getDate() &&
-            Number(cell.dataset.month) === date.getMonth() &&
-            Number(cell.dataset.year) === date.getFullYear(),
-        );
-      } else if (this.currentViewType === 'months') {
-        target = cells.find(
-          cell =>
-            Number(cell.dataset.month) === date.getMonth() &&
-            Number(cell.dataset.year) === date.getFullYear(),
-        );
-      } else {
-        target = cells.find(cell => Number(cell.dataset.year) === date.getFullYear());
-      }
-    } else {
-      // If not, should focus the first day of the month
-      if (this.currentViewType === 'days') {
+    if (this.currentViewType === 'days') {
+      target = cells.find(
+        cell =>
+          Number(cell.dataset.date) === date.getDate() &&
+          Number(cell.dataset.month) === date.getMonth() &&
+          Number(cell.dataset.year) === date.getFullYear(),
+      );
+
+      if (!target) {
         const firstOfMonth = new Date(this.currentViewYear, this.currentViewMonth, 1);
 
         target = cells.find(
@@ -271,9 +260,20 @@ export class PostDatepicker {
             Number(cell.dataset.year) === firstOfMonth.getFullYear() &&
             !cell.classList.contains('-other-month-'),
         );
-      } else if (this.currentViewType === 'months') {
+      }
+    } else if (this.currentViewType === 'months') {
+      target = cells.find(
+        cell =>
+          Number(cell.dataset.month) === date.getMonth() &&
+          Number(cell.dataset.year) === date.getFullYear(),
+      );
+
+      if (!target) {
         target = cells.find(cell => !cell.classList.contains('-other-year-'));
-      } else {
+      }
+    } else {
+      target = cells.find(cell => Number(cell.dataset.year) === date.getFullYear());
+      if (!target) {
         target = cells.find(cell => !cell.classList.contains('-other-decade-'));
       }
     }
@@ -291,7 +291,7 @@ export class PostDatepicker {
       target.focus();
     }
 
-    // Update start date to match the active cell
+    // Update start date to <match the active cell
     this.startDate = new Date(
       Number(target.dataset.year),
       Number(target.dataset.month),
@@ -490,7 +490,6 @@ export class PostDatepicker {
 
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
-
     this.setActiveCell(
       this.selectedStartDate ? new Date(this.selectedStartDate) : this.startDate,
       focusOnDate,
@@ -767,12 +766,16 @@ export class PostDatepicker {
           if (start && end) {
             // Because selectDate is called twice if there are two dates
             this.skipOnSelectCount = 2;
+
             // Select the dates in the datepicker
+            this.selectedStartDate = start;
+            this.selectedEndDate = end;
             this.dpInstance.selectDate([new Date(start), new Date(end)]);
           }
         } else {
           if (input.value) {
             this.skipOnSelectCount = 1;
+            this.selectedStartDate = input.value;
 
             // Select the date in the datepicker
             this.dpInstance.selectDate(new Date(input.value));
