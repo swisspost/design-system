@@ -14,6 +14,6 @@ assignees: ''
 
 - [ ] Add component to layout examples
 - [ ] Add components to "Table of contents"
-- [ ] "Move component from "Work in progress" and create separate page in figma
+- [ ] Move component from "Work in progress" and create separate page in figma
 - [ ] Give new component URL to a dev for publishing on storybook
 - [ ] Publish component in figma
