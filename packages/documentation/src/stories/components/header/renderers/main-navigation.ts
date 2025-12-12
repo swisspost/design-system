@@ -3,7 +3,9 @@ import { html } from 'lit';
 export function renderMainnavigation() {
   return html`
     <!-- Main navigation -->
-    <post-mainnavigation slot="main-nav" caption="Main navigation">
+    <!-- Caption best practice: Don't include "navigation", screen readers add it automatically.
+         e.g. caption="Main" → "Main navigation" -->
+    <post-mainnavigation slot="main-nav" caption="Main">
       <ul>
         <!-- Link only level 1 -->
         <li>

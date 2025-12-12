@@ -262,7 +262,7 @@ export const ActiveNavigationItem: Story = {
     },
   ],
   render: () => html`
-    <post-mainnavigation slot="main-nav" caption="Main navigation">
+    <post-mainnavigation slot="main-nav" caption="Main">
       <ul>
         <li>
           <a href="/letters">Letters</a>
