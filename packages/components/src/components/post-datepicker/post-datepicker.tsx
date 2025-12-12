@@ -157,6 +157,7 @@ export class PostDatepicker {
 
   /**
    * Label for the toggle button that opens the calendar
+   * Only needed when calendar is connected to input
    */
   @Prop() labelToggleCalendar?: string;
   @Watch('labelToggleCalendar')
@@ -523,7 +524,7 @@ export class PostDatepicker {
     if (this.dpContainer) {
       const options: AirDatepickerCustomOptions = {
         navTitles: {
-          days: `<button aria-label="${this.labelSwitchYear}"><div class="month-nav"><div><strong>MMMM yyyy</strong></div><div><post-icon size="small" name="2052"></div></post-icon></div><div class="no-hover"></div></button>`,
+          days: `<button aria-label="${this.labelSwitchYear}"><strong>MMMM yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
           months: `<button aria-label="${this.labelSwitchYear}"><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
         },
         prevHtml: '<button><post-icon size="small" name="2049" ></post-icon></button>',

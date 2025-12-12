@@ -1,17 +1,7 @@
-post-datepicker {
-  input[type='date'] {
-    &::-webkit-calendar-picker-indicator,
-    &::-webkit-inner-spin-button {
-      display: none;
-      appearance: none;
-    }
-  }
-
-  .calendar-input-range input[type='date'] {
-    border: unset;
-
-    &:focus-visible {
-      outline: none;
-    }
+post-datepicker input[type='date'] {
+  &::-webkit-calendar-picker-indicator,
+  &::-webkit-inner-spin-button {
+    display: none;
+    appearance: none;
   }
 }

@@ -13,6 +13,27 @@ describe('datepicker', () => {
       cy.get('@input').should('exist');
     });
 
+    it('should open calendar popover on button click', () => {
+      cy.get('@datepicker')
+        .shadow()
+        .find('button[aria-haspopup="true"]')
+        .click()
+        .wait(500);
+      cy.get('.popover-content').should('be.visible');
+    });
+
+    it('should have correct order in navigation', () => {
+      cy.get('@datepicker')
+        .shadow()
+        .find('button[aria-haspopup="true"]')
+        .click()
+        .wait(500);
+
+      cy.get('@datepicker').find('.air-datepicker-nav > div:first-child').should('have.class', 'air-datepicker-nav--title');
+      cy.get('@datepicker').find('.air-datepicker-nav > div:nth-child(2)').should('have.attr', 'data-action', 'prev');
+      cy.get('@datepicker').find('.air-datepicker-nav > div:nth-child(3)').should('have.attr', 'data-action', 'next');
+    });
+
     it('should update input value when selecting a day in the datepicker', () => {
       cy.get('@datepicker')
         .shadow()
@@ -35,6 +56,28 @@ describe('datepicker', () => {
         });
     });
 
+    it('should open year view when clicking on title', () => {
+      cy.get('@datepicker')
+        .shadow()
+        .find('button[aria-haspopup="true"]')
+        .click()
+        .wait(500);
+
+      cy.get('@datepicker')
+        .shadow()
+        .find('.datepicker-container')
+        .find('.air-datepicker-nav--title button')
+        .click();
+
+      cy.get('@datepicker')
+        .find('.air-datepicker-body.-years-')
+        .should('exist').should('not.have.class', '-hidden-');
+
+      cy.get('@datepicker')
+        .find('.air-datepicker-body.-days-')
+        .should('have.class', '-hidden-');
+    });
+
     it('should return focus to the input on Escape', () => {
       cy.get('@datepicker')
         .shadow()
@@ -50,6 +93,16 @@ describe('datepicker', () => {
         .wait(500);
 
       cy.focused().should('have.prop', 'tagName', 'INPUT');
+    });
+
+    ['label-next-month', 'label-next-year', 'label-next-decade', 'label-previous-month', 'label-previous-year', 'label-previous-decade', 'label-switch-year', 'label-toggle-calendar'].forEach((label) => {
+      it('should break if missing ' + label, () => {
+        cy.window().then(win => {
+          cy.spy(win.console, 'error').as('consoleError');
+        });
+        cy.get('@datepicker').invoke('attr', label, null);
+        cy.get('@consoleError').should('be.called');
+      });
     });
 
     it('should have correct ARIA roles and labels', () => {

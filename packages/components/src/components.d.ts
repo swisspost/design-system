@@ -238,7 +238,7 @@ export namespace Components {
          */
         "labelSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar
+          * Label for the toggle button that opens the calendar Only needed when calendar is connected to input
          */
         "labelToggleCalendar"?: string;
         /**
@@ -1347,7 +1347,7 @@ declare namespace LocalJSX {
          */
         "labelSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar
+          * Label for the toggle button that opens the calendar Only needed when calendar is connected to input
          */
         "labelToggleCalendar"?: string;
         /**

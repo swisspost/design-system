@@ -55,6 +55,9 @@ tokens.$default-map: components.$post-breadcrumb;
       margin-right: auto;
       margin-inline-start: 0;
       justify-content: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       padding: 0 0 0 8px; // post.datepicker.header.padding-left
 
       &:hover {
@@ -67,15 +70,6 @@ tokens.$default-map: components.$post-breadcrumb;
           helpers.$post-focus
         ); // post.datepicker.focus
         outline-offset: 4px;
-      }
-
-      .month-nav {
-        display: flex;
-        gap: 6px; // post.datepicker.header.dropdown.gap
-
-        &:hover {
-          color: #504f4b; //post.datepicker.header.dropdown.hover.color
-        }
       }
 
       .placeholder {
@@ -160,7 +154,8 @@ tokens.$default-map: components.$post-breadcrumb;
 
       &:focus,
       &:focus-visible {
-        background: blue !important;
+        outline: 2px solid black;
+        outline-offset: 2px;
       }
 
       &.-selected- {
@@ -314,11 +309,12 @@ tokens.$default-map: components.$post-breadcrumb;
 .calendar-input-range {
   border: 2px solid black;
   border-radius: 4px;
-  display: inline;
+  display: flex;
   padding: 12px;
 }
 
 ::slotted(input) {
-  border: none;
+  border: unset;
   background-color: transparent;
+  flex-grow: 1;
 }
