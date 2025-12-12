@@ -203,6 +203,7 @@ export class PostHeader {
 
       if (this.burgerMenuExtended === false) {
         this.closeAllMegadropdowns();
+        document.documentElement.style.setProperty('--post-header-scroll-top', '0');
       }
     } else {
       this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
@@ -222,7 +223,9 @@ export class PostHeader {
   private getFocusableElements() {
     // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
-      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li')),
+      ...Array.from(
+        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
+      ),
       ...Array.from(
         this.host.querySelectorAll(
           'nav > post-list > div > post-list-item, post-megadropdown-trigger',
