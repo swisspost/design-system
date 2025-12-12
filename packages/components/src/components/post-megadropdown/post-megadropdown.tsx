@@ -2,7 +2,7 @@ import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { fadeSlideIn, fadeSlideOut, slideIn, slideOut } from '@/animations';
+import { fadeSlide, slide } from '@/animations';
 import { AnimationOptions } from '@/animations/types';
 
 @Component({
@@ -123,8 +123,8 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeSlideIn(this.animatedContainer, this.fsAnimationOptions)
-        : slideIn(this.animatedContainer, { translate: 100, duration: 350, easing: 'ease-in' });
+        ? fadeSlide(this.animatedContainer, 'in', this.fsAnimationOptions)
+        : slide(this.animatedContainer, 'in', { translate: 100, duration: 350, easing: 'ease-in' });
 
     try {
       await this.currentAnimation.finished;
@@ -160,8 +160,12 @@ export class PostMegadropdown {
 
     this.currentAnimation =
       this.device === 'desktop'
-        ? fadeSlideOut(this.animatedContainer, this.fsAnimationOptions)
-        : slideOut(this.animatedContainer, { translate: 100, duration: 350, easing: 'ease-out' });
+        ? fadeSlide(this.animatedContainer, 'out', this.fsAnimationOptions)
+        : slide(this.animatedContainer, 'out', {
+          translate: 100,
+          duration: 350,
+          easing: 'ease-out',
+        });
 
     try {
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });

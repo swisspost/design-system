@@ -32,30 +32,25 @@ function animateFadeSlide(
   });
 }
 
-export function fadeSlideIn(el: Element, options: AnimationOptions = {}): Animation {
+export function fadeSlide(
+  el: Element,
+  direction: 'in' | 'out',
+  options: AnimationOptions = {},
+): Animation {
   if (!el) return;
 
   const { translate = defaultOptions.translate } = options;
-  return animateFadeSlide(
-    el,
-    [
-      { opacity: '0', transform: `translateY(${translate}px)` },
-      { opacity: '1', transform: 'translateY(0px)' },
-    ],
-    options,
-  );
-}
 
-export function fadeSlideOut(el: Element, options: AnimationOptions = {}): Animation {
-  if (!el) return;
+  const keyframes: Keyframe[] =
+    direction === 'in'
+      ? [
+        { opacity: '0', transform: `translateY(${translate}px)` },
+        { opacity: '1', transform: 'translateY(0px)' },
+      ]
+      : [
+        { opacity: '1', transform: 'translateY(0px)' },
+        { opacity: '0', transform: `translateY(${translate}px)` },
+      ];
 
-  const { translate = defaultOptions.translate } = options;
-  return animateFadeSlide(
-    el,
-    [
-      { opacity: '1', transform: 'translateY(0px)' },
-      { opacity: '0', transform: `translateY(${translate}px)` },
-    ],
-    options,
-  );
+  return animateFadeSlide(el, keyframes, options);
 }

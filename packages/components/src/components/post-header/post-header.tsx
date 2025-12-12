@@ -3,7 +3,7 @@ import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { fadeSlideIn, fadeSlideOut } from '@/animations';
+import { fadeSlide } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 import { AnimationOptions } from '@/animations/types';
@@ -41,7 +41,7 @@ export class PostHeader {
   }
 
   private animationOptions: AnimationOptions = {
-    translateY: 0,
+    translate: 0,
     duration: 350,
     easing: {
       x1: 0.8,
@@ -201,8 +201,8 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? fadeSlideOut(this.burgerMenu, this.animationOptions)
-      : fadeSlideIn(this.burgerMenu, this.animationOptions);
+      ? fadeSlide(this.burgerMenu, 'out', this.animationOptions)
+      : fadeSlide(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
@@ -227,8 +227,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-    this.megadropdownOpen = event.detail.isVisible;
-  };
+      this.megadropdownOpen = event.detail.isVisible;
+    };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {

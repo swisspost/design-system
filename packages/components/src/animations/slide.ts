@@ -17,20 +17,17 @@ function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: Animation
   return el.animate(keyframes, { duration, easing: resolveEasing(easing), fill });
 }
 
-export function slideIn(el: HTMLElement, options: AnimationOptions = {}): Animation {
+export function slide(
+  el: HTMLElement,
+  direction: 'in' | 'out',
+  options: AnimationOptions = {},
+): Animation {
   const { translate = defaultSlideOptions.translate } = options;
-  return animateSlide(
-    el,
-    [{ transform: `translateX(${translate}%)` }, { transform: 'translateX(0)' }],
-    options,
-  );
-}
 
-export function slideOut(el: HTMLElement, options: AnimationOptions = {}): Animation {
-  const { translate = defaultSlideOptions.translate } = options;
-  return animateSlide(
-    el,
-    [{ transform: 'translateX(0)' }, { transform: `translateX(${translate}%)` }],
-    options,
-  );
+  const keyframes: Keyframe[] =
+    direction === 'in'
+      ? [{ transform: `translateX(${translate}%)` }, { transform: 'translateX(0)' }]
+      : [{ transform: 'translateX(0)' }, { transform: `translateX(${translate}%)` }];
+
+  return animateSlide(el, keyframes, options);
 }
