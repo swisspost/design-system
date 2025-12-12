@@ -1,10 +1,9 @@
 ---
-name: Component - Design
+name: '[subtask] Design'
 about: Sub-issue to define the design of a component.
-title: '[design] componentnamehere'
+title: '[design] component_name_here'
 labels: '🎨 figma'
 assignees: ''
-
 ---
 
 ### 📝 Description
@@ -19,6 +18,13 @@ assignees: ''
 
 <!-- Add any required tasks not listed, remove any unnecessary tasks -->
 
+#### Design
+
 - [ ] Compo design according to [WIKIT](https://wikit.post.ch/display/CW/Building+a+component)
+- [ ] Design review (by design peer)
 - [ ] Update dependencies
-- [ ] Design review
+
+#### Tokens
+
+- [ ] Propose token names (in base issue)
+- [ ] Token proposal review with Design and Development
