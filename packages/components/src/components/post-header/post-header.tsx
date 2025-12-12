@@ -6,7 +6,7 @@ import { breakpoint, Device } from '@/utils/breakpoints';
 import { fadeSlideIn, fadeSlideOut } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
-import { FadeSlideOptions } from '@/animations/types';
+import { AnimationOptions } from '@/animations/types';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -40,7 +40,7 @@ export class PostHeader {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
-  private animationOptions: FadeSlideOptions = {
+  private animationOptions: AnimationOptions = {
     translateY: 0,
     duration: 350,
     easing: {
@@ -227,8 +227,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {

@@ -2,38 +2,35 @@
  * Used by PostMegadropdown
  */
 
-import { SlideOptions } from './types';
+import { AnimationOptions } from './types';
+import { resolveEasing } from './fade-slide';
 
-// Global defaults
-const defaultSlideOptions: SlideOptions = {
-  translateX: 100,
+const defaultSlideOptions: AnimationOptions = {
+  translate: 100,
   duration: 500,
   easing: 'ease',
   fill: 'forwards',
 };
 
-export function slideIn(el: HTMLElement, options: SlideOptions = {}): Animation {
-  const { translateX, duration, easing, fill } = {
-    ...defaultSlideOptions,
-    ...options,
-  };
-
-  return el.animate([{ transform: `translateX(${translateX}%)` }, { transform: 'translateX(0)' }], {
-    duration,
-    easing,
-    fill,
-  });
+function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: AnimationOptions) {
+  const { duration, easing, fill } = { ...defaultSlideOptions, ...options };
+  return el.animate(keyframes, { duration, easing: resolveEasing(easing), fill });
 }
 
-export function slideOut(el: HTMLElement, options: SlideOptions = {}): Animation {
-  const { translateX, duration, easing, fill } = {
-    ...defaultSlideOptions,
-    ...options,
-  };
+export function slideIn(el: HTMLElement, options: AnimationOptions = {}): Animation {
+  const { translate = defaultSlideOptions.translate } = options;
+  return animateSlide(
+    el,
+    [{ transform: `translateX(${translate}%)` }, { transform: 'translateX(0)' }],
+    options,
+  );
+}
 
-  return el.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${translateX}%)` }], {
-    duration,
-    easing,
-    fill,
-  });
+export function slideOut(el: HTMLElement, options: AnimationOptions = {}): Animation {
+  const { translate = defaultSlideOptions.translate } = options;
+  return animateSlide(
+    el,
+    [{ transform: 'translateX(0)' }, { transform: `translateX(${translate}%)` }],
+    options,
+  );
 }

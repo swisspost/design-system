@@ -7,16 +7,9 @@ export type CurveEasing = {
 
 export type PresetEasing = 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out';
 
-export interface FadeSlideOptions {
+export interface AnimationOptions {
   translateY?: number;
   duration?: number;
   easing?: CurveEasing | PresetEasing;
-  fill?: FillMode;
-}
-
-export interface SlideOptions {
-  translateX?: number;
-  duration?: number;
-  easing?: string;
   fill?: FillMode;
 }

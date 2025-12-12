@@ -4,71 +4,58 @@
  * 2. PostMegadropdown
  */
 
-import { CurveEasing, PresetEasing, FadeSlideOptions } from './types';
+import { CurveEasing, PresetEasing, AnimationOptions } from './types';
 
-const defaultOptions: FadeSlideOptions = {
-  translateY: -10,
+const defaultOptions: AnimationOptions = {
+  translate: -10,
   duration: 300,
   easing: 'linear',
   fill: 'forwards',
 };
 
-function resolveEasing(easing: CurveEasing | PresetEasing): string {
+export function resolveEasing(easing: CurveEasing | PresetEasing): string {
   if (typeof easing === 'string') return easing;
   const { x1, y1, x2, y2 } = easing;
   return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`;
 }
 
-export function fadeSlideIn(el: Element, options: FadeSlideOptions = {}): Animation {
+function animateFadeSlide(
+  el: Element,
+  keyframes: Keyframe[],
+  options: AnimationOptions = {},
+): Animation {
+  const { duration, easing, fill } = { ...defaultOptions, ...options };
+  return el.animate(keyframes, {
+    duration,
+    easing: resolveEasing(easing),
+    fill,
+  });
+}
+
+export function fadeSlideIn(el: Element, options: AnimationOptions = {}): Animation {
   if (!el) return;
 
-  const { translateY, duration, easing, fill } = {
-    ...defaultOptions,
-    ...options,
-  };
-
-  return el.animate(
+  const { translate = defaultOptions.translate } = options;
+  return animateFadeSlide(
+    el,
     [
-      {
-        opacity: '0',
-        transform: `translateY(${translateY}px)`,
-      },
-      {
-        opacity: '1',
-        transform: 'translateY(0px)',
-      },
+      { opacity: '0', transform: `translateY(${translate}px)` },
+      { opacity: '1', transform: 'translateY(0px)' },
     ],
-    {
-      duration: duration,
-      easing: resolveEasing(easing),
-      fill: fill,
-    },
+    options,
   );
 }
 
-export function fadeSlideOut(el: Element, options: FadeSlideOptions): Animation {
+export function fadeSlideOut(el: Element, options: AnimationOptions = {}): Animation {
   if (!el) return;
 
-  const { translateY, duration, easing, fill } = {
-    ...defaultOptions,
-    ...options,
-  };
-
-  return el.animate(
+  const { translate = defaultOptions.translate } = options;
+  return animateFadeSlide(
+    el,
     [
-      {
-        opacity: '1',
-        transform: 'translateY(0)',
-      },
-      {
-        opacity: '0',
-        transform: `translateY(${translateY}px)`,
-      },
+      { opacity: '1', transform: 'translateY(0px)' },
+      { opacity: '0', transform: `translateY(${translate}px)` },
     ],
-    {
-      duration: duration,
-      easing: resolveEasing(easing),
-      fill: fill,
-    },
+    options,
   );
 }

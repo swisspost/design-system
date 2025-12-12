@@ -3,7 +3,7 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, State } from 
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { fadeSlideIn, fadeSlideOut, slideIn, slideOut } from '@/animations';
-import { FadeSlideOptions } from '@/animations/types';
+import { AnimationOptions } from '@/animations/types';
 
 @Component({
   tag: 'post-megadropdown',
@@ -22,8 +22,8 @@ export class PostMegadropdown {
   private currentAnimation: Animation | null = null;
   private animatedContainer: HTMLElement;
 
-  private fsAnimationOptions: FadeSlideOptions = {
-    translateY: -10,
+  private fsAnimationOptions: AnimationOptions = {
+    translate: -10,
     duration: 350,
     easing: {
       x1: 0.8,
@@ -124,7 +124,7 @@ export class PostMegadropdown {
     this.currentAnimation =
       this.device === 'desktop'
         ? fadeSlideIn(this.animatedContainer, this.fsAnimationOptions)
-        : slideIn(this.animatedContainer, { translateX: 100, duration: 350, easing: 'ease-in' });
+        : slideIn(this.animatedContainer, { translate: 100, duration: 350, easing: 'ease-in' });
 
     try {
       await this.currentAnimation.finished;
@@ -161,7 +161,7 @@ export class PostMegadropdown {
     this.currentAnimation =
       this.device === 'desktop'
         ? fadeSlideOut(this.animatedContainer, this.fsAnimationOptions)
-        : slideOut(this.animatedContainer, { translateX: 100, duration: 350, easing: 'ease-out' });
+        : slideOut(this.animatedContainer, { translate: 100, duration: 350, easing: 'ease-out' });
 
     try {
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
