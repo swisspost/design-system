@@ -109,14 +109,8 @@ function renderPopupRange(args: Args) {
     label-previous-month="${args.labelPreviousMonth}"
     label-previous-year="${args.labelPreviousYear}"
     label-switch-year="${args.labelSwitchYear}">
-    <input
-          aria-label="Start date"
-          type="date"
-        ></input>
-        <input
-          aria-label="End date"
-          type="date"
-        ></input>
+    <input type="date"></input>
+    <input type="date"></input>
     </post-datepicker>`
 }
 
@@ -145,11 +139,7 @@ function renderPopupSimple(args: Args) {
     label-previous-month="${args.labelPreviousMonth}"
     label-previous-year="${args.labelPreviousYear}"
     label-switch-year="${args.labelSwitchYear}">
-      <input
-          aria-label="Date"
-          class="form-control"
-          type="date"
-        ></input>
+      <input class="form-control" type="date"></input>
     </post-datepicker>`
 }
 

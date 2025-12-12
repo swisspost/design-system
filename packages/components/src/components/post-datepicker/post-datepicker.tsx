@@ -570,7 +570,6 @@ export class PostDatepicker {
           // Assign value to the input, close the popover and focus on the input
           if (this.dpInputs) {
             if (Array.isArray(date)) {
-              //todolea: issue when already existing choice, does not unselect and update it again
               date.forEach((d, i) => (this.dpInputs[i].value = this.formatAsDateInputValue(d)));
             } else if (date) {
               // If there is a date, set it to the input. No date = same date as before
@@ -624,15 +623,25 @@ export class PostDatepicker {
           this.dpInstance.selectDate(this.selectedStartDate);
         }
       }
-
-      // Override the title click to go to year view directly (skip month view)
-      this.titleBtn?.addEventListener('click', () => {
-        if (this.dpInstance) {
-          this.dpInstance.setCurrentView('years');
-        }
-      });
     }
   }
+
+  private attachTitleBtnListener() {
+    requestAnimationFrame(() => {
+      if (!this.titleBtn) return;
+
+      this.titleBtn.onclick = null; // remove inline handler AirDatepicker sets
+      this.titleBtn.removeEventListener('click', this.forceTitleClickToYear);
+      this.titleBtn.addEventListener('click', this.forceTitleClickToYear, { capture: true });
+    });
+  }
+
+  // Skip the month view and go directly to year selection
+  private forceTitleClickToYear = () => {
+    if (this.dpInstance) {
+      this.dpInstance.setCurrentView('years');
+    }
+  };
 
   private formatAsDateInputValue(date: Date): string {
     const year = date.getFullYear();
@@ -710,9 +719,11 @@ export class PostDatepicker {
     }
 
     this.updateNavigationButtonLabels();
+    this.attachTitleBtnListener();
 
     this.navObserver = new MutationObserver(() => {
       this.updateNavigationButtonLabels();
+      this.attachTitleBtnListener();
     });
 
     this.navObserver.observe(nav, {
@@ -750,7 +761,6 @@ export class PostDatepicker {
     this.dpInputs.forEach(input => {
       input.addEventListener('blur', () => {
         if (this.range) {
-          //todolea: issue with range
           const start = this.dpInputs[0].value;
           const end = this.dpInputs[1].value;
 
@@ -797,6 +807,7 @@ export class PostDatepicker {
 
   disconnectedCallback() {
     this.host.shadowRoot.removeEventListener('keydown', this.handleTab);
+    this.titleBtn?.removeEventListener('click', this.forceTitleClickToYear);
 
     if (this.gridObserver) {
       this.gridObserver.disconnect();
