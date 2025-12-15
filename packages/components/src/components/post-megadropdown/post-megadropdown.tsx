@@ -4,6 +4,7 @@ import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { fadeSlide, slide } from '@/animations';
 import { AnimationOptions } from '@/animations/types';
+import { navAnimation } from '@/animations/presets';
 
 @Component({
   tag: 'post-megadropdown',
@@ -24,13 +25,7 @@ export class PostMegadropdown {
 
   private fsAnimationOptions: AnimationOptions = {
     translate: -10,
-    duration: 350,
-    easing: {
-      x1: 0.8,
-      y1: 0.2,
-      x2: 0.8,
-      y2: 0.7,
-    },
+    ...navAnimation,
   };
 
   private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);
@@ -83,9 +78,7 @@ export class PostMegadropdown {
     this.removeListeners();
     window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
 
-    if (PostMegadropdown.activeDropdown === this) {
-      PostMegadropdown.activeDropdown = null;
-    }
+    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
 
     if (this.defaultSlotObserver) {
       this.defaultSlotObserver.disconnect();
@@ -121,10 +114,7 @@ export class PostMegadropdown {
 
     this.cancelAllAnimations();
 
-    this.currentAnimation =
-      this.device === 'desktop'
-        ? fadeSlide(this.animatedContainer, 'in', this.fsAnimationOptions)
-        : slide(this.animatedContainer, 'in', { translate: 100, duration: 350, easing: 'ease-in' });
+    this.currentAnimation = this.createAnimation('in');
 
     try {
       await this.currentAnimation.finished;
@@ -140,10 +130,7 @@ export class PostMegadropdown {
       this.addListeners();
     } catch {
       // Open animation was cancelled
-      this.isVisible = false;
-      this.currentAnimation = null;
-      PostMegadropdown.activeDropdown = null;
-      this.removeListeners();
+      this.closeCleanUp();
       this.postToggleMegadropdown.emit({ isVisible: false });
     }
   }
@@ -157,15 +144,7 @@ export class PostMegadropdown {
       return;
     }
     this.cancelAllAnimations();
-
-    this.currentAnimation =
-      this.device === 'desktop'
-        ? fadeSlide(this.animatedContainer, 'out', this.fsAnimationOptions)
-        : slide(this.animatedContainer, 'out', {
-          translate: 100,
-          duration: 350,
-          easing: 'ease-out',
-        });
+    this.currentAnimation = this.createAnimation('out');
 
     try {
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
@@ -173,15 +152,12 @@ export class PostMegadropdown {
       await this.currentAnimation.finished;
 
       // After the megadropdown container is hidden
-      this.currentAnimation = null;
-      this.isVisible = false;
-      PostMegadropdown.activeDropdown = null;
-      this.removeListeners();
+      this.closeCleanUp();
     } catch {
       // Closing animation was cancelled
       this.isVisible = true;
       this.currentAnimation = null;
-      PostMegadropdown.activeDropdown = null;
+      if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
       this.postToggleMegadropdown.emit({ isVisible: true, focusParent: focusParent });
     }
   }
@@ -194,20 +170,39 @@ export class PostMegadropdown {
     this.firstFocusableEl?.focus();
   }
 
+  private createAnimation(direction: 'in' | 'out'): Animation {
+    if (this.device === 'desktop') {
+      return fadeSlide(this.animatedContainer, direction, this.fsAnimationOptions);
+    }
+
+    return slide(this.animatedContainer, direction, {
+      translate: 100,
+      duration: 350,
+      easing: direction === 'in' ? 'ease-in' : 'ease-out',
+    });
+  }
+
   private breakpointChange(e: CustomEvent) {
     this.device = e.detail;
     if (this.device === 'desktop' && this.isVisible) {
       this.cancelAllAnimations();
     }
   }
+
+  private closeCleanUp() {
+    this.currentAnimation = null;
+    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
+    this.removeListeners();
+    this.isVisible = false;
+  }
+
   /**
    * Forces the dropdown to close without animation.
    */
   private forceClose() {
-    this.isVisible = false;
     this.cancelAllAnimations();
+    this.closeCleanUp();
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible, focusParent: false });
-    this.removeListeners();
   }
 
   private readonly handleClickOutside = async (event: MouseEvent) => {

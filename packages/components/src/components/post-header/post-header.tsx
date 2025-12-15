@@ -7,6 +7,7 @@ import { fadeSlide } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 import { AnimationOptions } from '@/animations/types';
+import { navAnimation } from '@/animations/presets';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -42,13 +43,7 @@ export class PostHeader {
 
   private animationOptions: AnimationOptions = {
     translate: 0,
-    duration: 350,
-    easing: {
-      x1: 0.8,
-      y1: 0.2,
-      x2: 0.8,
-      y2: 0.7,
-    },
+    ...navAnimation
   };
 
   get scrollParent(): HTMLElement {
