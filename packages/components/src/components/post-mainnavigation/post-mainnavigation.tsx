@@ -1,4 +1,5 @@
-import { Component, Element, Host, h, State, Listen } from '@stencil/core';
+import { Component, Element, Host, h, State, Listen, Prop, Watch } from '@stencil/core';
+import { checkRequiredAndType } from '@/utils';
 import { version } from '@root/package.json';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
@@ -10,7 +11,7 @@ const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar i
   shadow: true,
 })
 export class PostMainnavigation {
-  @Element() private host: HTMLPostMainnavigationElement;
+  @Element() host: HTMLPostMainnavigationElement;
 
   private navbar: HTMLElement;
 
@@ -23,6 +24,16 @@ export class PostMainnavigation {
   @State() canScrollLeft = false;
   @State() canScrollRight = false;
 
+  /**
+   * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
+   */
+  @Prop({ reflect: true }) caption!: string;
+
+  @Watch('caption')
+  validateCaption() {
+    checkRequiredAndType(this, 'caption', 'string');
+  }
+
   constructor() {
     this.scrollRight = this.scrollRight.bind(this);
     this.scrollLeft = this.scrollLeft.bind(this);
@@ -34,6 +45,8 @@ export class PostMainnavigation {
   }
 
   componentDidLoad() {
+    this.validateCaption();
+
     setTimeout(() => {
       this.fixLayoutShift();
       this.checkScrollability();
@@ -200,7 +213,7 @@ export class PostMainnavigation {
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
 
-        <nav ref={el => (this.navbar = el)}>
+        <nav ref={el => (this.navbar = el)} aria-label={this.caption}>
           <slot></slot>
         </nav>
 

@@ -10,6 +10,7 @@
 }
 
 :host,
+header,
 .global-header,
 .local-header {
   transition: inset-block-start animation.$transition-time-simple

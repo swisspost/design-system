@@ -75,7 +75,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation slot="main-nav" caption="Main Navigation">
+      <post-mainnavigation slot="main-nav" caption="Main">
         <ul>
           <li>${story(context.args, context)}</li>
         </ul>
