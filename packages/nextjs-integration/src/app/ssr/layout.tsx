@@ -100,20 +100,18 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostTogglebutton>
 
       {/* Main navigation */}
-      <PostMainnavigation slot="main-nav">
-        <PostList title-hidden="">
-          <p>Main Navigation</p>
-
-            {/* Link only level 1 */}
-            <PostListItem slot="post-list-item">
-              <a href="/letters">Letters</a>
-            </PostListItem>
-            <PostListItem slot="post-list-item">
-              <a href="/packages">Packages</a>
-            </PostListItem>
+      <PostMainnavigation slot="main-nav" caption="Main">
+        <ul>
+          {/* Link only level 1 */}
+          <li>
+            <a href="/letters">Letters</a>
+          </li>
+          <li>
+            <a href="/packages">Packages</a>
+          </li>
 
             {/* Level 1 with megadropdown - Letters */}
-            <PostListItem slot="post-list-item">
+            <li>
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
               <PostMegadropdown id="letters" label-close="Close" label-back="Back">
                 <a className="megadropdown-overview-link" href="/letters">
@@ -152,10 +150,10 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   </PostListItem>
                 </PostList>
               </PostMegadropdown>
-            </PostListItem>
+            </li>
 
             {/* Level 1 with megadropdown - Packages */}
-            <PostListItem slot="post-list-item">
+            <li>
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
               <PostMegadropdown id="packages" label-close="Close" label-back="Back">
                 <a className="megadropdown-overview-link" href="/packages">
@@ -194,8 +192,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   </PostListItem>
                 </PostList>
               </PostMegadropdown>
-            </PostListItem>
-          </PostList>
+            </li>
+          </ul>
         </PostMainnavigation>
       </PostHeader>
 

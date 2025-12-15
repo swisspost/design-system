@@ -121,7 +121,6 @@ export class PostHeader {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-    this.host.addEventListener('click', this.handleLinkClick);
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.handleScrollParentResize();
@@ -141,6 +140,7 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+    this.host.shadowRoot.addEventListener('click', this.handleLinkClick);
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -153,7 +153,9 @@ export class PostHeader {
     if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
-    this.host.removeEventListener('click', this.handleLinkClick);
+    if (this.host.shadowRoot) {
+      this.host.shadowRoot.removeEventListener('click', this.handleLinkClick);
+    }
 
     if (this.scrollParentResizeObserver) {
       this.scrollParentResizeObserver.disconnect();
@@ -417,48 +419,50 @@ export class PostHeader {
   render() {
     return (
       <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
-        <div
-          class={{
-            'global-header': true,
-            'no-target-group': !this.hasTargetGroup,
-          }}
-        >
-          <div class="logo">
-            <slot name="post-logo"></slot>
+        <header>
+          <div
+            class={{
+              'global-header': true,
+              'no-target-group': !this.hasTargetGroup,
+            }}
+          >
+            <div class="logo">
+              <slot name="post-logo"></slot>
+            </div>
+            <div class="sliding-controls">
+              {this.device === 'desktop' && (
+                <div class="target-group">
+                  <slot name="audience"></slot>
+                </div>
+              )}
+              <slot name="global-nav-primary"></slot>
+              {!this.hasBurgerMenu && [
+                <slot name="global-nav-secondary"></slot>,
+                <slot name="language-menu"></slot>,
+              ]}
+              <slot name="post-login"></slot>
+              {this.hasNavigation && this.device !== 'desktop' && (
+                <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
+                  <slot name="post-togglebutton"></slot>
+                </div>
+              )}
+            </div>
           </div>
-          <div class="sliding-controls">
-            {this.device === 'desktop' && (
-              <div class="target-group">
-                <slot name="audience"></slot>
-              </div>
-            )}
-            <slot name="global-nav-primary"></slot>
-            {!this.hasBurgerMenu && [
-              <slot name="global-nav-secondary"></slot>,
-              <slot name="language-menu"></slot>,
-            ]}
-            <slot name="post-login"></slot>
-            {this.hasNavigation && this.device !== 'desktop' && (
-              <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
-                <slot name="post-togglebutton"></slot>
-              </div>
-            )}
+          <div
+            class={{
+              'local-header': true,
+              'no-title': !this.hasTitle,
+              'no-target-group': !this.hasTargetGroup,
+              'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
+              'no-local-nav': !this.hasLocalNav,
+            }}
+          >
+            <slot name="title"></slot>
+            {this.hasTitle && <slot name="local-nav"></slot>}
+            {this.device === 'desktop' && this.renderNavigation()}
           </div>
-        </div>
-        <div
-          class={{
-            'local-header': true,
-            'no-title': !this.hasTitle,
-            'no-target-group': !this.hasTargetGroup,
-            'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
-            'no-local-nav': !this.hasLocalNav,
-          }}
-        >
-          <slot name="title"></slot>
-          {this.hasTitle && <slot name="local-nav"></slot>}
-          {this.device === 'desktop' && this.renderNavigation()}
-        </div>
-        {this.device !== 'desktop' && this.renderNavigation()}
+          {this.device !== 'desktop' && this.renderNavigation()}
+        </header>
       </Host>
     );
   }

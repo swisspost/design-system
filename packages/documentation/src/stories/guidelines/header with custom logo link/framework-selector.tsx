@@ -53,7 +53,7 @@ const code = `
   </ul>
 
   <!-- Main navigation -->
-  <post-mainnavigation slot="main-nav" caption="Hauptnavigation">
+  <post-mainnavigation slot="main-nav" caption="Haupt">
     <ul>
       <!-- Link only level 1 -->
       <li><a href="#">Briefe</a></li>
