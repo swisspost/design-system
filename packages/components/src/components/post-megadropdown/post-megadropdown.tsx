@@ -107,10 +107,6 @@ export class PostMegadropdown {
       PostMegadropdown.activeDropdown.forceClose();
     }
 
-    if (!this.isVisible) {
-      this.closeCleanUp();
-    }
-
     // First set the megadropdown to be visible, then animate
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
@@ -120,6 +116,7 @@ export class PostMegadropdown {
 
     try {
       await this.currentAnimation.finished;
+
       // After the megadropdown becomes visible
       this.currentAnimation = null;
       this.addListeners();
@@ -131,11 +128,12 @@ export class PostMegadropdown {
         this.firstFocusableEl.focus();
       }
     } catch {
-      // Open animation was cancelled
+      // Open animation was cancelled - reset state
       this.closeCleanUp();
       this.postToggleMegadropdown.emit({ isVisible: false });
     }
   }
+
   /**
    * Hides the dropdown with an animation.
    */
@@ -158,7 +156,7 @@ export class PostMegadropdown {
       // After the megadropdown container is hidden
       this.closeCleanUp();
     } catch {
-      // Closing animation was cancelled
+      // Closing animation was cancelled - reset state
       this.resetAnimationState();
       this.isVisible = true;
       this.postToggleMegadropdown.emit({ isVisible: true, focusParent: focusParent });
@@ -173,11 +171,20 @@ export class PostMegadropdown {
     this.firstFocusableEl?.focus();
   }
 
+  /**
+   * Forces the dropdown to close without animation.
+   */
+  private forceClose() {
+    this.cancelAllAnimations();
+    this.closeCleanUp();
+    this.postToggleMegadropdown.emit({ isVisible: this.isVisible, focusParent: false });
+  }
+
+  // Run the respective animation
   private createAnimation(direction: 'in' | 'out'): Animation {
     if (this.device === 'desktop') {
       return fadeSlide(this.animatedContainer, direction, this.fsAnimationOptions);
     }
-
     return slide(this.animatedContainer, direction, {
       translate: 100,
       duration: 350,
@@ -185,11 +192,13 @@ export class PostMegadropdown {
     });
   }
 
-  private breakpointChange(e: CustomEvent) {
-    this.device = e.detail;
-    this.cancelAllAnimations();
+  private cancelAllAnimations() {
+    this.currentAnimation?.cancel();
+    this.animatedContainer?.getAnimations().forEach(a => a.cancel());
+    this.currentAnimation = null;
   }
 
+  // Clean up and reset state to non visible
   private closeCleanUp() {
     this.resetAnimationState();
     this.removeListeners();
@@ -202,13 +211,9 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
   }
 
-  /**
-   * Forces the dropdown to close without animation.
-   */
-  private forceClose() {
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
     this.cancelAllAnimations();
-    this.closeCleanUp();
-    this.postToggleMegadropdown.emit({ isVisible: this.isVisible, focusParent: false });
   }
 
   private readonly handleClickOutside = async (event: MouseEvent) => {
@@ -249,12 +254,6 @@ export class PostMegadropdown {
     this.host.removeEventListener('keydown', this.onKeydown);
     document.removeEventListener('keyup', this.onKeyup);
     document.removeEventListener('mousedown', this.onMousedown);
-  }
-
-  private cancelAllAnimations() {
-    this.currentAnimation?.cancel();
-    this.animatedContainer?.getAnimations().forEach(a => a.cancel());
-    this.currentAnimation = null;
   }
 
   private getFocusableElements() {
