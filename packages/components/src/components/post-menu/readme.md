@@ -17,7 +17,7 @@
 
 | Event        | Description                                                                                                                          | Type                   |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
-| `toggleMenu` | Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed. | `CustomEvent<boolean>` |
+| `postToggle` | Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed. | `CustomEvent<boolean>` |
 
 
 ## Methods

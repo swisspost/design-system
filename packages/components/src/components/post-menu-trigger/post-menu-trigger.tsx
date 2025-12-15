@@ -79,9 +79,9 @@ export class PostMenuTrigger {
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
 
-      // Listen to the `toggleMenu` event emitted by the `post-menu` component
+      // Listen to the `postToggle` event emitted by the `post-menu` component
       if (this.menu && this.slottedButton) {
-        this.menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
+        this.menu.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
           this.ariaExpanded = event.detail;
           this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
         });
