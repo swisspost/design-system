@@ -23,6 +23,11 @@ post-mainnavigation {
 
       @include media.only(desktop) {
         @include button.button-variant-def('enabled', 'secondary');
+        padding: 0 0.75rem;
+
+        &::before {
+          content: unset;
+        }
       }
     }
   }
