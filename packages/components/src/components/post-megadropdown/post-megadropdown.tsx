@@ -5,24 +5,11 @@ import { breakpoint, Device } from '@/utils/breakpoints';
 import { fadeSlide, slide } from '@/animations';
 import { AnimationOptions } from '@/animations/types';
 
-  export  fsAnimationOptions: AnimationOptions = {
-    translate: -10,
-    duration: 350,
-    easing: {
-      x1: 0.8,
-      y1: 0.2,
-      x2: 0.8,
-      y2: 0.7,
-    },
-  };
-
-
 @Component({
   tag: 'post-megadropdown',
   styleUrl: 'post-megadropdown.scss',
   shadow: false,
 })
-
 export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
@@ -35,11 +22,21 @@ export class PostMegadropdown {
   private currentAnimation: Animation | null = null;
   private animatedContainer: HTMLElement;
 
-
   private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);
   private onKeyup = (e: KeyboardEvent) => this.handleTabOutside(e);
   private onMousedown = (e: MouseEvent) => this.handleClickOutside(e);
   private onBreakpointChange = (e: CustomEvent) => this.breakpointChange(e);
+
+  private fsAnimationOptions: AnimationOptions = {
+    translate: -10,
+    duration: 350,
+    easing: {
+      x1: 0.8,
+      y1: 0.2,
+      x2: 0.8,
+      y2: 0.7,
+    },
+  };
 
   @Element() host: HTMLPostMegadropdownElement;
 
