@@ -18,7 +18,7 @@ import { checkRequiredAndType } from '@/utils';
 @Component({
   tag: 'post-megadropdown',
   styleUrl: 'post-megadropdown.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
@@ -129,8 +129,8 @@ export class PostMegadropdown {
   @Method()
   async show() {
     if (this.device !== 'desktop') {
-      const triggerLabel = this.megadropdownTrigger?.querySelector('.nav-el-active');
-      if (triggerLabel) this.megadropdownTitle = triggerLabel.innerHTML;
+      const trigger = this.megadropdownTrigger;
+      if (trigger) this.megadropdownTitle = trigger.innerHTML;
     }
 
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
@@ -234,20 +234,13 @@ export class PostMegadropdown {
   }
 
   private getFocusableElements() {
-    const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
-    const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
+    const focusableElements = [
+      ...getFocusableChildren(this.host),
+      ...getFocusableChildren(this.host.shadowRoot),
+    ];
 
-    // Check for an overview link
-    const overviewLink = this.host.querySelector<HTMLAnchorElement>(
-      'a[slot="megadropdown-overview-link"]',
-    );
-
-    if (overviewLink) {
-      focusableChildren.unshift(overviewLink);
-    }
-
-    this.firstFocusableEl = focusableChildren[0];
-    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+    this.firstFocusableEl = focusableElements[0];
+    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
   }
 
   // Loop through the focusable children
@@ -349,7 +342,7 @@ export class PostMegadropdown {
                 {this.labelClose}
               </post-closebutton>
             ) : (
-              <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary btn-sm">
+              <button onClick={() => this.hide(true)} class="back-button">
                 <post-icon name="arrowleft"></post-icon>
                 {this.labelBack}
               </button>
