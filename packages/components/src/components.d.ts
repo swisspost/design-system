@@ -308,6 +308,10 @@ export namespace Components {
         "url"?: string | URL;
     }
     interface PostMainnavigation {
+        /**
+          * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
+         */
+        "caption": string;
     }
     interface PostMegadropdown {
         /**
@@ -1326,6 +1330,10 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMainnavigation {
+        /**
+          * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
+         */
+        "caption": string;
     }
     interface PostMegadropdown {
         /**
