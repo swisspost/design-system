@@ -190,9 +190,7 @@ export class PostMegadropdown {
 
   private breakpointChange(e: CustomEvent) {
     this.device = e.detail;
-    if (this.device === 'desktop' && this.isVisible) {
-      this.cancelAllAnimations();
-    }
+    this.cancelAllAnimations();
   }
 
   private closeCleanUp() {
