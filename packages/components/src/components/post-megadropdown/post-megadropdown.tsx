@@ -102,9 +102,15 @@ export class PostMegadropdown {
    */
   @Method()
   async show() {
+    this.cancelAllAnimations();
+
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
+    }
+
+    if (!this.isVisible) {
+      this.closeCleanUp();
     }
 
     // First set the megadropdown to be visible, then animate
@@ -112,14 +118,13 @@ export class PostMegadropdown {
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
 
-    this.cancelAllAnimations();
-
     this.currentAnimation = this.createAnimation('in');
 
     try {
       await this.currentAnimation.finished;
       // After the megadropdown becomes visible
       this.currentAnimation = null;
+      this.addListeners();
 
       if (
         this.firstFocusableEl &&
@@ -127,7 +132,6 @@ export class PostMegadropdown {
       ) {
         this.firstFocusableEl.focus();
       }
-      this.addListeners();
     } catch {
       // Open animation was cancelled
       this.closeCleanUp();
@@ -143,7 +147,9 @@ export class PostMegadropdown {
       this.forceClose();
       return;
     }
+
     this.cancelAllAnimations();
+
     this.currentAnimation = this.createAnimation('out');
 
     try {
@@ -194,6 +200,7 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
     this.isVisible = false;
+    this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
   }
 
   /**
