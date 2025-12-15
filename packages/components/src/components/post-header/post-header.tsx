@@ -203,7 +203,7 @@ export class PostHeader {
 
       if (this.burgerMenuExtended === false) {
         this.closeAllMegadropdowns();
-        document.documentElement.style.setProperty('--post-header-scroll-top', '0');
+        this.burgerMenu.scrollTop = 0;
       }
     } else {
       this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
