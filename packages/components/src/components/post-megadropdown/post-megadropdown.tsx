@@ -326,28 +326,28 @@ export class PostMegadropdown {
     return (
       <Host version={version}>
         <div
-          class={`megadropdown-container ${this.animationClass || ''}`}
+          class={`megadropdown ${this.animationClass || ''}`}
           style={containerStyle}
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
-          <div class="megadropdown">
-            {this.megadropdownTitle && <p class="megadropdown-title">{this.megadropdownTitle}</p>}
+          {this.device !== 'desktop' && this.megadropdownTitle && (
+            <p class="megadropdown-title">{this.megadropdownTitle}</p>
+          )}
 
-            <div class="megadropdown-content">
-              <slot></slot>
-            </div>
-
-            {this.device === 'desktop' ? (
-              <post-closebutton onClick={() => this.hide(true)} class="close-button">
-                {this.labelClose}
-              </post-closebutton>
-            ) : (
-              <button onClick={() => this.hide(true)} class="back-button">
-                <post-icon name="arrowleft"></post-icon>
-                {this.labelBack}
-              </button>
-            )}
+          <div class="megadropdown-content">
+            <slot></slot>
           </div>
+
+          {this.device === 'desktop' ? (
+            <post-closebutton onClick={() => this.hide(true)} class="close-button">
+              {this.labelClose}
+            </post-closebutton>
+          ) : (
+            <button onClick={() => this.hide(true)} class="back-button">
+              <post-icon name="arrowleft"></post-icon>
+              {this.labelBack}
+            </button>
+          )}
         </div>
       </Host>
     );

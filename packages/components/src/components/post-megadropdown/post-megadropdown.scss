@@ -1,9 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/variables/color';
-@use '@swisspost/design-system-styles/variables/commons';
-@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/variables/elevation';
 
 @keyframes slide-in {
   0% {
@@ -41,40 +39,39 @@
   }
 }
 
-.megadropdown-container {
-  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
+.megadropdown {
   position: absolute;
+  inset-inline: 0;
+  overflow-y: auto;
   background-color: #fafafa;
-  border: none;
-  width: 100%;
-  inset-block-start: 100%;
-  inset-inline-start: 0;
-  border-radius: 0;
+  box-shadow: elevation.$elevation-300;
 
-  @include utilities.high-contrast-mode() {
-    border-block-end: 1px solid CanvasText;
+  @include media.only(desktop) {
+    z-index: -1;
+    inset-block-start: 100%;
+    max-height: calc(100vh - var(--post-header-height) - 3rem);
+    padding: 2rem 2.5rem 2.5rem;
+
+    &.slide-in {
+      animation: slide-down 350ms forwards;
+    }
+
+    &.slide-out {
+      animation: slide-up 350ms forwards;
+    }
   }
 
-  &.slide-in {
-    animation: slide-down 350ms forwards;
-  }
-
-  &.slide-out {
-    animation: slide-up 350ms forwards;
-  }
-
-  @include media.max(lg) {
+  @include media.max(desktop) {
     z-index: 1;
-    position: absolute;
     inset-block-start: var(--post-header-navigation-current-inset);
-    inset-inline: 0;
-
+    overscroll-behavior: contain;
     height: calc(
       min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
-    border-block-start: unset;
-    overflow-y: auto;
-    overscroll-behavior: contain;
+    padding-inline: var(--post-burger-menu-padding-inline);
+    padding-block: 1.5rem;
+    display: flex;
+    flex-direction: column;
 
     &.slide-in {
       animation: slide-in 350ms forwards;
@@ -85,68 +82,42 @@
     }
   }
 
-  @include media.min(lg) {
-    z-index: -1;
-    max-height: calc(100vh - var(--post-header-height) - 48px);
-    overflow-y: auto;
+  @include utilities.high-contrast-mode() {
+    border-block-end: 1px solid CanvasText;
   }
-}
-
-.megadropdown {
-  padding: 31px 40px 40px;
-  background-color: #fafafa;
-
-  @include media.max(lg) {
-    display: flex;
-    flex-direction: column;
-    width: inherit;
-    padding: 16px 32px 24px;
-  }
-
-  @include media.max(sm) {
-    padding-inline: 16px;
-  }
-}
-
-.megadropdown-content {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 1.5rem;
 }
 
 .megadropdown-title {
-  display: none;
-  margin-block: 0 8px;
-  font-weight: 900;
+  margin-block: 0 1rem;
+  font-weight: 950;
 
-  a {
-    text-decoration: none;
-    display: none;
-    font-weight: inherit;
-    border-block: 0;
-  }
-
-  @include media.max(lg) {
-    display: block;
+  @include media.only(tablet) {
     font-size: 1.25rem;
   }
 
-  @include media.max(sm) {
+  @include media.only(mobile) {
     font-size: 1.125rem;
   }
 }
 
 .back-button {
+  order: -1;
+  width: fit-content;
+  padding-inline: 0;
   @include button.button-base;
   @include button.button-size(sm);
   @include button.button-variant-def('enabled', 'tertiary');
-  order: -1;
-  width: fit-content;
-  margin-block-end: 2rem;
-  padding-inline: 0;
 
   &:hover {
     @include button.button-variant-def('hover', 'tertiary');
+  }
+
+  @include media.only(tablet) {
+    margin-block-end: 2rem;
+  }
+
+  @include media.only(mobile) {
+    margin-block-end: 1.5rem;
   }
 }
 
