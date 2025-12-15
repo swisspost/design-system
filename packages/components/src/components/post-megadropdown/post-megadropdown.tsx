@@ -4,7 +4,7 @@ import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { fadeSlide, slide } from '@/animations';
 import { AnimationOptions } from '@/animations/types';
-import { navAnimation } from '@/animations/presets';
+import { headerAnimation } from '@/animations/presets';
 
 @Component({
   tag: 'post-megadropdown',
@@ -25,7 +25,7 @@ export class PostMegadropdown {
 
   private fsAnimationOptions: AnimationOptions = {
     translate: -10,
-    ...navAnimation,
+    ...headerAnimation,
   };
 
   private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);

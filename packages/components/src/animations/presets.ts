@@ -1,5 +1,5 @@
 // Used for the Megardropdown animation on desktop and for the Burger menu animation on mobile
-export const navAnimation = {
+export const headerAnimation = {
   duration: 350,
   easing: {
     x1: 0.8,
