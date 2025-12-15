@@ -107,10 +107,14 @@ export class PostMegadropdown {
       PostMegadropdown.activeDropdown.forceClose();
     }
 
+    if (!this.isVisible) {
+      this.closeCleanUp();
+    }
+
     // First set the megadropdown to be visible, then animate
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
-    this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+    this.postToggleMegadropdown.emit({ isVisible: true });
 
     this.currentAnimation = this.createAnimation('in');
 
@@ -149,12 +153,12 @@ export class PostMegadropdown {
     this.currentAnimation = this.createAnimation('out');
 
     try {
-      this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
-
       await this.currentAnimation.finished;
 
       // After the megadropdown container is hidden
       this.closeCleanUp();
+
+      this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
     } catch {
       // Closing animation was cancelled - reset state
       this.resetAnimationState();
@@ -177,7 +181,7 @@ export class PostMegadropdown {
   private forceClose() {
     this.cancelAllAnimations();
     this.closeCleanUp();
-    this.postToggleMegadropdown.emit({ isVisible: this.isVisible, focusParent: false });
+    this.postToggleMegadropdown.emit({ isVisible: false, focusParent: false });
   }
 
   // Run the respective animation
