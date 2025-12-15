@@ -9,7 +9,8 @@ const contentByType: Record<
     description: string;
     imageUrl: string;
     secondaryButtonLabel?: string;
-    extraClass?: string;
+    sectionClass?: string;
+    imageClass?: string;
   }
 > = {
   '400': {
@@ -19,7 +20,7 @@ const contentByType: Record<
       '\n' +
       'Please check the URL again. We may also have moved, archived or renamed the page in question. You may be able to find the content you are looking for via our homepage. Or use the search function on our portal to find the page you want.',
     imageUrl: '/images/content/400.svg',
-    extraClass: 'error-400',
+    imageClass: 'error-400',
   },
   '401': {
     subtitle: 'No permission..',
@@ -28,7 +29,8 @@ const contentByType: Record<
       '\n' +
       'Please contact your IT administrator.',
     imageUrl: '/images/content/401.svg',
-    extraClass: 'error-401',
+    imageClass: 'error-401',
+    sectionClass: 'align-section-end',
   },
   '403': {
     subtitle: 'No entry.',
@@ -37,7 +39,6 @@ const contentByType: Record<
       '\n' +
       'This may be due to incorrect URLs, a lack of login permissions, outdated browser data such as caches and cookies, or security settings.',
     imageUrl: '/images/content/403.svg',
-    extraClass: '',
   },
   '404': {
     subtitle: 'This page could not be found.',
@@ -46,7 +47,6 @@ const contentByType: Record<
       '\n' +
       'We kindly ask you to check this again. We may also have moved, archived or renamed the page in question. You may be able to find the content you are looking for via our homepage. Or use the search function on our portal to find the page you want.',
     imageUrl: '/images/content/404.svg',
-    extraClass: '',
   },
   '451': {
     subtitle: 'The page is unavailable for legal reasons.',
@@ -55,7 +55,6 @@ const contentByType: Record<
       '\n' +
       'The error can also be caused by technical problems on the server, e.g. if the server is overloaded or there are errors in the configuration. ',
     imageUrl: '/images/content/451.svg',
-    extraClass: '',
   },
   '500': {
     subtitle: 'Unexpected problem.',
@@ -65,7 +64,6 @@ const contentByType: Record<
       'Try to reload the page, clear the browser cache or try to load the page again later. If the error persists, please inform the website operator.',
     imageUrl: '/images/content/500.svg',
     secondaryButtonLabel: 'Contact the website operator',
-    extraClass: '',
   },
   '503': {
     subtitle: 'The page you requested could not be loaded.',
@@ -74,7 +72,6 @@ const contentByType: Record<
       '\n' +
       'You can try to access the page again later or clear your browser’s cache.',
     imageUrl: '/images/content/503.svg',
-    extraClass: '',
   },
   '504': {
     subtitle: 'The page took too long to load.',
@@ -83,7 +80,6 @@ const contentByType: Record<
       '\n' +
       'You can try to access the page again later or clear your browser’s cache.',
     imageUrl: '/images/content/504.svg',
-    extraClass: '',
   },
 };
 
@@ -126,15 +122,16 @@ const meta: Meta = {
 };
 
 function render(type: ErrorType) {
-  const { subtitle, description, imageUrl, secondaryButtonLabel, extraClass } = contentByType[type];
+  const { subtitle, description, imageUrl, secondaryButtonLabel, sectionClass, imageClass } =
+    contentByType[type];
 
   return html`
-    <div class="palette palette-alternate error-container">
+    <div class="palette palette-alternate error-container overflow-hidden">
       <div class="section">
         <div class="container">
           <div class="row align-items-center">
             <div class="col">
-              <h2 class="palette-text">
+              <h2 class="palette-text mt-big-r">
                 Error ${type}
                 <br />
                 <span class="fw-normal">${subtitle}</span>
@@ -142,7 +139,7 @@ function render(type: ErrorType) {
 
               <p class="mt-16">${description}</p>
 
-              <div class="button-section">
+              <div class="button-section mt-big-r">
                 ${secondaryButtonLabel
                   ? html`
                       <a
@@ -172,8 +169,8 @@ function render(type: ErrorType) {
                     `}
               </div>
             </div>
-            <div class="col error-container--image ${extraClass}">
-              <img src="${imageUrl}" alt="" />
+            <div class="col error-container--image ${imageClass ?? ''}">
+              <img src="${imageUrl}" alt="" class="${sectionClass ?? ''}" />
             </div>
           </div>
         </div>
