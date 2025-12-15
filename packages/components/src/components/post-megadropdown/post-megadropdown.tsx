@@ -75,11 +75,9 @@ export class PostMegadropdown {
   }
 
   disconnectedCallback() {
-    this.removeListeners();
     window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
-
-    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
-
+    this.resetAnimationState();
+    this.removeListeners();
     if (this.defaultSlotObserver) {
       this.defaultSlotObserver.disconnect();
     }
@@ -161,9 +159,8 @@ export class PostMegadropdown {
       this.closeCleanUp();
     } catch {
       // Closing animation was cancelled
+      this.resetAnimationState();
       this.isVisible = true;
-      this.currentAnimation = null;
-      if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
       this.postToggleMegadropdown.emit({ isVisible: true, focusParent: focusParent });
     }
   }
@@ -194,11 +191,15 @@ export class PostMegadropdown {
   }
 
   private closeCleanUp() {
-    this.currentAnimation = null;
-    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
+    this.resetAnimationState();
     this.removeListeners();
     this.isVisible = false;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+  }
+
+  private resetAnimationState() {
+    this.currentAnimation = null;
+    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
   }
 
   /**
