@@ -22,11 +22,6 @@ export class PostMegadropdown {
   private currentAnimation: Animation | null = null;
   private animatedContainer: HTMLElement;
 
-  private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);
-  private onKeyup = (e: KeyboardEvent) => this.handleTabOutside(e);
-  private onMousedown = (e: MouseEvent) => this.handleClickOutside(e);
-  private onBreakpointChange = (e: CustomEvent) => this.breakpointChange(e);
-
   private fsAnimationOptions: AnimationOptions = {
     translate: -10,
     duration: 350,
@@ -37,6 +32,10 @@ export class PostMegadropdown {
       y2: 0.7,
     },
   };
+
+  private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);
+  private onKeyup = (e: KeyboardEvent) => this.handleTabOutside(e);
+  private onMousedown = (e: MouseEvent) => this.handleClickOutside(e);
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -67,7 +66,7 @@ export class PostMegadropdown {
   @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.onBreakpointChange);
+    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
   }
 
   componentDidRender() {
@@ -82,8 +81,11 @@ export class PostMegadropdown {
 
   disconnectedCallback() {
     this.removeListeners();
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
 
-    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
+    if (PostMegadropdown.activeDropdown === this) {
+      PostMegadropdown.activeDropdown = null;
+    }
 
     if (this.defaultSlotObserver) {
       this.defaultSlotObserver.disconnect();
@@ -116,13 +118,19 @@ export class PostMegadropdown {
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+
     this.cancelAllAnimations();
-    this.currentAnimation = this.createAnimation('in');
+
+    this.currentAnimation =
+      this.device === 'desktop'
+        ? fadeSlide(this.animatedContainer, 'in', this.fsAnimationOptions)
+        : slide(this.animatedContainer, 'in', { translate: 100, duration: 350, easing: 'ease-in' });
 
     try {
       await this.currentAnimation.finished;
       // After the megadropdown becomes visible
       this.currentAnimation = null;
+
       if (
         this.firstFocusableEl &&
         window.getComputedStyle(this.firstFocusableEl).display !== 'none'
@@ -132,11 +140,13 @@ export class PostMegadropdown {
       this.addListeners();
     } catch {
       // Open animation was cancelled
-      this.finishClose();
+      this.isVisible = false;
+      this.currentAnimation = null;
+      PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
       this.postToggleMegadropdown.emit({ isVisible: false });
     }
   }
-
   /**
    * Hides the dropdown with an animation.
    */
@@ -147,13 +157,26 @@ export class PostMegadropdown {
       return;
     }
     this.cancelAllAnimations();
-    this.currentAnimation = this.createAnimation('out');
+
+    this.currentAnimation =
+      this.device === 'desktop'
+        ? fadeSlide(this.animatedContainer, 'out', this.fsAnimationOptions)
+        : slide(this.animatedContainer, 'out', {
+          translate: 100,
+          duration: 350,
+          easing: 'ease-out',
+        });
 
     try {
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
+
       await this.currentAnimation.finished;
+
       // After the megadropdown container is hidden
-      this.finishClose();
+      this.currentAnimation = null;
+      this.isVisible = false;
+      PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
     } catch {
       // Closing animation was cancelled
       this.isVisible = true;
@@ -173,16 +196,18 @@ export class PostMegadropdown {
 
   private breakpointChange(e: CustomEvent) {
     this.device = e.detail;
-    if (this.device === 'desktop' && this.isVisible) this.cancelAllAnimations();
+    if (this.device === 'desktop' && this.isVisible) {
+      this.cancelAllAnimations();
+    }
   }
-
   /**
    * Forces the dropdown to close without animation.
    */
   private forceClose() {
+    this.isVisible = false;
     this.cancelAllAnimations();
-    this.finishClose();
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible, focusParent: false });
+    this.removeListeners();
   }
 
   private readonly handleClickOutside = async (event: MouseEvent) => {
@@ -213,25 +238,6 @@ export class PostMegadropdown {
     await this.hide(false);
   };
 
-  private finishClose() {
-    this.isVisible = false;
-    this.currentAnimation = null;
-    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
-    this.removeListeners();
-  }
-
-  private createAnimation(direction: 'in' | 'out'): Animation {
-    if (this.device === 'desktop') {
-      return fadeSlide(this.animatedContainer, direction, this.fsAnimationOptions);
-    }
-
-    return slide(this.animatedContainer, direction, {
-      translate: 100,
-      duration: 350,
-      easing: direction === 'in' ? 'ease-in' : 'ease-out',
-    });
-  }
-
   private addListeners() {
     this.host.addEventListener('keydown', this.onKeydown);
     document.addEventListener('keyup', this.onKeyup);
@@ -242,7 +248,6 @@ export class PostMegadropdown {
     this.host.removeEventListener('keydown', this.onKeydown);
     document.removeEventListener('keyup', this.onKeyup);
     document.removeEventListener('mousedown', this.onMousedown);
-    window.removeEventListener('postBreakpoint:device', this.onBreakpointChange);
   }
 
   private cancelAllAnimations() {
