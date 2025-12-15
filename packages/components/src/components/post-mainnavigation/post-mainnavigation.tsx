@@ -1,4 +1,5 @@
-import { Component, Host, h, State, Listen } from '@stencil/core';
+import { Component, Element, Host, h, State, Listen, Prop, Watch } from '@stencil/core';
+import { checkRequiredAndType } from '@/utils';
 import { version } from '@root/package.json';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
@@ -7,9 +8,11 @@ const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar i
 @Component({
   tag: 'post-mainnavigation',
   styleUrl: './post-mainnavigation.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostMainnavigation {
+  @Element() host: HTMLPostMainnavigationElement;
+
   private navbar: HTMLElement;
 
   private scrollRepeatInterval: ReturnType<typeof setInterval>;
@@ -20,6 +23,16 @@ export class PostMainnavigation {
 
   @State() canScrollLeft = false;
   @State() canScrollRight = false;
+
+  /**
+   * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
+   */
+  @Prop({ reflect: true }) caption!: string;
+
+  @Watch('caption')
+  validateCaption() {
+    checkRequiredAndType(this, 'caption', 'string');
+  }
 
   constructor() {
     this.scrollRight = this.scrollRight.bind(this);
@@ -32,6 +45,8 @@ export class PostMainnavigation {
   }
 
   componentDidLoad() {
+    this.validateCaption();
+
     setTimeout(() => {
       this.fixLayoutShift();
       this.checkScrollability();
@@ -82,7 +97,7 @@ export class PostMainnavigation {
   }
 
   private get navigationItems(): HTMLElement[] {
-    return Array.from(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
+    return Array.from(this.host.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
   }
 
   /**
@@ -90,11 +105,11 @@ export class PostMainnavigation {
    */
   private fixLayoutShift() {
     this.navigationItems
-      .filter(item => !item.matches(':has(.nav-el-active)'))
+      .filter(item => !item.matches(':has(.shown-when-inactive)'))
       .forEach(item => {
         item.innerHTML = `
-          <span class="nav-el-active">${item.innerHTML}</span>
-          <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
+          <span class="shown-when-inactive" aria-hidden="true">${item.innerHTML}</span>
+          ${item.innerHTML}
         `;
       });
   }
@@ -140,7 +155,7 @@ export class PostMainnavigation {
   }
 
   private scrollRight() {
-    const scrollRightLeftEdge = document
+    const scrollRightLeftEdge = this.host.shadowRoot
       .querySelector('.scroll-right')
       .getBoundingClientRect().left;
 
@@ -157,7 +172,7 @@ export class PostMainnavigation {
   }
 
   private scrollLeft() {
-    const scrollLeftRightEdge = document
+    const scrollLeftRightEdge = this.host.shadowRoot
       .querySelector('.scroll-left')
       .getBoundingClientRect().right;
 
@@ -198,7 +213,7 @@ export class PostMainnavigation {
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
 
-        <nav ref={el => (this.navbar = el)}>
+        <nav ref={el => (this.navbar = el)} aria-label={this.caption}>
           <slot></slot>
         </nav>
 

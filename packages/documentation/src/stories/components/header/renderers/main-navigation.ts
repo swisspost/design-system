@@ -3,19 +3,20 @@ import { html } from 'lit';
 export function renderMainnavigation() {
   return html`
     <!-- Main navigation -->
-    <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
-      <post-list title-hidden="">
-        <p>Main Navigation</p>
+    <!-- Caption best practice: Don't include "navigation", screen readers add it automatically.
+         e.g. caption="Main" → "Main navigation" -->
+    <post-mainnavigation slot="main-nav" caption="Main">
+      <ul>
         <!-- Link only level 1 -->
-        <post-list-item slot="post-list-item">
+        <li>
           <a href="/letters">Letters</a>
-        </post-list-item>
-        <post-list-item slot="post-list-item">
+        </li>
+        <li>
           <a href="/packages">Packages</a>
-        </post-list-item>
+        </li>
 
         <!-- Level 1 with megadropdown -->
-        <post-list-item slot="post-list-item">
+        <li>
           <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
           <post-megadropdown id="letters">
             <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
@@ -55,8 +56,8 @@ export function renderMainnavigation() {
               </post-list-item>
             </post-list>
           </post-megadropdown>
-        </post-list-item>
-        <post-list-item slot="post-list-item">
+        </li>
+        <li>
           <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
           <post-megadropdown id="packages">
             <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
@@ -96,8 +97,8 @@ export function renderMainnavigation() {
               </post-list-item>
             </post-list>
           </post-megadropdown>
-        </post-list-item>
-      </post-list>
+        </li>
+      </ul>
     </post-mainnavigation>
   `;
 }

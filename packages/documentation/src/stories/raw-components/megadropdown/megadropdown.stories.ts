@@ -29,7 +29,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
       <!-- Meta navigation -->
-      <ul slot="meta-navigation">
+      <ul slot="global-nav-secondary">
         <li><a href="">Jobs</a></li>
         <li><a href="">About us</a></li>
       </ul>
@@ -47,7 +47,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
         description="Description"
         variant="list"
         name="language-menu-example"
-        slot="post-language-switch"
+        slot="language-menu"
       >
         <post-language-menu-item active="true" code="de" name="German">DE</post-language-menu-item>
         <post-language-menu-item active="false" code="fr" name="French">FR</post-language-menu-item>
@@ -75,11 +75,10 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation slot="post-mainnavigation" caption="Main Navigation">
-        <post-list title-hidden="">
-          <p>Main Navigation</p>
-          <post-list-item> ${story(context.args, context)} </post-list-item>
-        </post-list>
+      <post-mainnavigation slot="main-nav" caption="Main">
+        <ul>
+          <li>${story(context.args, context)}</li>
+        </ul>
       </post-mainnavigation>
     </post-header>
     <div class="container">
