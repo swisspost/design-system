@@ -32,6 +32,18 @@ tokens.$default-map: utilities.$post-spacing;
   > :not(:first-child) {
     border-width: 0;
   }
+
+  > caption {
+    text-align: left;
+  }
+
+  > thead {
+    text-align: left;
+  }
+
+  > tbody {
+    text-align: left;
+  }
 }
 
 .table > :not(caption) > * > * {
