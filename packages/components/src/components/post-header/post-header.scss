@@ -115,7 +115,6 @@
 
   // Keeps the local-header "sticky" below the global header when burger-menu is opened
   &.scrolled:has(~ .burger-menu.extended) {
-    position: sticky;
     margin-block-start: calc(
       var(--post-global-header-expanded-height) - var(
           --post-global-header-padding-inline-start
