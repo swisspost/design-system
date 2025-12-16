@@ -458,10 +458,9 @@ export class PostHeader {
             'no-target-group': !this.hasTargetGroup,
             'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
             'no-local-nav': !this.hasLocalNav,
+            'scrolled': this.isScrolled,
           }}
-          style={{
-            visibility: this.isScrolled ? 'hidden' : 'visible',
-          }}
+          style={{}}
         >
           <slot name="title"></slot>
           {this.hasTitle && <slot name="local-nav"></slot>}

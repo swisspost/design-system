@@ -152,13 +152,20 @@
   flex-direction: column;
   background-color: #fafafa;
 
+  &.extended {
+    height: calc(
+      min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) -
+        (var(--post-global-header-expanded-height) + var(--post-local-header-expanded-min-height))
+    );
+  }
+
   &.extended.megadropdown-open {
     overflow: hidden;
   }
 
   &:not(.extended) {
     transform: translateY(-100%);
-    visibility: hidden; // Prevents focusing in the mobile menu when it is not open
+
     > * {
       display: none;
     }
@@ -194,4 +201,13 @@
   &.no-local-nav .local-nav {
     display: none;
   }
+}
+
+// :host {
+//   --isScrolled: sign(max(0, calc(var(--post-header-scroll-top) - 0)));
+// }
+
+.local-header.scrolled:has(~ .burger-menu.extended) {
+  position: sticky;
+  margin-block-start: 56px;
 }
