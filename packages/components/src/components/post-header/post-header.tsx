@@ -216,8 +216,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
@@ -460,7 +460,6 @@ export class PostHeader {
             'no-local-nav': !this.hasLocalNav,
             'scrolled': this.isScrolled,
           }}
-          style={{}}
         >
           <slot name="title"></slot>
           {this.hasTitle && <slot name="local-nav"></slot>}
