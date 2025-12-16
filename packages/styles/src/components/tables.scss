@@ -33,17 +33,6 @@ tokens.$default-map: utilities.$post-spacing;
     border-width: 0;
   }
 
-  > caption {
-    text-align: left;
-  }
-
-  > thead {
-    text-align: left;
-  }
-
-  > tbody {
-    text-align: left;
-  }
 }
 
 .table > :not(caption) > * > * {
@@ -56,10 +45,16 @@ tokens.$default-map: utilities.$post-spacing;
 
 .table > tbody {
   vertical-align: inherit;
+  text-align: left;
 }
 
 .table > thead {
   vertical-align: bottom;
+  text-align: left;
+}
+
+.table > caption {
+  text-align: left;
 }
 
 .table-group-divider {
