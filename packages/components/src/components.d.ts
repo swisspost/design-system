@@ -183,9 +183,9 @@ export namespace Components {
          */
         "collapsed"?: boolean;
         /**
-          * Triggers the collapse programmatically. If there is a collapsing transition running already, it will be reversed.
+          * Triggers the collapse programmatically. If there is a collapsing transition running already, it will be reversed. If no parameter is provided, the current state (this.isExpanded) will be toggled.
          */
-        "toggle": (open?: boolean) => Promise<boolean>;
+        "toggle": (shouldExpand?: boolean) => Promise<boolean>;
     }
     interface PostCollapsibleTrigger {
         /**
@@ -1218,7 +1218,7 @@ declare namespace LocalJSX {
          */
         "collapsed"?: boolean;
         /**
-          * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
+          * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible is expanded, `false` if it is collapsed.
          */
         "onPostToggle"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
     }

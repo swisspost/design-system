@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { collapsedKeyframe, collapse, expand } from '@/animations/collapse';
-import { IS_BROWSER, IS_SERVER, checkEmptyOrType } from '@/utils';
+import { IS_BROWSER, checkEmptyOrType } from '@/utils';
 
 type InlineStyles = { [key: string]: string };
 
@@ -24,8 +24,6 @@ type InlineStyles = { [key: string]: string };
   shadow: true,
 })
 export class PostCollapsible {
-  private isOpen = true;
-
   @Element() host: HTMLPostCollapsibleElement;
 
   /**
@@ -36,15 +34,19 @@ export class PostCollapsible {
   @Watch('collapsed')
   collapsedChange() {
     checkEmptyOrType(this, 'collapsed', 'boolean');
-    void this.toggle(!this.collapsed);
+    // void this.toggle(!this.collapsed);
   }
 
   /**
    * An event emitted when the collapse element is shown or hidden, before the transition.
    *
-   * The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
+   * The event payload is a boolean: `true` if the collapsible is expanded, `false` if it is collapsed.
    */
   @Event() postToggle: EventEmitter<boolean>;
+
+  get isExpanded() {
+    return !this.collapsed;
+  }
 
   componentDidLoad() {
     this.collapsedChange();
@@ -54,24 +56,29 @@ export class PostCollapsible {
   /**
    * Triggers the collapse programmatically.
    * If there is a collapsing transition running already, it will be reversed.
+   * If no parameter is provided, the current state (this.isExpanded) will be toggled.
    */
   @Method()
-  async toggle(open = !this.isOpen): Promise<boolean> {
-    if (open === this.isOpen) return open;
+  async toggle(shouldExpand = !this.isExpanded): Promise<boolean> {
+    // if the parameter (shouldExpand) is set from the outside (e.g. it's not defined by the default parameter above)
+    // and it matches the current state, return the current state and abort
+    if (shouldExpand === this.isExpanded) return this.isExpanded;
 
-    this.isOpen = open;
-    this.collapsed = !open;
+    // this will not only set the new state to this.collapsed,
+    // but also update this.isExpanded indirectly
+    this.collapsed = !shouldExpand;
+    const isExpanded = this.isExpanded;
 
     if (IS_BROWSER) {
-      const animation = open ? expand(this.host) : collapse(this.host);
+      const animation = isExpanded ? expand(this.host) : collapse(this.host);
       await animation.finished;
       animation.commitStyles();
 
       this.updateTriggers();
-      this.postToggle.emit(open);
+      this.postToggle.emit(isExpanded);
     }
 
-    return open;
+    return isExpanded;
   }
 
   /**
@@ -90,7 +97,7 @@ export class PostCollapsible {
       <Host
         data-version={version}
         tabindex={this.collapsed ? -1 : undefined}
-        style={IS_SERVER && this.collapsed ? (collapsedKeyframe as InlineStyles) : undefined}
+        style={this.collapsed ? (collapsedKeyframe as InlineStyles) : undefined}
       >
         <slot />
       </Host>
