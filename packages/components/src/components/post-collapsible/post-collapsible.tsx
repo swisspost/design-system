@@ -34,7 +34,6 @@ export class PostCollapsible {
   @Watch('collapsed')
   collapsedChange() {
     checkEmptyOrType(this, 'collapsed', 'boolean');
-    // void this.toggle(!this.collapsed);
   }
 
   /**
@@ -60,12 +59,12 @@ export class PostCollapsible {
    */
   @Method()
   async toggle(shouldExpand = !this.isExpanded): Promise<boolean> {
-    // if the parameter (shouldExpand) is set from the outside (e.g. it's not defined by the default parameter above)
-    // and it matches the current state, return the current state and abort
+    // if the parameter (shouldExpand) is set during the call (e.g. `document.querySelector('post-collapsible').toggle(true)`)
+    // and it matches the current state, the current state is returned and the function exits early
     if (shouldExpand === this.isExpanded) return this.isExpanded;
 
-    // this will not only set the new state to this.collapsed,
-    // but also update this.isExpanded indirectly
+    // applying the new state to this.collapsed will also indirectly update this.isExpanded,
+    // due to its implementation with the getter, which returns !this.collapsed
     this.collapsed = !shouldExpand;
     const isExpanded = this.isExpanded;
 
