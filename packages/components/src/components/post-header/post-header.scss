@@ -113,6 +113,16 @@
     }
   }
 
+  // Keeps the local-header "sticky" below the global header when burger-menu is opened
+  &.scrolled:has(~ .burger-menu.extended) {
+    position: sticky;
+    margin-block-start: calc(
+      var(--post-global-header-expanded-height) - var(
+          --post-global-header-padding-inline-start
+        ) - var(--post-global-header-padding-inline-end)
+    );
+  }
+
   .navigation {
     flex: 1 0 100%;
     height: var(--post-main-navigation-height);
@@ -145,19 +155,13 @@
   inset-inline: 0;
   inset-block-start: 100%;
   height: calc(
-    min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+    min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) -
+      (var(--post-global-header-expanded-height) + var(--post-local-header-expanded-min-height))
   );
   overflow: hidden auto;
   display: flex;
   flex-direction: column;
   background-color: #fafafa;
-
-  &.extended {
-    height: calc(
-      min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) -
-        (var(--post-global-header-expanded-height) + var(--post-local-header-expanded-min-height))
-    );
-  }
 
   &.extended.megadropdown-open {
     overflow: hidden;
@@ -201,13 +205,4 @@
   &.no-local-nav .local-nav {
     display: none;
   }
-}
-
-// :host {
-//   --isScrolled: sign(max(0, calc(var(--post-header-scroll-top) - 0)));
-// }
-
-.local-header.scrolled:has(~ .burger-menu.extended) {
-  position: sticky;
-  margin-block-start: 56px;
 }
