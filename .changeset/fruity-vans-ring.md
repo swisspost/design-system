@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Updated the `<post-header>` component to prevent focus in the mobile menu when it is closed and the page is scrolled.
+Updated the `<post-header>` component to show the local-header when the mobile menu is open and the page is scrolled.
