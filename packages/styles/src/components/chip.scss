@@ -6,8 +6,6 @@
 
 tokens.$default-map: components.$post-chip;
 
-@include icons-mx.custom-property(('closex', 'checkmark'));
-
 button.chip-dismissible {
   $button-size: tokens.get('close-size', components.$post-close);
   $icon-size: tokens.get('close-icon-size', components.$post-close);
