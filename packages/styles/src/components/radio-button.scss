@@ -152,7 +152,7 @@ fieldset .form-check.form-check-inline {
   }
 
   > label {
-    font-size: tokens.get('post-radio-button-small-label-font-size');
+    font-size: tokens.get('radio-button-small-label-font-size');
     padding-block: tokens.get('radio-button-small-label-padding-block');
   }
 }
