@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                 | Attribute    | Description                                                                          | Type     | Default     |
@@ -10,6 +11,7 @@
 | `homeUrl` _(required)_   | `home-url`   | The URL for the home breadcrumb item.                                                | `string` | `undefined` |
 | `label` _(required)_     | `label`      | The accessible label for the breadcrumb component.                                   | `string` | `undefined` |
 | `menuLabel` _(required)_ | `menu-label` | The accessible label for the breadcrumb menu when breadcrumb items are concatenated. | `string` | `undefined` |
+
 
 ## Dependencies
 
@@ -22,7 +24,6 @@
 - [post-breadcrumb-item](../post-breadcrumb-item)
 
 ### Graph
-
 ```mermaid
 graph TD;
   post-breadcrumbs --> post-icon
@@ -35,6 +36,6 @@ graph TD;
   style post-breadcrumbs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

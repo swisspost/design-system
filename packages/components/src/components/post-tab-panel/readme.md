@@ -2,11 +2,13 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property           | Attribute | Description                                             | Type     | Default     |
 | ------------------ | --------- | ------------------------------------------------------- | -------- | ----------- |
 | `for` _(required)_ | `for`     | The name of the tab that this panel is associated with. | `string` | `undefined` |
+
 
 ## Slots
 
@@ -14,6 +16,7 @@
 | ----------- | ---------------------------------------------- |
 | `"default"` | Slot for placing the content of the tab panel. |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

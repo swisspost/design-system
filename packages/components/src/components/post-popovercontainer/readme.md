@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property    | Attribute    | Description                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                 | Default     |
@@ -11,6 +12,7 @@
 | `edgeGap`   | `edge-gap`   | Gap between the edge of the page and the popovercontainer                                                                                                                                                                                                                                                                                   | `number`                                                                                                                                                             | `8`         |
 | `placement` | `placement`  | Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
 | `safeSpace` | `safe-space` | Enables a safespace through which the cursor can be moved without the popover being disabled                                                                                                                                                                                                                                                | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
+
 
 ## Events
 
@@ -22,6 +24,7 @@
 | `postShow`         | Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.                                                                            | `CustomEvent<{ first?: boolean; }>`   |
 | `postToggle`       | Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.               | `CustomEvent<{ isOpen: boolean; }>`   |
 
+
 ## Methods
 
 ### `hide() => Promise<void>`
@@ -31,6 +34,8 @@ Programmatically hide the popovercontainer
 #### Returns
 
 Type: `Promise<void>`
+
+
 
 ### `show(target: HTMLElement) => Promise<void>`
 
@@ -45,6 +50,8 @@ Programmatically display the popovercontainer
 #### Returns
 
 Type: `Promise<void>`
+
+
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<boolean>`
 
@@ -61,22 +68,25 @@ Toggle popovercontainer display
 
 Type: `Promise<boolean>`
 
+
+
+
 ## Slots
 
 | Slot | Description                                                   |
 | ---- | ------------------------------------------------------------- |
 |      | Default slot for placing content inside the popovercontainer. |
 
+
 ## Dependencies
 
 ### Used by
 
-- [post-menu](../post-menu)
-- [post-popover](../post-popover)
-- [post-tooltip](../post-tooltip)
+ - [post-menu](../post-menu)
+ - [post-popover](../post-popover)
+ - [post-tooltip](../post-tooltip)
 
 ### Graph
-
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
@@ -85,6 +95,6 @@ graph TD;
   style post-popovercontainer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

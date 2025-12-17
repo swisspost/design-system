@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Methods
 
 ### `toggleBurgerMenu(force?: boolean) => Promise<void>`
@@ -18,6 +19,9 @@ Toggles the burger navigation menu.
 
 Type: `Promise<void>`
 
+
+
+
 ## Slots
 
 | Slot                     | Description                                                                   |
@@ -33,6 +37,7 @@ Type: `Promise<void>`
 | `"post-togglebutton"`    | Holds the burger menu toggler.                                                |
 | `"title"`                | Holds the application title.                                                  |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -2,12 +2,14 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Events
 
 | Event             | Description                               | Type                                                        |
 | ----------------- | ----------------------------------------- | ----------------------------------------------------------- |
 | `dropdownToggled` | Fires when the dropdown has been toggled. | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
 | `flyoutToggled`   | Fires when the flyout has been toggled.   | `CustomEvent<null \| string>`                               |
+
 
 ## Methods
 
@@ -25,6 +27,8 @@ Open a specific flyout
 
 Type: `Promise<void>`
 
+
+
 ### `setFocus() => Promise<void>`
 
 Focus the main navigation toggle button
@@ -32,6 +36,8 @@ Focus the main navigation toggle button
 #### Returns
 
 Type: `Promise<void>`
+
+
 
 ### `toggleDropdown(force?: boolean) => Promise<boolean>`
 
@@ -49,20 +55,20 @@ Type: `Promise<boolean>`
 
 Boolean indicating new state
 
+
 ## Dependencies
 
 ### Used by
 
-- [swisspost-internet-header](../post-internet-header)
+ - [swisspost-internet-header](../post-internet-header)
 
 ### Graph
-
 ```mermaid
 graph TD;
   swisspost-internet-header --> post-main-navigation
   style post-main-navigation fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Overview
 
 Trap the focus inside a specific container.
@@ -12,15 +13,15 @@ Trap the focus inside a specific container.
 | -------- | --------- | ----------- | --------- | ------- |
 | `active` | `active`  |             | `boolean` | `false` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [post-search](../post-search)
-- [swisspost-internet-breadcrumbs](../post-internet-breadcrumbs)
+ - [post-search](../post-search)
+ - [swisspost-internet-breadcrumbs](../post-internet-breadcrumbs)
 
 ### Graph
-
 ```mermaid
 graph TD;
   post-search --> focus-trap
@@ -28,6 +29,6 @@ graph TD;
   style focus-trap fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

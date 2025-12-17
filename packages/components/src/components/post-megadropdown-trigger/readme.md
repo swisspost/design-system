@@ -2,11 +2,13 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property           | Attribute | Description                                                                                                         | Type     | Default     |
 | ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `for` _(required)_ | `for`     | ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown. | `string` | `undefined` |
+
 
 ## Dependencies
 
@@ -15,13 +17,12 @@
 - [post-icon](../post-icon)
 
 ### Graph
-
 ```mermaid
 graph TD;
   post-megadropdown-trigger --> post-icon
   style post-megadropdown-trigger fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
