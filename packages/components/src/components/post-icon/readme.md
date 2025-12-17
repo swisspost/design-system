@@ -28,6 +28,7 @@ some content
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
+ - [post-language-menu](../post-language-menu)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
  - [post-pagination](../post-pagination)
@@ -42,6 +43,7 @@ graph TD;
   post-breadcrumbs --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
+  post-language-menu --> post-icon
   post-mainnavigation --> post-icon
   post-megadropdown --> post-icon
   post-pagination --> post-icon

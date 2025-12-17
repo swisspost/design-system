@@ -28,63 +28,63 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostLogo>
 
         {/* Target Group */}
-        <ul slot="audience">
-          <li>
-            <a href="#" aria-current="location">
-              Private customers
-            </a>
-          </li>
-          <li>
-            <a href="#">Business customers</a>
-          </li>
-        </ul>
+      <ul slot="audience">
+        <li>
+          <a href="#" aria-current="location">
+            Private customers
+          </a>
+        </li>
+        <li>
+          <a href="#">Business customers</a>
+        </li>
+      </ul>
 
-        {/* Global controls (Search) */}
-        <ul slot="global-nav-primary">
-          <li>
-            <a href="">
-              <span>Search</span>
-              <PostIcon aria-hidden="true" name="search" />
-            </a>
-          </li>
-        </ul>
+      {/* Global controls (Search) */}
+      <ul slot="global-nav-primary">
+        <li>
+          <a href="">
+            <span>Search</span>
+            <PostIcon aria-hidden="true" name="search" />
+          </a>
+        </li>
+      </ul>
 
-        {/* Global secondary navigation */}
-        <ul slot="global-nav-secondary">
-          <li>
-            <a href="">
-              Jobs
-              <PostIcon name="jobs" aria-hidden="true" />
-            </a>
-          </li>
-          <li>
-            <a href="">
-              Create Account
-              <PostIcon name="adduser" aria-hidden="true" />
-            </a>
-          </li>
-        </ul>
+      {/* Global secondary navigation */}
+      <ul slot="global-nav-secondary">
+        <li>
+          <a href="">
+            Jobs
+            <PostIcon name="jobs" aria-hidden="true" />
+          </a>
+        </li>
+        <li>
+          <a href="">
+            Create Account
+            <PostIcon name="adduser" aria-hidden="true" />
+          </a>
+        </li>
+      </ul>
 
-        {/* Language switch */}
-        <PostLanguageMenu
-          caption="Change the language"
-          description="The currently selected language is English."
-          variant="list"
-          slot="language-menu"
-        >
-          <PostLanguageMenuItem code="de" name="German">
-            de
-          </PostLanguageMenuItem>
-          <PostLanguageMenuItem code="fr" name="French">
-            fr
-          </PostLanguageMenuItem>
-          <PostLanguageMenuItem code="it" name="Italian">
-            it
-          </PostLanguageMenuItem>
-          <PostLanguageMenuItem active={true} code="en" name="English">
-            en
-          </PostLanguageMenuItem>
-        </PostLanguageMenu>
+      {/* Language switch */}
+      <PostLanguageMenu
+        caption="Change the language"
+        description="The currently selected language is English."
+        variant="list"
+        slot="language-menu"
+      >
+        <PostLanguageMenuItem code="de" name="German">
+          de
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem code="fr" name="French">
+          fr
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem code="it" name="Italian">
+          it
+        </PostLanguageMenuItem>
+        <PostLanguageMenuItem active={true} code="en" name="English">
+          en
+        </PostLanguageMenuItem>
+      </PostLanguageMenu>
 
         {/* Global header login/user menu */}
         <a href="" slot="post-login">
@@ -112,9 +112,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
             {/* Level 1 with megadropdown - Letters */}
             <li>
-              <PostMegadropdownTrigger for="letters">
-                <button>Letters</button>
-              </PostMegadropdownTrigger>
+              <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
               <PostMegadropdown id="letters" label-close="Close" label-back="Back">
                 <a className="megadropdown-overview-link" href="/letters">
                   Overview Letters
@@ -156,9 +154,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
             {/* Level 1 with megadropdown - Packages */}
             <li>
-              <PostMegadropdownTrigger for="packages">
-                <button>Packages</button>
-              </PostMegadropdownTrigger>
+              <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
               <PostMegadropdown id="packages" label-close="Close" label-back="Back">
                 <a className="megadropdown-overview-link" href="/packages">
                   Overview Packages
