@@ -14,9 +14,9 @@ interface Product {
 }
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  standalone: false,
 })
 export class AppComponent {
   @HostBinding('class') containerClasses = 'd-block container my-32 py-24';

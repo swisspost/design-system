@@ -2,14 +2,20 @@
 
 :host {
   // The following variables will affect the header to minimize it on scroll
-  --post-global-header-top: calc(var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height));
+  --post-global-header-top: calc(
+    var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)
+  );
   --post-header-top: calc(var(--post-header-reduced-height) - var(--post-header-expanded-height));
 
-  --post-logo-height: calc(var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px));
+  --post-logo-height: calc(
+    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px)
+  );
   --post-global-controls-top: clamp(
-    /* 0 when header is static, large negative when header shrinks to enable offset */
-    1000 * (var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)),
-    calc(-1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))),
+    /* 0 when header is static, large negative when header shrinks to enable offset */ 1000 *
+      (var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)),
+    calc(
+      -1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))
+    ),
     0px
   );
 

@@ -6,7 +6,6 @@ import liveRegionBadAngularSample from './live-region-bad-angular.sample.html?ra
 
 <Meta of={LiveRegionStories} />
 
-
 # Live Regions
 
 A live region allows you to notify the user about a dynamic change without requiring the page to reload e.g. alert, loading status, chat logs, update of a product cart, feeds, etc.
@@ -20,8 +19,9 @@ They are defined either by using the `aria-live` attribute or some specific `rol
 ## Choose the appropriate value for the aria-live attribute
 
 `aria-live` attribute can be either:
-* `polite`: message will be announced after the screen reader is idle.
-* `assertive`: message will interrupt any announcement immediately. It should be used sparingly.
+
+- `polite`: message will be announced after the screen reader is idle.
+- `assertive`: message will interrupt any announcement immediately. It should be used sparingly.
 
 ## Announce the whole Live region on change
 

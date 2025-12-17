@@ -7,9 +7,5 @@
 
 // Icon with custom color and size
 .my-custom-icon {
-  @include post.icon(
-    $name: 'accessibility',
-    $color: '#fc0',
-    $size: 1em,
-  );
+  @include post.icon($name: 'accessibility', $color: '#fc0', $size: 1em);
 }

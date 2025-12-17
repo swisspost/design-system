@@ -4,13 +4,13 @@ snapshot:
     - 320
     - 1440
   minHeight: 680
-  percyCSS: ""
+  percyCSS: ''
   enable-javascript: true
 discovery:
   allowedHostnames: []
   disallowedHostnames: []
   networkIdleTimeout: 100
 upload:
-  files: "**/*.{png,jpg,jpeg}"
-  ignore: ""
+  files: '**/*.{png,jpg,jpeg}'
+  ignore: ''
   stripExtensions: false

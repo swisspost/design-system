@@ -19,7 +19,7 @@ type CapturedError = {
  * Sets up error monitoring for specific components.
  * Captures console.error messages.
  * Excludes known hydration errors (SSR-specific).
- * 
+ *
  * @param page - Playwright page object to monitor
  * @param componentNames - Array of component names to monitor for errors
  * @returns Object containing:
@@ -33,7 +33,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
 
   // Pre-compute lowercase names to avoid repeated lowercasing in the hot path
   const lowerCaseComponentNames = componentNames.map(n => n.toLowerCase());
-  
+
   page.on('console', onConsole);
 
   return { errors, dispose, captured } as const;
@@ -41,7 +41,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
   /**
    * Event handler for console messages from the page.
    * Captures console.error messages and passes them to pushError.
-   * 
+   *
    * @param msg - Playwright ConsoleMessage object
    */
   function onConsole(msg: ConsoleMessage): void {
@@ -57,7 +57,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
   /**
    * Adds an error to the captured errors array if it passes all filters.
    * Applies relevance checking and ignore pattern filtering.
-   * 
+   *
    * @param message - The error message to capture
    * @param source - The source of the error ('console')
    * @param stack - Optional stack trace for the error
@@ -74,7 +74,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
   /**
    * Checks if an error message matches known patterns that should be ignored.
    * Currently filters out hydration-related errors and other non-critical messages.
-   * 
+   *
    * @param text - Error message to check against ignore patterns
    * @returns True if the error should be ignored, false otherwise
    */
@@ -86,7 +86,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
   /**
    * Determines if an error message is relevant to the monitored components.
    * An error is considered relevant if it mentions any of the component names.
-   * 
+   *
    * @param message - Error message to check for component relevance
    * @returns True if the error mentions a monitored component, false otherwise
    */
@@ -112,7 +112,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
 /**
  * Asserts that no component errors were captured during testing.
  * Throws an error with detailed information if any errors were found.
- * 
+ *
  * @param errors - Array of error messages captured during test execution
  * @param componentNames - Array of component names that were monitored
  * @throws Error if any errors were captured, with formatted error details

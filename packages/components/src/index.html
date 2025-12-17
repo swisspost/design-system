@@ -167,7 +167,13 @@
       id="tokens-select"
       value="default"
       class="mb-4"
-      onchange="if (['default', 'compact'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
+      onchange="
+        if (['default', 'compact'].includes(this.value)) {
+          document
+            .getElementById('tokens')
+            .setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`);
+        }
+      "
     >
       <option value="default">Post default</option>
       <option value="compact">Post compact</option>

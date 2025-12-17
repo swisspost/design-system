@@ -4,6 +4,7 @@
 ---
 
 Renamed slots in the `post-header` component for improved clarity and consistency. The following slots have been renamed:
+
 - `target-group` → `audience`
 - `global-controls` → `global-nav-primary`
 - `meta-navigation` → `global-nav-secondary`
