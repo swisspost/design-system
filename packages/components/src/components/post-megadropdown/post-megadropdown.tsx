@@ -239,7 +239,7 @@ export class PostMegadropdown {
 
     // Check for an overview link
     const overviewLink = this.host.querySelector<HTMLAnchorElement>(
-      'a[slot="megadropdown-overview-link"]',
+      'a[slot="post-megadropdown-overview"]',
     );
 
     if (overviewLink) {
