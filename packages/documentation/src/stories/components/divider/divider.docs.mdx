@@ -1,0 +1,26 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as DividerStories from './divider.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={DividerStories} />
+
+<div className="docs-title">
+  # Divider
+
+  <link-design of={JSON.stringify(DividerStories)}></link-design>
+</div>
+
+<PackageTag meta={meta}/>
+
+<p className="lead">A Divider is a horizontal line used to visually separate or group content, improving the readability of a page.</p>
+<p>Dividers can be used in various contexts, for example within forms, lists or sections. The `<hr>` HTML tag represents a thematic break between paragraph elements.</p>
+
+<Canvas sourceState="shown" of={DividerStories.Default} />
+<div className="hide-col-default">
+  <Controls of={DividerStories.Default} />
+</div>
+
+A divider's top and bottom default margin can be overridden by using our [spacing utilities](/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs).
+
+<StylesPackageImport components={['divider']} />
