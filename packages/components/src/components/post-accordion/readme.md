@@ -1,7 +1,5 @@
 # post-accordion
 
-
-
 <!-- Auto Generated Below -->
 
 

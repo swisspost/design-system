@@ -10,7 +10,6 @@ import path from 'path';
  * @property {string} name - The file name without the extension.
  */
 
-
 /**
  * @typedef {Object} IconSection
  * @property {string} title - The section title (e.g. 'UI icons').
@@ -151,12 +150,12 @@ function formatUiIcons(iconFiles) {
  * @returns {IconChangeSummary} Change summary grouped by type.
  */
 export function getIconChanges({
-                          ADDED_FILES,
-                          MODIFIED_FILES,
-                          RENAMED_FILES,
-                          COPIED_FILES,
-                          DELETED_FILES,
-                        }) {
+  ADDED_FILES,
+  MODIFIED_FILES,
+  RENAMED_FILES,
+  COPIED_FILES,
+  DELETED_FILES,
+}) {
   const getIcons = (...fileSets) => {
     const { postIconFiles, uiIconFiles } = processFiles(fileSets);
     return {

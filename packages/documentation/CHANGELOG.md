@@ -60,7 +60,6 @@
 ### Minor Changes
 
 - Removed default svg-icons from all navigation entries. Introduced state-specific icons for individual components to indicate their current development status:
-
   - In Progress ⏳: This component has open issues or tasks that need to be fixed before it can be used.
   - Experimental 🧪: This component has been newly introduced and you might experience some bumps while using it.
   - Stable (No icon): This component is tested, has some mileage, other projects are already successfully implementing it, it's safe to use this.
@@ -154,7 +153,6 @@
 - Added an auto migration filter to the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#6251](https://github.com/swisspost/design-system/pull/6251))
 
 - Updated the migration guide:
-
   - Added information regarding the removal of bootstrap and ng-bootstrap in one place
   - Cleaned up scattered informations regarding bootstrap removal in the rest of the page
   - Removed all informations of removed elements that were never previously documented (by [@leagrdv](https://github.com/leagrdv) with [#6208](https://github.com/swisspost/design-system/pull/6208))
@@ -263,7 +261,6 @@
 - Added the `.z-header`, `.z-spinner`, `.z-toast` and `.z-fixed` z-index utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6012](https://github.com/swisspost/design-system/pull/6012))
 
 - Removed classes for the card CSS component, following the removal of bootstrap:
-
   - `.card-header`
   - `.card-footer`
   - `.card-img`
@@ -371,7 +368,6 @@
 - Added Nattaya's photo and info on the documentation footer. (by [@bucknatt](https://github.com/bucknatt) with [#5935](https://github.com/swisspost/design-system/pull/5935))
 
 - Removed deprecated classes and SCSS variables for the spinner:
-
   - `.loader-xs`
   - `.loader-sm`
   - `$spinner-size-xs`
@@ -1133,7 +1129,6 @@
 
 - Removed the `rg` and `xxl` grid breakpoints, reducing the grid to 5 breakpoints instead of the previous 7. This change affects all CSS classes tied to specific breakpoints (e.g., `col-rg-2`, `m-xxl-4`).  
   **Previous Breakpoints**:
-
   - `xs: 0px`
   - `sm: 400px`
   - `rg: 600px`
@@ -1143,7 +1138,6 @@
   - `xxl: 1440px`
 
   **New Breakpoints**:
-
   - `xs: 0px`
   - `sm: 600px`
   - `md: 780px`
@@ -1151,7 +1145,6 @@
   - `xl: 1280px`
 
   To maintain compatibility with the updated grid system, you need to update your code by replacing any `*-rg-*` classes with `*-sm-*`, and any `*-xxl-*` classes with `*-xl-*`. For example:
-
   - `col-rg-2` → `col-sm-2`
   - `m-xxl-4` → `m-xl-4` (by [@alizedebray](https://github.com/alizedebray) with [#3982](https://github.com/swisspost/design-system/pull/3982))
 
@@ -1567,7 +1560,6 @@
 - Merged toast live region section with accessibility page. (by [@imagoiq](https://github.com/imagoiq) with [#2731](https://github.com/swisspost/design-system/pull/2731))
 
 - Prefixed all web-component custom-events with the keyword `post`.
-
   - Changed `post-alert` component `dismissed` event to `postDismissed`.
   - Changed `post-card-control` component `input` and `change` events to `postInput` and `postChange`.
   - Changed `post-collapsible` component `collapseChange` event to `postToggle`.
@@ -1582,7 +1574,6 @@
 
 - Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
   Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
-
   - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
   - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
 

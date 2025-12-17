@@ -1,7 +1,5 @@
 # post-list-item
 
-
-
 <!-- Auto Generated Below -->
 
 

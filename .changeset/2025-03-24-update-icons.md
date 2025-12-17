@@ -15,6 +15,7 @@
 - kununu: 16, 24, 32, 40, 48, 64px
 
 #### Added Icons
+
 All icons include line and solid variants in the sizes 16px, 24px, 32px, 40px, 48px and 64px.
 
 - AccessBlocked

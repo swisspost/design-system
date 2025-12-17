@@ -206,7 +206,9 @@ function getHeaderRenderer(
           <post-language-menu-item code="de" name="German">de</post-language-menu-item>
           <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
           <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+          <post-language-menu-item active="true" code="en" name="English"
+            >en</post-language-menu-item
+          >
         </post-language-menu>
 
         ${!args.title && !args.jobs
@@ -225,8 +227,7 @@ function getHeaderRenderer(
 
         ${args.title !== '' ? title : nothing}
         ${args.localNav ? renderMicrositeControls(args) : nothing}
-        ${args.mainNav ? mainnavigation : nothing}
-        ${args.jobs ? renderJobControls() : nothing}
+        ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
       </post-header>
     `;
   };

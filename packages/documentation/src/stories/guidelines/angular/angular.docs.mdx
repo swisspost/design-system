@@ -18,15 +18,18 @@ The Swiss Post Design System is compatible with Angular. Here are some tips, bes
 In the design-system team, we believe that the [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_Components) technologies should be the source for almost all, if not all, future components.
 
 Currently, we are providing some of our packages with those technologies:
+
 <ul className="tile-wrapper" role="list">
-  {packages.filter(pkg => pkg.type === PackageType.Wc).map((p => (
-    <li key={p.name}>
-      <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel}>
-        <img src={p.img.src} alt={p.img.alt}/>
-        <span>{p.version}</span>
-      </ti-le>
-    </li>
-  )))}
+  {packages
+    .filter(pkg => pkg.type === PackageType.Wc)
+    .map(p => (
+      <li key={p.name}>
+        <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel}>
+          <img src={p.img.src} alt={p.img.alt} />
+          <span>{p.version}</span>
+        </ti-le>
+      </li>
+    ))}
 </ul>
 
 Even though, Angular support Web components technologies natively, they are less convenient to use than regular Angular components.
@@ -35,8 +38,8 @@ To mitigate the problem, we are providing packages that add Angular wrapper arou
 <table className="table caption-top">
   <caption>Why you should use or not use Angular wrapper package</caption>
   <colgroup>
-    <col style={{width: '25%'}} />
-    <col style={{width: '25%'}} />
+    <col style={{ width: '25%' }} />
+    <col style={{ width: '25%' }} />
   </colgroup>
   <thead>
     <tr>
@@ -49,16 +52,30 @@ To mitigate the problem, we are providing packages that add Angular wrapper arou
       <td>
         <ul>
           <li>Type-checking</li>
-          <li>Angular component wrappers will be detached from change detection, preventing unnecessary repaints of your web component</li>
-          <li>Web component events will be converted to RxJS observables to align with Angular's `@Output()` and will not emit across component boundaries.</li>
-          <li>Optionally, form control web components can be used as control value accessors with Angular's reactive forms or `[ngModel]`.</li>
-          <li>It is not necessary to include the Angular `CUSTOM_ELEMENTS_SCHEMA` in all modules consuming your Stencil components.</li>
+          <li>
+            Angular component wrappers will be detached from change detection, preventing
+            unnecessary repaints of your web component
+          </li>
+          <li>
+            Web component events will be converted to RxJS observables to align with Angular's
+            `@Output()` and will not emit across component boundaries.
+          </li>
+          <li>
+            Optionally, form control web components can be used as control value accessors with
+            Angular's reactive forms or `[ngModel]`.
+          </li>
+          <li>
+            It is not necessary to include the Angular `CUSTOM_ELEMENTS_SCHEMA` in all modules
+            consuming your Stencil components.
+          </li>
         </ul>
       </td>
       <td>
         <ul>
           <li>Package is linked to a (minimal) angular version</li>
-          <li>As the packages are generated automatically, the design-system team has less control</li>
+          <li>
+            As the packages are generated automatically, the design-system team has less control
+          </li>
         </ul>
       </td>
     </tr>
@@ -84,6 +101,3 @@ Icons from the design-system are stored in the icons package. To used them, you 
 Angular allows you to copy assets into the build by changing the `angular.json` configuration like this:
 
 <Source code={SampleIconsConfig} language="json" />
-
-
-

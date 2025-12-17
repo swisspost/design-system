@@ -93,7 +93,7 @@ post-footer {
     column-gap: var(--post-footer-meta-list-item-gap);
   }
 
-  div[slot='socialmedia'] ul li a post-icon:not([name='letter']) {
+  post-icon:is(div[slot='socialmedia'] > ul > li > a > *):not([name='letter']) {
     width: 26px;
     height: 26px;
 
