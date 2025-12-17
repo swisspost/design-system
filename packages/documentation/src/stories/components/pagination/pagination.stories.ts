@@ -123,9 +123,9 @@ export const Default: Story = {
 export const ManyPages: Story = {
   render: () => html`
     <post-pagination
-      page=10
-      page-size=6
-      collection-size=200
+      page="10"
+      page-size="6"
+      collection-size="200"
       label="Pagination"
       label-previous="Previous page"
       label-next="Next page"
@@ -139,9 +139,9 @@ export const ManyPages: Story = {
 export const PageOutOfRange: Story = {
   render: () => html`
     <post-pagination
-      page=50
-      page-size=10
-      collection-size=40
+      page="50"
+      page-size="10"
+      collection-size="40"
       label="Pagination"
       label-previous="Previous page"
       label-next="Next page"
@@ -162,9 +162,9 @@ export const Disabled: Story = {
   },
   render: () => html`
     <post-pagination
-      page=1
-      page-size=10
-      collection-size=100
+      page="1"
+      page-size="10"
+      collection-size="100"
       disabled="true"
       label="Pagination"
       label-previous="Previous page"

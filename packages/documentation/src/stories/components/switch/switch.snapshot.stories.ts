@@ -34,12 +34,11 @@ export const Switch: Story = {
         )
         .map(args => ({ ...args, id: `${scheme}-${crypto.randomUUID()}` }))
         .map(
-          (args: Args) =>
-            html`
-              <div class="col-6 col-lg-4 p-16">
-                ${meta.render?.({ ...context.args, ...args }, { ...context, id: args.id })}
-              </div>
-            `,
+          (args: Args) => html`
+            <div class="col-6 col-lg-4 p-16">
+              ${meta.render?.({ ...context.args, ...args }, { ...context, id: args.id })}
+            </div>
+          `,
         );
 
     return schemes(scheme => html` <div class="row">${templateVariants(scheme)}</div>`);

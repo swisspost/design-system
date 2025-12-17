@@ -43,17 +43,8 @@ Licenses of third party packages that are bundled with the output need to be inc
 Block level content elements (headings, paragraphs, images, lists, ...; html tags without any classes or context) should use the following margin system: define block margins but reset the margin start for the first child and the margin end for the last child. The rules for first and last child should have low specificity.
 
 ```html
-p {
-  margin-block: 1rem;
-
-  :where(:first-child) {
-    margin-block-start: 0;
-  }
-
-  :where(:last-child) {
-    margin-block-end: 0;
-  }
-}
+p { margin-block: 1rem; :where(:first-child) { margin-block-start: 0; } :where(:last-child) {
+margin-block-end: 0; } }
 ```
 
 ## Bundling the styles

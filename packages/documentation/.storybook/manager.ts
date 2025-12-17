@@ -36,7 +36,8 @@ let initialEnv = process.env.NODE_ENV || 'production';
 
 if (storedDevMode !== null) {
   // Check for 'development'/'production' value for backwards compatibility
-  initialEnv = (storedDevMode === 'true' || storedDevMode === 'development') ? 'development' : 'production';
+  initialEnv =
+    storedDevMode === 'true' || storedDevMode === 'development' ? 'development' : 'production';
 }
 
 document.documentElement.setAttribute('data-env', initialEnv);
