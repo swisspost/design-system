@@ -66,58 +66,60 @@ Internet-header package provide two versions:
 - Lazy-loaded (default): it allows better performance by dynamically load the component when used, so it reduces bundle size, startup time and first paint.
 - Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
 
-  <post-tabs>
-    <post-tab-item name="with-bundler">Install with a bundler</post-tab-item>
-    <post-tab-panel for="with-bundler">
-      All the popular frameworks come with some form of bundler.
-      This makes it easy to use npm packages like the Internet Header as you can import,
-      bundle and deliver the header with your own code.
+<post-tabs>
+  <post-tab-item name="with-bundler">Install with a bundler</post-tab-item>
+  <post-tab-panel for="with-bundler">
 
-      When working with Angular or any other framework, the easiest installation method is via npm.
+    All the popular frameworks come with some form of bundler.
+    This makes it easy to use npm packages like the Internet Header as you can import,
+    bundle and deliver the header with your own code.
 
-      <Source code={`npm install @swisspost/internet-header`} dark={SourceDarkScheme} language="bash" />
+    When working with Angular or any other framework, the easiest installation method is via npm.
 
-      <Source code={SampleFrameworks} dark={SourceDarkScheme} language="html" />
+    <Source code={`npm install @swisspost/internet-header`} dark={SourceDarkScheme} language="bash" />
 
-      <div>
-        <div className="row">
-          <div className="col-md-6">
-            <p className="fw-bold">Lazy-Loaded</p>
-            <Source code={SampleLazyLoaded} dark={SourceDarkScheme} language="javascript" />
-          </div>
-          <div className="col-md-6">
-            <p className="fw-bold">Bare Component</p>
-            <Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" />
-          </div>
+    <Source code={SampleFrameworks} dark={SourceDarkScheme} language="html" />
+
+    <div>
+      <div className="row">
+        <div className="col-md-6">
+      <p className="fw-bold">Lazy-Loaded</p>
+      <Source code={SampleLazyLoaded} dark={SourceDarkScheme} language="javascript" />
+        </div>
+        <div className="col-md-6">
+      <p className="fw-bold">Bare Component</p>
+      <Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" />
         </div>
       </div>
-    </post-tab-panel>
+    </div>
 
-    <post-tab-item name="with-cdn">Include from a CDN</post-tab-item>
-    <post-tab-panel for="with-cdn">
-      If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
-      Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
+  </post-tab-panel>
+  <post-tab-item name="with-cdn">Include from a CDN</post-tab-item>
+  <post-tab-panel for="with-cdn">
 
-      Available CDNs:
+    If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
+    Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
 
-      - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/internet-header](https://cdn.jsdelivr.net/npm/@swisspost/internet-header).
-      - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
+    Available CDNs:
 
-      <div>
-        <div className="row">
-          <div className="col-md-6">
-            <p className="fw-bold">Lazy-Loaded</p>
-            <Source code={SampleCDNLazyLoaded} dark={SourceDarkScheme} language="html" />
-          </div>
-          <div className="col-md-6">
-            <p className="fw-bold">Bare Component</p>
-            <Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" />
-          </div>
+    - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/internet-header](https://cdn.jsdelivr.net/npm/@swisspost/internet-header).
+    - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
+
+    <div>
+      <div className="row">
+        <div className="col-md-6">
+      <p className="fw-bold">Lazy-Loaded</p>
+      <Source code={SampleCDNLazyLoaded} dark={SourceDarkScheme} language="html" />
+        </div>
+        <div className="col-md-6">
+      <p className="fw-bold">Bare Component</p>
+      <Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" />
         </div>
       </div>
-    </post-tab-panel>
+    </div>
 
-  </post-tabs>
+  </post-tab-panel>
+</post-tabs>
 
 ### Usage with Angular
 
