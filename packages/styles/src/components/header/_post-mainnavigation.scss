@@ -13,58 +13,11 @@ post-mainnavigation {
     flex-wrap: nowrap;
   }
 
-  > *,
-  post-megadropdown-trigger > * {
+  > * {
     @include interactive-elements {
       @extend %header-control;
-      height: 100%;
-
       @include nav-item-block-layout;
-
-      @include media.only(desktop) {
-        @include button.button-variant-def('enabled', 'secondary');
-      }
-    }
-  }
-
-  post-megadropdown-trigger {
-    > button {
-      @include nav-item-rotating-chevron;
-    }
-
-    @include media.only(desktop) {
       height: 100%;
-
-      > button {
-        &:not([inert]) {
-          display: grid;
-          grid-template-columns: 1fr auto;
-
-          @include active-state {
-            font-weight: 700;
-          }
-        }
-      }
-
-      &[inert] {
-        font-weight: 700;
-      }
-    }
-
-    @include media.max(desktop) {
-      width: 100%;
-
-      > button {
-        &::after {
-          margin-inline-start: auto;
-          transform: rotate(-90deg);
-          font-size: var(--post-nav-item-icon-size);
-        }
-
-        &[inert] {
-          display: none;
-        }
-      }
     }
   }
 }

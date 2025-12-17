@@ -1,28 +1,54 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 :host {
   position: relative;
   display: inline-block;
 }
 
+button {
+  @include header-mx.nav-item-base;
+  @include header-mx.nav-item-block-layout;
+  @include header-mx.nav-item-rotating-chevron;
+  height: 100%;
+
+  @include media.only(desktop) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    @include header-mx.active-state {
+      font-weight: 700;
+    }
+  }
+
+  @include media.max(desktop) {
+    &::after {
+      margin-inline-start: auto;
+      transform: rotate(-90deg);
+      font-size: var(--post-nav-item-icon-size);
+    }
+  }
+}
+
 // On desktop, we need an inert button to stabilize layout.
 // This prevents layout shifts caused by the real button toggling between normal and bold font-weights.
 @include media.only(desktop) {
   // The inert button provides size to the host but stays invisible.
-  ::slotted(button[inert]) {
-    visibility: hidden !important;
+  button[inert] {
+    font-weight: 700;
+    visibility: hidden;
   }
 
   // The interactive button is positioned on top of the inert one and adopts the same height and width.
-  ::slotted(button:not([inert], :only-child)) {
-    position: absolute !important;
-    inset: 0 !important;
+  button:not([inert]) {
+    position: absolute;
+    inset: 0;
   }
 }
 
 // On mobile, the font-weight does not change so the inert button is unnecessary.
 @include media.max(desktop) {
-  ::slotted(button[inert]) {
-    display: none !important;
+  button[inert] {
+    display: none;
   }
 }
