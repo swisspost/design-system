@@ -58,6 +58,13 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                   ? {
                       fix(fixer) {
                         const fixedNode = $node.removeClass(oldClass).addClass(newClass);
+
+                        // If there are no classes left, remove the 'class' attribute entirely
+                        const classValue = $node.attr('class');
+                        if (!classValue || classValue.trim() === '') {
+                          $node.removeAttr('class');
+                        }
+
                         return fixer.replaceTextRange(node.range, fixedNode.toString());
                       },
                     }
