@@ -6,6 +6,7 @@
 The `post-icon` mixin has been renamed to `icon` and now requires icons to be preloaded using the `custom-property` mixin at the top of the file.
 
 BEFORE:
+
 ```scss
 .my-icon {
   @include post.post-icon(
@@ -19,6 +20,7 @@ BEFORE:
 ```
 
 AFTER:
+
 ```scss
 // Load icon(s) at the top of your file
 // For a single icon:

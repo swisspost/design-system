@@ -1,9 +1,6 @@
 # post-internet-breadcrumbs
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -11,7 +8,6 @@
 | ------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
 | `customItems` | `custom-items` | Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure. | `IBreadcrumbItem[] \| string \| undefined` | `undefined` |
 | `hideButtons` | `hide-buttons` | Hide all buttons.                                                                                                                  | `boolean`                                  | `false`     |
-
 
 ## Methods
 
@@ -29,9 +25,6 @@ Toggle an overlay associated with a button.
 
 Type: `Promise<void>`
 
-
-
-
 ## Dependencies
 
 ### Depends on
@@ -39,12 +32,13 @@ Type: `Promise<void>`
 - [focus-trap](../shared)
 
 ### Graph
+
 ```mermaid
 graph TD;
   swisspost-internet-breadcrumbs --> focus-trap
   style swisspost-internet-breadcrumbs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

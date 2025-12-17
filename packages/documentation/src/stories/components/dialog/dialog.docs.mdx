@@ -9,14 +9,25 @@ import PackageTag from '@/shared/package-tag';
 <div className="docs-title">
   # Dialog
 
-  <link-design of={JSON.stringify(DialogStories)}></link-design>
+<link-design of={JSON.stringify(DialogStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <p className="lead">Communicate crucial information and request user action.</p>
 <post-banner type="info">
-  <p>For more information on the dialog element, please refer to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener noreferrer"><strong>MDN Web Docs: HTML &lt;dialog&gt; element</strong></a>.</p>
+  <p>
+    For more information on the dialog element, please refer to the{' '}
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <strong>MDN Web Docs: HTML &lt;dialog&gt; element</strong>
+    </a>
+    .
+  </p>
 </post-banner>
 
 <Canvas sourceState="shown" of={DialogStories.Default} />
@@ -29,17 +40,17 @@ import PackageTag from '@/shared/package-tag';
 ## Examples
 
 ### Form dialog
+
 <Canvas sourceState="hidden" of={DialogStories.Form} />
 
 #### Using form data
 
 Register a `submit` event listener on the form. In the event handler, you have access to all the form field values inside the dialog. The dialog box closes when the form gets submitted.
 
-<Source
-  code={JSFormData}
-  language="typescript"
-/>
+<Source code={JSFormData} language="typescript" />
 
 ### Custom content dialog
+
 The dialog can also contain arbitrary content.
+
 <Canvas sourceState="hidden" of={DialogStories.Custom} />

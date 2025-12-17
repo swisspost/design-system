@@ -1,9 +1,6 @@
 # post-popover-trigger
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -11,7 +8,6 @@
 | -------- | --------- | --------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `for`    | `for`     | ID of the popover element that this trigger is linked to. Used to open and close the popover. | `string` | `undefined` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

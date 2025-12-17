@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                 | Attribute     | Description                                                                                                                              | Type     | Default     |
@@ -13,14 +12,12 @@
 | `lastname`               | `lastname`    | Defines the users lastname.                                                                                                              | `string` | `undefined` |
 | `userid`                 | `userid`      | Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner> | `string` | `undefined` |
 
-
 ## Slots
 
 | Slot        | Description                                  |
 | ----------- | -------------------------------------------- |
 | `"default"` | Slot for inserting a custom image as avatar. |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

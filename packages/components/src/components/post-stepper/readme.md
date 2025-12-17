@@ -1,9 +1,6 @@
 # post-stepper
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -14,7 +11,6 @@
 | `currentIndex`                 | `current-index`     | Defines the currently active step                                                                                                               | `number` | `-1`        |
 | `currentLabel` _(required)_    | `current-label`     | "Current step" label for accessibility                                                                                                          | `string` | `undefined` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

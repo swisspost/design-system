@@ -8,10 +8,11 @@ import PackageTag from '@/shared/package-tag';
 <div className="docs-title">
   # Search Input
 
-  <link-design of={JSON.stringify(SearchInputStories)}></link-design>
+<link-design of={JSON.stringify(SearchInputStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead">
   Customize the native `<input type="search">` element with CSS that changes the element’s initial appearance.
@@ -23,4 +24,7 @@ import PackageTag from '@/shared/package-tag';
   <Controls of={SearchInputStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-search-input', 'form-input']} required={{ 'validation': true }} />
+<StylesPackageImport
+  components={['form-search-input', 'form-input']}
+  required={{ validation: true }}
+/>

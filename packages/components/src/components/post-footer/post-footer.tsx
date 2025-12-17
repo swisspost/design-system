@@ -60,15 +60,17 @@ export class PostFooter {
     this.device = e.detail;
   };
 
-  private readonly handleGridSlotChange = (...devices: string[]) => (e: Event) => {
-    if (devices.includes(this.device) && e.target instanceof HTMLSlotElement) {
-      this.updateGridSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
-    }
-  };
+  private readonly handleGridSlotChange =
+    (...devices: string[]) =>
+    (e: Event) => {
+      if (devices.includes(this.device) && e.target instanceof HTMLSlotElement) {
+        this.updateGridSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
+      }
+    };
 
   private updateGridSlotDisplay(slotName: string, hasContent: boolean) {
     if (this.gridSlotDisplayed[slotName] !== hasContent) {
-      this.gridSlotDisplayed = {...this.gridSlotDisplayed, [slotName]: hasContent};
+      this.gridSlotDisplayed = { ...this.gridSlotDisplayed, [slotName]: hasContent };
     }
   }
 
@@ -76,7 +78,10 @@ export class PostFooter {
     return (
       <post-accordion headingLevel={3} multiple={true}>
         {GRID_SLOTS.map(slotName => (
-          <post-accordion-item class={{ 'd-none': !this.gridSlotDisplayed[slotName] }} collapsed={true}>
+          <post-accordion-item
+            class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}
+            collapsed={true}
+          >
             <span slot="header">
               <slot name={slotName + '-title'}></slot>
             </span>

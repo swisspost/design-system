@@ -1,9 +1,6 @@
 # post-header
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Methods
 
@@ -21,9 +18,6 @@ Toggles the burger navigation menu.
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot                     | Description                                                                   |
@@ -39,7 +33,6 @@ Type: `Promise<void>`
 | `"post-togglebutton"`    | Holds the burger menu toggler.                                                |
 | `"title"`                | Holds the application title.                                                  |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

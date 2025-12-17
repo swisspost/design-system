@@ -1,9 +1,6 @@
 # post-accordion
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -11,7 +8,6 @@
 | --------------------------- | --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------- | ----------- |
 | `headingLevel` _(required)_ | `heading-level` | Defines the hierarchical level of the `post-accordion-item` headers within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `undefined` |
 | `multiple`                  | `multiple`      | If `true`, multiple `post-accordion-item` can be open at the same time.                            | `boolean`                    | `false`     |
-
 
 ## Methods
 
@@ -23,8 +19,6 @@ Collapses all `post-accordion-item`.
 
 Type: `Promise<void>`
 
-
-
 ### `expandAll() => Promise<void>`
 
 Expands all `post-accordion-item`.
@@ -35,8 +29,6 @@ Otherwise, it will keep the opened one.
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `toggle(id: string) => Promise<void>`
 
@@ -52,29 +44,26 @@ Toggles the `post-accordion-item` with the given id.
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot        | Description                                      |
 | ----------- | ------------------------------------------------ |
 | `"default"` | Slot for placing post-accordion-item components. |
 
-
 ## Dependencies
 
 ### Used by
 
- - [post-footer](../post-footer)
+- [post-footer](../post-footer)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-footer --> post-accordion
   style post-accordion fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

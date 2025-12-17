@@ -8,10 +8,11 @@ import PackageTag from '@/shared/package-tag';
 <div className="docs-title">
   # Input
 
-  <link-design of={JSON.stringify(InputStories)}></link-design>
+<link-design of={JSON.stringify(InputStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead">
   Customize the native `<input>` with CSS that changes the element’s initial appearance.
@@ -24,7 +25,7 @@ Custom input elements need only the class `.form-control` to trigger the custom 
   <Controls of={InputStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-input']} required={{ 'validation': true }} />
+<StylesPackageImport components={['form-input']} required={{ validation: true }} />
 
 ## Concrete Examples of Application
 

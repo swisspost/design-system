@@ -1,9 +1,6 @@
 # post-list-item
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Slots
 
@@ -11,7 +8,6 @@
 | ----------------------------------------------------------- | ----------- |
 | `"default- Slot for placing the content of the list item."` |             |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

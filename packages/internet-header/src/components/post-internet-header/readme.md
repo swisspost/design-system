@@ -1,9 +1,6 @@
 # post-internet-header
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -27,13 +24,11 @@
 | `skiplinks`               | `skiplinks`                  | Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.                                                                                                                             | `boolean`                                                                 | `true`                                 |
 | `stickyness`              | `stickyness`                 | Sticky behaviour of the header.                                                                                                                                                                                           | `"full" \| "main" \| "minimal" \| "none"`                                 | `'minimal'`                            |
 
-
 ## Events
 
 | Event          | Description                                          | Type                |
 | -------------- | ---------------------------------------------------- | ------------------- |
 | `headerLoaded` | Fires when the header has been rendered to the page. | `CustomEvent<void>` |
-
 
 ## Methods
 
@@ -46,7 +41,6 @@ Get the currently set language as a two letter string ("de", "fr" "it" or "en")
 Type: `Promise<string>`
 
 string
-
 
 ## Dependencies
 
@@ -61,6 +55,7 @@ string
 - [post-klp-login-widget](../post-klp-login-widget)
 
 ### Graph
+
 ```mermaid
 graph TD;
   swisspost-internet-header --> post-skiplinks
@@ -74,6 +69,6 @@ graph TD;
   style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -116,7 +116,9 @@ export function ShrinkContainer(props: { name: number }) {
     <FlexDocContainer name={props.name.toString()} prefix="flex-shrink">
       <div className="d-flex align-items-start grow-shrink-container">
         <div className="p-12">
-          This is an example of content that demonstrates the flex-shrink property in action. When space becomes limited, elements with different flex-shrink values will behave differently, with some reducing in size faster than others based on their assigned values.
+          This is an example of content that demonstrates the flex-shrink property in action. When
+          space becomes limited, elements with different flex-shrink values will behave differently,
+          with some reducing in size faster than others based on their assigned values.
         </div>
         <div className={`p-12 flex-shrink-${props.name}`}>
           I {props.name === 0 ? "don't" : ''} shrink

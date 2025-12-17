@@ -1,9 +1,6 @@
 # post-menu
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -12,13 +9,11 @@
 | `label` _(required)_ | `label`     | An accessible name for the menu.                                                                                                                                                                                                                                                                                                                                                    | `string`                                                                                                                                                             | `undefined` |
 | `placement`          | `placement` | Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement). | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'bottom'`  |
 
-
 ## Events
 
 | Event        | Description                                                                                                                          | Type                   |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
 | `toggleMenu` | Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed. | `CustomEvent<boolean>` |
-
 
 ## Methods
 
@@ -29,8 +24,6 @@ Hides the popover menu and restores focus to the previously focused element.
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `show(target: HTMLElement) => Promise<void>`
 
@@ -46,8 +39,6 @@ Displays the popover menu, focusing the first menu item.
 
 Type: `Promise<void>`
 
-
-
 ### `toggle(target: HTMLElement) => Promise<void>`
 
 Toggles the menu visibility based on its current state.
@@ -62,15 +53,11 @@ Toggles the menu visibility based on its current state.
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot       | Description                        |
 | ---------- | ---------------------------------- |
 | `"header"` | Holds the header part of the menu. |
-
 
 ## Shadow Parts
 
@@ -78,19 +65,19 @@ Type: `Promise<void>`
 | ------------- | -------------------------------------------------------- |
 | `"post-menu"` | The container element that holds the list of menu items. |
 
-
 ## Dependencies
 
 ### Used by
 
- - [post-breadcrumbs](../post-breadcrumbs)
- - [post-language-menu](../post-language-menu)
+- [post-breadcrumbs](../post-breadcrumbs)
+- [post-language-menu](../post-language-menu)
 
 ### Depends on
 
 - [post-popovercontainer](../post-popovercontainer)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
@@ -99,6 +86,6 @@ graph TD;
   style post-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
