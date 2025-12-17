@@ -12,43 +12,34 @@ button {
   @include header-mx.nav-item-rotating-chevron;
   height: 100%;
 
-  @include media.only(desktop) {
-    display: grid;
-    grid-template-columns: 1fr auto;
+  // Bellow styles prevent layout shifts caused by the real button toggling between normal and bold font-weights.
+  > span {
+    position: relative;
 
+    // The hidden text provides size to the host.
+    > span[aria-hidden] {
+      font-weight: 700;
+      visibility: hidden;
+    }
+
+    // The visible text is positioned on top of the hidden one and adopts the same height and width.
+    > span:not([aria-hidden]) {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  @include media.only(desktop) {
     @include header-mx.active-state {
       font-weight: 700;
     }
   }
 
   @include media.max(desktop) {
-    &::after {
+    post-icon {
       margin-inline-start: auto;
       transform: rotate(-90deg);
       font-size: var(--post-nav-item-icon-size);
     }
-  }
-}
-
-// On desktop, we need an inert button to stabilize layout.
-// This prevents layout shifts caused by the real button toggling between normal and bold font-weights.
-@include media.only(desktop) {
-  // The inert button provides size to the host but stays invisible.
-  button[inert] {
-    font-weight: 700;
-    visibility: hidden;
-  }
-
-  // The interactive button is positioned on top of the inert one and adopts the same height and width.
-  button:not([inert]) {
-    position: absolute;
-    inset: 0;
-  }
-}
-
-// On mobile, the font-weight does not change so the inert button is unnecessary.
-@include media.max(desktop) {
-  button[inert] {
-    display: none;
   }
 }

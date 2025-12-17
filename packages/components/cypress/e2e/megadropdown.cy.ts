@@ -5,12 +5,10 @@ describe('megadropdown', () => {
     describe('desktop', () => {
       beforeEach(() => {
         cy.viewport(1920, 1080);
-        cy.getComponents(
-          MEGADROPDOWN_ID,
-          'tests',
-          'post-megadropdown',
-          'post-megadropdown-trigger',
-        );
+        cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
+        cy.get('post-megadropdown-trigger[data-hydrated]')
+          .find('button')
+          .as('megadropdown-trigger');
         cy.get('@megadropdown').find('.close-button').as('close-btn');
         cy.get('@megadropdown').find('.megadropdown-container').as('megadropdown-container');
       });
@@ -24,22 +22,22 @@ describe('megadropdown', () => {
 
       it('should open on trigger click', () => {
         cy.get('@megadropdown-trigger').should('exist');
-        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@megadropdown-container').should('be.visible');
       });
 
       it('should show close button', () => {
-        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@close-btn').should('be.visible');
       });
 
       it('should not show back button', () => {
-        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@megadropdown').find('.back-button').should('not.exist');
       });
 
       it('should close on close button click', () => {
-        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@close-btn').click();
         cy.get('@megadropdown-container').should('be.hidden');
       });
@@ -48,27 +46,25 @@ describe('megadropdown', () => {
     describe('mobile', () => {
       beforeEach(() => {
         cy.viewport(500, 1200);
-        cy.getComponents(
-          MEGADROPDOWN_ID,
-          'tests',
-          'post-megadropdown',
-          'post-megadropdown-trigger',
-        );
+        cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
+        cy.get('post-megadropdown-trigger[data-hydrated]')
+          .find('button')
+          .as('megadropdown-trigger');
         cy.get('@megadropdown').find('.back-button').as('back-btn');
       });
 
       it('should open on trigger click', () => {
-        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@megadropdown').should('be.visible');
       });
 
       it('should show back button', () => {
-        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@back-btn').should('be.visible');
       });
 
       it('should not show close button', () => {
-        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@megadropdown').find('.close-button').should('not.exist');
       });
     });

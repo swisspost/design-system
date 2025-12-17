@@ -17,6 +17,11 @@ export class PostMegadropdownTrigger {
   @State() private slottedContent: string = null;
 
   /**
+   * Sets the trigger state to be active or inactive.
+   */
+  @Prop({ reflect: true }) active: boolean = false;
+
+  /**
    * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
    */
   @Prop({ reflect: true }) for!: string;
@@ -97,7 +102,6 @@ export class PostMegadropdownTrigger {
   render() {
     return (
       <Host data-version={version}>
-        <button inert innerHTML={this.slottedContent}></button>
         <button
           ref={el => (this.interactiveButton = el)}
           type="button"
@@ -105,8 +109,15 @@ export class PostMegadropdownTrigger {
           aria-expanded={this.isMegadropdownExpanded.toString()}
           onClick={this.onClick.bind(this)}
           onKeyDown={this.onKeyDown.bind(this)}
+          class={{ active: this.active }}
         >
-          <slot></slot>
+          <span>
+            <span>
+              <slot></slot>
+            </span>
+            <span aria-hidden="true" innerHTML={this.slottedContent}></span>
+          </span>
+          <post-icon name="chevrondown"></post-icon>
         </button>
       </Host>
     );

@@ -95,7 +95,9 @@ export class PostMainnavigation {
   }
 
   private get navigationItems(): HTMLElement[] {
-    return Array.from(this.host.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
+    return Array.from(
+      this.host.querySelectorAll('a:not(post-megadropdown *), post-megadropdown-trigger'),
+    );
   }
 
   /**
