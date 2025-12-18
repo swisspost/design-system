@@ -93,6 +93,7 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
@@ -175,7 +176,7 @@ export class PostHeader {
   }
 
   private async closeBurgerMenu() {
-    this.burgerMenuAnimation.finish();
+    this.burgerMenuAnimation?.finish();
 
     const menuButton = this.getMenuButton();
     if (menuButton) {
