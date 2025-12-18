@@ -25,7 +25,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'completed-label', null);
+    cy.get('post-stepper').invoke('attr', 'text-completed-step', null);
     cy.get('@consoleError').should('be.called');
   });
 

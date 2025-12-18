@@ -106,11 +106,11 @@ export const Default: Story = {
         collection-size=${args.collectionSize}
         disabled="${args.disabled ? true : nothing}"
         label=${args.label}
-        text-previous=${args.labelPrevious}
-        text-next=${args.labelNext}
-        text-page=${args.labelPage}
-        text-first=${args.labelFirst}
-        text-last=${args.labelLast}
+        text-previous=${args.textPrevious}
+        text-next=${args.textNext}
+        text-page=${args.textPage}
+        text-first=${args.textFirst}
+        text-last=${args.textLast}
         @postChange=${(e: CustomEvent) => {
           const newPage = e.detail;
           updateArgs({ page: newPage });

@@ -37,7 +37,6 @@ type ValidatableProp =
   | 'pageSize'
   | 'collectionSize'
   | 'label'
-  | 'textLast'
   | 'textNext'
   | 'textPrevious'
   | 'textPage'
