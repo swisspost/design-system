@@ -15,9 +15,7 @@ post-mainnavigation {
 
   > * {
     @include interactive-elements {
-      @extend %header-control;
-      @include nav-item-block-layout;
-      height: 100%;
+      @extend %mainnavigation-control;
     }
   }
 

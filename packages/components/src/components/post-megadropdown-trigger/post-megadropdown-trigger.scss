@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/components/header/placeholders' as *;
 
 :host {
   position: relative;
@@ -7,10 +8,8 @@
 }
 
 button {
-  @include header-mx.nav-item-base;
-  @include header-mx.nav-item-block-layout;
+  @extend %mainnavigation-control;
   @include header-mx.nav-item-rotating-chevron;
-  height: 100%;
 
   // Bellow styles prevent layout shifts caused by the real button toggling between normal and bold font-weights.
   > span {
