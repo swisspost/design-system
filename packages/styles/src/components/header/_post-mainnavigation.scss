@@ -18,6 +18,10 @@ post-mainnavigation {
       @extend %header-control;
       @include nav-item-block-layout;
       height: 100%;
+
+      &::before {
+        content: unset;
+      }
     }
   }
 
