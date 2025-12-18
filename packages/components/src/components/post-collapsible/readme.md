@@ -12,24 +12,24 @@
 
 ## Events
 
-| Event        | Description                                                                                                                                                                            | Type                   |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `postToggle` | An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed. | `CustomEvent<boolean>` |
+| Event        | Description                                                                                                                                                                               | Type                   |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `postToggle` | An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible is expanded, `false` if it is collapsed. | `CustomEvent<boolean>` |
 
 
 ## Methods
 
-### `toggle(open?: boolean) => Promise<boolean>`
+### `toggle(shouldExpand?: boolean) => Promise<boolean>`
 
 Triggers the collapse programmatically.
-
 If there is a collapsing transition running already, it will be reversed.
+If no parameter is provided, the current state (this.isExpanded) will be toggled.
 
 #### Parameters
 
-| Name   | Type      | Description |
-| ------ | --------- | ----------- |
-| `open` | `boolean` |             |
+| Name           | Type      | Description |
+| -------------- | --------- | ----------- |
+| `shouldExpand` | `boolean` |             |
 
 #### Returns
 
