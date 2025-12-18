@@ -15,6 +15,9 @@ import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { checkRequiredAndType } from '@/utils';
 
+/**
+ * @slot default - Slot for placing content.
+ */
 @Component({
   tag: 'post-megadropdown',
   styleUrl: 'post-megadropdown.scss',
