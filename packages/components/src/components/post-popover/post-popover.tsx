@@ -33,11 +33,11 @@ export class PostPopover {
   /**
    * Define the caption of the close button for assistive technology
    */
-  @Prop({ reflect: true }) readonly closeButtonCaption!: string;
+  @Prop({ reflect: true }) readonly textClose!: string;
 
-  @Watch('closeButtonCaption')
-  validateCloseButtonCaption() {
-    checkRequiredAndType(this, 'closeButtonCaption', 'string');
+  @Watch('textClose')
+  validateTextClose() {
+    checkRequiredAndType(this, 'textClose', 'string');
   }
   /**
    * Show a little indicator arrow
@@ -47,7 +47,7 @@ export class PostPopover {
 
   componentDidLoad() {
     this.validatePlacement();
-    this.validateCloseButtonCaption();
+    this.validateTextClose();
   }
 
   /**
@@ -98,9 +98,7 @@ export class PostPopover {
             <div class="popover-content">
               <slot></slot>
             </div>
-            <post-closebutton onClick={() => this.hide()}>
-              {this.closeButtonCaption}
-            </post-closebutton>
+            <post-closebutton onClick={() => this.hide()}>{this.textClose}</post-closebutton>
           </div>
         </post-popovercontainer>
       </Host>

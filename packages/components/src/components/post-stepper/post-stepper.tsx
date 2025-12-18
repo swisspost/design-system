@@ -15,7 +15,7 @@ export class PostStepper {
   /**
    * Active step label is for visual purposes on mobile only
    */
-  @State() mobileActiveStepLabel: string;
+  @State() mobileActiveStepNumber: string;
 
   /**
    * Active step name is for visual purposes on mobile only
@@ -25,33 +25,33 @@ export class PostStepper {
   /**
    * "Current step" label for accessibility
    */
-  @Prop({ reflect: true }) currentLabel!: string;
+  @Prop({ reflect: true }) textCurrentStep!: string;
 
-  @Watch('currentLabel')
-  validateCurrentLabel() {
-    checkRequiredAndType(this, 'currentLabel', 'string');
+  @Watch('textCurrentStep')
+  validateTextCurrentStep() {
+    checkRequiredAndType(this, 'textCurrentStep', 'string');
   }
 
   /**
    * "Completed step" label for accessibility
    */
-  @Prop({ reflect: true }) completedLabel!: string;
+  @Prop({ reflect: true }) textCompletedStep!: string;
 
-  @Watch('completedLabel')
-  validateCompletedLabel() {
-    checkRequiredAndType(this, 'completedLabel', 'string');
+  @Watch('textCompletedStep')
+  validateTextCompletedStep() {
+    checkRequiredAndType(this, 'textCompletedStep', 'string');
   }
 
   /**
    * Label for the "Step N:" indicator for mobile view.
    * Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
    */
-  @Prop({ reflect: true }) activeStepLabel!: string;
+  @Prop({ reflect: true }) textStepNumber!: string;
 
-  @Watch('activeStepLabel')
-  validateActiveStepLabel() {
-    checkRequiredAndPattern(this, 'activeStepLabel', /#index\b/);
-    this.updateActiveStepLabel();
+  @Watch('textStepNumber')
+  validateTextStepNumber() {
+    checkRequiredAndPattern(this, 'textStepNumber', /#index\b/);
+    this.updateActiveStepNumber();
   }
 
   /**
@@ -70,9 +70,9 @@ export class PostStepper {
   }
 
   componentDidLoad() {
-    this.validateCompletedLabel();
-    this.validateCurrentLabel();
-    this.validateActiveStepLabel();
+    this.validateTextCompletedStep();
+    this.validateTextCurrentStep();
+    this.validateTextStepNumber();
 
     // Wait for slotchange
     setTimeout(() => {
@@ -80,10 +80,10 @@ export class PostStepper {
     });
   }
 
-  private updateActiveStepLabel() {
-    if (this.activeStepLabel) {
-      const labelTemplate = this.activeStepLabel;
-      this.mobileActiveStepLabel = labelTemplate.replace(/#index/g, `${this.currentIndex + 1}`);
+  private updateActiveStepNumber() {
+    if (this.textStepNumber) {
+      const labelTemplate = this.textStepNumber;
+      this.mobileActiveStepNumber = labelTemplate.replace(/#index/g, `${this.currentIndex + 1}`);
       this.updateMobileActiveStepVisibility();
     }
   }
@@ -96,7 +96,7 @@ export class PostStepper {
       return;
     }
 
-    this.updateActiveStepLabel();
+    this.updateActiveStepNumber();
 
     this.stepItems.forEach((el, i) => {
       if (this.currentIndex === i) {
@@ -114,9 +114,9 @@ export class PostStepper {
         let labelText = '';
 
         if (this.currentIndex > i) {
-          labelText = `${this.completedLabel}:`;
+          labelText = `${this.textCompletedStep}:`;
         } else if (this.currentIndex === i) {
-          labelText = `${this.currentLabel}:`;
+          labelText = `${this.textCurrentStep}:`;
         }
 
         hiddenLabel.textContent = labelText;
@@ -137,7 +137,7 @@ export class PostStepper {
 
   private updateMobileActiveStepVisibility() {
     if (this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
-      this.mobileActiveStepLabel = '';
+      this.mobileActiveStepNumber = '';
       this.mobileActiveStepName = '';
     }
   }
@@ -149,7 +149,7 @@ export class PostStepper {
           <slot onSlotchange={() => this.updateSteps()}></slot>
         </ol>
         <div class="active-step" aria-hidden="true">
-          {this.mobileActiveStepLabel}
+          {this.mobileActiveStepNumber}
           <span innerHTML={this.mobileActiveStepName}></span>
         </div>
       </Host>

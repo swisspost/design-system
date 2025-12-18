@@ -37,11 +37,12 @@ type ValidatableProp =
   | 'pageSize'
   | 'collectionSize'
   | 'label'
-  | 'labelPrevious'
-  | 'labelNext'
-  | 'labelPage'
-  | 'labelFirst'
-  | 'labelLast'
+  | 'textLast'
+  | 'textNext'
+  | 'textPrevious'
+  | 'textPage'
+  | 'textFirst'
+  | 'textLast'
   | 'disabled';
 
 @Component({
@@ -81,27 +82,27 @@ export class PostPagination {
   /**
    * Accessible label for the previous page button.
    */
-  @Prop({ reflect: true }) readonly labelPrevious!: string;
+  @Prop({ reflect: true }) readonly textPrevious!: string;
 
   /**
    * Accessible label for the next page button.
    */
-  @Prop({ reflect: true }) readonly labelNext!: string;
+  @Prop({ reflect: true }) readonly textNext!: string;
 
   /**
    * Prefix text for page number labels.
    */
-  @Prop({ reflect: true }) readonly labelPage!: string;
+  @Prop({ reflect: true }) readonly textPage!: string;
 
   /**
    * Prefix text for the first page label.
    */
-  @Prop({ reflect: true }) readonly labelFirst!: string;
+  @Prop({ reflect: true }) readonly textFirst!: string;
 
   /**
    * Prefix text for the last page label.
    */
-  @Prop({ reflect: true }) readonly labelLast!: string;
+  @Prop({ reflect: true }) readonly textLast!: string;
 
   /**
    * If true, the pagination is disabled.
@@ -141,29 +142,29 @@ export class PostPagination {
     this.validateProp('label', 'string', true);
   }
 
-  @Watch('labelPrevious')
-  validateLabelPrevious() {
-    this.validateProp('labelPrevious', 'string', true);
+  @Watch('textPrevious')
+  validateTextPrevious() {
+    this.validateProp('textPrevious', 'string', true);
   }
 
-  @Watch('labelNext')
-  validateLabelNext() {
-    this.validateProp('labelNext', 'string', true);
+  @Watch('textNext')
+  validateTextNext() {
+    this.validateProp('textNext', 'string', true);
   }
 
-  @Watch('labelPage')
-  validateLabelPage() {
-    this.validateProp('labelPage', 'string', true);
+  @Watch('textPage')
+  validateTextPage() {
+    this.validateProp('textPage', 'string', true);
   }
 
-  @Watch('labelFirst')
-  validateLabelFirst() {
-    this.validateProp('labelFirst', 'string', true);
+  @Watch('textFirst')
+  validateTextFirst() {
+    this.validateProp('textFirst', 'string', true);
   }
 
-  @Watch('labelLast')
-  validateLabelLast() {
-    this.validateProp('labelLast', 'string', true);
+  @Watch('textLast')
+  validateTextLast() {
+    this.validateProp('textLast', 'string', true);
   }
 
   @Watch('disabled')
@@ -231,11 +232,11 @@ export class PostPagination {
     this.validateProp('pageSize', 'number', true);
     this.validateProp('collectionSize', 'number', true);
     this.validateProp('label', 'string', true);
-    this.validateProp('labelPrevious', 'string', true);
-    this.validateProp('labelNext', 'string', true);
-    this.validateProp('labelPage', 'string', true);
-    this.validateProp('labelFirst', 'string', true);
-    this.validateProp('labelLast', 'string', true);
+    this.validateProp('textPrevious', 'string', true);
+    this.validateProp('textNext', 'string', true);
+    this.validateProp('textPage', 'string', true);
+    this.validateProp('textFirst', 'string', true);
+    this.validateProp('textLast', 'string', true);
     this.validateProp('disabled', 'boolean', false);
   }
 
@@ -742,12 +743,12 @@ export class PostPagination {
     const totalPages = this.getTotalPages();
 
     if (pageNumber === 1) {
-      return `${this.labelFirst}, ${this.labelPage} ${pageNumber}`;
+      return `${this.textFirst}, ${this.textPage} ${pageNumber}`;
     }
     if (pageNumber === totalPages) {
-      return `${this.labelLast}, ${this.labelPage} ${pageNumber}`;
+      return `${this.textLast}, ${this.textPage} ${pageNumber}`;
     }
-    return `${this.labelPage} ${pageNumber}`;
+    return `${this.textPage} ${pageNumber}`;
   }
 
   /**
@@ -883,7 +884,7 @@ export class PostPagination {
         >
           <ul class="pagination-list" role="list">
             {/* Previous Button */}
-            {this.renderControlButton('chevronleft', this.labelPrevious, isPrevDisabled, () =>
+            {this.renderControlButton('chevronleft', this.textPrevious, isPrevDisabled, () =>
               this.handlePrevious(),
             )}
 
@@ -893,7 +894,7 @@ export class PostPagination {
             {/* Next Button */}
             {this.renderControlButton(
               'chevronleft',
-              this.labelNext,
+              this.textNext,
               isNextDisabled,
               () => this.handleNext(),
               true,
