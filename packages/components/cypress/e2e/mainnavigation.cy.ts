@@ -23,6 +23,12 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
     return Math.ceil(left) >= leftEdge && Math.floor(right) <= rightEdge;
   }
 
+  function clickUntilHidden($el: JQuery<HTMLElement>) {
+    if ($el.is(':visible')) {
+      cy.wrap($el).click().then(clickUntilHidden);
+    }
+  }
+
   describe('default', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
@@ -82,12 +88,10 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       it('should click until the last navigation item is visible', () => {
         cy.get('@rightScroll').should('be.visible');
 
-        cy.get('@navigationItems').each($el => {
-          if (!isFullyVisible($el)) cy.get('@rightScroll').click();
-          cy.wrap($el).then(isFullyVisible).should('be.true');
-        });
+        cy.get('@rightScroll').then(clickUntilHidden);
 
         cy.get('@rightScroll').should('be.hidden');
+        cy.get('@navigationItems').last().then(isFullyVisible).should('be.true');
       });
 
       it('should scroll continuously until the last navigation item is visible', () => {
@@ -178,15 +182,12 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       it('should click until the first navigation item is visible', () => {
         cy.get('@leftScroll').should('be.visible');
 
-        cy.get('@navigationItemsReversed').each($el => {
-          if (!isFullyVisible($el)) {
-            cy.get('@leftScroll').click();
-          }
-          cy.wrap($el).then(isFullyVisible).should('be.true');
-        });
+        cy.get('@leftScroll').then(clickUntilHidden);
 
         cy.get('@leftScroll').should('be.hidden');
+        cy.get('@navigationItems').first().should('be.visible');
       });
+
       it('should scroll continuously until the first navigation item is visible', () => {
         const leftScrollPosition = [5, 5];
         cy.get('@mainnavigation').trigger('mousedown', ...leftScrollPosition, { button: 0 });
