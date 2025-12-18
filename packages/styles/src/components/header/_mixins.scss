@@ -66,6 +66,7 @@
 @mixin nav-item-block-layout {
   border-radius: 0;
   padding: 0 0.75rem;
+  line-height: 1.5;
 
   &:hover {
     @include button.button-variant-def('hover', 'primary');
@@ -96,7 +97,7 @@
   }
 
   @include media.only(mobile) {
-    padding: 0.5rem 0.75rem calc(0.5rem - 1px) 0.5rem;
+    padding: calc(0.5rem + 1.5px) 0.75rem calc(0.5rem + 1.5px - 1px) 0.5rem;
     gap: 0.5rem;
     font-size: 0.875rem;
 
