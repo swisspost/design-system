@@ -72,7 +72,9 @@ export class PostLanguageMenu {
       return undefined;
     }
 
-    return this.textCurrentLanguage.replace(/#name\b/g, this.activeLangName);
+    console.log('getter run');
+
+    return this.textCurrentLanguage.replace(/#name/g, this.activeLangName);
   }
 
   componentDidLoad() {
@@ -90,8 +92,9 @@ export class PostLanguageMenu {
    */
   @Listen('postChange')
   @EventFrom('post-language-menu-item')
-  handlePostChange(event: CustomEvent<{ code: string; label: string }>) {
+  handlePostChange(event: CustomEvent<{ code: string; name: string }>) {
     this.activeLangCode = event.detail.code;
+    this.activeLangName = event.detail.name;
 
     // Update the active state in the children post-language-menu-item components
     this.languageOptions.forEach(lang => {

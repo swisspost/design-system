@@ -68,8 +68,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         {/* Language switch */}
         <PostLanguageMenu
-          caption="Change the language"
-          description="The currently selected language is English."
+          text-change-language="Change the language"
+          text-current-language="The currently selected language is #name."
           variant="list"
           slot="language-menu"
         >
@@ -101,7 +101,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostTogglebutton>
 
         {/* Main navigation */}
-        <PostMainnavigation slot="main-nav" caption="Main">
+        <PostMainnavigation slot="main-nav" text-main="Main">
           <ul>
             {/* Link only level 1 */}
             <li>
@@ -212,9 +212,9 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <div className="container">
           <PostBreadcrumbs
             home-url="/"
-            home-text="Home"
-            label="Breadcrumbs"
-            menu-label="More breadcrumb items"
+            text-home="Home"
+            text-breadcrumbs="Breadcrumbs"
+            text-more-items="More items"
           >
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
@@ -224,7 +224,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </div>
       </main>
 
-      <PostFooter label="Footer label">
+      <PostFooter text-footer="Footer label">
         <span id="grid-1-title" slot="grid-1-title">
           Title 1
         </span>
@@ -490,7 +490,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <span slot="copyright">All rights reserved.</span>
       </PostFooter>
 
-      <PostBackToTop label="Back to top button" />
+      <PostBackToTop text-back-to-top="Back to top button" />
     </>
   );
 }

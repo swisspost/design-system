@@ -197,8 +197,8 @@ function getHeaderRenderer(
 
         <!-- Language switch -->
         <post-language-menu
-          caption="Change the language"
-          description="The currently selected language is English."
+          text-change-language="Change the language"
+          text-current-language="The currently selected language is #name."
           variant="list"
           name="language-menu-example"
           slot="language-menu"
@@ -263,7 +263,7 @@ export const ActiveNavigationItem: Story = {
     },
   ],
   render: () => html`
-    <post-mainnavigation slot="main-nav" caption="Main">
+    <post-mainnavigation slot="main-nav" text-main="Main">
       <ul>
         <li>
           <a href="/letters">Letters</a>

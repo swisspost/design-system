@@ -29,8 +29,8 @@ export class PostBackToTop {
     this.belowFold = this.isBelowFold();
   };
 
-  @Watch('label')
-  validateLabel() {
+  @Watch('textBackToTop')
+  validateTextBackToTop() {
     checkRequiredAndType(this, 'textBackToTop', 'string');
   }
 
@@ -102,7 +102,7 @@ export class PostBackToTop {
 
     this.animateButton();
 
-    this.validateLabel();
+    this.validateTextBackToTop();
   }
 
   disconnectedCallback() {

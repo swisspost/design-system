@@ -10,19 +10,19 @@ describe('Back-to-top', () => {
       cy.get('post-back-to-top').should('exist');
     });
 
-    it('should log a message if the label is removed', () => {
+    it('should log a message if the textBackToTop is removed', () => {
       cy.window().then(win => {
         cy.spy(win.console, 'error').as('consoleError');
       });
 
       cy.get('post-back-to-top').then($el => {
-        $el[0].removeAttribute('label');
+        $el[0].removeAttribute('text-back-to-top');
       });
 
       cy.get('@consoleError').should('be.called');
     });
 
-    it('should hide the label visually', () => {
+    it('should hide the textBackToTop visually', () => {
       cy.get('post-back-to-top').shadow().find('.visually-hidden');
     });
 

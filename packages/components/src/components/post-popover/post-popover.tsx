@@ -31,7 +31,7 @@ export class PostPopover {
   }
 
   /**
-   * Define the caption of the close button for assistive technology
+   * Define the text of the close button for assistive technology
    */
   @Prop({ reflect: true }) readonly textClose!: string;
 

@@ -22,8 +22,8 @@ const code = `
 
   <!-- Language switch -->
   <post-language-menu
-    caption="Change the language"
-    description="The currently selected language is English."
+    text-change-language="Change the language"
+    text-current-language="The currently selected language is #name."
     variant="list"
     name="language-menu-example"
     slot="language-menu">
@@ -53,7 +53,7 @@ const code = `
   </ul>
 
   <!-- Main navigation -->
-  <post-mainnavigation slot="main-nav" caption="Haupt">
+  <post-mainnavigation slot="main-nav" text-main="Haupt">
     <ul>
       <!-- Link only level 1 -->
       <li><a href="#">Briefe</a></li>

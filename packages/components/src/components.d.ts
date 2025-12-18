@@ -434,7 +434,7 @@ export namespace Components {
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Define the caption of the close button for assistive technology
+          * Define the text of the close button for assistive technology
          */
         "textClose": string;
         /**
@@ -1451,7 +1451,7 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement;
         /**
-          * Define the caption of the close button for assistive technology
+          * Define the text of the close button for assistive technology
          */
         "textClose": string;
     }

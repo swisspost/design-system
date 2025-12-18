@@ -43,8 +43,8 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 
       <!-- Language switch -->
       <post-language-menu
-        caption="Caption"
-        description="Description"
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is #name."
         variant="list"
         name="language-menu-example"
         slot="language-menu"
@@ -79,7 +79,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation slot="main-nav" caption="Main">
+      <post-mainnavigation slot="main-nav" text-main="Main">
         <ul>
           <li>${story(context.args, context)}</li>
         </ul>

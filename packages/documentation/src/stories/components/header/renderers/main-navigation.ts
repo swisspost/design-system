@@ -5,7 +5,7 @@ export function renderMainnavigation() {
     <!-- Main navigation -->
     <!-- Caption best practice: Don't include "navigation", screen readers add it automatically.
          e.g. caption="Main" → "Main navigation" -->
-    <post-mainnavigation slot="main-nav" caption="Main">
+    <post-mainnavigation slot="main-nav" text-main="Main">
       <ul>
         <!-- Link only level 1 -->
         <li>
