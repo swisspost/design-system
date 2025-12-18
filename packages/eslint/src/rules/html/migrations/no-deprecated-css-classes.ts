@@ -109,7 +109,7 @@ const classNames: string[] = [
   '.btn-aubergine-bright',
 ];
 
-const classesMap = classNames.map(selector => ({
+export const classesMap = classNames.map(selector => ({
   old: selector.slice(1).replace(/\./g, ' '),
   new: '',
 }));

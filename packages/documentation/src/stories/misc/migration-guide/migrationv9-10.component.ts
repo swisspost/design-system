@@ -381,20 +381,28 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.components.tabs_anchor_navigation}"
                       />
                       <label class="form-check-label" for="components-tabs_anchor_navigation">
-        
-                        <div>
-                          The markup of the <code>post-tabs</code> component has changed.
-                        </div>
-                         <span class="info">
+                        <div>The markup of the <code>post-tabs</code> component has changed.</div>
+                        <span class="info">
                           If you were using this component, you should:
                           <ul>
-                            <li>Rename <code>post-tab-header</code> component to <code>post-tab-item</code></li>
-                            <li>Rename <code>panel</code> property to <code>name</code> in <code>post-tab-item</code> component</li>
-                            <li>Rename <code>name</code> property to <code>for</code> in <code>post-tab-panel</code> component</li>
-                            <li>Rename <code>activePanel</code> property to <code>activeTab</code> in <code>post-tabs</code> component</li>
+                            <li>
+                              Rename <code>post-tab-header</code> component to
+                              <code>post-tab-item</code>
+                            </li>
+                            <li>
+                              Rename <code>panel</code> property to <code>name</code> in
+                              <code>post-tab-item</code> component
+                            </li>
+                            <li>
+                              Rename <code>name</code> property to <code>for</code> in
+                              <code>post-tab-panel</code> component
+                            </li>
+                            <li>
+                              Rename <code>activePanel</code> property to <code>activeTab</code> in
+                              <code>post-tabs</code> component
+                            </li>
                           </ul>
                         </span>
-
                       </label>
                     </div>
                   </li>
@@ -414,7 +422,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.forms.tooltip_validation}"
                       />
-                      <label class="form-check-label" for="forms-tooltip_validation">
+                      <label class="form-check-label" for="forms-tooltip_validation"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Tooltip validation classes removed
                         <ul>
                           <li><code>.valid-tooltip</code></li>
@@ -438,7 +449,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.forms.input_sizes}"
                       />
-                      <label class="form-check-label" for="forms-input_sizes">
+                      <label class="form-check-label" for="forms-input_sizes"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Form field size classes removed
                         <ul>
                           <li><code>.form-control-sm</code></li>
@@ -814,7 +828,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.utilities.removed_various_utilities}"
                       />
-                      <label class="form-check-label" for="utilities-removed_various_utilities">
+                      <label class="form-check-label" for="utilities-removed_various_utilities"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Utility classes removed
                         <ul>
                           <li>
@@ -902,7 +919,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.utilities.text_color}"
                       />
-                      <label class="form-check-label" for="utilities-text_color">
+                      <label class="form-check-label" for="utilities-text_color"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Text color classes (<code>.text-*</code>) removed
                         <ul>
                           <li><code>.text-primary</code></li>
@@ -1084,7 +1104,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.typography.line_height_variables}"
                       />
-                      <label class="form-check-label" for="typography-line_height_variables">
+                      <label class="form-check-label" for="typography-line_height_variables"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Line height variables and classes removed
                         <ul>
                           <li><code>$line-heights</code></li>
@@ -1135,7 +1158,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.typography.weight_light}"
                       />
-                      <label class="form-check-label" for="typography-weight_light">
+                      <label class="form-check-label" for="typography-weight_light"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Light font weight (300) removed as the new Swiss Post Sans does not provide
                         it
                         <ul>
@@ -1178,7 +1204,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.typography.monospace}"
                       />
-                      <label class="form-check-label" for="typography-monospace">
+                      <label class="form-check-label" for="typography-monospace"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Monospace font removed
                         <ul>
                           <li><code>.font-monospace</code></li>
@@ -1204,7 +1233,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.others.card}"
                       />
-                      <label class="form-check-label" for="others-card">
+                      <label class="form-check-label" for="others-card"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Some card component elements have been removed
                         <ul>
                           <li><code>.card-header</code></li>
@@ -1274,7 +1306,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.others.button_animated}"
                       />
-                      <label class="form-check-label" for="others-button_animated">
+                      <label class="form-check-label" for="others-button_animated"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         <code>.btn-animated</code> class removed
                         <span class="info"
                           >The class can safely be removed, there will simply be no icon animation
@@ -1388,7 +1423,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.others.accent_colors}"
                       />
-                      <label class="form-check-label" for="others-accent_colors">
+                      <label class="form-check-label" for="others-accent_colors"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Accent colors removed
                         <ul>
                           <li>
@@ -1488,7 +1526,7 @@ export class MigrationV99Component extends LitElement {
                       <label class="form-check-label" for="others.stepper">
                         Removed the stepper HTML component.
                         <span class="info"
-                        >You can now use the <code>post-stepper</code> web component.</span
+                          >You can now use the <code>post-stepper</code> web component.</span
                         >
                       </label>
                     </div>
