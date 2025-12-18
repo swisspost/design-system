@@ -83,13 +83,8 @@
           <post-megadropdown-trigger [for]="dropdown.id">{{
             dropdown.trigger
           }}</post-megadropdown-trigger>
-          <post-megadropdown [id]="dropdown.id">
-            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-              <post-icon name="arrowleft"></post-icon>
-              Back
-            </button>
-            <post-closebutton slot="close-button">Close</post-closebutton>
-            <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink"
+          <post-megadropdown [id]="dropdown.id" labelClose="Close" labelBack="Back">
+            <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
               >Overview {{ dropdown.trigger }}</a
             >
             @for (section of dropdown.sections; track section.title) {
