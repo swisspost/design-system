@@ -16,7 +16,10 @@ const meta: MetaComponent<HTMLPostMegadropdownElement> = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=2908-30413&m=dev',
     },
   },
-  args: {},
+  args: {
+    labelClose: 'Close',
+    labelBack: 'Back',
+  },
   argTypes: {},
 };
 
@@ -95,13 +98,8 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 function render() {
   return html`
     <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-    <post-megadropdown id="packages">
-      <button slot="back-button" class="btn btn-tertiary px-0">
-        <post-icon name="arrowleft"></post-icon>
-        Back
-      </button>
-      <post-closebutton slot="close-button">Close</post-closebutton>
-      <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
+    <post-megadropdown id="packages" label-close="Close" label-back="Back">
+      <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
       <post-list>
         <p>Send packages</p>
         <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>

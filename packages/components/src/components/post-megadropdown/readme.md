@@ -3,6 +3,14 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property                  | Attribute     | Description                                                 | Type     | Default     |
+| ------------------------- | ------------- | ----------------------------------------------------------- | -------- | ----------- |
+| `labelBack` _(required)_  | `label-back`  | A label for the back button visible on tablet and mobile    | `string` | `undefined` |
+| `labelClose` _(required)_ | `label-close` | An accessible label for the close button visible on desktop | `string` | `undefined` |
+
+
 ## Events
 
 | Event                    | Description                                                                                                                                                                                                                                                                                                                                   | Type                                                          |
@@ -59,6 +67,22 @@ Type: `Promise<void>`
 
 
 
+
+## Dependencies
+
+### Depends on
+
+- [post-closebutton](../post-closebutton)
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-megadropdown --> post-closebutton
+  post-megadropdown --> post-icon
+  post-closebutton --> post-icon
+  style post-megadropdown fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
