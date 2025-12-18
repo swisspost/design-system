@@ -61,7 +61,9 @@ const code = `
 
       <!-- Level 1 with megadropdown -->
       <li>
-        <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
+        <post-megadropdown-trigger for="briefe">
+          <button>Briefe</button>
+        </post-megadropdown-trigger>
         <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
           <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
           <post-list>
@@ -85,7 +87,9 @@ const code = `
         </post-megadropdown>
       </li>
       <li>
-        <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
+        <post-megadropdown-trigger for="pakete">
+          <button>Pakete</button>
+        </post-megadropdown-trigger>
         <post-megadropdown id="pakete" label-close="Schliessen" labelBack="Back">
           <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
           <post-list>

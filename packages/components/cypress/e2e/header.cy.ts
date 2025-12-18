@@ -124,8 +124,8 @@ describe('header', () => {
       cy.get('post-megadropdown#letters a[href="/kl"]').first().as('lettersSecondLink');
       cy.get('post-megadropdown#packages a[href="/sch"]').first().as('packagesLink');
 
-      cy.get('post-megadropdown-trigger button').first().as('lettersTrigger');
-      cy.get('post-megadropdown-trigger button').eq(1).as('packagesTrigger');
+      cy.get('post-megadropdown-trigger').find('button').first().as('lettersTrigger');
+      cy.get('post-megadropdown-trigger').find('button').eq(1).as('packagesTrigger');
 
       // Activate first link
       cy.get('@lettersFirstLink').then($link => $link.attr('aria-current', 'page'));

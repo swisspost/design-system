@@ -2,6 +2,7 @@
 @use '../../mixins/button';
 @use '../../mixins/media';
 @use '../../mixins/utilities';
+@use '../../mixins/icons';
 @use '../../tokens/components';
 @use '../../tokens/helpers';
 
@@ -18,8 +19,14 @@
 /**
  selects active nav items
  */
-@mixin active-state {
-  &:is(.active, [aria-current], [aria-pressed='true'], [aria-expanded='true']) {
+@mixin active-state($with-class: true) {
+  $selectors: '[aria-current], [aria-pressed="true"], [aria-expanded="true"]';
+
+  @if $with-class {
+    $selectors: '#{$selectors}, .active';
+  }
+
+  &:is(#{$selectors}) {
     @content;
   }
 }
@@ -86,10 +93,6 @@
       inset-block-end: 0;
       height: 1px;
     }
-
-    > post-icon:where(:last-child) {
-      margin-inline-start: auto;
-    }
   }
 
   @include media.only(mobile) {
@@ -135,47 +138,9 @@
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  @include active-state {
+  @include active-state($with-class: false) {
     post-icon {
       transform: rotate(180deg);
-    }
-  }
-}
-
-@mixin nav-item-bold-hover {
-  > .shown-when-inactive {
-    display: none;
-  }
-
-  @include media.only(desktop) {
-    &:has(> .shown-when-inactive) {
-      font-weight: 700;
-    }
-
-    > .shown-when-inactive {
-      all: inherit;
-      font-weight: 400;
-      position: absolute;
-      inset: 0;
-    }
-
-    @include active-state {
-      > .shown-when-inactive {
-        display: none;
-      }
-    }
-
-    &:where(post-megadropdown-trigger > *) {
-      display: grid;
-      grid-template-columns: 1fr auto;
-
-      > post-icon {
-        z-index: 1;
-      }
-
-      > .shown-when-inactive > post-icon {
-        visibility: hidden;
-      }
     }
   }
 }

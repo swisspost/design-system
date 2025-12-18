@@ -343,6 +343,11 @@ export namespace Components {
     }
     interface PostMegadropdownTrigger {
         /**
+          * Sets the trigger state to be active or inactive.
+          * @default false
+         */
+        "active": boolean;
+        /**
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
         "for": string;
@@ -1369,6 +1374,11 @@ declare namespace LocalJSX {
         "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
     }
     interface PostMegadropdownTrigger {
+        /**
+          * Sets the trigger state to be active or inactive.
+          * @default false
+         */
+        "active"?: boolean;
         /**
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */

@@ -13,18 +13,16 @@ post-mainnavigation {
     flex-wrap: nowrap;
   }
 
-  > *,
-  post-megadropdown-trigger > * {
+  > * {
     @include interactive-elements {
       @extend %header-control;
-      height: 100%;
-
       @include nav-item-block-layout;
-      @include nav-item-bold-hover;
-
-      @include media.only(desktop) {
-        @include button.button-variant-def('enabled', 'secondary');
-      }
+      height: 100%;
     }
+  }
+
+  post-megadropdown-trigger {
+    height: 100%;
+    width: 100%;
   }
 }
