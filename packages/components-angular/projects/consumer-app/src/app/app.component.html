@@ -128,9 +128,9 @@
 <div class="container">
   <post-breadcrumbs
     homeUrl="/"
-    homeText="Home"
-    label="Breadcrumbs"
-    menuLabel="More breadcrumb items"
+    textHome="Home"
+    textBreadcrumbs="Breadcrumbs"
+    textMoreItems="More breadcrumb items"
   >
     <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
     <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -143,9 +143,9 @@
   <router-outlet></router-outlet>
 </main>
 
-<post-back-to-top label="Back to top button"></post-back-to-top>
+<post-back-to-top text-back-to-top="Back to top button"></post-back-to-top>
 
-<post-footer label="Footer label">
+<post-footer text-footer="Footer label">
   @for (grid of footerGrids; track grid.slot) {
   <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
   <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">
