@@ -24,10 +24,12 @@ export function slide(
 ): Animation {
   const { translate = defaultSlideOptions.translate } = options;
 
-  const keyframes: Keyframe[] =
-    direction === 'in'
-      ? [{ transform: `translateX(${translate}%)` }, { transform: 'translateX(0)' }]
-      : [{ transform: 'translateX(0)' }, { transform: `translateX(${translate}%)` }];
+  const baseKeyframes: Keyframe[] = [
+    { transform: `translateX(${translate}%)` },
+    { transform: 'translateX(0)' },
+  ];
+
+  const keyframes = direction === 'in' ? baseKeyframes : [...baseKeyframes].reverse();
 
   return animateSlide(el, keyframes, options);
 }

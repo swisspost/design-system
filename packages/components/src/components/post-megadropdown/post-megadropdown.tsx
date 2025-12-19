@@ -34,10 +34,6 @@ export class PostMegadropdown {
     fill: 'forwards',
   };
 
-  private onKeydown = (e: KeyboardEvent) => this.keyboardHandler(e);
-  private onKeyup = (e: KeyboardEvent) => this.handleTabOutside(e);
-  private onMousedown = (e: MouseEvent) => this.handleClickOutside(e);
-
   @Element() host: HTMLPostMegadropdownElement;
 
   @State() device: Device = breakpoint.get('device');
@@ -66,6 +62,12 @@ export class PostMegadropdown {
    **/
   @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
+  constructor() {
+    this.keyboardHandler = this.keyboardHandler.bind(this);
+    this.handleTabOutside = this.handleTabOutside.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
   connectedCallback() {
     window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
   }
@@ -82,7 +84,8 @@ export class PostMegadropdown {
 
   disconnectedCallback() {
     window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
-    this.resetAnimationState();
+    this.currentAnimation = null;
+    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
     if (this.defaultSlotObserver) {
       this.defaultSlotObserver.disconnect();
@@ -105,16 +108,23 @@ export class PostMegadropdown {
    * Displays the dropdown.
    */
   @Method()
-  async show() {
-    this.cancelAllAnimations();
-
+  async show(forceOpen = false) {
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
     }
 
+    if (forceOpen) {
+      this.forceOpen();
+      return;
+    }
+
     if (!this.isVisible) {
-      this.closeCleanUp();
+      this.currentAnimation = null;
+      if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
+      this.isVisible = false;
+      this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
     }
 
     // First set the megadropdown to be visible, then animate
@@ -139,7 +149,11 @@ export class PostMegadropdown {
       }
     } catch {
       // Open animation was cancelled - reset state
-      this.closeCleanUp();
+      this.currentAnimation = null;
+      if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
+      this.isVisible = false;
+      this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
       this.postToggleMegadropdown.emit({ isVisible: false });
     }
   }
@@ -154,20 +168,21 @@ export class PostMegadropdown {
       return;
     }
 
-    this.cancelAllAnimations();
-
     this.currentAnimation = this.createAnimation('out');
 
     try {
       await this.currentAnimation.finished;
 
       // After the megadropdown container is hidden
-      this.closeCleanUp();
-
+      this.currentAnimation = null;
+      if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
+      this.isVisible = false;
       this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
     } catch {
       // Closing animation was cancelled - reset state
-      this.resetAnimationState();
+      this.currentAnimation = null;
+      if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
       this.isVisible = true;
       this.postToggleMegadropdown.emit({ isVisible: true, focusParent: focusParent });
     }
@@ -182,12 +197,27 @@ export class PostMegadropdown {
   }
 
   /**
+   * Forces the dropdown to open without animation.
+   */
+  private forceOpen() {
+    this.cancelAnimation();
+    this.currentAnimation = null;
+    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
+    this.removeListeners();
+    this.isVisible = false;
+    this.postToggleMegadropdown.emit({ isVisible: true, focusParent: false });
+  }
+
+  /**
    * Forces the dropdown to close without animation.
    */
   private forceClose() {
-    this.cancelAllAnimations();
-    this.closeCleanUp();
-    this.postToggleMegadropdown.emit({ isVisible: false, focusParent: false });
+    this.cancelAnimation();
+    this.currentAnimation = null;
+    if (PostMegadropdown.activeDropdown === null) PostMegadropdown.activeDropdown = this;
+    this.removeListeners();
+    this.isVisible = true;
+    this.postToggleMegadropdown.emit({ isVisible: true, focusParent: false });
   }
 
   // Run the respective animation
@@ -202,28 +232,14 @@ export class PostMegadropdown {
     });
   }
 
-  private cancelAllAnimations() {
+  private cancelAnimation() {
     this.currentAnimation?.cancel();
-    this.animatedContainer?.getAnimations().forEach(a => a.cancel());
     this.currentAnimation = null;
-  }
-
-  // Clean up and reset state to non visible
-  private closeCleanUp() {
-    this.resetAnimationState();
-    this.removeListeners();
-    this.isVisible = false;
-    this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
-  }
-
-  private resetAnimationState() {
-    this.currentAnimation = null;
-    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
   }
 
   private breakpointChange(e: CustomEvent) {
     this.device = e.detail;
-    this.cancelAllAnimations();
+    this.cancelAnimation();
   }
 
   private readonly handleClickOutside = async (event: MouseEvent) => {
@@ -255,15 +271,15 @@ export class PostMegadropdown {
   };
 
   private addListeners() {
-    this.host.addEventListener('keydown', this.onKeydown);
-    document.addEventListener('keyup', this.onKeyup);
-    document.addEventListener('mousedown', this.onMousedown);
+    this.host.addEventListener('keydown', this.keyboardHandler);
+    document.addEventListener('keyup', this.handleTabOutside);
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
   private removeListeners() {
-    this.host.removeEventListener('keydown', this.onKeydown);
-    document.removeEventListener('keyup', this.onKeyup);
-    document.removeEventListener('mousedown', this.onMousedown);
+    this.host.removeEventListener('keydown', this.keyboardHandler);
+    document.removeEventListener('keyup', this.handleTabOutside);
+    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
   private getFocusableElements() {

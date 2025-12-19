@@ -325,7 +325,7 @@ export namespace Components {
         /**
           * Displays the dropdown.
          */
-        "show": () => Promise<void>;
+        "show": (forceOpen?: boolean) => Promise<void>;
         /**
           * Toggles the dropdown visibility based on its current state.
          */

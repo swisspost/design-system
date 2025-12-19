@@ -42,7 +42,6 @@ export function fadeSlide(
     { opacity: '1', transform: 'translateY(0px)' },
   ];
 
-  console.log(baseKeyframes, direction);
   const keyframes = direction === 'in' ? baseKeyframes : [...baseKeyframes].reverse();
 
   return animateFadeSlide(el, keyframes, options);

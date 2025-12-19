@@ -41,9 +41,15 @@ Type: `Promise<void>`
 
 
 
-### `show() => Promise<void>`
+### `show(forceClose?: boolean) => Promise<void>`
 
 Displays the dropdown.
+
+#### Parameters
+
+| Name         | Type      | Description |
+| ------------ | --------- | ----------- |
+| `forceClose` | `boolean` |             |
 
 #### Returns
 
