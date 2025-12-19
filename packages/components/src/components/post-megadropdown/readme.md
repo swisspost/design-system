@@ -70,9 +70,9 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot        | Description               |
-| ----------- | ------------------------- |
-| `"default"` | Slot for placing content. |
+| Slot        | Description              |
+| ----------- | ------------------------ |
+| `"default"` | Slot for placing content |
 
 
 ## Dependencies

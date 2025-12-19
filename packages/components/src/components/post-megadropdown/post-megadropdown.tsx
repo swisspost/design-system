@@ -175,13 +175,6 @@ export class PostMegadropdown {
 
       // After the megadropdown has finished entry animation
       this.addListeners();
-
-      if (
-        this.firstFocusableEl &&
-        window.getComputedStyle(this.firstFocusableEl).display !== 'none'
-      ) {
-        this.firstFocusableEl.focus();
-      }
     } catch {
       // Open animation was cancelled - reset state
       this.removeListeners();
