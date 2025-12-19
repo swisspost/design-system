@@ -1,15 +1,18 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
-
-import * as RadioStories from './radio.stories';
+import meta, * as RadioStories from './radio.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={RadioStories} />
 
 <div className="docs-title">
   # Radio
 
-  <link-design of={JSON.stringify(RadioStories)}></link-design>
+<link-design of={JSON.stringify(RadioStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Customize the native <code>&lt;input type="radio"&gt;</code> with CSS that changes the element’s
@@ -33,13 +36,12 @@ The following examples show the different characteristics of the component. Thes
 
 To show radio button group, just wrap your radios in a `fieldset`.
 
-<div className="banner banner-info banner-md">
+<post-banner>
   Don't forget to add also a `<legend>` element.
   You can visually hide the legend using the `.visually-hidden` class if necessary.
 
 Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs).
-
-</div>
+</post-banner>
 
 <Canvas of={RadioStories.Grouped} />
 
@@ -47,13 +49,12 @@ Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe
 
 To render a radio inline, simply add the class `.form-check-inline` to the `.form-check` wrapper element.
 
-<div className="banner banner-info banner-md">
+<post-banner>
   Remember to wrap your radio groups in a <code>&lt;fieldset&gt;</code> including a <code>&lt;legend&gt;</code> tag.
   This provides a label for your radio group.
 
 Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs).
-
-</div>
+</post-banner>
 
 To visually hide the `<legend>` element, use the `.visually-hidden` class.
 

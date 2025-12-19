@@ -1,5 +1,27 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.55
+
+## 10.0.0-next.54
+
+## 10.0.0-next.53
+
+## 10.0.0-next.52
+
+## 10.0.0-next.51
+
+## 10.0.0-next.50
+
+## 10.0.0-next.49
+
+## 10.0.0-next.48
+
+## 10.0.0-next.47
+
+### Patch Changes
+
+- Updated tokens package to use TypeScript. (by [@myrta2302](https://github.com/myrta2302) with [#5557](https://github.com/swisspost/design-system/pull/5557))
+
 ## 10.0.0-next.46
 
 ## 10.0.0-next.45
@@ -31,7 +53,6 @@
   ```
 
   Also renamed the following CSS custom properties:
-
   - `--post-current-palette-fg` → `--post-current-fg`
   - `--post-current-palette-bg` → `--post-current-bg` (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
 

@@ -60,7 +60,9 @@
     z-index: -1;
     visibility: hidden;
     transform: translateY(-100%);
-    transition: transform 0.35s, visibility 0.35s;
+    transition:
+      transform 0.35s,
+      visibility 0.35s;
 
     @media (prefers-reduced-motion: reduce) {
       transition: none;
@@ -156,7 +158,8 @@
     background-color: transparent;
     opacity: 0;
     transform: scaleX(0.8);
-    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transition:
+      opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
       transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
     @media (prefers-reduced-motion: reduce) {
@@ -170,7 +173,8 @@
       background-color: color.$gray-20;
       opacity: 1;
       transform: scale(1);
-      transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      transition:
+        opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
         transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
@@ -234,7 +238,10 @@
   }
 
   &.animate {
-    transition: transform 0.35s, visibility 0.35s, box-shadow 0.35s;
+    transition:
+      transform 0.35s,
+      visibility 0.35s,
+      box-shadow 0.35s;
 
     @media (prefers-reduced-motion: reduce) {
       transition: none;

@@ -1,13 +1,8 @@
 @use 'sass:map';
 @use 'sass:list';
 
-@use './color' as color-mx;
-@use './icons' as icons-mx;
 @use './utilities' as utilities-mx;
-@use './../functions/contrast' as contrast-fn;
 
-@use './../variables/spacing';
-@use './../variables/components/close';
 @use './../variables/components/notification';
 @use '../tokens/components';
 @use '../functions/tokens';
@@ -90,32 +85,9 @@ tokens.$default-map: components.$post-banner;
   color-scheme: $scheme;
 
   &::before {
-    @include icons-mx.icon($icon);
-    color: $icon-color;
-
-    @include utilities-mx.high-contrast-mode {
-      color: CanvasText;
-    }
-  }
-}
-
-@mixin notification-dismissible($size, $close: 'btn-close') {
-  $padding-x: map.get(notification.$notification-padding-x-map, $size);
-  $gap: map.get(notification.$notification-gap-map, $size);
-
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-  & {
-    pointer-events: auto;
-    position: relative;
-  }
-
-  &:not(.banner-action):not(.alert-action) {
-    padding-inline-end: calc(#{$padding-x} + #{$gap} + #{close.$close-size});
-  }
-
-  > .#{$close} {
-    position: absolute;
-    inset-block-start: spacing.$spacer;
-    inset-inline-end: $padding-x;
+    background-image: #{$icon};
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }

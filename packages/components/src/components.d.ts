@@ -7,11 +7,13 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
-import { SwitchVariant } from "./components/post-language-switch/switch-variants";
+import { ButtonType } from "./components/post-closebutton/button-types";
+import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
-export { SwitchVariant } from "./components/post-language-switch/switch-variants";
+export { ButtonType } from "./components/post-closebutton/button-types";
+export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -55,6 +57,10 @@ export namespace Components {
     }
     interface PostAvatar {
         /**
+          * Provides a custom description for the avatar, used for accessibility purposes.
+         */
+        "description"?: string;
+        /**
           * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
@@ -67,7 +73,7 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
          */
         "userid"?: string;
     }
@@ -83,15 +89,6 @@ export namespace Components {
          */
         "dismiss": () => Promise<void>;
         /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-          * @default false
-         */
-        "dismissible": boolean;
-        /**
           * The type of the banner.
           * @default 'info'
          */
@@ -106,13 +103,20 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
         "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component.
+         */
+        "label": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -137,7 +141,7 @@ export namespace Components {
          */
         "groupReset": () => Promise<void>;
         /**
-          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <post-banner data-size="sm"><p>If not set the icon will not show up.</p></post-banner>
          */
         "icon"?: string;
         /**
@@ -145,7 +149,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</p></post-banner> <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "name"?: string;
         /**
@@ -161,11 +165,16 @@ export namespace Components {
          */
         "validity"?: boolean;
         /**
-          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default 'button'
+         */
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -174,9 +183,9 @@ export namespace Components {
          */
         "collapsed"?: boolean;
         /**
-          * Triggers the collapse programmatically.  If there is a collapsing transition running already, it will be reversed.
+          * Triggers the collapse programmatically. If there is a collapsing transition running already, it will be reversed. If no parameter is provided, the current state (this.isExpanded) will be toggled.
          */
-        "toggle": (open?: boolean) => Promise<boolean>;
+        "toggle": (shouldExpand?: boolean) => Promise<boolean>;
     }
     interface PostCollapsibleTrigger {
         /**
@@ -188,6 +197,8 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostEnvTest {
+    }
     interface PostFooter {
         /**
           * The label to add to the footer (visually hidden).
@@ -196,9 +207,9 @@ export namespace Components {
     }
     interface PostHeader {
         /**
-          * Toggles the mobile navigation.
+          * Toggles the burger navigation menu.
          */
-        "toggleMobileMenu": (force?: boolean) => Promise<void>;
+        "toggleBurgerMenu": (force?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -235,7 +246,22 @@ export namespace Components {
          */
         "scale"?: number;
     }
-    interface PostLanguageOption {
+    interface PostLanguageMenu {
+        /**
+          * A title for the list of language options
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description": string;
+        /**
+          * Whether the component is rendered as a list or a menu
+          * @default 'list'
+         */
+        "variant": SwitchVariant;
+    }
+    interface PostLanguageMenuItem {
         /**
           * If set to `true`, the language option is considered the current language for the page.
          */
@@ -257,24 +283,9 @@ export namespace Components {
          */
         "url"?: string;
         /**
-          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+          * To communicate the variant prop from the parent (post-language-menu) component to the child (post-language-menu-item) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant;
-    }
-    interface PostLanguageSwitch {
-        /**
-          * A title for the list of language options
-         */
-        "caption": string;
-        /**
-          * A descriptive text for the list of language options
-         */
-        "description": string;
-        /**
-          * Whether the component is rendered as a list or a menu
-          * @default 'list'
-         */
-        "variant": SwitchVariant;
     }
     interface PostLinkarea {
     }
@@ -299,6 +310,10 @@ export namespace Components {
         "url"?: string | URL;
     }
     interface PostMainnavigation {
+        /**
+          * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
+         */
+        "caption": string;
     }
     interface PostMegadropdown {
         /**
@@ -310,6 +325,14 @@ export namespace Components {
          */
         "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
         /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "labelBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "labelClose": string;
+        /**
           * Displays the dropdown.
          */
         "show": () => Promise<void>;
@@ -320,6 +343,11 @@ export namespace Components {
     }
     interface PostMegadropdownTrigger {
         /**
+          * Sets the trigger state to be active or inactive.
+          * @default false
+         */
+        "active": boolean;
+        /**
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
         "for": string;
@@ -329,6 +357,10 @@ export namespace Components {
           * Hides the popover menu and restores focus to the previously focused element.
          */
         "hide": () => Promise<void>;
+        /**
+          * An accessible name for the menu.
+         */
+        "label": string;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
@@ -352,6 +384,48 @@ export namespace Components {
          */
         "for": string;
     }
+    interface PostPagination {
+        /**
+          * The total number of items in the collection.
+         */
+        "collectionSize": number;
+        /**
+          * If true, the pagination is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Accessible label for the pagination navigation.
+         */
+        "label": string;
+        /**
+          * Prefix text for the first page label.
+         */
+        "labelFirst": string;
+        /**
+          * Prefix text for the last page label.
+         */
+        "labelLast": string;
+        /**
+          * Accessible label for the next page button.
+         */
+        "labelNext": string;
+        /**
+          * Prefix text for page number labels.
+         */
+        "labelPage": string;
+        /**
+          * Accessible label for the previous page button.
+         */
+        "labelPrevious": string;
+        /**
+          * The current active page number.  **If not specified, defaults to the first page.**
+         */
+        "page"?: number;
+        /**
+          * The number of items per page.
+         */
+        "pageSize": number;
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -373,15 +447,21 @@ export namespace Components {
         "placement"?: Placement;
         /**
           * Programmatically display the popover
-          * @param target An element with [data-popover-target="id"] where the popover should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popover display
-          * @param target An element with [data-popover-target="id"] where the popover should be anchored to
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
+    interface PostPopoverTrigger {
+        /**
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
+         */
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
@@ -404,11 +484,6 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Whether or not the popovercontainer should close when user clicks outside of it
-          * @default false
-         */
-        "manualClose": boolean;
-        /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
@@ -419,12 +494,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
+          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -437,7 +512,6 @@ export namespace Components {
         "currentRating": number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
         "label": string;
         /**
@@ -451,32 +525,57 @@ export namespace Components {
          */
         "stars": number;
     }
-    interface PostTabHeader {
+    interface PostStepper {
         /**
-          * The name of the panel controlled by the tab header.
+          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
          */
-        "panel": string;
-    }
-    interface PostTabPanel {
+        "activeStepLabel": string;
         /**
-          * The name of the panel, used to associate it with a tab header.
+          * "Completed step" label for accessibility
+         */
+        "completedLabel": string;
+        /**
+          * Defines the currently active step
+          * @default -1
+         */
+        "currentIndex": number;
+        /**
+          * "Current step" label for accessibility
+         */
+        "currentLabel": string;
+    }
+    interface PostStepperItem {
+    }
+    interface PostTabItem {
+        /**
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth": boolean;
         /**
+          * The accessible label for the tabs component in navigation mode.
+         */
+        "label"?: string;
+        /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
-        "show": (panelName: string) => Promise<void>;
+        "show": (tabName: string) => Promise<void>;
     }
     interface PostTogglebutton {
         /**
@@ -545,9 +644,9 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
+export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostLanguageOptionElement;
+    target: HTMLPostLanguageMenuItemElement;
 }
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -556,6 +655,10 @@ export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
 export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMenuElement;
+}
+export interface PostPaginationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostPaginationElement;
 }
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -673,6 +776,12 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
+    interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
+    }
+    var HTMLPostEnvTestElement: {
+        prototype: HTMLPostEnvTestElement;
+        new (): HTMLPostEnvTestElement;
+    };
     interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
     }
     var HTMLPostFooterElement: {
@@ -694,29 +803,29 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
-    interface HTMLPostLanguageOptionElementEventMap {
-        "postChange": string;
-        "postLanguageOptionInitiallyActive": string;
+    interface HTMLPostLanguageMenuElement extends Components.PostLanguageMenu, HTMLStencilElement {
     }
-    interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    var HTMLPostLanguageMenuElement: {
+        prototype: HTMLPostLanguageMenuElement;
+        new (): HTMLPostLanguageMenuElement;
+    };
+    interface HTMLPostLanguageMenuItemElementEventMap {
+        "postChange": string;
+        "postLanguageMenuItemInitiallyActive": string;
+    }
+    interface HTMLPostLanguageMenuItemElement extends Components.PostLanguageMenuItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageMenuItemElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuItemElement, ev: PostLanguageMenuItemCustomEvent<HTMLPostLanguageMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageMenuItemElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuItemElement, ev: PostLanguageMenuItemCustomEvent<HTMLPostLanguageMenuItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPostLanguageOptionElement: {
-        prototype: HTMLPostLanguageOptionElement;
-        new (): HTMLPostLanguageOptionElement;
-    };
-    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
-    }
-    var HTMLPostLanguageSwitchElement: {
-        prototype: HTMLPostLanguageSwitchElement;
-        new (): HTMLPostLanguageSwitchElement;
+    var HTMLPostLanguageMenuItemElement: {
+        prototype: HTMLPostLanguageMenuItemElement;
+        new (): HTMLPostLanguageMenuItemElement;
     };
     interface HTMLPostLinkareaElement extends Components.PostLinkarea, HTMLStencilElement {
     }
@@ -800,14 +909,41 @@ declare global {
         prototype: HTMLPostMenuTriggerElement;
         new (): HTMLPostMenuTriggerElement;
     };
+    interface HTMLPostPaginationElementEventMap {
+        "postChange": number;
+    }
+    interface HTMLPostPaginationElement extends Components.PostPagination, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostPaginationElementEventMap>(type: K, listener: (this: HTMLPostPaginationElement, ev: PostPaginationCustomEvent<HTMLPostPaginationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostPaginationElementEventMap>(type: K, listener: (this: HTMLPostPaginationElement, ev: PostPaginationCustomEvent<HTMLPostPaginationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostPaginationElement: {
+        prototype: HTMLPostPaginationElement;
+        new (): HTMLPostPaginationElement;
+    };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
     var HTMLPostPopoverElement: {
         prototype: HTMLPostPopoverElement;
         new (): HTMLPostPopoverElement;
     };
+    interface HTMLPostPopoverTriggerElement extends Components.PostPopoverTrigger, HTMLStencilElement {
+    }
+    var HTMLPostPopoverTriggerElement: {
+        prototype: HTMLPostPopoverTriggerElement;
+        new (): HTMLPostPopoverTriggerElement;
+    };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postToggle": boolean;
+        "postBeforeShow": { first?: boolean };
+        "postShow": { first?: boolean };
+        "postHide": any;
+        "postBeforeToggle": { willOpen: boolean };
+        "postToggle": { isOpen: boolean };
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -841,11 +977,23 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
-    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    interface HTMLPostStepperElement extends Components.PostStepper, HTMLStencilElement {
     }
-    var HTMLPostTabHeaderElement: {
-        prototype: HTMLPostTabHeaderElement;
-        new (): HTMLPostTabHeaderElement;
+    var HTMLPostStepperElement: {
+        prototype: HTMLPostStepperElement;
+        new (): HTMLPostStepperElement;
+    };
+    interface HTMLPostStepperItemElement extends Components.PostStepperItem, HTMLStencilElement {
+    }
+    var HTMLPostStepperItemElement: {
+        prototype: HTMLPostStepperItemElement;
+        new (): HTMLPostStepperItemElement;
+    };
+    interface HTMLPostTabItemElement extends Components.PostTabItem, HTMLStencilElement {
+    }
+    var HTMLPostTabItemElement: {
+        prototype: HTMLPostTabItemElement;
+        new (): HTMLPostTabItemElement;
     };
     interface HTMLPostTabPanelElement extends Components.PostTabPanel, HTMLStencilElement {
     }
@@ -900,11 +1048,12 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-env-test": HTMLPostEnvTestElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
-        "post-language-option": HTMLPostLanguageOptionElement;
-        "post-language-switch": HTMLPostLanguageSwitchElement;
+        "post-language-menu": HTMLPostLanguageMenuElement;
+        "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
@@ -915,10 +1064,14 @@ declare global {
         "post-menu": HTMLPostMenuElement;
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
+        "post-pagination": HTMLPostPaginationElement;
         "post-popover": HTMLPostPopoverElement;
+        "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
-        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-stepper": HTMLPostStepperElement;
+        "post-stepper-item": HTMLPostStepperItemElement;
+        "post-tab-item": HTMLPostTabItemElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
@@ -952,6 +1105,10 @@ declare namespace LocalJSX {
     }
     interface PostAvatar {
         /**
+          * Provides a custom description for the avatar, used for accessibility purposes.
+         */
+        "description"?: string;
+        /**
           * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
@@ -964,7 +1121,7 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
          */
         "userid"?: string;
     }
@@ -975,15 +1132,6 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PostBanner {
-        /**
-          * The label to use for the close button of a dismissible banner.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
-          * @default false
-         */
-        "dismissible"?: boolean;
         /**
           * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
          */
@@ -1003,13 +1151,20 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
-          * @default 'Home'
          */
-        "homeText"?: string;
+        "homeText": string;
         /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
+        /**
+          * The accessible label for the breadcrumb component.
+         */
+        "label": string;
+        /**
+          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+         */
+        "menuLabel": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1030,7 +1185,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <post-banner data-size="sm"><p>If not set the icon will not show up.</p></post-banner>
          */
         "icon"?: string;
         /**
@@ -1038,11 +1193,11 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</p></post-banner> <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "name"?: string;
         /**
-          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="banner banner-sm banner-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <post-banner data-size="sm"><p>If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</p></post-banner>
          */
         "onPostChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
@@ -1058,11 +1213,16 @@ declare namespace LocalJSX {
          */
         "validity"?: boolean;
         /**
-          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
          */
         "value"?: string;
     }
     interface PostClosebutton {
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default 'button'
+         */
+        "buttonType"?: ButtonType;
     }
     interface PostCollapsible {
         /**
@@ -1071,7 +1231,7 @@ declare namespace LocalJSX {
          */
         "collapsed"?: boolean;
         /**
-          * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
+          * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible is expanded, `false` if it is collapsed.
          */
         "onPostToggle"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
     }
@@ -1080,6 +1240,8 @@ declare namespace LocalJSX {
           * Link the trigger to a post-collapsible with this id
          */
         "for": string;
+    }
+    interface PostEnvTest {
     }
     interface PostFooter {
         /**
@@ -1124,7 +1286,22 @@ declare namespace LocalJSX {
          */
         "scale"?: number;
     }
-    interface PostLanguageOption {
+    interface PostLanguageMenu {
+        /**
+          * A title for the list of language options
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description": string;
+        /**
+          * Whether the component is rendered as a list or a menu
+          * @default 'list'
+         */
+        "variant"?: SwitchVariant;
+    }
+    interface PostLanguageMenuItem {
         /**
           * If set to `true`, the language option is considered the current language for the page.
          */
@@ -1140,32 +1317,17 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
          */
-        "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        "onPostChange"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
         /**
           * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
          */
-        "onPostLanguageOptionInitiallyActive"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        "onPostLanguageMenuItemInitiallyActive"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
         /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
         /**
-          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
-         */
-        "variant"?: SwitchVariant;
-    }
-    interface PostLanguageSwitch {
-        /**
-          * A title for the list of language options
-         */
-        "caption": string;
-        /**
-          * A descriptive text for the list of language options
-         */
-        "description": string;
-        /**
-          * Whether the component is rendered as a list or a menu
-          * @default 'list'
+          * To communicate the variant prop from the parent (post-language-menu) component to the child (post-language-menu-item) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant;
     }
@@ -1192,8 +1354,20 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMainnavigation {
+        /**
+          * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
+         */
+        "caption": string;
     }
     interface PostMegadropdown {
+        /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "labelBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "labelClose": string;
         /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
@@ -1201,11 +1375,20 @@ declare namespace LocalJSX {
     }
     interface PostMegadropdownTrigger {
         /**
+          * Sets the trigger state to be active or inactive.
+          * @default false
+         */
+        "active"?: boolean;
+        /**
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
         "for": string;
     }
     interface PostMenu {
+        /**
+          * An accessible name for the menu.
+         */
+        "label": string;
         /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
@@ -1224,6 +1407,52 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostPagination {
+        /**
+          * The total number of items in the collection.
+         */
+        "collectionSize": number;
+        /**
+          * If true, the pagination is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Accessible label for the pagination navigation.
+         */
+        "label": string;
+        /**
+          * Prefix text for the first page label.
+         */
+        "labelFirst": string;
+        /**
+          * Prefix text for the last page label.
+         */
+        "labelLast": string;
+        /**
+          * Accessible label for the next page button.
+         */
+        "labelNext": string;
+        /**
+          * Prefix text for page number labels.
+         */
+        "labelPage": string;
+        /**
+          * Accessible label for the previous page button.
+         */
+        "labelPrevious": string;
+        /**
+          * Event emitted when the page changes.
+         */
+        "onPostChange"?: (event: PostPaginationCustomEvent<number>) => void;
+        /**
+          * The current active page number.  **If not specified, defaults to the first page.**
+         */
+        "page"?: number;
+        /**
+          * The number of items per page.
+         */
+        "pageSize": number;
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -1239,6 +1468,12 @@ declare namespace LocalJSX {
           * @default 'top'
          */
         "placement"?: Placement;
+    }
+    interface PostPopoverTrigger {
+        /**
+          * ID of the popover element that this trigger is linked to. Used to open and close the popover.
+         */
+        "for"?: string;
     }
     interface PostPopovercontainer {
         /**
@@ -1257,14 +1492,25 @@ declare namespace LocalJSX {
          */
         "edgeGap"?: number;
         /**
-          * Whether or not the popovercontainer should close when user clicks outside of it
-          * @default false
+          * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
-        "manualClose"?: boolean;
+        "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
+          * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
          */
-        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
+        "onPostBeforeToggle"?: (event: PostPopovercontainerCustomEvent<{ willOpen: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer is hidden.
+         */
+        "onPostHide"?: (event: PostPopovercontainerCustomEvent<any>) => void;
+        /**
+          * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+         */
+        "onPostShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
+        /**
+          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
+         */
+        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean }>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
@@ -1283,9 +1529,8 @@ declare namespace LocalJSX {
         "currentRating"?: number;
         /**
           * Defines a hidden label for the component.
-          * @default 'Rating'
          */
-        "label"?: string;
+        "label": string;
         /**
           * An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */
@@ -1305,30 +1550,55 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
-    interface PostTabHeader {
+    interface PostStepper {
         /**
-          * The name of the panel controlled by the tab header.
+          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
          */
-        "panel": string;
-    }
-    interface PostTabPanel {
+        "activeStepLabel": string;
         /**
-          * The name of the panel, used to associate it with a tab header.
+          * "Completed step" label for accessibility
+         */
+        "completedLabel": string;
+        /**
+          * Defines the currently active step
+          * @default -1
+         */
+        "currentIndex"?: number;
+        /**
+          * "Current step" label for accessibility
+         */
+        "currentLabel": string;
+    }
+    interface PostStepperItem {
+    }
+    interface PostTabItem {
+        /**
+          * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
     }
+    interface PostTabPanel {
+        /**
+          * The name of the tab that this panel is associated with.
+         */
+        "for": string;
+    }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
-        "activePanel"?: HTMLPostTabPanelElement['name'];
+        "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
           * @default false
          */
         "fullWidth"?: boolean;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
+          * The accessible label for the tabs component in navigation mode.
+         */
+        "label"?: string;
+        /**
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
@@ -1383,11 +1653,12 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-env-test": PostEnvTest;
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
-        "post-language-option": PostLanguageOption;
-        "post-language-switch": PostLanguageSwitch;
+        "post-language-menu": PostLanguageMenu;
+        "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
         "post-list": PostList;
         "post-list-item": PostListItem;
@@ -1398,10 +1669,14 @@ declare namespace LocalJSX {
         "post-menu": PostMenu;
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
+        "post-pagination": PostPagination;
         "post-popover": PostPopover;
+        "post-popover-trigger": PostPopoverTrigger;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
-        "post-tab-header": PostTabHeader;
+        "post-stepper": PostStepper;
+        "post-stepper-item": PostStepperItem;
+        "post-tab-item": PostTabItem;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-togglebutton": PostTogglebutton;
@@ -1427,14 +1702,15 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
-            "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
-            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
+            "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
+            "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
@@ -1445,10 +1721,14 @@ declare module "@stencil/core" {
             "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
+            "post-pagination": LocalJSX.PostPagination & JSXBase.HTMLAttributes<HTMLPostPaginationElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
+            "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
-            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-stepper": LocalJSX.PostStepper & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
+            "post-stepper-item": LocalJSX.PostStepperItem & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
+            "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;

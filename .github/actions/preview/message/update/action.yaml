@@ -15,7 +15,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+    - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
       env:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         PREVIEW_URL: ${{ inputs.preview-url }}
@@ -46,7 +46,9 @@ runs:
             });
 
             if (issue?.data?.title.includes(iconsUpdateTitle)) {
-              updates.push(`- ${PREVIEW_URL}?path=/docs/health-icons--docs\n`)
+              const iconHealthURL = URL.parse(PREVIEW_URL)
+              iconHealthURL.searchParams.set('path', '/docs/health-icons--docs')
+              updates.push(`- ${iconHealthURL.toString()}\n`)
             }
 
             await github.rest.issues.updateComment({

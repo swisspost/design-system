@@ -3,53 +3,60 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
     const selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
 
     beforeEach(() => {
-      // There is no dedicated docs page for the popovercontainer
       cy.visit('./cypress/fixtures/post-popover.test.html');
-      cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
-      cy.get('#testtext').as('container');
+
+      // Ensure the component is hydrated, which is necessary to ensure the component is ready for interaction
+      cy.get('post-popover[data-hydrated]').as('popover');
+
+      // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
+      cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+        .children()
+        .first()
+        .as('trigger');
+
+      cy.get('#testtext').as('content');
     });
 
     it('should show up on click', () => {
-      cy.get('@container').should('not.be.visible');
+      cy.get('@content').should('not.be.visible');
       cy.get(selector).should('not.exist');
       cy.get('@trigger').click();
-      cy.get('@container').should('be.visible');
+      cy.get('@content').should('be.visible');
       cy.get(selector).should('exist');
       // Light dismiss does not work with cypress triggers
-      cy.get('.btn-close').click();
-      cy.get('@container').should('not.be.visible');
+      cy.get('post-closebutton').first().click();
+      cy.get('@content').should('not.be.visible');
       cy.get(selector).should('not.exist');
     });
 
     it('should listen to API calls', () => {
-      cy.get('@container').should('not.be.visible');
       cy.get(selector).should('not.exist');
-      Promise.all([cy.get('@trigger'), cy.get('@container')])
+      Promise.all([cy.get('@trigger'), cy.get('@popover')])
         .then(
-          ([$trigger, $container]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
+          ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
             $trigger.get(0),
-            $container.get(0),
+            $popover.get(0),
           ],
         )
-        .then(async ([trigger, container]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
-          await container.show(trigger);
-          cy.get('@container').should('be.visible');
+        .then(async ([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
+          await popover.show(trigger);
+          cy.get('@content').should('be.visible');
           cy.get(selector).should('exist');
-          await container.hide();
-          cy.get('@container').should('not.be.visible');
+          await popover.hide();
+          cy.get('@content').should('not.be.visible');
           cy.get(selector).should('not.exist');
-          await container.toggle(trigger);
-          cy.get('@container').should('be.visible');
+          await popover.toggle(trigger);
+          cy.get('@content').should('be.visible');
           cy.get(selector).should('exist');
-          await container.toggle(trigger);
-          cy.get('@container').should('not.be.visible');
+          await popover.toggle(trigger);
+          cy.get('@content').should('not.be.visible');
           cy.get(selector).should('not.exist');
         });
     });
   });
 });
 
-function isPopoverSupported() {
+export function isPopoverSupported() {
   return (
     typeof HTMLElement !== 'undefined' &&
     typeof HTMLElement.prototype === 'object' &&

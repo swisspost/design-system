@@ -1,15 +1,13 @@
 # post-header
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Methods
 
-### `toggleMobileMenu(force?: boolean) => Promise<void>`
+### `toggleBurgerMenu(force?: boolean) => Promise<void>`
 
-Toggles the mobile navigation.
+Toggles the burger navigation menu.
 
 #### Parameters
 
@@ -28,13 +26,15 @@ Type: `Promise<void>`
 
 | Slot                     | Description                                                                   |
 | ------------------------ | ----------------------------------------------------------------------------- |
-| `"default"`              | Custom controls or content, right aligned in the local header.                |
-| `"meta-navigation"`      | Holds an `<ul>` with meta navigation links.                                   |
-| `"post-language-switch"` | Should be used with the `<post-language-switch>` component.                   |
+| `"audience"`             | Holds the list of buttons to choose the target group.                         |
+| `"global-nav-primary"`   | Holds search button in the global header.                                     |
+| `"global-nav-secondary"` | Holds an `<ul>` with meta navigation links.                                   |
+| `"language-menu"`        | Should be used with the `<post-language-switch>` component.                   |
+| `"local-nav"`            | Holds controls specific to the current application.                           |
+| `"main-nav"`             | Has a default slot because it's only meant to be used in the `<post-header>`. |
+| `"post-login"`           | Holds the user menu or login button in the global header.                     |
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
-| `"post-mainnavigation"`  | Has a default slot because it's only meant to be used in the `<post-header>`. |
-| `"post-togglebutton"`    | Holds the mobile menu toggler.                                                |
-| `"target-group"`         | Holds the list of buttons to choose the target group.                         |
+| `"post-togglebutton"`    | Holds the burger menu toggler.                                                |
 | `"title"`                | Holds the application title.                                                  |
 
 

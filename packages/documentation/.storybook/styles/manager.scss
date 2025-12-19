@@ -127,8 +127,8 @@
   [data-item-id^='health'],
   :is(#raw-components, [data-parent-id='raw-components']):where([data-env='production'] *),
   :is(#accessibility-practices, [data-parent-id='accessibility-practices']):where(
-      [data-env='production'] *
-    ) {
+    [data-env='production'] *
+  ) {
     display: none;
   }
 
@@ -143,7 +143,7 @@
 }
 
 // Hide default SVG icons
-[data-env="development"] #storybook-explorer-tree .sidebar-item > a > div > svg {
+#storybook-explorer-tree .sidebar-item > a > div > svg {
   display: none;
 }
 

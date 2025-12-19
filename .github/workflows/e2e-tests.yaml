@@ -5,6 +5,7 @@ on:
       - 'packages/documentation/**'
       - 'packages/styles/**'
       - 'packages/components/**'
+      - 'packages/components-angular/**'
       - 'packages/internet-header/**'
       - 'packages/icons/**'
       - 'packages/tokens/tokensstudio-generated/tokens.json'
@@ -19,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           fetch-depth: 0
 
@@ -29,7 +30,7 @@ jobs:
           use_cache: false
 
       - name: Cache cypress
-        uses: actions/cache@640a1c2554105b57832a23eea0b4672fc7a790d5
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}

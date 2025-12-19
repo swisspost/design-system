@@ -1,5 +1,96 @@
 # @swisspost/design-system-components-angular
 
+## 10.0.0-next.55
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.55
+
+## 10.0.0-next.54
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.54
+
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.53
+
+## 10.0.0-next.52
+
+### Patch Changes
+
+- Fixed an issue with dependency managemant around @stencil/core. This package no longer has to be installed as a dependency by projects using the Design System Components or Components Angular packages as it's now declared a dependency of the components package (was a devDependency before). (by [@gfellerph](https://github.com/gfellerph) with [#6554](https://github.com/swisspost/design-system/pull/6554))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.52
+
+## 10.0.0-next.51
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.51
+
+## 10.0.0-next.50
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.50
+
+## 10.0.0-next.49
+
+### Major Changes
+
+- Updated Angular components to output as standalone components to align with Angular 20's default approach where components are standalone by default, eliminating the need to declare them within NgModules. Developers using our components should replace `PostComponentsModule` imports with `providePostComponents()` in their app providers and import individual components (e.g., `import { PostIcon, PostButton } from '@swisspost/design-system-components-angular'`) for standalone use.  
+  BEFORE:
+
+  ```typescript
+  // app.module.ts
+  @NgModule({
+    imports: [
+      PostComponentsModule,
+    ],
+  })
+  ```
+
+  AFTER:
+
+  ````typescript
+  //app.module.ts
+  @NgModule({
+    providers: [
+      providePostComponents(),
+    ],
+  })
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5968](https://github.com/swisspost/design-system/pull/5968))
+  ````
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.49
+
+## 10.0.0-next.48
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.48
+
+## 10.0.0-next.47
+
+### Patch Changes
+
+- Updated peer dependencies `@angular/core`, `@angular/common` and `@angular/forms` of the package. (by [@myrta2302](https://github.com/myrta2302) with [#5836](https://github.com/swisspost/design-system/pull/5836))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.47
+
 ## 10.0.0-next.46
 
 ### Major Changes
@@ -445,7 +536,6 @@
 ### Major Changes
 
 - Synchronized the versions of the following packages:
-
   - @swisspost/design-system-styles
   - @swisspost/design-system-components
   - @swisspost/design-system-components-react
@@ -489,7 +579,6 @@
 ### Major Changes
 
 - We are introducing the new package `@swisspost/design-system-components-angular` 🥳, which provides a corresponding Angular component for all our web-components. For those working on an Angular app this means:
-
   - Instead of the package `@swisspost/design-system-components`, which provides native web components, the new package can be used.
   - The manual creation of Angular wrapper components for our previous web components in every project is no longer necessary.
   - Full support of the standard Angular schema. The use of the `CUSTOM_ELEMENTS_SCHEMA` schema is history.

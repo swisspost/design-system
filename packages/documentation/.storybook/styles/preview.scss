@@ -10,20 +10,17 @@
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
 
-tokens.$default-map: utilities.$post-color;
+tokens.$default-map: utilities.$post-spacing;
 
 $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 // Mixin for toolbar button icons
-@mixin toolbar-icon($icon-name) {
-  @include post.post-icon($name: $icon-name, $base: '/post-icons');
-  content: '';
-  margin-right: 0.5rem;
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+$toolbar-icons: (
+  '.docblock-code-toggle': 'chevrondown',
+  '.docblock-code-toggle + button': 'resizeexpand',
+  '.docblock-code-toggle + button + button': 'link',
+  '.docblock-code-toggle + button + button + button': 'code',
+);
 
 #storybook-root,
 #storybook-docs {
@@ -108,7 +105,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
+    gap: tokens.get('utility-gap-8');
   }
 
   // aligns figma button to the title
@@ -123,7 +120,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   }
 
   .docs-title {
-    margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
+    margin-bottom: tokens.get('utility-gap-8');
 
     :first-child {
       margin-right: auto;
@@ -136,12 +133,16 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   }
 
   pre {
-    font-size: 100%;
+    font-size: 0.875rem;
 
     .token.comment,
     .token.doctype {
       color: #888;
     }
+  }
+
+  small {
+    font-size: 90%;
   }
 
   code {
@@ -154,7 +155,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     border: 1px solid rgba(#000, 0.3);
     border-radius: 0.2em;
     font-family: $monospace;
-    font-size: 0.75em;
+    font-size: 0.975em;
     white-space: nowrap;
     line-height: 1;
 
@@ -195,15 +196,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   }
 
   .docs-story {
-    padding: 1rem;
-    padding-block-end: 2rem;
-
     [scale] {
       transform: none;
-    }
-
-    > :first-child {
-      padding: 0;
     }
 
     > :last-child {
@@ -215,20 +209,41 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
       button {
         &:hover {
-          background-color: rgba(0, 115, 188, 0.08);
+          background-color: post.$white;
         }
 
         &:nth-of-type(2) {
           border-top-left-radius: 4px;
         }
+
+        font-size: 0.875rem;
       }
     }
   }
 
+  .docblock-argstable-head tr th span {
+    font-size: 0.875rem !important;
+  }
+
   .docblock-argstable-body td a,
-  // targets only the visible buttons
+    // targets only the visible buttons
   .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
     color: #0073bc;
+    font-size: 0.875rem;
+  }
+
+  .docblock-argstable-body tr td textarea,
+  .docblock-argstable-body tr td select {
+    font-size: 0.875rem;
+  }
+
+  .docblock-argstable-body tr td button {
+    font-size: 0.8125rem;
+  }
+
+  .docblock-argstable-body tr td span,
+  .docblock-argstable-body tr td p {
+    font-size: 0.9375rem;
   }
 
   @include media.max(sm) {
@@ -237,34 +252,32 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  @each $selector, $icon-name in $toolbar-icons {
+    #{$selector} {
+      @include media.min(md) {
+        &::before {
+          content: '';
+          margin-right: 0.5rem;
+          width: 1em;
+          height: 1em;
+          @include post.mask-image($icon-name);
+        }
+      }
+    }
+  }
+
   .docblock-code-toggle {
     margin-right: auto;
     border-radius: 0 4px 0 0;
+    font-size: 0.875rem;
 
     @include media.min(md) {
       &::before {
-        @include toolbar-icon('2052');
         transition: all 0.3s ease;
       }
 
       &--expanded::before {
         transform: rotate(180deg);
-      }
-    }
-  }
-
-  .docblock-code-toggle + button {
-    @include media.min(md) {
-      &::before {
-        @include toolbar-icon('resizeexpand');
-      }
-
-      + button::before {
-        @include toolbar-icon('link');
-      }
-
-      + button + button::before {
-        @include toolbar-icon('code');
       }
     }
   }
@@ -322,6 +335,11 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
         color: inherit;
       }
     }
+  }
+
+  // targets the Copy button
+  .docs-story + div button {
+    font-size: 0.875rem;
   }
 
   &[data-color-scheme='light'] {

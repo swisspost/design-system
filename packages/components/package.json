@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "10.0.0-next.46",
+  "version": "10.0.0-next.55",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -19,7 +19,6 @@
   },
   "files": [
     "dist/",
-    "loader/",
     "hydrate/"
   ],
   "type": "module",
@@ -34,19 +33,30 @@
     "./post-components.css": "./dist/post-components/post-components.css",
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/post-components/post-components.esm.js",
+      "import": "./dist/esm/post-components.js",
       "require": "./dist/cjs/post-components.cjs.js"
     },
     "./dist/*": {
       "default": "./dist/*"
     },
+    "./loader": {
+      "types": "./dist/loader/index.d.ts",
+      "import": "./dist/loader/index.js",
+      "require": "./dist/loader/index.cjs.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "default": "./dist/components/index.js"
+    },
     "./components/*": {
       "default": "./dist/components/*"
     },
-    "./loader": {
-      "types": "./loader/index.d.ts",
-      "import": "./loader/index.js",
-      "require": "./loader/index.cjs.js"
+    "./react": {
+      "types": "./dist/components/react/index.d.ts",
+      "default": "./dist/components/react/index.js"
+    },
+    "./react/*": {
+      "default": "./dist/components/react/*"
     },
     "./hydrate": {
       "types": "./hydrate/index.d.ts",
@@ -60,8 +70,8 @@
     "start": "pnpm prebuild:script && stencil build --dev --watch --docs --docs-readme",
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
-    "postbuild": "pnpm fix:export:components-react & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
-    "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
+    "postbuild": "pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
+    "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "unit:updatesnapshot": "stencil test --spec --updateSnapshot",
@@ -72,32 +82,31 @@
     "lint:fix": "eslint --fix",
     "generate": "stencil generate",
     "prebuild:script": "node --loader ts-node/esm prebuild.ts",
-    "fix:export:components-react": "replace './components.server' './components.server.js' ../components-react/src/stencil-generated/server/components.ts",
+    "copy:component-names": "copyfiles -f src/_generated/component-names.json dist/",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.7.3",
+    "@floating-ui/dom": "1.7.4",
     "@oddbird/popover-polyfill": "0.6.0",
-    "@swisspost/design-system-icons": "workspace:10.0.0-next.46",
-    "@swisspost/design-system-styles": "workspace:10.0.0-next.46",
+    "@stencil/core": "4.35.0",
+    "@swisspost/design-system-icons": "workspace:10.0.0-next.55",
+    "@swisspost/design-system-styles": "workspace:10.0.0-next.55",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0",
-    "nanoid": "5.1.5"
+    "nanoid": "5.1.6"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
-    "@percy/cli": "1.30.6",
+    "@percy/cli": "1.31.4",
     "@percy/cypress": "3.1.6",
     "@stencil-community/eslint-plugin": "0.10.0",
-    "@stencil/angular-output-target": "0.10.2",
-    "@stencil/core": "4.35.0",
-    "@stencil/react-output-target": "=0.8.2",
+    "@stencil/angular-output-target": "1.1.1",
+    "@stencil/react-output-target": "1.2.0",
     "@stencil/sass": "3.0.12",
-    "@swisspost/design-system-eslint": "workspace:1.0.1-next.0",
+    "@swisspost/design-system-eslint": "workspace:10.0.0-next.55",
     "@types/jest": "29.5.14",
-    "@types/mock-fs": "4.13.4",
     "@types/node": "22.10.5",
     "@typescript-eslint/parser": "7.18.0",
     "copyfiles": "2.4.1",
@@ -108,7 +117,8 @@
     "eslint-plugin-cypress": "4.2.0",
     "eslint-plugin-react": "7.37.5",
     "globals": "16.0.0",
-    "mock-fs": "5.5.0",
+    "memfs": "4.51.0",
+    "prettier": "3.6.2",
     "replace": "1.2.2",
     "rimraf": "6.0.1",
     "rollup-plugin-postcss": "4.0.2",

@@ -1,14 +1,18 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as checkboxStories from './checkbox.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as checkboxStories from './checkbox.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={checkboxStories} />
 
 <div className="docs-title">
   # Checkbox
 
-  <link-design of={JSON.stringify(checkboxStories)}></link-design>
+<link-design of={JSON.stringify(checkboxStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Create consistent cross-browser and cross-device checkboxes with our completely custom checks
@@ -51,13 +55,12 @@ The indeterminate state can only be set via JavaScript and is styled using the `
 
 To show a checkbox group, just wrap your checkboxes in a `fieldset`.
 
-<div className="banner banner-info banner-md">
+<post-banner>
   Don't forget to add also a `<legend>` element.
   You can visually hide the legend using the `.visually-hidden` class if necessary.
 
 Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs).
-
-</div>
+</post-banner>
 
 <Canvas of={checkboxStories.Grouped} />
 
@@ -65,12 +68,11 @@ Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe
 
 To show the checkboxes inline, just add the `.form-check-inline` class to each of the checkboxes.
 
-<div className="banner banner-info banner-md">
+<post-banner>
   Don't forget to wrap your checkbox group in a <code>&lt;fieldset&gt;</code> that includes a <code>&lt;legend&gt;</code> element.
   You can then visually hide the legend using the `.visually-hidden` class.
 
 Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs).
-
-</div>
+</post-banner>
 
 <Canvas of={checkboxStories.Inline} />

@@ -26,7 +26,7 @@ export class MigrationV45Component extends LitElement {
           tabindex="-1"
           href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v4-to-v5"
         >
-          <post-icon name="2037"></post-icon>
+          <post-icon name="link"></post-icon>
         </a>
       </h2>
       <section>
@@ -159,17 +159,34 @@ export class MigrationV45Component extends LitElement {
   private _templateBootstrapInstructions() {
     return html`
       <div>
-        Update Bootstrap to version 5.1.x${this.angular ? html` and ng-bootstrap to version 12.x.x` : nothing}:
+        Update Bootstrap to version
+        5.1.x${this.angular ? html` and ng-bootstrap to version 12.x.x` : nothing}:
         <code languages="['bash']">
-          npm install bootstrap@5.1 ${this.angular ? html` @ng-bootstrap/ng-bootstrap@12 ` : nothing}
+          npm install bootstrap@5.1
+          ${this.angular ? html` @ng-bootstrap/ng-bootstrap@12 ` : nothing}
         </code>
       </div>
 
       <div class="mt-2">
-        See the <a href="https://getbootstrap.com/docs/5.1/migration" target="_blank" rel="noopener noreferrer">Bootstrap 5.1.x migration guide</a>
-        ${this.angular ? html`
-          and <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07" target="_blank" rel="noopener noreferrer">ng-bootstrap 12.x.x changelog</a>
-        ` : nothing} for more details.
+        See the
+        <a
+          href="https://getbootstrap.com/docs/5.1/migration"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Bootstrap 5.1.x migration guide</a
+        >
+        ${this.angular
+          ? html`
+              and
+              <a
+                href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
+                target="_blank"
+                rel="noopener noreferrer"
+                >ng-bootstrap 12.x.x changelog</a
+              >
+            `
+          : nothing}
+        for more details.
       </div>
     `;
   }

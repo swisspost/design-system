@@ -1,5 +1,208 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.55
+
+### Major Changes
+
+- Removed the HTML stepper component and replaced it with new `post-stepper` and `post-stepper-item` web components. (by [@leagrdv](https://github.com/leagrdv) with [#6502](https://github.com/swisspost/design-system/pull/6502))
+
+- Added the `data-type` attribute to the dialog component. The icon is now automatically selected based on this attribute and limited to the four signal types: info, success, warning, and error. (by [@alizedebray](https://github.com/alizedebray) with [#6625](https://github.com/swisspost/design-system/pull/6625))
+
+- Aligned viewport-based utility classes with named percentage sizes. (by [@hugomslv](https://github.com/hugomslv) with [#6191](https://github.com/swisspost/design-system/pull/6191))
+
+- Updated section custom properties: - Renamed `--post-section-container-content-offset` → `--post-section-content-offset`
+  - Removed `--post-section-container-width` (use `--post-container-max-width` instead)
+  - Removed `--post-section-container-padding` (use `--post-container-padding-inline` instead) (by [@alizedebray](https://github.com/alizedebray) with [#6641](https://github.com/swisspost/design-system/pull/6641))
+
+### Patch Changes
+
+- Removed the need for a palette class on the dialog component. (by [@alizedebray](https://github.com/alizedebray) with [#6625](https://github.com/swisspost/design-system/pull/6625))
+
+- Updated form select arrow's color to be visible in dark mode. (by [@leagrdv](https://github.com/leagrdv) with [#6597](https://github.com/swisspost/design-system/pull/6597))
+
+- Updated sections to ensure they function correctly when nested inside containers. (by [@alizedebray](https://github.com/alizedebray) with [#6641](https://github.com/swisspost/design-system/pull/6641))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.55
+
+## 10.0.0-next.54
+
+### Minor Changes
+
+- Updated the `post-header` to use aria-current="location" for active header links outside main navigation to improve accessibility. (by [@myrta2302](https://github.com/myrta2302) with [#6566](https://github.com/swisspost/design-system/pull/6566))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.54
+
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Added Tailwind v3 token output alongside the existing v4 format to support both Tailwind versions. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6586](https://github.com/swisspost/design-system/pull/6586))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.53
+
+## 10.0.0-next.52
+
+### Patch Changes
+
+- Replaced `Post Icons` with their corresponding `UI Icon` equivalents across the package to align icon usage with the current design guidelines. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6217](https://github.com/swisspost/design-system/pull/6217))
+
+- Fixed an issue with button styles specificity where e.g. icon buttons got overwritten by the button styles. Button styles are now delivered in the correct source order, also when selectively importing component CSS. (by [@gfellerph](https://github.com/gfellerph) with [#6553](https://github.com/swisspost/design-system/pull/6553))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.52
+
+## 10.0.0-next.51
+
+### Major Changes
+
+- The `post-icon` mixin has been renamed to `icon` and now requires icons to be preloaded using the `custom-property` mixin at the top of the file.  
+  BEFORE:
+
+  ```scss
+  .my-icon {
+    @include post.post-icon(
+      $name: 'accessibility',
+      // optional
+      $color: '#fc0',
+      $width: 1em,
+      $height: 1em
+    );
+  }
+  ```
+
+  AFTER:
+
+  ````scss
+  // Load icon(s) at the top of your file
+  // For a single icon:
+  @include post.custom-property('accessibility', './path/to/icon/folder');
+
+  // For multiple icons in the same file:
+  @include post.custom-property(('accessibility', 'arrow'), './path/to/icon/folder');
+
+  .my-icon {
+    @include post.icon(
+      $name: 'accessibility',
+      // optional
+      $color: '#fc0',
+      $width: 1em,
+      $height: 1em
+    );
+  }
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6372](https://github.com/swisspost/design-system/pull/6372))
+  ````
+
+### Patch Changes
+
+- Changed Tailwind token generation output format to meet the Tailwind v4 configuration requirements. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6474](https://github.com/swisspost/design-system/pull/6474))
+
+- Fixed header position inside the `<dialog>` element when content becomes scrollable. The header, footer and close button now remain visible while only the body scrolls. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6509](https://github.com/swisspost/design-system/pull/6509))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.51
+
+## 10.0.0-next.50
+
+### Major Changes
+
+- Removed the `.btn-close` and replaced it with the `post-closebutton` component in the dialog, toast and `post-popover` components. (by [@leagrdv](https://github.com/leagrdv) with [#6361](https://github.com/swisspost/design-system/pull/6361))
+
+### Minor Changes
+
+- Added the user menu for logged in users in the `post-header` component. (by [@leagrdv](https://github.com/leagrdv) with [#6402](https://github.com/swisspost/design-system/pull/6402))
+
+- Updated the `<post-header>` component by adding a new slot for auxiliary navigation links on the right side of the main-navigation. (by [@myrta2302](https://github.com/myrta2302) with [#6421](https://github.com/swisspost/design-system/pull/6421))
+
+### Patch Changes
+
+- Disabled automatic browser detection of the dark color scheme. (by [@leagrdv](https://github.com/leagrdv) with [#6173](https://github.com/swisspost/design-system/pull/6173))
+
+- Updated the signal icons. (by [@alizedebray](https://github.com/alizedebray) with [#6268](https://github.com/swisspost/design-system/pull/6268))
+
+- Fixed bottom margin for buttons inside `<dialog>` element when content becomes scrollable. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6414](https://github.com/swisspost/design-system/pull/6414))
+
+- Added icons to the header meta navigation links. (by [@alizedebray](https://github.com/alizedebray) with [#6413](https://github.com/swisspost/design-system/pull/6413))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.50
+
+## 10.0.0-next.49
+
+### Major Changes
+
+- Updated interactive cards to have the `.card` class directly set on the `post-linkarea` component, reducing unnecessary DOM nesting. (by [@leagrdv](https://github.com/leagrdv) with [#6367](https://github.com/swisspost/design-system/pull/6367))
+
+### Minor Changes
+
+- Added back the `.small` utility class (font-size: 80%) for backwards compatibility. (by [@hugomslv](https://github.com/hugomslv) with [#6273](https://github.com/swisspost/design-system/pull/6273))
+
+### Patch Changes
+
+- Added styles to highlight the current navigation item marked with `aria-current="page"` and its potential parent item in the header main navigation. (by [@myrta2302](https://github.com/myrta2302) with [#6216](https://github.com/swisspost/design-system/pull/6216))
+
+- Fixed icon loading by replacing CDN-based icon URLs with `CSS custom properties` and dynamic CSS file loading. Components using the `post-icon mixin` now reliably display icons without external dependencies. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6214](https://github.com/swisspost/design-system/pull/6214))
+
+- Updated the `toast` component icons. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6315](https://github.com/swisspost/design-system/pull/6315))
+
+- Fixed the padding on the dialog component, when no action buttons are present. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6215](https://github.com/swisspost/design-system/pull/6215))
+
+- Fixed the `post-header` component to consistently omit the title container when no title is defined across all configurations. (by [@alizedebray](https://github.com/alizedebray) with [#6244](https://github.com/swisspost/design-system/pull/6244))
+
+- Fixed dialog grid-area implementation. `.dialog-header` and `.dialog-body` do now also span over the icon and/or close-button area, if they are not present. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6215](https://github.com/swisspost/design-system/pull/6215))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.49
+
+## 10.0.0-next.48
+
+### Major Changes
+
+- Renamed the loader classes from `loader-*` to `spinner-*`. (by [@bucknatt](https://github.com/bucknatt) with [#6194](https://github.com/swisspost/design-system/pull/6194))
+
+- Changed the `fonts.scss` import location from `src/elements/body.scss` to `src/components/_index.scss`.  
+  This way, we can keep it in the bundled output files, but also allow projects who want to import only specific SASS/CSS files, to self-host their fonts and implement their own `@font-face` definitions.
+
+  Since the usage of the `body.{scss|css}` file is mandatory, this was not possible before. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6188](https://github.com/swisspost/design-system/pull/6188))
+
+### Patch Changes
+
+- Fixed file input alignment and prevented validation icon from overlapping the selector button on valid/invalid states. (by [@bucknatt](https://github.com/bucknatt) with [#6198](https://github.com/swisspost/design-system/pull/6198))
+
+## 10.0.0-next.47
+
+### Major Changes
+
+- Removed the Standard HTML Banner component (`.banner`, `.banner-*`) in favor of the `post-banner` web component.  
+  BEFORE:
+
+  ```html
+  <div role="alert" class="banner banner-success">
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </div>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-banner type="success">
+    <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
+  </post-banner>
+  ``` (by [@alizedebray](https://github.com/alizedebray) with
+  [#6078](https://github.com/swisspost/design-system/pull/6078))
+  ````
+
+- Removed classes for the card CSS component, following the removal of bootstrap:
+  - `.card-header`
+  - `.card-footer`
+  - `.card-img`
+  - `.card-img-top`
+  - `.card-img-bottom` (by [@leagrdv](https://github.com/leagrdv) with [#5966](https://github.com/swisspost/design-system/pull/5966))
+
+### Minor Changes
+
+- Internalized bootstrap visibility utilities. (by [@hugomslv](https://github.com/hugomslv) with [#6079](https://github.com/swisspost/design-system/pull/6079))
+
+- Added the `.z-header`, `.z-spinner`, `.z-toast` and `.z-fixed` z-index utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#6012](https://github.com/swisspost/design-system/pull/6012))
+
 ## 10.0.0-next.46
 
 ### Major Changes
@@ -52,7 +255,6 @@
   ```
 
   Also renamed the following CSS custom properties:
-
   - `--post-current-palette-fg` → `--post-current-fg`
   - `--post-current-palette-bg` → `--post-current-bg` (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
 
@@ -61,7 +263,6 @@
 - Removed all of the overrides of SCSS variables and classes of Bootstrap. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
 
 - Removed deprecated classes and SCSS variables for the spinner:
-
   - `.loader-xs`
   - `.loader-sm`
   - `$spinner-size-xs`
@@ -547,7 +748,6 @@
 
 - Removed the `rg` and `xxl` grid breakpoints, reducing the grid to 5 breakpoints instead of the previous 7. This change affects all CSS classes tied to specific breakpoints (e.g., `col-rg-2`, `m-xxl-4`).  
   **Previous Breakpoints**:
-
   - `xs: 0px`
   - `sm: 400px`
   - `rg: 600px`
@@ -557,7 +757,6 @@
   - `xxl: 1440px`
 
   **New Breakpoints**:
-
   - `xs: 0px`
   - `sm: 600px`
   - `md: 780px`
@@ -565,7 +764,6 @@
   - `xl: 1280px`
 
   To maintain compatibility with the updated grid system, you need to update your code by replacing any `*-rg-*` classes with `*-sm-*`, and any `*-xxl-*` classes with `*-xl-*`. For example:
-
   - `col-rg-2` → `col-sm-2`
   - `m-xxl-4` → `m-xl-4` (by [@alizedebray](https://github.com/alizedebray) with [#3982](https://github.com/swisspost/design-system/pull/3982))
 
@@ -836,7 +1034,6 @@
 - Fixed missing chevron in valid and invalid select entries. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
 
 - Updated popover styles. - Removed popover `min-width` and updated `max-width`.
-
   - Simplyfied popover arrow size definition.
   - Removed `:focus` selector fom `.text-auto` utility class (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
 
@@ -863,7 +1060,6 @@
   Updated the usage of said variables in dependant packages accordingly. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
 
 - Synchronized the versions of the following packages:
-
   - @swisspost/design-system-styles
   - @swisspost/design-system-components
   - @swisspost/design-system-components-react
@@ -878,7 +1074,6 @@
 
 - Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
   Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
-
   - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
   - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
 
@@ -1127,13 +1322,11 @@
 
 - Updated alert and toast styles.  
   Deprecated classes for alerts/notifications:
-
   - alert-error becomes alert-danger
   - alert-notification becomes alert-primary
   - toast-notification becomes toast-primary (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
 
 - Stepper:
-
   - Normalize font styles and weights.
   - Position the step label under the badge on small viewport.
   - Center the step label when its is multiline.

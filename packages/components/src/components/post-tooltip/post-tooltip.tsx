@@ -85,8 +85,8 @@ export class PostTooltip {
    * Set the open state based on the toggle event.
    * @param e Popovercontainer toggle event
    */
-  private handleToggle(e: PostPopovercontainerCustomEvent<boolean>) {
-    this.open = e.detail;
+  private handleToggle(e: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) {
+    this.open = e.detail.isOpen;
   }
 
   render() {

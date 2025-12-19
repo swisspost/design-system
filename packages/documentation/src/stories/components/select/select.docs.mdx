@@ -1,14 +1,18 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as SelectStories from './select.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as SelectStories from './select.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={SelectStories} />
 
 <div className="docs-title">
   # Select
 
-  <link-design of={JSON.stringify(SelectStories)}></link-design>
+<link-design of={JSON.stringify(SelectStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Customize the native `<select>` with CSS that changes the element’s initial appearance.

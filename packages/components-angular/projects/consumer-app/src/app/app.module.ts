@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { PostComponentsModule } from '@swisspost/design-system-components-angular';
+import { providePostComponents } from '@swisspost/design-system-components-angular';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './routes/home/home.component';
 import { CardControlComponent } from './routes/card-control/card-control.component';
 
 @NgModule({
@@ -15,11 +14,10 @@ import { CardControlComponent } from './routes/card-control/card-control.compone
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    PostComponentsModule,
+    AppComponent,
     CardControlComponent,
   ],
-  declarations: [AppComponent, HomeComponent],
-  providers: [],
+  providers: [providePostComponents()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,17 +1,13 @@
 # post-alert
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                             | Type                                          | Default     |
-| -------------- | --------------- | --------------------------------------------------------------------------------------- | --------------------------------------------- | ----------- |
-| `dismissLabel` | `dismiss-label` | The label to use for the close button of a dismissible banner.                          | `string`                                      | `undefined` |
-| `dismissible`  | `dismissible`   | If `true`, a close button (×) is displayed and the banner can be dismissed by the user. | `boolean`                                     | `false`     |
-| `type`         | `type`          | The type of the banner.                                                                 | `"error" \| "info" \| "success" \| "warning"` | `'info'`    |
+| Property | Attribute | Description             | Type                                          | Default  |
+| -------- | --------- | ----------------------- | --------------------------------------------- | -------- |
+| `type`   | `type`    | The type of the banner. | `"error" \| "info" \| "success" \| "warning"` | `'info'` |
 
 
 ## Events
@@ -36,11 +32,12 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot        | Description                                                               |
-| ----------- | ------------------------------------------------------------------------- |
-| `"actions"` | Slot for placing custom actions (buttons, links, etc.) within the banner. |
-| `"default"` | Slot for placing the main content/message of the banner.                  |
-| `"heading"` | Slot for placing custom content within the banner's heading.              |
+| Slot             | Description                                                                     |
+| ---------------- | ------------------------------------------------------------------------------- |
+| `"actions"`      | Slot for placing custom actions (buttons, links, etc.) within the banner.       |
+| `"close-button"` | Slot for placing a `post-closebutton` component to make the banner dismissible. |
+| `"default"`      | Slot for placing the main content/message of the banner.                        |
+| `"heading"`      | Slot for placing custom content within the banner's heading.                    |
 
 
 ----------------------------------------------

@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   id: 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a',
   title: 'Components/Button Close',
   component: 'post-closebutton',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
     badges: [],
     design: {
@@ -17,6 +17,7 @@ const meta: MetaComponent = {
   },
   args: {
     'slots-default': 'Close button',
+    'buttonType': 'button',
   },
   argTypes: {
     'slots-default': {
@@ -34,6 +35,10 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => {
-    return html`<post-closebutton>${unsafeHTML(args['slots-default'])}</post-closebutton> `;
+    return args.buttonType !== 'button'
+      ? html`<post-closebutton button-type=${args.buttonType}
+          >${unsafeHTML(args['slots-default'])}</post-closebutton
+        > `
+      : html`<post-closebutton>${unsafeHTML(args['slots-default'])}</post-closebutton> `;
   },
 };

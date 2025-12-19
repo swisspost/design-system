@@ -1,14 +1,18 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as InputStories from './input.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as InputStories from './input.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={InputStories} />
 
 <div className="docs-title">
   # Input
 
-  <link-design of={JSON.stringify(InputStories)}></link-design>
+<link-design of={JSON.stringify(InputStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Customize the native `<input>` with CSS that changes the element’s initial appearance.
@@ -21,7 +25,7 @@ Custom input elements need only the class `.form-control` to trigger the custom 
   <Controls of={InputStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-input']} required={{ 'validation': true }} />
+<StylesPackageImport components={['form-input']} required={{ validation: true }} />
 
 ## Concrete Examples of Application
 

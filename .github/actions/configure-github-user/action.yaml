@@ -9,4 +9,3 @@ runs:
       run: |
         git config user.name "Swiss Post Bot"
         git config user.email "103635272+swisspost-bot@users.noreply.github.com"
-

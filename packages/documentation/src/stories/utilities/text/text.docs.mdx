@@ -30,11 +30,16 @@ The font sizes are responsive and will adapt with the viewport.
 
 The font sizes `.fs-1` to `.fs-5` are equivalent to ones defined for the headings elements (h1 to h5), while `.fs-6` is equivalent to the default body text.
 
-<div className="banner banner-md banner-warning">
+<post-banner type="warning" data-size="sm">
   Please be cautious when using the smallest font sizes utilities, as they might be hard to read for
   some users.
-</div>
+</post-banner>
 <Canvas of={TextStories.FontSize} sourceState="shown" />
+
+Use the `.small` utility class to reduce the font size to 80% of the parent element.
+This is useful for secondary information or less prominent text.
+
+<Canvas of={TextStories.SmallText} sourceState="shown" />
 
 ### Font Weight
 
@@ -102,3 +107,9 @@ Transform text with the following text capitalization classes: `.text-lowercase`
 Decorate text with the following text decoration classes: `text-decoration-underline`, `.text-decoration-line-through` and `.text-decoration-none`.
 
 <Canvas of={TextStories.TextDecoration} sourceState="shown" />
+
+### Text Truncation
+
+The `.text-truncate` class helps in truncating long text when it exceeds a specified width.
+
+<Canvas sourceState="shown" of={TextStories.TextTruncation} />

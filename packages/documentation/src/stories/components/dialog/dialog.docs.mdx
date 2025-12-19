@@ -1,14 +1,34 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as DialogStories from './dialog.stories';
+import meta, * as DialogStories from './dialog.stories';
 import JSFormData from './samples/js-form-data?raw';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={DialogStories} />
 
-# Dialog
+<div className="docs-title">
+  # Dialog
+
+<link-design of={JSON.stringify(DialogStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
 
 <p className="lead">Communicate crucial information and request user action.</p>
-For more information on the dialog element, please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).
+<post-banner type="info">
+  <p>
+    For more information on the dialog element, please refer to the{' '}
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <strong>MDN Web Docs: HTML &lt;dialog&gt; element</strong>
+    </a>
+    .
+  </p>
+</post-banner>
 
 <Canvas sourceState="shown" of={DialogStories.Default} />
 <div className="hide-col-default">
@@ -20,17 +40,17 @@ For more information on the dialog element, please refer to the [MDN documentati
 ## Examples
 
 ### Form dialog
+
 <Canvas sourceState="hidden" of={DialogStories.Form} />
 
 #### Using form data
 
 Register a `submit` event listener on the form. In the event handler, you have access to all the form field values inside the dialog. The dialog box closes when the form gets submitted.
 
-<Source
-  code={JSFormData}
-  language="typescript"
-/>
+<Source code={JSFormData} language="typescript" />
 
 ### Custom content dialog
+
 The dialog can also contain arbitrary content.
+
 <Canvas sourceState="hidden" of={DialogStories.Custom} />

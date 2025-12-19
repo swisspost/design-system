@@ -11,11 +11,11 @@ const meta: MetaComponent = {
   id: '09aac03d-220e-4885-8fb8-1cfa01add188',
   title: 'Components/Avatar',
   component: 'post-avatar',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?node-id=17162-9642&t=TI8Z92QcZA8yAw58-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=17-160',
     },
   },
   args: {
@@ -24,17 +24,18 @@ const meta: MetaComponent = {
     userid: '',
     email: '',
     imageSrc: '',
+    description: 'The current user is Firstname.',
   },
   argTypes: {
     'userid': {
       description: `${
         USERID_ARGTYPE?.docs ?? ''
-      }<div className="banner banner-info banner-sm">Do you need an example userid? Try it out with the username of your own post account.</div>`,
+      }<post-banner data-size="sm"><p>Do you need an example userid? Try it out with the username of your own post account.</p></post-banner>`,
     },
     'email': {
       description: `${
         EMAIL_ARGTYPE?.docs ?? ''
-      } <div className="banner banner-info banner-sm">Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</div>`,
+      } <post-banner data-size="sm"><p>Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</p></post-banner>`,
     },
     'slots-default': {
       name: 'default',
@@ -47,10 +48,14 @@ const meta: MetaComponent = {
     'imageSrc': {
       control: 'text',
       description:
-        'Define an image `src` to insert a custom image.<div className="banner banner-info banner-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
+        'Define an image `src` to insert a custom image.<post-banner data-size="sm"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</p></post-banner>',
       table: {
         category: 'Content',
       },
+    },
+    'description': {
+      control: 'text',
+      description: 'Set the text for the custom description.',
     },
   },
 };
@@ -60,18 +65,21 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => html`<post-avatar
-    firstname="${args.firstname || nothing}"
-    lastname="${args.lastname || nothing}"
-    userid="${args.userid || nothing}"
-    email="${args.email || nothing}"
-    >${args.imageSrc
-      ? html`<img
-          src="${args.imageSrc}"
-          alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
-        />`
-      : nothing}</post-avatar
-  >`,
+  render: (args: Args) => {
+    return html`<post-avatar
+      firstname="${args.firstname || nothing}"
+      lastname="${args.lastname || nothing}"
+      userid="${args.userid || nothing}"
+      email="${args.email || nothing}"
+      description="${args.description || nothing}"
+      >${args.imageSrc
+        ? html`<img
+            src="${args.imageSrc}"
+            alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
+          />`
+        : nothing}</post-avatar
+    >`;
+  },
 };
 
 export const AnchorWrapped: Story = {

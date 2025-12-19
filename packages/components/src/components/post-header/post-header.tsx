@@ -1,4 +1,4 @@
-import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch, Listen } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -9,13 +9,15 @@ import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
- * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
- * @slot post-togglebutton - Holds the mobile menu toggler.
- * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
+ * @slot global-nav-primary - Holds search button in the global header.
+ * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
+ * @slot post-togglebutton - Holds the burger menu toggler.
+ * @slot language-menu - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
- * @slot default - Custom controls or content, right aligned in the local header.
- * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
- * @slot target-group - Holds the list of buttons to choose the target group.
+ * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
+ * @slot audience - Holds the list of buttons to choose the target group.
+ * @slot post-login - Holds the user menu or login button in the global header.
+ * @slot local-nav - Holds controls specific to the current application.
  */
 
 @Component({
@@ -26,13 +28,14 @@ import { EventFrom } from '@/utils/event-from';
 export class PostHeader {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
-  private mobileMenu: HTMLElement;
-  private mobileMenuAnimation: Animation;
+  private burgerMenu: HTMLElement;
+  private burgerMenuAnimation: Animation;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+  private slottedContentObserver: MutationObserver;
 
-  private get hasMobileMenu(): boolean {
+  private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
@@ -62,17 +65,20 @@ export class PostHeader {
 
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
-  @State() mobileMenuExtended: boolean = false;
+  @State() hasLocalNav: boolean = false;
+  @State() hasTargetGroup: boolean = false;
+  @State() hasTitle: boolean = false;
+  @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
   @Watch('device')
-  @Watch('mobileMenuExtended')
+  @Watch('burgerMenuExtended')
   lockBody(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
     const scrollParent = this.scrollParent;
-    const mobileMenuExtended =
-      propName === 'mobileMenuExtended' ? newValue : this.mobileMenuExtended;
+    const burgerMenuExtended =
+      propName === 'burgerMenuExtended' ? newValue : this.burgerMenuExtended;
 
-    if (this.device !== 'desktop' && mobileMenuExtended) {
+    if (this.device !== 'desktop' && burgerMenuExtended) {
       scrollParent.setAttribute('data-post-scroll-locked', '');
       this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
@@ -87,14 +93,17 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
+    this.checkSlottedContent = this.checkSlottedContent.bind(this);
+    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
     this.device = e.detail;
     this.switchLanguageSwitchMode();
 
-    if (this.device === 'desktop' && this.mobileMenuExtended) {
-      this.closeMobileMenu();
+    if (this.device === 'desktop' && this.burgerMenuExtended) {
+      this.closeBurgerMenu();
     }
 
     if (this.device !== 'desktop') {
@@ -114,18 +123,16 @@ export class PostHeader {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-    this.host.addEventListener('click', this.handleLinkClick);
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
 
-    this.checkNavigationExistence();
-    this.switchLanguageSwitchMode();
-
     this.handleScrollParentResize();
-    this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
+    this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
   }
 
   componentWillRender() {
     this.handleScrollEvent();
+    this.handleSlottedContentChanges();
+    this.switchLanguageSwitchMode();
   }
 
   componentDidRender() {
@@ -135,6 +142,7 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+    this.host.shadowRoot.addEventListener('click', this.handleLinkClick);
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -144,10 +152,12 @@ export class PostHeader {
     window.removeEventListener('postBreakpoint:device', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
-    scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
-    this.host.removeEventListener('click', this.handleLinkClick);
+    if (this.host.shadowRoot) {
+      this.host.shadowRoot.removeEventListener('click', this.handleLinkClick);
+    }
 
     if (this.scrollParentResizeObserver) {
       this.scrollParentResizeObserver.disconnect();
@@ -157,49 +167,49 @@ export class PostHeader {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
     }
+    if (this.slottedContentObserver) {
+      this.slottedContentObserver.disconnect();
+      this.slottedContentObserver = null;
+    }
 
-    this.mobileMenuExtended = false;
+    this.burgerMenuExtended = false;
   }
 
-  private checkNavigationExistence(): void {
-    this.hasNavigation = this.host.querySelectorAll('post-mainnavigation').length > 0;
-  }
-
-  private async closeMobileMenu() {
-    this.mobileMenuAnimation.finish();
+  private async closeBurgerMenu() {
+    this.burgerMenuAnimation?.finish();
 
     const menuButton = this.getMenuButton();
     if (menuButton) {
       menuButton.toggled = false;
     }
 
-    this.mobileMenuExtended = false;
+    this.burgerMenuExtended = false;
   }
 
   /**
-   * Toggles the mobile navigation.
+   * Toggles the burger navigation menu.
    */
   @Method()
-  async toggleMobileMenu(force?: boolean) {
+  async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
-    this.mobileMenuAnimation = this.mobileMenuExtended
-      ? slideUp(this.mobileMenu)
-      : slideDown(this.mobileMenu);
+    this.burgerMenuAnimation = this.burgerMenuExtended
+      ? slideUp(this.burgerMenu)
+      : slideDown(this.burgerMenu);
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
-    menuButton.toggled = force ?? !this.mobileMenuExtended;
+    if (menuButton) menuButton.toggled = force ?? !this.burgerMenuExtended;
 
-    if (this.mobileMenuExtended) {
+    if (this.burgerMenuExtended) {
       // Wait for the close animation to finish before hiding megadropdowns
-      await this.mobileMenuAnimation.finished;
-      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+      await this.burgerMenuAnimation.finished;
+      this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
 
-      if (this.mobileMenuExtended === false) {
+      if (this.burgerMenuExtended === false) {
         this.closeAllMegadropdowns();
       }
     } else {
-      this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
+      this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
       // If opening, close any open megadropdowns immediately
       if (this.megadropdownOpen) {
         this.closeAllMegadropdowns();
@@ -208,15 +218,17 @@ export class PostHeader {
   }
 
   @EventFrom('post-megadropdown')
-  private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+  private megadropdownStateHandler(event: CustomEvent) {
+    this.megadropdownOpen = event.detail.isVisible;
+  }
 
-  // Get all the focusable elements in the post-header mobile menu
+  // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
     // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
-      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="meta-navigation"]) > li')),
+      ...Array.from(
+        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
+      ),
       ...Array.from(
         this.host.querySelectorAll(
           'nav > post-list > div > post-list-item, post-megadropdown-trigger',
@@ -224,7 +236,7 @@ export class PostHeader {
       ),
       ...Array.from(
         this.host.querySelectorAll(
-          '.list-inline[slot="meta-navigation"] > li, post-language-option',
+          '.list-inline[slot="global-nav-secondary"] > li, post-language-menu-item',
         ),
       ),
     ];
@@ -244,7 +256,7 @@ export class PostHeader {
   }
 
   private keyboardHandler(e: KeyboardEvent) {
-    if (e.key === 'Tab' && this.mobileMenuExtended) {
+    if (e.key === 'Tab' && this.burgerMenuExtended) {
       if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
         // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
         e.preventDefault();
@@ -267,7 +279,10 @@ export class PostHeader {
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
-    document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
+    document.documentElement.style.setProperty(
+      '--post-header-scroll-top',
+      `${Math.max(scrollTop, 0)}px`,
+    );
   }
 
   private updateLocalHeaderHeight() {
@@ -298,8 +313,8 @@ export class PostHeader {
       return;
     }
 
-    if (this.mobileMenuExtended && (isLinkInMainNav || isLinkInMegadropdown)) {
-      this.toggleMobileMenu(false);
+    if (this.burgerMenuExtended && (isLinkInMainNav || isLinkInMegadropdown)) {
+      this.toggleBurgerMenu(false);
     }
 
     if (this.device === 'desktop' && isLinkInMegadropdown) {
@@ -326,87 +341,132 @@ export class PostHeader {
     }
   }
 
+  private handleSlottedContentChanges() {
+    if (!this.slottedContentObserver) {
+      this.checkSlottedContent();
+
+      this.slottedContentObserver = new MutationObserver(this.checkSlottedContent);
+      this.slottedContentObserver.observe(this.host, { childList: true });
+    }
+  }
+
+  private checkSlottedContent() {
+    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
+    this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
+    this.hasTargetGroup = !!this.host.querySelector('[slot="audience"]');
+    this.hasTitle = !!this.host.querySelector('[slot="title"]');
+  }
+
   private switchLanguageSwitchMode() {
-    const variant: SwitchVariant = this.hasMobileMenu ? 'list' : 'menu';
-    Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
+    const variant: SwitchVariant = this.hasBurgerMenu ? 'list' : 'menu';
+    Array.from(this.host.querySelectorAll('post-language-menu')).forEach(languageSwitch => {
       languageSwitch?.setAttribute('variant', variant);
     });
   }
 
-  private renderNavigation() {
-    const navigationClasses = ['navigation'];
+  @Listen('focusin')
+  @Listen('focusout')
+  onFocusChange() {
+    const fixedElements =
+      this.device === 'desktop' ? '.logo, .navigation' : '.global-header, .burger-menu';
+    const isHeaderExpanded =
+      this.host.matches(':focus-within') &&
+      !this.host.shadowRoot.querySelector(`:where(${fixedElements}):focus-within`);
 
-    const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
-
-    if (this.mobileMenuExtended) {
-      navigationClasses.push('extended');
+    if (isHeaderExpanded) {
+      this.host.setAttribute('data-expanded', '');
+    } else {
+      this.host.removeAttribute('data-expanded');
     }
+  }
 
-    if (this.megadropdownOpen) {
-      navigationClasses.push('megadropdown-open');
+  private renderNavigation() {
+    const localNav = !this.hasTitle && (
+      <div class="local-nav">
+        <slot name="local-nav"></slot>
+      </div>
+    );
+
+    if (this.device === 'desktop') {
+      return (
+        <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
+          <slot name="main-nav"></slot>
+          {localNav}
+        </div>
+      );
     }
 
     return (
       <div
-        class={navigationClasses.join(' ')}
-        style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+        class={{
+          'burger-menu': true,
+          'extended': this.burgerMenuExtended,
+          'no-local-nav': !this.hasLocalNav,
+          'megadropdown-open': this.megadropdownOpen,
+        }}
+        style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
+        ref={el => (this.burgerMenu = el)}
       >
-        <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <div class="navigation-target-group">
-            {(this.device === 'mobile' || this.device === 'tablet') && (
-              <slot name="target-group"></slot>
-            )}
-          </div>
-          <slot name="post-mainnavigation" onSlotchange={() => this.checkNavigationExistence()}></slot>
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <div class="navigation-footer">
-              <slot name="meta-navigation"></slot>
-              <slot name="post-language-switch"></slot>
-            </div>
-          )}
+        {localNav}
+        <div class="burger-menu-body">
+          <slot name="audience"></slot>
+          <slot name="main-nav"></slot>
+        </div>
+        <div class="burger-menu-footer">
+          <slot name="global-nav-secondary"></slot>
+          <slot name="language-menu"></slot>
         </div>
       </div>
     );
   }
 
   render() {
-    const localHeaderClasses = ['local-header'];
-    if (this.mobileMenuExtended) localHeaderClasses.push('local-header-mobile-extended');
-    if (!this.hasNavigation) localHeaderClasses.push('no-navigation');
-
     return (
-      <Host data-version={version} data-color-scheme="light">
-        <div class="global-header">
-          <div class="global-sub">
+      <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
+        <header>
+          <div
+            class={{
+              'global-header': true,
+              'no-target-group': !this.hasTargetGroup,
+            }}
+          >
             <div class="logo">
               <slot name="post-logo"></slot>
             </div>
+            <div class="sliding-controls">
+              {this.device === 'desktop' && (
+                <div class="target-group">
+                  <slot name="audience"></slot>
+                </div>
+              )}
+              <slot name="global-nav-primary"></slot>
+              {!this.hasBurgerMenu && [
+                <slot name="global-nav-secondary"></slot>,
+                <slot name="language-menu"></slot>,
+              ]}
+              <slot name="post-login"></slot>
+              {this.hasNavigation && this.device !== 'desktop' && (
+                <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
+                  <slot name="post-togglebutton"></slot>
+                </div>
+              )}
+            </div>
           </div>
-          <div class="global-sub">
-            {this.device === 'desktop' && <slot name="target-group"></slot>}
+          <div
+            class={{
+              'local-header': true,
+              'no-title': !this.hasTitle,
+              'no-target-group': !this.hasTargetGroup,
+              'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
+              'no-local-nav': !this.hasLocalNav,
+            }}
+          >
+            <slot name="title"></slot>
+            {this.hasTitle && <slot name="local-nav"></slot>}
+            {this.device === 'desktop' && this.renderNavigation()}
           </div>
-          <div class="global-sub">
-            {!this.hasMobileMenu && (
-              <slot name="meta-navigation"></slot>
-            )}
-            <slot name="global-controls"></slot>
-            {!this.hasMobileMenu && <slot name="post-language-switch"></slot>}
-            {this.hasNavigation && (
-              <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
-                <slot name="post-togglebutton"></slot>
-              </div>
-            )}
-          </div>
-        </div>
-        <div class={localHeaderClasses.join(' ')}>
-          <slot name="title"></slot>
-          <div class="local-sub">
-            <slot name="local-controls"></slot>
-            <slot></slot>
-          </div>
-          {this.device === 'desktop' && this.renderNavigation()}
-        </div>
-        {this.device !== 'desktop' && this.renderNavigation()}
+          {this.device !== 'desktop' && this.renderNavigation()}
+        </header>
       </Host>
     );
   }

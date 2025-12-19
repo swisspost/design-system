@@ -1,7 +1,5 @@
 # post-accordion-item
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -34,20 +32,19 @@ Type: `Promise<boolean>`
 
 ## Slots
 
-| Slot        | Description                                                         |
-| ----------- | ------------------------------------------------------------------- |
-| `"default"` | Slot for placing content within the accordion item's body.          |
-| `"header"`  | Slot for placing custom content within the accordion item's header. |
-| `"logo"`    | Slot for the placing a logo before the header.                      |
+| Slot        | Description                                                                 |
+| ----------- | --------------------------------------------------------------------------- |
+| `"default"` | Slot for placing content within the accordion item's body.                  |
+| `"header"`  | Slot for placing custom content within the accordion item's header.         |
+| `"logo"`    | Slot for placing a logo in the accordion item’s header, before the content. |
 
 
 ## Shadow Parts
 
-| Part               | Description                                                                                     |
-| ------------------ | ----------------------------------------------------------------------------------------------- |
-| `"accordion-item"` |                                                                                                 |
-| `"body"`           | The pseudo-element, used to override styles on the components internal `body` element.          |
-| `"button"`         | The pseudo-element, used to override styles on the components internal header `button` element. |
+| Part                      | Description                                                  |
+| ------------------------- | ------------------------------------------------------------ |
+| `"post-accordion-body"`   | The element that holds the accordion item's content.         |
+| `"post-accordion-button"` | The element that toggles the accordion item (header button). |
 
 
 ## Dependencies

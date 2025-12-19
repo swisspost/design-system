@@ -4,7 +4,6 @@ about: Create a report to help us improve
 title: '[bug]: '
 labels: '🐞 bug'
 assignees: ''
-
 ---
 
 ### 🐞 Describe the bug
@@ -27,6 +26,10 @@ Steps to reproduce the behavior:
 ### 📷 Screenshots
 
 <!-- If applicable, add screenshots to help explain your problem. -->
+
+### 🏷️ Version of the Design System
+
+<!-- Please specify the Design System version where the bug occurs. This information can be found in your project's package.json file -->
 
 ### 💻 Desktop
 

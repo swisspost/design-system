@@ -71,13 +71,17 @@ $notification-variants: () !default;
 $notification-variants: list.join(
   $notification-variants,
   (
-    'info' tokens.get('banner-info-bg') 2106 tokens.get('banner-info-border-color')
-      tokens.get('banner-info-icon-color') tokens.get('post-banner-info-bg-scheme'),
-    'success' tokens.get('banner-success-bg') 2105 tokens.get('banner-success-border-color')
-      tokens.get('banner-success-icon-color') tokens.get('post-banner-success-bg-scheme'),
-    'warning' tokens.get('banner-warning-bg') 2104 tokens.get('banner-warning-border-color')
-      tokens.get('banner-warning-icon-color') tokens.get('post-banner-warning-bg-scheme'),
-    'error' tokens.get('banner-error-bg') 2104 tokens.get('banner-error-border-color')
-      tokens.get('banner-error-icon-color') tokens.get('post-banner-error-bg-scheme')
+    'info' tokens.get('banner-info-bg') var(--post-signal-icon-info)
+      tokens.get('banner-info-border-color') tokens.get('banner-info-icon-color')
+      tokens.get('post-banner-info-bg-scheme'),
+    'success' tokens.get('banner-success-bg') var(--post-signal-icon-success)
+      tokens.get('banner-success-border-color') tokens.get('banner-success-icon-color')
+      tokens.get('post-banner-success-bg-scheme'),
+    'warning' tokens.get('banner-warning-bg') var(--post-signal-icon-warning)
+      tokens.get('banner-warning-border-color') tokens.get('banner-warning-icon-color')
+      tokens.get('post-banner-warning-bg-scheme'),
+    'error' tokens.get('banner-error-bg') var(--post-signal-icon-error)
+      tokens.get('banner-error-border-color') tokens.get('banner-error-icon-color')
+      tokens.get('post-banner-error-bg-scheme')
   )
 );

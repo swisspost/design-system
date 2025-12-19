@@ -7,17 +7,24 @@
  * @returns true if the event should be processed, false otherwise
  */
 function shouldProcessEvent(
-  event: CustomEvent,
+  event: Event,
   tag: string,
   host: HTMLElement,
-  ignoreNestedComponents: boolean
+  ignoreNestedComponents: boolean,
+  allowDescendants: boolean = false,
 ): boolean {
-  if (!(event instanceof CustomEvent && event.target instanceof HTMLElement)) return false;
+  if (!(event instanceof Event && event.target instanceof HTMLElement)) return false;
 
   const eventTarget = event.target;
-  
-  if (eventTarget.localName !== tag) return false;
-  
+
+  if (allowDescendants) {
+    // Accept event if target or any ancestor matches tag
+    if (!eventTarget.closest(tag)) return false;
+  } else {
+    // Only accept event if target exactly matches tag
+    if (eventTarget.localName !== tag) return false;
+  }
+
   if (ignoreNestedComponents) {
     // Find the closest parent with the same tag as the host
     const closestParentWithSameTag = findClosestParentWithTag(eventTarget, host.localName);
@@ -34,33 +41,43 @@ function shouldProcessEvent(
  * @param option.ignoreNestedComponents - Whether to ignore events from nested components
  */
 export function EventFrom(
-  tag: string, 
-  option: { ignoreNestedComponents: boolean } = { ignoreNestedComponents: true }
+  tag: string,
+  option?: { ignoreNestedComponents?: boolean; allowDescendants?: boolean },
 ) {
-  return function (
-    target: object,
-    propertyKey: string,
-    descriptor?: PropertyDescriptor
-  ) {
+  // Set default values here
+  const opts = {
+    ignoreNestedComponents: true,
+    allowDescendants: false,
+    ...option,
+  };
+  return function (target: object, propertyKey: string, descriptor?: PropertyDescriptor) {
     if (descriptor) {
       const originalMethod = descriptor.value;
-      
-      descriptor.value = function (event: CustomEvent) {
-        if (!shouldProcessEvent(event, tag, this.host, option.ignoreNestedComponents)) {
+
+      descriptor.value = function (event: Event) {
+        if (
+          !shouldProcessEvent(
+            event,
+            tag,
+            this.host,
+            opts.ignoreNestedComponents,
+            opts.allowDescendants,
+          )
+        ) {
           return;
         }
 
         return originalMethod.call(this, event);
       };
     } else {
-      // Creates a hidden storage property for the original method using a 
+      // Creates a hidden storage property for the original method using a
       // modified key format (__[property]_original) to avoid naming conflicts
       const privateKey = `__${propertyKey}_original`;
-      
+
       // Create hidden storage for original method
       Object.defineProperty(target, privateKey, {
         writable: true,
-        configurable: true
+        configurable: true,
       });
 
       // Replace property with getter/setter
@@ -71,11 +88,11 @@ export function EventFrom(
         },
 
         // Setter wraps original method with extra code
-        set(originalFunction: (event: CustomEvent) => void) {
+        set(originalFunction: (event: Event) => void) {
           if (typeof originalFunction === 'function') {
             // Store original and add new behavior
-            this[privateKey] = (event: CustomEvent) => {
-              if (!shouldProcessEvent(event, tag, this.host, option.ignoreNestedComponents)) {
+            this[privateKey] = (event: Event) => {
+              if (!shouldProcessEvent(event, tag, this.host, opts.ignoreNestedComponents)) {
                 return;
               }
 
@@ -86,7 +103,7 @@ export function EventFrom(
           }
         },
         configurable: true,
-        enumerable: true
+        enumerable: true,
       });
     }
   };
@@ -101,7 +118,7 @@ export function EventFrom(
  */
 function findClosestParentWithTag(element: Element, tagName: string): Element | null {
   let current: Element | null = element;
-  
+
   while (current) {
     if (current.localName === tagName) {
       return current;
@@ -110,16 +127,16 @@ function findClosestParentWithTag(element: Element, tagName: string): Element | 
     // Check regular parent first
     if (current.parentElement) {
       current = current.parentElement;
-    } 
+    }
     // If no parentElement, check if we're in a shadow root
     else if (current.parentNode instanceof ShadowRoot) {
       current = current.parentNode.host;
-    } 
+    }
     // No more parents to check
     else {
       current = null;
     }
   }
-  
+
   return null;
 }

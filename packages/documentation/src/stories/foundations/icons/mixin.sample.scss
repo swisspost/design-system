@@ -1,11 +1,11 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-.my-icon {
-  @include post.post-icon(
-    $name: 'accessibility',
-    // optional
-    $base: '/optional/path/to/your/self-hosted/svgs',
-    // optional
-    $color: '#fc0'
-  );
+// Icon inheriting the size and color from the surrounding text
+.my-inline-icon {
+  @include post.icon('printer');
+}
+
+// Icon with custom color and size
+.my-custom-icon {
+  @include post.icon($name: 'accessibility', $color: '#fc0', $size: 1em);
 }

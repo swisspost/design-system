@@ -1,8 +1,13 @@
 # post-mainnavigation
 
-
-
 <!-- Auto Generated Below -->
+
+
+## Properties
+
+| Property               | Attribute | Description                                                                                                                                                                             | Type     | Default     |
+| ---------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `caption` _(required)_ | `caption` | Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose. | `string` | `undefined` |
 
 
 ## Dependencies

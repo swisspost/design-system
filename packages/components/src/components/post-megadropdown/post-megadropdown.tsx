@@ -1,8 +1,23 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
+import { checkRequiredAndType } from '@/utils';
 
+/**
+ * @slot default - Slot for placing content.
+ */
 @Component({
   tag: 'post-megadropdown',
   styleUrl: 'post-megadropdown.scss',
@@ -12,19 +27,34 @@ export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
 
-  @State() device: Device = breakpoint.get('device');
-
-  @Element() host: HTMLPostMegadropdownElement;
-
   /** Tracks the currently active dropdown instance. */
   private static activeDropdown: PostMegadropdown | null = null;
 
-  private breakpointChange(e: CustomEvent) {
-    this.device = e.detail;
-    if (this.device === 'desktop' && this.isVisible) {
-      this.animationClass = null;
-    }
+  private defaultSlotObserver: MutationObserver;
+
+  @Element() host: HTMLPostMegadropdownElement;
+
+  /**
+   * An accessible label for the close button visible on desktop
+   */
+  @Prop({ reflect: true }) labelClose!: string;
+
+  @Watch('labelClose')
+  validateCloseLabel() {
+    checkRequiredAndType(this, 'labelClose', 'string');
   }
+
+  /**
+   * A label for the back button visible on tablet and mobile
+   */
+  @Prop({ reflect: true }) labelBack!: string;
+
+  @Watch('labelBack')
+  validateBackLabel() {
+    checkRequiredAndType(this, 'labelBack', 'string');
+  }
+
+  @State() device: Device = breakpoint.get('device');
 
   /**
    * Holds the current visibility state of the dropdown.
@@ -33,8 +63,17 @@ export class PostMegadropdown {
    */
   @State() isVisible: boolean = false;
 
+  @State() trigger: boolean = false;
+
+  @State() megadropdownTitle: string;
+
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
+
+  private get megadropdownTrigger(): Element | null {
+    const hostId = this.host.getAttribute('id');
+    return hostId ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"]`) : null;
+  }
 
   /**
    * Emits when the dropdown is shown or hidden.
@@ -44,16 +83,33 @@ export class PostMegadropdown {
    **/
   @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
+  connectedCallback() {
+    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+  }
+
+  componentDidRender() {
+    this.getFocusableElements();
+  }
+
+  componentDidLoad() {
+    this.validateCloseLabel();
+    this.validateBackLabel();
+    this.checkInitialAriaCurrent();
+    this.setupObserver();
+    this.handleAriaCurrentChange([]);
+  }
+
   disconnectedCallback() {
     this.removeListeners();
     window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
-  }
 
-  componentWillRender() {
-    this.getFocusableElements();
+    if (this.defaultSlotObserver) {
+      this.defaultSlotObserver.disconnect();
+    }
   }
 
   /**
@@ -73,6 +129,11 @@ export class PostMegadropdown {
    */
   @Method()
   async show() {
+    if (this.device !== 'desktop') {
+      const trigger = this.megadropdownTrigger;
+      if (trigger) this.megadropdownTitle = trigger.innerHTML;
+    }
+
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
@@ -112,10 +173,12 @@ export class PostMegadropdown {
     this.firstFocusableEl?.focus();
   }
 
-  connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
+    if (this.device === 'desktop' && this.isVisible) {
+      this.animationClass = null;
+    }
   }
-
   /**
    * Forces the dropdown to close without animation.
    */
@@ -135,7 +198,7 @@ export class PostMegadropdown {
     }
   }
 
-  private handleClickOutside = (event: MouseEvent) => {
+  private readonly handleClickOutside = (event: MouseEvent) => {
     if (this.device !== 'desktop') return;
 
     const target = event.target as Node;
@@ -149,6 +212,7 @@ export class PostMegadropdown {
 
       if (trigger) {
         const targetDropdownId = trigger.getAttribute('for');
+
         if (targetDropdownId !== this.host.id) {
           return;
         }
@@ -173,6 +237,16 @@ export class PostMegadropdown {
   private getFocusableElements() {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
+
+    // Check for an overview link
+    const overviewLink = this.host.querySelector<HTMLAnchorElement>(
+      'a[slot="post-megadropdown-overview"]',
+    );
+
+    if (overviewLink) {
+      focusableChildren.unshift(overviewLink);
+    }
+
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
   }
@@ -194,10 +268,58 @@ export class PostMegadropdown {
 
   private handleTabOutside(e: KeyboardEvent) {
     if (e.key === 'Tab' && this.device === 'desktop') {
-      if (!this.host.contains(e.target as Node)) {
+      if (this.isVisible && !this.host.contains(e.target as Node)) {
         this.hide(false);
       }
     }
+  }
+
+  /**
+   * Sets up a MutationObserver on the host to watch for changes
+   * in `aria-current` attributes.
+   */
+  private setupObserver() {
+    const config: MutationObserverInit = {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['aria-current'],
+    };
+
+    this.defaultSlotObserver = new MutationObserver(this.handleAriaCurrentChange.bind(this));
+    this.defaultSlotObserver.observe(this.host, config);
+  }
+
+  /**
+   * Adds or removes the 'active' class on the megadropdown trigger button
+   * based on the active state.
+   *
+   * @param isActive - Whether the trigger should appear active
+   */
+  private setTriggerActive(isActive: boolean) {
+    const trigger = this.megadropdownTrigger;
+    if (trigger) trigger.setAttribute('active', isActive.toString());
+  }
+
+  /**
+   * Updates the megadropdown trigger state when the megadropdown content changes.
+   * Checks if any element inside the megadropdown has `aria-current="page"`
+   * and sets the trigger as active accordingly.
+   */
+  private handleAriaCurrentChange(mutations: MutationRecord[]) {
+    if (!mutations.length) return;
+    const hasCurrentPage = mutations.some(
+      m => m.target instanceof HTMLElement && m.target.getAttribute('aria-current') === 'page',
+    );
+    this.setTriggerActive(hasCurrentPage);
+  }
+
+  /**
+   * Checks on initialization if any element inside the megadropdown
+   * has `aria-current="page"` and sets the trigger as active if so.
+   */
+  private checkInitialAriaCurrent() {
+    const hasCurrentPage = this.host.querySelector('[aria-current="page"]');
+    if (hasCurrentPage) this.setTriggerActive(true);
   }
 
   render() {
@@ -211,16 +333,22 @@ export class PostMegadropdown {
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
           <div class="megadropdown">
-            <slot name="megadropdown-title"></slot>
+            {this.megadropdownTitle && <p class="megadropdown-title">{this.megadropdownTitle}</p>}
+
             <div class="megadropdown-content">
               <slot></slot>
             </div>
-            <div onClick={() => this.hide(true)} class="back-button">
-              <slot name="back-button"></slot>
-            </div>
-            <div onClick={() => this.hide(true)} class="close-button">
-              <slot name="close-button"></slot>
-            </div>
+
+            {this.device === 'desktop' ? (
+              <post-closebutton onClick={() => this.hide(true)} class="close-button">
+                {this.labelClose}
+              </post-closebutton>
+            ) : (
+              <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary btn-sm">
+                <post-icon name="arrowleft"></post-icon>
+                {this.labelBack}
+              </button>
+            )}
           </div>
         </div>
       </Host>

@@ -1,11 +1,12 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 import * as CardControlStandardHTMLStories from './standard-html/card-control.stories';
 import firefoxFallbackSnippet from './standard-html/card-control-firefox-fallback.sample.ts?raw';
 
 import * as CardControlStories from './web-component/card-control.stories';
 import SampleCardControlMethods from './web-component/card-control-methods.sample?raw';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={CardControlStories} />
 
@@ -18,17 +19,16 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
 <p className="lead">For a more specialized visualization of checkbox and radio elements.</p>
 
-<post-banner type="info">
+<post-banner>
   <p slot="heading">There are various methods to integrate this component into your project.</p>
-  <p>
-    We advise opting for the "Standard HTML" approach for when you need full access to the input
-    field and using the "Web Component" method in every other case.
-  </p>
+
+We advise opting for the "Standard HTML" approach for when you need full access to the input
+field and using the "Web Component" method in every other case.
 </post-banner>
 
 <post-tabs>
-  <post-tab-header panel="standardhtml">Standard HTML</post-tab-header>
-  <post-tab-panel name="standardhtml">
+  <post-tab-item name="standardhtml">Standard HTML</post-tab-item>
+  <post-tab-panel for="standardhtml">
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
       <Controls of={CardControlStandardHTMLStories.Default} />
@@ -47,10 +47,10 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
     ### Firefox fallback
 
-    <div className="banner banner-info">
-      <div className="banner-content">
+    <post-banner>
       Firefox currently does not support{' '} <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector</a>. As a fallback, the following states have to be mirrored on the top level element in the form of
       classes (see below for a snippet):
+
       <ul>
         <li>
           <code>checked</code>
@@ -62,10 +62,10 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
           <code>is-invalid</code>
         </li>
       </ul>
+
       Check <a href="https://caniuse.com/css-has">caniuse :has()</a> to check if you still need the
       fallback.
-      </div>
-    </div>
+    </post-banner>
 
     This snippet adds a global event listener to mirror the `focused` and `checked` states to the parent of the input. This fallback has to be applied as long as Firefox does not support the `:has` selector.
 
@@ -75,15 +75,13 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
   </post-tab-panel>
 
-<post-tab-header panel="webcomponent">Webcomponent</post-tab-header>
-<post-tab-panel name="webcomponent">
+<post-tab-item name="webcomponent">Webcomponent</post-tab-item>
+<post-tab-panel for="webcomponent">
 
 <Canvas of={CardControlStories.Default} sourceState="shown" />
 <Controls of={CardControlStories.Default} />
 
-    ## Installation
-
-    The `<post-card-control>` element is part of the `@swisspost/design-system-components` package. For more information, read the <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">getting started with components guide</a>.
+    <ComponentsPackageInstall component="<post-card-control>" />
 
     ## Examples
 
@@ -92,7 +90,9 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
     You can use our built-in icons by just adding the `icon` property with the name of the desired icon.<br/>
     If this is not enough, you can also use the named `icon` slot and add your very own custom icon.
 
-    <div className="banner banner-md banner-info">Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.</div>
+    <post-banner>
+      Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.
+    </post-banner>
 
     <Canvas of={CardControlStories.CustomIcon} />
 
@@ -100,10 +100,10 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
     If you need to add other content to the component, you can use the default slot to do so.
 
-    <div className="banner banner-md banner-warning">
-      <h4 className="banner-heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</h4>
+    <post-banner type="warning">
+      <p slot="heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</p>
       <p>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured. More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
-    </div>
+    </post-banner>
 
     <Canvas of={CardControlStories.CustomContent} />
 
@@ -111,7 +111,9 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
     You can use the component directly in your forms, the control value will be available in the `FormData` of the surrounding `<form>` element, just as you are used to from native input elements.
 
-    <p className="banner banner-info">Update the control and submit or reset the form to see how its FormData value changes.</p>
+    <post-banner>
+      Update the control and submit or reset the form to see how its FormData value changes.
+    </post-banner>
     <Canvas of={CardControlStories.FormIntegration} />
     <div className="hide-col-default">
       <Controls of={CardControlStories.FormIntegration} />

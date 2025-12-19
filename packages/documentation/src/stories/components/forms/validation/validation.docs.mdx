@@ -1,13 +1,17 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as ValidationStories from './validation.stories';
+import meta, * as ValidationStories from './validation.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ValidationStories} />
 
 <div className="docs-title">
 # Validation
 
-  <link-design of={JSON.stringify(ValidationStories)}></link-design>
+<link-design of={JSON.stringify(ValidationStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   The Validation component is a reusable component designed to provide consistent validation
