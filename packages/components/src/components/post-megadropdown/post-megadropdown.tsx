@@ -18,7 +18,7 @@ import { AnimationOptions } from '@/animations/types';
 import { checkRequiredAndType } from '@/utils';
 
 /**
- * @slot default - Slot for placing content.
+ * @slot default - Slot for placing content
  */
 @Component({
   tag: 'post-megadropdown',
@@ -140,11 +140,10 @@ export class PostMegadropdown {
   async toggle() {
     if (this.isAnimating) {
       // If this is already animating towards a future state -> reverse intent
-      this.isVisible ? this.show() : this.hide();
-      return;
+      return this.isVisible ? this.show() : this.hide();
     }
 
-    this.isVisible ? this.hide() : this.show();
+    return this.isVisible ? this.hide() : this.show();
   }
 
   /**
