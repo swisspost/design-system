@@ -30,49 +30,50 @@ export const Focus: Story = {
   decorators: [
     story => html`<div class="d-flex flex-column gap-12 align-items-start">${story()}</div>`,
   ],
-  render: () =>
-    html`
-      <a href="#">This link is accessible using keyboard navigation and has a focus ring.</a>
-      <button class="btn btn-primary">
-        This button is accessible using keyboard navigation and has a focus ring.
-      </button>
-      <button class="btn btn-secondary" tabindex="-1">
-        This button is not accessible using keyboard navigation.
-      </button>
-    `,
+  render: () => html`
+    <a href="#">This link is accessible using keyboard navigation and has a focus ring.</a>
+    <button class="btn btn-primary">
+      This button is accessible using keyboard navigation and has a focus ring.
+    </button>
+    <button class="btn btn-secondary" tabindex="-1">
+      This button is not accessible using keyboard navigation.
+    </button>
+  `,
 };
 
 export const FormHint: Story = {
-  render: () => html`<div class="form-floating mb-24">
-      <input
-        id="myinput"
-        class="form-control"
-        type="text"
-        placeholder="Placeholder"
-        aria-describedby="form-hint-myinput"
-      />
-      <label class="form-label" for="myinput">Label</label>
-      <p class="form-hint" id="form-hint-myinput">
-        This hint gives additional information on how to fill in the form input.
-      </p>
-    </div>
-    <div class="form-floating">
-      <input
-        id="myinvalidinput"
-        class="form-control is-invalid"
-        type="text"
-        placeholder="Placeholder"
-        aria-invalid="true"
-        aria-describedby="form-validation-myinvalidinput"
-      />
-      <label class="form-label" for="myinvalidinput">Label</label>
-      <p class="invalid-feedback" id="form-validation-myinvalidinput">
-        This message informs that the input field is not valid.
-      </p>
-    </div> `,
+  render: () =>
+    html`<div class="form-floating mb-24">
+        <input
+          id="myinput"
+          class="form-control"
+          type="text"
+          placeholder="Placeholder"
+          aria-describedby="form-hint-myinput"
+        />
+        <label class="form-label" for="myinput">Label</label>
+        <p class="form-hint" id="form-hint-myinput">
+          This hint gives additional information on how to fill in the form input.
+        </p>
+      </div>
+      <div class="form-floating">
+        <input
+          id="myinvalidinput"
+          class="form-control is-invalid"
+          type="text"
+          placeholder="Placeholder"
+          aria-invalid="true"
+          aria-describedby="form-validation-myinvalidinput"
+        />
+        <label class="form-label" for="myinvalidinput">Label</label>
+        <p class="invalid-feedback" id="form-validation-myinvalidinput">
+          This message informs that the input field is not valid.
+        </p>
+      </div> `,
 };
 
 export const AltText: Story = {
-  render: () =>
-    html` <img src="/assets/images/logo-swisspost.svg" alt="Swiss Post Logo" class="w-48" /> `,
+  render: () => html`
+    <img src="/assets/images/logo-swisspost.svg" alt="Swiss Post Logo" class="w-48" />
+  `,
 };

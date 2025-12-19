@@ -24,9 +24,10 @@ All three should be imported in the main style file of your Angular project, usu
 Be sure to assign a layer to the Design System styles to avoid interference.
 
 ### With styles.css
+
 ```scss
-@use "@swisspost/design-system-styles-primeng/primeng-theme";
-@use "primeng/resources/primeng.css";
+@use '@swisspost/design-system-styles-primeng/primeng-theme';
+@use 'primeng/resources/primeng.css';
 
 @layer design-system-styles, primeng;
 

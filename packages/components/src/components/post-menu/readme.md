@@ -1,7 +1,5 @@
 # post-menu
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -74,9 +72,9 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part     | Description                                              |
-| -------- | -------------------------------------------------------- |
-| `"menu"` | The container element that holds the list of menu items. |
+| Part          | Description                                              |
+| ------------- | -------------------------------------------------------- |
+| `"post-menu"` | The container element that holds the list of menu items. |
 
 
 ## Dependencies

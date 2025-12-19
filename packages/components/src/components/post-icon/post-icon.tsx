@@ -114,9 +114,12 @@ export class PostIcon {
     const baseHref = IS_BROWSER
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
-    const metaIconBase = IS_BROWSER
-      ? document.querySelector('meta[name="design-system-settings"]')?.getAttribute('data-post-icon-base') || ''
-      : '';
+
+    let metaIconBase = '';
+    if (IS_BROWSER) {
+      const metaTag = document.querySelector('meta[name="design-system-settings"]');
+      metaIconBase = metaTag?.getAttribute('data-post-icon-base') || '';
+    }
 
     // Function to build the first part of the URL when 'this.base' or 'metaIconBase' are relative
     const buildUrlWithBase = (relativeUrl: string) => {

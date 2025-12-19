@@ -35,7 +35,9 @@ describe('Footer', () => {
 
         // Meta should have an aria-label as it has no visible title
         if (section === 'meta') {
-          cy.get('@footer').find(`div[slot="${section}"] ul`).should('have.attr', 'aria-label', 'Meta');
+          cy.get('@footer')
+            .find(`div[slot="${section}"] ul`)
+            .should('have.attr', 'aria-label', 'Meta');
         } else {
           cy.get('@footer').find(`div[slot="${section}"] h3`).should('exist');
         }

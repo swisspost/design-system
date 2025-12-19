@@ -19,8 +19,7 @@ describe('Segmented Button', () => {
 
     it('Displays vertical layout when viewport is narrower than 600px', () => {
       cy.viewport(500, 600);
-      cy.get('.segmented-button')
-        .should('have.css', 'flex-direction', 'column');
+      cy.get('.segmented-button').should('have.css', 'flex-direction', 'column');
     });
   });
 
