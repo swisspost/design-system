@@ -43,12 +43,7 @@ export class PostHeader {
   private animationOptions: Partial<AnimationOptions> = {
     translate: 0,
     duration: 350,
-    easing: {
-      x1: 0.8,
-      y1: 0.2,
-      x2: 0.8,
-      y2: 0.7,
-    },
+    easing: 'headerEase',
   };
 
   get scrollParent(): HTMLElement {
