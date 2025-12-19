@@ -140,12 +140,24 @@ export class PostMegadropdown {
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+
     if (
-      this.firstFocusableEl &&
-      window.getComputedStyle(this.firstFocusableEl).display !== 'none'
+      !this.firstFocusableEl ||
+      window.getComputedStyle(this.firstFocusableEl).display === 'none'
     ) {
-      this.firstFocusableEl.focus();
+      return;
     }
+
+    setTimeout(async () => {
+      const megadropdown = this.host.shadowRoot.querySelector<HTMLElement>('.megadropdown');
+      const animations = megadropdown.getAnimations();
+      const slideIn = animations.find(
+        a => a instanceof CSSAnimation && a.animationName === 'slide-in',
+      );
+
+      await slideIn.finished;
+      this.firstFocusableEl.focus();
+    });
     this.addListeners();
   }
 

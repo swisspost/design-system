@@ -1,5 +1,6 @@
 @use '../../mixins/list';
 @use '../../mixins/media';
+@use '../../mixins/utilities';
 
 @use './mixins' as *;
 
@@ -27,6 +28,7 @@
   height: 100%;
 
   @include media.only(desktop) {
+    @include utilities.focus-inset;
     padding: 1rem 0.75rem;
     gap: 0.5rem;
 
