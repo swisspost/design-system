@@ -3,16 +3,16 @@
  */
 
 import { AnimationOptions } from './types';
-import { resolveEasing } from './fade-slide';
+import { resolveEasing } from './utils';
 
-const defaultSlideOptions: AnimationOptions = {
+const defaultSlideOptions: Partial<AnimationOptions> = {
   translate: 100,
   duration: 500,
   easing: 'ease',
   fill: 'forwards',
 };
 
-function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: AnimationOptions) {
+function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: Partial<AnimationOptions>) {
   const { duration, easing, fill } = { ...defaultSlideOptions, ...options };
   return el.animate(keyframes, { duration, easing: resolveEasing(easing), fill });
 }
@@ -20,7 +20,7 @@ function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: Animation
 export function slide(
   el: HTMLElement,
   direction: 'in' | 'out',
-  options: AnimationOptions = {},
+  options: Partial<AnimationOptions> = {},
 ): Animation {
   const { translate = defaultSlideOptions.translate } = options;
 

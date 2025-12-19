@@ -7,7 +7,6 @@ import { fadeSlide } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 import { AnimationOptions } from '@/animations/types';
-import { headerAnimation } from '@/animations/presets';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -41,9 +40,15 @@ export class PostHeader {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
-  private animationOptions: AnimationOptions = {
+  private animationOptions: Partial<AnimationOptions> = {
     translate: 0,
-    ...headerAnimation,
+    duration: 350,
+    easing: {
+      x1: 0.8,
+      y1: 0.2,
+      x2: 0.8,
+      y2: 0.7,
+    },
   };
 
   get scrollParent(): HTMLElement {
@@ -224,8 +229,8 @@ export class PostHeader {
 
   @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+    this.megadropdownOpen = event.detail.isVisible;
+  };
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
