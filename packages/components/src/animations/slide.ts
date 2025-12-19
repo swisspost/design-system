@@ -9,7 +9,7 @@ const defaultSlideOptions: Partial<AnimationOptions> = {
   translate: 100,
   duration: 500,
   easing: 'ease',
-  fill: 'forwards',
+  fill: 'none',
 };
 
 function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: Partial<AnimationOptions>) {
