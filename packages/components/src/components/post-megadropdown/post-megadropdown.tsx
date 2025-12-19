@@ -21,6 +21,7 @@ export class PostMegadropdown {
 
   private currentAnimation: Animation | null = null;
   private animatedContainer: HTMLElement;
+  private isAnimating: boolean = false;
 
   private fsAnimationOptions: Partial<AnimationOptions> = {
     translate: -10,
@@ -31,7 +32,6 @@ export class PostMegadropdown {
       x2: 0.8,
       y2: 0.7,
     },
-    fill: 'forwards',
   };
 
   @Element() host: HTMLPostMegadropdownElement;
@@ -84,9 +84,10 @@ export class PostMegadropdown {
 
   disconnectedCallback() {
     window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
-    this.currentAnimation = null;
+
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
+
     if (this.defaultSlotObserver) {
       this.defaultSlotObserver.disconnect();
     }
@@ -97,44 +98,38 @@ export class PostMegadropdown {
    */
   @Method()
   async toggle() {
-    if (this.isVisible) {
-      await this.hide();
-    } else {
-      await this.show();
+    if (this.isAnimating) {
+      // If this is already animating towards a future state -> reverse intent
+      this.isVisible ? this.show() : this.hide();
+      return;
     }
+
+    this.isVisible ? this.hide() : this.show();
   }
 
   /**
    * Displays the dropdown.
    */
   @Method()
-  async show(forceOpen?: boolean) {
+  async show() {
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
-      console.log(PostMegadropdown.activeDropdown);
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
-    }
-    console.log(PostMegadropdown.activeDropdown);
-
-    if (forceOpen) {
-      console.log('force open');
-      this.forceOpen();
-      return;
     }
 
     this.cancelAnimation();
 
-    // First set the megadropdown to be visible and emit state to the trigger
+    // Set the megadropdown visible and mark it as the active dropdown
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
+
+    // Update trigger state
     this.postToggleMegadropdown.emit({ isVisible: true });
-    this.currentAnimation = this.createAnimation('in');
 
     try {
-      await this.currentAnimation.finished;
+      await this.animate('in');
 
-      // After the megadropdown becomes visible
-      this.currentAnimation = null;
+      // After the megadropdown has finished entry animation
       this.addListeners();
 
       if (
@@ -145,7 +140,6 @@ export class PostMegadropdown {
       }
     } catch {
       // Open animation was cancelled - reset state
-      this.currentAnimation = null;
       this.removeListeners();
       this.isVisible = false;
       if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
@@ -162,21 +156,19 @@ export class PostMegadropdown {
       this.forceClose();
       return;
     }
-    this.cancelAnimation();
 
-    this.currentAnimation = this.createAnimation('out');
+    // Update trigger state
+    this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
 
     try {
-      await this.currentAnimation.finished;
-      // After the megadropdown container is hidden
+      await this.animate('out');
+
+      // After the closing animation finishes set the megadropdown as non visible
       this.isVisible = false;
-      this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
-      this.currentAnimation = null;
       this.removeListeners();
       if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     } catch {
       // Closing animation was cancelled - reset state
-      this.currentAnimation = null;
       PostMegadropdown.activeDropdown = this;
       this.addListeners();
       this.isVisible = true;
@@ -193,26 +185,12 @@ export class PostMegadropdown {
   }
 
   /**
-   * Forces the dropdown to open without animation.
-   */
-  private forceOpen() {
-    this.cancelAnimation();
-    this.isVisible = true;
-    this.currentAnimation = null;
-    PostMegadropdown.activeDropdown = this;
-    this.addListeners();
-    this.postToggleMegadropdown.emit({ isVisible: true, focusParent: false });
-  }
-
-  /**
    * Forces the dropdown to close without animation.
    */
   private forceClose() {
-    this.cancelAnimation();
-    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
-    this.isVisible = false;
     this.postToggleMegadropdown.emit({ isVisible: false, focusParent: false });
+    this.isVisible = false;
   }
 
   // Run the respective animation
@@ -226,6 +204,18 @@ export class PostMegadropdown {
       duration: 350,
       easing: direction === 'in' ? 'ease-in' : 'ease-out',
     });
+  }
+
+  private async animate(direction: 'in' | 'out'): Promise<void> {
+    this.cancelAnimation();
+    this.currentAnimation = this.createAnimation(direction);
+
+    // Flag isAnimating used to avoid toggle() de-sync
+    this.isAnimating = true;
+    await this.currentAnimation.finished;
+    this.isAnimating = false;
+
+    this.currentAnimation = null;
   }
 
   private cancelAnimation() {
