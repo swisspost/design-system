@@ -39,6 +39,12 @@
   }
 }
 
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
 .megadropdown {
   position: absolute;
   inset-inline: 0;
@@ -101,12 +107,12 @@
 }
 
 .back-button {
-  order: -1;
-  width: fit-content;
-  padding-inline: 0;
   @include button.button-base;
   @include button.button-size(sm);
   @include button.button-variant-def('enabled', 'tertiary');
+  order: -1;
+  width: fit-content;
+  padding-inline: 0;
 
   &:hover {
     @include button.button-variant-def('hover', 'tertiary');

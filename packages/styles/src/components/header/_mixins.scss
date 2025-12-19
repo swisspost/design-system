@@ -68,6 +68,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   --post-nav-item-border-width: 1px;
   border-radius: 0;
   padding: 0.75rem 0.75rem calc(0.75rem - var(--post-nav-item-border-width)) 0.5rem;
+  gap: 1rem;
   width: 100%;
   justify-content: start;
   position: relative;
@@ -123,7 +124,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
  styles for nav items that remain in the header on mobile and tablet
  */
 @mixin nav-item-icon-only {
-  padding: 0.5rem;
+  padding: 0.625rem;
 
   > :not(post-icon) {
     display: none;

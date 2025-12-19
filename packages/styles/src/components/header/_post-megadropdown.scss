@@ -1,12 +1,16 @@
 @use '../../mixins/media';
 
-@use './mixins' as *;
+@use './mixins' as header-mx;
 @use './placeholders' as *;
 
 post-megadropdown {
   .row {
-    --post-grid-gutter-x: 1rem;
+    --post-grid-gutter-x: 1.5rem;
     --post-grid-gutter-y: 1.5rem;
+
+    @include media.max(desktop) {
+      --post-grid-gutter-x: 1rem;
+    }
 
     @include media.only(mobile) {
       --post-grid-gutter-y: 1rem;
@@ -20,9 +24,9 @@ post-megadropdown {
 
   .post-megadropdown-overview,
   .post-megadropdown-list-title,
-  .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
+  .post-megadropdown-list > li > :where(#{header-mx.$interactive-elements-selector}) {
     @extend %header-control;
-    @include nav-item-block-layout;
+    @include header-mx.nav-item-block-layout;
 
     @include media.only(desktop) {
       font-size: 1.25rem;
@@ -34,7 +38,7 @@ post-megadropdown {
     font-weight: 950;
     --post-nav-item-border-width: 2px;
 
-    &:not(#{$interactive-elements-selector}) {
+    &:not(#{header-mx.$interactive-elements-selector}) {
       pointer-events: none;
     }
   }
