@@ -46,8 +46,12 @@ function renderLanguageMenuAsLinks(args: Partial<HTMLPostLanguageMenuElement>) {
     <post-language-menu-item url="/de" active="false" code="de" name="Deutsch"
       >DE</post-language-menu-item
     >
-    <post-language-menu-item url="/en" active="true" code="en" name="English">EN</post-language-menu-item>
-    <post-language-menu-item url="/fr" active="false" code="fr" name="French">FR</post-language-menu-item>
+    <post-language-menu-item url="/en" active="true" code="en" name="English"
+      >EN</post-language-menu-item
+    >
+    <post-language-menu-item url="/fr" active="false" code="fr" name="French"
+      >FR</post-language-menu-item
+    >
   </post-language-menu> `;
 }
 

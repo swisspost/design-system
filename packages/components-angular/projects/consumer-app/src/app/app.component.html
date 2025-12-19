@@ -83,13 +83,8 @@
           <post-megadropdown-trigger [for]="dropdown.id">{{
             dropdown.trigger
           }}</post-megadropdown-trigger>
-          <post-megadropdown [id]="dropdown.id">
-            <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-              <post-icon name="arrowleft"></post-icon>
-              Back
-            </button>
-            <post-closebutton slot="close-button">Close</post-closebutton>
-            <a slot="megadropdown-overview-link" [href]="dropdown.overviewLink"
+          <post-megadropdown [id]="dropdown.id" labelClose="Close" labelBack="Back">
+            <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
               >Overview {{ dropdown.trigger }}</a
             >
             @for (section of dropdown.sections; track section.title) {
@@ -148,26 +143,28 @@
 
 <post-footer label="Footer label">
   @for (grid of footerGrids; track grid.slot) {
-  <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
-  <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">
-    @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
-    <li>
-      <a [href]="link.url">{{ link.text }}</a>
-    </li>
-    }
-  </ul>
+    <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{
+      grid.title
+    }}</span>
+    <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">
+      @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
+        <li>
+          <a [href]="link.url">{{ link.text }}</a>
+        </li>
+      }
+    </ul>
   }
 
   <div slot="socialmedia">
     <h3 id="socialmedia">Follow us</h3>
     <ul aria-labelledby="socialmedia">
       @for (social of socialMediaLinks; track social.name) {
-      <li>
-        <a [href]="social.url" class="btn btn-primary btn-icon">
-          <post-icon aria-hidden="true" [name]="social.icon"></post-icon>
-          <span class="visually-hidden">{{ social.name }}</span>
-        </a>
-      </li>
+        <li>
+          <a [href]="social.url" class="btn btn-primary btn-icon">
+            <post-icon aria-hidden="true" [name]="social.icon"></post-icon>
+            <span class="visually-hidden">{{ social.name }}</span>
+          </a>
+        </li>
       }
     </ul>
   </div>
@@ -218,9 +215,9 @@
   <div slot="meta">
     <ul aria-label="Meta">
       @for (meta of metaLinks; track meta.text) {
-      <li>
-        <a [href]="meta.url">{{ meta.text }}</a>
-      </li>
+        <li>
+          <a [href]="meta.url">{{ meta.text }}</a>
+        </li>
       }
       <li>
         <button

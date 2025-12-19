@@ -23,6 +23,12 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
     return Math.ceil(left) >= leftEdge && Math.floor(right) <= rightEdge;
   }
 
+  function clickUntilHidden($el: JQuery<HTMLElement>) {
+    if ($el.is(':visible')) {
+      cy.wrap($el).click().then(clickUntilHidden);
+    }
+  }
+
   describe('default', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
@@ -42,9 +48,12 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
 
       cy.get('@mainnavigation')
-        .find(':is(a,button):not(post-megadropdown *)')
+        .find('a:not(post-megadropdown *), post-megadropdown-trigger')
         .should('have.length', 20)
         .as('navigationItems');
+
+      cy.get('@navigationItems').first().find('button').as('firstButton');
+      cy.get('@navigationItems').last().find('button').as('lastButton');
 
       // remove smooth scroll to speed up the tests
       cy.get('@mainnavigation')
@@ -56,10 +65,10 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should always show the navigation item that is currently focused', () => {
-      cy.get('@navigationItems').last().as('last').focus();
+      cy.get('@navigationItems').last().as('last').find('button').focus();
       cy.get('@last').should('be.visible');
 
-      cy.get('@navigationItems').first().as('first').focus();
+      cy.get('@navigationItems').first().as('first').find('button').focus();
       cy.get('@first').should('be.visible');
     });
 
@@ -79,12 +88,10 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       it('should click until the last navigation item is visible', () => {
         cy.get('@rightScroll').should('be.visible');
 
-        cy.get('@navigationItems').each($el => {
-          if (!isFullyVisible($el)) cy.get('@rightScroll').click();
-          cy.wrap($el).then(isFullyVisible).should('be.true');
-        });
+        cy.get('@rightScroll').then(clickUntilHidden);
 
         cy.get('@rightScroll').should('be.hidden');
+        cy.get('@navigationItems').last().then(isFullyVisible).should('be.true');
       });
 
       it('should scroll continuously until the last navigation item is visible', () => {
@@ -100,7 +107,12 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@rightScroll').should('be.visible');
 
         cy.get('@navigationItems').each($el => {
-          cy.wrap($el).focus().then(isVisible).should('be.true');
+          if ($el.prop('localName') === 'a') {
+            cy.wrap($el).focus();
+          } else {
+            cy.wrap($el).find('button').focus();
+          }
+          cy.wrap($el).then(isVisible).should('be.true');
         });
 
         cy.get('@rightScroll').should('be.hidden');
@@ -120,20 +132,20 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
         // click on the position where the scroll right button was, the last item should not be triggered
         click();
-        cy.get('@navigationItems').last().invoke('attr', 'aria-expanded').should('not.eq', 'true');
+        cy.get('@lastButton').invoke('attr', 'aria-expanded').should('not.eq', 'true');
 
         // wait and click again on the position where the scroll right button was, the last item should then be triggered
         cy.wait(400);
         click();
-        cy.get('@navigationItems').last().invoke('attr', 'aria-expanded').should('eq', 'true');
+        cy.get('@lastButton').invoke('attr', 'aria-expanded').should('eq', 'true');
       });
 
       it('should show the mega-dropdown at the correct position after scroll', () => {
         // click until the last navigation item is visible
-        cy.get('@navigationItems').last().focus();
+        cy.get('@lastButton').focus();
 
         // open the last mega-dropdown
-        cy.get('@navigationItems').last().click();
+        cy.get('@lastButton').click({ force: true });
 
         // check the mega-dropdown visible and position
         cy.get('@mainnavigation')
@@ -148,7 +160,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
     describe('left scroll', () => {
       beforeEach(() => {
-        cy.get('@navigationItems').last().focus();
+        cy.get('@lastButton').focus();
 
         cy.get('@navigationItems')
           .then($options => $options.get().reverse())
@@ -170,15 +182,12 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       it('should click until the first navigation item is visible', () => {
         cy.get('@leftScroll').should('be.visible');
 
-        cy.get('@navigationItemsReversed').each($el => {
-          if (!isFullyVisible($el)) {
-            cy.get('@leftScroll').click();
-          }
-          cy.wrap($el).then(isFullyVisible).should('be.true');
-        });
+        cy.get('@leftScroll').then(clickUntilHidden);
 
         cy.get('@leftScroll').should('be.hidden');
+        cy.get('@navigationItems').first().should('be.visible');
       });
+
       it('should scroll continuously until the first navigation item is visible', () => {
         const leftScrollPosition = [5, 5];
         cy.get('@mainnavigation').trigger('mousedown', ...leftScrollPosition, { button: 0 });
@@ -192,7 +201,12 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@leftScroll').should('be.visible');
 
         cy.get('@navigationItemsReversed').each($el => {
-          cy.wrap($el).focus().then(isVisible).should('be.true');
+          if ($el.prop('localName') === 'a') {
+            cy.wrap($el).focus();
+          } else {
+            cy.wrap($el).find('button').focus();
+          }
+          cy.wrap($el).then(isVisible).should('be.true');
         });
 
         cy.get('@leftScroll').should('be.hidden');
@@ -211,12 +225,12 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
         // click on the position where the scroll left button was, the first item should not be triggered
         click();
-        cy.get('@navigationItems').first().invoke('attr', 'aria-expanded').should('not.eq', 'true');
+        cy.get('@firstButton').invoke('attr', 'aria-expanded').should('not.eq', 'true');
 
         // wait and click again on the position where the scroll left button was, the first item should then be triggered
         cy.wait(400);
         click();
-        cy.get('@navigationItems').first().invoke('attr', 'aria-expanded').should('eq', 'true');
+        cy.get('@firstButton').invoke('attr', 'aria-expanded').should('eq', 'true');
       });
     });
 

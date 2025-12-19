@@ -1,7 +1,5 @@
 # focus-trap
 
-
-
 <!-- Auto Generated Below -->
 
 

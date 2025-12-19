@@ -269,7 +269,6 @@
 - Updated `post-tooltip-trigger` and `post-menu-trigger` components to prevent errors when they do not contain an internal HTML element. (by [@myrta2302](https://github.com/myrta2302) with [#5591](https://github.com/swisspost/design-system/pull/5591))
 
 - Improved URL handling in `post-icon` component:
-
   - Enhanced URL construction to properly handle both absolute and relative URLs
   - Fixed slug detection to correctly identify root paths ("/") as valid slugs
   - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
@@ -301,7 +300,6 @@
 - Improved `post-header` component responsive behavior for better mobile and desktop experience. Removed `postUpdateDevice` event as part of internal refactoring - if you were listening to this event in your application, you'll need to remove those event listeners. Fixed a bug causing the `post-mainnavigation` to misplace after resizing from tablet to desktop and then back to tablet. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5490](https://github.com/swisspost/design-system/pull/5490))
 
 - Updated the following props to be `required`:
-
   - `post-breadcrumbs`: `homeUrl` is now required.
   - `post-collabpsible-trigger`: `for` is now required.
   - `post-language-switch`: `caption` and `description` are now required.
@@ -309,7 +307,6 @@
   - `post-tab-panel`: `name` is now required. (by [@myrta2302](https://github.com/myrta2302) with [#5469](https://github.com/swisspost/design-system/pull/5469))
 
 - Added the styles responsible for preventing fouc (flashes of unstyled content) for web-, angular- and react-components in the respective component packages:
-
   - `@swisspost/design-system-components/post-components/post-components.css`
   - `@swisspost/design-system-components-angular/post-components.css`
   - `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
@@ -327,7 +324,6 @@
 - Replaced thrown errors with console.errors for all property checker functions. (by [@myrta2302](https://github.com/myrta2302) with [#5471](https://github.com/swisspost/design-system/pull/5471))
 
 - Updated the following props to be `optional`:
-
   - `post-banner`: `dismissLabel`, `icon`
   - `post-card-control`: `description`
   - `post-language-option`: `active`, `name`, `url`, `variant`
@@ -336,7 +332,6 @@
   - `post-tag`: `variant`
 
   Updated prop type:
-
   - `post-card-control`: `validity` type changed to boolean. (by [@myrta2302](https://github.com/myrta2302) with [#5469](https://github.com/swisspost/design-system/pull/5469))
 
 - Updated dependencies:
@@ -356,7 +351,6 @@
 ### Major Changes
 
 - Prefixed all CSS custom variables with `post`:
-
   - `--global-header-top` is now `--post-global-header-top`
   - `--local-header-top` is now `--post-local-header-top`
   - `--logo-height` is now `--post-logo-height`
@@ -1110,7 +1104,6 @@
 ### Major Changes
 
 - Synchronized the versions of the following packages:
-
   - @swisspost/design-system-styles
   - @swisspost/design-system-components
   - @swisspost/design-system-components-react
@@ -1122,7 +1115,6 @@
   This will help understanding the dependencies between these packages at a glance but also means that for the individual pacakges, semver is no longer being used. This enables us also to talk about and document Design System versions as a whole instead of documenting the fragmented versions in a complex lookup table. (by [@gfellerph](https://github.com/gfellerph) with [#2856](https://github.com/swisspost/design-system/pull/2856))
 
 - Updated the package entry properties in the package.json to the by stencil recommended files:
-
   - Updated the `main` property from `loader/index.cjs.js` to `dist/index.cjs.js`
   - Updated the `module` property from `loader/index.js` to `dist/loader.js`
   - Updated the `types` property from `loader/index.d.ts` to `dist/types/index.d.ts`
@@ -1157,7 +1149,6 @@
 
 - Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
   Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
-
   - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
   - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
 
