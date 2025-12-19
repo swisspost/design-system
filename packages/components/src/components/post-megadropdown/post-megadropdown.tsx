@@ -72,9 +72,7 @@ export class PostMegadropdown {
 
   private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
-    return hostId
-      ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
-      : null;
+    return hostId ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"]`) : null;
   }
 
   /**
@@ -132,8 +130,8 @@ export class PostMegadropdown {
   @Method()
   async show() {
     if (this.device !== 'desktop') {
-      const triggerLabel = this.megadropdownTrigger?.querySelector('.nav-el-active');
-      if (triggerLabel) this.megadropdownTitle = triggerLabel.innerHTML;
+      const trigger = this.megadropdownTrigger;
+      if (trigger) this.megadropdownTitle = trigger.innerHTML;
     }
 
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
@@ -299,13 +297,7 @@ export class PostMegadropdown {
    */
   private setTriggerActive(isActive: boolean) {
     const trigger = this.megadropdownTrigger;
-    if (!trigger) return;
-
-    if (isActive) {
-      trigger.classList.add('active');
-    } else {
-      trigger.classList.remove('active');
-    }
+    if (trigger) trigger.setAttribute('active', isActive.toString());
   }
 
   /**

@@ -5,9 +5,10 @@
 
 ## Properties
 
-| Property           | Attribute | Description                                                                                                         | Type     | Default     |
-| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `for` _(required)_ | `for`     | ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown. | `string` | `undefined` |
+| Property           | Attribute | Description                                                                                                         | Type      | Default     |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `active`           | `active`  | Sets the trigger state to be active or inactive.                                                                    | `boolean` | `false`     |
+| `for` _(required)_ | `for`     | ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown. | `string`  | `undefined` |
 
 
 ## Dependencies
