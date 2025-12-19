@@ -66,12 +66,13 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
  */
 @mixin nav-item-block-layout {
   --post-nav-item-border-width: 1px;
-  border-radius: 0;
-  padding: 0.75rem 0.75rem calc(0.75rem - var(--post-nav-item-border-width)) 0.5rem;
-  gap: 1rem;
   width: 100%;
   justify-content: start;
   position: relative;
+  padding: 0.75rem 0.75rem calc(0.75rem - var(--post-nav-item-border-width)) 0.5rem;
+  gap: 1rem;
+  border-radius: 0;
+  line-height: 1.5;
 
   &::before {
     content: '';
@@ -104,7 +105,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   }
 
   @include media.only(mobile) {
-    padding: 0.5rem 0.75rem calc(0.5rem - var(--post-nav-item-border-width)) 0.5rem;
+    padding: calc(0.5rem + 1.5px) 0.75rem calc(0.5rem + 1.5px - var(--post-nav-item-border-width)) 0.5rem;
     gap: 0.5rem;
     font-size: 0.875rem;
 
