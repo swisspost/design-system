@@ -62,13 +62,8 @@ const code = `
       <!-- Level 1 with megadropdown -->
       <li>
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-        <post-megadropdown id="briefe">
-          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-            <post-icon name="arrowright"></post-icon>
-            Back
-          </button>
-          <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
+        <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
+          <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
           <post-list>
             <p>Briefe senden</p>
             <post-list-item slot="post-list-item"><a href="#">Briefe Schweiz</a></post-list-item>
@@ -91,13 +86,8 @@ const code = `
       </li>
       <li>
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-        <post-megadropdown id="pakete">
-          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-            <post-icon name="arrowright"></post-icon>
-            Back
-          </button>
-          <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
+        <post-megadropdown id="pakete" label-close="Schliessen" labelBack="Back">
+          <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
           <post-list>
             <p>Pakete senden</p>
             <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>

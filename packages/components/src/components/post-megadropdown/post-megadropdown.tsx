@@ -1,8 +1,23 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
+import { checkRequiredAndType } from '@/utils';
 
+/**
+ * @slot default - Slot for placing content.
+ */
 @Component({
   tag: 'post-megadropdown',
   styleUrl: 'post-megadropdown.scss',
@@ -19,6 +34,26 @@ export class PostMegadropdown {
 
   @Element() host: HTMLPostMegadropdownElement;
 
+  /**
+   * An accessible label for the close button visible on desktop
+   */
+  @Prop({ reflect: true }) labelClose!: string;
+
+  @Watch('labelClose')
+  validateCloseLabel() {
+    checkRequiredAndType(this, 'labelClose', 'string');
+  }
+
+  /**
+   * A label for the back button visible on tablet and mobile
+   */
+  @Prop({ reflect: true }) labelBack!: string;
+
+  @Watch('labelBack')
+  validateBackLabel() {
+    checkRequiredAndType(this, 'labelBack', 'string');
+  }
+
   @State() device: Device = breakpoint.get('device');
 
   /**
@@ -30,14 +65,14 @@ export class PostMegadropdown {
 
   @State() trigger: boolean = false;
 
+  @State() megadropdownTitle: string;
+
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
   private get megadropdownTrigger(): Element | null {
     const hostId = this.host.getAttribute('id');
-    return hostId
-      ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"] > button`)
-      : null;
+    return hostId ? document.querySelector(`post-megadropdown-trigger[for="${hostId}"]`) : null;
   }
 
   /**
@@ -57,6 +92,8 @@ export class PostMegadropdown {
   }
 
   componentDidLoad() {
+    this.validateCloseLabel();
+    this.validateBackLabel();
     this.checkInitialAriaCurrent();
     this.setupObserver();
     this.handleAriaCurrentChange([]);
@@ -92,6 +129,11 @@ export class PostMegadropdown {
    */
   @Method()
   async show() {
+    if (this.device !== 'desktop') {
+      const trigger = this.megadropdownTrigger;
+      if (trigger) this.megadropdownTitle = trigger.innerHTML;
+    }
+
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
@@ -198,7 +240,7 @@ export class PostMegadropdown {
 
     // Check for an overview link
     const overviewLink = this.host.querySelector<HTMLAnchorElement>(
-      'a[slot="megadropdown-overview-link"]',
+      'a[slot="post-megadropdown-overview"]',
     );
 
     if (overviewLink) {
@@ -255,13 +297,7 @@ export class PostMegadropdown {
    */
   private setTriggerActive(isActive: boolean) {
     const trigger = this.megadropdownTrigger;
-    if (!trigger) return;
-
-    if (isActive) {
-      trigger.classList.add('active');
-    } else {
-      trigger.classList.remove('active');
-    }
+    if (trigger) trigger.setAttribute('active', isActive.toString());
   }
 
   /**
@@ -297,17 +333,22 @@ export class PostMegadropdown {
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
           <div class="megadropdown">
-            <slot name="megadropdown-title"></slot>
-            <slot name="megadropdown-overview-link"></slot>
+            {this.megadropdownTitle && <p class="megadropdown-title">{this.megadropdownTitle}</p>}
+
             <div class="megadropdown-content">
               <slot></slot>
             </div>
-            <div onClick={() => this.hide(true)} class="back-button">
-              <slot name="back-button"></slot>
-            </div>
-            <div onClick={() => this.hide(true)} class="close-button">
-              <slot name="close-button"></slot>
-            </div>
+
+            {this.device === 'desktop' ? (
+              <post-closebutton onClick={() => this.hide(true)} class="close-button">
+                {this.labelClose}
+              </post-closebutton>
+            ) : (
+              <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary btn-sm">
+                <post-icon name="arrowleft"></post-icon>
+                {this.labelBack}
+              </button>
+            )}
           </div>
         </div>
       </Host>

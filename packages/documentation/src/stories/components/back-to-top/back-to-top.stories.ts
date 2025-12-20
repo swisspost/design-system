@@ -87,6 +87,47 @@ const meta: MetaComponent = {
           <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
         </post-togglebutton>
 
+        <!-- Language switch -->
+        <post-language-menu
+          caption="Change the language"
+          description="The currently selected language is English."
+          variant="list"
+          name="language-menu-example"
+          slot="language-menu"
+        >
+          <post-language-menu-item active="false" code="de" name="Deutsch"
+            >de</post-language-menu-item
+          >
+          <post-language-menu-item active="false" code="fr" name="French"
+            >fr</post-language-menu-item
+          >
+          <post-language-menu-item active="false" code="it" name="Italiano"
+            >it</post-language-menu-item
+          >
+          <post-language-menu-item active="true" code="en" name="English"
+            >en</post-language-menu-item
+          >
+        </post-language-menu>
+
+        <!-- Application title (optional) -->
+        <p slot="title">Application title</p>
+
+        <!-- Local controls (optional) -->
+        <ul slot="local-nav">
+          <li>
+            <a href="#">
+              <span>Search</span>
+              <post-icon aria-hidden="true" name="search"></post-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Login</span>
+              <post-icon aria-hidden="true" name="login"></post-icon>
+            </a>
+          </li>
+        </ul>
+
         <!-- Main navigation -->
         <!-- Caption (textName) best practice: Don't include "navigation", screen readers add it automatically.
          e.g. text-main="Main" → "Main navigation" -->
@@ -102,14 +143,8 @@ const meta: MetaComponent = {
 
             <!-- Level 1 with megadropdown -->
             <li>
-              <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-              <post-megadropdown id="letters">
-                <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                  <post-icon name="arrowleft"></post-icon>
-                  Back
-                </button>
-                <post-closebutton slot="close-button">Close</post-closebutton>
-                <a slot="megadropdown-overview-link" href="/letters">Overview Letters</a>
+              <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
+              <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
                 <post-list>
                   <p>Send letters</p>
                   <post-list-item slot="post-list-item">
@@ -143,14 +178,8 @@ const meta: MetaComponent = {
               </post-megadropdown>
             </li>
             <li>
-              <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-              <post-megadropdown id="packages">
-                <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                  <post-icon name="arrowleft"></post-icon>
-                  Back
-                </button>
-                <post-closebutton slot="close-button">Close</post-closebutton>
-                <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
+              <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
+              <post-megadropdown id="pakete" label-close="Schliessen" label-back="Back">
                 <post-list>
                   <p>Send packages</p>
                   <post-list-item slot="post-list-item">

@@ -70,13 +70,8 @@
         <ul>
           <li>
             <post-megadropdown-trigger for="item-1">Item 1</post-megadropdown-trigger>
-            <post-megadropdown id="item-1">
-              <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowleft"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <a slot="megadropdown-overview-link" href="/briefe">Übersicht Briefe</a>
+            <post-megadropdown id="item-1" label-close="Schliessen" label-back="Back">
+              <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
               <post-list>
                 <p>Briefe senden</p>
                 <post-list-item slot="post-list-item"
@@ -128,13 +123,8 @@
 
           <li>
             <post-megadropdown-trigger for="item-20">Item 20</post-megadropdown-trigger>
-            <post-megadropdown id="item-20">
-              <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowleft"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <a slot="megadropdown-overview-link" href="/pakete">Übersicht Pakete</a>
+            <post-megadropdown id="item-20" label-close="Schliessen" label-back="Back">
+              <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
               <post-list>
                 <p>Pakete senden</p>
                 <post-list-item slot="post-list-item"

@@ -325,6 +325,14 @@ export namespace Components {
          */
         "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
         /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "labelBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "labelClose": string;
+        /**
           * Displays the dropdown.
          */
         "show": () => Promise<void>;
@@ -334,6 +342,11 @@ export namespace Components {
         "toggle": () => Promise<void>;
     }
     interface PostMegadropdownTrigger {
+        /**
+          * Sets the trigger state to be active or inactive.
+          * @default false
+         */
+        "active": boolean;
         /**
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
@@ -1360,11 +1373,24 @@ declare namespace LocalJSX {
     }
     interface PostMegadropdown {
         /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "labelBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "labelClose": string;
+        /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
         "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
     }
     interface PostMegadropdownTrigger {
+        /**
+          * Sets the trigger state to be active or inactive.
+          * @default false
+         */
+        "active"?: boolean;
         /**
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */

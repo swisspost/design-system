@@ -3,7 +3,6 @@ import {
   PostBackToTop,
   PostBreadcrumbs,
   PostBreadcrumbItem,
-  PostClosebutton,
   PostFooter,
   PostHeader,
   PostIcon,
@@ -114,13 +113,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Letters */}
             <li>
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
-              <PostMegadropdown id="letters">
-                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowleft" />
-                  Back
-                </button>
-                <PostClosebutton slot="close-button">Close</PostClosebutton>
-                <a slot="megadropdown-overview-link" href="/letters">
+              <PostMegadropdown id="letters" label-close="Close" label-back="Back">
+                <a className="post-megadropdown-overview" href="/letters">
                   Overview Letters
                 </a>
                 <PostList>
@@ -161,13 +155,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Packages */}
             <li>
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
-              <PostMegadropdown id="packages">
-                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowleft" />
-                  Back
-                </button>
-                <PostClosebutton slot="close-button">Close</PostClosebutton>
-                <a slot="megadropdown-overview-link" href="/packages">
+              <PostMegadropdown id="packages" label-close="Close" label-back="Back">
+                <a className="post-megadropdown-overview" href="/packages">
                   Overview Packages
                 </a>
                 <PostList>
