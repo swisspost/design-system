@@ -98,7 +98,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 function render() {
   return html`
     <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-    <post-megadropdown id="packages" label-close="Close" label-back="Back">
+    <post-megadropdown id="packages" text-close="Close" text-back="Back">
       <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
       <post-list>
         <p>Send packages</p>

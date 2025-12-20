@@ -74,7 +74,7 @@ export class PostPagination {
   @Prop({ reflect: true }) collectionSize!: number;
 
   /**
-   * Accessible label for the pagination navigation.
+   * A descriptive label for the pagination navigation, used by assistive technologies.
    */
   @Prop({ reflect: true }) readonly label!: string;
 

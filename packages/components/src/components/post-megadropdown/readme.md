@@ -5,10 +5,10 @@
 
 ## Properties
 
-| Property                  | Attribute     | Description                                                 | Type     | Default     |
-| ------------------------- | ------------- | ----------------------------------------------------------- | -------- | ----------- |
-| `labelBack` _(required)_  | `label-back`  | A label for the back button visible on tablet and mobile    | `string` | `undefined` |
-| `labelClose` _(required)_ | `label-close` | An accessible label for the close button visible on desktop | `string` | `undefined` |
+| Property                 | Attribute    | Description                                                 | Type     | Default     |
+| ------------------------ | ------------ | ----------------------------------------------------------- | -------- | ----------- |
+| `textBack` _(required)_  | `text-back`  | A label for the back button visible on tablet and mobile    | `string` | `undefined` |
+| `textClose` _(required)_ | `text-close` | An accessible label for the close button visible on desktop | `string` | `undefined` |
 
 
 ## Events

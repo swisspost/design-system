@@ -20,7 +20,7 @@ const code = `
     <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
   </post-togglebutton>
 
-  <!-- Language switch -->
+  <!-- Language menu -->
   <post-language-menu
     text-change-language="Change the language"
     text-current-language="The currently selected language is #name."
@@ -62,7 +62,7 @@ const code = `
       <!-- Level 1 with megadropdown -->
       <li>
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-        <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
+        <post-megadropdown id="briefe" text-close="Schliessen" text-back="Back">
           <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
           <post-list>
             <p>Briefe senden</p>
@@ -86,7 +86,7 @@ const code = `
       </li>
       <li>
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-        <post-megadropdown id="pakete" label-close="Schliessen" labelBack="Back">
+        <post-megadropdown id="pakete" text-close="Schliessen" text-back="Back">
           <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
           <post-list>
             <p>Pakete senden</p>

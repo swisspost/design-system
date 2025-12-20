@@ -37,21 +37,21 @@ export class PostMegadropdown {
   /**
    * An accessible label for the close button visible on desktop
    */
-  @Prop({ reflect: true }) labelClose!: string;
+  @Prop({ reflect: true }) textClose!: string;
 
-  @Watch('labelClose')
-  validateCloseLabel() {
-    checkRequiredAndType(this, 'labelClose', 'string');
+  @Watch('textClose')
+  validateTextClose() {
+    checkRequiredAndType(this, 'textClose', 'string');
   }
 
   /**
    * A label for the back button visible on tablet and mobile
    */
-  @Prop({ reflect: true }) labelBack!: string;
+  @Prop({ reflect: true }) textBack!: string;
 
-  @Watch('labelBack')
-  validateBackLabel() {
-    checkRequiredAndType(this, 'labelBack', 'string');
+  @Watch('textBack')
+  validateTextBack() {
+    checkRequiredAndType(this, 'textBack', 'string');
   }
 
   @State() device: Device = breakpoint.get('device');
@@ -92,8 +92,8 @@ export class PostMegadropdown {
   }
 
   componentDidLoad() {
-    this.validateCloseLabel();
-    this.validateBackLabel();
+    this.validateTextClose();
+    this.validateTextBack();
     this.checkInitialAriaCurrent();
     this.setupObserver();
     this.handleAriaCurrentChange([]);
@@ -341,12 +341,12 @@ export class PostMegadropdown {
 
             {this.device === 'desktop' ? (
               <post-closebutton onClick={() => this.hide(true)} class="close-button">
-                {this.labelClose}
+                {this.textClose}
               </post-closebutton>
             ) : (
               <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary btn-sm">
                 <post-icon name="arrowleft"></post-icon>
-                {this.labelBack}
+                {this.textBack}
               </button>
             )}
           </div>

@@ -195,7 +195,7 @@ function getHeaderRenderer(
         ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
-        <!-- Language switch -->
+        <!-- Language menu -->
         <post-language-menu
           text-change-language="Change the language"
           text-current-language="The currently selected language is #name."

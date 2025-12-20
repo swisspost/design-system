@@ -9,7 +9,7 @@
 | ----------------------------- | ----------------- | ---------------------------------------------------------------------------------- | --------- | ----------- |
 | `collectionSize` _(required)_ | `collection-size` | The total number of items in the collection.                                       | `number`  | `undefined` |
 | `disabled`                    | `disabled`        | If true, the pagination is disabled.                                               | `boolean` | `undefined` |
-| `label` _(required)_          | `label`           | Accessible label for the pagination navigation.                                    | `string`  | `undefined` |
+| `label` _(required)_          | `label`           | A descriptive label for the pagination navigation, used by assistive technologies. | `string`  | `undefined` |
 | `page`                        | `page`            | The current active page number.  **If not specified, defaults to the first page.** | `number`  | `undefined` |
 | `pageSize` _(required)_       | `page-size`       | The number of items per page.                                                      | `number`  | `undefined` |
 | `textFirst` _(required)_      | `text-first`      | Prefix text for the first page label.                                              | `string`  | `undefined` |

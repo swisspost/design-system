@@ -18,7 +18,7 @@ const meta: MetaComponent = {
     homeUrl: '/',
     textHome: 'Home',
     textBreadcrumbs: 'Breadcrumbs',
-    textMoreItems: 'More breadcrumb items',
+    textMoreItems: 'More items',
   },
 };
 

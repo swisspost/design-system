@@ -133,7 +133,7 @@ export default function Home() {
         className="palette palette-alternate"
         id="popover-one"
         placement="top"
-        textClose="Close Popover"
+        textClose="Close"
         arrow={true}
       >
         <h2 className="h6">Optional title</h2>
@@ -195,7 +195,7 @@ export default function Home() {
       <PostStepper
         textCompletedStep="Completed step"
         textCurrentStep="Current step"
-        textStepNumber="Step #index:"
+        textStepNumber="Step #number:"
         currentIndex={1}
       >
         <PostStepperItem> Step 1 </PostStepperItem>

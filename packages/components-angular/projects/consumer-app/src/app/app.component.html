@@ -40,8 +40,8 @@
 
   <!-- Language switch -->
   <post-language-menu
-    text-change-language="Change the language"
-    text-current-language="The currently selected language is #name."
+    textChangeLanguage="Change the language"
+    textCurrentLanguage="The currently selected language is #name."
     variant="list"
     name="language-menu-example"
     slot="language-menu"
@@ -67,7 +67,7 @@
   </post-togglebutton>
 
   <!-- Main navigation -->
-  <post-mainnavigation text-main="Main">
+  <post-mainnavigation textMain="Main">
     <ul>
       <!-- Link only level 1 -->
       <li>
@@ -83,7 +83,7 @@
           <post-megadropdown-trigger [for]="dropdown.id">{{
             dropdown.trigger
           }}</post-megadropdown-trigger>
-          <post-megadropdown [id]="dropdown.id" labelClose="Close" labelBack="Back">
+          <post-megadropdown [id]="dropdown.id" textClose="Close" textBack="Back">
             <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
               >Overview {{ dropdown.trigger }}</a
             >
@@ -141,9 +141,9 @@
   <router-outlet></router-outlet>
 </main>
 
-<post-back-to-top text-back-to-top="Back to top button"></post-back-to-top>
+<post-back-to-top textBackToTop="Back to top"></post-back-to-top>
 
-<post-footer text-footer="Footer label">
+<post-footer textFooter="Footer">
   @for (grid of footerGrids; track grid.slot) {
   <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
   <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">

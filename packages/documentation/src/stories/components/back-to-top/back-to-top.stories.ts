@@ -57,7 +57,7 @@ const meta: MetaComponent = {
           </li>
         </ul>
 
-        <!-- Language switch -->
+        <!-- Language menu -->
         <post-language-menu
           text-change-language="Change the language"
           text-current-language="The currently selected language is #name."
@@ -87,10 +87,10 @@ const meta: MetaComponent = {
           <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
         </post-togglebutton>
 
-        <!-- Language switch -->
+        <!-- Language menu -->
         <post-language-menu
-          caption="Change the language"
-          description="The currently selected language is English."
+          text-change-language="Change the language"
+          text-current-language="The currently selected language is #name."
           variant="list"
           name="language-menu-example"
           slot="language-menu"
@@ -144,7 +144,7 @@ const meta: MetaComponent = {
             <!-- Level 1 with megadropdown -->
             <li>
               <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-              <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
+              <post-megadropdown id="briefe" text-close="Schliessen" text-back="Back">
                 <post-list>
                   <p>Send letters</p>
                   <post-list-item slot="post-list-item">
@@ -179,7 +179,7 @@ const meta: MetaComponent = {
             </li>
             <li>
               <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-              <post-megadropdown id="pakete" label-close="Schliessen" label-back="Back">
+              <post-megadropdown id="pakete" text-close="Schliessen" text-back="Back">
                 <post-list>
                   <p>Send packages</p>
                   <post-list-item slot="post-list-item">

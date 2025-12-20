@@ -325,17 +325,17 @@ export namespace Components {
          */
         "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
         /**
-          * A label for the back button visible on tablet and mobile
-         */
-        "labelBack": string;
-        /**
-          * An accessible label for the close button visible on desktop
-         */
-        "labelClose": string;
-        /**
           * Displays the dropdown.
          */
         "show": () => Promise<void>;
+        /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "textBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "textClose": string;
         /**
           * Toggles the dropdown visibility based on its current state.
          */
@@ -358,7 +358,7 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * An accessible name for the menu.
+          * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
          */
         "label": string;
         /**
@@ -394,7 +394,7 @@ export namespace Components {
          */
         "disabled"?: boolean;
         /**
-          * Accessible label for the pagination navigation.
+          * A descriptive label for the pagination navigation, used by assistive technologies.
          */
         "label": string;
         /**
@@ -511,7 +511,7 @@ export namespace Components {
          */
         "currentRating": number;
         /**
-          * Defines a hidden label for the component.
+          * A hidden, descriptive label that explains the role of the rating component to assistive technologies.
          */
         "label": string;
         /**
@@ -1373,17 +1373,17 @@ declare namespace LocalJSX {
     }
     interface PostMegadropdown {
         /**
-          * A label for the back button visible on tablet and mobile
-         */
-        "labelBack": string;
-        /**
-          * An accessible label for the close button visible on desktop
-         */
-        "labelClose": string;
-        /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
         "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
+        /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "textBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "textClose": string;
     }
     interface PostMegadropdownTrigger {
         /**
@@ -1398,7 +1398,7 @@ declare namespace LocalJSX {
     }
     interface PostMenu {
         /**
-          * An accessible name for the menu.
+          * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
          */
         "label": string;
         /**
@@ -1429,7 +1429,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Accessible label for the pagination navigation.
+          * A descriptive label for the pagination navigation, used by assistive technologies.
          */
         "label": string;
         /**
@@ -1540,7 +1540,7 @@ declare namespace LocalJSX {
          */
         "currentRating"?: number;
         /**
-          * Defines a hidden label for the component.
+          * A hidden, descriptive label that explains the role of the rating component to assistive technologies.
          */
         "label": string;
         /**
