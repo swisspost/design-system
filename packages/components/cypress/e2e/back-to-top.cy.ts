@@ -10,7 +10,7 @@ describe('Back-to-top', () => {
       cy.get('post-back-to-top').should('exist');
     });
 
-    it('should log a message if the textBackToTop is removed', () => {
+    it('should log a message if the textBackToTop label is removed', () => {
       cy.window().then(win => {
         cy.spy(win.console, 'error').as('consoleError');
       });
@@ -22,7 +22,7 @@ describe('Back-to-top', () => {
       cy.get('@consoleError').should('be.called');
     });
 
-    it('should hide the textBackToTop visually', () => {
+    it('should hide the textBackToTop label visually', () => {
       cy.get('post-back-to-top').shadow().find('.visually-hidden');
     });
 

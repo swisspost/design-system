@@ -123,7 +123,6 @@ export class PostLanguageMenuItem {
       code: this.code,
       name: this.name,
     });
-    console.log('emit');
   }
 
   private isNameRequired(): boolean {

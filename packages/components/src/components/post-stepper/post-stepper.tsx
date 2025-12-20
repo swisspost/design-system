@@ -15,7 +15,7 @@ export class PostStepper {
   /**
    * Active step label is for visual purposes on mobile only
    */
-  @State() mobileActiveStepNumber: string;
+  @State() mobileActiveStepLabel: string;
 
   /**
    * Active step name is for visual purposes on mobile only
@@ -44,13 +44,13 @@ export class PostStepper {
 
   /**
    * Label for the "Step N:" indicator for mobile view.
-   * Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
+   * Use `#number` as a placeholder — it will be replaced with the current step number at runtime.
    */
   @Prop({ reflect: true }) textStepNumber!: string;
 
   @Watch('textStepNumber')
   validateTextStepNumber() {
-    checkRequiredAndPattern(this, 'textStepNumber', /#index\b/);
+    checkRequiredAndPattern(this, 'textStepNumber', /#number\b/);
     this.updateActiveStepNumber();
   }
 
@@ -83,7 +83,7 @@ export class PostStepper {
   private updateActiveStepNumber() {
     if (this.textStepNumber) {
       const labelTemplate = this.textStepNumber;
-      this.mobileActiveStepNumber = labelTemplate.replace(/#index/g, `${this.currentIndex + 1}`);
+      this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.currentIndex + 1}`);
       this.updateMobileActiveStepVisibility();
     }
   }
@@ -137,7 +137,7 @@ export class PostStepper {
 
   private updateMobileActiveStepVisibility() {
     if (this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
-      this.mobileActiveStepNumber = '';
+      this.mobileActiveStepLabel = '';
       this.mobileActiveStepName = '';
     }
   }
@@ -149,7 +149,7 @@ export class PostStepper {
           <slot onSlotchange={() => this.updateSteps()}></slot>
         </ol>
         <div class="active-step" aria-hidden="true">
-          {this.mobileActiveStepNumber}
+          {this.mobileActiveStepLabel}
           <span innerHTML={this.mobileActiveStepName}></span>
         </div>
       </Host>
