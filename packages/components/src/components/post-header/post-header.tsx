@@ -367,10 +367,14 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange() {
+  onFocusChange(e: FocusEvent) {
     const fixedElements =
       this.device === 'desktop' ? '.logo, .navigation' : '.global-header, .burger-menu';
     const isHeaderExpanded =
+      // ensure the expanded state stays accurate during focus changes,
+      // e.g., when the focused element is removed from the DOM
+      // during a window resize
+      e.target === document.activeElement &&
       this.host.matches(':focus-within') &&
       !this.host.shadowRoot.querySelector(`:where(${fixedElements}):focus-within`);
 
