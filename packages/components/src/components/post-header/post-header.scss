@@ -43,7 +43,7 @@ header,
   z-index: commons.$zindex-header;
 
   post-togglebutton {
-    @include header-mx.header-control-base;
+    @include header-mx.nav-item-base;
     @include media-mx.only(mobile) {
       @include header-mx.header-control-icon-only;
     }
