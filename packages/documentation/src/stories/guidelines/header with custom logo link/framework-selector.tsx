@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Source } from '@storybook/addon-docs/blocks';
 
 const code = `
-<post-header label-burger-menu="Menu">
+<post-header text-menu="Menu">
 
   <!-- Logo -->
   {{logoLink}}

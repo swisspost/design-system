@@ -27,7 +27,7 @@ export default meta;
 
 export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
   return html`
-    <post-header label-burger-menu="Menu">
+    <post-header text-menu="Menu">
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
