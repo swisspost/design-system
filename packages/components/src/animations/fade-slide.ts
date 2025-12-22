@@ -8,19 +8,19 @@
 import { AnimationOptions } from './types';
 import { resolveEasing } from './utils';
 
-const defaultOptions: AnimationOptions & { translate: number } = {
+type FadeSlideOptions = AnimationOptions & { translate: number };
+
+const defaultOptions: FadeSlideOptions = {
   duration: 500,
   easing: 'ease',
   fill: 'none',
   translate: -100,
 };
 
-type FadeSlideOptions = Partial<AnimationOptions> & { translate?: number };
-
 function animateFadeSlide(
   el: Element,
   keyframes: Keyframe[],
-  options: FadeSlideOptions,
+  options: Partial<FadeSlideOptions>,
 ): Animation {
   const { duration, easing, fill } = { ...defaultOptions, ...options };
   return el.animate(keyframes, {
