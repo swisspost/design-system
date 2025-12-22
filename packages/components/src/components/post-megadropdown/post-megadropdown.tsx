@@ -13,8 +13,8 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { fadeSlide, slide } from '@/animations';
-import { AnimationOptions } from '@/animations/types';
+import { slide } from '@/animations';
+import { fadeSlide, FadeSlideOptions } from '@/animations/fade-slide';
 import { checkRequiredAndType } from '@/utils';
 
 @Component({
@@ -35,7 +35,7 @@ export class PostMegadropdown {
   private animatedContainer: HTMLElement;
   private isAnimating: boolean = false;
 
-  private fsAnimationOptions: Partial<AnimationOptions> & { translate?: number } = {
+  private fsAnimationOptions: Partial<FadeSlideOptions> = {
     translate: -10,
     duration: 350,
     easing: 'headerEase',
