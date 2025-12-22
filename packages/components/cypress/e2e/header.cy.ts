@@ -84,7 +84,7 @@ describe('header', () => {
       cy.get('[data-post-scroll-locked]').should('not.exist');
     });
 
-    it('should log an error if the textMenu is not set', () => {
+    it('should log an error if the textMenu prop is not set', () => {
       cy.window().then(win => {
         cy.spy(win.console, 'error').as('consoleError');
       });
