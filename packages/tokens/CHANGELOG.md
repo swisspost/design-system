@@ -53,7 +53,6 @@
   ```
 
   Also renamed the following CSS custom properties:
-
   - `--post-current-palette-fg` → `--post-current-fg`
   - `--post-current-palette-bg` → `--post-current-bg` (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
 

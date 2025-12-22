@@ -88,13 +88,12 @@ const renderVariants = (
 const renderAnimateVariants = (args: Args, customAttrs: { name: string; animation: string }[]) => {
   return html`
     ${customAttrs.map(
-      variantArgs =>
-        html`
-          <div class="w-half py-16">
-            <p class="fs-9">Animation: ${variantArgs.animation}</p>
-            <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>
-          </div>
-        `,
+      variantArgs => html`
+        <div class="w-half py-16">
+          <p class="fs-9">Animation: ${variantArgs.animation}</p>
+          <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>
+        </div>
+      `,
     )}
   `;
 };

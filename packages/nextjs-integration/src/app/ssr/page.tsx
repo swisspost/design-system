@@ -9,6 +9,8 @@ import {
   PostCollapsibleTrigger,
   PostIcon,
   PostLinkarea,
+  PostList,
+  PostListItem,
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
@@ -107,6 +109,14 @@ export default function Home() {
           </div>
         </div>
       </PostLinkarea>
+
+      <h2>List</h2>
+      <PostList>
+        <h3>Title</h3>
+        <PostListItem>List Item 1</PostListItem>
+        <PostListItem>List Item 2</PostListItem>
+        <PostListItem>List Item 3</PostListItem>
+      </PostList>
 
       <h2>Menu</h2>
       {/* Throws Hydration Errors */}

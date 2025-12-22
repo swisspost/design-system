@@ -37,7 +37,7 @@
     "unit:watch": "jest --watchAll"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "8.22.0",
+    "@typescript-eslint/utils": "8.49.0",
     "cheerio": "1.0.0",
     "eslint-scope": "8.2.0"
   },
@@ -45,7 +45,7 @@
     "@eslint/js": "9.19.0",
     "@types/eslint-scope": "3.7.7",
     "@types/jest": "29.5.14",
-    "@typescript-eslint/rule-tester": "8.22.0",
+    "@typescript-eslint/rule-tester": "8.49.0",
     "concurrently": "9.2.1",
     "domhandler": "5.0.3",
     "eslint": "9.19.0",
@@ -55,7 +55,7 @@
     "rimraf": "6.0.1",
     "ts-jest": "29.2.5",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.22.0"
+    "typescript-eslint": "8.49.0"
   },
   "peerDependencies": {
     "eslint": ">=9.0.0",

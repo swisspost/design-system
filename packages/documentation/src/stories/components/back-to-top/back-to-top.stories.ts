@@ -22,7 +22,7 @@ const meta: MetaComponent = {
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
         <!-- Meta navigation -->
-        <ul slot="meta-navigation">
+        <ul slot="global-nav-secondary">
           <li><a href="">Jobs</a></li>
           <li><a href="">Über uns</a></li>
         </ul>
@@ -33,7 +33,7 @@ const meta: MetaComponent = {
           description="The currently selected language is English."
           variant="list"
           name="language-menu-example"
-          slot="post-language-switch"
+          slot="language-menu"
         >
           <post-language-menu-item active="false" code="de" name="Deutsch"
             >de</post-language-menu-item
@@ -69,95 +69,98 @@ const meta: MetaComponent = {
         </ul>
 
         <!-- Main navigation -->
-        <post-mainnavigation slot="post-mainnavigation" caption="Hauptnavigation">
-          <post-list title-hidden="">
-            <p>Main Navigation</p>
+        <post-mainnavigation slot="main-nav" caption="Haupt">
+          <ul>
             <!-- Link only level 1 -->
-            <post-list-item slot="post-list-item"><a href="/briefe">Briefe</a></post-list-item>
-            <post-list-item slot="post-list-item"><a href="/pakete">Pakete</a></post-list-item>
+            <li><a href="/briefe">Briefe</a></li>
+            <li><a href="/pakete">Pakete</a></li>
 
             <!-- Level 1 with megadropdown -->
-            <post-list-item slot="post-list-item">
+            <li>
               <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-              <post-megadropdown id="briefe">
-                <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                  <post-icon name="arrowleft"></post-icon>
-                  Back
-                </button>
-                <post-closebutton slot="close-button">Schliessen</post-closebutton>
-                <post-list>
-                  <p>Briefe senden</p>
-                  <post-list-item slot="post-list-item"
-                    ><a href="/sch">Briefe Schweiz</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="/kl">Kleinwaren Ausland</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="">Waren Ausland</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="">Express und Kurier</a></post-list-item
-                  >
-                </post-list>
-                <post-list>
-                  <p><a href="/schritt-für-schritt">Schritt für Schritt</a></p>
-                  <post-list-item slot="post-list-item"
-                    ><a href="/sch">Pakete Schweiz</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="/kl">Kleinwaren Ausland</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="">Waren Ausland</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="">Express und Kurier</a></post-list-item
-                  >
-                </post-list>
+              <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
+                <div class="row row-cols-1 row-cols-sm-2">
+                  <div class="col">
+
+                    <p class="post-megadropdown-list-title" id="send-letters">Briefe senden</p>
+                    <ul class="post-megadropdown-list" aria-labelledby="send-letters">
+                      <li>
+                        <a href="/sch">Briefe Schweiz</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Kleinwaren Ausland</a>
+                      </li>
+                      <li>
+                        <a href="">Waren Ausland</a>
+                      </li>
+                      <li>
+                        <a href="">Express und Kurier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col">
+
+                    <a class="post-megadropdown-list-title" id="step-by-step-letters" href="/schritt-für-schritt">Schritt für Schritt</a>
+                    <ul class="post-megadropdown-list" aria-labelledby="step-by-step-letters">
+                      <li>
+                        <a href="/sch">Pakete Schweiz</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Kleinwaren Ausland</a>
+                      </li>
+                      <li>
+                        <a href="">Waren Ausland</a>
+                      </li>
+                      <li>
+                        <a href="">Express und Kurier</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </post-megadropdown>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
+            </li>
+            <li>
               <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-              <post-megadropdown id="pakete">
-                <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                  <post-icon name="arrowleft"></post-icon>
-                  Back
-                </button>
-                <post-closebutton slot="close-button">Schliessen</post-closebutton>
-                <post-list>
-                  <p>Pakete senden</p>
-                  <post-list-item slot="post-list-item"
-                    ><a href="/sch">Pakete Schweiz</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="/kl">Kleinwaren Ausland</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="">Waren Ausland</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="">Express und Kurier</a></post-list-item
-                  >
-                </post-list>
-                <post-list>
-                  <p><a href="/schritt-für-schritt">Schritt für Schritt</a></p>
-                  <post-list-item slot="post-list-item"
-                    ><a href="/sch">Pakete Schweiz</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="/kl">Kleinwaren Ausland</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="">Waren Ausland</a></post-list-item
-                  >
-                  <post-list-item slot="post-list-item"
-                    ><a href="">Express und Kurier</a></post-list-item
-                  >
-                </post-list>
+              <post-megadropdown id="pakete" label-close="Schliessen" label-back="Back">
+                <div class="row row-cols-1 row-cols-sm-2">
+                  <div class="col">
+                    <p class="post-megadropdown-list-title" id="send-packages">Pakete senden</p>
+                    <ul class="post-megadropdown-list" aria-labelledby="send-packages">
+                      <li>
+                        <a href="/sch">Pakete Schweiz</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Kleinwaren Ausland</a>
+                      </li>
+                      <li>
+                        <a href="">Waren Ausland</a>
+                      </li>
+                      <li>
+                        <a href="">Express und Kurier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col">
+                    <a class="post-megadropdown-list-title" id="step-by-step-packages" href="/schritt-für-schritt">Schritt für Schritt</a>
+                    <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+                      <li>
+                        <a href="/sch">Pakete Schweiz</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Kleinwaren Ausland</a>
+                      </li>
+                      <li>
+                        <a href="">Waren Ausland</a>
+                      </li>
+                      <li>
+                        <a href="">Express und Kurier</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </post-megadropdown>
             </post-list-item>
-          </post-list>
+          </ul>
         </post-mainnavigation>
       </post-header>
       ${fakeContent(17)}

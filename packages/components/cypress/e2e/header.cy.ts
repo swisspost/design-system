@@ -104,11 +104,11 @@ describe('header', () => {
       cy.get('div.burger-menu.extended').should('exist');
       // Open megadropdown
       cy.get('post-megadropdown-trigger').first().click();
-      cy.get('post-megadropdown .megadropdown-container').should('be.visible');
+      cy.get('post-megadropdown').find('.back-button').should('be.visible');
       // Click menu button to close both
       cy.get('post-togglebutton').click();
       cy.get('div.burger-menu.extended').should('not.exist');
-      cy.get('post-megadropdown .megadropdown-container').should('not.be.visible');
+      cy.get('post-megadropdown').find('.back-button').should('not.be.visible');
     });
 
     it('should animate megadropdown open after forced close', () => {
@@ -116,12 +116,12 @@ describe('header', () => {
       cy.get('post-togglebutton').click();
       cy.get('div.burger-menu.extended').should('exist');
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
-      cy.get('post-megadropdown .megadropdown-container').should('be.visible');
+      cy.get('post-megadropdown').find('.back-button').should('be.visible');
 
       // Force close by toggling menu
       cy.get('post-togglebutton').click();
       cy.get('div.burger-menu.extended').should('not.exist');
-      cy.get('post-megadropdown .megadropdown-container').should('not.be.visible');
+      cy.get('post-megadropdown').find('.back-button').should('not.be.visible');
 
       // Reopen mobile menu before clicking the trigger again
       cy.get('post-togglebutton').click();
@@ -129,9 +129,7 @@ describe('header', () => {
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
 
       // Check if animation class is present
-      cy.get('post-megadropdown .megadropdown-container')
-        .should('be.visible')
-        .should('have.class', 'slide-in');
+      cy.get('post-megadropdown').find('.megadropdown').should('have.class', 'slide-in');
     });
 
     it('should update active class when active link changes within the same or different megadropdown', () => {
@@ -139,8 +137,8 @@ describe('header', () => {
       cy.get('post-megadropdown#letters a[href="/kl"]').first().as('lettersSecondLink');
       cy.get('post-megadropdown#packages a[href="/sch"]').first().as('packagesLink');
 
-      cy.get('post-megadropdown-trigger button').first().as('lettersTrigger');
-      cy.get('post-megadropdown-trigger button').eq(1).as('packagesTrigger');
+      cy.get('post-megadropdown-trigger').find('button').first().as('lettersTrigger');
+      cy.get('post-megadropdown-trigger').find('button').eq(1).as('packagesTrigger');
 
       // Activate first link
       cy.get('@lettersFirstLink').then($link => $link.attr('aria-current', 'page'));

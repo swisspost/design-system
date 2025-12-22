@@ -161,12 +161,16 @@
   z-index: calc(var(--header-z-index, 10) + 1);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 500ms, visibility 0s 500ms;
+  transition:
+    opacity 500ms,
+    visibility 0s 500ms;
 
   &.open {
     visibility: visible;
     opacity: 1;
-    transition: opacity 500ms, visibility 0s 0s;
+    transition:
+      opacity 500ms,
+      visibility 0s 0s;
   }
 }
 
@@ -176,7 +180,9 @@
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
   transform: translateY(3rem);
   opacity: 0;
-  transition: transform 500ms, opacity 500ms;
+  transition:
+    transform 500ms,
+    opacity 500ms;
 }
 
 iframe {

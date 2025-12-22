@@ -1,8 +1,7 @@
+@use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/variables/color';
-@use '@swisspost/design-system-styles/variables/commons';
-@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/variables/elevation';
 
 @keyframes slide-in {
   0% {
@@ -46,40 +45,39 @@
   box-sizing: border-box;
 }
 
-.megadropdown-container {
-  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
+.megadropdown {
   position: absolute;
+  inset-inline: 0;
+  overflow-y: auto;
   background-color: #fafafa;
-  border: none;
-  width: 100%;
-  inset-block-start: 100%;
-  inset-inline-start: 0;
-  border-radius: 0;
+  box-shadow: elevation.$elevation-300;
 
-  @include utilities.high-contrast-mode() {
-    border-block-end: 1px solid CanvasText;
+  @include media.only(desktop) {
+    z-index: -1;
+    inset-block-start: 100%;
+    max-height: calc(100vh - var(--post-header-height) - 3rem);
+    padding: 2rem 2.5rem 2.5rem;
+
+    &.slide-in {
+      animation: slide-down 350ms forwards;
+    }
+
+    &.slide-out {
+      animation: slide-up 350ms forwards;
+    }
   }
 
-  &.slide-in {
-    animation: slide-down 350ms forwards;
-  }
-
-  &.slide-out {
-    animation: slide-up 350ms forwards;
-  }
-
-  @include media.max(lg) {
+  @include media.max(desktop) {
     z-index: 1;
-    position: absolute;
     inset-block-start: var(--post-header-navigation-current-inset);
-    inset-inline: 0;
-
+    overscroll-behavior: contain;
     height: calc(
       min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
-    border-block-start: unset;
-    overflow-y: auto;
-    overscroll-behavior: contain;
+    padding-inline: var(--post-burger-menu-padding-inline);
+    padding-block: 1.5rem;
+    display: flex;
+    flex-direction: column;
 
     &.slide-in {
       animation: slide-in 350ms forwards;
@@ -90,202 +88,51 @@
     }
   }
 
-  @include media.min(lg) {
-    z-index: -1;
-    max-height: calc(100vh - var(--post-header-height) - 48px);
-    overflow-y: auto;
+  @include utilities.high-contrast-mode() {
+    border-block-end: 1px solid CanvasText;
   }
 }
 
-.megadropdown {
-  padding: 31px 40px 40px;
-  background-color: #fafafa;
+.megadropdown-title {
+  margin-block: 0 1rem;
+  font-weight: 950;
+
+  @include media.only(tablet) {
+    font-size: 1.25rem;
+  }
+
+  @include media.only(mobile) {
+    font-size: 1.125rem;
+  }
+}
+
+.back-button {
+  @include button.button-base;
+  @include button.button-size(sm);
+  @include button.button-variant-def('enabled', 'tertiary');
+  order: -1;
+  width: fit-content;
+  padding-inline: 0;
+
+  &:hover {
+    @include button.button-variant-def('hover', 'tertiary');
+  }
+
+  @include media.only(tablet) {
+    margin-block-end: 2rem;
+  }
+
+  @include media.only(mobile) {
+    margin-block-end: 1.5rem;
+  }
+}
+
+.close-button {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
 
   @include media.max(lg) {
-    display: flex;
-    flex-direction: column;
-    width: inherit;
-    padding: 16px 32px 24px;
-  }
-
-  @include media.max(sm) {
-    padding-inline: 16px;
-  }
-
-  [slot='megadropdown-overview-link'] {
-    text-decoration: none;
-    border-radius: 0;
-    padding-block: 13px 12px;
-    margin-block-end: 16px;
-    display: flex;
-    align-items: center;
-    min-height: 56px;
-
-    &:focus-visible {
-      border-radius: 4px;
-    }
-
-    @include header-mx.mobile-header-interactive() {
-      height: unset;
-    }
-
-    @include media.max(lg) {
-      padding-block: 12px 11px;
-      min-height: unset;
-    }
-
-    @include media.max(sm) {
-      padding-block: 10px 9px;
-    }
-  }
-
-  .megadropdown-content {
-    gap: 1.5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(15vw, 100%), 1fr));
-    grid-auto-rows: 1fr auto;
-    grid-auto-flow: dense;
-
-    @include media.max(lg) {
-      grid-template-columns: repeat(auto-fit, minmax(min(35vw, 100%), 1fr));
-    }
-
-    @include media.max(sm) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  post-list {
-    display: grid;
-    grid-row: span 2;
-    grid-template-rows: subgrid;
-    row-gap: 0px;
-
-    > [role='list'] {
-      flex-direction: unset;
-      display: unset;
-    }
-
-    > * {
-      width: 100%;
-    }
-
-    .list-title {
-      display: flex;
-      flex-direction: column-reverse;
-      height: 100%;
-
-      p {
-        font-size: 20px;
-        display: block;
-        font-weight: 900;
-
-        &:not(:has(a)),
-        a {
-          padding: 16px 12px 14px 8px;
-        }
-
-        &:not(:has(a)) {
-          position: relative;
-
-          &::before {
-            content: '';
-            background-color: #050400;
-            inset-block-end: 0;
-            inset-inline-start: 0;
-            width: 100%;
-            height: 2px;
-            position: absolute;
-          }
-        }
-
-        a {
-          border-radius: 4px;
-          text-decoration: none;
-          font-size: inherit;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          min-height: 53px;
-
-          @include header-mx.mobile-header-interactive() {
-            height: unset;
-            font-weight: 900;
-          }
-
-          &::before {
-            height: 2px;
-          }
-        }
-
-        @include media.max(lg) {
-          font-size: 1rem;
-
-          &:not(:has(a)),
-          a {
-            padding: 14px 12px 12px 8px;
-          }
-        }
-
-        @include media.max(sm) {
-          font-size: 0.875rem;
-        }
-      }
-    }
-  }
-
-  post-list-item {
-    > a {
-      padding-block: 13px 12px;
-      padding-inline-start: 8px;
-      display: flex;
-      text-decoration: none;
-      width: 100%;
-      min-width: 100%;
-      height: auto;
-      min-height: 48px;
-      white-space: normal;
-      word-break: break-word;
-
-      &:hover {
-        border-block-width: 0;
-      }
-
-      @include media.min(lg) {
-        font-size: 1.25rem;
-      }
-
-      @include media.max(lg) {
-        padding-block: 12px 11px;
-      }
-
-      @include media.max(sm) {
-        font-size: 0.875rem;
-      }
-    }
-  }
-
-  .back-button {
     display: none;
-    margin-block-end: 2rem;
-
-    .btn {
-      width: auto;
-    }
-
-    @include media.max(lg) {
-      order: -1;
-      display: block;
-    }
-  }
-
-  .close-button {
-    position: absolute;
-    inset-block-start: 1rem;
-    inset-inline-end: 1rem;
-
-    @include media.max(lg) {
-      display: none;
-    }
   }
 }

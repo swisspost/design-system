@@ -3,14 +3,11 @@ import {
   PostBackToTop,
   PostBreadcrumbs,
   PostBreadcrumbItem,
-  PostClosebutton,
   PostFooter,
   PostHeader,
   PostIcon,
   PostLanguageMenuItem,
   PostLanguageMenu,
-  PostList,
-  PostListItem,
   PostLogo,
   PostMainnavigation,
   PostMegadropdown,
@@ -28,7 +25,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostLogo>
 
         {/* Target Group */}
-        <ul slot="target-group">
+        <ul slot="audience">
           <li>
             <a href="#" aria-current="location">
               Private customers
@@ -40,7 +37,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </ul>
 
         {/* Global controls (Search) */}
-        <ul slot="global-controls">
+        <ul slot="global-nav-primary">
           <li>
             <a href="">
               <span>Search</span>
@@ -49,8 +46,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           </li>
         </ul>
 
-        {/* Meta navigation */}
-        <ul slot="meta-navigation">
+        {/* Global secondary navigation */}
+        <ul slot="global-nav-secondary">
           <li>
             <a href="">
               Jobs
@@ -70,7 +67,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           caption="Change the language"
           description="The currently selected language is English."
           variant="list"
-          slot="post-language-switch"
+          slot="language-menu"
         >
           <PostLanguageMenuItem code="de" name="German">
             de
@@ -87,118 +84,129 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostLanguageMenu>
 
         {/* Global header login/user menu */}
-        <a href="" slot="global-login">
+        <a href="" slot="post-login">
           <span>Login</span>
           <PostIcon name="login" />
         </a>
-
         {/* Main navigation */}
-        <PostMainnavigation slot="post-mainnavigation">
-          <PostList title-hidden="">
-            <p>Main Navigation</p>
-
+        <PostMainnavigation slot="main-nav" caption="Main">
+          <ul>
             {/* Link only level 1 */}
-            <PostListItem slot="post-list-item">
+            <li>
               <a href="/letters">Letters</a>
-            </PostListItem>
-            <PostListItem slot="post-list-item">
+            </li>
+            <li>
               <a href="/packages">Packages</a>
-            </PostListItem>
+            </li>
 
             {/* Level 1 with megadropdown - Letters */}
-            <PostListItem slot="post-list-item">
+            <li>
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
-              <PostMegadropdown id="letters">
-                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowleft" />
-                  Back
-                </button>
-                <PostClosebutton slot="close-button">Close</PostClosebutton>
-                <a slot="megadropdown-overview-link" href="/letters">
+              <PostMegadropdown id="letters" label-close="Close" label-back="Back">
+                <a className="megadropdown-overview-link" href="/letters">
                   Overview Letters
                 </a>
-                <PostList>
-                  <p>Send letters</p>
-                  <PostListItem slot="post-list-item">
-                    <a href="/sch">Letters Switzerland</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="/kl">Small items abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Goods abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Express and courier</a>
-                  </PostListItem>
-                </PostList>
-                <PostList>
-                  <p>
-                    <a href="/step-by-step">Step by step</a>
-                  </p>
-                  <PostListItem slot="post-list-item">
-                    <a href="/sch">Packages Switzerland</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="/kl">Small items abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Goods abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Express and courier</a>
-                  </PostListItem>
-                </PostList>
+                <div className="row row-cols-1 row-cols-sm-2">
+                  <div className="col">
+                    <p className="post-megadropdown-list-title" id="send-letters">
+                      Send letters
+                    </p>
+                    <ul className="post-megadropdown-list" aria-labelledby="send-letters">
+                      <li>
+                        <a href="/sch">Letters Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col">
+                    <a
+                      className="post-megadropdown-list-title"
+                      id="step-by-step-letters"
+                      href="/step-by-step"
+                    >
+                      Step by step
+                    </a>
+                    <ul className="post-megadropdown-list" aria-labelledby="step-by-step-letters">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </PostMegadropdown>
-            </PostListItem>
+            </li>
 
             {/* Level 1 with megadropdown - Packages */}
-            <PostListItem slot="post-list-item">
+            <li>
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
-              <PostMegadropdown id="packages">
-                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                  <PostIcon name="arrowleft" />
-                  Back
-                </button>
-                <PostClosebutton slot="close-button">Close</PostClosebutton>
-                <a slot="megadropdown-overview-link" href="/packages">
+              <PostMegadropdown id="packages" label-close="Close" label-back="Back">
+                <a className="megadropdown-overview-link" href="/packages">
                   Overview Packages
                 </a>
-                <PostList>
-                  <p>Send packages</p>
-                  <PostListItem slot="post-list-item">
-                    <a href="/sch">Packages Switzerland</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="/kl">Small items abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Goods abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Express and courier</a>
-                  </PostListItem>
-                </PostList>
-                <PostList>
-                  <p>
-                    <a href="/step-by-step">Step by step</a>
-                  </p>
-                  <PostListItem slot="post-list-item">
-                    <a href="/sch">Packages Switzerland</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="/kl">Small items abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Goods abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Express and courier</a>
-                  </PostListItem>
-                </PostList>
+                <div className="row row-cols-1 row-cols-sm-2">
+                  <div className="col">
+                    <p className="post-megadropdown-list-title" id="send-packages">
+                      Send packages
+                    </p>
+                    <ul className="post-megadropdown-list" aria-labelledby="send-packages">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col">
+                    <a
+                      className="post-megadropdown-list-title"
+                      id="step-by-step-packages"
+                      href="/step-by-step"
+                    >
+                      Step by step
+                    </a>
+                    <ul className="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </PostMegadropdown>
-            </PostListItem>
-          </PostList>
+            </li>
+          </ul>
         </PostMainnavigation>
       </PostHeader>
 

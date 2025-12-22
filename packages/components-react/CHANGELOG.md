@@ -499,7 +499,6 @@
 ### Major Changes
 
 - Synchronized the versions of the following packages:
-
   - @swisspost/design-system-styles
   - @swisspost/design-system-components
   - @swisspost/design-system-components-react
