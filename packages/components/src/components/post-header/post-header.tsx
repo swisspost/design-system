@@ -12,7 +12,6 @@ import { checkRequiredAndType } from '@/utils';
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
- * @slot post-togglebutton - Holds the burger menu toggler.
  * @slot language-menu - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
