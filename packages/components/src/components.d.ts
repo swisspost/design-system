@@ -540,7 +540,7 @@ export namespace Components {
          */
         "textCurrentStep": string;
         /**
-          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
+          * Label for the "Step N:" indicator for mobile view. Use `#number` as a placeholder — it will be replaced with the current step number at runtime.
          */
         "textStepNumber": string;
     }
@@ -1577,7 +1577,7 @@ declare namespace LocalJSX {
          */
         "textCurrentStep": string;
         /**
-          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
+          * Label for the "Step N:" indicator for mobile view. Use `#number` as a placeholder — it will be replaced with the current step number at runtime.
          */
         "textStepNumber": string;
     }
