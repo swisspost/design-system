@@ -4,4 +4,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Integrated the burger menu button into the `<post-header>` by removing the previous `post-togglebutton` slot and introducing the required `labelBurgerMenu` prop.
+Integrated the burger menu button into the `<post-header>` by removing the previous `post-togglebutton` slot and introducing the required `textMenu` prop.
