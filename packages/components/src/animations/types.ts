@@ -30,7 +30,6 @@ export type PresetEasing =
   | 'headerEase';
 
 export interface AnimationOptions {
-  translate: number;
   duration: number;
   easing: CurveEasing | PresetEasing;
   fill: FillMode;

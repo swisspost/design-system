@@ -41,7 +41,6 @@ export class PostHeader {
   }
 
   private animationOptions: Partial<AnimationOptions> = {
-    translate: 0,
     duration: 350,
     easing: 'headerEase',
   };

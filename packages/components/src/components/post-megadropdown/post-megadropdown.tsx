@@ -35,7 +35,7 @@ export class PostMegadropdown {
   private animatedContainer: HTMLElement;
   private isAnimating: boolean = false;
 
-  private fsAnimationOptions: Partial<AnimationOptions> = {
+  private fsAnimationOptions: Partial<AnimationOptions> & { translate?: number } = {
     translate: -10,
     duration: 350,
     easing: 'headerEase',

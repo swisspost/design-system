@@ -5,24 +5,31 @@
 import { AnimationOptions } from './types';
 import { resolveEasing } from './utils';
 
-const defaultSlideOptions: Partial<AnimationOptions> = {
+const defaultOptions: AnimationOptions & { translate: number } = {
   translate: 100,
   duration: 500,
   easing: 'ease',
   fill: 'none',
 };
 
+type SlideOptions = Partial<AnimationOptions> & { translate?: number };
+
 function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: Partial<AnimationOptions>) {
-  const { duration, easing, fill } = { ...defaultSlideOptions, ...options };
+  const { duration, easing, fill } = { ...defaultOptions, ...options };
   return el.animate(keyframes, { duration, easing: resolveEasing(easing), fill });
 }
 
 export function slide(
   el: HTMLElement,
   direction: 'in' | 'out',
-  options: Partial<AnimationOptions> = {},
+  options: SlideOptions = {},
 ): Animation {
-  const { translate = defaultSlideOptions.translate } = options;
+  const mergedOptions: AnimationOptions & { translate?: number } = {
+    ...defaultOptions,
+    ...options,
+  };
+
+  const { translate } = mergedOptions;
 
   const baseKeyframes: Keyframe[] = [
     { transform: `translateX(${translate}%)` },

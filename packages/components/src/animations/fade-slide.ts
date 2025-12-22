@@ -8,17 +8,19 @@
 import { AnimationOptions } from './types';
 import { resolveEasing } from './utils';
 
-const defaultOptions: Partial<AnimationOptions> = {
-  translate: -100,
+const defaultOptions: AnimationOptions & { translate: number } = {
   duration: 500,
   easing: 'ease',
   fill: 'none',
+  translate: -100,
 };
+
+type FadeSlideOptions = Partial<AnimationOptions> & { translate?: number };
 
 function animateFadeSlide(
   el: Element,
   keyframes: Keyframe[],
-  options: Partial<AnimationOptions> = {},
+  options: FadeSlideOptions,
 ): Animation {
   const { duration, easing, fill } = { ...defaultOptions, ...options };
   return el.animate(keyframes, {
@@ -31,11 +33,16 @@ function animateFadeSlide(
 export function fadeSlide(
   el: Element,
   direction: 'in' | 'out',
-  options: Partial<AnimationOptions> = {},
+  options: FadeSlideOptions,
 ): Animation {
   if (!el) return;
 
-  const { translate = defaultOptions.translate } = options;
+  const mergedOptions: AnimationOptions & { translate?: number } = {
+    ...defaultOptions,
+    ...options,
+  };
+
+  const { translate } = mergedOptions;
 
   const baseKeyframes: Keyframe[] = [
     { opacity: '0', transform: `translateY(${translate}px)` },
