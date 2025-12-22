@@ -79,29 +79,26 @@
 
       <!-- Level 1 with megadropdown -->
       @for (dropdown of megadropdowns; track dropdown.id) {
-        <li>
-          <post-megadropdown-trigger [for]="dropdown.id">{{
-            dropdown.trigger
-          }}</post-megadropdown-trigger>
-          <post-megadropdown [id]="dropdown.id" textClose="Close" textBack="Back">
-            <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
-              >Overview {{ dropdown.trigger }}</a
-            >
-            @for (section of dropdown.sections; track section.title) {
-              <post-list>
-                @if (section.titleLink) {
-                  <p>
-                    <a [href]="section.titleLink">{{ section.title }}</a>
-                  </p>
-                } @else {
-                  <p>{{ section.title }}</p>
-                }
-                @for (link of section.links; track link.text) {
-                  <post-list-item slot="post-list-item">
-                    <a [href]="link.url">{{ link.text }}</a>
-                  </post-list-item>
-                }
-              </post-list>
+      <li>
+        <post-megadropdown-trigger [for]="dropdown.id">{{
+          dropdown.trigger
+        }}</post-megadropdown-trigger>
+        <post-megadropdown [id]="dropdown.id" textClose="Close" textBack="Back">
+          <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
+            >Overview {{ dropdown.trigger }}</a
+          >
+          @for (section of dropdown.sections; track section.title) {
+          <post-list>
+            @if (section.titleLink) {
+            <p>
+              <a [href]="section.titleLink">{{ section.title }}</a>
+            </p>
+            } @else {
+            <p>{{ section.title }}</p>
+            } @for (link of section.links; track link.text) {
+            <post-list-item slot="post-list-item">
+              <a [href]="link.url">{{ link.text }}</a>
+            </post-list-item>
             }
           </post-list>
           }
