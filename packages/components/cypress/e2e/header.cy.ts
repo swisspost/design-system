@@ -114,9 +114,7 @@ describe('header', () => {
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
 
       // Check if animation class is present
-      cy.get('post-megadropdown .megadropdown-container')
-        .should('be.visible')
-        .should('have.css', 'opacity', '1');
+      cy.get('post-megadropdown').find('.megadropdown').should('have.class', 'slide-in');
     });
 
     it('should update active class when active link changes within the same or different megadropdown', () => {
