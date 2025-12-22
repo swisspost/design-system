@@ -2,16 +2,16 @@
 @use '../../mixins/button';
 @use '../../mixins/media';
 @use '../../mixins/utilities';
-@use '../../mixins/icons';
 @use '../../tokens/components';
-@use '../../tokens/helpers';
+
+$interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 
 /**
  selects all slotted nav items
  */
 @mixin interactive-elements {
-  &:where(a, button, [role='link'], [role='button']),
-  &:where(ul) > li > :where(a, button, [role='link'], [role='button']) {
+  &:where(#{$interactive-elements-selector}),
+  &:where(ul) > li > :where(#{$interactive-elements-selector}) {
     @content;
   }
 }
@@ -64,12 +64,30 @@
  styles for squared nav items (main navigation and burger menu)
  */
 @mixin nav-item-block-layout {
+  --post-nav-item-border-width: 1px;
+  width: 100%;
+  justify-content: start;
+  position: relative;
+  padding: 0.75rem 0.75rem calc(0.75rem - var(--post-nav-item-border-width)) 0.5rem;
+  gap: 1rem;
   border-radius: 0;
-  padding: 0 0.75rem;
   line-height: 1.5;
+
+  &::before {
+    content: '';
+    background-color: #050400;
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    height: var(--post-nav-item-border-width);
+  }
 
   &:hover {
     @include button.button-variant-def('hover', 'primary');
+
+    &::before {
+      background-color: transparent;
+    }
   }
 
   @include active-state {
@@ -78,26 +96,14 @@
 
   @include utilities.focus-style-custom {
     border-radius: 0.5rem;
-    outline-offset: calc(-1 * #{tokens.get('focus-outline-width', helpers.$post-focus)}) !important;
   }
 
-  @include media.max(desktop) {
-    width: 100%;
-    justify-content: start;
-    position: relative;
-
-    &::before {
-      content: '';
-      background-color: #050400;
-      position: absolute;
-      inset-inline: 0;
-      inset-block-end: 0;
-      height: 1px;
-    }
+  > post-icon:where(:last-child) {
+    margin-inline-start: auto;
   }
 
   @include media.only(mobile) {
-    padding: calc(0.5rem + 1.5px) 0.75rem calc(0.5rem + 1.5px - 1px) 0.5rem;
+    padding: calc(0.5rem + 1.5px) 0.75rem calc(0.5rem + 1.5px - var(--post-nav-item-border-width)) 0.5rem;
     gap: 0.5rem;
     font-size: 0.875rem;
 
@@ -107,9 +113,6 @@
   }
 
   @include media.only(tablet) {
-    padding: 0.75rem 0.75rem calc(0.75rem - 1px) 0.5rem;
-    gap: 1rem;
-
     > post-icon {
       font-size: 1.5rem;
     }
@@ -120,7 +123,7 @@
  styles for nav items that remain in the header on mobile and tablet
  */
 @mixin nav-item-icon-only {
-  padding: 0.5rem;
+  padding: 0.625rem;
 
   > :not(post-icon) {
     display: none;

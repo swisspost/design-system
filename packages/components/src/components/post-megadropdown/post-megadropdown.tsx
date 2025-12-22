@@ -15,13 +15,10 @@ import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { checkRequiredAndType } from '@/utils';
 
-/**
- * @slot default - Slot for placing content.
- */
 @Component({
   tag: 'post-megadropdown',
   styleUrl: 'post-megadropdown.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
@@ -143,12 +140,24 @@ export class PostMegadropdown {
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+
     if (
-      this.firstFocusableEl &&
-      window.getComputedStyle(this.firstFocusableEl).display !== 'none'
+      !this.firstFocusableEl ||
+      window.getComputedStyle(this.firstFocusableEl).display === 'none'
     ) {
-      this.firstFocusableEl.focus();
+      return;
     }
+
+    setTimeout(async () => {
+      const megadropdown = this.host.shadowRoot.querySelector<HTMLElement>('.megadropdown');
+      const animations = megadropdown.getAnimations();
+      const slideIn = animations.find(
+        a => a instanceof CSSAnimation && a.animationName === 'slide-in',
+      );
+
+      await slideIn.finished;
+      this.firstFocusableEl.focus();
+    });
     this.addListeners();
   }
 
@@ -235,20 +244,13 @@ export class PostMegadropdown {
   }
 
   private getFocusableElements() {
-    const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
-    const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
+    const focusableElements = [
+      ...getFocusableChildren(this.host),
+      ...getFocusableChildren(this.host.shadowRoot),
+    ];
 
-    // Check for an overview link
-    const overviewLink = this.host.querySelector<HTMLAnchorElement>(
-      'a[slot="post-megadropdown-overview"]',
-    );
-
-    if (overviewLink) {
-      focusableChildren.unshift(overviewLink);
-    }
-
-    this.firstFocusableEl = focusableChildren[0];
-    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+    this.firstFocusableEl = focusableElements[0];
+    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
   }
 
   // Loop through the focusable children
@@ -328,28 +330,28 @@ export class PostMegadropdown {
     return (
       <Host version={version}>
         <div
-          class={`megadropdown-container ${this.animationClass || ''}`}
+          class={`megadropdown ${this.animationClass || ''}`}
           style={containerStyle}
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
-          <div class="megadropdown">
-            {this.megadropdownTitle && <p class="megadropdown-title">{this.megadropdownTitle}</p>}
+          {this.device !== 'desktop' && this.megadropdownTitle && (
+            <p class="megadropdown-title">{this.megadropdownTitle}</p>
+          )}
 
-            <div class="megadropdown-content">
-              <slot></slot>
-            </div>
-
-            {this.device === 'desktop' ? (
-              <post-closebutton onClick={() => this.hide(true)} class="close-button">
-                {this.textClose}
-              </post-closebutton>
-            ) : (
-              <button onClick={() => this.hide(true)} class="back-button btn btn-tertiary btn-sm">
-                <post-icon name="arrowleft"></post-icon>
-                {this.textBack}
-              </button>
-            )}
+          <div class="megadropdown-content">
+            <slot></slot>
           </div>
+
+          {this.device === 'desktop' ? (
+            <post-closebutton onClick={() => this.hide(true)} class="close-button">
+              {this.textClose}
+            </post-closebutton>
+          ) : (
+            <button onClick={() => this.hide(true)} class="back-button">
+              <post-icon name="arrowleft"></post-icon>
+              {this.textBack}
+            </button>
+          )}
         </div>
       </Host>
     );

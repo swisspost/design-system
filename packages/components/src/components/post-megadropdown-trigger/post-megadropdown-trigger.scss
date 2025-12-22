@@ -37,8 +37,7 @@ button {
   @include media.max(desktop) {
     post-icon {
       margin-inline-start: auto;
-      transform: rotate(-90deg);
-      font-size: var(--post-nav-item-icon-size);
+      transform: rotate(-90deg) !important;
     }
   }
 }

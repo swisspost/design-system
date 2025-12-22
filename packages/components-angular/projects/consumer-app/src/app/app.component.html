@@ -87,21 +87,31 @@
           <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
             >Overview {{ dropdown.trigger }}</a
           >
-          @for (section of dropdown.sections; track section.title) {
-          <post-list>
-            @if (section.titleLink) {
-            <p>
-              <a [href]="section.titleLink">{{ section.title }}</a>
-            </p>
-            } @else {
-            <p>{{ section.title }}</p>
-            } @for (link of section.links; track link.text) {
-            <post-list-item slot="post-list-item">
-              <a [href]="link.url">{{ link.text }}</a>
-            </post-list-item>
+          <div class="row row-cols-1 row-cols-sm-2">
+            @for (section of dropdown.sections; track section.title) {
+            <div class="col">
+              @if (section.titleLink) {
+              <a
+                class="post-megadropdown-list-title"
+                [id]="section.id"
+                [href]="section.titleLink"
+                >{{ section.title }}</a
+              >
+              } @else {
+              <p class="post-megadropdown-list-title" [id]="section.id">
+                {{ section.title }}
+              </p>
+              }
+              <ul class="post-megadropdown-list" [attr.aria-labelledby]="section.id">
+                @for (link of section.links; track link.text) {
+                <li>
+                  <a [href]="link.url">{{ link.text }}</a>
+                </li>
+                }
+              </ul>
+            </div>
             }
-          </post-list>
-          }
+          </div>
         </post-megadropdown>
       </li>
       }
