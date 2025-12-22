@@ -1,9 +1,9 @@
 {
   "name": "@swisspost/design-system-intranet-header-showcase",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "@swisspost/design-system-intranet-header": "workspace:9.5.1"
+    "@swisspost/design-system-intranet-header": "workspace:9.6.0"
   }
 }
