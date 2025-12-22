@@ -1,7 +1,7 @@
 import { resolveEasing } from './utils';
 import { AnimationOptions } from './types';
 
-const defaultOptions: Partial<AnimationOptions> = {
+const defaultOptions: AnimationOptions = {
   duration: 200,
   easing: 'linear',
   fill: 'forwards',
