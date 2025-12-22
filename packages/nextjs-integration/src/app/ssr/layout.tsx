@@ -12,14 +12,13 @@ import {
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
-  PostTogglebutton,
 } from '@swisspost/design-system-components-react/server';
 
 export default function Layout({ children }: { readonly children: React.ReactNode }) {
   return (
     <>
       {/* Throws Hydration Errors */}
-      <PostHeader>
+      <PostHeader textMenu="Menu">
         {/* Logo */}
         <PostLogo slot="post-logo" url="/">
           Homepage
@@ -89,14 +88,6 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <span>Login</span>
           <PostIcon name="login" />
         </a>
-
-        {/* Menu button for mobile */}
-        <PostTogglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled" />
-          <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled" />
-        </PostTogglebutton>
-
         {/* Main navigation */}
         <PostMainnavigation slot="main-nav" caption="Main">
           <ul>

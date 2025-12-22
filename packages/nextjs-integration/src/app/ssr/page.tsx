@@ -21,6 +21,7 @@ import {
   PostTabs,
   PostTabItem,
   PostTabPanel,
+  PostTogglebutton,
   PostTooltipTrigger,
   PostTooltip,
   PostStepper,
@@ -189,6 +190,12 @@ export default function Home() {
       </PostTabs>
 
       <h2>Tag</h2>
+
+      <h2>Toggle Button</h2>
+      <PostTogglebutton className="btn btn-primary">
+        <span data-showwhen="untoggled">Untoggled</span>
+        <span data-showwhen="toggled">Toggled</span>
+      </PostTogglebutton>
 
       <h2>Tooltip</h2>
       <PostTooltipTrigger for="tooltip-one">

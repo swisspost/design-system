@@ -16,7 +16,6 @@ import {
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
-  PostTogglebutton,
 } from 'components';
 import { CommonModule } from '@angular/common';
 
@@ -44,7 +43,6 @@ import { CommonModule } from '@angular/common';
     PostMainnavigation,
     PostMegadropdown,
     PostMegadropdownTrigger,
-    PostTogglebutton,
   ],
 })
 export class AppComponent implements OnInit {
