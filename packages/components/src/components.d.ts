@@ -748,8 +748,7 @@ declare global {
     new (): HTMLPostBannerElement;
   };
   interface HTMLPostBreadcrumbItemElement
-    extends Components.PostBreadcrumbItem,
-      HTMLStencilElement {}
+    extends Components.PostBreadcrumbItem, HTMLStencilElement {}
   var HTMLPostBreadcrumbItemElement: {
     prototype: HTMLPostBreadcrumbItemElement;
     new (): HTMLPostBreadcrumbItemElement;
@@ -879,8 +878,7 @@ declare global {
     new (): HTMLPostCollapsibleElement;
   };
   interface HTMLPostCollapsibleTriggerElement
-    extends Components.PostCollapsibleTrigger,
-      HTMLStencilElement {}
+    extends Components.PostCollapsibleTrigger, HTMLStencilElement {}
   var HTMLPostCollapsibleTriggerElement: {
     prototype: HTMLPostCollapsibleTriggerElement;
     new (): HTMLPostCollapsibleTriggerElement;
@@ -918,8 +916,7 @@ declare global {
     postLanguageMenuItemInitiallyActive: string;
   }
   interface HTMLPostLanguageMenuItemElement
-    extends Components.PostLanguageMenuItem,
-      HTMLStencilElement {
+    extends Components.PostLanguageMenuItem, HTMLStencilElement {
     addEventListener<K extends keyof HTMLPostLanguageMenuItemElementEventMap>(
       type: K,
       listener: (
@@ -992,8 +989,7 @@ declare global {
     new (): HTMLPostLogoElement;
   };
   interface HTMLPostMainnavigationElement
-    extends Components.PostMainnavigation,
-      HTMLStencilElement {}
+    extends Components.PostMainnavigation, HTMLStencilElement {}
   var HTMLPostMainnavigationElement: {
     prototype: HTMLPostMainnavigationElement;
     new (): HTMLPostMainnavigationElement;
@@ -1054,8 +1050,7 @@ declare global {
     new (): HTMLPostMegadropdownElement;
   };
   interface HTMLPostMegadropdownTriggerElement
-    extends Components.PostMegadropdownTrigger,
-      HTMLStencilElement {}
+    extends Components.PostMegadropdownTrigger, HTMLStencilElement {}
   var HTMLPostMegadropdownTriggerElement: {
     prototype: HTMLPostMegadropdownTriggerElement;
     new (): HTMLPostMegadropdownTriggerElement;
@@ -1186,8 +1181,7 @@ declare global {
     new (): HTMLPostPopoverElement;
   };
   interface HTMLPostPopoverTriggerElement
-    extends Components.PostPopoverTrigger,
-      HTMLStencilElement {}
+    extends Components.PostPopoverTrigger, HTMLStencilElement {}
   var HTMLPostPopoverTriggerElement: {
     prototype: HTMLPostPopoverTriggerElement;
     new (): HTMLPostPopoverTriggerElement;
@@ -1200,8 +1194,7 @@ declare global {
     postToggle: { isOpen: boolean };
   }
   interface HTMLPostPopovercontainerElement
-    extends Components.PostPopovercontainer,
-      HTMLStencilElement {
+    extends Components.PostPopovercontainer, HTMLStencilElement {
     addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(
       type: K,
       listener: (
@@ -1395,8 +1388,7 @@ declare global {
     new (): HTMLPostTooltipElement;
   };
   interface HTMLPostTooltipTriggerElement
-    extends Components.PostTooltipTrigger,
-      HTMLStencilElement {}
+    extends Components.PostTooltipTrigger, HTMLStencilElement {}
   var HTMLPostTooltipTriggerElement: {
     prototype: HTMLPostTooltipTriggerElement;
     new (): HTMLPostTooltipTriggerElement;
