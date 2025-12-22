@@ -75,12 +75,24 @@ describe('header', () => {
 
     it('should release scroll lock after reattaching header', () => {
       cy.get('[data-post-scroll-locked]').should('not.exist');
+
       cy.get('post-togglebutton').click();
       cy.get('[data-post-scroll-locked]').should('exist');
 
       removeAndReattachHeader();
 
       cy.get('[data-post-scroll-locked]').should('not.exist');
+    });
+
+    it('should log an error if the textMenu prop is not set', () => {
+      cy.window().then(win => {
+        cy.spy(win.console, 'error').as('consoleError');
+      });
+      cy.get('@header').invoke('attr', 'text-menu').should('not.be.empty').and('not.eq', '0');
+      cy.get('@consoleError').should('not.be.called');
+      // Remove burger menu label
+      cy.get('@header').invoke('removeAttr', 'text-menu');
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should close both megadropdown and mobile menu with one click', () => {
