@@ -45,7 +45,7 @@ header,
   post-togglebutton {
     @include header-mx.nav-item-base;
     @include media-mx.only(mobile) {
-      @include header-mx.nav-control-icon-only;
+      @include header-mx.nav-item-icon-only;
     }
   }
 }
