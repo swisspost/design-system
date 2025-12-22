@@ -214,6 +214,7 @@ export class PostHeader {
 
       if (this.burgerMenuExtended === false) {
         this.closeAllMegadropdowns();
+        this.burgerMenu.scrollTop = 0;
       }
     } else {
       this.burgerMenuExtended = force ?? !this.burgerMenuExtended;

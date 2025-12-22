@@ -61,7 +61,7 @@ header,
     height: var(--post-logo-height);
     min-height: var(--post-global-header-reduced-height);
     max-height: 100%;
-    margin-inline-end: 1.25rem;
+    margin-inline-end: calc(1.25rem - var(--post-header-gap));
   }
 
   .sliding-controls {

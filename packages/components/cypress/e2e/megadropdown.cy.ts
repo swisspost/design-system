@@ -10,7 +10,7 @@ describe('megadropdown', () => {
           .find('button')
           .as('megadropdown-trigger');
         cy.get('@megadropdown').find('.close-button').as('close-btn');
-        cy.get('@megadropdown').find('.megadropdown-container').as('megadropdown-container');
+        cy.get('@megadropdown').find('.megadropdown').as('megadropdown-container');
       });
 
       it('should render', () => {

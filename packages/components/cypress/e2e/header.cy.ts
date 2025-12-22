@@ -89,11 +89,11 @@ describe('header', () => {
       cy.get('div.burger-menu.extended').should('exist');
       // Open megadropdown
       cy.get('post-megadropdown-trigger').first().click();
-      cy.get('post-megadropdown .megadropdown-container').should('be.visible');
+      cy.get('post-megadropdown').find('.back-button').should('be.visible');
       // Click menu button to close both
       cy.get('post-togglebutton').click();
       cy.get('div.burger-menu.extended').should('not.exist');
-      cy.get('post-megadropdown .megadropdown-container').should('not.be.visible');
+      cy.get('post-megadropdown').find('.back-button').should('not.be.visible');
     });
 
     it('should animate megadropdown open after forced close', () => {
@@ -101,12 +101,12 @@ describe('header', () => {
       cy.get('post-togglebutton').click();
       cy.get('div.burger-menu.extended').should('exist');
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
-      cy.get('post-megadropdown .megadropdown-container').should('be.visible');
+      cy.get('post-megadropdown').find('.back-button').should('be.visible');
 
       // Force close by toggling menu
       cy.get('post-togglebutton').click();
       cy.get('div.burger-menu.extended').should('not.exist');
-      cy.get('post-megadropdown .megadropdown-container').should('not.be.visible');
+      cy.get('post-megadropdown').find('.back-button').should('not.be.visible');
 
       // Reopen mobile menu before clicking the trigger again
       cy.get('post-togglebutton').click();
