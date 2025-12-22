@@ -4,9 +4,9 @@
 
 ## Properties
 
-| Property                       | Attribute           | Description                          | Type     | Default     |
-| ------------------------------ | ------------------- | ------------------------------------ | -------- | ----------- |
-| `labelBurgerMenu` _(required)_ | `label-burger-menu` | The label of the burger menu button. | `string` | `undefined` |
+| Property                | Attribute   | Description                          | Type     | Default     |
+| ----------------------- | ----------- | ------------------------------------ | -------- | ----------- |
+| `textMenu` _(required)_ | `text-menu` | The label of the burger menu button. | `string` | `undefined` |
 
 ## Methods
 

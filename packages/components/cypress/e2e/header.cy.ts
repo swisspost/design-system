@@ -84,17 +84,14 @@ describe('header', () => {
       cy.get('[data-post-scroll-locked]').should('not.exist');
     });
 
-    it('should log an error if the labelBurgerMenu is not set', () => {
+    it('should log an error if the textMenu is not set', () => {
       cy.window().then(win => {
         cy.spy(win.console, 'error').as('consoleError');
       });
-      cy.get('@header')
-        .invoke('attr', 'label-burger-menu')
-        .should('not.be.empty')
-        .and('not.eq', '0');
+      cy.get('@header').invoke('attr', 'text-menu').should('not.be.empty').and('not.eq', '0');
       cy.get('@consoleError').should('not.be.called');
       // Remove burger menu label
-      cy.get('@header').invoke('removeAttr', 'label-burger-menu');
+      cy.get('@header').invoke('removeAttr', 'text-menu');
       cy.get('@consoleError').should('be.called');
     });
 

@@ -27,7 +27,7 @@ const meta: MetaComponent = {
     title: '',
     titleTag: 'p',
     mainNav: true,
-    labelBurgerMenu: 'Menu',
+    textMenu: 'Menu',
     globalNavSecondary: true,
     globalNavPrimary: true,
     targetGroup: true,
@@ -62,7 +62,7 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    labelBurgerMenu: {
+    textMenu: {
       description: 'The label of the burger menu button.',
       control: {
         type: 'text',
@@ -197,7 +197,7 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header label-burger-menu="${args.labelBurgerMenu}">
+      <post-header text-menu="${args.textMenu}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 

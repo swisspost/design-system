@@ -18,7 +18,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
   return (
     <>
       {/* Throws Hydration Errors */}
-      <PostHeader labelBurgerMenu="Menu">
+      <PostHeader textMenu="Menu">
         {/* Logo */}
         <PostLogo slot="post-logo" url="/">
           Homepage

@@ -75,11 +75,11 @@ export class PostHeader {
   /**
    * The label of the burger menu button.
    */
-  @Prop({ reflect: true }) labelBurgerMenu!: string;
+  @Prop({ reflect: true }) textMenu!: string;
 
-  @Watch('labelBurgerMenu')
-  validateLabelBurgerMenu() {
-    checkRequiredAndType(this, 'labelBurgerMenu', 'string');
+  @Watch('textMenu')
+  validateTextMenu() {
+    checkRequiredAndType(this, 'textMenu', 'string');
   }
 
   @Watch('device')
@@ -147,7 +147,7 @@ export class PostHeader {
   }
 
   componentDidRender() {
-    this.validateLabelBurgerMenu();
+    this.validateTextMenu();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
@@ -460,7 +460,7 @@ export class PostHeader {
                   ref={el => (this.burgerMenuButton = el)}
                   onClick={() => this.toggleBurgerMenu()}
                 >
-                  <span>{this.labelBurgerMenu}</span>
+                  <span>{this.textMenu}</span>
                   <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
                   <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
                 </post-togglebutton>
