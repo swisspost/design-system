@@ -1,6 +1,6 @@
 @use '../../mixins/media';
 
-@use './mixins' as header-mx;
+@use './mixins' as *;
 @use './placeholders' as *;
 
 post-megadropdown {
@@ -24,9 +24,9 @@ post-megadropdown {
 
   .post-megadropdown-overview,
   .post-megadropdown-list-title,
-  .post-megadropdown-list > li > :where(#{header-mx.$interactive-elements-selector}) {
+  .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
     @extend %header-control;
-    @include header-mx.nav-item-block-layout;
+    @include nav-item-block-layout;
 
     @include media.only(desktop) {
       font-size: 1.25rem;
@@ -38,7 +38,7 @@ post-megadropdown {
     font-weight: 950;
     --post-nav-item-border-width: 2px;
 
-    &:not(#{header-mx.$interactive-elements-selector}) {
+    &:not(#{$interactive-elements-selector}) {
       pointer-events: none;
     }
   }
