@@ -62,4 +62,9 @@
   --post-global-header-top: 0;
   --post-global-controls-top: 0;
   --post-logo-height: var(--post-global-header-expanded-height);
+
+  // fixes a FF specific position sticky issue
+  .global-header {
+    inset-block-start: -0.001px !important;
+  }
 }
