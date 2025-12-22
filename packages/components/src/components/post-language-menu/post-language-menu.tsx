@@ -139,6 +139,7 @@ export class PostLanguageMenu {
           id={this.menuId}
           class="post-language-menu-dropdown-container"
           label={this.caption}
+          placement="bottom-end"
         >
           <slot></slot>
         </post-menu>
