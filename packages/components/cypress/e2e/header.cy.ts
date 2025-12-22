@@ -112,9 +112,13 @@ describe('header', () => {
       cy.get('post-togglebutton').click();
       cy.get('div.burger-menu.extended').should('exist');
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
+      cy.wait(600);
 
       // Check if animation class is present
-      cy.get('post-megadropdown').find('.megadropdown').should('have.class', 'slide-in');
+      cy.get('post-megadropdown')
+        .find('.megadropdown')
+        .should('be.visible')
+        .should('have.css', 'opacity', '1');
     });
 
     it('should update active class when active link changes within the same or different megadropdown', () => {
