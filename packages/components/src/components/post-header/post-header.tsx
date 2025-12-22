@@ -4,7 +4,7 @@ import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
-import { getFocusableChildren } from '@/utils/get-focusable-children';
+import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 import { checkRequiredAndType } from '@/utils';
 
@@ -233,31 +233,15 @@ export class PostHeader {
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
-    // Get elements in the correct order (different as the DOM order)
-    const focusableEls = [
-      ...Array.from(
-        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
-        ),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          '.list-inline[slot="global-nav-secondary"] > li, post-language-menu-item',
-        ),
-      ),
-    ];
+    if (!this.burgerMenu) return;
 
-    // Add the main toggle menu button to the list of focusable children
-    const focusableChildren = [
-      this.burgerMenuButton,
-      ...focusableEls.flatMap(el => Array.from(getFocusableChildren(el))),
-    ];
+    const focusableElements = getDeepFocusableChildren(
+      this.burgerMenu,
+      el => !el.matches('post-megadropdown'),
+    );
 
-    this.firstFocusableEl = focusableChildren[0];
-    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+    this.firstFocusableEl = focusableElements[0];
+    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
   }
 
   private keyboardHandler(e: KeyboardEvent) {
