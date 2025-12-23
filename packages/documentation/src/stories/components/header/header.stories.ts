@@ -4,7 +4,7 @@ import { html, nothing, TemplateResult } from 'lit';
 import { fakeContent } from '@/utils';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
-import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
+import { renderAudience } from '@/stories/components/header/renderers/audience';
 import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
@@ -114,7 +114,7 @@ const meta: MetaComponent = {
     },
     targetGroup: {
       name: 'Target group',
-      description: 'Whether or not the target group buttons are visible.',
+      description: 'Whether or not the audience buttons are visible.',
       control: {
         type: 'boolean',
       },
@@ -201,7 +201,7 @@ function getHeaderRenderer(
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.targetGroup ? renderTargetGroup(args) : nothing}
+        ${args.targetGroup ? renderAudience(args) : nothing}
         ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
@@ -332,13 +332,6 @@ export const OnePagerH1: Story = {
     },
   ],
   render: renderTitle,
-};
-
-// Used in target group documentation
-export const WithTargetGroup: Story = {
-  args: {
-    targetGroup: true,
-  },
 };
 
 // User is logged in
