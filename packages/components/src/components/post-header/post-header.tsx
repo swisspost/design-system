@@ -254,16 +254,18 @@ export class PostHeader {
   }
 
   private keyboardHandler(e: KeyboardEvent) {
-    if (e.key === 'Tab' && this.burgerMenuExtended) {
-      if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
-        // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
-        e.preventDefault();
-        this.lastFocusableEl.focus();
-      } else if (!e.shiftKey && document.activeElement === this.lastFocusableEl) {
-        // If Tab and last element is focused, focus goes back to the first element of the megadropdown
-        e.preventDefault();
-        this.firstFocusableEl.focus();
-      }
+    if (e.key !== 'Tab' || !this.burgerMenuExtended) return;
+
+    const activeElement = this.host.shadowRoot.activeElement || document.activeElement;
+
+    if (e.shiftKey && activeElement === this.firstFocusableEl) {
+      // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
+      e.preventDefault();
+      this.lastFocusableEl.focus();
+    } else if (!e.shiftKey && activeElement === this.lastFocusableEl) {
+      // If Tab and last element is focused, focus goes back to the first element of the megadropdown
+      e.preventDefault();
+      this.firstFocusableEl.focus();
     }
   }
 
