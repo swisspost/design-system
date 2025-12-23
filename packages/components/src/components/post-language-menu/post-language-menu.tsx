@@ -112,7 +112,7 @@ export class PostLanguageMenu {
         <div
           class="post-language-menu-list"
           role="list"
-          aria-label={this.textChangeLanguage} // textCurrentLanguage  textChangeLanguage
+          aria-label={this.textChangeLanguage}
           aria-describedby={this.listSpanId}
         >
           <span id={this.listSpanId} class="visually-hidden">
