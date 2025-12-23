@@ -16,14 +16,20 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
   @include utility-mx.focus-style();
 }
 
+// Default Checkbox
 .form-check:not(.form-switch):has(input[type='checkbox']) {
+  display: flex;
+  align-items: center;
+  gap: tokens.get('checkbox-gap-inline-text-start');
+
   > input {
     appearance: none;
     flex: none;
     display: inline-flex;
     margin: tokens.get('checkbox-icon-padding-inner');
     margin-block: calc(
-      tokens.get('checkbox-icon-padding-inner') + tokens.get('checkbox-icon-padding-container')
+      tokens.get('checkbox-icon-padding-inner') +
+        tokens.get('checkbox-icon-padding-container')
     );
     width: tokens.get('checkbox-icon-size');
     height: tokens.get('checkbox-icon-size');
@@ -124,27 +130,6 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
       }
     }
   }
-}
-
-// Default Checkbox
-.form-check {
-  display: inline-flex;
-  align-items: center;
-  gap: tokens.get('post-checkbox-gap-inline-text-start');
-
-  > input[type='checkbox'] {
-    width: tokens.get('checkbox-icon-size');
-    height: tokens.get('checkbox-icon-size');
-    margin: tokens.get('checkbox-icon-padding');
-    appearance: none;
-    display: inline-flex;
-    flex: none;
-    vertical-align: top;
-
-    &::after {
-      mask-size: tokens.get('checkbox-icon-size');
-    }
-  }
 
   > label {
     line-height: 1;
@@ -154,24 +139,63 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
 
 // Small Checkbox
 .form-check.form-check-sm:not(.form-switch):has(input[type='checkbox']) {
-
   > input[type='checkbox'] {
-    width: tokens.get('post-checkbox-small-icon-size');
-    height: tokens.get('post-checkbox-small-icon-size');
+    width: tokens.get('checkbox-small-icon-size');
+    height: tokens.get('checkbox-small-icon-size');
 
-    /* padding */
-    margin-inline: tokens.get('post-checkbox-small-icon-padding');
+    margin-inline: tokens.get('checkbox-small-icon-padding');
     margin-block: calc(
-      tokens.get('post-checkbox-small-icon-padding') +
-      tokens.get('post-checkbox-small-icon-container-padding')
+      tokens.get('checkbox-small-icon-padding') +
+        tokens.get('checkbox-small-icon-container-padding')
     );
 
     &::after {
-      mask-size: tokens.get('post-checkbox-small-icon-size');
+      mask-size: tokens.get('checkbox-small-icon-size');
     }
   }
 
   > label {
-    padding-block: tokens.get('post-checkbox-small-label-padding-block');
+    // TODO: check with Sandra to get  for small font size
+    font-size: tokens.get('checkbox-small-label-font-size');
+    padding-block: tokens.get('checkbox-small-label-padding-block');
   }
+}
+
+/* Align the Label with the Checkbox small */
+.form-check-sm:not(.form-switch) {
+  display: flex;
+  align-items: center;
+}
+
+// Checkbox Group
+/* Grouped/Vertical */
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inline/Horizontal */
+fieldset:has(.form-check-inline) {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* Spacing for Checkbox Group Grouped/Vertical default */
+fieldset .form-check:not(.form-check-inline):not(:last-of-type) {
+  margin-block-end: tokens.get('checkbox-gap-block-group');
+}
+
+/* Spacing Checkbox Group Inline/Horizontal default */
+fieldset .form-check.form-check-inline:not(:last-of-type) {
+  margin-inline-end: tokens.get('checkbox-gap-block-group');
+}
+
+/* Spacing Checkbox Group Grouped/Vertical small */
+fieldset .form-check-sm:not(.form-switch, .form-check-inline, :last-of-type) {
+  margin-block-end: tokens.get('checkbox-small-group-items-gap-block');
+}
+
+/* Spacing Checkbox Group Inline/Horizontal small */
+fieldset .form-check-sm.form-check-inline:not(.form-switch):not(:last-of-type) {
+  margin-inline-end: tokens.get('checkbox-small-group-items-gap-inline');
 }
