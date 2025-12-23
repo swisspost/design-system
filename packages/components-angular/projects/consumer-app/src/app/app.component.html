@@ -40,8 +40,8 @@
 
   <!-- Language switch -->
   <post-language-menu
-    caption="Change the language"
-    description="The currently selected language is English."
+    textChangeLanguage="Change the language"
+    textCurrentLanguage="The currently selected language is English."
     variant="list"
     name="language-menu-example"
     slot="language-menu"
@@ -60,7 +60,7 @@
   </a>
 
   <!-- Main navigation -->
-  <post-mainnavigation caption="Main">
+  <post-mainnavigation textMain="Main">
     <ul>
       <!-- Link only level 1 -->
       <li>
@@ -76,7 +76,7 @@
           <post-megadropdown-trigger [for]="dropdown.id">{{
             dropdown.trigger
           }}</post-megadropdown-trigger>
-          <post-megadropdown [id]="dropdown.id" labelClose="Close" labelBack="Back">
+          <post-megadropdown [id]="dropdown.id" textClose="Close" textBack="Back">
             <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
               >Overview {{ dropdown.trigger }}</a
             >
@@ -126,9 +126,9 @@
 <div class="container">
   <post-breadcrumbs
     homeUrl="/"
-    homeText="Home"
-    label="Breadcrumbs"
-    menuLabel="More breadcrumb items"
+    textHome="Home"
+    textBreadcrumbs="Breadcrumbs"
+    textMoreItems="More items"
   >
     <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
     <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -141,9 +141,9 @@
   <router-outlet></router-outlet>
 </main>
 
-<post-back-to-top label="Back to top button"></post-back-to-top>
+<post-back-to-top textBackToTop="Back to top"></post-back-to-top>
 
-<post-footer label="Footer label">
+<post-footer textFooter="Footer">
   @for (grid of footerGrids; track grid.slot) {
     <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{
       grid.title

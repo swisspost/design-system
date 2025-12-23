@@ -23,21 +23,21 @@ export class PostLanguageMenu {
   /**
    * A title for the list of language options
    */
-  @Prop({ reflect: true }) caption!: string;
+  @Prop({ reflect: true }) textChangeLanguage!: string;
 
-  @Watch('caption')
+  @Watch('textChangeLanguage')
   validateCaption() {
-    checkRequiredAndType(this, 'caption', 'string');
+    checkRequiredAndType(this, 'textChangeLanguage', 'string');
   }
 
   /**
    * A descriptive text for the list of language options
    */
-  @Prop({ reflect: true }) description!: string;
+  @Prop({ reflect: true }) textCurrentLanguage!: string;
 
-  @Watch('description')
+  @Watch('textCurrentLanguage')
   validateDescription() {
-    checkRequiredAndType(this, 'description', 'string');
+    checkRequiredAndType(this, 'textCurrentLanguage', 'string');
   }
 
   /**
@@ -112,11 +112,11 @@ export class PostLanguageMenu {
         <div
           class="post-language-menu-list"
           role="list"
-          aria-label={this.caption}
+          aria-label={this.textChangeLanguage}
           aria-describedby={this.listSpanId}
         >
           <span id={this.listSpanId} class="visually-hidden">
-            {this.description}
+            {this.textCurrentLanguage}
           </span>
           <slot></slot>
         </div>
@@ -130,15 +130,15 @@ export class PostLanguageMenu {
         <post-menu-trigger for={this.menuId}>
           <button class="post-language-menu-trigger">
             {this.activeLang}
-            <span class="visually-hidden">{this.caption}</span>
-            <span class="visually-hidden">{this.description}</span>
+            <span class="visually-hidden">{this.textChangeLanguage}</span>
+            <span class="visually-hidden">{this.textCurrentLanguage}</span>
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
         <post-menu
           id={this.menuId}
           class="post-language-menu-dropdown-container"
-          label={this.caption}
+          label={this.textChangeLanguage}
           placement="bottom-end"
         >
           <slot></slot>

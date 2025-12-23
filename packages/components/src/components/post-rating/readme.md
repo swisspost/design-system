@@ -8,7 +8,7 @@
 | Property             | Attribute        | Description                                                                                                          | Type      | Default     |
 | -------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `currentRating`      | `current-rating` | Defines the rating that the component should show.                                                                   | `number`  | `0`         |
-| `label` _(required)_ | `label`          | Defines a hidden label for the component.                                                                            | `string`  | `undefined` |
+| `label` _(required)_ | `label`          | A hidden, descriptive label that explains the role of the rating component to assistive technologies.                | `string`  | `undefined` |
 | `readonly`           | `readonly`       | Defines if the component is readonly or not. This usually should be used together with the `currentRating` property. | `boolean` | `false`     |
 | `stars`              | `stars`          | Defines the total amount of stars rendered in the component.                                                         | `number`  | `5`         |
 

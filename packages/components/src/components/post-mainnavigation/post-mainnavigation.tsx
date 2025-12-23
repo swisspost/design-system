@@ -27,11 +27,11 @@ export class PostMainnavigation {
   /**
    * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
    */
-  @Prop({ reflect: true }) caption!: string;
+  @Prop({ reflect: true }) textMain!: string;
 
-  @Watch('caption')
-  validateCaption() {
-    checkRequiredAndType(this, 'caption', 'string');
+  @Watch('textMain')
+  validateTextMain() {
+    checkRequiredAndType(this, 'textMain', 'string');
   }
 
   constructor() {
@@ -44,7 +44,7 @@ export class PostMainnavigation {
   }
 
   componentDidLoad() {
-    this.validateCaption();
+    this.validateTextMain();
 
     setTimeout(() => {
       this.checkScrollability();
@@ -183,7 +183,7 @@ export class PostMainnavigation {
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
 
-        <nav ref={el => (this.navbar = el)} aria-label={this.caption}>
+        <nav ref={el => (this.navbar = el)} aria-label={this.textMain}>
           <slot></slot>
         </nav>
 
