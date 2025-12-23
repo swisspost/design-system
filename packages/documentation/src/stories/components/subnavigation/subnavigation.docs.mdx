@@ -1,4 +1,5 @@
 import { Meta, Source, Canvas, Controls } from '@storybook/blocks';
+import { PostAlert } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import * as subnavigationStories from './subnavigation.stories.ts';
 
@@ -8,6 +9,11 @@ import * as subnavigationStories from './subnavigation.stories.ts';
 
 <p className="lead">Supplement the header navigation with a secondary entry-point,
 providing access to additional features in your application.</p>
+
+<PostAlert type="warning">
+  <h4 slot="heading">This component is deprecated</h4>
+  <p>It will be replaces by the <code>post-tabs</code> in the next major version.</p>
+</PostAlert>
 
 <ul>
   <li>
