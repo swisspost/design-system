@@ -1,14 +1,14 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import meta, * as MenuButtonStories from './menu-button.stories';
+import meta, * as MenuStories from './menu.stories';
 import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
-<Meta of={MenuButtonStories} />
+<Meta of={MenuStories} />
 
 <div className="docs-title">
-  # Menu Button
+  # Menu
 
-<link-design of={JSON.stringify(MenuButtonStories)}></link-design>
+<link-design of={JSON.stringify(MenuStories)}></link-design>
 
 </div>
 
@@ -18,7 +18,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
   A dropdown component for displaying a list of links or actions with flexible alignment.
 </div>
 
-<Canvas sourceState="shown" of={MenuButtonStories.Default} />
-<Controls of={MenuButtonStories.Default} />
+<Canvas sourceState="shown" of={MenuStories.Default} />
+<Controls of={MenuStories.Default} />
 
 <ComponentsPackageInstall component="<post-menu>" />
