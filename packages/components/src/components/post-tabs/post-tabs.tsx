@@ -1,6 +1,17 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { version } from '@root/package.json';
-import { fadeIn, fadeOut } from '@/animations';
+import { fade } from '@/animations';
 import { componentOnReady, checkRequiredAndType } from '@/utils';
 
 /**
@@ -25,15 +36,15 @@ export class PostTabs {
   @State() isNavigationMode: boolean = false;
 
   private get tabs(): HTMLPostTabItemElement[] {
-    return Array.from(
-      this.host.querySelectorAll<HTMLPostTabItemElement>('post-tab-item'),
-    ).filter(tab => tab.closest('post-tabs') === this.host);
+    return Array.from(this.host.querySelectorAll<HTMLPostTabItemElement>('post-tab-item')).filter(
+      tab => tab.closest('post-tabs') === this.host,
+    );
   }
 
   private get panels(): HTMLPostTabPanelElement[] {
-    return Array.from(
-      this.host.querySelectorAll<HTMLPostTabPanelElement>('post-tab-panel'),
-    ).filter(panel => panel.closest('post-tabs') === this.host);
+    return Array.from(this.host.querySelectorAll<HTMLPostTabPanelElement>('post-tab-panel')).filter(
+      panel => panel.closest('post-tabs') === this.host,
+    );
   }
 
   @Element() host: HTMLPostTabsElement;
@@ -115,7 +126,7 @@ export class PostTabs {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['data-navigation-mode', 'aria-current']
+      attributeFilter: ['data-navigation-mode', 'aria-current'],
     };
 
     this.contentObserver = new MutationObserver(this.handleContentChange.bind(this));
@@ -149,7 +160,7 @@ export class PostTabs {
 
   private hasAriaCurrentChanged(mutations: MutationRecord[]): boolean {
     return mutations.some(
-      mutation => mutation.type === 'attributes' && mutation.attributeName === 'aria-current'
+      mutation => mutation.type === 'attributes' && mutation.attributeName === 'aria-current',
     );
   }
 
@@ -163,7 +174,7 @@ export class PostTabs {
   private handleModeChange(): void {
     const previousMode = this.isNavigationMode;
     this.detectMode();
-    
+
     if (previousMode !== this.isNavigationMode) {
       this.enableTabs();
       this.initializeActiveTab();
@@ -192,21 +203,25 @@ export class PostTabs {
       const navModeAttr = tab.getAttribute('data-navigation-mode') === 'true';
       return hasAnchor || navModeAttr;
     });
-    
+
     const hasPanels = this.panels.length > 0;
-    
+
     if (hasNavigationTabs && hasPanels) {
-      throw new Error('PostTabs: Mixed mode detected. Cannot use both navigation mode (anchor elements) and panel mode (post-tab-panel elements) at the same time.');
+      throw new Error(
+        'PostTabs: Mixed mode detected. Cannot use both navigation mode (anchor elements) and panel mode (post-tab-panel elements) at the same time.',
+      );
     }
-    
+
     this.isNavigationMode = hasNavigationTabs;
   }
 
   private findActiveNavigationTab(): HTMLPostTabItemElement | null {
-    return this.tabs.find(tab => {
-      const anchor = tab.querySelector('a[aria-current="page"]');
-      return anchor !== null;
-    }) || null;
+    return (
+      this.tabs.find(tab => {
+        const anchor = tab.querySelector('a[aria-current="page"]');
+        return anchor !== null;
+      }) || null
+    );
   }
 
   /**
@@ -224,7 +239,7 @@ export class PostTabs {
     const newTab: HTMLPostTabItemElement = this.host.querySelector(
       `post-tab-item[name=${tabName}]`,
     );
-    
+
     this.activateTab(newTab);
 
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
@@ -313,7 +328,7 @@ export class PostTabs {
     // Deactivate previous tab
     if (this.currentActiveTab) {
       this.currentActiveTab.classList.remove('active');
-    
+
       if (!this.isNavigationMode) {
         this.currentActiveTab.setAttribute('aria-selected', 'false');
         this.currentActiveTab.setAttribute('tabindex', '-1');
@@ -335,7 +350,7 @@ export class PostTabs {
 
     if (!previousPanel) return;
 
-    this.hiding = fadeOut(previousPanel);
+    this.hiding = fade(previousPanel, 'out');
     this.hiding.onfinish = () => {
       previousPanel.style.display = 'none';
       this.hiding = null;
@@ -350,7 +365,7 @@ export class PostTabs {
     // prevent the initially selected panel from fading in
     if (!this.isLoaded) return;
 
-    this.showing = fadeIn(panel);
+    this.showing = fade(panel, 'in');
     this.showing.onfinish = () => {
       this.showing = null;
     };
@@ -386,10 +401,12 @@ export class PostTabs {
             role={this.isNavigationMode ? undefined : 'tablist'}
             aria-label={this.isNavigationMode ? this.label : undefined}
           >
-            <slot onSlotchange={() => {
-              this.moveMisplacedTabs();
-              this.enableTabs();
-            }} />
+            <slot
+              onSlotchange={() => {
+                this.moveMisplacedTabs();
+                this.enableTabs();
+              }}
+            />
           </TabsContainer>
         </div>
         {!this.isNavigationMode && (

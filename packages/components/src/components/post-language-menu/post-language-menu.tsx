@@ -135,7 +135,12 @@ export class PostLanguageMenu {
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-menu-dropdown-container" label={this.caption}>
+        <post-menu
+          id={this.menuId}
+          class="post-language-menu-dropdown-container"
+          label={this.caption}
+          placement="bottom-end"
+        >
           <slot></slot>
         </post-menu>
       </Host>

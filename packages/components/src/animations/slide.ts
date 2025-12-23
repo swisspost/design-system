@@ -1,33 +1,42 @@
 /**
- * Used by PostMegadropdown
+ * Used by PostMegadropdown (burger menu)
  */
 
 import { AnimationOptions } from './types';
-import { resolveEasing } from './fade-slide';
+import { resolveEasing } from './utils';
 
-const defaultSlideOptions: AnimationOptions = {
+const defaultOptions: AnimationOptions & { translate: number } = {
   translate: 100,
   duration: 500,
   easing: 'ease',
-  fill: 'forwards',
+  fill: 'none',
 };
 
-function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: AnimationOptions) {
-  const { duration, easing, fill } = { ...defaultSlideOptions, ...options };
+type SlideOptions = Partial<AnimationOptions> & { translate?: number };
+
+function animateSlide(el: HTMLElement, keyframes: Keyframe[], options: Partial<AnimationOptions>) {
+  const { duration, easing, fill } = { ...defaultOptions, ...options };
   return el.animate(keyframes, { duration, easing: resolveEasing(easing), fill });
 }
 
 export function slide(
   el: HTMLElement,
   direction: 'in' | 'out',
-  options: AnimationOptions = {},
+  options: SlideOptions = {},
 ): Animation {
-  const { translate = defaultSlideOptions.translate } = options;
+  const mergedOptions: AnimationOptions & { translate?: number } = {
+    ...defaultOptions,
+    ...options,
+  };
 
-  const keyframes: Keyframe[] =
-    direction === 'in'
-      ? [{ transform: `translateX(${translate}%)` }, { transform: 'translateX(0)' }]
-      : [{ transform: 'translateX(0)' }, { transform: `translateX(${translate}%)` }];
+  const { translate } = mergedOptions;
+
+  const baseKeyframes: Keyframe[] = [
+    { transform: `translateX(${translate}%)` },
+    { transform: 'translateX(0)' },
+  ];
+
+  const keyframes = direction === 'in' ? baseKeyframes : [...baseKeyframes].reverse();
 
   return animateSlide(el, keyframes, options);
 }

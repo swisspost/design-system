@@ -15,7 +15,9 @@
 
 post-header-logo {
   height: var(--header-height);
-  width: var(--header-height); // Keep aspect-ratio of 1/1. Support old browser that does not support aspect-ratio property
+  width: var(
+    --header-height
+  ); // Keep aspect-ratio of 1/1. Support old browser that does not support aspect-ratio property
   transform-origin: bottom left;
   transform: scale(var(--logo-scale));
 }

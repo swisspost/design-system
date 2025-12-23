@@ -11,13 +11,16 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <div className="docs-title">
   # Icons
 
-  <link-design of={JSON.stringify(IconStories)}></link-design>
+<link-design of={JSON.stringify(IconStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead">
-  The official Swiss Post Icon Library with {Math.floor(POST_ICONS_COUNT / 10) * 10}+ high-quality svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with {Math.floor(UI_ICONS_COUNT / 10) * 10}+ icons and responsive level-of-detail.
+  The official Swiss Post Icon Library with {Math.floor(POST_ICONS_COUNT / 10) * 10}+ high-quality
+  svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with{' '}
+  {Math.floor(UI_ICONS_COUNT / 10) * 10}+ icons and responsive level-of-detail.
 </div>
 
 <post-tabs active-tab="search">
@@ -26,18 +29,21 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
     <Search />
   </post-tab-panel>
 
-  <post-tab-item name="installation">Installation</post-tab-item>
-  <post-tab-panel for="installation">
+<post-tab-item name="installation">Installation</post-tab-item>
+<post-tab-panel for="installation">
+
     <ComponentsPackageInstall subtitle="Icon Component" component="<post-icon>" />
 
     ### Icon SVGs
 
     The SVG files for icons should be hosted within your project.
     For guidelines on how to set this up, please refer to the [icon package documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs#usage).
+
   </post-tab-panel>
 
-  <post-tab-item name="component">Usage as Web-Component</post-tab-item>
-  <post-tab-panel for="component">
+<post-tab-item name="component">Usage as Web-Component</post-tab-item>
+<post-tab-panel for="component">
+
     ## Usage as Web-Component
 
     Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
@@ -106,8 +112,9 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
   </post-tab-panel>
 
-  <post-tab-item name="scss">Usage as CSS-Background</post-tab-item>
-  <post-tab-panel for="scss">
+<post-tab-item name="scss">Usage as CSS-Background</post-tab-item>
+<post-tab-panel for="scss">
+
     ## Usage in CSS
 
     To define an icon in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.

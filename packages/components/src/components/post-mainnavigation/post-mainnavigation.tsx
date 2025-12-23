@@ -37,18 +37,16 @@ export class PostMainnavigation {
   constructor() {
     this.scrollRight = this.scrollRight.bind(this);
     this.scrollLeft = this.scrollLeft.bind(this);
-    this.handleMutations = this.handleMutations.bind(this);
     this.checkScrollability = this.checkScrollability.bind(this);
 
     this.resizeObserver = new ResizeObserver(this.checkScrollability);
-    this.mutationObserver = new MutationObserver(this.handleMutations);
+    this.mutationObserver = new MutationObserver(this.checkScrollability);
   }
 
   componentDidLoad() {
     this.validateCaption();
 
     setTimeout(() => {
-      this.fixLayoutShift();
       this.checkScrollability();
     });
 
@@ -80,38 +78,10 @@ export class PostMainnavigation {
     if (this.scrollRepeatInterval) clearInterval(this.scrollRepeatInterval);
   }
 
-  private async handleMutations(mutations: MutationRecord[]) {
-    const addedNodes = mutations.flatMap((mutation: MutationRecord) => {
-      return Array.from(mutation.addedNodes);
-    });
-
-    // Wait for all elements to be hydrated
-    await Promise.all(
-      addedNodes.map((item: HTMLPostListItemElement) =>
-        item.componentOnReady ? item.componentOnReady() : Promise.resolve(item),
-      ),
-    );
-
-    this.fixLayoutShift();
-    this.checkScrollability();
-  }
-
   private get navigationItems(): HTMLElement[] {
-    return Array.from(this.host.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
-  }
-
-  /**
-   * Hack to fix the layout shift due to bold text on active elements
-   */
-  private fixLayoutShift() {
-    this.navigationItems
-      .filter(item => !item.matches(':has(.shown-when-inactive)'))
-      .forEach(item => {
-        item.innerHTML = `
-          <span class="shown-when-inactive" aria-hidden="true">${item.innerHTML}</span>
-          ${item.innerHTML}
-        `;
-      });
+    return Array.from(
+      this.host.querySelectorAll('a:not(post-megadropdown *), post-megadropdown-trigger'),
+    );
   }
 
   /**

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -1493,7 +1493,12 @@
     <main id="main-content-container" class="container mt-56">
       <h1>Test</h1>
       <button
-        onclick="document.querySelector('swisspost-internet-header').shadowRoot.querySelector('post-search').toggleDropdown(true)"
+        onclick="
+          document
+            .querySelector('swisspost-internet-header')
+            .shadowRoot.querySelector('post-search')
+            .toggleDropdown(true)
+        "
       >
         toggle search
       </button>
