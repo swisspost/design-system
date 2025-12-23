@@ -1,5 +1,5 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
-import { slideUpAndFadeOut, slideDownAndFadeIn } from '@/animations/slide-and-fade';
+import { fadeSlide } from '@/animations/fade-slide';
 import { version } from '@root/package.json';
 import { checkRequiredAndType } from '@/utils';
 
@@ -19,7 +19,7 @@ export class PostBackToTop {
 
   @State() belowFold: boolean = false;
 
-  private translateY: string;
+  private translateY: number;
 
   private isBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
@@ -38,9 +38,9 @@ export class PostBackToTop {
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
-      slideDownAndFadeIn(this.host, this.translateY);
+      fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
     } else {
-      slideUpAndFadeOut(this.host, this.translateY);
+      fadeSlide(this.host, 'out', { translate: this.translateY, fill: 'forwards' });
     }
   }
 
@@ -77,14 +77,12 @@ export class PostBackToTop {
 
     // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
     this.translateY =
-      String(
-        (-1 * 100) / 100 -
-          parseFloat(positionTop.replace('px', '')) -
-          parseFloat(elevationHeight.replace('px', '')),
-      ) + 'px';
+      (-1 * 100) / 100 -
+      parseFloat(positionTop.replace('px', '')) -
+      parseFloat(elevationHeight.replace('px', ''));
 
     if (this.belowFold) {
-      slideDownAndFadeIn(this.host, this.translateY);
+      fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
     }
 
     if (!this.belowFold) {

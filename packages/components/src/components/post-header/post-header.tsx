@@ -3,9 +3,10 @@ import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { slideDown, slideUp } from '@/animations/slide';
+import { fade } from '@/animations';
 import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
+import { AnimationOptions } from '@/animations/types';
 import { checkRequiredAndType } from '@/utils';
 
 /**
@@ -35,10 +36,16 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
+  private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
   }
+
+  private animationOptions: Partial<AnimationOptions> = {
+    duration: 350,
+    easing: 'headerEase',
+  };
 
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
@@ -202,8 +209,8 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? slideUp(this.burgerMenu)
-      : slideDown(this.burgerMenu);
+      ? fade(this.burgerMenu, 'out', this.animationOptions)
+      : fade(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
     if (this.burgerMenuButton) this.burgerMenuButton.toggled = force ?? !this.burgerMenuExtended;
@@ -233,9 +240,13 @@ export class PostHeader {
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
-    const focusableElements = getDeepFocusableChildren(
-      this.host,
-      el => !el.matches('post-megadropdown'),
+    if (!this.burgerMenu) return;
+
+    const focusableElements: HTMLElement[] = [this.burgerMenuButton];
+
+    focusableElements.push(
+      ...getDeepFocusableChildren(this.localHeader, el => !el.matches('post-megadropdown')),
+      ...getDeepFocusableChildren(this.burgerMenu, el => !el.matches('post-megadropdown')),
     );
 
     this.firstFocusableEl = focusableElements[0];
@@ -415,7 +426,12 @@ export class PostHeader {
 
   render() {
     return (
-      <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
+      <Host
+        data-version={version}
+        data-color-scheme="light"
+        data-burger-menu={this.hasBurgerMenu}
+        data-menu-extended={this.burgerMenuExtended}
+      >
         <header>
           <div
             class={{
@@ -456,6 +472,7 @@ export class PostHeader {
             </div>
           </div>
           <div
+            ref={el => (this.localHeader = el)}
             class={{
               'local-header': true,
               'no-title': !this.hasTitle,
