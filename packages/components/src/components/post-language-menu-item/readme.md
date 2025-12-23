@@ -16,10 +16,10 @@
 
 ## Events
 
-| Event                                 | Description                                                                                                     | Type                  |
-| ------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `postChange`                          | An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.          | `CustomEvent<string>` |
-| `postLanguageMenuItemInitiallyActive` | An event emitted when the language option is initially active. The payload is the ISO 639 code of the language. | `CustomEvent<string>` |
+| Event                                 | Description                                                                                                     | Type                                           |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `postChange`                          | An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.          | `CustomEvent<{ code: string; name: string; }>` |
+| `postLanguageMenuItemInitiallyActive` | An event emitted when the language option is initially active. The payload is the ISO 639 code of the language. | `CustomEvent<{ code: string; name: string; }>` |
 
 
 ## Methods

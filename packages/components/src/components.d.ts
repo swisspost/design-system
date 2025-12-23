@@ -814,8 +814,14 @@ declare global {
         new (): HTMLPostLanguageMenuElement;
     };
     interface HTMLPostLanguageMenuItemElementEventMap {
-        "postChange": string;
-        "postLanguageMenuItemInitiallyActive": string;
+        "postChange": {
+    code: string;
+    name: string;
+  };
+        "postLanguageMenuItemInitiallyActive": {
+    code: string;
+    name: string;
+  };
     }
     interface HTMLPostLanguageMenuItemElement extends Components.PostLanguageMenuItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLanguageMenuItemElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuItemElement, ev: PostLanguageMenuItemCustomEvent<HTMLPostLanguageMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1325,11 +1331,17 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
          */
-        "onPostChange"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
+        "onPostChange"?: (event: PostLanguageMenuItemCustomEvent<{
+    code: string;
+    name: string;
+  }>) => void;
         /**
           * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
          */
-        "onPostLanguageMenuItemInitiallyActive"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
+        "onPostLanguageMenuItemInitiallyActive"?: (event: PostLanguageMenuItemCustomEvent<{
+    code: string;
+    name: string;
+  }>) => void;
         /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
