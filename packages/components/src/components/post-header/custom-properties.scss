@@ -59,12 +59,7 @@
 
 :host([data-expanded]) {
   --post-header-top: 0;
-  --post-global-header-top: 0;
+  --post-global-header-top: -0.001px; // Fixes a Firefox rendering engine (Gecko) glitch related to position sticky, causing the header to be positioned incorrectly.
   --post-global-controls-top: 0;
   --post-logo-height: var(--post-global-header-expanded-height);
-
-  // fixes a FF specific position sticky issue
-  .global-header {
-    inset-block-start: -0.001px !important;
-  }
 }

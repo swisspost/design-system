@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed a Firefox specific `position: sticky` render issue, regarding the global-header section, when specific hidden header elements receive focus, while the page is scrolled.
+Fixed a Firefox-specific rendering engine (Gecko) issue on mobile and tablet related to position sticky, that causes the global header to be positioned incorrectly when invisible child elements receive focus on a scrolled page.
