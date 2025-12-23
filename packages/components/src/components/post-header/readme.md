@@ -33,7 +33,7 @@ Type: `Promise<void>`
 
 | Slot                     | Description                                                                   |
 | ------------------------ | ----------------------------------------------------------------------------- |
-| `"audience"`             | Holds the list of buttons to choose the audience.                         |
+| `"audience"`             | Holds the list of buttons to choose the audience.                             |
 | `"global-nav-primary"`   | Holds search button in the global header.                                     |
 | `"global-nav-secondary"` | Holds an `<ul>` with meta navigation links.                                   |
 | `"language-menu"`        | Should be used with the `<post-language-switch>` component.                   |
