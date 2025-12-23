@@ -24,8 +24,8 @@
 
       <!-- Language switch -->
       <post-language-menu
-        caption="Change the language"
-        description="The currently selected language is English."
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is English"
         name="language-menu-example"
         slot="language-menu"
       >
@@ -59,11 +59,11 @@
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation slot="main-nav" caption="Haupt">
+      <post-mainnavigation slot="main-nav" text-main="Haupt">
         <ul>
           <li>
             <post-megadropdown-trigger for="item-1">Item 1</post-megadropdown-trigger>
-            <post-megadropdown id="item-1" label-close="Schliessen" label-back="Back">
+            <post-megadropdown id="item-1" text-close="Schliessen" text-back="Back">
               <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
               <div class="row row-cols-1 row-cols-sm-2">
                 <div class="col">
@@ -115,7 +115,7 @@
 
           <li>
             <post-megadropdown-trigger for="item-20">Item 20</post-megadropdown-trigger>
-            <post-megadropdown id="item-20" label-close="Schliessen" label-back="Back">
+            <post-megadropdown id="item-20" text-close="Schliessen" text-back="Back">
               <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
               <div class="row row-cols-1 row-cols-sm-2">
                 <div class="col">

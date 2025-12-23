@@ -15,7 +15,7 @@ export class PostBackToTop {
    * The label of the back-to-top button, intended solely for accessibility purposes.
    * This label is always hidden from view.
    **/
-  @Prop({ reflect: true }) label!: string;
+  @Prop({ reflect: true }) textBackToTop!: string;
 
   @State() belowFold: boolean = false;
 
@@ -29,9 +29,9 @@ export class PostBackToTop {
     this.belowFold = this.isBelowFold();
   };
 
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
+  @Watch('textBackToTop')
+  validateTextBackToTop() {
+    checkRequiredAndType(this, 'textBackToTop', 'string');
   }
 
   /*Watch for changes in belowFold to show/hide the back to top button*/
@@ -102,7 +102,7 @@ export class PostBackToTop {
 
     this.animateButton();
 
-    this.validateLabel();
+    this.validateTextBackToTop();
   }
 
   disconnectedCallback() {
@@ -119,7 +119,7 @@ export class PostBackToTop {
           onClick={this.scrollToTop}
         >
           <post-icon aria-hidden="true" name="arrowup"></post-icon>
-          <span class="visually-hidden">{this.label}</span>
+          <span class="visually-hidden">{this.textBackToTop}</span>
         </button>
       </Host>
     );

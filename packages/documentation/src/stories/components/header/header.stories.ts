@@ -205,10 +205,10 @@ function getHeaderRenderer(
         ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
-        <!-- Language switch -->
+        <!-- Language menu -->
         <post-language-menu
-          caption="Change the language"
-          description="The currently selected language is English."
+          text-change-language="Change the language"
+          text-current-language="The currently selected language is English."
           variant="list"
           name="language-menu-example"
           slot="language-menu"
@@ -265,7 +265,7 @@ export const ActiveNavigationItem: Story = {
     },
   ],
   render: () => html`
-    <post-mainnavigation slot="main-nav" caption="Main">
+    <post-mainnavigation slot="main-nav" text-main="Main">
       <ul>
         <li>
           <a href="/letters">Letters</a>

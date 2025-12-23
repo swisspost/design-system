@@ -29,9 +29,9 @@ export const BreadcrumbsSnapshots: Story = {
         story: html`
           <post-breadcrumbs
             home-url="/"
-            home-text="Home"
-            label="Breadcrumbs"
-            menu-label="More breadcrumb items"
+            text-home="Home"
+            text-breadcrumbs="Breadcrumbs"
+            text-more-items="More items"
           >
             <post-breadcrumb-item url="/section1"
               >This is a very long breadcrumb item
