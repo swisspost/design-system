@@ -36,6 +36,7 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
+  private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
@@ -229,29 +230,16 @@ export class PostHeader {
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
-    // Get elements in the correct order (different as the DOM order)
-    const focusableEls = [
-      ...Array.from(
-        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
-        ),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          '.list-inline[slot="global-nav-secondary"] > li, post-language-menu-item',
-        ),
-      ),
-    ];
+    if (!this.burgerMenu) return;
 
-    // Add the main toggle menu button to the list of focusable children
-    const focusableChildren = [
-      this.host.querySelector('post-togglebutton'),
-      ...focusableEls.flatMap(el => Array.from(getFocusableChildren(el))),
-    ];
+    const focusableElements: HTMLElement[] = [this.burgerMenuButton];
 
+    focusableElements.push(
+      ...getDeepFocusableChildren(this.localHeader, el => !el.matches('post-megadropdown')),
+      ...getDeepFocusableChildren(this.burgerMenu, el => !el.matches('post-megadropdown')),
+    );
+
+ 
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
   }
@@ -463,6 +451,7 @@ export class PostHeader {
             </div>
           </div>
           <div
+            ref={el => (this.localHeader = el)}
             class={{
               'local-header': true,
               'no-title': !this.hasTitle,
