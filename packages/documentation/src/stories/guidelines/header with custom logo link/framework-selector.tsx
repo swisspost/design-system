@@ -121,7 +121,7 @@ const code = `
 `;
 
 const extractPostTags = (html: string): string[] => {
-  // Match full tag names like <post-list-item> and </post-list-item>, excluding the '/'
+  // Match full tag names like <post-megadropdown> and </post-megadropdown>, excluding the '/'
   const postTagRegex = /<\/?post-[a-zA-Z0-9-]+/g;
   const matches = html.match(postTagRegex);
   const uniqueTags = new Set(

@@ -293,20 +293,6 @@ export namespace Components {
     }
     interface PostLinkarea {
     }
-    interface PostList {
-        /**
-          * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
-          * @default false
-         */
-        "horizontal": boolean;
-        /**
-          * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
-          * @default false
-         */
-        "titleHidden": boolean;
-    }
-    interface PostListItem {
-    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -837,18 +823,6 @@ declare global {
         prototype: HTMLPostLinkareaElement;
         new (): HTMLPostLinkareaElement;
     };
-    interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
-    }
-    var HTMLPostListElement: {
-        prototype: HTMLPostListElement;
-        new (): HTMLPostListElement;
-    };
-    interface HTMLPostListItemElement extends Components.PostListItem, HTMLStencilElement {
-    }
-    var HTMLPostListItemElement: {
-        prototype: HTMLPostListItemElement;
-        new (): HTMLPostListItemElement;
-    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -1059,8 +1033,6 @@ declare global {
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
-        "post-list": HTMLPostListElement;
-        "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1340,20 +1312,6 @@ declare namespace LocalJSX {
         "variant"?: SwitchVariant;
     }
     interface PostLinkarea {
-    }
-    interface PostList {
-        /**
-          * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
-          * @default false
-         */
-        "horizontal"?: boolean;
-        /**
-          * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
-          * @default false
-         */
-        "titleHidden"?: boolean;
-    }
-    interface PostListItem {
     }
     interface PostLogo {
         /**
@@ -1668,8 +1626,6 @@ declare namespace LocalJSX {
         "post-language-menu": PostLanguageMenu;
         "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
-        "post-list": PostList;
-        "post-list-item": PostListItem;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
@@ -1720,8 +1676,6 @@ declare module "@stencil/core" {
             "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
-            "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
-            "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
