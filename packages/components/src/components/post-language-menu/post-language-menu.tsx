@@ -72,8 +72,6 @@ export class PostLanguageMenu {
       return undefined;
     }
 
-    console.log('getter run');
-
     return this.textCurrentLanguage.replace(/#name/g, this.activeLangName);
   }
 
