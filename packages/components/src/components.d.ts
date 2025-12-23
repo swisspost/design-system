@@ -207,6 +207,10 @@ export namespace Components {
     }
     interface PostHeader {
         /**
+          * The label of the burger menu button.
+         */
+        "textMenu": string;
+        /**
           * Toggles the burger navigation menu.
          */
         "toggleBurgerMenu": (force?: boolean) => Promise<void>;
@@ -1256,6 +1260,10 @@ declare namespace LocalJSX {
         "textFooter": string;
     }
     interface PostHeader {
+        /**
+          * The label of the burger menu button.
+         */
+        "textMenu": string;
     }
     /**
      * @class PostIcon - representing a stencil component

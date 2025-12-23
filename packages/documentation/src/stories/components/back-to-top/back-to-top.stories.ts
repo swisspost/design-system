@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   render: () =>
     html`<div>
-      <post-header>
+      <post-header text-menu="Menu">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
@@ -30,62 +30,6 @@ const meta: MetaComponent = {
             <a href="#">Business customers</a>
           </li>
         </ul>
-
-        <!-- Global controls (Search) -->
-        <ul slot="global-nav-primary">
-          <li>
-            <a href="">
-              <span>Search</span>
-              <post-icon aria-hidden="true" name="search"></post-icon>
-            </a>
-          </li>
-        </ul>
-
-        <!-- Global secondary navigation -->
-        <ul slot="global-nav-secondary">
-          <li>
-            <a href="">
-              Jobs
-              <post-icon name="jobs" aria-hidden="true"></post-icon>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              Create Account
-              <post-icon name="adduser" aria-hidden="true"></post-icon>
-            </a>
-          </li>
-        </ul>
-
-        <!-- Language menu -->
-        <post-language-menu
-          text-change-language="Change the language"
-          text-current-language="The currently selected language is #name."
-          variant="list"
-          name="language-menu-example"
-          slot="language-menu"
-        >
-          <post-language-menu-item code="de" name="German">de</post-language-menu-item>
-          <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
-          <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English"
-            >en</post-language-menu-item
-          >
-        </post-language-menu>
-
-        <!-- Global header login/user menu -->
-
-        <a href="" slot="post-login">
-          <span>Login</span>
-          <post-icon name="login"></post-icon>
-        </a>
-
-        <!-- Menu button for mobile -->
-        <post-togglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-          <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-        </post-togglebutton>
 
         <!-- Language menu -->
         <post-language-menu

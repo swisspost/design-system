@@ -27,6 +27,7 @@ const meta: MetaComponent = {
     title: '',
     titleTag: 'p',
     mainNav: true,
+    textMenu: 'Menu',
     globalNavSecondary: true,
     globalNavPrimary: true,
     targetGroup: true,
@@ -59,6 +60,15 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'Content',
+      },
+    },
+    textMenu: {
+      description: 'The label of the burger menu button.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Props',
       },
     },
     mainNav: {
@@ -187,7 +197,7 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header>
+      <post-header text-menu="${args.textMenu}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
@@ -217,14 +227,6 @@ function getHeaderRenderer(
               ${globalLogin}
             `
           : nothing}
-
-        <!-- Menu button for mobile -->
-        <post-togglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-          <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-        </post-togglebutton>
-
         ${args.title !== '' ? title : nothing}
         ${args.localNav ? renderMicrositeControls(args) : nothing}
         ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
