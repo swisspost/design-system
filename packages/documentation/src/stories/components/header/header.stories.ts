@@ -208,7 +208,7 @@ function getHeaderRenderer(
         <!-- Language menu -->
         <post-language-menu
           text-change-language="Change the language"
-          text-current-language="The currently selected language is #name."
+          text-current-language="The currently selected language is English."
           variant="list"
           name="language-menu-example"
           slot="language-menu"

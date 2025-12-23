@@ -18,7 +18,7 @@ const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
     variant: 'list',
     type: 'language',
     textChangeLanguage: 'Change the language',
-    textCurrentLanguage: 'The currently selected language is #name.',
+    textCurrentLanguage: 'The currently selected language is English.',
   },
 };
 
