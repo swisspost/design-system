@@ -146,7 +146,7 @@ export class PostBreadcrumbs {
     return (
       <Host data-version={version}>
         <nav
-          aria-textBreadcrumbs={this.textBreadcrumbs}
+          aria-label={this.textBreadcrumbs}
           class="breadcrumbs-nav"
           ref={el => (this.breadcrumbsNavRef = el)}
         >
