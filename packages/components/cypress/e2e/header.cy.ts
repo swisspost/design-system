@@ -125,12 +125,10 @@ describe('header', () => {
       cy.get('div.burger-menu.extended').should('exist');
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
 
-      cy.wait(600);
-
       // Check if animation is applied
       cy.get('post-megadropdown')
         .shadow()
-        .find('.megadropdown')
+        .find('.back-button')
         .should('be.visible')
         .should('have.css', 'opacity', '1');
     });
