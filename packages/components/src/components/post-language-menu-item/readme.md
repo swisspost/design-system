@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property            | Attribute | Description                                                                                                                                                                                   | Type               | Default     |
@@ -13,14 +12,12 @@
 | `url`               | `url`     | The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.                                   | `string`           | `undefined` |
 | `variant`           | `variant` | To communicate the variant prop from the parent (post-language-menu) component to the child (post-language-menu-item) component. See parent docs for a description about the property itself. | `"list" \| "menu"` | `undefined` |
 
-
 ## Events
 
 | Event                                 | Description                                                                                                     | Type                                           |
 | ------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | `postChange`                          | An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.          | `CustomEvent<{ code: string; name: string; }>` |
 | `postLanguageMenuItemInitiallyActive` | An event emitted when the language option is initially active. The payload is the ISO 639 code of the language. | `CustomEvent<{ code: string; name: string; }>` |
-
 
 ## Methods
 
@@ -32,16 +29,12 @@ Selects the language option programmatically.
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot        | Description                                               |
 | ----------- | --------------------------------------------------------- |
 | `"default"` | Slot for placing the content inside the anchor or button. |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
