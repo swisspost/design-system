@@ -1,5 +1,5 @@
 /**
- * Used by PostMegadropdown
+ * Used by PostMegadropdown (burger menu)
  */
 
 import { AnimationOptions } from './types';
