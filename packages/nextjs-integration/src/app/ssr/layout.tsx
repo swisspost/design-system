@@ -24,7 +24,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           Homepage
         </PostLogo>
 
-        {/* Target Group */}
+        {/* Audience */}
         <ul slot="audience">
           <li>
             <a href="#" aria-current="location">

@@ -15,7 +15,7 @@ import { checkRequiredAndType } from '@/utils';
  * @slot language-menu - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
- * @slot audience - Holds the list of buttons to choose the target group.
+ * @slot audience - Holds the list of buttons to choose the audience.
  * @slot post-login - Holds the user menu or login button in the global header.
  * @slot local-nav - Holds controls specific to the current application.
  */
@@ -67,7 +67,7 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
   @State() hasLocalNav: boolean = false;
-  @State() hasTargetGroup: boolean = false;
+  @State() hasAudience: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -342,7 +342,7 @@ export class PostHeader {
   private checkSlottedContent() {
     this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasTargetGroup = !!this.host.querySelector('[slot="audience"]');
+    this.hasAudience = !!this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
 
@@ -416,7 +416,7 @@ export class PostHeader {
           <div
             class={{
               'global-header': true,
-              'no-target-group': !this.hasTargetGroup,
+              'no-audience': !this.hasAudience,
             }}
           >
             <div class="logo">
@@ -424,7 +424,7 @@ export class PostHeader {
             </div>
             <div class="sliding-controls">
               {this.device === 'desktop' && (
-                <div class="target-group">
+                <div class="audience">
                   <slot name="audience"></slot>
                 </div>
               )}
@@ -455,7 +455,7 @@ export class PostHeader {
             class={{
               'local-header': true,
               'no-title': !this.hasTitle,
-              'no-target-group': !this.hasTargetGroup,
+              'no-audience': !this.hasAudience,
               'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
               'no-local-nav': !this.hasLocalNav,
             }}
