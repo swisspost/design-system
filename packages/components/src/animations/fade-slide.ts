@@ -1,6 +1,6 @@
 /**
  * Used by
- * 1. PostHeader (mobile)
+ * 1. PostHeader (burger menu)
  * 2. PostMegadropdown
  * 3. BackToTopButton
  */
