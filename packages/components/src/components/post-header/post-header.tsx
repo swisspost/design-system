@@ -36,6 +36,7 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
+  private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
@@ -239,9 +240,13 @@ export class PostHeader {
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
-    const focusableElements = getDeepFocusableChildren(
-      this.host,
-      el => !el.matches('post-megadropdown'),
+    if (!this.burgerMenu) return;
+
+    const focusableElements: HTMLElement[] = [this.burgerMenuButton];
+
+    focusableElements.push(
+      ...getDeepFocusableChildren(this.localHeader, el => !el.matches('post-megadropdown')),
+      ...getDeepFocusableChildren(this.burgerMenu, el => !el.matches('post-megadropdown')),
     );
 
     this.firstFocusableEl = focusableElements[0];
@@ -421,7 +426,12 @@ export class PostHeader {
 
   render() {
     return (
-      <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
+      <Host
+        data-version={version}
+        data-color-scheme="light"
+        data-burger-menu={this.hasBurgerMenu}
+        data-menu-extended={this.burgerMenuExtended}
+      >
         <header>
           <div
             class={{
@@ -462,6 +472,7 @@ export class PostHeader {
             </div>
           </div>
           <div
+            ref={el => (this.localHeader = el)}
             class={{
               'local-header': true,
               'no-title': !this.hasTitle,

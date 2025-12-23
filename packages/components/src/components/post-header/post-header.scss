@@ -168,6 +168,7 @@ header,
 
   &:not(.extended) {
     transform: translateY(-100%);
+    display: none;
 
     > * {
       display: none;
