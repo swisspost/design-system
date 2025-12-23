@@ -3,6 +3,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property                | Attribute   | Description                          | Type     | Default     |
+| ----------------------- | ----------- | ------------------------------------ | -------- | ----------- |
+| `textMenu` _(required)_ | `text-menu` | The label of the burger menu button. | `string` | `undefined` |
+
+
 ## Methods
 
 ### `toggleBurgerMenu(force?: boolean) => Promise<void>`
@@ -34,9 +41,23 @@ Type: `Promise<void>`
 | `"main-nav"`             | Has a default slot because it's only meant to be used in the `<post-header>`. |
 | `"post-login"`           | Holds the user menu or login button in the global header.                     |
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
-| `"post-togglebutton"`    | Holds the burger menu toggler.                                                |
 | `"title"`                | Holds the application title.                                                  |
 
+
+## Dependencies
+
+### Depends on
+
+- [post-togglebutton](../post-togglebutton)
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-header --> post-togglebutton
+  post-header --> post-icon
+  style post-header fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

@@ -9,8 +9,6 @@ import {
   PostCollapsibleTrigger,
   PostIcon,
   PostLinkarea,
-  PostList,
-  PostListItem,
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
@@ -21,6 +19,7 @@ import {
   PostTabs,
   PostTabItem,
   PostTabPanel,
+  PostTogglebutton,
   PostTooltipTrigger,
   PostTooltip,
   PostStepper,
@@ -109,14 +108,6 @@ export default function Home() {
         </div>
       </PostLinkarea>
 
-      <h2>List</h2>
-      <PostList>
-        <h3>Title</h3>
-        <PostListItem>List Item 1</PostListItem>
-        <PostListItem>List Item 2</PostListItem>
-        <PostListItem>List Item 3</PostListItem>
-      </PostList>
-
       <h2>Menu</h2>
       {/* Throws Hydration Errors */}
       <PostMenuTrigger for="menu-one">
@@ -189,6 +180,12 @@ export default function Home() {
       </PostTabs>
 
       <h2>Tag</h2>
+
+      <h2>Toggle Button</h2>
+      <PostTogglebutton className="btn btn-primary">
+        <span data-showwhen="untoggled">Untoggled</span>
+        <span data-showwhen="toggled">Toggled</span>
+      </PostTogglebutton>
 
       <h2>Tooltip</h2>
       <PostTooltipTrigger for="tooltip-one">

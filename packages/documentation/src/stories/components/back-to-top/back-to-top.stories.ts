@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   render: () =>
     html`<div>
-      <post-header>
+      <post-header text-menu="Menu">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
@@ -26,13 +26,6 @@ const meta: MetaComponent = {
           <li><a href="">Jobs</a></li>
           <li><a href="">Über uns</a></li>
         </ul>
-
-        <!-- Menu button for mobile -->
-        <post-togglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-          <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-        </post-togglebutton>
 
         <!-- Language switch -->
         <post-language-menu
@@ -88,7 +81,6 @@ const meta: MetaComponent = {
               <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
                 <div class="row row-cols-1 row-cols-sm-2">
                   <div class="col">
-
                     <p class="post-megadropdown-list-title" id="send-letters">Briefe senden</p>
                     <ul class="post-megadropdown-list" aria-labelledby="send-letters">
                       <li>
@@ -106,8 +98,12 @@ const meta: MetaComponent = {
                     </ul>
                   </div>
                   <div class="col">
-
-                    <a class="post-megadropdown-list-title" id="step-by-step-letters" href="/schritt-für-schritt">Schritt für Schritt</a>
+                    <a
+                      class="post-megadropdown-list-title"
+                      id="step-by-step-letters"
+                      href="/schritt-für-schritt"
+                      >Schritt für Schritt</a
+                    >
                     <ul class="post-megadropdown-list" aria-labelledby="step-by-step-letters">
                       <li>
                         <a href="/sch">Pakete Schweiz</a>
@@ -148,7 +144,12 @@ const meta: MetaComponent = {
                     </ul>
                   </div>
                   <div class="col">
-                    <a class="post-megadropdown-list-title" id="step-by-step-packages" href="/schritt-für-schritt">Schritt für Schritt</a>
+                    <a
+                      class="post-megadropdown-list-title"
+                      id="step-by-step-packages"
+                      href="/schritt-für-schritt"
+                      >Schritt für Schritt</a
+                    >
                     <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
                       <li>
                         <a href="/sch">Pakete Schweiz</a>
@@ -166,7 +167,7 @@ const meta: MetaComponent = {
                   </div>
                 </div>
               </post-megadropdown>
-            </post-list-item>
+            </li>
           </ul>
         </post-mainnavigation>
       </post-header>

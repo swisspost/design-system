@@ -1,17 +1,17 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch, Listen, Prop } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
-import { getFocusableChildren } from '@/utils/get-focusable-children';
+import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
+import { checkRequiredAndType } from '@/utils';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
- * @slot post-togglebutton - Holds the burger menu toggler.
  * @slot language-menu - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
@@ -28,6 +28,7 @@ import { EventFrom } from '@/utils/event-from';
 export class PostHeader {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
+  private burgerMenuButton: HTMLPostTogglebuttonElement | null;
   private burgerMenu: HTMLElement;
   private burgerMenuAnimation: Animation;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
@@ -70,6 +71,16 @@ export class PostHeader {
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
+
+  /**
+   * The label of the burger menu button.
+   */
+  @Prop({ reflect: true }) textMenu!: string;
+
+  @Watch('textMenu')
+  validateTextMenu() {
+    checkRequiredAndType(this, 'textMenu', 'string');
+  }
 
   @Watch('device')
   @Watch('burgerMenuExtended')
@@ -136,6 +147,7 @@ export class PostHeader {
   }
 
   componentDidRender() {
+    this.validateTextMenu();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
@@ -178,10 +190,7 @@ export class PostHeader {
   private async closeBurgerMenu() {
     this.burgerMenuAnimation?.finish();
 
-    const menuButton = this.getMenuButton();
-    if (menuButton) {
-      menuButton.toggled = false;
-    }
+    if (this.burgerMenuButton) this.burgerMenuButton.toggled = false;
 
     this.burgerMenuExtended = false;
   }
@@ -197,8 +206,7 @@ export class PostHeader {
       : slideDown(this.burgerMenu);
 
     // Update the state of the toggle button
-    const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
-    if (menuButton) menuButton.toggled = force ?? !this.burgerMenuExtended;
+    if (this.burgerMenuButton) this.burgerMenuButton.toggled = force ?? !this.burgerMenuExtended;
 
     if (this.burgerMenuExtended) {
       // Wait for the close animation to finish before hiding megadropdowns
@@ -225,35 +233,15 @@ export class PostHeader {
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
-    // Get elements in the correct order (different as the DOM order)
-    const focusableEls = [
-      ...Array.from(
-        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
-        ),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          '.list-inline[slot="global-nav-secondary"] > li, post-language-menu-item',
-        ),
-      ),
-    ];
+    if (!this.burgerMenu) return;
 
-    // Add the main toggle menu button to the list of focusable children
-    const focusableChildren = [
-      this.host.querySelector('post-togglebutton'),
-      ...focusableEls.flatMap(el => Array.from(getFocusableChildren(el))),
-    ];
+    const focusableElements = getDeepFocusableChildren(
+      this.burgerMenu,
+      el => !el.matches('post-megadropdown'),
+    );
 
-    this.firstFocusableEl = focusableChildren[0];
-    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
-  }
-
-  private getMenuButton(): HTMLPostTogglebuttonElement | null {
-    return this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+    this.firstFocusableEl = focusableElements[0];
+    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
   }
 
   private keyboardHandler(e: KeyboardEvent) {
@@ -454,6 +442,16 @@ export class PostHeader {
                 <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
                   <slot name="post-togglebutton"></slot>
                 </div>
+              )}
+              {this.hasNavigation && this.device !== 'desktop' && (
+                <post-togglebutton
+                  ref={el => (this.burgerMenuButton = el)}
+                  onClick={() => this.toggleBurgerMenu()}
+                >
+                  <span>{this.textMenu}</span>
+                  <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
+                  <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+                </post-togglebutton>
               )}
             </div>
           </div>

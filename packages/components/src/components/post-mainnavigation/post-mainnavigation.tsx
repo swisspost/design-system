@@ -37,11 +37,10 @@ export class PostMainnavigation {
   constructor() {
     this.scrollRight = this.scrollRight.bind(this);
     this.scrollLeft = this.scrollLeft.bind(this);
-    this.handleMutations = this.handleMutations.bind(this);
     this.checkScrollability = this.checkScrollability.bind(this);
 
     this.resizeObserver = new ResizeObserver(this.checkScrollability);
-    this.mutationObserver = new MutationObserver(this.handleMutations);
+    this.mutationObserver = new MutationObserver(this.checkScrollability);
   }
 
   componentDidLoad() {
@@ -77,21 +76,6 @@ export class PostMainnavigation {
   @Listen('mouseleave', { target: 'window' })
   stopScrolling() {
     if (this.scrollRepeatInterval) clearInterval(this.scrollRepeatInterval);
-  }
-
-  private async handleMutations(mutations: MutationRecord[]) {
-    const addedNodes = mutations.flatMap((mutation: MutationRecord) => {
-      return Array.from(mutation.addedNodes);
-    });
-
-    // Wait for all elements to be hydrated
-    await Promise.all(
-      addedNodes.map((item: HTMLPostListItemElement) =>
-        item.componentOnReady ? item.componentOnReady() : Promise.resolve(item),
-      ),
-    );
-
-    this.checkScrollability();
   }
 
   private get navigationItems(): HTMLElement[] {

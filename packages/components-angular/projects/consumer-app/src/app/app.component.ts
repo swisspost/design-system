@@ -10,13 +10,10 @@ import {
   PostIcon,
   PostLanguageMenuItem,
   PostLanguageMenu,
-  PostList,
-  PostListItem,
   PostLogo,
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
-  PostTogglebutton,
 } from 'components';
 import { CommonModule } from '@angular/common';
 
@@ -38,13 +35,10 @@ import { CommonModule } from '@angular/common';
     PostIcon,
     PostLanguageMenuItem,
     PostLanguageMenu,
-    PostList,
-    PostListItem,
     PostLogo,
     PostMainnavigation,
     PostMegadropdown,
     PostMegadropdownTrigger,
-    PostTogglebutton,
   ],
 })
 export class AppComponent implements OnInit {
