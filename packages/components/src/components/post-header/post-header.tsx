@@ -3,9 +3,10 @@ import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { slideDown, slideUp } from '@/animations/slide';
-import { getFocusableChildren } from '@/utils/get-focusable-children';
+import { fade } from '@/animations';
+import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
+import { AnimationOptions } from '@/animations/types';
 import { checkRequiredAndType } from '@/utils';
 
 /**
@@ -15,7 +16,7 @@ import { checkRequiredAndType } from '@/utils';
  * @slot language-menu - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
- * @slot audience - Holds the list of buttons to choose the target group.
+ * @slot audience - Holds the list of buttons to choose the audience.
  * @slot post-login - Holds the user menu or login button in the global header.
  * @slot local-nav - Holds controls specific to the current application.
  */
@@ -35,10 +36,16 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
+  private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
   }
+
+  private animationOptions: Partial<AnimationOptions> = {
+    duration: 350,
+    easing: 'headerEase',
+  };
 
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
@@ -67,7 +74,7 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
   @State() hasLocalNav: boolean = false;
-  @State() hasTargetGroup: boolean = false;
+  @State() hasAudience: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -202,8 +209,8 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? slideUp(this.burgerMenu)
-      : slideDown(this.burgerMenu);
+      ? fade(this.burgerMenu, 'out', this.animationOptions)
+      : fade(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
     if (this.burgerMenuButton) this.burgerMenuButton.toggled = force ?? !this.burgerMenuExtended;
@@ -233,44 +240,32 @@ export class PostHeader {
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
-    // Get elements in the correct order (different as the DOM order)
-    const focusableEls = [
-      ...Array.from(
-        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
-        ),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          '.list-inline[slot="global-nav-secondary"] > li, post-language-menu-item',
-        ),
-      ),
-    ];
+    if (!this.burgerMenu) return;
 
-    // Add the main toggle menu button to the list of focusable children
-    const focusableChildren = [
-      this.burgerMenuButton,
-      ...focusableEls.flatMap(el => Array.from(getFocusableChildren(el))),
-    ];
+    const focusableElements: HTMLElement[] = [this.burgerMenuButton];
 
-    this.firstFocusableEl = focusableChildren[0];
-    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+    focusableElements.push(
+      ...getDeepFocusableChildren(this.localHeader, el => !el.matches('post-megadropdown')),
+      ...getDeepFocusableChildren(this.burgerMenu, el => !el.matches('post-megadropdown')),
+    );
+
+    this.firstFocusableEl = focusableElements[0];
+    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
   }
 
   private keyboardHandler(e: KeyboardEvent) {
-    if (e.key === 'Tab' && this.burgerMenuExtended) {
-      if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
-        // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
-        e.preventDefault();
-        this.lastFocusableEl.focus();
-      } else if (!e.shiftKey && document.activeElement === this.lastFocusableEl) {
-        // If Tab and last element is focused, focus goes back to the first element of the megadropdown
-        e.preventDefault();
-        this.firstFocusableEl.focus();
-      }
+    if (e.key !== 'Tab' || !this.burgerMenuExtended) return;
+
+    const activeElement = this.host.shadowRoot.activeElement || document.activeElement;
+
+    if (e.shiftKey && activeElement === this.firstFocusableEl) {
+      // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
+      e.preventDefault();
+      this.lastFocusableEl.focus();
+    } else if (!e.shiftKey && activeElement === this.lastFocusableEl) {
+      // If Tab and last element is focused, focus goes back to the first element of the megadropdown
+      e.preventDefault();
+      this.firstFocusableEl.focus();
     }
   }
 
@@ -358,7 +353,7 @@ export class PostHeader {
   private checkSlottedContent() {
     this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasTargetGroup = !!this.host.querySelector('[slot="audience"]');
+    this.hasAudience = !!this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
 
@@ -371,10 +366,14 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange() {
+  onFocusChange(e: FocusEvent) {
     const fixedElements =
       this.device === 'desktop' ? '.logo, .navigation' : '.global-header, .burger-menu';
     const isHeaderExpanded =
+      // ensure the expanded state stays accurate during focus changes,
+      // e.g., when the focused element is removed from the DOM
+      // during a window resize
+      e.target === document.activeElement &&
       this.host.matches(':focus-within') &&
       !this.host.shadowRoot.querySelector(`:where(${fixedElements}):focus-within`);
 
@@ -427,12 +426,17 @@ export class PostHeader {
 
   render() {
     return (
-      <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
+      <Host
+        data-version={version}
+        data-color-scheme="light"
+        data-burger-menu={this.hasBurgerMenu}
+        data-menu-extended={this.burgerMenuExtended}
+      >
         <header>
           <div
             class={{
               'global-header': true,
-              'no-target-group': !this.hasTargetGroup,
+              'no-audience': !this.hasAudience,
             }}
           >
             <div class="logo">
@@ -440,7 +444,7 @@ export class PostHeader {
             </div>
             <div class="sliding-controls">
               {this.device === 'desktop' && (
-                <div class="target-group">
+                <div class="audience">
                   <slot name="audience"></slot>
                 </div>
               )}
@@ -468,10 +472,11 @@ export class PostHeader {
             </div>
           </div>
           <div
+            ref={el => (this.localHeader = el)}
             class={{
               'local-header': true,
               'no-title': !this.hasTitle,
-              'no-target-group': !this.hasTargetGroup,
+              'no-audience': !this.hasAudience,
               'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
               'no-local-nav': !this.hasLocalNav,
             }}

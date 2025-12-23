@@ -39,6 +39,7 @@ export class PostLanguageMenu {
    * A descriptive text for the list of language options
    */
   @Prop({ reflect: true }) textCurrentLanguage!: string;
+  s;
 
   @Watch('textCurrentLanguage')
   validateTextCurrentLanguage() {
@@ -139,7 +140,7 @@ export class PostLanguageMenu {
           aria-describedby={this.listSpanId}
         >
           <span id={this.listSpanId} class="visually-hidden">
-            {this.description}
+            {this.textCurrentLanguage}
           </span>
           <slot></slot>
         </div>

@@ -3,42 +3,6 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/variables/elevation';
 
-@keyframes slide-in {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes slide-out {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes slide-down {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0%);
-  }
-}
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
 *,
 ::before,
 ::after {
@@ -78,14 +42,6 @@
     padding-block: 1.5rem;
     display: flex;
     flex-direction: column;
-
-    &.slide-in {
-      animation: slide-in 350ms forwards;
-    }
-
-    &.slide-out {
-      animation: slide-out 350ms forwards;
-    }
   }
 
   @include utilities.high-contrast-mode() {

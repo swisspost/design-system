@@ -2,13 +2,11 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                | Attribute   | Description                          | Type     | Default     |
 | ----------------------- | ----------- | ------------------------------------ | -------- | ----------- |
 | `textMenu` _(required)_ | `text-menu` | The label of the burger menu button. | `string` | `undefined` |
-
 
 ## Methods
 
@@ -26,14 +24,11 @@ Toggles the burger navigation menu.
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot                     | Description                                                                   |
 | ------------------------ | ----------------------------------------------------------------------------- |
-| `"audience"`             | Holds the list of buttons to choose the target group.                         |
+| `"audience"`             | Holds the list of buttons to choose the audience.                             |
 | `"global-nav-primary"`   | Holds search button in the global header.                                     |
 | `"global-nav-secondary"` | Holds an `<ul>` with meta navigation links.                                   |
 | `"language-menu"`        | Should be used with the `<post-language-switch>` component.                   |
@@ -43,7 +38,6 @@ Type: `Promise<void>`
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
 | `"title"`                | Holds the application title.                                                  |
 
-
 ## Dependencies
 
 ### Depends on
@@ -52,6 +46,7 @@ Type: `Promise<void>`
 - [post-icon](../post-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-header --> post-togglebutton
@@ -59,6 +54,6 @@ graph TD;
   style post-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

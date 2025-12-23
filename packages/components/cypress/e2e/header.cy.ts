@@ -125,8 +125,12 @@ describe('header', () => {
       cy.get('div.burger-menu.extended').should('exist');
       cy.get('post-megadropdown-trigger').first().should('be.visible').click();
 
-      // Check if animation class is present
-      cy.get('post-megadropdown').find('.megadropdown').should('have.class', 'slide-in');
+      // Check if animation is applied
+      cy.get('post-megadropdown')
+        .shadow()
+        .find('.back-button')
+        .should('be.visible')
+        .should('have.css', 'opacity', '1');
     });
 
     it('should update active class when active link changes within the same or different megadropdown', () => {
@@ -184,6 +188,24 @@ describe('header', () => {
 
       cy.get('@header').shadow().find(localNavNextToTitle).should('not.exist');
       cy.get('@header').shadow().find(localNavInNavigation).should('exist');
+    });
+
+    it('should show the local navigation in the mobile menu when the page is scrolled', () => {
+      cy.viewport('iphone-6');
+
+      // Initial state
+      cy.get('@header').shadow().find('.local-header').should('be.visible');
+      cy.get('div.burger-menu.extended').should('not.exist');
+
+      cy.scrollTo(0, 500);
+
+      // Page is scrolled down
+      cy.get('@header').shadow().find('.local-header').should('not.be.visible');
+      cy.get('post-togglebutton').click();
+
+      // Burger menu is opened
+      cy.get('div.burger-menu.extended').should('exist').should('be.visible');
+      cy.get('@header').shadow().find('.local-header').should('be.visible');
     });
   });
 });

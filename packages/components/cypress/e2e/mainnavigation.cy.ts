@@ -151,6 +151,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@mainnavigation')
           .find('post-megadropdown')
           .last()
+          .shadow()
           .find('.megadropdown')
           .should('have.css', 'display', 'block')
           .then($megadropdown => {

@@ -50,7 +50,7 @@ post-header {
     }
   }
 
-  // target group on mobile
+  // audience
   > ul[slot='audience'] {
     @include media.only(tablet) {
       flex-direction: row;

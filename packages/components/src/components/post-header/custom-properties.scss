@@ -57,9 +57,11 @@
   }
 }
 
-:host([data-expanded]) {
+:host([data-expanded]), // case when mobile menu is closed and focus is moved inside the local-header
+:host([data-menu-extended]) // case when mobile menu is open and page is scrolled down
+{
   --post-header-top: 0;
-  --post-global-header-top: 0;
+  --post-global-header-top: -0.001px; // Fixes a Firefox rendering engine (Gecko) glitch related to position sticky, causing the header to be positioned incorrectly.
   --post-global-controls-top: 0;
   --post-logo-height: var(--post-global-header-expanded-height);
 }
