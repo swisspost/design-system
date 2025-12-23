@@ -183,9 +183,9 @@ export namespace Components {
          */
         "collapsed"?: boolean;
         /**
-          * Triggers the collapse programmatically.  If there is a collapsing transition running already, it will be reversed.
+          * Triggers the collapse programmatically. If there is a collapsing transition running already, it will be reversed. If no parameter is provided, the current state (this.isExpanded) will be toggled.
          */
-        "toggle": (open?: boolean) => Promise<boolean>;
+        "toggle": (shouldExpand?: boolean) => Promise<boolean>;
     }
     interface PostCollapsibleTrigger {
         /**
@@ -197,6 +197,8 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostEnvTest {
+    }
     interface PostFooter {
         /**
           * The label to add to the footer (visually hidden).
@@ -204,6 +206,10 @@ export namespace Components {
         "label": string;
     }
     interface PostHeader {
+        /**
+          * The label of the burger menu button.
+         */
+        "textMenu": string;
         /**
           * Toggles the burger navigation menu.
          */
@@ -323,6 +329,14 @@ export namespace Components {
          */
         "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
         /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "labelBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "labelClose": string;
+        /**
           * Displays the dropdown.
          */
         "show": () => Promise<void>;
@@ -332,6 +346,11 @@ export namespace Components {
         "toggle": () => Promise<void>;
     }
     interface PostMegadropdownTrigger {
+        /**
+          * Sets the trigger state to be active or inactive.
+          * @default false
+         */
+        "active": boolean;
         /**
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
@@ -761,6 +780,12 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
+    interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
+    }
+    var HTMLPostEnvTestElement: {
+        prototype: HTMLPostEnvTestElement;
+        new (): HTMLPostEnvTestElement;
+    };
     interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
     }
     var HTMLPostFooterElement: {
@@ -1027,6 +1052,7 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-env-test": HTMLPostEnvTestElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
@@ -1209,7 +1235,7 @@ declare namespace LocalJSX {
          */
         "collapsed"?: boolean;
         /**
-          * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
+          * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible is expanded, `false` if it is collapsed.
          */
         "onPostToggle"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
     }
@@ -1219,6 +1245,8 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostEnvTest {
+    }
     interface PostFooter {
         /**
           * The label to add to the footer (visually hidden).
@@ -1226,6 +1254,10 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PostHeader {
+        /**
+          * The label of the burger menu button.
+         */
+        "textMenu": string;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -1337,11 +1369,24 @@ declare namespace LocalJSX {
     }
     interface PostMegadropdown {
         /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "labelBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "labelClose": string;
+        /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
         "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
     }
     interface PostMegadropdownTrigger {
+        /**
+          * Sets the trigger state to be active or inactive.
+          * @default false
+         */
+        "active"?: boolean;
         /**
           * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
@@ -1616,6 +1661,7 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-env-test": PostEnvTest;
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
@@ -1664,6 +1710,7 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**

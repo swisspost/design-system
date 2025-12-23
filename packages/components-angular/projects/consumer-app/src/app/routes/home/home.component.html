@@ -55,12 +55,20 @@
       <div class="card-body">
         <h5>Titulum</h5>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-        <a class="card-link" href="#test">
-          Ligilo teksto
-        </a>
+        <a class="card-link" href="#test"> Ligilo teksto </a>
       </div>
     </div>
   </post-linkarea>
+</div>
+
+<div class="my-24">
+  <h2>Post List</h2>
+  <post-list>
+    <h3>Title</h3>
+    <post-list-item>List Item 1</post-list-item>
+    <post-list-item>List Item 2</post-list-item>
+    <post-list-item>List Item 3</post-list-item>
+  </post-list>
 </div>
 
 <div class="my-24">
@@ -143,11 +151,17 @@
 </div>
 
 <div class="my-24">
+  <h2>Post Togglebutton</h2>
+  <post-togglebutton class="btn btn-primary">
+    <span data-showwhen="untoggled">Untoggled</span>
+    <span data-showwhen="toggled">Toggled</span>
+  </post-togglebutton>
+</div>
+
+<div class="my-24">
   <h2>Post Tooltip</h2>
   <post-tooltip-trigger for="tooltip-one">
-    <button class="btn btn-secondary btn-large" aria-describedby="tooltip-one">
-      Button
-    </button>
+    <button class="btn btn-secondary btn-large" aria-describedby="tooltip-one">Button</button>
   </post-tooltip-trigger>
   <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top">
     Hi there 👋

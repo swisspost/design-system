@@ -2,29 +2,27 @@
  * Used by
  * 1. PostHeader (mobile)
  * 2. PostMegadropdown
+ * 3. BackToTopButton
  */
 
-import { CurveEasing, PresetEasing, AnimationOptions } from './types';
+import { AnimationOptions } from './types';
+import { resolveEasing } from './utils';
 
-const defaultOptions: AnimationOptions = {
-  translate: -10,
-  duration: 300,
-  easing: 'linear',
-  fill: 'forwards',
+export type FadeSlideOptions = AnimationOptions & { translate: number };
+
+const defaultOptions: FadeSlideOptions = {
+  duration: 500,
+  easing: 'ease',
+  fill: 'none',
+  translate: -100,
 };
-
-export function resolveEasing(easing: CurveEasing | PresetEasing): string {
-  if (typeof easing === 'string') return easing;
-  const { x1, y1, x2, y2 } = easing;
-  return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`;
-}
 
 function animateFadeSlide(
   el: Element,
   keyframes: Keyframe[],
-  options: AnimationOptions = {},
+  options: Partial<FadeSlideOptions>,
 ): Animation {
-  const { duration, easing, fill } = { ...defaultOptions, ...options };
+  const { duration, easing, fill }: FadeSlideOptions = { ...defaultOptions, ...options };
   return el.animate(keyframes, {
     duration,
     easing: resolveEasing(easing),
@@ -35,22 +33,20 @@ function animateFadeSlide(
 export function fadeSlide(
   el: Element,
   direction: 'in' | 'out',
-  options: AnimationOptions = {},
+  options: Partial<FadeSlideOptions>,
 ): Animation {
   if (!el) return;
 
-  const { translate = defaultOptions.translate } = options;
+  const mergedOptions: Partial<FadeSlideOptions> = options;
 
-  const keyframes: Keyframe[] =
-    direction === 'in'
-      ? [
-        { opacity: '0', transform: `translateY(${translate}px)` },
-        { opacity: '1', transform: 'translateY(0px)' },
-      ]
-      : [
-        { opacity: '1', transform: 'translateY(0px)' },
-        { opacity: '0', transform: `translateY(${translate}px)` },
-      ];
+  const { translate } = mergedOptions;
+
+  const baseKeyframes: Keyframe[] = [
+    { opacity: '0', transform: `translateY(${translate}px)` },
+    { opacity: '1', transform: 'translateY(0px)' },
+  ];
+
+  const keyframes = direction === 'in' ? baseKeyframes : [...baseKeyframes].reverse();
 
   return animateFadeSlide(el, keyframes, options);
 }

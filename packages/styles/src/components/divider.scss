@@ -1,0 +1,11 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-divider;
+
+hr {
+  border-style: solid;
+  border-color: tokens.get('post-divider-border');
+  border-width: tokens.get('post-divider-border-width');
+  margin-block: tokens.get('post-divider-margin-block');
+}

@@ -1,4 +1,10 @@
-import { CSP_NONCE, inject, EnvironmentProviders, makeEnvironmentProviders, provideEnvironmentInitializer } from '@angular/core';
+import {
+  CSP_NONCE,
+  inject,
+  EnvironmentProviders,
+  makeEnvironmentProviders,
+  provideEnvironmentInitializer,
+} from '@angular/core';
 import { defineCustomElements, setNonce } from '@swisspost/design-system-components/loader';
 import { DIRECTIVES } from './stencil-generated';
 import { PostCardControlCheckboxValueAccessorDirective } from './custom/value-accessors/post-card-control-checkbox-value-accessor';
@@ -9,15 +15,15 @@ export function providePostComponents(): EnvironmentProviders {
     ...DIRECTIVES,
     PostCardControlCheckboxValueAccessorDirective,
     PostCardControlRadioValueAccessorDirective,
-    
+
     provideEnvironmentInitializer(() => () => {
       // Check if Post components are already defined, if so do nothing
       if (typeof customElements.get('post-icon') !== 'undefined') return;
-      
+
       // Set a "nonce" attribute on all scripts/styles if the host application has one configured
       const nonce = inject(CSP_NONCE, { optional: true });
       if (nonce) setNonce(nonce);
-      
+
       // Define Post components
       defineCustomElements();
     }),

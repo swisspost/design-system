@@ -1,19 +1,18 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch, Listen, Prop } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { fadeSlide } from '@/animations';
+import { fade } from '@/animations';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 import { AnimationOptions } from '@/animations/types';
-import { headerAnimation } from '@/animations/presets';
+import { checkRequiredAndType } from '@/utils';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
- * @slot post-togglebutton - Holds the burger menu toggler.
  * @slot language-menu - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
@@ -30,6 +29,7 @@ import { headerAnimation } from '@/animations/presets';
 export class PostHeader {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
+  private burgerMenuButton: HTMLPostTogglebuttonElement | null;
   private burgerMenu: HTMLElement;
   private burgerMenuAnimation: Animation;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
@@ -41,9 +41,9 @@ export class PostHeader {
     return this.device !== 'desktop' && this.hasNavigation;
   }
 
-  private animationOptions: AnimationOptions = {
-    translate: 0,
-    ...headerAnimation,
+  private animationOptions: Partial<AnimationOptions> = {
+    duration: 350,
+    easing: 'headerEase',
   };
 
   get scrollParent(): HTMLElement {
@@ -78,6 +78,16 @@ export class PostHeader {
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
+  /**
+   * The label of the burger menu button.
+   */
+  @Prop({ reflect: true }) textMenu!: string;
+
+  @Watch('textMenu')
+  validateTextMenu() {
+    checkRequiredAndType(this, 'textMenu', 'string');
+  }
+
   @Watch('device')
   @Watch('burgerMenuExtended')
   lockBody(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
@@ -100,7 +110,9 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
+    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
@@ -141,6 +153,7 @@ export class PostHeader {
   }
 
   componentDidRender() {
+    this.validateTextMenu();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
@@ -181,12 +194,9 @@ export class PostHeader {
   }
 
   private async closeBurgerMenu() {
-    this.burgerMenuAnimation.finish();
+    this.burgerMenuAnimation?.finish();
 
-    const menuButton = this.getMenuButton();
-    if (menuButton) {
-      menuButton.toggled = false;
-    }
+    if (this.burgerMenuButton) this.burgerMenuButton.toggled = false;
 
     this.burgerMenuExtended = false;
   }
@@ -198,12 +208,11 @@ export class PostHeader {
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? fadeSlide(this.burgerMenu, 'out', this.animationOptions)
-      : fadeSlide(this.burgerMenu, 'in', this.animationOptions);
+      ? fade(this.burgerMenu, 'out', this.animationOptions)
+      : fade(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
-    const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
-    if (menuButton) menuButton.toggled = force ?? !this.burgerMenuExtended;
+    if (this.burgerMenuButton) this.burgerMenuButton.toggled = force ?? !this.burgerMenuExtended;
 
     if (this.burgerMenuExtended) {
       // Wait for the close animation to finish before hiding megadropdowns
@@ -212,6 +221,7 @@ export class PostHeader {
 
       if (this.burgerMenuExtended === false) {
         this.closeAllMegadropdowns();
+        this.burgerMenu.scrollTop = 0;
       }
     } else {
       this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
@@ -223,9 +233,9 @@ export class PostHeader {
   }
 
   @EventFrom('post-megadropdown')
-  private megadropdownStateHandler = (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    };
+  private megadropdownStateHandler(event: CustomEvent) {
+    this.megadropdownOpen = event.detail.isVisible;
+  }
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
@@ -248,16 +258,12 @@ export class PostHeader {
 
     // Add the main toggle menu button to the list of focusable children
     const focusableChildren = [
-      this.host.querySelector('post-togglebutton'),
+      this.burgerMenuButton,
       ...focusableEls.flatMap(el => Array.from(getFocusableChildren(el))),
     ];
 
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
-  }
-
-  private getMenuButton(): HTMLPostTogglebuttonElement | null {
-    return this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
   }
 
   private keyboardHandler(e: KeyboardEvent) {
@@ -459,6 +465,16 @@ export class PostHeader {
                 <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
                   <slot name="post-togglebutton"></slot>
                 </div>
+              )}
+              {this.hasNavigation && this.device !== 'desktop' && (
+                <post-togglebutton
+                  ref={el => (this.burgerMenuButton = el)}
+                  onClick={() => this.toggleBurgerMenu()}
+                >
+                  <span>{this.textMenu}</span>
+                  <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
+                  <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+                </post-togglebutton>
               )}
             </div>
           </div>

@@ -14,10 +14,13 @@ export interface TwoPhasesData {
 const breakpoints = ['sm-', 'md-', 'lg-', 'xl-', ''];
 
 export function arrayToMap(array: Array<string | number>): Record<string, string | number> {
-  return array.reduce((obj, val: string | number) => {
-    obj[val.toString()] = val;
-    return obj;
-  }, {} as Record<string, string | number>);
+  return array.reduce(
+    (obj, val: string | number) => {
+      obj[val.toString()] = val;
+      return obj;
+    },
+    {} as Record<string, string | number>,
+  );
 }
 
 /**
@@ -55,17 +58,15 @@ export function setUpClassesMutations(
 
         const keyPhase1 = `${messageId}Phase1_${index}`;
 
-        messagesPhase1[
-          keyPhase1
-        ] = `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
+        messagesPhase1[keyPhase1] =
+          `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
         // Mutate from `oldClass` to `_tmp-newClass`
         mutationsPhase1[keyPhase1] = [oldClass, tempClass];
 
         const keyPhase2 = `${messageId}Phase2_${index}`;
 
-        messagesPhase2[
-          keyPhase2
-        ] = `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
+        messagesPhase2[keyPhase2] =
+          `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
         // Mutate from `_tmp-newClass` to `newClass`
         mutationsPhase2[keyPhase2] = [tempClass, finalNewClass];
 

@@ -1,6 +1,6 @@
 ---
 '@swisspost/design-system-components': patch
-"@swisspost/design-system-components-react": patch
+'@swisspost/design-system-components-react': patch
 '@swisspost/design-system-components-angular': patch
 ---
 
