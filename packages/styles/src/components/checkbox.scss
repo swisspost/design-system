@@ -175,9 +175,11 @@ fieldset {
 }
 
 /* Inline/Horizontal */
-fieldset:has(.form-check-inline) {
+fieldset .form-check-inline {
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  //gap: tokens.get('checkbox-gap-block-group');
 }
 
 /* Spacing for Checkbox Group Grouped/Vertical default */
