@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Deprecated the subnavigation component. This component will be remove in the next major version in favor of the `post-tabs` component.
+Deprecated the subnavigation component. It will be replaced by the `post-tabs` component in the next major version.
