@@ -72,8 +72,6 @@ export class PostLanguageMenu {
       return undefined;
     }
 
-    console.log('getter run');
-
     return this.textCurrentLanguage.replace(/#name/g, this.activeLangName);
   }
 
@@ -139,7 +137,7 @@ export class PostLanguageMenu {
           aria-describedby={this.listSpanId}
         >
           <span id={this.listSpanId} class="visually-hidden">
-            {this.textCurrentLanguage}
+            {this.description}
           </span>
           <slot></slot>
         </div>
