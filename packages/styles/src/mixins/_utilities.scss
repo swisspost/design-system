@@ -153,6 +153,14 @@
   }
 }
 
+// this mixin should only be used if the default focus ring is not fully visible
+@mixin focus-inset($additional-selector: '') {
+  &#{$additional-selector} {
+    outline-offset: calc(-2px - #{tokens.get('focus-outline-width', helpers.$post-focus)}) !important;
+    outline-color: currentColor !important;
+  }
+}
+
 @mixin focus-style-custom($additional-selector: '') {
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {

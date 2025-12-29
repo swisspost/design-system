@@ -95,10 +95,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
     box-shadow: none;
   }
 
-  @include utilities.focus-style-custom {
-    outline-offset: calc(-2 * #{tokens.get('focus-outline-width', helpers.$post-focus)}) !important;
-    outline-color: currentColor !important;
-  }
+  @include utilities.focus-inset;
 
   > post-icon:where(:last-child) {
     margin-inline-start: auto;
