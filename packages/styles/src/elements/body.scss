@@ -21,7 +21,7 @@ body {
   letter-spacing: tokens.get('body-letter-spacing');
   font-variant-numeric: proportional-nums;
   min-height: 100vh;
-  container: body / inline-size;
+  container: body / size;
 
   [data-color-scheme] {
     --post-current-fg: #{tokens.get('body-color-fg')};
