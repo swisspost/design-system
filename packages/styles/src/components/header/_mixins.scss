@@ -3,6 +3,7 @@
 @use '../../mixins/media';
 @use '../../mixins/utilities';
 @use '../../tokens/components';
+@use '../../tokens/helpers';
 
 $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 
@@ -95,7 +96,8 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   }
 
   @include utilities.focus-style-custom {
-    border-radius: 0.5rem;
+    outline-offset: calc(-2 * #{tokens.get('focus-outline-width', helpers.$post-focus)}) !important;
+    outline-color: currentColor !important;
   }
 
   > post-icon:where(:last-child) {

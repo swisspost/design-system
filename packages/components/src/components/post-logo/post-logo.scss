@@ -1,7 +1,7 @@
-@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/tokens/helpers';
-@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/variables/color';
 
 :host,
 .logo {
@@ -19,10 +19,8 @@
 
 .logo-link {
   @include utilities.focus-style;
-  @include utilities.focus-inset;
-}
-
-.logo-link :focus,
-:focus-visible {
-  border-radius: .5rem;
+  @include utilities.focus-style-custom {
+    border-radius: 0.5rem;
+    outline-offset: calc(-1 * #{tokens.get('focus-outline-width', helpers.$post-focus)}) !important;
+  }
 }
