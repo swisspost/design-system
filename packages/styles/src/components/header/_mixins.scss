@@ -73,6 +73,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   gap: 1rem;
   border-radius: 0;
   line-height: 1.5;
+  outline-color: currentColor !important;
 
   &::before {
     content: '';

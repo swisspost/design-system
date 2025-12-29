@@ -157,7 +157,6 @@
 @mixin focus-inset($additional-selector: '') {
   &#{$additional-selector} {
     outline-offset: calc(-2px - #{tokens.get('focus-outline-width', helpers.$post-focus)}) !important;
-    outline-color: currentColor !important;
   }
 }
 
