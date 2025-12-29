@@ -16,7 +16,7 @@ tokens.$default-map: components.$post-container;
 
   .container &,
   .container-fluid & {
-    $section-margin-inline: max((100vw - var(--post-section-max-width)) / 2, 0px);
+    $section-margin-inline: max((100cqw - var(--post-section-max-width)) / 2, 0px);
 
     --post-section-width: calc(100cqw + 2 * var(--post-section-content-offset));
     --post-section-content-offset: calc(
