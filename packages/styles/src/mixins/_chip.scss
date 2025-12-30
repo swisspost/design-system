@@ -1,17 +1,15 @@
 @use '../tokens/components';
 @use '../functions/tokens';
 
-tokens.$default-map: components.$post-chip;
-
 @mixin chip-styles {
   position: relative;
-  font-size: tokens.get('chip-label-font-size');
-  font-weight: tokens.get('chip-label-font-weight');
-  color: tokens.get('chip-enabled-fg');
-  background-color: tokens.get('chip-enabled-bg');
-  border: tokens.get('chip-border-width') solid tokens.get('chip-enabled-stroke');
-  border-radius: tokens.get('chip-border-radius');
-  height: tokens.get('chip-height');
+  font-size: tokens.get('chip-label-font-size', components.$post-chip);
+  font-weight: tokens.get('chip-label-font-weight', components.$post-chip);
+  color: tokens.get('chip-enabled-fg', components.$post-chip);
+  background-color: tokens.get('chip-enabled-bg', components.$post-chip);
+  border: tokens.get('chip-border-width') solid tokens.get('chip-enabled-stroke', components.$post-chip);
+  border-radius: tokens.get('chip-border-radius', components.$post-chip);
+  height: tokens.get('chip-height', components.$post-chip);
   display: inline-flex;
   align-items: center;
   max-width: 100%;
@@ -24,7 +22,7 @@ tokens.$default-map: components.$post-chip;
 }
 
 @mixin chip-styles-disabled() {
-  color: tokens.get('chip-disabled-fg');
-  background-color: tokens.get('chip-disabled-bg');
-  border-color: tokens.get('chip-disabled-stroke');
+  color: tokens.get('chip-disabled-fg', components.$post-chip);
+  background-color: tokens.get('chip-disabled-bg', components.$post-chip);
+  border-color: tokens.get('chip-disabled-stroke', components.$post-chip);
 }
