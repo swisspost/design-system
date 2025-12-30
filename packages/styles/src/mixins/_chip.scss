@@ -7,7 +7,8 @@
   font-weight: tokens.get('chip-label-font-weight', components.$post-chip);
   color: tokens.get('chip-enabled-fg', components.$post-chip);
   background-color: tokens.get('chip-enabled-bg', components.$post-chip);
-  border: tokens.get('chip-border-width') solid tokens.get('chip-enabled-stroke', components.$post-chip);
+  border: tokens.get('chip-border-width') solid
+    tokens.get('chip-enabled-stroke', components.$post-chip);
   border-radius: tokens.get('chip-border-radius', components.$post-chip);
   height: tokens.get('chip-height', components.$post-chip);
   display: inline-flex;
