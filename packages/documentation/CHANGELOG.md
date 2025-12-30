@@ -1,5 +1,13 @@
 # @swisspost/design-system-documentation
 
+## 5.8.7
+
+### Patch Changes
+
+- Deprecated the subnavigation component. It will be replaced by the `post-tabs` component in the next major version. (by [@alizedebray](https://github.com/alizedebray) with [#6915](https://github.com/swisspost/design-system/pull/6915))
+
+- Deprecated the `@swisspost/design-system-styles-primeng` package in preparation for the transition to AG Grid, it will be removed in the next major version. (by [@alizedebray](https://github.com/alizedebray) with [#6938](https://github.com/swisspost/design-system/pull/6938))
+
 ## 5.8.6
 
 ### Patch Changes
