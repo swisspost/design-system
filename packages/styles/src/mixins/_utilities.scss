@@ -156,7 +156,9 @@
 // this mixin should only be used if the default focus ring is not fully visible
 @mixin focus-inset($additional-selector: '') {
   &#{$additional-selector} {
-    outline-offset: calc(-1 * #{tokens.get('focus-outline-width', helpers.$post-focus)}) !important;
+    outline-offset: calc(
+      -2px - #{tokens.get('focus-outline-width', helpers.$post-focus)}
+    ) !important;
   }
 }
 
