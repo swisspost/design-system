@@ -4,8 +4,6 @@
 @use '../functions/tokens';
 @use '../tokens/components';
 
-tokens.$default-map: components.$post-icon-button;
-
 @mixin icon-button($size: md) {
   $size-map: (
     'sm': 'small',
@@ -14,14 +12,14 @@ tokens.$default-map: components.$post-icon-button;
   );
   $actual-size: map.get($size-map, $size);
   padding: 0;
-  width: tokens.get('icon-button-#{$actual-size}-outer');
-  height: tokens.get('icon-button-#{$actual-size}-outer');
+  width: tokens.get('icon-button-#{$actual-size}-outer', components.$post-icon-button);
+  height: tokens.get('icon-button-#{$actual-size}-outer', components.$post-icon-button);
   min-height: 0;
   vertical-align: text-bottom;
 
   > post-icon {
     display: block;
-    width: tokens.get('icon-button-#{$actual-size}-icon');
-    height: tokens.get('icon-button-#{$actual-size}-icon');
+    width: tokens.get('icon-button-#{$actual-size}-icon', components.$post-icon-button);
+    height: tokens.get('icon-button-#{$actual-size}-icon', components.$post-icon-button);
   }
 }
