@@ -2,6 +2,13 @@ $font-base-path: 'https://fonts.post.ch/swiss-post-sans/v1';
 
 @font-face {
   font-family: 'Swiss Post Sans';
+  font-weight: 950;
+  font-display: swap;
+  src: url('#{$font-base-path}/SwissPostSans-ExtraBlack.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Swiss Post Sans';
   font-weight: 900;
   font-display: swap;
   src: url('#{$font-base-path}/SwissPostSans-Black.woff2') format('woff2');
