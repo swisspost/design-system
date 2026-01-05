@@ -22,10 +22,7 @@ const htmlPlugin: TSESLint.FlatConfig.Plugin = {
 const tsPlugin: TSESLint.FlatConfig.Plugin = {
   rules: {
     ...tsRules, // Include existing (currently empty) TS rules
-    ...dsLintingRules, // Include Design System Sepcific
-  },
-  meta: {
-    name: '@swisspost/eslint-plugin-design-system',
+    ...dsLintingRules, // Include Design System Specific
   },
 };
 

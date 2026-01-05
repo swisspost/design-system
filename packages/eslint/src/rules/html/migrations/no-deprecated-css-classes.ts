@@ -11,8 +11,7 @@ const classNames: string[] = [
   '.form-select-rg',
   '.form-select-lg',
   '.vertical-gutters',
-  '.row.border-gutters',
-  '.border-gutters.row', // include the reverse
+  '.border-gutters',
   '.container-reset',
   '.container-reset-left',
   '.container-reset-right',
