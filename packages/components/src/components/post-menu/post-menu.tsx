@@ -165,20 +165,20 @@ export class PostMenu {
 
   @EventFrom('post-popovercontainer')
   private handlePostBeforeToggle(event: CustomEvent<{ willOpen: boolean }>) {
-      this.isVisible = event.detail.willOpen;
-      this.toggleMenu.emit(this.isVisible);
-      if (this.isVisible) {
-        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-        requestAnimationFrame(() => {
-          const menuItems = this.getSlottedItems();
-          if (menuItems.length > 0) {
-            (menuItems[0] as HTMLElement).focus();
-          }
-        });
-      } else if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
-      }
+    this.isVisible = event.detail.willOpen;
+    this.toggleMenu.emit(this.isVisible);
+    if (this.isVisible) {
+      this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+      requestAnimationFrame(() => {
+        const menuItems = this.getSlottedItems();
+        if (menuItems.length > 0) {
+          (menuItems[0] as HTMLElement).focus();
+        }
+      });
+    } else if (this.lastFocusedElement) {
+      this.lastFocusedElement.focus();
     }
+  }
 
 
   private readonly handleClick = (e: MouseEvent) => {
