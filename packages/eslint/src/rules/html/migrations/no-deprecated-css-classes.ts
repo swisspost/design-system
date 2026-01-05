@@ -22,7 +22,6 @@ const classNames: string[] = [
   '.container-fluid-lg',
   '.container-fluid-xl',
   '.container-fluid-xxl',
-
   '.bg-yellow',
   '.bg-white',
   '.bg-light',
@@ -50,7 +49,7 @@ const classNames: string[] = [
   '.bg-purple-bright',
   '.bg-aubergine',
   '.bg-aubergine-bright',
-
+  '.lh-base',
   '.lh-hair',
   '.lh-line',
   '.lh-micro',
@@ -66,7 +65,6 @@ const classNames: string[] = [
   '.lh-small-giant',
   '.lh-giant',
   '.lh-bigger-giant',
-
   '.text-primary',
   '.text-secondary',
   '.text-light',
@@ -75,17 +73,13 @@ const classNames: string[] = [
   '.text-warning',
   '.text-error',
   '.text-info',
-
   '.spacer',
   '.h-visuallyhidden-up-md',
   '.h-visuallyhidden-down-rg',
   '.h-visuallyhidden-down-lg',
-
   '.fw-light',
   '.light',
-  '.lh-base',
   '.font-monospace',
-
   '.card-button',
   '.card-buttons',
   '.btn-animated',
@@ -93,7 +87,6 @@ const classNames: string[] = [
   '.alert-fixed-bottom',
   '.card-group',
   '.chip-sm',
-
   '.btn-nightblue',
   '.btn-nightblue-bright',
   '.btn-petrol',

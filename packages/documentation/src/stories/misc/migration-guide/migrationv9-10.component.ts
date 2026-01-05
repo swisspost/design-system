@@ -789,6 +789,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.utilities.background}"
                       />
                       <label class="form-check-label" for="utilities-background">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Background color classes (<code>.bg-*</code>) removed
                         <span class="info"
                           >Colors are now handled by
@@ -1270,6 +1273,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.card_group}"
                       />
                       <label class="form-check-label" for="others-card_group">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         <code>.card-group</code> removed
                         <span class="info"
                           >Card elements should be set inside a
@@ -1348,6 +1354,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.breadcrumb_item}"
                       />
                       <label class="form-check-label" for="others-breadcrumb_item">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         <code>.breadcrumb-item</code> class removed
                         <span class="info">
                           The <code>post-breadcrumb-item</code> component should be used instead,
@@ -1368,6 +1377,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.alert_fixed_bottom}"
                       />
                       <label class="form-check-label" for="others-alert_fixed_bottom">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         <code>.alert-fixed-bottom</code> class removed
                         <span class="info"
                           >Use
