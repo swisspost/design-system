@@ -75,8 +75,8 @@ export class PostPopover {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
-    await this.popoverRef.toggle(target, force);
-    this.focusFirstEl();
+    const isOpen = await this.popoverRef.toggle(target, force);
+    if (isOpen) this.focusFirstEl();
   }
 
   private focusFirstEl() {
