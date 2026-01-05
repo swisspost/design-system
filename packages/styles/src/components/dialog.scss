@@ -21,12 +21,11 @@ dialog {
   min-width: min(389px, 90vw);
   max-width: 590px;
   max-height: 90vh;
-  overflow: hidden;
+  overflow: visible;
   margin: revert;
   overscroll-behavior: contain;
   background-color: #fafafa;
   border: 2px #cdccc8;
-  border-radius: 0.5rem;
 
   &::backdrop {
     background-color: rgba(#050400, 0.8);
@@ -83,15 +82,16 @@ dialog {
 
 dialog > .dialog-grid {
   padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0;
+  border-radius: 0.5rem;
   display: grid;
   grid-template-rows: auto 1fr auto;
   max-height: 90vh;
   column-gap: tokens.get('utility-gap-16');
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   grid-template-areas:
-    'icon header close-button'
-    'icon body body'
-    'controls controls controls';
+    'icon header'
+    'icon body'
+    'controls controls';
 
   // Propagate bg color to the controls
   background-color: inherit;
@@ -101,7 +101,7 @@ dialog > .dialog-grid {
   }
 }
 
-:where(.dialog-icon, .dialog-header, .dialog-body, .dialog-controls, .dialog-close):empty {
+:where(.dialog-icon, .dialog-header, .dialog-body, .dialog-controls):empty {
   display: none;
 }
 
@@ -142,12 +142,10 @@ dialog > .dialog-grid {
   }
 
   > post-closebutton {
-    position: sticky;
-    top: 0;
-    grid-area: close-button;
-    width: tokens.get('utility-gap-24');
-    height: tokens.get('utility-gap-24');
-    min-height: 0;
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    transform: translate(50%, -50%);
   }
 
   &:not(:where(#{$typed-dialog-children})) {
@@ -157,18 +155,6 @@ dialog > .dialog-grid {
 
     .dialog-body {
       grid-area: 2 / icon / 2 / body;
-    }
-  }
-
-  &:not(:has(> post-closebutton)) {
-    .dialog-header {
-      grid-area: 1 / header / 1 / close-button;
-    }
-  }
-
-  &:not(:where(#{$typed-dialog-children})):not(:has(> post-closebutton)) {
-    .dialog-header {
-      grid-area: 1 / icon / 1 / close-button;
     }
   }
 }

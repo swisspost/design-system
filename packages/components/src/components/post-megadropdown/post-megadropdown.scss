@@ -101,6 +101,14 @@
   inset-block-start: 1rem;
   inset-inline-end: 1rem;
 
+  button {
+    border: unset;
+    background: unset;
+    box-shadow: unset;
+    height: 24px;
+    width: 24px;
+  }
+
   @include media.max(lg) {
     display: none;
   }
