@@ -1,7 +1,5 @@
 # post-popover-trigger
 
-
-
 <!-- Auto Generated Below -->
 
 

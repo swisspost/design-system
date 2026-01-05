@@ -3,8 +3,8 @@ import { MetaComponent } from '@root/types';
 import { html, nothing, TemplateResult } from 'lit';
 import { fakeContent } from '@/utils';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
-import { renderMetaNavigation } from '@/stories/components/header/renderers/meta-navigation';
-import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
+import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
+import { renderAudience } from '@/stories/components/header/renderers/audience';
 import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
@@ -26,11 +26,12 @@ const meta: MetaComponent = {
   args: {
     title: '',
     titleTag: 'p',
-    mainNavigation: true,
-    metaNavigation: true,
-    globalControls: true,
+    mainNav: true,
+    textMenu: 'Menu',
+    globalNavSecondary: true,
+    globalNavPrimary: true,
     targetGroup: true,
-    globalLogin: true,
+    postLogin: true,
     localNav: false,
     isLoggedIn: false,
     jobs: false,
@@ -61,7 +62,16 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    mainNavigation: {
+    textMenu: {
+      description: 'The label of the burger menu button.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Props',
+      },
+    },
+    mainNav: {
       name: 'Main navigation',
       description: 'Whether or not the main navigation is displayed.',
       control: {
@@ -71,8 +81,8 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    globalControls: {
-      name: 'Global controls',
+    globalNavPrimary: {
+      name: 'Global primary navigation',
       description: 'Whether or not the search button in the global header is displayed.',
       control: {
         type: 'boolean',
@@ -81,8 +91,8 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    globalLogin: {
-      name: 'Global login',
+    postLogin: {
+      name: 'Post login',
       description: 'Whether or not the user menu or login button in the global header is displayed',
       control: {
         type: 'boolean',
@@ -91,10 +101,10 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    metaNavigation: {
-      name: 'Meta navigation',
+    globalNavSecondary: {
+      name: 'Global secondary navigation',
       description:
-        'Whether or not the meta navigation is displayed ("jobs" and "create an account").',
+        'Whether or not the global secondary navigation is displayed ("jobs" and "create an account").',
       control: {
         type: 'boolean',
       },
@@ -104,7 +114,7 @@ const meta: MetaComponent = {
     },
     targetGroup: {
       name: 'Target group',
-      description: 'Whether or not the target group buttons are visible.',
+      description: 'Whether or not the audience buttons are visible.',
       control: {
         type: 'boolean',
       },
@@ -166,9 +176,9 @@ function getHeaderRenderer(
     const title = subComponents.title ?? renderTitle(args);
 
     const globalLogin = args.isLoggedIn
-      ? html` <div slot="global-login">${userMenu}</div> `
+      ? html` <div slot="post-login">${userMenu}</div> `
       : html`
-          <a href="" slot="global-login">
+          <a href="" slot="post-login">
             <span>Login</span>
             <post-icon name="login"></post-icon>
           </a>
@@ -176,7 +186,7 @@ function getHeaderRenderer(
 
     const globalControls = html`
       <!-- Global controls (Search) -->
-      <ul slot="global-controls">
+      <ul slot="global-nav-primary">
         <li>
           <a href="">
             <span>Search</span>
@@ -187,26 +197,28 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header>
+      <post-header text-menu="${args.textMenu}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.targetGroup ? renderTargetGroup(args) : nothing}
-        ${args.globalControls && !args.jobs ? globalControls : nothing}
-        ${args.metaNavigation ? renderMetaNavigation(args) : nothing}
+        ${args.targetGroup ? renderAudience(args) : nothing}
+        ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
+        ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
-        <!-- Language switch -->
+        <!-- Language menu -->
         <post-language-menu
-          caption="Change the language"
-          description="The currently selected language is English."
+          text-change-language="Change the language"
+          text-current-language="The currently selected language is English."
           variant="list"
           name="language-menu-example"
-          slot="post-language-switch"
+          slot="language-menu"
         >
           <post-language-menu-item code="de" name="German">de</post-language-menu-item>
           <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
           <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+          <post-language-menu-item active="true" code="en" name="English"
+            >en</post-language-menu-item
+          >
         </post-language-menu>
 
         ${!args.title && !args.jobs
@@ -215,18 +227,9 @@ function getHeaderRenderer(
               ${globalLogin}
             `
           : nothing}
-
-        <!-- Menu button for mobile -->
-        <post-togglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-          <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-        </post-togglebutton>
-
         ${args.title !== '' ? title : nothing}
         ${args.localNav ? renderMicrositeControls(args) : nothing}
-        ${args.mainNavigation ? mainnavigation : nothing}
-        ${args.jobs ? renderJobControls() : nothing}
+        ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
       </post-header>
     `;
   };
@@ -262,18 +265,17 @@ export const ActiveNavigationItem: Story = {
     },
   ],
   render: () => html`
-    <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
-      <post-list title-hidden="">
-        <p>Main Navigation</p>
-        <post-list-item slot="post-list-item">
+    <post-mainnavigation slot="main-nav" text-main="Main">
+      <ul>
+        <li>
           <a href="/letters">Letters</a>
-        </post-list-item>
+        </li>
 
-        <post-list-item slot="post-list-item">
+        <li>
           <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
           <a href="/packages" aria-current="page">Packages</a>
-        </post-list-item>
-      </post-list>
+        </li>
+      </ul>
     </post-mainnavigation>
   `,
 };
@@ -293,10 +295,10 @@ export const Microsite: Story = {
   ...getIframeParameters(550),
   args: {
     title: '[Microsite Title]',
-    mainNavigation: true,
-    globalControls: false,
-    metaNavigation: false,
-    globalLogin: false,
+    mainNav: true,
+    globalNavPrimary: false,
+    globalNavSecondary: false,
+    postLogin: false,
     targetGroup: false,
     localNav: true,
   },
@@ -306,11 +308,11 @@ export const OnePager: Story = {
   ...getIframeParameters(250),
   args: {
     title: '[One Pager Title]',
-    mainNavigation: false,
-    metaNavigation: false,
-    globalControls: false,
+    mainNav: false,
+    globalNavSecondary: false,
+    globalNavPrimary: false,
     localNav: false,
-    globalLogin: false,
+    postLogin: false,
     targetGroup: false,
   },
 };
@@ -330,13 +332,6 @@ export const OnePagerH1: Story = {
     },
   ],
   render: renderTitle,
-};
-
-// Used in target group documentation
-export const WithTargetGroup: Story = {
-  args: {
-    targetGroup: true,
-  },
 };
 
 // User is logged in

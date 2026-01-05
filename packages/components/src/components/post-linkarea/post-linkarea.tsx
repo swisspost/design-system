@@ -46,7 +46,7 @@ export class PostLinkarea {
 
   render() {
     return (
-      <Host data-version={version} onClick={(e: MouseEvent) => this.dispatchClick(e)} tabindex="0">
+      <Host data-version={version} onClick={(e: MouseEvent) => this.dispatchClick(e)}>
         <slot></slot>
       </Host>
     );

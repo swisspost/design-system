@@ -49,18 +49,17 @@ export const Card: Story = {
     `;
 
     return schemes(
-      () =>
-        html`
-          <div class="row">
-            <h1>Cards</h1>
-            <h2 class="mt-32">Default template variants cards</h2>
-            ${defaultTemplateVariants}
-            <h2 class="mt-32">Custom template variants cards</h2>
-            ${customTemplateVariant}
-            <h2 class="mt-32">Custom template variants cards</h2>
-            ${listGroupVariant}
-          </div>
-        `,
+      () => html`
+        <div class="row">
+          <h1>Cards</h1>
+          <h2 class="mt-32">Default template variants cards</h2>
+          ${defaultTemplateVariants}
+          <h2 class="mt-32">Custom template variants cards</h2>
+          ${customTemplateVariant}
+          <h2 class="mt-32">Custom template variants cards</h2>
+          ${listGroupVariant}
+        </div>
+      `,
       {
         // dark mode is not yet implemented corretly
         filter: scheme => scheme === 'light',
