@@ -44,6 +44,7 @@ export class PostInternetHeader {
 
   /**
    * Sticky behaviour of the header.
+   * @deprecated this option is no longer configurable with the new header.
    */
   @Prop() stickyness: StickynessOptions = 'minimal';
 
@@ -54,26 +55,31 @@ export class PostInternetHeader {
 
   /**
    * Toggle the meta navigation.
+   * @deprecated use the new configuration API to show or hide the meta navigation links.
    */
   @Prop() meta: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
   /**
    * Toggle the login link (when logged out) or the user widget (when logged in).
+   * @deprecated use the new configuration API to show or hide the login.
    */
   @Prop() login: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
   /**
    * Toggle the search button.
+   * @deprecated use the new configuration API to show or hide the search.
    */
   @Prop() search: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
   /**
    * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
+   * @deprecated please implement the skiplinks component.
    */
   @Prop() skiplinks: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
   /**
-   * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
+   * Define a proxy URL for the config fetch request.
+   * @deprecated this functionality is no longer provided and was deprecated previously.
    */
   @Prop() configProxy?: string;
 
@@ -85,48 +91,57 @@ export class PostInternetHeader {
   /**
    * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you
    * would like to stay on subpages when the user changes language.
+   * @deprecated use the language menu slot to override the language switch and specify custom URLs.
    */
   @Prop() languageSwitchOverrides?: string | IAvailableLanguage[];
 
   /**
    * Customize the header config loaded from the post portal.
+   * @deprecated use the main navigation slot to add custom menu entries.
    */
   @Prop() customConfig?: string | ICustomConfig;
 
   /**
    * The header uses this cookie to set the language. Disables automatic language detection.
+   * @deprecated due to low usage in favor of a project-specific solution.
    */
   @Prop() languageCookieKey?: string;
 
   /**
    * The header uses this local storage key to set the language. Disables automatic language selection.
+   * @deprecated due to low usage in favor of a project-specific solution.
    */
   @Prop() languageLocalStorageKey?: string = 'swisspost-internet-header-language';
 
   /**
    * Overrides the logout-url provided by the portal config.
+   * @deprecated use the new configuration API to specify the logout URL.
    */
   @Prop() logoutUrl?: string;
 
   /**
    * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default.
    * The selfadmin url is used in the KLP login widget to set the user menu links.
+   * @deprecated use the new configuration API to specify these URLs.
    */
   @Prop() selfAdminOrigin?: string;
 
   /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
    * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
+   * @deprecated booleans are no longer accepted. Use `"none"` for `false` and `"auto"` for `true`. All other values remain unchanged.
    */
   @Prop() activeRoute?: 'auto' | false | string = 'auto';
 
   /**
    * Online Services only: Add custom links to the special online service navigation entry
+   * @deprecated the new header no longer includes this flyout. Use the main navigation slot to add application-specific menu items.
    */
   @Prop() osFlyoutOverrides?: string | NavMainEntity;
 
   /**
    * Displays the header at full width for full-screen applications
+   * @deprecated use the self-managed header for applications.
    */
   @Prop() fullWidth?: boolean = false;
 
@@ -143,6 +158,7 @@ export class PostInternetHeader {
   /**
    * Get the currently set language as a two letter string ("de", "fr" "it" or "en")
    * @returns string
+   * @deprecated use `document.documentElement.lang` instead
    */
   @Method()
   async getCurrentLanguage(): Promise<'de' | 'fr' | 'it' | 'en' | string> {

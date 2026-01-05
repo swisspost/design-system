@@ -22,6 +22,7 @@ const meta: MetaComponent = {
   argTypes: {
     customConfig: {
       control: 'object',
+      description: '<span className="mb-micro alert alert-warning alert-sm">**Deprecated:** use the new API to specify footer links in all four columns.</span>',
       table: {
         type: {
           summary: 'ICustomConfig',

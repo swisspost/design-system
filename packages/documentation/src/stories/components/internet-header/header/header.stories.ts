@@ -48,7 +48,7 @@ const meta: MetaComponent = {
         type: 'boolean',
       },
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     activeRoute: {
@@ -56,64 +56,64 @@ const meta: MetaComponent = {
         type: 'text',
       },
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     configProxy: {
       control: false,
       table: {
-        category: 'Deprecated',
+        category: 'Deprecated props',
       },
     },
     languageCookieKey: {
       control: false,
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     logoutUrl: {
       control: false,
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     languageLocalStorageKey: {
       control: false,
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     login: {
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     meta: {
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     search: {
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     skiplinks: {
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     stickyness: {
       control: {
         labels: {
-          full: 'full (deprecated, use "main")',
+          full: 'full',
           minimal: 'minimal',
           main: 'main',
           none: 'none',
         },
       },
       table: {
-        category: 'Optional props',
+        category: 'Deprecated props',
       },
     },
     language: {
@@ -124,8 +124,7 @@ const meta: MetaComponent = {
     customConfig: {
       control: 'object',
       table: {
-        category: 'Optional props',
-        subcategory: 'Overrides',
+        category: 'Deprecated props',
         type: {
           summary: 'ICustomConfig',
           detail: JSON.stringify(customConfig),
@@ -137,8 +136,7 @@ const meta: MetaComponent = {
         type: 'text',
       },
       table: {
-        category: 'Optional props',
-        subcategory: 'Overrides',
+        category: 'Deprecated props',
       },
     },
     languageSwitchOverrides: {
@@ -146,8 +144,7 @@ const meta: MetaComponent = {
         type: 'object',
       },
       table: {
-        category: 'Optional props',
-        subcategory: 'Overrides',
+        category: 'Deprecated props',
         type: {
           summary: 'IAvailableLanguage[]',
           detail: JSON.stringify(languageSwitchOverrides),
@@ -157,8 +154,7 @@ const meta: MetaComponent = {
     osFlyoutOverrides: {
       control: 'object',
       table: {
-        category: 'Optional props',
-        subcategory: 'Overrides',
+        category: 'Deprecated props',
         type: {
           summary: 'NavMainEntity',
           detail: JSON.stringify(osFlyoutOverrides),
