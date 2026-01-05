@@ -55,13 +55,7 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                 messageId,
                 loc: node.loc,
                 fix(fixer) {
-                  const fixedNode = $node.clone();
-
-                  $node.removeClass(oldClass);
-
-                  if (newClass) {
-                    fixedNode.addClass(newClass);
-                  }
+                  const fixedNode = $node.removeClass(oldClass).addClass(newClass);
 
                   // Remove empty class attribute
                   const classValue = fixedNode.attr('class');
