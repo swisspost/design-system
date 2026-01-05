@@ -33,7 +33,7 @@ export default createRule({
             typeof node.value.value === 'string'
           ) {
             const partName = node.value.value;
-            
+
             // Validate part name starts with 'post-'
             if (!partName.startsWith('post-')) {
               context.report({

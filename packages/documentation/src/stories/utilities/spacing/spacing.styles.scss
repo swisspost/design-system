@@ -15,7 +15,9 @@ $border: 1px solid post.$gray-40;
   > div {
     height: 100px;
     width: 100px;
-    background-image: linear-gradient($content-color, $content-color), linear-gradient($padding-color, $padding-color);
+    background-image:
+      linear-gradient($content-color, $content-color),
+      linear-gradient($padding-color, $padding-color);
     background-clip: content-box, padding-box;
     border: $border;
   }

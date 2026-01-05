@@ -16,7 +16,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 | Command                           | Description                                                                                  |
 | --------------------------------- | -------------------------------------------------------------------------------------------- |
 | `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
-| `pnpm demo:start`                 | starts the demo Angular application and the `start` application                                                  |
+| `pnpm demo:start`                 | starts the demo Angular application and the `start` application                              |
 | `pnpm styles:start`               | starts the sass compiler                                                                     |
 | `pnpm components:start`           | starts the stencil compiler                                                                  |
 | `pnpm header:start`               | starts the stencil compiler for the header                                                   |

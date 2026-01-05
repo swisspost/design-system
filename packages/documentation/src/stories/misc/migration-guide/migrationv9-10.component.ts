@@ -70,6 +70,7 @@ export class MigrationV99Component extends LitElement {
       spinner: false,
       stepper: false,
       dialog_icon: false,
+      subnavigation: false,
     },
     components: {
       alert: false,
@@ -1545,6 +1546,23 @@ export class MigrationV99Component extends LitElement {
                         the component. The data-type attribute supports only the four standard
                         signal types: <code>info</code>, <code>success</code>, <code>warning</code>,
                         and <code>error</code>.
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-subnavigation"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.subnavigation}"
+                      />
+                      <label class="form-check-label" for="others-subnavigation">
+                        Subnavigation component removed
+                        <span class="info">
+                          Replaced by the <code>post-tabs</code> component.
+                        </span>
                       </label>
                     </div>
                   </li>
