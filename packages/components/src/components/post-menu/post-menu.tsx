@@ -150,9 +150,9 @@ export class PostMenu {
   @EventFrom('post-popovercontainer')
   private handlePostShown(event: CustomEvent<{ first?: boolean }>) {
     // Only for the first open
-      if (event.detail.first) {
-        // Add "menu" and "menuitem" aria roles and aria-label
-        this.host.setAttribute('role', 'menu');
+    if (event.detail.first) {
+      // Add "menu" and "menuitem" aria roles and aria-label
+      this.host.setAttribute('role', 'menu');
 
       const menuItems = this.getSlottedItems();
       for (const item of menuItems) {
