@@ -70,6 +70,7 @@ export class MigrationV99Component extends LitElement {
       spinner: false,
       stepper: false,
       dialog_icon: false,
+      subnavigation: false,
     },
     components: {
       alert: false,
@@ -381,20 +382,28 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.components.tabs_anchor_navigation}"
                       />
                       <label class="form-check-label" for="components-tabs_anchor_navigation">
-        
-                        <div>
-                          The markup of the <code>post-tabs</code> component has changed.
-                        </div>
-                         <span class="info">
+                        <div>The markup of the <code>post-tabs</code> component has changed.</div>
+                        <span class="info">
                           If you were using this component, you should:
                           <ul>
-                            <li>Rename <code>post-tab-header</code> component to <code>post-tab-item</code></li>
-                            <li>Rename <code>panel</code> property to <code>name</code> in <code>post-tab-item</code> component</li>
-                            <li>Rename <code>name</code> property to <code>for</code> in <code>post-tab-panel</code> component</li>
-                            <li>Rename <code>activePanel</code> property to <code>activeTab</code> in <code>post-tabs</code> component</li>
+                            <li>
+                              Rename <code>post-tab-header</code> component to
+                              <code>post-tab-item</code>
+                            </li>
+                            <li>
+                              Rename <code>panel</code> property to <code>name</code> in
+                              <code>post-tab-item</code> component
+                            </li>
+                            <li>
+                              Rename <code>name</code> property to <code>for</code> in
+                              <code>post-tab-panel</code> component
+                            </li>
+                            <li>
+                              Rename <code>activePanel</code> property to <code>activeTab</code> in
+                              <code>post-tabs</code> component
+                            </li>
                           </ul>
                         </span>
-
                       </label>
                     </div>
                   </li>
@@ -1488,7 +1497,7 @@ export class MigrationV99Component extends LitElement {
                       <label class="form-check-label" for="others.stepper">
                         Removed the stepper HTML component.
                         <span class="info"
-                        >You can now use the <code>post-stepper</code> web component.</span
+                          >You can now use the <code>post-stepper</code> web component.</span
                         >
                       </label>
                     </div>
@@ -1507,6 +1516,23 @@ export class MigrationV99Component extends LitElement {
                         the component. The data-type attribute supports only the four standard
                         signal types: <code>info</code>, <code>success</code>, <code>warning</code>,
                         and <code>error</code>.
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-subnavigation"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.subnavigation}"
+                      />
+                      <label class="form-check-label" for="others-subnavigation">
+                        Subnavigation component removed
+                        <span class="info">
+                          Replaced by the <code>post-tabs</code> component.
+                        </span>
                       </label>
                     </div>
                   </li>

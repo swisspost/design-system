@@ -11,7 +11,7 @@ function shouldProcessEvent(
   tag: string,
   host: HTMLElement,
   ignoreNestedComponents: boolean,
-  allowDescendants: boolean = false
+  allowDescendants: boolean = false,
 ): boolean {
   if (!(event instanceof Event && event.target instanceof HTMLElement)) return false;
 
@@ -50,16 +50,20 @@ export function EventFrom(
     allowDescendants: false,
     ...option,
   };
-  return function (
-    target: object,
-    propertyKey: string,
-    descriptor?: PropertyDescriptor
-  ) {
+  return function (target: object, propertyKey: string, descriptor?: PropertyDescriptor) {
     if (descriptor) {
       const originalMethod = descriptor.value;
 
       descriptor.value = function (event: Event) {
-        if (!shouldProcessEvent(event, tag, this.host, opts.ignoreNestedComponents, opts.allowDescendants)) {
+        if (
+          !shouldProcessEvent(
+            event,
+            tag,
+            this.host,
+            opts.ignoreNestedComponents,
+            opts.allowDescendants,
+          )
+        ) {
           return;
         }
 
@@ -73,7 +77,7 @@ export function EventFrom(
       // Create hidden storage for original method
       Object.defineProperty(target, privateKey, {
         writable: true,
-        configurable: true
+        configurable: true,
       });
 
       // Replace property with getter/setter
@@ -99,7 +103,7 @@ export function EventFrom(
           }
         },
         configurable: true,
-        enumerable: true
+        enumerable: true,
       });
     }
   };

@@ -122,4 +122,3 @@ export const SmallText: StoryObj = {
     <h2>This is a title with <span class="small">smaller text inside</span></h2>
   `,
 };
-

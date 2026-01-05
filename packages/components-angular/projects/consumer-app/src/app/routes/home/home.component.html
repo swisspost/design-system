@@ -55,9 +55,7 @@
       <div class="card-body">
         <h5>Titulum</h5>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-        <a class="card-link" href="#test">
-          Ligilo teksto
-        </a>
+        <a class="card-link" href="#test"> Ligilo teksto </a>
       </div>
     </div>
   </post-linkarea>
@@ -86,11 +84,7 @@
   <post-popover-trigger for="popover-one">
     <button type="button" class="btn btn-secondary">Popover Trigger</button>
   </post-popover-trigger>
-  <post-popover
-    class="palette palette-accent"
-    id="popover-one"
-    placement="top"
-    closeButtonCaption="Close"
+  <post-popover class="palette palette-accent" id="popover-one" placement="top" textClose="Close"
     ><div id="popoverContent">
       <h2 class="h6">Optional title</h2>
       <p class="mb-0">
@@ -143,11 +137,17 @@
 </div>
 
 <div class="my-24">
+  <h2>Post Togglebutton</h2>
+  <post-togglebutton class="btn btn-primary">
+    <span data-showwhen="untoggled">Untoggled</span>
+    <span data-showwhen="toggled">Toggled</span>
+  </post-togglebutton>
+</div>
+
+<div class="my-24">
   <h2>Post Tooltip</h2>
   <post-tooltip-trigger for="tooltip-one">
-    <button class="btn btn-secondary btn-large" aria-describedby="tooltip-one">
-      Button
-    </button>
+    <button class="btn btn-secondary btn-large" aria-describedby="tooltip-one">Button</button>
   </post-tooltip-trigger>
   <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top">
     Hi there 👋
@@ -157,9 +157,9 @@
 <div class="my-24">
   <h2>Post Stepper</h2>
   <post-stepper
-    completedLabel="Completed step"
-    currentLabel="Current step"
-    activeStepLabel="Step #index:"
+    textCompletedStep="Completed step"
+    textCurrentStep="Current step"
+    textStepNumber="Step #number:"
     [currentIndex]="1"
   >
     <post-stepper-item> Step 1 </post-stepper-item>
@@ -176,10 +176,10 @@
     pageSize="10"
     collectionSize="100"
     label="Pagination"
-    labelPrevious="Previous page"
-    labelNext="Next page"
-    labelPage="Page"
-    labelFirst="First page"
-    labelLast="Last page"
+    textPrevious="Previous page"
+    textNext="Next page"
+    textPage="Page"
+    textFirst="First page"
+    textLast="Last page"
   ></post-pagination>
 </div>
