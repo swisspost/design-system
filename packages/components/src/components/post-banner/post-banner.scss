@@ -79,8 +79,9 @@ tokens.$default-map: components.$post-banner;
 
 ::slotted(post-closebutton) {
   position: absolute;
-  inset-block-start: tokens.get('banner-padding');
-  inset-inline-end: tokens.get('banner-padding');
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  transform: translate(50%, -50%);
 }
 
 @include utilities.high-contrast-mode {

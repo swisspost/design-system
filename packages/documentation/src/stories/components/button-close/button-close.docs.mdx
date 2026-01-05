@@ -27,3 +27,14 @@ The value inside the `<post-closebutton>` element will be rendered inside the bu
 </div>
 
 <ComponentsPackageInstall component="<post-closebutton>" />
+
+## Examples
+
+### Positioning
+
+The `post-closebutton` should be placed in the top-right corner of the element it closes.
+
+To achieve this, apply the `.position-relative` class to the closable element.
+Then position the close button absolutely within that element using the appropriate [positioning utility classes](http://localhost:9000/?path=/docs/803a58e8-c734-4ad7-80a8-62da1bb29d4b--docs), as shown below.
+
+<Canvas sourceState="shown" of={CloseButtonStories.Positioning} />

@@ -1,42 +1,25 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/button';
 
-tokens.$default-map: components.$post-close;
+post-closebutton button {
+  @include button.button-base;
+  height: 2.5rem;
+  width: 2.5rem;
+  font-size: 1rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.16);
+  background-clip: padding-box;
+  color: #050400;
+  background-color: #fff;
+  border-color: currentColor;
 
-.visually-hidden {
-  @include utilities.visuallyhidden();
-}
+  > :not(post-icon) {
+    @include utilities.visuallyhidden();
+  }
 
-post-closebutton .btn {
-  padding: 0;
-  border: unset;
-  min-height: unset;
-  min-width: unset;
-  width: tokens.get('close-size');
-  height: tokens.get('close-size');
-  border-radius: tokens.get('close-border-radius');
-  background-color: tokens.get('close-enabled-bg');
-  color: tokens.get('close-enabled-fg');
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  > post-icon {
-    min-width: tokens.get('close-icon-size');
-    width: tokens.get('close-icon-size');
-    height: tokens.get('close-icon-size');
+  &:hover {
+    color: #504f4b;
   }
 
   @include utilities.focus-style;
-
-  @include utilities.not-disabled-hover() {
-    cursor: pointer;
-    background-color: tokens.get('close-hover-bg');
-    color: tokens.get('close-hover-fg');
-
-    @include utilities.high-contrast-mode() {
-      color: HighlightText !important;
-    }
-  }
 }
+
