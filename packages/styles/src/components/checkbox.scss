@@ -155,6 +155,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
   }
 }
 
+
 /* Align the Label with the Checkbox small */
 .form-check-sm:not(.form-switch) {
   display: flex;
@@ -171,7 +172,7 @@ fieldset .form-check:not(.form-check-inline):not(:last-of-type) {
 fieldset:has(.form-check-inline) {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
 }
 
 /* Spacing for Checkbox Group Grouped/Vertical default */
