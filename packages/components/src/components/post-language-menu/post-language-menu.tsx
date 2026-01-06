@@ -61,11 +61,6 @@ export class PostLanguageMenu {
    */
   @State() activeLang: string;
 
-  /**
-   * The active language name of the language menu
-   */
-  @State() activeLangName: string;
-
   /* The complete accessible description */
   private get description(): string | undefined {
     const activeLanguage =
