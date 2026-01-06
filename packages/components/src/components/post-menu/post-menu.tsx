@@ -161,7 +161,7 @@ export class PostMenu {
 
       if (this.label) this.host.setAttribute('aria-label', this.label);
     }
-  };
+  }
 
   @EventFrom('post-popovercontainer')
   private readonly handlePostToggled = (event: CustomEvent<{ isOpen: boolean }>) => {
