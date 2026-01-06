@@ -1,43 +1,34 @@
-@use '../mixins/media';
-
 .button-section {
   display: flex;
   gap: 1rem;
   margin-top: 4.75rem;
-  margin-bottom: 4.75rem;
 }
 
-.error-container--image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    display: block;
-    height: auto;
-  }
-
-  &:has(img.align-section-end) {
-    margin: 0 !important;
-    justify-content: flex-end !important;
-  }
+.error-container--image img {
+  display: block;
+  margin: auto;
 }
 
-@include media.max(lg) {
+.error-401 img {
+  margin-right: 0 !important;
+}
+
+@media (max-width: 1024px) {
   .button-section {
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
   }
-
-  .align-section-end {
-    margin-inline-end: 0 !important;
-  }
 }
 
-@include media.max(md) {
+@media (max-width: 780px) {
   .error-container .row {
-    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .error-container .row > .col {
+    flex: 0 0 100%;
   }
 
   .error-container--image {
@@ -45,8 +36,9 @@
     margin-bottom: 2rem;
   }
 
-  .error-400 img {
+  .error-400 {
+    align-items: stretch;
     transform: rotate(90deg);
-    padding: 0;
+    width: 100%;
   }
 }
