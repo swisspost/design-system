@@ -60,7 +60,9 @@
   padding-bottom: 3.25rem;
   z-index: -1;
   transform: translateY(-100%);
-  transition: transform 0.35s, box-shadow 0.35s;
+  transition:
+    transform 0.35s,
+    box-shadow 0.35s;
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;

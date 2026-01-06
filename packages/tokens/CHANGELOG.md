@@ -1,5 +1,7 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.56
+
 ## 10.0.0-next.55
 
 ## 10.0.0-next.54
@@ -53,7 +55,6 @@
   ```
 
   Also renamed the following CSS custom properties:
-
   - `--post-current-palette-fg` → `--post-current-fg`
   - `--post-current-palette-bg` → `--post-current-bg` (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
 

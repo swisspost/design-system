@@ -20,3 +20,18 @@
 %header-control {
   @include nav-item-base;
 }
+
+%mainnavigation-control {
+  @extend %header-control;
+  @include nav-item-block-layout;
+  height: 100%;
+
+  @include media.only(desktop) {
+    padding: 1rem 0.75rem;
+    gap: 0.5rem;
+
+    &::before {
+      content: unset;
+    }
+  }
+}

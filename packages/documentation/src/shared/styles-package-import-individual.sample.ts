@@ -1,4 +1,4 @@
-interface Props {
+export interface Props {
   components: string[];
   required?: { icons: boolean; floatingLabel: boolean; formFeedback: boolean };
   importText?: string;
