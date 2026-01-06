@@ -240,19 +240,7 @@ export const Validation: Story = {
 };
 
 export const Grouped: Story = {
-  render: (args: Args, context: StoryContext) => html`
-    <fieldset>
-      <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
-        Legend
-      </legend>
-      ${['First Label', 'Second Label', 'Third Label', 'Fourth Label'].map((label, index) =>
-        renderCheckbox(
-          { ...args, label, checked: false },
-          { ...context, id: `${context.id}-${index}` },
-        ),
-      )}
-    </fieldset>
-  `,
+  render: renderGroup,
   parameters: {
     controls: {
       include: ['Hidden Legend'],
@@ -261,19 +249,7 @@ export const Grouped: Story = {
 };
 
 export const Inline: Story = {
-  render: (args: Args, context: StoryContext) => html`
-    <fieldset>
-      <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
-        Legend
-      </legend>
-      ${['First Label', 'Second Label', 'Third Label', 'Fourth Label'].map((label, index) =>
-        renderCheckbox(
-          { ...args, label, checked: false },
-          { ...context, id: `${context.id}-${index}` },
-        ),
-      )}
-    </fieldset>
-  `,
+  render: renderGroup,
   parameters: {
     controls: {
       include: ['Hidden Legend'],
@@ -283,3 +259,44 @@ export const Inline: Story = {
     inline: true,
   },
 };
+
+export function renderGroup(args: Args, context: Partial<StoryContext>) {
+  const generatedUuid = crypto.randomUUID();
+  const uniqueSuffix = context.id ?? generatedUuid;
+
+  const baseId = `${context.viewMode ?? 'view'}_${(context.name ?? '').replace(
+    /\s/g,
+    '-',
+  )}_${uniqueSuffix}_Checkbox`;
+
+  const itemClass = [
+    'form-check',
+    args.size && args.size !== 'null' ? args.size : undefined,
+    args.inline ? 'form-check-inline' : undefined,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const labels = ['First Label', 'Second Label', 'Third Label', 'Fourth Label'];
+
+  return html`
+    <fieldset>
+      <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
+
+      ${labels.map((label, index) => {
+        const id = `${baseId}-${index}`;
+        return html`
+          <div class="${itemClass}">
+            <input
+              id="${id}"
+              type="checkbox"
+              ?disabled="${args.disabled}"
+              ?required="${args.requiredOptional === 'required'}"
+            />
+            <label for="${id}">${label}</label>
+          </div>
+        `;
+      })}
+    </fieldset>
+  `;
+}
