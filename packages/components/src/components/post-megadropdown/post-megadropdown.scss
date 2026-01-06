@@ -19,9 +19,9 @@
   @include media.only(desktop) {
     z-index: -1;
     inset-block-start: 100%;
-    max-height: calc(100vh - var(--post-header-height) - 3rem);
 
     .container {
+      max-height: calc(100vh - var(--post-header-height) - 3rem);
       padding: 2rem 2.5rem 2.5rem;
     }
 
@@ -38,13 +38,13 @@
     z-index: 1;
     inset-block-start: var(--post-header-navigation-current-inset);
     overscroll-behavior: contain;
-    height: calc(
-      min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
-    );
     display: flex;
     flex-direction: column;
 
     .container {
+      height: calc(
+        min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+      );
       padding-inline: var(--post-burger-menu-padding-inline);
       padding-block: 1.5rem;
     }

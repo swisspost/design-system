@@ -36,7 +36,6 @@ header,
 }
 
 .container {
-  height: 100%;
   max-width: var(--post-header-container-max-width);
   margin-inline: auto;
 }
@@ -61,9 +60,9 @@ header,
   position: sticky;
   inset-block-start: var(--post-global-header-top);
   background-color: #ffcc00;
-  height: var(--post-global-header-expanded-height);
 
   .container {
+    height: var(--post-global-header-expanded-height);
     padding-inline-start: var(--post-global-header-padding-inline-start);
     padding-inline-end: var(--post-global-header-padding-inline-end);
   }
@@ -101,16 +100,16 @@ header,
 .local-header {
   position: relative;
   background-color: #fff;
-  min-height: var(--post-local-header-expanded-min-height);
 
   .container {
+    min-height: var(--post-local-header-expanded-min-height);
     padding-inline-start: var(--post-local-header-padding-inline-start);
     padding-inline-end: var(--post-local-header-padding-inline-end);
     padding-block: var(--post-local-header-padding-block);
   }
 
   // having both title AND navigation
-  &:not(.no-title, .no-navigation) {
+  &:not(.no-title, .no-navigation) .container {
     padding-block-start: 1.125rem;
   }
 
