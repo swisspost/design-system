@@ -86,28 +86,19 @@ export class PostLanguageMenuItem {
     }
 
     if (this.active) {
-      this.postLanguageMenuItemInitiallyActive.emit({
-        code: this.code,
-        name: this.name,
-      });
+      this.postLanguageMenuItemInitiallyActive.emit(this.code);
     }
   }
 
   /**
    * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
    */
-  @Event() postChange: EventEmitter<{
-    code: string;
-    name: string;
-  }>;
+  @Event() postChange: EventEmitter<string>;
 
   /**
    * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
    */
-  @Event() postLanguageMenuItemInitiallyActive: EventEmitter<{
-    code: string;
-    name: string;
-  }>;
+  @Event() postLanguageMenuItemInitiallyActive: EventEmitter<string>;
 
   /**
    * Selects the language option programmatically.
@@ -119,10 +110,7 @@ export class PostLanguageMenuItem {
   }
 
   private emitChange() {
-    this.postChange.emit({
-      code: this.code,
-      name: this.name,
-    });
+    this.postChange.emit(this.code);
   }
 
   private isNameRequired(): boolean {

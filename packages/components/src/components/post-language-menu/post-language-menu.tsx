@@ -59,7 +59,7 @@ export class PostLanguageMenu {
   /**
    * The active language code of the language menu
    */
-  @State() activeLangCode: string;
+  @State() activeLang: string;
 
   /**
    * The active language name of the language menu
@@ -68,11 +68,15 @@ export class PostLanguageMenu {
 
   /* The complete accessible description */
   private get description(): string | undefined {
-    if (!this.textCurrentLanguage || !this.activeLangCode) {
-      return undefined;
-    }
+    const activeLanguage =
+      this.activeLang &&
+      document.querySelector<HTMLPostLanguageMenuItemElement>(
+        `post-language-menu-item[code="${this.activeLang}"]`,
+      );
 
-    return this.textCurrentLanguage.replace(/#name/g, this.activeLangName);
+    return activeLanguage
+      ? this.textCurrentLanguage.replace(/#name/g, activeLanguage.name)
+      : undefined;
   }
 
   componentDidLoad() {
@@ -90,13 +94,12 @@ export class PostLanguageMenu {
    */
   @Listen('postChange')
   @EventFrom('post-language-menu-item')
-  handlePostChange(event: CustomEvent<{ code: string; name: string }>) {
-    this.activeLangCode = event.detail.code;
-    this.activeLangName = event.detail.name;
+  handlePostChange(event: CustomEvent<string>) {
+    this.activeLang = event.detail;
 
     // Update the active state in the children post-language-menu-item components
     this.languageOptions.forEach(lang => {
-      if (lang.code && lang.code === this.activeLangCode) {
+      if (lang.code && lang.code === this.activeLang) {
         lang.setAttribute('active', '');
       } else {
         lang.removeAttribute('active');
@@ -115,9 +118,8 @@ export class PostLanguageMenu {
    * @param event Initially emitted by <post-language-menu-item>
    */
   @Listen('postLanguageMenuItemInitiallyActive')
-  handleInitiallyActive(event: CustomEvent<{ code: string; name: string }>) {
-    this.activeLangCode = event.detail.code;
-    this.activeLangName = event.detail.name;
+  handleInitiallyActive(event: CustomEvent<string>) {
+    this.activeLang = event.detail;
   }
 
   // Update post-language-menu-item variant to have the correct style
@@ -150,7 +152,7 @@ export class PostLanguageMenu {
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
           <button class="post-language-menu-trigger">
-            {this.activeLangCode}
+            {this.activeLang}
             <span class="visually-hidden">{this.textChangeLanguage}</span>
             <span class="visually-hidden">{this.description}</span>
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
