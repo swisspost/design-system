@@ -78,17 +78,17 @@ tokens.$default-map: utilities.$post-spacing;
   position: relative;
   box-sizing: border-box;
   cursor: default;
-  
+
   &:focus,
   &:focus-visible {
     outline: none;
     box-shadow: none;
-    
+
     &::after {
       display: none;
     }
   }
-  
+
   a {
     color: inherit;
     text-decoration: none;

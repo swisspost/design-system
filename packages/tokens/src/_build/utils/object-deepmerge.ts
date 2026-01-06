@@ -8,8 +8,8 @@ export type DeepMerged<T, U> = {
         : U[K]
       : U[K]
     : K extends keyof T
-    ? T[K]
-    : never;
+      ? T[K]
+      : never;
 };
 
 // This deepmerge function recursively combines two objects, prioritizing values from the second object and deeply merging nested objects

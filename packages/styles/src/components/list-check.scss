@@ -6,8 +6,6 @@
 
 tokens.$default-map: components.$post-listcheck;
 
-@include icons-mx.custom-property('checkmark');
-
 ul.list-check {
   @include utilities.reset-list;
   display: flex;
