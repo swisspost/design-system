@@ -8,18 +8,16 @@ post-closebutton button {
   font-size: 1rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.16);
   background-clip: padding-box;
-  color: #050400;
-  background-color: #fff;
-  border-color: currentColor;
+
+  @include button.button-variant-def('enabled', 'secondary');
+  @include utilities.focus-style;
+
+  &:hover {
+    @include button.button-variant-def('hover', 'secondary');
+  }
 
   > :not(post-icon) {
     @include utilities.visuallyhidden();
   }
-
-  &:hover {
-    color: #504f4b;
-  }
-
-  @include utilities.focus-style;
 }
 
