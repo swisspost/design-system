@@ -36,7 +36,7 @@ export class PostLanguageMenu {
   }
 
   /**
-   * A descriptive text for the list of language options
+   * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
    */
   @Prop({ reflect: true }) textCurrentLanguage!: string;
 
