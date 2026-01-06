@@ -32,8 +32,9 @@ tokens.$default-map: components.$post-banner;
 
   > post-closebutton {
     position: absolute;
-    inset-block-start: spacing.$spacer;
-    inset-inline-end: $padding-x;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    transform: translate(50%, -50%);
   }
 }
 
