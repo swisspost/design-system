@@ -25,14 +25,20 @@ header,
   box-shadow: elevation.$elevation-300;
 }
 
-.global-header,
-.sliding-controls,
-.local-header,
-.navigation {
+.container,
+.navigation,
+.sliding-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--post-header-gap);
+  flex-wrap: wrap;
+}
+
+.container {
+  height: 100%;
+  max-width: var(--post-header-container-max-width);
+  margin-inline: auto;
 }
 
 :host {
@@ -56,8 +62,11 @@ header,
   inset-block-start: var(--post-global-header-top);
   background-color: #ffcc00;
   height: var(--post-global-header-expanded-height);
-  padding-inline-start: var(--post-global-header-padding-inline-start);
-  padding-inline-end: var(--post-global-header-padding-inline-end);
+
+  .container {
+    padding-inline-start: var(--post-global-header-padding-inline-start);
+    padding-inline-end: var(--post-global-header-padding-inline-end);
+  }
 
   &:has(~ .local-header:not(.no-title.no-navigation)),
   &:has(~ .burger-menu.extended) {
@@ -91,12 +100,14 @@ header,
 
 .local-header {
   position: relative;
-  flex-wrap: wrap;
   background-color: #fff;
   min-height: var(--post-local-header-expanded-min-height);
-  padding-inline-start: var(--post-local-header-padding-inline-start);
-  padding-inline-end: var(--post-local-header-padding-inline-end);
-  padding-block: var(--post-local-header-padding-block);
+
+  .container {
+    padding-inline-start: var(--post-local-header-padding-inline-start);
+    padding-inline-end: var(--post-local-header-padding-inline-end);
+    padding-block: var(--post-local-header-padding-block);
+  }
 
   // having both title AND navigation
   &:not(.no-title, .no-navigation) {

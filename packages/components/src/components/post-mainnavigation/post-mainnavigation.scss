@@ -5,6 +5,7 @@
 :host {
   display: flex;
   user-select: none;
+  max-width: var(--post-header-container-max-width);
 
   @include media.only(desktop) {
     overflow: hidden;

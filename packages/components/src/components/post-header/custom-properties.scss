@@ -1,6 +1,8 @@
 @use '@swisspost/design-system-styles/mixins/media';
 
 :host {
+  --post-header-container-max-width: 1440px;
+
   // The following variables will affect the header to minimize it on scroll
   --post-global-header-top: calc(
     var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)

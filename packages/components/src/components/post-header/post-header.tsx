@@ -441,36 +441,42 @@ export class PostHeader {
               'no-audience': !this.hasAudience,
             }}
           >
-            <div class="logo">
-              <slot name="post-logo"></slot>
-            </div>
-            <div class="sliding-controls">
-              {this.device === 'desktop' && (
-                <div class="audience">
-                  <slot name="audience"></slot>
-                </div>
-              )}
-              <slot name="global-nav-primary"></slot>
-              {!this.hasBurgerMenu && [
-                <slot name="global-nav-secondary"></slot>,
-                <slot name="language-menu"></slot>,
-              ]}
-              <slot name="post-login"></slot>
-              {this.hasNavigation && this.device !== 'desktop' && (
-                <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
-                  <slot name="post-togglebutton"></slot>
-                </div>
-              )}
-              {this.hasNavigation && this.device !== 'desktop' && (
-                <post-togglebutton
-                  ref={el => (this.burgerMenuButton = el)}
-                  onClick={() => this.toggleBurgerMenu()}
-                >
-                  <span>{this.textMenu}</span>
-                  <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-                  <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-                </post-togglebutton>
-              )}
+            <div class="container">
+              <div class="logo">
+                <slot name="post-logo"></slot>
+              </div>
+              <div class="sliding-controls">
+                {this.device === 'desktop' && (
+                  <div class="audience">
+                    <slot name="audience"></slot>
+                  </div>
+                )}
+                <slot name="global-nav-primary"></slot>
+                {!this.hasBurgerMenu && [
+                  <slot name="global-nav-secondary"></slot>,
+                  <slot name="language-menu"></slot>,
+                ]}
+                <slot name="post-login"></slot>
+                {this.hasNavigation && this.device !== 'desktop' && (
+                  <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
+                    <slot name="post-togglebutton"></slot>
+                  </div>
+                )}
+                {this.hasNavigation && this.device !== 'desktop' && (
+                  <post-togglebutton
+                    ref={el => (this.burgerMenuButton = el)}
+                    onClick={() => this.toggleBurgerMenu()}
+                  >
+                    <span>{this.textMenu}</span>
+                    <post-icon
+                      aria-hidden="true"
+                      name="burger"
+                      data-showwhen="untoggled"
+                    ></post-icon>
+                    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+                  </post-togglebutton>
+                )}
+              </div>
             </div>
           </div>
           <div
@@ -483,9 +489,11 @@ export class PostHeader {
               'no-local-nav': !this.hasLocalNav,
             }}
           >
-            <slot name="title"></slot>
-            {this.hasTitle && <slot name="local-nav"></slot>}
-            {this.device === 'desktop' && this.renderNavigation()}
+            <div class="container">
+              <slot name="title"></slot>
+              {this.hasTitle && <slot name="local-nav"></slot>}
+              {this.device === 'desktop' && this.renderNavigation()}
+            </div>
           </div>
           {this.device !== 'desktop' && this.renderNavigation()}
         </header>
