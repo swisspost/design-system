@@ -25,7 +25,7 @@ header,
   box-shadow: elevation.$elevation-300;
 }
 
-.container,
+.section,
 .navigation,
 .sliding-controls {
   display: flex;
@@ -35,8 +35,8 @@ header,
   flex-wrap: wrap;
 }
 
-.container {
-  max-width: var(--post-header-container-max-width);
+.section {
+  max-width: var(--post-header-content-max-width);
   margin-inline: auto;
 }
 
@@ -61,7 +61,7 @@ header,
   inset-block-start: var(--post-global-header-top);
   background-color: #ffcc00;
 
-  .container {
+  .section {
     height: var(--post-global-header-expanded-height);
     padding-inline-start: var(--post-global-header-padding-inline-start);
     padding-inline-end: var(--post-global-header-padding-inline-end);
@@ -101,7 +101,7 @@ header,
   position: relative;
   background-color: #fff;
 
-  .container {
+  .section {
     min-height: var(--post-local-header-expanded-min-height);
     padding-inline-start: var(--post-local-header-padding-inline-start);
     padding-inline-end: var(--post-local-header-padding-inline-end);
@@ -109,7 +109,7 @@ header,
   }
 
   // having both title AND navigation
-  &:not(.no-title, .no-navigation) .container {
+  &:not(.no-title, .no-navigation) .section {
     padding-block-start: 1.125rem;
   }
 

@@ -385,7 +385,7 @@ export class PostMegadropdown {
     return (
       <Host version={version}>
         <div ref={el => (this.animatedContainer = el)} class="megadropdown" style={containerStyle}>
-          <div class="container">
+          <div class="section">
             {this.device !== 'desktop' && this.megadropdownTitle && (
               <p class="megadropdown-title">{this.megadropdownTitle}</p>
             )}

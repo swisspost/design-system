@@ -20,7 +20,7 @@
     z-index: -1;
     inset-block-start: 100%;
 
-    .container {
+    .section {
       max-height: calc(100vh - var(--post-header-height) - 3rem);
       padding: 2rem 2.5rem 2.5rem;
     }
@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
 
-    .container {
+    .section {
       height: calc(
         min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
       );
@@ -99,8 +99,8 @@
   }
 }
 
-.container {
-  max-width: var(--post-header-container-max-width);
+.section {
+  max-width: var(--post-header-content-max-width);
   margin-inline: auto;
   position: relative;
 }

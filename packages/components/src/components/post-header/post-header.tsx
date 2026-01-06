@@ -441,7 +441,7 @@ export class PostHeader {
               'no-audience': !this.hasAudience,
             }}
           >
-            <div class="container">
+            <div class="section">
               <div class="logo">
                 <slot name="post-logo"></slot>
               </div>
@@ -489,7 +489,7 @@ export class PostHeader {
               'no-local-nav': !this.hasLocalNav,
             }}
           >
-            <div class="container">
+            <div class="section">
               <slot name="title"></slot>
               {this.hasTitle && <slot name="local-nav"></slot>}
               {this.device === 'desktop' && this.renderNavigation()}
