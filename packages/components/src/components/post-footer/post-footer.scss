@@ -29,9 +29,9 @@ footer {
   --post-footer-column-align-items: start;
   --post-footer-column-gap: 0;
 
-  --post-footer-post-list-flex-direction: column;
-  --post-footer-post-list-gap: 8px;
-  --post-footer-post-list-align-items: start;
+  --post-footer-list-flex-direction: column;
+  --post-footer-list-gap: 8px;
+  --post-footer-list-align-items: start;
 
   --post-footer-socialmedia-margin-block-end: var(--post-footer-grid-margin-block-end);
   --post-footer-app-margin-block-end: var(--post-footer-grid-margin-block-end);
@@ -52,9 +52,9 @@ footer {
     --post-footer-grid-margin-block-end: 32px;
     --post-footer-grid-padding-block-end: 32px;
 
-    --post-footer-post-list-flex-direction: row;
-    --post-footer-post-list-gap: 16px;
-    --post-footer-post-list-align-items: center;
+    --post-footer-list-flex-direction: row;
+    --post-footer-list-gap: 16px;
+    --post-footer-list-align-items: center;
 
     --post-footer-meta-margin-block-end: 8px;
   }
@@ -77,7 +77,7 @@ footer {
     --post-footer-column-align-items: center;
     --post-footer-column-gap: 32px;
 
-    --post-footer-post-list-gap: 24px;
+    --post-footer-list-gap: 24px;
 
     --post-footer-businesssectors-margin-block-end: 24px;
 
@@ -140,9 +140,9 @@ footer {
 .footer-meta {
   ::slotted(div) {
     display: flex !important;
-    flex-direction: var(--post-footer-post-list-flex-direction) !important;
-    gap: var(--post-footer-post-list-gap) !important;
-    align-items: var(--post-footer-post-list-align-items) !important;
+    flex-direction: var(--post-footer-list-flex-direction) !important;
+    gap: var(--post-footer-list-gap) !important;
+    align-items: var(--post-footer-list-align-items) !important;
   }
 }
 

@@ -10,10 +10,11 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <div className="docs-title">
   # Accordion
 
-  <link-design of={JSON.stringify(accordionStories)}></link-design>
+<link-design of={JSON.stringify(accordionStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <p className="lead">Toggle the visibility of a set of related content in your project.</p>
 
@@ -46,7 +47,7 @@ To allow multiple panels to be open at the same time, use the `multiple="true"` 
 To enhance individual accordion items with a logo, add an `<img>` to the logo slot.
 This will display the logo in front of the accordion item's heading.
 
-<Canvas of={accordionStories.Logos}/>
+<Canvas of={accordionStories.Logos} />
 
 ### Initially Closed Panel
 
@@ -70,7 +71,4 @@ The `<post-accordion>` offers several methods to expand or collapse the `<post-a
 Expand or collapse all elements at once using `.expandAll()` and `.collapseAll()` respectively,
 or toggle just one using `.toggle()` specifying the id of the element you want to act on.
 
-<Source
-  code={SampleCustomTrigger}
-  language="typescript"
-/>
+<Source code={SampleCustomTrigger} language="typescript" />

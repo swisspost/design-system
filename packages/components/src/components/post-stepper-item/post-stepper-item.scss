@@ -7,8 +7,6 @@
 
 tokens.$default-map: components.$post-stepper;
 
-@include icons.custom-property('success-solid');
-
 post-stepper-item {
   grid-row: 1;
   position: relative;

@@ -10,40 +10,40 @@ describe('EventFrom decorator', () => {
   // Create a proper mock HTMLElement that passes instanceof checks
   function createMockHTMLElement(tagName: string): HTMLElement {
     const element = Object.create(HTMLElement.prototype);
-    
+
     Object.defineProperties(element, {
       localName: {
         value: tagName.toLowerCase(),
         writable: false,
         configurable: true,
-        enumerable: true
+        enumerable: true,
       },
       tagName: {
         value: tagName.toUpperCase(),
         writable: false,
         configurable: true,
-        enumerable: true
+        enumerable: true,
       },
       nodeType: {
         value: 1,
         writable: false,
-        configurable: true
+        configurable: true,
       },
       parentElement: {
         value: null,
         writable: true,
-        configurable: true
+        configurable: true,
       },
       parentNode: {
         value: null,
         writable: true,
-        configurable: true
+        configurable: true,
       },
       ownerDocument: {
         value: document || {},
         writable: false,
-        configurable: true
-      }
+        configurable: true,
+      },
     });
 
     return element;
@@ -54,7 +54,7 @@ describe('EventFrom decorator', () => {
     Object.defineProperty(event, 'target', {
       value: target,
       writable: false,
-      configurable: true
+      configurable: true,
     });
     return event;
   }
@@ -64,19 +64,19 @@ describe('EventFrom decorator', () => {
     Object.defineProperty(child, 'parentElement', {
       value: parent,
       writable: true,
-      configurable: true
+      configurable: true,
     });
     Object.defineProperty(child, 'parentNode', {
       value: parent,
       writable: true,
-      configurable: true
+      configurable: true,
     });
   }
 
   test('calls callback when event target exactly matches tag', () => {
     const mockHost = createMockHTMLElement('div');
     const button = createMockHTMLElement('button');
-    
+
     setParent(button, mockHost);
 
     class TestClass {
@@ -91,7 +91,7 @@ describe('EventFrom decorator', () => {
     const instance = new TestClass();
     const mockEvent = createCustomEvent(button);
     instance.handleButtonEvent(mockEvent);
-    
+
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
@@ -99,7 +99,7 @@ describe('EventFrom decorator', () => {
     const mockHost = createMockHTMLElement('div');
     const button = createMockHTMLElement('button');
     const span = createMockHTMLElement('span');
-    
+
     setParent(button, mockHost);
     setParent(span, button);
 
@@ -115,14 +115,14 @@ describe('EventFrom decorator', () => {
     const instance = new TestClass();
     const mockEvent = createCustomEvent(span);
     instance.handleButtonEvent(mockEvent);
-    
+
     expect(callback).not.toHaveBeenCalled();
   });
 
   test('calls callback when ignoreNestedComponents is false', () => {
     const host = createMockHTMLElement('div');
     const button = createMockHTMLElement('button');
-    
+
     setParent(button, host);
 
     class TestClass {
@@ -137,14 +137,14 @@ describe('EventFrom decorator', () => {
     const instance = new TestClass();
     const mockEvent = createCustomEvent(button);
     instance.handleButtonEvent(mockEvent);
-    
+
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
   test('does not call callback when tag does not match', () => {
     const mockHost = createMockHTMLElement('div');
     const div = createMockHTMLElement('div');
-    
+
     setParent(div, mockHost);
 
     class TestClass {
@@ -159,7 +159,7 @@ describe('EventFrom decorator', () => {
     const instance = new TestClass();
     const mockEvent = createCustomEvent(div);
     instance.handleButtonEvent(mockEvent);
-    
+
     expect(callback).not.toHaveBeenCalled();
   });
 
@@ -167,7 +167,7 @@ describe('EventFrom decorator', () => {
     const outerHost = createMockHTMLElement('div');
     const innerHost = createMockHTMLElement('div');
     const button = createMockHTMLElement('button');
-    
+
     setParent(innerHost, outerHost);
     setParent(button, innerHost);
 
@@ -183,7 +183,7 @@ describe('EventFrom decorator', () => {
     const instance = new TestClass();
     const mockEvent = createCustomEvent(button);
     instance.handleButtonEvent(mockEvent);
-    
+
     expect(callback).not.toHaveBeenCalled();
   });
 
@@ -191,7 +191,7 @@ describe('EventFrom decorator', () => {
     const outerHost = createMockHTMLElement('div');
     const innerHost = createMockHTMLElement('div');
     const button = createMockHTMLElement('button');
-    
+
     setParent(innerHost, outerHost);
     setParent(button, innerHost);
 
@@ -207,7 +207,7 @@ describe('EventFrom decorator', () => {
     const instance = new TestClass();
     const mockEvent = createCustomEvent(button);
     instance.handleButtonEvent(mockEvent);
-    
+
     expect(callback).toHaveBeenCalledTimes(1);
   });
 });

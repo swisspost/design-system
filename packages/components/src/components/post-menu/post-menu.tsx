@@ -56,7 +56,7 @@ export class PostMenu {
   }
 
   /**
-   * An accessible name for the menu.
+   * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
    */
   @Prop({ reflect: true }) readonly label!: string;
 
@@ -148,7 +148,7 @@ export class PostMenu {
   };
 
   @EventFrom('post-popovercontainer')
-  private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
+  private handlePostShown(event: CustomEvent<{ first?: boolean }>) {
     // Only for the first open
     if (event.detail.first) {
       // Add "menu" and "menuitem" aria roles and aria-label
@@ -248,8 +248,8 @@ export class PostMenu {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-          onPostShow={this.handlePostShown}
-          onPostToggle={this.handlePostToggled}
+          onPostShow={this.handlePostShown.bind(this)}
+          onPostToggle={this.handlePostToggled.bind(this)}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
         >
