@@ -92,7 +92,8 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
 
                     const isStringLiteral =
                       (rawValue.startsWith("'") && rawValue.endsWith("'")) ||
-                      (rawValue.startsWith('"') && rawValue.endsWith('"'));
+                      (rawValue.startsWith('"') && rawValue.endsWith('"')) ||
+                      (rawValue.startsWith('`') && rawValue.endsWith('`'));
 
                     // value is a string literal
                     if (isStringLiteral) {
