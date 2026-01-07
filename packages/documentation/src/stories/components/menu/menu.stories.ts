@@ -1,5 +1,5 @@
-import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -14,39 +14,101 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=13997-36408&m=dev',
     },
   },
-  render,
+  render: getMenuRenderer(),
   args: {
-    id: 'menu-one',
     placement: 'bottom',
-    label: 'Mail and shipping services menu',
-  },
-  argTypes: {
-    id: {
-      name: 'id',
-      description: 'The id is used to connect a trigger element with the popover.',
-      table: {
-        category: 'General',
-      },
-    },
+    label: 'Menu description',
   },
 };
 
-function render(args: Args) {
-  return html`
-    <post-menu-trigger for="${args.id}">
-      <button class="btn btn-primary">Postal services</button>
-    </post-menu-trigger>
-    <post-menu
-      id="${args.id}"
-      placement="${args.placement !== 'bottom' ? args.placement : nothing}"
-      label="${args.label}"
-    >
-      <post-menu-item><a href="/cost">Calculate postage</a></post-menu-item>
-      <post-menu-item><a href="/tracking">Track consignments</a></post-menu-item>
-      <post-menu-item><button>Arrange a pickup</button></post-menu-item>
-    </post-menu>
-  `;
+function getMenuRenderer(content?: {
+  triggerButtonText?: string;
+  triggerButton?: TemplateResult;
+  menuItems?: TemplateResult;
+}) {
+  const triggerButtonText = content?.triggerButtonText ?? 'Open Menu';
+  const triggerButton =
+    content?.triggerButton ??
+    html` <button class="btn btn-secondary">${triggerButtonText}</button> `;
+
+  const menuItems =
+    content?.menuItems ??
+    html`
+      <post-menu-item><a href="/first">First menu item</a></post-menu-item>
+      <post-menu-item><a href="/second">Second menu item</a></post-menu-item>
+      <post-menu-item><a href="/third">Third menu item</a></post-menu-item>
+    `;
+
+  return (args: Args, context: StoryContext) => {
+    const menuId = context.id.replace(context.componentId, 'menu');
+    return html`
+      <post-menu-trigger for="${menuId}"> ${triggerButton} </post-menu-trigger>
+      <post-menu
+        id="${menuId}"
+        placement="${args.placement !== 'bottom' ? args.placement : nothing}"
+        label="${args.label}"
+      >
+        ${menuItems}
+      </post-menu>
+    `;
+  };
 }
 
 export default meta;
 export const Default: StoryObj = {};
+
+export const Right: StoryObj = {
+  args: {
+    placement: 'right',
+  },
+  render: getMenuRenderer({
+    triggerButtonText: 'Menu on the right',
+  }),
+};
+
+export const IconTrigger: StoryObj = {
+  render: getMenuRenderer({
+    triggerButton: html`
+      <button class="btn btn-tertiary btn-lg btn-icon">
+        <post-icon aria-hidden="true" name="home"></post-icon>
+        <span class="visually-hidden">Open home menu</span>
+      </button>
+    `,
+  }),
+};
+
+export const MixedContent: StoryObj = {
+  render: getMenuRenderer({
+    triggerButtonText: 'Mixed content',
+    menuItems: html`
+      <post-menu-item>
+        <a href="/details">View details <em class="fs-7">link</em></a>
+      </post-menu-item>
+      <post-menu-item>
+        <button type="button">Duplicate <em class="fs-7">button</em></button>
+      </post-menu-item>
+      <post-menu-item>
+        <button type="button">Delete <em class="fs-7">button</em></button>
+      </post-menu-item>
+    `,
+  }),
+};
+
+export const WithIcons: StoryObj = {
+  render: getMenuRenderer({
+    triggerButtonText: 'Icons in front',
+    menuItems: html`
+      <post-menu-item>
+        <button type="button"><post-icon aria-hidden="true" name="edit"></post-icon> Edit</button>
+      </post-menu-item>
+      <post-menu-item>
+        <button type="button"><post-icon aria-hidden="true" name="copy"></post-icon> Copy</button>
+      </post-menu-item>
+      <post-menu-item>
+        <button type="button">
+          <post-icon aria-hidden="true" name="trash"></post-icon> Delete
+        </button>
+      </post-menu-item>
+    `,
+  }),
+};

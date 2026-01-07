@@ -22,3 +22,40 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <Controls of={MenuStories.Default} />
 
 <ComponentsPackageInstall component="<post-menu>" />
+
+## Examples
+
+### Placement
+
+Use the `placement` property to control where the menu appears relative to its trigger.
+
+The menu will attempt to render in the specified position first.
+If there is not enough available space (for example, near the edge of the viewport),
+it will automatically reposition itself to remain fully visible.
+
+<Canvas of={MenuStories.Right} />
+
+### Trigger Button
+
+The menu must be opened using a button.
+Wrap the button with `post-menu-trigger` to associate it with the menu.
+
+Any button can be used as a trigger, such as a tertiary button or an icon button.
+
+<Canvas of={MenuStories.IconTrigger} />
+
+### Allowed Content
+
+Menu items can be rendered as links or buttons depending on their purpose:
+use links for navigation to another page, and buttons for actions that happen on the current page.
+
+<Canvas of={MenuStories.MixedContent} />
+
+### Optional Icons
+
+Menu items may include icons to make actions easier to scan.
+Icons should not replace the text label, each menu item must still be clear without the icon.
+
+For consistency, place icons either before or after the label and use the same position for all items in a menu.
+
+<Canvas of={MenuStories.WithIcons} />
