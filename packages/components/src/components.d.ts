@@ -455,11 +455,6 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Animation style
-          * @default null
-         */
-        "animation"?: 'pop-in' | null;
-        /**
           * Whether or not to display a little pointer arrow
           * @default false
          */
@@ -484,7 +479,7 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the trigger component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
@@ -575,10 +570,6 @@ export namespace Components {
         "toggled": boolean;
     }
     interface PostTooltip {
-        /**
-          * Choose a tooltip animation
-         */
-        "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -1443,11 +1434,6 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Animation style
-          * @default null
-         */
-        "animation"?: 'pop-in' | null;
-        /**
           * Whether or not to display a little pointer arrow
           * @default false
          */
@@ -1576,10 +1562,6 @@ declare namespace LocalJSX {
         "toggled"?: boolean;
     }
     interface PostTooltip {
-        /**
-          * Choose a tooltip animation
-         */
-        "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
           * @default false
