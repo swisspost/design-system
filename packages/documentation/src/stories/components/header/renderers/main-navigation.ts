@@ -3,9 +3,9 @@ import { html } from 'lit';
 export function renderMainnavigation() {
   return html`
     <!-- Main navigation -->
-    <!-- Caption best practice: Don't include "navigation", screen readers add it automatically.
-         e.g. caption="Main" → "Main navigation" -->
-    <post-mainnavigation slot="main-nav" caption="Main">
+    <!-- textMain best practice: Don't include "navigation", screen readers add it automatically.
+         e.g. text-main="Main" → "Main navigation" -->
+    <post-mainnavigation slot="main-nav" text-main="Main">
       <ul>
         <!-- Link only level 1 -->
         <li>
@@ -18,7 +18,7 @@ export function renderMainnavigation() {
         <!-- Level 1 with megadropdown -->
         <li>
           <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-          <post-megadropdown id="letters" label-close="Close" label-back="Back">
+          <post-megadropdown id="letters" text-close="Close" text-back="Back">
             <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
 
             <div class="row row-cols-1 row-cols-sm-2">
@@ -66,7 +66,7 @@ export function renderMainnavigation() {
         </li>
         <li>
           <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-          <post-megadropdown id="packages" label-close="Close" label-back="Back">
+          <post-megadropdown id="packages" text-close="Close" text-back="Back">
             <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
 
             <div class="row row-cols-1 row-cols-sm-2">

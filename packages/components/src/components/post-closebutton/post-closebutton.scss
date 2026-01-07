@@ -28,6 +28,8 @@ post-closebutton .btn {
     height: tokens.get('close-icon-size');
   }
 
+  @include utilities.focus-style;
+
   @include utilities.not-disabled-hover() {
     cursor: pointer;
     background-color: tokens.get('close-hover-bg');

@@ -31,7 +31,7 @@ tokens.$default-map: components.$post-container;
 .container {
   --post-container-max-width: #{tokens.get('grid-max-width')};
   --post-container-offset: calc(
-    max((100vw - var(--post-container-max-width)) / 2, 0px) + var(--post-container-padding-inline)
+    max((100cqw - var(--post-container-max-width)) / 2, 0px) + var(--post-container-padding-inline)
   );
 
   max-width: var(--post-container-max-width);

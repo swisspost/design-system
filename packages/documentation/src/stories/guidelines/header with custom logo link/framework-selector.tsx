@@ -13,10 +13,10 @@ const code = `
     <li><a href="#">Über uns</a></li>
   </ul>
 
-  <!-- Language switch -->
+  <!-- Language menu -->
   <post-language-menu
-    caption="Change the language"
-    description="The currently selected language is English."
+    text-change-language="Change the language"
+    text-current-language="The currently selected language is #name."
     variant="list"
     name="language-menu-example"
     slot="language-menu">
@@ -46,7 +46,7 @@ const code = `
   </ul>
 
   <!-- Main navigation -->
-  <post-mainnavigation slot="main-nav" caption="Haupt">
+  <post-mainnavigation slot="main-nav" text-main="Haupt">
     <ul>
       <!-- Link only level 1 -->
       <li><a href="#">Briefe</a></li>
@@ -55,7 +55,7 @@ const code = `
       <!-- Level 1 with megadropdown -->
       <li>
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-        <post-megadropdown id="briefe" label-close="Schliessen" label-back="Back">
+        <post-megadropdown id="briefe" text-close="Schliessen" text-back="Back">
           <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
           <div class="row row-cols-1 row-cols-sm-2">
             <div class="col">
@@ -86,7 +86,7 @@ const code = `
       </li>
       <li>
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-        <post-megadropdown id="pakete" label-close="Schliessen" label-back="Back">
+        <post-megadropdown id="pakete" text-close="Schliessen" text-back="Back">
           <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
           <div class="row row-cols-1 row-cols-sm-2">
             <div class="col">

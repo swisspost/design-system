@@ -80,11 +80,11 @@ header,
     inset-block-start: var(--post-global-controls-top);
   }
 
-  .target-group {
+  .audience {
     margin-inline-end: auto;
   }
 
-  &.no-target-group .target-group {
+  &.no-audience .audience {
     display: none;
   }
 }
@@ -168,6 +168,7 @@ header,
 
   &:not(.extended) {
     transform: translateY(-100%);
+    display: none;
 
     > * {
       display: none;
