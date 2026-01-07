@@ -9,8 +9,15 @@ tokens.$default-map: components.$post-container;
 
 .container,
 .container-fluid {
+  // We use a grid to center the content instead of margins/padding.
+  // This ensures that 100cqw resolves to the border-box width,
+  // enabling full-bleed content
   width: 100%;
-  margin-inline: auto;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: var(--post-container-width);
+  justify-content: center;
+  container-type: inline-size;
 
   @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
     @include media.min($breakpoint) {
@@ -23,20 +30,23 @@ tokens.$default-map: components.$post-container;
       // To prevent content from overflowing, the container needs to have
       // a padding of at least half the gutter size to offset this negative margin.
       --post-container-padding-inline: max(#{$padding}, calc(0.5 * #{$gutter}));
-      padding-inline: var(--post-container-padding-inline);
     }
   }
 }
 
 .container {
   --post-container-max-width: #{tokens.get('grid-max-width')};
-  --post-container-offset: calc(
-    max((100cqw - var(--post-container-max-width)) / 2, 0px) + var(--post-container-padding-inline)
+  --post-container-width: min(
+    var(--post-container-max-width),
+    calc(100% - 2 * var(--post-container-padding-inline))
   );
-
-  max-width: var(--post-container-max-width);
+  --post-container-offset: max(
+    var(--post-container-padding-inline),
+    calc((100cqw - var(--post-container-max-width)) / 2)
+  );
 }
 
 .container-fluid {
+  --post-container-width: calc(100% - 2 * var(--post-container-padding-inline));
   --post-container-offset: var(--post-container-padding-inline);
 }
