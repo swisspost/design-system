@@ -80,6 +80,16 @@ export class PostHeader {
   @State() megadropdownOpen: boolean = false;
 
   /**
+   * Makes the header content span the full width on screens larger than 1440px.
+   */
+  @Prop({ reflect: true }) fullWidth = false;
+
+  @Watch('fullWidth')
+  validateFullWidth() {
+    checkRequiredAndType(this, 'fullWidth', 'boolean');
+  }
+
+  /**
    * The label of the burger menu button.
    */
   @Prop({ reflect: true }) textMenu!: string;
@@ -155,6 +165,7 @@ export class PostHeader {
 
   componentDidRender() {
     this.validateTextMenu();
+    this.validateFullWidth();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
