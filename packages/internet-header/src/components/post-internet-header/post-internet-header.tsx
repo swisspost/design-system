@@ -141,7 +141,6 @@ export class PostInternetHeader {
 
   /**
    * Displays the header at full width for full-screen applications
-   * @deprecated use the self-managed header for applications.
    */
   @Prop() fullWidth?: boolean = false;
 

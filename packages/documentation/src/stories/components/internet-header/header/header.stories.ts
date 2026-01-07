@@ -48,7 +48,7 @@ const meta: MetaComponent = {
         type: 'boolean',
       },
       table: {
-        category: 'Deprecated props',
+        category: 'Optional props',
       },
     },
     activeRoute: {
@@ -163,22 +163,21 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story =>
-      html`
-        <div
-          class="header-story-wrapper"
-          style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
-        >
-          ${story()}
-          <div class="container">
-            <p class="fake-content my-big"></p>
-            <p class="fake-content my-big"></p>
-            <p class="fake-content my-big"></p>
-            <p class="fake-content my-big"></p>
-            <p class="fake-content my-big"></p>
-          </div>
+    story => html`
+      <div
+        class="header-story-wrapper"
+        style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
+      >
+        ${story()}
+        <div class="container">
+          <p class="fake-content my-big"></p>
+          <p class="fake-content my-big"></p>
+          <p class="fake-content my-big"></p>
+          <p class="fake-content my-big"></p>
+          <p class="fake-content my-big"></p>
         </div>
-      `,
+      </div>
+    `,
   ],
 };
 

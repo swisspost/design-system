@@ -135,7 +135,6 @@ export namespace Components {
         "environment": Environment;
         /**
           * Displays the header at full width for full-screen applications
-          * @deprecated use the self-managed header for applications.
          */
         "fullWidth"?: boolean;
         /**
@@ -454,7 +453,6 @@ declare namespace LocalJSX {
         "environment"?: Environment;
         /**
           * Displays the header at full width for full-screen applications
-          * @deprecated use the self-managed header for applications.
          */
         "fullWidth"?: boolean;
         /**
