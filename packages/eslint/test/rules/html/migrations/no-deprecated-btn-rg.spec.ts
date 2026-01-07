@@ -9,6 +9,15 @@ htmlRuleTester.run(name, rule, {
     {
       code: '<button class="btn">Click me</button>',
     },
+    {
+      code: '<button [class.btn-sm]="hasSmallButton">Click me</button>',
+    },
+    {
+      code: '<button [ngClass]="\'btn btn-sm\'">Click me</button>',
+    },
+    {
+      code: '<button [ngClass]="`btn btn-sm`">Click me</button>',
+    },
   ],
   invalid: [
     {
@@ -16,5 +25,26 @@ htmlRuleTester.run(name, rule, {
       output: '<button class="btn btn-sm">Click me</button>',
       errors: [{ messageId: 'btn-rg' }],
     },
+    {
+      code: '<button [class.btn-rg]="hasSmallButton">Click me</button>',
+      output: '<button [class.btn-sm]="hasSmallButton">Click me</button>',
+      errors: [{ messageId: 'btn-rg' }],
+    },
+
+    {
+      code: '<button [ngClass]="\'btn btn-rg\'">Click me</button>',
+      output: '<button [ngClass]="\'btn btn-sm\'">Click me</button>',
+      errors: [{ messageId: 'btn-rg' }],
+    },
+    {
+      code: '<button [ngClass]="`btn btn-rg`">Click me</button>',
+      output: '<button [ngClass]="`btn btn-sm`">Click me</button>',
+      errors: [{ messageId: 'btn-rg' }],
+    },
+    // {
+    //   code: '<button [class]="btn btn-rg">Click me</button>',
+    //   output: '<button [class]="btn btn-sm">Click me</button>',
+    //   errors: [{ messageId: 'btn-rg' }],
+    // },
   ],
 });
