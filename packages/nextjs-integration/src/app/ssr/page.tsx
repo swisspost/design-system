@@ -94,14 +94,14 @@ export default function Home() {
       </PostCollapsible>
 
       <PostDatepicker
-        labelToggleCalendar="Open calendar"
-        labelNextDecade="Next decade"
-        labelNextMonth="Next month"
-        labelNextYear="Next year"
-        labelPreviousDecade="Previous decade"
-        labelPreviousMonth="Previous month"
-        labelPreviousYear="Previous year"
-        labelSwitchYear="Switch to year view"
+        textToggleCalendar="Open calendar"
+        textNextDecade="Next decade"
+        textNextMonth="Next month"
+        textNextYear="Next year"
+        textPreviousDecade="Previous decade"
+        textPreviousMonth="Previous month"
+        textPreviousYear="Previous year"
+        textSwitchYear="Switch to year view"
       >
         <input type="date" />
       </PostDatepicker>

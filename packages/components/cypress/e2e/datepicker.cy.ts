@@ -95,7 +95,7 @@ describe('datepicker', () => {
       cy.focused().should('have.prop', 'tagName', 'INPUT');
     });
 
-    ['label-next-month', 'label-next-year', 'label-next-decade', 'label-previous-month', 'label-previous-year', 'label-previous-decade', 'label-switch-year', 'label-toggle-calendar'].forEach((label) => {
+    ['text-next-month', 'text-next-year', 'text-next-decade', 'text-previous-month', 'text-previous-year', 'text-previous-decade', 'text-switch-year', 'text-toggle-calendar'].forEach((label) => {
       it('should break if missing ' + label, () => {
         cy.window().then(win => {
           cy.spy(win.console, 'error').as('consoleError');

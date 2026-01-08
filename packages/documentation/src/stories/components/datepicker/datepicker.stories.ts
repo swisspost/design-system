@@ -20,68 +20,68 @@ const meta: MetaComponent = {
     id: 'main',
     inline: false,
     range: false,
-    labelToggleCalendar: "Open calendar" ,
-    labelNextDecade: "Next decade" ,
-    labelNextMonth: "Next month" ,
-    labelNextYear: "Next year" ,
-    labelPreviousDecade: "Previous decade" ,
-    labelPreviousMonth: "Previous month" ,
-    labelPreviousYear: "Previous year" ,
-    labelSwitchYear: "Switch to year view",
+    textToggleCalendar: 'Open calendar',
+    textNextDecade: 'Next decade',
+    textNextMonth: 'Next month',
+    textNextYear: 'Next year',
+    textPreviousDecade: 'Previous decade',
+    textPreviousMonth: 'Previous month',
+    textPreviousYear: 'Previous year',
+    textSwitchYear: 'Switch to year view',
   },
   argTypes: {
-    'min': {
-      control: 'text'
+    min: {
+      control: 'text',
     },
-    'max': {
-      control: 'text'
+    max: {
+      control: 'text',
     },
-    'selectedStartDate': {
-      control: 'text'
+    selectedStartDate: {
+      control: 'text',
     },
-    'selectedEndDate': {
+    selectedEndDate: {
       control: 'text',
       if: {
         arg: 'range',
       },
     },
-    'labelToggleCalendar': {
-      table:{
+    textToggleCalendar: {
+      table: {
         category: 'Labels',
       },
     },
-    'labelNextDecade': {
-      table:{
+    textNextDecade: {
+      table: {
         category: 'Labels',
       },
     },
-    'labelNextMonth': {
-      table:{
+    textNextMonth: {
+      table: {
         category: 'Labels',
       },
     },
-    'labelNextYear': {
-      table:{
+    textNextYear: {
+      table: {
         category: 'Labels',
       },
     },
-    'labelPreviousDecade': {
-      table:{
+    textPreviousDecade: {
+      table: {
         category: 'Labels',
       },
     },
-    'labelPreviousMonth': {
-      table:{
+    textPreviousMonth: {
+      table: {
         category: 'Labels',
       },
     },
-    'labelPreviousYear': {
-      table:{
+    textPreviousYear: {
+      table: {
         category: 'Labels',
       },
     },
-    'labelSwitchYear': {
-      table:{
+    textSwitchYear: {
+      table: {
         category: 'Labels',
       },
     },
@@ -101,60 +101,69 @@ function render(args: Args) {
 function renderPopupRange(args: Args) {
   return html`
     <post-datepicker id=${args.id} range="true" ?min="${args.min}" ?max="${args.max}"
-    label-toggle-calendar="${args.labelToggleCalendar}"
-    label-next-decade="${args.labelNextDecade}"
-    label-next-month="${args.labelNextMonth}"
-    label-next-year="${args.labelNextYear}"
-    label-previous-decade="${args.labelPreviousDecade}"
-    label-previous-month="${args.labelPreviousMonth}"
-    label-previous-year="${args.labelPreviousYear}"
-    label-switch-year="${args.labelSwitchYear}">
+    text-toggle-calendar="${args.textToggleCalendar}"
+    text-next-decade="${args.textNextDecade}"
+    text-next-month="${args.textNextMonth}"
+    text-next-year="${args.textNextYear}"
+    text-previous-decade="${args.textPreviousDecade}"
+    text-previous-month="${args.textPreviousMonth}"
+    text-previous-year="${args.textPreviousYear}"
+    text-switch-year="${args.textSwitchYear}">
     <input type="date"></input>
     <input type="date"></input>
-    </post-datepicker>`
+    </post-datepicker>`;
 }
 
 function renderInlineRange(args: Args) {
-    return html`
-    <post-datepicker id=${args.id} inline="true" range="true" ?min="${args.min}" ?max="${args.max}"
-    label-toggle-calendar="${args.labelToggleCalendar}"
-    label-next-decade="${args.labelNextDecade}"
-    label-next-month="${args.labelNextMonth}"
-    label-next-year="${args.labelNextYear}"
-    label-previous-decade="${args.labelPreviousDecade}"
-    label-previous-month="${args.labelPreviousMonth}"
-    label-previous-year="${args.labelPreviousYear}"
-    label-switch-year="${args.labelSwitchYear}">
-    </post-datepicker>`
+  return html` <post-datepicker
+    id=${args.id}
+    inline="true"
+    range="true"
+    ?min="${args.min}"
+    ?max="${args.max}"
+    text-toggle-calendar="${args.textToggleCalendar}"
+    text-next-decade="${args.textNextDecade}"
+    text-next-month="${args.textNextMonth}"
+    text-next-year="${args.textNextYear}"
+    text-previous-decade="${args.textPreviousDecade}"
+    text-previous-month="${args.textPreviousMonth}"
+    text-previous-year="${args.textPreviousYear}"
+    text-switch-year="${args.textSwitchYear}"
+  >
+  </post-datepicker>`;
 }
 
 function renderPopupSimple(args: Args) {
   return html`
     <post-datepicker id=${args.id} ?min="${args.min}" ?max="${args.max}"
-    label-toggle-calendar="${args.labelToggleCalendar}"
-    label-next-decade="${args.labelNextDecade}"
-    label-next-month="${args.labelNextMonth}"
-    label-next-year="${args.labelNextYear}"
-    label-previous-decade="${args.labelPreviousDecade}"
-    label-previous-month="${args.labelPreviousMonth}"
-    label-previous-year="${args.labelPreviousYear}"
-    label-switch-year="${args.labelSwitchYear}">
+    text-toggle-calendar="${args.textToggleCalendar}"
+    text-next-decade="${args.textNextDecade}"
+    text-next-month="${args.textNextMonth}"
+    text-next-year="${args.textNextYear}"
+    text-previous-decade="${args.textPreviousDecade}"
+    text-previous-month="${args.textPreviousMonth}"
+    text-previous-year="${args.textPreviousYear}"
+    text-switch-year="${args.textSwitchYear}">
       <input class="form-control" type="date"></input>
-    </post-datepicker>`
+    </post-datepicker>`;
 }
 
 function renderInlineSimple(args: Args) {
-    return html`
-    <post-datepicker id=${args.id} inline="true" ?min="${args.min}" ?max="${args.max}"
-    label-toggle-calendar="${args.labelToggleCalendar}"
-    label-next-decade="${args.labelNextDecade}"
-    label-next-month="${args.labelNextMonth}"
-    label-next-year="${args.labelNextYear}"
-    label-previous-decade="${args.labelPreviousDecade}"
-    label-previous-month="${args.labelPreviousMonth}"
-    label-previous-year="${args.labelPreviousYear}"
-    label-switch-year="${args.labelSwitchYear}">
-    </post-datepicker>`
+  return html` <post-datepicker
+    id=${args.id}
+    inline="true"
+    ?min="${args.min}"
+    ?max="${args.max}"
+    text-toggle-calendar="${args.textToggleCalendar}"
+    text-next-decade="${args.textNextDecade}"
+    text-next-month="${args.textNextMonth}"
+    text-next-year="${args.textNextYear}"
+    text-previous-decade="${args.textPreviousDecade}"
+    text-previous-month="${args.textPreviousMonth}"
+    text-previous-year="${args.textPreviousYear}"
+    text-switch-year="${args.textSwitchYear}"
+  >
+  </post-datepicker>`;
 }
 
 type Story = StoryObj;
@@ -165,7 +174,7 @@ export const Default: Story = {};
 export const Inline: Story = {
   args: {
     inline: true,
-    id: 'inline'
+    id: 'inline',
   },
 };
 
@@ -173,7 +182,7 @@ export const InlineRange: Story = {
   args: {
     inline: true,
     range: true,
-    id: 'inline-range'
+    id: 'inline-range',
   },
 };
 
@@ -181,27 +190,29 @@ export const Range: Story = {
   args: {
     inline: false,
     range: true,
-    id: 'range'
+    id: 'range',
   },
 };
 
 export const DisabledDates: Story = {
-  decorators: [(story:StoryFn, context: StoryContext) => {
-    return html`${story(context.args, context)}
-      <script>
-        window.addEventListener('DOMContentLoaded', () => {
-          const dp = document.querySelector('post-datepicker#disabled-dates');
-          dp.renderCellCallback = ({ date, cellType }) => {
-            if (cellType === 'day' && date.getDay() === 0) {
-              return { disabled: true, classes: 'is-sunday' };
-            }
-          };
-        });
-      </script>`
-  }],
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      return html`${story(context.args, context)}
+        <script>
+          window.addEventListener('DOMContentLoaded', () => {
+            const dp = document.querySelector('post-datepicker#disabled-dates');
+            dp.renderCellCallback = ({ date, cellType }) => {
+              if (cellType === 'day' && date.getDay() === 0) {
+                return { disabled: true, classes: 'is-sunday' };
+              }
+            };
+          });
+        </script>`;
+    },
+  ],
   args: {
     inline: true,
     range: false,
-    id: 'disabled-dates'
+    id: 'disabled-dates',
   },
-}
+};
