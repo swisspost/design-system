@@ -20,7 +20,7 @@ const meta: MetaComponent = {
   },
   render,
   args: {
-    label: 'Footer label',
+    textFooter: 'Footer',
   },
   argTypes: {},
 };
@@ -30,7 +30,7 @@ export default meta;
 type Story = StoryObj;
 
 function render(args: Args) {
-  return html`<post-footer label=${args.label}>
+  return html`<post-footer text-footer=${args.textFooter}>
     ${GRID_CELLS.map(
       cell => html`
         <span id="grid-${cell}-title" slot="grid-${cell}-title">Title ${cell}</span>

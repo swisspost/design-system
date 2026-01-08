@@ -173,10 +173,7 @@
   },
   "cli": {
     "packageManager": "pnpm",
-    "schematicCollections": [
-      "@cypress/schematic",
-      "@schematics/angular"
-    ],
+    "schematicCollections": ["@cypress/schematic", "@schematics/angular"],
     "analytics": false
   },
   "schematics": {

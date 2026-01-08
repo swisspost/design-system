@@ -1,5 +1,233 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.56
+
+### Major Changes
+
+- Updated `post-header` to prevent unnecessary h-tags. An h-tag can now only be used for the header title in microsite or one-page variants, other elements no longer use h-tags. (by [@alizedebray](https://github.com/alizedebray) with [#6693](https://github.com/swisspost/design-system/pull/6693))
+
+- Renamed `post-tabs` parts to avoid naming confusions with other components.
+  - `::part(tabs)` is now `::part(post-tabs)`.
+  - `::part(content)` is now `::part(post-tabs-content)`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6806](https://github.com/swisspost/design-system/pull/6806))
+
+- Updated the `post-accordion` and `post-accordion-item` styles to fully align with the design specification. As part of this cleanup, the `accordion-item` part has been removed from `post-accordion-item`. The component’s styles can now be customized directly by targeting the host or by using the exposed parts for the trigger button and body elements (e.g., `::part(post-accordion-body) { ... }`). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6676](https://github.com/swisspost/design-system/pull/6676))
+
+- Integrated the burger menu button into the `<post-header>` by removing the previous `post-togglebutton` slot and introducing the required `textMenu` prop. (by [@myrta2302](https://github.com/myrta2302) with [#6801](https://github.com/swisspost/design-system/pull/6801))
+
+- Added a required `caption` property to the `post-mainnavigation` component for the accessible name of the navigation landmark. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6841](https://github.com/swisspost/design-system/pull/6841))
+
+- ### Renamed the following component props
+
+  #### post-back-to-top
+  - `label` → `textBackToTop`
+
+  #### post-breadcrumbs
+  - `menuLabel` → `textMoreItems`
+  - `label` → `textBreadcrumbs`
+  - `homeText` → `textHome`
+
+  #### post-footer
+  - `label` → `textFooter`
+
+  #### post-language-menu
+  - `caption` → `textChangeLanguage`
+  - `description` → `textCurrentLanguage`
+
+  #### post-main-navigation
+  - `caption` → `textMain`
+
+  #### post-pagination
+  - `labelLast` → `textLast`
+  - `labelFirst` → `textFirst`
+  - `labelPage` → `textPage`
+  - `labelNext` → `textNext`
+  - `labelPrevious` → `textPrevious`
+
+  #### post-popover
+  - `closeButtonCaption` → `textClose`
+
+  #### post-stepper
+  - `activeStepLabel` → `textStepNumber`
+  - `completedLabel` → `textCompletedStep`
+  - `currentLabel` → `textCurrentStep` (by [@myrta2302](https://github.com/myrta2302) with [#6894](https://github.com/swisspost/design-system/pull/6894))
+
+- Update the `post-megadropdown` to allow full customization of its content. The `post-megadropdown` can now contain any HTML elements, not just lists of links.
+
+  As a result, list styling is no longer applied automatically.
+  If you want a properly styled list of links, you must now add the required `post-megadropdown-*` classes to the corresponding elements yourself.
+
+  BEFORE:
+
+  ```html
+  <post-megadropdown id="packages" label-close="Close" label-back="Back">
+    <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
+    <post-list>
+      <p>Send packages</p>
+      <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
+      <post-list-item><a href="/kl">Small goods international</a></post-list-item>
+    </post-list>
+    <post-list>
+      <p><a href="/step-by-step">Step by step</a></p>
+      <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
+      <post-list-item><a href="/kl">Small goods international</a></post-list-item>
+    </post-list>
+  </post-megadropdown>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-megadropdown id="packages" label-close="Close" label-back="Back">
+    <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
+    <div class="row row-cols-1 row-cols-sm-2">
+      <div class="col">
+        <p class="post-megadropdown-list-title" id="send-packages">Send packages</p>
+        <ul class="post-megadropdown-list" aria-labelledby="send-packages">
+          <li><a href="/sch">Packages Switzerland</a></li>
+          <li><a href="/kl">Small goods international</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <a class="post-megadropdown-list-title" id="step-by-step-packages" href="/step-by-step"
+          >Step by step</a
+        >
+        <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+          <li><a href="/sch">Packages Switzerland</a></li>
+          <li><a href="/kl">Small goods international</a></li>
+        </ul>
+      </div>
+    </div>
+  </post-megadropdown>
+  ``` (by [@alizedebray](https://github.com/alizedebray) with
+  [#6891](https://github.com/swisspost/design-system/pull/6891))
+  ````
+
+- Renamed slots in the `post-header` component for improved clarity and consistency. The following slots have been renamed:
+  - `target-group` → `audience`
+  - `global-controls` → `global-nav-primary`
+  - `meta-navigation` → `global-nav-secondary`
+  - `post-language-switch` → `language-menu`
+  - `global-login` → `post-login`
+  - `post-mainnavigation` → `main-nav`
+
+  All slot names must be updated in existing implementations to ensure header components render correctly. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6780](https://github.com/swisspost/design-system/pull/6780))
+
+- Updated the `post-megadropdown` component to no longer use named slots, it now provides only a default slot for its content. The close and back buttons are built into the component and are configured using the `labelClose` and `labelBack` properties instead of slotted markup.
+  To preserve styling, the overview link should use the `.post-megadropdown-overview` class.
+
+  BEFORE:
+
+  ```html
+  <post-megadropdown>
+    <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
+      <post-icon name="arrowleft"></post-icon>
+      Back
+    </button>
+    <post-closebutton slot="close-button">Close</post-closebutton>
+    <a slot="post-megadropdown-overview" href="/letters">Overview Letters</a>
+    <!-- Mega drop-down links -->
+  </post-megadropdown>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-megadropdown label-close="Close" label-back="Back">
+    <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
+    <!-- Mega drop-down links -->
+  </post-megadropdown>
+  ``` (by [@alizedebray](https://github.com/alizedebray) with
+  [#6813](https://github.com/swisspost/design-system/pull/6813))
+  ````
+
+- Renamed `post-menu` parts to avoid naming confusions with other components.
+  - `::part(menu)` is now `::part(post-menu)`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6806](https://github.com/swisspost/design-system/pull/6806))
+
+- Removed `local-controls` and `navigation-controls` slots from the `post-header` component. Use the new `local-nav` slot for all application-specific controls. (by [@alizedebray](https://github.com/alizedebray) with [#6747](https://github.com/swisspost/design-system/pull/6747))
+
+- Renamed language components for improved semantic clarity:
+  - `post-language-switch` → `post-language-menu`
+  - `post-language-option` → `post-language-menu-item`
+
+  Component tags must be updated accordingly. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6773](https://github.com/swisspost/design-system/pull/6773))
+
+- Simplified the `post-footer` component by removing the `post-list` and `post-list-item`. The footer now only uses simple `ul` and `li` tags. (by [@leagrdv](https://github.com/leagrdv) with [#6740](https://github.com/swisspost/design-system/pull/6740))
+
+- Renamed `post-accordion-item` parts to avoid naming confusions with other components.
+  - `::part(button)` is now `::part(post-accordion-button)`.
+  - `::part(body)` is now `::part(post-accordion-body)`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6676](https://github.com/swisspost/design-system/pull/6676))
+
+- Refactored `<post-tabs>` component:
+  - Renamed `post-tab-header` component to `post-tab-item`
+  - Renamed `panel` property to `name` in `post-tab-item` component
+  - Renamed `name` property to `for` in `post-tab-panel` component
+  - Renamed `activePanel` property to `activeTab` in `post-tabs` component
+
+  BEFORE:
+
+  ```html
+  <post-tabs active-panel="first">
+    <post-tab-header panel="first">First tab</post-tab-header>
+    <post-tab-header panel="second">Second tab</post-tab-header>
+    <post-tab-header panel="third">Third tab</post-tab-header>
+
+    <post-tab-panel name="first"> This is the content of the first tab. </post-tab-panel>
+    <post-tab-panel name="second"> This is the content of the second tab. </post-tab-panel>
+    <post-tab-panel name="third"> This is the content of the third tab. </post-tab-panel>
+  </post-tabs>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-tabs active-tab="first">
+    <post-tab-item name="first">First tab</post-tab-item>
+    <post-tab-item name="second">Second tab</post-tab-item>
+    <post-tab-item name="third">Third tab</post-tab-item>
+
+    <post-tab-panel for="first"> This is the content of the first tab. </post-tab-panel>
+    <post-tab-panel for="second"> This is the content of the second tab. </post-tab-panel>
+    <post-tab-panel for="third"> This is the content of the third tab. </post-tab-panel>
+  </post-tabs>
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) with
+  [#6350](https://github.com/swisspost/design-system/pull/6350))
+  ````
+
+### Minor Changes
+
+- Added navigation variant to the `post-tabs` component, enabling anchor-based navigation. The component now automatically detects whether `post-tab-item` elements contain anchor links and switches between panels and navigation variants accordingly. The `aria-current="page"` attribute must be manually added to the anchor element representing the current page to ensure proper styling and accessibility. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6350](https://github.com/swisspost/design-system/pull/6350))
+
+### Patch Changes
+
+- Fixed a header specific issue with a large visual impact. Because of the issue, the component ended up in an incorrect visual state, when the focussed element within (e.g. the burger-menu-toggle), was removed from the DOM during a viewport resize event. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6911](https://github.com/swisspost/design-system/pull/6911))
+
+- Removed `tabindex="0"` from the `post-linkarea` component. The link area is mouse-only and should not be focusable, only the button it contains can receive keyboard focus. (by [@alizedebray](https://github.com/alizedebray) with [#6937](https://github.com/swisspost/design-system/pull/6937))
+
+- Fixed console error "Cannot read properties of undefined" appearing when using the `post-stepper` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6685](https://github.com/swisspost/design-system/pull/6685))
+
+- Updated the `<post-popover-trigger>` component, to provide the ability to wrap it around the `<post-popover>` element, instead of using the `id` and `for` attribute references. (by [@myrta2302](https://github.com/myrta2302) with [#6626](https://github.com/swisspost/design-system/pull/6626))
+
+- Updated the `<post-header>` component to show the local-header when the mobile menu is open and the page is scrolled. (by [@myrta2302](https://github.com/myrta2302) with [#6758](https://github.com/swisspost/design-system/pull/6758))
+
+- Updated `<post-header>` to reset scroll when mobile menu is closed. (by [@myrta2302](https://github.com/myrta2302) with [#6852](https://github.com/swisspost/design-system/pull/6852))
+
+- Updated `post-closebutton` focus styles to always match other buttons, ensuring a consistent focus ring. (by [@alizedebray](https://github.com/alizedebray) with [#6939](https://github.com/swisspost/design-system/pull/6939))
+
+- Fixed burger menu scrolling when a navigation megadropdown is open. (by [@myrta2302](https://github.com/myrta2302) with [#6772](https://github.com/swisspost/design-system/pull/6772))
+
+- Added High Contrast border around the arrow element used in tooltip and popover components. (by [@myrta2302](https://github.com/myrta2302) with [#6623](https://github.com/swisspost/design-system/pull/6623))
+
+- Fixed the `post-accordion-item` button arrow by rotating it 180 degrees so it meets the design requirements. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6676](https://github.com/swisspost/design-system/pull/6676))
+
+- Added guards in `post-header` and `post-collapsible`, to prevent JS animation functions from being executed on server side. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6696](https://github.com/swisspost/design-system/pull/6696))
+
+- Fixed a Firefox-specific rendering engine (Gecko) issue on mobile and tablet related to position sticky, that causes the global header to be positioned incorrectly when invisible child elements receive focus on a scrolled page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6910](https://github.com/swisspost/design-system/pull/6910))
+
+- Updated the animation of the header mega drop-downs and burger menu. (by [@myrta2302](https://github.com/myrta2302) with [#6758](https://github.com/swisspost/design-system/pull/6758))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.56
+  - @swisspost/design-system-styles@10.0.0-next.56
+
 ## 10.0.0-next.55
 
 ### Major Changes
@@ -269,7 +497,6 @@
 - Updated `post-tooltip-trigger` and `post-menu-trigger` components to prevent errors when they do not contain an internal HTML element. (by [@myrta2302](https://github.com/myrta2302) with [#5591](https://github.com/swisspost/design-system/pull/5591))
 
 - Improved URL handling in `post-icon` component:
-
   - Enhanced URL construction to properly handle both absolute and relative URLs
   - Fixed slug detection to correctly identify root paths ("/") as valid slugs
   - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
@@ -301,7 +528,6 @@
 - Improved `post-header` component responsive behavior for better mobile and desktop experience. Removed `postUpdateDevice` event as part of internal refactoring - if you were listening to this event in your application, you'll need to remove those event listeners. Fixed a bug causing the `post-mainnavigation` to misplace after resizing from tablet to desktop and then back to tablet. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5490](https://github.com/swisspost/design-system/pull/5490))
 
 - Updated the following props to be `required`:
-
   - `post-breadcrumbs`: `homeUrl` is now required.
   - `post-collabpsible-trigger`: `for` is now required.
   - `post-language-switch`: `caption` and `description` are now required.
@@ -309,7 +535,6 @@
   - `post-tab-panel`: `name` is now required. (by [@myrta2302](https://github.com/myrta2302) with [#5469](https://github.com/swisspost/design-system/pull/5469))
 
 - Added the styles responsible for preventing fouc (flashes of unstyled content) for web-, angular- and react-components in the respective component packages:
-
   - `@swisspost/design-system-components/post-components/post-components.css`
   - `@swisspost/design-system-components-angular/post-components.css`
   - `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
@@ -327,7 +552,6 @@
 - Replaced thrown errors with console.errors for all property checker functions. (by [@myrta2302](https://github.com/myrta2302) with [#5471](https://github.com/swisspost/design-system/pull/5471))
 
 - Updated the following props to be `optional`:
-
   - `post-banner`: `dismissLabel`, `icon`
   - `post-card-control`: `description`
   - `post-language-option`: `active`, `name`, `url`, `variant`
@@ -336,7 +560,6 @@
   - `post-tag`: `variant`
 
   Updated prop type:
-
   - `post-card-control`: `validity` type changed to boolean. (by [@myrta2302](https://github.com/myrta2302) with [#5469](https://github.com/swisspost/design-system/pull/5469))
 
 - Updated dependencies:
@@ -356,7 +579,6 @@
 ### Major Changes
 
 - Prefixed all CSS custom variables with `post`:
-
   - `--global-header-top` is now `--post-global-header-top`
   - `--local-header-top` is now `--post-local-header-top`
   - `--logo-height` is now `--post-logo-height`
@@ -1110,7 +1332,6 @@
 ### Major Changes
 
 - Synchronized the versions of the following packages:
-
   - @swisspost/design-system-styles
   - @swisspost/design-system-components
   - @swisspost/design-system-components-react
@@ -1122,7 +1343,6 @@
   This will help understanding the dependencies between these packages at a glance but also means that for the individual pacakges, semver is no longer being used. This enables us also to talk about and document Design System versions as a whole instead of documenting the fragmented versions in a complex lookup table. (by [@gfellerph](https://github.com/gfellerph) with [#2856](https://github.com/swisspost/design-system/pull/2856))
 
 - Updated the package entry properties in the package.json to the by stencil recommended files:
-
   - Updated the `main` property from `loader/index.cjs.js` to `dist/index.cjs.js`
   - Updated the `module` property from `loader/index.js` to `dist/loader.js`
   - Updated the `types` property from `loader/index.d.ts` to `dist/types/index.d.ts`
@@ -1157,7 +1377,6 @@
 
 - Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
   Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
-
   - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
   - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
 

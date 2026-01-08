@@ -4,7 +4,6 @@ some content
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property            | Attribute   | Description                                                                                                               | Type                                                                           | Default     |
@@ -17,25 +16,27 @@ some content
 | `rotate`            | `rotate`    | The number of degree for the css rotate transformation.                                                                   | `number`                                                                       | `undefined` |
 | `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`                                                                       | `undefined` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [post-accordion-item](../post-accordion-item)
- - [post-back-to-top](../post-back-to-top)
- - [post-breadcrumb-item](../post-breadcrumb-item)
- - [post-breadcrumbs](../post-breadcrumbs)
- - [post-card-control](../post-card-control)
- - [post-closebutton](../post-closebutton)
- - [post-datepicker](../post-datepicker)
- - [post-language-menu](../post-language-menu)
- - [post-mainnavigation](../post-mainnavigation)
- - [post-megadropdown-trigger](../post-megadropdown-trigger)
- - [post-pagination](../post-pagination)
- - [post-rating](../post-rating)
+- [post-accordion-item](../post-accordion-item)
+- [post-back-to-top](../post-back-to-top)
+- [post-breadcrumb-item](../post-breadcrumb-item)
+- [post-breadcrumbs](../post-breadcrumbs)
+- [post-card-control](../post-card-control)
+- [post-closebutton](../post-closebutton)
+- [post-datepicker](../post-datepicker)
+- [post-header](../post-header)
+- [post-language-menu](../post-language-menu)
+- [post-mainnavigation](../post-mainnavigation)
+- [post-megadropdown](../post-megadropdown)
+- [post-megadropdown-trigger](../post-megadropdown-trigger)
+- [post-pagination](../post-pagination)
+- [post-rating](../post-rating)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-accordion-item --> post-icon
@@ -45,14 +46,16 @@ graph TD;
   post-card-control --> post-icon
   post-closebutton --> post-icon
   post-datepicker --> post-icon
+  post-header --> post-icon
   post-language-menu --> post-icon
   post-mainnavigation --> post-icon
+  post-megadropdown --> post-icon
   post-megadropdown-trigger --> post-icon
   post-pagination --> post-icon
   post-rating --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

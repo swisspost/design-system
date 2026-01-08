@@ -11,5 +11,6 @@ assignees: ''
 <!-- Add any required tasks not listed, remove any unnecessary tasks -->
 
 - [ ] Create tokens in Token Studio
-- [ ] Add tokens to figma component
+- [ ] Export new tokens to Figma as variables
 - [ ] Push new tokens to tokens branch in GitHub
+- [ ] Add tokens to Figma component

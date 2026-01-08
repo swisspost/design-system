@@ -16,9 +16,9 @@ const meta: MetaComponent = {
   },
   args: {
     homeUrl: '/',
-    homeText: 'Home',
-    label: 'Breadcrumbs',
-    menuLabel: 'More breadcrumb items',
+    textHome: 'Home',
+    textBreadcrumbs: 'Breadcrumbs',
+    textMoreItems: 'More items',
   },
 };
 
@@ -30,9 +30,9 @@ export const Default: Story = {
   render: (args: Args) => html`
     <post-breadcrumbs
       home-url=${args.homeUrl}
-      home-text=${args.homeText}
-      label=${args.label}
-      menu-label=${args.menuLabel}
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -45,9 +45,9 @@ export const Concatenated: Story = {
   render: (args: Args) => html`
     <post-breadcrumbs
       home-url=${args.homeUrl}
-      home-text=${args.homeText}
-      label=${args.label}
-      menu-label=${args.menuLabel}
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -83,8 +83,8 @@ export const BreadcrumbItem: Story = {
       control: { type: 'text' },
     },
     homeUrl: { table: { disable: true } },
-    homeText: { table: { disable: true } },
-    label: { table: { disable: true } },
-    menuLabel: { table: { disable: true } },
+    textHome: { table: { disable: true } },
+    textBreadcrumbs: { table: { disable: true } },
+    textMoreItems: { table: { disable: true } },
   },
 };
