@@ -54,14 +54,17 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
               context.report({
                 messageId,
                 loc: node.loc,
-                ...(newClass
-                  ? {
-                      fix(fixer) {
-                        const fixedNode = $node.removeClass(oldClass).addClass(newClass);
-                        return fixer.replaceTextRange(node.range, fixedNode.toString());
-                      },
-                    }
-                  : {}),
+                fix(fixer) {
+                  const fixedNode = $node.removeClass(oldClass).addClass(newClass);
+
+                  // Remove empty class attribute
+                  const classValue = fixedNode.attr('class');
+                  if (!classValue || classValue.trim() === '') {
+                    fixedNode.removeAttr('class');
+                  }
+
+                  return fixer.replaceTextRange(node.range, fixedNode.toString());
+                },
               });
             }
           });
