@@ -167,6 +167,17 @@ input.form-control {
     opacity: 1;
   }
 
+  // Safari-specific: Override yellow placeholder text color in date/time inputs
+  &[type='date'],
+  &[type='datetime-local'],
+  &[type='month'],
+  &[type='week'],
+  &[type='time'] {
+    &::-webkit-datetime-edit-fields-wrapper {
+      -webkit-text-fill-color: tokens.get('input-color-enabled-fg') !important;
+    }
+  }
+
   &:disabled {
     color: tokens.get('input-color-disabled-fg');
     background-color: tokens.get('input-color-disabled-bg');
