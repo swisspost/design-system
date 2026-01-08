@@ -524,11 +524,11 @@ export class PostDatepicker {
     if (this.dpContainer) {
       const options: AirDatepickerCustomOptions = {
         navTitles: {
-          days: `<button aria-label="${this.textSwitchYear}"><strong>MMMM yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
-          months: `<button aria-label="${this.textSwitchYear}"><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
+          days: `<button aria-label="${this.textSwitchYear}"><strong>MMMM yyyy</strong><post-icon name="chevrondown"></post-icon></button>`,
+          months: `<button aria-label="${this.textSwitchYear}"><strong>yyyy</strong><post-icon name="chevrondown"></post-icon></button>`,
         },
-        prevHtml: '<button><post-icon size="small" name="2049" ></post-icon></button>',
-        nextHtml: '<button><post-icon size="small" name="2050" ></post-icon></button>',
+        prevHtml: '<button><post-icon name="chevronleft" ></post-icon></button>',
+        nextHtml: '<button><post-icon name="chevronright" ></post-icon></button>',
         range: this.range,
         inline: true,
         autoClose: true,
