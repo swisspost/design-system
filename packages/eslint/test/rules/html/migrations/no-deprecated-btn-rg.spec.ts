@@ -18,6 +18,9 @@ htmlRuleTester.run(name, rule, {
     {
       code: '<button [ngClass]="`btn btn-sm`">Click me</button>',
     },
+    {
+      code: '<button [ngClass]="{btn-2:btn-1, btn-2:btn-sm}">Click me</button>',
+    },
   ],
   invalid: [
     {
@@ -41,10 +44,10 @@ htmlRuleTester.run(name, rule, {
       output: '<button [ngClass]="`btn btn-sm`">Click me</button>',
       errors: [{ messageId: 'btn-rg' }],
     },
-    // {
-    //   code: '<button [class]="btn btn-rg">Click me</button>',
-    //   output: '<button [class]="btn btn-sm">Click me</button>',
-    //   errors: [{ messageId: 'btn-rg' }],
-    // },
+    {
+      code: '<button [ngClass]="{btn-2:btn-1, btn-2:btn-rg}">Click me</button>',
+      output: '<button [ngClass]="{btn-2:btn-1, btn-2:btn-sm}">Click me</button>',
+      errors: [{ messageId: 'btn-rg' }],
+    },
   ],
 });

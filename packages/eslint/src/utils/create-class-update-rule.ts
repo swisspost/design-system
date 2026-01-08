@@ -87,13 +87,16 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                         return fixer.replaceTextRange(node.range, $node.toString());
                       },
                     });
-                  } else if (attr === '[ngclass]' && $node.attr(attrName)?.includes(oldClass)) {
+                  } // ----- CASE 2: [ngClass] (string literal) -----
+                  else if (attr === '[ngclass]' && $node.attr(attrName)?.includes(oldClass)) {
                     const rawValue = attribs[attrName].trim();
 
                     const isStringLiteral =
-                      (rawValue.startsWith("'") && rawValue.endsWith("'")) ||
-                      (rawValue.startsWith('"') && rawValue.endsWith('"')) ||
-                      (rawValue.startsWith('`') && rawValue.endsWith('`'));
+                      rawValue.length >= 2 &&
+                      ['"', "'", '`'].includes(rawValue[0]) &&
+                      rawValue[0] === rawValue.at(-1);
+
+                    const isObjectLiteral = rawValue.startsWith('{') && rawValue.endsWith('}');
 
                     // value is a string literal
                     if (isStringLiteral) {
@@ -109,9 +112,43 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
 
                       $node.removeAttr(attrName);
 
-                      console.log($node.toString());
-
                       // report with fixer
+                      context.report({
+                        loc: node.loc,
+                        messageId,
+                        fix(fixer) {
+                          return fixer.replaceTextRange(node.range, $node.toString());
+                        },
+                      });
+                    }
+                    // ----- CASE 3: [ngClass]  (object literal) -----
+                    else if (isObjectLiteral) {
+                      try {
+                        // Simple object literal parsing
+                        const objStr = $node
+                          .attr(attrName)
+                          ?.toString()
+                          .replace(/(\w+)\s*:/g, '"$1":');
+
+                        if (!objStr) return;
+                        const parsedObj: Record<string, string> = JSON.parse(objStr);
+                        console.log(parsedObj);
+                        const newObj: Record<string, string> = {};
+                        for (const key of Object.keys(parsedObj)) {
+                          const newKey = config.mutations[key]?.[1] || key;
+                          newObj[newKey] = parsedObj[key];
+                        }
+                        // Serialize back to Angular object literal style
+                        const newObjStr = JSON.stringify(newObj).replace(/"(\w+)":/g, '$1:');
+                        console.log('new', newObjStr);
+
+                        const originalAttrName = '[ngClass]';
+                        $node.attr(originalAttrName, newObjStr);
+
+                        $node.removeAttr(attrName);
+                      } catch {
+                        // fallback: leave as is if parsing fails
+                      }
                       context.report({
                         loc: node.loc,
                         messageId,
@@ -122,9 +159,9 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                     }
                   }
 
-                  // const isObjectLiteral = rawValue.startsWith('{') && rawValue.endsWith('}');
-                  // const isArrayLiteral = rawValue.startsWith('[') && rawValue.endsWith(']');
                   // console.log('isObjectLiteral:', isObjectLiteral);
+                  // const isArrayLiteral = rawValue.startsWith('[') && rawValue.endsWith(']');
+
                   // console.log('isArrayLiteral:', isArrayLiteral);
 
                   // let newAttrValue = attribs[attrName];
@@ -135,29 +172,6 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                   //     .split(/\s+/)
                   //     .map(cls => config.mutations[cls]?.[1] || cls);
                   //   newAttrValue = parts.join(' ');
-                  //   return fixer.replaceTextRange(
-                  //     [node.range[0], node.range[1]],
-                  //     node.raw.replace(attribs[attrName], newAttrValue),
-                  //   );
-                  // }
-
-                  // // ----- CASE 3: [ngClass] (object literal) -----
-                  // else if (attr === '[ngclass]') {
-                  //   try {
-                  //     // Simple object literal parsing
-                  //     const objStr = newAttrValue.replace(/(\w+)\s*:/g, '"$1":');
-                  //     const parsedObj: Record<string, any> = JSON.parse(objStr);
-                  //     const newObj: Record<string, any> = {};
-                  //     for (const key of Object.keys(parsedObj)) {
-                  //       const newKey = config.mutations[key]?.[1] || key;
-                  //       newObj[newKey] = parsedObj[key];
-                  //     }
-                  //     // Serialize back to Angular object literal style
-                  //     const newObjStr = JSON.stringify(newObj).replace(/"(\w+)":/g, '$1:');
-                  //     newAttrValue = newObjStr;
-                  //   } catch {
-                  //     // fallback: leave as is if parsing fails
-                  //   }
                   //   return fixer.replaceTextRange(
                   //     [node.range[0], node.range[1]],
                   //     node.raw.replace(attribs[attrName], newAttrValue),
