@@ -786,16 +786,6 @@ export class PostDatepicker {
     });
   }
 
-  // private blockNativeCalendarOpen() {
-  //   this.dpInputs.forEach(dpInput => {
-  //     dpInput.addEventListener('keydown', e => {
-  //       if (e.key === ' ') {
-  //         e.preventDefault();
-  //       }
-  //     });
-  //   });
-  // }
-
   async componentDidLoad() {
     this.configDatepicker();
     this.setupGridObserver();
