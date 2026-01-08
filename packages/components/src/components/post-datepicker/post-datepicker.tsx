@@ -95,75 +95,75 @@ export class PostDatepicker {
   /**
    * Label for "Next month" button
    */
-  @Prop({ reflect: true }) labelNextMonth!: string;
-  @Watch('labelNextMonth')
-  validateLabelNextMonth() {
-    checkRequiredAndType(this, 'labelNextMonth', 'string');
+  @Prop({ reflect: true }) textNextMonth!: string;
+  @Watch('textNextMonth')
+  validateTextNextMonth() {
+    checkRequiredAndType(this, 'textNextMonth', 'string');
   }
 
   /**
    * Label for "Next year" button
    */
-  @Prop({ reflect: true }) labelNextYear!: string;
-  @Watch('labelNextYear')
-  validateLabelNextYear() {
-    checkRequiredAndType(this, 'labelNextYear', 'string');
+  @Prop({ reflect: true }) textNextYear!: string;
+  @Watch('textNextYear')
+  validateTextNextYear() {
+    checkRequiredAndType(this, 'textNextYear', 'string');
   }
 
   /**
    * Label for "Next decade" button
    */
-  @Prop({ reflect: true }) labelNextDecade!: string;
-  @Watch('labelNextDecade')
-  validateLabelNextDecade() {
-    checkRequiredAndType(this, 'labelNextDecade', 'string');
+  @Prop({ reflect: true }) textNextDecade!: string;
+  @Watch('textNextDecade')
+  validateTextNextDecade() {
+    checkRequiredAndType(this, 'textNextDecade', 'string');
   }
 
   /**
    * Label for "Previous month" button
    */
-  @Prop({ reflect: true }) labelPreviousMonth!: string;
-  @Watch('labelPreviousMonth')
-  validateLabelPreviousMonth() {
-    checkRequiredAndType(this, 'labelPreviousMonth', 'string');
+  @Prop({ reflect: true }) textPreviousMonth!: string;
+  @Watch('textPreviousMonth')
+  validateTextPreviousMonth() {
+    checkRequiredAndType(this, 'textPreviousMonth', 'string');
   }
 
   /**
    * Label for "Previous year" button
    */
-  @Prop({ reflect: true }) labelPreviousYear!: string;
-  @Watch('labelPreviousYear')
-  validateLabelPreviousYear() {
-    checkRequiredAndType(this, 'labelPreviousYear', 'string');
+  @Prop({ reflect: true }) textPreviousYear!: string;
+  @Watch('textPreviousYear')
+  validateTextPreviousYear() {
+    checkRequiredAndType(this, 'textPreviousYear', 'string');
   }
 
   /**
    * Label for "Previous decade" button
    */
-  @Prop({ reflect: true }) labelPreviousDecade!: string;
-  @Watch('labelPreviousDecade')
-  validateLabelPreviousDecade() {
-    checkRequiredAndType(this, 'labelPreviousDecade', 'string');
+  @Prop({ reflect: true }) textPreviousDecade!: string;
+  @Watch('textPreviousDecade')
+  validateTextPreviousDecade() {
+    checkRequiredAndType(this, 'textPreviousDecade', 'string');
   }
 
   /**
    * Label for the "Switch to year view" title button
    */
-  @Prop({ reflect: true }) labelSwitchYear!: string;
-  @Watch('labelSwitchYear')
-  validateLabelSwitchYear() {
-    checkRequiredAndType(this, 'labelSwitchYear', 'string');
+  @Prop({ reflect: true }) textSwitchYear!: string;
+  @Watch('textSwitchYear')
+  validateTextSwitchYear() {
+    checkRequiredAndType(this, 'textSwitchYear', 'string');
   }
 
   /**
    * Label for the toggle button that opens the calendar
    * Only needed when calendar is connected to input
    */
-  @Prop() labelToggleCalendar?: string;
-  @Watch('labelToggleCalendar')
-  validateLabelToggleCalendar() {
+  @Prop() textToggleCalendar?: string;
+  @Watch('textToggleCalendar')
+  validateTextToggleCalendar() {
     if (!this.inline) {
-      checkRequiredAndType(this, 'labelToggleCalendar', 'string');
+      checkRequiredAndType(this, 'textToggleCalendar', 'string');
     }
   }
 
@@ -336,14 +336,14 @@ export class PostDatepicker {
    */
   private updateNavigationButtonLabels() {
     if (this.currentViewType === 'months') {
-      this.prevBtn?.setAttribute('aria-label', this.labelPreviousYear);
-      this.nextBtn?.setAttribute('aria-label', this.labelNextYear);
+      this.prevBtn?.setAttribute('aria-label', this.textPreviousYear);
+      this.nextBtn?.setAttribute('aria-label', this.textNextYear);
     } else if (this.currentViewType === 'years') {
-      this.prevBtn?.setAttribute('aria-label', this.labelPreviousDecade);
-      this.nextBtn?.setAttribute('aria-label', this.labelNextDecade);
+      this.prevBtn?.setAttribute('aria-label', this.textPreviousDecade);
+      this.nextBtn?.setAttribute('aria-label', this.textNextDecade);
     } else {
-      this.prevBtn?.setAttribute('aria-label', this.labelPreviousMonth);
-      this.nextBtn?.setAttribute('aria-label', this.labelNextMonth);
+      this.prevBtn?.setAttribute('aria-label', this.textPreviousMonth);
+      this.nextBtn?.setAttribute('aria-label', this.textNextMonth);
     }
   }
 
@@ -524,8 +524,8 @@ export class PostDatepicker {
     if (this.dpContainer) {
       const options: AirDatepickerCustomOptions = {
         navTitles: {
-          days: `<button aria-label="${this.labelSwitchYear}"><strong>MMMM yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
-          months: `<button aria-label="${this.labelSwitchYear}"><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
+          days: `<button aria-label="${this.textSwitchYear}"><strong>MMMM yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
+          months: `<button aria-label="${this.textSwitchYear}"><strong>yyyy</strong><post-icon size="small" name="2052"></post-icon></button>`,
         },
         prevHtml: '<button><post-icon size="small" name="2049" ></post-icon></button>',
         nextHtml: '<button><post-icon size="small" name="2050" ></post-icon></button>',
@@ -786,20 +786,30 @@ export class PostDatepicker {
     });
   }
 
+  // private blockNativeCalendarOpen() {
+  //   this.dpInputs.forEach(dpInput => {
+  //     dpInput.addEventListener('keydown', e => {
+  //       if (e.key === ' ') {
+  //         e.preventDefault();
+  //       }
+  //     });
+  //   });
+  // }
+
   async componentDidLoad() {
     this.configDatepicker();
     this.setupGridObserver();
     this.setupNavObserver();
     this.validateSelectedStartDate();
     this.validateSelectedEndDate();
-    this.validateLabelToggleCalendar();
-    this.validateLabelNextDecade();
-    this.validateLabelNextMonth();
-    this.validateLabelNextYear();
-    this.validateLabelPreviousDecade();
-    this.validateLabelPreviousMonth();
-    this.validateLabelPreviousYear();
-    this.validateLabelSwitchYear();
+    this.validateTextToggleCalendar();
+    this.validateTextNextDecade();
+    this.validateTextNextMonth();
+    this.validateTextNextYear();
+    this.validateTextPreviousDecade();
+    this.validateTextPreviousMonth();
+    this.validateTextPreviousYear();
+    this.validateTextSwitchYear();
     this.validateRange();
 
     if (this.inline) {
@@ -834,7 +844,7 @@ export class PostDatepicker {
               <button
                 onClick={e => this.show(e.currentTarget as HTMLElement)}
                 aria-haspopup="true"
-                aria-label={this.labelToggleCalendar}
+                aria-label={this.textToggleCalendar}
               >
                 <post-icon name="calendar"></post-icon>
               </button>
