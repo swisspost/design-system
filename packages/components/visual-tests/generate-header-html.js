@@ -31,7 +31,7 @@ const BASE_TEMPLATE = `<!DOCTYPE html>
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
   <body>
-    <post-header>
+    <post-header text-menu="Menu">
       {{HEADER_CONTENT}}
     </post-header>
   </body>
@@ -42,18 +42,18 @@ const COMPONENTS = {
   logo: `<!-- Logo -->
   <post-logo slot="post-logo" url="/">Homepage</post-logo>`,
 
-  targetGroup: `<!-- Target Group -->
-  <ul slot="target-group">
+  audience: `<!-- Audience -->
+  <ul slot="audience">
     <li>
-      <a href="#"{{TARGET_GROUP_CURRENT}}>Private customers</a>
+      <a href="#"{{AUDIENCE_CURRENT}}>Private customers</a>
     </li>
     <li>
       <a href="#">Business customers</a>
     </li>
   </ul>`,
 
-  globalControls: `<!-- Global controls (Search) -->
-  <ul slot="global-controls">
+  globalNavPrimary: `<!-- Global primary navigation (Search) -->
+  <ul slot="global-nav-primary">
     <li>
       <a href="">
         <span>Search</span>
@@ -62,10 +62,10 @@ const COMPONENTS = {
     </li>
   </ul>`,
 
-  metaNavigation: `<!-- Meta navigation -->
-  <ul slot="meta-navigation">
+  globalNavSecondary: `<!-- Global secondary navigation -->
+  <ul slot="global-nav-secondary">
     <li>
-      <a href="{{META_NAV_CURRENT}}">
+      <a href="{{GLOBAL_NAV_SECONDARY_CURRENT}}">
         Jobs
         <post-icon name="jobs" aria-hidden="true"></post-icon>
       </a>
@@ -78,13 +78,19 @@ const COMPONENTS = {
     </li>
   </ul>`,
 
-  languageMenu: `<!-- Language switch -->
+  globalNavSecondaryJobsOnly: `<!-- Global secondary navigation (Jobs link only) -->
+  <a href="" slot="global-nav-secondary" aria-current="location">
+    Jobs
+    <post-icon name="jobs" aria-hidden="true"></post-icon>
+  </a>`,
+
+  languageMenu: `<!-- Language menu -->
   <post-language-menu
-    caption="Change the language"
-    description="The currently selected language is English."
+    text-change-language="Change the language"
+    text-current-language="The currently selected language is English."
     variant="list"
     name="language-menu-example"
-    slot="post-language-switch"
+    slot="language-menu"
   >
     <post-language-menu-item code="de" name="German">de</post-language-menu-item>
     <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
@@ -93,65 +99,60 @@ const COMPONENTS = {
   </post-language-menu>`,
 
   globalLogin: `<!-- Global header login link -->
-  <a href="" slot="global-login">
+  <a href="" slot="post-login">
     <span>Login</span>
     <post-icon name="login"></post-icon>
   </a>`,
 
-  userMenu: `<!-- Global/Local user menu -->
-  <post-menu-trigger for="user-menu">
-    <button class="btn btn-link" type="button">
-      <post-avatar
-        firstname="John"
-        lastname="Doe"
-        description="Current user is John Doe."
-      ></post-avatar>
-      <span class="visually-hidden">Access user links.</span>
-    </button>
-  </post-menu-trigger>
-  <post-menu id="user-menu" label="User links">
-    <div slot="header">
-      <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
-      John Doe
-    </div>
-    <post-menu-item>
-      <a href="">
-        <post-icon aria-hidden="true" name="profile"></post-icon>
-        My Profile
-      </a>
-    </post-menu-item>
-    <post-menu-item>
-      <a href="">
-        <post-icon aria-hidden="true" name="letter"></post-icon>
-        Messages
-      </a>
-    </post-menu-item>
-    <post-menu-item>
-      <a href="">
-        <post-icon aria-hidden="true" name="gear"></post-icon>
-        Setting
-      </a>
-    </post-menu-item>
-    <post-menu-item>
-      <button type="button">
-        <post-icon aria-hidden="true" name="logout"></post-icon>
-        Logout
+  globalUserMenu: `<!-- Global user menu -->
+  <div slot="post-login">
+    <post-menu-trigger for="user-menu">
+      <button class="btn btn-link" type="button">
+        <post-avatar
+          firstname="John"
+          lastname="Doe"
+          description="Current user is John Doe."
+        ></post-avatar>
+        <span class="visually-hidden">Access user links.</span>
       </button>
-    </post-menu-item>
-  </post-menu>`,
-
-  burgerButton: `<!-- Menu button for mobile -->
-  <post-togglebutton slot="post-togglebutton">
-    <span>Menu</span>
-    <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-  </post-togglebutton>`,
+    </post-menu-trigger>
+    <post-menu id="user-menu" label="User links">
+      <div slot="header">
+        <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
+        John Doe
+      </div>
+      <post-menu-item>
+        <a href="">
+          <post-icon aria-hidden="true" name="profile"></post-icon>
+          My Profile
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <a href="">
+          <post-icon aria-hidden="true" name="letter"></post-icon>
+          Messages
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <a href="">
+          <post-icon aria-hidden="true" name="gear"></post-icon>
+          Setting
+        </a>
+      </post-menu-item>
+      <post-menu-item>
+        <button type="button">
+          <post-icon aria-hidden="true" name="logout"></post-icon>
+          Logout
+        </button>
+      </post-menu-item>
+    </post-menu>
+  </div>`,
 
   title: `<!-- Application title -->
   <p slot="title">{{TITLE_TEXT}}</p>`,
 
   mainNavigation: `<!-- Main navigation -->
-  <post-mainnavigation slot="post-mainnavigation" caption="Main">
+  <post-mainnavigation slot="main-nav" text-main="Main">
     <ul>
       <!-- Link only level 1 -->
       <li>
@@ -163,90 +164,92 @@ const COMPONENTS = {
       <!-- Level 1 with megadropdown -->
       <li>
         <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-        <post-megadropdown id="letters">
-          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-            <post-icon name="arrowleft"></post-icon>
-            Back
-          </button>
-          <post-closebutton slot="close-button">Close</post-closebutton>
-          <a slot="megadropdown-overview-link" href="/letters">Overview Letters</a>
-          <post-list>
-            <p>Send letters</p>
-            <post-list-item slot="post-list-item">
-              <a href="/sch">Letters Switzerland</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="/kl">Small items abroad</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="">Goods abroad</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="">Express and courier</a>
-            </post-list-item>
-          </post-list>
-          <post-list>
-            <p><a href="/step-by-step">Step by step</a></p>
-            <post-list-item slot="post-list-item">
-              <a href="/sch">Packages Switzerland</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="/kl">Small items abroad</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="">Goods abroad</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="">Express and courier</a>
-            </post-list-item>
-          </post-list>
+        <post-megadropdown id="letters" text-close="Close" text-back="Back">
+          <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
+          <div class="row row-cols-1 row-cols-sm-2">
+            <div class="col">
+              <p class="post-megadropdown-list-title" id="send-letters">Send letters</p>
+              <ul class="post-megadropdown-list" aria-labelledby="send-letters">
+                <li>
+                  <a href="/sch">Letters Switzerland</a>
+                </li>
+                <li>
+                  <a href="/kl">Small items abroad</a>
+                </li>
+                <li>
+                  <a href="">Goods abroad</a>
+                </li>
+                <li>
+                  <a href="">Express and courier</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col">
+              <a class="post-megadropdown-list-title" id="step-by-step-letters" href="/step-by-step">Step by step</a>
+              <ul class="post-megadropdown-list" aria-labelledby="step-by-step-letters">
+                <li>
+                  <a href="/sch">Packages Switzerland</a>
+                </li>
+                <li>
+                  <a href="/kl">Small items abroad</a>
+                </li>
+                <li>
+                  <a href="">Goods abroad</a>
+                </li>
+                <li>
+                  <a href="">Express and courier</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </post-megadropdown>
       </li>
       <li>
         <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-        <post-megadropdown id="packages">
-          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-            <post-icon name="arrowleft"></post-icon>
-            Back
-          </button>
-          <post-closebutton slot="close-button">Close</post-closebutton>
-          <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
-          <post-list>
-            <p>Send packages</p>
-            <post-list-item slot="post-list-item">
-              <a href="/sch">Packages Switzerland</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="/kl">Small items abroad</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="">Goods abroad</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="">Express and courier</a>
-            </post-list-item>
-          </post-list>
-          <post-list>
-            <p><a href="/step-by-step">Step by step</a></p>
-            <post-list-item slot="post-list-item">
-              <a href="/sch">Packages Switzerland</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="/kl">Small items abroad</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="">Goods abroad</a>
-            </post-list-item>
-            <post-list-item slot="post-list-item">
-              <a href="">Express and courier</a>
-            </post-list-item>
-          </post-list>
+        <post-megadropdown id="packages" text-close="Close" text-back="Back">
+          <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
+          <div class="row row-cols-1 row-cols-sm-2">
+            <div class="col">
+              <p class="post-megadropdown-list-title" id="send-packages">Send packages</p>
+              <ul class="post-megadropdown-list" aria-labelledby="send-packages">
+                <li>
+                  <a href="/sch">Packages Switzerland</a>
+                </li>
+                <li>
+                  <a href="/kl">Small items abroad</a>
+                </li>
+                <li>
+                  <a href="">Goods abroad</a>
+                </li>
+                <li>
+                  <a href="">Express and courier</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col">
+              <a class="post-megadropdown-list-title" id="step-by-step-packages" href="/step-by-step">Step by step</a>
+              <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+                <li>
+                  <a href="/sch">Packages Switzerland</a>
+                </li>
+                <li>
+                  <a href="/kl">Small items abroad</a>
+                </li>
+                <li>
+                  <a href="">Goods abroad</a>
+                </li>
+                <li>
+                  <a href="">Express and courier</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </post-megadropdown>
       </li>
     </ul>
   </post-mainnavigation>`,
 
-  localNavJobs: `<!-- Navigation controls (Jobs) -->
+  localNavJobs: `<!-- Local navigation (Jobs) -->
   <ul slot="local-nav">
     <li>
       <a href="">
@@ -257,7 +260,7 @@ const COMPONENTS = {
     {{LOCAL_NAV_LOGIN_OR_USER}}
   </ul>`,
 
-  localNavMicrosite: `<!-- Custom controls (Microsite) -->
+  localNavMicrosite: `<!-- Local navigation (Microsite) -->
   <ul slot="local-nav">
     <li>
       <a href="#">
@@ -322,14 +325,14 @@ const COMPONENTS = {
 // Variant configurations (what components to include)
 const VARIANTS = {
   'onepager': {
-    components: ['logo', 'languageMenu', 'burgerButton', 'title'],
+    components: ['logo', 'languageMenu', 'title'],
     replacements: {
       '{{TITLE_TEXT}}': '[One Pager Title]',
     },
   },
 
   'microsite-loggedout': {
-    components: ['logo', 'languageMenu', 'burgerButton', 'title', 'localNavMicrosite', 'mainNavigation'],
+    components: ['logo', 'languageMenu', 'title', 'localNavMicrosite', 'mainNavigation'],
     replacements: {
       '{{TITLE_TEXT}}': '[Microsite Title]',
       '{{LOCAL_NAV_LOGIN_OR_USER}}': COMPONENTS.localLogin,
@@ -338,7 +341,7 @@ const VARIANTS = {
   },
 
   'microsite-loggedin': {
-    components: ['logo', 'languageMenu', 'burgerButton', 'title', 'localNavMicrosite', 'mainNavigation'],
+    components: ['logo', 'languageMenu', 'title', 'localNavMicrosite', 'mainNavigation'],
     replacements: {
       '{{TITLE_TEXT}}': '[Microsite Title]',
       '{{LOCAL_NAV_LOGIN_OR_USER}}': COMPONENTS.localUserMenu,
@@ -346,37 +349,35 @@ const VARIANTS = {
   },
 
   'jobs-loggedout': {
-    components: ['logo', 'targetGroup', 'metaNavigation', 'languageMenu', 'burgerButton', 'mainNavigation', 'localNavJobs'],
+    components: ['logo', 'audience', 'globalNavSecondaryJobsOnly', 'languageMenu', 'mainNavigation', 'localNavJobs'],
     replacements: {
-      '{{TARGET_GROUP_CURRENT}}': '',
-      '{{META_NAV_CURRENT}}': ' aria-current="location"',
+      '{{AUDIENCE_CURRENT}}': '',
       '{{LOCAL_NAV_LOGIN_OR_USER}}': COMPONENTS.localLogin,
       '{{LOGIN_TEXT}}': 'Jobs Login',
     },
   },
 
   'jobs-loggedin': {
-    components: ['logo', 'targetGroup', 'metaNavigation', 'languageMenu', 'burgerButton', 'mainNavigation', 'localNavJobs'],
+    components: ['logo', 'audience', 'globalNavSecondaryJobsOnly', 'languageMenu', 'mainNavigation', 'localNavJobs'],
     replacements: {
-      '{{TARGET_GROUP_CURRENT}}': '',
-      '{{META_NAV_CURRENT}}': ' aria-current="location"',
+      '{{AUDIENCE_CURRENT}}': '',
       '{{LOCAL_NAV_LOGIN_OR_USER}}': COMPONENTS.localUserMenu,
     },
   },
 
   'portal-loggedout': {
-    components: ['logo', 'targetGroup', 'globalControls', 'metaNavigation', 'languageMenu', 'globalLogin', 'burgerButton', 'mainNavigation'],
+    components: ['logo', 'audience', 'globalNavPrimary', 'globalNavSecondary', 'languageMenu', 'globalLogin', 'mainNavigation'],
     replacements: {
-      '{{TARGET_GROUP_CURRENT}}': ' aria-current="location"',
-      '{{META_NAV_CURRENT}}': '',
+      '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
+      '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
     },
   },
 
   'portal-loggedin': {
-    components: ['logo', 'targetGroup', 'globalControls', 'metaNavigation', 'languageMenu', 'userMenu', 'burgerButton', 'mainNavigation'],
+    components: ['logo', 'audience', 'globalNavPrimary', 'globalNavSecondary', 'languageMenu', 'globalUserMenu', 'mainNavigation'],
     replacements: {
-      '{{TARGET_GROUP_CURRENT}}': ' aria-current="location"',
-      '{{META_NAV_CURRENT}}': '',
+      '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
+      '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
     },
   },
 };

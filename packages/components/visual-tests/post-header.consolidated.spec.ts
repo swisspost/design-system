@@ -127,37 +127,37 @@ function createPrimaryDesktopTests(
 
   if (config.hasGlobalLogin) {
     test('global login hover', async ({ page }) => {
-      await hoverSlotItem(page, 'global-login', 0);
+      await hoverSlotItem(page, 'post-login', 0);
       await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-global-login-hover.png`);
     });
 
     test('global login focus', async ({ page }) => {
-      await focusSlotItem(page, 'global-login', 0);
+      await focusSlotItem(page, 'post-login', 0);
       await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-global-login-focus.png`);
     });
   }
 
-  if (config.hasTargetGroup) {
-    test('target group hover', async ({ page }) => {
-      await hoverSlotItem(page, 'target-group', 0);
-      await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-target-group-hover.png`);
+  if (config.hasAudience) {
+    test('audience hover', async ({ page }) => {
+      await hoverSlotItem(page, 'audience', 0);
+      await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-audience-hover.png`);
     });
 
-    test('target group focus', async ({ page }) => {
-      await focusSlotItem(page, 'target-group', 0);
-      await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-target-group-focus.png`);
+    test('audience focus', async ({ page }) => {
+      await focusSlotItem(page, 'audience', 0);
+      await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-audience-focus.png`);
     });
   }
 
-  if (config.hasMetaNavigation) {
-    test('meta nav hover', async ({ page }) => {
-      await hoverSlotItem(page, 'meta-navigation', 0);
-      await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-meta-nav-hover.png`);
+  if (config.hasGlobalNavSecondary) {
+    test('global nav secondary hover', async ({ page }) => {
+      await hoverSlotItem(page, 'global-nav-secondary', 0);
+      await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-global-nav-secondary-hover.png`);
     });
 
-    test('meta nav focus', async ({ page }) => {
-      await focusSlotItem(page, 'meta-navigation', 0);
-      await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-meta-nav-focus.png`);
+    test('global nav secondary focus', async ({ page }) => {
+      await focusSlotItem(page, 'global-nav-secondary', 0);
+      await expect(page).toHaveScreenshot(`${variantName}-${breakpointName}-global-nav-secondary-focus.png`);
     });
   }
 
@@ -359,7 +359,7 @@ function createHeaderTestSuite(variantName: string, config: VariantConfig) {
 
         if (variantName === 'portal-loggedout') {
           test('global header section', async ({ page }) => {
-            await hoverSlotItem(page, 'global-controls', 0);
+            await hoverSlotItem(page, 'global-nav-primary', 0);
             await expect(page).toHaveScreenshot(`${variantName}-unique-global-header.png`);
           });
         }

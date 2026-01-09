@@ -8,8 +8,9 @@ export interface VariantConfig {
   hasGlobalHeader: boolean;
   hasUserMenu: boolean;
   hasMegadropdown: boolean;
-  hasTargetGroup: boolean;
-  hasMetaNavigation: boolean;
+  hasAudience: boolean;
+  hasGlobalNavSecondary: boolean;
+  hasGlobalNavPrimary: boolean;
   hasLocalNavigation: boolean;
   hasGlobalLogin: boolean;
   features: string[];
@@ -17,87 +18,94 @@ export interface VariantConfig {
 
 export const HEADER_VARIANTS: Record<string, VariantConfig> = {
   'onepager': {
-    slots: ['post-logo', 'post-language-switch', 'title'],
+    slots: ['post-logo', 'language-menu', 'title'],
     hasGlobalHeader: false,
     hasUserMenu: false,
     hasMegadropdown: false,
-    hasTargetGroup: false,
-    hasMetaNavigation: false,
+    hasAudience: false,
+    hasGlobalNavSecondary: false,
+    hasGlobalNavPrimary: false,
     hasLocalNavigation: false,
     hasGlobalLogin: false,
     features: ['language-menu-list-mode'],
   },
   
   'microsite-loggedout': {
-    slots: ['post-logo', 'post-language-switch', 'post-mainnavigation', 'local-nav', 'title'],
+    slots: ['post-logo', 'language-menu', 'main-nav', 'local-nav', 'title'],
     hasGlobalHeader: false,
     hasUserMenu: false,
     hasMegadropdown: true,
-    hasTargetGroup: false,
-    hasMetaNavigation: false,
+    hasAudience: false,
+    hasGlobalNavSecondary: false,
+    hasGlobalNavPrimary: false,
     hasLocalNavigation: true,
     hasGlobalLogin: false,
     features: ['main-navigation', 'local-login'],
   },
   
   'microsite-loggedin': {
-    slots: ['post-logo', 'post-language-switch', 'post-mainnavigation', 'local-nav', 'title'],
+    slots: ['post-logo', 'language-menu', 'main-nav', 'local-nav', 'title'],
     hasGlobalHeader: false,
     hasUserMenu: true,
     hasMegadropdown: true,
-    hasTargetGroup: false,
-    hasMetaNavigation: false,
+    hasAudience: false,
+    hasGlobalNavSecondary: false,
+    hasGlobalNavPrimary: false,
     hasLocalNavigation: true,
     hasGlobalLogin: false,
     features: ['main-navigation', 'local-user-menu'],
   },
   
   'jobs-loggedout': {
-    slots: ['post-logo', 'target-group', 'meta-navigation', 'post-language-switch', 'post-mainnavigation', 'local-nav'],
+    slots: ['post-logo', 'audience', 'global-nav-secondary', 'language-menu', 'main-nav', 'local-nav'],
     hasGlobalHeader: true,
     hasUserMenu: false,
     hasMegadropdown: true,
-    hasTargetGroup: true,
-    hasMetaNavigation: true,
+    hasAudience: true,
+    hasGlobalNavSecondary: true,
+    hasGlobalNavPrimary: false,
     hasLocalNavigation: true,
     hasGlobalLogin: false,
-    features: ['target-group', 'meta-navigation', 'main-navigation', 'local-login'],
+    features: ['audience', 'global-nav-secondary', 'main-navigation', 'local-login'],
   },
   
   'jobs-loggedin': {
-    slots: ['post-logo', 'target-group', 'meta-navigation', 'post-language-switch', 'post-mainnavigation', 'local-nav'],
+    slots: ['post-logo', 'audience', 'global-nav-secondary', 'language-menu', 'main-nav', 'local-nav'],
     hasGlobalHeader: true,
     hasUserMenu: true,
     hasMegadropdown: true,
-    hasTargetGroup: true,
-    hasMetaNavigation: true,
+    hasAudience: true,
+    hasGlobalNavSecondary: true,
+    hasGlobalNavPrimary: false,
     hasLocalNavigation: true,
     hasGlobalLogin: false,
-    features: ['target-group', 'meta-navigation', 'main-navigation', 'local-user-menu'],
+    features: ['audience', 'global-nav-secondary', 'main-navigation', 'local-user-menu'],
   },
   
   'portal-loggedout': {
-    slots: ['post-logo', 'target-group', 'global-controls', 'meta-navigation', 'post-language-switch', 'global-login', 'post-mainnavigation'],
+    slots: ['post-logo', 'audience', 'global-nav-primary', 'global-nav-secondary', 'language-menu', 'post-login', 'main-nav'],
     hasGlobalHeader: true,
     hasUserMenu: false,
     hasMegadropdown: true,
-    hasTargetGroup: true,
-    hasMetaNavigation: true,
+    hasAudience: true,
+    hasGlobalNavSecondary: true,
+    hasGlobalNavPrimary: true,
     hasLocalNavigation: false,
     hasGlobalLogin: true,
-    features: ['target-group', 'global-controls', 'meta-navigation', 'main-navigation', 'global-login-link'],
+    features: ['audience', 'global-nav-primary', 'global-nav-secondary', 'main-navigation', 'global-login-link'],
   },
   
   'portal-loggedin': {
-    slots: ['post-logo', 'target-group', 'global-controls', 'meta-navigation', 'post-language-switch', 'post-mainnavigation'],
+    slots: ['post-logo', 'audience', 'global-nav-primary', 'global-nav-secondary', 'language-menu', 'post-login', 'main-nav'],
     hasGlobalHeader: true,
     hasUserMenu: true,
     hasMegadropdown: true,
-    hasTargetGroup: true,
-    hasMetaNavigation: true,
+    hasAudience: true,
+    hasGlobalNavSecondary: true,
+    hasGlobalNavPrimary: true,
     hasLocalNavigation: false,
     hasGlobalLogin: false,
-    features: ['target-group', 'global-controls', 'meta-navigation', 'main-navigation', 'global-user-menu'],
+    features: ['audience', 'global-nav-primary', 'global-nav-secondary', 'main-navigation', 'global-user-menu'],
   },
 };
 
