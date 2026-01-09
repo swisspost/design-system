@@ -18,8 +18,8 @@
     "build": "pnpm run typecheck && pnpm clean && next build",
     "build:serve": "pnpm build && next start",
     "clean": "rimraf .next",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "e2e": "pnpm exec playwright test",
     "e2e:watch": "pnpm exec playwright test --ui",
     "typecheck": "tsc --noEmit"
