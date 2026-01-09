@@ -1,0 +1,7 @@
+post-datepicker input[type='date'] {
+  &::-webkit-calendar-picker-indicator,
+  &::-webkit-inner-spin-button {
+    display: none;
+    appearance: none;
+  }
+}
