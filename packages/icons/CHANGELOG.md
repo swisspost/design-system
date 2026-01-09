@@ -1,5 +1,29 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.57
+
+### Minor Changes
+
+- Added icons:
+  - `branchpartner` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6942](https://github.com/swisspost/design-system/pull/6942))
+
+- Added icons:
+  - `arrowtabulatorright` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `arrowupleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `contactlesspayment` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `handshake` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `infonocircle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `methodology` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `retour` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `sculpture` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `tractor` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `videofile` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6975](https://github.com/swisspost/design-system/pull/6975))
+
+### Patch Changes
+
+- Updated icons:
+  - `globemeridian` (line): 16px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6975](https://github.com/swisspost/design-system/pull/6975))
+
 ## 10.0.0-next.56
 
 ### Minor Changes
