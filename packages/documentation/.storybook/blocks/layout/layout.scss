@@ -92,7 +92,9 @@
 
     &:hover {
       .avatar-image {
-        box-shadow: 0.25px 1px 1px rgba(0, 0, 0, 0.1), 1px 2px 2.5px 1px rgba(0, 0, 0, 0.2);
+        box-shadow:
+          0.25px 1px 1px rgba(0, 0, 0, 0.1),
+          1px 2px 2.5px 1px rgba(0, 0, 0, 0.2);
 
         img {
           border-color: white;
@@ -102,7 +104,9 @@
       .avatar-description {
         &::after {
           background-color: white;
-          box-shadow: 0.25px 1px 1px rgba(0, 0, 0, 0.1), 1px 2px 2.5px 1px rgba(0, 0, 0, 0.1);
+          box-shadow:
+            0.25px 1px 1px rgba(0, 0, 0, 0.1),
+            1px 2px 2.5px 1px rgba(0, 0, 0, 0.1);
         }
       }
     }

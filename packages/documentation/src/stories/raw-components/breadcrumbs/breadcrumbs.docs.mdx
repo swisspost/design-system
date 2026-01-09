@@ -6,14 +6,23 @@ import * as BreadcrumbsStories from './breadcrumbs.stories';
 <div className="docs-title">
   # Breadcrumbs
 
-  <link-design of={JSON.stringify(BreadcrumbsStories)}></link-design>
+<link-design of={JSON.stringify(BreadcrumbsStories)}></link-design>
+
 </div>
 
 <div className="lead">Indicate the current page’s location within the navigational hierarchy.</div>
 
 <post-banner class="mt-24 mb-36">
-  <p slot="heading">Currently, the breadcrumbs may only be used in addition to the internet-header.</p>
-  <p>For more information, read the <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs">documentation about the internet header package</a>.</p>
+  <p slot="heading">
+    Currently, the breadcrumbs may only be used in addition to the internet-header.
+  </p>
+  <p>
+    For more information, read the{' '}
+    <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs">
+      documentation about the internet header package
+    </a>
+    .
+  </p>
 </post-banner>
 
 The breadcrumbs element usually needs to be placed in a container, so it only spans the width of the content.
@@ -28,4 +37,4 @@ The breadcrumbs element usually needs to be placed in a container, so it only sp
 
 Use the `custom-items` property when you need to add your own breadcrumb items.
 
-<Canvas sourceState='shown' of={BreadcrumbsStories.CustomItems} />
+<Canvas sourceState="shown" of={BreadcrumbsStories.CustomItems} />

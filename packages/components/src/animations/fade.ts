@@ -1,11 +1,33 @@
-const fadeDuration = 200;
-const fadedOutKeyframe: Keyframe = { opacity: '0' };
-const fadedInKeyframe: Keyframe = { opacity: '1' };
+import { resolveEasing } from './utils';
+import { AnimationOptions } from './types';
 
-export function fadeIn(el: Element): Animation {
-  return el.animate([fadedOutKeyframe, fadedInKeyframe], { duration: fadeDuration });
+const defaultOptions: AnimationOptions = {
+  duration: 200,
+  easing: 'linear',
+  fill: 'forwards',
+};
+
+function animateFade(
+  el: Element,
+  keyframes: Keyframe[],
+  options: Partial<AnimationOptions> = {},
+): Animation {
+  const { duration, easing, fill } = { ...defaultOptions, ...options };
+  return el.animate(keyframes, {
+    duration,
+    easing: resolveEasing(easing),
+    fill,
+  });
 }
 
-export function fadeOut(el: Element): Animation {
-  return el.animate([fadedInKeyframe, fadedOutKeyframe], { duration: fadeDuration });
+export function fade(
+  el: Element,
+  direction: 'in' | 'out',
+  options: Partial<AnimationOptions> = {},
+): Animation {
+  if (!el) return;
+
+  const baseKeyframes: Keyframe[] = [{ opacity: '0' }, { opacity: '1' }];
+  const keyframes = direction === 'in' ? baseKeyframes : [...baseKeyframes].reverse();
+  return animateFade(el, keyframes, options);
 }

@@ -1,6 +1,8 @@
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/mixins/media' as media-mx;
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use './custom-properties';
 
 *,
@@ -10,6 +12,7 @@
 }
 
 :host,
+header,
 .global-header,
 .local-header {
   transition: inset-block-start animation.$transition-time-simple
@@ -38,6 +41,13 @@
   position: sticky;
   inset-block-start: var(--post-header-top);
   z-index: commons.$zindex-header;
+
+  post-togglebutton {
+    @include header-mx.nav-item-base;
+    @include media-mx.only(mobile) {
+      @include header-mx.nav-item-icon-only;
+    }
+  }
 }
 
 .global-header {
@@ -60,7 +70,7 @@
     height: var(--post-logo-height);
     min-height: var(--post-global-header-reduced-height);
     max-height: 100%;
-    margin-inline-end: 1.25rem;
+    margin-inline-end: calc(1.25rem - var(--post-header-gap));
   }
 
   .sliding-controls {
@@ -70,11 +80,11 @@
     inset-block-start: var(--post-global-controls-top);
   }
 
-  .target-group {
+  .audience {
     margin-inline-end: auto;
   }
 
-  &.no-target-group .target-group {
+  &.no-audience .audience {
     display: none;
   }
 }
@@ -158,6 +168,7 @@
 
   &:not(.extended) {
     transform: translateY(-100%);
+    display: none;
 
     > * {
       display: none;

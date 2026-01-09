@@ -44,10 +44,16 @@ tokens.$default-map: utilities.$post-spacing;
 
 .table > tbody {
   vertical-align: inherit;
+  text-align: left;
 }
 
 .table > thead {
   vertical-align: bottom;
+  text-align: left;
+}
+
+.table > caption {
+  text-align: left;
 }
 
 .table-group-divider {

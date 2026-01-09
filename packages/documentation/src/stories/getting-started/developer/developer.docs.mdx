@@ -15,15 +15,20 @@ import './list-component';
 
 The design-system is formed with several packages and different compatibilities with your favorite framework.
 
-<div className="table-responsive" style={{'--post-docs-tile-size': '120px', '--post-docs-tile-rg-size': '120px'}}>
+<div
+  className="table-responsive"
+  style={{ '--post-docs-tile-size': '120px', '--post-docs-tile-rg-size': '120px' }}
+>
   <table className="table table-bordered">
-    <caption className="visually-hidden">Compatibilities between components and frameworks and which package is needed</caption>
+    <caption className="visually-hidden">
+      Compatibilities between components and frameworks and which package is needed
+    </caption>
     <colgroup>
-      <col style={{width: '25%'}}/>
-      <col style={{width: '15%'}}/>
-      <col style={{width: '20%'}}/>
-      <col style={{width: '20%'}}/>
-      <col style={{width: '20%'}} />
+      <col style={{ width: '25%' }} />
+      <col style={{ width: '15%' }} />
+      <col style={{ width: '20%' }} />
+      <col style={{ width: '20%' }} />
+      <col style={{ width: '20%' }} />
     </colgroup>
     <thead>
       <tr>
@@ -38,24 +43,36 @@ The design-system is formed with several packages and different compatibilities 
       <tr>
         <td scope="row">
           Internet-header:
-          <developer-list-component packageType={PackageType.InternetHeader}></developer-list-component>
+          <developer-list-component
+            packageType={PackageType.InternetHeader}
+          ></developer-list-component>
         </td>
         <td rowSpan="4">
-          {[packages.find(pkg => pkg.name === 'Styles')].map((p => (
-            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
-              <img src={p.img.src} alt={p.img.alt}/>
+          {[packages.find(pkg => pkg.name === 'Styles')].map(p => (
+            <ti-le
+              title={p.name}
+              href={p.link.docs.href}
+              ariaLabel={p.link.docs.ariaLabel}
+              key={p.name}
+            >
+              <img src={p.img.src} alt={p.img.alt} />
               <span>{p.version}</span>
             </ti-le>
-          )))}
+          ))}
         </td>
         <td colSpan="2">
-          <div style={{ display:'flex', justifyContent: 'center' }}>
-          {[packages.find(pkg => pkg.name === 'Internet-Header')].map((p => (
-            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
-              <img src={p.img.src} alt={p.img.alt}/>
-              <span>{p.version}</span>
-            </ti-le>
-          )))}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {[packages.find(pkg => pkg.name === 'Internet-Header')].map(p => (
+              <ti-le
+                title={p.name}
+                href={p.link.docs.href}
+                ariaLabel={p.link.docs.ariaLabel}
+                key={p.name}
+              >
+                <img src={p.img.src} alt={p.img.alt} />
+                <span>{p.version}</span>
+              </ti-le>
+            ))}
           </div>
         </td>
         <td>TBD</td>
@@ -66,28 +83,43 @@ The design-system is formed with several packages and different compatibilities 
           <developer-list-component packageType={PackageType.Wc}></developer-list-component>
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components')].map((p => (
-            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
-              <img src={p.img.src} alt={p.img.alt}/>
+          {[packages.find(pkg => pkg.name === 'Components')].map(p => (
+            <ti-le
+              title={p.name}
+              href={p.link.docs.href}
+              ariaLabel={p.link.docs.ariaLabel}
+              key={p.name}
+            >
+              <img src={p.img.src} alt={p.img.alt} />
               <span>{p.version}</span>
             </ti-le>
-          )))}
+          ))}
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components for Angular')].map((p => (
-            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
-              <img src={p.img.src} alt={p.img.alt}/>
+          {[packages.find(pkg => pkg.name === 'Components for Angular')].map(p => (
+            <ti-le
+              title={p.name}
+              href={p.link.docs.href}
+              ariaLabel={p.link.docs.ariaLabel}
+              key={p.name}
+            >
+              <img src={p.img.src} alt={p.img.alt} />
               <span>{p.version}</span>
             </ti-le>
-          )))}
+          ))}
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components for React')].map((p => (
-            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
-              <img src={p.img.src} alt={p.img.alt}/>
+          {[packages.find(pkg => pkg.name === 'Components for React')].map(p => (
+            <ti-le
+              title={p.name}
+              href={p.link.docs.href}
+              ariaLabel={p.link.docs.ariaLabel}
+              key={p.name}
+            >
+              <img src={p.img.src} alt={p.img.alt} />
               <span>{p.version}</span>
             </ti-le>
-          )))}
+          ))}
         </td>
       </tr>
       <tr>
@@ -95,9 +127,7 @@ The design-system is formed with several packages and different compatibilities 
           HTML components:
           <developer-list-component packageType={PackageType.Styles}></developer-list-component>
         </td>
-        <td colSpan="3" >
-          No additional package is required
-        </td>
+        <td colSpan="3">No additional package is required</td>
       </tr>
     </tbody>
   </table>
