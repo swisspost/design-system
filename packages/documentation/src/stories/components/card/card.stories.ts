@@ -1,13 +1,12 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { choose } from 'lit/directives/choose.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
   tags: ['package:Styles', 'status:InProgress'],
+  render: renderCard,
   decorators: [clickBlocker],
   parameters: {
     badges: [],
@@ -17,37 +16,58 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    title: "This is my card's title",
+    interactive: false,
+    hiddenLink: true,
+    action: 'link',
+    title: 'Card title',
     body: "This is my card's content.",
-    action: 'buttons',
-    label: 'Button Text',
   },
   argTypes: {
     title: {
       name: 'Title',
+      description: 'The title of the card.',
       control: { type: 'text' },
-      table: { category: 'Card Content' },
+      table: { category: 'Content' },
     },
     body: {
       name: 'Body',
       description: 'The content within the card.',
       control: { type: 'text' },
-      table: { category: 'Card Content' },
+      table: { category: 'Content' },
     },
-    label: {
-      name: 'label',
-      description: 'The content button',
-      control: { type: 'text' },
-      table: { category: 'Card Content' },
+    interactive: {
+      name: 'Interactive Card',
+      description:
+        'When set to true, the entire card becomes clickable. ' +
+        'Only valid when the card contains exactly one navigation link.',
+      control: { type: 'boolean' },
+      table: { category: 'General' },
     },
     action: {
       name: 'Action',
+      description: 'The type of actions used in the card.',
+      if: {
+        arg: 'interactive',
+        truthy: false,
+      },
       control: {
         type: 'inline-radio',
-        labels: { button: 'Button', link: 'Link', none: 'None' },
+        labels: { link: 'Link', buttons: 'Buttons', none: 'None' },
       },
-      options: ['button', 'buttons', 'link', 'links', 'none'],
-      table: { category: 'Card Content' },
+      options: ['link', 'buttons', 'none'],
+      table: { category: 'General' },
+    },
+    hiddenLink: {
+      name: 'Hidden Link',
+      description: 'When set to true, the link within the interactive card is visually hidden.',
+      if: {
+        arg: 'interactive',
+        truthy: true,
+      },
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'General' },
     },
   },
 };
@@ -63,126 +83,96 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
 
 function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
-    <div class="container">
-      <div class="row gy-16 ">
-        <div class="col-lg-4 col-sm-6 col-12">${story(context.args, context)}</div>
-      </div>
+    <div class="row gy-16">
+      <div class="col-lg-4 col-sm-6 col-12">${story(context.args, context)}</div>
     </div>
   `;
 }
 
 // RENDERER
-function getCardLink() {
+function getCardLink(args: Args) {
   return html`
-    <div>
-      <a class="btn btn-tertiary" href="#">
-        Button
-        <post-icon aria-hidden="true" name="3020"></post-icon>
-      </a>
-    </div>
-  `;
-}
-function getCardButton({ label }: Args) {
-  return html`
-    <div class="d-flex flex-column gap-2 mt-6">
-      <button class="btn btn-primary">
-        <span>${label}</span>
-      </button>
-    </div>
+    <a class=${args.hiddenLink ? 'visually-hidden' : 'btn btn-tertiary px-0 mt-8'} href="#">
+      Navigation Link
+      <post-icon aria-hidden="true" name="arrowright"></post-icon>
+    </a>
   `;
 }
 
-function getCardButtons({ label }: Args) {
+function getCardButtons() {
   return html`
-    <div class="d-flex flex-column gap-2 mt-6">
+    <div class="d-flex flex-column gap-8 mt-24">
       <button class="btn btn-primary">
-        <span>${label}</span>
+        <span>Primary action</span>
       </button>
       <button class="btn btn-secondary">
-        <span>${label}</span>
+        <span>Secondary action</span>
       </button>
       <button class="btn btn-tertiary">
-        <span>${label}</span>
+        <span>Tertiary action</span>
       </button>
-    </div>
-  `;
-}
-
-function getCardLinks() {
-  return html`
-    <div class="card-links">
-      <a class="btn-tertiary" href="#">
-        Link 1
-        <post-icon aria-hidden="true" name="3020"></post-icon>
-      </a>
-      <a class="btn-tertiary" href="#">
-        Link 2
-        <post-icon aria-hidden="true" name="3020"></post-icon>
-      </a>
     </div>
   `;
 }
 
 function getCardContent(args: Args) {
-  const { action, title, body = '' } = args;
   return html`
     <div class="card-body">
-      ${title ? html`<h3 class="card-title">${title}</h3>` : nothing} ${unsafeHTML(body)}
-      ${choose(
-        action,
-        [
-          ['button', () => getCardButton(args)],
-          ['link', getCardLink],
-          ['buttons', () => getCardButtons(args)],
-          ['links', getCardLinks],
-        ],
-        () => html` ${nothing} `,
-      )}
+      ${args.title ? html`<h3 class="card-title">${args.title}</h3>` : nothing}
+      ${args.body ? html`<p>${args.body}</p>` : nothing}
+      ${args.interactive || args.action === 'link' ? getCardLink(args) : nothing}
+      ${args.action === 'buttons' ? getCardButtons() : nothing}
     </div>
   `;
 }
 
-function renderCardContent(args: Args) {
-  return html` ${getCardContent(args)} `;
-}
-
 function renderCard(args: Args) {
-  const { action } = args;
-  const isInteractive = action === 'button' || action === 'link';
-
-  if (isInteractive) {
-    return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
+  if (args.interactive) {
+    return html`<post-linkarea class="card">${getCardContent(args)}</post-linkarea>`;
   } else {
-    return html`<div class="card">${renderCardContent(args)}</div>`;
+    return html`<div class="card">${getCardContent(args)}</div>`;
   }
 }
-
-const renderSimpleInteractiveCard = html`
-  <post-linkarea class="card">
-    <div class="card-body">
-      <p class="card-links">
-        <a href="http://google.com" class="btn-link px-0">Interactive card</a>
-      </p>
-    </div>
-  </post-linkarea>
-`;
 
 // STORIES
 type Story = StoryObj;
 
 export const Default: Story = {
   decorators: [gridContainer],
-  render: (args: Args) => renderCard(args),
 };
 
-export const Foundation: Story = {
-  decorators: [(story: StoryFn) => html`<div class="d-flex gap-16">${story()}</div>`],
-  render: () => html`
-    <div class="card">
-      <div class="card-body">
-        <p>Non-interactive card</p>
-      </div>
-    </div>
-    ${renderSimpleInteractiveCard}
+export const Interactivity: Story = {
+  decorators: [
+    (story: StoryFn, context: StoryContext) => html`
+      <div class="d-flex gap-16">${story(context.args, context)}</div>
+    `,
+  ],
+  render: (args: Args) => html`
+    ${renderCard({
+      ...args,
+      interactive: true,
+      title: 'Interactive card',
+      body:
+        'An interactive card is clickable as a whole. ' +
+        'It contains a single interactive element which links to the same location as the card. ' +
+        'The interactive element is acting as an additional indicator to the elevation that the card is clickable.',
+    })}
+    ${renderCard({
+      ...args,
+      interactive: false,
+      action: 'link',
+      title: 'Non-interactive card',
+      body:
+        'A non-interactive card is not clickable. ' +
+        'It contains however either none or more than one interactive elements where each of them triggers different actions. ',
+    })}
   `,
+};
+
+export const HiddenLink: Story = {
+  decorators: [gridContainer],
+  args: {
+    interactive: true,
+    hiddenLink: true,
+  },
 };
