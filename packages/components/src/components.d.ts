@@ -256,7 +256,7 @@ export namespace Components {
          */
         "textChangeLanguage": string;
         /**
-          * A descriptive text for the list of language options
+          * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
          */
         "textCurrentLanguage": string;
         /**
@@ -1272,7 +1272,7 @@ declare namespace LocalJSX {
          */
         "textChangeLanguage": string;
         /**
-          * A descriptive text for the list of language options
+          * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
          */
         "textCurrentLanguage": string;
         /**

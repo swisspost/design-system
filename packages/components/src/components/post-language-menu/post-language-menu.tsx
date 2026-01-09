@@ -1,5 +1,10 @@
 import { Component, Element, Host, h, Prop, Watch, State, Listen } from '@stencil/core';
-import { checkRequiredAndType, checkEmptyOrOneOf, EventFrom } from '@/utils';
+import {
+  checkRequiredAndType,
+  checkRequiredAndPattern,
+  checkEmptyOrOneOf,
+  EventFrom,
+} from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { nanoid } from 'nanoid';
@@ -26,18 +31,18 @@ export class PostLanguageMenu {
   @Prop({ reflect: true }) textChangeLanguage!: string;
 
   @Watch('textChangeLanguage')
-  validateCaption() {
+  validateTextChangeLanguage() {
     checkRequiredAndType(this, 'textChangeLanguage', 'string');
   }
 
   /**
-   * A descriptive text for the list of language options
+   * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
    */
   @Prop({ reflect: true }) textCurrentLanguage!: string;
 
   @Watch('textCurrentLanguage')
-  validateDescription() {
-    checkRequiredAndType(this, 'textCurrentLanguage', 'string');
+  validateTextCurrentLanguage() {
+    checkRequiredAndPattern(this, 'textCurrentLanguage', /#name\b/);
   }
 
   /**
@@ -52,17 +57,30 @@ export class PostLanguageMenu {
   }
 
   /**
-   * The active language of the language switch
+   * The active language code of the language menu
    */
   @State() activeLang: string;
 
+  /* The complete accessible description */
+  private get description(): string | undefined {
+    const activeLanguage =
+      this.activeLang &&
+      document.querySelector<HTMLPostLanguageMenuItemElement>(
+        `post-language-menu-item[code="${this.activeLang}"]`,
+      );
+
+    return activeLanguage
+      ? this.textCurrentLanguage.replace(/#name/g, activeLanguage.name)
+      : undefined;
+  }
+
   componentDidLoad() {
-    this.validateCaption();
-    this.validateDescription();
+    this.validateTextChangeLanguage();
+    this.validateTextCurrentLanguage();
     this.validateVariant();
 
     // Initially set variants and active language
-    // Handles cases where the language-switch is rendered after the language-options have been rendered
+    // Handles cases where the language-menu is rendered after the language-options have been rendered
     this.updateChildrenVariant();
   }
 
@@ -91,7 +109,7 @@ export class PostLanguageMenu {
   }
 
   /**
-   * Handles cases where the language switch is being rendered before options are available
+   * Handles cases where the language menu is being rendered before options are available
    * @param event Initially emitted by <post-language-menu-item>
    */
   @Listen('postLanguageMenuItemInitiallyActive')
@@ -116,7 +134,7 @@ export class PostLanguageMenu {
           aria-describedby={this.listSpanId}
         >
           <span id={this.listSpanId} class="visually-hidden">
-            {this.textCurrentLanguage}
+            {this.description}
           </span>
           <slot></slot>
         </div>
@@ -131,7 +149,7 @@ export class PostLanguageMenu {
           <button class="post-language-menu-trigger">
             {this.activeLang}
             <span class="visually-hidden">{this.textChangeLanguage}</span>
-            <span class="visually-hidden">{this.textCurrentLanguage}</span>
+            <span class="visually-hidden">{this.description}</span>
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
