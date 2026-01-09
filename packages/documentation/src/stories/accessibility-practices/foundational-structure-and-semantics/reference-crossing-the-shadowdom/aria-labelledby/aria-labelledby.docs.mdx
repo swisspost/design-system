@@ -1,0 +1,156 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as CCR from './aria-labelledby.stories';
+import DefaultExample from './examples/default-example.sample.html?raw';
+import DefaultExample2 from './examples/default-example-2.sample.html?raw';
+import ArialabelledbyElementsPropertyHTML from './examples/arialabelledbyelements-property.sample.html?raw';
+import ArialabelledbyElementsProperty from './examples/arialabelledbyelements-property.sample.js?raw';
+import NonWorkingExampleIIa from './examples/non-working-example-IIa.sample.html?raw';
+import NonWorkingExampleIIb from './examples/non-working-example-IIb.sample.html?raw';
+import WorkingExampleIIa from './examples/working-example-IIa.sample.html?raw';
+import WorkingExampleIIb from './examples/working-example-IIb.sample.html?raw';
+import NonWorkingExampleIII from './examples/non-working-example-III.sample.html?raw';
+import WorkingExampleIII from './examples/working-example-III.sample.html?raw';
+import NonWorkingExampleIV from './examples/non-working-example-IV.sample.html?raw';
+import WorkingExampleIV from './examples/working-example-IV.sample.html?raw';
+
+<Meta of={CCR} />
+
+# aria-labelledby
+
+<div className="lead">
+  In the Light DOM, the `aria-labelledby` attribute assigns an accessible name to an element by
+  referencing the ID of one or more elements that provide the descriptive text.
+</div>
+<p>This is particularly useful when a simple text label isn’t directly linked to the element, or when
+  the accessible name needs to be composed from multiple pieces of text.</p>
+
+<p>ⓘ The `aria-labelledby` attribute is not intended to reference content from external sources.
+  Its value must consist of one or more element IDs (space-separated if multiple), and each ID must correspond to an element within the same DOM document.</p>
+
+### I. Referencing Within the Same DOM Tree
+
+• <b>Both elements in Light DOM</b> ✔️
+
+<Source language="html" dark code={DefaultExample}></Source>
+
+• <b>Both elements in same Shadow DOM</b> ✔️
+
+<Source language="html" dark code={DefaultExample2}></Source>
+<p><b>The above relationships are valid because in both cases the label and its associated target element are part of the same tree.</b></p>
+
+<p>
+  Below is a working example of an `aria-labelledby`/`id` relationship within the shadowDom of a
+  custom button component. You can <b>test it with NVDA</b> to confirm the correct label
+  announcement.
+</p>
+
+<Canvas of={CCR.ExampleHTML} sourceState="hide" />
+
+### II. Referencing From the ShadowDOM out to the Light DOM
+
+• <b>Shadow DOM → Light DOM</b> ❌
+
+<Source language="html" dark code={NonWorkingExampleIIa}></Source>
+
+• <b>Shadow DOM → Slotted Content</b> ❌
+
+<Source language="html" dark code={NonWorkingExampleIIb}></Source>
+
+<p>
+  The above examples do not work across shadow DOM boundaries when setting the aria-labelledby
+  attribute directly.
+</p>
+<p>
+  <b>
+    Attribute element references can only point to elements in the same DOM or shadow DOM, because
+    IDs are only valid within their own scope.
+  </b>
+</p>
+
+#### Workaround: `Element:ariaLabelledByElements`
+
+<p>`ariaLabelledByElements` is a property of the <a href="https://developer.mozilla.org/fr/docs/Web/API/Element" target="blank">Element API</a> that returns an array of elements labeling the element. It provides direct references to these
+  elements rather than just their ID strings. <a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaLabelledByElements">🔗ariaLabelledByElements</a></p>
+<div className="lead">Basic usage of `ariaLabelledByElements` </div>
+<p>
+  Instead of adding the `aria-labelledby` attribute on the element, we can set it using the
+  `ariaLabelledByElements` property.
+</p>
+<Source language="html" dark code={ArialabelledbyElementsPropertyHTML}></Source>
+
+<Source language="js" dark code={ArialabelledbyElementsProperty}></Source>
+<p>
+  The following examples demonstrate how the `ariaLabelledByElements` property can be used to
+  establish relationships <b>across the shadow DOM</b>.
+</p>
+
+<p>
+  <b>• Shadow DOM → Light DOM Example</b> ✔️
+</p>
+<p>
+  In this case a label element in the light DOM is referenced by an element inside a custom
+  component’s shadow DOM using `ariaLabelledByElements`.
+</p>
+
+<Source language="html" dark code={WorkingExampleIIa}></Source>
+<p>Use the control below to toggle the `ariaLabelledByElements` workaround implementation.</p>
+<Canvas of={CCR.Example2} sourceState="hide" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example2} />
+</div>
+
+<p>
+  <b>• Shadow DOM → Slotted Content Example</b> ✔️
+</p>
+<p>
+  In this case a label element provided via a slot is referenced by an element inside a custom
+  component’s shadow DOM using `ariaLabelledByElements`.
+</p>
+<Source language="html" dark code={WorkingExampleIIb}></Source>
+<p>Use the control below to toggle the `ariaLabelledByElements` workaround implementation.</p>
+<Canvas of={CCR.Example3} sourceState="hide<p>" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example3} />
+</div>
+
+⚠️ In the above scenarios, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.
+
+### III. Referencing From the Light DOM into the ShadowDOM
+
+<p>
+  <b>• Light DOM → Shadow DOM (or Slotted Content → Shadow DOM)</b> ❌
+</p>
+
+<p>
+  Referencing an element in the shadow DOM from the light DOM using the standard `aria-labelledby`
+  is not possible. The `ariaLabelledByElements` property neither works in this case because, for it
+  to work, the label element should be in the same DOM or in a parent DOM of the target element.
+</p>
+<Source language="html" dark code={NonWorkingExampleIII}></Source>
+
+##### Working Solution: Set the `id`on the label component host
+
+<p>
+  The only option here is to <b>set the `id` directly on the host</b> of the labeling component. In
+  this case <b>all the visible text inside the component that contains the reference will be assigned as the
+    Accessible Name</b> of the target element.
+</p>
+<Source language="html" dark code={WorkingExampleIII}></Source>
+
+### IV. Referencing From One Shadow DOM To Another Shadow DOM
+
+Shadow DOM → Other Shadow DOM ❌
+
+<Source language="html" dark code={NonWorkingExampleIV}></Source>
+<p>
+  This relationship is not valid because both `id` and `aria-labelledby` attributes are scoped only
+  within their individual shadowDoms.
+</p>
+##### Working Solution
+
+A working solution for this case combines approaches II and III: setting the label component’s `id` directly on the host element (III), and using `Element.ariaLabelledByElements` to assign the label to the referencing component.
+
+<Source language="html" dark code={WorkingExampleIV}></Source>
+<Canvas of={CCR.Example5} sourceState="hide" />
+
+⚠️ In the above scenario, the relationship is correctly announced by NVDA, passes accessibility checks on Axe, WAVE and NVDA but partially fails on Siteimprove and Accessibility Insights tools.

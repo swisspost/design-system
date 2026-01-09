@@ -6,7 +6,8 @@ import * as FooterStories from './footer.stories';
 <div className="docs-title">
   # Footer
 
-  <link-design of={JSON.stringify(FooterStories)}></link-design>
+<link-design of={JSON.stringify(FooterStories)}></link-design>
+
 </div>
 
 <div className="lead">
@@ -15,7 +16,13 @@ import * as FooterStories from './footer.stories';
 
 <post-banner class="mt-24 mb-36">
   <p slot="heading">Currently, the footer may only be used in addition to the internet-header.</p>
-  <p>For more information, read the <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs">documentation about the internet header package</a>.</p>
+  <p>
+    For more information, read the{' '}
+    <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs">
+      documentation about the internet header package
+    </a>
+    .
+  </p>
 </post-banner>
 
 The footer comes with its own container and can be placed at the end of your content.
@@ -30,4 +37,4 @@ The footer comes with its own container and can be placed at the end of your con
 
 Use the `custom-config` property when you need to add your own footer links.
 
-<Canvas sourceState='shown' of={FooterStories.CustomConfig} />
+<Canvas sourceState="shown" of={FooterStories.CustomConfig} />

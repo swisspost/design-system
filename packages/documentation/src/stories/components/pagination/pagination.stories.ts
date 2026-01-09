@@ -21,11 +21,11 @@ const meta: MetaComponent = {
     collectionSize: 100,
     disabled: false,
     label: 'Pagination',
-    labelPrevious: 'Previous page',
-    labelNext: 'Next page',
-    labelPage: 'Page',
-    labelFirst: 'First page',
-    labelLast: 'Last page',
+    textPrevious: 'Previous page',
+    textNext: 'Next page',
+    textPage: 'Page',
+    textFirst: 'First page',
+    textLast: 'Last page',
   },
   argTypes: {
     page: {
@@ -59,31 +59,31 @@ const meta: MetaComponent = {
         category: 'Props',
       },
     },
-    labelPrevious: {
+    textPrevious: {
       control: 'text',
       table: {
         category: 'Props',
       },
     },
-    labelNext: {
+    textNext: {
       control: 'text',
       table: {
         category: 'Props',
       },
     },
-    labelPage: {
+    textPage: {
       control: 'text',
       table: {
         category: 'Props',
       },
     },
-    labelFirst: {
+    textFirst: {
       control: 'text',
       table: {
         category: 'Props',
       },
     },
-    labelLast: {
+    textLast: {
       control: 'text',
       table: {
         category: 'Props',
@@ -106,11 +106,11 @@ export const Default: Story = {
         collection-size=${args.collectionSize}
         disabled="${args.disabled ? true : nothing}"
         label=${args.label}
-        label-previous=${args.labelPrevious}
-        label-next=${args.labelNext}
-        label-page=${args.labelPage}
-        label-first=${args.labelFirst}
-        label-last=${args.labelLast}
+        text-previous=${args.textPrevious}
+        text-next=${args.textNext}
+        text-page=${args.textPage}
+        text-first=${args.textFirst}
+        text-last=${args.textLast}
         @postChange=${(e: CustomEvent) => {
           const newPage = e.detail;
           updateArgs({ page: newPage });
@@ -123,15 +123,15 @@ export const Default: Story = {
 export const ManyPages: Story = {
   render: () => html`
     <post-pagination
-      page=10
-      page-size=6
-      collection-size=200
+      page="10"
+      page-size="6"
+      collection-size="200"
       label="Pagination"
-      label-previous="Previous page"
-      label-next="Next page"
-      label-page="Page"
-      label-first="First page"
-      label-last="Last page"
+      text-previous="Previous page"
+      text-next="Next page"
+      text-page="Page"
+      text-first="First page"
+      text-last="Last page"
     ></post-pagination>
   `,
 };
@@ -139,15 +139,15 @@ export const ManyPages: Story = {
 export const PageOutOfRange: Story = {
   render: () => html`
     <post-pagination
-      page=50
-      page-size=10
-      collection-size=40
+      page="50"
+      page-size="10"
+      collection-size="40"
       label="Pagination"
-      label-previous="Previous page"
-      label-next="Next page"
-      label-page="Page"
-      label-first="First page"
-      label-last="Last page"
+      text-previous="Previous page"
+      text-next="Next page"
+      text-page="Page"
+      text-first="First page"
+      text-last="Last page"
     ></post-pagination>
   `,
 };
@@ -162,16 +162,16 @@ export const Disabled: Story = {
   },
   render: () => html`
     <post-pagination
-      page=1
-      page-size=10
-      collection-size=100
+      page="1"
+      page-size="10"
+      collection-size="100"
       disabled="true"
       label="Pagination"
-      label-previous="Previous page"
-      label-next="Next page"
-      label-page="Page"
-      label-first="First page"
-      label-last="Last page"
+      text-previous="Previous page"
+      text-next="Next page"
+      text-page="Page"
+      text-first="First page"
+      text-last="Last page"
     ></post-pagination>
   `,
 };

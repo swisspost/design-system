@@ -1,6 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as TableStories from './table.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 import PackageTag from '@/shared/package-tag';
 
 <Meta of={TableStories} />
@@ -8,10 +8,11 @@ import PackageTag from '@/shared/package-tag';
 <div className="docs-title">
   # Table
 
-  <link-design of={JSON.stringify(TableStories)}></link-design>
+<link-design of={JSON.stringify(TableStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead">
   Customize the native <code>&lt;table&gt;</code> element with CSS that changes the element’s
@@ -23,7 +24,7 @@ import PackageTag from '@/shared/package-tag';
   <Controls of={TableStories.Default} />
 </div>
 
-<StylesPackageImport components={["table"]} />
+<StylesPackageImport components={['table']} />
 
 ## Usage examples
 
