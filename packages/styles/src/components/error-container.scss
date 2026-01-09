@@ -1,7 +1,10 @@
+@use '../mixins/media';
+
 .button-section {
   display: flex;
   gap: 1rem;
   margin-top: 4.75rem;
+  margin-bottom: 2rem;
 }
 
 .error-container--image img {
@@ -9,19 +12,20 @@
   margin: auto;
 }
 
-.error-401 img {
-  margin-right: 0 !important;
-}
-
-@media (max-width: 1024px) {
+@include media.max(lg) {
   .button-section {
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
+    margin-top: 3rem;
+  }
+
+  .error-container--image {
+    padding: 2rem 1rem;
   }
 }
 
-@media (max-width: 780px) {
+@include media.max(md) {
   .error-container .row {
     display: flex;
     flex-wrap: wrap;
@@ -32,8 +36,7 @@
   }
 
   .error-container--image {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    padding: 4rem 2.5rem;
   }
 
   .error-400 {

@@ -28,7 +28,7 @@ const contentByType: Record<
       '\n' +
       'Please contact your IT administrator.',
     imageUrl: '/images/content/401.svg',
-    extraClass: 'error-401',
+    extraClass: 'align-section-end',
   },
   '403': {
     subtitle: 'No entry.',
@@ -134,7 +134,7 @@ function render(type: ErrorType) {
         <div class="container">
           <div class="row align-items-center">
             <div class="col">
-              <h2 class="palette-text">
+              <h2 class="palette-text mt-16">
                 Error ${type}
                 <br />
                 <span class="fw-normal">${subtitle}</span>
