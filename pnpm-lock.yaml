@@ -68,8 +68,8 @@ importers:
         specifier: 0.6.0
         version: 0.6.0
       '@stencil/core':
-        specifier: 4.35.0
-        version: 4.35.0
+        specifier: 4.41.0
+        version: 4.41.0
       '@swisspost/design-system-icons':
         specifier: workspace:10.0.0-next.56
         version: link:../icons
@@ -103,13 +103,13 @@ importers:
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3))(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3))(eslint-plugin-react@7.37.5(eslint@9.18.0(jiti@2.6.1)))(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3)
       '@stencil/angular-output-target':
         specifier: 1.1.1
-        version: 1.1.1(@stencil/core@4.35.0)
+        version: 1.1.1(@stencil/core@4.41.0)
       '@stencil/react-output-target':
         specifier: 1.2.0
-        version: 1.2.0(@stencil/core@4.35.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 1.2.0(@stencil/core@4.41.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@stencil/sass':
         specifier: 3.0.12
-        version: 3.0.12(@stencil/core@4.35.0)
+        version: 3.0.12(@stencil/core@4.41.0)
       '@swisspost/design-system-eslint':
         specifier: workspace:10.0.0-next.56
         version: link:../eslint
@@ -306,7 +306,7 @@ importers:
     dependencies:
       '@stencil/react-output-target':
         specifier: 1.2.0
-        version: 1.2.0(@stencil/core@4.35.0)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.2.0(@stencil/core@4.41.0)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@stencil/ssr':
         specifier: 0.1.1
         version: 0.1.1(next@16.1.1(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(vite@7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.44.1)(yaml@2.7.0))(webpack@5.99.9)
@@ -669,14 +669,14 @@ importers:
         specifier: 0.9.0
         version: 0.9.0(@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3))(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3))(eslint-plugin-react@7.37.5(eslint@9.18.0(jiti@2.6.1)))(eslint@9.18.0(jiti@2.6.1))(typescript@5.8.3)
       '@stencil/core':
-        specifier: 4.19.2
-        version: 4.19.2
+        specifier: 4.41.0
+        version: 4.41.0
       '@stencil/sass':
         specifier: 3.0.12
-        version: 3.0.12(@stencil/core@4.19.2)
+        version: 3.0.12(@stencil/core@4.41.0)
       '@stencil/store':
         specifier: 2.0.16
-        version: 2.0.16(@stencil/core@4.19.2)
+        version: 2.0.16(@stencil/core@4.41.0)
       '@types/body-scroll-lock':
         specifier: 3.1.2
         version: 3.1.2
@@ -4884,13 +4884,8 @@ packages:
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
 
-  '@stencil/core@4.19.2':
-    resolution: {integrity: sha512-ZdnbHmHEl8E5vN0GWDtONe5w6j3CrSqqxZM4hNLBPkV/aouWKug7D5/Mi6RazfYO5U4fmHQYLwMz60rHcx0G4g==}
-    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
-    hasBin: true
-
-  '@stencil/core@4.35.0':
-    resolution: {integrity: sha512-x0IFtj7IJStK+ZqIkhReWbiC0UMjMJnNXV8OXG+DCLDExZaVaxL3MLuq6BJBBcQ1MHZduTHDv3Iz0Zshoj3zjQ==}
+  '@stencil/core@4.41.0':
+    resolution: {integrity: sha512-KDVea3bjv7qJS+Pk8GcrWqRws6kAJAKiUPIxdDqK3KYH2yWPmzCzJO2XKsVyiBWmhdm2Q2KSdlb/EMFArfREiw==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -6330,6 +6325,9 @@ packages:
 
   caniuse-lite@1.0.30001751:
     resolution: {integrity: sha512-A0QJhug0Ly64Ii3eIqHu5X51ebln3k4yTUkY1j8drqpWHVreg/VLijN48cZ1bYPiqOQuqpkIKnzr/Ul8V+p6Cw==}
+
+  caniuse-lite@1.0.30001762:
+    resolution: {integrity: sha512-PxZwGNvH7Ak8WX5iXzoK1KPZttBXNPuaOvI2ZYU7NrlM+d9Ov+TUvlLOBNGzVXAntMSMMlJPd+jY6ovrVjSmUw==}
 
   caniuse-lite@1.0.30001762:
     resolution: {integrity: sha512-PxZwGNvH7Ak8WX5iXzoK1KPZttBXNPuaOvI2ZYU7NrlM+d9Ov+TUvlLOBNGzVXAntMSMMlJPd+jY6ovrVjSmUw==}
@@ -17670,13 +17668,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil/angular-output-target@1.1.1(@stencil/core@4.35.0)':
+  '@stencil/angular-output-target@1.1.1(@stencil/core@4.41.0)':
     dependencies:
-      '@stencil/core': 4.35.0
+      '@stencil/core': 4.41.0
 
-  '@stencil/core@4.19.2': {}
-
-  '@stencil/core@4.35.0':
+  '@stencil/core@4.41.0':
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.34.9
       '@rollup/rollup-darwin-x64': 4.34.9
@@ -17687,10 +17683,10 @@ snapshots:
       '@rollup/rollup-win32-arm64-msvc': 4.34.9
       '@rollup/rollup-win32-x64-msvc': 4.34.9
 
-  '@stencil/react-output-target@1.2.0(@stencil/core@4.35.0)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@stencil/react-output-target@1.2.0(@stencil/core@4.41.0)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@18.3.26)
-      '@stencil/core': 4.35.0
+      '@stencil/core': 4.41.0
       html-react-parser: 5.2.5(@types/react@18.3.26)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -17699,10 +17695,10 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/react-output-target@1.2.0(@stencil/core@4.35.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@stencil/react-output-target@1.2.0(@stencil/core@4.41.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@19.1.9)
-      '@stencil/core': 4.35.0
+      '@stencil/core': 4.41.0
       html-react-parser: 5.2.5(@types/react@19.1.9)(react@19.1.1)
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
@@ -17711,13 +17707,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/sass@3.0.12(@stencil/core@4.19.2)':
+  '@stencil/sass@3.0.12(@stencil/core@4.41.0)':
     dependencies:
-      '@stencil/core': 4.19.2
-
-  '@stencil/sass@3.0.12(@stencil/core@4.35.0)':
-    dependencies:
-      '@stencil/core': 4.35.0
+      '@stencil/core': 4.41.0
 
   '@stencil/ssr@0.1.1(next@16.1.1(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(vite@7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.44.1)(yaml@2.7.0))(webpack@5.99.9)':
     dependencies:
@@ -17731,9 +17723,9 @@ snapshots:
       vite: 7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.44.1)(yaml@2.7.0)
       webpack: 5.99.9
 
-  '@stencil/store@2.0.16(@stencil/core@4.19.2)':
+  '@stencil/store@2.0.16(@stencil/core@4.41.0)':
     dependencies:
-      '@stencil/core': 4.19.2
+      '@stencil/core': 4.41.0
 
   '@storybook/addon-docs@9.0.18(@types/react@18.3.26)(storybook@9.1.17(@testing-library/dom@10.4.0)(prettier@3.6.2)(vite@7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.89.2)(terser@5.44.1)(yaml@2.7.0)))':
     dependencies:
@@ -19494,6 +19486,8 @@ snapshots:
   caniuse-lite@1.0.30001723: {}
 
   caniuse-lite@1.0.30001751: {}
+
+  caniuse-lite@1.0.30001762: {}
 
   caniuse-lite@1.0.30001762: {}
 
