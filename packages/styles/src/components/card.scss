@@ -54,11 +54,27 @@ tokens.$default-map: components.$post-cards;
   .card-body {
     padding: tokens.get('card-padding-1');
   }
-  a {
-    padding: 0;
+
+  .list-interactive {
+    margin-block: 0 !important;
   }
-  button {
-    width: 100%;
+
+  .list-interactive-item {
+    padding: 1.25rem 1rem;
+
+    &:not(:first-child) {
+      border-top: 1px solid tokens.get('card-non-interactive-stroke');
+    }
+
+    // Card elements have paddings, prevent double spacing by removing
+    // elements margins
+    > *:first-child {
+      margin-block-start: 0;
+    }
+
+    > *:last-child {
+      margin-block-end: 0;
+    }
   }
 }
 
@@ -73,7 +89,6 @@ tokens.$default-map: components.$post-cards;
 .card-links {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   justify-content: space-between;
   padding-inline: 0.5rem;
 
@@ -84,7 +99,14 @@ tokens.$default-map: components.$post-cards;
     gap: tokens.get('utility-gap-8', utilities.$post-spacing);
     text-decoration: none;
     -ms-flex-align: center;
-    padding: 0;
+
+    &::before {
+      @include icons-mx.mask-image('arrowright');
+      content: '';
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }
 
