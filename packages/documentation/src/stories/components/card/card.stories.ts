@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   args: {
     interactive: false,
-    hiddenLink: true,
+    hiddenLink: false,
     action: 'link',
     title: 'Card title',
     body: "This is my card's content.",
