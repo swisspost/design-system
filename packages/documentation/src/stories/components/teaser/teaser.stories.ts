@@ -72,8 +72,7 @@ export default meta;
 type Story = StoryObj;
 
 export function renderTeaserCard(args: Args) {
-  return html`<post-linkarea>
-    <div class="card teaser-card${args.size === 'lg' ? ' teaser-card-lg' : ''}">
+  return html`<post-linkarea class="card teaser-card${args.size === 'lg' ? ' teaser-card-lg' : ''}">
       <img src="https://picsum.photos/id/38/500/400" alt="My placeholder image">
       <div>
         <div>
@@ -84,7 +83,6 @@ export function renderTeaserCard(args: Args) {
           args.buttonLabel
         } <post-icon name="arrowright"></post-icon></post-icon></a>
       </div>
-    </div>
   </post-linkarea>
   `;
 }
