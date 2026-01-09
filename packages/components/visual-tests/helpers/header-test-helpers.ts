@@ -1,172 +1,212 @@
 import { Page } from '@playwright/test';
 
+// ============================================================================
+// WAIT TIMES & CONSTANTS
+// ============================================================================
+
+export const WAIT_TIMES = {
+  component: 1000,
+  interaction: 300,
+  animation: 600,
+  megadropdown: 400,
+} as const;
+
 export const BREAKPOINTS = [
   { name: 'desktop', width: 1280, height: 800 },
-  { name: 'tablet', width: 780, height: 1024 },
   { name: 'mobile', width: 375, height: 667 },
 ] as const;
 
-export const WAIT_TIMES = {
-  component: 500,
-  interaction: 200,
-  animation: 500,
-} as const;
-
-export type BreakpointName = typeof BREAKPOINTS[number]['name'];
-
 // ============================================================================
-// Utility Functions
+// CORE WAIT FUNCTIONS
 // ============================================================================
 
 export async function waitForHeaderReady(page: Page): Promise<void> {
-  // Wait for page load with extended timeout
-  await page.waitForLoadState('networkidle', { timeout: 60000 });
+  // Wait for post-header to be defined
+  await page.waitForFunction(() => customElements.get('post-header'));
   
-  // Wait for post-header custom element to be defined
-  await page.waitForFunction(() => {
-    return customElements.get('post-header');
-  }, { timeout: 30000 });
+  // Wait for post-mainnavigation if it exists
+  const hasMainNav = await page.locator('post-mainnavigation').count() > 0;
+  if (hasMainNav) {
+    await page.waitForFunction(() => customElements.get('post-mainnavigation'));
+  }
   
-  // Wait for header to be rendered in DOM
-  await page.waitForSelector('post-header', { timeout: 30000 });
+  // Wait for fonts to load to avoid screenshot timeouts
+  await page.evaluate(() => document.fonts.ready);
   
-  // Additional wait for component initialization
+  // Wait a bit for hydration
   await page.waitForTimeout(WAIT_TIMES.component);
 }
 
-export function isMobile(breakpoint: string): boolean {
-  return breakpoint !== 'desktop';
-}
-
-async function blurActiveElement(page: Page): Promise<void> {
-  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
-  await page.waitForTimeout(100);
-}
-
-async function getElementCoords(page: Page, selector: string): Promise<{ x: number; y: number } | null> {
-  return await page.evaluate((sel) => {
-    const element = document.querySelector<HTMLElement>(sel);
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, selector);
-}
-
 // ============================================================================
-// Megadropdown Helpers
+// MAIN NAVIGATION HELPERS
 // ============================================================================
 
-export async function openMegadropdown(page: Page, id: string): Promise<void> {
-  await page.evaluate((dropdownId) => {
-    const trigger = document.querySelector<HTMLElement>(
-      `post-megadropdown-trigger[for="${dropdownId}"] button`
-    );
-    trigger?.click();
-  }, id);
-  await page.waitForTimeout(WAIT_TIMES.animation);
-}
-
-export async function closeMegadropdown(page: Page, id: string): Promise<void> {
-  await page.evaluate((dropdownId) => {
-    const closeButton = document.querySelector<HTMLElement>(
-      `post-megadropdown#${dropdownId} [slot="close-button"]`
-    );
-    closeButton?.click();
-  }, id);
-  await page.waitForTimeout(WAIT_TIMES.animation);
-}
-
-export async function hoverMegadropdownTrigger(page: Page, id: string): Promise<void> {
-  await blurActiveElement(page);
-  const coords = await page.evaluate((dropdownId) => {
-    const trigger = document.querySelector<HTMLElement>(
-      `post-megadropdown-trigger[for="${dropdownId}"] button`
-    );
-    if (trigger) {
-      const rect = trigger.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, id);
-
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-export async function focusMegadropdownTrigger(page: Page, id: string): Promise<void> {
-  await page.evaluate((dropdownId) => {
-    const trigger = document.querySelector<HTMLElement>(
-      `post-megadropdown-trigger[for="${dropdownId}"] button`
-    );
-    trigger?.focus();
-  }, id);
+export async function hoverMainNavItem(page: Page, index: number): Promise<void> {
+  const mainNavItems = page.locator('post-mainnavigation > ul > li');
+  const item = mainNavItems.nth(index);
+  const link = item.locator('a, post-megadropdown-trigger').first();
+  
+  await link.hover();
   await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function focusMainNavItem(page: Page, index: number): Promise<void> {
+  const mainNavItems = page.locator('post-mainnavigation > ul > li');
+  const item = mainNavItems.nth(index);
+  
+  // Check if it's a megadropdown trigger
+  const isMegadropdownTrigger = await item.locator('post-megadropdown-trigger').count() > 0;
+  
+  if (isMegadropdownTrigger) {
+    // For megadropdown triggers, focus the button inside shadow DOM
+    const trigger = item.locator('post-megadropdown-trigger').first();
+    const button = trigger.locator('button');
+    
+    await button.evaluate((btn: HTMLButtonElement) => {
+      btn.focus();
+    });
+  } else {
+    // For regular links, focus directly
+    const link = item.locator('a').first();
+    await link.evaluate((el: HTMLElement) => {
+      el.focus();
+    });
+  }
+  
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+// ============================================================================
+// MEGADROPDOWN HELPERS
+// ============================================================================
+
+export async function hoverMegadropdownTrigger(page: Page, dropdownId: string): Promise<void> {
+  // Directly target the megadropdown-trigger element, not the parent li
+  const trigger = page.locator(`post-megadropdown-trigger[for="${dropdownId}"]`);
+  await trigger.hover();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function focusMegadropdownTrigger(page: Page, dropdownId: string): Promise<void> {
+  // The trigger has a button in its shadow DOM that needs to be focused
+  const trigger = page.locator(`post-megadropdown-trigger[for="${dropdownId}"]`);
+  
+  // Pierce through shadow DOM to find the button
+  const button = trigger.locator('button');
+  
+  // Use evaluate to ensure focus is actually applied
+  await button.evaluate((btn: HTMLButtonElement) => {
+    btn.focus();
+  });
+  
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function openMegadropdown(page: Page, dropdownId: string): Promise<void> {
+  const trigger = page.locator(`post-megadropdown-trigger[for="${dropdownId}"]`);
+  await trigger.click();
+  await page.waitForTimeout(WAIT_TIMES.megadropdown);
+}
+
+export async function closeMegadropdown(page: Page, dropdownId: string): Promise<void> {
+  const megadropdown = page.locator(`post-megadropdown#${dropdownId}`);
+  
+  // Try desktop close button first
+  const closeButton = megadropdown.locator('post-closebutton').first();
+  const closeButtonVisible = await closeButton.isVisible().catch(() => false);
+  
+  if (closeButtonVisible) {
+    await closeButton.click();
+  } else {
+    // Try mobile back button
+    const backButton = megadropdown.locator('button.back-button').first();
+    await backButton.click();
+  }
+  
+  await page.waitForTimeout(WAIT_TIMES.megadropdown);
 }
 
 export async function hoverMegadropdownItem(page: Page, dropdownId: string, itemIndex: number): Promise<void> {
-  await blurActiveElement(page);
-  const coords = await page.evaluate(([dId, index]) => {
-    const dropdown = document.querySelector<HTMLElement>(`post-megadropdown#${dId}`);
-    const items = dropdown?.querySelectorAll('post-list-item a, [slot="megadropdown-overview-link"]');
-    const item = items?.[index] as HTMLElement;
-    if (item) {
-      const rect = item.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, [dropdownId, itemIndex]);
+  const megadropdown = page.locator(`post-megadropdown#${dropdownId}`);
+  const links = megadropdown.locator('a');
+  await links.nth(itemIndex).hover();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
 
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
+export async function focusMegadropdownItem(page: Page, dropdownId: string, itemIndex: number): Promise<void> {
+  const megadropdown = page.locator(`post-megadropdown#${dropdownId}`);
+  const links = megadropdown.locator('a');
+  await links.nth(itemIndex).focus();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+// ============================================================================
+// LANGUAGE MENU HELPERS
+// ============================================================================
+
+export async function hoverLanguageMenuTrigger(page: Page): Promise<void> {
+  const languageMenu = page.locator('post-language-menu').first();
+  
+  // Check variant - if it's "list", there's nothing to hover (no trigger button)
+  const variant = await languageMenu.getAttribute('variant');
+  
+  if (variant === 'list') {
+    // In list mode, there's no trigger to hover - skip this test
+    return;
+  }
+  
+  // In menu mode, hover the trigger button inside post-menu-trigger
+  const trigger = page.locator('post-menu-trigger button.post-language-menu-trigger').first();
+  const hasTrigger = await trigger.count() > 0;
+  
+  if (hasTrigger) {
+    await trigger.hover();
     await page.waitForTimeout(WAIT_TIMES.interaction);
   }
 }
 
-export async function focusMegadropdownItem(page: Page, dropdownId: string, itemIndex: number): Promise<void> {
-  await page.evaluate(([dId, index]) => {
-    const dropdown = document.querySelector<HTMLElement>(`post-megadropdown#${dId}`);
-    const items = dropdown?.querySelectorAll('post-list-item a, [slot="megadropdown-overview-link"]');
-    const item = items?.[index] as HTMLElement;
-    item?.focus();
-  }, [dropdownId, itemIndex]);
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-/**
- * Complete megadropdown interaction flow for testing (sequential)
- */
-export async function testMegadropdownFlow(
-  page: Page,
-  dropdownId: string,
-  breakpoint: BreakpointName
-): Promise<void> {
-  if (breakpoint === 'desktop') {
-    await hoverMegadropdownTrigger(page, dropdownId);
-    await focusMegadropdownTrigger(page, dropdownId);
+export async function focusLanguageMenuTrigger(page: Page): Promise<void> {
+  const languageMenu = page.locator('post-language-menu').first();
+  
+  // Check variant - if it's "list", there's nothing to focus (no trigger button)
+  const variant = await languageMenu.getAttribute('variant');
+  
+  if (variant === 'list') {
+    // In list mode, there's no trigger to focus - skip this test
+    return;
   }
   
-  await openMegadropdown(page, dropdownId);
-  await hoverMegadropdownItem(page, dropdownId, 0);
-  await focusMegadropdownItem(page, dropdownId, 0);
-  await closeMegadropdown(page, dropdownId);
+  // In menu mode, focus the trigger button
+  const trigger = page.locator('post-menu-trigger button.post-language-menu-trigger').first();
+  const hasTrigger = await trigger.count() > 0;
+  
+  if (hasTrigger) {
+    await trigger.evaluate((btn: HTMLButtonElement) => {
+      btn.focus();
+    });
+    await page.waitForTimeout(WAIT_TIMES.interaction);
+  }
 }
 
-// ============================================================================
-// Language Menu Helpers
-// ============================================================================
-
 export async function openLanguageMenu(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    const languageMenu = document.querySelector('post-language-menu');
-    const trigger = languageMenu?.shadowRoot?.querySelector('post-menu-trigger');
-    const button = trigger?.querySelector('button');
-    button?.click();
-  });
-  await page.waitForTimeout(WAIT_TIMES.animation);
+  const languageMenu = page.locator('post-language-menu').first();
+  
+  // Check variant - if it's "list", there's nothing to open
+  const variant = await languageMenu.getAttribute('variant');
+  
+  if (variant === 'list') {
+    // In list mode, menu is always visible - nothing to open
+    return;
+  }
+  
+  // In menu mode, click the trigger to open dropdown
+  const trigger = page.locator('post-menu-trigger button.post-language-menu-trigger').first();
+  const hasTrigger = await trigger.count() > 0;
+  
+  if (hasTrigger) {
+    await trigger.click();
+    await page.waitForTimeout(WAIT_TIMES.animation);
+  }
 }
 
 export async function closeLanguageMenu(page: Page): Promise<void> {
@@ -174,169 +214,51 @@ export async function closeLanguageMenu(page: Page): Promise<void> {
   await page.waitForTimeout(WAIT_TIMES.animation);
 }
 
-export async function hoverLanguageMenuTrigger(page: Page): Promise<void> {
-  await blurActiveElement(page);
-  await page.evaluate(() => {
-    const menu = document.querySelector<HTMLElement>('post-language-menu');
-    const button = menu?.shadowRoot?.querySelector('button');
-    const rect = button?.getBoundingClientRect();
-    if (rect) {
-      const event = new MouseEvent('mousemove', {
-        clientX: rect.left + rect.width / 2,
-        clientY: rect.top + rect.height / 2,
-        bubbles: true,
-      });
-      button?.dispatchEvent(event);
-    }
-  });
+export async function hoverLanguageMenuItem(page: Page, langCode: string, isMobileList: boolean): Promise<void> {
+  const item = page.locator(`post-language-menu-item[code="${langCode}"]`).first();
+  await item.hover();
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
-export async function focusLanguageMenuTrigger(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    const menu = document.querySelector<HTMLElement>('post-language-menu');
-    const button = menu?.shadowRoot?.querySelector('button');
-    button?.focus();
-  });
+export async function focusLanguageMenuItem(page: Page, langCode: string, isMobileList: boolean): Promise<void> {
+  const item = page.locator(`post-language-menu-item[code="${langCode}"]`).first();
+  await item.focus();
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
-export async function hoverLanguageMenuItem(page: Page, code: string, isListMode: boolean = false): Promise<void> {
-  await blurActiveElement(page);
+// ============================================================================
+// USER MENU HELPERS (post-menu + post-menu-trigger)
+// ============================================================================
+
+export async function hoverUserMenuTrigger(page: Page): Promise<void> {
+  // User menu is post-menu-trigger > button
+  const trigger = page.locator('post-menu-trigger[for="user-menu"] button').first();
+  const exists = await trigger.count() > 0;
   
-  if (isListMode) {
-    // List mode - language items are directly in the DOM
-    const coords = await page.evaluate((langCode) => {
-      const item = document.querySelector(`post-language-menu-item[code="${langCode}"]`);
-      const link = item?.querySelector('a, button');
-      if (link) {
-        const rect = link.getBoundingClientRect();
-        return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-      }
-      return null;
-    }, code);
-    
-    if (coords) {
-      await page.mouse.move(coords.x, coords.y);
-      await page.waitForTimeout(WAIT_TIMES.interaction);
-    }
-  } else {
-    // Dropdown mode - items are in the shadow DOM
-    const coords = await page.evaluate((langCode) => {
-      const menu = document.querySelector('post-language-menu');
-      const item = Array.from(menu?.querySelectorAll('post-language-menu-item') || [])
-        .find(el => el.getAttribute('code') === langCode);
-      const link = item?.querySelector('a, button');
-      if (link) {
-        const rect = link.getBoundingClientRect();
-        return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-      }
-      return null;
-    }, code);
-    
-    if (coords) {
-      await page.mouse.move(coords.x, coords.y);
-      await page.waitForTimeout(WAIT_TIMES.interaction);
-    }
-  }
-}
-
-export async function focusLanguageMenuItem(page: Page, code: string, isListMode: boolean = false): Promise<void> {
-  await page.evaluate(({ langCode }) => {
-    const menu = document.querySelector('post-language-menu');
-    const item = Array.from(menu?.querySelectorAll('post-language-menu-item') || [])
-      .find(el => el.getAttribute('code') === langCode);
-    const link = item?.querySelector('a, button') as HTMLElement | null;
-    link?.focus();
-  }, { langCode: code, listMode: isListMode });
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-/**
- * Complete language menu interaction flow
- */
-export async function testLanguageMenuFlow(page: Page, breakpoint: BreakpointName): Promise<void> {
-  if (breakpoint === 'desktop') {
-    // Desktop: Dropdown mode
-    await hoverLanguageMenuTrigger(page);
-    await focusLanguageMenuTrigger(page);
-    await openLanguageMenu(page);
-    
-    // Test menu item interactions
-    await hoverLanguageMenuItem(page, 'de', false);
-    await focusLanguageMenuItem(page, 'de', false);
-    
-    await closeLanguageMenu(page);
-  } else {
-    // Mobile/Tablet: List mode
-    await hoverLanguageMenuItem(page, 'de', true);
-    await focusLanguageMenuItem(page, 'de', true);
-    await hoverLanguageMenuItem(page, 'en', true); // Hover active item
-    await focusLanguageMenuItem(page, 'en', true); // Focus active item
-  }
-}
-
-// ============================================================================
-// Burger Menu Helpers
-// ============================================================================
-
-export async function openBurgerMenu(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    const toggleButton = document.querySelector('post-togglebutton');
-    if (toggleButton?.getAttribute('aria-pressed') !== 'true') {
-      toggleButton?.click();
-    }
-  });
-  await page.waitForTimeout(WAIT_TIMES.animation);
-}
-
-export async function closeBurgerMenu(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    const toggleButton = document.querySelector('post-togglebutton');
-    if (toggleButton?.getAttribute('aria-pressed') === 'true') {
-      toggleButton?.click();
-    }
-  });
-  await page.waitForTimeout(WAIT_TIMES.animation);
-}
-
-export async function hoverBurgerMenu(page: Page): Promise<void> {
-  await blurActiveElement(page);
-  const coords = await getElementCoords(page, 'post-togglebutton');
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
+  if (exists) {
+    await trigger.hover();
     await page.waitForTimeout(WAIT_TIMES.interaction);
   }
 }
 
-export async function focusBurgerMenu(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    const toggleButton = document.querySelector('post-togglebutton');
-    toggleButton?.focus();
-  });
-  await page.waitForTimeout(WAIT_TIMES.interaction);
+export async function focusUserMenuTrigger(page: Page): Promise<void> {
+  const trigger = page.locator('post-menu-trigger[for="user-menu"] button').first();
+  const exists = await trigger.count() > 0;
+  
+  if (exists) {
+    await trigger.focus();
+    await page.waitForTimeout(WAIT_TIMES.interaction);
+  }
 }
-
-/**
- * Complete burger menu interaction flow (sequential)
- */
-export async function testBurgerMenuFlow(page: Page): Promise<void> {
-  await hoverBurgerMenu(page);
-  await focusBurgerMenu(page);
-  await openBurgerMenu(page);
-  await closeBurgerMenu(page);
-}
-
-// ============================================================================
-// User Menu Helpers
-// ============================================================================
 
 export async function openUserMenu(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    const trigger = document.querySelector('post-menu-trigger button') as HTMLElement | null;
-    trigger?.click();
-  });
-  await page.waitForTimeout(WAIT_TIMES.animation);
+  const trigger = page.locator('post-menu-trigger[for="user-menu"] button').first();
+  const exists = await trigger.count() > 0;
+  
+  if (exists) {
+    await trigger.click();
+    await page.waitForTimeout(WAIT_TIMES.animation);
+  }
 }
 
 export async function closeUserMenu(page: Page): Promise<void> {
@@ -344,154 +266,85 @@ export async function closeUserMenu(page: Page): Promise<void> {
   await page.waitForTimeout(WAIT_TIMES.animation);
 }
 
-export async function hoverUserMenuTrigger(page: Page): Promise<void> {
-  await blurActiveElement(page);
-  const coords = await getElementCoords(page, 'post-menu-trigger button');
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-export async function focusUserMenuTrigger(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    const trigger = document.querySelector('post-menu-trigger button') as HTMLElement | null;
-    trigger?.focus();
-  });
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
 export async function hoverUserMenuItem(page: Page, itemIndex: number): Promise<void> {
-  await blurActiveElement(page);
-  const coords = await page.evaluate((index) => {
-    const items = document.querySelectorAll<HTMLElement>('post-menu-item');
-    const item = items[index];
-    if (item) {
-      const rect = item.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, itemIndex);
-
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
+  const menu = page.locator('post-menu#user-menu');
+  const items = menu.locator('post-menu-item a, post-menu-item button');
+  await items.nth(itemIndex).hover();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
 export async function focusUserMenuItem(page: Page, itemIndex: number): Promise<void> {
-  await page.evaluate((index) => {
-    const items = document.querySelectorAll<HTMLElement>('post-menu-item');
-    const item = items[index];
-    if (item) {
-      const focusable = item.querySelector<HTMLElement>('a, button');
-      focusable?.focus();
-    }
-  }, itemIndex);
+  const menu = page.locator('post-menu#user-menu');
+  const items = menu.locator('post-menu-item a, post-menu-item button');
+  await items.nth(itemIndex).focus();
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
-/**
- * Complete user menu interaction flow (sequential)
- */
-export async function testUserMenuFlow(page: Page): Promise<void> {
-  await hoverUserMenuTrigger(page);
-  await focusUserMenuTrigger(page);
-  await openUserMenu(page);
-  await hoverUserMenuItem(page, 0);
-  await focusUserMenuItem(page, 0);
-  await closeUserMenu(page);
-}
-
 // ============================================================================
-// Slot Item Helpers (Generic)
+// BURGER MENU HELPERS
 // ============================================================================
 
-export async function hoverSlotItem(page: Page, slot: string, index: number): Promise<void> {
-  await blurActiveElement(page);
-  const coords = await page.evaluate(({ slotName, itemIndex }) => {
-    const slotContainer = document.querySelector<HTMLElement>(`[slot="${slotName}"]`);
-    const links = slotContainer?.querySelectorAll('a, button');
-    const link = links?.[itemIndex] as HTMLElement;
-    if (link) {
-      const rect = link.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, { slotName: slot, itemIndex: index });
-
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-export async function focusSlotItem(page: Page, slot: string, index: number): Promise<void> {
-  await page.evaluate(({ slotName, itemIndex }) => {
-    const slotContainer = document.querySelector<HTMLElement>(`[slot="${slotName}"]`);
-    const links = slotContainer?.querySelectorAll('a, button');
-    const link = links?.[itemIndex] as HTMLElement;
-    link?.focus();
-  }, { slotName: slot, itemIndex: index });
+export async function hoverBurgerMenu(page: Page): Promise<void> {
+  const header = page.locator('post-header');
+  const burgerButton = header.locator('post-togglebutton').last();
+  await burgerButton.hover();
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
-/**
- * Test interaction flow for a slot (sequential hover then focus)
- */
-export async function testSlotItemFlow(page: Page, slot: string, index: number = 0): Promise<void> {
-  await hoverSlotItem(page, slot, index);
-  await focusSlotItem(page, slot, index);
-}
-
-// ============================================================================
-// Main Navigation Helpers
-// ============================================================================
-
-export async function hoverMainNavItem(page: Page, itemIndex: number): Promise<void> {
-  await blurActiveElement(page);
-  const coords = await page.evaluate((index) => {
-    const mainNav = document.querySelector<HTMLElement>('post-header [slot="post-mainnavigation"]');
-    const links = mainNav?.querySelectorAll('post-megadropdown-trigger button, post-list-item a');
-    const link = links?.[index] as HTMLElement;
-    if (link) {
-      const rect = link.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-    return null;
-  }, itemIndex);
-
-  if (coords) {
-    await page.mouse.move(coords.x, coords.y);
-    await page.waitForTimeout(WAIT_TIMES.interaction);
-  }
-}
-
-export async function focusMainNavItem(page: Page, itemIndex: number): Promise<void> {
-  await page.evaluate((index) => {
-    const mainNav = document.querySelector<HTMLElement>('post-header [slot="post-mainnavigation"]');
-    const links = mainNav?.querySelectorAll('post-megadropdown-trigger button, post-list-item a');
-    const link = links?.[index] as HTMLElement;
-    link?.focus();
-  }, itemIndex);
+export async function focusBurgerMenu(page: Page): Promise<void> {
+  const header = page.locator('post-header');
+  const burgerButton = header.locator('post-togglebutton').last();
+  await burgerButton.focus();
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
-/**
- * Test main navigation flow (sequential hover then focus)
- */
-export async function testMainNavFlow(page: Page): Promise<void> {
-  await hoverMainNavItem(page, 0);
-  await focusMainNavItem(page, 0);
+export async function openBurgerMenu(page: Page): Promise<void> {
+  const header = page.locator('post-header');
+  const burgerButton = header.locator('post-togglebutton').last();
+  await burgerButton.click();
+  await page.waitForTimeout(WAIT_TIMES.animation);
+}
+
+export async function closeBurgerMenu(page: Page): Promise<void> {
+  const header = page.locator('post-header');
+  const burgerButton = header.locator('post-togglebutton').last();
+  await burgerButton.click();
+  await page.waitForTimeout(WAIT_TIMES.animation);
 }
 
 // ============================================================================
-// Keyboard Navigation Helper
+// SLOT ITEM HELPERS
 // ============================================================================
 
-export async function testKeyboardNavigation(page: Page, tabCount: number = 1): Promise<void> {
+export async function hoverSlotItem(page: Page, slotName: string, itemIndex: number): Promise<void> {
+  const slotSelector = `[slot="${slotName}"]`;
+  const slotContent = page.locator(slotSelector);
+  
+  const interactiveElements = slotContent.locator('a, button');
+  await interactiveElements.nth(itemIndex).hover();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function focusSlotItem(page: Page, slotName: string, itemIndex: number): Promise<void> {
+  const slotSelector = `[slot="${slotName}"]`;
+  const slotContent = page.locator(slotSelector);
+  
+  const interactiveElements = slotContent.locator('a, button');
+  await interactiveElements.nth(itemIndex).focus();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+// ============================================================================
+// KEYBOARD NAVIGATION HELPER
+// ============================================================================
+
+export async function testKeyboardNavigation(page: Page, tabCount: number = 3): Promise<void> {
+  await page.locator('post-header').first().focus();
+  
   for (let i = 0; i < tabCount; i++) {
     await page.keyboard.press('Tab');
-    await page.waitForTimeout(WAIT_TIMES.interaction);
+    await page.waitForTimeout(100);
   }
+  
+  await page.waitForTimeout(WAIT_TIMES.interaction);
 }

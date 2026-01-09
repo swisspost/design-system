@@ -22,13 +22,12 @@ const BASE_TEMPLATE = `<!DOCTYPE html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="design-system-settings" data-post-icon-base="/www/assets/icons" />
+    <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
     <title>Post Header - {{VARIANT_NAME}}</title>
-    <link
-      href="../../node_modules/@swisspost/design-system-styles/post-default.css"
-      rel="stylesheet"
-    />
-    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <link rel="stylesheet" href="/build/post-components.css" />
+    <link rel="stylesheet" href="/assets/css/post-tokens-default.css" />
+    <link rel="stylesheet" href="/assets/css/index.css" />
+    <script type="module" src="/build/post-components.esm.js"></script>
   </head>
   <body>
     <post-header text-menu="Menu">
@@ -407,7 +406,7 @@ function generateVariantHTML(variantName, config) {
 
 // Main function
 function generateAllVariants() {
-  const outputDir = path.join(__dirname, '../www/components');
+  const outputDir = path.join(__dirname, '../www/visual-tests');
   
   // Create output directory if it doesn't exist
   if (!fs.existsSync(outputDir)) {

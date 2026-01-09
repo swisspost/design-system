@@ -47,7 +47,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npx http-server . -p 9300',
+    command: 'npx http-server www -p 9300 -c-1',
     url: 'http://localhost:9300',
     reuseExistingServer: true,
     timeout: 60000,
