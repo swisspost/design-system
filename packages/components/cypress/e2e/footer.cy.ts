@@ -4,15 +4,15 @@ describe('Footer', () => {
   describe('Structure & Basic Functionality', () => {
     beforeEach(() => {
       cy.getComponent('footer', FOOTER_ID);
-      cy.get('@footer').find('> footer h2.visually-hidden').as('label');
+      cy.get('@footer').find('> footer h2.visually-hidden').as('textFooter');
     });
 
     it('should render', () => {
       cy.get('@footer').should('exist');
     });
 
-    it('should set label text according to "label" prop', () => {
-      cy.get('@label').should('have.text', 'Footer label');
+    it('should set textFooter text according to "textFooter" prop', () => {
+      cy.get('@textFooter').should('have.text', 'Footer');
     });
 
     it('should have all required grid sections with proper structure', () => {

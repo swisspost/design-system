@@ -56,7 +56,7 @@ export class PostMenu {
   }
 
   /**
-   * An accessible name for the menu.
+   * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
    */
   @Prop({ reflect: true }) readonly label!: string;
 

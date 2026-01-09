@@ -81,7 +81,7 @@ export namespace Components {
         /**
           * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
          */
-        "label": string;
+        "textBackToTop": string;
     }
     interface PostBanner {
         /**
@@ -102,21 +102,21 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
-          * The text label for the home breadcrumb item.
-         */
-        "homeText": string;
-        /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
         /**
           * The accessible label for the breadcrumb component.
          */
-        "label": string;
+        "textBreadcrumbs": string;
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "textHome": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
-        "menuLabel": string;
+        "textMoreItems": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -201,11 +201,15 @@ export namespace Components {
     }
     interface PostFooter {
         /**
-          * The label to add to the footer (visually hidden).
+          * The textFooter to add to the footer (visually hidden).
          */
-        "label": string;
+        "textFooter": string;
     }
     interface PostHeader {
+        /**
+          * The label of the burger menu button.
+         */
+        "textMenu": string;
         /**
           * Toggles the burger navigation menu.
          */
@@ -250,11 +254,11 @@ export namespace Components {
         /**
           * A title for the list of language options
          */
-        "caption": string;
+        "textChangeLanguage": string;
         /**
-          * A descriptive text for the list of language options
+          * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
          */
-        "description": string;
+        "textCurrentLanguage": string;
         /**
           * Whether the component is rendered as a list or a menu
           * @default 'list'
@@ -289,20 +293,6 @@ export namespace Components {
     }
     interface PostLinkarea {
     }
-    interface PostList {
-        /**
-          * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
-          * @default false
-         */
-        "horizontal": boolean;
-        /**
-          * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
-          * @default false
-         */
-        "titleHidden": boolean;
-    }
-    interface PostListItem {
-    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -313,7 +303,7 @@ export namespace Components {
         /**
           * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
          */
-        "caption": string;
+        "textMain": string;
     }
     interface PostMegadropdown {
         /**
@@ -325,17 +315,17 @@ export namespace Components {
          */
         "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
         /**
-          * A label for the back button visible on tablet and mobile
-         */
-        "labelBack": string;
-        /**
-          * An accessible label for the close button visible on desktop
-         */
-        "labelClose": string;
-        /**
           * Displays the dropdown.
          */
         "show": () => Promise<void>;
+        /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "textBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "textClose": string;
         /**
           * Toggles the dropdown visibility based on its current state.
          */
@@ -358,7 +348,7 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * An accessible name for the menu.
+          * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
          */
         "label": string;
         /**
@@ -394,29 +384,9 @@ export namespace Components {
          */
         "disabled"?: boolean;
         /**
-          * Accessible label for the pagination navigation.
+          * A descriptive label for the pagination navigation, used by assistive technologies.
          */
         "label": string;
-        /**
-          * Prefix text for the first page label.
-         */
-        "labelFirst": string;
-        /**
-          * Prefix text for the last page label.
-         */
-        "labelLast": string;
-        /**
-          * Accessible label for the next page button.
-         */
-        "labelNext": string;
-        /**
-          * Prefix text for page number labels.
-         */
-        "labelPage": string;
-        /**
-          * Accessible label for the previous page button.
-         */
-        "labelPrevious": string;
         /**
           * The current active page number.  **If not specified, defaults to the first page.**
          */
@@ -425,6 +395,26 @@ export namespace Components {
           * The number of items per page.
          */
         "pageSize": number;
+        /**
+          * Prefix text for the first page label.
+         */
+        "textFirst": string;
+        /**
+          * Prefix text for the last page label.
+         */
+        "textLast": string;
+        /**
+          * Accessible label for the next page button.
+         */
+        "textNext": string;
+        /**
+          * Prefix text for page number labels.
+         */
+        "textPage": string;
+        /**
+          * Accessible label for the previous page button.
+         */
+        "textPrevious": string;
     }
     interface PostPopover {
         /**
@@ -432,10 +422,6 @@ export namespace Components {
           * @default true
          */
         "arrow"?: boolean;
-        /**
-          * Define the caption of the close button for assistive technology
-         */
-        "closeButtonCaption": string;
         /**
           * Programmatically hide this popover
          */
@@ -450,6 +436,10 @@ export namespace Components {
           * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Define the text of the close button for assistive technology
+         */
+        "textClose": string;
         /**
           * Toggle popover display
           * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
@@ -511,7 +501,7 @@ export namespace Components {
          */
         "currentRating": number;
         /**
-          * Defines a hidden label for the component.
+          * A hidden, descriptive label that explains the role of the rating component to assistive technologies.
          */
         "label": string;
         /**
@@ -527,22 +517,22 @@ export namespace Components {
     }
     interface PostStepper {
         /**
-          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
-         */
-        "activeStepLabel": string;
-        /**
-          * "Completed step" label for accessibility
-         */
-        "completedLabel": string;
-        /**
           * Defines the currently active step
           * @default -1
          */
         "currentIndex": number;
         /**
+          * "Completed step" label for accessibility
+         */
+        "textCompletedStep": string;
+        /**
           * "Current step" label for accessibility
          */
-        "currentLabel": string;
+        "textCurrentStep": string;
+        /**
+          * Label for the "Step N:" indicator for mobile view. Use `#number` as a placeholder — it will be replaced with the current step number at runtime.
+         */
+        "textStepNumber": string;
     }
     interface PostStepperItem {
     }
@@ -833,18 +823,6 @@ declare global {
         prototype: HTMLPostLinkareaElement;
         new (): HTMLPostLinkareaElement;
     };
-    interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
-    }
-    var HTMLPostListElement: {
-        prototype: HTMLPostListElement;
-        new (): HTMLPostListElement;
-    };
-    interface HTMLPostListItemElement extends Components.PostListItem, HTMLStencilElement {
-    }
-    var HTMLPostListItemElement: {
-        prototype: HTMLPostListItemElement;
-        new (): HTMLPostListItemElement;
-    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -1055,8 +1033,6 @@ declare global {
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
-        "post-list": HTMLPostListElement;
-        "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1129,7 +1105,7 @@ declare namespace LocalJSX {
         /**
           * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
          */
-        "label": string;
+        "textBackToTop": string;
     }
     interface PostBanner {
         /**
@@ -1150,21 +1126,21 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbs {
         /**
-          * The text label for the home breadcrumb item.
-         */
-        "homeText": string;
-        /**
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
         /**
           * The accessible label for the breadcrumb component.
          */
-        "label": string;
+        "textBreadcrumbs": string;
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "textHome": string;
         /**
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
-        "menuLabel": string;
+        "textMoreItems": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1245,11 +1221,15 @@ declare namespace LocalJSX {
     }
     interface PostFooter {
         /**
-          * The label to add to the footer (visually hidden).
+          * The textFooter to add to the footer (visually hidden).
          */
-        "label": string;
+        "textFooter": string;
     }
     interface PostHeader {
+        /**
+          * The label of the burger menu button.
+         */
+        "textMenu": string;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -1290,11 +1270,11 @@ declare namespace LocalJSX {
         /**
           * A title for the list of language options
          */
-        "caption": string;
+        "textChangeLanguage": string;
         /**
-          * A descriptive text for the list of language options
+          * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
          */
-        "description": string;
+        "textCurrentLanguage": string;
         /**
           * Whether the component is rendered as a list or a menu
           * @default 'list'
@@ -1333,20 +1313,6 @@ declare namespace LocalJSX {
     }
     interface PostLinkarea {
     }
-    interface PostList {
-        /**
-          * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
-          * @default false
-         */
-        "horizontal"?: boolean;
-        /**
-          * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
-          * @default false
-         */
-        "titleHidden"?: boolean;
-    }
-    interface PostListItem {
-    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -1357,21 +1323,21 @@ declare namespace LocalJSX {
         /**
           * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
          */
-        "caption": string;
+        "textMain": string;
     }
     interface PostMegadropdown {
-        /**
-          * A label for the back button visible on tablet and mobile
-         */
-        "labelBack": string;
-        /**
-          * An accessible label for the close button visible on desktop
-         */
-        "labelClose": string;
         /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
         "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
+        /**
+          * A label for the back button visible on tablet and mobile
+         */
+        "textBack": string;
+        /**
+          * An accessible label for the close button visible on desktop
+         */
+        "textClose": string;
     }
     interface PostMegadropdownTrigger {
         /**
@@ -1386,7 +1352,7 @@ declare namespace LocalJSX {
     }
     interface PostMenu {
         /**
-          * An accessible name for the menu.
+          * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
          */
         "label": string;
         /**
@@ -1417,29 +1383,9 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Accessible label for the pagination navigation.
+          * A descriptive label for the pagination navigation, used by assistive technologies.
          */
         "label": string;
-        /**
-          * Prefix text for the first page label.
-         */
-        "labelFirst": string;
-        /**
-          * Prefix text for the last page label.
-         */
-        "labelLast": string;
-        /**
-          * Accessible label for the next page button.
-         */
-        "labelNext": string;
-        /**
-          * Prefix text for page number labels.
-         */
-        "labelPage": string;
-        /**
-          * Accessible label for the previous page button.
-         */
-        "labelPrevious": string;
         /**
           * Event emitted when the page changes.
          */
@@ -1452,6 +1398,26 @@ declare namespace LocalJSX {
           * The number of items per page.
          */
         "pageSize": number;
+        /**
+          * Prefix text for the first page label.
+         */
+        "textFirst": string;
+        /**
+          * Prefix text for the last page label.
+         */
+        "textLast": string;
+        /**
+          * Accessible label for the next page button.
+         */
+        "textNext": string;
+        /**
+          * Prefix text for page number labels.
+         */
+        "textPage": string;
+        /**
+          * Accessible label for the previous page button.
+         */
+        "textPrevious": string;
     }
     interface PostPopover {
         /**
@@ -1460,14 +1426,14 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
-          * Define the caption of the close button for assistive technology
-         */
-        "closeButtonCaption": string;
-        /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
         "placement"?: Placement;
+        /**
+          * Define the text of the close button for assistive technology
+         */
+        "textClose": string;
     }
     interface PostPopoverTrigger {
         /**
@@ -1528,7 +1494,7 @@ declare namespace LocalJSX {
          */
         "currentRating"?: number;
         /**
-          * Defines a hidden label for the component.
+          * A hidden, descriptive label that explains the role of the rating component to assistive technologies.
          */
         "label": string;
         /**
@@ -1552,22 +1518,22 @@ declare namespace LocalJSX {
     }
     interface PostStepper {
         /**
-          * Label for the "Step N:" indicator for mobile view. Use `#index` as a placeholder — it will be replaced with the current step number at runtime.
-         */
-        "activeStepLabel": string;
-        /**
-          * "Completed step" label for accessibility
-         */
-        "completedLabel": string;
-        /**
           * Defines the currently active step
           * @default -1
          */
         "currentIndex"?: number;
         /**
+          * "Completed step" label for accessibility
+         */
+        "textCompletedStep": string;
+        /**
           * "Current step" label for accessibility
          */
-        "currentLabel": string;
+        "textCurrentStep": string;
+        /**
+          * Label for the "Step N:" indicator for mobile view. Use `#number` as a placeholder — it will be replaced with the current step number at runtime.
+         */
+        "textStepNumber": string;
     }
     interface PostStepperItem {
     }
@@ -1660,8 +1626,6 @@ declare namespace LocalJSX {
         "post-language-menu": PostLanguageMenu;
         "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
-        "post-list": PostList;
-        "post-list-item": PostListItem;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
@@ -1712,8 +1676,6 @@ declare module "@stencil/core" {
             "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
-            "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
-            "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;

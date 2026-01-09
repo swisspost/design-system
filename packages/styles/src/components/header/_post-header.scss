@@ -38,12 +38,7 @@ post-header {
   }
 
   // links and buttons remaining in the global header on tablet and mobile
-  > :is(
-    [slot='global-nav-primary'],
-    [slot='post-login'],
-    [slot='post-togglebutton'],
-    [slot='local-nav']
-  ) {
+  > :is([slot='global-nav-primary'], [slot='post-login'], [slot='local-nav']) {
     @include media.max(desktop) {
       flex-direction: row;
     }
@@ -55,15 +50,19 @@ post-header {
     }
   }
 
-  // target group on mobile
+  // audience
   > ul[slot='audience'] {
     @include media.only(tablet) {
+      flex-direction: row;
       margin-block: 1rem;
     }
 
     @include media.only(mobile) {
-      flex-direction: column;
       gap: 0.5rem;
+    }
+
+    @include interactive-elements {
+      padding-inline: 1rem;
     }
   }
 
@@ -91,7 +90,7 @@ post-header {
   [slot='title'] {
     margin: 0;
     font-size: 1.25rem;
-    font-weight: 900;
+    font-weight: 950;
 
     @include media.only(desktop) {
       font-size: 1.75rem;

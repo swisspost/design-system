@@ -8,26 +8,23 @@ import {
   PostIcon,
   PostLanguageMenuItem,
   PostLanguageMenu,
-  PostList,
-  PostListItem,
   PostLogo,
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
-  PostTogglebutton,
 } from '@swisspost/design-system-components-react/server';
 
 export default function Layout({ children }: { readonly children: React.ReactNode }) {
   return (
     <>
       {/* Throws Hydration Errors */}
-      <PostHeader>
+      <PostHeader textMenu="Menu">
         {/* Logo */}
         <PostLogo slot="post-logo" url="/">
           Homepage
         </PostLogo>
 
-        {/* Target Group */}
+        {/* Audience */}
         <ul slot="audience">
           <li>
             <a href="#" aria-current="location">
@@ -67,8 +64,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         {/* Language switch */}
         <PostLanguageMenu
-          caption="Change the language"
-          description="The currently selected language is English."
+          text-change-language="Change the language"
+          text-current-language="The currently selected language is #name."
           variant="list"
           slot="language-menu"
         >
@@ -91,16 +88,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <span>Login</span>
           <PostIcon name="login" />
         </a>
-
-        {/* Menu button for mobile */}
-        <PostTogglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled" />
-          <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled" />
-        </PostTogglebutton>
-
         {/* Main navigation */}
-        <PostMainnavigation slot="main-nav" caption="Main">
+        <PostMainnavigation slot="main-nav" text-main="Main">
           <ul>
             {/* Link only level 1 */}
             <li>
@@ -113,84 +102,108 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Letters */}
             <li>
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
-              <PostMegadropdown id="letters" label-close="Close" label-back="Back">
-                <a className="post-megadropdown-overview" href="/letters">
+              <PostMegadropdown id="letters" text-close="Close" text-back="Back">
+                <a className="megadropdown-overview-link" href="/letters">
                   Overview Letters
                 </a>
-                <PostList>
-                  <p>Send letters</p>
-                  <PostListItem slot="post-list-item">
-                    <a href="/sch">Letters Switzerland</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="/kl">Small items abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Goods abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Express and courier</a>
-                  </PostListItem>
-                </PostList>
-                <PostList>
-                  <p>
-                    <a href="/step-by-step">Step by step</a>
-                  </p>
-                  <PostListItem slot="post-list-item">
-                    <a href="/sch">Packages Switzerland</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="/kl">Small items abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Goods abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Express and courier</a>
-                  </PostListItem>
-                </PostList>
+                <div className="row row-cols-1 row-cols-sm-2">
+                  <div className="col">
+                    <p className="post-megadropdown-list-title" id="send-letters">
+                      Send letters
+                    </p>
+                    <ul className="post-megadropdown-list" aria-labelledby="send-letters">
+                      <li>
+                        <a href="/sch">Letters Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col">
+                    <a
+                      className="post-megadropdown-list-title"
+                      id="step-by-step-letters"
+                      href="/step-by-step"
+                    >
+                      Step by step
+                    </a>
+                    <ul className="post-megadropdown-list" aria-labelledby="step-by-step-letters">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </PostMegadropdown>
             </li>
 
             {/* Level 1 with megadropdown - Packages */}
             <li>
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
-              <PostMegadropdown id="packages" label-close="Close" label-back="Back">
-                <a className="post-megadropdown-overview" href="/packages">
+              <PostMegadropdown id="packages" text-close="Close" text-back="Back">
+                <a className="megadropdown-overview-link" href="/packages">
                   Overview Packages
                 </a>
-                <PostList>
-                  <p>Send packages</p>
-                  <PostListItem slot="post-list-item">
-                    <a href="/sch">Packages Switzerland</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="/kl">Small items abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Goods abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Express and courier</a>
-                  </PostListItem>
-                </PostList>
-                <PostList>
-                  <p>
-                    <a href="/step-by-step">Step by step</a>
-                  </p>
-                  <PostListItem slot="post-list-item">
-                    <a href="/sch">Packages Switzerland</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="/kl">Small items abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Goods abroad</a>
-                  </PostListItem>
-                  <PostListItem slot="post-list-item">
-                    <a href="">Express and courier</a>
-                  </PostListItem>
-                </PostList>
+                <div className="row row-cols-1 row-cols-sm-2">
+                  <div className="col">
+                    <p className="post-megadropdown-list-title" id="send-packages">
+                      Send packages
+                    </p>
+                    <ul className="post-megadropdown-list" aria-labelledby="send-packages">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col">
+                    <a
+                      className="post-megadropdown-list-title"
+                      id="step-by-step-packages"
+                      href="/step-by-step"
+                    >
+                      Step by step
+                    </a>
+                    <ul className="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </PostMegadropdown>
             </li>
           </ul>
@@ -201,9 +214,9 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <div className="container">
           <PostBreadcrumbs
             home-url="/"
-            home-text="Home"
-            label="Breadcrumbs"
-            menu-label="More breadcrumb items"
+            text-home="Home"
+            text-breadcrumbs="Breadcrumbs"
+            text-more-items="More items"
           >
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
@@ -213,7 +226,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </div>
       </main>
 
-      <PostFooter label="Footer label">
+      <PostFooter text-footer="Footer">
         <span id="grid-1-title" slot="grid-1-title">
           Title 1
         </span>
@@ -479,7 +492,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <span slot="copyright">All rights reserved.</span>
       </PostFooter>
 
-      <PostBackToTop label="Back to top button" />
+      <PostBackToTop text-back-to-top="Back to top" />
     </>
   );
 }

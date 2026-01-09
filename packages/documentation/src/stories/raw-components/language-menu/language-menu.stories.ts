@@ -17,8 +17,8 @@ const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   args: {
     variant: 'list',
     type: 'language',
-    caption: 'Change the language',
-    description: 'The currently selected language is English.',
+    textChangeLanguage: 'Change the language',
+    textCurrentLanguage: 'The currently selected language is #name.',
   },
 };
 
@@ -26,8 +26,8 @@ export default meta;
 
 function renderLanguageMenu(args: Partial<HTMLPostLanguageMenuElement>) {
   return html`<post-language-menu
-    caption=${args.caption}
-    description=${args.description}
+    text-change-language=${args.textChangeLanguage}
+    text-current-language=${args.textCurrentLanguage}
     variant=${args.variant}
     type=${args.type}
   >
@@ -39,8 +39,8 @@ function renderLanguageMenu(args: Partial<HTMLPostLanguageMenuElement>) {
 
 function renderLanguageMenuAsLinks(args: Partial<HTMLPostLanguageMenuElement>) {
   return html`<post-language-menu
-    caption=${args.caption}
-    description=${args.description}
+    text-change-language=${args.textChangeLanguage}
+    text-current-language=${args.textCurrentLanguage}
     variant="menu"
   >
     <post-language-menu-item url="/de" active="false" code="de" name="Deutsch"

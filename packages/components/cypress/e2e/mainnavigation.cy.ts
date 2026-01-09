@@ -149,9 +149,11 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
         // check the mega-dropdown visible and position
         cy.get('@mainnavigation')
-          .find('post-megadropdown .megadropdown')
+          .find('post-megadropdown')
           .last()
-          .should('be.visible')
+          .shadow()
+          .find('.megadropdown')
+          .should('have.css', 'display', 'block')
           .then($megadropdown => {
             expect($megadropdown.position().left).eq(0);
           });
