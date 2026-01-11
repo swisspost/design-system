@@ -214,18 +214,6 @@ export async function closeLanguageMenu(page: Page): Promise<void> {
   await page.waitForTimeout(WAIT_TIMES.animation);
 }
 
-export async function hoverLanguageMenuItem(page: Page, langCode: string, isMobileList: boolean): Promise<void> {
-  const item = page.locator(`post-language-menu-item[code="${langCode}"]`).first();
-  await item.hover();
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
-export async function focusLanguageMenuItem(page: Page, langCode: string, isMobileList: boolean): Promise<void> {
-  const item = page.locator(`post-language-menu-item[code="${langCode}"]`).first();
-  await item.focus();
-  await page.waitForTimeout(WAIT_TIMES.interaction);
-}
-
 // ============================================================================
 // USER MENU HELPERS (post-menu + post-menu-trigger)
 // ============================================================================

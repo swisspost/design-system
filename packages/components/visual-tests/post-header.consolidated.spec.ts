@@ -255,7 +255,6 @@ async function testState(page, state: string, variant: string, breakpoint: strin
       await openMegadropdown(page, 'letters');
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-burger-megadropdown-open.png`);
       await closeMegadropdown(page, 'letters');
-      await closeBurgerMenu(page);
       break;
   }
 }
