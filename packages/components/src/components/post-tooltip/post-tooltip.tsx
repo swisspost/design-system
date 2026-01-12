@@ -31,10 +31,7 @@ export class PostTooltip {
    * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
-  /**
-   * Choose a tooltip animation
-   */
-  @Prop() readonly animation?: 'pop-in';
+
   /**
    * Indicates the open state of the tooltip
    */
@@ -98,7 +95,6 @@ export class PostTooltip {
           class={popoverClass}
           role="tooltip"
           arrow={this.arrow}
-          animation={this.animation}
           placement={this.placement}
           onPostToggle={e => this.handleToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}

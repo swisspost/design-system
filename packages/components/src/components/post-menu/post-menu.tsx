@@ -164,8 +164,8 @@ export class PostMenu {
   }
 
   @EventFrom('post-popovercontainer')
-  private handlePostToggled(event: CustomEvent<{ isOpen: boolean }>) {
-    this.isVisible = event.detail.isOpen;
+  private handlePostBeforeToggle(event: CustomEvent<{ willOpen: boolean }>) {
+    this.isVisible = event.detail.willOpen;
     this.toggleMenu.emit(this.isVisible);
 
     if (this.isVisible) {
@@ -249,7 +249,7 @@ export class PostMenu {
       <Host data-version={version}>
         <post-popovercontainer
           onPostShow={this.handlePostShown.bind(this)}
-          onPostToggle={this.handlePostToggled.bind(this)}
+          onPostBeforeToggle={this.handlePostBeforeToggle.bind(this)}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
         >
