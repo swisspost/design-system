@@ -783,8 +783,30 @@ export class PostDatepicker {
           }
         }
       });
+
+      input.addEventListener('focus', this.onFocus);
+      input.addEventListener('keydown', this.onKeydown);
+      input.addEventListener('touchstart', this.onTouchStart);
     });
   }
+
+  private readonly onFocus = (e: FocusEvent) => {
+    const input = e.target as HTMLInputElement;
+    e.preventDefault();
+    console.log('focus');
+  };
+
+  private readonly onKeydown = (e: KeyboardEvent) => {
+    if (e.key === ' ') {
+      e.preventDefault();
+      console.log('space key');
+    }
+  };
+
+  private readonly onTouchStart = (e: TouchEvent) => {
+    e.preventDefault();
+    console.log('touch event');
+  };
 
   async componentDidLoad() {
     this.configDatepicker();
