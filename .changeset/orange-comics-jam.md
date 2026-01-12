@@ -3,4 +3,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Updated the section max-width from 1920px to 1440px.
+Updated maximum width of the section from 1920px to 1440px.
