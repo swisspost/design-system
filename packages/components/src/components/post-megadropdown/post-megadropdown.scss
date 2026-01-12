@@ -98,15 +98,12 @@
 
 .close-button {
   position: absolute;
-  inset-block-start: 1rem;
-  inset-inline-end: 1rem;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.5rem;
 
   button {
-    border: unset;
-    background: unset;
-    box-shadow: unset;
-    height: 24px;
-    width: 24px;
+    height: 32px;
+    width: 32px;
   }
 
   @include media.max(lg) {
