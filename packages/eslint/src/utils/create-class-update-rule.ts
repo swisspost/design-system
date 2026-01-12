@@ -68,9 +68,6 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                 },
               });
             } else {
-              // If deleted class case return
-              if (!newClass || newClass.trim() === '') return;
-
               // Angular dynamic class binding
               const root = $node[0];
 
@@ -89,7 +86,10 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                   const isNgClass = attrName.toLowerCase() === '[ngclass]' && hasExactClass;
                   const isClass = attrName.toLowerCase() === '[class]' && hasExactClass;
 
-                  if (isClassBinding || isNgClass || isClass) {
+                  if (
+                    (isClassBinding || isNgClass || isClass) &&
+                    (newClass || newClass.trim() !== '')
+                  ) {
                     context.report({
                       loc: node.loc,
                       messageId,
