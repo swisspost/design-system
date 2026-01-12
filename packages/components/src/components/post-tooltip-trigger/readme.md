@@ -1,7 +1,5 @@
 # post-tooltip-trigger
 
-
-
 <!-- Auto Generated Below -->
 
 

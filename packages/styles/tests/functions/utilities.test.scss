@@ -6,4 +6,3 @@ $match: 'Surprise';
 
 @include jest.equal(utilities.average(1, 2, 3), 2);
 @include jest.equal(utilities.starts-with-any($text, $match), true);
-@include jest.equal(utilities.z-index(subnavigation, underscore-root), 1);

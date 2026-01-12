@@ -22,13 +22,13 @@ tokens.$default-map: components.$post-button;
 }
 
 .post-language-menu-trigger {
-  @include header-mx.header-control-base;
-  @include header-mx.header-control-icon-rotate;
+  @include header-mx.nav-item-base;
+  @include header-mx.nav-item-rotating-chevron;
   text-transform: uppercase;
   cursor: pointer;
 }
 
-post-menu::part(menu) {
+post-menu::part(post-menu) {
   padding-block: 0;
 }
 

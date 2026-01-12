@@ -22,32 +22,29 @@ To use the Swiss Post Design System ESLint package, simply add the predefined to
 
 ```js
 // eslint.config.mjs
-import post from "@swisspost/design-system-eslint";
+import post from '@swisspost/design-system-eslint';
 
-export default [
-  ...post.configs.tsRecommended,
-  ...post.configs.htmlRecommended,
-];
+export default [...post.configs.tsRecommended, ...post.configs.htmlRecommended];
 ```
 
 To override the default configuration, you can extend the rules as follows:
 
 ```js
 // eslint.config.mjs
-import post from "@swisspost/design-system-eslint";
+import post from '@swisspost/design-system-eslint';
 
 export default [
   ...post.configs.tsRecommended,
-  
+
   // apply html rules only to files in the src/safe directory
   ...post.configs.htmlRecommended.map(config => ({
     ...config,
-    files: ["**/src/safe/*.html"],
+    files: ['**/src/safe/*.html'],
   })),
 
   // override rules as needed
   {
-    name: "custom-config",
+    name: 'custom-config',
     rules: {
       '@swisspost/design-system/ts-rule-name': 'off',
       '@swisspost/design-system/html/html-rule-name': 'warn',
@@ -88,7 +85,6 @@ These migration rules do not need to be added to your ESLint configuration and c
 ```bash
 eslint -c @swisspost/design-system-eslint/migrations.js --fix
 ```
-
 
 ## Contribute
 

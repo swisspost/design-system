@@ -2,14 +2,20 @@
 
 :host {
   // The following variables will affect the header to minimize it on scroll
-  --post-global-header-top: calc(var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height));
+  --post-global-header-top: calc(
+    var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)
+  );
   --post-header-top: calc(var(--post-header-reduced-height) - var(--post-header-expanded-height));
 
-  --post-logo-height: calc(var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px));
+  --post-logo-height: calc(
+    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px)
+  );
   --post-global-controls-top: clamp(
-    /* 0 when header is static, large negative when header shrinks to enable offset */
-    1000 * (var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)),
-    calc(-1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))),
+    /* 0 when header is static, large negative when header shrinks to enable offset */ 1000 *
+      (var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)),
+    calc(
+      -1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))
+    ),
     0px
   );
 
@@ -51,9 +57,15 @@
   }
 }
 
-:host([data-expanded]) {
+:host(:not([full-width])) {
+  --post-header-content-max-width: 1440px;
+}
+
+:host([data-expanded]), // case when mobile menu is closed and focus is moved inside the local-header
+:host([data-menu-extended]) // case when mobile menu is open and page is scrolled down
+{
   --post-header-top: 0;
-  --post-global-header-top: 0;
+  --post-global-header-top: -0.001px; // Fixes a Firefox rendering engine (Gecko) glitch related to position sticky, causing the header to be positioned incorrectly.
   --post-global-controls-top: 0;
   --post-logo-height: var(--post-global-header-expanded-height);
 }

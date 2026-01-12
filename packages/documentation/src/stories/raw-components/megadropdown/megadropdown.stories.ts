@@ -16,7 +16,10 @@ const meta: MetaComponent<HTMLPostMegadropdownElement> = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=2908-30413&m=dev',
     },
   },
-  args: {},
+  args: {
+    labelClose: 'Close',
+    labelBack: 'Back',
+  },
   argTypes: {},
 };
 
@@ -24,35 +27,32 @@ export default meta;
 
 export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
   return html`
-    <post-header>
+    <post-header text-menu="Menu">
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
       <!-- Meta navigation -->
-      <ul slot="meta-navigation">
+      <ul slot="global-nav-secondary">
         <li><a href="">Jobs</a></li>
         <li><a href="">About us</a></li>
       </ul>
 
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span>Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-      </post-togglebutton>
-
       <!-- Language switch -->
       <post-language-menu
-        caption="Caption"
-        description="Description"
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is #name."
         variant="list"
         name="language-menu-example"
-        slot="post-language-switch"
+        slot="language-menu"
       >
         <post-language-menu-item active="true" code="de" name="German">DE</post-language-menu-item>
         <post-language-menu-item active="false" code="fr" name="French">FR</post-language-menu-item>
-        <post-language-menu-item active="false" code="it" name="Italian">IT</post-language-menu-item>
-        <post-language-menu-item active="false" code="en" name="English">EN</post-language-menu-item>
+        <post-language-menu-item active="false" code="it" name="Italian"
+          >IT</post-language-menu-item
+        >
+        <post-language-menu-item active="false" code="en" name="English"
+          >EN</post-language-menu-item
+        >
       </post-language-menu>
 
       <!-- Application title (optional) -->
@@ -75,11 +75,10 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation slot="post-mainnavigation" caption="Main Navigation">
-        <post-list title-hidden="">
-          <p>Main Navigation</p>
-          <post-list-item> ${story(context.args, context)} </post-list-item>
-        </post-list>
+      <post-mainnavigation slot="main-nav" text-main="Main">
+        <ul>
+          <li>${story(context.args, context)}</li>
+        </ul>
       </post-mainnavigation>
     </post-header>
     <div class="container">
@@ -92,27 +91,30 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 function render() {
   return html`
     <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-    <post-megadropdown id="packages">
-      <button slot="back-button" class="btn btn-tertiary px-0">
-        <post-icon name="arrowleft"></post-icon>
-        Back
-      </button>
-      <post-closebutton slot="close-button">Close</post-closebutton>
-      <a slot="megadropdown-overview-link" href="/packages">Overview Packages</a>
-      <post-list>
-        <p>Send packages</p>
-        <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
-        <post-list-item><a href="/kl">Small goods international</a></post-list-item>
-        <post-list-item><a href="">Goods international</a></post-list-item>
-        <post-list-item><a href="">Express and courier</a></post-list-item>
-      </post-list>
-      <post-list>
-        <p><a href="/step-by-step">Step by step</a></p>
-        <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
-        <post-list-item><a href="/kl">Small goods international</a></post-list-item>
-        <post-list-item><a href="">Goods international</a></post-list-item>
-        <post-list-item><a href="">Express and courier</a></post-list-item>
-      </post-list>
+    <post-megadropdown id="packages" text-close="Close" text-back="Back">
+      <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
+      <div class="row row-cols-1 row-cols-sm-2">
+        <div class="col">
+          <p class="post-megadropdown-list-title" id="send-packages">Send packages</p>
+          <ul class="post-megadropdown-list" aria-labelledby="send-packages">
+            <li><a href="/sch">Packages Switzerland</a></li>
+            <li><a href="/kl">Small goods international</a></li>
+            <li><a href="">Goods international</a></li>
+            <li><a href="">Express and courier</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <a class="post-megadropdown-list-title" id="step-by-step-packages" href="/step-by-step"
+            >Step by step</a
+          >
+          <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+            <li><a href="/sch">Packages Switzerland</a></li>
+            <li><a href="/kl">Small goods international</a></li>
+            <li><a href="">Goods international</a></li>
+            <li><a href="">Express and courier</a></li>
+          </ul>
+        </div>
+      </div>
     </post-megadropdown>
   `;
 }

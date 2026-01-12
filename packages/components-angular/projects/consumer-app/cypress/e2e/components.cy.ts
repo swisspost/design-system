@@ -1,4 +1,7 @@
-import { setupComponentErrorCapture, assertNoComponentErrors } from '../support/component-error-filter';
+import {
+  setupComponentErrorCapture,
+  assertNoComponentErrors,
+} from '../support/component-error-filter';
 import { componentNames } from '@swisspost/design-system-components/dist/component-names.json';
 
 describe('components-angular (consumer-app)', () => {
@@ -22,7 +25,7 @@ describe('components-angular (consumer-app)', () => {
     const errorCapture = setupComponentErrorCapture(componentNames as string[]);
 
     cy.visit('/', {
-      onBeforeLoad: errorCapture.onBeforeLoad
+      onBeforeLoad: errorCapture.onBeforeLoad,
     });
 
     assertNoComponentErrors(errorCapture.errors, componentNames as string[]);
