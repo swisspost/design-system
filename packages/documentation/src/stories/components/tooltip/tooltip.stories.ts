@@ -23,7 +23,6 @@ const meta: MetaComponent = {
     innerHTML: 'Hi there 👋',
     palette: 'palette-accent',
     placement: 'top',
-    animation: 'none',
   },
   argTypes: {
     id: {
@@ -65,13 +64,6 @@ const meta: MetaComponent = {
         type: 'boolean',
       },
     },
-    animation: {
-      name: 'Animation',
-      control: {
-        type: 'select',
-      },
-      options: ['none', 'pop-in'],
-    },
   },
 };
 
@@ -94,7 +86,6 @@ function render(args: Args) {
       arrow="${ifDefined(args.arrow)}"
       class="palette ${args.palette}"
       placement="${ifDefined(args.placement)}"
-      animation="${ifDefined(args.animation)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>

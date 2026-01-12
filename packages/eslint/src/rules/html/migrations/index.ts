@@ -44,6 +44,10 @@ import {
   namePhase2 as noDeprecatedBreakpointsRulePhase2Name,
 } from './no-deprecated-breakpoints';
 
+import noDeprecatedCssClasses, {
+  name as noDeprecatedCssClassesRuleName,
+} from './no-deprecated-css-classes';
+
 export const htmlMigrationRules = {
   [noDeprecatedBreakpointsRulePhase1Name]: noDeprecatedBreakpointsRulePhase1,
   [noDeprecatedBreakpointsRulePhase2Name]: noDeprecatedBreakpointsRulePhase2,
@@ -69,4 +73,5 @@ export const htmlMigrationRules = {
   [noDeprecatedFontSizesRuleName]: noDeprecatedFontSizesRule,
   [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
   [noDeprecatedAlertName]: noDeprecatedAlert,
+  [noDeprecatedCssClassesRuleName]: noDeprecatedCssClasses,
 };
