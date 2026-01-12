@@ -148,7 +148,7 @@ export class PostMenu {
   };
 
   @EventFrom('post-popovercontainer')
-  private readonly handlePostShown(event: CustomEvent<{ first?: boolean }>) {
+  private handlePostShown(event: CustomEvent<{ first?: boolean }>) {
     // Only for the first open
     if (event.detail.first) {
       // Add "menu" and "menuitem" aria roles and aria-label
