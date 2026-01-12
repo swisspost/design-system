@@ -1,9 +1,10 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as HeaderStories from './header.stories';
 import './header.styles.scss';
 import StylesPackageImport from '@/shared/styles-package-import';
 import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import LandmarkCorrect from './landmark-correct.sample.html?raw';
 
 <Meta of={HeaderStories} />
 
@@ -109,3 +110,23 @@ When no user is logged in, a login button is displayed instead.
 ### Logged in
 
 <Canvas sourceState="shown" of={HeaderStories.LoggedIn} />
+
+## Accessibility
+
+### Banner Landmark
+
+The `<post-header>` component provides a **banner landmark** that identifies site-oriented content at the beginning of each page.
+Screen reader users can jump directly to the banner using landmark navigation shortcuts.
+
+Each page must have **exactly one banner landmark** at the top level:
+
+<Source code={LandmarkCorrect} language="html" />
+
+### Navigation Landmark
+
+The `<post-mainnavigation>` component inside the header creates a **navigation landmark**. 
+Use the `text-main` property to provide a descriptive label that helps screen reader users identify main navigation among other navigation regions on the page.
+
+**Why labeling matters:** If your page has multiple navigation regions (e.g., skip links, main navigation, breadcrumbs), descriptive labels help screen reader users quickly identify and navigate to the correct one.
+
+For more information, see the [WAI-ARIA Banner Landmark documentation](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/banner.html) and [WAI-ARIA Navigation Landmark documentation](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html).
