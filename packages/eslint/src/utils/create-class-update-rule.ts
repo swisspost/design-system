@@ -72,21 +72,23 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                 const attribs = root.attribs as Record<string, string>;
 
                 for (const attrName of Object.keys(attribs)) {
-                  const isClassBinding = attrName === `[class.${oldClass}]`;
-                  const isNgClass =
-                    attrName.toLowerCase() === '[ngclass]' &&
-                    $node.attr(attrName)?.includes(oldClass);
+                  const escaped = oldClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                  const validClassRegex = new RegExp(
+                    `(^|[^A-Za-z0-9_-])${escaped}([^A-Za-z0-9_-]|$)`,
+                  );
+                  const value = $node.attr(attrName);
+                  const hasExactClass = typeof value === 'string' && validClassRegex.test(value);
 
-                  const isClass =
-                    attrName.toLowerCase() === '[class]' &&
-                    $node.attr(attrName)?.includes(oldClass);
+                  const isClassBinding = attrName === `[class.${oldClass}]`;
+                  const isNgClass = attrName.toLowerCase() === '[ngclass]' && hasExactClass;
+                  const isClass = attrName.toLowerCase() === '[class]' && hasExactClass;
 
                   if (isClassBinding || isNgClass || isClass) {
                     context.report({
                       loc: node.loc,
                       messageId,
                       fix(fixer) {
-                        // ----- CASE [class.foo] -----
+                        // ----- [class.foo] -----
                         if (isClassBinding) {
                           const fixedAttrName = `[class.${newClass}]`;
                           $node.attr(fixedAttrName, $node.attr(attrName));
@@ -95,7 +97,7 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                           return fixer.replaceTextRange(node.range, $node.toString());
                         }
 
-                        // ----- CASE [ngClass] -----
+                        // ----- [ngClass] -----
                         if (isNgClass || isClass) {
                           const rawValue = attribs[attrName].trim();
 
@@ -109,7 +111,7 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
 
                           let newValue: string | null = null;
 
-                          // ----- CASE 2: String literal -----
+                          // ----- String literal -----
                           if (isStringLiteral) {
                             const quote = rawValue[0];
                             const inner = rawValue.slice(1, -1);
@@ -117,7 +119,7 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                             const newParts = parts.map(cls => (cls === oldClass ? newClass : cls));
                             newValue = quote + newParts.join(' ') + quote;
                           }
-                          // ----- CASE 3: Object literal ----- (does not support double quote syntax e.g. {"key-1":"btn-1"})
+                          // ----- Object literal ----- (does not identify cases of double quote syntax e.g. {"key-1":"btn-1"})
                           else if (isObjectLiteral) {
                             const raw = $node
                               .attr(attrName)
