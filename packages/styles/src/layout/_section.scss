@@ -8,27 +8,13 @@
 tokens.$default-map: components.$post-container;
 
 .section {
-  --post-section-max-width: 120rem;
+  --post-section-max-width: 1920px;
 
   container: section / inline-size;
   margin-inline: auto;
   max-width: var(--post-section-max-width);
 
-  .container &,
-  .container-fluid & {
-    $section-margin-inline: max((100vw - var(--post-section-max-width)) / 2, 0px);
-
-    --post-section-width: calc(100cqw + 2 * var(--post-section-content-offset));
-    --post-section-content-offset: calc(
-      var(--post-container-offset, 0px) - #{$section-margin-inline}
-    );
-
-    margin-inline: calc(-1 * var(--post-section-content-offset));
-    padding-inline: max(var(--post-container-padding-inline), var(--post-section-content-offset));
-  }
-
-  > .container,
-  > .container-fluid {
+  > .container {
     --post-section-width: 100cqw;
     --post-section-content-offset: calc(
       (var(--post-section-width) - var(--post-container-max-width)) * 0.5 +
