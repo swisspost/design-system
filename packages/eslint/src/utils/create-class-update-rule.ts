@@ -91,68 +91,76 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                       loc: node.loc,
                       messageId,
                       fix(fixer) {
-                        // ----- [class.foo] -----
-                        if (isClassBinding) {
+                        // [class.foo]
+                        if (isClassBinding) return fixClassBinding();
+
+                        // [ngClass] or [class]
+                        if (isNgClass || isClass) return fixNgClassOrClass();
+
+                        return null;
+
+                        function fixClassBinding() {
                           const fixedAttrName = `[class.${newClass}]`;
                           const oldAttrValue = $node.attr(attrName);
-                          if (oldAttrValue != null) {
-                            $node.attr(fixedAttrName, oldAttrValue);
-                            $node.removeAttr(`[class.${oldClass}]`);
-                            return fixer.replaceTextRange(node.range, $node.toString());
-                          }
+                          if (oldAttrValue == null) return null;
+
+                          $node.attr(fixedAttrName, oldAttrValue);
+                          $node.removeAttr(`[class.${oldClass}]`);
+                          return fixer.replaceTextRange(node.range, $node.toString());
+                        }
+
+                        function fixNgClassOrClass() {
+                          const raw = attribs[attrName]?.trim();
+                          if (!raw) return null;
+
+                          const newValue = getNewAttrValue(raw);
+                          if (!newValue) return null;
+
+                          const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+                          $node.attr(targetAttr, newValue);
+                          if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
+
+                          return fixer.replaceTextRange(node.range, $node.toString());
+                        }
+
+                        function getNewAttrValue(value: string): string | null {
+                          if (isStringLiteral(value)) return updateStringLiteral(value);
+                          if (isObjectLiteral(value))
+                            return updateObjectLiteral($node.attr(attrName)?.toString() ?? '');
                           return null;
                         }
 
-                        // ----- [ngClass] or [class] -----
-                        if (isNgClass || isClass) {
-                          const attrValue = attribs[attrName]?.trim();
-                          if (!attrValue) return null;
-
-                          const firstChar = attrValue[0];
-                          const lastChar = attrValue.at(-1);
-
-                          const isStringLiteral =
-                            ['"', "'", '`'].includes(firstChar) && firstChar === lastChar;
-                          const isObjectLiteral =
-                            attrValue.startsWith('{') && attrValue.endsWith('}');
-
-                          let newValue: string | null = null;
-
-                          if (isStringLiteral) {
-                            const inner = attrValue.slice(1, -1);
-                            const parts = inner.split(/\s+/);
-                            const updatedParts = parts.map(cls =>
-                              cls === oldClass ? newClass : cls,
-                            );
-                            newValue = firstChar + updatedParts.join(' ') + firstChar;
-                          } else if (isObjectLiteral) {
-                            const rawAttr = $node.attr(attrName)?.toString();
-                            if (!rawAttr) return null;
-
-                            // Remove quotes and spaces to safely inspect keys
-                            const sanitized = rawAttr.replace(/['"\s]/g, '');
-                            const inner = sanitized.slice(1, -1);
-                            const keys = inner.split(',').map(p => p.split(':')[0]);
-                            if (!keys.includes(oldClass)) return null;
-
-                            const escapedOldClass = oldClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-                            newValue =
-                              rawAttr.replace(
-                                new RegExp(`(?<![\\w-])${escapedOldClass}(?![\\w-])`, 'g'),
-                                newClass,
-                              ) ?? null;
-                          }
-
-                          if (newValue) {
-                            const targetAttr = isNgClass ? '[ngClass]' : '[class]';
-                            $node.attr(targetAttr, newValue);
-                            if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
-                            return fixer.replaceTextRange(node.range, $node.toString());
-                          }
+                        function isStringLiteral(value: string): boolean {
+                          const first = value[0],
+                            last = value.at(-1);
+                          return ['"', "'", '`'].includes(first) && first === last;
                         }
 
-                        return null;
+                        function isObjectLiteral(value: string): boolean {
+                          return value.startsWith('{') && value.endsWith('}');
+                        }
+
+                        function updateStringLiteral(value: string): string {
+                          const quote = value[0];
+                          const inner = value.slice(1, -1);
+                          const parts = inner
+                            .split(/\s+/)
+                            .map(cls => (cls === oldClass ? newClass : cls));
+                          return quote + parts.join(' ') + quote;
+                        }
+
+                        function updateObjectLiteral(rawAttr: string): string | null {
+                          const sanitized = rawAttr.replace(/['"\s]/g, '');
+                          const inner = sanitized.slice(1, -1);
+                          const keys = inner.split(',').map(p => p.split(':')[0]);
+                          if (!keys.includes(oldClass)) return null;
+
+                          const escapedOldClass = oldClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                          return rawAttr.replace(
+                            new RegExp(`(?<![\\w-])${escapedOldClass}(?![\\w-])`, 'g'),
+                            newClass,
+                          );
+                        }
                       },
                     });
                   }
