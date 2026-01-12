@@ -266,6 +266,12 @@ export class PostPopovercontainer {
       window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
 
+    // Cancel any running animation
+    if (this.currentAnimation) {
+      this.currentAnimation.cancel();
+      this.currentAnimation = null;
+    }
+
     this.postBeforeToggle.emit({ willOpen: false });
     this.postToggle.emit({ isOpen: false });
     this.postHide.emit();
