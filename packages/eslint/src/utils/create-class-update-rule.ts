@@ -94,70 +94,64 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                         // ----- [class.foo] -----
                         if (isClassBinding) {
                           const fixedAttrName = `[class.${newClass}]`;
-                          $node.attr(fixedAttrName, $node.attr(attrName));
-                          $node.removeAttr(`[class.${oldClass}]`);
-
-                          return fixer.replaceTextRange(node.range, $node.toString());
+                          const oldAttrValue = $node.attr(attrName);
+                          if (oldAttrValue != null) {
+                            $node.attr(fixedAttrName, oldAttrValue);
+                            $node.removeAttr(`[class.${oldClass}]`);
+                            return fixer.replaceTextRange(node.range, $node.toString());
+                          }
+                          return null;
                         }
 
-                        // ----- [ngClass] -----
+                        // ----- [ngClass] or [class] -----
                         if (isNgClass || isClass) {
-                          const rawValue = attribs[attrName].trim();
+                          const attrValue = attribs[attrName]?.trim();
+                          if (!attrValue) return null;
+
+                          const firstChar = attrValue[0];
+                          const lastChar = attrValue.at(-1);
 
                           const isStringLiteral =
-                            rawValue.length >= 2 &&
-                            ['"', "'", '`'].includes(rawValue[0]) &&
-                            rawValue[0] === rawValue.at(-1);
-
+                            ['"', "'", '`'].includes(firstChar) && firstChar === lastChar;
                           const isObjectLiteral =
-                            rawValue.startsWith('{') && rawValue.endsWith('}');
+                            attrValue.startsWith('{') && attrValue.endsWith('}');
 
                           let newValue: string | null = null;
 
-                          // ----- String literal -----
                           if (isStringLiteral) {
-                            const quote = rawValue[0];
-                            const inner = rawValue.slice(1, -1);
+                            const inner = attrValue.slice(1, -1);
                             const parts = inner.split(/\s+/);
-                            const newParts = parts.map(cls => (cls === oldClass ? newClass : cls));
-                            newValue = quote + newParts.join(' ') + quote;
-                          }
-                          // ----- Object literal ----- (does not identify cases of double quote syntax e.g. {"key-1":"btn-1"})
-                          else if (isObjectLiteral) {
-                            const raw = $node
-                              .attr(attrName)
-                              ?.toString()
-                              .replace(/['"\s]/g, '');
+                            const updatedParts = parts.map(cls =>
+                              cls === oldClass ? newClass : cls,
+                            );
+                            newValue = firstChar + updatedParts.join(' ') + firstChar;
+                          } else if (isObjectLiteral) {
+                            const rawAttr = $node.attr(attrName)?.toString();
+                            if (!rawAttr) return null;
 
-                            if (!raw) return null;
-
-                            const inner = raw.slice(1, -1);
-                            const parts = inner.split(',');
-                            const classes = parts.map(p => p.split(':')[0]);
-
-                            if (!classes.includes(oldClass)) return null;
+                            // Remove quotes and spaces to safely inspect keys
+                            const sanitized = rawAttr.replace(/['"\s]/g, '');
+                            const inner = sanitized.slice(1, -1);
+                            const keys = inner.split(',').map(p => p.split(':')[0]);
+                            if (!keys.includes(oldClass)) return null;
 
                             const escapedOldClass = oldClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
                             newValue =
-                              $node
-                                .attr(attrName)
-                                ?.toString()
-                                .replace(
-                                  new RegExp(`(?<![\\w-])${escapedOldClass}(?![\\w-])`, 'g'),
-                                  newClass,
-                                ) ?? null;
+                              rawAttr.replace(
+                                new RegExp(`(?<![\\w-])${escapedOldClass}(?![\\w-])`, 'g'),
+                                newClass,
+                              ) ?? null;
                           }
 
-                          // Apply the changes if we have a new value
                           if (newValue) {
-                            const originalAttrName = isNgClass ? '[ngClass]' : '[class]';
-                            $node.attr(originalAttrName, newValue);
-                            if (isNgClass) $node.removeAttr(attrName);
-
+                            const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+                            $node.attr(targetAttr, newValue);
+                            if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
                             return fixer.replaceTextRange(node.range, $node.toString());
                           }
                         }
+
                         return null;
                       },
                     });
