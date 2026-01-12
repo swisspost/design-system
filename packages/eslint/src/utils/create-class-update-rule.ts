@@ -68,6 +68,9 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                 },
               });
             } else {
+              // If deleted class case return
+              if (!newClass || newClass.trim() === '') return;
+
               // Angular dynamic class binding
               const root = $node[0];
 
