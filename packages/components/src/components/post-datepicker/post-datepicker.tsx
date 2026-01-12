@@ -791,7 +791,6 @@ export class PostDatepicker {
   }
 
   private readonly onFocus = (e: FocusEvent) => {
-    const input = e.target as HTMLInputElement;
     e.preventDefault();
     console.log('focus');
   };
