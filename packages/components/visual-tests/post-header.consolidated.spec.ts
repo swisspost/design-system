@@ -6,6 +6,7 @@ import {
   openMegadropdown,
   closeMegadropdown,
   openLanguageMenu,
+  closeLanguageMenu,
   openUserMenu,
   hoverMegadropdownTrigger,
   focusMegadropdownTrigger,
@@ -13,8 +14,12 @@ import {
   focusMegadropdownItem,
   hoverLanguageMenuTrigger,
   focusLanguageMenuTrigger,
+  hoverLanguageMenuItem,
+  focusLanguageMenuItem,
   hoverUserMenuTrigger,
   focusUserMenuTrigger,
+  hoverUserMenuItem,
+  focusUserMenuItem,
   hoverSlotItem,
   focusSlotItem,
   hoverMainNavItem,
@@ -30,8 +35,8 @@ const TEST_MATRIX = {
   'portal-loggedout': {
     desktop: {
       states: ['megadropdown-open', 'language-open'],
-      hover: ['audience', 'global-controls', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language'],
-      focus: ['audience', 'global-controls', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language'],
+      hover: ['audience', 'global-controls', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item'],
+      focus: ['audience', 'global-controls', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item'],
     },
     mobile: {
       states: ['burger-open', 'burger-megadropdown-open'],
@@ -43,8 +48,8 @@ const TEST_MATRIX = {
   'portal-loggedin': {
     desktop: {
       states: ['megadropdown-open', 'language-open', 'user-menu-open'],
-      hover: ['audience', 'global-controls', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'user-menu'],
-      focus: ['audience', 'global-controls', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'user-menu'],
+      hover: ['audience', 'global-controls', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'user-menu', 'user-menu-item'],
+      focus: ['audience', 'global-controls', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'user-menu', 'user-menu-item'],
     },
     mobile: {
       states: ['burger-open', 'burger-megadropdown-open'],
@@ -55,8 +60,8 @@ const TEST_MATRIX = {
   'jobs-loggedout': {
     desktop: {
       states: ['megadropdown-open', 'language-open'],
-      hover: ['audience', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'local-nav'],
-      focus: ['audience', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'local-nav'],
+      hover: ['audience', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'local-nav'],
+      focus: ['audience', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'local-nav'],
     },
     mobile: {
       states: ['burger-open', 'burger-megadropdown-open'],
@@ -67,8 +72,8 @@ const TEST_MATRIX = {
   'jobs-loggedin': {
     desktop: {
       states: ['megadropdown-open', 'language-open', 'user-menu-open'],
-      hover: ['audience', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'local-nav', 'user-menu'],
-      focus: ['audience', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'local-nav', 'user-menu'],
+      hover: ['audience', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'local-nav', 'user-menu', 'user-menu-item'],
+      focus: ['audience', 'main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'local-nav', 'user-menu', 'user-menu-item'],
     },
     mobile: {
       states: ['burger-open', 'burger-megadropdown-open'],
@@ -79,8 +84,8 @@ const TEST_MATRIX = {
   'microsite-loggedout': {
     desktop: {
       states: ['megadropdown-open', 'language-open'],
-      hover: ['main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'local-nav'],
-      focus: ['main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'local-nav'],
+      hover: ['main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'local-nav'],
+      focus: ['main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'local-nav'],
     },
     mobile: {
       states: ['burger-open', 'burger-megadropdown-open'],
@@ -91,8 +96,8 @@ const TEST_MATRIX = {
   'microsite-loggedin': {
     desktop: {
       states: ['megadropdown-open', 'language-open', 'user-menu-open'],
-      hover: ['main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'local-nav', 'user-menu'],
-      focus: ['main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'local-nav', 'user-menu'],
+      hover: ['main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'local-nav', 'user-menu', 'user-menu-item'],
+      focus: ['main-nav', 'megadropdown-trigger', 'megadropdown-content', 'language', 'language-item', 'local-nav', 'user-menu', 'user-menu-item'],
     },
     mobile: {
       states: ['burger-open', 'burger-megadropdown-open'],
@@ -152,6 +157,13 @@ async function testHover(page, interaction: string, variant: string, breakpoint:
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-hover.png`);
       break;
       
+    case 'language-item':
+      await openLanguageMenu(page);
+      await hoverLanguageMenuItem(page, 0);
+      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-item-hover.png`);
+      await closeLanguageMenu(page);
+      break;
+      
     case 'local-nav':
       await hoverSlotItem(page, 'local-nav', 0);
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-local-nav-hover.png`);
@@ -160,6 +172,12 @@ async function testHover(page, interaction: string, variant: string, breakpoint:
     case 'user-menu':
       await hoverUserMenuTrigger(page);
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-hover.png`);
+      break;
+      
+    case 'user-menu-item':
+      await openUserMenu(page);
+      await hoverUserMenuItem(page, 0);
+      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-item-hover.png`);
       break;
       
     case 'burger':
@@ -206,6 +224,15 @@ async function testFocus(page, interaction: string, variant: string, breakpoint:
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-focus.png`);
       break;
       
+    case 'language-item':
+      // Step 1: Open language menu (focus moves to next element)
+      await openLanguageMenu(page);
+      // Step 2: Tab into menu and navigate to desired item
+      await focusLanguageMenuItem(page, 0);
+      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-item-focus.png`);
+      await closeLanguageMenu(page);
+      break;
+      
     case 'local-nav':
       await focusSlotItem(page, 'local-nav', 0);
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-local-nav-focus.png`);
@@ -214,6 +241,12 @@ async function testFocus(page, interaction: string, variant: string, breakpoint:
     case 'user-menu':
       await focusUserMenuTrigger(page);
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-focus.png`);
+      break;
+      
+    case 'user-menu-item':
+      await openUserMenu(page);
+      await focusUserMenuItem(page, 0);
+      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-item-focus.png`);
       break;
       
     case 'burger':

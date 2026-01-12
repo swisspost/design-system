@@ -136,12 +136,22 @@ export async function hoverMegadropdownItem(page: Page, dropdownId: string, item
 export async function focusMegadropdownItem(page: Page, dropdownId: string, itemIndex: number): Promise<void> {
   const megadropdown = page.locator(`post-megadropdown#${dropdownId}`);
   const links = megadropdown.locator('a');
-  await links.nth(itemIndex).focus();
+  
+  // Use Tab key to ensure :focus-visible applies
+  const targetLink = links.nth(itemIndex);
+  await targetLink.press('Tab');
+  
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
 // ============================================================================
 // LANGUAGE MENU HELPERS
+// ============================================================================
+// Note: Language menu has specific keyboard behavior:
+// - Space key opens the menu but focus moves to the NEXT element after trigger (not into menu)
+// - Enter key does NOT open the menu (known issue being fixed)
+// - Need to Tab into the menu to focus the first item
+// - ArrowDown/ArrowUp navigate between items once inside the menu
 // ============================================================================
 
 export async function hoverLanguageMenuTrigger(page: Page): Promise<void> {
@@ -199,12 +209,14 @@ export async function openLanguageMenu(page: Page): Promise<void> {
     return;
   }
   
-  // In menu mode, click the trigger to open dropdown
+  // In menu mode, use Space key on the trigger to open dropdown
+  // Note: Space key is used because Enter doesn't work (there's a known issue being fixed)
   const trigger = page.locator('post-menu-trigger button.post-language-menu-trigger').first();
   const hasTrigger = await trigger.count() > 0;
   
   if (hasTrigger) {
-    await trigger.click();
+    await trigger.focus();
+    await page.keyboard.press('Space');
     await page.waitForTimeout(WAIT_TIMES.animation);
   }
 }
@@ -214,6 +226,26 @@ export async function closeLanguageMenu(page: Page): Promise<void> {
   await page.waitForTimeout(WAIT_TIMES.animation);
 }
 
+export async function hoverLanguageMenuItem(page: Page, itemIndex: number): Promise<void> {
+  const languageMenu = page.locator('post-language-menu').first();
+  const menuItems = languageMenu.locator('post-language-menu-item');
+  const targetItem = menuItems.nth(itemIndex);
+  
+  await targetItem.hover();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function focusLanguageMenuItem(page: Page, itemIndex: number): Promise<void> {
+  const languageMenu = page.locator('post-language-menu').first();
+  const menuItems = languageMenu.locator('post-language-menu-item');
+  const targetItem = menuItems.nth(itemIndex);
+  
+  // Get the interactive element (a or button) inside the menu item
+  const interactiveElement = targetItem.locator('a, button').first();
+  
+  await interactiveElement.focus();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
 // ============================================================================
 // USER MENU HELPERS (post-menu + post-menu-trigger)
 // ============================================================================
@@ -234,7 +266,9 @@ export async function focusUserMenuTrigger(page: Page): Promise<void> {
   const exists = await trigger.count() > 0;
   
   if (exists) {
-    await trigger.focus();
+    await trigger.evaluate((btn: HTMLButtonElement) => {
+      btn.focus();
+    });
     await page.waitForTimeout(WAIT_TIMES.interaction);
   }
 }
@@ -264,7 +298,11 @@ export async function hoverUserMenuItem(page: Page, itemIndex: number): Promise<
 export async function focusUserMenuItem(page: Page, itemIndex: number): Promise<void> {
   const menu = page.locator('post-menu#user-menu');
   const items = menu.locator('post-menu-item a, post-menu-item button');
-  await items.nth(itemIndex).focus();
+  
+  // Use Tab key to ensure :focus-visible applies
+  const targetItem = items.nth(itemIndex);
+  await targetItem.press('Tab');
+  
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
@@ -282,7 +320,9 @@ export async function hoverBurgerMenu(page: Page): Promise<void> {
 export async function focusBurgerMenu(page: Page): Promise<void> {
   const header = page.locator('post-header');
   const burgerButton = header.locator('post-togglebutton').last();
-  await burgerButton.focus();
+  await burgerButton.evaluate((btn: HTMLElement) => {
+    btn.focus();
+  });
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
@@ -318,7 +358,9 @@ export async function focusSlotItem(page: Page, slotName: string, itemIndex: num
   const slotContent = page.locator(slotSelector);
   
   const interactiveElements = slotContent.locator('a, button');
-  await interactiveElements.nth(itemIndex).focus();
+  await interactiveElements.nth(itemIndex).evaluate((el: HTMLElement) => {
+    el.focus();
+  });
   await page.waitForTimeout(WAIT_TIMES.interaction);
 }
 
