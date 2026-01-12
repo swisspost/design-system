@@ -68,6 +68,9 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                 },
               });
             } else {
+              // Skip if no newClass to replace
+              if (!newClass?.trim()) return;
+
               // Angular dynamic class binding
               const root = $node[0];
 
@@ -86,87 +89,73 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                   const isNgClass = attrName.toLowerCase() === '[ngclass]' && hasExactClass;
                   const isClass = attrName.toLowerCase() === '[class]' && hasExactClass;
 
-                  if (
-                    (isClassBinding || isNgClass || isClass) &&
-                    (newClass || newClass.trim() !== '')
-                  ) {
-                    context.report({
-                      loc: node.loc,
-                      messageId,
-                      fix(fixer) {
-                        // [class.foo]
-                        if (isClassBinding) return fixClassBinding();
+                  if (!isClassBinding && !isNgClass && !isClass) continue;
+                  context.report({
+                    loc: node.loc,
+                    messageId,
+                    fix(fixer) {
+                      // [class.foo]
+                      if (isClassBinding) return fixClassBinding();
 
-                        // [ngClass] or [class]
-                        if (isNgClass || isClass) return fixNgClassOrClass();
+                      // [ngClass] or [class]
+                      if (isNgClass || isClass) return fixNgClassOrClass();
 
+                      return null;
+
+                      function fixClassBinding() {
+                        const fixedAttrName = `[class.${newClass}]`;
+                        const oldAttrValue = $node.attr(attrName);
+                        if (oldAttrValue == null) return null;
+
+                        $node.attr(fixedAttrName, oldAttrValue);
+                        $node.removeAttr(`[class.${oldClass}]`);
+                        return fixer.replaceTextRange(node.range, $node.toString());
+                      }
+
+                      function fixNgClassOrClass() {
+                        const raw = attribs[attrName]?.trim();
+                        if (!raw) return null;
+
+                        const newValue = getNewAttrValue(raw);
+                        if (!newValue) return null;
+
+                        const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+                        $node.attr(targetAttr, newValue);
+                        if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
+
+                        return fixer.replaceTextRange(node.range, $node.toString());
+                      }
+
+                      function getNewAttrValue(value: string): string | null {
+                        if (isStringLiteral(value)) return updateStringLiteral(value);
+                        if (isObjectLiteral(value))
+                          return updateObjectLiteral($node.attr(attrName)?.toString() ?? '');
                         return null;
+                      }
 
-                        function fixClassBinding() {
-                          const fixedAttrName = `[class.${newClass}]`;
-                          const oldAttrValue = $node.attr(attrName);
-                          if (oldAttrValue == null) return null;
+                      function updateStringLiteral(value: string): string {
+                        const quote = value[0];
+                        const inner = value.slice(1, -1);
+                        const parts = inner
+                          .split(/\s+/)
+                          .map(cls => (cls === oldClass ? newClass : cls));
+                        return quote + parts.join(' ') + quote;
+                      }
 
-                          $node.attr(fixedAttrName, oldAttrValue);
-                          $node.removeAttr(`[class.${oldClass}]`);
-                          return fixer.replaceTextRange(node.range, $node.toString());
-                        }
+                      function updateObjectLiteral(rawAttr: string): string | null {
+                        const sanitized = rawAttr.replace(/['"\s]/g, '');
+                        const inner = sanitized.slice(1, -1);
+                        const keys = inner.split(',').map(p => p.split(':')[0]);
+                        if (!keys.includes(oldClass)) return null;
 
-                        function fixNgClassOrClass() {
-                          const raw = attribs[attrName]?.trim();
-                          if (!raw) return null;
-
-                          const newValue = getNewAttrValue(raw);
-                          if (!newValue) return null;
-
-                          const targetAttr = isNgClass ? '[ngClass]' : '[class]';
-                          $node.attr(targetAttr, newValue);
-                          if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
-
-                          return fixer.replaceTextRange(node.range, $node.toString());
-                        }
-
-                        function getNewAttrValue(value: string): string | null {
-                          if (isStringLiteral(value)) return updateStringLiteral(value);
-                          if (isObjectLiteral(value))
-                            return updateObjectLiteral($node.attr(attrName)?.toString() ?? '');
-                          return null;
-                        }
-
-                        function isStringLiteral(value: string): boolean {
-                          const first = value[0],
-                            last = value.at(-1);
-                          return ['"', "'", '`'].includes(first) && first === last;
-                        }
-
-                        function isObjectLiteral(value: string): boolean {
-                          return value.startsWith('{') && value.endsWith('}');
-                        }
-
-                        function updateStringLiteral(value: string): string {
-                          const quote = value[0];
-                          const inner = value.slice(1, -1);
-                          const parts = inner
-                            .split(/\s+/)
-                            .map(cls => (cls === oldClass ? newClass : cls));
-                          return quote + parts.join(' ') + quote;
-                        }
-
-                        function updateObjectLiteral(rawAttr: string): string | null {
-                          const sanitized = rawAttr.replace(/['"\s]/g, '');
-                          const inner = sanitized.slice(1, -1);
-                          const keys = inner.split(',').map(p => p.split(':')[0]);
-                          if (!keys.includes(oldClass)) return null;
-
-                          const escapedOldClass = oldClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                          return rawAttr.replace(
-                            new RegExp(`(?<![\\w-])${escapedOldClass}(?![\\w-])`, 'g'),
-                            newClass,
-                          );
-                        }
-                      },
-                    });
-                  }
+                        const escapedOldClass = oldClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                        return rawAttr.replace(
+                          new RegExp(`(?<![\\w-])${escapedOldClass}(?![\\w-])`, 'g'),
+                          newClass,
+                        );
+                      }
+                    },
+                  });
                 }
               }
             }
@@ -175,6 +164,16 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
       };
     },
   });
+
+function isStringLiteral(value: string): boolean {
+  const first = value[0],
+    last = value.at(-1);
+  return ['"', "'", '`'].includes(first) && first === last;
+}
+
+function isObjectLiteral(value: string): boolean {
+  return value.startsWith('{') && value.endsWith('}');
+}
 
 export const createClassUpdateRuleWrapper = (config: SinglePhaseRuleConfigWrapper) => {
   const data = generateReplacedClassMutations(config.classesMap);
