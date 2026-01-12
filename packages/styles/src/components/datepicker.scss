@@ -3,5 +3,12 @@ post-datepicker input[type='date'] {
   &::-webkit-inner-spin-button {
     display: none;
     appearance: none;
+
+    -webkit-appearance: none;
+  }
+  ::-moz-calendar-picker-indicator {
+    display: none;
+    appearance: none;
+    -moz-appearance: none;
   }
 }
