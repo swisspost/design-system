@@ -7,11 +7,6 @@ export const WAIT_TIMES = {
   megadropdown: 400,
 } as const;
 
-export const BREAKPOINTS = [
-  { name: 'desktop', width: 1280, height: 800 },
-  { name: 'mobile', width: 375, height: 667 },
-] as const;
-
 export async function waitForHeaderReady(page: Page): Promise<void> {
   await page.waitForFunction(() => customElements.get('post-header'));
   
@@ -291,8 +286,6 @@ export async function openBurgerMenu(page: Page): Promise<void> {
 }
 
 export async function closeBurgerMenu(page: Page): Promise<void> {
-  // Close the burger menu using the Escape key to mirror typical user behavior
-  // and to avoid having an identical implementation to `openBurgerMenu`.
   await page.keyboard.press('Escape');
   await page.waitForTimeout(WAIT_TIMES.animation);
 }

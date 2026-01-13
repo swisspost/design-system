@@ -1,20 +1,10 @@
-#!/usr/bin/env node
-
 /**
  * Generate header HTML test files from templates
- * This eliminates duplication by using a base template with variant-specific sections
- * 
- * Usage:
- *   node generate-header-html.js
- *   npm run generate:header-html
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Base HTML structure (shared by ALL variants)
 const BASE_TEMPLATE = `<!DOCTYPE html>
@@ -422,22 +412,23 @@ function generateVariantHTML(variantName, config) {
 
 // Main function
 function generateAllVariants() {
-  const outputDir = path.join(__dirname, '../www/visual-tests');
+  const outputDir = path.join(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '../www/visual-tests'
+  );
   
-  // Create output directory if it doesn't exist
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
+  fs.mkdirSync(outputDir, { recursive: true });
 
   console.log('Generating header HTML files...\n');
 
   Object.entries(VARIANTS).forEach(([variantName, config]) => {
     const html = generateVariantHTML(variantName, config);
-    const filename = `post-header-${variantName}.html`;
-    const filepath = path.join(outputDir, filename);
-
-    fs.writeFileSync(filepath, html, 'utf8');
-    console.log(`✅ Generated: ${filename}`);
+    fs.writeFileSync(
+      path.join(outputDir, `post-header-${variantName}.html`),
+      html,
+      'utf8'
+    );
+    console.log(`✅ Generated: post-header-${variantName}.html`);
   });
 
   console.log('\n✨ Done! All header HTML files generated.');
@@ -446,5 +437,3 @@ function generateAllVariants() {
 
 // Run the generator
 generateAllVariants();
-
-export { generateVariantHTML, VARIANTS, COMPONENTS };
