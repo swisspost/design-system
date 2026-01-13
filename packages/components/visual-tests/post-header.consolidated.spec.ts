@@ -226,9 +226,7 @@ async function testFocus(page, interaction: string, variant: string, breakpoint:
       break;
       
     case 'language-item':
-      // Step 1: Open language menu (focus moves to next element)
       await openLanguageMenuAndFocusFirstItem(page);
-      // Step 2: Tab into menu and navigate to desired item
       await focusLanguageMenuItem(page, 0);
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-item-focus.png`);
       await closeLanguageMenu(page);
@@ -245,8 +243,7 @@ async function testFocus(page, interaction: string, variant: string, breakpoint:
       break;
       
     case 'user-menu-item':
-      await openUserMenu(page);
-      await focusUserMenuItem(page, 0);
+      await focusUserMenuItem(page);
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-item-focus.png`);
       break;
       

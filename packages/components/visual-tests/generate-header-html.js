@@ -277,7 +277,7 @@ const COMPONENTS = {
       </a>
     </li>`,
 
-  localUserMenu: `<li>
+  localUserMenu: `<li class="local-login">
       <post-menu-trigger for="user-menu">
         <button class="btn btn-link" type="button">
           <post-avatar
@@ -413,7 +413,7 @@ function generateAllVariants() {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  console.log('🚀 Generating header HTML files...\n');
+  console.log('Generating header HTML files...\n');
 
   Object.entries(VARIANTS).forEach(([variantName, config]) => {
     const html = generateVariantHTML(variantName, config);
