@@ -28,8 +28,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     display: inline-flex;
     margin: tokens.get('checkbox-icon-padding-inner');
     margin-block: calc(
-      tokens.get('checkbox-icon-padding-inner') +
-        tokens.get('checkbox-icon-padding-container')
+      tokens.get('checkbox-icon-padding-inner') + tokens.get('checkbox-icon-padding-container')
     );
     width: tokens.get('checkbox-icon-size');
     height: tokens.get('checkbox-icon-size');
@@ -154,11 +153,10 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     }
   }
 
-  //> label { for later, when smaller font-size is tokenized
-  //  font-size: tokens.get('checkbox-small-label-font-size');
-  //}
+  > label {
+    font-size: tokens.get('checkbox-small-label-font-size');
+  }
 }
-
 
 /* Align the Label with the Checkbox small */
 .form-check-sm:not(.form-switch) {
