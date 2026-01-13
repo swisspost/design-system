@@ -12,7 +12,7 @@ tokens.$default-map: components.$post-cards;
 .card {
   display: flex;
   flex-direction: column;
-  transition: all 250ms;
+  transition: background-color 250ms;
   border-radius: tokens.get('card-border-radius');
   background-color: tokens.get('card-bg');
   color: tokens.get('card-fg');
@@ -23,6 +23,10 @@ tokens.$default-map: components.$post-cards;
   &:is(post-linkarea) {
     border: 0;
     box-shadow: tokens.get('card-interactive-elevation');
+
+    a.btn {
+      @include utilities-mx.focus-style-none;
+    }
 
     &:hover {
       background-color: tokens.get('card-hover-bg');
