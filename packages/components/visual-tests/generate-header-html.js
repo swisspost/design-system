@@ -267,7 +267,6 @@ const COMPONENTS = {
         <post-icon aria-hidden="true" name="search"></post-icon>
       </a>
     </li>
-    {{LOCAL_NAV_LOGIN_OR_USER}}
   </ul>`,
 
   localLogin: `<li class="local-login">
@@ -331,19 +330,16 @@ const VARIANTS = {
   },
 
   'microsite-loggedout': {
-    components: ['logo', 'languageMenu', 'title', 'localNavMicrosite', 'mainNavigation'],
+    components: ['logo', 'languageMenu', 'title', 'localNavMicrosite', 'globalLogin', 'mainNavigation'],
     replacements: {
       '{{TITLE_TEXT}}': '[Microsite Title]',
-      '{{LOCAL_NAV_LOGIN_OR_USER}}': COMPONENTS.localLogin,
-      '{{LOGIN_TEXT}}': 'Login',
     },
   },
 
   'microsite-loggedin': {
-    components: ['logo', 'languageMenu', 'title', 'localNavMicrosite', 'mainNavigation'],
+    components: ['logo', 'languageMenu', 'title', 'localNavMicrosite', 'globalUserMenu', 'mainNavigation'],
     replacements: {
       '{{TITLE_TEXT}}': '[Microsite Title]',
-      '{{LOCAL_NAV_LOGIN_OR_USER}}': COMPONENTS.localUserMenu,
     },
   },
 

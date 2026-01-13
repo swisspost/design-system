@@ -30,7 +30,74 @@ import {
 } from './helpers/header-test-helpers';
 
 /**
- * Test configuration - hover and focus are separate arrays
+ * Interaction handler configurations
+ */
+const HOVER_HANDLERS = {
+  'audience': async (page) => hoverSlotItem(page, 'audience', 0),
+  'global-controls': async (page) => hoverSlotItem(page, 'global-nav-primary', 0),
+  'main-nav': async (page) => hoverMainNavItem(page, 0),
+  'megadropdown-trigger': async (page) => hoverMegadropdownTrigger(page, 'letters'),
+  'megadropdown-content': async (page) => {
+    await openMegadropdown(page, 'letters');
+    await hoverMegadropdownItem(page, 'letters', 0);
+  },
+  'language': async (page) => hoverLanguageMenuTrigger(page),
+  'language-item': async (page) => {
+    await openLanguageMenu(page);
+    await hoverLanguageMenuItem(page, 0);
+  },
+  'local-nav': async (page) => hoverSlotItem(page, 'local-nav', 0),
+  'user-menu': async (page) => hoverUserMenuTrigger(page),
+  'user-menu-item': async (page) => {
+    await openUserMenu(page);
+    await hoverUserMenuItem(page, 0);
+  },
+  'burger': async (page) => hoverBurgerMenu(page),
+};
+
+const FOCUS_HANDLERS = {
+  'audience': async (page) => focusSlotItem(page, 'audience', 0),
+  'global-controls': async (page) => focusSlotItem(page, 'global-nav-primary', 0),
+  'main-nav': async (page) => focusMainNavItem(page, 0),
+  'megadropdown-trigger': async (page) => focusMegadropdownTrigger(page, 'letters'),
+  'megadropdown-content': async (page) => {
+    await openMegadropdown(page, 'letters');
+    await focusMegadropdownItem(page, 'letters', 0);
+  },
+  'language': async (page) => focusLanguageMenuTrigger(page),
+  'language-item': async (page) => {
+    await openLanguageMenuAndFocusFirstItem(page);
+    await focusLanguageMenuItem(page, 0);
+  },
+  'local-nav': async (page) => focusSlotItem(page, 'local-nav', 0),
+  'user-menu': async (page) => focusUserMenuTrigger(page),
+  'user-menu-item': async (page) => focusUserMenuItem(page),
+  'burger': async (page) => focusBurgerMenu(page),
+};
+
+const STATE_HANDLERS = {
+  'megadropdown-open': async (page) => openMegadropdown(page, 'letters'),
+  'language-open': async (page) => openLanguageMenu(page),
+  'user-menu-open': async (page) => openUserMenu(page),
+  'burger-open': async (page) => openBurgerMenu(page),
+  'burger-megadropdown-open': async (page) => {
+    await openBurgerMenu(page);
+    await openMegadropdown(page, 'letters');
+  },
+};
+
+/**
+ * Cleanup handlers for interactions that need closing
+ */
+const CLEANUP_HANDLERS = {
+  'megadropdown-content': async (page) => closeMegadropdown(page, 'letters'),
+  'language-item': async (page) => closeLanguageMenu(page),
+  'megadropdown-open': async (page) => closeMegadropdown(page, 'letters'),
+  'burger-megadropdown-open': async (page) => closeMegadropdown(page, 'letters'),
+};
+
+/**
+ * Test configuration
  */
 const TEST_MATRIX = {
   'portal-loggedout': {
@@ -43,7 +110,6 @@ const TEST_MATRIX = {
       states: ['burger-open', 'burger-megadropdown-open'],
       hover: ['burger'],
       focus: ['burger'],
-      // No language tests - it's list mode (always visible, no interactions)
     },
   },
   'portal-loggedin': {
@@ -121,170 +187,29 @@ const TEST_MATRIX = {
 };
 
 /**
- * Helper to test ONLY hover state (no focus)
+ * Generic test executor
  */
-async function testHover(page, interaction: string, variant: string, breakpoint: string) {
-  switch (interaction) {
-    case 'audience':
-      await hoverSlotItem(page, 'audience', 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-audience-hover.png`);
-      break;
-      
-    case 'global-controls':
-      await hoverSlotItem(page, 'global-nav-primary', 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-global-controls-hover.png`);
-      break;
-      
-    case 'main-nav':
-      await hoverMainNavItem(page, 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-main-nav-hover.png`);
-      break;
-      
-    case 'megadropdown-trigger':
-      await hoverMegadropdownTrigger(page, 'letters');
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-megadropdown-trigger-hover.png`);
-      break;
-      
-    case 'megadropdown-content':
-      await openMegadropdown(page, 'letters');
-      await hoverMegadropdownItem(page, 'letters', 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-megadropdown-content-item-hover.png`);
-      await closeMegadropdown(page, 'letters');
-      break;
-      
-    case 'language':
-      await hoverLanguageMenuTrigger(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-hover.png`);
-      break;
-      
-    case 'language-item':
-      await openLanguageMenu(page);
-      await hoverLanguageMenuItem(page, 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-item-hover.png`);
-      await closeLanguageMenu(page);
-      break;
-      
-    case 'local-nav':
-      await hoverSlotItem(page, 'local-nav', 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-local-nav-hover.png`);
-      break;
-      
-    case 'user-menu':
-      await hoverUserMenuTrigger(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-hover.png`);
-      break;
-      
-    case 'user-menu-item':
-      await openUserMenu(page);
-      await hoverUserMenuItem(page, 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-item-hover.png`);
-      break;
-      
-    case 'burger':
-      await hoverBurgerMenu(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-burger-hover.png`);
-      break;
+async function executeTest(
+  page: any,
+  interaction: string,
+  variant: string,
+  breakpoint: string,
+  type: 'hover' | 'focus' | 'state'
+) {
+  const handlers = type === 'hover' ? HOVER_HANDLERS : type === 'focus' ? FOCUS_HANDLERS : STATE_HANDLERS;
+  const handler = handlers[interaction];
+  
+  if (!handler) {
+    throw new Error(`No ${type} handler found for interaction: ${interaction}`);
   }
-}
 
-/**
- * Helper to test ONLY focus state (no hover)
- */
-async function testFocus(page, interaction: string, variant: string, breakpoint: string) {
-  switch (interaction) {
-    case 'audience':
-      await focusSlotItem(page, 'audience', 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-audience-focus.png`);
-      break;
-      
-    case 'global-controls':
-      await focusSlotItem(page, 'global-nav-primary', 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-global-controls-focus.png`);
-      break;
-      
-    case 'main-nav':
-      await focusMainNavItem(page, 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-main-nav-focus.png`);
-      break;
-      
-    case 'megadropdown-trigger':
-      await focusMegadropdownTrigger(page, 'letters');
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-megadropdown-trigger-focus.png`);
-      break;
-      
-    case 'megadropdown-content':
-      await openMegadropdown(page, 'letters');
-      await focusMegadropdownItem(page, 'letters', 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-megadropdown-content-item-focus.png`);
-      await closeMegadropdown(page, 'letters');
-      break;
-      
-    case 'language':
-      await focusLanguageMenuTrigger(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-focus.png`);
-      break;
-      
-    case 'language-item':
-      await openLanguageMenuAndFocusFirstItem(page);
-      await focusLanguageMenuItem(page, 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-item-focus.png`);
-      await closeLanguageMenu(page);
-      break;
-      
-    case 'local-nav':
-      await focusSlotItem(page, 'local-nav', 0);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-local-nav-focus.png`);
-      break;
-      
-    case 'user-menu':
-      await focusUserMenuTrigger(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-focus.png`);
-      break;
-      
-    case 'user-menu-item':
-      await focusUserMenuItem(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-item-focus.png`);
-      break;
-      
-    case 'burger':
-      await focusBurgerMenu(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-burger-focus.png`);
-      break;
-  }
-}
-
-/**
- * Helper to test open states
- */
-async function testState(page, state: string, variant: string, breakpoint: string) {
-  switch (state) {
-    case 'megadropdown-open':
-      await openMegadropdown(page, 'letters');
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-megadropdown-open.png`);
-      await closeMegadropdown(page, 'letters');
-      break;
-      
-    case 'language-open':
-      await openLanguageMenu(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-open.png`);
-      break;
-      
-    case 'user-menu-open':
-      await openUserMenu(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-user-menu-open.png`);
-      break;
-      
-    case 'burger-open':
-      await openBurgerMenu(page);
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-burger-open.png`);
-      break;
-      
-    case 'burger-megadropdown-open':
-      await openBurgerMenu(page);
-      await openMegadropdown(page, 'letters');
-      await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-burger-megadropdown-open.png`);
-      await closeMegadropdown(page, 'letters');
-      break;
+  await handler(page);
+  await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-${interaction}-${type}.png`);
+  
+  // Cleanup if needed
+  const cleanup = CLEANUP_HANDLERS[interaction];
+  if (cleanup) {
+    await cleanup(page);
   }
 }
 
@@ -304,7 +229,7 @@ Object.entries(TEST_MATRIX).forEach(([variant, breakpointConfig]) => {
           await waitForHeaderReady(page);
         });
 
-        // 1. Default state (always test)
+        // 1. Default state
         test('default', async ({ page }) => {
           await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-default.png`);
         });
@@ -312,21 +237,21 @@ Object.entries(TEST_MATRIX).forEach(([variant, breakpointConfig]) => {
         // 2. Open states
         config.states.forEach(state => {
           test(state, async ({ page }) => {
-            await testState(page, state, variant, breakpoint);
+            await executeTest(page, state, variant, breakpoint, 'state');
           });
         });
 
-        // 3. Hover states (completely separate tests)
+        // 3. Hover states
         config.hover.forEach(interaction => {
           test(`${interaction} hover`, async ({ page }) => {
-            await testHover(page, interaction, variant, breakpoint);
+            await executeTest(page, interaction, variant, breakpoint, 'hover');
           });
         });
 
-        // 4. Focus states (completely separate tests)
+        // 4. Focus states
         config.focus.forEach(interaction => {
           test(`${interaction} focus`, async ({ page }) => {
-            await testFocus(page, interaction, variant, breakpoint);
+            await executeTest(page, interaction, variant, breakpoint, 'focus');
           });
         });
       });
