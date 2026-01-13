@@ -89,7 +89,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.7.4",
     "@oddbird/popover-polyfill": "0.6.0",
-    "@stencil/core": "4.35.0",
+    "@stencil/core": "4.41.1",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.56",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.56",
     "ally.js": "1.4.1",
