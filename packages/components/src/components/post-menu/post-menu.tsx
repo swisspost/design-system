@@ -164,7 +164,7 @@ export class PostMenu {
   }
 
   @EventFrom('post-popovercontainer')
-  private readonly handlePostToggled = (event: CustomEvent<{ isOpen: boolean }>) => {
+  private readonly handlePostBeforeToggle = (event: CustomEvent<{ isOpen: boolean }>) => {
     this.isVisible = event.detail.isOpen;
     this.postToggle.emit(this.isVisible);
 
