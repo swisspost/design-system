@@ -181,6 +181,7 @@ export class PostMenu {
     }
   };
 
+
   private readonly handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
     if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
@@ -249,7 +250,7 @@ export class PostMenu {
       <Host data-version={version}>
         <post-popovercontainer
           onPostShow={this.handlePostShown.bind(this)}
-          onPostToggle={this.handlePostToggled.bind(this)}
+          onPostBeforeToggle={this.handlePostBeforeToggle.bind(this)}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
         >
