@@ -17,7 +17,7 @@ import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot, checkEmptyOrOneOf, checkRequiredAndType, EventFrom } from '@/utils';
 
 /**
- * @part menu - The container element that holds the list of menu items.
+ * @part post-menu - The container element that holds the list of menu items.
  * @slot header - Holds the header part of the menu.
  */
 
@@ -56,7 +56,7 @@ export class PostMenu {
   }
 
   /**
-   * An accessible name for the menu.
+   * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
    */
   @Prop({ reflect: true }) readonly label!: string;
 
@@ -148,38 +148,38 @@ export class PostMenu {
   };
 
   @EventFrom('post-popovercontainer')
-  private readonly handlePostShown = (event: CustomEvent<{ first?: boolean }>) => {
-      // Only for the first open
-      if (event.detail.first) {
-        // Add "menu" and "menuitem" aria roles and aria-label
-        this.host.setAttribute('role', 'menu');
+  private handlePostShown(event: CustomEvent<{ first?: boolean }>) {
+    // Only for the first open
+    if (event.detail.first) {
+      // Add "menu" and "menuitem" aria roles and aria-label
+      this.host.setAttribute('role', 'menu');
 
-        const menuItems = this.getSlottedItems();
-        for (const item of menuItems) {
-          item.setAttribute('role', 'menuitem');
-        }
-
-        if (this.label) this.host.setAttribute('aria-label', this.label);
+      const menuItems = this.getSlottedItems();
+      for (const item of menuItems) {
+        item.setAttribute('role', 'menuitem');
       }
-    };
+
+      if (this.label) this.host.setAttribute('aria-label', this.label);
+    }
+  }
 
   @EventFrom('post-popovercontainer')
-  private readonly handlePostToggled = (event: CustomEvent<{ isOpen: boolean }>) => {
-      this.isVisible = event.detail.isOpen;
-      this.toggleMenu.emit(this.isVisible);
+  private handlePostBeforeToggle(event: CustomEvent<{ willOpen: boolean }>) {
+    this.isVisible = event.detail.willOpen;
+    this.toggleMenu.emit(this.isVisible);
+    if (this.isVisible) {
+      this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+      requestAnimationFrame(() => {
+        const menuItems = this.getSlottedItems();
+        if (menuItems.length > 0) {
+          (menuItems[0] as HTMLElement).focus();
+        }
+      });
+    } else if (this.lastFocusedElement) {
+      this.lastFocusedElement.focus();
+    }
+  }
 
-      if (this.isVisible) {
-        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-        requestAnimationFrame(() => {
-          const menuItems = this.getSlottedItems();
-          if (menuItems.length > 0) {
-            (menuItems[0] as HTMLElement).focus();
-          }
-        });
-      } else if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
-      }
-    };
 
   private readonly handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -248,12 +248,12 @@ export class PostMenu {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-          onPostShow={this.handlePostShown}
-          onPostToggle={this.handlePostToggled}
+          onPostShow={this.handlePostShown.bind(this)}
+          onPostBeforeToggle={this.handlePostBeforeToggle.bind(this)}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
         >
-          <div part="menu">
+          <div part="post-menu">
             <slot name="header"></slot>
             <slot></slot>
           </div>

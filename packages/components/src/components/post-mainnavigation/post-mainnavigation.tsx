@@ -1,4 +1,5 @@
-import { Component, Host, h, State, Listen } from '@stencil/core';
+import { Component, Element, Host, h, State, Listen, Prop, Watch } from '@stencil/core';
+import { checkRequiredAndType } from '@/utils';
 import { version } from '@root/package.json';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
@@ -7,9 +8,11 @@ const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar i
 @Component({
   tag: 'post-mainnavigation',
   styleUrl: './post-mainnavigation.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostMainnavigation {
+  @Element() host: HTMLPostMainnavigationElement;
+
   private navbar: HTMLElement;
 
   private scrollRepeatInterval: ReturnType<typeof setInterval>;
@@ -21,19 +24,29 @@ export class PostMainnavigation {
   @State() canScrollLeft = false;
   @State() canScrollRight = false;
 
+  /**
+   * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
+   */
+  @Prop({ reflect: true }) textMain!: string;
+
+  @Watch('textMain')
+  validateTextMain() {
+    checkRequiredAndType(this, 'textMain', 'string');
+  }
+
   constructor() {
     this.scrollRight = this.scrollRight.bind(this);
     this.scrollLeft = this.scrollLeft.bind(this);
-    this.handleMutations = this.handleMutations.bind(this);
     this.checkScrollability = this.checkScrollability.bind(this);
 
     this.resizeObserver = new ResizeObserver(this.checkScrollability);
-    this.mutationObserver = new MutationObserver(this.handleMutations);
+    this.mutationObserver = new MutationObserver(this.checkScrollability);
   }
 
   componentDidLoad() {
+    this.validateTextMain();
+
     setTimeout(() => {
-      this.fixLayoutShift();
       this.checkScrollability();
     });
 
@@ -65,38 +78,10 @@ export class PostMainnavigation {
     if (this.scrollRepeatInterval) clearInterval(this.scrollRepeatInterval);
   }
 
-  private async handleMutations(mutations: MutationRecord[]) {
-    const addedNodes = mutations.flatMap((mutation: MutationRecord) => {
-      return Array.from(mutation.addedNodes);
-    });
-
-    // Wait for all elements to be hydrated
-    await Promise.all(
-      addedNodes.map((item: HTMLPostListItemElement) =>
-        item.componentOnReady ? item.componentOnReady() : Promise.resolve(item),
-      ),
-    );
-
-    this.fixLayoutShift();
-    this.checkScrollability();
-  }
-
   private get navigationItems(): HTMLElement[] {
-    return Array.from(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
-  }
-
-  /**
-   * Hack to fix the layout shift due to bold text on active elements
-   */
-  private fixLayoutShift() {
-    this.navigationItems
-      .filter(item => !item.matches(':has(.nav-el-active)'))
-      .forEach(item => {
-        item.innerHTML = `
-          <span class="nav-el-active">${item.innerHTML}</span>
-          <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
-        `;
-      });
+    return Array.from(
+      this.host.querySelectorAll('a:not(post-megadropdown *), post-megadropdown-trigger'),
+    );
   }
 
   /**
@@ -140,7 +125,7 @@ export class PostMainnavigation {
   }
 
   private scrollRight() {
-    const scrollRightLeftEdge = document
+    const scrollRightLeftEdge = this.host.shadowRoot
       .querySelector('.scroll-right')
       .getBoundingClientRect().left;
 
@@ -157,7 +142,7 @@ export class PostMainnavigation {
   }
 
   private scrollLeft() {
-    const scrollLeftRightEdge = document
+    const scrollLeftRightEdge = this.host.shadowRoot
       .querySelector('.scroll-left')
       .getBoundingClientRect().right;
 
@@ -198,7 +183,7 @@ export class PostMainnavigation {
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
 
-        <nav ref={el => (this.navbar = el)}>
+        <nav ref={el => (this.navbar = el)} aria-label={this.textMain}>
           <slot></slot>
         </nav>
 

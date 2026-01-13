@@ -12,7 +12,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { fadeOut } from '@/animations';
+import { fade } from '@/animations';
 import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 
@@ -69,7 +69,7 @@ export class PostBanner {
    */
   @Method()
   async dismiss() {
-    const dismissal = fadeOut(this.host);
+    const dismissal = fade(this.host, 'out');
 
     await dismissal.finished;
 

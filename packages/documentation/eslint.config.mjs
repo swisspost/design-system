@@ -3,7 +3,7 @@
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
 import sb from 'eslint-plugin-storybook';
-import mdx from 'eslint-plugin-mdx';
+import * as mdx from 'eslint-plugin-mdx';
 import globals from 'globals';
 import reactPlugin from 'eslint-plugin-react';
 import pluginCypress from 'eslint-plugin-cypress/flat';
