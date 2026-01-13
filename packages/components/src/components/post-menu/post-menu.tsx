@@ -181,7 +181,6 @@ export class PostMenu {
     }
   };
 
-
   private readonly handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
     if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
