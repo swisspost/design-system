@@ -6,6 +6,7 @@ import {
   openMegadropdown,
   closeMegadropdown,
   openLanguageMenu,
+  openLanguageMenuAndFocusFirstItem,
   closeLanguageMenu,
   openUserMenu,
   hoverMegadropdownTrigger,
@@ -226,7 +227,7 @@ async function testFocus(page, interaction: string, variant: string, breakpoint:
       
     case 'language-item':
       // Step 1: Open language menu (focus moves to next element)
-      await openLanguageMenu(page);
+      await openLanguageMenuAndFocusFirstItem(page);
       // Step 2: Tab into menu and navigate to desired item
       await focusLanguageMenuItem(page, 0);
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-language-item-focus.png`);

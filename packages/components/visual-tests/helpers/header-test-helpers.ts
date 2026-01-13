@@ -209,6 +209,23 @@ export async function openLanguageMenu(page: Page): Promise<void> {
     return;
   }
   
+  // In menu mode, click the trigger to open dropdown
+  const trigger = page.locator('post-menu-trigger button.post-language-menu-trigger').first();
+  await trigger.click();
+  await page.waitForTimeout(WAIT_TIMES.animation);
+}
+
+export async function openLanguageMenuAndFocusFirstItem(page: Page): Promise<void> {
+  const languageMenu = page.locator('post-language-menu').first();
+  
+  // Check variant - if it's "list", there's nothing to open
+  const variant = await languageMenu.getAttribute('variant');
+  
+  if (variant === 'list') {
+    // In list mode, menu is always visible - nothing to open
+    return;
+  }
+  
   // In menu mode, use Space key on the trigger to open dropdown
   // Note: Space key is used because Enter doesn't work (there's a known issue being fixed)
   const trigger = page.locator('post-menu-trigger button.post-language-menu-trigger').first();
