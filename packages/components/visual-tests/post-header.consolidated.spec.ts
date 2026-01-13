@@ -116,7 +116,6 @@ const TEST_MATRIX = {
       states: [],
       hover: [],
       focus: [],
-      // No megadropdown in onepager, language is list mode
     },
   },
 };
@@ -281,7 +280,6 @@ async function testState(page, state: string, variant: string, breakpoint: strin
       break;
       
     case 'burger-megadropdown-open':
-      // On mobile: open burger menu first, then open megadropdown inside it
       await openBurgerMenu(page);
       await openMegadropdown(page, 'letters');
       await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-burger-megadropdown-open.png`);

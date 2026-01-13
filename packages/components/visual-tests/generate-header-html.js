@@ -399,7 +399,27 @@ function generateVariantHTML(variantName, config) {
   });
 
   // Clean up any remaining placeholders (set to empty)
-  html = html.replaceAll(/\{\{[^}]+\}\}/g, '');
+  // Use a linear-time scanner instead of a regex to avoid super-linear
+  // backtracking risks when processing untrusted or very large input.
+  let cleaned = '';
+  let pos = 0;
+  while (pos < html.length) {
+    const start = html.indexOf('{{', pos);
+    if (start === -1) {
+      cleaned += html.slice(pos);
+      break;
+    }
+    cleaned += html.slice(pos, start);
+    const end = html.indexOf('}}', start + 2);
+    if (end === -1) {
+      // No closing braces found — append the rest and stop.
+      cleaned += html.slice(start);
+      break;
+    }
+    // Skip past the closing '}}'
+    pos = end + 2;
+  }
+  html = cleaned;
 
   return html;
 }

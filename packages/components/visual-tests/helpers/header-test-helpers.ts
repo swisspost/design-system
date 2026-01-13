@@ -291,9 +291,9 @@ export async function openBurgerMenu(page: Page): Promise<void> {
 }
 
 export async function closeBurgerMenu(page: Page): Promise<void> {
-  const header = page.locator('post-header');
-  const burgerButton = header.locator('post-togglebutton').last();
-  await burgerButton.click();
+  // Close the burger menu using the Escape key to mirror typical user behavior
+  // and to avoid having an identical implementation to `openBurgerMenu`.
+  await page.keyboard.press('Escape');
   await page.waitForTimeout(WAIT_TIMES.animation);
 }
 
