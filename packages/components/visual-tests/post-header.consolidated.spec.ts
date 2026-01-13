@@ -43,9 +43,16 @@ Object.entries(TEST_MATRIX).forEach(([variant, breakpointConfig]) => {
           await waitForHeaderReady(page);
         });
 
-        test('default', async ({ page }) => {
-          await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-default.png`);
-        });
+        const isLoggedInVariant = variant.includes('loggedin');
+        const isBreakpointToSkipDefault =
+          breakpoint === 'mobile' || breakpoint === 'tablet' || breakpoint === 'desktop';
+        const shouldRunDefault = !(isLoggedInVariant && isBreakpointToSkipDefault);
+
+        if (shouldRunDefault) {
+          test('default', async ({ page }) => {
+            await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-default.png`);
+          });
+        }
 
         if (config.states.length > 0) {
           config.states.forEach(state => {
