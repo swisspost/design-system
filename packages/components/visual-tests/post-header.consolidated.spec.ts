@@ -196,7 +196,15 @@ async function executeTest(
   breakpoint: string,
   type: 'hover' | 'focus' | 'state'
 ) {
-  const handlers = type === 'hover' ? HOVER_HANDLERS : type === 'focus' ? FOCUS_HANDLERS : STATE_HANDLERS;
+  let handlers;
+  if (type === 'hover') {
+    handlers = HOVER_HANDLERS;
+  } else if (type === 'focus') {
+    handlers = FOCUS_HANDLERS;
+  } else {
+    handlers = STATE_HANDLERS;
+  }
+  
   const handler = handlers[interaction];
   
   if (!handler) {
