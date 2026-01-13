@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 import {
   BREAKPOINTS,
   waitForHeaderReady,
@@ -33,54 +33,54 @@ import {
  * Interaction handler configurations
  */
 const HOVER_HANDLERS = {
-  'audience': async (page) => hoverSlotItem(page, 'audience', 0),
-  'global-controls': async (page) => hoverSlotItem(page, 'global-nav-primary', 0),
-  'main-nav': async (page) => hoverMainNavItem(page, 0),
-  'megadropdown-trigger': async (page) => hoverMegadropdownTrigger(page, 'letters'),
-  'megadropdown-content': async (page) => {
+  'audience': async (page: Page) => hoverSlotItem(page, 'audience', 0),
+  'global-controls': async (page: Page) => hoverSlotItem(page, 'global-nav-primary', 0),
+  'main-nav': async (page: Page) => hoverMainNavItem(page, 0),
+  'megadropdown-trigger': async (page: Page) => hoverMegadropdownTrigger(page, 'letters'),
+  'megadropdown-content': async (page: Page) => {
     await openMegadropdown(page, 'letters');
     await hoverMegadropdownItem(page, 'letters', 0);
   },
-  'language': async (page) => hoverLanguageMenuTrigger(page),
-  'language-item': async (page) => {
+  'language': async (page: Page) => hoverLanguageMenuTrigger(page),
+  'language-item': async (page: Page) => {
     await openLanguageMenu(page);
     await hoverLanguageMenuItem(page, 0);
   },
-  'local-nav': async (page) => hoverSlotItem(page, 'local-nav', 0),
-  'user-menu': async (page) => hoverUserMenuTrigger(page),
-  'user-menu-item': async (page) => {
+  'local-nav': async (page: Page) => hoverSlotItem(page, 'local-nav', 0),
+  'user-menu': async (page: Page) => hoverUserMenuTrigger(page),
+  'user-menu-item': async (page: Page) => {
     await openUserMenu(page);
     await hoverUserMenuItem(page, 0);
   },
-  'burger': async (page) => hoverBurgerMenu(page),
+  'burger': async (page: Page) => hoverBurgerMenu(page),
 };
 
 const FOCUS_HANDLERS = {
-  'audience': async (page) => focusSlotItem(page, 'audience', 0),
-  'global-controls': async (page) => focusSlotItem(page, 'global-nav-primary', 0),
-  'main-nav': async (page) => focusMainNavItem(page, 0),
-  'megadropdown-trigger': async (page) => focusMegadropdownTrigger(page, 'letters'),
-  'megadropdown-content': async (page) => {
+  'audience': async (page: Page) => focusSlotItem(page, 'audience', 0),
+  'global-controls': async (page: Page) => focusSlotItem(page, 'global-nav-primary', 0),
+  'main-nav': async (page: Page) => focusMainNavItem(page, 0),
+  'megadropdown-trigger': async (page: Page) => focusMegadropdownTrigger(page, 'letters'),
+  'megadropdown-content': async (page: Page) => {
     await openMegadropdown(page, 'letters');
     await focusMegadropdownItem(page, 'letters', 0);
   },
-  'language': async (page) => focusLanguageMenuTrigger(page),
-  'language-item': async (page) => {
+  'language': async (page: Page) => focusLanguageMenuTrigger(page),
+  'language-item': async (page: Page) => {
     await openLanguageMenuAndFocusFirstItem(page);
     await focusLanguageMenuItem(page, 0);
   },
-  'local-nav': async (page) => focusSlotItem(page, 'local-nav', 0),
-  'user-menu': async (page) => focusUserMenuTrigger(page),
-  'user-menu-item': async (page) => focusUserMenuItem(page),
-  'burger': async (page) => focusBurgerMenu(page),
+  'local-nav': async (page: Page) => focusSlotItem(page, 'local-nav', 0),
+  'user-menu': async (page: Page) => focusUserMenuTrigger(page),
+  'user-menu-item': async (page: Page) => focusUserMenuItem(page),
+  'burger': async (page: Page) => focusBurgerMenu(page),
 };
 
 const STATE_HANDLERS = {
-  'megadropdown-open': async (page) => openMegadropdown(page, 'letters'),
-  'language-open': async (page) => openLanguageMenu(page),
-  'user-menu-open': async (page) => openUserMenu(page),
-  'burger-open': async (page) => openBurgerMenu(page),
-  'burger-megadropdown-open': async (page) => {
+  'megadropdown-open': async (page: Page) => openMegadropdown(page, 'letters'),
+  'language-open': async (page: Page) => openLanguageMenu(page),
+  'user-menu-open': async (page: Page) => openUserMenu(page),
+  'burger-open': async (page: Page) => openBurgerMenu(page),
+  'burger-megadropdown-open': async (page: Page) => {
     await openBurgerMenu(page);
     await openMegadropdown(page, 'letters');
   },
@@ -90,10 +90,10 @@ const STATE_HANDLERS = {
  * Cleanup handlers for interactions that need closing
  */
 const CLEANUP_HANDLERS = {
-  'megadropdown-content': async (page) => closeMegadropdown(page, 'letters'),
-  'language-item': async (page) => closeLanguageMenu(page),
-  'megadropdown-open': async (page) => closeMegadropdown(page, 'letters'),
-  'burger-megadropdown-open': async (page) => closeMegadropdown(page, 'letters'),
+  'megadropdown-content': async (page: Page) => closeMegadropdown(page, 'letters'),
+  'language-item': async (page: Page) => closeLanguageMenu(page),
+  'megadropdown-open': async (page: Page) => closeMegadropdown(page, 'letters'),
+  'burger-megadropdown-open': async (page: Page) => closeMegadropdown(page, 'letters'),
 };
 
 /**
@@ -190,7 +190,7 @@ const TEST_MATRIX = {
  * Generic test executor
  */
 async function executeTest(
-  page: any,
+  page: Page,
   interaction: string,
   variant: string,
   breakpoint: string,
