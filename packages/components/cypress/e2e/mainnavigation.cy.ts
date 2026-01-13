@@ -49,7 +49,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
       cy.get('@mainnavigation')
         .find('a:not(post-megadropdown *), post-megadropdown-trigger')
-        .should('have.length', 20)
+        .should('have.length', 19)
         .as('navigationItems');
 
       cy.get('@navigationItems').first().find('button').as('firstButton');
