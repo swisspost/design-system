@@ -11,30 +11,29 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<PackageTag meta={meta}/>
 
 <div className="lead">
-  The `.section` class limits your content’s width to a maximum of 1440px.
+  Limit content’s width to a maximum of 1440px.
 </div>
 
-<post-banner>
+<post-banner class="my-16">
   To notice the width limitation in action, you’ll need to view the page on a screen wider than 1440px.
 </post-banner>
 
 The `.section` class does not include any padding by default.
 To maintain proper spacing, use a `.container` element and apply our [spacing utility classes](/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs).
 
-<Canvas sourceState="shown" of={SectionStories.Default} />
-
-In the example above, the `.section` class ensures that the background-colored wrapper never exceeds 1440px.
+In the example bellow, the `.section` class ensures that the background-colored wrapper never exceeds 1440px.
 Meanwhile, the `.container` class keeps the content aligned consistently with the rest of the page.
+
+<Canvas sourceState="shown" of={SectionStories.Default}/>
 
 ## Edge alignment
 
-Inside the `.section`, you can use helper classes to align elements with either the edges of the `.section` or the `.container`.
-These helpers make it easy to control whether an element spans the full section width or aligns with the inner content.
+Inside the `.section` element you can use some helper classes to align elements either with the edges of the `.section` or the `.container` element.
 
-<Canvas of={SectionStories.Alignment} />
+<Canvas of={SectionStories.Alignment}/>
 <div className="hide-col-default">
-  <Controls of={SectionStories.Alignment} />
+  <Controls of={SectionStories.Alignment}/>
 </div>
