@@ -35,6 +35,7 @@ const meta: MetaComponent = {
     localNav: false,
     isLoggedIn: false,
     jobs: false,
+    fullWidth: false,
   },
   argTypes: {
     title: {
@@ -197,7 +198,7 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header text-menu="${args.textMenu}">
+      <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 

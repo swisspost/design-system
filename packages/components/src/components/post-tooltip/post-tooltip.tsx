@@ -31,10 +31,7 @@ export class PostTooltip {
    * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
-  /**
-   * Choose a tooltip animation
-   */
-  @Prop() readonly animation?: 'pop-in';
+
   /**
    * Indicates the open state of the tooltip
    */
@@ -60,7 +57,7 @@ export class PostTooltip {
   @Method()
   async show(target: HTMLElement) {
     if (this.open) return;
-    this.popoverRef.show(target);
+    await this.popoverRef.show(target);
   }
 
   /**
@@ -85,8 +82,10 @@ export class PostTooltip {
    * Set the open state based on the toggle event.
    * @param e Popovercontainer toggle event
    */
-  private handleToggle(e: PostPopovercontainerCustomEvent<{ isOpen: boolean; first?: boolean }>) {
-    this.open = e.detail.isOpen;
+  private handleBeforeToggle(
+    e: PostPopovercontainerCustomEvent<{ willOpen: boolean; first?: boolean }>,
+  ) {
+    this.open = e.detail.willOpen;
   }
 
   render() {
@@ -98,9 +97,8 @@ export class PostTooltip {
           class={popoverClass}
           role="tooltip"
           arrow={this.arrow}
-          animation={this.animation}
           placement={this.placement}
-          onPostToggle={e => this.handleToggle(e)}
+          onPostBeforeToggle={e => this.handleBeforeToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
           <slot></slot>
