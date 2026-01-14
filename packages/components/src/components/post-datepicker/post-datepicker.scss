@@ -1,13 +1,14 @@
 @use '@swisspost/design-system-styles/basics.scss';
 @use '@swisspost/design-system-styles/components/validation.scss';
-@use '@swisspost/design-system-styles/components/form-input.scss';
+@use '@swisspost/design-system-styles/components/form-search-input.scss';
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/tokens/helpers';
 @use 'air-datepicker/air-datepicker.css';
-@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/components' as components;
 @use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/mixins/form-input' as input;
 
-tokens.$default-map: components.$post-breadcrumb;
+tokens.$default-map: components.$post-datepicker;
 
 .air-datepicker {
   /* --------------------------------------------
@@ -18,15 +19,10 @@ tokens.$default-map: components.$post-breadcrumb;
   --adp-font-size: 16px;
   --adp-width: 296px; // post.datepicker.width
   --adp-border-radius: 4px; // post.datepicker.border-radius
-  // --adp-color: #050400; // font color interaction/enabled
-  // --adp-color-disabled: #696864; // post.datepicker.color.disabled interaction/disabled-foreground
   --adp-color-disabled-in-range: #696864; //post.datepicker.in-range.grid.cell.disabled.color.fg
   --adp-color-current-date: #050400; // post.datepicker.grid.cell.current.color.fg
   --adp-day-name-color: #050400; //post.datepicker.header.weekdays.color
   --adp-day-name-color-hover: #fff; // post.datepicker.header.weekdays.color.hover (#fff)
-  // --adp-accent-color: #ffcc00; // post.datepicker.color.highlight surface/highlight
-  // --adp-border-color: #050400; //post.datepicker.border.color
-  // --hover-color: #504f4b; // post.datepicker.color.hover interaction/hovered
   --adp-nav-height: 24px; // 1.5 line-height of 16px ???
   --adp-nav-arrow-color: #050400; // post.datepicker.header.arrow.button.icon.color
   --adp-nav-action-size: 40px; // post.datepicker.header.arrow.button.size
@@ -288,21 +284,10 @@ tokens.$default-map: components.$post-breadcrumb;
   }
 }
 
-.calendar-input {
-  position: relative;
-
-  button {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-  }
-}
-
 .calendar-input,
 .calendar-input-range {
   button {
-    border: none;
-    background-color: transparent;
+    @include input.input-btn();
   }
 }
 

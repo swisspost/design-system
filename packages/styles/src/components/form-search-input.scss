@@ -1,5 +1,6 @@
 @use './../functions/tokens';
 @use './../tokens/components';
+@use './../mixins/form-input' as form-input-mx;
 @use './../mixins/utilities';
 
 tokens.$default-map: components.$post-search-input;
@@ -37,41 +38,9 @@ tokens.$default-map: components.$post-search-input;
     }
   }
 
-  &:hover {
-    .delete-button,
-    .search-button {
-      post-icon {
-        color: tokens.get('input-color-hover-fg', components.$post-text-input);
-        @include utilities.high-contrast-mode() {
-          color: Highlight;
-        }
-      }
-    }
-  }
-
   .delete-button,
   .search-button {
-    z-index: 1;
-    padding: 0;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: tokens.get('input-search-icon-border-radius');
-    transition:
-      opacity 0.2s ease,
-      visibility 0.2s ease,
-      fill 0.2s ease;
-
-    post-icon {
-      width: tokens.get('input-sizing-icon', components.$post-text-input);
-      height: tokens.get('input-sizing-icon', components.$post-text-input);
-    }
+    @include form-input-mx.input-btn();
   }
 
   .search-button {

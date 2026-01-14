@@ -1,14 +1,32 @@
+@use './../functions/tokens';
+@use './../tokens/components';
+@use '../tokens/utilities';
+
+tokens.$default-map: components.$post-datepicker;
+
 post-datepicker input[type='date'] {
   &::-webkit-calendar-picker-indicator,
   &::-webkit-inner-spin-button {
     display: none;
     appearance: none;
-
     -webkit-appearance: none;
   }
   ::-moz-calendar-picker-indicator {
     display: none;
     appearance: none;
     -moz-appearance: none;
+  }
+}
+
+post-datepicker {
+  &.form-floating:has(> input.form-control.is-valid:not(:disabled))::after,
+  &.form-floating:has(> input.form-control:-webkit-autofill.is-valid)::after,
+  &.form-floating:has(> input.form-control.is-invalid:not(:disabled))::after,
+  &.form-floating:has(> input.form-control:-webkit-autofill.is-invalid)::after {
+    right: calc(
+      tokens.get('post-search-position-inline-end-icon', components.$post-search-input) +
+        tokens.get('post-datepicker-input-icons-gap-inline') +
+        tokens.get('select-sizing-icon', components.$post-select)
+    );
   }
 }

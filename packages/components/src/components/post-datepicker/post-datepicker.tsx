@@ -853,6 +853,8 @@ export class PostDatepicker {
             <div class={this.range ? 'calendar-input-range' : 'calendar-input'}>
               <slot></slot>
               <button
+                disabled
+                type="button"
                 onClick={e => this.show(e.currentTarget as HTMLElement)}
                 aria-haspopup="true"
                 aria-label={this.textToggleCalendar}
