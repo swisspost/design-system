@@ -166,7 +166,7 @@ export class PostMegadropdown {
     this.postToggleMegadropdown.emit({ isVisible: true });
 
     if (switching) {
-      // When switching between megadropdowns, skip entry animation to avoid visual jitter
+      // When switching between megadropdowns, skip entry animation
       this.focusFirst();
       this.addListeners();
     } else {
