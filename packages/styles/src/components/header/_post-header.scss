@@ -51,14 +51,16 @@ post-header {
   }
 
   // audience
-  > ul[slot='audience'] {
-    @include media.only(tablet) {
-      flex-direction: row;
-      margin-block: 1rem;
-    }
+  > [slot='audience'] {
+    &:where(ul) {
+      @include media.only(tablet) {
+        flex-direction: row;
+        margin-block: 1rem;
+      }
 
-    @include media.only(mobile) {
-      gap: 0.5rem;
+      @include media.only(mobile) {
+        gap: 0.5rem;
+      }
     }
 
     @include interactive-elements {
@@ -67,7 +69,7 @@ post-header {
   }
 
   // meta navigation on desktop
-  > ul[slot='global-nav-secondary'] {
+  > [slot='global-nav-secondary'] {
     @include media.max(desktop) {
       &:where(ul) {
         flex-direction: column;

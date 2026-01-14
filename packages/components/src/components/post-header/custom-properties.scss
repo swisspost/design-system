@@ -57,6 +57,11 @@
   }
 }
 
+:host(:not([full-width])),
+:host([full-width="false"]) {
+  --post-header-content-max-width: 1440px;
+}
+
 :host([data-expanded]), // case when mobile menu is closed and focus is moved inside the local-header
 :host([data-menu-extended]) // case when mobile menu is open and page is scrolled down
 {
