@@ -18,11 +18,41 @@ const BASE_TEMPLATE = `<!DOCTYPE html>
     <link rel="stylesheet" href="/assets/css/post-tokens-default.css" />
     <link rel="stylesheet" href="/assets/css/index.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
+    <style>
+      /* Fake content for scroll testing */
+      .fake-content {
+        position: relative;
+        min-height: calc(1.6rem * 8);
+        background: repeating-linear-gradient(
+          rgb(230, 230, 230),
+          rgb(230, 230, 230) 1rem,
+          transparent 1rem,
+          transparent 1.6rem
+        );
+        &::after {
+          content: '';
+          background: white;
+          width: 33%;
+          height: 1.7rem;
+          display: block;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <post-header text-menu="Menu">
       {{HEADER_CONTENT}}
     </post-header>
+    <main>
+      <div class="fake-content"></div>
+      <div class="fake-content"></div>
+      <div class="fake-content"></div>
+      <div class="fake-content"></div>
+      <div class="fake-content"></div>
+    </main>
   </body>
 </html>`;
 
@@ -267,7 +297,7 @@ const COMPONENTS = {
     </li>`,
 
   localUserMenu: `<li class="local-login">
-      <post-menu-trigger for="user-menu">
+      <post-menu-trigger for="user-menu-local">
         <button class="btn btn-link" type="button">
           <post-avatar
             firstname="John"
@@ -277,7 +307,7 @@ const COMPONENTS = {
           <span class="visually-hidden">Access user links.</span>
         </button>
       </post-menu-trigger>
-      <post-menu id="user-menu" label="User links">
+      <post-menu id="user-menu-local" label="User links">
         <div slot="header">
           <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
           John Doe
@@ -343,10 +373,18 @@ const VARIANTS = {
   },
 
   'jobs-loggedin': {
-    components: ['logo', 'audience', 'globalNavSecondaryJobsOnly', 'languageMenu', 'mainNavigation', 'localNavJobs'],
+    components: [
+      'logo', 
+      'audience', 
+      'globalNavSecondaryJobsOnly', 
+      'languageMenu', 
+      'globalUserMenu',
+      'mainNavigation', 
+      'localNavJobs'
+    ],
     replacements: {
       '{{AUDIENCE_CURRENT}}': '',
-      '{{LOCAL_NAV_LOGIN_OR_USER}}': COMPONENTS.localUserMenu,
+      '{{LOCAL_NAV_LOGIN_OR_USER}}': '', // Empty - no duplicate local menu needed
     },
   },
 

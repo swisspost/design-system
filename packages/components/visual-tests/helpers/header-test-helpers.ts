@@ -1,10 +1,10 @@
 import { Page } from '@playwright/test';
 
 export const WAIT_TIMES = {
-  component: 1000,
+  component: 1200,
   interaction: 300,
   animation: 600,
-  megadropdown: 400,
+  megadropdown: 600,
 } as const;
 
 export async function waitForHeaderReady(page: Page): Promise<void> {
