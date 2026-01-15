@@ -77,13 +77,6 @@ tokens.$default-map: components.$post-banner;
   margin-block: 0 !important;
 }
 
-::slotted(post-closebutton) {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-end: 0;
-  transform: translate(50%, -50%);
-}
-
 @include utilities.high-contrast-mode {
   :host {
     border-color: CanvasText;

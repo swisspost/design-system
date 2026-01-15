@@ -5,10 +5,11 @@
 
 ## Properties
 
-| Property     | Attribute     | Description                                             | Type                              | Default    |
-| ------------ | ------------- | ------------------------------------------------------- | --------------------------------- | ---------- |
-| `buttonType` | `button-type` | Overrides the close button's type ("button" by default) | `"button" \| "reset" \| "submit"` | `'button'` |
-| `small`      | `small`       | Overrides the close button's type ("button" by default) | `boolean`                         | `false`    |
+| Property     | Attribute     | Description                                             | Type                              | Default     |
+| ------------ | ------------- | ------------------------------------------------------- | --------------------------------- | ----------- |
+| `buttonType` | `button-type` | The "type" attribute used for the close button          | `"button" \| "reset" \| "submit"` | `'button'`  |
+| `placement`  | `placement`   | Overrides the close button's type ("button" by default) | `"inside" \| "outside"`           | `'outside'` |
+| `size`       | `size`        | The size of the close button                            | `"small"`                         | `undefined` |
 
 
 ## Slots

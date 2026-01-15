@@ -7,14 +7,14 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
-import { ButtonType } from "./components/post-closebutton/button-types";
+import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
-import { Placement } from "@floating-ui/dom";
+import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
-export { ButtonType } from "./components/post-closebutton/button-types";
+export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
-export { Placement } from "@floating-ui/dom";
+export { Placement as Placement1 } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -171,15 +171,19 @@ export namespace Components {
     }
     interface PostClosebutton {
         /**
-          * Overrides the close button's type ("button" by default)
+          * The "type" attribute used for the close button
           * @default 'button'
          */
         "buttonType"?: ButtonType;
         /**
-          * Overrides the close button's type ("button" by default)
-          * @default false
+          * Defines whether the close button appears inside the element or overlayed outside its top-right corner.
+          * @default 'outside'
          */
-        "small": boolean;
+        "placement": Placement;
+        /**
+          * The size of the close button.
+         */
+        "size"?: Size;
     }
     interface PostCollapsible {
         /**
@@ -365,7 +369,7 @@ export namespace Components {
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Displays the popover menu, focusing the first menu item.
           * @param target - The HTML element relative to which the popover menu should be displayed.
@@ -440,7 +444,7 @@ export namespace Components {
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Programmatically display the popover
           * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
@@ -482,7 +486,7 @@ export namespace Components {
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Enables a safespace through which the cursor can be moved without the popover being disabled
          */
@@ -598,7 +602,7 @@ export namespace Components {
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Programmatically display the tooltip.
           * @param target An element where the tooltip should be shown
@@ -1196,15 +1200,19 @@ declare namespace LocalJSX {
     }
     interface PostClosebutton {
         /**
-          * Overrides the close button's type ("button" by default)
+          * The "type" attribute used for the close button
           * @default 'button'
          */
         "buttonType"?: ButtonType;
         /**
-          * Overrides the close button's type ("button" by default)
-          * @default false
+          * Defines whether the close button appears inside the element or overlayed outside its top-right corner.
+          * @default 'outside'
          */
-        "small"?: boolean;
+        "placement"?: Placement;
+        /**
+          * The size of the close button.
+         */
+        "size"?: Size;
     }
     interface PostCollapsible {
         /**
@@ -1374,7 +1382,7 @@ declare namespace LocalJSX {
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
     }
     interface PostMenuItem {
     }
@@ -1440,7 +1448,7 @@ declare namespace LocalJSX {
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Define the text of the close button for assistive technology
          */
@@ -1487,7 +1495,7 @@ declare namespace LocalJSX {
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Enables a safespace through which the cursor can be moved without the popover being disabled
          */
@@ -1596,7 +1604,7 @@ declare namespace LocalJSX {
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
     }
     interface PostTooltipTrigger {
         /**

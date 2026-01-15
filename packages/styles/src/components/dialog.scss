@@ -143,13 +143,6 @@ dialog > .dialog-grid {
     }
   }
 
-  > post-closebutton {
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-end: 0;
-    transform: translate(50%, -50%);
-  }
-
   &:not(:where(#{$typed-dialog-children})) {
     .dialog-header {
       grid-area: 1 / icon / 1 / header;

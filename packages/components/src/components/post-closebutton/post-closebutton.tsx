@@ -1,7 +1,7 @@
 import { AttachInternals, Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
-import { BUTTON_TYPES, ButtonType } from './button-types';
+import { checkEmptyOrOneOf, checkRequiredAndOneOf } from '@/utils';
+import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
 
 /**
  * @slot default - Slot for placing visually hidden label in the close button.
@@ -19,7 +19,7 @@ export class PostClosebutton {
   @AttachInternals() internals!: ElementInternals;
 
   /**
-   * Overrides the close button's type ("button" by default)
+   * The "type" attribute used for the close button
    */
   @Prop() buttonType?: ButtonType = 'button';
 
@@ -29,13 +29,23 @@ export class PostClosebutton {
   }
 
   /**
-   * Overrides the close button's type ("button" by default)
+   * Defines whether the close button appears inside the element or overlayed outside its top-right corner.
    */
-  @Prop({ reflect: true }) small: boolean = false;
+  @Prop({ reflect: true }) placement: Placement = 'outside';
 
-  @Watch('small')
-  validateSmall() {
-    checkEmptyOrType(this, 'small', 'boolean');
+  @Watch('placement')
+  validatePlacement() {
+    checkRequiredAndOneOf(this, 'placement', PLACEMENT);
+  }
+
+  /**
+   * The size of the close button.
+   */
+  @Prop({ reflect: true }) size?: Size;
+
+  @Watch('size')
+  validateSize() {
+    checkEmptyOrOneOf(this, 'size', SIZE);
   }
 
   componentDidLoad() {
@@ -73,7 +83,9 @@ export class PostClosebutton {
 
   private checkContent() {
     this.validateButtonType();
-    this.validateSmall();
+    this.validatePlacement();
+    this.validateSize();
+
     if (!this.host.textContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }

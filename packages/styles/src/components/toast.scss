@@ -29,13 +29,6 @@ tokens.$default-map: components.$post-banner;
       #{$padding-x} + #{$gap} + #{tokens.get('utility-gap-24', utilities.$post-spacing)}
     );
   }
-
-  > post-closebutton {
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-end: 0;
-    transform: translate(50%, -50%);
-  }
 }
 
 @each $name, $color, $icon, $border-color, $icon-color,

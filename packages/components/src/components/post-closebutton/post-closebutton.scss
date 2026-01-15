@@ -16,7 +16,14 @@ tokens.$default-map: components.$post-close;
   }
 }
 
-:host([small]:not([small="false"])) {
+:host([placement="outside"]) {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  transform: translate(50%, -50%);
+}
+
+:host([size="small"]) {
   .btn {
     height: tokens.get('close-small-size');
     width: tokens.get('close-small-size');

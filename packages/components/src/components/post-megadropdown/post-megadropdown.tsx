@@ -395,7 +395,12 @@ export class PostMegadropdown {
             </div>
 
             {this.device === 'desktop' ? (
-              <post-closebutton onClick={() => this.hide(true)} class="close-button" small={true}>
+              <post-closebutton
+                onClick={() => this.hide(true)}
+                class="close-button"
+                size="small"
+                placement="inside"
+              >
                 {this.textClose}
               </post-closebutton>
             ) : (
