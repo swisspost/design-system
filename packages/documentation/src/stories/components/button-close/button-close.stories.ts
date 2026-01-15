@@ -20,6 +20,7 @@ const meta: MetaComponent = {
   args: {
     'slots-default': 'Close',
     'buttonType': 'button',
+    'small': false,
   },
   argTypes: {
     'slots-default': {
@@ -38,6 +39,7 @@ function getCloseButtonRenderer(extraClasses?: string) {
     <post-closebutton
       button-type=${args.buttonType !== 'button' ? args.buttonType : nothing}
       class=${extraClasses ?? nothing}
+      small="${args.small || nothing}
     >
       ${unsafeHTML(args['slots-default'])}
     </post-closebutton>
