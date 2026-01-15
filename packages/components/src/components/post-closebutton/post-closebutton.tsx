@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { AttachInternals, Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 import { BUTTON_TYPES, ButtonType } from './button-types';
@@ -9,12 +9,14 @@ import { BUTTON_TYPES, ButtonType } from './button-types';
 @Component({
   tag: 'post-closebutton',
   styleUrl: 'post-closebutton.scss',
-  shadow: false,
+  shadow: true,
+  formAssociated: true,
 })
 export class PostClosebutton {
   private mutationObserver = new MutationObserver(this.checkContent.bind(this));
 
   @Element() host: HTMLPostClosebuttonElement;
+  @AttachInternals() internals!: ElementInternals;
 
   /**
    * Overrides the close button's type ("button" by default)
@@ -54,10 +56,25 @@ export class PostClosebutton {
     }
   }
 
+  private handleClick() {
+    const form = this.internals.form;
+    if (!form) return;
+
+    if (this.buttonType === 'submit') {
+      if (typeof form.requestSubmit === 'function') {
+        form.requestSubmit();
+      } else {
+        form.submit();
+      }
+    } else if (this.buttonType === 'reset') {
+      form.reset();
+    }
+  }
+
   private checkContent() {
     this.validateButtonType();
     this.validateSmall();
-    if (!this.host.querySelector('.visually-hidden').textContent) {
+    if (!this.host.textContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
   }
@@ -65,7 +82,11 @@ export class PostClosebutton {
   render() {
     return (
       <Host data-version={version}>
-        <button type={this.buttonType} class={'btn btn-icon btn-secondary btn-sm'}>
+        <button
+          type={this.buttonType}
+          class="btn btn-icon btn-secondary btn-sm"
+          onClick={this.handleClick.bind(this)}
+        >
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
             <slot></slot>

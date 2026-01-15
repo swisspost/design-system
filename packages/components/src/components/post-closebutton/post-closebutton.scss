@@ -8,19 +8,17 @@
 
 tokens.$default-map: components.$post-close;
 
-post-closebutton {
-  > .btn {
-    background-color: tokens.get('close-enabled-bg');
-    background-clip: padding-box;
+.btn {
+  background-color: tokens.get('close-enabled-bg');
 
-    @include utilities.not-disabled-hover {
-      background-color: tokens.get('close-hover-bg');
-    }
+  &:hover {
+    background-color: tokens.get('close-hover-bg');
   }
+}
 
-  &[small]:not([small="false"]) > .btn {
+:host([small]:not([small="false"])) {
+  .btn {
     height: tokens.get('close-small-size');
     width: tokens.get('close-small-size');
   }
 }
-
