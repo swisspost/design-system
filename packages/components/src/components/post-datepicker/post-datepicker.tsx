@@ -38,6 +38,8 @@ export class PostDatepicker {
 
   @State() today = new Date();
 
+  @State() inputsDisabled = false;
+
   /**
    * Selected date
    * If range datepicker: Selected start date
@@ -213,6 +215,21 @@ export class PostDatepicker {
 
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
+
+  private setupInputObserver() {
+    if (!this.dpInputs) return;
+
+    const observer = new MutationObserver(() => {
+      this.syncDatepickerState();
+    });
+
+    this.dpInputs.forEach(input => {
+      observer.observe(input, {
+        attributes: true,
+        attributeFilter: ['disabled'],
+      });
+    });
+  }
 
   /**
    * Get all the active cells of the calendar
@@ -807,10 +824,26 @@ export class PostDatepicker {
     console.log('touch event');
   };
 
+  private syncDatepickerState() {
+    const disabled = this.dpInputs?.some(input => input.disabled) ?? false;
+
+    this.inputsDisabled = disabled;
+
+    if (disabled) {
+      this.dpInputs?.forEach(input => {
+        if (input.disabled !== disabled) {
+          input.disabled = disabled;
+        }
+      });
+    }
+  }
+
   async componentDidLoad() {
     this.configDatepicker();
     this.setupGridObserver();
     this.setupNavObserver();
+    this.setupInputObserver();
+
     this.validateSelectedStartDate();
     this.validateSelectedEndDate();
     this.validateTextToggleCalendar();
@@ -827,6 +860,10 @@ export class PostDatepicker {
       requestAnimationFrame(() => this.enhanceAccessibility(false));
     } else {
       this.addInputListeners();
+
+      requestAnimationFrame(() => {
+        this.syncDatepickerState();
+      });
     }
   }
 
@@ -850,12 +887,19 @@ export class PostDatepicker {
         {this.inline && <div class="datepicker-container"></div>}
         {!this.inline && (
           <div>
-            <div class={this.range ? 'calendar-input-range' : 'calendar-input'}>
+            <div
+              class={{
+                'calendar-input': !this.range,
+                'calendar-input-range': this.range,
+                'disabled': this.inputsDisabled,
+              }}
+            >
               <slot></slot>
               <button
                 onClick={e => this.show(e.currentTarget as HTMLElement)}
                 aria-haspopup="true"
                 aria-label={this.textToggleCalendar}
+                disabled={this.inputsDisabled}
               >
                 <post-icon name="calendar"></post-icon>
               </button>
