@@ -34,7 +34,7 @@ Object.entries(TEST_MATRIX).forEach(([variant, breakpointConfig]) => {
   test.describe(`Header: ${variant}`, () => {
     
     TEST_BREAKPOINTS.forEach(({ name: breakpoint, width, height }) => {
-      const config = breakpointConfig[breakpoint as BreakpointName];
+      const config = breakpointConfig[breakpoint];
       
       test.describe(`${breakpoint} (${width}x${height})`, () => {
         test.beforeEach(async ({ page }) => {
