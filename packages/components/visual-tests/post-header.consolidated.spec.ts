@@ -5,7 +5,6 @@ import {
   TEST_MATRIX,
   STATE_HANDLERS,
   CLEANUP_HANDLERS,
-  type BreakpointName,
 } from './helpers/header-test-config';
 
 async function executeTest(
