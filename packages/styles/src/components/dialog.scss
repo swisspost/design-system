@@ -14,6 +14,7 @@
 tokens.$default-map: utilities.$post-spacing;
 
 $dialog-types: 'info', 'error', 'success', 'warning';
+$border-radius: 0.5rem;
 
 dialog {
   box-shadow: elevation.$elevation-500;
@@ -26,6 +27,7 @@ dialog {
   overscroll-behavior: contain;
   background-color: #fafafa;
   border: 2px #cdccc8;
+  border-radius: $border-radius;
 
   &::backdrop {
     background-color: rgba(#050400, 0.8);
@@ -82,7 +84,7 @@ dialog {
 
 dialog > .dialog-grid {
   padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0;
-  border-radius: 0.5rem;
+  border-radius: $border-radius;
   display: grid;
   grid-template-rows: auto 1fr auto;
   max-height: 90vh;
