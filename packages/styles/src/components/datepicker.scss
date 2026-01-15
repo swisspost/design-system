@@ -1,14 +1,23 @@
-post-datepicker input[type='date'] {
-  &::-webkit-calendar-picker-indicator,
-  &::-webkit-inner-spin-button {
-    display: none;
-    appearance: none;
-
-    -webkit-appearance: none;
+post-datepicker {
+  input[type='date']::-webkit-inner-spin-button,
+  input[type='date']::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -webkit-appearance: none !important;
   }
-  ::-moz-calendar-picker-indicator {
-    display: none;
-    appearance: none;
-    -moz-appearance: none;
+
+  input {
+    border-color: grey !important;
+    border-width: 50px !important;
+    padding: 30px !important;
+    margin: 20px !important;
+  }
+
+  input[type='date'] {
+    -webkit-text-fill-color: rgb(
+      0,
+      0,
+      0
+    ) !important; /* should be the form control text color defined by design */
+    color: transparent !important;
   }
 }

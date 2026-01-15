@@ -801,28 +801,26 @@ export class PostDatepicker {
         }
       });
 
-      input.addEventListener('focus', this.onFocus);
-      input.addEventListener('keydown', this.onKeydown);
-      input.addEventListener('touchstart', this.onTouchStart);
+      // test native calendar
+      input.addEventListener('click', this.preventDefault);
+      input.addEventListener('focus', this.preventDefault);
+      input.addEventListener('keydown', event => {
+        if (event.key === ' ') {
+          this.preventDefault(event);
+        }
+      });
+      input.addEventListener('keyup', event => {
+        if (event.key === ' ') {
+          this.preventDefault(event);
+        }
+      });
+      input.addEventListener('touchstart', this.preventDefault);
     });
   }
 
-  private readonly onFocus = (e: FocusEvent) => {
-    e.preventDefault();
-    console.log('focus');
-  };
-
-  private readonly onKeydown = (e: KeyboardEvent) => {
-    if (e.key === ' ') {
-      e.preventDefault();
-      console.log('space key');
-    }
-  };
-
-  private readonly onTouchStart = (e: TouchEvent) => {
-    e.preventDefault();
-    console.log('touch event');
-  };
+  private preventDefault(event) {
+    event.preventDefault();
+  }
 
   private syncDatepickerState() {
     const disabled = this.dpInputs?.some(input => input.disabled) ?? false;
