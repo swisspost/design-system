@@ -114,8 +114,8 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () => html`
-    <div class="container">
-      <section class="section palette palette-brand py-64">
+    <section class="section palette palette-brand">
+      <div class="container py-64">
         <h2>Title</h2>
         <p>
           This section demonstrates a foundational layout component with proper spacing and
@@ -123,8 +123,8 @@ export const Default: Story = {
           improving readability and structure. The container ensures consistent horizontal padding
           and maximum width across different screen sizes.
         </p>
-      </section>
-    </div>
+      </div>
+    </section>
   `,
 };
 
@@ -158,9 +158,9 @@ export const Alignment: Story = {
     }
 
     return html`
-      <div class="container">
-        <section class="section palette palette-brand">${content}</section>
-      </div>
+      <section class="section palette palette-brand">
+        <div class="container">${content}</div>
+      </section>
     `;
   },
 };
