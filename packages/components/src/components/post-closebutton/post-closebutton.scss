@@ -13,7 +13,7 @@ post-closebutton {
     background-color: tokens.get('close-enabled-bg');
     background-clip: padding-box;
 
-    &:hover {
+    @include utilities.not-disabled-hover {
       background-color: tokens.get('close-hover-bg');
     }
   }
