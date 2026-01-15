@@ -8,6 +8,7 @@
 | Property     | Attribute     | Description                                             | Type                              | Default    |
 | ------------ | ------------- | ------------------------------------------------------- | --------------------------------- | ---------- |
 | `buttonType` | `button-type` | Overrides the close button's type ("button" by default) | `"button" \| "reset" \| "submit"` | `'button'` |
+| `small`      | `small`       | Overrides the close button's type ("button" by default) | `boolean`                         | `false`    |
 
 
 ## Slots

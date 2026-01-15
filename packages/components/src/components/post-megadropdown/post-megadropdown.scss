@@ -48,7 +48,7 @@
 
   @include media.only(desktop) {
     max-height: calc(100vh - var(--post-header-height) - 3rem);
-    padding: 2rem 2.5rem 2.5rem;
+    padding: 3rem 2.5rem 2.5rem;
   }
 
   @include media.max(desktop) {
@@ -100,11 +100,6 @@
   position: absolute;
   inset-block-start: 0.5rem;
   inset-inline-end: 0.5rem;
-
-  button {
-    height: 32px;
-    width: 32px;
-  }
 
   @include media.max(lg) {
     display: none;

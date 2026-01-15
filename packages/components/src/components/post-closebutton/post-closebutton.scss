@@ -1,23 +1,28 @@
+@use '@swisspost/design-system-styles/components/button';
+@use '@swisspost/design-system-styles/components/icon-button';
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
 
-post-closebutton button {
-  @include button.button-base;
-  height: 2.5rem;
-  width: 2.5rem;
-  font-size: 1rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.16);
-  background-clip: padding-box;
+tokens.$default-map: components.$post-close;
 
-  @include button.button-variant-def('enabled', 'secondary');
-  @include utilities.focus-style;
+post-closebutton {
+  > .btn {
+    background-color: tokens.get('close-enabled-bg');
+    background-clip: padding-box;
 
-  &:hover {
-    @include button.button-variant-def('hover', 'secondary');
+    &:hover {
+      background-color: tokens.get('close-hover-bg');
+    }
+
+    > :not(post-icon) {
+      @include utilities.visuallyhidden();
+    }
   }
 
-  > :not(post-icon) {
-    @include utilities.visuallyhidden();
+  &[small]:not([small="false"]) > .btn {
+    height: tokens.get('close-small-size');
+    width: tokens.get('close-small-size');
   }
 }
 

@@ -175,6 +175,11 @@ export namespace Components {
           * @default 'button'
          */
         "buttonType"?: ButtonType;
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default false
+         */
+        "small": boolean;
     }
     interface PostCollapsible {
         /**
@@ -1195,6 +1200,11 @@ declare namespace LocalJSX {
           * @default 'button'
          */
         "buttonType"?: ButtonType;
+        /**
+          * Overrides the close button's type ("button" by default)
+          * @default false
+         */
+        "small"?: boolean;
     }
     interface PostCollapsible {
         /**
