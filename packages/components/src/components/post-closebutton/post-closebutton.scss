@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/components/button';
 @use '@swisspost/design-system-styles/components/icon-button';
+@use '@swisspost/design-system-styles/helpers/visually-hidden';
+
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
@@ -13,10 +15,6 @@ post-closebutton {
 
     &:hover {
       background-color: tokens.get('close-hover-bg');
-    }
-
-    > :not(post-icon) {
-      @include utilities.visuallyhidden();
     }
   }
 
