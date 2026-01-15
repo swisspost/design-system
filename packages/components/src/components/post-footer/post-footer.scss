@@ -136,7 +136,6 @@ footer {
 
 .footer-socialmedia,
 .footer-app,
-.footer-businesssectors,
 .footer-meta {
   ::slotted(div) {
     display: flex !important;
@@ -155,7 +154,14 @@ footer {
 }
 
 .footer-businesssectors {
-  margin-block-end: var(--post-footer-businesssectors-margin-block-end);
+  margin-block-end: var(--post-footer-list-gap);
+
+  ::slotted(div) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
 }
 
 .footer-meta {
