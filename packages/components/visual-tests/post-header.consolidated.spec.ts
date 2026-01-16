@@ -28,7 +28,7 @@ async function executeTest(
   }
 }
 
-// Iterate through all variants in TEST_MATRIX
+// Iterate through all variants
 Object.entries(TEST_MATRIX).forEach(([variant, breakpointConfig]) => {
   test.describe(`Header: ${variant}`, () => {
     
