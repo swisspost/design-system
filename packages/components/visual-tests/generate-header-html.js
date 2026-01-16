@@ -340,7 +340,7 @@ const COMPONENTS = {
     </li>`,
 };
 
-// Variant configurations (what components to include)
+// Variant configurations
 const VARIANTS = {
   'onepager': {
     components: ['logo', 'languageMenu', 'title'],
@@ -384,7 +384,7 @@ const VARIANTS = {
     ],
     replacements: {
       '{{AUDIENCE_CURRENT}}': '',
-      '{{LOCAL_NAV_LOGIN_OR_USER}}': '', // Empty - no duplicate local menu needed
+      '{{LOCAL_NAV_LOGIN_OR_USER}}': '',
     },
   },
 
@@ -424,7 +424,7 @@ function generateVariantHTML(variantName, config) {
 
   // Clean up any remaining placeholders (set to empty)
   // Use a linear-time scanner instead of a regex to avoid super-linear
-  // backtracking risks when processing untrusted or very large input.
+  // backtracking risks when processing untrusted or very large input
   let cleaned = '';
   let pos = 0;
   while (pos < html.length) {
