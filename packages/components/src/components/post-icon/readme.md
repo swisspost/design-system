@@ -16,6 +16,7 @@ some content
 | `name` _(required)_ | `name`      | The name/id of the icon (e.g. 1000, 1001, ...).                                                                           | `string`                                                                       | `undefined` |
 | `rotate`            | `rotate`    | The number of degree for the css rotate transformation.                                                                   | `number`                                                                       | `undefined` |
 | `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`                                                                       | `undefined` |
+| `url`               | `url`       | A full URL to the icon file. When set, this property has the highest priority.                                            | `string`                                                                       | `undefined` |
 
 
 ## Dependencies

@@ -29,7 +29,8 @@ import {
   PostIconAccessblocked,
   PostIconCarbatteryleakSolid,
   PostIconLetter,
-} from '@swisspost/design-system-components-react/icons/index';
+  PostIconPrint,
+} from '@swisspost/design-system-components-react/icons';
 
 export default function Home() {
   return (
@@ -232,12 +233,10 @@ export default function Home() {
 
       <h2>Icons</h2>
       <div className="d-flex gap-16">
-        <PostIconAccessblocked size="2em"></PostIconAccessblocked>
-        <PostIconLetter size="2em"></PostIconLetter>
-        <PostIconCarbatteryleakSolid
-          size="2em"
-          style={{ color: 'green' }}
-        ></PostIconCarbatteryleakSolid>
+        <PostIconAccessblocked></PostIconAccessblocked>
+        <PostIconLetter></PostIconLetter>
+        <PostIconCarbatteryleakSolid></PostIconCarbatteryleakSolid>
+        <PostIconPrint style={{ color: 'red', fontSize: '2em' }}></PostIconPrint>
       </div>
     </>
   );

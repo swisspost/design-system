@@ -254,6 +254,10 @@ export namespace Components {
           * The number for the css scale transformation.
          */
         "scale"?: number;
+        /**
+          * A full URL to the icon file. When set, this property has the highest priority.
+         */
+        "url"?: string;
     }
     interface PostLanguageMenu {
         /**
@@ -1266,6 +1270,10 @@ declare namespace LocalJSX {
           * The number for the css scale transformation.
          */
         "scale"?: number;
+        /**
+          * A full URL to the icon file. When set, this property has the highest priority.
+         */
+        "url"?: string;
     }
     interface PostLanguageMenu {
         /**

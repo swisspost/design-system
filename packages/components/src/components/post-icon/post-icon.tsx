@@ -48,6 +48,11 @@ export class PostIcon {
   }
 
   /**
+   * A full URL to the icon file. When set, this property has the highest priority.
+   */
+  @Prop() readonly url?: string;
+
+  /**
    * When set to `true`, the icon will be flipped horizontally.
    */
   @Prop() readonly flipH?: boolean = false;
@@ -104,6 +109,10 @@ export class PostIcon {
 
     if (!IS_BROWSER && !this.base) {
       return `${CDN_URL}${fileName}`;
+    }
+
+    if (this.url) {
+      return this.url;
     }
 
     const isAbsolute = (url: string) => /^https?:\/\//.test(url);

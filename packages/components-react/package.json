@@ -35,6 +35,11 @@
       "types": "./dist/types/index.server.d.ts",
       "import": "./dist/index.server.js"
     },
+    "./icons": {
+      "types": "./dist/types/icons-generated/index.d.ts",
+      "import": "./dist/icons-generated/index.js",
+      "node": "./dist/icons-generated/index.js"
+    },
     "./icons/*": {
       "types": "./dist/types/icons-generated/*.d.ts",
       "import": "./dist/icons-generated/*.js",

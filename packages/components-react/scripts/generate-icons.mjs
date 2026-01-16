@@ -13,18 +13,21 @@ const OUTPUT_DIR = path.resolve(process.cwd(), 'src/icons-generated');
  * @param {string} svgInnerContent
  * @returns
  */
-const getComponentTemplate = (iconName, svgInnerContent) => `/* eslint-disable */
+const getComponentTemplate = (iconName, base64) => `/* eslint-disable */
 /* Auto-generated file. Do not edit directly. */
 import * as React from "react";
-import type { SVGProps } from "react";
+import { PostIcon } from "../index.server";
+import type { StencilReactComponent } from "@stencil/react-output-target/runtime";
 
-const PostIcon${iconName} = (props: (SVGProps<SVGSVGElement> & { size?: string | number; color?: string })) => (
-  <svg xmlns="http://www.w3.org/2000/svg" {...(props.size ? { width: props.size, height: props.size } : { width: "1em", height: "1em" })}  {...props} fill={props.color ?? "currentColor"}>
-    ${svgInnerContent}
-  </svg>
+const ${iconName}: StencilReactComponent<HTMLElement & typeof PostIcon, {}> = props => (
+  <PostIcon
+    name="${iconName}"
+    url="${`data:image/svg+xml;base64,${base64}`}"
+    {...props}
+  ></PostIcon>
 );
 
-export default PostIcon${iconName};
+export default ${iconName};
 `;
 
 /**
@@ -54,82 +57,6 @@ const toComponentName = fileName => {
     .replaceAll(/\s+/g, ''); // Removes all spaces
 
   return `PostIcon${pascalCase}`;
-};
-
-/**
- * Escape template literal delimiters for safe embedding in generated TSX.
- */
-const escapeTemplateLiteral = value =>
-  // Escape backticks and interpolation markers to avoid breaking the template string.
-  value.replaceAll('`', '\\`').replaceAll('${', '\\${');
-
-/**
- * Convert a CSS inline style string to a JSX style object literal string.
- */
-const toStyleObjectLiteral = styleValue => {
-  // Split and normalize the inline style declaration list.
-  const entries = styleValue
-    .split(';')
-    .map(entry => entry.trim())
-    .filter(Boolean);
-
-  const pairs = entries
-    .map(entry => {
-      // Preserve colons in values by rejoining the remainder.
-      const [prop, ...rest] = entry.split(':');
-      if (!prop || rest.length === 0) return null;
-      // Convert kebab-case CSS property names to camelCase for JSX.
-      const key = prop.trim().replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase());
-      const value = rest
-        .join(':')
-        .trim()
-        // Escape quotes inside the style value for safe string output.
-        .replaceAll('"', String.raw`\"`);
-      return `${key}: "${value}"`;
-    })
-    .filter(Boolean);
-
-  return pairs.join(', ');
-};
-
-/**
- * Escape raw CSS text so it can live inside a JSX string literal.
- */
-const escapeCssForJsxString = styleContent =>
-  // Escape backslashes, quotes, and newlines for a safe JS string literal.
-  styleContent
-    .replaceAll('\\', '\\\\')
-    .replaceAll('"', String.raw`\"`)
-    .replaceAll('\r\n', '\n')
-    .replaceAll('\n', String.raw`\n`);
-
-/**
- * Convert inline style attributes and <style> tags to JSX-compatible output.
- */
-const convertSvgMarkupToJsx = svgContent => {
-  return (
-    svgContent
-      // Strip the outer <svg> wrapper so only inner markup is returned.
-      .replaceAll(/^\s*<svg[^>]*>/gi, '')
-      .replaceAll(/<\/svg>\s*$/gi, '')
-
-      // Convert <style> tag content into JSX string literals.
-      .replaceAll(/<style(\s[^>]*)?>([\s\S]*?)<\/style>/gi, (_, attrs, styleContent) => {
-        const escapedContent = escapeCssForJsxString(styleContent);
-        return `<style${attrs || ''}>{"${escapedContent}"}</style>`;
-      })
-
-      // Convert class attributes to JSX className.
-      .replaceAll(/\sclass=(['"])([^'"]*)\1/g, (_, __, classValue) =>
-        classValue ? ` className="${classValue}"` : '',
-      )
-
-      // Convert inline style attributes from CSS string to JSX object literal.
-      .replaceAll(/\sstyle=(["'])([^"']*)\1/g, (_, __, styleValue) => {
-        const styleLiteral = toStyleObjectLiteral(styleValue);
-        return styleLiteral ? ` style={{ ${styleLiteral} }}` : '';
-      })
-  );
 };
 
 /**
@@ -170,9 +97,9 @@ const getSvgFiles = async dir => {
 const writeComponentFile = async (fileName, svgContent) => {
   const componentName = toComponentName(fileName);
   // Convert inline styles, then escape for safe template literal injection.
-  const jsxContent = escapeTemplateLiteral(convertSvgMarkupToJsx(svgContent.trim()));
+  const base64 = Buffer.from(svgContent.trim()).toString('base64');
   const outputPath = path.join(OUTPUT_DIR, `${componentName}.tsx`);
-  const fileContent = getComponentTemplate(componentName, jsxContent);
+  const fileContent = getComponentTemplate(componentName, base64);
 
   await fs.writeFile(outputPath, fileContent, 'utf8');
 };
