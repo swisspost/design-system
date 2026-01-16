@@ -58,7 +58,9 @@ jobs:
             visual-snapshots-main-
       
       - name: Generate baseline snapshots
-        if: always()
+        if: |
+          (github.ref == 'refs/heads/main' && steps.snapshot-cache.outputs.cache-hit != 'true') ||
+          github.event.inputs.update-snapshots == 'true'
         working-directory: packages/components
         run: pnpm test:visual:update
 
