@@ -23,14 +23,9 @@ permissions:
 
 jobs:
   visual-tests-components:
-    name: Visual Tests - Components (Shard ${{ matrix.shard }})
+    name: Visual Tests - Components
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [1, 2, 3, 4]
 
     steps:
       - name: Checkout
@@ -45,7 +40,7 @@ jobs:
         run: pnpm bootstrap
 
       - name: Cache Playwright browsers
-        uses: actions/cache@ab5e6d0c87105b4c9c2047343972218f562e4319 # v4.1.0
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -58,14 +53,13 @@ jobs:
 
       - name: Get baseline snapshots from cache
         id: snapshot-cache
-        uses: actions/cache@ab5e6d0c87105b4c9c2047343972218f562e4319 # v4.1.0
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
           path: packages/components/visual-tests/__screenshots__
           key: visual-snapshots-main-${{ hashFiles('packages/components/src/**/*.{tsx,ts,scss}') }}
           restore-keys: |
             visual-snapshots-main-
       
-      # Определяем условие один раз для переиспользования
       - name: Check if baseline update needed
         id: should-update
         run: |
@@ -78,7 +72,7 @@ jobs:
       - name: Generate baseline snapshots
         if: steps.should-update.outputs.update == 'true'
         working-directory: packages/components
-        run: pnpm test:visual:update --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+        run: pnpm test:visual:update
 
       - name: Optimize PNG screenshots
         if: steps.should-update.outputs.update == 'true'
@@ -88,13 +82,13 @@ jobs:
 
       - name: Run visual regression tests
         working-directory: packages/components
-        run: pnpm test:visual --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+        run: pnpm test:visual
 
       - name: Upload test results
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.5.0
         with:
-          name: playwright-report-components-shard-${{ matrix.shard }}
+          name: playwright-report-components
           path: packages/components/test-results
           retention-days: 14
 
@@ -102,7 +96,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.5.0
         with:
-          name: playwright-screenshots-components-shard-${{ matrix.shard }}
+          name: playwright-screenshots-components
           path: |
             packages/components/test-results/**/*-diff.png
             packages/components/test-results/**/*-actual.png
