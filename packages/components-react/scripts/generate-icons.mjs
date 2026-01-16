@@ -19,7 +19,7 @@ import * as React from "react";
 import { PostIcon } from "../index.server";
 import type { StencilReactComponent } from "@stencil/react-output-target/runtime";
 
-const ${iconName}: StencilReactComponent<HTMLElement & typeof PostIcon, {}> = props => (
+const ${iconName}: StencilReactComponent<HTMLPostIconElement & {}> = props => (
   <PostIcon
     name="${iconName}"
     url="${`data:image/svg+xml;base64,${base64}`}"
