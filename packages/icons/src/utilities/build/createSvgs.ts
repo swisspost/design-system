@@ -24,7 +24,7 @@ export function createSvgs(iconOutputDirectory: string, iconSetGroups: IconSetGr
         svg: fs.readFileSync(filePath, 'utf-8'),
       }));
 
-      const symbolId = isSingleFile ? [ID_PREFIX, name].join(ID_SEPERATOR) : ID_SYMBOL_PREFIX;
+      const symbolId = [ID_PREFIX, name].join(ID_SEPERATOR);
       const template = isSingleFile ? POST_ICON_TEMPLATE : UI_ICON_TEMPLATE;
 
       const symbols = svgs.map(({ size, svg }) => getSymbol(svg, symbolId, size));
