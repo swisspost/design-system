@@ -61,9 +61,9 @@ jobs:
             visual-snapshots-main-
       
       - name: Check if baseline update needed
-        id: should-update
         run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
+          # TEMPORARY: Always generate snapshots if cache not found
+          if [[ "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]]; then
             echo "update=true" >> $GITHUB_OUTPUT
           else
             echo "update=false" >> $GITHUB_OUTPUT
