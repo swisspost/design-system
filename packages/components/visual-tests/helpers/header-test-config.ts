@@ -106,7 +106,7 @@ interface VariantConfig {
 }
 
 /**
- * Shared state groups (main deduplication)
+ * Shared state groups
  */
 const LOGGED_IN = ['user-menu-open'] as const;
 

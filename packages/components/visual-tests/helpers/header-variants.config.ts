@@ -1,8 +1,3 @@
-/**
- * Header Variant Configuration
- * Defines all header variants and their specific features/slots
- */
-
 export interface VariantConfig {
   slots: string[];
   hasGlobalHeader: boolean;

@@ -8,12 +8,10 @@ export const WAIT_TIMES = {
 } as const;
 
 export async function waitForHeaderReady(page: Page): Promise<void> {
-  // Simple approach that works
   await page.waitForLoadState('load');
   await page.waitForTimeout(WAIT_TIMES.component);
 }
 
-// ... rest of the helper functions stay the same ...
 export async function openMegadropdown(page: Page, dropdownId: string): Promise<void> {
   const trigger = page.locator(`post-megadropdown-trigger[for="${dropdownId}"]`);
   await trigger.click();

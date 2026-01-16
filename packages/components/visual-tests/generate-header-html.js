@@ -1,7 +1,3 @@
-/**
- * Generate header HTML test files from templates
- */
-
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -422,7 +418,7 @@ function generateVariantHTML(variantName, config) {
     html = html.replaceAll(placeholder, value);
   });
 
-  // Clean up any remaining placeholders (set to empty)
+  // Clean up any remaining placeholders
   // Use a linear-time scanner instead of a regex to avoid super-linear
   // backtracking risks when processing untrusted or very large input
   let cleaned = '';
