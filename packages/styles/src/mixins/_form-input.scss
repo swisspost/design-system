@@ -25,7 +25,7 @@
     height: tokens.get('select-sizing-icon', components.$post-select);
   }
 
-  &:where(:hover > *) {
+  &:not([disabled]) :where(:hover > *) {
     post-icon {
       color: tokens.get('input-color-hover-fg', components.$post-text-input);
 

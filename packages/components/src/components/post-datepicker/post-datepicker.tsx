@@ -541,8 +541,8 @@ export class PostDatepicker {
     if (this.dpContainer) {
       const options: AirDatepickerCustomOptions = {
         navTitles: {
-          days: `<button aria-label="${this.textSwitchYear}"><strong>MMMM yyyy</strong><post-icon name="chevrondown"></post-icon></button>`,
-          months: `<button aria-label="${this.textSwitchYear}"><strong>yyyy</strong><post-icon name="chevrondown"></post-icon></button>`,
+          days: `<button aria-label="${this.textSwitchYear}">MMMM yyyy<post-icon name="chevrondown"></post-icon></button>`,
+          months: `<button aria-label="${this.textSwitchYear}">yyyy<post-icon name="chevrondown"></post-icon></button>`,
         },
         prevHtml: '<button><post-icon name="chevronleft" ></post-icon></button>',
         nextHtml: '<button><post-icon name="chevronright" ></post-icon></button>',
@@ -896,7 +896,6 @@ export class PostDatepicker {
             >
               <slot></slot>
               <button
-                disabled
                 type="button"
                 onClick={e => this.show(e.currentTarget as HTMLElement)}
                 aria-haspopup="true"
