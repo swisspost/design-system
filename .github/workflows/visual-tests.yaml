@@ -11,15 +11,20 @@ on:
       - 'packages/components/**'
   workflow_dispatch:
     inputs:
-      update-snapshots:
-        description: 'Force update visual snapshots'
+      baseline-version:
+        description: 'Baseline version (e.g., 1.2.3 or "latest")'
+        type: string
+        default: 'latest'
+      force-update-baseline:
+        description: 'Force create new baseline version'
         type: boolean
         default: false
 
 permissions:
-  contents: read
+  contents: write
   actions: read
-  pull-requests: read
+  pull-requests: write
+  packages: write
 
 jobs:
   visual-tests-components:
@@ -28,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -42,56 +47,485 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-browsers
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
 
       - name: Install Playwright browsers
         working-directory: packages/components
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
 
-      - name: Get baseline snapshots from cache
-        id: snapshot-cache
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
-        with:
-          path: packages/components/visual-tests/__screenshots__
-          key: visual-snapshots-main-${{ hashFiles('packages/components/src/**/*.{tsx,ts,scss}') }}
-          restore-keys: |
-            visual-snapshots-main-
-      
-      - name: Generate baseline snapshots
-        if: |
-          (github.ref == 'refs/heads/main' && steps.snapshot-cache.outputs.cache-hit != 'true') ||
-          github.event.inputs.update-snapshots == 'true'
+      # ============================================
+      # Определяем версию baseline для использования
+      # ============================================
+      - name: Determine baseline version
+        id: baseline-version
         working-directory: packages/components
-        run: pnpm test:visual:update
-
-      - name: Optimize PNG screenshots
-        if: |
-          (github.ref == 'refs/heads/main' && steps.snapshot-cache.outputs.cache-hit != 'true') ||
-          github.event.inputs.update-snapshots == 'true'
         run: |
+          if [ "${{ github.event.inputs.baseline-version }}" != "" ]; then
+            # Ручной запуск с указанной версией
+            VERSION="${{ github.event.inputs.baseline-version }}"
+          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            # На main используем текущую latest версию
+            VERSION="latest"
+          else
+            # Для PR используем latest из registry
+            VERSION="latest"
+          fi
+          
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Using baseline version: $VERSION"
+
+      # ============================================
+      # Скачиваем baseline снимки из GitHub Packages
+      # ============================================
+      - name: Download baseline snapshots from registry
+        id: download-baseline
+        working-directory: packages/components
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Настраиваем npm для работы с GitHub Packages
+          echo "@${{ github.repository_owner }}:registry=https://npm.pkg.github.com" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+          
+          PACKAGE_NAME="@${{ github.repository_owner }}/$(basename ${{ github.repository }})-visual-baselines"
+          VERSION="${{ steps.baseline-version.outputs.version }}"
+          
+          echo "📥 Attempting to download: $PACKAGE_NAME@$VERSION"
+          
+          # Пробуем скачать пакет
+          if npm pack "$PACKAGE_NAME@$VERSION" 2>/dev/null; then
+            TARBALL=$(ls *.tgz | head -1)
+            echo "✅ Downloaded: $TARBALL"
+            
+            # Распаковываем снимки
+            tar -xzf "$TARBALL"
+            mkdir -p visual-tests/__screenshots__
+            
+            if [ -d "package/screenshots" ]; then
+              cp -r package/screenshots/* visual-tests/__screenshots__/
+              SNAPSHOT_COUNT=$(find visual-tests/__screenshots__ -name "*.png" | wc -l)
+              echo "📸 Extracted $SNAPSHOT_COUNT baseline snapshots"
+              echo "baseline_exists=true" >> $GITHUB_OUTPUT
+              echo "snapshot_count=$SNAPSHOT_COUNT" >> $GITHUB_OUTPUT
+            else
+              echo "⚠️  No screenshots found in package"
+              echo "baseline_exists=false" >> $GITHUB_OUTPUT
+            fi
+            
+            # Очистка
+            rm -rf package *.tgz .npmrc
+          else
+            echo "⚠️  No baseline package found, will create new baselines"
+            echo "baseline_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ============================================
+      # Проверяем checkbox в PR description
+      # ============================================
+      - name: Check PR description for VRT acknowledgment
+        if: github.event_name == 'pull_request'
+        id: check-vrt-checkbox
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            
+            const body = pr.body || '';
+            
+            // Ищем отмеченный checkbox
+            const hasCheckedBox = /- \[x\]\s*.*visual.*regression/i.test(body);
+            
+            core.setOutput('acknowledged', hasCheckedBox ? 'true' : 'false');
+            
+            if (hasCheckedBox) {
+              console.log('✅ Visual regression checkbox is checked');
+            } else {
+              console.log('⚠️  Visual regression checkbox is NOT checked');
+            }
+            
+            return hasCheckedBox;
+
+      # ============================================
+      # Запускаем визуальные тесты
+      # ============================================
+      - name: Run visual regression tests
+        id: run-tests
+        working-directory: packages/components
+        continue-on-error: true
+        run: |
+          # Запускаем тесты и сохраняем вывод
+          pnpm test:visual 2>&1 | tee test-output.log
+          EXIT_CODE=${PIPESTATUS[0]}
+          
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "✅ All visual tests passed"
+          else
+            echo "❌ Visual tests failed"
+          fi
+          
+          exit $EXIT_CODE
+
+      # ============================================
+      # Анализируем результаты тестов
+      # ============================================
+      - name: Analyze test failures
+        id: analyze-failures
+        if: always()
+        working-directory: packages/components
+        run: |
+          if [ ! -f test-output.log ]; then
+            echo "No test output found"
+            echo "has_missing_baseline=false" >> $GITHUB_OUTPUT
+            echo "has_visual_diff=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Проверяем на отсутствующие baseline снимки
+          if grep -q "Error: A snapshot doesn't exist" test-output.log; then
+            echo "has_missing_baseline=true" >> $GITHUB_OUTPUT
+            MISSING_COUNT=$(grep -c "Error: A snapshot doesn't exist" test-output.log || echo "0")
+            echo "missing_count=$MISSING_COUNT" >> $GITHUB_OUTPUT
+            echo "⚠️  Found $MISSING_COUNT missing baseline snapshots"
+          else
+            echo "has_missing_baseline=false" >> $GITHUB_OUTPUT
+            echo "missing_count=0" >> $GITHUB_OUTPUT
+          fi
+          
+          # Проверяем на визуальные различия
+          if grep -q "pixels.*are different" test-output.log; then
+            echo "has_visual_diff=true" >> $GITHUB_OUTPUT
+            DIFF_COUNT=$(grep -c "pixels.*are different" test-output.log || echo "0")
+            echo "diff_count=$DIFF_COUNT" >> $GITHUB_OUTPUT
+            echo "🔍 Found $DIFF_COUNT visual differences"
+          else
+            echo "has_visual_diff=false" >> $GITHUB_OUTPUT
+            echo "diff_count=0" >> $GITHUB_OUTPUT
+          fi
+
+      # ============================================
+      # Принимаем решение: fail или pass для PR
+      # ============================================
+      - name: Evaluate test result for PR
+        if: github.event_name == 'pull_request'
+        run: |
+          EXIT_CODE="${{ steps.run-tests.outputs.exit_code }}"
+          HAS_MISSING="${{ steps.analyze-failures.outputs.has_missing_baseline }}"
+          HAS_DIFF="${{ steps.analyze-failures.outputs.has_visual_diff }}"
+          ACKNOWLEDGED="${{ steps.check-vrt-checkbox.outputs.acknowledged }}"
+          
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📊 Test Result Analysis:"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Exit Code: $EXIT_CODE"
+          echo "Missing Baselines: $HAS_MISSING (${{ steps.analyze-failures.outputs.missing_count }})"
+          echo "Visual Differences: $HAS_DIFF (${{ steps.analyze-failures.outputs.diff_count }})"
+          echo "Checkbox Checked: $ACKNOWLEDGED"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          
+          # Если есть реальные визуальные различия - всегда fail
+          if [ "$HAS_DIFF" == "true" ]; then
+            echo ""
+            echo "❌ FAILED: Visual differences detected!"
+            echo ""
+            echo "Action required:"
+            echo "1. Download the 'visual-diffs' artifact from this workflow run"
+            echo "2. Review the *-diff.png files to see what changed"
+            echo "3. If changes are intentional:"
+            echo "   - Check the '☑️ Checked for visual regressions' checkbox in PR description"
+            echo "   - Re-run the workflow"
+            echo "4. If changes are bugs, fix them and push new commits"
+            echo ""
+            exit 1
+          fi
+          
+          # Если есть только новые компоненты (missing baseline)
+          if [ "$HAS_MISSING" == "true" ]; then
+            if [ "$ACKNOWLEDGED" == "true" ]; then
+              echo ""
+              echo "✅ PASSED: New visual snapshots detected and acknowledged"
+              echo ""
+              echo "ℹ️  New baseline snapshots will be created when this PR is merged to main"
+              echo ""
+              exit 0
+            else
+              echo ""
+              echo "⚠️  FAILED: New visual snapshots detected but NOT acknowledged"
+              echo ""
+              echo "Action required:"
+              echo "1. This PR introduces ${{ steps.analyze-failures.outputs.missing_count }} new component(s) or state(s)"
+              echo "2. Download the 'playwright-report' artifact to review the new snapshots"
+              echo "3. If these new snapshots are expected:"
+              echo "   - Check the '☑️ Checked for visual regressions' checkbox in PR description"
+              echo "   - Re-run the workflow"
+              echo ""
+              exit 1
+            fi
+          fi
+          
+          # Все прошло без проблем
+          if [ "$EXIT_CODE" == "0" ]; then
+            echo ""
+            echo "✅ PASSED: No visual changes detected"
+            echo ""
+            exit 0
+          fi
+          
+          # Неожиданная ошибка
+          echo ""
+          echo "❌ FAILED: Unexpected test failure"
+          echo ""
+          exit 1
+
+      # ============================================
+      # Создаем новые baseline при мерже в main
+      # ============================================
+      - name: Create new baseline snapshots
+        if: |
+          (github.ref == 'refs/heads/main' && github.event_name == 'push') ||
+          github.event.inputs.force-update-baseline == 'true'
+        working-directory: packages/components
+        run: |
+          echo "🎨 Generating new baseline snapshots..."
+          pnpm test:visual:update
+          
+          SNAPSHOT_COUNT=$(find visual-tests/__screenshots__ -name "*.png" | wc -l)
+          echo "📸 Generated $SNAPSHOT_COUNT baseline snapshots"
+
+      - name: Optimize baseline PNG files
+        if: |
+          (github.ref == 'refs/heads/main' && github.event_name == 'push') ||
+          github.event.inputs.force-update-baseline == 'true'
+        run: |
+          echo "🗜️  Optimizing PNG files..."
           sudo apt-get update
           sudo apt-get install -y pngquant
-          find packages/components/visual-tests/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 80-95 {} \;
+          
+          find packages/components/visual-tests/__screenshots__ -name "*.png" \
+            -exec pngquant --force --ext .png --quality 80-95 --skip-if-larger {} \;
+          
+          echo "✅ PNG optimization complete"
 
-      - name: Run visual regression tests
+      # ============================================
+      # Публикуем baseline в GitHub Packages
+      # ============================================
+      - name: Get package version
+        if: |
+          (github.ref == 'refs/heads/main' && github.event_name == 'push') ||
+          github.event.inputs.force-update-baseline == 'true'
+        id: package-version
         working-directory: packages/components
-        run: pnpm test:visual
+        run: |
+          # Получаем версию из package.json
+          VERSION=$(node -p "require('./package.json').version")
+          
+          # Добавляем timestamp для уникальности
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          BASELINE_VERSION="${VERSION}-baseline.${TIMESTAMP}"
+          
+          echo "version=$BASELINE_VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Baseline package version: $BASELINE_VERSION"
+
+      - name: Create baseline package
+        if: |
+          (github.ref == 'refs/heads/main' && github.event_name == 'push') ||
+          github.event.inputs.force-update-baseline == 'true'
+        working-directory: packages/components
+        run: |
+          echo "📦 Creating baseline package..."
+          
+          # Создаем временную директорию для пакета
+          mkdir -p baseline-package/screenshots
+          
+          # Копируем снимки
+          cp -r visual-tests/__screenshots__/* baseline-package/screenshots/
+          
+          # Создаем package.json
+          REPO_NAME=$(basename ${{ github.repository }})
+          PACKAGE_NAME="@${{ github.repository_owner }}/${REPO_NAME}-visual-baselines"
+          VERSION="${{ steps.package-version.outputs.version }}"
+          
+          cat > baseline-package/package.json <<EOF
+          {
+            "name": "${PACKAGE_NAME}",
+            "version": "${VERSION}",
+            "description": "Visual regression baseline snapshots for ${REPO_NAME}",
+            "repository": {
+              "type": "git",
+              "url": "git+https://github.com/${{ github.repository }}.git"
+            },
+            "files": [
+              "screenshots/**/*.png"
+            ],
+            "publishConfig": {
+              "registry": "https://npm.pkg.github.com"
+            }
+          }
+          EOF
+          
+          echo "✅ Baseline package created"
+          cat baseline-package/package.json
+
+      - name: Publish baseline package to GitHub Packages
+        if: |
+          (github.ref == 'refs/heads/main' && github.event_name == 'push') ||
+          github.event.inputs.force-update-baseline == 'true'
+        working-directory: packages/components/baseline-package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "📤 Publishing baseline package..."
+          
+          # Настраиваем npm для GitHub Packages
+          echo "@${{ github.repository_owner }}:registry=https://npm.pkg.github.com" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
+          
+          # Публикуем пакет
+          npm publish
+          
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          
+          echo "✅ Published: ${PACKAGE_NAME}@${VERSION}"
+          echo ""
+          echo "🔗 Package URL: https://github.com/${{ github.repository }}/packages"
+
+      # ============================================
+      # Upload artifacts при failures
+      # ============================================
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: packages/components/playwright-report
+          retention-days: 14
 
       - name: Upload test results
         if: failure()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-components
+          name: test-results
           path: packages/components/test-results
           retention-days: 14
 
-      - name: Upload diff screenshots
+      - name: Upload visual diff screenshots
         if: failure()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@v4
         with:
-          name: playwright-screenshots-components
+          name: visual-diffs
           path: |
             packages/components/test-results/**/*-diff.png
             packages/components/test-results/**/*-actual.png
             packages/components/test-results/**/*-expected.png
           retention-days: 14
+
+      # ============================================
+      # Комментарий в PR с результатами
+      # ============================================
+      - name: Comment on PR with test results
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            const exitCode = '${{ steps.run-tests.outputs.exit_code }}';
+            const hasMissing = '${{ steps.analyze-failures.outputs.has_missing_baseline }}' === 'true';
+            const hasDiff = '${{ steps.analyze-failures.outputs.has_visual_diff }}' === 'true';
+            const missingCount = '${{ steps.analyze-failures.outputs.missing_count }}' || '0';
+            const diffCount = '${{ steps.analyze-failures.outputs.diff_count }}' || '0';
+            const acknowledged = '${{ steps.check-vrt-checkbox.outputs.acknowledged }}' === 'true';
+            const baselineExists = '${{ steps.download-baseline.outputs.baseline_exists }}' === 'true';
+            const snapshotCount = '${{ steps.download-baseline.outputs.snapshot_count }}' || '0';
+            
+            let comment = '## 🔍 Visual Regression Test Results\n\n';
+            
+            // Статус baseline
+            comment += '### 📦 Baseline Status\n\n';
+            if (baselineExists) {
+              comment += `✅ Using baseline with ${snapshotCount} snapshots\n\n`;
+            } else {
+              comment += `⚠️ No baseline found - will create new baseline on merge\n\n`;
+            }
+            
+            // Результаты тестов
+            comment += '### 📊 Test Results\n\n';
+            
+            if (exitCode === '0') {
+              comment += '✅ **All tests passed** - No visual changes detected\n\n';
+            } else {
+              if (hasDiff) {
+                comment += `❌ **Visual differences detected** (${diffCount} test(s) failed)\n\n`;
+                comment += '**Action Required:**\n';
+                comment += '1. Download the `visual-diffs` artifact from this workflow run\n';
+                comment += '2. Review the comparison images:\n';
+                comment += '   - `*-diff.png` - highlighted differences\n';
+                comment += '   - `*-actual.png` - current screenshot\n';
+                comment += '   - `*-expected.png` - baseline screenshot\n';
+                comment += '3. If changes are **intentional**:\n';
+                comment += '   - Check the ☑️ "Checked for visual regressions" checkbox in the PR description\n';
+                comment += '   - Re-run this workflow\n';
+                comment += '4. If changes are **bugs**, fix them and push new commits\n\n';
+              }
+              
+              if (hasMissing) {
+                comment += `⚠️ **New component snapshots** (${missingCount} new snapshot(s))\n\n`;
+                
+                if (acknowledged) {
+                  comment += '✅ New snapshots acknowledged - will be created on merge\n\n';
+                } else {
+                  comment += '**Action Required:**\n';
+                  comment += '1. Download the `playwright-report` artifact to review new snapshots\n';
+                  comment += '2. Verify that new components render correctly\n';
+                  comment += '3. Check the ☑️ "Checked for visual regressions" checkbox in PR description\n';
+                  comment += '4. Re-run this workflow\n\n';
+                }
+              }
+            }
+            
+            // Ссылки на артефакты
+            comment += '### 📎 Artifacts\n\n';
+            comment += `- [Playwright HTML Report](${context.payload.repository.html_url}/actions/runs/${context.runId})\n`;
+            if (exitCode !== '0') {
+              comment += `- [Visual Diffs](${context.payload.repository.html_url}/actions/runs/${context.runId}#artifacts)\n`;
+            }
+            
+            // Ищем существующий комментарий
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('🔍 Visual Regression Test Results')
+            );
+            
+            if (botComment) {
+              // Обновляем существующий комментарий
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              // Создаем новый комментарий
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+            }
