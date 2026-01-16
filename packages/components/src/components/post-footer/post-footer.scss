@@ -157,10 +157,10 @@ footer {
   margin-block-end: var(--post-footer-businesssectors-margin-block-end);
   
   ::slotted(div) {
-    gap: var(--post-footer-list-gap) !important;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: var(--post-footer-list-gap) !important;
   }
 }
 
