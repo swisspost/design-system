@@ -25,6 +25,11 @@ import {
   PostStepper,
   PostStepperItem,
 } from '@swisspost/design-system-components-react/server';
+import {
+  PostIconAccessblocked,
+  PostIconCarbatteryleakSolid,
+  PostIconLetter,
+} from '@swisspost/design-system-components-react/icons/index';
 
 export default function Home() {
   return (
@@ -224,6 +229,16 @@ export default function Home() {
         textFirst="First page"
         textLast="Last page"
       />
+
+      <h2>Icons</h2>
+      <div className="d-flex gap-16">
+        <PostIconAccessblocked size="2em"></PostIconAccessblocked>
+        <PostIconLetter size="2em"></PostIconLetter>
+        <PostIconCarbatteryleakSolid
+          size="2em"
+          style={{ color: 'green' }}
+        ></PostIconCarbatteryleakSolid>
+      </div>
     </>
   );
 }
