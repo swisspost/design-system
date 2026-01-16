@@ -42,12 +42,16 @@ ${iconNames.map(name => `export { default as ${name} } from './${name}';`).join(
  * Numeric-leading names are prefixed to keep identifiers valid.
  */
 const toComponentName = fileName => {
-  const baseName = fileName.replaceAll(/\.svg$/gi, '');
+  const lowerName = fileName.toLowerCase();
+  const baseName = lowerName.endsWith('.svg') ? fileName.slice(0, -4) : fileName;
 
-  // Collapse separators into PascalCase and remove non-alphanumerics.
+  // Convert to PascalCase - https://stackoverflow.com/questions/4068573/how-to-convert-a-string-to-pascal-case
   const pascalCase = baseName
-    .replaceAll(/(^|[^a-zA-Z0-9]+)([a-zA-Z0-9])/g, (_, __, char) => char.toUpperCase())
-    .replaceAll(/[^a-zA-Z0-9]/g, '');
+    .replaceAll(/([a-z])([A-Z])/g, '$1 $2') // Splits camelCase words into separate words
+    .replaceAll(/[-_]+|[^\p{L}\p{N}]/gu, ' ') // Replaces dashes, underscores, and special characters with spaces
+    .toLowerCase() // Converts the entire string to lowercase
+    .replaceAll(/(?:^|\s)(\p{L})/gu, (_, letter) => letter.toUpperCase()) // Capitalizes the first letter of each word
+    .replaceAll(/\s+/g, ''); // Removes all spaces
 
   return `PostIcon${pascalCase}`;
 };
