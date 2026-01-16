@@ -155,9 +155,9 @@ footer {
 
 .footer-businesssectors {
   margin-block-end: var(--post-footer-businesssectors-margin-block-end);
-  gap: var(--post-footer-list-gap);
-
+  
   ::slotted(div) {
+    gap: var(--post-footer-list-gap);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
