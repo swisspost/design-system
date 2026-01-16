@@ -19,8 +19,9 @@ export class PostTogglebutton {
   @Prop({ mutable: true }) toggled: boolean = false;
 
   componentWillLoad() {
-    // add event listener to not override listener that might be set on the host
-    this.host.addEventListener('click', () => this.handleClick());
+    // add event listener in capture phase so the toggle state is updated
+    // before any parent bubble listeners react to the click.
+    this.host.addEventListener('click', () => this.handleClick(), true);
     this.host.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e));
   }
 

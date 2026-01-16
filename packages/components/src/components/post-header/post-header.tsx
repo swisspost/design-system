@@ -219,12 +219,20 @@ export class PostHeader {
   @Method()
   async toggleBurgerMenu(force?: boolean) {
     if (this.device === 'desktop') return;
+
+    // If already in the desired state, do nothing (prevents double-toggle)
+    if ((force ?? !this.burgerMenuExtended) === this.burgerMenuExtended) {
+      return;
+    }
+
     this.burgerMenuAnimation = this.burgerMenuExtended
       ? fade(this.burgerMenu, 'out', this.animationOptions)
       : fade(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
-    if (this.burgerMenuButton) this.burgerMenuButton.toggled = force ?? !this.burgerMenuExtended;
+    if (force === undefined && this.burgerMenuButton) {
+      this.burgerMenuButton.toggled = force ?? !this.burgerMenuExtended;
+    }
 
     if (this.burgerMenuExtended) {
       // Wait for the close animation to finish before hiding megadropdowns
@@ -476,7 +484,7 @@ export class PostHeader {
                 {this.hasNavigation && this.device !== 'desktop' && (
                   <post-togglebutton
                     ref={el => (this.burgerMenuButton = el)}
-                    onClick={() => this.toggleBurgerMenu()}
+                    onClick={() => this.toggleBurgerMenu(this.burgerMenuButton?.toggled)}
                   >
                     <span>{this.textMenu}</span>
                     <post-icon
