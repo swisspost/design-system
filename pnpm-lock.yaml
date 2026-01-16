@@ -313,13 +313,13 @@ importers:
       '@swisspost/design-system-components':
         specifier: workspace:10.0.0-next.57
         version: link:../components
-      '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.57
-        version: link:../icons
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
+      '@swisspost/design-system-icons':
+        specifier: workspace:10.0.0-next.57
+        version: link:../icons
       '@types/node':
         specifier: 22.10.5
         version: 22.10.5
