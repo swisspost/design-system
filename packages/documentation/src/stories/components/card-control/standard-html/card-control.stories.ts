@@ -1,4 +1,4 @@
-import type { Args } from '@storybook/web-components-vite';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
@@ -116,6 +116,78 @@ const meta: MetaComponent = {
 
 export default meta;
 
+type Story = StoryObj;
+
+export const DefaultNew: Story = {
+  args: {
+    label: 'Label',
+    icon: 'component',
+    disabled: false,
+  },
+  render: (args: Args) => {
+    function icon(icon: string) {
+      return icon
+        ? html`<post-icon class="card-control--icon" name="${icon}" aria-hidden="true"></post-icon>`
+        : nothing;
+    }
+
+    function description(description: string) {
+      return description
+        ? html`<span class="card-control--description">${description}</span>`
+        : nothing;
+    }
+
+    function cardControl(a: Args) {
+      return html`<label class="card-control ${a.classes ?? ''}">
+        <input type=${a.type} disabled=${a.disabled ? 'disabled' : nothing} />
+        <span class="card-control--label">${a.label}</span>
+        ${icon(a.icon)} ${description(a.description)}
+        <!-- <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul> -->
+      </label>`;
+    }
+
+    return html`
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+          <p class="text-center">Light Mode</p>
+        </div>
+        <div class="col">
+          <p class="text-center">Dark Mode</p>
+        </div>
+      </div>
+
+      ${['default', 'alternate', 'accent', 'brand'].map(
+        palette =>
+          html`<div class="row g-0">
+            <div class="col-2 align-self-center">
+              <p style="text-transform: capitalize;">${palette}</p>
+            </div>
+            <div class="col">
+              <fieldset class="palette palette-${palette} p-32">
+                ${cardControl(args)}
+                ${cardControl({ ...args, description: 'Hover', classes: 'pretend-hover' })}
+                ${cardControl({ ...args, description: 'Disabled', disabled: true })}
+              </fieldset>
+            </div>
+
+            <div class="col" data-color-scheme="dark">
+              <fieldset class="palette palette-${palette} p-32">
+                ${cardControl(args)}
+                ${cardControl({ ...args, description: 'Hover', classes: 'pretend-hover' })}
+                ${cardControl({ ...args, description: 'Disabled', disabled: true })}
+              </fieldset>
+            </div>
+          </div>`,
+      )}
+    `;
+  },
+};
+
 let cardControlId = 0;
 const CONTROL_LABELS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
 
@@ -188,6 +260,10 @@ export const Default = {
       ${args.validation === 'is-invalid' && !args.GroupValidation ? invalidFeedback : nothing}
     `;
   },
+};
+
+export const CustomContent: Story = {
+  render: Default.render,
 };
 
 function col(label: string, args: Args, useState: useStateFn) {
