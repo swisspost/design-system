@@ -16,7 +16,7 @@
     <button
       (click)="toggle.focus()"
       (focus)="selectedOption = option"
-      *ngFor="let option of options"
+      *@for="let option of options"
       [attr.aria-selected]="selectedOption?.value === option.value"
       [class.active]="selectedOption?.value === option.value"
       class="d-flex align-items-center"
