@@ -207,6 +207,11 @@ export namespace Components {
     }
     interface PostHeader {
         /**
+          * Makes the header content span the full width on screens larger than 1440px.
+          * @default false
+         */
+        "fullWidth": boolean;
+        /**
           * The label of the burger menu button.
          */
         "textMenu": string;
@@ -1217,6 +1222,11 @@ declare namespace LocalJSX {
         "textFooter": string;
     }
     interface PostHeader {
+        /**
+          * Makes the header content span the full width on screens larger than 1440px.
+          * @default false
+         */
+        "fullWidth"?: boolean;
         /**
           * The label of the burger menu button.
          */

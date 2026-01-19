@@ -198,7 +198,7 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth ?? nothing}">
+      <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
