@@ -217,11 +217,11 @@ export class PostHeader {
    * Toggles the burger navigation menu.
    */
   @Method()
-  async toggleBurgerMenu(force?: boolean) {
+  async toggleBurgerMenu(nextExtendedState = !this.burgerMenuExtended) {
     if (this.device === 'desktop') return;
 
     // If already in the desired state, do nothing (prevents double-toggle)
-    if ((force ?? !this.burgerMenuExtended) === this.burgerMenuExtended) {
+    if (nextExtendedState === this.burgerMenuExtended) {
       return;
     }
 
@@ -230,21 +230,21 @@ export class PostHeader {
       : fade(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
-    if (force === undefined && this.burgerMenuButton) {
-      this.burgerMenuButton.toggled = force ?? !this.burgerMenuExtended;
+    if (this.burgerMenuButton) {
+      this.burgerMenuButton.toggled = nextExtendedState;
     }
 
     if (this.burgerMenuExtended) {
       // Wait for the close animation to finish before hiding megadropdowns
       await this.burgerMenuAnimation.finished;
-      this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
+      this.burgerMenuExtended = nextExtendedState;
 
       if (this.burgerMenuExtended === false) {
         this.closeAllMegadropdowns();
         this.burgerMenu.scrollTop = 0;
       }
     } else {
-      this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
+      this.burgerMenuExtended = nextExtendedState;
       // If opening, close any open megadropdowns immediately
       if (this.megadropdownOpen) {
         this.closeAllMegadropdowns();
