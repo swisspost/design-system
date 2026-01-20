@@ -58,12 +58,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/intranet-header-showcase",
+            "outputPath": {
+              "base": "dist/intranet-header-showcase"
+            },
             "index": "projects/intranet-header-showcase/src/index.html",
-            "main": "projects/intranet-header-showcase/src/main.ts",
-            "polyfills": "projects/intranet-header-showcase/src/polyfills.ts",
+            "polyfills": [
+              "projects/intranet-header-showcase/src/polyfills.ts"
+            ],
             "tsConfig": "projects/intranet-header-showcase/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -71,7 +74,8 @@
               "projects/intranet-header-showcase/src/assets"
             ],
             "styles": ["node_modules/@swisspost/design-system-styles/intranet.css"],
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/intranet-header-showcase/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -96,9 +100,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
