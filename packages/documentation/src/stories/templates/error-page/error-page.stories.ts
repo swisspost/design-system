@@ -7,6 +7,11 @@ const meta: Meta = {
   tags: ['status:InProgress'],
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      story: {
+        inline: false,
+      },
+    },
   },
   render,
 };
