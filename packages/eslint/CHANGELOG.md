@@ -1,5 +1,11 @@
 # @swisspost/design-system-eslint
 
+## 10.0.0-next.57
+
+### Minor Changes
+
+- Added a migration rule that deletes all deprecated CSS classes from the code and removes the class attribute entirely if it becomes empty. (by [@myrta2302](https://github.com/myrta2302) with [#6893](https://github.com/swisspost/design-system/pull/6893))
+
 ## 10.0.0-next.56
 
 ## 10.0.0-next.55
