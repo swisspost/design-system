@@ -22,7 +22,7 @@
     "@angular/platform-browser": "20.3.16",
     "@angular/platform-browser-dynamic": "20.3.16",
     "@angular/router": "20.3.16",
-    "@ng-bootstrap/ng-bootstrap": "19.0.0",
+    "@ng-bootstrap/ng-bootstrap": "20.0.0",
     "@popperjs/core": "2.11.8",
     "@swisspost/design-system-styles": "workspace:9.6.0",
     "rxjs": "7.8.1",
