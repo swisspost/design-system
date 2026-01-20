@@ -120,9 +120,11 @@ type Story = StoryObj;
 
 export const DefaultNew: Story = {
   args: {
+    checked: false,
+    disabled: false,
     label: 'Label',
     icon: 'component',
-    disabled: false,
+    // description: 'This is a description',
   },
   render: (args: Args) => {
     function icon(icon: string) {
@@ -139,14 +141,18 @@ export const DefaultNew: Story = {
 
     function cardControl(a: Args) {
       return html`<label class="card-control ${a.classes ?? ''}">
-        <input type=${a.type} disabled=${a.disabled ? 'disabled' : nothing} />
+        <input
+          type=${a.type}
+          checked=${a.checked ? 'checked' : nothing}
+          disabled=${a.disabled ? 'disabled' : nothing}
+        />
         <span class="card-control--label">${a.label}</span>
         ${icon(a.icon)} ${description(a.description)}
         <!-- <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul> -->
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul> -->
       </label>`;
     }
 
@@ -168,18 +174,44 @@ export const DefaultNew: Story = {
               <p style="text-transform: capitalize;">${palette}</p>
             </div>
             <div class="col">
-              <fieldset class="palette palette-${palette} p-32">
+              <fieldset class="m-0 palette palette-${palette} p-32">
                 ${cardControl(args)}
-                ${cardControl({ ...args, description: 'Hover', classes: 'pretend-hover' })}
-                ${cardControl({ ...args, description: 'Disabled', disabled: true })}
+                ${cardControl({ ...args, label: 'Hover', classes: 'pretend-hover' })}
+                ${cardControl({ ...args, label: 'Disabled', disabled: true })}
+                ${cardControl({ ...args, label: 'Checked', checked: true })}
+                ${cardControl({
+                  ...args,
+                  label: 'Checked, Hover',
+                  checked: true,
+                  classes: 'pretend-hover',
+                })}
+                ${cardControl({
+                  ...args,
+                  label: 'Checked, Disabled',
+                  checked: true,
+                  disabled: true,
+                })}
               </fieldset>
             </div>
 
             <div class="col" data-color-scheme="dark">
-              <fieldset class="palette palette-${palette} p-32">
+              <fieldset class="m-0 palette palette-${palette} p-32">
                 ${cardControl(args)}
-                ${cardControl({ ...args, description: 'Hover', classes: 'pretend-hover' })}
-                ${cardControl({ ...args, description: 'Disabled', disabled: true })}
+                ${cardControl({ ...args, label: 'Hover', classes: 'pretend-hover' })}
+                ${cardControl({ ...args, label: 'Disabled', disabled: true })}
+                ${cardControl({ ...args, label: 'Checked', checked: true })}
+                ${cardControl({
+                  ...args,
+                  label: 'Checked, Hover',
+                  checked: true,
+                  classes: 'pretend-hover',
+                })}
+                ${cardControl({
+                  ...args,
+                  label: 'Checked, Disabled',
+                  checked: true,
+                  disabled: true,
+                })}
               </fieldset>
             </div>
           </div>`,

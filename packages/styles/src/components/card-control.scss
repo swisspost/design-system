@@ -108,11 +108,15 @@ fieldset {
     margin: var(--post-card-control-input-margin-block) 0 !important;
     outline: 0 none !important;
     // TODO: keep that during development and decide at the end if it can stay
-    border-color: var(--post-card-control-border-color) !important;
+    border-color: var(--post-card-control-color) !important;
     transition: none !important;
 
+    &:checked::after {
+      background-color: var(--post-card-control-color) !important;
+    }
+
     &[type='checkbox'] {
-      @include forms-mx.checkbox();
+      @include forms-mx.checkbox($omitHover: true);
     }
   }
 
