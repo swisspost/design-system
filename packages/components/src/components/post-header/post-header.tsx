@@ -230,7 +230,7 @@ export class PostHeader {
       : fade(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
-    if (this.burgerMenuButton) {
+    if (this.burgerMenuButton && this.burgerMenuButton.toggled !== nextExtendedState) {
       this.burgerMenuButton.toggled = nextExtendedState;
     }
 
