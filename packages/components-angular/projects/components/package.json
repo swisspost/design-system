@@ -22,8 +22,8 @@
     "@swisspost/design-system-components": "workspace:9.6.0"
   },
   "peerDependencies": {
-    "@angular/core": "^19.0.0 || ^20.0.0",
-    "@angular/forms": "^19.0.0 || ^20.0.0"
+    "@angular/core": "^19.0.0 || ^20.0.0 || ^21.0.0",
+    "@angular/forms": "^19.0.0 || ^20.0.0 || ^21.0.0"
   },
   "sideEffects": false
 }
