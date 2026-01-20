@@ -44,6 +44,7 @@ describe('menu', () => {
 
     it('should update the "aria-expanded" attribute after hiding the menu', () => {
       cy.get('@trigger').dblclick();
+      cy.wait(100);
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
     });
 
