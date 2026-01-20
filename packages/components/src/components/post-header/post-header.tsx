@@ -484,7 +484,7 @@ export class PostHeader {
                 {this.hasNavigation && this.device !== 'desktop' && (
                   <post-togglebutton
                     ref={el => (this.burgerMenuButton = el)}
-                    onClick={() => this.toggleBurgerMenu(this.burgerMenuButton?.toggled)}
+                    onClick={() => this.toggleBurgerMenu()}
                   >
                     <span>{this.textMenu}</span>
                     <post-icon
