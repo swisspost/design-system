@@ -65,49 +65,58 @@ function getTextUtility(type: string) {
     case 'White space':
       return html`
         ${['wrap', 'nowrap'].map(
-          val =>
-            html`
-              <p class="text-example-bordered w-100 text-${val}">
-                White space ${val} White space ${val} White space ${val} White space ${val}
-              </p>
-            `,
+          val => html`
+            <p class="text-example-bordered w-100 text-${val}">
+              White space ${val} White space ${val} White space ${val} White space ${val}
+            </p>
+          `,
         )}
       `;
     case 'Word wrap break':
       return html`
         ${['break'].map(
-          val =>
-            html`
-              <p class="text-example-bordered w-78 text-${val}">Averylongwordthatwillbreak</p>
-            `,
+          val => html`
+            <p class="text-example-bordered w-78 text-${val}">Averylongwordthatwillbreak</p>
+          `,
+        )}
+      `;
+    case 'Text Truncation':
+      return html`
+        ${[100, 200, 300, 400].map(
+          val => html`
+            <p class="text-truncate" style="max-width: ${val}px">
+              This is a long text that should be truncated when it exceeds the defined max-width.
+            </p>
+          `,
         )}
       `;
   }
 }
-
 export const Text: Story = {
   render: () => {
     return schemes(
-      () => html` <div class="text-example">
-        <h1>Text utilities</h1>
-        ${[
-          'Family',
-          'Style',
-          'Size',
-          'Weight',
-          'Line height',
-          'Text align',
-          'Text decoration',
-          'Text transform',
-          'White space',
-          'Word wrap break',
-        ].map(
-          val => html`
-            <h2>${val}</h2>
-            <div class="text-example-child gap-8 d-flex flex-column">${getTextUtility(val)}</div>
-          `,
-        )}
-      </div>`,
+      () =>
+        html` <div class="text-example">
+          <h1>Text utilities</h1>
+          ${[
+            'Family',
+            'Style',
+            'Size',
+            'Weight',
+            'Line height',
+            'Text align',
+            'Text decoration',
+            'Text transform',
+            'White space',
+            'Word wrap break',
+            'Text Truncation',
+          ].map(
+            val => html`
+              <h2>${val}</h2>
+              <div class="text-example-child gap-8 d-flex flex-column">${getTextUtility(val)}</div>
+            `,
+          )}
+        </div>`,
     );
   },
 };

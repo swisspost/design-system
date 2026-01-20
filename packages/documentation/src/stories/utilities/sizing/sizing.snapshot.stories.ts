@@ -1,9 +1,8 @@
-import type { StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import type { StoryContext, StoryObj, Args } from '@storybook/web-components-vite';
+import { html, TemplateResult } from 'lit';
 import './sizing.styles.scss';
 import meta from './sizing.stories';
 import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
-
 const { id, ...metaWithoutId } = meta;
 
 export default {
@@ -11,130 +10,168 @@ export default {
   title: 'Snapshots',
 };
 
-const samples = [
-  { w: 'third', h: 'full', maxW: 'third', minW: 'full', maxH: 'half', minH: 'two-thirds' },
-  { w: 'quarter', h: 'half', maxW: 'quarter', minW: 'half', maxH: 'full', minH: 'quarter' },
-  { w: 'half', h: 'quarter', maxW: 'half', minW: 'quarter', maxH: 'two-thirds', minH: 'third' },
-  {
-    w: 'three-quarters',
-    h: 'quarter',
-    maxW: 'three-quarters',
-    minW: 'three-quarters',
-    maxH: 'quarter',
-    minH: 'half',
-  },
-  { w: 'full', h: 'half', maxW: 'full', minW: 'third', maxH: 'auto', minH: 'auto' },
-];
+type Story = StoryObj;
 
-const vpSamples = [
-  { w: '33', h: '100', maxvW: '33', minvW: '100', maxvH: '50', minvH: '66' },
-  { w: '50', h: '50', maxvW: '25', minvW: '50', maxvH: '100', minvH: '25' },
-  { w: '50', h: '25', maxvW: '50', minvW: '25', maxvH: '66', minvH: '33' },
-  {
-    w: '75',
-    h: '25',
-    maxvW: '75',
-    minvW: '25',
-    maxvH: '50',
-    minvH: '25',
-  },
-  { w: '100', h: '50', maxvW: '100', minvW: '33', maxvH: 'auto', minvH: 'auto' },
-];
+const TOKENS = ['quarter', 'third', 'half', 'two-thirds', 'three-quarters', 'full'];
+const PIXEL_TOKENS = ['12', '16', '24', '32', '40', '48', '56', '64', '72', '80', '96', '104'];
 
-const pxSamples = [
-  { w: '12', h: '16', maxW: '32', minW: '12', maxH: '48', minH: '16' },
-  { w: '24', h: '32', maxW: '32', minW: '12', maxH: '40', minH: '24' },
-  { w: '40', h: '56', maxW: '48', minW: '24', maxH: '56', minH: '32' },
-  { w: '64', h: '64', maxW: '80', minW: '56', maxH: '104', minH: '32' },
-  { w: '104', h: '48', maxW: '104', minW: '40', maxH: '104', minH: '48' },
-  { w: '64', h: '64', maxW: '80', minW: '32', maxH: '78', minH: '64' },
-  { w: '12', h: '16', maxW: '16', minW: '12', maxH: '32', minH: '16' },
-  { w: '32', h: '12', maxW: '40', minW: '24', maxH: '32', minH: '12' },
-  { w: '78', h: '104', maxW: '80', minW: '40', maxH: '104', minH: '56' },
-  { w: '48', h: '80', maxW: '104', minW: '48', maxH: '104', minH: '56' },
-  { w: '80', h: '104', maxW: '104', minW: '64', maxH: '104', minH: '32' },
-];
+const BASE: Args = {
+  height: 'half',
+  width: 'half',
+  maxHeight: 'none',
+  maxWidth: 'none',
+  minHeight: 'none',
+  minWidth: 'none',
+};
+const BASE_PX: Args = {
+  height: '64',
+  width: '64',
+  maxHeight: 'none',
+  maxWidth: 'none',
+  minHeight: 'none',
+  minWidth: 'none',
+};
+const BASE_FOR_MAX_WIDTH: Args = { ...BASE, width: 'full' };
+const BASE_FOR_MIN_WIDTH: Args = { ...BASE, width: '0' };
+const BASE_FOR_MAX_HEIGHT: Args = { ...BASE, height: 'full' };
+const BASE_FOR_MIN_HEIGHT: Args = { ...BASE, height: '0' };
+const BASE_PX_FOR_MAX_WIDTH: Args = { ...BASE_PX, width: '104' };
+const BASE_PX_FOR_MIN_WIDTH: Args = { ...BASE_PX, width: '1' };
 
-function generateClassNames(sample: Record<string, string>, isViewport = false) {
-  const prefix = isViewport ? 'v' : '';
+const BASE_PX_FOR_MAX_HEIGHT: Args = { ...BASE_PX, height: '104' };
+const BASE_PX_FOR_MIN_HEIGHT: Args = { ...BASE_PX, height: '1' };
 
-  const classNames = ['content'];
+const listFrom = (key: keyof Args, values: string[], base: Args): Array<Args> =>
+  values.map(v => ({ ...base, [key]: v }));
 
-  classNames.push(prefix + 'h-' + sample.h);
-  classNames.push(prefix + 'w-' + sample.w);
+export const PercentageSizing: Story = {
+  name: 'Sizing (Percent Catalogue)',
+  render: (_: Args, context: StoryContext) => {
+    const H_ONLY = listFrom('height', TOKENS, BASE);
+    const W_ONLY = listFrom('width', TOKENS, BASE);
+    const MAX_H = listFrom('maxHeight', TOKENS, BASE_FOR_MAX_HEIGHT);
+    const MAX_W = listFrom('maxWidth', TOKENS, BASE_FOR_MAX_WIDTH);
+    const MIN_H = listFrom('minHeight', TOKENS, BASE_FOR_MIN_HEIGHT);
+    const MIN_W = listFrom('minWidth', TOKENS, BASE_FOR_MIN_WIDTH);
 
-  if (sample['max' + prefix + 'H'] && sample['max' + prefix + 'H'] !== 'none') {
-    classNames.push('max-vh-' + sample['max' + prefix + 'H']);
-  }
-
-  if (sample['max' + prefix + 'W'] && sample['max' + prefix + 'W'] !== 'none') {
-    classNames.push('max-vw-' + sample['max' + prefix + 'W']);
-  }
-
-  if (sample['min' + prefix + 'H'] && sample['min' + prefix + 'H'] !== 'none') {
-    classNames.push('min-vh-' + sample['min' + prefix + 'H']);
-  }
-
-  if (sample['min' + prefix + 'W'] && sample['min' + prefix + 'W'] !== 'none') {
-    classNames.push('min-vw-' + sample['min' + prefix + 'W']);
-  }
-
-  return classNames.filter(Boolean).join(' ');
-}
-
-export const PercentageSizing: StoryObj = {
-  render() {
     return schemes(
-      () => {
-        return html`
-          ${samples.map(sample => {
-            return html`<div class="sizing-example snapshot">
-              <div class="${generateClassNames(sample)}"></div>
-            </div>`;
-          })}
-        `;
-      },
-      { filter: scheme => scheme === COLOR_SCHEMES.light },
+      () => html`
+        <div class="snapshot-example">
+          <h1>Snapshot: Sizing (Percent)</h1>
+          ${renderSection('height (h-*)', H_ONLY, context)}
+          ${renderSection('width (w-*)', W_ONLY, context)}
+          ${renderSection('max-height (max-h-*)', MAX_H, context)}
+          ${renderSection('max-width (max-w-*)', MAX_W, context)}
+          ${renderSection('min-height (min-h-*)', MIN_H, context)}
+          ${renderSection('min-width (min-w-*)', MIN_W, context)}
+        </div>
+      `,
+      { filter: s => s === COLOR_SCHEMES.light },
     );
   },
 };
 
-export const PercentageVpSizing: StoryObj = {
-  render() {
+export const PixelSizing: Story = {
+  name: 'Sizing (Pixels Catalogue)',
+  render: (_: Args, context: StoryContext) => {
+    const H_ONLY = listFrom('height', PIXEL_TOKENS, BASE_PX);
+    const W_ONLY = listFrom('width', PIXEL_TOKENS, BASE_PX);
+    const MAX_H = listFrom('maxHeight', PIXEL_TOKENS, BASE_PX_FOR_MAX_HEIGHT);
+    const MAX_W = listFrom('maxWidth', PIXEL_TOKENS, BASE_PX_FOR_MAX_WIDTH);
+    const MIN_H = listFrom('minHeight', PIXEL_TOKENS, BASE_PX_FOR_MIN_HEIGHT);
+    const MIN_W = listFrom('minWidth', PIXEL_TOKENS, BASE_PX_FOR_MIN_WIDTH);
+
     return schemes(
-      () => {
-        return html`
-          <div class="grid">
-            ${vpSamples.map(sample => {
-              return html`
-                <div class="grid-item">
-                  <div class="sizing-example snapshot">
-                    <div class="${generateClassNames(sample, true)}"></div>
-                  </div>
-                </div>
-              `;
-            })}
-          </div>
-        `;
-      },
-      { filter: scheme => scheme === COLOR_SCHEMES.light },
+      () => html`
+        <div class="snapshot-example">
+          <h1>Snapshot: Sizing (Pixels)</h1>
+          ${renderSection('height (h-*)', H_ONLY, context)}
+          ${renderSection('width (w-*)', W_ONLY, context)}
+          ${renderSection('max-height (max-h-*)', MAX_H, context)}
+          ${renderSection('max-width (max-w-*)', MAX_W, context)}
+          ${renderSection('min-height (min-h-*)', MIN_H, context)}
+          ${renderSection('min-width (min-w-*)', MIN_W, context)}
+        </div>
+      `,
+      { filter: s => s === COLOR_SCHEMES.light },
     );
   },
 };
 
-export const PixelSizing: StoryObj = {
-  render() {
+const renderSection = (
+  title: string,
+  items: Array<Args>,
+  context: StoryContext,
+): TemplateResult => html`
+  <h2>${title}</h2>
+  <div class="d-flex flex-wrap">
+    ${items.map(
+      (args: Args) => html`
+        <div class="sizing-example snapshot">
+          ${meta.render?.({ ...context.args, ...args }, context)}
+        </div>
+      `,
+    )}
+  </div>
+`;
+
+export const PercentageVpSizing: Story = {
+  name: 'Sizing (Viewport vh/vw + max/min)',
+  render: () => {
+    const VH_ONLY = TOKENS.map(t => ['content', `vh-${t}`, 'vw-half'].join(' '));
+    const VW_ONLY = TOKENS.map(t => ['content', `vw-${t}`, 'vh-half'].join(' '));
+    const MAX_VH = TOKENS.map(t => ({
+      token: t,
+      classes: ['content', 'vw-half', `max-vh-${t}`].join(' '),
+      style: 'height: 100vh;',
+    }));
+    const MAX_VW = TOKENS.map(t => ({
+      token: t,
+      classes: ['content', 'vh-half', `max-vw-${t}`].join(' '),
+      style: 'width: 100vw;',
+    }));
+    const MIN_VH = TOKENS.map(t => ({
+      token: t,
+      classes: ['content', 'vw-half', `min-vh-${t}`].join(' '),
+      style: 'height: 1px;',
+    }));
+
+    const MIN_VW = TOKENS.map(t => ({
+      token: t,
+      classes: ['content', 'vh-half', `min-vw-${t}`].join(' '),
+      style: 'width: 1px;',
+    }));
+
     return schemes(
-      () => {
-        return html`
-          ${pxSamples.map(sample => {
-            return html`<div class="sizing-px-example snapshot">
-              <div class="${generateClassNames(sample)}"></div>
-            </div>`;
-          })}
-        `;
-      },
-      { filter: scheme => scheme === COLOR_SCHEMES.light },
+      () => html`
+        <div class="snapshot-example">
+          <h1>Snapshot: Sizing (Viewport)</h1>
+          ${renderViewportTokensSection('vh-*', VH_ONLY)}
+          ${renderViewportTokensSection('vw-*', VW_ONLY)}
+          ${renderViewportTokensSection('max-vh-*', MAX_VH)}
+          ${renderViewportTokensSection('max-vw-*', MAX_VW)}
+          ${renderViewportTokensSection('min-vh-*', MIN_VH)}
+          ${renderViewportTokensSection('min-vw-*', MIN_VW)}
+        </div>
+      `,
+      { filter: s => s === COLOR_SCHEMES.light },
     );
   },
+};
+
+const renderViewportTokensSection = (
+  title: string,
+  items: Array<string | { token: string; classes: string; style: string }>,
+) => {
+  return html`
+    <h2>${title}</h2>
+    <div class="d-flex gap-1 flex-wrap">
+      ${items.map(item => {
+        if (typeof item === 'string') {
+          return html` <div class="${item}"></div> `;
+        }
+        return html` <div class="${item.classes}" style="${item.style}"></div> `;
+      })}
+    </div>
+  `;
 };

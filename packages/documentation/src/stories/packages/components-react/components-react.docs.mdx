@@ -11,7 +11,8 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 # @swisspost/design-system-components-react
 
 <div className="npm-package-link">
-  [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-react.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-react)
+  [![npm
+  version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-react.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-react)
 </div>
 
 <div className="lead">The Design System React Components, ready for use in your React project.</div>
@@ -30,39 +31,37 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
       <tbody>
         <tr>
+          <th scope="row">10.x</th>
+          <td>18.x || 19.x</td>
+        </tr>
+        <tr>
           <th scope="row">9.x</th>
-          <td>18.x</td>
+          <td>18.x || 19.x</td>
         </tr>
       </tbody>
     </table>
 
   </div>
 
-  ## Installation
+## Installation
 
-  <Source code={`npm install @swisspost/design-system-components-react`} language="bash" />
+<Source code={`npm install @swisspost/design-system-components-react`} language="bash" />
 
-  ## Usage
+## Usage
 
-  Import the packages global styles. They are required for the components to work properly.
+Import the packages global styles. They are required for the components to work properly.
 
-  <Source
-    code={GlobalCSSSample}
-    language="scss"
-  />
+<Source code={GlobalCSSSample} language="scss" />
 
-  Importing the components to your project.
+Importing the components to your project.
 
+The package provides two different javascript entry points. One for CSR (Client-Side Rendering) and one for SSR (Server-Side Rendering).
 
-  The package provides two different javascript entry points. One for CSR (Client-Side Rendering) and one for SSR (Server-Side Rendering).
+The CSR entry point is the default one and can be used in any project, that uses a supported react version.
 
-  The CSR entry point is the default one and can be used in any project, that uses a supported react version.
+<Source code={CSRSample} language="typescript" />
 
-  <Source code={CSRSample} language="typescript" />
-
-  The SSR entry point is needed for server-side rendering (e.g. in a NextJS project).
+The SSR entry point is needed for server-side rendering (e.g. in a NextJS project).
 
   <Source code={SSRSample} language="typescript" />
 </PackageDocs>
-
-

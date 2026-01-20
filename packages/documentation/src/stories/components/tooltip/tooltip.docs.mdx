@@ -1,18 +1,25 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as TooltipStories from './tooltip.stories';
+import meta, * as TooltipStories from './tooltip.stories';
 import * as TooltipTriggerStories from './tooltip-trigger.stories';
+import PackageTag from '@/shared/package-tag';
+
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={TooltipStories} />
 
 <div className="docs-title">
-  # Tooltip 
+  # Tooltip
   <link-design of={JSON.stringify(TooltipStories)}></link-design>
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">For short, informative messages or explanations.</div>
 
 <Canvas sourceState="shown" of={TooltipStories.Default} />
 <Controls of={TooltipStories.Default} />
+
+<ComponentsPackageInstall component="<post-tooltip>" />
 
 ## `<post-tooltip-trigger>`
 

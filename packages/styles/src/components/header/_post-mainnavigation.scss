@@ -1,0 +1,26 @@
+@use '../../mixins/button';
+@use '../../mixins/media';
+
+@use './mixins' as *;
+@use './placeholders' as *;
+
+post-mainnavigation {
+  > ul {
+    @extend %header-list;
+    column-gap: 0;
+    height: 100%;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+
+  > * {
+    @include interactive-elements {
+      @extend %mainnavigation-control;
+    }
+  }
+
+  post-megadropdown-trigger {
+    height: 100%;
+    width: 100%;
+  }
+}

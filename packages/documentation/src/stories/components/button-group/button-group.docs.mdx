@@ -1,14 +1,18 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as ButtonGroupStories from './button-group.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as ButtonGroupStories from './button-group.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ButtonGroupStories} />
 
 <div className="docs-title">
   # Button Group
 
-  <link-design of={JSON.stringify(ButtonGroupStories)}></link-design>
+<link-design of={JSON.stringify(ButtonGroupStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">Group a series of buttons together on a single line.</div>
 

@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@swisspost/design-system-components@{tag|version}/dist/post-components/post-components.css"
+    />
+    <script type="module">
+      import {
+        defineCustomElementPostIcon,
+        defineCustomElementPostBanner,
+      } from 'https://unpkg.com/@swisspost/design-system-components@{tag|version}/dist/components/index.js';
+
+      defineCustomElementPostIcon();
+      defineCustomElementPostBanner();
+    </script>
+  </head>
+
+  <body>
+    <post-icon name="1001"></post-icon>
+  </body>
+</html>

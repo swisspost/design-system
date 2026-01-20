@@ -1,7 +1,5 @@
 # post-menu-trigger
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -17,13 +15,13 @@
 ### Used by
 
  - [post-breadcrumbs](../post-breadcrumbs)
- - [post-language-switch](../post-language-switch)
+ - [post-language-menu](../post-language-menu)
 
 ### Graph
 ```mermaid
 graph TD;
   post-breadcrumbs --> post-menu-trigger
-  post-language-switch --> post-menu-trigger
+  post-language-menu --> post-menu-trigger
   style post-menu-trigger fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

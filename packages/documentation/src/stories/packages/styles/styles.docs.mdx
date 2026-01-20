@@ -74,64 +74,65 @@ import DependenciesTable from './dependenciesTable';
         </tr>
       </tbody>
     </table>
+
   </div>
 
-  ## Dependencies
+## Dependencies
 
-  <DependenciesTable />
+<DependenciesTable />
 
-  ## Installation
+## Installation
 
-  <Source code={`npm install @swisspost/design-system-styles`} language="bash" />
+<Source code={`npm install @swisspost/design-system-styles`} language="bash" />
 
-  ## Usage
+## Usage
 
-  Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
+Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
 
-  <Source
-    code={`@use '@swisspost/design-system-styles/<bundle-name>.<extension>';`}
-    language="scss"
-  />
+<Source
+  code={`@use '@swisspost/design-system-styles/<bundle-name>.<extension>';`}
+  language="scss"
+/>
 
-  ### Available bundles
+### Available bundles
 
-  <div className="table-responsive text-start">
-    <table className="table">
-      <thead>
-        <tr>
-          <th>&lt;bundle-name&gt;</th>
-          <th>&lt;extension&gt;</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>`index`</td>
-          <td>`css`, `scss`</td>
-          <td>everything for internet facing applications</td>
-        </tr>
-        <tr>
-          <td>`intranet`</td>
-          <td>`css`, `scss`</td>
-          <td>everything for internal applications</td>
-        </tr>
-        <tr>
-          <td>`basics`</td>
-          <td>`css`, `scss`</td>
-          <td>atomic styles for font, buttons, lists, etc. (no component styles)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div className="table-responsive text-start">
+  <table className="table">
+    <thead>
+      <tr>
+        <th>&lt;bundle-name&gt;</th>
+        <th>&lt;extension&gt;</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`index`</td>
+        <td>`css`, `scss`</td>
+        <td>everything for internet facing applications</td>
+      </tr>
+      <tr>
+        <td>`intranet`</td>
+        <td>`css`, `scss`</td>
+        <td>everything for internal applications</td>
+      </tr>
+      <tr>
+        <td>`basics`</td>
+        <td>`css`, `scss`</td>
+        <td>atomic styles for font, buttons, lists, etc. (no component styles)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-  ### Variables, mixins, functions and placeholders
+### Variables, mixins, functions and placeholders
 
-  Use the SCSS core for your custom styles and make sure you're always using the most up to date definitions:
+Use the SCSS core for your custom styles and make sure you're always using the most up to date definitions:
 
-  <div className="banner banner-info banner-md mb-16">
-    NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions
-    and mixins.
-  </div>
+<post-banner class="mb-16">
+  NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions
+  and mixins.
+</post-banner>
 
   <Source code={SampleVariable} language="scss" />
 </PackageDocs>

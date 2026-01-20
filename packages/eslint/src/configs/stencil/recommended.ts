@@ -22,6 +22,8 @@ const stencilRecommendedConfig = (
   },
   rules: {
     '@swisspost/design-system-eslint/stencil-strict-props-initialization': 'error',
+    '@swisspost/design-system-eslint/stencil-no-unreflected-required-props': 'error',
+    '@swisspost/design-system-eslint/stencil-component-part-naming': 'error',
   },
 });
 

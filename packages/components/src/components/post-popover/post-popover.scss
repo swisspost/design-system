@@ -1,6 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
-@use '@swisspost/design-system-styles/components/close';
 
 * {
   box-sizing: border-box;
@@ -22,20 +21,10 @@
   padding: 0.5em;
 
   min-width: 160px;
-  max-width: min(var(--post-popover-max-width, 280px), 100vw);
+  max-width: var(--post-popover-max-width, 280px);
 }
 
 .popover-content {
   padding: 0.5em;
   flex-grow: 1;
-}
-
-.btn-close {
-  color: var(--post-current-fg);
-
-  &:hover {
-    @include utilities-mx.high-contrast-mode() {
-      color: HighlightText !important;
-    }
-  }
 }

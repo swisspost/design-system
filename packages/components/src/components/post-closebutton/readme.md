@@ -1,15 +1,13 @@
 # post-closebutton
 
-
-
 <!-- Auto Generated Below -->
 
 
-## Events
+## Properties
 
-| Event       | Description                                                           | Type                |
-| ----------- | --------------------------------------------------------------------- | ------------------- |
-| `postClick` | An event emitted when the close button is clicked. It has no payload. | `CustomEvent<void>` |
+| Property     | Attribute     | Description                                             | Type                              | Default    |
+| ------------ | ------------- | ------------------------------------------------------- | --------------------------------- | ---------- |
+| `buttonType` | `button-type` | Overrides the close button's type ("button" by default) | `"button" \| "reset" \| "submit"` | `'button'` |
 
 
 ## Slots
@@ -21,6 +19,11 @@
 
 ## Dependencies
 
+### Used by
+
+ - [post-megadropdown](../post-megadropdown)
+ - [post-popover](../post-popover)
+
 ### Depends on
 
 - [post-icon](../post-icon)
@@ -29,6 +32,8 @@
 ```mermaid
 graph TD;
   post-closebutton --> post-icon
+  post-megadropdown --> post-closebutton
+  post-popover --> post-closebutton
   style post-closebutton fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

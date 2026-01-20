@@ -12,85 +12,87 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 # @swisspost/design-system-icons
 
 <div className="npm-package-link">
-  [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons)
+  [![npm
+  version](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons)
 </div>
 
-<div className='lead'>
-  The comprehensive collection of Swiss Post icons.
-</div>
+<div className="lead">The comprehensive collection of Swiss Post icons.</div>
 
 <PackageDocs changelog={changelog}>
   ## Installation
 
-  <Source code={`npm install @swisspost/design-system-icons`} language="bash" />
+<Source code={`npm install @swisspost/design-system-icons`} language="bash" />
 
-  <div className="banner banner-info banner-md">
-    To render an icon with a component, you need to install the [Components
-    package](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs) as well.
-  </div>
+<post-banner>
+  To render an icon with a component, you need to install the [Components
+  package](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs) as well.
+</post-banner>
 
-  ## Usage
+## Usage
 
-  First you need to make the icons available in your web application.
-  This basically means that you need to copy & paste them manually or automatically from the `node_modules` folder to a served folder in your project.
-  The way to do this strongly depends on your project setup.
-  Read on to find out what the possible solutions look like...
+First you need to make the icons available in your web application.
+This basically means that you need to copy & paste them manually or automatically from the `node_modules` folder to a served folder in your project.
+The way to do this strongly depends on your project setup.
+Read on to find out what the possible solutions look like...
 
-  ### Serve the icons within an Angular application
+### Serve the icons within an Angular application
 
-  See [Getting started with Angular](/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs)
+See [Getting started with Angular](/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs)
 
-  ### Copy & paste the icons with a postinstall script
+### Copy & paste the icons with a postinstall script
 
-  Add a `postinstall` script to your `package.json`, to copy & paste the icons to a public folder within your web project.<br/>
-  If you want to know more about pre & post scripts and how they are handled, please read the <a href="https://docs.npmjs.com/cli/v7/using-npm/scripts#description">npm documentation</a>.
+Add a `postinstall` script to your `package.json`, to copy & paste the icons to a public folder within your web project.<br/>
+If you want to know more about pre & post scripts and how they are handled, please read the <a href="https://docs.npmjs.com/cli/v7/using-npm/scripts#description">npm documentation</a>.
 
   <post-tabs>
-    <post-tab-header panel="nodeNew">NodeJS version 16.7.0 or newer</post-tab-header>
-    <post-tab-panel name="nodeNew">
+    <post-tab-item name="nodeNew">NodeJS version 16.7.0 or newer</post-tab-item>
+    <post-tab-panel for="nodeNew">
       <Source  code={SampleNode16} language="json"/>
     </post-tab-panel>
 
-    <post-tab-header panel="nodeOld">Older NodeJS versions</post-tab-header>
-    <post-tab-panel name="nodeOld">
+    <post-tab-item name="nodeOld">Older NodeJS versions</post-tab-item>
+    <post-tab-panel for="nodeOld">
       <Source code={SampleNodeOlder} language="json"/>
       <Source code={SampleNodeOlderJs} language="javascript" />
     </post-tab-panel>
+
   </post-tabs>
 
-  ### Configure the icons base-path
+### Configure the icons base-path
 
-  Now that you have the icons available in your project, you need to tell the `icon` component where to find them.<br/>
-  You can do this with two different solutions:
+Now that you have the icons available in your project, you need to tell the `icon` component where to find them.<br/>
+You can do this with two different solutions:
 
-  1. Use the **meta-tag** solution to configure the `base-path` globally for all icons on the page.
-  2. Use the **base-attribute** solution, to configure the `base-path` on every `icon` component. This can also be used to overwrite the global `base-path` for a single icon.
+1. Use the **meta-tag** solution to configure the `base-path` globally for all icons on the page.
+2. Use the **base-attribute** solution, to configure the `base-path` on every `icon` component. This can also be used to overwrite the global `base-path` for a single icon.
 
   <post-tabs>
-    <post-tab-header panel="metaTag">Meta-tag solution (recommended)</post-tab-header>
-    <post-tab-panel name="metaTag">
+    <post-tab-item name="metaTag">Meta-tag solution (recommended)</post-tab-item>
+    <post-tab-panel for="metaTag">
       <Source code={SampleIconMeta} language="html" />
     </post-tab-panel>
 
-    <post-tab-header panel="baseAttribute">Base-attribute solution</post-tab-header>
-    <post-tab-panel name="baseAttribute">
-      <Source  code={`<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
+    <post-tab-item name="baseAttribute">Base-attribute solution</post-tab-item>
+    <post-tab-panel for="baseAttribute">
+      <Source  code={`<post-icon name="letter" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
     </post-tab-panel>
+
   </post-tabs>
 
-  ## Usage with CDN
+## Usage with CDN
 
-  There is one last thing we want to tell you about.
+There is one last thing we want to tell you about.
 
-  All icons are also available from a CDN, which is the default if you don't configure a base path for your icons and don't serve them locally. When using the CDN, please note that you need to configure your CORS policy to enable resource loading from unpkg.com.
+All icons are also available from a CDN, which is the default if you don't configure a base path for your icons and don't serve them locally. When using the CDN, please note that you need to configure your CORS policy to enable resource loading from unpkg.com.
 
-  <div className="banner banner-warning banner-md">
-    Using the CDN is not recommended for production because of higher latency when loading from the
-    CDN, use it for quickly testing something or for prototyping.
-  </div>
+<post-banner type="warning">
+  Using the CDN is not recommended for production because of higher latency when loading from the
+  CDN, use it for quickly testing something or for prototyping.
+</post-banner>
 
-  ### Check the Content Security Policy
+### Check the Content Security Policy
 
-  If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content-Security-Policy</a> response header (usually in `index.html`),
-  make sure that `default-src` is set to `'self'`. In case you are using the `<post-icon>` component you need to add [`https://unpkg.com/`](https://unpkg.com/) to the `connect-src` in index.html. This is becasue the icons are retrived from there.
+If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content-Security-Policy</a> response header (usually in `index.html`),
+make sure that `default-src` is set to `'self'`. In case you are using the `<post-icon>` component you need to add [`https://unpkg.com/`](https://unpkg.com/) to the `connect-src` in index.html. This is becasue the icons are retrived from there.
+
 </PackageDocs>

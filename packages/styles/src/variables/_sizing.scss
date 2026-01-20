@@ -15,3 +15,29 @@ $post-percentage-sizes: map.merge(
   ),
   $post-percentage-sizes
 );
+
+$post-viewport-height-sizes: () !default;
+$post-viewport-height-sizes: map.merge(
+  (
+    'quarter': 25vh,
+    'third': 33vh,
+    'half': 50vh,
+    'two-thirds': 66vh,
+    'three-quarters': 75vh,
+    'full': 100vh,
+  ),
+  $post-viewport-height-sizes
+);
+
+$post-viewport-width-sizes: () !default;
+$post-viewport-width-sizes: map.merge(
+  (
+    'quarter': 25vw,
+    'third': 33vw,
+    'half': 50vw,
+    'two-thirds': 66vw,
+    'three-quarters': 75vw,
+    'full': 100vw,
+  ),
+  $post-viewport-width-sizes
+);

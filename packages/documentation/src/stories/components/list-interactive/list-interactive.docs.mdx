@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as ListGroup from './list-interactive.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as ListGroup from './list-interactive.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={ListGroup} />
 
@@ -10,6 +11,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <link-design of={JSON.stringify(ListGroup)}></link-design>
 
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Lists consist of related content grouped together and organized vertically.

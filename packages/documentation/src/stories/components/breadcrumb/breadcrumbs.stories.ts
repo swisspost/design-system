@@ -5,31 +5,20 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',
   title: 'Components/Breadcrumbs',
-  tags: ['package:WebComponents'],
+  component: 'post-breadcrumbs',
+  tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1787-20607&node-type=instance&m=dev',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=558-16158&m=dev',
     },
   },
   args: {
     homeUrl: '/',
-    homeText: 'Home',
-  },
-  argTypes: {
-    homeUrl: {
-      name: 'Home URL',
-      description: 'URL for the home breadcrumb link.',
-      control: { type: 'text' },
-      table: { category: 'Props' },
-    },
-    homeText: {
-      name: 'Home Text',
-      description: 'Text for the home breadcrumb link.',
-      control: { type: 'text' },
-      table: { category: 'Props' },
-    },
+    textHome: 'Home',
+    textBreadcrumbs: 'Breadcrumbs',
+    textMoreItems: 'More items',
   },
 };
 
@@ -39,7 +28,12 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}>
+    <post-breadcrumbs
+      home-url=${args.homeUrl}
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
+    >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
       <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
@@ -49,7 +43,12 @@ export const Default: Story = {
 
 export const Concatenated: Story = {
   render: (args: Args) => html`
-    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}>
+    <post-breadcrumbs
+      home-url=${args.homeUrl}
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
+    >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
       <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
@@ -74,18 +73,18 @@ export const BreadcrumbItem: Story = {
   },
   argTypes: {
     url: {
-      name: 'URL',
+      name: 'url',
       description: 'The URL of the breadcrumb item.',
       control: { type: 'text' },
-      table: { category: 'Props' },
     },
     content: {
-      name: 'Content',
+      name: 'content',
       description: 'The visible label of the breadcrumb item.',
       control: { type: 'text' },
-      table: { category: 'Props' },
     },
     homeUrl: { table: { disable: true } },
-    homeText: { table: { disable: true } },
+    textHome: { table: { disable: true } },
+    textBreadcrumbs: { table: { disable: true } },
+    textMoreItems: { table: { disable: true } },
   },
 };

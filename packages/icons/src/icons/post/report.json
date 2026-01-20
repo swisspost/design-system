@@ -1415,6 +1415,16 @@
         "keywords": [
           "Filiale",
           "Branch",
+          "Postfiliale",
+          "Filiale postale",
+          "Swiss Post branch",
+          "filiale della Posta",
+          "Subsidiary",
+          "Controllata",
+          "Filialen",
+          "Filiales",
+          "Filiali",
+          "Branches",
           "entrée",
           "entrata",
           "entrance",
@@ -1437,7 +1447,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:05.000Z"
+      "modifiedAt": "2025-10-06T04:05:07.348Z"
     },
     {
       "uuid": "221f62c0-df41-11e7-a943-005056a94f4a",
@@ -26585,6 +26595,799 @@
       "modifiedAt": "2025-08-23T07:05:05.336Z"
     },
     {
+      "uuid": "fd893eb0-92c8-11f0-9719-005056873709",
+      "id": 6251978,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6251978/storage/MDA2MjUxOTc4LzAvbWFzdGVy",
+        "keywords": [
+          "Interdit",
+          "Proibito",
+          "Verboten",
+          "Forbidden",
+          "prohibition",
+          "Verbot",
+          "Interdiction",
+          "Divieto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2714.svg",
+        "basename": "2714",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-09-16T06:47:19.000Z",
+      "modifiedAt": "2025-09-17T06:05:03.771Z"
+    },
+    {
+      "uuid": "a8dd90e0-92c9-11f0-9719-005056873709",
+      "id": 6252010,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6252010/storage/MDA2MjUyMDEwLzAvbWFzdGVy",
+        "keywords": [
+          "PubliCar"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2715.svg",
+        "basename": "2715",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-09-16T06:52:06.000Z",
+      "modifiedAt": "2025-09-16T06:56:10.000Z"
+    },
+    {
+      "uuid": "d4280670-a405-11f0-8b39-0050568d2654",
+      "id": 6616362,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616362/storage/MDA2NjE2MzYyLzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "A5 postcard",
+          "Postkarte A5",
+          "Carte postale A5",
+          "Cartolina postale A5"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2716.svg",
+        "basename": "2716",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:15:38.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "935a40d0-a406-11f0-8b39-0050568d2654",
+      "id": 6616472,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616472/storage/MDA2NjE2NDcyLzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "A6 postcard",
+          "Postkarte A6",
+          "Carte postale A6",
+          "Cartolina postale A6"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2717.svg",
+        "basename": "2717",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:20:59.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "0133f000-a408-11f0-8b39-0050568d2654",
+      "id": 6616666,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616666/storage/MDA2NjE2NjY2LzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "A6/5 postcard",
+          "Postkarte A6/5",
+          "Carte postale A6/5",
+          "Cartolina postale A6/5"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2718.svg",
+        "basename": "2718",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:31:13.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "b215c470-a408-11f0-8b39-0050568d2654",
+      "id": 6616753,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616753/storage/MDA2NjE2NzUzLzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "Square postcard",
+          "Postkarte Quadratisch",
+          "Carte postale carrée",
+          "Cartolina postale quadrata"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2719.svg",
+        "basename": "2719",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:36:10.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "5166fc10-a409-11f0-8b39-0050568d2654",
+      "id": 6616844,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616844/storage/MDA2NjE2ODQ0LzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "B5 postcard",
+          "Postkarte B5",
+          "Carte postale B5",
+          "Cartolina postale B5"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2720.svg",
+        "basename": "2720",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:40:37.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "fe7448e0-a409-11f0-8b39-0050568d2654",
+      "id": 6616931,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6616931/storage/MDA2NjE2OTMxLzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "A5 glitter postcard",
+          "Postkarte A5 Glitter",
+          "Carte postale A5 Paillettes",
+          "Cartolina postale A5 glitter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2721.svg",
+        "basename": "2721",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:45:27.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "8310f440-a40a-11f0-8b39-0050568d2654",
+      "id": 6617006,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617006/storage/MDA2NjE3MDA2LzAvbWFzdGVy",
+        "keywords": [
+          "Postkarte",
+          "Postcard",
+          "Cartolina",
+          "Carte postale",
+          "self-mailer",
+          "Selfmailer"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2722.svg",
+        "basename": "2722",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:49:10.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "25093000-a40b-11f0-8b39-0050568d2654",
+      "id": 6617093,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617093/storage/MDA2NjE3MDkzLzAvbWFzdGVy",
+        "keywords": [
+          "Fahrplan",
+          "Timetable",
+          "Orario",
+          "Horaire",
+          "Wheelchair accessible No information",
+          "Rollstuhlgängig Keine Information",
+          "Accessible ä fauteuil roulant Aucune information",
+          "ä in sedia a rotelle Nessuna informazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2723.svg",
+        "basename": "2723",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T05:53:42.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "934aa1b2-a40c-11f0-8b39-0050568d2654",
+      "id": 6617283,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617283/storage/MDA2NjE3MjgzLzAvbWFzdGVy",
+        "keywords": [
+          "Fahrplan",
+          "Timetable",
+          "Orario",
+          "Horaire",
+          "Not wheelchair accessible",
+          "Nicht Rollstuhlgängig",
+          "Non accessible ä fauteuil roulant",
+          "Non accessibile in ä a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2724.svg",
+        "basename": "2724",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:03:56.000Z",
+      "modifiedAt": "2025-10-09T05:05:07.607Z"
+    },
+    {
+      "uuid": "4144a300-a40e-11f0-8b39-0050568d2654",
+      "id": 6617508,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617508/storage/MDA2NjE3NTA4LzAvbWFzdGVy",
+        "keywords": [
+          "Shuttle",
+          "Shuttle registration",
+          "Anmeldung Shuttle",
+          "Inscription à la navette",
+          "Iscrizione alla navetta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2725.svg",
+        "basename": "2725",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:15:57.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "4778d010-a40f-11f0-8b39-0050568d2654",
+      "id": 6617656,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617656/storage/MDA2NjE3NjU2LzAvbWFzdGVy",
+        "keywords": [
+          "Fahrplan",
+          "Timetable",
+          "Orario",
+          "Horaire",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2726.svg",
+        "basename": "2726",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:23:17.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "07319f90-a410-11f0-8b39-0050568d2654",
+      "id": 6617755,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617755/storage/MDA2NjE3NzU1LzAvbWFzdGVy",
+        "keywords": [
+          "Fahrplan",
+          "Timetable",
+          "Orario",
+          "Horaire",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2727.svg",
+        "basename": "2727",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:28:39.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "a2fa25a0-a410-11f0-8b39-0050568d2654",
+      "id": 6617844,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6617844/storage/MDA2NjE3ODQ0LzAvbWFzdGVy",
+        "keywords": [
+          "seat",
+          "Sitzplatz",
+          "Place assise",
+          "Posto a sedere",
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2728.svg",
+        "basename": "2728",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:33:00.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "44dcc110-a412-11f0-8b39-0050568d2654",
+      "id": 6618054,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/6618054/storage/MDA2NjE4MDU0LzAvbWFzdGVy",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2729.svg",
+        "basename": "2729",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-08T06:44:42.000Z",
+      "modifiedAt": "2025-10-09T06:05:08.110Z"
+    },
+    {
+      "uuid": "e6eaa5d0-b628-11f0-b91a-0050568d2654",
+      "id": 7157506,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7157506/storage/MDA3MTU3NTA2LzAvbWFzdGVy",
+        "keywords": [
+          "Brandschutz",
+          "Fire Screen",
+          "Protezione antincendio",
+          "Écran De Protection Contre L'Incendie",
+          "Fire alarm system maintenance",
+          "Wartung Brandmeldeanlage",
+          "Maintenance du dispositif de détection d’incendie",
+          "Manutenzione impianto di rilevazione d’incendio",
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2740.svg",
+        "basename": "2740",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-10-31T07:12:03.000Z",
+      "modifiedAt": "2025-11-01T07:05:10.694Z"
+    },
+    {
+      "uuid": "4a64cbb0-b974-11f0-b91a-0050568d2654",
+      "id": 7229033,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7229033/storage/MDA3MjI5MDMzLzAvbWFzdGVy",
+        "keywords": [
+          "Kalender",
+          "Calendar",
+          "Calendario",
+          "Calendrier",
+          "Move calendar",
+          "Kalender verschieben",
+          "Déplacer le calendrier",
+          "spostare il calendario",
+          "Kalenderanpassung",
+          "Modifica calendario",
+          "calendar adjustment",
+          "Adaptation du calendrier",
+          "Move date",
+          "Datum verschieben",
+          "Déplacer la date",
+          "Spostare la data"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2741.svg",
+        "basename": "2741",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-04T11:49:16.000Z",
+      "modifiedAt": "2025-11-05T11:05:07.704Z"
+    },
+    {
+      "uuid": "8e0ea300-c125-11f0-b1fa-0050568d2654",
+      "id": 7351969,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7351969/storage/MDA3MzUxOTY5LzAvbWFzdGVy",
+        "keywords": [
+          "AmiGo",
+          "On-demand mobility",
+          "On-Demand Mobilität",
+          "Mobilité à la demande",
+          "Mobilità on demand",
+          "Mobility",
+          "Mobilität",
+          "Mobilité",
+          "Mobilità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2742.svg",
+        "basename": "2742",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-14T06:45:48.000Z",
+      "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
+      "uuid": "22731210-c126-11f0-b1fa-0050568d2654",
+      "id": 7352011,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7352011/storage/MDA3MzUyMDExLzAvbWFzdGVy",
+        "keywords": [
+          "AmiGo",
+          "gelbe Flotte",
+          "Flotte jaune",
+          "flotta gialla",
+          "yellow fleet"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2743.svg",
+        "basename": "2743",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-14T06:49:57.000Z",
+      "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
+      "uuid": "ab0d29d0-c126-11f0-b1fa-0050568d2654",
+      "id": 7352045,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7352045/storage/MDA3MzUyMDQ1LzAvbWFzdGVy",
+        "keywords": [
+          "Car App",
+          "App",
+          "Application"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2744.svg",
+        "basename": "2744",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-14T06:53:47.000Z",
+      "modifiedAt": "2025-11-15T06:05:01.223Z"
+    },
+    {
+      "uuid": "eff14c70-cc25-11f0-b1fa-0050568d2654",
+      "id": 7667908,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7667908/storage/MDA3NjY3OTA4LzAvbWFzdGVy",
+        "keywords": [
+          "shrug shoulder",
+          "Schulter zucken",
+          "Hausser l’épaule",
+          "Alzare la spalla",
+          "Schulter",
+          "Shoulder",
+          "Spalla",
+          "Épaule"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2745.svg",
+        "basename": "2745",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-28T06:46:15.000Z",
+      "modifiedAt": "2025-11-29T06:05:03.988Z"
+    },
+    {
+      "uuid": "88094da0-cc26-11f0-b1fa-0050568d2654",
+      "id": 7667979,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7667979/storage/MDA3NjY3OTc5LzAvbWFzdGVy",
+        "keywords": [
+          "to left",
+          "nach Links",
+          "Vers la gauche",
+          "verso sinistra",
+          "Point left",
+          "Nach Links zeigen",
+          "Montrer vers la gauche",
+          "Mostrare verso sinistra"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2746.svg",
+        "basename": "2746",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-28T06:50:31.000Z",
+      "modifiedAt": "2025-11-29T06:05:03.988Z"
+    },
+    {
+      "uuid": "cf836440-cc2b-11f0-b1fa-0050568d2654",
+      "id": 7668450,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7668450/storage/MDA3NjY4NDUwLzAvbWFzdGVy",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2747.svg",
+        "basename": "2747",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-28T07:28:18.000Z",
+      "modifiedAt": "2025-11-28T08:26:30.000Z"
+    },
+    {
+      "uuid": "9a61b400-cc36-11f0-b1fa-0050568d2654",
+      "id": 7669375,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7669375/storage/MDA3NjY5Mzc1LzAvbWFzdGVy",
+        "keywords": [
+          "Denken",
+          "contemplative",
+          "Nachdenklich",
+          "Réfléchi",
+          "Pensieroso"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2748.svg",
+        "basename": "2748",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-11-28T08:45:33.000Z",
+      "modifiedAt": "2025-11-29T08:05:04.073Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -39823,13 +40626,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1045,
+    "success": 1070,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-08-24T02:24:07.005Z",
-  "version": "10.0.0-next.45"
+  "created": "2026-01-11T02:39:27.779Z",
+  "version": "10.0.0-next.56"
 }

@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as BannerStories from './banner.stories';
 import BannerDismissSample from './banner-dismiss.sample?raw';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={BannerStories} />
 
@@ -12,17 +13,16 @@ import BannerDismissSample from './banner-dismiss.sample?raw';
 </div>
 
 <div className="lead">
-  A banner shows general notifications for a product or system, not a specific task and should therefore not require the user to take immediate action. Banners can persist across multiple sessions.
+  A banner shows general notifications for a product or system, not a specific task and should
+  therefore not require the user to take immediate action. Banners can persist across multiple
+  sessions.
 </div>
 
 <Canvas sourceState="shown" of={BannerStories.Default} />
 
 <Controls of={BannerStories.Default} />
 
-## Installation
-
-The `<post-banner>` element is part of the `@swisspost/design-system-components` package.
-For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+<ComponentsPackageInstall component="<post-banner>" />
 
 ## Examples
 
@@ -48,4 +48,4 @@ Although the label remains hidden from view, it is essential for ensuring access
 Alternatively, you can use any button, including action buttons within the banner, as a trigger for dismissing the banner using the `.dismiss()` method.
 This method operates asynchronously and returns a promise that resolves once the fade-out animation has finished.
 
-<Source code={BannerDismissSample} language="typescript"/>
+<Source code={BannerDismissSample} language="typescript" />

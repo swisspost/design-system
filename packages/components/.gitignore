@@ -21,7 +21,7 @@ log.txt
 .sass-cache/
 .versions/
 node_modules/
-src/styles/generated/
+src/_generated/
 $RECYCLE.BIN/
 
 .DS_Store

@@ -36,7 +36,7 @@ export const Tag: Story = {
                       ...args,
                       ...bombArgs,
                       variant,
-                      icon: '1001',
+                      icon: 'letter',
                     },
                     context,
                   ),

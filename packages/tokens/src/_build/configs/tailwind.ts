@@ -34,7 +34,15 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
               {
                 destination: `${name}.tailwind.js`,
                 filter: 'swisspost/source-tokens-filter',
-                format: 'swisspost/tailwind-format',
+                format: 'swisspost/tailwind-v3-format',
+                options: {
+                  outputReferences: true,
+                },
+              },
+              {
+                destination: `${name}.tailwind.css`,
+                filter: 'swisspost/source-tokens-filter',
+                format: 'swisspost/tailwind-v4-format',
                 options: {
                   outputReferences: true,
                 },
@@ -55,11 +63,11 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
  *   format: (dictionary: Dictionary, file: File, options: Config & LocalOptions, platform: PlatformConfig) => string
  * }
  *
- * swisspost/tailwind-format:
- * Used to declare the format of the tailwind output files.
+ * swisspost/tailwind-v3-format:
+ * Used to declare the format of the tailwind v3 output files (JavaScript module).
  */
 StyleDictionary.registerFormat({
-  name: 'swisspost/tailwind-format',
+  name: 'swisspost/tailwind-v3-format',
   format: async ({ dictionary, options, file }) => {
     const header = await fileHeader({ file, commentStyle: 'short' });
     const tailwindTokensObject = dictionary.allTokens.reduce<Record<string, TokenProperty>>(
@@ -76,5 +84,50 @@ StyleDictionary.registerFormat({
     );
 
     return header + `export default {${objectTextoutput(tailwindTokensObject)}\n};\n`;
+  },
+});
+
+/**
+ * @function StyleDictionary.registerFormat()
+ * Defines a custom StyleDictionary format to be used at specific places in the build process.
+ *
+ * @param object {
+ *   name: string,
+ *   format: (dictionary: Dictionary, file: File, options: Config & LocalOptions, platform: PlatformConfig) => string
+ * }
+ *
+ * swisspost/tailwind-v4-format:
+ * Used to declare the format of the tailwind v4 output files (CSS with @theme directive).
+ */
+StyleDictionary.registerFormat({
+  name: 'swisspost/tailwind-v4-format',
+  format: async ({ dictionary, options, file }) => {
+    const header = await fileHeader({ file, commentStyle: 'long' }); // CSS comments
+
+    const themeVariables = dictionary.allTokens.reduce<Record<string, TokenProperty>>(
+      (allTokens, token) => {
+        const tokenPath = token.path.slice(token.path.indexOf(TOKENSET_PREFIX) + 1);
+
+        const cssVarName = `--${tokenPath.join('-')}`;
+
+        const tokenValue = getTokenValue(options, token);
+
+        allTokens[cssVarName] = tokenValue;
+        return allTokens;
+      },
+      {},
+    );
+
+    const themeCSS = Object.entries(themeVariables)
+      .map(([name, value]) => `  ${name}: ${value};`)
+      .join('\n');
+
+    return `${header}
+@import "tailwindcss";
+
+@theme {
+${themeCSS}
+}
+`;
   },
 });

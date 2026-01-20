@@ -6,11 +6,12 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
   title: 'Components/Chip',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   render: renderChip,
   parameters: {
-    controls: {
-      exclude: ['dismissed', 'number', 'radio'],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=18-15',
     },
   },
   args: {
@@ -52,7 +53,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'If `true`, the chip is disabled.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
+        'If `true`, the chip is disabled.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
       control: {
         type: 'boolean',
       },
@@ -63,7 +64,7 @@ const meta: MetaComponent = {
     selected: {
       name: 'Selected',
       description:
-        'If `true`, the chip is selected.<div className="mt-8 banner banner-info banner-sm">Disabling selected chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
+        'If `true`, the chip is selected.<post-banner data-size="sm"><p>Disabling selected chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
       if: {
         arg: 'type',
         eq: 'selectable',

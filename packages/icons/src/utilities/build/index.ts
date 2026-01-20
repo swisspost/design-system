@@ -3,22 +3,22 @@ import { setup } from './setup';
 import { getIconSetGroups } from './iconSetGroups';
 import { writeReport } from './report';
 import { coloredLogMessage } from '../shared';
-import { OUTPUT_PATH, OUTPUT_PATH_ICONS, OUTPUT_PATH_SCSS } from '../constants';
+import { OUTPUT_PATH, OUTPUT_PATH_ICONS, OUTPUT_PATH_CSS } from '../constants';
 import { createSvgs } from './createSvgs';
-import { createScssFiles } from './createScssFiles';
+import { createCssFiles } from './createCssFiles';
 
 const iconOutputDirectory = path.resolve(OUTPUT_PATH_ICONS);
 const reportOutputDirectory = path.resolve(OUTPUT_PATH);
-const scssOutputDirectory = path.resolve(OUTPUT_PATH_SCSS);
+const cssOutputDirectory = path.resolve(OUTPUT_PATH_CSS);
 
-export default function buildSVGs() {
+export default async function buildSVGs() {
   console.log(coloredLogMessage('<blue>Building icons...</blue>'));
 
   setup(iconOutputDirectory, reportOutputDirectory);
 
   const iconSetGroups = getIconSetGroups();
   createSvgs(iconOutputDirectory, iconSetGroups);
-  createScssFiles(iconOutputDirectory, scssOutputDirectory);
+  await createCssFiles(iconOutputDirectory, cssOutputDirectory);
   const report = writeReport(reportOutputDirectory, iconSetGroups);
 
   console.log(

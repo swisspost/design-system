@@ -1,10 +1,8 @@
-import { Component, Element, h, Host } from '@stencil/core';
+import { Component, Element, h, Host, State } from '@stencil/core';
 import { version } from '@root/package.json';
 
 const INTERACTIVE_ELEMENTS = ['a'].join(',');
 const INTERACTIVE_ELEMENTS_SELECTOR = `:where(${INTERACTIVE_ELEMENTS})`;
-
-type InteractiveElement = HTMLAnchorElement;
 
 @Component({
   tag: 'post-linkarea',
@@ -12,27 +10,43 @@ type InteractiveElement = HTMLAnchorElement;
   shadow: true,
 })
 export class PostLinkarea {
+  private mutationObserver = new MutationObserver(this.checkInteractiveElements.bind(this));
+
   @Element() host: HTMLPostLinkareaElement;
 
+  @State() interactiveElements: NodeListOf<HTMLAnchorElement>;
+
   private dispatchClick({ ctrlKey, shiftKey, altKey, metaKey }: MouseEvent) {
-    const interactiveElement: InteractiveElement =
-      this.host.querySelector(`[data-link]${INTERACTIVE_ELEMENTS_SELECTOR}`) ??
-      this.host.querySelector(INTERACTIVE_ELEMENTS_SELECTOR);
-
-    if (!interactiveElement) {
-      throw new Error(
-        `The \`post-linkarea\` component must contain an interactive element. Possible elements are: ${INTERACTIVE_ELEMENTS}.`,
-      );
-    }
-
-    interactiveElement.dispatchEvent(
+    this.interactiveElements[0]?.dispatchEvent(
       new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
     );
   }
 
+  private checkInteractiveElements() {
+    this.interactiveElements = this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR);
+
+    if (this.interactiveElements.length > 1) {
+      console.error(
+        `The \`post-linkarea\` currently contains ${this.interactiveElements.length} interactive elements when it should contain only one.`,
+      );
+    }
+  }
+
+  connectedCallback() {
+    this.mutationObserver.observe(this.host, { childList: true });
+  }
+
+  componentWillLoad() {
+    this.checkInteractiveElements();
+  }
+
+  disconnectedCallback() {
+    this.mutationObserver.disconnect();
+  }
+
   render() {
     return (
-      <Host data-version={version} onClick={(e: MouseEvent) => this.dispatchClick(e)} tabindex="0">
+      <Host data-version={version} onClick={(e: MouseEvent) => this.dispatchClick(e)}>
         <slot></slot>
       </Host>
     );

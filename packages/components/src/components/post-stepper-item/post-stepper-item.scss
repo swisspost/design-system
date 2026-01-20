@@ -1,0 +1,256 @@
+@use '@swisspost/design-system-styles/mixins/icons';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/elements';
+
+tokens.$default-map: components.$post-stepper;
+
+post-stepper-item {
+  grid-row: 1;
+  position: relative;
+  padding-inline-start: 0;
+
+  &:not(:first-child) {
+    padding-inline-start: calc(#{tokens.get('stepper-indicator')} / 2);
+  }
+
+  &:not(:last-child) {
+    padding-inline-end: calc(#{tokens.get('stepper-indicator')} / 2);
+    grid-column: span 2;
+  }
+
+  // progress bar
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset-block-start: calc((#{tokens.get('stepper-indicator')} - 2px) / 2);
+    height: 2px;
+    background-color: tokens.get('stepper-connector-next');
+    inset-inline: 0;
+  }
+
+  &:not(:first-child, :last-child) {
+    &::before {
+      inset-inline-end: 50%;
+    }
+
+    &::after {
+      inset-inline-start: 50%;
+    }
+  }
+
+  &.stepper-item-current:not(:last-child)::after,
+  &.stepper-item-current:first-child::before,
+  &.stepper-item-current + *:last-child::after,
+  &.stepper-item-current + *::before {
+    background-color: tokens.get('stepper-connector-active');
+  }
+
+  &.stepper-item-current:not(:first-child)::before,
+  &.stepper-item-current:last-child::after,
+  &.stepper-item-completed::after,
+  &.stepper-item-completed::before,
+  &.stepper-item-completed + *::before {
+    background-color: tokens.get('stepper-connector-completed');
+    z-index: 1;
+  }
+}
+
+.stepper-item-content {
+  // stylelint-disable-next-line value-no-vendor-prefix
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  text-decoration: none;
+  color: tokens.get('stepper-text-disabled-fg');
+  width: fit-content;
+  word-break: break-word;
+  font-size: tokens.get('stepper-step-label-font-size');
+
+  post-stepper-item:not(:first-child, :last-child) > & {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  post-stepper-item:last-child > & {
+    margin-inline-start: auto;
+    margin-inline-end: calc(40px / -2); // negative margin matching the container padding
+    text-align: end;
+  }
+
+  // Completed steps
+  .stepper-item-completed > & {
+    color: tokens.get('stepper-text-enabled-fg');
+  }
+
+  // Current step
+  .stepper-item-current > & {
+    font-weight: tokens.get('stepper-step-label-selected-font-weight');
+    color: tokens.get('stepper-text-enabled-fg');
+
+    &::before {
+      font-weight: tokens.get('body-font-weight', elements.$post-body);
+      color: tokens.get('stepper-enabled-fg');
+    }
+  }
+}
+
+// step indicator
+.stepper-item-content::before {
+  counter-increment: step-index;
+  content: counter(step-index);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  height: tokens.get('stepper-indicator');
+  width: tokens.get('stepper-indicator');
+  box-sizing: border-box;
+  margin-block-end: tokens.get('stepper-gap-text-start');
+  color: tokens.get('stepper-enabled-fg');
+  background-color: tokens.get('stepper-enabled-bg');
+  border: tokens.get('stepper-border-width') solid tokens.get('stepper-enabled-stroke');
+  border-radius: tokens.get('stepper-border-radius-round');
+  text-indent: initial;
+
+  post-stepper-item:not(:first-child, :last-child) > & {
+    margin-inline: auto;
+  }
+
+  post-stepper-item:last-child > & {
+    margin-inline-start: auto;
+  }
+
+  // Completed steps
+  .stepper-item-completed > & {
+    color: transparent; // Hides the number on completed step
+    background-color: tokens.get('stepper-completed-stroke');
+    border-color: tokens.get('stepper-completed-stroke');
+  }
+
+  // Future steps
+  .stepper-item-inactive > & {
+    color: tokens.get('stepper-disabled-fg');
+    background-color: tokens.get('stepper-disabled-bg');
+    border-color: tokens.get('stepper-disabled-stroke');
+  }
+}
+
+$checkIconSize: calc(
+  #{tokens.get('stepper-indicator')} - (#{tokens.get('stepper-border-width')} * 2)
+);
+
+// check icon
+.stepper-item-content::after {
+  display: block;
+  position: absolute;
+  inset-block-start: tokens.get('stepper-border-width');
+  z-index: 1;
+  background-color: tokens.get('stepper-enabled-fg');
+  @include icons.mask-image('success-solid');
+  width: $checkIconSize;
+  height: $checkIconSize;
+  color: tokens.get('stepper-completed-bg');
+
+  post-stepper-item:first-child > & {
+    inset-inline-start: tokens.get('stepper-border-width');
+  }
+
+  post-stepper-item:not(:first-child, :last-child) > & {
+    inset-inline-start: calc(50% - ($checkIconSize / 2));
+  }
+
+  post-stepper-item:last-child > & {
+    inset-inline-end: tokens.get('stepper-border-width');
+  }
+
+  // show only for completed steps
+  .stepper-item-completed > & {
+    content: '';
+  }
+}
+
+// smaller screens
+@include media.max(md) {
+  post-stepper-item {
+    flex-grow: 1;
+    margin-inline: 0;
+    padding: 0 !important;
+
+    &::before {
+      content: unset;
+    }
+
+    &::after {
+      inset-inline-start: 0 !important;
+    }
+
+    &:last-child {
+      flex: 0 0 32px;
+
+      &::after {
+        content: unset;
+      }
+    }
+    .stepper-item-content {
+      margin-inline: 0 !important;
+
+      > span {
+        display: none;
+      }
+    }
+  }
+}
+
+@include utilities.high-contrast-mode {
+  post-stepper-item {
+    &::before,
+    &::after {
+      background-color: CanvasText !important;
+    }
+
+    &.stepper-item-current:not(:first-child)::before,
+    &.stepper-item-current:last-child::after,
+    &.stepper-item-completed::after,
+    &.stepper-item-completed::before,
+    &.stepper-item-completed + *::before {
+      background-color: Highlight !important;
+    }
+  }
+
+  .stepper-item-content {
+    &::before {
+      forced-color-adjust: none;
+    }
+
+    .stepper-item-current > &::before {
+      background-color: Canvas;
+      color: CanvasText;
+    }
+
+    .stepper-item-completed > &::before,
+    .stepper-item-inactive > &::before {
+      border-color: Canvas;
+      background-color: CanvasText;
+    }
+
+    .stepper-item-inactive > &::before {
+      color: Canvas;
+    }
+
+    &::after {
+      color: Canvas;
+    }
+  }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
+}

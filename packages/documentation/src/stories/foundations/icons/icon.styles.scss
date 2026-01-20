@@ -27,14 +27,8 @@ $resizer-max-width: 64px;
   background-color: post.$info;
 }
 
-.my-1022-icon {
-  @include post.post-icon($name: '1022', $base: '/post-icons');
-}
-
-.my-accessibility-icon {
-  @include post.post-icon($name: 'accessibility', $base: '/post-icons');
-}
-
-.my-handvictory-icon {
-  @include post.post-icon($name: 'handvictory', $base: '/post-icons', $color: #666666);
+.letter-icon {
+  width: 1em;
+  height: 1em;
+  @include post.mask-image('letter');
 }

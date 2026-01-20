@@ -1,13 +1,17 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as TeaserStories from './teaser.stories';
+import meta, * as TeaserStories from './teaser.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={TeaserStories} />
 
 <div className="docs-title">
   # Card Teaser
 
-  <link-design of={JSON.stringify(TeaserStories)}></link-design>
+<link-design of={JSON.stringify(TeaserStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   A teaser card is a clickable preview that leads to detailed content, providing a convenient entry

@@ -2,6 +2,10 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/list';
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
+
+tokens.$default-map: elements.$post-heading;
 
 :host {
   display: block;
@@ -25,9 +29,9 @@ footer {
   --post-footer-column-align-items: start;
   --post-footer-column-gap: 0;
 
-  --post-footer-post-list-flex-direction: column;
-  --post-footer-post-list-gap: 8px;
-  --post-footer-post-list-align-items: start;
+  --post-footer-list-flex-direction: column;
+  --post-footer-list-gap: 8px;
+  --post-footer-list-align-items: start;
 
   --post-footer-socialmedia-margin-block-end: var(--post-footer-grid-margin-block-end);
   --post-footer-app-margin-block-end: var(--post-footer-grid-margin-block-end);
@@ -48,9 +52,9 @@ footer {
     --post-footer-grid-margin-block-end: 32px;
     --post-footer-grid-padding-block-end: 32px;
 
-    --post-footer-post-list-flex-direction: row;
-    --post-footer-post-list-gap: 16px;
-    --post-footer-post-list-align-items: center;
+    --post-footer-list-flex-direction: row;
+    --post-footer-list-gap: 16px;
+    --post-footer-list-align-items: center;
 
     --post-footer-meta-margin-block-end: 8px;
   }
@@ -73,12 +77,26 @@ footer {
     --post-footer-column-align-items: center;
     --post-footer-column-gap: 32px;
 
-    --post-footer-post-list-gap: 24px;
+    --post-footer-list-gap: 24px;
 
     --post-footer-businesssectors-margin-block-end: 24px;
 
     --post-footer-meta-font-size: 16px;
   }
+}
+
+:is(h3, .h3) {
+  margin: 0;
+  font-size: tokens.get('h6-font-size');
+  line-height: tokens.get('heading-line-height');
+  font-weight: tokens.get('heading-font-weight');
+  text-wrap: balance;
+}
+
+::slotted(ul) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .visually-hidden {
@@ -118,13 +136,12 @@ footer {
 
 .footer-socialmedia,
 .footer-app,
-.footer-businesssectors,
 .footer-meta {
-  ::slotted(post-list) {
+  ::slotted(div) {
     display: flex !important;
-    flex-direction: var(--post-footer-post-list-flex-direction) !important;
-    gap: var(--post-footer-post-list-gap) !important;
-    align-items: var(--post-footer-post-list-align-items) !important;
+    flex-direction: var(--post-footer-list-flex-direction) !important;
+    gap: var(--post-footer-list-gap) !important;
+    align-items: var(--post-footer-list-align-items) !important;
   }
 }
 
@@ -138,6 +155,13 @@ footer {
 
 .footer-businesssectors {
   margin-block-end: var(--post-footer-businesssectors-margin-block-end);
+  
+  ::slotted(div) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--post-footer-list-gap) !important;
+  }
 }
 
 .footer-meta {
@@ -154,17 +178,4 @@ footer {
 
 .d-none {
   display: none;
-}
-
-post-accordion-item {
-  // make sure the first visible accordion item has a border top
-  &.d-none + & {
-    --post-accordion-button-border-top-width: unset;
-  }
-
-  // remove the border top if the accordion item is not the first visible or if it is the only visible
-  &:not(.d-none) ~ &,
-  &:not(&:not(.d-none) ~ *):not(:has(~ #{&}:not(.d-none))) {
-    --post-accordion-button-border-top-width: 0;
-  }
 }
