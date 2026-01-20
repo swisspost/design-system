@@ -24,10 +24,6 @@
         "dist/intranet-header"
       ]
     },
-    "lib": [
-      "es2020",
-      "dom"
-    ],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
