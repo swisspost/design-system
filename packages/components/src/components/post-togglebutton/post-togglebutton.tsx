@@ -22,7 +22,7 @@ export class PostTogglebutton {
     // add event listener in capture phase so the toggle state is updated
     // before any parent bubble listeners react to the click.
     this.host.addEventListener('click', () => this.handleClick(), true);
-    this.host.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e));
+    this.host.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e), { capture: true });
   }
 
   private handleClick = () => {
