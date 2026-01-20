@@ -1,5 +1,19 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.57
+
+### Major Changes
+
+- Reverted changes that enabled using sections within containers, as they caused overflow issues in Chromium-based browsers. (by [@alizedebray](https://github.com/alizedebray) with [#6989](https://github.com/swisspost/design-system/pull/6989))
+
+- Updated maximum width of the section from 1920px to 1440px. (by [@alizedebray](https://github.com/alizedebray) with [#6993](https://github.com/swisspost/design-system/pull/6993))
+
+### Patch Changes
+
+- Fixed an issue where certain header navigation items were not styled correctly when they were not contained within lists. (by [@alizedebray](https://github.com/alizedebray) with [#6943](https://github.com/swisspost/design-system/pull/6943))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.57
+
 ## 10.0.0-next.56
 
 ### Major Changes
