@@ -1,19 +1,9 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
+import { ANIMATION_KEYS, PostIconAnimation } from '@/types/icon-animations';
 
 const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/`;
-const ANIMATION_NAMES = [
-  'cylon',
-  'cylon-vertical',
-  'spin',
-  'spin-reverse',
-  'fade',
-  'throb',
-] as const;
-const ANIMATION_KEYS = [...ANIMATION_NAMES];
-
-type Animation = (typeof ANIMATION_NAMES)[number];
 
 /**
  * @class PostIcon - representing a stencil component
