@@ -1,18 +1,16 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+// import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import StylesPackageImport from '@/shared/styles-package-import';
 
 import * as CardControlStandardHTMLStories from './standard-html/card-control.stories';
-import firefoxFallbackSnippet from './standard-html/card-control-firefox-fallback.sample.ts?raw';
+// import firefoxFallbackSnippet from './standard-html/card-control-firefox-fallback.sample.ts?raw';
 
 import * as CardControlStories from './web-component/card-control.stories';
-import SampleCardControlMethods from './web-component/card-control-methods.sample?raw';
-import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+// import SampleCardControlMethods from './web-component/card-control-methods.sample?raw';
+// import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={CardControlStories} />
 
-<Canvas sourceState="shown" of={CardControlStandardHTMLStories.DefaultNew} />
-
-<hr />
 
 <div className="docs-title">
   # Card-Control
@@ -23,19 +21,50 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <p className="lead">For a more specialized visualization of checkbox and radio elements.</p>
 
-<post-banner>
-  <p slot="heading">There are various methods to integrate this component into your project.</p>
+<Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
+<div className="hide-col-default">
+  <Controls of={CardControlStandardHTMLStories.Default} />
+</div>
 
-We advise opting for the "Standard HTML" approach for when you need full access to the input
-field and using the "Web Component" method in every other case.
-</post-banner>
+## Examples
+
+### Custom icon
+
+<Canvas of={CardControlStandardHTMLStories.CustomIcon} />
+<div className="hide-col-default">
+  <Controls of={CardControlStandardHTMLStories.CustomIcon} />
+</div>
+
+### Custom content
+
+### Grouping
+
+### Lined up
+
+### Radio button group
+
+### Custom Trigger
+
+<StylesPackageImport components={['choice-control-card']} />
+
+<div>
+  {
+    /* only rendered in dev mode */
+    process.env.NODE_ENV === 'development' ?
+    <div>
+      <hr/>
+      <h3>Palette dependant coloring</h3>
+      <Canvas of={CardControlStandardHTMLStories.Draft} />
+    </div> :
+    null
+  }
+</div>
 
 
-
+{/*
 <post-tabs>
   <post-tab-item name="standardhtml">Standard HTML</post-tab-item>
   <post-tab-panel for="standardhtml">
-    <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
       <Controls of={CardControlStandardHTMLStories.Default} />
     </div>
@@ -152,4 +181,4 @@ field and using the "Web Component" method in every other case.
     />
 
   </post-tab-panel>
-</post-tabs>
+</post-tabs> */}

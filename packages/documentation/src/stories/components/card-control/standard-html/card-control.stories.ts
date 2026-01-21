@@ -1,17 +1,14 @@
-import type { Args, StoryObj } from '@storybook/web-components-vite';
-import { useArgs, useState } from 'storybook/preview-api';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { mapClasses } from '@/utils';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
-
-type useStateFn = typeof useState;
 
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Form Card Control',
   tags: ['package:Styles', 'status:InProgress'],
+  render: renderCardControl,
   parameters: {
     badges: [],
     design: {
@@ -65,7 +62,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['none', 'letter', 'letteropen', 'parcel'],
+      options: ['none', 'component', 'letter', 'letteropen', 'parcel'],
       table: {
         category: 'General',
       },
@@ -116,223 +113,250 @@ const meta: MetaComponent = {
 
 export default meta;
 
+// DECORATORS
+
+// RENDERER
+
+let componentId = 1;
+
+function renderCardControl(args: Args, context: StoryContext) {
+  const id = `${context.name}_${args.type}_${componentId++}`;
+
+  function customIcon(iconType: string) {
+    const icon = iconType === 'svg' ? args.customIconSvg : args.customIconImg;
+    return html`<span class="card-control--icon">${unsafeHTML(icon)}</span>`;
+  }
+
+  function icon(icon: string) {
+    return icon && icon !== 'none'
+      ? html`<post-icon class="card-control--icon" name="${icon}" aria-hidden="true"></post-icon>`
+      : nothing;
+  }
+
+  function description(description: string) {
+    return description
+      ? html`<span class="card-control--description">${description}</span>`
+      : nothing;
+  }
+
+  return html`<post-linkarea class="card-control">
+    <input
+      id=${id}
+      type=${args.type}
+      checked=${args.checked ? 'checked' : nothing}
+      disabled=${args.disabled ? 'disabled' : nothing}
+    />
+    <label for=${id}>${args.label}</label>
+    ${args.customIcon ? customIcon(args.customIcon) : icon(args.icon)}
+    ${description(args.description)}
+    <!-- custom content -->
+  </post-linkarea>`;
+}
+
+// STORIES
 type Story = StoryObj;
 
-export const DefaultNew: Story = {
+export const Default: Story = {};
+
+export const CustomIcon: Story = {
   args: {
-    checked: false,
-    disabled: false,
-    label: 'Label',
-    icon: 'component',
-    // description: 'This is a description',
+    customIcon: 'svg',
+    customIconSvg:
+      '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" viewBox="-31.5 0 319 319"><defs><path id="a" d="M9.872 293.324.012 30.574C-.315 21.895 6.338 14.54 15.005 14L238.494.032c8.822-.552 16.42 6.153 16.972 14.975.02.332.031.665.031.998v286.314c0 8.839-7.165 16.004-16.004 16.004-.24 0-.48-.005-.718-.016l-213.627-9.595c-8.32-.373-14.963-7.065-15.276-15.388Z"/></defs><mask id="b" fill="#fff"><use xlink:href="#a"/></mask><use xlink:href="#a" fill="#FF4785"/><path fill="#fff" d="m188.665 39.127 1.527-36.716L220.884 0l1.322 37.863a2.387 2.387 0 0 1-3.864 1.96l-11.835-9.325-14.013 10.63a2.387 2.387 0 0 1-3.829-2.001Zm-39.251 80.853c0 6.227 41.942 3.243 47.572-1.131 0-42.402-22.752-64.684-64.415-64.684-41.662 0-65.005 22.628-65.005 56.57 0 59.117 79.78 60.249 79.78 92.494 0 9.052-4.433 14.426-14.184 14.426-12.705 0-17.729-6.49-17.138-28.552 0-4.786-48.458-6.278-49.936 0-3.762 53.466 29.548 68.887 67.665 68.887 36.935 0 65.892-19.687 65.892-55.326 0-63.36-80.961-61.663-80.961-93.06 0-12.728 9.455-14.425 15.07-14.425 5.909 0 16.546 1.042 15.66 24.801Z" mask="url(#b)"/></svg>',
+    customIconImg: '<img src="https://picsum.photos/id/38/100/50" alt="My Custom Icon Image"/>',
   },
-  render: (args: Args) => {
-    function icon(icon: string) {
-      return icon
-        ? html`<post-icon class="card-control--icon" name="${icon}" aria-hidden="true"></post-icon>`
-        : nothing;
-    }
+  argTypes: {
+    customIcon: {
+      name: 'Custom Icon',
+      control: {
+        type: 'radio',
+        labels: {
+          svg: 'Vector Graphic',
+          img: 'Pixel Image',
+        },
+      },
+      options: ['svg', 'img'],
+    },
+  },
+};
 
-    function description(description: string) {
-      return description
-        ? html`<span class="card-control--description">${description}</span>`
-        : nothing;
-    }
+const COMPONENT_TYPES = ['radio', 'checkbox'];
+const PALETTE_TYPES = ['default', 'alternate', 'accent', 'brand'];
+const COLOR_SCHEMES = ['light', 'dark'];
 
-    function cardControl(a: Args) {
-      return html`<label class="card-control ${a.classes ?? ''}">
-        <input
-          type=${a.type}
-          checked=${a.checked ? 'checked' : nothing}
-          disabled=${a.disabled ? 'disabled' : nothing}
-        />
-        <span class="card-control--label">${a.label}</span>
-        ${icon(a.icon)} ${description(a.description)}
-        <!-- <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-        </ul> -->
-      </label>`;
-    }
-
+export const Draft: Story = {
+  args: {
+    icon: 'component',
+  },
+  render: (args: Args, context: StoryContext) => {
     return html`
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col">
-          <p class="text-center">Light Mode</p>
+        <div class="col-2">
+          <p class="text-right">Color Scheme</p>
+          <p>Palette Type</p>
         </div>
-        <div class="col">
-          <p class="text-center">Dark Mode</p>
-        </div>
+        ${COLOR_SCHEMES.map(
+          scheme =>
+            html`<div class="col">
+              <p class="text-center" style="text-transform: capitalize">${scheme}</p>
+            </div>`,
+        )}
       </div>
 
-      ${['default', 'alternate', 'accent', 'brand'].map(
-        palette =>
-          html`<div class="row g-0">
-            <div class="col-2 align-self-center">
-              <p style="text-transform: capitalize;">${palette}</p>
-            </div>
-            <div class="col">
-              <fieldset class="m-0 palette palette-${palette} p-32">
-                ${cardControl(args)}
-                ${cardControl({ ...args, label: 'Hover', classes: 'pretend-hover' })}
-                ${cardControl({ ...args, label: 'Disabled', disabled: true })}
-                ${cardControl({ ...args, label: 'Checked', checked: true })}
-                ${cardControl({
-                  ...args,
-                  label: 'Checked, Hover',
-                  checked: true,
-                  classes: 'pretend-hover',
-                })}
-                ${cardControl({
-                  ...args,
-                  label: 'Checked, Disabled',
-                  checked: true,
-                  disabled: true,
-                })}
-              </fieldset>
-            </div>
-
-            <div class="col" data-color-scheme="dark">
-              <fieldset class="m-0 palette palette-${palette} p-32">
-                ${cardControl(args)}
-                ${cardControl({ ...args, label: 'Hover', classes: 'pretend-hover' })}
-                ${cardControl({ ...args, label: 'Disabled', disabled: true })}
-                ${cardControl({ ...args, label: 'Checked', checked: true })}
-                ${cardControl({
-                  ...args,
-                  label: 'Checked, Hover',
-                  checked: true,
-                  classes: 'pretend-hover',
-                })}
-                ${cardControl({
-                  ...args,
-                  label: 'Checked, Disabled',
-                  checked: true,
-                  disabled: true,
-                })}
-              </fieldset>
-            </div>
-          </div>`,
+      ${COMPONENT_TYPES.map(
+        type =>
+          html`${PALETTE_TYPES.map(
+            palette =>
+              html`<div class="row g-0">
+                <div class="col-2 align-self-center">
+                  <p style="text-transform: capitalize">${palette}</p>
+                </div>
+                ${COLOR_SCHEMES.map(
+                  scheme =>
+                    html` <div class="col" data-color-scheme=${scheme}>
+                      <fieldset class="m-0 palette palette-${palette} p-32">
+                        ${Default.render?.({ ...args, type, label: 'Enabled, Hover' }, context)}
+                        ${Default.render?.(
+                          { ...args, type, label: 'Disabled', disabled: true },
+                          context,
+                        )}
+                        ${Default.render?.(
+                          { ...args, type, label: 'Checked', checked: true },
+                          context,
+                        )}
+                        ${Default.render?.(
+                          {
+                            ...args,
+                            type,
+                            label: 'Checked, Disabled',
+                            checked: true,
+                            disabled: true,
+                          },
+                          context,
+                        )}
+                      </fieldset>
+                    </div>`,
+                )}
+              </div>`,
+          )}`,
       )}
     `;
   },
 };
 
-let cardControlId = 0;
-const CONTROL_LABELS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
+// let cardControlId = 0;
+// const CONTROL_LABELS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
 
-// Firefox fallback for the :has selector
-function inputHandler(e: InputEvent, updateArgs: (newArgs: Partial<Args>) => void) {
-  const target = e.target as HTMLInputElement;
-  updateArgs({ checked: target.checked });
+// // Firefox fallback for the :has selector
+// function inputHandler(e: InputEvent, updateArgs: (newArgs: Partial<Args>) => void) {
+//   const target = e.target as HTMLInputElement;
+//   updateArgs({ checked: target.checked });
 
-  // Fix input events not fired on "deselected" radio buttons
-  target
-    .closest('fieldset')
-    ?.querySelectorAll('.radio-button-card')
-    .forEach(e => e?.classList.remove('checked'));
-  target.parentElement?.classList.toggle('checked', target.checked);
-}
+//   // Fix input events not fired on "deselected" radio buttons
+//   target
+//     .closest('fieldset')
+//     ?.querySelectorAll('.radio-button-card')
+//     .forEach(e => e?.classList.remove('checked'));
+//   target.parentElement?.classList.toggle('checked', target.checked);
+// }
 
-export const Default = {
-  parameters: {
-    controls: {
-      exclude: ['Group Validation'],
-    },
-  },
-  render: (args: Args) => {
-    const [id] = useState(args.id ?? cardControlId++);
-    const [_, updateArgs] = useArgs();
+// export const Default = {
+//   parameters: {
+//     controls: {
+//       exclude: ['Group Validation'],
+//     },
+//   },
+//   render: (args: Args) => {
+//     const [id] = useState(args.id ?? cardControlId++);
+//     const [_, updateArgs] = useArgs();
 
-    // Conditional classes
-    const cardClasses = mapClasses({
-      'checked': args.checked,
-      'disabled': args.disabled,
-      'is-invalid': args.validation === 'is-invalid',
-      'checkbox-button-card': args.type === 'checkbox',
-      'radio-button-card': args.type === 'radio',
-    });
-    const validationClass = args.validation !== 'null' ? `${args.validation}` : undefined;
+//     // Conditional classes
+//     const cardClasses = mapClasses({
+//       'checked': args.checked,
+//       'disabled': args.disabled,
+//       'is-invalid': args.validation === 'is-invalid',
+//       'checkbox-button-card': args.type === 'checkbox',
+//       'radio-button-card': args.type === 'radio',
+//     });
+//     const validationClass = args.validation !== 'null' ? `${args.validation}` : undefined;
 
-    // Child components
-    const controlId = `CardControl_${id}`;
-    const description = html`<span class="fs-11">${args.description}</span>`;
-    const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
-    const invalidFeedback = html`<p
-      class="invalid-feedback mt-8"
-      id="${args.validation}-id-${controlId}"
-    >
-      Invalid feedback
-    </p>`;
+//     // Child components
+//     const controlId = `CardControl_${id}`;
+//     const description = html`<span class="fs-11">${args.description}</span>`;
+//     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
+//     const invalidFeedback = html`<p
+//       class="invalid-feedback mt-8"
+//       id="${args.validation}-id-${controlId}"
+//     >
+//       Invalid feedback
+//     </p>`;
 
-    return html`
-      <div class="${cardClasses}">
-        <input
-          id="${controlId}"
-          name="${args.type}-button-card-${args.inputName ?? `control_${id}`}"
-          class="${ifDefined(validationClass)}"
-          type="${args.type}"
-          ?disabled="${args.disabled}"
-          .checked="${args.checked}"
-          checked="${args.checked || nothing}"
-          @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
-          aria-describedby="${args.validation != 'null'
-            ? `${args.validation}-id-${controlId}`
-            : nothing}"
-          aria-invalid="${args.validation != 'null' ? true : nothing}"
-        />
-        <label for="${controlId}">
-          <span>${args.label}</span>
-          ${args.description ? description : nothing}
-        </label>
-        ${args.icon !== 'none' ? icon : nothing}
-      </div>
-      ${args.validation === 'is-invalid' && !args.GroupValidation ? invalidFeedback : nothing}
-    `;
-  },
-};
+//     return html`
+//       <div class="${cardClasses}">
+//         <input
+//           id="${controlId}"
+//           name="${args.type}-button-card-${args.inputName ?? `control_${id}`}"
+//           class="${ifDefined(validationClass)}"
+//           type="${args.type}"
+//           ?disabled="${args.disabled}"
+//           .checked="${args.checked}"
+//           checked="${args.checked || nothing}"
+//           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
+//           aria-describedby="${args.validation != 'null'
+//             ? `${args.validation}-id-${controlId}`
+//             : nothing}"
+//           aria-invalid="${args.validation != 'null' ? true : nothing}"
+//         />
+//         <label for="${controlId}">
+//           <span>${args.label}</span>
+//           ${args.description ? description : nothing}
+//         </label>
+//         ${args.icon !== 'none' ? icon : nothing}
+//       </div>
+//       ${args.validation === 'is-invalid' && !args.GroupValidation ? invalidFeedback : nothing}
+//     `;
+//   },
+// };
 
-export const CustomContent: Story = {
-  render: Default.render,
-};
+// export const CustomContent: Story = {
+//   render: Default.render,
+// };
 
-function col(label: string, args: Args, useState: useStateFn) {
-  const [id] = useState(cardControlId++);
+// function col(label: string, args: Args, useState: useStateFn) {
+//   const [id] = useState(cardControlId++);
 
-  return html`
-    <div class="col-sm-6">
-      ${Default.render({
-        ...args,
-        id,
-        label,
-        inputName: args.type === 'radio' ? 'group' : `control-${id}`,
-        checked: false,
-        GroupValidation: true,
-        validation: args.validation,
-      })}
-    </div>
-  `;
-}
+//   return html`
+//     <div class="col-sm-6">
+//       ${Default.render({
+//         ...args,
+//         id,
+//         label,
+//         inputName: args.type === 'radio' ? 'group' : `control-${id}`,
+//         checked: false,
+//         GroupValidation: true,
+//         validation: args.validation,
+//       })}
+//     </div>
+//   `;
+// }
 
-export const Group = {
-  parameters: {
-    controls: {
-      include: ['Type', 'Validation'],
-    },
-  },
-  render: (args: Args) => {
-    const invalidFeedback = html`
-      <p id="invalid-feedback" class="d-inline-flex mt-16 invalid-feedback">Invalid choice</p>
-    `;
+// export const Group = {
+//   parameters: {
+//     controls: {
+//       include: ['Type', 'Validation'],
+//     },
+//   },
+//   render: (args: Args) => {
+//     const invalidFeedback = html`
+//       <p id="invalid-feedback" class="d-inline-flex mt-16 invalid-feedback">Invalid choice</p>
+//     `;
 
-    return html`
-      <fieldset class="container-fluid">
-        <legend aria-describedby="invalid-feedback">Legend</legend>
-        <div class="row g-16">${CONTROL_LABELS.map(n => col(n, args, useState))}</div>
-        ${args.validation === 'is-invalid' ? invalidFeedback : nothing}
-      </fieldset>
-    `;
-  },
-};
+//     return html`
+//       <fieldset class="container-fluid">
+//         <legend aria-describedby="invalid-feedback">Legend</legend>
+//         <div class="row g-16">${CONTROL_LABELS.map(n => col(n, args, useState))}</div>
+//         ${args.validation === 'is-invalid' ? invalidFeedback : nothing}
+//       </fieldset>
+//     `;
+//   },
+// };

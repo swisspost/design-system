@@ -7,10 +7,6 @@
 
 tokens.$default-map: components.$post-card-control;
 
-/*
-* There are a whole bunch of !important statments in this file.
-* They are necessary and should not be removed, because we need to override the .form-check styles here.
-*/
 fieldset {
   .card-control {
     &:not(:last-child) {
@@ -20,6 +16,9 @@ fieldset {
 }
 
 .card-control {
+  --post-current-bg: var(--post-card-control-bg);
+  --post-current-fg: var(--post-card-control-fg);
+
   --post-card-control-scheme: #{tokens.get('card-control-unselected-scheme')};
   --post-card-control-padding: 1rem;
   --post-card-control-bg: #{tokens.get('card-control-unselected-bg')};
@@ -31,15 +30,10 @@ fieldset {
   --post-card-control-color: #{tokens.get('card-control-unselected-fg')};
 
   --post-card-control-input-margin-block: 4px;
-
-  --post-card-control-padding-block: 1px;
+  --post-card-control-label-padding-block: 1px;
   --post-card-control-label-font-weight: 700;
-
   --post-card-control-icon-size: 32px;
-
   --post-card-control-description-font-size: 1rem;
-
-  // --------------------------------------------------
 
   display: grid;
   grid-template-areas: 'input label icon';
@@ -57,8 +51,7 @@ fieldset {
 
   @include utility-mx.focus-style();
 
-  &:hover,
-  &.pretend-hover {
+  &:not(:has(input:disabled)):hover {
     --post-card-control-border-color: #{tokens.get('card-control-unselected-hovered-stroke')};
     --post-card-control-color: #{tokens.get('card-control-unselected-hovered-fg')};
   }
@@ -76,9 +69,7 @@ fieldset {
     --post-card-control-border-color: #{tokens.get('card-control-selected-stroke')};
     --post-card-control-color: #{tokens.get('card-control-selected-fg')};
 
-    &:hover,
-    // TODO: remove the following selector for prod
-    &.pretend-hover {
+    &:not(:has(input:disabled)):hover {
       --post-card-control-border-color: #{tokens.get('card-control-selected-hovered-stroke')};
       --post-card-control-color: #{tokens.get('card-control-selected-hovered-fg')};
     }
@@ -91,49 +82,73 @@ fieldset {
   }
 
   > * {
-    // WARNING: keeping the color-scheme on all child elements, prevents the focus-outline from having the wrong color in some color combinations.
+    // HINT: keeping the color-scheme on the child elements, prevents the focus-outline from having the wrong color in some cases.
     color-scheme: var(--post-card-control-scheme);
-    display: block;
-    // every non-standard content is located on: row 2, column 'label' & 'icon'
-    grid-area: 2 / label / 2 / icon;
+
+    // every non-standard content is located on: row 2, column 'label' to 'icon'
+    grid-row: 2;
+    grid-column: label / icon;
   }
 
   &:has(> .card-control--description) > * {
-    // if description is present, every non-standard content is located on: row 3, column 'label' & 'icon'
-    grid-area: 3 / label / 3 / icon;
+    // if description is present, every non-standard content is located on: row 3, column 'label' to 'icon'
+    grid-row: 3;
   }
 
   > input {
-    grid-area: input !important;
+    grid-row: 1;
+    grid-column: input !important;
     margin: var(--post-card-control-input-margin-block) 0 !important;
     outline: 0 none !important;
-    // TODO: keep that during development and decide at the end if it can stay
-    border-color: var(--post-card-control-color) !important;
     transition: none !important;
 
-    &:checked::after {
-      background-color: var(--post-card-control-color) !important;
+    &[type='checkbox'] {
+      @include forms-mx.checkbox(
+        $custom-hover-selector: '.card-control:hover > input:not([disabled])'
+      );
     }
 
-    &[type='checkbox'] {
-      @include forms-mx.checkbox($omitHover: true);
+    &[type='radio'] {
+      @include forms-mx.radio-button(
+        $custom-hover-selector: '.card-control:hover > input:not([disabled])'
+      );
     }
   }
 
-  > .card-control--label {
-    grid-area: label;
-    padding-block: var(--post-card-control-padding-block);
+  > label {
+    grid-row: 1;
+    grid-column: label / icon;
+    padding-block: var(--post-card-control-label-padding-block);
     font-weight: var(--post-card-control-label-font-weight);
+    cursor: inherit;
+  }
+
+  &:has(> .card-control--icon) {
+    > label {
+      grid-column: label;
+    }
   }
 
   > .card-control--icon {
-    grid-area: icon;
+    grid-row: 1;
+    grid-column: icon;
     font-size: var(--post-card-control-icon-size);
     line-height: 1;
+
+    &:not(post-icon) {
+      width: 1em;
+      height: 1em;
+
+      > * {
+        width: auto !important;
+        height: 100% !important;
+      }
+    }
   }
 
   > .card-control--description {
-    grid-area: 2 / label / 2 / icon;
+    grid-row: 2;
+    grid-column: label / icon;
     align-items: start;
     font-size: var(--post-card-control-description-font-size);
   }
