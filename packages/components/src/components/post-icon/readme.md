@@ -7,16 +7,16 @@ some content
 
 ## Properties
 
-| Property            | Attribute   | Description                                                                                                               | Type                                                                           | Default     |
-| ------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------- |
-| `animation`         | `animation` | The name of the animation.                                                                                                | `"cylon" \| "cylon-vertical" \| "fade" \| "spin" \| "spin-reverse" \| "throb"` | `undefined` |
-| `base`              | `base`      | The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url. | `string`                                                                       | `undefined` |
-| `flipH`             | `flip-h`    | When set to `true`, the icon will be flipped horizontally.                                                                | `boolean`                                                                      | `false`     |
-| `flipV`             | `flip-v`    | When set to `true`, the icon will be flipped vertically.                                                                  | `boolean`                                                                      | `false`     |
-| `name` _(required)_ | `name`      | The name/id of the icon (e.g. 1000, 1001, ...).                                                                           | `string`                                                                       | `undefined` |
-| `rotate`            | `rotate`    | The number of degree for the css rotate transformation.                                                                   | `number`                                                                       | `undefined` |
-| `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`                                                                       | `undefined` |
-| `url`               | `url`       | A full URL to the icon file. When set, this property has the highest priority.                                            | `string`                                                                       | `undefined` |
+| Property            | Attribute   | Description                                                                                                               | Type      | Default     |
+| ------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `animation`         | `animation` | The name of the animation.                                                                                                | `string`  | `undefined` |
+| `base`              | `base`      | The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url. | `string`  | `undefined` |
+| `flipH`             | `flip-h`    | When set to `true`, the icon will be flipped horizontally.                                                                | `boolean` | `false`     |
+| `flipV`             | `flip-v`    | When set to `true`, the icon will be flipped vertically.                                                                  | `boolean` | `false`     |
+| `name` _(required)_ | `name`      | The name/id of the icon (e.g. 1000, 1001, ...).                                                                           | `string`  | `undefined` |
+| `rotate`            | `rotate`    | The number of degree for the css rotate transformation.                                                                   | `number`  | `undefined` |
+| `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`  | `undefined` |
+| `url`               | `url`       | A full URL to the icon file. When set, this property has the highest priority.                                            | `string`  | `undefined` |
 
 
 ## Dependencies
