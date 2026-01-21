@@ -4,9 +4,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "components": [
-        "dist/components"
-      ]
+      "components": ["dist/components"]
     },
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
@@ -21,9 +19,10 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false
+    "module": "esnext",
+    "target": "es2021",
+    "useDefineForClassFields": false,
+    "lib": ["es2021", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
