@@ -25,6 +25,11 @@ import {
   PostStepper,
   PostStepperItem,
 } from '@swisspost/design-system-components-react/server';
+import {
+  PostIconExplosives,
+  PostIconLetter,
+  PostIconLetterSolid,
+} from '@swisspost/design-system-components-react/icons';
 
 export default function Home() {
   return (
@@ -224,6 +229,47 @@ export default function Home() {
         textFirst="First page"
         textLast="Last page"
       />
+
+      <h2>Icons</h2>
+      <div className="d-flex gap-16 flex-wrap">
+        <style>{'post-icon { font-size: 32px }'}</style>
+        <figure>
+          <PostIconLetter></PostIconLetter>
+          <figcaption>Line Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetterSolid></PostIconLetterSolid>
+          <figcaption>Solid Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter style={{ color: 'red' }}></PostIconLetter>
+          <figcaption>Colored Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter style={{ fontSize: '2em' }}></PostIconLetter>
+          <figcaption>Sized Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives flipH={true}></PostIconExplosives>
+          <figcaption>Flipped Horizontally</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives flipV={true}></PostIconExplosives>
+          <figcaption>Flipped Vertically</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter rotate={90}></PostIconLetter>
+          <figcaption>Rotated</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter scale={1.5}></PostIconLetter>
+          <figcaption>Scaled</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter animation={'spin'}></PostIconLetter>
+          <figcaption>Spinning</figcaption>
+        </figure>
+      </div>
     </>
   );
 }

@@ -8,11 +8,13 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
+import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
+export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
 export namespace Components {
@@ -228,7 +230,7 @@ export namespace Components {
         /**
           * Toggles the burger navigation menu.
          */
-        "toggleBurgerMenu": (force?: boolean) => Promise<void>;
+        "toggleBurgerMenu": (nextExtendedState?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -237,7 +239,7 @@ export namespace Components {
         /**
           * The name of the animation.
          */
-        "animation"?: Animation;
+        "animation"?: PostIconAnimation;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
@@ -264,6 +266,10 @@ export namespace Components {
           * The number for the css scale transformation.
          */
         "scale"?: number;
+        /**
+          * A full URL to the icon file. When set, this property has the highest priority.
+         */
+        "url"?: string;
     }
     interface PostLanguageMenu {
         /**
@@ -1259,7 +1265,7 @@ declare namespace LocalJSX {
         /**
           * The name of the animation.
          */
-        "animation"?: Animation;
+        "animation"?: PostIconAnimation;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
@@ -1286,6 +1292,10 @@ declare namespace LocalJSX {
           * The number for the css scale transformation.
          */
         "scale"?: number;
+        /**
+          * A full URL to the icon file. When set, this property has the highest priority.
+         */
+        "url"?: string;
     }
     interface PostLanguageMenu {
         /**
