@@ -101,6 +101,9 @@
         "zone.js": ">=0.14"
       }
     },
-    "overrides": {}
+    "overrides": {
+      "@angular/core": "21.1.0",
+      "@angular/common": "21.1.0"
+    }
   }
 }
