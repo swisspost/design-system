@@ -13,17 +13,16 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
     "paths": {
-      "intranet-header": [
-        "dist/intranet-header/intranet-header",
-        "dist/intranet-header"
-      ]
+      "intranet-header": ["dist/intranet-header/intranet-header", "dist/intranet-header"]
     },
+    "lib": ["es2020", "dom"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
