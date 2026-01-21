@@ -1,5 +1,12 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated icons:
+  - `gendermale` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7028](https://github.com/swisspost/design-system/pull/7028))
+
 ## 10.0.0-next.57
 
 ### Minor Changes
