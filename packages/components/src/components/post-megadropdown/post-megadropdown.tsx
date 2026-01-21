@@ -399,7 +399,7 @@ export class PostMegadropdown {
                 onClick={() => this.hide(true)}
                 class="close-button"
                 size="small"
-                placement="inside"
+                placement="manual"
               >
                 {this.textClose}
               </post-closebutton>

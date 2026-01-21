@@ -20,7 +20,8 @@ const meta: MetaComponent = {
   args: {
     'slots-default': 'Close',
     'buttonType': 'button',
-    'small': false,
+    'size': 'default',
+    'placement': 'auto',
   },
   argTypes: {
     'slots-default': {
@@ -39,7 +40,8 @@ function getCloseButtonRenderer(extraClasses?: string) {
     <post-closebutton
       button-type=${args.buttonType !== 'button' ? args.buttonType : nothing}
       class=${extraClasses ?? nothing}
-      small="${args.small || nothing}
+      size="${args.size !== 'default' ? args.size : nothing}"
+      placement="${args.placement !== 'auto' ? args.placement : nothing}"
     >
       ${unsafeHTML(args['slots-default'])}
     </post-closebutton>
@@ -56,11 +58,9 @@ export const Default: Story = {
   ],
 };
 
-export const Positioning: Story = {
+export const AutomaticPositioning: Story = {
   render: (args: Args) => {
-    const renderCloseButton = getCloseButtonRenderer(
-      'position-absolute top-0 start-100 translate-middle',
-    );
+    const renderCloseButton = getCloseButtonRenderer();
     return html` <div class="position-relative">Closable element ${renderCloseButton(args)}</div> `;
   },
 };

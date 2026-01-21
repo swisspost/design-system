@@ -176,14 +176,15 @@ export namespace Components {
          */
         "buttonType"?: ButtonType;
         /**
-          * Defines whether the close button appears inside the element or overlayed outside its top-right corner.
-          * @default 'outside'
+          * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
+          * @default 'auto'
          */
         "placement": Placement;
         /**
           * The size of the close button.
+          * @default 'default'
          */
-        "size"?: Size;
+        "size": Size;
     }
     interface PostCollapsible {
         /**
@@ -1205,12 +1206,13 @@ declare namespace LocalJSX {
          */
         "buttonType"?: ButtonType;
         /**
-          * Defines whether the close button appears inside the element or overlayed outside its top-right corner.
-          * @default 'outside'
+          * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
+          * @default 'auto'
          */
         "placement"?: Placement;
         /**
           * The size of the close button.
+          * @default 'default'
          */
         "size"?: Size;
     }

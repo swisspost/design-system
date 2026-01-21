@@ -7,8 +7,10 @@
 
 .mock-element {
   position: relative;
-  height: 2rem;
-  width: 3rem;
+  height: 50px;
+  width: 50px;
+  padding-block-start: 8px;
+  padding-inline-end: 8px;
   border-block-end-width: 0;
   border-inline-start-width: 0;
   border-start-start-radius: 0;

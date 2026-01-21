@@ -1,4 +1,4 @@
-import { AttachInternals, Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkEmptyOrOneOf, checkRequiredAndOneOf } from '@/utils';
 import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
@@ -9,14 +9,12 @@ import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './ty
 @Component({
   tag: 'post-closebutton',
   styleUrl: 'post-closebutton.scss',
-  shadow: true,
-  formAssociated: true,
+  shadow: false,
 })
 export class PostClosebutton {
   private mutationObserver = new MutationObserver(this.checkContent.bind(this));
 
   @Element() host: HTMLPostClosebuttonElement;
-  @AttachInternals() internals!: ElementInternals;
 
   /**
    * The "type" attribute used for the close button
@@ -29,9 +27,9 @@ export class PostClosebutton {
   }
 
   /**
-   * Defines whether the close button appears inside the element or overlayed outside its top-right corner.
+   * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
    */
-  @Prop({ reflect: true }) placement: Placement = 'outside';
+  @Prop({ reflect: true }) placement: Placement = 'auto';
 
   @Watch('placement')
   validatePlacement() {
@@ -41,11 +39,11 @@ export class PostClosebutton {
   /**
    * The size of the close button.
    */
-  @Prop({ reflect: true }) size?: Size;
+  @Prop({ reflect: true }) size: Size = 'default';
 
   @Watch('size')
   validateSize() {
-    checkEmptyOrOneOf(this, 'size', SIZE);
+    checkRequiredAndOneOf(this, 'size', SIZE);
   }
 
   componentDidLoad() {
@@ -66,27 +64,12 @@ export class PostClosebutton {
     }
   }
 
-  private handleClick() {
-    const form = this.internals.form;
-    if (!form) return;
-
-    if (this.buttonType === 'submit') {
-      if (typeof form.requestSubmit === 'function') {
-        form.requestSubmit();
-      } else {
-        form.submit();
-      }
-    } else if (this.buttonType === 'reset') {
-      form.reset();
-    }
-  }
-
   private checkContent() {
     this.validateButtonType();
     this.validatePlacement();
     this.validateSize();
 
-    if (!this.host.textContent) {
+    if (!this.host.querySelector('.visually-hidden').textContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
   }
@@ -94,11 +77,7 @@ export class PostClosebutton {
   render() {
     return (
       <Host data-version={version}>
-        <button
-          type={this.buttonType}
-          class="btn btn-icon btn-secondary btn-sm"
-          onClick={this.handleClick.bind(this)}
-        >
+        <button type={this.buttonType} class="btn btn-icon btn-secondary btn-sm">
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
             <slot></slot>

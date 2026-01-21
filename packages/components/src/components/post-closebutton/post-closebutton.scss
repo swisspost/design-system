@@ -8,24 +8,27 @@
 
 tokens.$default-map: components.$post-close;
 
-.btn {
-  background-color: tokens.get('close-enabled-bg');
-
-  &:hover {
-    background-color: tokens.get('close-hover-bg');
+post-closebutton {
+  &[size="small"] {
+    .btn {
+      height: tokens.get('close-small-size');
+      width: tokens.get('close-small-size');
+    }
   }
-}
 
-:host([placement="outside"]) {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-end: 0;
-  transform: translate(50%, -50%);
-}
+  &:not([placement]),
+  &[placement="auto"] {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    transform: translate(50%, -50%);
+  }
 
-:host([size="small"]) {
   .btn {
-    height: tokens.get('close-small-size');
-    width: tokens.get('close-small-size');
+    background-color: tokens.get('close-enabled-bg');
+
+    @include utilities.not-disabled-hover {
+      background-color: tokens.get('close-hover-bg');
+    }
   }
 }
