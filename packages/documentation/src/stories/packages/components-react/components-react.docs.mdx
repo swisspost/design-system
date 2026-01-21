@@ -69,7 +69,7 @@ The SSR entry point is needed for server-side rendering (e.g. in a NextJS projec
 <Source code={SSRSample} language="typescript" />
 
 ### Icons
-The package now includes generated React Server Component icon exports built from `@swisspost/design-system-icons`, therefore it's no longer necessary to have the icons package installed as a dependency to use icons. Import react- and SSR-ready icons directly like:
+The package now includes generated React Server Component icon exports built from `@swisspost/design-system-icons`, therefore it's no longer necessary to have the icons package installed as a dependency to use icons. Under the hood, the `<post-icon>` component is being used to render the icons consistently, therefore also all the properties from this component are available for the react icons. See the [icon documentation](https://next.design-system.post.ch/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs) for more information on it's features. Import react- and SSR-ready icons directly like:
 
 <Source code={IconSample} language="typescript" />
 </PackageDocs>
