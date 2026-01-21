@@ -20,7 +20,7 @@ export class PostIcon {
   /**
    * The name of the animation.
    */
-  @Prop() readonly animation?: Animation;
+  @Prop({ reflect: true }) readonly animation?: PostIconAnimation;
 
   @Watch('animation')
   validateAnimation() {
@@ -45,12 +45,12 @@ export class PostIcon {
   /**
    * When set to `true`, the icon will be flipped horizontally.
    */
-  @Prop() readonly flipH?: boolean = false;
+  @Prop({ reflect: true }) readonly flipH?: boolean = false;
 
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
-  @Prop() readonly flipV?: boolean = false;
+  @Prop({ reflect: true }) readonly flipV?: boolean = false;
 
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
