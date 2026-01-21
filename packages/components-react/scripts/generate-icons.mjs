@@ -13,8 +13,7 @@ const OUTPUT_DIR = path.resolve(process.cwd(), 'src/icons-generated');
  * @param {string} svgInnerContent
  * @returns
  */
-const getComponentTemplate = (iconName, base64) => `/* eslint-disable */
-/* Auto-generated file. Do not edit directly. */
+const getComponentTemplate = (iconName, base64) => `/* Auto-generated file. Do not edit directly. */
 import * as React from "react";
 import { PostIcon } from "../index.server";
 import type { StencilReactComponent } from "@stencil/react-output-target/runtime";
@@ -35,8 +34,7 @@ export default ${iconName};
  * @param {string[]} iconNames
  * @returns
  */
-const getIndexFileTemplate = iconNames => `/* eslint-disable */
-/* Auto-generated file. Do not edit directly. */
+const getIndexFileTemplate = iconNames => `/* Auto-generated file. Do not edit directly. */
 ${iconNames.map(name => `export { default as ${name} } from './${name}';`).join('\n')}
 `;
 

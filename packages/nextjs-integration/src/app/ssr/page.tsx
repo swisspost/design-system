@@ -26,13 +26,9 @@ import {
   PostStepperItem,
 } from '@swisspost/design-system-components-react/server';
 import {
-  PostIconAccessblocked,
-  PostIconAccessblockedSolid,
-  PostIconCarbatteryleakSolid,
   PostIconExplosives,
   PostIconLetter,
   PostIconLetterSolid,
-  PostIconPrint,
 } from '@swisspost/design-system-components-react/icons';
 
 export default function Home() {
