@@ -18,9 +18,9 @@
     "linkDirectory": true
   },
   "peerDependencies": {
-    "@angular/common": "^19.0.0 || ^20.0.0",
-    "@angular/core": "^19.0.0 || ^20.0.0",
-    "primeng": "^19.0.0"
+    "@angular/common": "^19.0.0 || ^20.0.0 || ^21.0.0",
+    "@angular/core": "^19.0.0 || ^20.0.0 || ^21.0.0",
+    "primeng": "^21.0.4"
   },
   "dependencies": {
     "@swisspost/design-system-styles": "workspace:9.6.0",

@@ -165,7 +165,7 @@
   <ng-template #header let-columns>
     <tr>
       <th scope="col" style="width: 3rem"></th>
-      <th scope="col" *ngFor="let col of columns" pReorderableColumn>
+      <th scope="col" *@for="let col of columns" pReorderableColumn>
         {{ col.header }}
       </th>
     </tr>
@@ -175,7 +175,7 @@
       <td>
         <span pReorderableRowHandle></span>
       </td>
-      <td *ngFor="let col of columns">
+      <td *@for="let col of columns">
         {{ rowData[col.field] }}
       </td>
     </tr>
