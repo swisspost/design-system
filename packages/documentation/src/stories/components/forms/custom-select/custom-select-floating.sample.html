@@ -15,10 +15,10 @@
     Floatinglabel custom-select {{ infoText }}
   </label>
   <div aria-labelledby="customSelectLabel" class="w-100 mw-100" ngbDropdownMenu role="listbox">
+    @for (let option of options; track option){
     <button
       (click)="toggle.focus()"
       (focus)="selectedOption = option"
-      *@for="let option of options"
       [attr.aria-selected]="selectedOption?.value === option.value"
       [class.active]="selectedOption?.value === option.value"
       class="d-flex align-items-center"
@@ -28,7 +28,7 @@
       #option
     >
       <em aria-hidden="true" class="pi me-small-regular" [class]="'pi-' + option.icon"></em>
-      <span>{{ option.label }}</span>
-    </button>
+      <span>{{ option.label }}</span></button
+    >}
   </div>
 </div>

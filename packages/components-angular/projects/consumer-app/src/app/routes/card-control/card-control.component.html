@@ -34,20 +34,21 @@
     <div class="row">
       <div class="col-8">
         <legend>Post Card Control Radio Group</legend>
-        <ng-container *@for="let option of radioOptions; index as i">
+        @for (option of radioOptions; track option; let i = $index){<ng-container>
           <post-card-control
             [label]="option"
             type="radio"
             name="radio"
             [value]="option"
             formControlName="radio"
-          ></post-card-control>
-        </ng-container>
+          ></post-card-control> </ng-container
+        >}
       </div>
 
       <div class="col-4">
         <legend>Native Radio Group</legend>
-        <div *@for="let option of radioOptions; index as i" class="form-check">
+        @for (option of radioOptions; track option; let i = $index){
+        <div class="form-check">
           <input
             [id]="option"
             class="form-check-input"
@@ -57,6 +58,7 @@
           />
           <label [for]="option" class="form-check-label">{{ option }}</label>
         </div>
+        }
       </div>
     </div>
   </fieldset>
