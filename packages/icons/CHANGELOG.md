@@ -1,5 +1,42 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated icons:
+  - `gendermale` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7028](https://github.com/swisspost/design-system/pull/7028))
+
+## 10.0.0-next.57
+
+### Minor Changes
+
+- Added icons:
+  - `branchpartner` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6942](https://github.com/swisspost/design-system/pull/6942))
+
+- Added icons:
+  - `arrowtabulatorright` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `arrowupleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `contactlesspayment` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `handshake` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `infonocircle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `methodology` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `retour` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `sculpture` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `tractor` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `videofile` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6975](https://github.com/swisspost/design-system/pull/6975))
+
+- Added icons:
+  - `cogwheelrailway` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `garage` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mountainrailway` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `tools` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6987](https://github.com/swisspost/design-system/pull/6987))
+
+### Patch Changes
+
+- Updated icons:
+  - `globemeridian` (line): 16px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#6975](https://github.com/swisspost/design-system/pull/6975))
+
 ## 10.0.0-next.56
 
 ### Minor Changes

@@ -8,11 +8,13 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType } from "./components/post-closebutton/button-types";
+import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType } from "./components/post-closebutton/button-types";
+export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -207,13 +209,18 @@ export namespace Components {
     }
     interface PostHeader {
         /**
+          * Makes the header content span the full width on screens larger than 1440px.
+          * @default false
+         */
+        "fullWidth": boolean;
+        /**
           * The label of the burger menu button.
          */
         "textMenu": string;
         /**
           * Toggles the burger navigation menu.
          */
-        "toggleBurgerMenu": (force?: boolean) => Promise<void>;
+        "toggleBurgerMenu": (nextExtendedState?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -222,7 +229,7 @@ export namespace Components {
         /**
           * The name of the animation.
          */
-        "animation"?: Animation;
+        "animation"?: PostIconAnimation;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
@@ -249,6 +256,10 @@ export namespace Components {
           * The number for the css scale transformation.
          */
         "scale"?: number;
+        /**
+          * A full URL to the icon file. When set, this property has the highest priority.
+         */
+        "url"?: string;
     }
     interface PostLanguageMenu {
         /**
@@ -1218,6 +1229,11 @@ declare namespace LocalJSX {
     }
     interface PostHeader {
         /**
+          * Makes the header content span the full width on screens larger than 1440px.
+          * @default false
+         */
+        "fullWidth"?: boolean;
+        /**
           * The label of the burger menu button.
          */
         "textMenu": string;
@@ -1229,7 +1245,7 @@ declare namespace LocalJSX {
         /**
           * The name of the animation.
          */
-        "animation"?: Animation;
+        "animation"?: PostIconAnimation;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
@@ -1256,6 +1272,10 @@ declare namespace LocalJSX {
           * The number for the css scale transformation.
          */
         "scale"?: number;
+        /**
+          * A full URL to the icon file. When set, this property has the highest priority.
+         */
+        "url"?: string;
     }
     interface PostLanguageMenu {
         /**

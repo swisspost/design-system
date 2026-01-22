@@ -10,7 +10,7 @@ tokens.$default-map: components.$post-container;
 .section {
   container: section / inline-size;
   margin-inline: auto;
-  max-width: 1920px;
+  max-width: 1440px;
 
   > .container {
     --post-section-width: 100cqw;
