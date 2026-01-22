@@ -13,10 +13,10 @@
     <span *ngIf="selectedOption" aria-hidden="true">{{ selectedOption.label }}</span>
   </button>
   <div aria-labelledby="customSelectButton" class="w-100 mw-100" ngbDropdownMenu role="listbox">
-    @for (option of options; track option){
     <button
       (click)="toggle.focus()"
       (focus)="selectedOption = option"
+      *ngFor="let option of options"
       [attr.aria-selected]="selectedOption?.value === option.value"
       [class.active]="selectedOption?.value === option.value"
       class="d-flex align-items-center"
@@ -26,7 +26,7 @@
       #option
     >
       <em aria-hidden="true" class="pi me-small-regular" [class]="'pi-' + option.icon"></em>
-      <span>{{ option.label }}</span></button
-    >}
+      <span>{{ option.label }}</span>
+    </button>
   </div>
 </div>
