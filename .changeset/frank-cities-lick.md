@@ -1,6 +1,5 @@
 ---
 '@swisspost/design-system-components': patch
-'@swisspost/design-system-styles': patch
 ---
 
 Updated the focus behavior of the `post-linkarea` component.

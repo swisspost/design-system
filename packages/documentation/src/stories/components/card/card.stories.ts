@@ -164,7 +164,7 @@ export const Interactivity: Story = {
       title: 'Non-interactive card',
       body:
         'A non-interactive card is not clickable. ' +
-        'It contains however either none one or more interactive elements where each of them triggers different actions.',
+        'It contains however either none, one or more interactive elements where each of them triggers different actions.',
     })}
   `,
 };

@@ -24,10 +24,6 @@ tokens.$default-map: components.$post-cards;
     border: 0;
     box-shadow: tokens.get('card-interactive-elevation');
 
-    a.btn {
-      @include utilities-mx.focus-style-none;
-    }
-
     &:hover {
       background-color: tokens.get('card-hover-bg');
 
