@@ -33,12 +33,14 @@ The value inside the `<post-closebutton>` element will be rendered inside the bu
 By default, the `post-closebutton` positions itself automatically.
 This means the component applies its own positioning styles to place the button at the top-right corner of the element it closes.
 
-**Important:** for this to work as expected, the closable element must provide a positioning context.
-You must therefore add positioning styles to the closable element (for example by applying the `.position-relative` class).
+<post-banner type="info">
+  For this to work correctly, the closable element must be the **offset parent** of the close button.
+  The offset parent of an element is the nearest ancestor whose `position` is not `static`.
+  If no such ancestor exists, the offset parent defaults to the `body`.
 
-In case the space available around the closable element is not sufficient fit the close button with it's default position,
-you can use the `position="manual"`.
-It will then not be positioned at all, appearing as any other button, and you can add custom styles to place it wherever needed.
+  To make the closable element the offset parent, give it a non-static position.
+  You can do this by using utility classes such as `.position-relative` or `.position-absolute`.
+</post-banner>
 
 <Canvas sourceState="shown" of={CloseButtonStories.AutomaticPositioning} />
 
