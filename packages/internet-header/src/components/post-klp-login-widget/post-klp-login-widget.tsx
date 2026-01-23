@@ -43,6 +43,39 @@ export class PostKlpLoginWidget implements IsFocusable {
       environment: state.environment,
       ...{ platform },
     });
+
+    this.setupTracking();
+  }
+
+  private setupTracking() {
+    if (typeof window === 'undefined') return;
+
+    const root = this.host.shadowRoot;
+    if (!root) return;
+
+    root.addEventListener('click', event => {
+      const target = event.target as HTMLElement;
+
+      const settingsLink = target.closest<HTMLAnchorElement>(
+        '#authenticated-menu a[href*="/settings"]',
+      );
+
+      if (!settingsLink) return;
+
+      const linkText = settingsLink
+        .querySelector('.klp-widget-notification-link-text')
+        ?.textContent?.trim();
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'select_menu',
+        type: 'authenticated_menu',
+        label: 'settings',
+        text: linkText,
+        link_url: settingsLink.href,
+        additional_info: '',
+      });
+    });
   }
 
   /**
