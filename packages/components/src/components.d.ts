@@ -220,7 +220,7 @@ export namespace Components {
         /**
           * Toggles the burger navigation menu.
          */
-        "toggleBurgerMenu": (force?: boolean) => Promise<void>;
+        "toggleBurgerMenu": (nextExtendedState?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
