@@ -22,16 +22,16 @@ export class PostFooter {
   @Element() host: HTMLPostFooterElement;
 
   /**
-   * The label to add to the footer (visually hidden).
+   * The textFooter to add to the footer (visually hidden).
    */
-  @Prop({ reflect: true }) readonly label!: string;
+  @Prop({ reflect: true }) readonly textFooter!: string;
 
   @State() device: Device = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
 
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
+  @Watch('textFooter')
+  validateTextFooter() {
+    checkRequiredAndType(this, 'textFooter', 'string');
   }
 
   constructor() {
@@ -43,7 +43,7 @@ export class PostFooter {
   }
 
   componentWillLoad() {
-    this.validateLabel();
+    this.validateTextFooter();
 
     // initialize grid visibility by checking the content of each slot
     GRID_SLOTS.forEach(slotName => {
@@ -107,7 +107,7 @@ export class PostFooter {
     return (
       <Host data-version={version} data-color-scheme="light">
         <footer>
-          <h2 class="visually-hidden">{this.label}</h2>
+          <h2 class="visually-hidden">{this.textFooter}</h2>
 
           <div class="footer-container">
             <div class="footer-grid">

@@ -29,6 +29,13 @@
   );
   --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
 
+  // header height adapted for case when mobile menu is open and page is scrolled down
+  &:has([data-menu-extended]) {
+    --post-header-height: (
+      var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
+    );
+  }
+
   // microsite
   &:has(post-header post-mainnavigation) {
     --post-global-header-expanded-height: 4rem;

@@ -1,21 +1,22 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch, Listen, Prop } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { slideDown, slideUp } from '@/animations/slide';
-import { getFocusableChildren } from '@/utils/get-focusable-children';
+import { fade } from '@/animations';
+import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
+import { AnimationOptions } from '@/animations/types';
+import { checkRequiredAndType } from '@/utils';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
- * @slot post-togglebutton - Holds the burger menu toggler.
  * @slot language-menu - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
- * @slot audience - Holds the list of buttons to choose the target group.
+ * @slot audience - Holds the list of buttons to choose the audience.
  * @slot post-login - Holds the user menu or login button in the global header.
  * @slot local-nav - Holds controls specific to the current application.
  */
@@ -28,16 +29,23 @@ import { EventFrom } from '@/utils/event-from';
 export class PostHeader {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
+  private burgerMenuButton: HTMLPostTogglebuttonElement | null;
   private burgerMenu: HTMLElement;
   private burgerMenuAnimation: Animation;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
+  private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasNavigation;
   }
+
+  private animationOptions: Partial<AnimationOptions> = {
+    duration: 350,
+    easing: 'headerEase',
+  };
 
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
@@ -66,10 +74,30 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasNavigation: boolean = false;
   @State() hasLocalNav: boolean = false;
-  @State() hasTargetGroup: boolean = false;
+  @State() hasAudience: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
+
+  /**
+   * Makes the header content span the full width on screens larger than 1440px.
+   */
+  @Prop({ reflect: true }) fullWidth = false;
+
+  @Watch('fullWidth')
+  validateFullWidth() {
+    checkRequiredAndType(this, 'fullWidth', 'boolean');
+  }
+
+  /**
+   * The label of the burger menu button.
+   */
+  @Prop({ reflect: true }) textMenu!: string;
+
+  @Watch('textMenu')
+  validateTextMenu() {
+    checkRequiredAndType(this, 'textMenu', 'string');
+  }
 
   @Watch('device')
   @Watch('burgerMenuExtended')
@@ -136,6 +164,8 @@ export class PostHeader {
   }
 
   componentDidRender() {
+    this.validateTextMenu();
+    this.validateFullWidth();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
@@ -178,10 +208,7 @@ export class PostHeader {
   private async closeBurgerMenu() {
     this.burgerMenuAnimation?.finish();
 
-    const menuButton = this.getMenuButton();
-    if (menuButton) {
-      menuButton.toggled = false;
-    }
+    if (this.burgerMenuButton) this.burgerMenuButton.toggled = false;
 
     this.burgerMenuExtended = false;
   }
@@ -190,26 +217,34 @@ export class PostHeader {
    * Toggles the burger navigation menu.
    */
   @Method()
-  async toggleBurgerMenu(force?: boolean) {
+  async toggleBurgerMenu(nextExtendedState = !this.burgerMenuExtended) {
     if (this.device === 'desktop') return;
+
+    // If already in the desired state, do nothing (prevents double-toggle)
+    if (nextExtendedState === this.burgerMenuExtended) {
+      return;
+    }
+
     this.burgerMenuAnimation = this.burgerMenuExtended
-      ? slideUp(this.burgerMenu)
-      : slideDown(this.burgerMenu);
+      ? fade(this.burgerMenu, 'out', this.animationOptions)
+      : fade(this.burgerMenu, 'in', this.animationOptions);
 
     // Update the state of the toggle button
-    const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
-    if (menuButton) menuButton.toggled = force ?? !this.burgerMenuExtended;
+    if (this.burgerMenuButton && this.burgerMenuButton.toggled !== nextExtendedState) {
+      this.burgerMenuButton.toggled = nextExtendedState;
+    }
 
     if (this.burgerMenuExtended) {
       // Wait for the close animation to finish before hiding megadropdowns
       await this.burgerMenuAnimation.finished;
-      this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
+      this.burgerMenuExtended = nextExtendedState;
 
       if (this.burgerMenuExtended === false) {
         this.closeAllMegadropdowns();
+        this.burgerMenu.scrollTop = 0;
       }
     } else {
-      this.burgerMenuExtended = force ?? !this.burgerMenuExtended;
+      this.burgerMenuExtended = nextExtendedState;
       // If opening, close any open megadropdowns immediately
       if (this.megadropdownOpen) {
         this.closeAllMegadropdowns();
@@ -224,48 +259,32 @@ export class PostHeader {
 
   // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
-    // Get elements in the correct order (different as the DOM order)
-    const focusableEls = [
-      ...Array.from(
-        this.host.querySelectorAll('.list-inline:not([slot="global-nav-secondary"]) > li'),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
-        ),
-      ),
-      ...Array.from(
-        this.host.querySelectorAll(
-          '.list-inline[slot="global-nav-secondary"] > li, post-language-menu-item',
-        ),
-      ),
-    ];
+    if (!this.burgerMenu) return;
 
-    // Add the main toggle menu button to the list of focusable children
-    const focusableChildren = [
-      this.host.querySelector('post-togglebutton'),
-      ...focusableEls.flatMap(el => Array.from(getFocusableChildren(el))),
-    ];
+    const focusableElements: HTMLElement[] = [this.burgerMenuButton];
 
-    this.firstFocusableEl = focusableChildren[0];
-    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
-  }
+    focusableElements.push(
+      ...getDeepFocusableChildren(this.localHeader, el => !el.matches('post-megadropdown')),
+      ...getDeepFocusableChildren(this.burgerMenu, el => !el.matches('post-megadropdown')),
+    );
 
-  private getMenuButton(): HTMLPostTogglebuttonElement | null {
-    return this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+    this.firstFocusableEl = focusableElements[0];
+    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
   }
 
   private keyboardHandler(e: KeyboardEvent) {
-    if (e.key === 'Tab' && this.burgerMenuExtended) {
-      if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
-        // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
-        e.preventDefault();
-        this.lastFocusableEl.focus();
-      } else if (!e.shiftKey && document.activeElement === this.lastFocusableEl) {
-        // If Tab and last element is focused, focus goes back to the first element of the megadropdown
-        e.preventDefault();
-        this.firstFocusableEl.focus();
-      }
+    if (e.key !== 'Tab' || !this.burgerMenuExtended) return;
+
+    const activeElement = this.host.shadowRoot.activeElement || document.activeElement;
+
+    if (e.shiftKey && activeElement === this.firstFocusableEl) {
+      // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
+      e.preventDefault();
+      this.lastFocusableEl.focus();
+    } else if (!e.shiftKey && activeElement === this.lastFocusableEl) {
+      // If Tab and last element is focused, focus goes back to the first element of the megadropdown
+      e.preventDefault();
+      this.firstFocusableEl.focus();
     }
   }
 
@@ -353,7 +372,7 @@ export class PostHeader {
   private checkSlottedContent() {
     this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasTargetGroup = !!this.host.querySelector('[slot="audience"]');
+    this.hasAudience = !!this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
 
@@ -366,12 +385,18 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange() {
-    const fixedElements =
-      this.device === 'desktop' ? '.logo, .navigation' : '.global-header, .burger-menu';
+  onFocusChange(e: FocusEvent) {
+    const alwaysVisibleElements =
+      this.device === 'desktop'
+        ? '.navigation' // logo isn’t included since it would be too small to focus on effectively.
+        : '.global-header, .burger-menu';
     const isHeaderExpanded =
+      // ensure the expanded state stays accurate during focus changes,
+      // e.g., when the focused element is removed from the DOM
+      // during a window resize
+      e.target === document.activeElement &&
       this.host.matches(':focus-within') &&
-      !this.host.shadowRoot.querySelector(`:where(${fixedElements}):focus-within`);
+      !this.host.shadowRoot.querySelector(`:where(${alwaysVisibleElements}):focus-within`);
 
     if (isHeaderExpanded) {
       this.host.setAttribute('data-expanded', '');
@@ -422,48 +447,72 @@ export class PostHeader {
 
   render() {
     return (
-      <Host data-version={version} data-color-scheme="light" data-burger-menu={this.hasBurgerMenu}>
+      <Host
+        data-version={version}
+        data-color-scheme="light"
+        data-burger-menu={this.hasBurgerMenu}
+        data-menu-extended={this.burgerMenuExtended}
+      >
         <header>
           <div
             class={{
               'global-header': true,
-              'no-target-group': !this.hasTargetGroup,
+              'no-audience': !this.hasAudience,
             }}
           >
-            <div class="logo">
-              <slot name="post-logo"></slot>
-            </div>
-            <div class="sliding-controls">
-              {this.device === 'desktop' && (
-                <div class="target-group">
-                  <slot name="audience"></slot>
-                </div>
-              )}
-              <slot name="global-nav-primary"></slot>
-              {!this.hasBurgerMenu && [
-                <slot name="global-nav-secondary"></slot>,
-                <slot name="language-menu"></slot>,
-              ]}
-              <slot name="post-login"></slot>
-              {this.hasNavigation && this.device !== 'desktop' && (
-                <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
-                  <slot name="post-togglebutton"></slot>
-                </div>
-              )}
+            <div class="section">
+              <div class="logo">
+                <slot name="post-logo"></slot>
+              </div>
+              <div class="sliding-controls">
+                {this.device === 'desktop' && (
+                  <div class="audience">
+                    <slot name="audience"></slot>
+                  </div>
+                )}
+                <slot name="global-nav-primary"></slot>
+                {!this.hasBurgerMenu && [
+                  <slot name="global-nav-secondary"></slot>,
+                  <slot name="language-menu"></slot>,
+                ]}
+                <slot name="post-login"></slot>
+                {this.hasNavigation && this.device !== 'desktop' && (
+                  <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
+                    <slot name="post-togglebutton"></slot>
+                  </div>
+                )}
+                {this.hasNavigation && this.device !== 'desktop' && (
+                  <post-togglebutton
+                    ref={el => (this.burgerMenuButton = el)}
+                    onClick={() => this.toggleBurgerMenu()}
+                  >
+                    <span>{this.textMenu}</span>
+                    <post-icon
+                      aria-hidden="true"
+                      name="burger"
+                      data-showwhen="untoggled"
+                    ></post-icon>
+                    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+                  </post-togglebutton>
+                )}
+              </div>
             </div>
           </div>
           <div
+            ref={el => (this.localHeader = el)}
             class={{
               'local-header': true,
               'no-title': !this.hasTitle,
-              'no-target-group': !this.hasTargetGroup,
+              'no-audience': !this.hasAudience,
               'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
               'no-local-nav': !this.hasLocalNav,
             }}
           >
-            <slot name="title"></slot>
-            {this.hasTitle && <slot name="local-nav"></slot>}
-            {this.device === 'desktop' && this.renderNavigation()}
+            <div class="section">
+              <slot name="title"></slot>
+              {this.hasTitle && <slot name="local-nav"></slot>}
+              {this.device === 'desktop' && this.renderNavigation()}
+            </div>
           </div>
           {this.device !== 'desktop' && this.renderNavigation()}
         </header>

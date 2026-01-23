@@ -19,11 +19,17 @@ import {
   PostTabs,
   PostTabItem,
   PostTabPanel,
+  PostTogglebutton,
   PostTooltipTrigger,
   PostTooltip,
   PostStepper,
   PostStepperItem,
 } from '@swisspost/design-system-components-react/server';
+import {
+  PostIconExplosives,
+  PostIconLetter,
+  PostIconLetterSolid,
+} from '@swisspost/design-system-components-react/icons';
 
 export default function Home() {
   return (
@@ -133,7 +139,7 @@ export default function Home() {
         className="palette palette-alternate"
         id="popover-one"
         placement="top"
-        closeButtonCaption="Close Popover"
+        textClose="Close"
         arrow={true}
       >
         <h2 className="h6">Optional title</h2>
@@ -180,6 +186,12 @@ export default function Home() {
 
       <h2>Tag</h2>
 
+      <h2>Toggle Button</h2>
+      <PostTogglebutton className="btn btn-primary">
+        <span data-showwhen="untoggled">Untoggled</span>
+        <span data-showwhen="toggled">Toggled</span>
+      </PostTogglebutton>
+
       <h2>Tooltip</h2>
       <PostTooltipTrigger for="tooltip-one">
         {/* The aria-describedby attribute need to be defined on the button already, otherwise we'll get a hydration error */}
@@ -193,9 +205,9 @@ export default function Home() {
 
       <h2>Post Stepper</h2>
       <PostStepper
-        completedLabel="Completed step"
-        currentLabel="Current step"
-        activeStepLabel="Step #index:"
+        textCompletedStep="Completed step"
+        textCurrentStep="Current step"
+        textStepNumber="Step #number:"
         currentIndex={1}
       >
         <PostStepperItem> Step 1 </PostStepperItem>
@@ -211,12 +223,53 @@ export default function Home() {
         collectionSize={100}
         disabled={false}
         label="Pagination"
-        labelPrevious="Previous page"
-        labelNext="Next page"
-        labelPage="Page"
-        labelFirst="First page"
-        labelLast="Last page"
+        textPrevious="Previous page"
+        textNext="Next page"
+        textPage="Page"
+        textFirst="First page"
+        textLast="Last page"
       />
+
+      <h2>Icons</h2>
+      <div className="d-flex gap-16 flex-wrap">
+        <style>{'post-icon { font-size: 32px }'}</style>
+        <figure>
+          <PostIconLetter></PostIconLetter>
+          <figcaption>Line Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetterSolid></PostIconLetterSolid>
+          <figcaption>Solid Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter style={{ color: 'red' }}></PostIconLetter>
+          <figcaption>Colored Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter style={{ fontSize: '2em' }}></PostIconLetter>
+          <figcaption>Sized Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives flipH={true}></PostIconExplosives>
+          <figcaption>Flipped Horizontally</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives flipV={true}></PostIconExplosives>
+          <figcaption>Flipped Vertically</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter rotate={90}></PostIconLetter>
+          <figcaption>Rotated</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter scale={1.5}></PostIconLetter>
+          <figcaption>Scaled</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter animation={'spin'}></PostIconLetter>
+          <figcaption>Spinning</figcaption>
+        </figure>
+      </div>
     </>
   );
 }

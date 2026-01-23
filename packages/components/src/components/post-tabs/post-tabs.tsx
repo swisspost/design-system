@@ -11,7 +11,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { fadeIn, fadeOut } from '@/animations';
+import { fade } from '@/animations';
 import { componentOnReady, checkRequiredAndType } from '@/utils';
 
 /**
@@ -104,6 +104,8 @@ export class PostTabs {
         void this.show(tabToActivate);
       }
     }
+
+    this.isLoaded = true;
   }
 
   disconnectedCallback() {
@@ -350,7 +352,7 @@ export class PostTabs {
 
     if (!previousPanel) return;
 
-    this.hiding = fadeOut(previousPanel);
+    this.hiding = fade(previousPanel, 'out');
     this.hiding.onfinish = () => {
       previousPanel.style.display = 'none';
       this.hiding = null;
@@ -365,7 +367,7 @@ export class PostTabs {
     // prevent the initially selected panel from fading in
     if (!this.isLoaded) return;
 
-    this.showing = fadeIn(panel);
+    this.showing = fade(panel, 'in');
     this.showing.onfinish = () => {
       this.showing = null;
     };

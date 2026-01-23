@@ -4,7 +4,7 @@ import { html, nothing, TemplateResult } from 'lit';
 import { fakeContent } from '@/utils';
 import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
 import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
-import { renderTargetGroup } from '@/stories/components/header/renderers/target-group';
+import { renderAudience } from '@/stories/components/header/renderers/audience';
 import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
@@ -27,6 +27,7 @@ const meta: MetaComponent = {
     title: '',
     titleTag: 'p',
     mainNav: true,
+    textMenu: 'Menu',
     globalNavSecondary: true,
     globalNavPrimary: true,
     targetGroup: true,
@@ -34,6 +35,7 @@ const meta: MetaComponent = {
     localNav: false,
     isLoggedIn: false,
     jobs: false,
+    fullWidth: false,
   },
   argTypes: {
     title: {
@@ -59,6 +61,15 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'Content',
+      },
+    },
+    textMenu: {
+      description: 'The label of the burger menu button.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Props',
       },
     },
     mainNav: {
@@ -104,7 +115,7 @@ const meta: MetaComponent = {
     },
     targetGroup: {
       name: 'Target group',
-      description: 'Whether or not the target group buttons are visible.',
+      description: 'Whether or not the audience buttons are visible.',
       control: {
         type: 'boolean',
       },
@@ -187,18 +198,18 @@ function getHeaderRenderer(
     `;
 
     return html`
-      <post-header>
+      <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.targetGroup ? renderTargetGroup(args) : nothing}
+        ${args.targetGroup ? renderAudience(args) : nothing}
         ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
-        <!-- Language switch -->
+        <!-- Language menu -->
         <post-language-menu
-          caption="Change the language"
-          description="The currently selected language is English."
+          text-change-language="Change the language"
+          text-current-language="The currently selected language is #name."
           variant="list"
           name="language-menu-example"
           slot="language-menu"
@@ -217,14 +228,6 @@ function getHeaderRenderer(
               ${globalLogin}
             `
           : nothing}
-
-        <!-- Menu button for mobile -->
-        <post-togglebutton slot="post-togglebutton">
-          <span>Menu</span>
-          <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-          <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-        </post-togglebutton>
-
         ${args.title !== '' ? title : nothing}
         ${args.localNav ? renderMicrositeControls(args) : nothing}
         ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
@@ -263,7 +266,7 @@ export const ActiveNavigationItem: Story = {
     },
   ],
   render: () => html`
-    <post-mainnavigation slot="main-nav" caption="Main">
+    <post-mainnavigation slot="main-nav" text-main="Main">
       <ul>
         <li>
           <a href="/letters">Letters</a>
@@ -330,13 +333,6 @@ export const OnePagerH1: Story = {
     },
   ],
   render: renderTitle,
-};
-
-// Used in target group documentation
-export const WithTargetGroup: Story = {
-  args: {
-    targetGroup: true,
-  },
 };
 
 // User is logged in

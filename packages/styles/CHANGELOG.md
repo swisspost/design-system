@@ -1,5 +1,112 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.58
+
+## 10.0.0-next.57
+
+### Major Changes
+
+- Reverted changes that enabled using sections within containers, as they caused overflow issues in Chromium-based browsers. (by [@alizedebray](https://github.com/alizedebray) with [#6989](https://github.com/swisspost/design-system/pull/6989))
+
+- Updated maximum width of the section from 1920px to 1440px. (by [@alizedebray](https://github.com/alizedebray) with [#6993](https://github.com/swisspost/design-system/pull/6993))
+
+### Patch Changes
+
+- Fixed an issue where certain header navigation items were not styled correctly when they were not contained within lists. (by [@alizedebray](https://github.com/alizedebray) with [#6943](https://github.com/swisspost/design-system/pull/6943))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.57
+
+## 10.0.0-next.56
+
+### Major Changes
+
+- Updated styles for elements slotted in the `post-header` component. Slotted lists should now omit the `.list-inline` class and will be automatically styled as part of the `post-header`.
+  Keeping the `.list-inline` class will cause incorrect spacing between header elements. (by [@alizedebray](https://github.com/alizedebray) with [#6661](https://github.com/swisspost/design-system/pull/6661))
+
+- Removed the `traget-group.css` file, target group styles are now bundled with the `post-header` styles. The `.traget-group` class no longer exist and the component will only work when placed into a `post-header`. (by [@alizedebray](https://github.com/alizedebray) with [#6661](https://github.com/swisspost/design-system/pull/6661))
+
+- Refactored the icon mixins so that icons no longer need to be included separately, imports are now handled automatically. The `custom-property` mixin as therefore be removed entirely.
+
+  The `icon` mixin arguments have also been updated: `$height` and `$width` have been replaced with a single `$size` since all icons are square. (by [@alizedebray](https://github.com/alizedebray) with [#6836](https://github.com/swisspost/design-system/pull/6836))
+
+- Removed the subnavigation component in favor of page tabs. (by [@alizedebray](https://github.com/alizedebray) with [#6913](https://github.com/swisspost/design-system/pull/6913))
+
+### Minor Changes
+
+- Extended Swiss Post Sans font support with Extra Black (950) weight. (by [@alizedebray](https://github.com/alizedebray) with [#6932](https://github.com/swisspost/design-system/pull/6932))
+
+- Implemented a `Divider` html/css component using tokens for styles. Divider documentation is also added to /Components/Divider page. (by [@bucknatt](https://github.com/bucknatt) with [#6783](https://github.com/swisspost/design-system/pull/6783))
+
+### Patch Changes
+
+- Integrated the burger menu button into the `<post-header>` by removing the previous `post-togglebutton` slot and introducing the required `textMenu` prop. (by [@myrta2302](https://github.com/myrta2302) with [#6801](https://github.com/swisspost/design-system/pull/6801))
+
+- Fixed an issue where sections could overflow the body when a scrollbar was present due to incorrect width calculations. (by [@alizedebray](https://github.com/alizedebray) with [#6933](https://github.com/swisspost/design-system/pull/6933))
+
+- Update the `post-megadropdown` to allow full customization of its content. The `post-megadropdown` can now contain any HTML elements, not just lists of links.
+
+  As a result, list styling is no longer applied automatically.
+  If you want a properly styled list of links, you must now add the required `post-megadropdown-*` classes to the corresponding elements yourself.
+
+  BEFORE:
+
+  ```html
+  <post-megadropdown id="packages" label-close="Close" label-back="Back">
+    <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
+    <post-list>
+      <p>Send packages</p>
+      <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
+      <post-list-item><a href="/kl">Small goods international</a></post-list-item>
+    </post-list>
+    <post-list>
+      <p><a href="/step-by-step">Step by step</a></p>
+      <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
+      <post-list-item><a href="/kl">Small goods international</a></post-list-item>
+    </post-list>
+  </post-megadropdown>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-megadropdown id="packages" label-close="Close" label-back="Back">
+    <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
+    <div class="row row-cols-1 row-cols-sm-2">
+      <div class="col">
+        <p class="post-megadropdown-list-title" id="send-packages">Send packages</p>
+        <ul class="post-megadropdown-list" aria-labelledby="send-packages">
+          <li><a href="/sch">Packages Switzerland</a></li>
+          <li><a href="/kl">Small goods international</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <a class="post-megadropdown-list-title" id="step-by-step-packages" href="/step-by-step"
+          >Step by step</a
+        >
+        <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+          <li><a href="/sch">Packages Switzerland</a></li>
+          <li><a href="/kl">Small goods international</a></li>
+        </ul>
+      </div>
+    </div>
+  </post-megadropdown>
+  ``` (by [@alizedebray](https://github.com/alizedebray) with
+  [#6891](https://github.com/swisspost/design-system/pull/6891))
+  ````
+
+- Updated the `<post-header>` component to show the local-header when the mobile menu is open and the page is scrolled. (by [@myrta2302](https://github.com/myrta2302) with [#6758](https://github.com/swisspost/design-system/pull/6758))
+
+- Removed `local-controls` and `navigation-controls` slots from the `post-header` component. Use the new `local-nav` slot for all application-specific controls. (by [@alizedebray](https://github.com/alizedebray) with [#6747](https://github.com/swisspost/design-system/pull/6747))
+
+- Simplified the `post-footer` component by removing the `post-list` and `post-list-item`. The footer now only uses simple `ul` and `li` tags. (by [@leagrdv](https://github.com/leagrdv) with [#6740](https://github.com/swisspost/design-system/pull/6740))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.56
+
 ## 10.0.0-next.55
 
 ### Major Changes

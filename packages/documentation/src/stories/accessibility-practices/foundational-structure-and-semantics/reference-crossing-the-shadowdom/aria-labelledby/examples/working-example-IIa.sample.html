@@ -1,0 +1,16 @@
+<span id="labelId">My Text</span>
+
+<custom-component labelId="labelId">
+  ⏷ #shadow-root (open)
+    <div ref="targetRef" role="button" tabindex="0" aria-labelledby>
+      <!--The aria-labelledby attribute is set automatically by the browser -->
+        <custom-icon />
+    </div>
+</custom-component>
+
+<script>
+  const label = document.getElementById('labelId');
+  // Assign the label element directly to the component's internal target element
+  // using ariaLabelledByElements to establish the accessible name
+  this.targetRef.ariaLabelledByElements = [label];
+</script>

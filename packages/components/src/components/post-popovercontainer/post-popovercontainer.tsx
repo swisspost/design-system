@@ -38,6 +38,12 @@ interface PopoverElement {
   togglePopover: (force?: boolean) => boolean;
 }
 
+const ANIMATIONS = {
+  'pop-in': popIn,
+} as const;
+
+export type AnimationName = keyof typeof ANIMATIONS;
+
 export type PostPopoverElement = HTMLElement & PopoverElement;
 
 /**
@@ -116,11 +122,6 @@ export class PostPopovercontainer {
   @Prop() readonly edgeGap?: number = 8;
 
   /**
-   * Animation style
-   */
-  @Prop() readonly animation?: 'pop-in' | null = null;
-
-  /**
    * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
@@ -130,6 +131,7 @@ export class PostPopovercontainer {
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
   @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
+
   @Watch('placement')
   validatePlacement() {
     checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
@@ -144,6 +146,11 @@ export class PostPopovercontainer {
   validateSafeSpace() {
     checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
   }
+
+  /**
+   * Animation style
+   */
+  private readonly animation: AnimationName = 'pop-in';
 
   /**
    * Updates cursor position for safe space feature when popover is open.
@@ -164,6 +171,9 @@ export class PostPopovercontainer {
   }
 
   componentDidLoad() {
+    this.validatePlacement();
+    this.validateEdgeGap();
+    this.validateSafeSpace();
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
@@ -176,7 +186,7 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popovercontainer
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * @param target A focusable element inside the trigger component that controls the popover
    */
   @Method()
   async show(target: HTMLElement) {
@@ -224,16 +234,18 @@ export class PostPopovercontainer {
     this.startAutoupdates();
 
     if (content) {
-      // Only run animation and emit related events if animation is defined
-      if (this.animation === null) {
+      const animationFn = ANIMATIONS[this.animation];
+
+      // Only run the animation if it corresponds to a valid, registered animation function
+      if (typeof animationFn === 'function') {
+        this.runOpenAnimation(animationFn, content);
+      } else {
         // No animation case
         this.postBeforeToggle.emit({ willOpen: true });
         this.postBeforeShow.emit({ first: this.hasOpenedOnce });
         this.postToggle.emit({ isOpen: true });
         this.postShow.emit({ first: this.hasOpenedOnce });
         if (this.hasOpenedOnce) this.hasOpenedOnce = false;
-      } else {
-        this.runOpenAnimation(content);
       }
     }
 
@@ -255,7 +267,7 @@ export class PostPopovercontainer {
     }
 
     // Cancel any running animation
-    if (this.animation !== null && this.currentAnimation) {
+    if (this.currentAnimation) {
       this.currentAnimation.cancel();
       this.currentAnimation = null;
     }
@@ -269,11 +281,23 @@ export class PostPopovercontainer {
    * Runs the animation and emits the toggle/show/hide events in the correct timing
    */
 
-  private async runOpenAnimation(element: HTMLElement) {
+  private async runOpenAnimation(
+    animationFn: (el: HTMLElement) => Animation | undefined,
+    element: HTMLElement,
+  ) {
     let animation: Animation | undefined;
 
     try {
-      animation = popIn(element);
+      animation = animationFn(element);
+      if (!animation) {
+        // Fallback: no animation, just emit open events directly
+        this.postBeforeToggle.emit({ willOpen: true });
+        this.postBeforeShow.emit({ first: this.hasOpenedOnce });
+        this.postToggle.emit({ isOpen: true });
+        this.postShow.emit({ first: this.hasOpenedOnce });
+
+        return;
+      }
 
       this.currentAnimation = animation;
 
@@ -323,6 +347,7 @@ export class PostPopovercontainer {
    * an influence on popovercontainer positioning
    */
   private startAutoupdates() {
+    if (!this.eventTarget || !this.host) return;
     this.clearAutoUpdate = autoUpdate(
       this.eventTarget,
       this.host,

@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-nextjs-integration",
-  "version": "10.0.0-next.55",
+  "version": "10.0.0-next.58",
   "description": "NextJS example integration of the Swiss Post Design System",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -18,16 +18,16 @@
     "build": "pnpm run typecheck && pnpm clean && next build",
     "build:serve": "pnpm build && next start",
     "clean": "rimraf .next",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "e2e": "pnpm exec playwright test",
     "e2e:watch": "pnpm exec playwright test --ui",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@swisspost/design-system-components-react": "workspace:10.0.0-next.55",
-    "@swisspost/design-system-styles": "workspace:10.0.0-next.55",
-    "next": "15.4.10",
+    "@swisspost/design-system-components-react": "workspace:10.0.0-next.58",
+    "@swisspost/design-system-styles": "workspace:10.0.0-next.58",
+    "next": "16.1.1",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },
@@ -35,7 +35,7 @@
     "@eslint/js": "9.18.0",
     "@next/eslint-plugin-next": "15.1.5",
     "@playwright/test": "1.56.1",
-    "@swisspost/design-system-components": "workspace:10.0.0-next.55",
+    "@swisspost/design-system-components": "workspace:10.0.0-next.58",
     "@types/node": "22.10.5",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
