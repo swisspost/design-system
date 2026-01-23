@@ -34,7 +34,7 @@ jobs:
         uses: ./.github/actions/setup-pnpm
 
       - name: Install dependencies
-        run: pnpm --filter design-system-icons... install
+        run: pnpm --filter design-system-icons... install --ignore-scripts
 
       - name: Build icons (generates report.json)
         run: pnpm --filter design-system-icons build
