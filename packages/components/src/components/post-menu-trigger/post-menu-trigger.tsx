@@ -5,7 +5,7 @@ import { getRoot, checkRequiredAndType } from '@/utils';
 @Component({
   tag: 'post-menu-trigger',
   styleUrl: 'post-menu-trigger.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostMenuTrigger {
   /**
@@ -97,8 +97,14 @@ export class PostMenuTrigger {
   }
 
   render() {
+    const el = document.querySelector('post-menu-trigger');
+    console.log(el);
+
     return (
       <Host data-version={version} tab-index="-1">
+        <div>
+          query selector result: {String(el)} ({String(el instanceof HTMLElement)})
+        </div>
         <slot></slot>
       </Host>
     );
