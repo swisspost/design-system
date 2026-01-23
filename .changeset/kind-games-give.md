@@ -1,7 +1,8 @@
 ---
-'@swisspost/design-system-intranet-header': patch
-'@swisspost/design-system-styles-primeng': patch
-'@swisspost/design-system-components-angular': patch
+'@swisspost/design-system-intranet-header': minor
+'@swisspost/design-system-styles-primeng': minor
+'@swisspost/design-system-components-angular': minor
+'@swisspost/design-system-styles': minor
 ---
 
-Updated `@angular/core`, `@angular/common`, and related Angular packages to version 21.
+Added support for Angular version 21.

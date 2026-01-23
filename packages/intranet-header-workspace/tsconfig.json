@@ -16,18 +16,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "es2020",
+    "module": "esnext",
+    "target": "es2021",
     "paths": {
-      "intranet-header": [
-        "dist/intranet-header/intranet-header",
-        "dist/intranet-header"
-      ]
+      "intranet-header": ["dist/intranet-header/intranet-header", "dist/intranet-header"]
     },
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2021", "dom"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

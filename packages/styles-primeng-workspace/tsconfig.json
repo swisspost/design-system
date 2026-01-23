@@ -16,8 +16,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
+    "target": "es2021",
+    "module": "esnext",
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

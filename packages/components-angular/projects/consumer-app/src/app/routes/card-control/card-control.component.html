@@ -34,14 +34,14 @@
     <div class="row">
       <div class="col-8">
         <legend>Post Card Control Radio Group</legend>
-        @for (option of radioOptions; track option; let i = $index){<ng-container>
-          <post-card-control
-            [label]="option"
-            type="radio"
-            name="radio"
-            [value]="option"
-            formControlName="radio"
-          ></post-card-control> </ng-container
+        @for (option of radioOptions; track option; let i = $index){
+        <post-card-control
+          [label]="option"
+          type="radio"
+          name="radio"
+          [value]="option"
+          formControlName="radio"
+        ></post-card-control>
         >}
       </div>
 
