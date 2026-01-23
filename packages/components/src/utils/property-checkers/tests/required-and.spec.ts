@@ -6,10 +6,13 @@ describe('requiredAnd', () => {
 
   it('should throw error if the provided value is empty', () => {
     [undefined, null, '', NaN].forEach(emptyValue => {
-      const component = { host: { localName: 'post-component' } as HTMLElement, prop: emptyValue };
-      const prop = component['prop'];
-      const error = `The prop \`${emptyValue}\` of the \`post-component\` component is not defined.`;
-      expect(() => mockRequiredAndCheck(component, prop)).toThrow(error);
+      const propName = 'requiredProp';
+      const component = {
+        host: { localName: 'post-component' } as HTMLElement,
+        [propName]: emptyValue,
+      };
+      const error = `The prop \`${propName}\` of the \`post-component\` component is not defined.`;
+      expect(() => mockRequiredAndCheck(component, propName)).toThrow(error);
     });
   });
 
