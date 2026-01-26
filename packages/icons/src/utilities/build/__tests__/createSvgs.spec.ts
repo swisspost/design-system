@@ -16,24 +16,24 @@ describe('createSvgs', () => {
         expectedSourcesPerIcon: 1,
       },
       groups: {
-        'test-icon': [
+        '1000': [
           {
             size: null,
-            filePath: '/test/source/post/test-icon.svg',
+            filePath: '/test/source/post/1000.svg',
             sourceIcon: {
               uuid: 'test-uuid',
               id: 1000,
               type: 'picture.pictogram.' as any,
               typeFilter: 'pictograms' as any,
               meta: {
-                downloadLink: 'http://test.com/test-icon.svg',
+                downloadLink: 'http://test.com/1000.svg',
                 businessfield: 'kommunikation' as any,
                 keywords: ['test', 'icon'],
               },
               file: {
                 mime: 'image/svg+xml' as any,
-                name: 'test-icon.svg',
-                basename: 'test-icon',
+                name: '1000.svg',
+                basename: '1000',
                 ext: '.svg',
                 size: { width: 32, dpi: 72, height: 32 },
               },
@@ -51,24 +51,24 @@ describe('createSvgs', () => {
         expectedSourcesPerIcon: 6,
       },
       groups: {
-        'ui-icon': [
+        '2000': [
           {
             size: 16,
-            filePath: '/test/source/ui/ui-icon-16.svg',
+            filePath: '/test/source/ui/2000-16.svg',
             sourceIcon: {
               uuid: 'test-uuid-ui-16',
               id: 2000,
               type: 'picture.pictogram.' as any,
               typeFilter: 'pictograms' as any,
               meta: {
-                downloadLink: 'http://test.com/ui-icon-16.svg',
+                downloadLink: 'http://test.com/2000-16.svg',
                 businessfield: 'kommunikation' as any,
                 keywords: ['ui', 'icon'],
               },
               file: {
                 mime: 'image/svg+xml' as any,
-                name: 'ui-icon-16.svg',
-                basename: 'ui-icon-16',
+                name: '2000-16.svg',
+                basename: '2000-16',
                 ext: '.svg',
                 size: { width: 16, dpi: 72, height: 16 },
               },
@@ -78,21 +78,21 @@ describe('createSvgs', () => {
           },
           {
             size: 24,
-            filePath: '/test/source/ui/ui-icon-24.svg',
+            filePath: '/test/source/ui/2000-24.svg',
             sourceIcon: {
               uuid: 'test-uuid-ui-24',
               id: 2001,
               type: 'picture.pictogram.' as any,
               typeFilter: 'pictograms' as any,
               meta: {
-                downloadLink: 'http://test.com/ui-icon-24.svg',
+                downloadLink: 'http://test.com/2000-24.svg',
                 businessfield: 'kommunikation' as any,
                 keywords: ['ui', 'icon'],
               },
               file: {
                 mime: 'image/svg+xml' as any,
-                name: 'ui-icon-24.svg',
-                basename: 'ui-icon-24',
+                name: '2000-24.svg',
+                basename: '2000-24',
                 ext: '.svg',
                 size: { width: 24, dpi: 72, height: 24 },
               },
@@ -111,13 +111,13 @@ describe('createSvgs', () => {
     // Mock file reading for SVG content
     jest.spyOn(fs, 'readFileSync').mockImplementation((filePath) => {
       if (typeof filePath === 'string') {
-        if (filePath.includes('test-icon.svg')) {
+        if (filePath.includes('1000.svg')) {
           return '<svg viewBox="0 0 32 32"><path d="M10 10h12v12H10z"/></svg>';
         }
-        if (filePath.includes('ui-icon-16.svg')) {
+        if (filePath.includes('2000-16.svg')) {
           return '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/></svg>';
         }
-        if (filePath.includes('ui-icon-24.svg')) {
+        if (filePath.includes('2000-24.svg')) {
           return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>';
         }
       }
@@ -131,7 +131,7 @@ describe('createSvgs', () => {
     createSvgs(mockIconOutputDirectory, mockIconSetGroups);
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
-      path.join(mockIconOutputDirectory, 'pi-1000.svg'),
+      path.join(mockIconOutputDirectory, '1000.svg'),
       expect.stringContaining('<svg')
     );
   });
@@ -140,7 +140,7 @@ describe('createSvgs', () => {
     createSvgs(mockIconOutputDirectory, mockIconSetGroups);
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
-      path.join(mockIconOutputDirectory, 'pi-2000.svg'),
+      path.join(mockIconOutputDirectory, '2000.svg'),
       expect.stringContaining('<svg')
     );
   });
@@ -149,9 +149,9 @@ describe('createSvgs', () => {
     createSvgs(mockIconOutputDirectory, mockIconSetGroups);
 
     const postIconCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-      call[0].includes('pi-1000.svg')
+      call[0].includes('1000.svg')
     );
-    expect(postIconCall[1]).toContain('id="s32"');
+    expect(postIconCall[1]).toContain('id="i-1000"');
   });
 
   it('should handle multiple icon set groups', () => {
@@ -164,7 +164,7 @@ describe('createSvgs', () => {
     createSvgs(mockIconOutputDirectory, mockIconSetGroups);
 
     const postIconCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-      call[0].includes('pi-1000.svg')
+      call[0].includes('1000.svg')
     );
     
     expect(postIconCall[1]).toContain('<svg');
@@ -186,7 +186,7 @@ describe('createSvgs', () => {
     createSvgs(mockIconOutputDirectory, mockIconSetGroups);
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
-      expect.stringContaining(mockIconOutputDirectory),
+      expect.stringContaining(path.normalize(mockIconOutputDirectory)),
       expect.any(String)
     );
   });

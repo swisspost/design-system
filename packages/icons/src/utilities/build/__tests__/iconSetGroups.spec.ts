@@ -142,7 +142,7 @@ describe('getIconSetGroups', () => {
     const result = getIconSetGroups();
 
     const group1000 = result[0].groups['1000'];
-    expect(group1000[0].filePath).toBe('/test/icons/1000.svg');
+    expect(group1000[0].filePath).toBe(path.join('/test/icons', '1000.svg'));
   });
 
   it('should include the source icon reference', () => {

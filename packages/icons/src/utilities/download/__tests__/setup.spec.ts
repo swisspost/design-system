@@ -61,7 +61,11 @@ describe('download/setup', () => {
   });
 
   it('should handle multiple iconsets', () => {
-    jest.spyOn(fs, 'existsSync').mockReturnValue(true);
+    let callCount = 0;
+    jest.spyOn(fs, 'existsSync').mockImplementation(() => {
+      callCount++;
+      return callCount % 2 === 1;
+    });
     jest.spyOn(fs, 'rmSync').mockImplementation(() => {});
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
 
@@ -73,13 +77,17 @@ describe('download/setup', () => {
 
   it('should clean up before creating new directories', () => {
     const calls: string[] = [];
-    
-    jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'rmSync').mockImplementation((path) => {
-      calls.push(`rm:${path}`);
+    let existsCallCount = 0;
+
+    jest.spyOn(fs, 'existsSync').mockImplementation(() => {
+      existsCallCount++;
+      return existsCallCount % 2 === 1; // odd -> exists (rm), even -> not exists (mkdir)
     });
-    jest.spyOn(fs, 'mkdirSync').mockImplementation((path) => {
-      calls.push(`mkdir:${path}`);
+    jest.spyOn(fs, 'rmSync').mockImplementation((p) => {
+      calls.push(`rm:${p.toString()}`);
+    });
+    jest.spyOn(fs, 'mkdirSync').mockImplementation((p) => {
+      calls.push(`mkdir:${p.toString()}`);
       return undefined;
     });
 
@@ -88,8 +96,9 @@ describe('download/setup', () => {
     iconSets.forEach(iconSet => {
       const rmIndex = calls.indexOf(`rm:${iconSet.downloadDirectory}`);
       const mkdirIndex = calls.indexOf(`mkdir:${iconSet.downloadDirectory}`);
-      
-      expect(rmIndex).toBeLessThan(mkdirIndex);
+
+      expect(rmIndex).toBeGreaterThanOrEqual(0);
+      expect(mkdirIndex).toBeGreaterThan(rmIndex);
     });
   });
 });
