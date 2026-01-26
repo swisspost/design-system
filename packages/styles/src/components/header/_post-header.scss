@@ -37,15 +37,27 @@ post-header {
     }
   }
 
-  // links and buttons remaining in the global header on tablet and mobile
+  // links and buttons remaining in the global and local headers on tablet and mobile
   > :is([slot='global-nav-primary'], [slot='post-login'], [slot='local-nav']) {
     @include media.max(desktop) {
       flex-direction: row;
     }
+  }
 
+  // links and buttons remaining in the global header on tablet and mobile
+  > :is([slot='global-nav-primary'], [slot='post-login']) {
     @include media.only(mobile) {
       @include interactive-elements {
         @include nav-item-icon-only;
+      }
+    }
+  }
+
+  // links and buttons in the local header
+  > :is([slot='local-nav']) {
+    @include media.only(mobile) {
+      @include interactive-elements {
+        @include nav-item-icon-only(0.25rem 0.75rem);
       }
     }
   }
