@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -32,7 +32,7 @@ const routes: Routes = [
     SamplesSidebarWithSearchbarComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes), SwissPostIntranetHeaderModule],
-  providers: [],
+  providers: [provideZoneChangeDetection()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
