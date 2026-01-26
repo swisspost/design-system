@@ -1,0 +1,50 @@
+name: Release
+on:
+  pull_request:
+  # push:
+  # branches:
+  #   - main
+  #   - release/v*
+
+# concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: read
+  # pull-requests: write
+  # id-token: write
+
+jobs:
+  test:
+    name: Unclean worktree detection test
+    runs-on: ubuntu-latest
+    environment: npm-release
+    steps:
+      # Checkout the Branch which was pushed ('main' or 'release/v*')
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      # Trusted publishing requires npm 11.5.1 or later.
+      - name: Update NPM for trusted publishing
+        run: |
+          npm update -g npm
+          echo "npm: $(npm -v)"
+
+      - name: Install & build Dependencies
+        run: pnpm bootstrap
+
+      - name: Configure GitHub User
+        uses: ./.github/actions/configure-github-user
+
+      - name: Abort if uncommitted changes are detected
+        run: |
+          if [[ -n $(git status ---porcelain) ]]; then
+            echo "Error: Unclean working tree! Commit changes first, then restart the release again..."
+            exit 1
+          fi
+
+      - name: Test
+        run: |
+          echo "Next step got executed anyway :("
