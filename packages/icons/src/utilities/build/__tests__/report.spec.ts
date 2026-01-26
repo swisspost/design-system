@@ -2,6 +2,7 @@ import { writeReport } from './../report';
 import fs from 'fs';
 import path from 'path';
 import type { IconSetGroups, SourceReport } from '../../../models/icon.model';
+import { Type, TypeFilter, Businessfield, VariantMIME } from '../../../models/censhare-result-page.model';
 
 jest.mock('fs');
 jest.mock('../../../../package.json', () => ({ version: '1.0.0' }));
@@ -14,16 +15,16 @@ describe('build/report', () => {
       {
         uuid: 'test-uuid-1',
         id: 1000,
-        type: 'picture.pictogram.' as any,
-        typeFilter: 'pictograms' as any,
+        type: Type.PicturePictogram,
+        typeFilter: TypeFilter.Pictograms,
         meta: {
           downloadLink: 'http://test.com/1000.svg',
-          businessfield: 'kommunikation' as any,
+          businessfield: Businessfield.Kommunikation,
           keywords: ['test', 'icon', 'sample'],
           year: '2024',
         },
         file: {
-          mime: 'image/svg+xml' as any,
+          mime: VariantMIME.ImageSVGXML,
           name: '1000.svg',
           basename: '1000',
           ext: '.svg',
@@ -35,16 +36,16 @@ describe('build/report', () => {
       {
         uuid: 'test-uuid-2',
         id: 1001,
-        type: 'picture.pictogram.' as any,
-        typeFilter: 'pictograms' as any,
+        type: Type.PicturePictogram,
+        typeFilter: TypeFilter.Pictograms,
         meta: {
           downloadLink: 'http://test.com/1001.svg',
-          businessfield: 'kommunikation' as any,
+          businessfield: Businessfield.Kommunikation,
           keywords: ['ui', 'button'],
           year: '2024',
         },
         file: {
-          mime: 'image/svg+xml' as any,
+          mime: VariantMIME.ImageSVGXML,
           name: '1001-24.svg',
           basename: '1001-24',
           ext: '.svg',
@@ -298,10 +299,11 @@ describe('build/report', () => {
       const icon = minReportData.icons[0];
 
       expect(Array.isArray(icon.stats.sources)).toBe(true);
-      if (icon.stats.sources.length > 0) {
-        expect(icon.stats.sources[0]).toHaveProperty('id');
-        expect(icon.stats.sources[0]).toHaveProperty('name');
-      }
+      expect(icon.stats.sources).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ id: expect.any(Number), name: expect.any(String) }),
+        ])
+      );
     });
   });
 

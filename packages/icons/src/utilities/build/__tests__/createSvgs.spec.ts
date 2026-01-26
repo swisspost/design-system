@@ -2,6 +2,7 @@ import { createSvgs } from './../createSvgs';
 import fs from 'fs';
 import path from 'path';
 import type { IconSetGroups } from '../../../models/icon.model';
+import { Type, TypeFilter, Businessfield, VariantMIME } from '../../../models/censhare-result-page.model';
 
 jest.mock('fs');
 
@@ -23,15 +24,15 @@ describe('createSvgs', () => {
             sourceIcon: {
               uuid: 'test-uuid',
               id: 1000,
-              type: 'picture.pictogram.' as any,
-              typeFilter: 'pictograms' as any,
+              type: Type.PicturePictogram,
+              typeFilter: TypeFilter.Pictograms,
               meta: {
                 downloadLink: 'http://test.com/1000.svg',
-                businessfield: 'kommunikation' as any,
+                businessfield: Businessfield.Kommunikation,
                 keywords: ['test', 'icon'],
               },
               file: {
-                mime: 'image/svg+xml' as any,
+                mime: VariantMIME.ImageSVGXML,
                 name: '1000.svg',
                 basename: '1000',
                 ext: '.svg',
@@ -58,15 +59,15 @@ describe('createSvgs', () => {
             sourceIcon: {
               uuid: 'test-uuid-ui-16',
               id: 2000,
-              type: 'picture.pictogram.' as any,
-              typeFilter: 'pictograms' as any,
+              type: Type.PicturePictogram,
+              typeFilter: TypeFilter.Pictograms,
               meta: {
                 downloadLink: 'http://test.com/2000-16.svg',
-                businessfield: 'kommunikation' as any,
+                businessfield: Businessfield.Kommunikation,
                 keywords: ['ui', 'icon'],
               },
               file: {
-                mime: 'image/svg+xml' as any,
+                mime: VariantMIME.ImageSVGXML,
                 name: '2000-16.svg',
                 basename: '2000-16',
                 ext: '.svg',
@@ -82,15 +83,15 @@ describe('createSvgs', () => {
             sourceIcon: {
               uuid: 'test-uuid-ui-24',
               id: 2001,
-              type: 'picture.pictogram.' as any,
-              typeFilter: 'pictograms' as any,
+              type: Type.PicturePictogram,
+              typeFilter: TypeFilter.Pictograms,
               meta: {
                 downloadLink: 'http://test.com/2000-24.svg',
-                businessfield: 'kommunikation' as any,
+                businessfield: Businessfield.Kommunikation,
                 keywords: ['ui', 'icon'],
               },
               file: {
-                mime: 'image/svg+xml' as any,
+                mime: VariantMIME.ImageSVGXML,
                 name: '2000-24.svg',
                 basename: '2000-24',
                 ext: '.svg',

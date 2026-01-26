@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import type { IconSet, SourceIcon, SourceReport } from '../../../models/icon.model';
 import { getBaseSourceReport } from '../../shared';
+import { Type, TypeFilter, Businessfield, VariantMIME } from '../../../models/censhare-result-page.model';
 
 jest.mock('fs');
 
@@ -17,16 +18,16 @@ describe('download/report', () => {
   const mockIcon: SourceIcon = {
     uuid: 'test-uuid',
     id: 1000,
-    type: 'picture.pictogram.' as any,
-    typeFilter: 'pictograms' as any,
+    type: Type.PicturePictogram,
+    typeFilter: TypeFilter.Pictograms,
     meta: {
       downloadLink: 'http://test.com/1000.svg',
-      businessfield: 'kommunikation' as any,
+      businessfield: Businessfield.Kommunikation,
       keywords: ['test', 'icon'],
       year: '2024',
     },
     file: {
-      mime: 'image/svg+xml' as any,
+      mime: VariantMIME.ImageSVGXML,
       name: '1000.svg',
       basename: '1000',
       ext: '.svg',

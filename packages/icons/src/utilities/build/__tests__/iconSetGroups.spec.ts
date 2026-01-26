@@ -2,6 +2,7 @@ import { getIconSetGroups } from './../iconSetGroups';
 import fs from 'fs';
 import path from 'path';
 import type { SourceReport } from '../../../models/icon.model';
+import { Type, TypeFilter, Businessfield, VariantMIME } from '../../../models/censhare-result-page.model';
 
 jest.mock('fs');
 jest.mock('../../../iconsets.config', () => [
@@ -19,16 +20,16 @@ describe('getIconSetGroups', () => {
       {
         uuid: 'test-uuid-1',
         id: 1000,
-        type: 'picture.pictogram.' as any,
-        typeFilter: 'pictograms' as any,
+        type: Type.PicturePictogram,
+        typeFilter: TypeFilter.Pictograms,
         meta: {
           downloadLink: 'http://test.com/1000.svg',
-          businessfield: 'kommunikation' as any,
+          businessfield: Businessfield.Kommunikation,
           keywords: ['test', 'icon'],
           year: '2024',
         },
         file: {
-          mime: 'image/svg+xml' as any,
+          mime: VariantMIME.ImageSVGXML,
           name: '1000.svg',
           basename: '1000',
           ext: '.svg',
@@ -40,16 +41,16 @@ describe('getIconSetGroups', () => {
       {
         uuid: 'test-uuid-2',
         id: 1001,
-        type: 'picture.pictogram.' as any,
-        typeFilter: 'pictograms' as any,
+        type: Type.PicturePictogram,
+        typeFilter: TypeFilter.Pictograms,
         meta: {
           downloadLink: 'http://test.com/1001-24.svg',
-          businessfield: 'kommunikation' as any,
+          businessfield: Businessfield.Kommunikation,
           keywords: ['test', 'icon'],
           year: '2024',
         },
         file: {
-          mime: 'image/svg+xml' as any,
+          mime: VariantMIME.ImageSVGXML,
           name: '1001-24.svg',
           basename: '1001-24',
           ext: '.svg',
@@ -61,16 +62,16 @@ describe('getIconSetGroups', () => {
       {
         uuid: 'test-uuid-3',
         id: 1002,
-        type: 'picture.pictogram.' as any,
-        typeFilter: 'pictograms' as any,
+        type: Type.PicturePictogram,
+        typeFilter: TypeFilter.Pictograms,
         meta: {
           downloadLink: 'http://test.com/1001-32.svg',
-          businessfield: 'kommunikation' as any,
+          businessfield: Businessfield.Kommunikation,
           keywords: ['test', 'icon'],
           year: '2024',
         },
         file: {
-          mime: 'image/svg+xml' as any,
+          mime: VariantMIME.ImageSVGXML,
           name: '1001-32.svg',
           basename: '1001-32',
           ext: '.svg',
@@ -166,7 +167,7 @@ describe('getIconSetGroups', () => {
           ...mockSourceReport.icons[0],
           id: 2000,
           file: {
-            mime: 'image/svg+xml' as any,
+            mime: VariantMIME.ImageSVGXML,
             name: 'test-shape-icon.svg',
             basename: 'test-shape-icon',
             ext: '.svg',
