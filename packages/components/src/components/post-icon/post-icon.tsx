@@ -1,19 +1,9 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
+import { ANIMATION_KEYS, PostIconAnimation } from '@/types/icon-animations';
 
 const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/`;
-const ANIMATION_NAMES = [
-  'cylon',
-  'cylon-vertical',
-  'spin',
-  'spin-reverse',
-  'fade',
-  'throb',
-] as const;
-const ANIMATION_KEYS = [...ANIMATION_NAMES];
-
-type Animation = (typeof ANIMATION_NAMES)[number];
 
 /**
  * @class PostIcon - representing a stencil component
@@ -30,7 +20,7 @@ export class PostIcon {
   /**
    * The name of the animation.
    */
-  @Prop() readonly animation?: Animation;
+  @Prop({ reflect: true }) readonly animation?: PostIconAnimation;
 
   @Watch('animation')
   validateAnimation() {
@@ -48,14 +38,19 @@ export class PostIcon {
   }
 
   /**
+   * A full URL to the icon file. When set, this property has the highest priority.
+   */
+  @Prop() readonly url?: string;
+
+  /**
    * When set to `true`, the icon will be flipped horizontally.
    */
-  @Prop() readonly flipH?: boolean = false;
+  @Prop({ reflect: true }) readonly flipH?: boolean = false;
 
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
-  @Prop() readonly flipV?: boolean = false;
+  @Prop({ reflect: true }) readonly flipV?: boolean = false;
 
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
@@ -104,6 +99,10 @@ export class PostIcon {
 
     if (!IS_BROWSER && !this.base) {
       return `${CDN_URL}${fileName}`;
+    }
+
+    if (this.url) {
+      return this.url;
     }
 
     const isAbsolute = (url: string) => /^https?:\/\//.test(url);

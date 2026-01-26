@@ -2,7 +2,8 @@
 name: '[subtask] Web Component Styles'
 about: Sub-issue to implement styles for a web component.
 title: '[web component styles] component_name_here'
-labels: '📦 components, needs: logic, needs: tokens'
+labels: '📦 components'
+type: feature
 assignees: ''
 ---
 
