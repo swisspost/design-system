@@ -19,7 +19,7 @@ describe('createCssFiles', () => {
   it('should create CSS output directory if it does not exist', async () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(false);
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
-    jest.spyOn(fs, 'readdirSync').mockReturnValue([]);
+    jest.spyOn(fs, 'readdirSync').mockReturnValue([] as unknown as fs.Dirent[]);
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
@@ -29,7 +29,7 @@ describe('createCssFiles', () => {
 
   it('should remove existing CSS files before creating new ones', async () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'readdirSync').mockReturnValue(['old-icon.css', 'another-icon.css']);
+    jest.spyOn(fs, 'readdirSync').mockReturnValue(['old-icon.css', 'another-icon.css'] as unknown as fs.Dirent[]);
     jest.spyOn(fs, 'unlinkSync').mockImplementation(() => {});
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
@@ -46,8 +46,8 @@ describe('createCssFiles', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
-      if (dir === mockCssOutputDirectory) return [];
-      return mockSvgFiles;
+      if (dir === mockCssOutputDirectory) return [] as unknown as fs.Dirent[];
+      return mockSvgFiles as unknown as fs.Dirent[];
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
@@ -70,8 +70,8 @@ describe('createCssFiles', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
-      if (dir === mockCssOutputDirectory) return [];
-      return mockSvgFiles;
+      if (dir === mockCssOutputDirectory) return [] as unknown as fs.Dirent[];
+      return mockSvgFiles as unknown as fs.Dirent[];
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
@@ -91,8 +91,8 @@ describe('createCssFiles', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
-      if (dir === mockCssOutputDirectory) return [];
-      return mockSvgFiles;
+      if (dir === mockCssOutputDirectory) return [] as unknown as fs.Dirent[];
+      return mockSvgFiles as unknown as fs.Dirent[];
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue(mockSvgContent);
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
@@ -110,8 +110,8 @@ describe('createCssFiles', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
-      if (dir === mockCssOutputDirectory) return [];
-      return mockFiles;
+      if (dir === mockCssOutputDirectory) return [] as unknown as fs.Dirent[];
+      return mockFiles as unknown as fs.Dirent[];
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
@@ -125,8 +125,8 @@ describe('createCssFiles', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
-      if (dir === mockCssOutputDirectory) return [];
-      return [];
+      if (dir === mockCssOutputDirectory) return [] as unknown as fs.Dirent[];
+      return [] as unknown as fs.Dirent[];
     });
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
@@ -141,8 +141,8 @@ describe('createCssFiles', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
-      if (dir === mockCssOutputDirectory) return [];
-      return mockSvgFiles;
+      if (dir === mockCssOutputDirectory) return [] as unknown as fs.Dirent[];
+      return mockSvgFiles as unknown as fs.Dirent[];
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
