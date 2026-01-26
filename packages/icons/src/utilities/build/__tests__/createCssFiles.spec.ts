@@ -1,6 +1,7 @@
 import { createCssFiles } from './../createCssFiles';
 import fs from 'fs';
 import path from 'path';
+import prettier from 'prettier';
 
 jest.mock('fs');
 jest.mock('prettier', () => ({
@@ -17,9 +18,9 @@ describe('createCssFiles', () => {
 
   it('should create CSS output directory if it does not exist', async () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(false);
-    jest.spyOn(fs, 'mkdirSync').mockImplementation();
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockReturnValue([]);
-    jest.spyOn(fs, 'writeFileSync').mockImplementation();
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
@@ -28,10 +29,10 @@ describe('createCssFiles', () => {
 
   it('should remove existing CSS files before creating new ones', async () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'readdirSync').mockReturnValue(['old-icon.css', 'another-icon.css'] as any);
-    jest.spyOn(fs, 'unlinkSync').mockImplementation();
-    jest.spyOn(fs, 'mkdirSync').mockImplementation();
-    jest.spyOn(fs, 'writeFileSync').mockImplementation();
+    jest.spyOn(fs, 'readdirSync').mockReturnValue(['old-icon.css', 'another-icon.css']);
+    jest.spyOn(fs, 'unlinkSync').mockImplementation(() => {});
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
@@ -43,13 +44,13 @@ describe('createCssFiles', () => {
     const mockSvgFiles = ['icon-1.svg', 'icon-2.svg'];
     
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'mkdirSync').mockImplementation();
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
       if (dir === mockCssOutputDirectory) return [];
-      return mockSvgFiles as any;
+      return mockSvgFiles;
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
-    jest.spyOn(fs, 'writeFileSync').mockImplementation();
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
@@ -67,13 +68,13 @@ describe('createCssFiles', () => {
     const mockSvgFiles = ['icon@with#special$chars.svg'];
     
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'mkdirSync').mockImplementation();
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
       if (dir === mockCssOutputDirectory) return [];
-      return mockSvgFiles as any;
+      return mockSvgFiles;
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
-    jest.spyOn(fs, 'writeFileSync').mockImplementation();
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
@@ -88,13 +89,13 @@ describe('createCssFiles', () => {
     const mockSvgFiles = ['test-icon.svg'];
     
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'mkdirSync').mockImplementation();
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
       if (dir === mockCssOutputDirectory) return [];
-      return mockSvgFiles as any;
+      return mockSvgFiles;
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue(mockSvgContent);
-    jest.spyOn(fs, 'writeFileSync').mockImplementation();
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
@@ -107,13 +108,13 @@ describe('createCssFiles', () => {
     const mockFiles = ['icon-1.svg', 'readme.md', 'icon-2.svg', 'package.json'];
     
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'mkdirSync').mockImplementation();
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
       if (dir === mockCssOutputDirectory) return [];
-      return mockFiles as any;
+      return mockFiles;
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
-    jest.spyOn(fs, 'writeFileSync').mockImplementation();
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
@@ -122,12 +123,12 @@ describe('createCssFiles', () => {
 
   it('should handle empty icon directory', async () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'mkdirSync').mockImplementation();
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
       if (dir === mockCssOutputDirectory) return [];
-      return [] as any;
+      return [];
     });
-    jest.spyOn(fs, 'writeFileSync').mockImplementation();
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
@@ -135,17 +136,16 @@ describe('createCssFiles', () => {
   });
 
   it('should format CSS content with prettier', async () => {
-    const prettier = require('prettier');
     const mockSvgFiles = ['test-icon.svg'];
     
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    jest.spyOn(fs, 'mkdirSync').mockImplementation();
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
     jest.spyOn(fs, 'readdirSync').mockImplementation((dir) => {
       if (dir === mockCssOutputDirectory) return [];
-      return mockSvgFiles as any;
+      return mockSvgFiles;
     });
     jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
-    jest.spyOn(fs, 'writeFileSync').mockImplementation();
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
