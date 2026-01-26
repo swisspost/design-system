@@ -3,6 +3,7 @@ name: '[subtask] Web Component Functionality'
 about: Sub-issue to implement the behavior and logic of a web component.
 title: '[web component func] component_name_here'
 labels: '📦 components'
+type: feature
 assignees: ''
 ---
 
