@@ -19,6 +19,7 @@ import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
 
+/* eslint-disable @angular-eslint/prefer-standalone */
 @Component({
   selector: 'sp-intranet-header',
   templateUrl: './swisspost-intranet-header.component.html',
@@ -88,6 +89,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   private profileMenuElement!: HTMLElement;
   private navChanges!: MutationObserver;
 
+  /* eslint-disable @angular-eslint/prefer-inject */
   constructor(
     @Inject(LOCALE_ID) public lang: string,
     private router: Router,
