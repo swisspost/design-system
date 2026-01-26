@@ -3,6 +3,7 @@ name: '[subtask] Design'
 about: Sub-issue to define the design of a component.
 title: '[design] component_name_here'
 labels: '🎨 figma'
+type: feature
 assignees: ''
 ---
 
