@@ -4,7 +4,7 @@ import path from 'path';
 import type { SourceReport } from '../../../models/icon.model';
 
 jest.mock('fs');
-jest.mock('../../iconsets.config', () => [
+jest.mock('../../../iconsets.config', () => [
   {
     name: 'test-iconset',
     apiUrl: 'http://test.com',

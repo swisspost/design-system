@@ -4,7 +4,7 @@ import path from 'path';
 import type { IconSetGroups, SourceReport } from '../../../models/icon.model';
 
 jest.mock('fs');
-jest.mock('../../../package.json', () => ({ version: '1.0.0' }));
+jest.mock('../../../../package.json', () => ({ version: '1.0.0' }));
 
 describe('build/report', () => {
   const mockReportOutputDirectory = '/test/reports';

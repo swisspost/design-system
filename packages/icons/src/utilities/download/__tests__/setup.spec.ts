@@ -3,7 +3,7 @@ import fs from 'fs';
 import iconSets from '../../../iconsets.config';
 
 jest.mock('fs');
-jest.mock('../../iconsets.config', () => [
+jest.mock('../../../iconsets.config', () => [
   {
     name: 'post',
     apiUrl: 'http://test.com/post',
