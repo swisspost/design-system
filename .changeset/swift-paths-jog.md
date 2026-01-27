@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-moved card class from div to post-linkarea.
+Fixed teaser card markup by applying the `.card` class directly to the `post-linkarea` element.
