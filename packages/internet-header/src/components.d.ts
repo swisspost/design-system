@@ -23,6 +23,9 @@ export namespace Components {
      * @param active activate or deactivate the focus trap
      */
     interface FocusTrap {
+        /**
+          * @default false
+         */
         "active": boolean;
     }
     interface PostHeaderLogo {
@@ -69,6 +72,7 @@ export namespace Components {
     interface PostMetaNavigation {
         /**
           * Displays the meta-navigation in full-width.
+          * @default false
          */
         "fullWidth"?: boolean;
         /**
@@ -97,19 +101,21 @@ export namespace Components {
         "customItems"?: string | IBreadcrumbItem[];
         /**
           * Hide all buttons.
+          * @default false
          */
         "hideButtons": boolean;
         /**
           * Toggle an overlay associated with a button.
           * @param overlayId
          */
-        "toggleOverlayById": (overlayId: IBreadcrumbOverlay['id']) => Promise<void>;
+        "toggleOverlayById": (overlayId: IBreadcrumbOverlay["id"]) => Promise<void>;
     }
     interface SwisspostInternetFooter {
     }
     interface SwisspostInternetHeader {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
+          * @default 'auto'
          */
         "activeRoute"?: 'auto' | false | string;
         /**
@@ -122,17 +128,19 @@ export namespace Components {
         "customConfig"?: string | ICustomConfig;
         /**
           * Target environment. Choose 'int01' for local testing.
+          * @default 'prod'
          */
         "environment": Environment;
         /**
           * Displays the header at full width for full-screen applications
+          * @default false
          */
         "fullWidth"?: boolean;
         /**
           * Get the currently set language as a two letter string ("de", "fr" "it" or "en")
           * @returns string
          */
-        "getCurrentLanguage": () => Promise<'de' | 'fr' | 'it' | 'en' | string>;
+        "getCurrentLanguage": () => Promise<"de" | "fr" | "it" | "en" | string>;
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
@@ -143,6 +151,7 @@ export namespace Components {
         "languageCookieKey"?: string;
         /**
           * The header uses this local storage key to set the language. Disables automatic language selection.
+          * @default 'swisspost-internet-header-language'
          */
         "languageLocalStorageKey"?: string;
         /**
@@ -151,6 +160,7 @@ export namespace Components {
         "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**
           * Toggle the login link (when logged out) or the user widget (when logged in).
+          * @default true
          */
         "login": boolean;
         /**
@@ -159,6 +169,7 @@ export namespace Components {
         "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
+          * @default true
          */
         "meta": boolean;
         /**
@@ -171,14 +182,17 @@ export namespace Components {
         "project": string;
         /**
           * Toggle the search button.
+          * @default true
          */
         "search": boolean;
         /**
           * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
+          * @default true
          */
         "skiplinks": boolean;
         /**
           * Sticky behaviour of the header.
+          * @default 'minimal'
          */
         "stickyness": StickynessOptions;
     }
@@ -336,6 +350,9 @@ declare namespace LocalJSX {
      * @param active activate or deactivate the focus trap
      */
     interface FocusTrap {
+        /**
+          * @default false
+         */
         "active"?: boolean;
     }
     interface PostHeaderLogo {
@@ -373,6 +390,7 @@ declare namespace LocalJSX {
     interface PostMetaNavigation {
         /**
           * Displays the meta-navigation in full-width.
+          * @default false
          */
         "fullWidth"?: boolean;
         /**
@@ -395,6 +413,7 @@ declare namespace LocalJSX {
         "customItems"?: string | IBreadcrumbItem[];
         /**
           * Hide all buttons.
+          * @default false
          */
         "hideButtons"?: boolean;
     }
@@ -403,6 +422,7 @@ declare namespace LocalJSX {
     interface SwisspostInternetHeader {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
+          * @default 'auto'
          */
         "activeRoute"?: 'auto' | false | string;
         /**
@@ -415,10 +435,12 @@ declare namespace LocalJSX {
         "customConfig"?: string | ICustomConfig;
         /**
           * Target environment. Choose 'int01' for local testing.
+          * @default 'prod'
          */
         "environment"?: Environment;
         /**
           * Displays the header at full width for full-screen applications
+          * @default false
          */
         "fullWidth"?: boolean;
         /**
@@ -431,6 +453,7 @@ declare namespace LocalJSX {
         "languageCookieKey"?: string;
         /**
           * The header uses this local storage key to set the language. Disables automatic language selection.
+          * @default 'swisspost-internet-header-language'
          */
         "languageLocalStorageKey"?: string;
         /**
@@ -439,6 +462,7 @@ declare namespace LocalJSX {
         "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**
           * Toggle the login link (when logged out) or the user widget (when logged in).
+          * @default true
          */
         "login"?: boolean;
         /**
@@ -447,6 +471,7 @@ declare namespace LocalJSX {
         "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
+          * @default true
          */
         "meta"?: boolean;
         /**
@@ -463,14 +488,17 @@ declare namespace LocalJSX {
         "project"?: string;
         /**
           * Toggle the search button.
+          * @default true
          */
         "search"?: boolean;
         /**
           * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
+          * @default true
          */
         "skiplinks"?: boolean;
         /**
           * Sticky behaviour of the header.
+          * @default 'minimal'
          */
         "stickyness"?: StickynessOptions;
     }
