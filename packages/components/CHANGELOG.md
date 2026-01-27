@@ -1,5 +1,29 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.59
+
+### Patch Changes
+
+- Updated the focus behavior of the `post-linkarea` component. It now displays a focus ring when the contained link is focused, while links inside a `post-linkarea` no longer show their own focus ring. (by [@alizedebray](https://github.com/alizedebray) with [#7002](https://github.com/swisspost/design-system/pull/7002))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.59
+  - @swisspost/design-system-styles@10.0.0-next.59
+
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Fixed the business sectors list wrapping in the `post-footer` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7010](https://github.com/swisspost/design-system/pull/7010))
+
+- Fixed the burger menu button in the `post-header` component not updating its state correctly on the first click. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7014](https://github.com/swisspost/design-system/pull/7014))
+
+- Fixed the fade-in behavior in the `post-tabs` component, so tab-panels are always correctly showing. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7007](https://github.com/swisspost/design-system/pull/7007))
+
+- Fixed teaser card markup by applying the `.card` class directly to the `post-linkarea` element. (by [@hugomslv](https://github.com/hugomslv) with [#6955](https://github.com/swisspost/design-system/pull/6955))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.58
+  - @swisspost/design-system-styles@10.0.0-next.58
+
 ## 10.0.0-next.57
 
 ### Minor Changes
