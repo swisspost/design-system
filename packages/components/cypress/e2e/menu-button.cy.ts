@@ -44,6 +44,7 @@ describe('menu', () => {
 
     it('should update the "aria-expanded" attribute after hiding the menu', () => {
       cy.get('@trigger').dblclick();
+      cy.get('@menu').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
     });
 
