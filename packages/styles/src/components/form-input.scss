@@ -166,17 +166,42 @@ input.form-control {
     color: tokens.get('input-color-enabled-fg');
     opacity: 1;
   }
-
-  // Safari-specific: Override yellow placeholder text color in date/time inputs
+  
+  // Safari-specific: Override yellow placeholder text in date/time inputs
+  // Note: :not(:focus) prevents black text on dark blue selection background in 
+  // Chrome/Edge (Windows), a combination that produces insufficient contrast ratios.
+  &[type='date'],
   &[type='date'],
   &[type='datetime-local'],
   &[type='month'],
   &[type='week'],
   &[type='time'] {
-    &::-webkit-datetime-edit-fields-wrapper {
-      -webkit-text-fill-color: tokens.get('input-color-enabled-fg') !important;
-    }
+      &::-webkit-datetime-edit-day-field:not(:focus),
+      &::-webkit-datetime-edit-month-field:not(:focus),
+      &::-webkit-datetime-edit-year-field:not(:focus),
+      &::-webkit-datetime-edit-hour-field:not(:focus),
+      &::-webkit-datetime-edit-minute-field:not(:focus),
+      &::-webkit-datetime-edit-second-field:not(:focus),
+      &::-webkit-datetime-edit-ampm-field:not(:focus),
+      &::-webkit-datetime-edit-meridiem-field:not(:focus) {
+    -webkit-text-fill-color: tokens.get('input-color-enabled-fg') !important;
   }
+
+  // Safari-specific: Override default selection styles where background and text colors
+  // produce insufficient contrast ratios.  
+  &::-webkit-datetime-edit-day-field:focus,
+  &::-webkit-datetime-edit-fields-wrapper:focus,
+  &::-webkit-datetime-edit-month-field:focus,
+  &::-webkit-datetime-edit-year-field:focus,
+  &::-webkit-datetime-edit-hour-field:focus,
+  &::-webkit-datetime-edit-minute-field:focus,
+  &::-webkit-datetime-edit-second-field:focus,
+  &::-webkit-datetime-edit-ampm-field:focus,
+  &::-webkit-datetime-edit-meridiem-field:focus {
+    background-color: #B4D5FE !important;
+    -webkit-text-fill-color: #000 !important;
+  }
+}
 
   &:disabled {
     color: tokens.get('input-color-disabled-fg');
