@@ -42,13 +42,19 @@ post-header {
     @include media.max(desktop) {
       flex-direction: row;
     }
+
+    @include media.only(mobile) {
+      @include interactive-elements {
+        @include nav-item-icon-only;
+      }
+    }
   }
 
   // links and buttons remaining in the global header on tablet and mobile
   > :is([slot='global-nav-primary'], [slot='post-login']) {
     @include media.only(mobile) {
       @include interactive-elements {
-        @include nav-item-icon-only;
+        padding: 0.625rem;
       }
     }
   }
@@ -57,7 +63,7 @@ post-header {
   > :is([slot='local-nav']) {
     @include media.only(mobile) {
       @include interactive-elements {
-        @include nav-item-icon-only(0.25rem 0.75rem);
+        padding: 0.25rem 0.75rem;
       }
     }
   }

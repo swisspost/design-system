@@ -122,9 +122,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 /**
  styles for nav items that remain in the header on mobile and tablet
  */
-@mixin nav-item-icon-only($custom-padding: 0.625rem) {
-  padding: $custom-padding;
-
+@mixin nav-item-icon-only() {
   > :not(post-icon) {
     display: none;
   }
