@@ -1,9 +1,14 @@
 @use 'sass:map';
+@use './../variables/color';
+@use './../variables/animation';
 @use './../variables/components/forms';
-@use './../mixins/utilities';
+@use './../tokens/components';
+@use './../mixins/color' as color-mx;
+@use './../mixins/icons' as icons-mx;
+@use './../mixins/utilities' as utility-mx;
+@use './../functions/tokens';
 @use './../functions/icons';
 @use './../functions/utilities' as utilities-fx;
-@use './../variables/color';
 
 /* Deprecated use the one in utilities.scss */
 @mixin focus-outline {
@@ -22,11 +27,11 @@
   &.is-valid:not(:disabled) {
     background-image: var(--post-signal-icon-success);
 
-    @include utilities.high-contrast-mode-dark() {
+    @include utility-mx.high-contrast-mode-dark() {
       background-image: var(--post-signal-icon-success);
     }
 
-    @include utilities.high-contrast-mode-light() {
+    @include utility-mx.high-contrast-mode-light() {
       background-image: var(--post-signal-icon-success);
     }
   }
@@ -34,11 +39,11 @@
   &.is-invalid:not(:disabled) {
     background-image: var(--post-signal-icon-error);
 
-    @include utilities.high-contrast-mode-dark() {
+    @include utility-mx.high-contrast-mode-dark() {
       background-image: var(--post-signal-icon-error);
     }
 
-    @include utilities.high-contrast-mode-light() {
+    @include utility-mx.high-contrast-mode-light() {
       background-image: var(--post-signal-icon-error);
     }
   }
@@ -50,5 +55,255 @@
     background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"%3E%3Cg clip-path="url(%23clip0_7846_3191)"%3E%3Cpath d="M6.5 18H9.5V21H6.5V18Z" fill="#{$clean-color}"/%3E%3Cpath d="M12.5 18H15.5V21H12.5V18Z" fill="#{$clean-color}"/%3E%3Cpath d="M12.5 12H15.5V15H12.5V12Z" fill="#{$clean-color}"/%3E%3Cpath d="M18.5 12H21.5V15H18.5V12Z" fill="#{$clean-color}"/%3E%3Cpath d="M18.5 6H21.5V9H18.5V6Z" fill="#{$clean-color}"/%3E%3Cpath d="M18.5 18H21.5V21H18.5V18Z" fill="#{$clean-color}"/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id="clip0_7846_3191"%3E%3Crect width="24" height="24" fill="white" transform="translate(0.5)"/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E');
     background-repeat: no-repeat;
     background-size: 100%;
+  }
+}
+
+@mixin checkbox($custom-hover-selector: null) {
+  $checkbox-icon-checked: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='M7.51712 12.1332L4.30712 8.69325C4.02712 8.39325 4.03712 7.91325 4.34712 7.63325C4.64712 7.35325 5.12712 7.36325 5.40712 7.67325L7.31712 9.72325L10.7171 4.57325C10.9471 4.22325 11.4071 4.13325 11.7571 4.36325C12.1071 4.59325 12.1971 5.05325 11.9671 5.40325L7.51712 12.1332Z'/></svg>");
+  $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='M11.21 8.5H4.75C4.34 8.5 4 8.16 4 7.75C4 7.34 4.34 7 4.75 7H11.21C11.62 7 11.96 7.34 11.96 7.75C11.96 8.16 11.62 8.5 11.21 8.5Z'/></svg>");
+
+  appearance: none;
+  flex: none;
+  display: inline-flex;
+  margin: tokens.get('checkbox-icon-padding-inner', components.$post-checkbox);
+  margin-block: calc(
+    tokens.get('checkbox-icon-padding-inner', components.$post-checkbox) +
+      tokens.get('checkbox-icon-padding-container', components.$post-checkbox)
+  );
+  width: tokens.get('checkbox-icon-size', components.$post-checkbox);
+  height: tokens.get('checkbox-icon-size', components.$post-checkbox);
+  background-color: tokens.get('checkbox-enabled-bg', components.$post-checkbox);
+  border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+    tokens.get('checkbox-border-style-default', components.$post-checkbox)
+    tokens.get('checkbox-enabled-stroke', components.$post-checkbox);
+  border-radius: tokens.get('checkbox-border-radius', components.$post-checkbox);
+  color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
+  vertical-align: top;
+  transition:
+    background-color #{animation.$transition-base-timing},
+    border-color #{animation.$transition-base-timing},
+    color #{animation.$transition-base-timing},
+    box-shadow #{animation.$transition-base-timing};
+
+  @include utility-mx.high-contrast-mode() {
+    background-color: Field;
+    border-color: FieldText;
+    color: FieldText;
+    transition: none;
+  }
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+
+  &::after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    mask-size: tokens.get('checkbox-icon-size', components.$post-checkbox);
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+
+  &:checked,
+  &:indeterminate {
+    @include utility-mx.high-contrast-mode() {
+      background-color: SelectedItem;
+    }
+
+    &::after {
+      background-color: currentColor;
+
+      @include utility-mx.high-contrast-mode() {
+        background-color: SelectedItemText;
+      }
+    }
+  }
+
+  @if $custom-hover-selector != null {
+    @at-root #{$custom-hover-selector} {
+      @include checkbox-hover();
+    }
+  } @else {
+    &:not([disabled]):hover {
+      @include checkbox-hover();
+    }
+  }
+
+  &:checked {
+    &::after {
+      mask-image: $checkbox-icon-checked;
+    }
+  }
+
+  &:indeterminate {
+    &::after {
+      mask-image: $checkbox-icon-indeterminate;
+    }
+  }
+
+  &[disabled] {
+    background-color: tokens.get('checkbox-disabled-bg', components.$post-checkbox);
+    border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+      tokens.get('checkbox-border-style-disabled', components.$post-checkbox)
+      tokens.get('checkbox-disabled-stroke', components.$post-checkbox);
+    color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
+
+    @include utility-mx.high-contrast-mode() {
+      background-color: Field;
+      border-color: GrayText;
+
+      &:checked,
+      &:indeterminate {
+        &::after {
+          background-color: GrayText;
+        }
+      }
+    }
+  }
+}
+
+@mixin checkbox-hover() {
+  background-color: tokens.get('checkbox-hover-bg', components.$post-checkbox);
+  border-color: tokens.get('checkbox-hover-stroke', components.$post-checkbox);
+  color: tokens.get('checkbox-hover-fg', components.$post-checkbox);
+
+  @include utility-mx.high-contrast-mode() {
+    background-color: Field;
+    border-color: Highlight;
+
+    &:checked,
+    &:indeterminate {
+      &::after {
+        background-color: Highlight;
+      }
+    }
+  }
+}
+
+@mixin radio-button($custom-hover-selector: null) {
+  appearance: none;
+  flex: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: calc(
+    tokens.get('radio-button-icon-padding-block-inner', components.$post-radio-button) +
+      tokens.get('radio-button-icon-padding-block-container', components.$post-radio-button)
+  );
+  margin-inline: tokens.get(
+    'radio-button-icon-padding-inline-inner',
+    components.$post-radio-button
+  );
+  width: tokens.get('radio-button-icon-ring', components.$post-radio-button);
+  height: tokens.get('radio-button-icon-ring', components.$post-radio-button);
+  background-color: tokens.get('radio-button-enabled-bg', components.$post-radio-button);
+  border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+    tokens.get('radio-button-icon-border-style-default', components.$post-radio-button)
+    tokens.get('radio-button-enabled-stroke', components.$post-radio-button);
+  border-radius: tokens.get('radio-button-icon-border-radius-round', components.$post-radio-button);
+  color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
+  vertical-align: top;
+  transition:
+    background-color #{animation.$transition-base-timing},
+    border-color #{animation.$transition-base-timing},
+    color #{animation.$transition-base-timing},
+    box-shadow #{animation.$transition-base-timing};
+
+  @include utility-mx.high-contrast-mode() {
+    background-color: Field;
+    border-color: FieldText;
+    color: FieldText;
+    transition: none;
+  }
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+
+  &::after {
+    display: block;
+    content: '';
+    width: tokens.get('radio-button-icon-dot', components.$post-radio-button);
+    height: tokens.get('radio-button-icon-dot', components.$post-radio-button);
+    border-radius: inherit;
+  }
+
+  &:checked {
+    @include utility-mx.high-contrast-mode() {
+      background-color: SelectedItem;
+
+      &::after {
+        background-color: SelectedItemText !important;
+      }
+    }
+
+    &::after {
+      background-color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
+
+      @include utility-mx.high-contrast-mode() {
+        background-color: FieldText;
+      }
+    }
+  }
+
+  @if $custom-hover-selector != null {
+    @at-root #{$custom-hover-selector},
+      &:not([disabled]):hover {
+      @include radio-button-hover();
+    }
+  } @else {
+    &:not([disabled]):hover {
+      @include radio-button-hover();
+    }
+  }
+
+  &[disabled] {
+    background-color: tokens.get('radio-button-disabled-bg', components.$post-radio-button);
+    border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+      tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
+      tokens.get('radio-button-disabled-stroke', components.$post-radio-button);
+    color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
+
+    &:checked {
+      &::after {
+        background-color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
+      }
+    }
+
+    @include utility-mx.high-contrast-mode() {
+      background-color: Field;
+      border-color: GrayText;
+
+      &:checked {
+        &::after {
+          background-color: GrayText;
+        }
+      }
+    }
+  }
+}
+
+@mixin radio-button-hover() {
+  background-color: tokens.get('radio-button-hover-bg', components.$post-radio-button);
+  border-color: tokens.get('radio-button-hover-stroke', components.$post-radio-button);
+  color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
+
+  &:checked {
+    &::after {
+      background-color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
+    }
+  }
+
+  @include utility-mx.high-contrast-mode() {
+    background-color: Field;
+    border-color: Highlight;
+
+    &:checked {
+      &::after {
+        background-color: Highlight !important;
+      }
+    }
   }
 }

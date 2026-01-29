@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, State } from '@stencil/core';
 import { version } from '@root/package.json';
 
-const INTERACTIVE_ELEMENTS = ['a'].join(',');
+const INTERACTIVE_ELEMENTS = ['a', 'input[type="checkbox"]', 'input[type="radio"]'].join(',');
 const INTERACTIVE_ELEMENTS_SELECTOR = `:where(${INTERACTIVE_ELEMENTS})`;
 
 @Component({
@@ -16,10 +16,12 @@ export class PostLinkarea {
 
   @State() interactiveElements: NodeListOf<HTMLAnchorElement>;
 
-  private dispatchClick({ ctrlKey, shiftKey, altKey, metaKey }: MouseEvent) {
-    this.interactiveElements[0]?.dispatchEvent(
-      new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
-    );
+  private dispatchClick({ target, ctrlKey, shiftKey, altKey, metaKey }: MouseEvent) {
+    if (target !== this.interactiveElements[0]) {
+      this.interactiveElements[0]?.dispatchEvent(
+        new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
+      );
+    }
   }
 
   private checkInteractiveElements() {
