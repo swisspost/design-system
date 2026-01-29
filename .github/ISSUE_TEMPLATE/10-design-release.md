@@ -3,6 +3,7 @@ name: '[subtask] Design Release'
 about: Sub-issue to release a component in design.
 title: '[design-release] component_name_here'
 labels: '🎨 figma'
+type: task
 assignees: ''
 ---
 
