@@ -1,13 +1,13 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
-import { Description } from '@storybook/addon-docs/blocks';
 
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
-  title: 'Components/Form Card Control',
+  title: 'Components/Card Control',
   tags: ['package:Styles', 'status:InProgress'],
   render: renderComponent,
   parameters: {
@@ -127,8 +127,7 @@ class RenderHelper {
 
   public componentId(args: Args, context: StoryContext): string {
     const storyName = this.storyName(context);
-    const typeName = `${args.type.charAt(0).toUpperCase()}${args.type.slice(1)}`;
-    return `${storyName}_${typeName}_${this.id++}`;
+    return `${storyName}_${this.id++}`;
   }
 
   public validationId(context: StoryContext): string {
@@ -144,9 +143,11 @@ class RenderHelper {
 const _ = new RenderHelper();
 
 function renderComponent(args: Args, context: StoryContext) {
-  const id = _.componentId(args, context);
+  const [_args, updateArgs] = useArgs();
+  const [id] = useState(_.componentId(args, context));
+  const [validationId] = useState(_.validationId(context));
+
   const classes = args.class ? `card-control ${args.class}` : 'card-control';
-  const validationId = _.validationId(context);
 
   function icon() {
     if (args.customIcon) {
@@ -173,6 +174,11 @@ function renderComponent(args: Args, context: StoryContext) {
     return args.customContent ? html`${unsafeHTML(args.customContent)}` : nothing;
   }
 
+  function onChange(e: InputEvent) {
+    const target = e.target as HTMLInputElement;
+    updateArgs({ checked: target?.checked ?? false });
+  }
+
   return html` <post-linkarea class=${classes}>
       <input
         id=${id}
@@ -185,6 +191,8 @@ function renderComponent(args: Args, context: StoryContext) {
         aria-describedby=${args.groupName || args.validation === 'null'
           ? nothing
           : `${id} ${validationId}`}
+        @input="${onChange}"
+        @change="${onChange}"
       />
       <label for=${id}>${args.label}</label>
       ${icon()} ${description()} ${customContent()}
@@ -194,6 +202,27 @@ function renderComponent(args: Args, context: StoryContext) {
 }
 
 // STORIES
+const STORY_GROUPING_AMOUNT_OF_ITEMS = 3;
+const STORY_LINEUP_LABELS = [
+  'Mondays',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday & Sunday',
+];
+const STORY_LINEUP_DESCRIPTIONS = [
+  'The first day of the week.',
+  'This is the second day of the week and usually follows the Monday.',
+  'It`s Wednesday my dudes!',
+  'Almost the end of the working week.',
+  'The fifth day of the week, often considered the gateway to the weekend.',
+  'Have a great weekend and see you next week.',
+];
+const STORY_PALETTECHECK_COMPONENT_TYPES = ['radio', 'checkbox'];
+const STORY_PALETTECHECK_PALETTE_TYPES = ['default', 'alternate', 'accent', 'brand'];
+const STORY_PALETTECHECK_COLOR_SCHEMES = ['light', 'dark'];
+
 type Story = StoryObj;
 
 export const Default: Story = {};
@@ -252,8 +281,6 @@ export const CustomContent: Story = {
   },
 };
 
-const STORY_GROUPING_AMOUNT_OF_ITEMS = 6;
-
 export const Grouping: Story = {
   parameters: {
     docs: {
@@ -266,7 +293,7 @@ export const Grouping: Story = {
     groupName: 'grouping_group',
   },
   render: (args: Args, context: StoryContext) => {
-    const validationId = _.validationId(context);
+    const [validationId] = useState(_.validationId(context));
 
     return html`<fieldset
       disabled=${args.disabled ? 'disabled' : nothing}
@@ -275,36 +302,16 @@ export const Grouping: Story = {
     >
       <legend>Group Legend</legend>
 
-      <div class="row g-16">
-        ${Array.from({ length: STORY_GROUPING_AMOUNT_OF_ITEMS }).map(
-          (_v, i: number) =>
-            html`<div class="col-sm-6">
-              ${meta.render?.({ ...args, label: `Label ${i + 1}` }, context)}
-            </div>`,
-        )}
-      </div>
-
+      ${Array.from({ length: STORY_GROUPING_AMOUNT_OF_ITEMS }).map(render)}
       ${_.validation(validationId)}
     </fieldset>`;
+
+    function render(_v: unknown, i: number) {
+      const label = `Label ${i + 1}`;
+      return html`${meta.render?.({ ...args, label }, context)}`;
+    }
   },
 };
-
-const STORY_LINEUP_LABELS = [
-  'Mondays',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday & Sunday',
-];
-const STORY_LINEUP_DESCRIPTIONS = [
-  'The first day of the week.',
-  'This is the second day of the week and usually follows the Monday.',
-  'It`s Wednesday my dudes!',
-  'Almost the end of the working week.',
-  'The fifth day of the week, often considered the gateway to the weekend.',
-  'Have a great weekend and see you next week.',
-];
 
 export const Lineup: Story = {
   args: {
@@ -314,9 +321,13 @@ export const Lineup: Story = {
     return html`<div class="row g-16">
       ${STORY_LINEUP_LABELS.map(
         (label: string, i: number) =>
-          html`<div class="col-sm-6">
+          html`<div class="col-sm-6 col-lg-4">
             ${meta.render?.(
-              { ...args, label: label, description: STORY_LINEUP_DESCRIPTIONS[i] },
+              {
+                ...args,
+                label: label,
+                description: STORY_LINEUP_DESCRIPTIONS[i],
+              },
               context,
             )}
           </div>`,
@@ -325,11 +336,7 @@ export const Lineup: Story = {
   },
 };
 
-const COMPONENT_TYPES = ['radio', 'checkbox'];
-const PALETTE_TYPES = ['default', 'alternate', 'accent', 'brand'];
-const COLOR_SCHEMES = ['light', 'dark'];
-
-export const Draft: Story = {
+export const PaletteCheck: Story = {
   args: {
     icon: 'component',
   },
@@ -340,7 +347,7 @@ export const Draft: Story = {
           <p class="text-right">Color Scheme</p>
           <p>Palette Type</p>
         </div>
-        ${COLOR_SCHEMES.map(
+        ${STORY_PALETTECHECK_COLOR_SCHEMES.map(
           scheme =>
             html`<div class="col">
               <p class="text-center" style="text-transform: capitalize">${scheme}</p>
@@ -348,15 +355,15 @@ export const Draft: Story = {
         )}
       </div>
 
-      ${COMPONENT_TYPES.map(
+      ${STORY_PALETTECHECK_COMPONENT_TYPES.map(
         type =>
-          html`${PALETTE_TYPES.map(
+          html`${STORY_PALETTECHECK_PALETTE_TYPES.map(
             palette =>
               html`<div class="row g-0">
                 <div class="col-2 align-self-center">
                   <p style="text-transform: capitalize">${palette}</p>
                 </div>
-                ${COLOR_SCHEMES.map(
+                ${STORY_PALETTECHECK_COLOR_SCHEMES.map(
                   scheme =>
                     html` <div class="col" data-color-scheme=${scheme}>
                       <fieldset class="m-0 palette palette-${palette} p-32">
@@ -388,120 +395,3 @@ export const Draft: Story = {
     `;
   },
 };
-
-// let cardControlId = 0;
-// const CONTROL_LABELS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
-
-// // Firefox fallback for the :has selector
-// function inputHandler(e: InputEvent, updateArgs: (newArgs: Partial<Args>) => void) {
-//   const target = e.target as HTMLInputElement;
-//   updateArgs({ checked: target.checked });
-
-//   // Fix input events not fired on "deselected" radio buttons
-//   target
-//     .closest('fieldset')
-//     ?.querySelectorAll('.radio-button-card')
-//     .forEach(e => e?.classList.remove('checked'));
-//   target.parentElement?.classList.toggle('checked', target.checked);
-// }
-
-// export const Default = {
-//   parameters: {
-//     controls: {
-//       exclude: ['Group Validation'],
-//     },
-//   },
-//   render: (args: Args) => {
-//     const [id] = useState(args.id ?? cardControlId++);
-//     const [_, updateArgs] = useArgs();
-
-//     // Conditional classes
-//     const cardClasses = mapClasses({
-//       'checked': args.checked,
-//       'disabled': args.disabled,
-//       'is-invalid': args.validation === 'is-invalid',
-//       'checkbox-button-card': args.type === 'checkbox',
-//       'radio-button-card': args.type === 'radio',
-//     });
-//     const validationClass = args.validation !== 'null' ? `${args.validation}` : undefined;
-
-//     // Child components
-//     const controlId = `CardControl_${id}`;
-//     const description = html`<span class="fs-11">${args.description}</span>`;
-//     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
-//     const invalidFeedback = html`<p
-//       class="invalid-feedback mt-8"
-//       id="${args.validation}-id-${controlId}"
-//     >
-//       Invalid feedback
-//     </p>`;
-
-//     return html`
-//       <div class="${cardClasses}">
-//         <input
-//           id="${controlId}"
-//           name="${args.type}-button-card-${args.inputName ?? `control_${id}`}"
-//           class="${ifDefined(validationClass)}"
-//           type="${args.type}"
-//           ?disabled="${args.disabled}"
-//           .checked="${args.checked}"
-//           checked="${args.checked || nothing}"
-//           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
-//           aria-describedby="${args.validation != 'null'
-//             ? `${args.validation}-id-${controlId}`
-//             : nothing}"
-//           aria-invalid="${args.validation != 'null' ? true : nothing}"
-//         />
-//         <label for="${controlId}">
-//           <span>${args.label}</span>
-//           ${args.description ? description : nothing}
-//         </label>
-//         ${args.icon !== 'none' ? icon : nothing}
-//       </div>
-//       ${args.validation === 'is-invalid' && !args.GroupValidation ? invalidFeedback : nothing}
-//     `;
-//   },
-// };
-
-// export const CustomContent: Story = {
-//   render: Default.render,
-// };
-
-// function col(label: string, args: Args, useState: useStateFn) {
-//   const [id] = useState(cardControlId++);
-
-//   return html`
-//     <div class="col-sm-6">
-//       ${Default.render({
-//         ...args,
-//         id,
-//         label,
-//         inputName: args.type === 'radio' ? 'group' : `control-${id}`,
-//         checked: false,
-//         GroupValidation: true,
-//         validation: args.validation,
-//       })}
-//     </div>
-//   `;
-// }
-
-// export const Group = {
-//   parameters: {
-//     controls: {
-//       include: ['Type', 'Validation'],
-//     },
-//   },
-//   render: (args: Args) => {
-//     const invalidFeedback = html`
-//       <p id="invalid-feedback" class="d-inline-flex mt-16 invalid-feedback">Invalid choice</p>
-//     `;
-
-//     return html`
-//       <fieldset class="container-fluid">
-//         <legend aria-describedby="invalid-feedback">Legend</legend>
-//         <div class="row g-16">${CONTROL_LABELS.map(n => col(n, args, useState))}</div>
-//         ${args.validation === 'is-invalid' ? invalidFeedback : nothing}
-//       </fieldset>
-//     `;
-//   },
-// };
