@@ -861,7 +861,7 @@ declare global {
         new (): HTMLPostMegadropdownTriggerElement;
     };
     interface HTMLPostMenuElementEventMap {
-        "toggleMenu": boolean;
+        "postToggle": boolean;
     }
     interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1369,7 +1369,7 @@ declare namespace LocalJSX {
         /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
-        "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
+        "onPostToggle"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
