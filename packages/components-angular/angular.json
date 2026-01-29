@@ -62,7 +62,7 @@
             "tsConfig": "projects/consumer-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["projects/consumer-app/src/favicon.ico", "projects/consumer-app/src/assets"],
-            "styles": ["projects/consumer-app/src/styles.scss"],
+            "styles": ["node_modules/ngx-toastr/toastr.css", "projects/consumer-app/src/styles.scss"],
             "scripts": [],
             "browser": "projects/consumer-app/src/main.ts"
           },

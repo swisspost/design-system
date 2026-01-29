@@ -2,6 +2,7 @@
 @use 'sass:map';
 
 @use './../mixins/notification' as notification-mx;
+@use './../mixins/icons' as icons-mx;
 
 @use './../variables/spacing';
 @use './../variables/commons';
@@ -10,12 +11,17 @@
 @use './../tokens/utilities';
 @use './../functions/tokens';
 @use '../mixins/media';
+@use '../mixins/close-button';
 
 tokens.$default-map: components.$post-banner;
 
 .toast {
   @include notification-mx.notification-size(toast);
   @include notification-mx.notification-body(toast);
+
+  .toast-title {
+    font-weight: tokens.get('utility-font-weight-bold', utilities.$post-typo);
+  }
 }
 
 .toast-dismissible {
@@ -124,5 +130,25 @@ tokens.$default-map: components.$post-banner;
 .toast-bottom-full-width {
   .toast {
     width: 100% !important;
+  }
+}
+
+// For ngx-toastr
+.toast {
+  background-image: unset;
+}
+
+.toast-close-button {
+  @include close-button.close-button();
+
+  &::before {
+    content: '';
+    display: block;
+    @include close-button.close-button-icon();
+    @include icons-mx.mask-image('closex');
+  }
+
+  span {
+    display: none;
   }
 }

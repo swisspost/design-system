@@ -3,13 +3,10 @@
 @use '@swisspost/design-system-styles/helpers/visually-hidden';
 
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/components';
-
-tokens.$default-map: components.$post-close;
+@use '@swisspost/design-system-styles/mixins/close-button';
 
 post-closebutton {
-  &[size="small"] {
+  &[size='small'] {
     .btn {
       height: tokens.get('close-small-size');
       width: tokens.get('close-small-size');
@@ -17,7 +14,7 @@ post-closebutton {
   }
 
   &:not([placement]),
-  &[placement="auto"] {
+  &[placement='auto'] {
     position: absolute;
     inset-block-start: 0;
     inset-inline-end: 0;

@@ -72,41 +72,41 @@
 
       <!-- Level 1 with megadropdown -->
       @for (dropdown of megadropdowns; track dropdown.id) {
-        <li>
-          <post-megadropdown-trigger [for]="dropdown.id">{{
-            dropdown.trigger
-          }}</post-megadropdown-trigger>
-          <post-megadropdown [id]="dropdown.id" textClose="Close" textBack="Back">
-            <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
-              >Overview {{ dropdown.trigger }}</a
-            >
-            <div class="row row-cols-1 row-cols-sm-2">
-              @for (section of dropdown.sections; track section.title) {
-                <div class="col">
-                  @if (section.titleLink) {
-                    <a
-                      class="post-megadropdown-list-title"
-                      [id]="section.id"
-                      [href]="section.titleLink"
-                      >{{ section.title }}</a
-                    >
-                  } @else {
-                    <p class="post-megadropdown-list-title" [id]="section.id">
-                      {{ section.title }}
-                    </p>
-                  }
-                  <ul class="post-megadropdown-list" [attr.aria-labelledby]="section.id">
-                    @for (link of section.links; track link.text) {
-                      <li>
-                        <a [href]="link.url">{{ link.text }}</a>
-                      </li>
-                    }
-                  </ul>
-                </div>
+      <li>
+        <post-megadropdown-trigger [for]="dropdown.id">{{
+          dropdown.trigger
+        }}</post-megadropdown-trigger>
+        <post-megadropdown [id]="dropdown.id" textClose="Close" textBack="Back">
+          <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
+            >Overview {{ dropdown.trigger }}</a
+          >
+          <div class="row row-cols-1 row-cols-sm-2">
+            @for (section of dropdown.sections; track section.title) {
+            <div class="col">
+              @if (section.titleLink) {
+              <a
+                class="post-megadropdown-list-title"
+                [id]="section.id"
+                [href]="section.titleLink"
+                >{{ section.title }}</a
+              >
+              } @else {
+              <p class="post-megadropdown-list-title" [id]="section.id">
+                {{ section.title }}
+              </p>
               }
+              <ul class="post-megadropdown-list" [attr.aria-labelledby]="section.id">
+                @for (link of section.links; track link.text) {
+                <li>
+                  <a [href]="link.url">{{ link.text }}</a>
+                </li>
+                }
+              </ul>
             </div>
-          </post-megadropdown>
-        </li>
+            }
+          </div>
+        </post-megadropdown>
+      </li>
       }
     </ul>
   </post-mainnavigation>
@@ -124,6 +124,10 @@
 </header>
 
 <div class="container">
+  <button (click)="showSuccess()">Click me for Success</button>
+  <button (click)="showInfo()">Click me for Info</button>
+  <button (click)="showWarning()">Click me for Warning</button>
+  <button (click)="showError()">Click me for Error</button>
   <post-breadcrumbs
     homeUrl="/"
     textHome="Home"
@@ -145,28 +149,26 @@
 
 <post-footer textFooter="Footer">
   @for (grid of footerGrids; track grid.slot) {
-    <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{
-      grid.title
-    }}</span>
-    <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">
-      @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
-        <li>
-          <a [href]="link.url">{{ link.text }}</a>
-        </li>
-      }
-    </ul>
+  <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
+  <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">
+    @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
+    <li>
+      <a [href]="link.url">{{ link.text }}</a>
+    </li>
+    }
+  </ul>
   }
 
   <div slot="socialmedia">
     <h3 id="socialmedia">Follow us</h3>
     <ul aria-labelledby="socialmedia">
       @for (social of socialMediaLinks; track social.name) {
-        <li>
-          <a [href]="social.url" class="btn btn-primary btn-icon">
-            <post-icon aria-hidden="true" [name]="social.icon"></post-icon>
-            <span class="visually-hidden">{{ social.name }}</span>
-          </a>
-        </li>
+      <li>
+        <a [href]="social.url" class="btn btn-primary btn-icon">
+          <post-icon aria-hidden="true" [name]="social.icon"></post-icon>
+          <span class="visually-hidden">{{ social.name }}</span>
+        </a>
+      </li>
       }
     </ul>
   </div>
@@ -217,9 +219,9 @@
   <div slot="meta">
     <ul aria-label="Meta">
       @for (meta of metaLinks; track meta.text) {
-        <li>
-          <a [href]="meta.url">{{ meta.text }}</a>
-        </li>
+      <li>
+        <a [href]="meta.url">{{ meta.text }}</a>
+      </li>
       }
       <li>
         <button
