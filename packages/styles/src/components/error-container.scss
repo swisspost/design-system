@@ -1,9 +1,47 @@
-.error-container {
-  overflow-x: hidden;
+@use '../mixins/media';
+
+.button-section {
+  display: flex;
+  gap: 1rem;
+  margin-top: 4.75rem;
+  margin-bottom: 2rem;
 }
 
-.error-container--image {
-  max-width: 150%;
-  margin: 10vw 0 0 3rem;
-  object-fit: contain;
+.error-container--image img {
+  display: block;
+  margin: auto;
+}
+
+@include media.max(lg) {
+  .button-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-top: 3rem;
+  }
+
+  .error-container--image {
+    padding: 2rem 1rem;
+  }
+}
+
+@include media.max(md) {
+  .error-container .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .error-container .row > .col {
+    flex: 0 0 100%;
+  }
+
+  .error-container--image {
+    padding: 4rem 2.5rem;
+  }
+
+  .error-400 {
+    align-items: stretch;
+    transform: rotate(90deg);
+    width: 100%;
+  }
 }
