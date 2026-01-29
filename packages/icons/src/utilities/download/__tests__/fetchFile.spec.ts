@@ -3,10 +3,10 @@ import {
   Type,
   TypeFilter,
   VariantMIME,
-} from '../../models/censhare-result-page.model';
+} from '../../../models/censhare-result-page.model';
 import fetch, { Response } from 'node-fetch';
 import mockFs from 'mock-fs';
-import { fetchFile } from './fetchFile';
+import { fetchFile } from './../fetchFile';
 
 jest.mock('node-fetch');
 

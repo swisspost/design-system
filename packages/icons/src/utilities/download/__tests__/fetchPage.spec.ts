@@ -1,6 +1,6 @@
 import fetch, { Response } from 'node-fetch';
-import testResult from '../../../tests/fixtures/test-result.json';
-import { fetchPage } from './fetchPage';
+import testResult from '../../../../tests/fixtures/test-result.json';
+import { fetchPage } from './../fetchPage';
 
 jest.mock('node-fetch');
 
