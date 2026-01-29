@@ -1,7 +1,12 @@
-import { Component, Element, h, Host, State } from '@stencil/core';
+import { Component, Element, h, Host } from '@stencil/core';
 import { version } from '@root/package.json';
 
-const INTERACTIVE_ELEMENTS = ['a', 'input[type="checkbox"]', 'input[type="radio"]'].join(',');
+const INTERACTIVE_ELEMENTS = [
+  'a',
+  'label[for]',
+  'input[type="checkbox"]',
+  'input[type="radio"]',
+].join(',');
 const INTERACTIVE_ELEMENTS_SELECTOR = `:where(${INTERACTIVE_ELEMENTS})`;
 
 @Component({
@@ -10,42 +15,36 @@ const INTERACTIVE_ELEMENTS_SELECTOR = `:where(${INTERACTIVE_ELEMENTS})`;
   shadow: true,
 })
 export class PostLinkarea {
-  private mutationObserver = new MutationObserver(this.checkInteractiveElements.bind(this));
-
   @Element() host: HTMLPostLinkareaElement;
 
-  @State() interactiveElements: NodeListOf<HTMLAnchorElement>;
+  // this gets the interactive elements only when needed,
+  // so we do not have to care about DOM changes not listen to it with a MutationObserver
+  private get interactiveElements(): HTMLElement[] {
+    return Array.from(this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR));
+  }
 
   private dispatchClick({ target, ctrlKey, shiftKey, altKey, metaKey }: MouseEvent) {
-    if (target !== this.interactiveElements[0]) {
-      this.interactiveElements[0]?.dispatchEvent(
+    const interactiveElements = this.interactiveElements;
+
+    if (interactiveElements.length <= 0) return;
+
+    let dispatchEvent;
+
+    if (target instanceof HTMLLabelElement) {
+      // do NOT dispatch event, if label is associated with an input element inside the host
+      // as the label will trigger a click on the associated element automatically
+      dispatchEvent = this.host.querySelector(`#${target.htmlFor}`) === null;
+    } else {
+      // do NOT dispatch event, if interactive element has been clicked directly
+      // this becomes super important when it comes to form controls (e.g. checkbox, radio)
+      dispatchEvent = !interactiveElements.some(el => el === target);
+    }
+
+    if (dispatchEvent) {
+      interactiveElements[0].dispatchEvent(
         new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
       );
     }
-  }
-
-  private checkInteractiveElements() {
-    this.interactiveElements = this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR);
-
-    if (this.interactiveElements.length !== 1) {
-      console.error(
-        `The \`post-linkarea\` currently contains ${this.interactiveElements.length} interactive elements when it should contain exactly one.`,
-      );
-    } else {
-      this.interactiveElements[0].style.setProperty('outline', 'unset', 'important');
-    }
-  }
-
-  connectedCallback() {
-    this.mutationObserver.observe(this.host, { childList: true });
-  }
-
-  componentWillLoad() {
-    this.checkInteractiveElements();
-  }
-
-  disconnectedCallback() {
-    this.mutationObserver.disconnect();
   }
 
   render() {
