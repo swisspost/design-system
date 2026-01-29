@@ -360,16 +360,16 @@ export const Draft: Story = {
                   scheme =>
                     html` <div class="col" data-color-scheme=${scheme}>
                       <fieldset class="m-0 palette palette-${palette} p-32">
-                        ${Default.render?.({ ...args, type, label: 'Enabled, Hover' }, context)}
-                        ${Default.render?.(
+                        ${meta.render?.({ ...args, type, label: 'Enabled, Hover' }, context)}
+                        ${meta.render?.(
                           { ...args, type, label: 'Disabled', disabled: true },
                           context,
                         )}
-                        ${Default.render?.(
+                        ${meta.render?.(
                           { ...args, type, label: 'Checked', checked: true },
                           context,
                         )}
-                        ${Default.render?.(
+                        ${meta.render?.(
                           {
                             ...args,
                             type,
