@@ -1,5 +1,15 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.59
+
+### Minor Changes
+
+- Added icons: `2749`, `2750` and `2751` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7067](https://github.com/swisspost/design-system/pull/7067))
+
+### Patch Changes
+
+- Updated the generated ids to include the icon name. This ensures that symbol ids used are unique across the whole icon set and prevents conflicts when multiple icons are used in light-dom. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+
 ## 10.0.0-next.58
 
 ### Patch Changes
