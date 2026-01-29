@@ -37,9 +37,9 @@ fieldset {
 
   display: grid;
   grid-template-areas: 'input label icon';
-  grid-template-columns: min-content auto min-content;
+  grid-template-columns: min-content 1fr max-content;
   column-gap: var(--post-card-control-column-gap);
-  align-items: start;
+  align-content: start;
   padding: var(--post-card-control-padding);
   background-color: var(--post-card-control-bg);
   border-width: var(--post-card-control-border-width);
@@ -85,19 +85,20 @@ fieldset {
     // HINT: keeping the color-scheme on the child elements, prevents the focus-outline from having the wrong color in some cases.
     color-scheme: var(--post-card-control-scheme);
 
-    // every non-standard content is located on: row 2, column 'label' to 'icon'
+    // every custom-content is located on: row 2, column 'label' to 'icon'
     grid-row: 2;
     grid-column: label / icon;
   }
 
-  &:has(> .card-control--description) > * {
-    // if description is present, every non-standard content is located on: row 3, column 'label' to 'icon'
+  &:where(:has(> .card-control--description)) > * {
+    // if a description is present (located on row 2, column 'label' to 'icon'),
+    // every custom-content needs to be re-located to: row 3, column 'label' to 'icon'
     grid-row: 3;
   }
 
   > input {
     grid-row: 1;
-    grid-column: input !important;
+    grid-column: input;
     margin: var(--post-card-control-input-margin-block) 0 !important;
     outline: 0 none !important;
     transition: none !important;
@@ -136,7 +137,6 @@ fieldset {
     line-height: 1;
 
     &:not(post-icon) {
-      width: 1em;
       height: 1em;
 
       > * {
