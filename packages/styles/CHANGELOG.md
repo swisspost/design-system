@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.60
+
+### Patch Changes
+
+- Aligned the local header icons padding with design specs. (by [@leagrdv](https://github.com/leagrdv) with [#7073](https://github.com/swisspost/design-system/pull/7073))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.60
+
 ## 10.0.0-next.59
 
 ### Patch Changes
