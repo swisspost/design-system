@@ -1,5 +1,14 @@
 # @swisspost/design-system-nextjs-integration
 
+## 10.0.0-next.59
+
+### Patch Changes
+
+- Added new react icon demo cases. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+- Updated dependencies:
+  - @swisspost/design-system-components-react@10.0.0-next.59
+  - @swisspost/design-system-styles@10.0.0-next.59
+
 ## 10.0.0-next.58
 
 ### Patch Changes
