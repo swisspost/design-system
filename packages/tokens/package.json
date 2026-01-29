@@ -38,7 +38,7 @@
     "rimraf": "6.0.1",
     "style-dictionary": "5.1.1",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.20.0"
+    "typescript-eslint": "8.54.0"
   },
   "keywords": [
     "tokens",
