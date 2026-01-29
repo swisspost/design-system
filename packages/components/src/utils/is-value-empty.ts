@@ -1,5 +1,7 @@
-import { EMPTY_VALUES } from './property-checkers/constants';
-
 export function isValueEmpty(value: unknown): boolean {
-  return EMPTY_VALUES.some(v => v === value);
+  const isUndefinedOrNull = value == null;
+  const isEmptyString = value === '';
+  const isNotANumber = typeof value === 'number' && isNaN(value);
+
+  return isUndefinedOrNull || isEmptyString || isNotANumber;
 }
