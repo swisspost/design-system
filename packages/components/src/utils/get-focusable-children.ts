@@ -1,3 +1,5 @@
+import { getRoot } from '@/utils/get-root';
+
 const focusableSelector = `:where(${[
   'button',
   'input:not([type="hidden"])',
@@ -78,9 +80,26 @@ export function getDeepFocusableChildren(
   return focusableElements;
 }
 
-function isVisible(el: HTMLElement): boolean {
+function isVisible(el: Element | Document | ShadowRoot): boolean {
+  if (el instanceof Document) {
+    return true;
+  }
+
+  if (el instanceof ShadowRoot) {
+    return isVisible(el.host);
+  }
+
   const style = window.getComputedStyle(el);
-  return style.display !== 'none' && style.visibility !== 'hidden';
+  if (style.display === 'none' || style.visibility !== 'visible') {
+    return false;
+  }
+
+  if (el.parentElement) {
+    return isVisible(el.parentElement);
+  }
+
+  const root = getRoot(el);
+  return isVisible(root);
 }
 
 function isElementFocusable(node: Element | ShadowRoot): node is HTMLElement {
