@@ -18,6 +18,7 @@ tokens.$default-map: components.$post-datepicker;
   /* --------------------------------------------
    * General
    * ------------------------------------------ */
+  --adp-cell-background-color-in-range: unset; // keeping this because of potential ardp bug
 
   font-family: inherit;
   font-size: var(--post-device-font-size-8);
