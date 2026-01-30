@@ -16,8 +16,6 @@ import {
   PostMegadropdownTrigger,
 } from 'components';
 import { CommonModule } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
-import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -62,43 +60,6 @@ export class AppComponent implements OnInit {
       { text: 'Express and courier', url: '' },
     ],
   };
-  toastr = inject(ToastrService);
-
-  showSuccess() {
-    this.toastr.success('Title', 'Content', {
-      toastClass: 'toast toast-success toast-dismissible',
-      tapToDismiss: false,
-      timeOut: 1000000,
-      closeButton: true,
-    });
-  }
-
-  showInfo() {
-    this.toastr.info('Title', 'Content', {
-      toastClass: 'toast toast-info toast-dismissible',
-      tapToDismiss: false,
-      timeOut: 1000000,
-      closeButton: true,
-    });
-  }
-
-  showError() {
-    this.toastr.error('Title', 'Content', {
-      toastClass: 'toast toast-error toast-dismissible',
-      tapToDismiss: false,
-      timeOut: 1000000,
-      closeButton: true,
-    });
-  }
-
-  showWarning() {
-    this.toastr.warning('Title', 'Content', {
-      toastClass: 'toast toast-warning toast-dismissible',
-      tapToDismiss: false,
-      timeOut: 1000000,
-      closeButton: true,
-    });
-  }
 
   // Header megadropdown data
   public megadropdowns = [

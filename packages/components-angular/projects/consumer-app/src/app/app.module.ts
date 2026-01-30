@@ -7,12 +7,10 @@ import { providePostComponents } from '@swisspost/design-system-components-angul
 
 import { AppComponent } from './app.component';
 import { CardControlComponent } from './routes/card-control/card-control.component';
-import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
     CommonModule,
-    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule,

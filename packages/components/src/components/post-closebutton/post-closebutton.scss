@@ -9,7 +9,7 @@
 tokens.$default-map: components.$post-close;
 
 post-closebutton {
-  &[size='small'] {
+  &[size="small"] {
     .btn {
       height: tokens.get('close-small-size');
       width: tokens.get('close-small-size');
@@ -17,7 +17,7 @@ post-closebutton {
   }
 
   &:not([placement]),
-  &[placement='auto'] {
+  &[placement="auto"] {
     position: absolute;
     inset-block-start: 0;
     inset-inline-end: 0;
