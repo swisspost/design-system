@@ -3,7 +3,10 @@
 @use '@swisspost/design-system-styles/helpers/visually-hidden';
 
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/mixins/close-button';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+
+tokens.$default-map: components.$post-close;
 
 post-closebutton {
   &[size='small'] {

@@ -3,17 +3,21 @@
 
 @use './../mixins/notification' as notification-mx;
 @use './../mixins/icons' as icons-mx;
+@use './../mixins/utilities' as utilities-mx;
 
-@use './../variables/spacing';
+@use './../placeholders/button';
 @use './../variables/commons';
 @use './../variables/components/notification';
 @use './../tokens/components';
 @use './../tokens/utilities';
 @use './../functions/tokens';
 @use '../mixins/media';
-@use '../mixins/close-button';
+@use '../mixins/icon-button' as icon-button-mx;
+@use '../mixins/button' as button-mx;
 
 tokens.$default-map: components.$post-banner;
+
+$spacer: 1.5rem;
 
 .toast {
   @include notification-mx.notification-size(toast);
@@ -51,15 +55,56 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
+// For ngx-toastr
 // Positioning
 .toast-container {
   position: fixed;
   z-index: commons.$zindex-toast;
   display: flex;
   flex-direction: column;
+  gap: $spacer;
 
   .toast {
     width: 25rem;
+    background-image: unset;
+
+    button.toast-close-button {
+      @extend %btn;
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-end: 0;
+      transform: translate(50%, -50%);
+      background-color: tokens.get('close-enabled-bg', components.$post-close);
+
+      // Add .btn-secondary, .btn-icon and .btn-sm styles
+      @include button-mx.button-variant-def('enabled', 'secondary');
+      @include icon-button-mx.icon-button();
+      @include icon-button-mx.icon-button('sm');
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+      }
+
+      @include utilities-mx.not-disabled-hover() {
+        background-color: tokens.get('close-hover-bg', components.$post-close);
+        @include button-mx.button-variant-def('hover', 'secondary');
+      }
+
+      // Remove default icon
+      span {
+        display: none;
+      }
+
+      // Add close post-icon
+      &::before {
+        content: '';
+        display: block;
+        width: tokens.get('icon-button-small-icon', components.$post-icon-button);
+        height: tokens.get('icon-button-small-icon', components.$post-icon-button);
+        @include icons-mx.mask-image('closex');
+      }
+    }
   }
 
   @include media.max(md) {
@@ -69,8 +114,8 @@ tokens.$default-map: components.$post-banner;
   }
 
   @include media.max(md) {
-    right: spacing.$spacer;
-    left: spacing.$spacer;
+    right: $spacer;
+    left: $spacer;
 
     .toast {
       width: 100%;
@@ -82,14 +127,14 @@ tokens.$default-map: components.$post-banner;
 .toast-top-full-width,
 .toast-top-left,
 .toast-top-right {
-  top: spacing.$spacer;
+  top: $spacer;
 }
 
 .toast-bottom-center,
 .toast-bottom-full-width,
 .toast-bottom-right,
 .toast-bottom-left {
-  bottom: spacing.$spacer;
+  bottom: $spacer;
 }
 
 .toast-top-left,
@@ -97,7 +142,7 @@ tokens.$default-map: components.$post-banner;
 .toast-top-full-width,
 .toast-bottom-full-width,
 .toast-center-left {
-  left: spacing.$spacer;
+  left: $spacer;
 }
 
 .toast-top-right,
@@ -105,7 +150,7 @@ tokens.$default-map: components.$post-banner;
 .toast-top-full-width,
 .toast-bottom-full-width,
 .toast-center-right {
-  right: spacing.$spacer;
+  right: $spacer;
 }
 
 .toast-top-center,
@@ -130,25 +175,5 @@ tokens.$default-map: components.$post-banner;
 .toast-bottom-full-width {
   .toast {
     width: 100% !important;
-  }
-}
-
-// For ngx-toastr
-.toast {
-  background-image: unset;
-}
-
-.toast-close-button {
-  @include close-button.close-button();
-
-  &::before {
-    content: '';
-    display: block;
-    @include close-button.close-button-icon();
-    @include icons-mx.mask-image('closex');
-  }
-
-  span {
-    display: none;
   }
 }
