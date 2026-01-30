@@ -142,7 +142,7 @@ export const config: Config = {
       '<rootDir>/hydrate/',
       '<rootDir>/www/',
       '<rootDir>/cypress',
-      '<rootDir>/visual-tests',
+      '<rootDir>/vrt',
     ],
   },
 };

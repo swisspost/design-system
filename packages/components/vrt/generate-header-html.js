@@ -448,7 +448,7 @@ function generateVariantHTML(variantName, config) {
 function generateAllVariants() {
   const outputDir = path.join(
     path.dirname(fileURLToPath(import.meta.url)),
-    '../www/visual-tests'
+    '../www/vrt'
   );
   
   fs.mkdirSync(outputDir, { recursive: true });

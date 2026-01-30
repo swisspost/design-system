@@ -33,11 +33,11 @@ test-results/
 test-results-*
 playwright-report/
 
-**/visual-tests/__screenshots__/**/*-actual.png
-**/visual-tests/__screenshots__/**/*-diff.png
-**/visual-tests/__screenshots__/**/*-expected.png
-**/visual-tests/__screenshots__/
-**/visual-tests/components/post-header-*.html
+**/vrt/__screenshots__/**/*-actual.png
+**/vrt/__screenshots__/**/*-diff.png
+**/vrt/__screenshots__/**/*-expected.png
+**/vrt/__screenshots__/
+**/vrt/components/post-header-*.html
 
 /playwright/.cache/
 playwright/.auth/

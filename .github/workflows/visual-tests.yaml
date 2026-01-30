@@ -55,10 +55,10 @@ jobs:
         id: snapshot-cache
         uses: actions/cache@v4
         with:
-          path: packages/components/visual-tests/__screenshots__
-          key: visual-snapshots-main-${{ hashFiles('packages/components/src/**/*.{tsx,ts,scss}') }}
+          path: packages/components/vrt/__screenshots__
+          key: vrt-snapshots-main-${{ hashFiles('packages/components/src/**/*.{tsx,ts,scss}') }}
           restore-keys: |
-            visual-snapshots-main-
+            vrt-snapshots-main-
       
       - name: Check if baseline update needed
         id: should-update
@@ -72,17 +72,17 @@ jobs:
       - name: Generate baseline snapshots
         if: steps.should-update.outputs.update == 'true'
         working-directory: packages/components
-        run: pnpm test:visual:update
+        run: pnpm vrt:update
 
       - name: Optimize PNG screenshots
         if: steps.should-update.outputs.update == 'true'
         run: |
           sudo apt-get install -y pngquant
-          find packages/components/visual-tests/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 80-95 {} \;
+          find packages/components/vrt/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 80-95 {} \;
 
       - name: Run visual regression tests
         working-directory: packages/components
-        run: pnpm test:visual
+        run: pnpm vrt
 
       - name: Upload test results
         if: failure()

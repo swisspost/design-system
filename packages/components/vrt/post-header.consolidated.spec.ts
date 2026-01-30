@@ -38,7 +38,7 @@ Object.entries(TEST_MATRIX).forEach(([variant, breakpointConfig]) => {
       test.describe(`${breakpoint} (${width}x${height})`, () => {
         test.beforeEach(async ({ page }) => {
           await page.setViewportSize({ width, height });
-          await page.goto(`/visual-tests/post-header-${variant}.html`);
+          await page.goto(`/vrt/post-header-${variant}.html`);
           await waitForHeaderReady(page);
         });
 
