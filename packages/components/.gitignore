@@ -32,12 +32,7 @@ UserInterfaceState.xcuserstate
 test-results/
 test-results-*
 playwright-report/
-
-**/vrt/__screenshots__/**/*-actual.png
-**/vrt/__screenshots__/**/*-diff.png
-**/vrt/__screenshots__/**/*-expected.png
-**/vrt/__screenshots__/
-**/vrt/components/post-header-*.html
+**/vrt/__screenshots__/**
 
 /playwright/.cache/
 playwright/.auth/
