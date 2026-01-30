@@ -22,6 +22,9 @@ async function executeTest(
   }
 
   await handler(page);
+  
+  await page.waitForTimeout(200);
+  
   await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-${state}.png`);
 
   const cleanup = CLEANUP_HANDLERS[state];
