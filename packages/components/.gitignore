@@ -30,10 +30,12 @@ UserInterfaceState.xcuserstate
 .env
 
 test-results/
-test-results-*
+test-results-*/
 playwright-report/
-**/vrt/__screenshots__/**
+
+**/vrt/__screenshots__/
 
 /playwright/.cache/
-playwright/.auth/
+/playwright/.auth/
+
 *.tsbuildinfo
