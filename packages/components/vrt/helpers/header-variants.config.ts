@@ -1,5 +1,16 @@
+export type HeaderSlot =
+  | 'post-logo'
+  | 'language-menu'
+  | 'title'
+  | 'audience'
+  | 'global-nav-primary'
+  | 'global-nav-secondary'
+  | 'main-nav'
+  | 'local-nav'
+  | 'post-login';
+
 export interface VariantConfig {
-  slots: string[];
+  slots: HeaderSlot[];
   hasGlobalHeader: boolean;
   hasUserMenu: boolean;
   hasMegadropdown: boolean;
@@ -50,7 +61,7 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
     hasGlobalLogin: false,
     features: ['main-navigation', 'local-user-menu'],
   },
-  
+
   'jobs-loggedout': {
     slots: ['post-logo', 'audience', 'global-nav-secondary', 'language-menu', 'main-nav', 'local-nav'],
     hasGlobalHeader: true,
@@ -63,7 +74,7 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
     hasGlobalLogin: false,
     features: ['audience', 'global-nav-secondary', 'main-navigation', 'local-login'],
   },
-  
+
   'jobs-loggedin': {
     slots: ['post-logo', 'audience', 'global-nav-secondary', 'language-menu', 'main-nav', 'local-nav'],
     hasGlobalHeader: true,
@@ -76,9 +87,17 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
     hasGlobalLogin: false,
     features: ['audience', 'global-nav-secondary', 'main-navigation', 'local-user-menu'],
   },
-  
+
   'portal-loggedout': {
-    slots: ['post-logo', 'audience', 'global-nav-primary', 'global-nav-secondary', 'language-menu', 'post-login', 'main-nav'],
+    slots: [
+      'post-logo',
+      'audience',
+      'global-nav-primary',
+      'global-nav-secondary',
+      'language-menu',
+      'post-login',
+      'main-nav',
+    ],
     hasGlobalHeader: true,
     hasUserMenu: false,
     hasMegadropdown: true,
@@ -87,11 +106,25 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
     hasGlobalNavPrimary: true,
     hasLocalNavigation: false,
     hasGlobalLogin: true,
-    features: ['audience', 'global-nav-primary', 'global-nav-secondary', 'main-navigation', 'global-login-link'],
+    features: [
+      'audience',
+      'global-nav-primary',
+      'global-nav-secondary',
+      'main-navigation',
+      'global-login-link',
+    ],
   },
-  
+
   'portal-loggedin': {
-    slots: ['post-logo', 'audience', 'global-nav-primary', 'global-nav-secondary', 'language-menu', 'post-login', 'main-nav'],
+    slots: [
+      'post-logo',
+      'audience',
+      'global-nav-primary',
+      'global-nav-secondary',
+      'language-menu',
+      'post-login',
+      'main-nav',
+    ],
     hasGlobalHeader: true,
     hasUserMenu: true,
     hasMegadropdown: true,
@@ -100,7 +133,13 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
     hasGlobalNavPrimary: true,
     hasLocalNavigation: false,
     hasGlobalLogin: false,
-    features: ['audience', 'global-nav-primary', 'global-nav-secondary', 'main-navigation', 'global-user-menu'],
+    features: [
+      'audience',
+      'global-nav-primary',
+      'global-nav-secondary',
+      'main-navigation',
+      'global-user-menu',
+    ],
   },
 };
 
@@ -118,10 +157,9 @@ export function getVariantsWithFeature(feature: string): string[] {
  */
 export function getUniqueFeatures(variantName: string): string[] {
   const variant = HEADER_VARIANTS[variantName];
-  const otherVariants = Object.entries(HEADER_VARIANTS)
-    .filter(([name]) => name !== variantName);
-  
-  return variant.features.filter(feature => 
-    !otherVariants.some(([_, config]) => config.features.includes(feature))
+  const otherVariants = Object.entries(HEADER_VARIANTS).filter(([name]) => name !== variantName);
+
+  return variant.features.filter(
+    feature => !otherVariants.some(([_, config]) => config.features.includes(feature)),
   );
 }

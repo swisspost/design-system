@@ -7,21 +7,23 @@ import {
   CLEANUP_HANDLERS,
 } from './helpers/header-test-config';
 
+const BREAKPOINT_KEYS = ['desktop', 'tablet', 'mobile'] as const;
+
 async function executeTest(
   page: Page,
   state: string,
   variant: string,
-  breakpoint: string
+  breakpoint: string,
 ): Promise<void> {
   const handler = STATE_HANDLERS[state];
-  
+
   if (!handler) {
     throw new Error(`No state handler found for: ${state}`);
   }
 
   await handler(page);
   await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-${state}.png`);
-  
+
   const cleanup = CLEANUP_HANDLERS[state];
   if (cleanup) {
     await cleanup(page);
@@ -31,10 +33,9 @@ async function executeTest(
 // Iterate through all variants
 Object.entries(TEST_MATRIX).forEach(([variant, breakpointConfig]) => {
   test.describe(`Header: ${variant}`, () => {
-    
     TEST_BREAKPOINTS.forEach(({ name: breakpoint, width, height }) => {
       const config = breakpointConfig[breakpoint];
-      
+
       test.describe(`${breakpoint} (${width}x${height})`, () => {
         test.beforeEach(async ({ page }) => {
           await page.setViewportSize({ width, height });
@@ -43,8 +44,7 @@ Object.entries(TEST_MATRIX).forEach(([variant, breakpointConfig]) => {
         });
 
         const isLoggedInVariant = variant.includes('loggedin');
-        const isBreakpointToSkipDefault =
-          breakpoint === 'mobile' || breakpoint === 'tablet' || breakpoint === 'desktop';
+        const isBreakpointToSkipDefault = BREAKPOINT_KEYS.includes(breakpoint);
         const shouldRunDefault = !(isLoggedInVariant && isBreakpointToSkipDefault);
 
         if (shouldRunDefault) {

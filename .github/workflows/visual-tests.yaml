@@ -56,14 +56,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: packages/components/vrt/__screenshots__
-          key: vrt-snapshots-main-${{ hashFiles('packages/components/src/**/*.{tsx,ts,scss}') }}
+          key: ${{ runner.os }}-vrt-snapshots-${{ hashFiles('packages/components/src/**/*.scss') }}
           restore-keys: |
-            vrt-snapshots-main-
+            ${{ runner.os }}-vrt-snapshots-
+          fail-on-cache-miss: true
       
       - name: Check if baseline update needed
         id: should-update
         run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
+          if [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/v[0-9]+$) && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
             echo "update=true" >> $GITHUB_OUTPUT
           else
             echo "update=false" >> $GITHUB_OUTPUT
@@ -78,7 +79,7 @@ jobs:
         if: steps.should-update.outputs.update == 'true'
         run: |
           sudo apt-get install -y pngquant
-          find packages/components/vrt/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 80-95 {} \;
+          find packages/components/vrt/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 60-80 --speed 1 {} \;
 
       - name: Run visual regression tests
         working-directory: packages/components

@@ -16,13 +16,12 @@ export const TEST_BREAKPOINTS = [
   { name: 'mobile', width: 375, height: 667 },
 ] as const;
 
-export type BreakpointName = typeof TEST_BREAKPOINTS[number]['name'];
+export type BreakpointName = (typeof TEST_BREAKPOINTS)[number]['name'];
 
 /**
  * Handler type definitions
  */
-export type HandlerFunction = (page: Page) => Promise<void>;
-export type HandlerMap = Record<string, HandlerFunction>;
+export type HandlerMap = Record<string, (page: Page) => Promise<void>>;
 
 /**
  * State handlers
@@ -49,7 +48,7 @@ export const STATE_HANDLERS: HandlerMap = {
     await openMegadropdown(page, 'letters');
   },
 
-  'scrolled': async (page) => {
+  scrolled: async page => {
     await page.evaluate(() => window.scrollTo(0, 200));
     await page.waitForTimeout(300);
   },
@@ -112,10 +111,7 @@ const LOGGED_IN = ['user-menu-open'] as const;
 
 const SCROLLED_ONLY = ['scrolled'] as const;
 
-const LANGUAGE_AND_SCROLL = [
-  'language-open',
-  'scrolled',
-] as const;
+const LANGUAGE_AND_SCROLL = ['language-open', 'scrolled'] as const;
 
 const DESKTOP_PORTAL_LOGGED_OUT = [
   'megadropdown-open',
@@ -145,49 +141,27 @@ const BURGER_FLOW_NO_SECOND = [
 ] as const;
 
 /**
- * Helper for tablet + mobile duplication
+ * Helper for composing state configurations across breakpoints
  */
-const tm = (states: readonly string[]) => ({
-  tablet: { states },
-  mobile: { states },
+const stateComposeHelper = (
+  desktop: readonly string[],
+  tablet?: readonly string[],
+  mobile?: readonly string[],
+) => ({
+  desktop: { states: desktop },
+  tablet: { states: tablet ?? desktop },
+  mobile: { states: mobile ?? tablet ?? desktop },
 });
 
 /**
  * Test configuration
  */
 export const TEST_MATRIX: Record<string, VariantConfig> = {
-  'portal-loggedout': {
-    desktop: { states: DESKTOP_PORTAL_LOGGED_OUT },
-    ...tm(BURGER_FLOW),
-  },
-
-  'portal-loggedin': {
-    desktop: { states: LOGGED_IN },
-    ...tm(LOGGED_IN),
-  },
-
-  'microsite-loggedout': {
-    desktop: { states: DESKTOP_MICROSITE_LOGGED_OUT },
-    ...tm(BURGER_FLOW),
-  },
-
-  'microsite-loggedin': {
-    desktop: { states: LOGGED_IN },
-    ...tm(LOGGED_IN),
-  },
-
-  'jobs-loggedout': {
-    desktop: { states: SCROLLED_ONLY },
-    ...tm(BURGER_FLOW_NO_SECOND),
-  },
-
-  'jobs-loggedin': {
-    desktop: { states: LOGGED_IN },
-    ...tm(LOGGED_IN),
-  },
-
-  'onepager': {
-    desktop: { states: SCROLLED_ONLY },
-    ...tm(LANGUAGE_AND_SCROLL),
-  },
+  'portal-loggedout': stateComposeHelper(DESKTOP_PORTAL_LOGGED_OUT, BURGER_FLOW),
+  'portal-loggedin': stateComposeHelper(LOGGED_IN),
+  'microsite-loggedout': stateComposeHelper(DESKTOP_MICROSITE_LOGGED_OUT, BURGER_FLOW),
+  'microsite-loggedin': stateComposeHelper(LOGGED_IN),
+  'jobs-loggedout': stateComposeHelper(SCROLLED_ONLY, BURGER_FLOW_NO_SECOND),
+  'jobs-loggedin': stateComposeHelper(LOGGED_IN),
+  onepager: stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
 };
