@@ -133,11 +133,13 @@ fieldset {
   > .card-control--icon {
     grid-row: 1;
     grid-column: icon;
+    width: 1em;
+    height: 1em;
     font-size: var(--post-card-control-icon-size);
     line-height: 1;
 
     &:not(post-icon) {
-      height: 1em;
+      width: auto;
 
       > * {
         width: auto !important;

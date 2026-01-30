@@ -2,7 +2,7 @@ describe('Choice-card', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
       cy.visit('/iframe.html?id=snapshots--card-control');
-      cy.get('.radio-button-card', { timeout: 30000 }).should('be.visible');
+      cy.get('.card-control', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 

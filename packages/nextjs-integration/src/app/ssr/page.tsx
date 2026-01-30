@@ -3,7 +3,6 @@ import {
   PostAccordionItem,
   PostAvatar,
   PostBanner,
-  PostCardControl,
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
@@ -72,9 +71,6 @@ export default function Home() {
       <PostBanner>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </PostBanner>
-
-      <h2>Card Control</h2>
-      <PostCardControl label="Label" type="checkbox" />
 
       <h2>Close Button</h2>
       <PostClosebutton>Close button</PostClosebutton>
