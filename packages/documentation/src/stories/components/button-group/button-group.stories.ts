@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   args: {
     size: 'btn-md',
-    element: 'button',
+    element: 'radio',
     label_1: 'Left',
     label_2: 'Middle',
     label_3: 'Right',
@@ -45,13 +45,13 @@ const meta: MetaComponent = {
       control: {
         type: 'radio',
         labels: {
+          radio: 'Radio Buttons',
+          checkbox: 'Checkboxes',
           button: 'Buttons',
           link: 'Links',
-          checkbox: 'Checkboxes',
-          radio: 'Radio Buttons',
         },
       },
-      options: ['button', 'link', 'checkbox', 'radio'],
+      options: ['radio', 'checkbox', 'button', 'link'],
       table: {
         category: 'General',
       },

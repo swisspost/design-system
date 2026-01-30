@@ -2,7 +2,8 @@
 name: '[subtask] HTML/CSS'
 about: Sub-issue to implement an HTML/CSS component in the styles package.
 title: '[html/css] component_name_here'
-labels: 'needs: tokens, 📦 styles'
+labels: '📦 styles'
+type: feature
 assignees: ''
 ---
 
