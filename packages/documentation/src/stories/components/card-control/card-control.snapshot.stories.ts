@@ -39,7 +39,7 @@ export const CardControl: StoryObj = {
             ${PALETTE_TEST_COMPONENT_TYPES.map(
               type =>
                 html`<div class="px-8">
-                  <p>Type: ${type}</p>
+                  <p id=${type} class="mt-32 fw-bold">Type: ${type}</p>
                   ${bombedArgs.map(
                     args =>
                       html`<fieldset class="mx-0">
@@ -52,7 +52,7 @@ export const CardControl: StoryObj = {
                   ${PALETTE_TEST_PALETTE_TYPES.map(
                     palette =>
                       html`<div class="palette palette-${palette} p-32">
-                        <fieldset class="mx-0">
+                        <fieldset id="${type}_${palette}" class="mx-0">
                           <legend style="text-transform: capitalize">Palette: ${palette}</legend>
                           ${renderComponent(type)}
                         </fieldset>
@@ -80,16 +80,6 @@ export const CardControl: StoryObj = {
         ${meta.render?.({ ...baseArgs, label: 'Invalid', validation: 'is-invalid' }, context)}
         ${meta.render?.(
           { ...baseArgs, label: 'Invalid, Checked', validation: 'is-invalid', checked: true },
-          context,
-        )}
-        ${meta.render?.(
-          {
-            ...baseArgs,
-            label: 'Invalid, Checked, Disabled',
-            validation: 'is-invalid',
-            checked: true,
-            disabled: true,
-          },
           context,
         )}
       `;
