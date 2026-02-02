@@ -76,16 +76,3 @@ To line them up, simply add the class `.h-full` to all of them.
 <Canvas of={CardControlStandardHTMLStories.Lineup} />
 
 <StylesPackageImport components={['choice-control-card']} />
-
-<div>
-  {
-    /* only rendered in dev mode */
-    process.env.NODE_ENV === 'development' ?
-    <div>
-      <hr/>
-      <h3>Palette dependant coloring showcase<br/><span className="fs-8">(dev mode only)</span></h3>
-      <Canvas of={CardControlStandardHTMLStories.PaletteCheck} />
-    </div> :
-    null
-  }
-</div>
