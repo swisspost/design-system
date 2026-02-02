@@ -1,5 +1,7 @@
 # @swisspost/design-system-eslint
 
+## 10.0.0-next.60
+
 ## 10.0.0-next.59
 
 ## 10.0.0-next.58
