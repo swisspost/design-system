@@ -800,26 +800,7 @@ export class PostDatepicker {
           }
         }
       });
-
-      // test native calendar
-      input.addEventListener('click', this.preventDefault);
-      input.addEventListener('focus', this.preventDefault);
-      input.addEventListener('keydown', event => {
-        if (event.key === ' ') {
-          this.preventDefault(event);
-        }
-      });
-      input.addEventListener('keyup', event => {
-        if (event.key === ' ') {
-          this.preventDefault(event);
-        }
-      });
-      input.addEventListener('touchstart', this.preventDefault);
     });
-  }
-
-  private preventDefault(event) {
-    event.preventDefault();
   }
 
   private syncDatepickerState() {
