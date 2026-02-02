@@ -1,5 +1,17 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.60
+
+### Minor Changes
+
+- Added icons: `2752` and `2753` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7115](https://github.com/swisspost/design-system/pull/7115))
+
+- Added icons:
+  - `bulkmailing` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `soup` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `token` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `variable` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7115](https://github.com/swisspost/design-system/pull/7115))
+
 ## 10.0.0-next.59
 
 ### Minor Changes
