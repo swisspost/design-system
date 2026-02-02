@@ -50,6 +50,7 @@ header,
   post-togglebutton {
     @include header-mx.nav-item-base;
     @include media-mx.only(mobile) {
+      padding: 0.625rem;
       @include header-mx.nav-item-icon-only;
     }
   }

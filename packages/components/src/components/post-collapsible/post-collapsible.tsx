@@ -70,11 +70,12 @@ export class PostCollapsible {
 
     if (IS_BROWSER) {
       const animation = isExpanded ? expand(this.host) : collapse(this.host);
+      this.postToggle.emit(isExpanded);
+
       await animation.finished;
       animation.commitStyles();
 
       this.updateTriggers();
-      this.postToggle.emit(isExpanded);
     }
 
     return isExpanded;
