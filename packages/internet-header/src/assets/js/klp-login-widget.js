@@ -1352,36 +1352,23 @@ const vertx = window.vertx || {};
       }
     }
 
-    function trySubscription() {
-      if (isCurrentLocationPostCh()) {
-        return null != getControlCookieVal();
-      } else {
-        return true;
-      }
-    }
-
     function subscribe() {
       if (!address) {
-        if (trySubscription()) {
-          log('Subscribing to get an address');
-          const startTime = new Date().getTime();
-          fetch(platformEndPoints.subscribe, {
-            method: 'GET',
-            credentials: 'include',
-            mode: 'cors',
-          })
-            .then(message => message.json())
-            .then(message => handleMessage(message))
-            .catch(error => {
-              log('Failed to subscribe: ' + error.message);
-              logout();
-              renderWidget();
-            });
-          logPerformanceMetric('subscribe()', new Date().getTime() - startTime);
-        } else {
-          log('Control cookie not found, skipping subscription');
-          renderWidget();
-        }
+        log('Subscribing to get an address');
+        const startTime = new Date().getTime();
+        fetch(platformEndPoints.subscribe, {
+          method: 'GET',
+          credentials: 'include',
+          mode: 'cors',
+        })
+          .then(message => message.json())
+          .then(message => handleMessage(message))
+          .catch(error => {
+            log('Failed to subscribe: ' + error.message);
+            logout();
+            renderWidget();
+          });
+        logPerformanceMetric('subscribe()', new Date().getTime() - startTime);
       } else {
         log('Address available, skipping subscription');
         openCommunication();
