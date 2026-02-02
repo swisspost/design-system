@@ -1,4 +1,15 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen, Prop } from '@stencil/core';
+import {
+  Component,
+  h,
+  Host,
+  State,
+  Element,
+  Method,
+  Watch,
+  Listen,
+  Prop,
+  Build,
+} from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -39,7 +50,8 @@ export class PostHeader {
   private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
-    return this.device !== 'desktop' && this.hasNavigation;
+    console.log('has navigation', !this.noNavigation);
+    return this.device !== 'desktop' && !this.noNavigation;
   }
 
   private animationOptions: Partial<AnimationOptions> = {
@@ -72,9 +84,9 @@ export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: Device = breakpoint.get('device');
-  @State() hasNavigation: boolean = false;
+  @State() noNavigation: boolean = false;
   @State() hasLocalNav: boolean = false;
-  @State() hasAudience: boolean = false;
+  @State() noAudience: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -362,7 +374,7 @@ export class PostHeader {
 
   private handleSlottedContentChanges() {
     if (!this.slottedContentObserver) {
-      this.checkSlottedContent();
+      if (Build.isBrowser) this.checkSlottedContent();
 
       this.slottedContentObserver = new MutationObserver(this.checkSlottedContent);
       this.slottedContentObserver.observe(this.host, { childList: true });
@@ -370,9 +382,9 @@ export class PostHeader {
   }
 
   private checkSlottedContent() {
-    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
+    this.noNavigation = !this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasAudience = !!this.host.querySelector('[slot="audience"]');
+    this.noAudience = !this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
 
@@ -457,13 +469,14 @@ export class PostHeader {
           <div
             class={{
               'global-header': true,
-              'no-audience': !this.hasAudience,
+              'no-audience': this.noAudience,
             }}
           >
             <div class="section">
               <div class="logo">
                 <slot name="post-logo"></slot>
               </div>
+
               <div class="sliding-controls">
                 {this.device === 'desktop' && (
                   <div class="audience">
@@ -476,12 +489,12 @@ export class PostHeader {
                   <slot name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
-                {this.hasNavigation && this.device !== 'desktop' && (
+                {!this.noNavigation && this.device !== 'desktop' && (
                   <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
                     <slot name="post-togglebutton"></slot>
                   </div>
                 )}
-                {this.hasNavigation && this.device !== 'desktop' && (
+                {!this.noNavigation && this.device !== 'desktop' && (
                   <post-togglebutton
                     ref={el => (this.burgerMenuButton = el)}
                     onClick={() => this.toggleBurgerMenu()}
@@ -503,8 +516,8 @@ export class PostHeader {
             class={{
               'local-header': true,
               'no-title': !this.hasTitle,
-              'no-audience': !this.hasAudience,
-              'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
+              'no-audience': this.noAudience,
+              'no-navigation': this.device !== 'desktop' || this.noNavigation,
               'no-local-nav': !this.hasLocalNav,
             }}
           >
