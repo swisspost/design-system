@@ -59,12 +59,14 @@ jobs:
           key: ${{ runner.os }}-vrt-snapshots-${{ hashFiles('packages/components/src/**/*.scss') }}
           restore-keys: |
             ${{ runner.os }}-vrt-snapshots-
+          # Allow cache miss on main and release/v* branches so baselines can be generated
+          # Fail on cache miss for all other branches (PRs) to ensure they test against existing baselines
           fail-on-cache-miss: ${{ github.ref_name != 'main' && !startsWith(github.ref_name, 'release/v') }}
       
       - name: Check if baseline update needed
         id: should-update
         run: |
-          if [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/v[0-9]+$) && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
+          if [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/v) && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
             echo "update=true" >> $GITHUB_OUTPUT
           else
             echo "update=false" >> $GITHUB_OUTPUT
