@@ -277,7 +277,7 @@ export function createMockSourceIconList(): SourceIcon[] {
 export function createMockSourceReportMultiple(): {
   post: SourceReport;
   ui: SourceReport;
-} {
+  } {
   const postIcon = createMockSourceIcon({}, 1000);
   const uiIcon = createMockSourceIconWithSize(2000, 24);
 

@@ -59,7 +59,7 @@ export function setupFsMocks() {
 /**
  * Shared test assertions for report.json structure
  */
-export function expectReportJsonStructure(reportData: any) {
+export function expectReportJsonStructure(reportData: Record<string, unknown>) {
   expect(reportData).toHaveProperty('icons');
   expect(reportData).toHaveProperty('stats');
   expect(reportData).toHaveProperty('created');
@@ -69,7 +69,7 @@ export function expectReportJsonStructure(reportData: any) {
 /**
  * Shared test assertions for icon structure
  */
-export function expectIconStructure(icon: any) {
+export function expectIconStructure(icon: Record<string, unknown>) {
   expect(icon).toHaveProperty('uuid');
   expect(icon).toHaveProperty('id');
   expect(icon).toHaveProperty('meta');
@@ -81,7 +81,7 @@ export function expectIconStructure(icon: any) {
 /**
  * Shared test assertions for meta structure
  */
-export function expectMetaStructure(meta: any) {
+export function expectMetaStructure(meta: Record<string, unknown>) {
   expect(meta).toHaveProperty('businessfield');
   expect(meta).toHaveProperty('keywords');
   expect(Array.isArray(meta.keywords)).toBe(true);
@@ -90,7 +90,7 @@ export function expectMetaStructure(meta: any) {
 /**
  * Shared test assertions for file structure
  */
-export function expectFileStructure(file: any) {
+export function expectFileStructure(file: Record<string, unknown>) {
   expect(file).toHaveProperty('mime');
   expect(file).toHaveProperty('name');
   expect(file).toHaveProperty('basename');
@@ -100,7 +100,7 @@ export function expectFileStructure(file: any) {
 /**
  * Shared test assertions for stats structure in download reports
  */
-export function expectDownloadStatsStructure(stats: any) {
+export function expectDownloadStatsStructure(stats: Record<string, unknown>) {
   expect(stats).toHaveProperty('success');
   expect(stats).toHaveProperty('errors');
   expect(stats).toHaveProperty('noSVG');
@@ -112,7 +112,7 @@ export function expectDownloadStatsStructure(stats: any) {
 /**
  * Shared test assertions for stats structure in build reports
  */
-export function expectBuildStatsStructure(stats: any) {
+export function expectBuildStatsStructure(stats: Record<string, unknown>) {
   expect(stats).toHaveProperty('set');
   expect(stats).toHaveProperty('sources');
   expect(stats).toHaveProperty('errored');
@@ -127,7 +127,7 @@ export function expectBuildStatsStructure(stats: any) {
 /**
  * Shared test assertions for icon stats in build reports
  */
-export function expectIconStatsStructure(stats: any) {
+export function expectIconStatsStructure(stats: Record<string, unknown>) {
   expect(stats).toHaveProperty('set');
   expect(stats).toHaveProperty('sources');
   expect(stats).toHaveProperty('errored');
@@ -142,9 +142,11 @@ export function expectIconStatsStructure(stats: any) {
 /**
  * Helper to verify icons are sorted by basename
  */
-export function expectIconsSortedByBasename(icons: any[]) {
+export function expectIconsSortedByBasename(icons: Array<Record<string, unknown>>) {
   for (let i = 1; i < icons.length; i++) {
-    expect(icons[i - 1].file.basename <= icons[i].file.basename).toBe(true);
+    const prevIcon = icons[i - 1] as { file: { basename: string } };
+    const currentIcon = icons[i] as { file: { basename: string } };
+    expect(prevIcon.file.basename <= currentIcon.file.basename).toBe(true);
   }
 }
 

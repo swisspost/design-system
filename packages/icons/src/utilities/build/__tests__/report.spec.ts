@@ -2,6 +2,7 @@ import { writeReport } from './../report';
 import fs from 'fs';
 import path from 'path';
 import type { IconSetGroups } from '../../../models/icon.model';
+import { Businessfield } from '../../../models/censhare-result-page.model';
 import {
   createMockSourceIcon,
   createMockSourceIconWithSize,
@@ -31,8 +32,7 @@ describe('build/report', () => {
       {
         meta: {
           downloadLink: 'http://test.com/1000.svg',
-          businessfield: require('../../../models/censhare-result-page.model')
-            .Businessfield.Kommunikation,
+          businessfield: Businessfield.Kommunikation,
           keywords: ['test', 'icon', 'sample'],
           year: '2024',
         },
@@ -42,8 +42,7 @@ describe('build/report', () => {
     createMockSourceIconWithSize(1001, 24, {
       meta: {
         downloadLink: 'http://test.com/1001.svg',
-        businessfield: require('../../../models/censhare-result-page.model')
-          .Businessfield.Kommunikation,
+        businessfield: Businessfield.Kommunikation,
         keywords: ['ui', 'button'],
         year: '2024',
       },
