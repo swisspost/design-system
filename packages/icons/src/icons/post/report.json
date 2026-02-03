@@ -27388,6 +27388,160 @@
       "modifiedAt": "2025-11-29T08:05:04.073Z"
     },
     {
+      "uuid": "5d2ee4f0-f764-11f0-b3dc-0050568d2654",
+      "id": 8786530,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8786530/storage/MDA4Nzg2NTMwLzAvbWFzdGVy",
+        "keywords": [
+          "Foto",
+          "photon detection",
+          "Fotonachweis",
+          "Preuve photographique",
+          "Prova fotografica"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2749.svg",
+        "basename": "2749",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-22T07:31:28.000Z",
+      "modifiedAt": "2026-01-23T15:24:42.000Z"
+    },
+    {
+      "uuid": "5a7c6290-f779-11f0-b3dc-0050568d2654",
+      "id": 8789148,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8789148/storage/MDA4Nzg5MTQ4LzAvbWFzdGVy",
+        "keywords": [
+          "Postschalter",
+          "Postal counter",
+          "Contatore postale",
+          "Compteur postal",
+          "Served Counter",
+          "Bedienter Schalter",
+          "Guichet desservi",
+          "Sportello servito"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2750.svg",
+        "basename": "2750",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-22T10:01:42.000Z",
+      "modifiedAt": "2026-01-23T15:24:42.000Z"
+    },
+    {
+      "uuid": "fcd58302-f779-11f0-b3dc-0050568d2654",
+      "id": 8789229,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8789229/storage/MDA4Nzg5MjI5LzAvbWFzdGVy",
+        "keywords": [
+          "Automat",
+          "Vending machine",
+          "Macchinario",
+          "Automate",
+          "self-service",
+          "Selbstbedienung",
+          "Libre-service",
+          "Self-service"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2751.svg",
+        "basename": "2751",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-22T10:06:15.000Z",
+      "modifiedAt": "2026-01-23T15:34:55.000Z"
+    },
+    {
+      "uuid": "29b24c30-fce0-11f0-8bff-0050568d2654",
+      "id": 8953525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8953525/storage/MDA4OTUzNTI1LzAvbWFzdGVy",
+        "keywords": [
+          "Retrieve waste",
+          "Abfall zurückholen",
+          "Reprise des déchets",
+          "Riprendere i rifiuti",
+          "Undelete",
+          "Löschen rückgängig machen",
+          "Annuler la suppression",
+          "Annullare la cancellazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2752.svg",
+        "basename": "2752",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-29T07:00:15.000Z",
+      "modifiedAt": "2026-01-30T06:05:04.075Z"
+    },
+    {
+      "uuid": "c34dd580-fda3-11f0-bb98-0050568d2654",
+      "id": 8970660,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8970660/storage/MDA4OTcwNjYwLzAvbWFzdGVy",
+        "keywords": [
+          "Trophäe",
+          "Trophy",
+          "Trofeo",
+          "Trophée",
+          "Pokal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2753.svg",
+        "basename": "2753",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-30T06:20:24.000Z",
+      "modifiedAt": "2026-01-31T06:05:02.338Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40626,13 +40780,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1070,
+    "success": 1075,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-01-20T06:14:47.420Z",
-  "version": "10.0.0-next.57"
+  "created": "2026-02-02T08:44:25.401Z",
+  "version": "10.0.0-next.59"
 }

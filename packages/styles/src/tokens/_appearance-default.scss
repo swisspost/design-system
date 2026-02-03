@@ -1,9 +1,9 @@
-@use './temp/channel' as channel;
+@use './temp/appearance';
 
 @use './core';
 @use './../mixins/tokens';
 
 :root,
 [data-color-scheme] {
-  @include tokens.from(channel.$post-edk);
+  @include tokens.from(appearance.$post-default);
 }
