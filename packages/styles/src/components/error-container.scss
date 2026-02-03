@@ -3,14 +3,29 @@
 .button-section {
   display: flex;
   gap: 1rem;
-  margin-top: 4.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 80px;
 }
 
-.error-container--image img {
-  display: block;
-  margin: auto;
+.error-container--image {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-bottom: 40px;
+
+  img {
+    display: block;
+    max-width: 500px;
+  }
 }
+
+.error-container.error-400 {
+  height: 100% !important;
+}
+
+.error-container--image {
+  padding-bottom: 0;
+}
+
 
 @include media.max(lg) {
   .button-section {
@@ -18,25 +33,34 @@
     align-items: stretch;
     gap: 0.5rem;
     margin-top: 3rem;
+    margin-bottom: 2rem;
   }
 
   .error-container--image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 2rem 1rem;
+
+    img {
+      max-width: none;
+      max-height: 300px;
+      width: auto;
+    }
+  }
+  .error-container.error-400 {
+    height: 100% !important;
   }
 }
 
-@include media.max(md) {
+@include media.max(sm) {
   .error-container .row {
     display: flex;
     flex-wrap: wrap;
   }
 
   .error-container .row > .col {
-    flex: 0 0 100%;
-  }
-
-  .error-container--image {
-    padding: 4rem 2.5rem;
+    flex: 0 0 100vh;
   }
 
   .error-400 {

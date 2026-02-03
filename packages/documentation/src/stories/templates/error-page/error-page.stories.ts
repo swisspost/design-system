@@ -130,51 +130,49 @@ function render(type: ErrorType) {
 
   return html`
     <div class="palette palette-alternate error-container">
-      <div class="section">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col">
-              <h2 class="palette-text mt-16">
-                Error ${type}
-                <br />
-                <span class="fw-normal">${subtitle}</span>
-              </h2>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col">
+            <h2 class="palette-text mt-16">
+              Error ${type}
+              <br />
+              <span class="fw-normal">${subtitle}</span>
+            </h2>
 
-              <p class="mt-16">${description}</p>
+            <p class="mt-16 mb-32">${description}</p>
 
-              <div class="button-section">
-                ${secondaryButtonLabel
-                  ? html`
-                      <a
-                        class="btn btn-secondary"
-                        href="https://www.post.ch/de/pages/suche#t=AllTab"
-                        @click="${(e: Event) => e.preventDefault()}"
-                      >
-                        ${secondaryButtonLabel}
-                      </a>
-                    `
-                  : html`
-                      <a
-                        class="btn btn-primary"
-                        href="/"
-                        @click="${(e: Event) => e.preventDefault()}"
-                      >
-                        <post-icon name="arrowleft" aria-hidden="true"></post-icon>
-                        Home page
-                      </a>
-                      <a
-                        class="btn btn-secondary"
-                        href="https://www.post.ch/de/pages/suche#t=AllTab"
-                        @click="${(e: Event) => e.preventDefault()}"
-                      >
-                        Search
-                      </a>
-                    `}
-              </div>
+            <div class="button-section">
+              ${secondaryButtonLabel
+                ? html`
+                    <a
+                      class="btn btn-secondary"
+                      href="https://www.post.ch/de/pages/suche#t=AllTab"
+                      @click="${(e: Event) => e.preventDefault()}"
+                    >
+                      ${secondaryButtonLabel}
+                    </a>
+                  `
+                : html`
+                    <a
+                      class="btn btn-primary"
+                      href="/"
+                      @click="${(e: Event) => e.preventDefault()}"
+                    >
+                      <post-icon name="arrowleft" aria-hidden="true"></post-icon>
+                      Home page
+                    </a>
+                    <a
+                      class="btn btn-secondary"
+                      href="https://www.post.ch/de/pages/suche#t=AllTab"
+                      @click="${(e: Event) => e.preventDefault()}"
+                    >
+                      Search
+                    </a>
+                  `}
             </div>
-            <div class="col error-container--image ${extraClass}">
-              <img src="${imageUrl}" alt="" />
-            </div>
+          </div>
+          <div class="col error-container--image ${extraClass}">
+            <img src="${imageUrl}" alt="" />
           </div>
         </div>
       </div>
