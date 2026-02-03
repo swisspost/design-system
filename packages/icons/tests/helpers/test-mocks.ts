@@ -10,7 +10,6 @@ import type {
   IconSetGroups,
   MergedIcon,
 } from '../../src/models/icon.model';
-import type { CenshareResultPage } from '../../src/models/censhare-result-page.model';
 import {
   Type,
   TypeFilter,

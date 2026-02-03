@@ -8,6 +8,17 @@ import {
   createMockSourceReport,
   createMockIconSetGroupsReportTest,
 } from '../../../../tests/helpers/test-mocks';
+import {
+  getReportJsonData,
+  getMinReportJsonData,
+  expectReportJsonStructure,
+  expectIconStructure,
+  expectMetaStructure,
+  expectFileStructure,
+  expectBuildStatsStructure,
+  expectIconStatsStructure,
+  expectIconsSortedByBasename,
+} from '../../../../tests/helpers/test-utils';
 
 jest.mock('fs');
 jest.mock('../../../../package.json', () => ({ version: '1.0.0' }));
@@ -51,24 +62,15 @@ describe('build/report', () => {
     it('should create report.json with required top-level properties', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
-      expect(reportData).toHaveProperty('icons');
-      expect(reportData).toHaveProperty('stats');
-      expect(reportData).toHaveProperty('created');
-      expect(reportData).toHaveProperty('version');
+      expectReportJsonStructure(reportData);
     });
 
     it('should include correct version in report.json', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
       expect(reportData.version).toBe('1.0.0');
     });
@@ -76,10 +78,7 @@ describe('build/report', () => {
     it('should include created timestamp in report.json', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
       expect(reportData.created).toBeDefined();
       expect(new Date(reportData.created)).toBeInstanceOf(Date);
@@ -88,29 +87,15 @@ describe('build/report', () => {
     it('should include stats object with all required fields', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
-      expect(reportData.stats).toHaveProperty('set');
-      expect(reportData.stats).toHaveProperty('sources');
-      expect(reportData.stats).toHaveProperty('errored');
-      expect(reportData.stats).toHaveProperty('noSVG');
-      expect(reportData.stats).toHaveProperty('wrongViewBox');
-      expect(reportData.stats).toHaveProperty('hasAllSources');
-      expect(reportData.stats).toHaveProperty('noKeywords');
-      expect(reportData.stats).toHaveProperty('duplicates');
-      expect(reportData.stats).toHaveProperty('success');
+      expectBuildStatsStructure(reportData.stats);
     });
 
     it('should include set statistics for each iconset', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
       expect(reportData.stats.set).toHaveProperty('post');
       expect(reportData.stats.set).toHaveProperty('ui');
@@ -121,72 +106,42 @@ describe('build/report', () => {
     it('should include icon array with proper structure', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
       expect(Array.isArray(reportData.icons)).toBe(true);
       expect(reportData.icons.length).toBeGreaterThan(0);
 
       const icon = reportData.icons[0];
-      expect(icon).toHaveProperty('uuid');
-      expect(icon).toHaveProperty('id');
-      expect(icon).toHaveProperty('meta');
-      expect(icon).toHaveProperty('file');
+      expectIconStructure(icon);
       expect(icon).toHaveProperty('stats');
-      expect(icon).toHaveProperty('createdAt');
-      expect(icon).toHaveProperty('modifiedAt');
     });
 
     it('should include meta information for each icon', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
       const icon = reportData.icons[0];
 
-      expect(icon.meta).toHaveProperty('businessfield');
-      expect(icon.meta).toHaveProperty('keywords');
-      expect(Array.isArray(icon.meta.keywords)).toBe(true);
+      expectMetaStructure(icon.meta);
     });
 
     it('should include file information for each icon', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
       const icon = reportData.icons[0];
 
-      expect(icon.file).toHaveProperty('mime');
-      expect(icon.file).toHaveProperty('name');
-      expect(icon.file).toHaveProperty('basename');
-      expect(icon.file).toHaveProperty('ext');
+      expectFileStructure(icon.file);
       expect(icon.file.mime).toBe('image/svg+xml');
     });
 
     it('should include stats for each icon', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
       const icon = reportData.icons[0];
 
-      expect(icon.stats).toHaveProperty('set');
-      expect(icon.stats).toHaveProperty('sources');
-      expect(icon.stats).toHaveProperty('errored');
-      expect(icon.stats).toHaveProperty('noSVG');
-      expect(icon.stats).toHaveProperty('wrongViewBox');
-      expect(icon.stats).toHaveProperty('duplicates');
-      expect(icon.stats).toHaveProperty('hasAllSources');
-      expect(icon.stats).toHaveProperty('hasKeywords');
-      expect(icon.stats).toHaveProperty('success');
+      expectIconStatsStructure(icon.stats);
     });
   });
 
@@ -194,26 +149,16 @@ describe('build/report', () => {
     it('should create report.min.json with simplified structure', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const minReportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.min.json')
-      );
+      const minReportData = getMinReportJsonData(fs.writeFileSync as jest.Mock);
       
-      expect(minReportCall).toBeDefined();
-      const minReportData = JSON.parse(minReportCall[1]);
-
-      expect(minReportData).toHaveProperty('icons');
-      expect(minReportData).toHaveProperty('stats');
-      expect(minReportData).toHaveProperty('created');
-      expect(minReportData).toHaveProperty('version');
+      expect(minReportData).toBeDefined();
+      expectReportJsonStructure(minReportData);
     });
 
     it('should include simplified icon structure in report.min.json', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const minReportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.min.json')
-      );
-      const minReportData = JSON.parse(minReportCall[1]);
+      const minReportData = getMinReportJsonData(fs.writeFileSync as jest.Mock);
       const icon = minReportData.icons[0];
 
       expect(icon).toHaveProperty('id');
@@ -226,10 +171,7 @@ describe('build/report', () => {
     it('should include simplified source references in report.min.json', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const minReportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.min.json')
-      );
-      const minReportData = JSON.parse(minReportCall[1]);
+      const minReportData = getMinReportJsonData(fs.writeFileSync as jest.Mock);
       const icon = minReportData.icons[0];
 
       expect(Array.isArray(icon.stats.sources)).toBe(true);
@@ -281,10 +223,7 @@ describe('build/report', () => {
 
       writeReport(mockReportOutputDirectory, multiSourceGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
       const icon = reportData.icons[0];
 
       expect(icon.meta.keywords).toContain('keyword1');
@@ -295,23 +234,15 @@ describe('build/report', () => {
     it('should sort icons by basename', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
-      for (let i = 1; i < reportData.icons.length; i++) {
-        expect(reportData.icons[i - 1].file.basename <= reportData.icons[i].file.basename).toBe(true);
-      }
+      expectIconsSortedByBasename(reportData.icons);
     });
 
     it('should calculate correct source counts per iconset', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
       expect(reportData.stats.set.post.sources).toBe(1);
       expect(reportData.stats.set.ui.sources).toBe(1);
@@ -320,10 +251,7 @@ describe('build/report', () => {
     it('should calculate correct output counts per iconset', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
 
       expect(reportData.stats.set.post.outputs).toBe(1);
       expect(reportData.stats.set.ui.outputs).toBe(1);
@@ -351,10 +279,7 @@ describe('build/report', () => {
 
       writeReport(mockReportOutputDirectory, incompleteGroups);
 
-      const reportCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-        call[0].includes('report.json')
-      );
-      const reportData = JSON.parse(reportCall[1]);
+      const reportData = getReportJsonData(fs.writeFileSync as jest.Mock);
       const icon = reportData.icons[0];
 
       expect(icon.stats.hasAllSources).toBe(false);
