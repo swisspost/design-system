@@ -39,7 +39,7 @@
     "@types/node": "22.10.5",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
-    "eslint": "9.18.0",
+    "eslint": "9.26.0",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "globals": "16.0.0",
