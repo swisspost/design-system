@@ -28,6 +28,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": [".config/*", "src", "types", "prebuild.spec.ts"],
+  "include": [".config/*", "src", "types", "prebuild.spec.ts", "vrt/**/*", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }
