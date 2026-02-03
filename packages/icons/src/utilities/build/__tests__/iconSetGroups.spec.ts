@@ -2,7 +2,12 @@ import { getIconSetGroups } from './../iconSetGroups';
 import fs from 'fs';
 import path from 'path';
 import type { SourceReport } from '../../../models/icon.model';
-import { Type, TypeFilter, Businessfield, VariantMIME } from '../../../models/censhare-result-page.model';
+import { VariantMIME } from '../../../models/censhare-result-page.model';
+import {
+  createMockSourceIcon,
+  createMockSourceIconWithSize,
+  createMockSourceReport,
+} from '../../../../tests/helpers/test-mocks';
 
 jest.mock('fs');
 jest.mock('../../../iconsets.config', () => [
@@ -15,88 +20,11 @@ jest.mock('../../../iconsets.config', () => [
 ]);
 
 describe('getIconSetGroups', () => {
-  const mockSourceReport: SourceReport = {
-    icons: [
-      {
-        uuid: 'test-uuid-1',
-        id: 1000,
-        type: Type.PicturePictogram,
-        typeFilter: TypeFilter.Pictograms,
-        meta: {
-          downloadLink: 'http://test.com/1000.svg',
-          businessfield: Businessfield.Kommunikation,
-          keywords: ['test', 'icon'],
-          year: '2024',
-        },
-        file: {
-          mime: VariantMIME.ImageSVGXML,
-          name: '1000.svg',
-          basename: '1000',
-          ext: '.svg',
-          size: { width: 32, dpi: 72, height: 32 },
-        },
-        createdAt: new Date('2024-01-01'),
-        modifiedAt: new Date('2024-01-02'),
-      },
-      {
-        uuid: 'test-uuid-2',
-        id: 1001,
-        type: Type.PicturePictogram,
-        typeFilter: TypeFilter.Pictograms,
-        meta: {
-          downloadLink: 'http://test.com/1001-24.svg',
-          businessfield: Businessfield.Kommunikation,
-          keywords: ['test', 'icon'],
-          year: '2024',
-        },
-        file: {
-          mime: VariantMIME.ImageSVGXML,
-          name: '1001-24.svg',
-          basename: '1001-24',
-          ext: '.svg',
-          size: { width: 24, dpi: 72, height: 24 },
-        },
-        createdAt: new Date('2024-01-01'),
-        modifiedAt: new Date('2024-01-02'),
-      },
-      {
-        uuid: 'test-uuid-3',
-        id: 1002,
-        type: Type.PicturePictogram,
-        typeFilter: TypeFilter.Pictograms,
-        meta: {
-          downloadLink: 'http://test.com/1001-32.svg',
-          businessfield: Businessfield.Kommunikation,
-          keywords: ['test', 'icon'],
-          year: '2024',
-        },
-        file: {
-          mime: VariantMIME.ImageSVGXML,
-          name: '1001-32.svg',
-          basename: '1001-32',
-          ext: '.svg',
-          size: { width: 32, dpi: 72, height: 32 },
-        },
-        createdAt: new Date('2024-01-01'),
-        modifiedAt: new Date('2024-01-02'),
-      },
-    ],
-    errored: [],
-    noSVG: [],
-    wrongViewBox: [],
-    noKeywords: [],
-    duplicates: [],
-    stats: {
-      success: 3,
-      errors: 0,
-      noSVG: 0,
-      wrongViewBox: 0,
-      noKeywords: 0,
-      duplicates: 0,
-    },
-    created: new Date('2024-01-01'),
-    version: '1.0.0',
-  };
+  const mockSourceReport = createMockSourceReport([
+    createMockSourceIcon({}, 1000),
+    createMockSourceIconWithSize(1001, 24),
+    createMockSourceIconWithSize(1001, 32),
+  ]);
 
   beforeEach(() => {
     jest.clearAllMocks();

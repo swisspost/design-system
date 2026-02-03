@@ -1,8 +1,13 @@
 import { writeReport } from './../report';
 import fs from 'fs';
 import path from 'path';
-import type { IconSetGroups, SourceReport } from '../../../models/icon.model';
-import { Type, TypeFilter, Businessfield, VariantMIME } from '../../../models/censhare-result-page.model';
+import type { IconSetGroups } from '../../../models/icon.model';
+import {
+  createMockSourceIcon,
+  createMockSourceIconWithSize,
+  createMockSourceReport,
+  createMockIconSetGroupsReportTest,
+} from '../../../../tests/helpers/test-mocks';
 
 jest.mock('fs');
 jest.mock('../../../../package.json', () => ({ version: '1.0.0' }));
@@ -10,102 +15,31 @@ jest.mock('../../../../package.json', () => ({ version: '1.0.0' }));
 describe('build/report', () => {
   const mockReportOutputDirectory = '/test/reports';
 
-  const mockSourceReport: SourceReport = {
-    icons: [
+  const mockSourceReport = createMockSourceReport([
+    createMockSourceIcon(
       {
-        uuid: 'test-uuid-1',
-        id: 1000,
-        type: Type.PicturePictogram,
-        typeFilter: TypeFilter.Pictograms,
         meta: {
           downloadLink: 'http://test.com/1000.svg',
-          businessfield: Businessfield.Kommunikation,
+          businessfield: require('../../../models/censhare-result-page.model')
+            .Businessfield.Kommunikation,
           keywords: ['test', 'icon', 'sample'],
           year: '2024',
         },
-        file: {
-          mime: VariantMIME.ImageSVGXML,
-          name: '1000.svg',
-          basename: '1000',
-          ext: '.svg',
-          size: { width: 32, dpi: 72, height: 32 },
-        },
-        createdAt: new Date('2024-01-01'),
-        modifiedAt: new Date('2024-01-02'),
       },
-      {
-        uuid: 'test-uuid-2',
-        id: 1001,
-        type: Type.PicturePictogram,
-        typeFilter: TypeFilter.Pictograms,
-        meta: {
-          downloadLink: 'http://test.com/1001.svg',
-          businessfield: Businessfield.Kommunikation,
-          keywords: ['ui', 'button'],
-          year: '2024',
-        },
-        file: {
-          mime: VariantMIME.ImageSVGXML,
-          name: '1001-24.svg',
-          basename: '1001-24',
-          ext: '.svg',
-          size: { width: 24, dpi: 72, height: 24 },
-        },
-        createdAt: new Date('2024-01-01'),
-        modifiedAt: new Date('2024-01-02'),
+      1000,
+    ),
+    createMockSourceIconWithSize(1001, 24, {
+      meta: {
+        downloadLink: 'http://test.com/1001.svg',
+        businessfield: require('../../../models/censhare-result-page.model')
+          .Businessfield.Kommunikation,
+        keywords: ['ui', 'button'],
+        year: '2024',
       },
-    ],
-    errored: [],
-    noSVG: [],
-    wrongViewBox: [],
-    noKeywords: [],
-    duplicates: [],
-    stats: {
-      success: 2,
-      errors: 0,
-      noSVG: 0,
-      wrongViewBox: 0,
-      noKeywords: 0,
-      duplicates: 0,
-    },
-    created: new Date('2024-01-01'),
-    version: '1.0.0',
-  };
+    }),
+  ]);
 
-  const mockIconSetGroups: IconSetGroups[] = [
-    {
-      name: 'post',
-      options: {
-        sourceDirectory: '/test/post',
-        expectedSourcesPerIcon: 1,
-      },
-      groups: {
-        '1000': [
-          {
-            size: null,
-            filePath: '/test/post/1000.svg',
-            sourceIcon: mockSourceReport.icons[0],
-          },
-        ],
-      },
-    },
-    {
-      name: 'ui',
-      options: {
-        sourceDirectory: '/test/ui',
-        expectedSourcesPerIcon: 6,
-      },
-      groups: {
-        '1001': [
-          {
-            size: 24,
-            filePath: '/test/ui/1001-24.svg',
-            sourceIcon: mockSourceReport.icons[1],
-          },
-        ],
-      },
-    },
-  ];
+  const mockIconSetGroups = createMockIconSetGroupsReportTest();
 
   beforeEach(() => {
     jest.clearAllMocks();

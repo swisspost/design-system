@@ -1,110 +1,16 @@
 import { createSvgs } from './../createSvgs';
 import fs from 'fs';
 import path from 'path';
-import type { IconSetGroups } from '../../../models/icon.model';
-import { Type, TypeFilter, Businessfield, VariantMIME } from '../../../models/censhare-result-page.model';
+import {
+  createMockIconSetGroupsReportTest,
+} from '../../../../tests/helpers/test-mocks';
 
 jest.mock('fs');
 
 describe('createSvgs', () => {
   const mockIconOutputDirectory = '/test/output/icons';
   
-  const mockIconSetGroups: IconSetGroups[] = [
-    {
-      name: 'post',
-      options: {
-        sourceDirectory: '/test/source/post',
-        expectedSourcesPerIcon: 1,
-      },
-      groups: {
-        '1000': [
-          {
-            size: null,
-            filePath: '/test/source/post/1000.svg',
-            sourceIcon: {
-              uuid: 'test-uuid',
-              id: 1000,
-              type: Type.PicturePictogram,
-              typeFilter: TypeFilter.Pictograms,
-              meta: {
-                downloadLink: 'http://test.com/1000.svg',
-                businessfield: Businessfield.Kommunikation,
-                keywords: ['test', 'icon'],
-              },
-              file: {
-                mime: VariantMIME.ImageSVGXML,
-                name: '1000.svg',
-                basename: '1000',
-                ext: '.svg',
-                size: { width: 32, dpi: 72, height: 32 },
-              },
-              createdAt: new Date('2024-01-01'),
-              modifiedAt: new Date('2024-01-02'),
-            },
-          },
-        ],
-      },
-    },
-    {
-      name: 'ui',
-      options: {
-        sourceDirectory: '/test/source/ui',
-        expectedSourcesPerIcon: 6,
-      },
-      groups: {
-        '2000': [
-          {
-            size: 16,
-            filePath: '/test/source/ui/2000-16.svg',
-            sourceIcon: {
-              uuid: 'test-uuid-ui-16',
-              id: 2000,
-              type: Type.PicturePictogram,
-              typeFilter: TypeFilter.Pictograms,
-              meta: {
-                downloadLink: 'http://test.com/2000-16.svg',
-                businessfield: Businessfield.Kommunikation,
-                keywords: ['ui', 'icon'],
-              },
-              file: {
-                mime: VariantMIME.ImageSVGXML,
-                name: '2000-16.svg',
-                basename: '2000-16',
-                ext: '.svg',
-                size: { width: 16, dpi: 72, height: 16 },
-              },
-              createdAt: new Date('2024-01-01'),
-              modifiedAt: new Date('2024-01-02'),
-            },
-          },
-          {
-            size: 24,
-            filePath: '/test/source/ui/2000-24.svg',
-            sourceIcon: {
-              uuid: 'test-uuid-ui-24',
-              id: 2001,
-              type: Type.PicturePictogram,
-              typeFilter: TypeFilter.Pictograms,
-              meta: {
-                downloadLink: 'http://test.com/2000-24.svg',
-                businessfield: Businessfield.Kommunikation,
-                keywords: ['ui', 'icon'],
-              },
-              file: {
-                mime: VariantMIME.ImageSVGXML,
-                name: '2000-24.svg',
-                basename: '2000-24',
-                ext: '.svg',
-                size: { width: 24, dpi: 72, height: 24 },
-              },
-              createdAt: new Date('2024-01-01'),
-              modifiedAt: new Date('2024-01-02'),
-            },
-          },
-        ],
-      },
-    },
-  ];
+  const mockIconSetGroups = createMockIconSetGroupsReportTest();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -114,9 +20,6 @@ describe('createSvgs', () => {
       if (typeof filePath === 'string') {
         if (filePath.includes('1000.svg')) {
           return '<svg viewBox="0 0 32 32"><path d="M10 10h12v12H10z"/></svg>';
-        }
-        if (filePath.includes('2000-16.svg')) {
-          return '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/></svg>';
         }
         if (filePath.includes('2000-24.svg')) {
           return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>';

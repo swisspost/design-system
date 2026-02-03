@@ -1,41 +1,19 @@
 import { updateReport, writeReport } from './../report';
 import fs from 'fs';
 import path from 'path';
-import type { IconSet, SourceIcon, SourceReport } from '../../../models/icon.model';
+import type { SourceIcon, SourceReport } from '../../../models/icon.model';
 import { getBaseSourceReport } from '../../shared';
-import { Type, TypeFilter, Businessfield, VariantMIME } from '../../../models/censhare-result-page.model';
+import {
+  createMockIconSet,
+  createMockSourceIcon,
+  createMockSourceIconWithSize,
+} from '../../../../tests/helpers/test-mocks';
 
 jest.mock('fs');
 
 describe('download/report', () => {
-  const mockIconSet: IconSet = {
-    name: 'test',
-    apiUrl: 'http://test.com',
-    downloadDirectory: '/test/download',
-    expectedSourcesPerIcon: 1,
-  };
-
-  const mockIcon: SourceIcon = {
-    uuid: 'test-uuid',
-    id: 1000,
-    type: Type.PicturePictogram,
-    typeFilter: TypeFilter.Pictograms,
-    meta: {
-      downloadLink: 'http://test.com/1000.svg',
-      businessfield: Businessfield.Kommunikation,
-      keywords: ['test', 'icon'],
-      year: '2024',
-    },
-    file: {
-      mime: VariantMIME.ImageSVGXML,
-      name: '1000.svg',
-      basename: '1000',
-      ext: '.svg',
-      size: { width: 32, dpi: 72, height: 32 },
-    },
-    createdAt: new Date('2024-01-01'),
-    modifiedAt: new Date('2024-01-02'),
-  };
+  const mockIconSet = createMockIconSet();
+  const mockIcon = createMockSourceIcon({}, 1000);
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -93,11 +71,8 @@ describe('download/report', () => {
     });
 
     it('should detect wrong viewBox in ui icons based on size in name', () => {
-      const uiIconSet: IconSet = { ...mockIconSet, name: 'ui' };
-      const uiIcon: SourceIcon = {
-        ...mockIcon,
-        file: { ...mockIcon.file, basename: '1000-24', name: '1000-24.svg' },
-      };
+      const uiIconSet = createMockIconSet({ name: 'ui' });
+      const uiIcon = createMockSourceIconWithSize(1000, 24);
       const report = getBaseSourceReport();
       const svg = '<svg viewBox="0 0 32 32"><path d="M10 10"/></svg>'; // Should be 24
 
@@ -107,11 +82,8 @@ describe('download/report', () => {
     });
 
     it('should detect correct viewBox in ui icons', () => {
-      const uiIconSet: IconSet = { ...mockIconSet, name: 'ui' };
-      const uiIcon: SourceIcon = {
-        ...mockIcon,
-        file: { ...mockIcon.file, basename: '1000-24', name: '1000-24.svg' },
-      };
+      const uiIconSet = createMockIconSet({ name: 'ui' });
+      const uiIcon = createMockSourceIconWithSize(1000, 24);
       const report = getBaseSourceReport();
       const svg = '<svg viewBox="0 0 24 24"><path d="M10 10"/></svg>';
 
