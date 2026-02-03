@@ -1,6 +1,5 @@
 /**
  * Common test utilities for icon tests
- * Provides helpers to reduce boilerplate and duplication
  */
 
 import fs from 'fs';

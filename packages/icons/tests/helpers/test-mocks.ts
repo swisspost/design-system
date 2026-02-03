@@ -1,6 +1,5 @@
 /**
  * Common test mock generators for icon tests
- * Reduces duplication across download and build test suites
  */
 
 import type {
@@ -62,7 +61,7 @@ export function createMockSourceIcon(
 }
 
 /**
- * Create a mock SourceIcon with size variant (e.g., for UI icons)
+ * Create a mock SourceIcon with size variant
  */
 export function createMockSourceIconWithSize(
   id: number = 1000,
@@ -257,7 +256,7 @@ export function createMockSourceIconList(): SourceIcon[] {
         meta: {
           downloadLink: 'http://test.com/1002.svg',
           businessfield: Businessfield.Kommunikation,
-          keywords: [], // No keywords
+          keywords: [],
           year: '2024',
         },
       },
