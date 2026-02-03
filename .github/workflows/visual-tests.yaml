@@ -59,7 +59,7 @@ jobs:
           key: ${{ runner.os }}-vrt-snapshots-${{ hashFiles('packages/components/src/**/*.scss') }}
           restore-keys: |
             ${{ runner.os }}-vrt-snapshots-
-          fail-on-cache-miss: true
+          fail-on-cache-miss: ${{ github.ref_name != 'main' && !startsWith(github.ref_name, 'release/v') }}
       
       - name: Check if baseline update needed
         id: should-update
