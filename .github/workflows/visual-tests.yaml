@@ -51,6 +51,15 @@ jobs:
         working-directory: packages/components
         run: npx playwright install --with-deps
 
+      - name: Check if baseline branch
+        id: is-baseline-branch
+        run: |
+          if [[ "${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/v[0-9]+$ ]]; then
+            echo "result=true" >> $GITHUB_OUTPUT
+          else
+            echo "result=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Get baseline snapshots from cache
         id: snapshot-cache
         uses: actions/cache@v4
@@ -59,14 +68,14 @@ jobs:
           key: ${{ runner.os }}-vrt-snapshots-${{ hashFiles('packages/components/src/**/*.scss') }}
           restore-keys: |
             ${{ runner.os }}-vrt-snapshots-
-          # Allow cache miss on main and release/v* branches so baselines can be generated
+          # Allow cache miss on main and release/v[0-9]+ branches so baselines can be generated
           # Fail on cache miss for all other branches (PRs) to ensure they test against existing baselines
-          fail-on-cache-miss: ${{ github.ref_name != 'main' && !startsWith(github.ref_name, 'release/v') }}
+          fail-on-cache-miss: ${{ steps.is-baseline-branch.outputs.result != 'true' }}
       
       - name: Check if baseline update needed
         id: should-update
         run: |
-          if [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/v) && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
+          if [[ "${{ steps.is-baseline-branch.outputs.result }}" == "true" && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
             echo "update=true" >> $GITHUB_OUTPUT
           else
             echo "update=false" >> $GITHUB_OUTPUT
