@@ -119,7 +119,7 @@
     "cypress": "14.3.2",
     "cypress-axe": "1.6.0",
     "cypress-storybook": "1.0.0",
-    "eslint": "9.18.0",
+    "eslint": "9.26.0",
     "eslint-plugin-cypress": "4.2.0",
     "eslint-plugin-react": "7.37.5",
     "globals": "16.0.0",
