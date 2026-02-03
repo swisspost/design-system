@@ -79,7 +79,7 @@ jobs:
         if: steps.should-update.outputs.update == 'true'
         run: |
           sudo apt-get install -y pngquant
-          find packages/components/vrt/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 60-80 --speed 1 {} \;
+          find packages/components/vrt/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 70-80 --speed 1 {} \;
 
       - name: Run visual regression tests
         working-directory: packages/components
