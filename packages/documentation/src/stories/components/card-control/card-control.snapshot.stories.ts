@@ -33,6 +33,30 @@ const bombedArgs = bombArgs({
 export const CardControl: StoryObj = {
   render: (_args: Args, context: StoryContext) => {
     return html`
+      <nav>
+        <p>Scroll To links</p>
+        <ul class="list-inline fs-10">
+          ${PALETTE_TEST_COMPONENT_TYPES.map(
+            type =>
+              html`<li>
+                  <a href="#${type}" @click=${(e: MouseEvent) => scrollToClickHandler(e)}
+                    >${type}</a
+                  >
+                </li>
+                ${PALETTE_TEST_PALETTE_TYPES.map(
+                  palette =>
+                    html`<li>
+                      <a
+                        href="#${type}_${palette}"
+                        @click=${(e: MouseEvent) => scrollToClickHandler(e)}
+                        >${type}@${palette}</a
+                      >
+                    </li>`,
+                )}`,
+          )}
+        </ul>
+      </nav>
+      <hr class="my-32" />
       <div class="row row-cols-2 g-0">
         ${schemes(
           () => html`
@@ -86,3 +110,10 @@ export const CardControl: StoryObj = {
     }
   },
 };
+
+function scrollToClickHandler(e: MouseEvent) {
+  e.preventDefault();
+
+  const id = ((e.target as HTMLAnchorElement).getAttribute('href') ?? '').replace('#', '');
+  document.getElementById(id)?.scrollIntoView();
+}
