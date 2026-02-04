@@ -32,7 +32,7 @@ export function getFocusableChildren(element: Element | Document | ShadowRoot): 
     `${focusableSelector}:not(${focusDisablingSelector})`,
   );
 
-  return Array.from(focusableChildren).filter(isVisible);
+  return Array.from(focusableChildren).filter(el => !isFocusBlockedByCSS(el));
 }
 
 // Searches deeper across shadow DOM
@@ -80,32 +80,36 @@ export function getDeepFocusableChildren(
   return focusableElements;
 }
 
-function isVisible(el: Element | Document | ShadowRoot): boolean {
+function isFocusBlockedByCSS(el: Element | Document | ShadowRoot): boolean {
   if (el instanceof Document) {
-    return true;
+    return false;
   }
 
   if (el instanceof ShadowRoot) {
-    return isVisible(el.host);
+    return isFocusBlockedByCSS(el.host);
+  }
+
+  if (typeof el.checkVisibility === 'function') {
+    return !el.checkVisibility({ visibilityProperty: true });
   }
 
   const style = window.getComputedStyle(el);
   if (style.display === 'none' || style.visibility !== 'visible') {
-    return false;
+    return true;
   }
 
   if (el.parentElement) {
-    return isVisible(el.parentElement);
+    return isFocusBlockedByCSS(el.parentElement);
   }
 
   const root = getRoot(el);
-  return isVisible(root);
+  return isFocusBlockedByCSS(root);
 }
 
 function isElementFocusable(node: Element | ShadowRoot): node is HTMLElement {
   return (
     node instanceof HTMLElement &&
     node.matches(`${focusableSelector}:not(${focusDisablingSelector})`) &&
-    isVisible(node)
+    !isFocusBlockedByCSS(node)
   );
 }
