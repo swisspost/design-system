@@ -17,12 +17,14 @@ import { prefersReducedMotion } from '../../utils/utils';
 })
 export class PostInternetBreadcrumbs {
   /**
-   * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
+   * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has its own navigation structure.
+   * @deprecated overlays will no longer be provided in the next major release, therefore this method will no longer be needed.
    */
   @Prop() customItems?: string | IBreadcrumbItem[];
 
   /**
    * Hide all buttons.
+   * @deprecated Help and Contact buttons will no longer be provided in the next major release, therefore this prop will no longer be needed.
    */
   @Prop() hideButtons: boolean = false;
 
