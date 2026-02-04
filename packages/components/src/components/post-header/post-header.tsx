@@ -407,7 +407,7 @@ export class PostHeader {
 
   private renderNavigation() {
     const localNav = !this.hasTitle && (
-      <div>
+      <div class="local-nav">
         <slot name="local-nav"></slot>
       </div>
     );
@@ -461,9 +461,6 @@ export class PostHeader {
             }}
           >
             <div class="section">
-              <div class="logo">
-                <slot name="post-logo"></slot>
-              </div>
               <div class="sliding-controls">
                 {this.device === 'desktop' && (
                   <div class="audience">
