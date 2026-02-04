@@ -220,7 +220,7 @@ jobs:
             
             **Action Required:**
             1. Review the visual differences in the [test artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-            2. If changes are **intentional**: Check the "Checked for visual regressions" checkbox in the PR description, then re-run this workflow or push a new commit
+            2. If changes are **intentional**: Check the "Visual changes detected and approved" checkbox in the PR description, then re-run this workflow or push a new commit
             3. If changes are **unintentional**: Update your code to match the baseline
             
             **Note:** After merging this PR, the new screenshots will automatically become the new baseline in the \`main\` branch.
