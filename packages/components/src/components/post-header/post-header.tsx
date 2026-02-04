@@ -407,7 +407,7 @@ export class PostHeader {
 
   private renderNavigation() {
     const localNav = !this.hasTitle && (
-      <div class="local-nav">
+      <div>
         <slot name="local-nav"></slot>
       </div>
     );
