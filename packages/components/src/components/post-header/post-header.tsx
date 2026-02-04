@@ -432,15 +432,6 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
       >
-        {localNav}
-        <div class="burger-menu-body">
-          <slot name="audience"></slot>
-          <slot name="main-nav"></slot>
-        </div>
-        <div class="burger-menu-footer">
-          <slot name="global-nav-secondary"></slot>
-          <slot name="language-menu"></slot>
-        </div>
       </div>
     );
   }
@@ -461,6 +452,9 @@ export class PostHeader {
             }}
           >
             <div class="section">
+              <div class="logo">
+                <slot name="post-logo"></slot>
+              </div>
               <div class="sliding-controls">
                 {this.device === 'desktop' && (
                   <div class="audience">
