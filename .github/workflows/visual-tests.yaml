@@ -69,7 +69,6 @@ jobs:
         with:
           path: packages/components/vrt/__screenshots__
           key: vrt-${{ steps.baseline.outputs.branch }}-${{ hashFiles('packages/components/src/**/*.scss', 'packages/components/src/**/*.tsx', 'packages/components/vrt/**/*.js') }}
-          key: vrt-${{ steps.baseline.outputs.branch }}-${{ hashFiles('packages/components/src/**/*.scss', 'packages/components/src/**/*.tsx', 'packages/components/vrt/**/*.js') }}
           restore-keys: |
             vrt-${{ steps.baseline.outputs.branch }}-
 
