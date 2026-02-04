@@ -336,6 +336,7 @@ const COMPONENTS = {
     </li>`,
 };
 
+
 // Variant configurations
 const VARIANTS = {
   'onepager': {
