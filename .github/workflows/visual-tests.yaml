@@ -61,7 +61,7 @@ jobs:
             BASELINE_BRANCH="${{ github.ref_name }}"
           fi
           echo "branch=$BASELINE_BRANCH" >> $GITHUB_OUTPUT
-          echo "Using baseline from branch: $BASELINE_BRANCH"
+          echo "📍 Using baseline from branch: $BASELINE_BRANCH"
 
       - name: Get baseline snapshots from cache
         id: snapshot-cache
@@ -77,31 +77,43 @@ jobs:
         run: |
           UPDATE=false
           
-          if [[ "${{ github.event_name }}" == "push" ]] && [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/) ]]; then
-            if [[ "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]]; then
+          # Нет кэша на main/release ветке - нужно создать baseline
+          if [[ "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]]; then
+            if [[ "${{ github.ref_name }}" == "main" ]] || [[ "${{ github.ref_name }}" =~ ^release/ ]]; then
               UPDATE=true
-              echo "No cache hit for main/release branch - will generate baseline"
+              echo "✅ No baseline cache found for ${{ github.ref_name }} - will generate"
             fi
           fi
           
+          # Принудительное обновление через workflow_dispatch
           if [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
             UPDATE=true
-            echo "Manual baseline update requested"
+            echo "✅ Forced baseline update requested via workflow input"
           fi
           
           echo "update=$UPDATE" >> $GITHUB_OUTPUT
-          echo "Should update baseline: $UPDATE"
+          echo ""
+          echo "📊 === VRT Configuration ==="
+          echo "📊 Should update baseline: $UPDATE"
+          echo "📊 Event: ${{ github.event_name }}"
+          echo "📊 Branch: ${{ github.ref_name }}"
+          echo "📊 Cache hit: ${{ steps.snapshot-cache.outputs.cache-hit }}"
+          echo "📊 Force update flag: ${{ github.event.inputs.update-snapshots }}"
 
       - name: Generate baseline snapshots
         if: steps.should-update.outputs.update == 'true'
         working-directory: packages/components
-        run: pnpm vrt:update
+        run: |
+          echo "🎨 Generating baseline screenshots..."
+          pnpm vrt:update
 
       - name: Optimize PNG screenshots
         if: steps.should-update.outputs.update == 'true'
         run: |
+          echo "🗜️ Optimizing PNG files..."
           sudo apt-get install -y pngquant
           find packages/components/vrt/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 70-80 --speed 1 {} \;
+          echo "✅ PNG optimization complete"
 
       - name: Commit baseline updates
         if: steps.should-update.outputs.update == 'true' && github.event_name == 'push'
@@ -110,11 +122,13 @@ jobs:
           git config --local user.name "github-actions[bot]"
           
           if [[ -n $(git status --porcelain packages/components/vrt/__screenshots__) ]]; then
+            echo "📝 Committing baseline updates..."
             git add packages/components/vrt/__screenshots__
             git commit -m "chore(vrt): update baseline screenshots [skip ci]"
             git push
+            echo "✅ Baseline committed and pushed"
           else
-            echo "No baseline changes to commit"
+            echo "ℹ️ No baseline changes to commit"
           fi
 
       - name: Run visual regression tests
@@ -122,7 +136,9 @@ jobs:
         working-directory: packages/components
         continue-on-error: true
         id: vrt-test
-        run: pnpm vrt
+        run: |
+          echo "🧪 Running VRT tests..."
+          pnpm vrt
 
       - name: Check VRT approval in PR description
         if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure'
@@ -144,9 +160,9 @@ jobs:
             core.setOutput('approved', vrtApproved);
             
             if (vrtApproved) {
-              console.log('VRT checkbox is checked - visual changes approved');
+              console.log('✅ VRT checkbox is checked - visual changes approved');
             } else {
-              console.log('VRT checkbox is NOT checked');
+              console.log('⚠️ VRT checkbox is NOT checked');
             }
 
       - name: Evaluate VRT results
@@ -157,7 +173,11 @@ jobs:
             exit 0
           else
             echo "❌ Visual changes detected and not approved"
-            echo "Please review the visual changes and check the VRT checkbox in the PR description if they are intentional"
+            echo ""
+            echo "Please:"
+            echo "1. Review the visual differences in the test artifacts"
+            echo "2. If changes are intentional, check the VRT checkbox in PR description"
+            echo "3. If changes are unintentional, fix your code"
             exit 1
           fi
 
@@ -200,3 +220,13 @@ jobs:
             
             [View detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`
             });
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## 📊 VRT Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Event:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Baseline updated:** ${{ steps.should-update.outputs.update }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Cache hit:** ${{ steps.snapshot-cache.outputs.cache-hit }}" >> $GITHUB_STEP_SUMMARY
