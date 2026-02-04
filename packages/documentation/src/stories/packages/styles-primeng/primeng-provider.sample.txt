@@ -1,9 +1,0 @@
-import { ApplicationConfig } from '@angular/core';
-import { providePrimeNG } from 'primeng/config';
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    ...,
-    providePrimeNG(), // Ensure no theme preset is set here
-  ],
-};
