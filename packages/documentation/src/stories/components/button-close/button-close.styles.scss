@@ -1,0 +1,27 @@
+.mock-element,
+.position-relative {
+  background: #f0efed;
+  border: 2px solid #e1e0dc;
+  border-radius: 8px;
+}
+
+.mock-element {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  padding-block-start: 8px;
+  padding-inline-end: 8px;
+  border-block-end-width: 0;
+  border-inline-start-width: 0;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.position-relative {
+  height: 6rem;
+  width: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
