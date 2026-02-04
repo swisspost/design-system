@@ -71,7 +71,7 @@ const COMPONENTS = {
   <ul slot="global-nav-primary">
     <li>
       <a href="">
-        <span>Search</span>
+        <span>Search For Something Good</span>
         <post-icon aria-hidden="true" name="search"></post-icon>
       </a>
     </li>
