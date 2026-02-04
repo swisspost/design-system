@@ -336,7 +336,6 @@ const COMPONENTS = {
     </li>`,
 };
 
-
 // Variant configurations
 const VARIANTS = {
   'onepager': {
@@ -386,7 +385,7 @@ const VARIANTS = {
   },
 
   'portal-loggedout': {
-    components: ['logo', 'audience', 'globalNavSecondary', 'languageMenu', 'globalLogin', 'mainNavigation'],
+    components: ['logo', 'audience', 'globalNavPrimary', 'globalNavSecondary', 'languageMenu', 'globalLogin', 'mainNavigation'],
     replacements: {
       '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
       '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
