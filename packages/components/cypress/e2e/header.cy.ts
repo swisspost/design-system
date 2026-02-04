@@ -208,4 +208,307 @@ describe('header', () => {
       cy.get('@header').shadow().find('.local-header').should('be.visible');
     });
   });
+
+  describe('keyboard navigation', () => {
+    describe('desktop', () => {
+      beforeEach(() => {
+        cy.viewport(1920, 1080);
+        cy.getComponent('header', HEADER_ID);
+        cy.get('post-megadropdown-trigger').find('button').first().as('megadropdown-trigger');
+        cy.get('post-megadropdown').first().as('megadropdown');
+      });
+
+      it('should have close button as the last tab element in megadropdown', () => {
+        // Open megadropdown
+        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown').shadow().find('.megadropdown').should('be.visible');
+
+        // Get the close button
+        cy.get('@megadropdown').shadow().find('.close-button').as('close-btn');
+
+        // Get all focusable elements inside the megadropdown
+        cy.get('@megadropdown').then($megadropdown => {
+          const focusableElements = $megadropdown[0].shadowRoot!.querySelectorAll(
+            'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          );
+
+          // The close button should be the last focusable element
+          expect(focusableElements[focusableElements.length - 1]).to.equal(
+            $megadropdown[0].shadowRoot!.querySelector('.close-button'),
+          );
+        });
+      });
+
+      it('should close megadropdown and focus next nav item when tabbing after close button', () => {
+        // Open megadropdown
+        cy.get('@megadropdown-trigger').click();
+        cy.get('@megadropdown').shadow().find('.megadropdown').should('be.visible');
+
+        // Get the close button and focus it
+        cy.get('@megadropdown').shadow().find('.close-button').focus();
+
+        // Get the next megadropdown trigger (next nav item)
+        cy.get('post-megadropdown-trigger').find('button').eq(1).as('next-trigger');
+
+        // Tab from the close button
+        cy.get('@megadropdown')
+          .shadow()
+          .find('.close-button')
+          .then($closeBtn => {
+            // Simulate tab key press
+            cy.wrap($closeBtn).trigger('keydown', { key: 'Tab', code: 'Tab' });
+          });
+
+        // Megadropdown should close
+        cy.get('@megadropdown').shadow().find('.megadropdown').should('not.be.visible');
+
+        // Next nav item should be focused
+        cy.get('@next-trigger').should('have.focus');
+      });
+    });
+
+    describe('mobile and tablet', () => {
+      describe('first level navigation', () => {
+        beforeEach(() => {
+          cy.viewport('iphone-6');
+          cy.getComponent('header', HEADER_ID);
+          cy.get('post-togglebutton').as('burger-menu-btn');
+        });
+
+        it('should allow focus on all elements from global header, local header and burger menu when first level is opened', () => {
+          // Open burger menu
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          // Get all focusable elements
+          cy.get('@header').then($header => {
+            const shadowRoot = $header[0].shadowRoot!;
+
+            // Check that global header elements can receive focus
+            const globalHeaderFocusable = shadowRoot.querySelectorAll(
+              '.global-header a[href], .global-header button:not([disabled])',
+            );
+            expect(globalHeaderFocusable.length).to.be.greaterThan(0);
+
+            // Tab through and verify focus
+            cy.get('@header')
+              .shadow()
+              .find('.global-header')
+              .find('a, button')
+              .first()
+              .focus()
+              .should('have.focus');
+
+            // Check that burger menu elements can receive focus
+            const burgerMenuFocusable = shadowRoot.querySelectorAll(
+              '.burger-menu a[href], .burger-menu button:not([disabled])',
+            );
+            expect(burgerMenuFocusable.length).to.be.greaterThan(0);
+
+            // Verify burger menu items can be focused
+            cy.get('@header')
+              .shadow()
+              .find('.burger-menu')
+              .find('a, button')
+              .first()
+              .focus()
+              .should('have.focus');
+
+            // Check that local header elements can receive focus if present
+            const localHeaderFocusable = shadowRoot.querySelectorAll(
+              '.local-header a[href], .local-header button:not([disabled])',
+            );
+            if (localHeaderFocusable.length > 0) {
+              cy.get('@header')
+                .shadow()
+                .find('.local-header')
+                .find('a, button')
+                .first()
+                .focus()
+                .should('have.focus');
+            }
+          });
+        });
+
+        it('should trap focus within burger menu when first level is opened', () => {
+          // Open burger menu
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          // Get first and last focusable elements
+          cy.get('@header').then($header => {
+            const shadowRoot = $header[0].shadowRoot!;
+            const focusableElements = shadowRoot.querySelectorAll(
+              'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            );
+
+            const firstElement = focusableElements[0] as HTMLElement;
+            const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+            // Focus last element
+            lastElement.focus();
+            cy.wrap(lastElement).should('have.focus');
+
+            // Tab forward should wrap to first element
+            cy.wrap(lastElement).trigger('keydown', { key: 'Tab', code: 'Tab' });
+            cy.wrap(firstElement).should('have.focus');
+
+            // Shift+Tab should wrap back to last element
+            cy.wrap(firstElement).trigger('keydown', {
+              key: 'Tab',
+              code: 'Tab',
+              shiftKey: true,
+            });
+            cy.wrap(lastElement).should('have.focus');
+          });
+        });
+      });
+
+      describe('second level navigation (megadropdown)', () => {
+        beforeEach(() => {
+          cy.viewport('iphone-6');
+          cy.getComponent('header', HEADER_ID);
+          cy.get('post-togglebutton').as('burger-menu-btn');
+          cy.get('post-megadropdown-trigger').find('button').first().as('megadropdown-trigger');
+          cy.get('post-megadropdown').first().as('megadropdown');
+        });
+
+        it('should only allow focus on megadropdown elements when second level is opened', () => {
+          // Open burger menu
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          // Open megadropdown
+          cy.get('@megadropdown-trigger').click();
+          cy.get('@megadropdown').should('be.visible');
+
+          // Try to focus on an element outside megadropdown (should not be possible)
+          cy.get('@header')
+            .shadow()
+            .find('.global-header')
+            .find('a, button')
+            .first()
+            .then($el => {
+              // Element should exist but not be focusable when megadropdown is open
+              const element = $el[0] as HTMLElement;
+              element.focus();
+
+              // Focus should be trapped in megadropdown
+              cy.focused().then($focused => {
+                const focusedElement = $focused[0];
+                cy.get('@megadropdown').then($megadropdown => {
+                  const megadropdownElement = $megadropdown[0];
+                  expect(megadropdownElement.contains(focusedElement)).to.be.true;
+                });
+              });
+            });
+        });
+
+        it('should have back button as the last focusable element in megadropdown', () => {
+          // Open burger menu
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          // Open megadropdown
+          cy.get('@megadropdown-trigger').click();
+          cy.get('@megadropdown').should('be.visible');
+
+          // Get back button
+          cy.get('@megadropdown').shadow().find('.back-button').as('back-btn');
+
+          // Get all focusable elements in megadropdown
+          cy.get('@megadropdown').then($megadropdown => {
+            const focusableElements = $megadropdown[0].shadowRoot!.querySelectorAll(
+              'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            );
+
+            // Back button should be the last focusable element
+            expect(focusableElements[focusableElements.length - 1]).to.equal(
+              $megadropdown[0].shadowRoot!.querySelector('.back-button'),
+            );
+          });
+        });
+
+        it('should trap focus within megadropdown with back button as last element', () => {
+          // Open burger menu
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          // Open megadropdown
+          cy.get('@megadropdown-trigger').click();
+          cy.get('@megadropdown').should('be.visible');
+
+          // Get first and last focusable elements
+          cy.get('@megadropdown').then($megadropdown => {
+            const shadowRoot = $megadropdown[0].shadowRoot!;
+            const focusableElements = shadowRoot.querySelectorAll(
+              'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            );
+
+            const firstElement = focusableElements[0] as HTMLElement;
+            const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+            // Verify last element is the back button
+            expect(lastElement).to.equal(shadowRoot.querySelector('.back-button'));
+
+            // Focus last element (back button)
+            lastElement.focus();
+            cy.wrap(lastElement).should('have.focus');
+
+            // Tab forward should wrap to first element
+            cy.wrap(lastElement).trigger('keydown', { key: 'Tab', code: 'Tab' });
+            cy.wrap(firstElement).should('have.focus');
+
+            // Shift+Tab should wrap back to last element (back button)
+            cy.wrap(firstElement).trigger('keydown', {
+              key: 'Tab',
+              code: 'Tab',
+              shiftKey: true,
+            });
+            cy.wrap(lastElement).should('have.focus');
+          });
+        });
+      });
+
+      describe('tablet', () => {
+        beforeEach(() => {
+          cy.viewport('ipad-2');
+          cy.getComponent('header', HEADER_ID);
+          cy.get('post-togglebutton').as('burger-menu-btn');
+          cy.get('post-megadropdown-trigger').find('button').first().as('megadropdown-trigger');
+          cy.get('post-megadropdown').first().as('megadropdown');
+        });
+
+        it('should trap focus within megadropdown on tablet', () => {
+          // Open burger menu
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          // Open megadropdown
+          cy.get('@megadropdown-trigger').click();
+          cy.get('@megadropdown').should('be.visible');
+
+          // Verify focus trap works the same as on mobile
+          cy.get('@megadropdown').then($megadropdown => {
+            const shadowRoot = $megadropdown[0].shadowRoot!;
+            const focusableElements = shadowRoot.querySelectorAll(
+              'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            );
+
+            const firstElement = focusableElements[0] as HTMLElement;
+            const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+            // Back button should be last
+            expect(lastElement).to.equal(shadowRoot.querySelector('.back-button'));
+
+            // Test focus trap
+            lastElement.focus();
+            cy.wrap(lastElement).should('have.focus');
+            cy.wrap(lastElement).trigger('keydown', { key: 'Tab', code: 'Tab' });
+            cy.wrap(firstElement).should('have.focus');
+          });
+        });
+      });
+    });
+  });
 });
