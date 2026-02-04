@@ -1,7 +1,7 @@
-@use '@swisspost/design-system-styles/mixins/button';
-@use '@swisspost/design-system-styles/mixins/media';
+@use '../mixins/button';
+@use '../mixins/media';
 
-post-menu-item {
+post-menu {
   button {
     @include button.reset-button;
   }
