@@ -2,14 +2,12 @@ name: Visual Regression Tests
 
 on:
   pull_request:
-    # Убираем path filter - VRT всегда запускается для PR
-    # Это гарантирует что Required check никогда не застревает
   push:
     branches:
       - main
       - 'release/**'
     paths:
-      - 'packages/components/**'  # Для main оставляем filter
+      - 'packages/components/**'
   workflow_dispatch:
     inputs:
       update-snapshots:
@@ -77,19 +75,19 @@ jobs:
         run: |
           UPDATE=false
           
-          # Push в main/release - ВСЕГДА регенерируем baseline
+          # Push to main/release - always regenerate baseline
           if [[ "${{ github.event_name }}" == "push" ]] && [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/) ]]; then
             UPDATE=true
             echo "✅ Push to ${{ github.ref_name }} - will regenerate baseline to ensure consistency"
           fi
           
-          # Принудительное обновление через workflow_dispatch
+          # Forced update via workflow_dispatch
           if [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
             UPDATE=true
             echo "✅ Forced baseline update requested via workflow input"
           fi
           
-          # Первоначальная генерация через workflow_dispatch без кэша
+          # Initial generation via workflow_dispatch without cache
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && [[ "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]]; then
             if [[ "${{ github.ref_name }}" == "main" ]] || [[ "${{ github.ref_name }}" =~ ^release/ ]]; then
               UPDATE=true
