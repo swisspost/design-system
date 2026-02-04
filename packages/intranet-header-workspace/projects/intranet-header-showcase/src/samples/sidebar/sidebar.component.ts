@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'samples-sidebar',
-  templateUrl: './sidebar.component.html',
+    selector: 'samples-sidebar',
+    templateUrl: './sidebar.component.html',
+    standalone: false
 })
 export class SamplesSidebarComponent {
   title = 'samples-sidebar';
