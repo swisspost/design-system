@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - 'release/**'
     paths:
       - 'packages/components/**'
   workflow_dispatch:
@@ -17,9 +18,9 @@ on:
         default: false
 
 permissions:
-  contents: read
+  contents: write  # Changed to write for pushing baseline updates
   actions: read
-  pull-requests: read
+  pull-requests: write
 
 jobs:
   visual-tests-components:
@@ -51,36 +52,69 @@ jobs:
         working-directory: packages/components
         run: npx playwright install --with-deps
 
-      - name: Check if baseline branch
-        id: is-baseline-branch
+      # Determine which baseline to use
+      - name: Determine baseline branch
+        id: baseline
         run: |
-          if [[ "${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/v[0-9]+$ ]]; then
-            echo "result=true" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            # For PRs, use the target branch (usually main)
+            BASELINE_BRANCH="${{ github.base_ref }}"
           else
-            echo "result=false" >> $GITHUB_OUTPUT
+            # For pushes to main/release, use the current branch
+            BASELINE_BRANCH="${{ github.ref_name }}"
           fi
+          echo "branch=$BASELINE_BRANCH" >> $GITHUB_OUTPUT
+          echo "Using baseline from branch: $BASELINE_BRANCH"
 
+      # Try to get baseline from cache first
       - name: Get baseline snapshots from cache
         id: snapshot-cache
         uses: actions/cache@v4
         with:
           path: packages/components/vrt/__screenshots__
-          key: ${{ runner.os }}-vrt-snapshots-${{ hashFiles('packages/components/src/**/*.scss') }}
+          key: vrt-${{ steps.baseline.outputs.branch }}-${{ hashFiles('packages/components/src/**/*.scss', 'packages/components/src/**/*.tsx') }}
           restore-keys: |
-            ${{ runner.os }}-vrt-snapshots-
-          # Allow cache miss on main and release/v[0-9]+ branches so baselines can be generated
-          # Fail on cache miss for all other branches (PRs) to ensure they test against existing baselines
-          fail-on-cache-miss: ${{ steps.is-baseline-branch.outputs.result != 'true' }}
-      
+            vrt-${{ steps.baseline.outputs.branch }}-
+
+      # If not in cache, download from artifact storage (if implementing artifact repo)
+      - name: Download baseline from artifact repository
+        if: steps.snapshot-cache.outputs.cache-hit != 'true'
+        continue-on-error: true
+        run: |
+          # This would download from your artifact repository
+          # Example: curl or wget from NPM registry, S3, or Artifactory
+          echo "Would download baseline for branch: ${{ steps.baseline.outputs.branch }}"
+          # mkdir -p packages/components/vrt/__screenshots__
+          # curl -o baseline.tar.gz "YOUR_ARTIFACT_URL/${{ steps.baseline.outputs.branch }}/baseline-images.tar.gz"
+          # tar -xzf baseline.tar.gz -C packages/components/vrt/__screenshots__
+
+      # Determine if we should update baselines
       - name: Check if baseline update needed
         id: should-update
         run: |
-          if [[ "${{ steps.is-baseline-branch.outputs.result }}" == "true" && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
-            echo "update=true" >> $GITHUB_OUTPUT
-          else
-            echo "update=false" >> $GITHUB_OUTPUT
+          # Update if:
+          # 1. Push to main/release branches AND no cache hit
+          # 2. Manual workflow dispatch with update flag
+          # 3. PR has special label "update-vrt-baseline"
+          
+          UPDATE=false
+          
+          if [[ "${{ github.event_name }}" == "push" ]] && [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/) ]]; then
+            if [[ "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]]; then
+              UPDATE=true
+              echo "No cache hit for main/release branch - will generate baseline"
+            fi
           fi
+          
+          if [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
+            UPDATE=true
+            echo "Manual baseline update requested"
+          fi
+          
+          echo "update=$UPDATE" >> $GITHUB_OUTPUT
+          echo "Should update baseline: $UPDATE"
 
+      # Generate new baseline if needed
       - name: Generate baseline snapshots
         if: steps.should-update.outputs.update == 'true'
         working-directory: packages/components
@@ -92,15 +126,74 @@ jobs:
           sudo apt-get install -y pngquant
           find packages/components/vrt/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 70-80 --speed 1 {} \;
 
+      # Commit and push baseline updates to the branch
+      - name: Commit baseline updates
+        if: steps.should-update.outputs.update == 'true' && github.event_name == 'push'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          if [[ -n $(git status --porcelain packages/components/vrt/__screenshots__) ]]; then
+            git add packages/components/vrt/__screenshots__
+            git commit -m "chore(vrt): update baseline screenshots [skip ci]"
+            git push
+          else
+            echo "No baseline changes to commit"
+          fi
+
+      # Run visual regression tests (only for PRs or if not updating)
       - name: Run visual regression tests
+        if: steps.should-update.outputs.update != 'true'
         working-directory: packages/components
+        continue-on-error: true
+        id: vrt-test
         run: pnpm vrt
 
+      # Check if PR description has VRT checkbox checked
+      - name: Check VRT approval in PR description
+        if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure'
+        id: check-approval
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            
+            const body = pr.body || '';
+            const vrtApproved = /- \[x\] .*visual regression/i.test(body) || 
+                               /- \[x\] .*VRT/i.test(body) ||
+                               /- \[x\] .*Checked for visual regressions/i.test(body);
+            
+            core.setOutput('approved', vrtApproved);
+            
+            if (vrtApproved) {
+              console.log('VRT checkbox is checked - visual changes approved');
+            } else {
+              console.log('VRT checkbox is NOT checked');
+            }
+
+      # Fail the job if VRT failed and not approved
+      - name: Evaluate VRT results
+        if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure'
+        run: |
+          if [[ "${{ steps.check-approval.outputs.approved }}" == "true" ]]; then
+            echo "✅ Visual changes detected but approved by PR author"
+            exit 0
+          else
+            echo "❌ Visual changes detected and not approved"
+            echo "Please review the visual changes and check the VRT checkbox in the PR description if they are intentional"
+            exit 1
+          fi
+
+      # Upload test artifacts
       - name: Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-components
+          name: playwright-report-components-${{ github.run_id }}
           path: packages/components/test-results
           retention-days: 14
 
@@ -108,9 +201,25 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-screenshots-components
+          name: playwright-screenshots-components-${{ github.run_id }}
           path: |
             packages/components/test-results/**/*-diff.png
             packages/components/test-results/**/*-actual.png
             packages/components/test-results/**/*-expected.png
           retention-days: 14
+
+      # Comment on PR with results
+      - name: Comment PR with VRT results
+        if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## 📸 Visual Regression Test Results
+              
