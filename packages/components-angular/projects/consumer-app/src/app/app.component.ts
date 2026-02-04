@@ -15,7 +15,6 @@ import {
   PostMegadropdown,
   PostMegadropdownTrigger,
 } from 'components';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +22,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
     RouterOutlet,
     RouterLink,
     PostBackToTop,

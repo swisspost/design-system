@@ -116,9 +116,11 @@
   <nav class="container py-12">
     <p class="mb-12"><strong>Component Showcase Routes:</strong></p>
     <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
-      <li *ngFor="let route of navigationRoutes">
-        <a [routerLink]="route.path">{{ route.title }}</a>
-      </li>
+      @for (route of navigationRoutes; track route) {
+        <li>
+          <a [routerLink]="route.path">{{ route.title }}</a>
+        </li>
+      }
     </ul>
   </nav>
 </header>

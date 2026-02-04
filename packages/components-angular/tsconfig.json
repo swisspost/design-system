@@ -21,8 +21,7 @@
     "importHelpers": true,
     "module": "esnext",
     "target": "es2021",
-    "useDefineForClassFields": false,
-    "lib": ["es2021", "dom"]
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

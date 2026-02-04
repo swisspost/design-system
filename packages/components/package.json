@@ -119,7 +119,7 @@
     "cypress": "14.3.2",
     "cypress-axe": "1.6.0",
     "cypress-storybook": "1.0.0",
-    "eslint": "9.26.0",
+    "eslint": "9.28.0",
     "eslint-plugin-cypress": "4.2.0",
     "eslint-plugin-react": "7.37.5",
     "globals": "16.0.0",
@@ -134,8 +134,8 @@
     "throttle-debounce": "5.0.2",
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.20.0"
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.33.1"
   },
   "keywords": [
     "components",

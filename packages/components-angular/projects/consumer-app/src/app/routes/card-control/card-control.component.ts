@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   PostCardControl,
@@ -12,7 +12,6 @@ import {
   templateUrl: './card-control.component.html',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     PostCardControl,
     PostCardControlCheckboxValueAccessorDirective,
