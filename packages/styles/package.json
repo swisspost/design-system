@@ -44,7 +44,7 @@
     "gulp-newer": "1.4.0",
     "gulp-postcss": "10.0.0",
     "gulp-sass": "6.0.1",
-    "jest": "29.7.0",
+    "jest": "30.2.0",
     "postcss": "8.5.6",
     "postcss-scss": "4.0.9",
     "prettier": "3.6.2",
