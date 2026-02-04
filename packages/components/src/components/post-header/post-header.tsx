@@ -432,6 +432,15 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
       >
+        {localNav}
+        <div class="burger-menu-body">
+          <slot name="audience"></slot>
+          <slot name="main-nav"></slot>
+        </div>
+        <div class="burger-menu-footer">
+          <slot name="global-nav-secondary"></slot>
+          <slot name="language-menu"></slot>
+        </div>
       </div>
     );
   }
