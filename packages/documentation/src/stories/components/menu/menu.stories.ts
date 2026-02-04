@@ -34,9 +34,9 @@ function getMenuRenderer(content?: {
   const menuItems =
     content?.menuItems ??
     html`
-      <post-menu-item><a href="/first">First menu item</a></post-menu-item>
-      <post-menu-item><a href="/second">Second menu item</a></post-menu-item>
-      <post-menu-item><a href="/third">Third menu item</a></post-menu-item>
+      <a href="/first">First menu item</a>
+      <a href="/second">Second menu item</a>
+      <a href="/third">Third menu item</a>
     `;
 
   return (args: Args, context: StoryContext) => {
@@ -81,15 +81,9 @@ export const MixedContent: StoryObj = {
   render: getMenuRenderer({
     triggerButtonText: 'Mixed content',
     menuItems: html`
-      <post-menu-item>
-        <a href="/details">View details <em class="fs-7">link</em></a>
-      </post-menu-item>
-      <post-menu-item>
-        <button type="button">Duplicate <em class="fs-7">button</em></button>
-      </post-menu-item>
-      <post-menu-item>
-        <button type="button">Delete <em class="fs-7">button</em></button>
-      </post-menu-item>
+      <a href="/details">View details <em class="fs-7">link</em></a>
+      <button type="button">Duplicate <em class="fs-7">button</em></button>
+      <button type="button">Delete <em class="fs-7">button</em></button>
     `,
   }),
 };
@@ -98,17 +92,9 @@ export const WithIcons: StoryObj = {
   render: getMenuRenderer({
     triggerButtonText: 'Icons in front',
     menuItems: html`
-      <post-menu-item>
-        <button type="button"><post-icon aria-hidden="true" name="edit"></post-icon> Edit</button>
-      </post-menu-item>
-      <post-menu-item>
-        <button type="button"><post-icon aria-hidden="true" name="copy"></post-icon> Copy</button>
-      </post-menu-item>
-      <post-menu-item>
-        <button type="button">
-          <post-icon aria-hidden="true" name="trash"></post-icon> Delete
-        </button>
-      </post-menu-item>
+      <button type="button"><post-icon aria-hidden="true" name="edit"></post-icon> Edit</button>
+      <button type="button"><post-icon aria-hidden="true" name="copy"></post-icon> Copy</button>
+      <button type="button"><post-icon aria-hidden="true" name="trash"></post-icon> Delete</button>
     `,
   }),
 };

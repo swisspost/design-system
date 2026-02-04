@@ -178,21 +178,15 @@ export class PostBreadcrumbs {
                     </button>
                   </post-menu-trigger>
                   <post-menu id="breadcrumb-menu" label={this.textMoreItems}>
-                    {visibleItems.map(item => (
-                      <post-menu-item
-                        key={item.url || item.text}
-                        class="breadcrumb-item"
-                        onKeyDown={e => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            const linkElement = (e.currentTarget as HTMLElement).querySelector('a');
-                            linkElement?.click();
-                            e.preventDefault();
-                          }
-                        }}
-                      >
-                        {item.url ? <a href={item.url}>{item.text}</a> : <span>{item.text}</span>}
-                      </post-menu-item>
-                    ))}
+                    {visibleItems.map(item =>
+                      item.url ? (
+                        <a class="breadcrumb-item" href={item.url}>
+                          {item.text}
+                        </a>
+                      ) : (
+                        <span class="breadcrumb-item">{item.text}</span>
+                      ),
+                    )}
                   </post-menu>
                 </div>
               </li>

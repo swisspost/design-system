@@ -17,30 +17,22 @@ export function renderUserMenu() {
         <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
         John Doe
       </div>
-      <post-menu-item>
-        <a href="">
-          <post-icon aria-hidden="true" name="profile"></post-icon>
-          My Profile
-        </a>
-      </post-menu-item>
-      <post-menu-item>
-        <a href="">
-          <post-icon aria-hidden="true" name="letter"></post-icon>
-          Messages
-        </a>
-      </post-menu-item>
-      <post-menu-item>
-        <a href="">
-          <post-icon aria-hidden="true" name="gear"></post-icon>
-          Setting
-        </a>
-      </post-menu-item>
-      <post-menu-item>
-        <button type="button">
-          <post-icon aria-hidden="true" name="logout"></post-icon>
-          Logout
-        </button>
-      </post-menu-item>
+      <a href="">
+        <post-icon aria-hidden="true" name="profile"></post-icon>
+        My Profile
+      </a>
+      <a href="">
+        <post-icon aria-hidden="true" name="letter"></post-icon>
+        Messages
+      </a>
+      <a href="">
+        <post-icon aria-hidden="true" name="gear"></post-icon>
+        Setting
+      </a>
+      <button type="button">
+        <post-icon aria-hidden="true" name="logout"></post-icon>
+        Logout
+      </button>
     </post-menu>
   `;
 }
