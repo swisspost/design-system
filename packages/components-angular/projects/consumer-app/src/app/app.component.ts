@@ -16,7 +16,6 @@ import {
   PostMegadropdownTrigger,
 } from 'components';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -37,8 +36,8 @@ import {
     PostLogo,
     PostMainnavigation,
     PostMegadropdown,
-    PostMegadropdownTrigger
-],
+    PostMegadropdownTrigger,
+  ],
 })
 export class AppComponent implements OnInit {
   title = 'consumer-app';

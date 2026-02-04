@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Directive({
@@ -20,8 +20,7 @@ export class PostCardControlRadioValueAccessorDirective implements ControlValueA
     /**/
   };
   protected lastValue: unknown;
-
-  constructor(protected el: ElementRef) {}
+  protected readonly el = inject(ElementRef);
 
   writeValue(value: unknown) {
     this.el.nativeElement.checked = this.lastValue =

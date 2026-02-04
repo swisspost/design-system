@@ -15,8 +15,8 @@ import {
     ReactiveFormsModule,
     PostCardControl,
     PostCardControlCheckboxValueAccessorDirective,
-    PostCardControlRadioValueAccessorDirective
-],
+    PostCardControlRadioValueAccessorDirective,
+  ],
 })
 export class CardControlComponent {
   public radioOptions = ['option_1', 'option_2', 'option_3', 'option_4', 'option_5'];
