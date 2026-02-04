@@ -31,10 +31,10 @@
   "devDependencies": {
     "@changesets/parse": "0.4.1",
     "@eslint/js": "9.18.0",
-    "eslint": "9.26.0",
+    "eslint": "9.28.0",
     "globals": "16.0.0",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.20.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.33.1",
     "rimraf": "6.0.1"
   },
   "keywords": [
