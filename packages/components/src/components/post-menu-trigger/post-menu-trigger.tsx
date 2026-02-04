@@ -1,104 +1,80 @@
-import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { getRoot, checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-menu-trigger',
   styleUrl: 'post-menu-trigger.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostMenuTrigger {
+  @Element() host: HTMLPostMenuTriggerElement;
+
   /**
    * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
    */
   @Prop({ reflect: true }) for!: string;
 
-  @Element() host: HTMLPostMenuTriggerElement;
-
-  /**
-   * Manages the accessibility attribute `aria-expanded` to indicate whether the associated menu is expanded or collapsed.
-   */
-  @State() ariaExpanded: boolean = false;
-
-  /**
-   * Reference to the slotted button within the trigger, if present.
-   * Used to manage click and key events for menu control.
-   */
-  private slottedButton: HTMLButtonElement | null = null;
-  private root: Document | ShadowRoot | null;
-
-  /**
-   * Watch for changes to the `for` property to validate its type and ensure it is a string.
-   * @param forValue - The new value of the `for` property.
-   */
   @Watch('for')
-  validateControlFor() {
+  validateFor() {
     checkRequiredAndType(this, 'for', 'string');
   }
 
-  private get menu(): HTMLPostMenuElement | null {
-    const ref = this.root.getElementById(this.for);
-    return ref && ref.localName === 'post-menu' ? (ref as HTMLPostMenuElement) : null;
+  componentDidLoad() {
+    this.validateFor();
+    this.linkButtonToMenu();
   }
 
-  private handleToggle() {
-    if (this.menu) {
-      this.menu.toggle(this.host);
-    } else {
-      console.warn(`No post-menu found with ID: ${this.for}`);
+  private linkButtonToMenu() {
+    const slottedButtons = this.host.querySelectorAll('button');
+
+    if (slottedButtons.length !== 1) {
+      const warning = `The post-menu-trigger must contain a single button (${slottedButtons.length} found).`;
+      console.warn(warning);
+      return;
+    }
+
+    const button = slottedButtons.item(0);
+
+    button.setAttribute('type', 'button');
+    button.setAttribute('aria-haspopup', 'menu');
+    button.setAttribute('aria-expanded', 'false');
+
+    button.addEventListener('click', this.handleToggle.bind(this));
+    button.addEventListener('keydown', this.handleKeyDown.bind(this));
+
+    // Listen to the `toggleMenu` event emitted by the `post-menu` component
+    const menu = this.getMenu();
+    if (menu) {
+      menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
+        button.setAttribute('aria-expanded', event.detail.toString());
+      });
     }
   }
 
-  private readonly handleKeyDown = (e: KeyboardEvent) => {
+  private handleKeyDown(e: KeyboardEvent) {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
       this.handleToggle();
     }
-  };
-
-  connectedCallback() {
-    this.root = getRoot(this.host);
   }
 
-  componentDidLoad() {
-    this.validateControlFor();
+  private handleToggle() {
+    const menu = this.getMenu();
+    if (menu) menu.toggle(this.host);
+  }
 
-    this.slottedButton = this.host.querySelector('button');
+  private getMenu(): HTMLPostMenuElement | null {
+    const ref = getRoot(this.host).getElementById(this.for);
+    if (ref && ref.localName === 'post-menu') return ref as HTMLPostMenuElement;
 
-    // Check if the slottedButton is within a web component
-    if (!this.slottedButton) {
-      const webComponent = this.host.querySelector('.menu-trigger-webc');
-      if (webComponent?.shadowRoot) {
-        const slottedButton = webComponent.shadowRoot.querySelector('button');
-        if (slottedButton) {
-          this.slottedButton = slottedButton;
-        }
-      }
-    }
-
-    if (this.slottedButton) {
-      this.slottedButton.setAttribute('aria-haspopup', 'menu');
-
-      // Listen to the `toggleMenu` event emitted by the `post-menu` component
-      if (this.menu && this.slottedButton) {
-        this.menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
-          this.ariaExpanded = event.detail;
-          this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
-        });
-      }
-
-      this.slottedButton.addEventListener('click', () => {
-        this.handleToggle();
-      });
-      this.slottedButton.addEventListener('keydown', this.handleKeyDown);
-    } else {
-      console.warn('No button found within post-menu-trigger');
-    }
+    console.warn(`No post-menu found with ID: ${this.for}`);
+    return null;
   }
 
   render() {
     return (
-      <Host data-version={version} tab-index="-1">
+      <Host data-version={version}>
         <slot></slot>
       </Host>
     );
