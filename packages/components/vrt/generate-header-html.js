@@ -71,7 +71,7 @@ const COMPONENTS = {
   <ul slot="global-nav-primary">
     <li>
       <a href="">
-        <span>Search For Smth Good</span>
+        <span>Search</span>
         <post-icon aria-hidden="true" name="search"></post-icon>
       </a>
     </li>
@@ -339,7 +339,7 @@ const COMPONENTS = {
 // Variant configurations
 const VARIANTS = {
   'onepager': {
-    components: ['logo', 'title'],
+    components: ['logo', 'languageMenu', 'title'],
     replacements: {
       '{{TITLE_TEXT}}': '[One Pager Title]',
     },

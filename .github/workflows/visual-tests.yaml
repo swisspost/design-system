@@ -68,7 +68,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: packages/components/vrt/__screenshots__
-          key: vrt-${{ steps.baseline.outputs.branch }}-${{ hashFiles('packages/components/src/**/*.scss', 'packages/components/src/**/*.tsx') }}
+          key: vrt-${{ steps.baseline.outputs.branch }}-${{ hashFiles('packages/components/src/**/*.scss', 'packages/components/src/**/*.tsx', 'packages/components/vrt/**/*.js') }}
           restore-keys: |
             vrt-${{ steps.baseline.outputs.branch }}-
 
@@ -77,18 +77,25 @@ jobs:
         run: |
           UPDATE=false
           
-          # Нет кэша на main/release ветке - нужно создать baseline
-          if [[ "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]]; then
-            if [[ "${{ github.ref_name }}" == "main" ]] || [[ "${{ github.ref_name }}" =~ ^release/ ]]; then
-              UPDATE=true
-              echo "✅ No baseline cache found for ${{ github.ref_name }} - will generate"
-            fi
+          # Push в main/release - ВСЕГДА регенерируем baseline
+          # Это гарантирует, что baseline всегда соответствует текущему коду
+          if [[ "${{ github.event_name }}" == "push" ]] && [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/) ]]; then
+            UPDATE=true
+            echo "✅ Push to ${{ github.ref_name }} - will regenerate baseline to ensure consistency"
           fi
           
           # Принудительное обновление через workflow_dispatch
           if [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
             UPDATE=true
             echo "✅ Forced baseline update requested via workflow input"
+          fi
+          
+          # Первоначальная генерация через workflow_dispatch без кэша
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && [[ "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]]; then
+            if [[ "${{ github.ref_name }}" == "main" ]] || [[ "${{ github.ref_name }}" =~ ^release/ ]]; then
+              UPDATE=true
+              echo "✅ Manual run on ${{ github.ref_name }} without cache - will generate baseline"
+            fi
           fi
           
           echo "update=$UPDATE" >> $GITHUB_OUTPUT
@@ -126,13 +133,13 @@ jobs:
             git add packages/components/vrt/__screenshots__
             git commit -m "chore(vrt): update baseline screenshots [skip ci]"
             git push
-            echo "✅ Baseline committed and pushed"
+            echo "✅ Baseline committed and pushed to ${{ github.ref_name }}"
           else
             echo "ℹ️ No baseline changes to commit"
           fi
 
       - name: Run visual regression tests
-        if: steps.should-update.outputs.update != 'true'
+        if: steps.should-update.outputs.update != 'true' && github.event_name == 'pull_request'
         working-directory: packages/components
         continue-on-error: true
         id: vrt-test
@@ -170,6 +177,9 @@ jobs:
         run: |
           if [[ "${{ steps.check-approval.outputs.approved }}" == "true" ]]; then
             echo "✅ Visual changes detected but approved by PR author"
+            echo ""
+            echo "📌 Note: After merge, new baseline will be automatically generated in main branch"
+            echo "   This ensures the baseline always matches the current code."
             exit 0
           else
             echo "❌ Visual changes detected and not approved"
@@ -182,7 +192,7 @@ jobs:
           fi
 
       - name: Upload test results
-        if: failure()
+        if: failure() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-components-${{ github.run_id }}
@@ -190,7 +200,7 @@ jobs:
           retention-days: 14
 
       - name: Upload diff screenshots
-        if: failure()
+        if: failure() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: playwright-screenshots-components-${{ github.run_id }}
@@ -218,6 +228,8 @@ jobs:
             - If changes are intentional, check the "Checked for visual regressions" checkbox in the PR description
             - If changes are unintentional, update your code to match the baseline
             
+            **Note:** After merging this PR, the new screenshots will automatically become the new baseline in the \`main\` branch.
+            
             [View detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`
             });
 
@@ -230,3 +242,9 @@ jobs:
           echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Baseline updated:** ${{ steps.should-update.outputs.update }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Cache hit:** ${{ steps.snapshot-cache.outputs.cache-hit }}" >> $GITHUB_STEP_SUMMARY
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "- **VRT tests ran:** ${{ steps.vrt-test.outcome != '' }}" >> $GITHUB_STEP_SUMMARY
+            if [[ "${{ steps.vrt-test.outcome }}" == "failure" ]]; then
+              echo "- **Visual changes approved:** ${{ steps.check-approval.outputs.approved }}" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
