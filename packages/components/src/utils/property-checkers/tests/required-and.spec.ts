@@ -1,11 +1,13 @@
 import { requiredAnd } from '../required-and';
+import { EMPTY_VALUES } from '@/utils/property-checkers/constants';
+
 describe('requiredAnd', () => {
   const mockCheck = jest.fn();
 
   const mockRequiredAndCheck = requiredAnd(mockCheck);
 
   it('should throw error if the provided value is empty', () => {
-    [undefined, null, '', NaN].forEach(emptyValue => {
+    EMPTY_VALUES.forEach(emptyValue => {
       const propName = 'requiredProp';
       const component = {
         host: { localName: 'post-component' } as HTMLElement,
