@@ -13,7 +13,7 @@ If applicable, please add a screenshot or video to illustrate the changes.
 - [ ] Design review done
 - [ ] No design review needed
 
-## � Visual regression tests
+## 🧪 Visual regression tests
 
 - [ ] Visual changes detected and approved _(Check this box if VRT fails and changes are intentional)_
 
