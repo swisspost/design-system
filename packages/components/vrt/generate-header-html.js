@@ -339,7 +339,7 @@ const COMPONENTS = {
 // Variant configurations
 const VARIANTS = {
   'onepager': {
-    components: ['logo', 'languageMenu', 'title'],
+    components: ['logo'],
     replacements: {
       '{{TITLE_TEXT}}': '[One Pager Title]',
     },
