@@ -460,7 +460,6 @@ export class PostHeader {
               'no-audience': !this.hasAudience,
             }}
           >
-            <div class="global-header-badge">NEW</div>
             <div class="section">
               <div class="logo">
                 <slot name="post-logo"></slot>
