@@ -97,12 +97,12 @@ export namespace Components {
     interface SwisspostInternetBreadcrumbs {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has its own navigation structure.
-          * @deprecated overlays are no longer provided, this method is therefore no longer needed.
+          * @deprecated overlays will no longer be provided in the next major release, therefore this method will no longer be needed.
          */
         "customItems"?: string | IBreadcrumbItem[];
         /**
           * Hide all buttons.
-          * @deprecated Help and Contact buttons are no longer provided, this prop is therefore no longer needed.
+          * @deprecated Help and Contact buttons will no longer be provided in the next major release, therefore this prop will no longer be needed.
          */
         "hideButtons": boolean;
         /**
@@ -116,17 +116,17 @@ export namespace Components {
     interface SwisspostInternetHeader {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
-          * @deprecated booleans are no longer accepted. Use `"none"` for `false` and `"auto"` for `true`. All other values remain unchanged.
+          * @deprecated boolean values will no longer be accepted in the next major release. Use "none" for false and "auto" for true. All other values remain unchanged.
          */
         "activeRoute"?: 'auto' | false | string;
         /**
           * Define a proxy URL for the config fetch request.
-          * @deprecated this functionality is no longer provided and was deprecated previously.
+          * @deprecated this functionality will no longer be provided in the next major release and was deprecated previously.
          */
         "configProxy"?: string;
         /**
           * Customize the header config loaded from the post portal.
-          * @deprecated use the main navigation slot to add custom menu entries.
+          * @deprecated use the main navigation slot to add custom menu entries. This option will be removed in the next major release.
          */
         "customConfig"?: string | ICustomConfig;
         /**
@@ -149,37 +149,37 @@ export namespace Components {
         "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
           * The header uses this cookie to set the language. Disables automatic language detection.
-          * @deprecated due to low usage in favor of a project-specific solution.
+          * @deprecated this will no longer be supported in the next major release due to low usage, in favor of a project-specific solution.
          */
         "languageCookieKey"?: string;
         /**
           * The header uses this local storage key to set the language. Disables automatic language selection.
-          * @deprecated due to low usage in favor of a project-specific solution.
+          * @deprecated this will no longer be supported in the next major release due to low usage, in favor of a project-specific solution.
          */
         "languageLocalStorageKey"?: string;
         /**
           * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you would like to stay on subpages when the user changes language.
-          * @deprecated use the language menu slot to override the language switch and specify custom URLs.
+          * @deprecated use the language menu slot to override the language switch and specify custom URLs. This option will be removed in the next major release.
          */
         "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**
           * Toggle the login link (when logged out) or the user widget (when logged in).
-          * @deprecated use the new configuration API to show or hide the login.
+          * @deprecated use the new configuration API to show or hide the login. This option will be removed in the next major release.
          */
         "login": boolean;
         /**
           * Overrides the logout-url provided by the portal config.
-          * @deprecated use the new configuration API to specify the logout URL.
+          * @deprecated use the new configuration API to specify the logout URL. This option will be removed in the next major release.
          */
         "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
-          * @deprecated use the new configuration API to show or hide the meta navigation links.
+          * @deprecated use the new configuration API to show or hide the meta navigation links. This option will be removed in the next major release.
          */
         "meta": boolean;
         /**
           * Online Services only: Add custom links to the special online service navigation entry
-          * @deprecated the new header no longer includes this flyout. Use the main navigation slot to add application-specific menu items.
+          * @deprecatedthe new header will no longer include this flyout in the next major release. Use the main navigation slot to add application-specific menu items.
          */
         "osFlyoutOverrides"?: string | NavMainEntity;
         /**
@@ -188,22 +188,22 @@ export namespace Components {
         "project": string;
         /**
           * Toggle the search button.
-          * @deprecated use the new configuration API to show or hide the search.
+          * @deprecated use the new configuration API to show or hide the search. This option will be removed in the next major release.
          */
         "search": boolean;
         /**
           * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default. The selfadmin url is used in the KLP login widget to set the user menu links.
-          * @deprecated use the new configuration API to specify these URLs.
+          * @deprecated use the new configuration API to specify these URLs. This option will be removed in the next major release.
          */
         "selfAdminOrigin"?: string;
         /**
           * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
-          * @deprecated please implement the skiplinks component.
+          * @deprecated please implement the skiplinks component. This option will be removed in the next major release.
          */
         "skiplinks": boolean;
         /**
           * Sticky behaviour of the header.
-          * @deprecated this option is no longer configurable with the new header.
+          * @deprecated this option will no longer be configurable with the new header in the next major release.
          */
         "stickyness": StickynessOptions;
     }
@@ -420,12 +420,12 @@ declare namespace LocalJSX {
     interface SwisspostInternetBreadcrumbs {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has its own navigation structure.
-          * @deprecated overlays are no longer provided, this method is therefore no longer needed.
+          * @deprecated overlays will no longer be provided in the next major release, therefore this method will no longer be needed.
          */
         "customItems"?: string | IBreadcrumbItem[];
         /**
           * Hide all buttons.
-          * @deprecated Help and Contact buttons are no longer provided, this prop is therefore no longer needed.
+          * @deprecated Help and Contact buttons will no longer be provided in the next major release, therefore this prop will no longer be needed.
          */
         "hideButtons"?: boolean;
     }
@@ -434,17 +434,17 @@ declare namespace LocalJSX {
     interface SwisspostInternetHeader {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
-          * @deprecated booleans are no longer accepted. Use `"none"` for `false` and `"auto"` for `true`. All other values remain unchanged.
+          * @deprecated boolean values will no longer be accepted in the next major release. Use "none" for false and "auto" for true. All other values remain unchanged.
          */
         "activeRoute"?: 'auto' | false | string;
         /**
           * Define a proxy URL for the config fetch request.
-          * @deprecated this functionality is no longer provided and was deprecated previously.
+          * @deprecated this functionality will no longer be provided in the next major release and was deprecated previously.
          */
         "configProxy"?: string;
         /**
           * Customize the header config loaded from the post portal.
-          * @deprecated use the main navigation slot to add custom menu entries.
+          * @deprecated use the main navigation slot to add custom menu entries. This option will be removed in the next major release.
          */
         "customConfig"?: string | ICustomConfig;
         /**
@@ -461,32 +461,32 @@ declare namespace LocalJSX {
         "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
           * The header uses this cookie to set the language. Disables automatic language detection.
-          * @deprecated due to low usage in favor of a project-specific solution.
+          * @deprecated this will no longer be supported in the next major release due to low usage, in favor of a project-specific solution.
          */
         "languageCookieKey"?: string;
         /**
           * The header uses this local storage key to set the language. Disables automatic language selection.
-          * @deprecated due to low usage in favor of a project-specific solution.
+          * @deprecated this will no longer be supported in the next major release due to low usage, in favor of a project-specific solution.
          */
         "languageLocalStorageKey"?: string;
         /**
           * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you would like to stay on subpages when the user changes language.
-          * @deprecated use the language menu slot to override the language switch and specify custom URLs.
+          * @deprecated use the language menu slot to override the language switch and specify custom URLs. This option will be removed in the next major release.
          */
         "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**
           * Toggle the login link (when logged out) or the user widget (when logged in).
-          * @deprecated use the new configuration API to show or hide the login.
+          * @deprecated use the new configuration API to show or hide the login. This option will be removed in the next major release.
          */
         "login"?: boolean;
         /**
           * Overrides the logout-url provided by the portal config.
-          * @deprecated use the new configuration API to specify the logout URL.
+          * @deprecated use the new configuration API to specify the logout URL. This option will be removed in the next major release.
          */
         "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
-          * @deprecated use the new configuration API to show or hide the meta navigation links.
+          * @deprecated use the new configuration API to show or hide the meta navigation links. This option will be removed in the next major release.
          */
         "meta"?: boolean;
         /**
@@ -495,7 +495,7 @@ declare namespace LocalJSX {
         "onHeaderLoaded"?: (event: SwisspostInternetHeaderCustomEvent<void>) => void;
         /**
           * Online Services only: Add custom links to the special online service navigation entry
-          * @deprecated the new header no longer includes this flyout. Use the main navigation slot to add application-specific menu items.
+          * @deprecatedthe new header will no longer include this flyout in the next major release. Use the main navigation slot to add application-specific menu items.
          */
         "osFlyoutOverrides"?: string | NavMainEntity;
         /**
@@ -504,22 +504,22 @@ declare namespace LocalJSX {
         "project"?: string;
         /**
           * Toggle the search button.
-          * @deprecated use the new configuration API to show or hide the search.
+          * @deprecated use the new configuration API to show or hide the search. This option will be removed in the next major release.
          */
         "search"?: boolean;
         /**
           * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default. The selfadmin url is used in the KLP login widget to set the user menu links.
-          * @deprecated use the new configuration API to specify these URLs.
+          * @deprecated use the new configuration API to specify these URLs. This option will be removed in the next major release.
          */
         "selfAdminOrigin"?: string;
         /**
           * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
-          * @deprecated please implement the skiplinks component.
+          * @deprecated please implement the skiplinks component. This option will be removed in the next major release.
          */
         "skiplinks"?: boolean;
         /**
           * Sticky behaviour of the header.
-          * @deprecated this option is no longer configurable with the new header.
+          * @deprecated this option will no longer be configurable with the new header in the next major release.
          */
         "stickyness"?: StickynessOptions;
     }

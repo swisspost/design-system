@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                                                                                                                                                                                                                            | Type                                       | Default     |
-| ------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
-| `customItems` | `custom-items` | <span style="color:red">**[DEPRECATED]**</span> overlays are no longer provided, this method is therefore no longer needed.<br/><br/>Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has its own navigation structure. | `IBreadcrumbItem[] \| string \| undefined` | `undefined` |
-| `hideButtons` | `hide-buttons` | <span style="color:red">**[DEPRECATED]**</span> Help and Contact buttons are no longer provided, this prop is therefore no longer needed.<br/><br/>Hide all buttons.                                                                                                   | `boolean`                                  | `false`     |
+| Property      | Attribute      | Description                                                                                                                        | Type                                       | Default     |
+| ------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
+| `customItems` | `custom-items` | Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure. | `IBreadcrumbItem[] \| string \| undefined` | `undefined` |
+| `hideButtons` | `hide-buttons` | Hide all buttons.                                                                                                                  | `boolean`                                  | `false`     |
 
 
 ## Methods

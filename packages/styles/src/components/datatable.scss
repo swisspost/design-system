@@ -17,7 +17,8 @@
   padding: datatable.$datatable-cell-padding;
   font-weight: datatable.$datatable-header-font-weight;
 
-  .datatable-header[ng-reflect-sorts*='object'] &:not(.sort-active) {
+  .datatable-header[ng-reflect-sorts*='object'] &:not(.sort-active),
+  .datatable-header &.sortable:not(.sort-active) {
     color: datatable.$datatable-header-unsorted-color;
   }
 
