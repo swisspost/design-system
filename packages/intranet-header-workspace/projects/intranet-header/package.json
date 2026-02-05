@@ -25,7 +25,7 @@
     "@swisspost/design-system-intranet-header-workspace": "workspace:3.0.50"
   },
   "peerDependencies": {
-    "@angular/common": ">=17.0.0 <22.0.0",
-    "@angular/core": ">=17.0.0 <22.0.0"
+    "@angular/common": ">=17.0.0 <20.0.0",
+    "@angular/core": ">=17.0.0 <20.0.0"
   }
 }
