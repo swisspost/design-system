@@ -190,6 +190,15 @@ jobs:
             exit 1
           fi
 
+      - name: Upload baseline artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vrt-baseline-${{ github.run_id }}-${{ github.ref_name }}
+          path: packages/components/vrt/__screenshots__
+          retention-days: 30
+          if-no-files-found: warn
+
       - name: Upload test results
         if: failure() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
@@ -208,6 +217,22 @@ jobs:
             packages/components/test-results/**/*-actual.png
             packages/components/test-results/**/*-expected.png
           retention-days: 14
+
+      - name: List baseline artifacts
+        if: always()
+        run: |
+          echo "## 📦 VRT Baseline Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -d "packages/components/vrt/__screenshots__" ]; then
+            echo "✅ Baseline directory exists" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Files:**" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            find packages/components/vrt/__screenshots__ -type f | head -20 >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No baseline directory found" >> $GITHUB_STEP_SUMMARY
+          fi
 
       - name: Comment PR with VRT results
         if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure' && steps.check-approval.outputs.approved != 'true'
