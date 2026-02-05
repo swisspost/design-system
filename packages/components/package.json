@@ -93,7 +93,7 @@
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.7.4",
+    "@floating-ui/dom": "1.7.5",
     "@oddbird/popover-polyfill": "0.6.0",
     "@stencil/core": "4.41.1",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.60",
@@ -105,8 +105,8 @@
   "devDependencies": {
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
-    "@percy/cli": "1.31.4",
-    "@percy/cypress": "3.1.6",
+    "@percy/cli": "1.31.8",
+    "@percy/cypress": "3.1.7",
     "@stencil-community/eslint-plugin": "0.10.0",
     "@stencil/angular-output-target": "1.1.1",
     "@stencil/react-output-target": "1.2.0",
