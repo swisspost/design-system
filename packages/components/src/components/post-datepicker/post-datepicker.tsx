@@ -577,12 +577,12 @@ export class PostDatepicker {
         return new Date(year, month - 1, day);
       },
     };
+    const baseDateOpts = {
+      mask: Date,
+      min: this.min ? new Date(this.min) : null,
+      max: this.max ? new Date(this.max) : null,
+    };
     if (this.range) {
-      const baseBlockOpts = {
-        mask: Date,
-        min: this.min ? new Date(this.min) : null,
-        max: this.max ? new Date(this.max) : null,
-      };
       const baseRangeOpts = {
         mask: 'from - to',
         lazy: false,
@@ -591,26 +591,24 @@ export class PostDatepicker {
       if (this.euFormat) {
         const options = {
           ...baseRangeOpts,
-          blocks: { from: baseBlockOpts, to: baseBlockOpts },
+          blocks: { from: baseDateOpts, to: baseDateOpts },
         };
         this.inputMask = IMask(this.dpInput, options);
       } else {
         const options = {
           ...baseRangeOpts,
           blocks: {
-            from: { ...baseBlockOpts, ...usBlockOpts },
-            to: { ...baseBlockOpts, ...usBlockOpts },
+            from: { ...baseDateOpts, ...usBlockOpts },
+            to: { ...baseDateOpts, ...usBlockOpts },
           },
         };
         this.inputMask = IMask(this.dpInput, options);
       }
     } else {
       const baseSingleOpts = {
-        mask: Date,
+        ...baseDateOpts,
         lazy: false,
         overwrite: true,
-        min: this.min ? new Date(this.min) : null,
-        max: this.max ? new Date(this.max) : null,
       };
       if (this.euFormat) {
         const options = baseSingleOpts;
