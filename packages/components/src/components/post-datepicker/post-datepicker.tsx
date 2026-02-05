@@ -16,6 +16,8 @@ import AirDatepicker, {
   AirDatepickerViewsSingle,
 } from 'air-datepicker';
 
+import IMask, { InputMask } from 'imask';
+
 import { localesMap } from './locales';
 import { checkEmptyOrType, checkRequiredAndType } from '@/utils';
 
@@ -38,7 +40,7 @@ export class PostDatepicker {
 
   @State() today = new Date();
 
-  @State() inputsDisabled = false;
+  @State() inputDisabled = false;
 
   /**
    * Selected date
@@ -48,6 +50,16 @@ export class PostDatepicker {
   @Watch('selectedStartDate')
   validateSelectedStartDate() {
     checkEmptyOrType(this, 'selectedStartDate', 'string');
+
+    if (this.selectedStartDate) {
+      const date = new Date(this.selectedStartDate);
+
+      if (isNaN(date.getTime())) {
+        console.error(
+          'Selected start date is not valid. Format should either be DD/MM/YYYY or YYYY/MM/DD',
+        );
+      }
+    }
   }
 
   /**
@@ -57,32 +69,56 @@ export class PostDatepicker {
   @Watch('selectedEndDate')
   validateSelectedEndDate() {
     checkEmptyOrType(this, 'selectedEndDate', 'string');
+
+    if (this.selectedEndDate) {
+      const date = new Date(this.selectedEndDate);
+
+      if (isNaN(date.getTime())) {
+        console.error(
+          'Selected end date is not valid. Format should either be DD/MM/YYYY or YYYY/MM/DD',
+        );
+      }
+    }
   }
 
   /**
    * Whether the datepicker expects a range selection or a single date selection
    */
   @Prop() range?: boolean = false;
-  @Watch('range')
-  validateRange() {
-    if (!this.inline) {
-      if (this.range && (!this.dpInputs || this.dpInputs.length !== 2)) {
-        console.error('A range datepicker should contain two inputs');
-      } else if (!this.range && (!this.dpInputs || this.dpInputs.length !== 1)) {
-        console.error('A non-range datepicker should contain one input');
-      }
-    }
-  }
 
   /**
    * Minimun possible date to select
    */
   @Prop() min?: string;
+  @Watch('min')
+  validateMin() {
+    checkEmptyOrType(this, 'min', 'string');
+
+    if (this.min) {
+      const date = new Date(this.min);
+
+      if (isNaN(date.getTime())) {
+        console.error('Min date is not valid. Format should either be DD/MM/YYYY or YYYY/MM/DD');
+      }
+    }
+  }
 
   /**
    * Maximum possible date to select
    */
   @Prop() max?: string;
+  @Watch('max')
+  validateMax() {
+    checkEmptyOrType(this, 'max', 'string');
+
+    if (this.max) {
+      const date = new Date(this.max);
+
+      if (isNaN(date.getTime())) {
+        console.error('Max date is not valid. Format should either be DD/MM/YYYY or YYYY/MM/DD');
+      }
+    }
+  }
 
   /**
    * Used to extend the existing on render cell to disable dates
@@ -93,6 +129,13 @@ export class PostDatepicker {
    * Whether the calendar is inline in the page (not showing in a popover when input clicked)
    */
   @Prop() inline = false;
+  @Watch('inline')
+  validateInline() {
+    console.log('is inline', this.inline, this.dpInput);
+    if (!this.inline && !this.dpInput) {
+      console.error('A non-inline datepicker should contain one input');
+    }
+  }
 
   /**
    * Label for "Next month" button
@@ -208,26 +251,28 @@ export class PostDatepicker {
   private currentViewYear: number;
   private currentViewType: AirDatepickerViews = 'days';
 
+  private euFormat = true;
+
   private popoverRef: HTMLPostPopovercontainerElement;
-  private dpInputs: HTMLInputElement[];
+  private dpInput: HTMLInputElement;
   private dpInstance: AirDatepicker<HTMLDivElement>;
   private dpContainer: HTMLDivElement;
+
+  private inputMask: InputMask;
 
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
 
   private setupInputObserver() {
-    if (!this.dpInputs) return;
+    if (!this.dpInput) return;
 
     const observer = new MutationObserver(() => {
       this.syncDatepickerState();
     });
 
-    this.dpInputs.forEach(input => {
-      observer.observe(input, {
-        attributes: true,
-        attributeFilter: ['disabled'],
-      });
+    observer.observe(this.dpInput, {
+      attributes: true,
+      attributeFilter: ['disabled'],
     });
   }
 
@@ -372,7 +417,7 @@ export class PostDatepicker {
 
     // Focus on the input when escaping the calendar
     if (e.key === 'Escape') {
-      this.dpInputs[0].focus();
+      this.dpInput.focus();
     }
 
     const active = this.host.shadowRoot.activeElement as HTMLElement;
@@ -515,26 +560,77 @@ export class PostDatepicker {
   }
 
   /**
-   * Set the same min and max value to the datepicker input(s)
+   * Set up the masks on the inputs to reflect the datepickers
    */
-  private setMinAndMaxToInputs() {
-    this.dpInputs?.forEach(input => {
-      if (this.min) {
-        input.min = this.formatAsDateInputValue(new Date(this.min));
+  private setUpMask() {
+    const usBlockOpts = {
+      pattern: 'm{/}`d{/}`Y',
+      format: (date: Date) => {
+        if (!date) return '';
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return [month, day, year].join('/');
+      },
+      parse: (str: string) => {
+        const [month, day, year] = str.split('/').map(Number);
+        return new Date(year, month - 1, day);
+      },
+    };
+    if (this.range) {
+      const baseBlockOpts = {
+        mask: Date,
+        min: this.min ? new Date(this.min) : null,
+        max: this.max ? new Date(this.max) : null,
+      };
+      const baseRangeOpts = {
+        mask: 'from - to',
+        lazy: false,
+        overwrite: true,
+      };
+      if (this.euFormat) {
+        const options = {
+          ...baseRangeOpts,
+          blocks: { from: baseBlockOpts, to: baseBlockOpts },
+        };
+        this.inputMask = IMask(this.dpInput, options);
+      } else {
+        const options = {
+          ...baseRangeOpts,
+          blocks: {
+            from: { ...baseBlockOpts, ...usBlockOpts },
+            to: { ...baseBlockOpts, ...usBlockOpts },
+          },
+        };
+        this.inputMask = IMask(this.dpInput, options);
       }
-
-      if (this.max) {
-        input.max = this.formatAsDateInputValue(new Date(this.max));
+    } else {
+      const baseSingleOpts = {
+        mask: Date,
+        lazy: false,
+        overwrite: true,
+        min: this.min ? new Date(this.min) : null,
+        max: this.max ? new Date(this.max) : null,
+      };
+      if (this.euFormat) {
+        const options = baseSingleOpts;
+        this.inputMask = IMask(this.dpInput, options);
+      } else {
+        const options = { ...baseSingleOpts, ...usBlockOpts };
+        this.inputMask = IMask(this.dpInput, options);
       }
-    });
+    }
   }
 
   private configDatepicker() {
     const slot = this.host.shadowRoot.querySelector<HTMLSlotElement>('slot');
     const assignedNodes = slot && slot.assignedElements();
     const locale = localesMap[this.locale] || localesMap.en;
-    this.dpInputs = assignedNodes?.filter(el => el.tagName === 'INPUT') as HTMLInputElement[];
-    this.setMinAndMaxToInputs();
+
+    if (!this.inline) {
+      this.dpInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
+      this.setUpMask();
+    }
 
     this.dpContainer = this.host.shadowRoot.querySelector('.datepicker-container');
 
@@ -585,12 +681,15 @@ export class PostDatepicker {
           }
 
           // Assign value to the input, close the popover and focus on the input
-          if (this.dpInputs) {
+          if (this.dpInput) {
             if (Array.isArray(date)) {
-              date.forEach((d, i) => (this.dpInputs[i].value = this.formatAsDateInputValue(d)));
+              const dates = date.map(d => this.dateToDateStr(d));
+              this.inputMask.value = dates.join(' - ');
+              this.inputMask.updateValue();
             } else if (date) {
               // If there is a date, set it to the input. No date = same date as before
-              this.dpInputs[0].value = this.formatAsDateInputValue(date);
+              this.inputMask.value = this.dateToDateStr(date);
+              this.inputMask.updateValue();
             }
 
             // If range & only one date has been selected, user should stay in the DP
@@ -599,7 +698,7 @@ export class PostDatepicker {
             }
 
             this.popoverRef?.hide();
-            requestAnimationFrame(() => this.dpInputs[0].focus());
+            requestAnimationFrame(() => this.dpInput.focus());
           }
         },
         onShow: () => {
@@ -660,11 +759,34 @@ export class PostDatepicker {
     }
   };
 
-  private formatAsDateInputValue(date: Date): string {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+  private splitRangeDates(rangeStr: string): string[] {
+    return rangeStr.split(' - ');
+  }
+
+  private dateStrToDate(dateStr: string): Date {
+    return this.euFormat ? this.euDateStrToDate(dateStr) : this.usDateStrToDate(dateStr);
+  }
+
+  private euDateStrToDate(dateStr: string): Date {
+    const [d, m, y] = dateStr.split('.');
+    return new Date(+y, +m - 1, +d);
+  }
+
+  private usDateStrToDate(dateStr: string): Date {
+    const [m, d, y] = dateStr.split('/');
+    return new Date(+y, +m - 1, +d);
+  }
+
+  private dateToDateStr(date: Date): string {
+    return this.euFormat ? this.dateToEuDateStr(date) : this.dateToUSDateStr(date);
+  }
+
+  private dateToEuDateStr(date: Date): string {
+    return `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
+  }
+
+  private dateToUSDateStr(date: Date): string {
+    return `${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}/${date.getFullYear()}`;
   }
 
   /**
@@ -774,50 +896,46 @@ export class PostDatepicker {
     });
   }
 
-  private addInputListeners() {
-    this.dpInputs.forEach(input => {
-      input.addEventListener('blur', () => {
-        if (this.range) {
-          const start = this.dpInputs[0].value;
-          const end = this.dpInputs[1].value;
+  private addInputListener() {
+    this.dpInput.addEventListener('blur', () => {
+      if (this.range) {
+        const dates = this.splitRangeDates(this.inputMask.value);
+        const start = this.dateStrToDate(dates[0]);
+        const end = this.dateStrToDate(dates[1]);
 
-          if (start && end) {
-            // Because selectDate is called twice if there are two dates
-            this.skipOnSelectCount = 2;
+        if (start && end) {
+          // Because selectDate is called twice if there are two dates
+          this.skipOnSelectCount = 2;
 
-            // Select the dates in the datepicker
-            this.selectedStartDate = start;
-            this.selectedEndDate = end;
-            this.dpInstance.selectDate([new Date(start), new Date(end)]);
-          }
-        } else {
-          if (input.value) {
-            this.skipOnSelectCount = 1;
-            this.selectedStartDate = input.value;
-
-            // Select the date in the datepicker
-            this.dpInstance.selectDate(new Date(input.value));
-          }
+          // Select the dates in the datepicker
+          this.selectedStartDate = start.toString();
+          this.selectedEndDate = end.toString();
+          this.dpInstance.selectDate([start, end]);
         }
-      });
+      } else {
+        if (this.dpInput.value) {
+          this.skipOnSelectCount = 1;
+
+          const date = this.dateStrToDate(this.inputMask.value);
+
+          this.selectedStartDate = date.toString();
+
+          // Select the date in the datepicker
+          this.dpInstance.selectDate(date);
+        }
+      }
     });
   }
 
   private syncDatepickerState() {
-    const disabled = this.dpInputs?.some(input => input.disabled) ?? false;
-
-    this.inputsDisabled = disabled;
-
-    if (disabled) {
-      this.dpInputs?.forEach(input => {
-        if (input.disabled !== disabled) {
-          input.disabled = disabled;
-        }
-      });
+    if (this.dpInput.disabled) {
+      this.inputDisabled = true;
     }
   }
 
   async componentDidLoad() {
+    this.euFormat = document.documentElement.lang !== 'en-US';
+
     this.configDatepicker();
     this.setupGridObserver();
     this.setupNavObserver();
@@ -825,6 +943,8 @@ export class PostDatepicker {
 
     this.validateSelectedStartDate();
     this.validateSelectedEndDate();
+    this.validateMin();
+    this.validateMax();
     this.validateTextToggleCalendar();
     this.validateTextNextDecade();
     this.validateTextNextMonth();
@@ -833,12 +953,12 @@ export class PostDatepicker {
     this.validateTextPreviousMonth();
     this.validateTextPreviousYear();
     this.validateTextSwitchYear();
-    this.validateRange();
+    this.validateInline();
 
     if (this.inline) {
       requestAnimationFrame(() => this.enhanceAccessibility(false));
     } else {
-      this.addInputListeners();
+      this.addInputListener();
 
       requestAnimationFrame(() => {
         this.syncDatepickerState();
@@ -870,7 +990,7 @@ export class PostDatepicker {
               class={{
                 'calendar-input': !this.range,
                 'calendar-input-range': this.range,
-                'disabled': this.inputsDisabled,
+                'disabled': this.inputDisabled,
               }}
             >
               <slot></slot>
@@ -878,7 +998,7 @@ export class PostDatepicker {
                 onClick={e => this.show(e.currentTarget as HTMLElement)}
                 aria-haspopup="true"
                 aria-label={this.textToggleCalendar}
-                disabled={this.inputsDisabled}
+                disabled={this.inputDisabled}
               >
                 <post-icon name="calendar"></post-icon>
               </button>

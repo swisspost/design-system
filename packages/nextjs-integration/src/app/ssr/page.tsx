@@ -103,7 +103,7 @@ export default function Home() {
         textPreviousYear="Previous year"
         textSwitchYear="Switch to year view"
       >
-        <input type="date" />
+        <input type="text" />
       </PostDatepicker>
 
       <h2>Icon</h2>

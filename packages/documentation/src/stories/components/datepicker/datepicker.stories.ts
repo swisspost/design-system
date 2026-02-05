@@ -8,8 +8,10 @@ const meta: MetaComponent = {
   component: 'post-datepicker',
   tags: ['package:WebComponents'],
   render,
-  exclude: ['id'],
   parameters: {
+    controls: {
+      exclude: ['id'],
+    },
     badges: [],
     design: {
       type: 'figma',
@@ -109,8 +111,7 @@ function renderPopupRange(args: Args) {
     text-previous-month="${args.textPreviousMonth}"
     text-previous-year="${args.textPreviousYear}"
     text-switch-year="${args.textSwitchYear}">
-    <input type="date"></input>
-    <input type="date"></input>
+      <input class="form-control" type="text"></input>
     </post-datepicker>`;
 }
 
@@ -144,7 +145,7 @@ function renderPopupSimple(args: Args) {
     text-previous-month="${args.textPreviousMonth}"
     text-previous-year="${args.textPreviousYear}"
     text-switch-year="${args.textSwitchYear}">
-      <input class="form-control" type="date"></input>
+      <input class="form-control" type="text"></input>
     </post-datepicker>`;
 }
 

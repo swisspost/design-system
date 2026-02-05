@@ -288,29 +288,21 @@ tokens.$default-map: components.$post-breadcrumb;
   }
 }
 
-.calendar-input {
+.calendar-input,
+.calendar-input-range {
   position: relative;
 
   button {
     position: absolute;
-    right: 40px;
-    top: 68px;
-  }
-}
-
-.calendar-input,
-.calendar-input-range {
-  button {
+    right: 16px;
+    top: 16px;
     border: none;
     background-color: transparent;
   }
 }
 
 .calendar-input-range {
-  border: 2px solid black;
-  border-radius: 4px;
-  display: flex;
-  padding: 12px;
+  min-width: 310px;
 }
 
 ::slotted(input) {
