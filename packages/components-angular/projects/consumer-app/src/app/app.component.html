@@ -1,9 +1,11 @@
 <header class="bg-dark">
   <nav class="container py-2">
     <ul class="d-flex flex-wrap row-gap-1 column-gap-3 m-0 list-unstyled">
-      <li *ngFor="let route of navigationRoutes">
-        <a [routerLink]="route.path">{{ route.title }}</a>
-      </li>
+      @for (route of navigationRoutes; track route) {
+        <li>
+          <a [routerLink]="route.path">{{ route.title }}</a>
+        </li>
+      }
     </ul>
   </nav>
 </header>
