@@ -1,5 +1,34 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.60
+
+### Minor Changes
+
+- Added icons: `2752` and `2753` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7115](https://github.com/swisspost/design-system/pull/7115))
+
+- Added icons:
+  - `bulkmailing` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `soup` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `token` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `variable` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7115](https://github.com/swisspost/design-system/pull/7115))
+
+## 10.0.0-next.59
+
+### Minor Changes
+
+- Added icons: `2749`, `2750` and `2751` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7067](https://github.com/swisspost/design-system/pull/7067))
+
+### Patch Changes
+
+- Updated the generated ids to include the icon name. This ensures that symbol ids used are unique across the whole icon set and prevents conflicts when multiple icons are used in light-dom. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated icons:
+  - `gendermale` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7028](https://github.com/swisspost/design-system/pull/7028))
+
 ## 10.0.0-next.57
 
 ### Minor Changes
