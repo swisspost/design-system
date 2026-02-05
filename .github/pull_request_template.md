@@ -13,6 +13,10 @@ If applicable, please add a screenshot or video to illustrate the changes.
 - [ ] Design review done
 - [ ] No design review needed
 
+## � Visual regression tests
+
+- [ ] Visual changes detected and approved _(Check this box if VRT fails and changes are intentional)_
+
 ## 📝 Checklist
 
 - ✅ My code follows the style guidelines of this project
@@ -21,4 +25,3 @@ If applicable, please add a screenshot or video to illustrate the changes.
 - ⚠️ My changes generate no new warnings or errors
 - 🧪 I have added tests that prove my fix is effective or that my feature works
 - ✔️ New and existing unit tests pass locally with my changes
-- [ ] **Checked for visual regressions** _(Check this if visual changes are intentional)_

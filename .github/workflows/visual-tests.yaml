@@ -159,9 +159,7 @@ jobs:
             });
             
             const body = pr.body || '';
-            const vrtApproved = /- \[x\] .*visual regression/i.test(body) || 
-                               /- \[x\] .*VRT/i.test(body) ||
-                               /- \[x\] .*Checked for visual regressions/i.test(body);
+            const vrtApproved = /- \[x\] .*Visual changes detected and approved/i.test(body);
             
             core.setOutput('approved', vrtApproved);
             
