@@ -29,8 +29,9 @@ export class PostMenuTrigger {
     const slottedButtons = this.host.querySelectorAll('button');
 
     if (slottedButtons.length !== 1) {
-      const warning = `The post-menu-trigger must contain a single button (${slottedButtons.length} found).`;
-      console.warn(warning);
+      console.warn(
+        `The post-menu-trigger should contain exactly one button (${slottedButtons.length} found).`,
+      );
       return;
     }
 
