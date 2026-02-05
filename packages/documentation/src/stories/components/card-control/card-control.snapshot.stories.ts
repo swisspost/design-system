@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
+import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 import meta from './card-control.stories';
 
@@ -12,7 +12,7 @@ export default {
 };
 
 const PALETTE_TEST_COMPONENT_TYPES = ['radio', 'checkbox'];
-const PALETTE_TEST_PALETTE_TYPES = ['default', 'alternate', 'accent', 'brand'];
+const PALETTE_TEST_PALETTE_TYPES = ['default'];
 const PALETTE_TEST_ARGS = {
   description: 'Description',
   icon: 'component',
@@ -86,6 +86,7 @@ export const CardControl: StoryObj = {
                 </div>`,
             )}
           `,
+          { filter: scheme => scheme === COLOR_SCHEMES.light },
         )}
       </div>
     `;

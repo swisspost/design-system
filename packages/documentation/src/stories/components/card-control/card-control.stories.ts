@@ -132,7 +132,7 @@ class RenderHelper {
 
   public validationId(context: StoryContext): string {
     const storyName = this.storyName(context);
-    return `${storyName}_Validation_Message`;
+    return `${storyName}_${this.id++}_Validation_Message`;
   }
 
   public validation(id: string) {
