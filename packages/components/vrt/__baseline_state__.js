@@ -1,21 +1,17 @@
 /**
- * VRT BASELINE STATE - T0 (Main branch)
- * This file tracks the VRT baseline state throughout the race condition scenario
- * 
- * BASELINE_T0: The initial baseline that PR tests are compared against
- * Both PR #101 and PR #102 will test against this baseline
+ * VRT BASELINE STATE - T3 (AFTER PR #101 MERGED)
+ * Post-merge: Baseline has been REGENERATED from main code
  */
 
-// PR #101 CHANGE: Change button color from BLUE to RED
 export const BASELINE_STATE = {
-  version: '1.0',
-  branch: 'pr-101-red-button-header',
-  timestamp: 'T1',
-  headerButtonColor: 'RED', // CHANGED: was BLUE
+  version: '2.0',
+  branch: 'main',
+  timestamp: 'T3',
+  headerButtonColor: 'RED', // REGENERATED: now RED (was BLUE)
   headerButtonPadding: 'normal',
-  change: 'PR #101 - Change button color to RED',
-  testedAgainstBaseline: 'BASELINE_T0 (blue, normal)',
-  vrtComparisonResult: 'FAIL - RED vs BLUE (intentional, approved)',
+  event: 'POST-MERGE: PR #101 merged, baseline regenerated',
+  baselineHash: 'baseline_v2_jkl012',
+  previousBaseline: 'baseline_v1_abc123',
 };
 
 if (typeof module !== 'undefined' && module.exports) {
