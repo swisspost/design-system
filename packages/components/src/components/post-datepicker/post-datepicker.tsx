@@ -723,21 +723,25 @@ export class PostDatepicker {
         this.skipFocusOnNextRender = true;
       });
 
-      if (this.range) {
-        if (
-          (this.selectedStartDate && !this.selectedEndDate) ||
-          (!this.selectedStartDate && this.selectedEndDate)
-        ) {
-          console.error(
-            'The range datepicker expects either no selected dates or both of them defined.',
-          );
-        } else if (this.selectedStartDate && this.selectedEndDate) {
-          this.dpInstance.selectDate([this.selectedStartDate, this.selectedEndDate]);
-        }
-      } else {
-        if (this.selectedStartDate) {
-          this.dpInstance.selectDate(this.selectedStartDate);
-        }
+      this.handleSelectedDates();
+    }
+  }
+
+  private handleSelectedDates() {
+    if (this.range) {
+      if (
+        (this.selectedStartDate && !this.selectedEndDate) ||
+        (!this.selectedStartDate && this.selectedEndDate)
+      ) {
+        console.error(
+          'The range datepicker expects either no selected dates or both of them defined.',
+        );
+      } else if (this.selectedStartDate && this.selectedEndDate) {
+        this.dpInstance.selectDate([this.selectedStartDate, this.selectedEndDate]);
+      }
+    } else {
+      if (this.selectedStartDate) {
+        this.dpInstance.selectDate(this.selectedStartDate);
       }
     }
   }
