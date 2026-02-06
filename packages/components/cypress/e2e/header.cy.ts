@@ -208,6 +208,7 @@ describe('header', () => {
       cy.get('@header').shadow().find('.local-header').should('be.visible');
     });
   });
+
   describe('keyboard navigation', () => {
     describe('desktop', () => {
       beforeEach(() => {
@@ -220,17 +221,12 @@ describe('header', () => {
       });
 
       it('should have close button as the last tab element in megadropdown', () => {
-        // Open megadropdown
         cy.get('@megadropdown-trigger').click({ force: true });
-        
-        // Verify close button is visible
         cy.get('@close-btn').should('be.visible');
 
-        // Get all focusable elements from within the megadropdown container
         cy.get('@megadropdown-container')
           .getFocusableElements()
           .then(focusableElements => {
-            // The close button (actual button element inside post-closebutton) should be the last focusable element
             cy.get('@close-btn')
               .find('button')
               .then($closeBtn => {
@@ -240,11 +236,9 @@ describe('header', () => {
       });
 
       it('should close megadropdown when tabbing from close button', () => {
-        // Open megadropdown
         cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@close-btn').should('be.visible');
 
-        // Collect all nav trigger buttons and direct links in order
         const navItems = [];
         
         cy.get('@header')
@@ -252,18 +246,15 @@ describe('header', () => {
           .each(($li, index) => {
             const trigger = $li[0].querySelector('post-megadropdown-trigger');
             if (trigger) {
-              // Get button from trigger
               cy.wrap(trigger).find('button').then($btn => {
                 navItems[index] = $btn[0];
               });
             } else {
-              // Get direct link
               const link = $li[0].querySelector('a');
               navItems[index] = link;
             }
           })
           .then(() => {
-            // Find the current trigger button and next item
             cy.get('@megadropdown-trigger').then($currentTrigger => {
               const currentIndex = navItems.findIndex(el => el === $currentTrigger[0]);
               const nextFocusable = navItems[currentIndex + 1];
@@ -271,21 +262,16 @@ describe('header', () => {
               if (nextFocusable) {
                 cy.wrap(nextFocusable).as('next-nav-item');
                 
-                // Focus the close button, then move focus to next item (simulating tab behavior)
                 cy.get('@close-btn')
                   .find('button')
                   .focus();
                 
-                // Move focus to next nav item (this simulates what happens when user tabs)
                 cy.get('@next-nav-item').focus();
               }
             });
           });
 
-        // Megadropdown should close when focus moves outside
         cy.get('@megadropdown-container').should('not.be.visible');
-
-        // Next nav item should have focus
         cy.get('@next-nav-item').should('have.focus');
       });
     });
@@ -299,12 +285,9 @@ describe('header', () => {
         });
 
         it('should allow focus on all elements from global header, local header and burger menu when first level is opened', () => {
-          // Open burger menu
           cy.get('@burger-menu-btn').click();
           cy.get('div.burger-menu.extended').should('exist');
 
-          // Get and verify focusable elements in different sections
-          // Check that global header elements can receive focus
           cy.get('@header')
             .find('.global-header')
             .getFocusableElements()
@@ -313,7 +296,6 @@ describe('header', () => {
               cy.wrap(globalHeaderFocusable[0]).focus().should('have.focus');
             });
 
-          // Check that main navigation elements (inside burger menu) can receive focus
           cy.get('@header')
             .find('post-mainnavigation')
             .getFocusableElements()
@@ -322,7 +304,6 @@ describe('header', () => {
               cy.wrap(navigationFocusable[0]).focus().should('have.focus');
             });
 
-          // Check that local header elements can receive focus if present
           cy.get('@header')
             .find('.local-header')
             .getFocusableElements()
@@ -330,23 +311,6 @@ describe('header', () => {
               if (localHeaderFocusable.length > 0) {
                 cy.wrap(localHeaderFocusable[0]).focus().should('have.focus');
               }
-            });
-        });
-
-        it('should have focusable elements when burger menu is opened', () => {
-          // Open burger menu
-          cy.get('@burger-menu-btn').click();
-          cy.get('div.burger-menu.extended').should('exist');
-
-          // Get all focusable elements
-          cy.get('@header')
-            .getFocusableElements()
-            .then(focusableElements => {
-              // Verify there are focusable elements
-              expect(focusableElements.length).to.be.greaterThan(0);
-              
-              // Verify we can focus one of them (test basic focus management)
-              cy.wrap(focusableElements[0]).focus().should('have.focus');
             });
         });
       });
@@ -361,43 +325,34 @@ describe('header', () => {
         });
 
         it('should only allow focus on megadropdown elements when second level is opened', () => {
-          // Open burger menu
           cy.get('@burger-menu-btn').click();
           cy.get('div.burger-menu.extended').should('exist');
 
-          // Open megadropdown
           cy.get('@megadropdown-trigger').click();
           cy.get('@megadropdown').should('be.visible');
 
-          // Verify that focusable elements exist in megadropdown
           cy.get('@megadropdown')
             .shadow()
             .getFocusableElements()
             .then(focusableElements => {
               expect(focusableElements.length).to.be.greaterThan(0);
-              // First element should be focusable
               cy.wrap(focusableElements[0]).focus().should('have.focus');
             });
         });
 
         it('should have back button as the last focusable element in megadropdown', () => {
-          // Open burger menu
           cy.get('@burger-menu-btn').click();
           cy.get('div.burger-menu.extended').should('exist');
 
-          // Open megadropdown
           cy.get('@megadropdown-trigger').click();
           cy.get('@megadropdown').should('be.visible');
 
-          // Get back button
           cy.get('@megadropdown').shadow().find('.back-button').as('back-btn');
 
-          // Get all focusable elements in megadropdown
           cy.get('@megadropdown')
             .shadow()
             .getFocusableElements()
             .then(focusableElements => {
-              // Back button should be the last focusable element
               cy.get('@back-btn').then($backBtn => {
                 expect(focusableElements[focusableElements.length - 1]).to.equal($backBtn[0]);
               });
@@ -405,15 +360,12 @@ describe('header', () => {
         });
 
         it('should trap focus within megadropdown with back button as last element', () => {
-          // Open burger menu
           cy.get('@burger-menu-btn').click();
           cy.get('div.burger-menu.extended').should('exist');
 
-          // Open megadropdown
           cy.get('@megadropdown-trigger').click();
           cy.get('@megadropdown').should('be.visible');
 
-          // Verify back button is the last focusable element
           cy.get('@megadropdown')
             .shadow()
             .getFocusableElements()
@@ -421,7 +373,6 @@ describe('header', () => {
               expect(focusableElements.length).to.be.greaterThan(0);
               const lastElement = focusableElements[focusableElements.length - 1];
 
-              // Verify last element is the back button
               cy.get('@megadropdown')
                 .shadow()
                 .find('.back-button')
@@ -429,7 +380,6 @@ describe('header', () => {
                   expect(lastElement).to.equal($backBtn[0]);
                 });
 
-              // Verify back button can be focused
               lastElement.focus();
               cy.wrap(lastElement).should('have.focus');
             });
