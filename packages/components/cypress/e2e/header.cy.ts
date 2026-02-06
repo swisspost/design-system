@@ -246,7 +246,7 @@ describe('header', () => {
         
         cy.focused().then($focused => {
           cy.get('@megadropdown').then($megadropdown => {
-            expect($megadropdown[0].contains($focused[0])).to.be.false;
+            void expect($megadropdown[0].contains($focused[0])).to.be.false;
           });
         });
       });
@@ -309,14 +309,21 @@ describe('header', () => {
             .then(focusableElements => {
               expect(focusableElements.length).to.be.greaterThan(0);
               
-              const firstElement = focusableElements[0];
-              const lastElement = focusableElements[focusableElements.length - 1];
+              focusableElements[0].focus();
               
-              firstElement.focus();
-              cy.wrap(firstElement).should('have.focus');
-              
-              lastElement.focus();
-              cy.wrap(lastElement).should('have.focus');
+              // Verify each focused element is within megadropdown
+              for (let i = 0; i < focusableElements.length; i++) {
+                cy.focused().then($focused => {
+                  const currentElement = $focused[0];
+                  const isInList = Array.from(focusableElements).includes(currentElement);
+                  void expect(isInList, `Element ${i} should be in megadropdown focusable elements`).to.be.true;
+                });
+                
+                // Move to next element
+                if (i < focusableElements.length - 1) {
+                  cy.press(Cypress.Keyboard.Keys.TAB);
+                }
+              }
             });
         });
 
