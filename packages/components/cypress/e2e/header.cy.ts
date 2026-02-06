@@ -207,9 +207,9 @@ describe('header', () => {
       cy.get('div.burger-menu.extended').should('exist').should('be.visible');
       cy.get('@header').shadow().find('.local-header').should('be.visible');
     });
+  });
 
-
-describe('keyboard navigation', () => {
+  describe('keyboard navigation', () => {
     describe('desktop', () => {
       beforeEach(() => {
         cy.viewport(1920, 1080);
@@ -341,5 +341,4 @@ describe('keyboard navigation', () => {
       });
     });
   });
-});
 });
