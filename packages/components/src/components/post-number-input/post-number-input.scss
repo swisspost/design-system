@@ -1,0 +1,41 @@
+@use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+
+:host {
+  display: inline-flex;
+  align-items: end;
+}
+
+.input-container {
+  position: relative;
+}
+
+.step-button {
+  @include button.button-base;
+  @include button.button-variant-def('enabled', 'secondary');
+  height: 60px;
+  padding-inline: 10px;
+  font-size: 32px;
+  flex: 0 0 auto;
+  border-radius: 4px;
+
+  &:first-of-type {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  &:last-of-type {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  &:hover {
+    @include button.button-variant-def('hover', 'secondary');
+  }
+
+  &.disabled {
+    @include button.button-variant-def('disabled', 'secondary');
+    border-style: dashed;
+  }
+}
