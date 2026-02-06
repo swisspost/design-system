@@ -209,7 +209,7 @@ describe('header', () => {
     });
 
 
-  describe('keyboard navigation', () => {
+describe('keyboard navigation', () => {
     describe('desktop', () => {
       beforeEach(() => {
         cy.viewport(1920, 1080);
@@ -235,16 +235,20 @@ describe('header', () => {
           });
       });
 
-      it('should close megadropdown when tabbing from close button', () => {
+      it('should close megadropdown and focus next nav item when pressing tab from close button', () => {
         cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@close-btn').should('be.visible');
 
         cy.get('@close-btn').find('button').focus();
-
         cy.press(Cypress.Keyboard.Keys.TAB);
 
         cy.get('@megadropdown-container').should('not.be.visible');
-        cy.focused().should('exist');
+        
+        cy.focused().then($focused => {
+          cy.get('@megadropdown').then($megadropdown => {
+            expect($megadropdown[0].contains($focused[0])).to.be.false;
+          });
+        });
       });
     });
 
@@ -261,10 +265,24 @@ describe('header', () => {
           cy.get('div.burger-menu.extended').should('exist');
 
           cy.get('@header')
-            .getFocusableElements()
-            .then(allFocusable => {
-              expect(allFocusable.length).to.be.greaterThan(0);
-              cy.wrap(allFocusable[0]).focus().should('have.focus');
+            .find('post-mainnavigation')
+            .should('be.visible')
+            .find('post-megadropdown-trigger')
+            .first()
+            .find('button')
+            .focus()
+            .should('have.focus');
+
+          cy.get('@burger-menu-btn').focus().should('have.focus');
+
+          cy.get('@header')
+            .shadow()
+            .find('.local-header')
+            .then($localHeader => {
+              const focusableElements = $localHeader.find('a, button');
+              if (focusableElements.length > 0) {
+                cy.wrap(focusableElements[0]).focus().should('have.focus');
+              }
             });
         });
       });
@@ -290,7 +308,15 @@ describe('header', () => {
             .getFocusableElements()
             .then(focusableElements => {
               expect(focusableElements.length).to.be.greaterThan(0);
-              cy.wrap(focusableElements[0]).focus().should('have.focus');
+              
+              const firstElement = focusableElements[0];
+              const lastElement = focusableElements[focusableElements.length - 1];
+              
+              firstElement.focus();
+              cy.wrap(firstElement).should('have.focus');
+              
+              lastElement.focus();
+              cy.wrap(lastElement).should('have.focus');
             });
         });
 
