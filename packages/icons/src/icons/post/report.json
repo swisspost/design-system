@@ -27481,6 +27481,67 @@
       "modifiedAt": "2026-01-23T15:34:55.000Z"
     },
     {
+      "uuid": "29b24c30-fce0-11f0-8bff-0050568d2654",
+      "id": 8953525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8953525/storage/MDA4OTUzNTI1LzAvbWFzdGVy",
+        "keywords": [
+          "Retrieve waste",
+          "Abfall zurückholen",
+          "Reprise des déchets",
+          "Riprendere i rifiuti",
+          "Undelete",
+          "Löschen rückgängig machen",
+          "Annuler la suppression",
+          "Annullare la cancellazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2752.svg",
+        "basename": "2752",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-29T07:00:15.000Z",
+      "modifiedAt": "2026-01-30T06:05:04.075Z"
+    },
+    {
+      "uuid": "c34dd580-fda3-11f0-bb98-0050568d2654",
+      "id": 8970660,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8970660/storage/MDA4OTcwNjYwLzAvbWFzdGVy",
+        "keywords": [
+          "Trophäe",
+          "Trophy",
+          "Trofeo",
+          "Trophée",
+          "Pokal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2753.svg",
+        "basename": "2753",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-30T06:20:24.000Z",
+      "modifiedAt": "2026-01-31T06:05:02.338Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40719,13 +40780,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1073,
+    "success": 1075,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-01-25T02:42:05.762Z",
-  "version": "10.0.0-next.58"
+  "created": "2026-02-02T08:44:25.401Z",
+  "version": "10.0.0-next.59"
 }
