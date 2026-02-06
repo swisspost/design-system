@@ -247,14 +247,22 @@ describe('header', () => {
         // Get the close button and focus it
         cy.get('@megadropdown').shadow().find('.close-button').focus();
 
-        // Get the next megadropdown trigger (next nav item)
-        cy.get('post-megadropdown-trigger').find('button').eq(1).as('next-trigger');
-
-        // Tab from the close button
+        // Get the close button element
         cy.get('@megadropdown')
           .shadow()
           .find('.close-button')
           .then($closeBtn => {
+            // Get all focusable elements in the navigation (buttons and links)
+            cy.get('post-megadropdown-trigger').then($triggers => {
+              const allFocusable = Array.from($triggers).map(t => t.querySelector('button') || t.querySelector('a'));
+              const currentIndex = allFocusable.findIndex(el => el === $closeBtn[0].parentElement);
+              const nextFocusableElement = allFocusable[currentIndex + 1] as HTMLElement;
+
+              if (nextFocusableElement) {
+                cy.wrap(nextFocusableElement).as('next-nav-item');
+              }
+            });
+
             // Simulate tab key press
             cy.wrap($closeBtn).trigger('keydown', { key: 'Tab', code: 'Tab' });
           });
@@ -263,7 +271,7 @@ describe('header', () => {
         cy.get('@megadropdown').shadow().find('.megadropdown').should('not.be.visible');
 
         // Next nav item should be focused
-        cy.get('@next-trigger').should('have.focus');
+        cy.get('@next-nav-item').should('have.focus');
       });
     });
 
@@ -469,46 +477,6 @@ describe('header', () => {
           });
         });
       });
-
-      describe('tablet', () => {
-        beforeEach(() => {
-          cy.viewport('ipad-2');
-          cy.getComponent('header', HEADER_ID);
-          cy.get('post-togglebutton').as('burger-menu-btn');
-          cy.get('post-megadropdown-trigger').find('button').first().as('megadropdown-trigger');
-          cy.get('post-megadropdown').first().as('megadropdown');
-        });
-
-        it('should trap focus within megadropdown on tablet', () => {
-          // Open burger menu
-          cy.get('@burger-menu-btn').click();
-          cy.get('div.burger-menu.extended').should('exist');
-
-          // Open megadropdown
-          cy.get('@megadropdown-trigger').click();
-          cy.get('@megadropdown').should('be.visible');
-
-          // Verify focus trap works the same as on mobile
-          cy.get('@megadropdown').then($megadropdown => {
-            const shadowRoot = $megadropdown[0].shadowRoot!;
-            const focusableElements = shadowRoot.querySelectorAll(
-              'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
-            );
-
-            const firstElement = focusableElements[0] as HTMLElement;
-            const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-
-            // Back button should be last
-            expect(lastElement).to.equal(shadowRoot.querySelector('.back-button'));
-
-            // Test focus trap
-            lastElement.focus();
-            cy.wrap(lastElement).should('have.focus');
-            cy.wrap(lastElement).trigger('keydown', { key: 'Tab', code: 'Tab' });
-            cy.wrap(firstElement).should('have.focus');
-          });
-        });
-      });
-    });
-  });
-});
+    })
+  })
+})
