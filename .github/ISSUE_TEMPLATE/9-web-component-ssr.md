@@ -7,6 +7,11 @@ type: feature
 assignees: ''
 ---
 
+### 🧾 Findings
+
+<!-- Document observations, issues found, limitations, or follow-up actions.
+     Include screenshots, console logs, or references to related issues if relevant. -->
+
 ### 🧪 How to test
 
 <!-- Follow the steps below to verify SSR compatibility -->
@@ -29,7 +34,7 @@ Comment out all components that are not under test and their imports in the foll
 Finally, serve the application with:
 
 ```bash
-pnpm nextjs:build:serve
+pnpm nextjs:start
 ```
 
 **Test SSR in the browser**
@@ -43,8 +48,7 @@ pnpm nextjs:build:serve
 
 <!-- Add or remove tasks as needed -->
 
-- [ ] Ensure Shadow DOM is enabled (`shadow: true`)
-- [ ] Verify no hydration errors are thrown when running the Next.js SSR page
-- [ ] Confirm a `shadowRoot` is present in the DOM tree when JavaScript is disabled
-- [ ] Confirm the `[data-hydrated]` attribute is present after hydration
-- [ ] Confirm the page looks the same on initial load with JavaScript enabled and disabled
+- [ ] Ensure Shadow DOM is enabled (explicit `shadow: true`) for the component and potential sub-components
+- [ ] Verify no hydration or console errors are thrown when running the Next.js SSR page
+- [ ] Confirm the page looks the same on initial load with JavaScript enabled and disabled across all devices and supported configurations
+- [ ] Ensure ARIA attribute cross-referencing (e.g. `aria-labelledby`, `aria-describedby`) works as expected
