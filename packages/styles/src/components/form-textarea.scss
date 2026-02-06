@@ -113,12 +113,15 @@ textarea.form-control {
         #{tokens.get('textarea-label-padding-inline-end')}
     );
     border: 0;
+    border-top-left-radius: tokens.get('textarea-border-radius');
     color: tokens.get('textarea-enabled-fg');
+    background-color: transparent;
     height: auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     transition:
+      background-color 0.2s ease-in-out,
       padding-block-start 0.2s ease-in-out,
       font-size 0.2s ease-in-out;
 
@@ -142,7 +145,9 @@ textarea.form-control {
        * Implemented as progressive enhancement for the browsers that support it.
        * https://stackoverflow.com/questions/16381895/firefox-transition-placeholder-opacity
       */
-      transition: opacity 0.25s linear;
+      transition:
+        opacity 0.25s linear,
+        background-color 0.25s linear;
     }
 
     &:focus,
@@ -150,6 +155,7 @@ textarea.form-control {
       ~ label {
         font-size: tokens.get('textarea-label-filled-font-size');
         padding-block-start: tokens.get('textarea-label-filled-padding-block-start');
+        background-color: tokens.get('textarea-enabled-bg');
       }
     }
 
