@@ -11,7 +11,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
   shadow: true,
 })
 export class PostKlpLoginWidget implements IsFocusable {
-  @Element() host: HTMLPostKlpLoginWidgetElement;
+  @Element() host!: HTMLPostKlpLoginWidgetElement;
 
   /**
    * Overrides the logout-url provided by the portal config.
@@ -50,32 +50,36 @@ export class PostKlpLoginWidget implements IsFocusable {
   private setupTracking() {
     if (typeof window === 'undefined') return;
 
-    const root = this.host.shadowRoot;
-    if (!root) return;
+    (window as any).dataLayer = (window as any).dataLayer || [];
 
-    root.addEventListener('click', event => {
-      const target = event.target as HTMLElement;
+    this.host.shadowRoot?.addEventListener('click', this.handleClick);
+  }
 
-      const settingsLink = target.closest<HTMLAnchorElement>(
-        '#authenticated-menu a[href*="/settings"]',
-      );
+  private handleClick(event: Event) {
+    const target = event.target as HTMLElement;
 
-      if (!settingsLink) return;
+    const settingsLink = target.closest<HTMLAnchorElement>(
+      '#authenticated-menu a[href*="/settings"]',
+    );
 
-      const linkText = settingsLink
-        .querySelector('.klp-widget-notification-link-text')
-        ?.textContent?.trim();
+    if (!settingsLink) return;
 
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: 'select_menu',
-        type: 'authenticated_menu',
-        label: 'settings',
-        text: linkText,
-        link_url: settingsLink.href,
-        additional_info: '',
-      });
+    const linkText = settingsLink
+      .querySelector('.klp-widget-notification-link-text')
+      ?.textContent?.trim();
+
+    (window as any).dataLayer.push({
+      event: 'select_menu',
+      type: 'authenticated_menu',
+      label: 'settings',
+      text: linkText,
+      link_url: settingsLink.href,
+      additional_info: '',
     });
+  }
+
+  disconnectedCallback() {
+    this.host.shadowRoot?.removeEventListener('click', this.handleClick);
   }
 
   /**
