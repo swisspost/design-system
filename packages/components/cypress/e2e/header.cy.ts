@@ -246,7 +246,7 @@ describe('header', () => {
         
         cy.focused().then($focused => {
           cy.get('@megadropdown').then($megadropdown => {
-            void expect($megadropdown[0].contains($focused[0])).to.be.false;
+            expect($megadropdown[0].contains($focused[0])).to.be.false;
           });
         });
       });
@@ -316,7 +316,7 @@ describe('header', () => {
                 cy.focused().then($focused => {
                   const currentElement = $focused[0];
                   const isInList = Array.from(focusableElements).includes(currentElement);
-                  void expect(isInList, `Element ${i} should be in megadropdown focusable elements`).to.be.true;
+                  expect(isInList, `Element ${i} should be in megadropdown focusable elements`).to.be.true;
                 });
                 
                 // Move to next element
