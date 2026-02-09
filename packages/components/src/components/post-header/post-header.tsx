@@ -476,7 +476,12 @@ export class PostHeader {
                 <slot name="post-logo"></slot>
               </div>
 
-              <div class={`sliding-controls ${Build.isServer ? 'ssr-tmp' : ''}`}>
+              <div
+                class={{
+                  'sliding-controls': true,
+                  'ssr-tmp': Build.isServer,
+                }}
+              >
                 {this.device === 'desktop' && (
                   <div class="audience">
                     <slot name="audience"></slot>
@@ -487,6 +492,8 @@ export class PostHeader {
                   <slot name="global-nav-secondary"></slot>,
                   <slot name="language-menu"></slot>,
                 ]}
+
+                <slot name="post-login"></slot>
 
                 <post-togglebutton
                   ref={el => (this.burgerMenuButton = el)}
@@ -507,6 +514,7 @@ export class PostHeader {
               'no-audience': this.noAudience,
               'no-navigation': this.noMainNavigation,
               'no-local-nav': !this.hasLocalNav,
+              'ssr-tmp': Build.isServer,
             }}
           >
             <div class="section">

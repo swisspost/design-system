@@ -36,6 +36,7 @@ header,
 
   &.ssr-tmp {
     .audience,
+    slot[name='language-menu'],
     slot[name='global-nav-secondary'] {
       display: none;
     }
@@ -79,14 +80,14 @@ header,
     padding-inline-end: var(--post-global-header-padding-inline-end);
   }
 
-  &:has(~ .local-header:not(.no-title.no-navigation)),
+  &:has(~ .local-header:not(.no-title.no-navigation)):not(:has(~ .local-header.ssr-tmp)),
   &:has(~ .burger-menu.extended) {
     box-shadow: none;
   }
 
   &:has(~ .local-header.no-navigation) {
     post-togglebutton {
-      display: none; // hide the burger menu if there is no main-navigation slot
+      display: none; // hide the burger menu if there is no main-nav slot
     }
   }
 
@@ -118,6 +119,10 @@ header,
 .local-header {
   position: relative;
   background-color: #fff;
+
+  &.ssr-tmp {
+    display: none;
+  }
 
   .section {
     min-height: var(--post-local-header-expanded-min-height);
