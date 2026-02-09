@@ -7,6 +7,7 @@ import {
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
+  PostDatepicker,
   PostIcon,
   PostLinkarea,
   PostMenu,
@@ -96,6 +97,19 @@ export default function Home() {
           Contentus momentus vero siteos et accusam iretea et justo.
         </p>
       </PostCollapsible>
+
+      <PostDatepicker
+        textToggleCalendar="Open calendar"
+        textNextDecade="Next decade"
+        textNextMonth="Next month"
+        textNextYear="Next year"
+        textPreviousDecade="Previous decade"
+        textPreviousMonth="Previous month"
+        textPreviousYear="Previous year"
+        textSwitchYear="Switch to year view"
+      >
+        <input type="text" />
+      </PostDatepicker>
 
       <h2>Icon</h2>
       <PostIcon name="1000" />
