@@ -198,6 +198,17 @@
   }
 }
 
+// Radio Group
+/* Radio Group/Vertical default */
+fieldset .form-check:not(:last-of-type) {
+  margin-block-end: tokens.get('post-radio-button-gap-block-group');
+}
+
+/* Radio Group/Horizontal default */
+fieldset .form-check.form-check-inline {
+  margin-block: tokens.get('post-radio-button-gap-block-group');
+}
+
 // Small group spacing
 /* Checkbox small vertical */
 fieldset
