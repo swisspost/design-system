@@ -53,6 +53,10 @@ header,
       padding: 0.625rem;
       @include header-mx.nav-item-icon-only;
     }
+
+    @include media-mx.min(desktop) {
+      display: none; // hide the burger menu on desktop
+    }
   }
 }
 
@@ -72,6 +76,12 @@ header,
   &:has(~ .burger-menu.extended) {
     box-shadow: none;
   }
+
+  // &:has(~ .local-header.no-navigation) {
+  //   post-togglebutton {
+  //     display: none; // hide the burger menu if there is no main-navigation slot
+  //   }
+  // }
 
   .logo {
     align-self: flex-end;

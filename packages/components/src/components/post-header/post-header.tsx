@@ -50,7 +50,7 @@ export class PostHeader {
   private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
-    return this.device !== 'desktop' && !this.noMainNavigation;
+    return this.device !== 'desktop' || this.noMainNavigation;
   }
 
   private animationOptions: Partial<AnimationOptions> = {
@@ -488,20 +488,14 @@ export class PostHeader {
                   <slot name="language-menu"></slot>,
                 ]}
 
-                {!this.noMainNavigation && this.device !== 'desktop' && (
-                  <post-togglebutton
-                    ref={el => (this.burgerMenuButton = el)}
-                    onClick={() => this.toggleBurgerMenu()}
-                  >
-                    <span>{this.textMenu}</span>
-                    <post-icon
-                      aria-hidden="true"
-                      name="burger"
-                      data-showwhen="untoggled"
-                    ></post-icon>
-                    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-                  </post-togglebutton>
-                )}
+                <post-togglebutton
+                  ref={el => (this.burgerMenuButton = el)}
+                  onClick={() => this.toggleBurgerMenu()}
+                >
+                  <span>{this.textMenu}</span>
+                  <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
+                  <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+                </post-togglebutton>
               </div>
             </div>
           </div>
@@ -511,7 +505,7 @@ export class PostHeader {
               'local-header': true,
               'no-title': !this.hasTitle,
               'no-audience': this.noAudience,
-              'no-navigation': this.device !== 'desktop' || this.noMainNavigation,
+              'no-navigation': this.hasBurgerMenu,
               'no-local-nav': !this.hasLocalNav,
             }}
           >
