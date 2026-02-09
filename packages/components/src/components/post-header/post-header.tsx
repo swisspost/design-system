@@ -50,8 +50,7 @@ export class PostHeader {
   private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
-    console.log('has navigation', !this.noNavigation);
-    return this.device !== 'desktop' && !this.noNavigation;
+    return this.device !== 'desktop' && !this.noMainNavigation;
   }
 
   private animationOptions: Partial<AnimationOptions> = {
@@ -84,7 +83,7 @@ export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: Device = breakpoint.get('device');
-  @State() noNavigation: boolean = false;
+  @State() noMainNavigation: boolean = false;
   @State() hasLocalNav: boolean = false;
   @State() noAudience: boolean = false;
   @State() hasTitle: boolean = false;
@@ -382,7 +381,7 @@ export class PostHeader {
   }
 
   private checkSlottedContent() {
-    this.noNavigation = !this.host.querySelector('[slot="main-nav"]');
+    this.noMainNavigation = !this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
     this.noAudience = !this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
@@ -488,13 +487,8 @@ export class PostHeader {
                   <slot name="global-nav-secondary"></slot>,
                   <slot name="language-menu"></slot>,
                 ]}
-                <slot name="post-login"></slot>
-                {!this.noNavigation && this.device !== 'desktop' && (
-                  <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
-                    <slot name="post-togglebutton"></slot>
-                  </div>
-                )}
-                {!this.noNavigation && this.device !== 'desktop' && (
+
+                {!this.noMainNavigation && this.device !== 'desktop' && (
                   <post-togglebutton
                     ref={el => (this.burgerMenuButton = el)}
                     onClick={() => this.toggleBurgerMenu()}
@@ -517,7 +511,7 @@ export class PostHeader {
               'local-header': true,
               'no-title': !this.hasTitle,
               'no-audience': this.noAudience,
-              'no-navigation': this.device !== 'desktop' || this.noNavigation,
+              'no-navigation': this.device !== 'desktop' || this.noMainNavigation,
               'no-local-nav': !this.hasLocalNav,
             }}
           >
