@@ -44,7 +44,7 @@
   "dependencies": {
     "@swisspost/design-system-styles": "workspace:10.0.0-next.60",
     "body-scroll-lock": "4.0.0-beta.0",
-    "iframe-resizer": "4.4.5",
+    "iframe-resizer": "5.5.9",
     "jquery": "3.7.1",
     "throttle-debounce": "5.0.2",
     "url-polyfill": "1.1.14"
