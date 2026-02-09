@@ -33,6 +33,13 @@ header,
   justify-content: space-between;
   gap: var(--post-header-gap);
   flex-wrap: wrap;
+
+  &.ssr-tmp {
+    .audience,
+    slot[name='global-nav-secondary'] {
+      display: none;
+    }
+  }
 }
 
 .section {

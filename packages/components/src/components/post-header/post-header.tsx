@@ -476,7 +476,7 @@ export class PostHeader {
                 <slot name="post-logo"></slot>
               </div>
 
-              <div class="sliding-controls">
+              <div class={`sliding-controls ${Build.isServer ? 'ssr-tmp' : ''}`}>
                 {this.device === 'desktop' && (
                   <div class="audience">
                     <slot name="audience"></slot>
