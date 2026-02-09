@@ -505,7 +505,7 @@ export class PostHeader {
               'local-header': true,
               'no-title': !this.hasTitle,
               'no-audience': this.noAudience,
-              'no-navigation': this.device !== 'desktop' || !this.noMainNavigation,
+              'no-navigation': this.noMainNavigation,
               'no-local-nav': !this.hasLocalNav,
             }}
           >

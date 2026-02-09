@@ -77,6 +77,12 @@ header,
     box-shadow: none;
   }
 
+  &:has(~ .local-header.no-navigation) {
+    post-togglebutton {
+      display: none; // hide the burger menu if there is no main-navigation slot
+    }
+  }
+
   .logo {
     align-self: flex-end;
     width: var(--post-global-header-expanded-height);
