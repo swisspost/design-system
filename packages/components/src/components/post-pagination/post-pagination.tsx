@@ -41,8 +41,7 @@ type ValidatableProp =
   | 'textPrevious'
   | 'textPage'
   | 'textFirst'
-  | 'textLast'
-  | 'disabled';
+  | 'textLast';
 
 @Component({
   tag: 'post-pagination',
@@ -104,11 +103,6 @@ export class PostPagination {
   @Prop({ reflect: true }) readonly textLast!: string;
 
   /**
-   * If true, the pagination is disabled.
-   */
-  @Prop() readonly disabled?: boolean;
-
-  /**
    * Event emitted when the page changes.
    */
   @Event() postChange: EventEmitter<number>;
@@ -164,11 +158,6 @@ export class PostPagination {
   @Watch('textLast')
   validateTextLast() {
     this.validateProp('textLast', 'string', true);
-  }
-
-  @Watch('disabled')
-  validateDisabled() {
-    this.validateProp('disabled', 'boolean', false);
   }
 
   @Watch('page')
@@ -236,7 +225,6 @@ export class PostPagination {
     this.validateProp('textPage', 'string', true);
     this.validateProp('textFirst', 'string', true);
     this.validateProp('textLast', 'string', true);
-    this.validateProp('disabled', 'boolean', false);
   }
 
   /**
@@ -701,7 +689,7 @@ export class PostPagination {
    * Handles page change when a page button is clicked.
    */
   private handlePageClick(pageNumber: number) {
-    if (this.disabled || pageNumber === this.page) return;
+    if (pageNumber === this.page) return;
 
     this.emitPageChange(pageNumber);
   }
@@ -710,7 +698,7 @@ export class PostPagination {
    * Handles previous button click.
    */
   private handlePrevious() {
-    if (this.disabled || this.page <= 1) return;
+    if (this.page <= 1) return;
 
     this.emitPageChange(this.page - 1);
   }
@@ -720,7 +708,7 @@ export class PostPagination {
    */
   private handleNext() {
     const totalPages = this.getTotalPages();
-    if (this.disabled || this.page >= totalPages) return;
+    if (this.page >= totalPages) return;
 
     this.emitPageChange(this.page + 1);
   }
@@ -781,8 +769,7 @@ export class PostPagination {
           aria-current={isCurrent ? 'page' : undefined}
           onClick={() => this.handlePageClick(pageNumber)}
           onKeyDown={e => this.handleKeyDown(e, () => this.handlePageClick(pageNumber))}
-          disabled={this.disabled ? true : undefined}
-          tabIndex={this.disabled ? -1 : 0}
+          tabIndex={0}
         >
           <span aria-hidden="true">{pageNumber}</span>
         </button>
@@ -813,11 +800,7 @@ export class PostPagination {
       <li class="pagination-item pagination-control">
         <button
           type="button"
-          class={{
-            'pagination-link': true,
-            'pagination-control-button': true,
-            'pagination-link-disabled': isDisabled,
-          }}
+          class="btn btn-icon btn-secondary"
           aria-label={label}
           onClick={onClick}
           onKeyDown={e => this.handleKeyDown(e, onClick)}
@@ -870,8 +853,8 @@ export class PostPagination {
       return null;
     }
 
-    const isPrevDisabled = this.disabled || this.page <= 1;
-    const isNextDisabled = this.disabled || this.page >= totalPages;
+    const isPrevDisabled = this.page <= 1;
+    const isNextDisabled = this.page >= totalPages;
 
     return (
       <Host slot="post-pagination" data-version={version}>
