@@ -174,8 +174,8 @@ importers:
         specifier: 5.0.2
         version: 5.0.2
       ts-jest:
-        specifier: 29.2.5
-        version: 29.2.5(@babel/core@7.28.5)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.5))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
+        specifier: 29.4.6
+        version: 29.4.6(@babel/core@7.28.5)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.5))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.10.5)(typescript@5.8.3)
@@ -548,8 +548,8 @@ importers:
         specifier: 6.0.1
         version: 6.0.1
       ts-jest:
-        specifier: 29.2.5
-        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
+        specifier: 29.4.6
+        version: 29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -626,8 +626,8 @@ importers:
         specifier: 3.3.2
         version: 3.3.2
       ts-jest:
-        specifier: 29.2.5
-        version: 29.2.5(@babel/core@7.28.5)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.5))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
+        specifier: 29.4.6
+        version: 29.4.6(@babel/core@7.28.5)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.5))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.10.5)(typescript@5.8.3)
@@ -765,8 +765,8 @@ importers:
         specifier: 2.1.3
         version: 2.1.3
       ts-jest:
-        specifier: 29.2.5
-        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
+        specifier: 29.4.6
+        version: 29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -1312,8 +1312,8 @@ packages:
     resolution: {integrity: sha512-3EwLFhZ38J4VyIP6WNtt2kUdW9dokXA9Cr4IVIFHuCpZ3H8/YFOl5JjZHisrn1fATPBmKKqXzDFvh9fUwHz6CQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/generator@7.29.0':
-    resolution: {integrity: sha512-vSH118/wwM/pLR38g/Sgk05sNtro6TlTJKuiMXDaZqPUfjTFcudpCOt00IhOfj+1BFAX+UFAlzCU+6WXr3GLFQ==}
+  '@babel/generator@7.29.1':
+    resolution: {integrity: sha512-qsaF+9Qcm2Qv8SRIMMscAvG4O3lJ0F1GuMo5HR/Bp02LopNgnZBC/EkbevHFeGs4ls/oPz9v+Bsmzbkbe+0dUw==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-annotate-as-pure@7.27.3':
@@ -5785,11 +5785,6 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  ejs@3.1.10:
-    resolution: {integrity: sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==}
-    engines: {node: '>=0.10.0'}
-    hasBin: true
-
   electron-to-chromium@1.5.167:
     resolution: {integrity: sha512-LxcRvnYO5ez2bMOFpbuuVuAI5QNeY1ncVytE/KXaL6ZNfzX1yPlAO0nSOyIHx2fVAuUprMqPs/TdVhUFZy7SIQ==}
 
@@ -5836,6 +5831,10 @@ packages:
 
   enhanced-resolve@5.18.4:
     resolution: {integrity: sha512-LgQMM4WXU3QI+SYgEc2liRgznaD5ojbmY3sb8LxyguVkIg5FxdpTkvk72te2R38/TGKxH634oLxXRGY6d7AP+Q==}
+    engines: {node: '>=10.13.0'}
+
+  enhanced-resolve@5.19.0:
+    resolution: {integrity: sha512-phv3E1Xl4tQOShqSte26C7Fl84EwUdZsyOuSSk9qtAGyyQs2s3jJzComh+Abf4g187lUUAvH+H26omrqia2aGg==}
     engines: {node: '>=10.13.0'}
 
   enquirer@2.4.1:
@@ -6282,9 +6281,6 @@ packages:
     resolution: {integrity: sha512-XXTUwCvisa5oacNGRP9SfNtYBNAMi+RPwBFmblZEF7N7swHYQS6/Zfk7SRwx4D5j3CH211YNRco1DEMNVfZCnQ==}
     engines: {node: '>=16.0.0'}
 
-  filelist@1.0.4:
-    resolution: {integrity: sha512-w1cEuf3S+DrLCQL7ET6kz+gmlJdbq9J7yXCSjK/OZCPA+qEN1WyF4ZAf0YYJa4/shHJra2t/d/r8SV4Ji+x+8Q==}
-
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
@@ -6537,16 +6533,19 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@11.0.1:
     resolution: {integrity: sha512-zrQDm8XPnYEKawJScsnM0QzobJxlT/kHOOlRTio8IH/GrmxRE5fjllkzdaHclIuNjUQTJYH2xHNIGfdpJkDJUw==}
     engines: {node: 20 || >=22}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@11.1.0:
     resolution: {integrity: sha512-vuNwKSaKiqm7g0THUBu2x7ckSs3XJLXE+2ssL7/MfTGPLLcrJQ/4Uq1CjPTtO5cCIiRxqvN6Twy1qOwhL0Xjcw==}
     engines: {node: 20 || >=22}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@13.0.0:
@@ -6555,7 +6554,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-dirs@3.0.1:
     resolution: {integrity: sha512-NBcGGFbBA9s1VzD41QXDG+3++t9Mn5t1FpLdhESY6oKY4gYTFpX4wO3sqGUa0Srjtbfj3szX0RnemmrVRUdULA==}
@@ -6652,6 +6651,11 @@ packages:
   gulplog@2.2.0:
     resolution: {integrity: sha512-V2FaKiOhpR3DRXZuYdRLn/qiY0yI5XmqbTKrYbdemJ+xOh2d2MOweI/XFgMzd/9+1twdvMwllnZbWZNJ+BOm4A==}
     engines: {node: '>= 10.13.0'}
+
+  handlebars@4.7.8:
+    resolution: {integrity: sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ==}
+    engines: {node: '>=0.4.7'}
+    hasBin: true
 
   has-bigints@1.1.0:
     resolution: {integrity: sha512-R3pbpkcIqv2Pm3dUwgjclDRVmWpTJW2DcMzcIhEXEx1oh/CEMObMm3KLmRJOdvhM7o4uQBnwr8pzRK2sJWIqfg==}
@@ -7296,11 +7300,6 @@ packages:
   jackspeak@4.1.1:
     resolution: {integrity: sha512-zptv57P3GpL+O0I7VdMJNBZCu+BPHVQUk55Ft8/QCJjTVxrnJHuVuX/0Bl2A6/+2oyR/ZMEuFKwmzqqZ/U5nPQ==}
     engines: {node: 20 || >=22}
-
-  jake@10.8.7:
-    resolution: {integrity: sha512-ZDi3aP+fG/LchyBzUM804VjddnwfSfsdeYkwt8NcbKRvo4rFkjhs456iLFn3k2ZUWvNe4i48WACDbza8fhq2+w==}
-    engines: {node: '>=10'}
-    hasBin: true
 
   jasmine-core@4.6.0:
     resolution: {integrity: sha512-O236+gd0ZXS8YAjFx8xKaJ94/erqUliEkJTDedyE7iHvv4ZVqi+q+8acJxu05/WJDKm512EUNn809In37nWlAQ==}
@@ -8172,10 +8171,6 @@ packages:
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
-
-  minimatch@5.1.6:
-    resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
-    engines: {node: '>=10'}
 
   minimatch@9.0.5:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
@@ -9883,6 +9878,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.7.4:
+    resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   send@1.2.0:
     resolution: {integrity: sha512-uaW0WwXKpL9blXE2o0bRhoL2EGXIrZxQ2ZQ4mgcfoBxdFmQold+qWsD2jLrfZ0trjKL6vOw0j//eAwcALFjKSw==}
     engines: {node: '>= 18'}
@@ -10369,12 +10369,12 @@ packages:
   tar@6.1.14:
     resolution: {integrity: sha512-piERznXu0U7/pW7cdSn7hjqySIVTYT6F76icmFk7ptU7dDYlXTm5r9A6K04R2vU3olYgoKeo1Cg3eeu5nhftAw==}
     engines: {node: '>=10'}
-    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   tar@7.5.1:
     resolution: {integrity: sha512-nlGpxf+hv0v7GkWBK2V9spgactGOp0qvfWRxUMjqHyzrt3SgwE48DIv/FhqPHJYLHpgW1opq3nERbz5Anq7n1g==}
     engines: {node: '>=18'}
-    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   teex@1.0.1:
     resolution: {integrity: sha512-eYE6iEI62Ni1H8oIa7KlDU6uQBtqr4Eajni3wX7rpfXD8ysFx8z0+dri+KWEPWpBsxXfxu58x/0jvTVT1ekOSg==}
@@ -10554,17 +10554,18 @@ packages:
     resolution: {integrity: sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==}
     engines: {node: '>=6.10'}
 
-  ts-jest@29.2.5:
-    resolution: {integrity: sha512-KD8zB2aAZrcKIdGk4OwpJggeLcH1FgrICqDSROWqlnJXGCXK4Mn6FcdK2B6670Xr73lHMG1kHw8R87A0ecZ+vA==}
+  ts-jest@29.4.6:
+    resolution: {integrity: sha512-fSpWtOO/1AjSNQguk43hb/JCo16oJDnMJf3CdEGNkqsEX3t0KX96xvyX1D7PfLCpVoKu4MfVrqUkFyblYoY4lA==}
     engines: {node: ^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
       '@babel/core': '>=7.0.0-beta.0 <8'
-      '@jest/transform': ^29.0.0
-      '@jest/types': ^29.0.0
-      babel-jest: ^29.0.0
+      '@jest/transform': ^29.0.0 || ^30.0.0
+      '@jest/types': ^29.0.0 || ^30.0.0
+      babel-jest: ^29.0.0 || ^30.0.0
       esbuild: '*'
-      jest: ^29.0.0
+      jest: ^29.0.0 || ^30.0.0
+      jest-util: ^29.0.0 || ^30.0.0
       typescript: '>=4.3 <6'
     peerDependenciesMeta:
       '@babel/core':
@@ -10576,6 +10577,8 @@ packages:
       babel-jest:
         optional: true
       esbuild:
+        optional: true
+      jest-util:
         optional: true
 
   ts-morph@22.0.0:
@@ -10667,6 +10670,10 @@ packages:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
 
+  type-fest@4.41.0:
+    resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
+    engines: {node: '>=16'}
+
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
@@ -10731,6 +10738,11 @@ packages:
 
   ufo@1.6.1:
     resolution: {integrity: sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==}
+
+  uglify-js@3.19.3:
+    resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
+    engines: {node: '>=0.8.0'}
+    hasBin: true
 
   unbox-primitive@1.1.0:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
@@ -11164,6 +11176,9 @@ packages:
   word-wrap@1.2.5:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
+
+  wordwrap@1.0.0:
+    resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
 
   wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
@@ -11818,7 +11833,7 @@ snapshots:
   '@babel/core@7.28.5':
     dependencies:
       '@babel/code-frame': 7.29.0
-      '@babel/generator': 7.29.0
+      '@babel/generator': 7.29.1
       '@babel/helper-compilation-targets': 7.28.6
       '@babel/helper-module-transforms': 7.28.6(@babel/core@7.28.5)
       '@babel/helpers': 7.28.6
@@ -11860,7 +11875,7 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.31
       jsesc: 3.1.0
 
-  '@babel/generator@7.29.0':
+  '@babel/generator@7.29.1':
     dependencies:
       '@babel/parser': 7.29.0
       '@babel/types': 7.29.0
@@ -12224,7 +12239,7 @@ snapshots:
   '@babel/traverse@7.29.0':
     dependencies:
       '@babel/code-frame': 7.29.0
-      '@babel/generator': 7.29.0
+      '@babel/generator': 7.29.1
       '@babel/helper-globals': 7.28.0
       '@babel/parser': 7.29.0
       '@babel/template': 7.28.6
@@ -12311,7 +12326,7 @@ snapshots:
       outdent: 0.5.0
       prettier: 2.8.8
       resolve-from: 5.0.0
-      semver: 7.7.3
+      semver: 7.7.4
 
   '@changesets/assemble-release-plan@6.0.9':
     dependencies:
@@ -12320,7 +12335,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
-      semver: 7.7.3
+      semver: 7.7.4
 
   '@changesets/changelog-git@0.2.1':
     dependencies:
@@ -12378,7 +12393,7 @@ snapshots:
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
       picocolors: 1.1.1
-      semver: 7.7.3
+      semver: 7.7.4
 
   '@changesets/get-github-info@0.6.0(encoding@0.1.13)':
     dependencies:
@@ -13668,14 +13683,14 @@ snapshots:
       ini: 4.1.3
       nopt: 7.2.1
       proc-log: 4.2.0
-      semver: 7.7.3
+      semver: 7.7.4
       walk-up-path: 3.0.1
     transitivePeerDependencies:
       - bluebird
 
   '@npmcli/fs@4.0.0':
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.4
 
   '@npmcli/git@5.0.8':
     dependencies:
@@ -13686,7 +13701,7 @@ snapshots:
       proc-log: 4.2.0
       promise-inflight: 1.0.1
       promise-retry: 2.0.1
-      semver: 7.7.3
+      semver: 7.7.4
       which: 4.0.0
     transitivePeerDependencies:
       - bluebird
@@ -13699,7 +13714,7 @@ snapshots:
       npm-pick-manifest: 10.0.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      semver: 7.7.3
+      semver: 7.7.4
       which: 5.0.0
 
   '@npmcli/installed-package-contents@3.0.0':
@@ -13726,7 +13741,7 @@ snapshots:
       json-parse-even-better-errors: 3.0.2
       normalize-package-data: 6.0.2
       proc-log: 4.2.0
-      semver: 7.7.3
+      semver: 7.7.4
     transitivePeerDependencies:
       - bluebird
 
@@ -13737,7 +13752,7 @@ snapshots:
       hosted-git-info: 8.0.2
       json-parse-even-better-errors: 4.0.0
       proc-log: 5.0.0
-      semver: 7.7.3
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   '@npmcli/promise-spawn@7.0.2':
@@ -15030,7 +15045,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.3
+      semver: 7.7.4
       ts-api-utils: 1.4.3(typescript@5.8.3)
     optionalDependencies:
       typescript: 5.8.3
@@ -15045,7 +15060,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.3
+      semver: 7.7.4
       ts-api-utils: 1.4.3(typescript@5.8.3)
     optionalDependencies:
       typescript: 5.8.3
@@ -15060,7 +15075,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.3
+      semver: 7.7.4
       ts-api-utils: 2.1.0(typescript@5.8.3)
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -15074,7 +15089,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.49.0
       debug: 4.4.3(supports-color@5.5.0)
       minimatch: 9.0.5
-      semver: 7.7.3
+      semver: 7.7.4
       tinyglobby: 0.2.15
       ts-api-utils: 2.1.0(typescript@5.8.3)
       typescript: 5.8.3
@@ -16719,10 +16734,6 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  ejs@3.1.10:
-    dependencies:
-      jake: 10.8.7
-
   electron-to-chromium@1.5.167: {}
 
   electron-to-chromium@1.5.267: {}
@@ -16773,6 +16784,11 @@ snapshots:
       - utf-8-validate
 
   enhanced-resolve@5.18.4:
+    dependencies:
+      graceful-fs: 4.2.11
+      tapable: 2.3.0
+
+  enhanced-resolve@5.19.0:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.3.0
@@ -17492,10 +17508,6 @@ snapshots:
     dependencies:
       flat-cache: 4.0.1
 
-  filelist@1.0.4:
-    dependencies:
-      minimatch: 5.1.6
-
   fill-range@7.1.1:
     dependencies:
       to-regex-range: 5.0.1
@@ -17952,6 +17964,15 @@ snapshots:
   gulplog@2.2.0:
     dependencies:
       glogg: 2.2.0
+
+  handlebars@4.7.8:
+    dependencies:
+      minimist: 1.2.8
+      neo-async: 2.6.2
+      source-map: 0.6.1
+      wordwrap: 1.0.0
+    optionalDependencies:
+      uglify-js: 3.19.3
 
   has-bigints@1.1.0: {}
 
@@ -18536,7 +18557,7 @@ snapshots:
       '@babel/parser': 7.28.5
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.3
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -18592,13 +18613,6 @@ snapshots:
   jackspeak@4.1.1:
     dependencies:
       '@isaacs/cliui': 8.0.2
-
-  jake@10.8.7:
-    dependencies:
-      async: 3.2.6
-      chalk: 4.1.2
-      filelist: 1.0.4
-      minimatch: 3.1.2
 
   jasmine-core@4.6.0: {}
 
@@ -18876,7 +18890,7 @@ snapshots:
       jest-util: 29.7.0
       natural-compare: 1.4.0
       pretty-format: 29.7.0
-      semver: 7.7.3
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -19449,7 +19463,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.4
 
   make-error@1.3.6: {}
 
@@ -20022,10 +20036,6 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
-  minimatch@5.1.6:
-    dependencies:
-      brace-expansion: 2.0.1
-
   minimatch@9.0.5:
     dependencies:
       brace-expansion: 2.0.1
@@ -20260,7 +20270,7 @@ snapshots:
       make-fetch-happen: 14.0.3
       nopt: 8.1.0
       proc-log: 5.0.0
-      semver: 7.7.3
+      semver: 7.7.4
       tar: 7.5.1
       which: 5.0.0
     transitivePeerDependencies:
@@ -20306,7 +20316,7 @@ snapshots:
   normalize-package-data@6.0.2:
     dependencies:
       hosted-git-info: 7.0.2
-      semver: 7.7.3
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   normalize-path@2.1.1:
@@ -20327,11 +20337,11 @@ snapshots:
 
   npm-install-checks@6.3.0:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.4
 
   npm-install-checks@7.1.1:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.4
 
   npm-normalize-package-bin@3.0.1: {}
 
@@ -20341,21 +20351,21 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.2
       proc-log: 4.2.0
-      semver: 7.7.3
+      semver: 7.7.4
       validate-npm-package-name: 5.0.1
 
   npm-package-arg@12.0.2:
     dependencies:
       hosted-git-info: 8.0.2
       proc-log: 5.0.0
-      semver: 7.7.3
+      semver: 7.7.4
       validate-npm-package-name: 6.0.0
 
   npm-package-arg@13.0.0:
     dependencies:
       hosted-git-info: 9.0.2
       proc-log: 5.0.0
-      semver: 7.7.3
+      semver: 7.7.4
       validate-npm-package-name: 6.0.0
 
   npm-packlist@10.0.1:
@@ -20367,14 +20377,14 @@ snapshots:
       npm-install-checks: 7.1.1
       npm-normalize-package-bin: 4.0.0
       npm-package-arg: 12.0.2
-      semver: 7.7.3
+      semver: 7.7.4
 
   npm-pick-manifest@9.1.0:
     dependencies:
       npm-install-checks: 6.3.0
       npm-normalize-package-bin: 3.0.1
       npm-package-arg: 11.0.3
-      semver: 7.7.3
+      semver: 7.7.4
 
   npm-registry-fetch@18.0.2:
     dependencies:
@@ -21872,6 +21882,8 @@ snapshots:
 
   semver@7.7.3: {}
 
+  semver@7.7.4: {}
+
   send@1.2.0:
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
@@ -21931,7 +21943,7 @@ snapshots:
     dependencies:
       '@img/colour': 1.0.0
       detect-libc: 2.1.2
-      semver: 7.7.3
+      semver: 7.7.4
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.34.4
       '@img/sharp-darwin-x64': 0.34.4
@@ -22010,7 +22022,7 @@ snapshots:
 
   simple-update-notifier@2.0.0:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.4
 
   sisteransi@1.0.5: {}
 
@@ -22711,17 +22723,17 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
-  ts-jest@29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
+  ts-jest@29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       bs-logger: 0.2.6
-      ejs: 3.1.10
       fast-json-stable-stringify: 2.1.0
+      handlebars: 4.7.8
       jest: 29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3))
-      jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.7.2
+      semver: 7.7.4
+      type-fest: 4.41.0
       typescript: 5.8.3
       yargs-parser: 21.1.1
     optionalDependencies:
@@ -22729,18 +22741,19 @@ snapshots:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.26.0)
+      jest-util: 29.7.0
 
-  ts-jest@29.2.5(@babel/core@7.28.5)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.5))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
+  ts-jest@29.4.6(@babel/core@7.28.5)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.5))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       bs-logger: 0.2.6
-      ejs: 3.1.10
       fast-json-stable-stringify: 2.1.0
+      handlebars: 4.7.8
       jest: 29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3))
-      jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.7.2
+      semver: 7.7.4
+      type-fest: 4.41.0
       typescript: 5.8.3
       yargs-parser: 21.1.1
     optionalDependencies:
@@ -22748,6 +22761,7 @@ snapshots:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.28.5)
+      jest-util: 29.7.0
 
   ts-morph@22.0.0:
     dependencies:
@@ -22831,6 +22845,8 @@ snapshots:
   type-fest@0.21.3: {}
 
   type-fest@3.13.1: {}
+
+  type-fest@4.41.0: {}
 
   type-is@1.6.18:
     dependencies:
@@ -22917,6 +22933,9 @@ snapshots:
   ua-parser-js@0.7.35: {}
 
   ufo@1.6.1: {}
+
+  uglify-js@3.19.3:
+    optional: true
 
   unbox-primitive@1.1.0:
     dependencies:
@@ -23339,7 +23358,7 @@ snapshots:
       acorn: 8.15.0
       browserslist: 4.28.1
       chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.18.4
+      enhanced-resolve: 5.19.0
       es-module-lexer: 1.7.0
       eslint-scope: 5.1.1
       events: 3.3.0
@@ -23455,6 +23474,8 @@ snapshots:
       isexe: 3.1.1
 
   word-wrap@1.2.5: {}
+
+  wordwrap@1.0.0: {}
 
   wrap-ansi@6.2.0:
     dependencies:
