@@ -309,7 +309,7 @@ describe('header', () => {
             .then(focusableElements => {
               expect(focusableElements.length).to.be.greaterThan(0);
               
-              focusableElements[0].focus();
+              cy.wrap(focusableElements[0]).focus();
               
               // Verify each focused element is within megadropdown
               for (let i = 0; i < focusableElements.length; i++) {
