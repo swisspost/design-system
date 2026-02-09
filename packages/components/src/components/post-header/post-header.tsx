@@ -50,7 +50,7 @@ export class PostHeader {
   private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
-    return this.device !== 'desktop' || this.noMainNavigation;
+    return this.device !== 'desktop' && !this.noMainNavigation;
   }
 
   private animationOptions: Partial<AnimationOptions> = {
