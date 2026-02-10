@@ -1,4 +1,4 @@
-import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
 import { getRoot, checkRequiredAndType } from '@/utils';
 
@@ -9,6 +9,8 @@ import { getRoot, checkRequiredAndType } from '@/utils';
 })
 export class PostMenuTrigger {
   @Element() host: HTMLPostMenuTriggerElement;
+
+  private slottedButton: HTMLButtonElement;
 
   /**
    * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
@@ -22,10 +24,19 @@ export class PostMenuTrigger {
 
   componentDidLoad() {
     this.validateFor();
-    this.linkButtonToMenu();
+    this.setAriaAttributes();
   }
 
-  private linkButtonToMenu() {
+  @Listen('toggleMenu', { target: 'window' })
+  handleMenuToggled(event: CustomEvent) {
+    const target = event.target as HTMLPostMenuElement;
+
+    if (target.localName === 'post-menu' && target.id === this.for) {
+      this.slottedButton.setAttribute('aria-expanded', event.detail.toString());
+    }
+  }
+
+  private setAriaAttributes() {
     const slottedButtons = this.host.querySelectorAll('button');
 
     if (slottedButtons.length !== 1) {
@@ -35,22 +46,14 @@ export class PostMenuTrigger {
       return;
     }
 
-    const button = slottedButtons.item(0);
+    this.slottedButton = slottedButtons.item(0);
 
-    button.setAttribute('type', 'button');
-    button.setAttribute('aria-haspopup', 'menu');
-    button.setAttribute('aria-expanded', 'false');
+    this.slottedButton.setAttribute('type', 'button');
+    this.slottedButton.setAttribute('aria-haspopup', 'menu');
+    this.slottedButton.setAttribute('aria-expanded', 'false');
 
-    button.addEventListener('click', this.handleToggle.bind(this));
-    button.addEventListener('keydown', this.handleKeyDown.bind(this));
-
-    // Listen to the `toggleMenu` event emitted by the `post-menu` component
-    const menu = this.getMenu();
-    if (menu) {
-      menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
-        button.setAttribute('aria-expanded', event.detail.toString());
-      });
-    }
+    this.slottedButton.addEventListener('click', this.handleToggle.bind(this));
+    this.slottedButton.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   private handleKeyDown(e: KeyboardEvent) {
