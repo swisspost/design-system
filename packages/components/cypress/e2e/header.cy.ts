@@ -345,6 +345,23 @@ describe('header', () => {
               });
             });
         });
+
+        it('should focus on megadropdown trigger when clicking back button', () => {
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          cy.get('@megadropdown-trigger').click();
+          cy.get('@megadropdown').should('be.visible');
+
+          cy.get('@megadropdown').shadow().find('.back-button').click();
+          cy.get('@megadropdown').should('not.be.visible');
+
+          cy.focused().then($focused => {
+          cy.get('@megadropdown-trigger').then($trigger => {
+            expect($focused[0]).to.equal($trigger[0]);
+          });
+        });
+        });
       });
     });
   });
