@@ -57,6 +57,32 @@ export namespace Components {
          */
         "toggle": (force?: boolean) => Promise<boolean>;
     }
+    interface PostAutocompleteDropdown {
+        /**
+          * Filters options in the dropdown according to a provided search term.
+         */
+        "filter": (term: string) => Promise<void>;
+        /**
+          * Toggles the dropdown visibility based on its current state.
+         */
+        "toggle": (target: HTMLElement) => Promise<void>;
+    }
+    interface PostAutocompleteFilter {
+        /**
+          * Clears the content of the filter.
+         */
+        "clear": () => Promise<void>;
+    }
+    interface PostAutocompleteTrigger {
+        /**
+          * ID of the dropdown element that this trigger is linked to.
+         */
+        "for": string;
+        /**
+          * Returns the dropdown linked to the trigger.
+         */
+        "getDropdown": () => Promise<HTMLPostAutocompleteDropdownElement>;
+    }
     interface PostAvatar {
         /**
           * Provides a custom description for the avatar, used for accessibility purposes.
@@ -687,6 +713,24 @@ declare global {
         prototype: HTMLPostAccordionItemElement;
         new (): HTMLPostAccordionItemElement;
     };
+    interface HTMLPostAutocompleteDropdownElement extends Components.PostAutocompleteDropdown, HTMLStencilElement {
+    }
+    var HTMLPostAutocompleteDropdownElement: {
+        prototype: HTMLPostAutocompleteDropdownElement;
+        new (): HTMLPostAutocompleteDropdownElement;
+    };
+    interface HTMLPostAutocompleteFilterElement extends Components.PostAutocompleteFilter, HTMLStencilElement {
+    }
+    var HTMLPostAutocompleteFilterElement: {
+        prototype: HTMLPostAutocompleteFilterElement;
+        new (): HTMLPostAutocompleteFilterElement;
+    };
+    interface HTMLPostAutocompleteTriggerElement extends Components.PostAutocompleteTrigger, HTMLStencilElement {
+    }
+    var HTMLPostAutocompleteTriggerElement: {
+        prototype: HTMLPostAutocompleteTriggerElement;
+        new (): HTMLPostAutocompleteTriggerElement;
+    };
     interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
     }
     var HTMLPostAvatarElement: {
@@ -1029,6 +1073,9 @@ declare global {
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
+        "post-autocomplete-dropdown": HTMLPostAutocompleteDropdownElement;
+        "post-autocomplete-filter": HTMLPostAutocompleteFilterElement;
+        "post-autocomplete-trigger": HTMLPostAutocompleteTriggerElement;
         "post-avatar": HTMLPostAvatarElement;
         "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
@@ -1090,6 +1137,16 @@ declare namespace LocalJSX {
           * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
          */
         "headingLevel"?: HeadingLevel;
+    }
+    interface PostAutocompleteDropdown {
+    }
+    interface PostAutocompleteFilter {
+    }
+    interface PostAutocompleteTrigger {
+        /**
+          * ID of the dropdown element that this trigger is linked to.
+         */
+        "for": string;
     }
     interface PostAvatar {
         /**
@@ -1632,6 +1689,9 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
+        "post-autocomplete-dropdown": PostAutocompleteDropdown;
+        "post-autocomplete-filter": PostAutocompleteFilter;
+        "post-autocomplete-trigger": PostAutocompleteTrigger;
         "post-avatar": PostAvatar;
         "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
@@ -1676,6 +1736,9 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
+            "post-autocomplete-dropdown": LocalJSX.PostAutocompleteDropdown & JSXBase.HTMLAttributes<HTMLPostAutocompleteDropdownElement>;
+            "post-autocomplete-filter": LocalJSX.PostAutocompleteFilter & JSXBase.HTMLAttributes<HTMLPostAutocompleteFilterElement>;
+            "post-autocomplete-trigger": LocalJSX.PostAutocompleteTrigger & JSXBase.HTMLAttributes<HTMLPostAutocompleteTriggerElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;

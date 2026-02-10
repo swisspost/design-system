@@ -81,6 +81,7 @@ Type: `Promise<boolean>`
 
 ### Used by
 
+ - [post-autocomplete-dropdown](../post-autocomplete-dropdown)
  - [post-menu](../post-menu)
  - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)
@@ -88,6 +89,7 @@ Type: `Promise<boolean>`
 ### Graph
 ```mermaid
 graph TD;
+  post-autocomplete-dropdown --> post-popovercontainer
   post-menu --> post-popovercontainer
   post-popover --> post-popovercontainer
   post-tooltip --> post-popovercontainer

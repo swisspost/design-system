@@ -1,0 +1,10 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as AutocompleteStories from './autocomplete.stories';
+
+<Meta of={AutocompleteStories} />
+
+<div className="docs-title">
+  # Autocomplete
+</div>
+
+<Canvas sourceState="shown" of={AutocompleteStories.Default} />
