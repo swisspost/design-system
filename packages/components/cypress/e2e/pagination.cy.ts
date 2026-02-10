@@ -4,7 +4,6 @@ interface PaginationEl {
   page: number;
   pageSize: number;
   collectionSize: number;
-  disabled?: boolean;
 }
 
 describe('pagination', () => {
@@ -43,13 +42,11 @@ describe('pagination', () => {
 
     it('should disable previous button on first page', () => {
       cy.get('@prevButton').should('be.disabled');
-      cy.get('@prevButton').should('have.class', 'pagination-link-disabled');
       cy.get('@prevButton').should('have.attr', 'tabindex', '-1');
     });
 
     it('should enable next button on first page', () => {
       cy.get('@nextButton').should('not.be.disabled');
-      cy.get('@nextButton').should('not.have.class', 'pagination-link-disabled');
     });
 
     it('should navigate to next page when next button is clicked', () => {
@@ -210,13 +207,11 @@ describe('pagination', () => {
 
     it('should disable next button on last page', () => {
       cy.get('@nextButton').should('be.disabled');
-      cy.get('@nextButton').should('have.class', 'pagination-link-disabled');
       cy.get('@nextButton').should('have.attr', 'tabindex', '-1');
     });
 
     it('should enable previous button on last page', () => {
       cy.get('@prevButton').should('not.be.disabled');
-      cy.get('@prevButton').should('not.have.class', 'pagination-link-disabled');
     });
 
     it('should not allow clicking on disabled next button', () => {
@@ -298,58 +293,6 @@ describe('pagination', () => {
     it('should allow focus on all enabled controls', () => {
       cy.get('.pagination-link:not([disabled])').each($button => {
         cy.wrap($button).focus().should('have.focus');
-      });
-    });
-  });
-
-  describe('disabled state', () => {
-    beforeEach(() => {
-      cy.getComponent('pagination', PAGINATION_ID);
-
-      // Set the disabled attribute programmatically
-      cy.get('@pagination').then($el => {
-        ($el[0] as unknown as PaginationEl).disabled = true;
-      });
-
-      cy.get('@pagination')
-        .find('.pagination-link')
-        .not('.pagination-control-button')
-        .as('pageButtons');
-      cy.get('@pagination')
-        .find('.pagination-control .pagination-control-button')
-        .as('controlButtons');
-    });
-
-    it('should disable all page buttons', () => {
-      cy.get('@pageButtons').each($button => {
-        cy.wrap($button).should('be.disabled');
-      });
-    });
-
-    it('should disable all control buttons', () => {
-      cy.get('@controlButtons').each($button => {
-        cy.wrap($button).should('be.disabled');
-      });
-    });
-
-    it('should not emit postChange event when disabled', () => {
-      const EventHandlerMock = cy.spy();
-
-      cy.get('@pagination').then($el => {
-        Cypress.$($el.get(0)).on('postChange', EventHandlerMock);
-      });
-
-      cy.get('@pageButtons')
-        .first()
-        .click({ force: true })
-        .then(() => {
-          cy.wrap(EventHandlerMock).should('not.have.been.called');
-        });
-    });
-
-    it('should add disabled class to control buttons', () => {
-      cy.get('@controlButtons').each($button => {
-        cy.wrap($button).should('have.class', 'pagination-link-disabled');
       });
     });
   });
@@ -471,7 +414,6 @@ describe('Accessibility', () => {
   const variants = [
     { name: 'default', id: 'default' },
     { name: 'many-pages', id: 'many-pages' },
-    { name: 'disabled', id: 'disabled' },
   ];
 
   variants.forEach(variant => {

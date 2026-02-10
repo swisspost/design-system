@@ -79,8 +79,8 @@ tokens.$default-map: components.$post-pagination;
   outline: none;
   @include utilities.focus-style;
 
-  &:active:not(:disabled):not(.pagination-link-disabled):not(.pagination-link-active),
-  &:hover:not(:disabled):not(.pagination-link-disabled) {
+  &:active:not(:disabled):not(.pagination-link-active),
+  &:hover:not(:disabled) {
     color: tokens.get('pagination-number-color-hovered-fg');
     background-color: tokens.get('pagination-number-color-hovered-bg');
     border-color: tokens.get('pagination-number-color-hovered-stroke');
@@ -92,7 +92,7 @@ tokens.$default-map: components.$post-pagination;
     border-color: tokens.get('pagination-number-color-selected-enabled-stroke');
     cursor: default;
 
-    &:hover:not(:disabled):not(.pagination-link-disabled) {
+    &:hover:not(:disabled) {
       color: tokens.get('pagination-number-color-selected-hovered-fg');
       background-color: tokens.get('pagination-number-color-selected-hovered-bg');
       border-color: tokens.get('pagination-number-color-selected-hovered-stroke');
