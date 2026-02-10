@@ -285,6 +285,32 @@ describe('header', () => {
               }
             });
         });
+
+        it('should trap focus within the burger menu (loop from last element back to menu button)', () => {
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          // Find all focusable elements in main navigation
+          cy.get('@header')
+            .find('post-mainnavigation')
+            .should('be.visible')
+            .getFocusableElements()
+            .then(focusableElements => {
+              expect(focusableElements.length).to.be.greaterThan(0);
+
+              // Focus first element
+              focusableElements[0].focus();
+
+              // Tab through all elements to reach beyond the navigation
+              const tabCount = focusableElements.length;
+              for (let i = 0; i < tabCount; i++) {
+                cy.press('Tab');
+              }
+
+              // Verify the burger menu button is now focused
+              cy.get('@burger-menu-btn').should('have.focus');
+            });
+        });
       });
 
       describe('second level navigation (megadropdown)', () => {
@@ -357,10 +383,10 @@ describe('header', () => {
           cy.get('@megadropdown').should('not.be.visible');
 
           cy.focused().then($focused => {
-          cy.get('@megadropdown-trigger').then($trigger => {
-            expect($focused[0]).to.equal($trigger[0]);
+            cy.get('@megadropdown-trigger').then($trigger => {
+              expect($focused[0]).to.equal($trigger[0]);
+            });
           });
-        });
         });
       });
     });
