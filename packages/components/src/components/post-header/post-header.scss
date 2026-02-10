@@ -100,7 +100,8 @@ header,
     box-shadow: none;
   }
 
-  &:has(~ .local-header.no-navigation) {
+  &:has(~ .local-header.no-navigation),
+  &:has(~ .local-header.no-navigation.no-local-nav) {
     post-togglebutton {
       display: none; // hide the burger menu if there is no main-navigation slot
     }
@@ -135,7 +136,7 @@ header,
   position: relative;
   background-color: #fff;
 
-  &.ssr-tmp .navigation {
+  &.ssr-tmp slot[name='main-nav'] {
     @include media-mx.max(desktop) {
       display: none;
     }
