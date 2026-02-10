@@ -37,7 +37,9 @@ header,
   &.ssr-tmp {
     @include media-mx.max(desktop) {
       .audience,
-      slot[name='language-menu'],
+      slot[name='language-menu']:not(:has(~ .local-header.no-navigation)):has(
+          ~ .local-header.no-title.no-local-nav
+        ),
       slot[name='global-nav-secondary'] {
         display: none;
       }
@@ -83,9 +85,7 @@ header,
   }
   &:has(~ .local-header:not(.no-title.no-navigation)),
   &:has(~ .burger-menu.extended) {
-    @include media-mx.min(desktop) {
-      box-shadow: none;
-    }
+    box-shadow: none;
   }
 
   &:has(~ .local-header.ssr-tmp) {
@@ -127,7 +127,7 @@ header,
   position: relative;
   background-color: #fff;
 
-  &.ssr-tmp {
+  &.ssr-tmp .navigation {
     @include media-mx.max(desktop) {
       display: none;
     }
