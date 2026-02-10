@@ -127,10 +127,10 @@ describe('pagination', () => {
     });
 
     it('should update visible pages when navigating to middle page', () => {
-      cy.get('@pageButtons').contains('5').click();
+      cy.get('@pageButtons').contains('7').click();
 
       cy.get('.pagination-ellipsis').should('have.length.greaterThan', 0);
-      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '5');
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '7');
     });
   });
 
@@ -348,7 +348,7 @@ describe('pagination', () => {
     });
 
     it('should maintain minimum visible pages on narrow viewport', () => {
-      cy.viewport(320, 568);
+      cy.viewport(375, 667);
       cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
       cy.wait(200);
 

@@ -800,7 +800,7 @@ export class PostPagination {
       <li class="pagination-item pagination-control">
         <button
           type="button"
-          class="btn btn-icon btn-secondary"
+          class="pagination-control-button btn btn-icon btn-secondary"
           aria-label={label}
           onClick={onClick}
           onKeyDown={e => this.handleKeyDown(e, onClick)}
