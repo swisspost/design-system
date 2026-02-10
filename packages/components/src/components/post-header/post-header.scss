@@ -83,13 +83,21 @@ header,
     padding-inline-start: var(--post-global-header-padding-inline-start);
     padding-inline-end: var(--post-global-header-padding-inline-end);
   }
+
   &:has(~ .local-header:not(.no-title.no-navigation)),
   &:has(~ .burger-menu.extended) {
-    box-shadow: none;
+    @include media-mx.min(desktop) {
+      box-shadow: none;
+    }
   }
 
+  &:has(~ .local-header.no-title),
   &:has(~ .local-header.ssr-tmp) {
     box-shadow: elevation.$elevation-300;
+  }
+
+  &:has(~ .local-header:not(.no-title)) {
+    box-shadow: none;
   }
 
   &:has(~ .local-header.no-navigation) {

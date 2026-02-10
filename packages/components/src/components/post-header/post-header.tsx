@@ -84,7 +84,7 @@ export class PostHeader {
 
   @State() device: Device = breakpoint.get('device');
   @State() noMainNavigation: boolean = false;
-  @State() hasLocalNav: boolean = false;
+  @State() noLocalNav: boolean = false;
   @State() noAudience: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
@@ -382,7 +382,7 @@ export class PostHeader {
 
   private checkSlottedContent() {
     this.noMainNavigation = !this.host.querySelector('[slot="main-nav"]');
-    this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
+    this.noLocalNav = !this.host.querySelector('[slot="local-nav"]');
     this.noAudience = !this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
@@ -437,7 +437,7 @@ export class PostHeader {
         class={{
           'burger-menu': true,
           'extended': this.burgerMenuExtended,
-          'no-local-nav': !this.hasLocalNav,
+          'no-local-nav': this.noLocalNav,
           'megadropdown-open': this.megadropdownOpen,
         }}
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
@@ -512,8 +512,9 @@ export class PostHeader {
               'local-header': true,
               'no-title': !this.hasTitle,
               'no-audience': this.noAudience,
-              'no-navigation': this.noMainNavigation,
-              'no-local-nav': !this.hasLocalNav,
+              'no-navigation':
+                (this.device !== 'desktop' && this.noMainNavigation) || this.noMainNavigation,
+              'no-local-nav': this.noLocalNav,
               'ssr-tmp': Build.isServer,
             }}
           >
