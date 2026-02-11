@@ -103,7 +103,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             <li>
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
               <PostMegadropdown id="letters" text-close="Close" text-back="Back">
-                <a className="post-megadropdown-overview" href="/letters">
+                <a className="megadropdown-overview-link" href="/letters">
                   Overview Letters
                 </a>
                 <div className="row row-cols-1 row-cols-sm-2">
@@ -157,7 +157,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             <li>
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
               <PostMegadropdown id="packages" text-close="Close" text-back="Back">
-                <a className="post-megadropdown-overview" href="/packages">
+                <a className="megadropdown-overview-link" href="/packages">
                   Overview Packages
                 </a>
                 <div className="row row-cols-1 row-cols-sm-2">
