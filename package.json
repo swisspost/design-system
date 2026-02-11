@@ -79,7 +79,8 @@
     "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
     "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",
     "primeng:lint": "pnpm --filter design-system-styles-primeng-workspace lint",
-    "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix"
+    "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix",
+    "ag-grid-theme:build": "pnpm --filter design-system-ag-grid-theme build"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.7",

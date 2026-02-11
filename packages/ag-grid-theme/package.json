@@ -1,0 +1,35 @@
+{
+  "name": "@swisspost/design-system-ag-grid-theme",
+  "version": "1.0.0",
+  "description": "Theme styling for the AG Grid library",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "linkDirectory": true
+  },
+  "private": false,
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "keywords": ["design-system", "ag-grid", "ui", "frontend"],
+  "peerDependencies": {
+    "ag-grid-community": "^33.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
