@@ -51,8 +51,8 @@
       ~ label {
         padding-block: tokens.get('checkbox-label-padding-block', components.$post-checkbox);
         padding-inline-start: tokens.get(
-            'checkbox-gap-inline-text-start',
-            components.$post-checkbox
+          'checkbox-gap-inline-text-start',
+          components.$post-checkbox
         );
         color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
       }
@@ -123,12 +123,12 @@
     > input[type='radio'] {
       ~ label {
         padding-block: tokens.get(
-            'radio-button-label-padding-block',
-            components.$post-radio-button
+          'radio-button-label-padding-block',
+          components.$post-radio-button
         );
         padding-inline-start: tokens.get(
-            'radio-button-gap-inline-text-start',
-            components.$post-radio-button
+          'radio-button-gap-inline-text-start',
+          components.$post-radio-button
         );
         color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
       }
@@ -167,8 +167,8 @@
         font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
         padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
         padding-inline-start: tokens.get(
-            'checkbox-gap-inline-text-start',
-            components.$post-checkbox
+          'checkbox-gap-inline-text-start',
+          components.$post-checkbox
         );
       }
     }
@@ -177,12 +177,12 @@
       > input[type='radio'] ~ label {
         font-size: tokens.get('radio-button-small-label-font-size', components.$post-radio-button);
         padding-block: tokens.get(
-            'radio-button-small-label-padding-block',
-            components.$post-radio-button
+          'radio-button-small-label-padding-block',
+          components.$post-radio-button
         );
         padding-inline-start: tokens.get(
-            'radio-button-gap-inline-text-start',
-            components.$post-radio-button
+          'radio-button-gap-inline-text-start',
+          components.$post-radio-button
         );
       }
     }
@@ -224,13 +224,13 @@ fieldset .form-check.form-check-inline {
 // Small group spacing
 /* Checkbox small vertical */
 fieldset
-.form-check-sm:has(input[type='checkbox']):not(.form-switch, .form-check-inline, :last-of-type) {
+  .form-check-sm:has(input[type='checkbox']):not(.form-switch, .form-check-inline, :last-of-type) {
   margin-block-end: tokens.get('checkbox-small-group-items-gap-block', components.$post-checkbox);
 }
 
 /* Checkbox small inline */
 fieldset
-.form-check-sm.form-check-inline:has(input[type='checkbox']):not(.form-switch):not(
+  .form-check-sm.form-check-inline:has(input[type='checkbox']):not(.form-switch):not(
     :last-of-type
   ) {
   margin-inline-end: tokens.get('checkbox-small-group-items-gap-inline', components.$post-checkbox);
@@ -238,18 +238,18 @@ fieldset
 
 /* Radio small vertical */
 fieldset
-.form-check-sm:has(input[type='radio']):not(.form-switch, .form-check-inline, :last-of-type) {
+  .form-check-sm:has(input[type='radio']):not(.form-switch, .form-check-inline, :last-of-type) {
   margin-block-end: tokens.get(
-      'radio-button-small-group-items-gap-block',
-      components.$post-radio-button
+    'radio-button-small-group-items-gap-block',
+    components.$post-radio-button
   );
 }
 
 /* Radio small inline */
 fieldset
-.form-check-sm.form-check-inline:has(input[type='radio']):not(.form-switch):not(:last-of-type) {
+  .form-check-sm.form-check-inline:has(input[type='radio']):not(.form-switch):not(:last-of-type) {
   margin-inline-end: tokens.get(
-      'radio-button-small-group-items-gap-inline',
-      components.$post-radio-button
+    'radio-button-small-group-items-gap-inline',
+    components.$post-radio-button
   );
 }
