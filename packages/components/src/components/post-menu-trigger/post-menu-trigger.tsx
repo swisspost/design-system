@@ -1,4 +1,4 @@
-import { Component, Element, Prop, h, Host, Watch, Listen } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { getRoot, checkRequiredAndType } from '@/utils';
 
@@ -10,6 +10,7 @@ import { getRoot, checkRequiredAndType } from '@/utils';
 export class PostMenuTrigger {
   @Element() host: HTMLPostMenuTriggerElement;
 
+  private root: Document | ShadowRoot;
   private slottedButton: HTMLButtonElement;
 
   /**
@@ -22,13 +23,28 @@ export class PostMenuTrigger {
     checkRequiredAndType(this, 'for', 'string');
   }
 
+  constructor() {
+    this.updateAriaExpanded = this.updateAriaExpanded.bind(this);
+  }
+
+  connectedCallback() {
+    this.root = getRoot(this.host);
+  }
+
   componentDidLoad() {
     this.validateFor();
     this.setAriaAttributes();
+
+    if (this.root) {
+      this.root.addEventListener('toggleMenu', this.updateAriaExpanded);
+    }
   }
 
-  @Listen('toggleMenu', { target: 'window' })
-  handleMenuToggled(event: CustomEvent) {
+  disconnectedCallback() {
+    this.root.removeEventListener('toggleMenu', this.updateAriaExpanded);
+  }
+
+  private updateAriaExpanded(event: CustomEvent) {
     const target = event.target as HTMLPostMenuElement;
 
     if (target.localName === 'post-menu' && target.id === this.for) {
@@ -69,7 +85,7 @@ export class PostMenuTrigger {
   }
 
   private getMenu(): HTMLPostMenuElement | null {
-    const ref = getRoot(this.host).getElementById(this.for);
+    const ref = this.root.getElementById(this.for);
     if (ref && ref.localName === 'post-menu') return ref as HTMLPostMenuElement;
 
     console.warn(`No post-menu found with ID: ${this.for}`);
