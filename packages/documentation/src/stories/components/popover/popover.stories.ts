@@ -141,7 +141,7 @@ export const InfoIcon: StoryObj = {
             <post-icon aria-hidden="true" name="info"></post-icon>
             <span class="visually-hidden">See more information</span>
           </button>
-          <post-popover class="palette palette-brand" placement="top" text-close="Close" arrow="">
+          <post-popover class="palette palette-accent" placement="top" text-close="Close" arrow="">
             <p class="mb-0">
               Follow your letter's journey with automatic updates at key delivery milestones.
             </p>
