@@ -56,11 +56,12 @@ export class PostKlpLoginWidget implements IsFocusable {
   }
 
   private handleClick(event: Event) {
-    const target = event.target as HTMLElement;
-
-    const settingsLink = target.closest<HTMLAnchorElement>(
-      '#authenticated-menu a[href*="/settings"]',
-    );
+    const settingsLink = event
+      .composedPath()
+      .find(
+        el =>
+          el instanceof HTMLAnchorElement && el.matches('#authenticated-menu a[href*="/settings"]'),
+      ) as HTMLAnchorElement | undefined;
 
     if (!settingsLink) return;
 
