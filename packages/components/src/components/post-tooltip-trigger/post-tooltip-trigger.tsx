@@ -4,12 +4,9 @@ import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 
 const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
-
-if (IS_BROWSER) {
-  (async () => {
+async () => {
     await import('long-press-event');
-  })();
-}
+  }
 
 /**
  * @slot default - Content to trigger the tooltip. Can contain any focusable element or will be made focusable automatically.
