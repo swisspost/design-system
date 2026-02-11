@@ -151,18 +151,26 @@ export class PostTooltipTrigger {
   }
 
   private handleTriggerEvent(event: Event) {
-    switch (event.type) {
-      case 'pointerenter':
-      case 'focusin':
-      case 'long-press':
-        this.handleEnter();
-        break;
-      case 'pointerleave':
-      case 'focusout':
-        this.handleLeave(event as PointerEvent);
-        break;
-    }
+  // Ignore pointer events from touch devices (quick taps)
+  if (
+    (event.type === 'pointerenter' || event.type === 'pointerleave') && 
+    (event as PointerEvent).pointerType === 'touch'
+  ) {
+    return;
   }
+
+  switch (event.type) {
+    case 'pointerenter':
+    case 'focusin':
+    case 'long-press':
+      this.handleEnter();
+      break;
+    case 'pointerleave':
+    case 'focusout':
+      this.handleLeave(event as PointerEvent);
+      break;
+  }
+}
 
   private handleTooltipEvent(event: PointerEvent) {
     switch (event.type) {
