@@ -287,7 +287,7 @@ describe('header', () => {
             });
         });
 
-        it('should focus menu button as the last focusable element', () => {
+        it('should trap focus within the burger menu (loop from last element back to menu button)', () => {
           cy.get('@burger-menu-btn').click();
           cy.get('div.burger-menu.extended').should('exist');
 
