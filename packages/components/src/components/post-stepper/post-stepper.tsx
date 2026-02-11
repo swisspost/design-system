@@ -99,8 +99,10 @@ export class PostStepper {
     this.updateActiveStepNumber();
 
     this.stepItems.forEach((el, i) => {
-      if (this.currentIndex === i) {
-        this.mobileActiveStepName = el.querySelector('.label').innerHTML;
+      const labelEl = el.querySelector('.label');
+
+      if (this.currentIndex === i && labelEl) {
+        this.mobileActiveStepName = labelEl.innerHTML;
       }
 
       // Update "post-stepper-item" classes to show correct status
