@@ -172,20 +172,6 @@
         );
       }
     }
-
-    &:has(input[type='radio']) {
-      > input[type='radio'] ~ label {
-        font-size: tokens.get('radio-button-small-label-font-size', components.$post-radio-button);
-        padding-block: tokens.get(
-          'radio-button-small-label-padding-block',
-          components.$post-radio-button
-        );
-        padding-inline-start: tokens.get(
-          'radio-button-gap-inline-text-start',
-          components.$post-radio-button
-        );
-      }
-    }
   }
 
   > label {
@@ -236,20 +222,3 @@ fieldset
   margin-inline-end: tokens.get('checkbox-small-group-items-gap-inline', components.$post-checkbox);
 }
 
-/* Radio small vertical */
-fieldset
-  .form-check-sm:has(input[type='radio']):not(.form-switch, .form-check-inline, :last-of-type) {
-  margin-block-end: tokens.get(
-    'radio-button-small-group-items-gap-block',
-    components.$post-radio-button
-  );
-}
-
-/* Radio small inline */
-fieldset
-  .form-check-sm.form-check-inline:has(input[type='radio']):not(.form-switch):not(:last-of-type) {
-  margin-inline-end: tokens.get(
-    'radio-button-small-group-items-gap-inline',
-    components.$post-radio-button
-  );
-}
