@@ -1,9 +1,10 @@
-import { Component, Element, Prop, h, Host, Watch, State } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
 import { checkEmptyOrType, IS_BROWSER } from '@/utils';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 
-const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
+const MOBILE_TRIGGER_EVENTS = ['long-press', 'touchend'];
+const DESKTOP_TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout'];
 
 if (IS_BROWSER) {
   (async () => {
@@ -33,11 +34,6 @@ export class PostTooltipTrigger {
   @Prop() delay: number = 0;
 
   /**
-   * Track if the last interaction was a touch event
-   */
-  @State() private isTouchDevice: boolean = false;
-
-  /**
    * Reference to the element inside the host that will act as the trigger.
    */
   private trigger: HTMLElement | null = null;
@@ -52,6 +48,13 @@ export class PostTooltipTrigger {
    */
   private boundTriggerHandler: (event: Event) => void;
   private boundTooltipHandler: (event: PointerEvent) => void;
+
+  /**
+   * Detect if device has touch capability
+   */
+  private get isMobileDevice(): boolean {
+    return IS_BROWSER && 'ontouchstart' in window;
+  }
 
   constructor() {
     this.boundTriggerHandler = this.handleTriggerEvent.bind(this);
@@ -89,7 +92,6 @@ export class PostTooltipTrigger {
 
   private handleSlotChange() {
     this.cleanupTrigger();
-
     this.setupTrigger();
   }
 
@@ -133,19 +135,22 @@ export class PostTooltipTrigger {
   }
 
   private attachListeners() {
-    TRIGGER_EVENTS.forEach(event => {
+    const events = this.isMobileDevice ? MOBILE_TRIGGER_EVENTS : DESKTOP_TRIGGER_EVENTS;
+    
+    events.forEach(event => {
       this.host.addEventListener(event, this.boundTriggerHandler);
     });
   }
 
   private removeListeners() {
-    TRIGGER_EVENTS.forEach(event => {
+    // Remove both sets of events to ensure cleanup
+    [...MOBILE_TRIGGER_EVENTS, ...DESKTOP_TRIGGER_EVENTS].forEach(event => {
       this.host.removeEventListener(event, this.boundTriggerHandler);
     });
   }
 
   private attachTooltipListeners() {
-    if (this.tooltip) {
+    if (this.tooltip && !this.isMobileDevice) {
       this.tooltip.addEventListener('pointerenter', this.boundTooltipHandler);
       this.tooltip.addEventListener('pointerleave', this.boundTooltipHandler);
     }
@@ -159,40 +164,34 @@ export class PostTooltipTrigger {
   }
 
   private handleTriggerEvent(event: Event) {
-    // Detect touch events
-    if (event instanceof PointerEvent && event.pointerType === 'touch') {
-      this.isTouchDevice = true;
-    }
-
-    switch (event.type) {
-      case 'pointerenter':
-      case 'focusin':
-        // On touch devices, ignore pointerenter (quick tap)
-        // Only long-press will trigger the tooltip
-        if (event.type === 'pointerenter' && this.isTouchDevice) {
-          return;
-        }
-        this.handleEnter();
-        break;
-      case 'long-press':
-        this.handleEnter();
-        break;
-      case 'pointerleave':
-      case 'focusout':
-        // On touch devices, ignore pointerleave from quick taps
-        if (event.type === 'pointerleave' && this.isTouchDevice) {
-          return;
-        }
-        this.handleLeave(event as PointerEvent);
-        break;
+    if (this.isMobileDevice) {
+      // Mobile: only respond to long-press
+      switch (event.type) {
+        case 'long-press':
+          this.handleEnter();
+          break;
+        case 'touchend':
+          this.handleLeave(event as PointerEvent);
+          break;
+      }
+    } else {
+      // Desktop: respond to hover and focus
+      switch (event.type) {
+        case 'pointerenter':
+        case 'focusin':
+          this.handleEnter();
+          break;
+        case 'pointerleave':
+        case 'focusout':
+          this.handleLeave(event as PointerEvent);
+          break;
+      }
     }
   }
 
   private handleTooltipEvent(event: PointerEvent) {
-    // Ignore tooltip hover events on touch devices
-    if (event.pointerType === 'touch') {
-      return;
-    }
+    // Tooltip hover only works on desktop
+    if (this.isMobileDevice) return;
 
     switch (event.type) {
       case 'pointerenter':
@@ -213,6 +212,13 @@ export class PostTooltipTrigger {
   }
 
   private handleLeave(event: PointerEvent) {
+    // On mobile, always close tooltip on touchend
+    if (this.isMobileDevice) {
+      this.interestLostHandler();
+      return;
+    }
+
+    // Desktop: check if moving to tooltip
     const newTarget = event.relatedTarget as HTMLElement | null;
 
     if (
