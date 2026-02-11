@@ -167,7 +167,7 @@
         font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
         padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
         padding-inline-start: tokens.get(
-            'checkbox-small-gap-inline-text-start',
+            'checkbox-gap-inline-text-start',
             components.$post-checkbox
         );
       }
@@ -181,7 +181,7 @@
             components.$post-radio-button
         );
         padding-inline-start: tokens.get(
-            'radio-button-small-gap-inline-text-start',
+            'radio-button-gap-inline-text-start',
             components.$post-radio-button
         );
       }
@@ -201,7 +201,7 @@
 // Checkbox Group
 /* Checkbox Group / Grouped/Vertical */
 fieldset .form-check:not(.form-check-inline):not(:last-of-type) {
-  margin-block-end: tokens.get('checkbox-gap-block-group');
+  margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
 }
 
 /* Checkbox Group / Inline/Horizontal */
@@ -213,12 +213,12 @@ fieldset:has(.form-check-inline) {
 
 /* Spacing for Checkbox Group Grouped/Vertical default */
 fieldset .form-check:not(.form-check-inline):not(:last-of-type) {
-  margin-block-end: tokens.get('checkbox-gap-block-group');
+  margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
 }
 
 /* Spacing Checkbox Group Inline/Horizontal default */
 fieldset .form-check.form-check-inline {
-  margin-inline-end: tokens.get('checkbox-gap-block-group');
+  margin-inline-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
 }
 
 // Small group spacing
