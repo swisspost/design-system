@@ -1,4 +1,4 @@
-import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch, State } from '@stencil/core';
 import { checkEmptyOrType, IS_BROWSER } from '@/utils';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
@@ -31,6 +31,11 @@ export class PostTooltipTrigger {
    * Delay (in milliseconds) before the tooltip is shown.
    */
   @Prop() delay: number = 0;
+
+  /**
+   * Track if the last interaction was a touch event
+   */
+  @State() private isTouchDevice: boolean = false;
 
   /**
    * Reference to the element inside the host that will act as the trigger.
@@ -154,20 +159,41 @@ export class PostTooltipTrigger {
   }
 
   private handleTriggerEvent(event: Event) {
+    // Detect touch events
+    if (event instanceof PointerEvent && event.pointerType === 'touch') {
+      this.isTouchDevice = true;
+    }
+
     switch (event.type) {
       case 'pointerenter':
       case 'focusin':
+        // On touch devices, ignore pointerenter (quick tap)
+        // Only long-press will trigger the tooltip
+        if (event.type === 'pointerenter' && this.isTouchDevice) {
+          return;
+        }
+        this.handleEnter();
+        break;
       case 'long-press':
         this.handleEnter();
         break;
       case 'pointerleave':
       case 'focusout':
+        // On touch devices, ignore pointerleave from quick taps
+        if (event.type === 'pointerleave' && this.isTouchDevice) {
+          return;
+        }
         this.handleLeave(event as PointerEvent);
         break;
     }
   }
 
   private handleTooltipEvent(event: PointerEvent) {
+    // Ignore tooltip hover events on touch devices
+    if (event.pointerType === 'touch') {
+      return;
+    }
+
     switch (event.type) {
       case 'pointerenter':
         this.handleEnter();
