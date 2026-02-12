@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.8.8
+
+### Patch Changes
+
+- Added deprecation information for properties and methods that will be removed in future versions of the `swisspost-internet-header`, `swisspost-internet-breadcrumbs`, and `swisspost-internet-footer` components. (by [@alizedebray](https://github.com/alizedebray) with [#6946](https://github.com/swisspost/design-system/pull/6946))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.7.0
+  - @swisspost/internet-header@1.16.0
+  - @swisspost/design-system-styles@9.7.0
+  - @swisspost/design-system-components@9.7.0
+  - @swisspost/design-system-components-react@9.7.0
+
 ## 5.8.7
 
 ### Patch Changes
