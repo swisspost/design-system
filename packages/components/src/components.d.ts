@@ -401,10 +401,6 @@ export namespace Components {
          */
         "collectionSize": number;
         /**
-          * If true, the pagination is disabled.
-         */
-        "disabled"?: boolean;
-        /**
           * A descriptive label for the pagination navigation, used by assistive technologies.
          */
         "label": string;
@@ -1409,10 +1405,6 @@ declare namespace LocalJSX {
           * The total number of items in the collection.
          */
         "collectionSize": number;
-        /**
-          * If true, the pagination is disabled.
-         */
-        "disabled"?: boolean;
         /**
           * A descriptive label for the pagination navigation, used by assistive technologies.
          */
