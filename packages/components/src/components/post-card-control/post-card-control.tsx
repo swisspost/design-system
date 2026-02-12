@@ -342,10 +342,11 @@ export class PostCardControl {
     const possibleFromContexts = ['fieldset'];
 
     let element = this.host as HTMLElement;
-    if (!element) return;
+
     while (element && (!bgContext || !formContext)) {
-      bgContext = bgContext ?? possibleBgContexts.find(selector => element.matches(selector));
-      formContext = formContext ?? possibleFromContexts.find(selector => element.matches(selector));
+      bgContext = bgContext ?? possibleBgContexts.find(selector => element?.matches(selector));
+      formContext =
+        formContext ?? possibleFromContexts.find(selector => element?.matches(selector));
 
       element = element.parentElement;
     }
