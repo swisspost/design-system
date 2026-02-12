@@ -11,7 +11,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
   shadow: true,
 })
 export class PostKlpLoginWidget implements IsFocusable {
-  @Element() host: HTMLPostKlpLoginWidgetElement;
+  @Element() host!: HTMLPostKlpLoginWidgetElement;
 
   /**
    * Overrides the logout-url provided by the portal config.
@@ -43,6 +43,44 @@ export class PostKlpLoginWidget implements IsFocusable {
       environment: state.environment,
       ...{ platform },
     });
+
+    this.setupTracking();
+  }
+
+  private setupTracking() {
+    if (typeof window === 'undefined') return;
+
+    (window as any).dataLayer = (window as any).dataLayer || [];
+
+    this.host.shadowRoot?.addEventListener('click', this.handleClick);
+  }
+
+  private handleClick(event: Event) {
+    const settingsLink = event
+      .composedPath()
+      .find(
+        el =>
+          el instanceof HTMLAnchorElement && el.matches('#authenticated-menu a[href*="/settings"]'),
+      ) as HTMLAnchorElement | undefined;
+
+    if (!settingsLink) return;
+
+    const linkText = settingsLink
+      .querySelector('.klp-widget-notification-link-text')
+      ?.textContent?.trim();
+
+    (window as any).dataLayer.push({
+      event: 'select_menu',
+      type: 'authenticated_menu',
+      label: 'settings',
+      text: linkText,
+      link_url: settingsLink.href,
+      additional_info: '',
+    });
+  }
+
+  disconnectedCallback() {
+    this.host.shadowRoot?.removeEventListener('click', this.handleClick);
   }
 
   /**
