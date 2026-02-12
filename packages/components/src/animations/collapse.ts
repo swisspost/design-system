@@ -1,4 +1,5 @@
-import { IS_BROWSER, isMotionReduced } from '@/utils';
+import { isMotionReduced } from '@/utils';
+import { Build } from '@stencil/core';
 
 const collapseDuration = 350;
 const collapseEasing = 'ease';
@@ -11,7 +12,7 @@ const animationOptions: KeyframeAnimationOptions = {
 };
 
 export function collapse(el: HTMLElement): Animation {
-  const elHeight = IS_BROWSER ? window.getComputedStyle(el).height : `${el.scrollHeight}px`;
+  const elHeight = Build.isBrowser ? window.getComputedStyle(el).height : `${el.scrollHeight}px`;
   const expandedKeyframe: Keyframe = { height: elHeight };
 
   return el.animate([expandedKeyframe, collapsedKeyframe], animationOptions);

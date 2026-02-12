@@ -1,6 +1,6 @@
-import { Component, Element, Prop, h, Host, Watch, State } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch, State, Build } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, EventFrom, IS_BROWSER } from '@/utils';
+import { checkRequiredAndType, EventFrom } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -47,7 +47,8 @@ export class PostMegadropdownTrigger {
     this.validateFor();
 
     // Check if the mega dropdown attached to the trigger is expanded or not
-    if (IS_BROWSER) document.addEventListener('postToggleMegadropdown', this.onMegadropdownToggled);
+    if (Build.isBrowser)
+      document.addEventListener('postToggleMegadropdown', this.onMegadropdownToggled);
   }
 
   disconnectedCallback() {

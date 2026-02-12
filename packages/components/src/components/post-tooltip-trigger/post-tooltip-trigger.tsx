@@ -1,11 +1,11 @@
-import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
-import { checkEmptyOrType, IS_BROWSER } from '@/utils';
+import { Component, Element, Prop, h, Host, Watch, Build } from '@stencil/core';
+import { checkEmptyOrType } from '@/utils';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 
 const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
 
-if (IS_BROWSER) {
+if (Build.isBrowser) {
   (async () => {
     await import('long-press-event');
   })();
@@ -59,7 +59,7 @@ export class PostTooltipTrigger {
   }
 
   private get tooltip(): HTMLPostTooltipElement | null {
-    if (!IS_BROWSER) return null;
+    if (Build.isServer) return null;
 
     const ref = document.getElementById(this.for);
     return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
