@@ -14,14 +14,7 @@ describe('pagination', () => {
         .find('.pagination-link')
         .not('.pagination-control-button')
         .as('pageButtons');
-      cy.get('@pagination')
-        .find('.pagination-control .pagination-control-button')
-        .first()
-        .as('prevButton');
-      cy.get('@pagination')
-        .find('.pagination-control .pagination-control-button')
-        .last()
-        .as('nextButton');
+      cy.get('@pagination').find('.pagination-control .next-button').as('nextButton');
     });
 
     it('should render', () => {
@@ -40,13 +33,12 @@ describe('pagination', () => {
         .should('contain', '1');
     });
 
-    it('should disable previous button on first page', () => {
-      cy.get('@prevButton').should('be.disabled');
-      cy.get('@prevButton').should('have.attr', 'tabindex', '-1');
+    it('should hide previous button on first page', () => {
+      cy.get('.prev-button').should('not.exist');
     });
 
-    it('should enable next button on first page', () => {
-      cy.get('@nextButton').should('not.be.disabled');
+    it('should show next button on first page', () => {
+      cy.get('@nextButton').should('exist');
     });
 
     it('should navigate to next page when next button is clicked', () => {
@@ -57,6 +49,7 @@ describe('pagination', () => {
 
     it('should navigate to previous page when previous button is clicked', () => {
       cy.get('@nextButton').click();
+      cy.get('@pagination').find('.pagination-control .prev-button').as('prevButton');
       cy.get('@prevButton').click();
 
       cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '1');
@@ -184,14 +177,6 @@ describe('pagination', () => {
         .find('.pagination-link')
         .not('.pagination-control-button')
         .as('pageButtons');
-      cy.get('@pagination')
-        .find('.pagination-control .pagination-control-button')
-        .first()
-        .as('prevButton');
-      cy.get('@pagination')
-        .find('.pagination-control .pagination-control-button')
-        .last()
-        .as('nextButton');
 
       cy.get('@pageButtons')
         .last()
@@ -205,27 +190,12 @@ describe('pagination', () => {
         });
     });
 
-    it('should disable next button on last page', () => {
-      cy.get('@nextButton').should('be.disabled');
-      cy.get('@nextButton').should('have.attr', 'tabindex', '-1');
+    it('should hide next button on last page', () => {
+      cy.get('.next-button').should('not.exist');
     });
 
-    it('should enable previous button on last page', () => {
-      cy.get('@prevButton').should('not.be.disabled');
-    });
-
-    it('should not allow clicking on disabled next button', () => {
-      const EventHandlerMock = cy.spy();
-
-      cy.get('@pagination').then($el => {
-        Cypress.$($el.get(0)).on('postChange', EventHandlerMock);
-      });
-
-      cy.get('@nextButton')
-        .click({ force: true })
-        .then(() => {
-          cy.wrap(EventHandlerMock).should('not.have.been.called');
-        });
+    it('should show previous button on last page', () => {
+      cy.get('.prev-button').should('exist');
     });
   });
 
@@ -284,10 +254,6 @@ describe('pagination', () => {
       cy.get('.pagination-link:not([disabled])').each($button => {
         cy.wrap($button).should('have.attr', 'tabindex', '0');
       });
-    });
-
-    it('should have tabindex -1 for disabled buttons', () => {
-      cy.get('@prevButton').should('have.attr', 'tabindex', '-1');
     });
 
     it('should allow focus on all enabled controls', () => {
@@ -380,28 +346,18 @@ describe('pagination', () => {
 
   describe('icons', () => {
     beforeEach(() => {
-      cy.getComponent('pagination', PAGINATION_ID);
+      cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
       cy.get('@pagination')
-        .find('.pagination-control .pagination-control-button')
-        .first()
+        .find('.pagination-control .pagination-control-button.prev-button')
         .as('prevButton');
       cy.get('@pagination')
-        .find('.pagination-control .pagination-control-button')
-        .last()
+        .find('.pagination-control .pagination-control-button.next-button')
         .as('nextButton');
     });
 
     it('should have chevron icons in control buttons', () => {
-      cy.get('@prevButton').find('post-icon[name="chevronleft"]').should('exist');
-      cy.get('@nextButton').find('post-icon[name="chevronleft"]').should('exist');
-    });
-
-    it('should rotate next button icon', () => {
-      cy.get('@nextButton').find('post-icon').should('have.class', 'pagination-icon-rotated');
-    });
-
-    it('should not rotate previous button icon', () => {
-      cy.get('@prevButton').find('post-icon').should('not.have.class', 'pagination-icon-rotated');
+      cy.get('@prevButton').find('post-icon[name="chevronleftwide"]').should('exist');
+      cy.get('@nextButton').find('post-icon[name="chevronrightwide"]').should('exist');
     });
 
     it('should have aria-hidden on icons', () => {

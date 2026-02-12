@@ -121,11 +121,6 @@ tokens.$default-map: components.$post-pagination;
   pointer-events: none;
 }
 
-.pagination-icon-rotated {
-  display: inline-block;
-  transform: rotate(180deg);
-}
-
 .visually-hidden {
   @include utilities.visuallyhidden;
 }
