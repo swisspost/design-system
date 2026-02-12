@@ -1,5 +1,71 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Added null guard when reading step label during initial render. (by [@leagrdv](https://github.com/leagrdv) with [#7097](https://github.com/swisspost/design-system/pull/7097))
+
+- Fixed focus being applied to hidden items across multiple components. (by [@alizedebray](https://github.com/alizedebray) with [#7075](https://github.com/swisspost/design-system/pull/7075))
+
+- Added foreground and background color transitions to `post-avatar` component. (by [@alizedebray](https://github.com/alizedebray) with [#7072](https://github.com/swisspost/design-system/pull/7072))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+  - @swisspost/design-system-styles@10.0.0-next.61
+
+## 10.0.0-next.60
+
+### Minor Changes
+
+- Updated the `post-closebutton` component with new `size` and `position` properties and revised styles. The component is now intended to be absolutely positioned in the top-right corner of the element it closes. (by [@alizedebray](https://github.com/alizedebray) with [#6948](https://github.com/swisspost/design-system/pull/6948))
+
+### Patch Changes
+
+- Fixed the timing of the `postToggle` event in `post-collapsible` component, ensuring it is emitted before the transition. (by [@alizedebray](https://github.com/alizedebray) with [#7074](https://github.com/swisspost/design-system/pull/7074))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.60
+  - @swisspost/design-system-styles@10.0.0-next.60
+
+## 10.0.0-next.59
+
+### Patch Changes
+
+- Updated the focus behavior of the `post-linkarea` component. It now displays a focus ring when the contained link is focused, while links inside a `post-linkarea` no longer show their own focus ring. (by [@alizedebray](https://github.com/alizedebray) with [#7002](https://github.com/swisspost/design-system/pull/7002))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.59
+  - @swisspost/design-system-styles@10.0.0-next.59
+
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Fixed the business sectors list wrapping in the `post-footer` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7010](https://github.com/swisspost/design-system/pull/7010))
+
+- Fixed the burger menu button in the `post-header` component not updating its state correctly on the first click. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7014](https://github.com/swisspost/design-system/pull/7014))
+
+- Fixed the fade-in behavior in the `post-tabs` component, so tab-panels are always correctly showing. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7007](https://github.com/swisspost/design-system/pull/7007))
+
+- Fixed teaser card markup by applying the `.card` class directly to the `post-linkarea` element. (by [@hugomslv](https://github.com/hugomslv) with [#6955](https://github.com/swisspost/design-system/pull/6955))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.58
+  - @swisspost/design-system-styles@10.0.0-next.58
+
+## 10.0.0-next.57
+
+### Minor Changes
+
+- Updated the `post-language-menu` accessible description to use a template with a `#name` placeholder, which is dynamically replaced with the selected language name. (by [@myrta2302](https://github.com/myrta2302) with [#6923](https://github.com/swisspost/design-system/pull/6923))
+
+- Enabled the open animation for the `<post-tooltip>` component. (by [@myrta2302](https://github.com/myrta2302) with [#6821](https://github.com/swisspost/design-system/pull/6821))
+
+- Enabled pop-in animations for the concatenated `post-breadcrumbs`, the `post-language-menu`, and the header's user menu components. (by [@myrta2302](https://github.com/myrta2302) with [#6579](https://github.com/swisspost/design-system/pull/6579))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.57
+  - @swisspost/design-system-styles@10.0.0-next.57
+
 ## 10.0.0-next.56
 
 ### Major Changes

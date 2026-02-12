@@ -15,15 +15,15 @@
 
 ## Methods
 
-### `toggleBurgerMenu(force?: boolean) => Promise<void>`
+### `toggleBurgerMenu(nextExtendedState?: boolean) => Promise<void>`
 
 Toggles the burger navigation menu.
 
 #### Parameters
 
-| Name    | Type      | Description |
-| ------- | --------- | ----------- |
-| `force` | `boolean` |             |
+| Name                | Type      | Description |
+| ------------------- | --------- | ----------- |
+| `nextExtendedState` | `boolean` |             |
 
 #### Returns
 

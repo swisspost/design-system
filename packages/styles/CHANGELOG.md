@@ -1,5 +1,55 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Fixed label alignment and floating label animation for supported browsers in text input fields and textareas. (by [@gfellerph](https://github.com/gfellerph) with [#7137](https://github.com/swisspost/design-system/pull/7137))
+
+- Aligned `ngx-toastr` styling with the existing toast component and documented the integration. (by [@leagrdv](https://github.com/leagrdv) with [#7106](https://github.com/swisspost/design-system/pull/7106))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+
+## 10.0.0-next.60
+
+### Major Changes
+
+- Fixed Safari-specific issue where date/time input placeholders appeared in yellow instead of inheriting the correct color. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6974](https://github.com/swisspost/design-system/pull/6974))
+
+### Patch Changes
+
+- Aligned the local header icons padding with design specs. (by [@leagrdv](https://github.com/leagrdv) with [#7073](https://github.com/swisspost/design-system/pull/7073))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.60
+
+## 10.0.0-next.59
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.59
+
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.58
+
+## 10.0.0-next.57
+
+### Major Changes
+
+- Reverted changes that enabled using sections within containers, as they caused overflow issues in Chromium-based browsers. (by [@alizedebray](https://github.com/alizedebray) with [#6989](https://github.com/swisspost/design-system/pull/6989))
+
+- Updated maximum width of the section from 1920px to 1440px. (by [@alizedebray](https://github.com/alizedebray) with [#6993](https://github.com/swisspost/design-system/pull/6993))
+
+### Patch Changes
+
+- Fixed an issue where certain header navigation items were not styled correctly when they were not contained within lists. (by [@alizedebray](https://github.com/alizedebray) with [#6943](https://github.com/swisspost/design-system/pull/6943))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.57
+
 ## 10.0.0-next.56
 
 ### Major Changes

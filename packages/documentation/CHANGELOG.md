@@ -1,5 +1,88 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.62
+
+### Patch Changes
+
+- Updated the table documentation to recommend using AG Grid instead of the PrimeNG DataTable. (by [@alizedebray](https://github.com/alizedebray) with [#7139](https://github.com/swisspost/design-system/pull/7139))
+
+- Aligned `ngx-toastr` styling with the existing toast component and documented the integration. (by [@leagrdv](https://github.com/leagrdv) with [#7106](https://github.com/swisspost/design-system/pull/7106))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+  - @swisspost/design-system-styles@10.0.0-next.61
+  - @swisspost/design-system-components@10.0.0-next.61
+  - @swisspost/design-system-components-react@10.0.0-next.61
+  - @swisspost/internet-header@10.0.0-next.61
+  - @swisspost/design-system-tokens@10.0.0-next.61
+
+## 6.0.0-next.61
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.60
+  - @swisspost/design-system-styles@10.0.0-next.60
+  - @swisspost/design-system-components@10.0.0-next.60
+  - @swisspost/design-system-components-react@10.0.0-next.60
+  - @swisspost/internet-header@10.0.0-next.60
+  - @swisspost/design-system-tokens@10.0.0-next.60
+
+## 6.0.0-next.60
+
+### Minor Changes
+
+- Added documentation describing how inputs can be combined with a datalist to offer suggested values, replacing the previous typeahead approach. (by [@alizedebray](https://github.com/alizedebray) with [#6941](https://github.com/swisspost/design-system/pull/6941))
+
+### Patch Changes
+
+- Documented landmark and placement guidance for `post-header` and `post-footer` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#6992](https://github.com/swisspost/design-system/pull/6992))
+
+- Updated the button group documentation to present the radio button variant as the primary example. (by [@alizedebray](https://github.com/alizedebray) with [#6951](https://github.com/swisspost/design-system/pull/6951))
+
+- Update react docs with usage info for the new icons export. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+- Updated dependencies:
+  - @swisspost/design-system-components-react@10.0.0-next.59
+  - @swisspost/design-system-icons@10.0.0-next.59
+  - @swisspost/design-system-components@10.0.0-next.59
+  - @swisspost/design-system-styles@10.0.0-next.59
+  - @swisspost/internet-header@10.0.0-next.59
+  - @swisspost/design-system-tokens@10.0.0-next.59
+
+## 6.0.0-next.59
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.58
+  - @swisspost/design-system-components@10.0.0-next.58
+  - @swisspost/design-system-styles@10.0.0-next.58
+  - @swisspost/design-system-components-react@10.0.0-next.58
+  - @swisspost/internet-header@10.0.0-next.58
+  - @swisspost/design-system-tokens@10.0.0-next.58
+
+## 6.0.0-next.58
+
+### Patch Changes
+
+- Updated the `post-language-menu` accessible description to use a template with a `#name` placeholder, which is dynamically replaced with the selected language name. (by [@myrta2302](https://github.com/myrta2302) with [#6923](https://github.com/swisspost/design-system/pull/6923))
+
+- Reverted changes that enabled using sections within containers, as they caused overflow issues in Chromium-based browsers. (by [@alizedebray](https://github.com/alizedebray) with [#6989](https://github.com/swisspost/design-system/pull/6989))
+
+- Updated the documentation of the card component. (by [@hugomslv](https://github.com/hugomslv) with [#6415](https://github.com/swisspost/design-system/pull/6415))
+
+- Fixed the `full-width` attribute not working as intended in the header documentation page. (by [@alizedebray](https://github.com/alizedebray) with [#6993](https://github.com/swisspost/design-system/pull/6993))
+
+- Updated maximum width of the section from 1920px to 1440px. (by [@alizedebray](https://github.com/alizedebray) with [#6993](https://github.com/swisspost/design-system/pull/6993))
+
+- Updated the migration guide to show deprecated CSS classes that can now be automatically migrated. (by [@myrta2302](https://github.com/myrta2302) with [#6893](https://github.com/swisspost/design-system/pull/6893))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.57
+  - @swisspost/design-system-components@10.0.0-next.57
+  - @swisspost/design-system-styles@10.0.0-next.57
+  - @swisspost/design-system-components-react@10.0.0-next.57
+  - @swisspost/internet-header@10.0.0-next.57
+  - @swisspost/design-system-tokens@10.0.0-next.57
+
 ## 6.0.0-next.57
 
 ### Major Changes

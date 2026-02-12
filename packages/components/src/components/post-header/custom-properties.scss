@@ -57,7 +57,8 @@
   }
 }
 
-:host(:not([full-width])) {
+:host(:not([full-width])),
+:host([full-width="false"]) {
   --post-header-content-max-width: 1440px;
 }
 

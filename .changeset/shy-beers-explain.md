@@ -1,5 +1,4 @@
 ---
-'@swisspost/design-system-styles-primeng': patch
 '@swisspost/design-system-components-angular': patch
 ---
 

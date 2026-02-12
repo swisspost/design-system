@@ -1,5 +1,45 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Fixed export paths for the react icons to improve tree-shakeability. Icons are no longer exported as default. (by [@gfellerph](https://github.com/gfellerph) with [#7149](https://github.com/swisspost/design-system/pull/7149))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.61
+
+## 10.0.0-next.60
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.60
+
+## 10.0.0-next.59
+
+### Minor Changes
+
+- Add generated React Server Component icon exports built from @swisspost/design-system-icons. It's now possible to import react- and SSR-ready icons directly like `import { PostIconLetter } from @swisspost/design-system-components-react/icons` and use it like `<PostIconLetter size="1.5em"></PostIconLetter`>. With this change, it's no longer necessary to list the `@swisspost/design-system-icons` as a dependency of the project. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.59
+
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.58
+
+## 10.0.0-next.57
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.57
+
 ## 10.0.0-next.56
 
 ### Major Changes
