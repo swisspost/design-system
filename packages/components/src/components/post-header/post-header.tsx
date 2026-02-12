@@ -127,18 +127,21 @@ export class PostHeader {
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
+    const previousDevice = this.device;
     this.device = e.detail;
     this.switchLanguageSwitchMode();
 
-    if (this.device === 'desktop' && this.burgerMenuExtended) {
-      this.closeBurgerMenu();
+    const wasDesktop = previousDevice === 'desktop';
+    const isNowMobileOrTablet = this.device !== 'desktop';
+    const isNowDesktop = this.device === 'desktop';
+    
+    if (wasDesktop && isNowMobileOrTablet && this.megadropdownOpen) {
+      if (this.burgerMenuButton) this.burgerMenuButton.toggled = true;
+      this.burgerMenuExtended = true;
     }
 
-    if (this.device !== 'desktop') {
-      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
-        dropdown.hide(false, true);
-      });
-      this.megadropdownOpen = false;
+    if (isNowDesktop && this.burgerMenuExtended) {
+      this.closeBurgerMenu();
     }
   };
 
