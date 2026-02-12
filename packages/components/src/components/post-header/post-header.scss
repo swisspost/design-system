@@ -33,6 +33,18 @@ header,
   justify-content: space-between;
   gap: var(--post-header-gap);
   flex-wrap: wrap;
+
+  &.ssr-tmp {
+    @include media-mx.max(desktop) {
+      .audience,
+      slot[name='language-menu']:not(:has(~ .local-header.no-navigation)):has(
+          ~ .local-header.no-title.no-local-nav
+        ),
+      slot[name='global-nav-secondary'] {
+        display: none;
+      }
+    }
+  }
 }
 
 .section {
@@ -53,6 +65,10 @@ header,
       padding: 0.625rem;
       @include header-mx.nav-item-icon-only;
     }
+
+    @include media-mx.min(desktop) {
+      display: none; // hide the burger menu on desktop
+    }
   }
 }
 
@@ -70,7 +86,25 @@ header,
 
   &:has(~ .local-header:not(.no-title.no-navigation)),
   &:has(~ .burger-menu.extended) {
+    @include media-mx.min(desktop) {
+      box-shadow: none;
+    }
+  }
+
+  &:has(~ .local-header.no-title),
+  &:has(~ .local-header.ssr-tmp) {
+    box-shadow: elevation.$elevation-300;
+  }
+
+  &:has(~ .local-header:not(.no-title)) {
     box-shadow: none;
+  }
+
+  &:has(~ .local-header.no-navigation),
+  &:has(~ .local-header.no-navigation.no-local-nav) {
+    post-togglebutton {
+      display: none; // hide the burger menu if there is no main-navigation slot
+    }
   }
 
   .logo {
@@ -101,6 +135,12 @@ header,
 .local-header {
   position: relative;
   background-color: #fff;
+
+  &.ssr-tmp slot[name='main-nav'] {
+    @include media-mx.max(desktop) {
+      display: none;
+    }
+  }
 
   .section {
     min-height: var(--post-local-header-expanded-min-height);

@@ -1,6 +1,6 @@
-import { Component, Element, Prop, h, Host, Watch, State } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch, State, Build } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, EventFrom, IS_BROWSER } from '@/utils';
+import { checkRequiredAndType, EventFrom } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -10,7 +10,7 @@ import { checkRequiredAndType, EventFrom, IS_BROWSER } from '@/utils';
 export class PostMegadropdownTrigger {
   @Element() host: HTMLPostMegadropdownTriggerElement;
 
-  private mutationObserver = new MutationObserver(this.cloneSlottedButton.bind(this));
+  private mutationObserver: MutationObserver;
   private interactiveButton: HTMLButtonElement;
 
   @State() private isMegadropdownExpanded: boolean = false;
@@ -35,19 +35,14 @@ export class PostMegadropdownTrigger {
     this.onMegadropdownToggled = this.onMegadropdownToggled.bind(this);
   }
 
-  connectedCallback() {
-    this.mutationObserver.observe(this.host, { childList: true, subtree: true });
-  }
-
-  componentWillLoad() {
-    this.cloneSlottedButton();
-  }
-
   componentDidLoad() {
     this.validateFor();
 
-    // Check if the mega dropdown attached to the trigger is expanded or not
-    if (IS_BROWSER) document.addEventListener('postToggleMegadropdown', this.onMegadropdownToggled);
+    if (!Build.isBrowser) return;
+    this.mutationObserver = new MutationObserver(this.cloneSlottedButton.bind(this));
+    this.cloneSlottedButton();
+    this.mutationObserver.observe(this.host, { childList: true, subtree: true });
+    document.addEventListener('postToggleMegadropdown', this.onMegadropdownToggled);
   }
 
   disconnectedCallback() {
@@ -55,6 +50,7 @@ export class PostMegadropdownTrigger {
   }
 
   private cloneSlottedButton() {
+    if (!Build.isBrowser) return;
     this.slottedContent = this.host.innerHTML;
   }
 
@@ -111,12 +107,20 @@ export class PostMegadropdownTrigger {
           onKeyDown={this.onKeyDown.bind(this)}
           class={{ active: this.active }}
         >
-          <span>
+          {Build.isBrowser ? (
             <span>
-              <slot></slot>
+              <span>
+                <slot></slot>
+              </span>
+              <span aria-hidden="true" innerHTML={this.slottedContent}></span>
             </span>
-            <span aria-hidden="true" innerHTML={this.slottedContent}></span>
-          </span>
+          ) : (
+            <span>
+              <span class="ssr-tmp">
+                <slot></slot>
+              </span>
+            </span>
+          )}
           <post-icon name="chevrondown"></post-icon>
         </button>
       </Host>

@@ -1,4 +1,15 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen, Prop } from '@stencil/core';
+import {
+  Component,
+  h,
+  Host,
+  State,
+  Element,
+  Method,
+  Watch,
+  Listen,
+  Prop,
+  Build,
+} from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -39,7 +50,7 @@ export class PostHeader {
   private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
-    return this.device !== 'desktop' && this.hasNavigation;
+    return this.device !== 'desktop' && !this.noMainNavigation;
   }
 
   private animationOptions: Partial<AnimationOptions> = {
@@ -72,9 +83,9 @@ export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: Device = breakpoint.get('device');
-  @State() hasNavigation: boolean = false;
-  @State() hasLocalNav: boolean = false;
-  @State() hasAudience: boolean = false;
+  @State() noMainNavigation: boolean = false;
+  @State() noLocalNav: boolean = false;
+  @State() noAudience: boolean = false;
   @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -362,7 +373,7 @@ export class PostHeader {
 
   private handleSlottedContentChanges() {
     if (!this.slottedContentObserver) {
-      this.checkSlottedContent();
+      if (Build.isBrowser) this.checkSlottedContent();
 
       this.slottedContentObserver = new MutationObserver(this.checkSlottedContent);
       this.slottedContentObserver.observe(this.host, { childList: true });
@@ -370,9 +381,9 @@ export class PostHeader {
   }
 
   private checkSlottedContent() {
-    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
-    this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasAudience = !!this.host.querySelector('[slot="audience"]');
+    this.noMainNavigation = !this.host.querySelector('[slot="main-nav"]');
+    this.noLocalNav = !this.host.querySelector('[slot="local-nav"]');
+    this.noAudience = !this.host.querySelector('[slot="audience"]');
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
   }
 
@@ -426,7 +437,7 @@ export class PostHeader {
         class={{
           'burger-menu': true,
           'extended': this.burgerMenuExtended,
-          'no-local-nav': !this.hasLocalNav,
+          'no-local-nav': this.noLocalNav,
           'megadropdown-open': this.megadropdownOpen,
         }}
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
@@ -457,14 +468,20 @@ export class PostHeader {
           <div
             class={{
               'global-header': true,
-              'no-audience': !this.hasAudience,
+              'no-audience': this.noAudience,
             }}
           >
             <div class="section">
               <div class="logo">
                 <slot name="post-logo"></slot>
               </div>
-              <div class="sliding-controls">
+
+              <div
+                class={{
+                  'sliding-controls': true,
+                  'ssr-tmp': Build.isServer,
+                }}
+              >
                 {this.device === 'desktop' && (
                   <div class="audience">
                     <slot name="audience"></slot>
@@ -475,26 +492,17 @@ export class PostHeader {
                   <slot name="global-nav-secondary"></slot>,
                   <slot name="language-menu"></slot>,
                 ]}
+
                 <slot name="post-login"></slot>
-                {this.hasNavigation && this.device !== 'desktop' && (
-                  <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
-                    <slot name="post-togglebutton"></slot>
-                  </div>
-                )}
-                {this.hasNavigation && this.device !== 'desktop' && (
-                  <post-togglebutton
-                    ref={el => (this.burgerMenuButton = el)}
-                    onClick={() => this.toggleBurgerMenu()}
-                  >
-                    <span>{this.textMenu}</span>
-                    <post-icon
-                      aria-hidden="true"
-                      name="burger"
-                      data-showwhen="untoggled"
-                    ></post-icon>
-                    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-                  </post-togglebutton>
-                )}
+
+                <post-togglebutton
+                  ref={el => (this.burgerMenuButton = el)}
+                  onClick={() => this.toggleBurgerMenu()}
+                >
+                  <span>{this.textMenu}</span>
+                  <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
+                  <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+                </post-togglebutton>
               </div>
             </div>
           </div>
@@ -503,9 +511,11 @@ export class PostHeader {
             class={{
               'local-header': true,
               'no-title': !this.hasTitle,
-              'no-audience': !this.hasAudience,
-              'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
-              'no-local-nav': !this.hasLocalNav,
+              'no-audience': this.noAudience,
+              'no-navigation':
+                (this.device !== 'desktop' && this.noMainNavigation) || this.noMainNavigation,
+              'no-local-nav': this.noLocalNav,
+              'ssr-tmp': Build.isServer,
             }}
           >
             <div class="section">
