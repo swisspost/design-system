@@ -79,7 +79,7 @@ export class PostBackToTop {
     this.translateY =
       (-1 * 100) / 100 -
       parseFloat(positionTop.replace('px', '')) -
-      parseFloat(elevationHeight.replace('px', ''));
+      parseFloat(elevationHeight?.replace('px', ''));
 
     if (this.belowFold) {
       fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
