@@ -23,8 +23,8 @@ import StylesPackageImport from '@/shared/styles-package-import';
 ### Custom icon
 
 You can use our built-in icons by using our `post-icon` component.
-If this is not enough, you can also use a custom icon, by implementing an `<svg>` or `<img>` element.
-See how this can be acchieved in the following example.
+If this is not sufficient, you can also use a custom icon by providing a `<svg>` or `<img>` element.
+See how this can be achieved in the following example.
 
 <Canvas of={CardControlStandardHTMLStories.CustomIcon} />
 <div className="hide-col-default">
@@ -33,11 +33,11 @@ See how this can be acchieved in the following example.
 
 ### Custom content
 
-If you need to add additional content to the component, you can do that like shown in the example below.
+If you need to add additional content to the component, you can do that as shown in the example below.
 
 <post-banner type="warning">
-  <p slot="heading">Even if it is generally possible to add other interactive elements within the component, we strongly advise against it!</p>
-  <p>It can lead to confusion when the hit box of nested interactive elements is not clearly separated from the component, is invalid HTML and click events bubbling up can lead to unexpected behaviours.<br/>
+  <p slot="heading">Even if it is generally possible to add other interactive elements within the component, this is strongly discouraged.</p>
+  <p>It can cause confusion when the hit area of nested interactive elements is not clearly separated from the component, may result in invalid HTML, and event bubbling can lead to unexpected behavior.<br/>
   More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
 </post-banner>
 
@@ -45,11 +45,11 @@ If you need to add additional content to the component, you can do that like sho
 
 ### Grouping
 
-The component can be grouped together. Use a `fieldset` and a `legend` element combination to label the group.
+Multiple instances of the component can be grouped together using a `<fieldset>` and `<legend>` element to properly label the group.
 
 <post-banner type="info">
   <p slot="heading">Accessible validation</p>
-  <p>Group validation differs a little from individual validation. If there is an error, you should add the following attributes to the `<fieldset>` element, instead of adding them to the `<input>` elements itself.</p>
+  <p>Group validation differs slightly from individual validation. If there is an error, you should add the following attributes to the `<fieldset>` element instead of adding them to the `<input>` elements themselves.</p>
   <ul className="unordered-list">
     <li>
       <code>aria-invalid</code>
@@ -70,8 +70,8 @@ The component can be grouped together. Use a `fieldset` and a `legend` element c
 
 ### Lined up
 
-If you use this component multiple ties in a grid and some of them have more content than others, the heights will differ.
-To line them up, simply add the class `.h-full` to all of them.
+If you use this component multiple times in a grid and some instances contain more content than others, their heights will differ.
+To align them, simply add the class `.h-full` to all of them.
 
 <Canvas of={CardControlStandardHTMLStories.Lineup} />
 
