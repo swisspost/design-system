@@ -18,6 +18,10 @@
   }
 }
 
+.error-400 {
+  padding: 0 !important;
+}
+
 .error-container.error-400 {
   height: 100% !important;
 }
@@ -25,7 +29,6 @@
 .error-container--image {
   padding-bottom: 0;
 }
-
 
 @include media.max(lg) {
   .button-section {
