@@ -1,5 +1,5 @@
-import { Component, Element, Host, h, Prop, Watch, Build } from '@stencil/core';
-import { checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
+import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
+import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 import { ANIMATION_KEYS, PostIconAnimation } from '@/types/icon-animations';
 
@@ -97,7 +97,7 @@ export class PostIcon {
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
 
-    if (Build.isServer && !this.base) {
+    if (!IS_BROWSER && !this.base) {
       return `${CDN_URL}${fileName}`;
     }
 
@@ -109,13 +109,13 @@ export class PostIcon {
     const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
     const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
 
-    const currentDomain = Build.isBrowser ? window.location.origin : '';
-    const baseHref = Build.isBrowser
+    const currentDomain = IS_BROWSER ? window.location.origin : '';
+    const baseHref = IS_BROWSER
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
 
     let metaIconBase = '';
-    if (Build.isBrowser) {
+    if (IS_BROWSER) {
       const metaTag = document.querySelector('meta[name="design-system-settings"]');
       metaIconBase = metaTag?.getAttribute('data-post-icon-base') || '';
     }

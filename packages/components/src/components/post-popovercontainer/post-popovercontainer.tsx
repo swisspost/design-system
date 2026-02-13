@@ -9,10 +9,9 @@ import {
   h,
   Watch,
   State,
-  Build,
 } from '@stencil/core';
 
-import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -166,7 +165,7 @@ export class PostPopovercontainer {
   private currentAnimation: Animation | null = null;
 
   connectedCallback() {
-    if (Build.isBrowser && !isSupported()) {
+    if (IS_BROWSER && !isSupported()) {
       apply();
     }
   }
