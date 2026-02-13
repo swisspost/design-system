@@ -37,5 +37,7 @@
   &.disabled {
     @include button.button-variant-def('disabled', 'secondary');
     border-style: dashed;
+    pointer-events: none;
+    cursor: unset;
   }
 }

@@ -4,6 +4,27 @@ describe('number-input', () => {
   beforeEach(() => {
     cy.getComponent('number-input', NUMBER_INPUT_ID);
     cy.get('@number-input').find('input').as('input');
+    cy.get('@number-input').find('.step-button').as('step-buttons');
+  });
+
+  it('toggles step buttons disabled state when the input is disabled/enabled', () => {
+    cy.get('@step-buttons').should('not.have.class', 'disabled');
+
+    cy.get('@input').invoke('attr', 'disabled', '');
+
+    cy.get('@step-buttons').should('have.class', 'disabled');
+
+    cy.get('@input').invoke('removeAttr', 'disabled');
+
+    cy.get('@step-buttons').should('not.have.class', 'disabled');
+  });
+
+  it('disables step buttons when min/max range is invalid', () => {
+    cy.get('@step-buttons').should('not.have.class', 'disabled');
+
+    cy.get('@input').invoke('attr', 'min', '10').invoke('attr', 'max', '-10');
+
+    cy.get('@step-buttons').should('have.class', 'disabled');
   });
 
   describe('increment', () => {
@@ -12,15 +33,18 @@ describe('number-input', () => {
 
     beforeEach(() => {
       cy.get('@input').invoke('attr', 'max', String(max)).clear().type(String(val));
-      cy.get('@number-input').find('.step-button:has(> [name="plus"])').as('plus-button');
+      cy.get('@step-buttons').filter(':has(> [name="plus"])').as('plus-button');
     });
 
     it('should increment the value by the step attribute when clicking "plus"', () => {
-      cy.get('@input').invoke('attr', 'step', '2');
+      const step = 2;
+      cy.get('@input').invoke('attr', 'step', String(step));
 
       cy.get('@plus-button').click();
 
-      cy.get('@input').invoke('val').should('eq', '2');
+      cy.get('@input')
+        .invoke('val')
+        .should('eq', String(val + step));
     });
 
     it('disables the plus button after incrementing up to the max', () => {
@@ -61,6 +85,17 @@ describe('number-input', () => {
       cy.get('@plus-button').should('have.class', 'disabled');
     });
 
+    it('resets the value to the minimum when the input is below min', () => {
+      const min = 0;
+      const invalidValue = min - 5;
+
+      cy.get('@input').invoke('attr', 'min', String(min)).clear().type(String(invalidValue));
+
+      cy.get('@plus-button').click();
+
+      cy.get('@input').invoke('val').should('eq', String(min));
+    });
+
     it('changes the plus icon for a chevron', () => {
       const chevronIcon = 'chevronright';
       cy.get('@number-input').invoke('attr', 'increment-icon', chevronIcon);
@@ -78,15 +113,18 @@ describe('number-input', () => {
 
     beforeEach(() => {
       cy.get('@input').invoke('attr', 'min', String(min)).clear().type(String(val));
-      cy.get('@number-input').find('.step-button:has(> [name="minus"])').as('minus-button');
+      cy.get('@step-buttons').filter(':has(> [name="minus"])').as('minus-button');
     });
 
     it('should decrement the value by the step attribute when clicking "minus"', () => {
-      cy.get('@input').invoke('attr', 'step', '2');
+      const step = 2;
+      cy.get('@input').invoke('attr', 'step', String(step));
 
       cy.get('@minus-button').click();
 
-      cy.get('@input').invoke('val').should('eq', '2');
+      cy.get('@input')
+        .invoke('val')
+        .should('eq', String(val - step));
     });
 
     it('disables the minus button after decrementing down to the min', () => {
@@ -125,6 +163,17 @@ describe('number-input', () => {
       cy.get('@input').invoke('attr', 'min', String(val));
 
       cy.get('@minus-button').should('have.class', 'disabled');
+    });
+
+    it('resets the value to the maximum when the input is below max', () => {
+      const max = 10;
+      const invalidValue = max + 5;
+
+      cy.get('@input').invoke('attr', 'max', String(max)).clear().type(String(invalidValue));
+
+      cy.get('@minus-button').click();
+
+      cy.get('@input').invoke('val').should('eq', String(max));
     });
 
     it('changes the minus icon for a chevron', () => {
