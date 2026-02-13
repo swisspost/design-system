@@ -10,7 +10,6 @@ import {
   Prop,
   State,
   Watch,
-  Build,
 } from '@stencil/core';
 import { checkRequiredAndType, checkEmptyOrType, checkRequiredAndOneOf } from '@/utils';
 import { version } from '@root/package.json';
@@ -333,13 +332,11 @@ export class PostCardControl {
   // remove as soon as all browser support :host-context()
   // https://caniuse.com/?search=%3Ahost-context()
   private setHostContext() {
-    if (Build.isServer) return;
     let bgContext: string;
     const possibleBgContexts = window
       .getComputedStyle(this.host)
       .getPropertyValue('--post-card-control-bg-context')
-      .split(', ')
-      .filter(Boolean);
+      .split(', ');
 
     let formContext: string;
     const possibleFromContexts = ['fieldset'];
