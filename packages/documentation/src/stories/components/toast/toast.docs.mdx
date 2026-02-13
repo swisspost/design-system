@@ -1,7 +1,9 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as ToastStories from './toast.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
 import PackageTag from '@/shared/package-tag';
+import NgxToastr from './ngx-toastr.sample?raw';
+import NgxToastrDismissible from './ngx-toastr-dismissible.sample?raw';
 
 <Meta of={ToastStories} />
 
@@ -55,3 +57,26 @@ You can stack toasts by wrapping them in a `.toast-container`, which will vertic
 Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an Live region.
 
 See how to implement it on our [live regions documentation](/?path=/docs/548d973c-679c-4a02-96cd-70f82aec5f65--docs).
+
+## Integration with `ngx-toastr`
+
+When using `ngx-toastr` in an Angular project, Design System styles can be applied to toast notifications by overriding the default `ngx-toastr` classes.
+
+To do this, set the appropriate classes via the `toastClass` option:
+
+- Information toast: `toast toast-info`
+- Success toast: `toast toast-success`
+- Warning toast: `toast toast-warning`
+- Error toast: `toast toast-error`
+
+<Source code={NgxToastr} language="ts" />
+
+#### Dismissible toasts
+
+For dismissible toasts (i.e. `closeButton` is set to `true`), the `toast-dismissible` class must also be included in the `toastClass` configuration.
+
+<Source code={NgxToastrDismissible} language="ts" />
+
+#### CSS import order
+
+To ensure that Design System styles override the default `ngx-toastr` styles, the Design System CSS files must be imported <b>after</b> the `ngx-toastr` CSS files.

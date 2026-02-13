@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { Default } from './button-close.stories';
+import meta from './button-close.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -14,6 +14,6 @@ type Story = StoryObj<HTMLPostClosebuttonElement>;
 
 export const PostClosebutton: Story = {
   render: (_args: Args, context: StoryContext<HTMLPostClosebuttonElement>) => {
-    return schemes(() => html` ${Default.render?.({ ...context.args }, context)} `);
+    return schemes(() => html` ${meta.render?.({ ...context.args }, context)} `);
   },
 };

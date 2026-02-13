@@ -1,0 +1,105 @@
+name: Visual Regression Tests
+
+on:
+  pull_request:
+    paths:
+      - 'packages/components/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/components/**'
+  workflow_dispatch:
+    inputs:
+      update-snapshots:
+        description: 'Force update visual snapshots'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+jobs:
+  visual-tests-components:
+    name: Visual Tests - Components
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install dependencies and build packages
+        run: pnpm bootstrap
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright browsers
+        working-directory: packages/components
+        run: npx playwright install --with-deps
+
+      - name: Get baseline snapshots from cache
+        id: snapshot-cache
+        uses: actions/cache@v4
+        with:
+          path: packages/components/vrt/__screenshots__
+          key: ${{ runner.os }}-vrt-snapshots-${{ hashFiles('packages/components/src/**/*.scss') }}
+          restore-keys: |
+            ${{ runner.os }}-vrt-snapshots-
+          fail-on-cache-miss: true
+      
+      - name: Check if baseline update needed
+        id: should-update
+        run: |
+          if [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/v[0-9]+$) && "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]] || [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
+            echo "update=true" >> $GITHUB_OUTPUT
+          else
+            echo "update=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate baseline snapshots
+        if: steps.should-update.outputs.update == 'true'
+        working-directory: packages/components
+        run: pnpm vrt:update
+
+      - name: Optimize PNG screenshots
+        if: steps.should-update.outputs.update == 'true'
+        run: |
+          sudo apt-get install -y pngquant
+          find packages/components/vrt/__screenshots__ -name "*.png" -exec pngquant --force --ext .png --quality 70-80 --speed 1 {} \;
+
+      - name: Run visual regression tests
+        working-directory: packages/components
+        run: pnpm vrt
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-components
+          path: packages/components/test-results
+          retention-days: 14
+
+      - name: Upload diff screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshots-components
+          path: |
+            packages/components/test-results/**/*-diff.png
+            packages/components/test-results/**/*-actual.png
+            packages/components/test-results/**/*-expected.png
+          retention-days: 14
