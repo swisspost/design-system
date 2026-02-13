@@ -97,10 +97,6 @@ export class PostIcon {
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
 
-    if (!IS_BROWSER && !this.base) {
-      return `${CDN_URL}${fileName}`;
-    }
-
     if (this.url) {
       return this.url;
     }
