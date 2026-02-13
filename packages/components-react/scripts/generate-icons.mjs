@@ -18,15 +18,13 @@ import * as React from "react";
 import { PostIcon } from "../index.server";
 import type { StencilReactComponent } from "@stencil/react-output-target/runtime";
 
-const ${iconName}: StencilReactComponent<HTMLPostIconElement> = props => (
+export const ${iconName}: StencilReactComponent<HTMLPostIconElement> = props => (
   <PostIcon
     name="${iconName}"
     url="${`data:image/svg+xml;base64,${base64}`}"
     {...props}
   ></PostIcon>
 );
-
-export default ${iconName};
 `;
 
 /**
@@ -35,7 +33,7 @@ export default ${iconName};
  * @returns
  */
 const getIndexFileTemplate = iconNames => `/* Auto-generated file. Do not edit directly. */
-${iconNames.map(name => `export { default as ${name} } from './${name}';`).join('\n')}
+${iconNames.map(name => `export { ${name} } from './${name}';`).join('\n')}
 `;
 
 /**

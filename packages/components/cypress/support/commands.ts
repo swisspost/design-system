@@ -90,3 +90,42 @@ Cypress.Commands.add(
     expect(formControlData).to.be.eq(value);
   },
 );
+
+Cypress.Commands.add(
+  'getFocusableElements',
+  { prevSubject: true },
+  (subject: JQuery<HTMLElement>) => {
+    const focusableSelector = `:where(${[
+      'button',
+      'input:not([type="hidden"])',
+      '[tabindex]',
+      'select',
+      'textarea',
+      '[contenteditable]',
+      'a[href]',
+      'iframe',
+      'audio[controls]',
+      'video[controls]',
+      'area[href]',
+      'details > summary:first-of-type',
+    ].join(',')})`;
+
+    const focusDisablingSelector = `:where(${[
+      '[inert]',
+      '[inert] *',
+      ':disabled',
+      'dialog:not([open]) *',
+      '[popover]:not(:popover-open) *',
+      'details:not([open]) > *:not(details > summary:first-of-type)',
+      'details:not([open]) > *:not(details > summary:first-of-type) *',
+      '[tabindex^="-"]',
+      '[hidden]:not([hidden="false"])',
+    ].join(',')})`;
+
+    const focusableElements = subject[0].querySelectorAll<HTMLElement>(
+      `${focusableSelector}:not(${focusDisablingSelector})`,
+    );
+
+    return cy.wrap(Array.from(focusableElements));
+  },
+);

@@ -276,7 +276,7 @@ input.form-control {
     top: tokens.get('input-border-width');
     left: tokens.get('input-border-width');
     margin: 0;
-    padding-inline-start: tokens.get('input-label-empty-padding-inline-start');
+    padding-inline-start: tokens.get('input-padding-inline-start');
     padding-inline-end: tokens.get('input-label-empty-padding-inline-end');
     padding-block-start: tokens.get('input-label-empty-padding-block-start');
     border: 0;
@@ -290,22 +290,27 @@ input.form-control {
     transition:
       padding-block-start 0.2s ease-in-out,
       font-size 0.2s ease-in-out;
-    background-color: tokens.get('input-color-enabled-bg');
   }
 
   > input.form-control {
     min-height: tokens.get('input-sizing-height');
+    padding-block-start: tokens.get('input-padding-block-start');
+    padding-block-end: tokens.get('input-padding-block-end');
 
     &::placeholder {
       color: transparent;
       opacity: 0;
+
+      /* 
+       * Does not work in firefox because it's non-standard behaviour.
+       * Implemented as progressive enhancement for the browsers that support it.
+       * https://stackoverflow.com/questions/16381895/firefox-transition-placeholder-opacity
+      */
+      transition: opacity 0.25s linear;
     }
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-block-start: tokens.get('input-padding-block-start');
-      padding-block-end: tokens.get('input-padding-block-end');
-
       ~ label {
         color: tokens.get('input-color-selected-fg');
         font-size: tokens.get('input-label-filled-font-size');
@@ -322,6 +327,7 @@ input.form-control {
     &:focus::placeholder {
       color: tokens.get('input-color-helptext-fg');
       opacity: 1;
+      transition: opacity 0.35s 0.15s linear;
     }
 
     &:disabled ~ label {
@@ -331,7 +337,6 @@ input.form-control {
 
     &:not(:disabled):hover ~ label {
       color: tokens.get('input-color-hover-fg');
-      background-color: tokens.get('input-color-hover-bg');
     }
 
     &[type='file'] {
