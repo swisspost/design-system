@@ -135,3 +135,14 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     vertical-align: middle;
   }
 }
+
+.form-check-sm:not(.form-switch):has(input[type='checkbox']) {
+  > input[type='checkbox'] {
+    width: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+    height: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+
+    &::after {
+      mask-size: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+    }
+  }
+}
