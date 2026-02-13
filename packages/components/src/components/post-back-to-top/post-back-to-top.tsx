@@ -1,5 +1,5 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
-import { slideUpAndFadeOut, slideDownAndFadeIn } from '@/animations/slide-and-fade';
+import { fadeSlide } from '@/animations/fade-slide';
 import { version } from '@root/package.json';
 import { checkRequiredAndType } from '@/utils';
 
@@ -15,11 +15,11 @@ export class PostBackToTop {
    * The label of the back-to-top button, intended solely for accessibility purposes.
    * This label is always hidden from view.
    **/
-  @Prop({ reflect: true }) label!: string;
+  @Prop({ reflect: true }) textBackToTop!: string;
 
   @State() belowFold: boolean = false;
 
-  private translateY: string;
+  private translateY: number;
 
   private isBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
@@ -29,18 +29,18 @@ export class PostBackToTop {
     this.belowFold = this.isBelowFold();
   };
 
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
+  @Watch('textBackToTop')
+  validateTextBackToTop() {
+    checkRequiredAndType(this, 'textBackToTop', 'string');
   }
 
   /*Watch for changes in belowFold to show/hide the back to top button*/
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
-      slideDownAndFadeIn(this.host, this.translateY);
+      fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
     } else {
-      slideUpAndFadeOut(this.host, this.translateY);
+      fadeSlide(this.host, 'out', { translate: this.translateY, fill: 'forwards' });
     }
   }
 
@@ -77,14 +77,12 @@ export class PostBackToTop {
 
     // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
     this.translateY =
-      String(
-        (-1 * 100) / 100 -
-          parseFloat(positionTop.replace('px', '')) -
-          parseFloat(elevationHeight.replace('px', '')),
-      ) + 'px';
+      (-1 * 100) / 100 -
+      parseFloat(positionTop.replace('px', '')) -
+      parseFloat(elevationHeight.replace('px', ''));
 
     if (this.belowFold) {
-      slideDownAndFadeIn(this.host, this.translateY);
+      fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
     }
 
     if (!this.belowFold) {
@@ -102,7 +100,7 @@ export class PostBackToTop {
 
     this.animateButton();
 
-    this.validateLabel();
+    this.validateTextBackToTop();
   }
 
   disconnectedCallback() {
@@ -119,7 +117,7 @@ export class PostBackToTop {
           onClick={this.scrollToTop}
         >
           <post-icon aria-hidden="true" name="arrowup"></post-icon>
-          <span class="visually-hidden">{this.label}</span>
+          <span class="visually-hidden">{this.textBackToTop}</span>
         </button>
       </Host>
     );

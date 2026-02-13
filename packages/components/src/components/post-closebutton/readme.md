@@ -1,15 +1,15 @@
 # post-closebutton
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property     | Attribute     | Description                                             | Type                              | Default    |
-| ------------ | ------------- | ------------------------------------------------------- | --------------------------------- | ---------- |
-| `buttonType` | `button-type` | Overrides the close button's type ("button" by default) | `"button" \| "reset" \| "submit"` | `'button'` |
+| Property     | Attribute     | Description                                                                                                            | Type                              | Default     |
+| ------------ | ------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------- |
+| `buttonType` | `button-type` | The "type" attribute used for the close button                                                                         | `"button" \| "reset" \| "submit"` | `'button'`  |
+| `placement`  | `placement`   | Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling. | `"auto" \| "manual"`              | `'auto'`    |
+| `size`       | `size`        | The size of the close button.                                                                                          | `"default" \| "small"`            | `'default'` |
 
 
 ## Slots
@@ -23,6 +23,7 @@
 
 ### Used by
 
+ - [post-megadropdown](../post-megadropdown)
  - [post-popover](../post-popover)
 
 ### Depends on
@@ -33,6 +34,7 @@
 ```mermaid
 graph TD;
   post-closebutton --> post-icon
+  post-megadropdown --> post-closebutton
   post-popover --> post-closebutton
   style post-closebutton fill:#f9f,stroke:#333,stroke-width:4px
 ```

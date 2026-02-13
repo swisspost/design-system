@@ -38,60 +38,58 @@ export const Banner: Story = {
             type: ['success', 'error', 'warning', 'info'],
             dismissible: [true, false],
             hasButtons: [true, false],
-          }).map(
-            (bannerArgs, index) => {
-              const bannerId = `banner-${index}`;
-              const isDismissed = dismissedBanners[bannerId];
+          }).map((bannerArgs, index) => {
+            const bannerId = `banner-${index}`;
+            const isDismissed = dismissedBanners[bannerId];
 
-              if (isDismissed) {
-                return html`
-                  <button 
-                    class="btn btn-secondary align-self-start" 
-                    @click=${() => {
-                      const newDismissedBanners = { ...dismissedBanners };
-                      delete newDismissedBanners[bannerId];
-                      updateArgs({ dismissedBanners: newDismissedBanners });
-                    }}
-                  >
-                    Reset ${bannerArgs.type} Banner${bannerArgs.hasButtons ? ' with buttons' : ''}
-                  </button>
-                `;
-              }
-
+            if (isDismissed) {
               return html`
-                <post-banner 
-                  type=${bannerArgs.type}
-                  @postDismissed=${() => {
-                    if (bannerArgs.dismissible) {
-                      updateArgs({ 
-                        dismissedBanners: { 
-                          ...dismissedBanners, 
-                          [bannerId]: true 
-                        } 
-                      });
-                    }
+                <button
+                  class="btn btn-secondary align-self-start"
+                  @click=${() => {
+                    const newDismissedBanners = { ...dismissedBanners };
+                    delete newDismissedBanners[bannerId];
+                    updateArgs({ dismissedBanners: newDismissedBanners });
                   }}
                 >
-                  ${bannerArgs.dismissible ? html`
-                    <post-closebutton slot="close-button">Close</post-closebutton>
-                  ` : nothing}
-
-                  <h4 slot="heading">Heading</h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis temporibus
-                    blanditiis expedita inventore atque. Numquam velit aut eveniet cumque non?
-                  </p>
-                  ${bannerArgs.hasButtons
-                    ? html` <button class="btn btn-primary" slot="actions">
-                          <span>Akcepti</span></button
-                        ><button class="btn btn-secondary" slot="actions">
-                          <span>Aborti</span>
-                        </button>`
-                    : ''}
-                </post-banner>
+                  Reset ${bannerArgs.type} Banner${bannerArgs.hasButtons ? ' with buttons' : ''}
+                </button>
               `;
-            },
-          )}
+            }
+
+            return html`
+              <post-banner
+                type=${bannerArgs.type}
+                @postDismissed=${() => {
+                  if (bannerArgs.dismissible) {
+                    updateArgs({
+                      dismissedBanners: {
+                        ...dismissedBanners,
+                        [bannerId]: true,
+                      },
+                    });
+                  }
+                }}
+              >
+                ${bannerArgs.dismissible
+                  ? html` <post-closebutton slot="close-button">Close</post-closebutton> `
+                  : nothing}
+
+                <h4 slot="heading">Heading</h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis temporibus
+                  blanditiis expedita inventore atque. Numquam velit aut eveniet cumque non?
+                </p>
+                ${bannerArgs.hasButtons
+                  ? html` <button class="btn btn-primary" slot="actions">
+                        <span>Akcepti</span></button
+                      ><button class="btn btn-secondary" slot="actions">
+                        <span>Aborti</span>
+                      </button>`
+                  : ''}
+              </post-banner>
+            `;
+          })}
         </div>
       `,
       {

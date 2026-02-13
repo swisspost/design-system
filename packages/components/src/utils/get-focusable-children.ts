@@ -1,3 +1,5 @@
+import { getRoot } from '@/utils/get-root';
+
 const focusableSelector = `:where(${[
   'button',
   'input:not([type="hidden"])',
@@ -25,53 +27,89 @@ const focusDisablingSelector = `:where(${[
   '[hidden]:not([hidden="false"])',
 ].join(',')})`;
 
-export function getFocusableChildren(element: Element): HTMLElement[] {
+export function getFocusableChildren(element: Element | Document | ShadowRoot): HTMLElement[] {
   const focusableChildren = element.querySelectorAll<HTMLElement>(
     `${focusableSelector}:not(${focusDisablingSelector})`,
   );
 
-  return Array.from(focusableChildren).filter(isVisible);
+  return Array.from(focusableChildren).filter(el => !isFocusBlockedByCSS(el));
 }
 
-// Searches deeper accross shadowDom
-export function getDeepFocusableChildren(element: Element): HTMLElement[] {
-  const results: HTMLElement[] = [];
+// Searches deeper across shadow DOM
+export function getDeepFocusableChildren(
+  el: Element | DocumentFragment,
+  filter?: (el: Element) => boolean,
+  visited: Set<Node> = new Set(),
+): HTMLElement[] {
+  if (visited.has(el)) return [];
+  visited.add(el);
 
-  function traverse(node: Element | ShadowRoot) {
-    if (isElementFocusable(node)) {
-      results.push(node as HTMLElement);
-    }
+  let nodes: Element[] = [];
 
-    if (node instanceof HTMLElement && node.shadowRoot) {
-      traverse(node.shadowRoot);
-    }
-
-    for (const child of Array.from(node.children)) {
-      traverse(child);
-    }
-
-    if (node instanceof HTMLElement) {
-      for (const slot of Array.from(node.querySelectorAll('slot'))) {
-        for (const el of slot.assignedElements({ flatten: true })) {
-          traverse(el);
-        }
-      }
-    }
+  // SLOT
+  if (el instanceof HTMLSlotElement) {
+    const assigned = el.assignedElements({ flatten: true });
+    nodes = assigned.length ? assigned : Array.from(el.children);
   }
 
-  traverse(element);
-  return results;
+  // SHADOW ROOT
+  else if (el instanceof HTMLElement && el.shadowRoot) {
+    nodes = Array.from(el.shadowRoot.children);
+  }
+
+  // NORMAL ELEMENT
+  else if (el instanceof Element) {
+    nodes = Array.from(el.children);
+  }
+
+  if (filter) {
+    nodes = nodes.filter(filter);
+  }
+
+  const focusableElements: HTMLElement[] = [];
+
+  for (const node of nodes) {
+    if (isElementFocusable(node)) {
+      focusableElements.push(node);
+      continue;
+    }
+
+    focusableElements.push(...getDeepFocusableChildren(node, filter, visited));
+  }
+
+  return focusableElements;
 }
 
-function isVisible(el: HTMLElement): boolean {
-  const style = window.getComputedStyle(el.parentElement);
-  return style.display !== 'none' && style.visibility !== 'hidden';
+function isFocusBlockedByCSS(el: Element | Document | ShadowRoot): boolean {
+  if (el instanceof Document) {
+    return false;
+  }
+
+  if (el instanceof ShadowRoot) {
+    return isFocusBlockedByCSS(el.host);
+  }
+
+  if (typeof el.checkVisibility === 'function') {
+    return !el.checkVisibility({ visibilityProperty: true });
+  }
+
+  const style = window.getComputedStyle(el);
+  if (style.display === 'none' || style.visibility !== 'visible') {
+    return true;
+  }
+
+  if (el.parentElement) {
+    return isFocusBlockedByCSS(el.parentElement);
+  }
+
+  const root = getRoot(el);
+  return isFocusBlockedByCSS(root);
 }
 
-function isElementFocusable(node: Element | ShadowRoot): boolean {
+function isElementFocusable(node: Element | ShadowRoot): node is HTMLElement {
   return (
     node instanceof HTMLElement &&
     node.matches(`${focusableSelector}:not(${focusDisablingSelector})`) &&
-    isVisible(node)
+    !isFocusBlockedByCSS(node)
   );
 }

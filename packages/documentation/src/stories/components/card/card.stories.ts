@@ -1,13 +1,12 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { choose } from 'lit/directives/choose.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
   tags: ['package:Styles', 'status:InProgress'],
+  render: renderCard,
   decorators: [clickBlocker],
   parameters: {
     badges: [],
@@ -17,65 +16,58 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    showImage: false,
-    imagePosition: 'top',
-    content: "<h5>This is my card's title</h5><p>This is my card's content.</p>",
-    action: 'button',
+    interactive: false,
+    hiddenLink: false,
+    action: 'link',
+    title: 'Card title',
+    body: "This is my card's content.",
   },
   argTypes: {
-    showImage: {
-      name: 'Show Image',
-      description: 'When set to `true`, an image is shown in the card.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Card Image',
-      },
+    title: {
+      name: 'Title',
+      description: 'The title of the card.',
+      control: { type: 'text' },
+      table: { category: 'Content' },
     },
-    imagePosition: {
-      name: 'Image Position',
-      description: 'Defines the position of the image within the card.',
-      if: {
-        arg: 'showImage',
-      },
-      control: {
-        type: 'inline-radio',
-        labels: {
-          top: 'Top',
-          bottom: 'Bottom',
-        },
-      },
-      options: ['top', 'bottom'],
-      table: {
-        category: 'Card Image',
-      },
-    },
-    content: {
-      name: 'Content',
+    body: {
+      name: 'Body',
       description: 'The content within the card.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Card Content',
-      },
+      control: { type: 'text' },
+      table: { category: 'Content' },
+    },
+    interactive: {
+      name: 'Interactive Card',
+      description:
+        'When set to true, the entire card becomes clickable. ' +
+        'Only valid when the card contains exactly one navigation link.',
+      control: { type: 'boolean' },
+      table: { category: 'General' },
     },
     action: {
       name: 'Action',
-      description: 'Defines the call-to-action to show in the card.',
+      description: 'The type of actions used in the card.',
+      if: {
+        arg: 'interactive',
+        truthy: false,
+      },
       control: {
         type: 'inline-radio',
-        labels: {
-          button: 'Button',
-          links: 'Links',
-          none: 'None',
-        },
+        labels: { link: 'Link', buttons: 'Buttons', none: 'None' },
       },
-      options: ['button', 'links', 'none'],
-      table: {
-        category: 'Card Content',
+      options: ['link', 'buttons', 'none'],
+      table: { category: 'General' },
+    },
+    hiddenLink: {
+      name: 'Hidden Link',
+      description: 'When set to true, the link within the interactive card is visually hidden.',
+      if: {
+        arg: 'interactive',
+        truthy: true,
       },
+      control: {
+        type: 'boolean',
+      },
+      table: { category: 'General' },
     },
   },
 };
@@ -98,160 +90,93 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 }
 
 // RENDERER
-function getCardLinks() {
+function getCardLink(args: Args) {
   return html`
-    ${['Link Text', 'More Link'].map(label => html` <a class="card-link" href="#">${label}</a> `)}
+    <a class=${args.hiddenLink ? 'visually-hidden' : 'btn btn-tertiary px-0 mt-8'} href="#">
+      Navigation Link
+      <post-icon aria-hidden="true" name="arrowright"></post-icon>
+    </a>
   `;
 }
 
-function getCardButton() {
+function getCardButtons() {
   return html`
-    <button class="btn btn-primary">
-      <span>Button Text</span>
-    </button>
-  `;
-}
-
-function getCardContent({ content, action }: Args) {
-  return html`
-    <div class="card-body">
-      ${unsafeHTML(content)}
-      ${choose(
-        action,
-        [
-          ['button', getCardButton],
-          ['links', getCardLinks],
-        ],
-        () => html` ${nothing} `,
-      )}
+    <div class="d-flex flex-column gap-8 mt-24">
+      <button class="btn btn-primary">
+        <span>Primary action</span>
+      </button>
+      <button class="btn btn-secondary">
+        <span>Secondary action</span>
+      </button>
+      <button class="btn btn-tertiary">
+        <span>Tertiary action</span>
+      </button>
     </div>
   `;
 }
 
-function getCardImage() {
-  return html` <img src="https://picsum.photos/id/38/500/300" alt="" /> `;
-}
-
-function renderCardContent(args: Args) {
-  const { showImage, imagePosition } = args;
-
+function getCardContent(args: Args) {
   return html`
-    ${showImage && imagePosition === 'top' ? getCardImage() : nothing} ${getCardContent(args)}
-    ${showImage && imagePosition === 'bottom' ? getCardImage() : nothing}
+    <div class="card-body">
+      ${args.title ? html`<h3 class="card-title">${args.title}</h3>` : nothing}
+      ${args.body ? html`<p>${args.body}</p>` : nothing}
+      ${args.interactive || args.action === 'link' ? getCardLink(args) : nothing}
+      ${args.action === 'buttons' ? getCardButtons() : nothing}
+    </div>
   `;
 }
 
-function renderNoninteractiveCard(args: Args) {
-  return html` <div class="card">${renderCardContent(args)}</div> `;
+function renderCard(args: Args) {
+  if (args.interactive) {
+    return html`<post-linkarea class="card">${getCardContent(args)}</post-linkarea>`;
+  } else {
+    return html`<div class="card">${getCardContent(args)}</div>`;
+  }
 }
-
-function renderInteractiveCard(args: Args) {
-  return html`<post-linkarea class="card">${renderCardContent(args)}</post-linkarea>`;
-}
-
-const renderSimpleInteractiveCard = html`
-  <post-linkarea class="card">
-    <div class="card-body">
-      <p><a href="http://google.com">Interactive card</a></p>
-    </div>
-  </post-linkarea>
-`;
 
 // STORIES
 type Story = StoryObj;
 
 export const Default: Story = {
   decorators: [gridContainer],
-  render: (args: Args) =>
-    html`${args.action === 'button' ? renderInteractiveCard(args) : renderNoninteractiveCard(args)}`,
 };
 
-export const Foundation: Story = {
-  decorators: [(story: StoryFn) => html`<div class="d-flex gap-16">${story()}</div>`],
-  render: () => html`
-    <div class="card">
-      <div class="card-body">
-        <p>Non-interactive card</p>
-      </div>
-    </div>
-    ${renderSimpleInteractiveCard}
+export const Interactivity: Story = {
+  decorators: [
+    (story: StoryFn, context: StoryContext) => html`
+      <div class="d-flex gap-16">${story(context.args, context)}</div>
+    `,
+  ],
+  render: (args: Args) => html`
+    ${renderCard({
+      ...args,
+      interactive: true,
+      title: 'Interactive card',
+      body:
+        'An interactive card is clickable as a whole. ' +
+        'It contains a single interactive element which links to the same location as the card. ' +
+        'The interactive element is acting as an additional indicator to the elevation that the card is clickable.',
+    })}
+    ${renderCard({
+      ...args,
+      interactive: false,
+      action: 'link',
+      title: 'Non-interactive card',
+      body:
+        'A non-interactive card is not clickable. ' +
+        'It contains however either none, one or more interactive elements where each of them triggers different actions.',
+    })}
   `,
 };
 
-export const Palette: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
-  render: () => html`
-    <div class="palette palette-default">
-      <div class="container py-32">
-        <div class="row gy-16">
-          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-        </div>
-      </div>
-    </div>
-    <div class="palette palette-alternate">
-      <div class="container py-32">
-        <div class="row gy-16">
-          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-          <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
-        </div>
-      </div>
-    </div>
-  `,
-};
-
-export const ListGroup: Story = {
+export const HiddenLink: Story = {
   decorators: [gridContainer],
-  render: () => {
-    return html`
-      <div class="card">
-        <ul class="list-interactive">
-          ${['First Item', 'Second Item', 'Another Item'].map(
-            label => html` <li class="list-interactive-item">${label}</li> `,
-          )}
-        </ul>
-      </div>
-    `;
-  },
-};
-
-export const CustomContent: Story = {
-  decorators: [gridContainer],
-  render: () => {
-    return html`
-      <div class="card">
-        <div class="d-flex px-16 py-32 gap-16 align-items-center">
-          <post-icon aria-hidden="true" scale="1.5" name="profile"></post-icon>
-          <h3 class="fw-bold my-0 me-auto">User Details</h3>
-          <a href="#" aria-labelledby="details-title">
-            <post-icon aria-hidden="true" name="arrowright"></post-icon>
-            <span class="visually-hidden">Account Management</span>
-          </a>
-        </div>
-        <ul class="list-interactive">
-          <li class="list-interactive-item d-flex align-items-center justify-content-between">
-            <address class="mb-0">
-              Mr<br />First Name Last Name<br />Street 1<br />1234 City
-            </address>
-            <a href="#">
-              <post-icon aria-label="Edit Address" name="edit"></post-icon>
-              <span class="visually-hidden">Edit Address</span>
-            </a>
-          </li>
-          <li class="list-interactive-item d-flex align-items-center justify-content-between">
-            <p class="mb-0">Language: <span class="fw-bold">English</span></p>
-            <a href="#">
-              <post-icon aria-label="Edit Language" name="edit"></post-icon>
-              <span class="visually-hidden">Edit Language</span>
-            </a>
-          </li>
-        </ul>
-        <div class="card-links p-16">
-          <a href="#">Add Address</a>
-        </div>
-      </div>
-    `;
+  args: {
+    interactive: true,
+    hiddenLink: true,
+    title: 'Interactive card with hidden link',
+    body:
+      'Although the card appears to have no link,' +
+      'inspecting the code reveals a visually hidden link included to ensure accessibility support.',
   },
 };

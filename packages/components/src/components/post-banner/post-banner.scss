@@ -20,13 +20,16 @@ tokens.$default-map: components.$post-banner;
   row-gap: tokens.get('banner-content-gap');
   min-height: calc(#{tokens.get('banner-icon-size')} + (2 * #{tokens.get('banner-padding')}));
   padding: tokens.get('banner-padding');
-  padding-inline-start: calc(#{tokens.get('banner-padding')} + #{tokens.get('banner-icon-size')} + #{tokens.get('banner-gap')});
+  padding-inline-start: calc(
+    #{tokens.get('banner-padding')} + #{tokens.get('banner-icon-size')} +
+      #{tokens.get('banner-gap')}
+  );
   color: var(--post-current-fg);
   border-style: tokens.get('banner-border-style');
   border-width: tokens.get('banner-border-width');
   border-radius: tokens.get('banner-border-radius');
   box-shadow: tokens.get('banner-elevation');
-  
+
   // Default to info styles when no type attribute is present
   background-color: tokens.get('banner-info-bg');
   border-color: tokens.get('banner-info-border-color');
@@ -45,7 +48,7 @@ tokens.$default-map: components.$post-banner;
 }
 
 @each $name in 'info', 'success', 'warning', 'error' {
-  :host([type="#{$name}"]) {
+  :host([type='#{$name}']) {
     background-color: tokens.get('banner-#{$name}-bg');
     border-color: tokens.get('banner-#{$name}-border-color');
     @include color-scheme.set(tokens.get('post-banner-#{$name}-bg-scheme'));
@@ -72,12 +75,6 @@ tokens.$default-map: components.$post-banner;
 
 ::slotted(*) {
   margin-block: 0 !important;
-}
-
-::slotted(post-closebutton) {
-  position: absolute;
-  inset-block-start: tokens.get('banner-padding');
-  inset-inline-end: tokens.get('banner-padding');
 }
 
 @include utilities.high-contrast-mode {

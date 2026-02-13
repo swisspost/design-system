@@ -5,6 +5,7 @@
 :host {
   display: flex;
   user-select: none;
+  max-width: var(--post-header-content-max-width);
 
   @include media.only(desktop) {
     overflow: hidden;
@@ -13,7 +14,7 @@
 
 nav {
   flex: 1 1 auto;
-  
+
   @include media.only(desktop) {
     scroll-behavior: smooth;
     max-width: 100vw;

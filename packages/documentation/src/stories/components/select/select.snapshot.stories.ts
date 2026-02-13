@@ -76,15 +76,14 @@ export const Select: Story = {
         <div class="d-flex gap-16 flex-column">
           <h2>Floating Label</h2>
           ${bombArgsGeneratedDefault.map(
-            (args: Args) =>
-              html`
-                <div>
-                  ${FloatingLabel.render?.(
-                    { ...context.args, ...FloatingLabel.args, ...args },
-                    { ...context, id: `a-${crypto.randomUUID()}` },
-                  )}
-                </div>
-              `,
+            (args: Args) => html`
+              <div>
+                ${FloatingLabel.render?.(
+                  { ...context.args, ...FloatingLabel.args, ...args },
+                  { ...context, id: `a-${crypto.randomUUID()}` },
+                )}
+              </div>
+            `,
           )}
 
           <h2>Default</h2>
@@ -102,29 +101,27 @@ export const Select: Story = {
             })}
           <h2>Multiple - Floating Label</h2>
           ${bombArgsGeneratedMultiple.map(
-            (args: Args) =>
-              html`
-                <div>
-                  ${FloatingLabel.render?.(
-                    { ...context.args, ...FloatingLabel.args, ...args },
-                    { ...context, id: `a-${crypto.randomUUID()}` },
-                  )}
-                </div>
-              `,
+            (args: Args) => html`
+              <div>
+                ${FloatingLabel.render?.(
+                  { ...context.args, ...FloatingLabel.args, ...args },
+                  { ...context, id: `a-${crypto.randomUUID()}` },
+                )}
+              </div>
+            `,
           )}
           <h2>Multiple - Default</h2>
           ${bombArgsGeneratedMultiple
             .map((args: Args) => ({ ...args, floatingLabel: false }))
             .map(
-              (args: Args) =>
-                html`
-                  <div>
-                    ${Default.render?.(
-                      { ...context.args, ...Default.args, ...args },
-                      { ...context, id: `a-${crypto.randomUUID()}` },
-                    )}
-                  </div>
-                `,
+              (args: Args) => html`
+                <div>
+                  ${Default.render?.(
+                    { ...context.args, ...Default.args, ...args },
+                    { ...context, id: `a-${crypto.randomUUID()}` },
+                  )}
+                </div>
+              `,
             )}
         </div>
       `,

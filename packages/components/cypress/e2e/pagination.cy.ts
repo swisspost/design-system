@@ -11,9 +11,18 @@ describe('pagination', () => {
   describe('default', () => {
     beforeEach(() => {
       cy.getComponent('pagination', PAGINATION_ID);
-      cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').first().as('prevButton');
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').last().as('nextButton');
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .as('pageButtons');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .first()
+        .as('prevButton');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .last()
+        .as('nextButton');
     });
 
     it('should render', () => {
@@ -45,27 +54,21 @@ describe('pagination', () => {
 
     it('should navigate to next page when next button is clicked', () => {
       cy.get('@nextButton').click();
-      
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '2');
+
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '2');
     });
 
     it('should navigate to previous page when previous button is clicked', () => {
       cy.get('@nextButton').click();
       cy.get('@prevButton').click();
-      
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '1');
+
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '1');
     });
 
     it('should navigate to specific page when page button is clicked', () => {
       cy.get('@pageButtons').contains('3').click();
-      
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '3');
+
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '3');
     });
 
     it('should emit postChange event when page changes', () => {
@@ -79,8 +82,9 @@ describe('pagination', () => {
         .click()
         .then(() => {
           cy.wrap(EventHandlerMock).should('have.been.calledOnce');
-          cy.wrap(EventHandlerMock).should('have.been.calledWith', 
-            Cypress.sinon.match.has('detail', 2)
+          cy.wrap(EventHandlerMock).should(
+            'have.been.calledWith',
+            Cypress.sinon.match.has('detail', 2),
           );
         });
     });
@@ -88,7 +92,9 @@ describe('pagination', () => {
     it('should have proper accessible labels for page buttons', () => {
       cy.get('@pageButtons').each($button => {
         cy.wrap($button).should('have.attr', 'aria-label');
-        cy.wrap($button).invoke('attr', 'aria-label').should('match', /page|seite|pagina/i);
+        cy.wrap($button)
+          .invoke('attr', 'aria-label')
+          .should('match', /page|seite|pagina/i);
       });
     });
   });
@@ -97,7 +103,10 @@ describe('pagination', () => {
     beforeEach(() => {
       cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
       cy.get('@pagination').find('.pagination-ellipsis').as('ellipsis');
-      cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .as('pageButtons');
     });
 
     it('should display ellipsis when there are many pages', () => {
@@ -112,71 +121,91 @@ describe('pagination', () => {
 
     it('should always show first and last page buttons', () => {
       cy.get('@pageButtons').first().should('contain', '1');
-      cy.get('@pageButtons').last().invoke('text').then(text => {
-        expect(parseInt(text)).to.be.greaterThan(1);
-      });
+      cy.get('@pageButtons')
+        .last()
+        .invoke('text')
+        .then(text => {
+          expect(parseInt(text)).to.be.greaterThan(1);
+        });
     });
 
     it('should update visible pages when navigating to middle page', () => {
       cy.get('@pageButtons').contains('5').click();
-      
+
       cy.get('.pagination-ellipsis').should('have.length.greaterThan', 0);
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '5');
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '5');
     });
   });
 
   describe('dynamic updates', () => {
     beforeEach(() => {
       cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
-      cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .as('pageButtons');
     });
 
     it('updates active page when `page` prop changes programmatically', () => {
       cy.get('@pagination').then($el => {
-        ( $el[0] as unknown as PaginationEl ).page = 4;
+        ($el[0] as unknown as PaginationEl).page = 4;
       });
 
       cy.wait(200);
 
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '4');
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '4');
     });
 
     it('recalculates visible pages when `collectionSize` changes', () => {
       cy.get('@pagination').then($el => {
-        ( $el[0] as unknown as PaginationEl ).pageSize = 1;
-        ( $el[0] as unknown as PaginationEl ).collectionSize = 50;
+        ($el[0] as unknown as PaginationEl).pageSize = 1;
+        ($el[0] as unknown as PaginationEl).collectionSize = 50;
       });
       cy.wait(300);
 
-      cy.get('.pagination-link').not('.pagination-control-button').then($initial => {
-        const initialCount = $initial.length;
+      cy.get('.pagination-link')
+        .not('.pagination-control-button')
+        .then($initial => {
+          const initialCount = $initial.length;
 
-        cy.get('@pagination').then($el => { ( $el[0] as unknown as PaginationEl ).collectionSize = 2; });
-        cy.wait(300);
+          cy.get('@pagination').then($el => {
+            ($el[0] as unknown as PaginationEl).collectionSize = 2;
+          });
+          cy.wait(300);
 
-        cy.get('.pagination-link').not('.pagination-control-button').should('have.length.at.most', initialCount - 1);
-      });
+          cy.get('.pagination-link')
+            .not('.pagination-control-button')
+            .should('have.length.at.most', initialCount - 1);
+        });
     });
   });
 
   describe('last page', () => {
     beforeEach(() => {
       cy.getComponent('pagination', PAGINATION_ID);
-      cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').first().as('prevButton');
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').last().as('nextButton');
-      
-      cy.get('@pageButtons').last().invoke('text').then(lastText => {
-        const lastLabel = lastText.trim();
-        cy.get('@pageButtons').last().click();
-        cy.get('.pagination-link-active')
-          .find('span[aria-hidden="true"]')
-          .should('contain', lastLabel);
-      });
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .as('pageButtons');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .first()
+        .as('prevButton');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .last()
+        .as('nextButton');
+
+      cy.get('@pageButtons')
+        .last()
+        .invoke('text')
+        .then(lastText => {
+          const lastLabel = lastText.trim();
+          cy.get('@pageButtons').last().click();
+          cy.get('.pagination-link-active')
+            .find('span[aria-hidden="true"]')
+            .should('contain', lastLabel);
+        });
     });
 
     it('should disable next button on last page', () => {
@@ -208,49 +237,52 @@ describe('pagination', () => {
   describe('keyboard navigation', () => {
     beforeEach(() => {
       cy.getComponent('pagination', PAGINATION_ID);
-      cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').first().as('prevButton');
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').last().as('nextButton');
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .as('pageButtons');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .first()
+        .as('prevButton');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .last()
+        .as('nextButton');
     });
 
     it('should activate page on Enter key', () => {
       cy.get('@pageButtons').contains('2').click();
-      
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '2');
+
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '2');
     });
 
     it('should activate page on Space key', () => {
-      cy.get('@pageButtons').contains('3').then($button => {
-        $button[0].dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
-      });
-      
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '3');
+      cy.get('@pageButtons')
+        .contains('3')
+        .then($button => {
+          $button[0].dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        });
+
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '3');
     });
 
     it('should activate next button with Enter key', () => {
       cy.get('@nextButton').then($button => {
         $button[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
       });
-      
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '2');
+
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '2');
     });
 
     it('should activate previous button with Space key', () => {
       cy.get('@nextButton').click();
-      
+
       cy.get('@prevButton').then($button => {
         $button[0].dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
       });
-      
-      cy.get('.pagination-link-active')
-        .find('span[aria-hidden="true"]')
-        .should('contain', '1');
+
+      cy.get('.pagination-link-active').find('span[aria-hidden="true"]').should('contain', '1');
     });
 
     it('should have proper tabindex for enabled buttons', () => {
@@ -273,14 +305,19 @@ describe('pagination', () => {
   describe('disabled state', () => {
     beforeEach(() => {
       cy.getComponent('pagination', PAGINATION_ID);
-      
+
       // Set the disabled attribute programmatically
       cy.get('@pagination').then($el => {
-        ( $el[0] as unknown as PaginationEl ).disabled = true;
+        ($el[0] as unknown as PaginationEl).disabled = true;
       });
-      
-      cy.get('@pagination').find('.pagination-link').not('.pagination-control-button').as('pageButtons');
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').as('controlButtons');
+
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .as('pageButtons');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .as('controlButtons');
     });
 
     it('should disable all page buttons', () => {
@@ -362,10 +399,8 @@ describe('pagination', () => {
       cy.viewport(375, 667);
       cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
       cy.wait(200); // Wait for debounced resize handler
-      
-      cy.get('.pagination-link')
-        .not('.pagination-control-button')
-        .should('exist');
+
+      cy.get('.pagination-link').not('.pagination-control-button').should('exist');
       cy.get('.pagination-ellipsis').should('exist');
     });
 
@@ -373,7 +408,7 @@ describe('pagination', () => {
       cy.viewport(320, 568);
       cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
       cy.wait(200);
-      
+
       // Should have at least first page + last page + MIN_VISIBLE_PAGES
       cy.get('.pagination-link')
         .not('.pagination-control-button')
@@ -384,25 +419,33 @@ describe('pagination', () => {
       cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
       cy.viewport(1920, 1080);
       cy.wait(200);
-      
-      cy.get('.pagination-link').not('.pagination-control-button').then($wideButtons => {
-        const wideCount = $wideButtons.length;
-        
-        cy.viewport(375, 667);
-        cy.wait(200);
-        
-        cy.get('.pagination-link')
-          .not('.pagination-control-button')
-          .should('have.length.at.most', wideCount);
-      });
+
+      cy.get('.pagination-link')
+        .not('.pagination-control-button')
+        .then($wideButtons => {
+          const wideCount = $wideButtons.length;
+
+          cy.viewport(375, 667);
+          cy.wait(200);
+
+          cy.get('.pagination-link')
+            .not('.pagination-control-button')
+            .should('have.length.at.most', wideCount);
+        });
     });
   });
 
   describe('icons', () => {
     beforeEach(() => {
       cy.getComponent('pagination', PAGINATION_ID);
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').first().as('prevButton');
-      cy.get('@pagination').find('.pagination-control .pagination-control-button').last().as('nextButton');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .first()
+        .as('prevButton');
+      cy.get('@pagination')
+        .find('.pagination-control .pagination-control-button')
+        .last()
+        .as('nextButton');
     });
 
     it('should have chevron icons in control buttons', () => {
