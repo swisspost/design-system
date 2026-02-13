@@ -7,6 +7,7 @@ const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
 };
 
 describe('header', () => {
+
   function getContentTop() {
     return cy.get('.container').then($container => Math.round($container.position().top));
   }
@@ -206,6 +207,190 @@ describe('header', () => {
       // Burger menu is opened
       cy.get('div.burger-menu.extended').should('exist').should('be.visible');
       cy.get('@header').shadow().find('.local-header').should('be.visible');
+    });
+  });
+
+  describe('keyboard navigation', () => {
+    describe('desktop', () => {
+      beforeEach(() => {
+        cy.viewport(1920, 1080);
+        cy.getComponent('header', HEADER_ID);
+        cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().as('megadropdown-trigger');
+        cy.get('post-megadropdown').first().as('megadropdown');
+        cy.get('@megadropdown').find('.close-button').as('close-btn');
+        cy.get('@megadropdown').find('.megadropdown').as('megadropdown-container');
+      });
+
+      it('should have close button as the last tab element in megadropdown', () => {
+        cy.get('@megadropdown-trigger').click({ force: true });
+        cy.get('@close-btn').should('be.visible');
+
+        cy.get('@megadropdown-container')
+          .getFocusableElements()
+          .then(focusableElements => {
+            cy.get('@close-btn')
+              .find('button')
+              .then($closeBtn => {
+                expect(focusableElements[focusableElements.length - 1]).to.equal($closeBtn[0]);
+              });
+          });
+      });
+
+      it('should close megadropdown and focus next nav item when pressing tab from close button', () => {
+        cy.get('@megadropdown-trigger').click({ force: true });
+        cy.get('@close-btn').should('be.visible');
+
+        cy.get('@close-btn').find('button').focus();
+        cy.press(Cypress.Keyboard.Keys.TAB);
+
+        cy.get('@megadropdown-container').should('not.be.visible');
+        
+        cy.focused().then($focused => {
+          cy.get('@megadropdown').then($megadropdown => {
+            cy.wrap($megadropdown[0].contains($focused[0])).should('be.false');
+          });
+        });
+      });
+    });
+
+    describe('mobile and tablet', () => {
+      describe('first level navigation', () => {
+        beforeEach(() => {
+          cy.viewport('iphone-6');
+          cy.getComponent('header', HEADER_ID);
+          cy.get('post-togglebutton').as('burger-menu-btn');
+        });
+
+        it('should allow focus on all elements from global header, local header and burger menu when first level is opened', () => {
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          cy.get('@header')
+            .find('post-mainnavigation')
+            .should('be.visible')
+            .find('post-megadropdown-trigger')
+            .first()
+            .find('button')
+            .focus()
+            .should('have.focus');
+
+          cy.get('@burger-menu-btn').focus().should('have.focus');
+
+          cy.get('@header')
+            .shadow()
+            .find('.local-header')
+            .then($localHeader => {
+              const focusableElements = $localHeader.find('a, button');
+              if (focusableElements.length > 0) {
+                cy.wrap(focusableElements[0]).focus().should('have.focus');
+              }
+            });
+        });
+
+        it('should trap focus within the burger menu (loop from last element back to menu button)', () => {
+          cy.get('@burger-menu-btn').click();
+          cy.get('div.burger-menu.extended').should('exist');
+
+          // Find all focusable elements in main navigation
+          cy.get('@header')
+            .find('post-mainnavigation')
+            .should('be.visible')
+            .getFocusableElements()
+            .then(focusableElements => {
+              expect(focusableElements.length).to.be.greaterThan(0);
+            
+              // Focus first element
+              focusableElements[0].focus();
+            
+              // Tab through all elements to reach beyond the navigation
+              const tabCount = focusableElements.length;
+              for (let i = 0; i < tabCount; i++) {
+                cy.press('Tab');
+              }
+              cy.press('Tab');
+            
+              // Verify the burger menu button is now focused
+              cy.get('@burger-menu-btn').should('have.focus');
+            });
+        });
+
+        describe('second level navigation (megadropdown)', () => {
+          beforeEach(() => {
+            cy.viewport('iphone-6');
+            cy.getComponent('header', HEADER_ID);
+            cy.get('post-togglebutton').as('burger-menu-btn');
+            cy.get('post-megadropdown-trigger').find('button').first().as('megadropdown-trigger');
+            cy.get('post-megadropdown').first().as('megadropdown');
+          });
+
+          it('should only allow focus on megadropdown elements when second level is opened', () => {
+            cy.get('@burger-menu-btn').click();
+            cy.get('div.burger-menu.extended').should('exist');
+
+            cy.get('@megadropdown-trigger').click();
+            cy.get('@megadropdown').should('be.visible');
+
+            cy.get('@megadropdown')
+              .shadow()
+              .getFocusableElements()
+              .then(focusableElements => {
+                expect(focusableElements.length).to.be.greaterThan(0);
+
+                focusableElements[0].focus();
+
+                // Verify each focused element is within megadropdown
+                for (let i = 0; i < focusableElements.length; i++) {
+                  cy.focused().then($focused => {
+                    const currentElement = $focused[0];
+                    const isInList = Array.from(focusableElements).includes(currentElement);
+                    cy.wrap(isInList).should('be.true');
+                  });
+
+                  // Move to next element
+                  if (i < focusableElements.length - 1) {
+                    cy.press(Cypress.Keyboard.Keys.TAB);
+                  }
+                }
+              });
+          });
+
+          it('should have back button as the last focusable element in megadropdown', () => {
+            cy.get('@burger-menu-btn').click();
+            cy.get('div.burger-menu.extended').should('exist');
+
+            cy.get('@megadropdown-trigger').click();
+            cy.get('@megadropdown').should('be.visible');
+
+            cy.get('@megadropdown').shadow().find('.back-button').as('back-btn');
+
+            cy.get('@megadropdown')
+              .shadow()
+              .getFocusableElements()
+              .then(focusableElements => {
+                cy.get('@back-btn').then($backBtn => {
+                  expect(focusableElements[focusableElements.length - 1]).to.equal($backBtn[0]);
+                });
+              });
+          });
+
+          it('should focus on megadropdown trigger when clicking back button', () => {
+            cy.get('@burger-menu-btn').click();
+            cy.get('div.burger-menu.extended').should('exist');
+
+            cy.get('@megadropdown-trigger').click();
+            cy.get('@megadropdown').should('be.visible');
+
+            cy.get('@megadropdown').shadow().find('.back-button').click();
+            cy.get('@megadropdown').should('not.be.visible');
+
+            cy.focused().then($focused => {
+              cy.get('@megadropdown-trigger').then($trigger => {
+                expect($focused[0]).to.equal($trigger[0]);
+              });
+            });
+          });
+        });
+      });
     });
   });
 });
