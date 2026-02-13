@@ -1,4 +1,4 @@
-import { IS_BROWSER } from './is-browser';
+import { IS_BROWSER } from './environment';
 
 export function getAttributeObserver(
   attribute: string,
