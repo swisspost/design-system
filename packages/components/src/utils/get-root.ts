@@ -1,4 +1,4 @@
-import { IS_BROWSER } from './environment';
+import { IS_BROWSER } from './is-browser';
 
 /**
  * getRootNode() can only be used after the element has been attached to the document!
