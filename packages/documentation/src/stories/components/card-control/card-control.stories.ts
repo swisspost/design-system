@@ -185,7 +185,7 @@ function renderComponent(args: Args, context: StoryContext) {
         class=${args.validation === 'null' ? nothing : args.validation}
         type=${args.type}
         name=${args.type === 'radio' && args.groupName ? args.groupName : nothing}
-        checked=${args.checked ? 'checked' : nothing}
+        ?checked=${args.checked}
         disabled=${args.disabled ? 'disabled' : nothing}
         aria-invalid=${args.groupName || args.validation === 'null' ? nothing : 'true'}
         aria-describedby=${args.groupName || args.validation === 'null'
@@ -305,7 +305,7 @@ export const Grouping: Story = {
 
     function render(_v: unknown, i: number) {
       const label = `Label ${i + 1}`;
-      return html`${meta.render?.({ ...args, label }, context)}`;
+      return html`${meta.render?.({ ...args, label, checked: undefined }, context)}`;
     }
   },
 };
@@ -322,7 +322,8 @@ export const Lineup: Story = {
             ${meta.render?.(
               {
                 ...args,
-                label: label,
+                checked: undefined,
+                label,
                 description: STORY_LINEUP_DESCRIPTIONS[i],
               },
               context,

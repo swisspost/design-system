@@ -37,7 +37,7 @@ export class PostLinkarea {
     } else {
       // do NOT dispatch event, if interactive element has been clicked directly
       // this becomes super important when it comes to form controls (e.g. checkbox, radio)
-      dispatchEvent = !interactiveElements.some(el => el === target);
+      dispatchEvent = !(target as HTMLElement).closest(INTERACTIVE_ELEMENTS_SELECTOR);
     }
 
     if (dispatchEvent) {
