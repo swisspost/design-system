@@ -145,8 +145,8 @@ export class PostPopoverTrigger {
   }
 
   disconnectedCallback() {
-    this.trigger?.removeEventListener('click', this.boundHandleToggle);
-    this.trigger?.removeEventListener('keydown', this.boundHandleKeyDown);
+    this.trigger.removeEventListener('click', this.boundHandleToggle);
+    this.trigger.removeEventListener('keydown', this.boundHandleKeyDown);
     this.popover?.removeEventListener('postToggle', this.boundHandlePostToggle);
   }
 
