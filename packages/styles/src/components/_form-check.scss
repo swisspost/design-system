@@ -37,6 +37,7 @@
     }
   }
 
+  // Checkbox
   &:has(input[type='checkbox']):not(.form-switch) {
     padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
 
@@ -109,6 +110,7 @@
     }
   }
 
+  // Radio Button
   &:has(input[type='radio']) {
     padding-block: tokens.get('radio-button-padding-block-single', components.$post-radio-button);
 
@@ -151,6 +153,26 @@
         @include utility-mx.high-contrast-mode() {
           color: GrayText;
         }
+      }
+    }
+  }
+
+  // Small variant (Checkbox & Radio Button)
+  &.form-check-sm:not(.form-switch) {
+    display: flex;
+    align-items: center;
+
+    &:has(input[type='radio']) {
+      > input[type='radio'] ~ label {
+        font-size: tokens.get('radio-button-small-label-font-size', components.$post-radio-button);
+        padding-block: tokens.get(
+          'radio-button-small-label-padding-block',
+          components.$post-radio-button
+        );
+        padding-inline-start: tokens.get(
+          'radio-button-gap-inline-text-start',
+          components.$post-radio-button
+        );
       }
     }
   }
