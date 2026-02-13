@@ -322,6 +322,14 @@ $toolbar-icons: (
   overflow-x: hidden;
 }
 
+@include media.min(xl) {
+  .custom-container {
+    .sbdocs-preview {
+      margin-inline: calc(-1 * ((100vw - var(--post-container-max-width)) / 2));
+    }
+  }
+}
+
 .sbdocs-preview {
   &:not([data-color-scheme]) {
     display: none;
