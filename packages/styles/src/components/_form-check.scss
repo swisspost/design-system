@@ -216,8 +216,7 @@ fieldset
   margin-block-end: tokens.get('checkbox-small-group-items-gap-block', components.$post-checkbox);
 }
 
-fieldset
-.form-check-sm:has(input[type='checkbox']):not(.form-switch, .form-check-inline) {
+fieldset .form-check-sm:has(input[type='checkbox']):not(.form-switch, .form-check-inline) {
   padding-block-start: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
   padding-block-end: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
 }
