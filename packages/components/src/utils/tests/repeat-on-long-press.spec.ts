@@ -58,17 +58,17 @@ describe('repeatOnLongPress', () => {
     expect(callback).toHaveBeenCalledTimes(4);
   });
 
-  it('stops repeating when the returned stop function is called', () => {
+  it('stops repeating on pointerup', () => {
     const callback = jest.fn();
 
-    const stop = repeatOnLongPress(callback, { delayMs: 300, intervalMs: 100 });
+    repeatOnLongPress(callback, { delayMs: 300, intervalMs: 100 });
 
     expect(callback).toHaveBeenCalledTimes(1);
 
     jest.advanceTimersByTime(300 + 100);
     expect(callback).toHaveBeenCalledTimes(2);
 
-    stop();
+    window.dispatchEvent(new Event('pointerup'));
 
     jest.advanceTimersByTime(1000);
     expect(callback).toHaveBeenCalledTimes(2);

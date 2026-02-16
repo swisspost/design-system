@@ -16,8 +16,6 @@ export function repeatOnLongPress(callback: () => void, options?: LongPressOptio
   window.addEventListener('pointerup', handler);
   window.addEventListener('pointercancel', handler);
   window.addEventListener('pointerleave', handler);
-
-  return stop;
 }
 
 function repeat(
