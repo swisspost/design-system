@@ -4,26 +4,17 @@ import { MetaComponent } from '@root/types';
 import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
-  id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
-  title: 'Components/Form Input',
+  id: '51471f0b-1bbb-4059-951b-f89aa7339f91',
+  title: 'Components/Form Timepicker',
   tags: ['package:Styles', 'status:Stable'],
   render: render,
   parameters: {
     badges: [],
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21-168',
-    },
-    controls: {
-      exclude: ['List id'],
-    },
   },
   args: {
     label: 'Label',
     floatingLabel: true,
     hiddenLabel: false,
-    placeholder: 'Placeholder',
-    type: 'text',
     hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
@@ -65,51 +56,9 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    placeholder: {
-      name: 'Placeholder',
-      description: 'Defines the text displayed in the input when it is empty.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    type: {
-      name: 'Type',
-      description: 'The components `type` attribute.',
-      control: {
-        type: 'select',
-      },
-      options: [
-        'text',
-        'number',
-        'email',
-        'tel',
-        'url',
-        'password',
-        'date',
-        'datetime-local',
-        'month',
-        'week',
-      ],
-      table: {
-        category: 'General',
-      },
-    },
     hint: {
       name: 'Helper Text',
       description: 'Text to place in the help text area of the component.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    list: {
-      name: 'List id',
-      description: 'The id of the datalist providing options to the user.',
       control: {
         type: 'text',
       },
@@ -178,10 +127,6 @@ function render(args: Args, context: StoryContext) {
     ? html` <label for="${id}" class="form-label">${getLabelText(args)}</label> `
     : null;
 
-  if (args.floatingLabel && !args.placeholder) {
-    args.placeholder = ' '; // a placeholder must always be defined for the floating label to work properly
-  }
-
   const contextual = getValidationMessages(args, context);
 
   const ariaDescribedByParts = [
@@ -196,9 +141,7 @@ function render(args: Args, context: StoryContext) {
     <input
       id="${id}"
       class="${classes}"
-      type="${args.type}"
-      placeholder="${args.placeholder || nothing}"
-      list="${args.list || nothing}"
+      type="time"
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
@@ -217,51 +160,3 @@ function render(args: Args, context: StoryContext) {
 }
 
 export const Default: Story = {};
-
-export const FloatingLabel: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
-  args: {
-    floatingLabel: true,
-    hint: '',
-  },
-};
-
-export const Validation: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled'],
-    },
-  },
-  args: {
-    validation: 'is-invalid',
-    hint: '',
-    floatingLabel: true,
-  },
-};
-
-export const Autocomplete: Story = {
-  args: {
-    id: 'postal-option',
-    list: 'postal-options',
-    label: 'Postal Option',
-    placeholder: 'Start typing...',
-    hint: 'Start typing to see suggested options, for example “Registered” or “Express”.',
-  },
-  render: (args, context) => {
-    return html`
-      ${render(args, context)}
-
-      <datalist id=${args.list}>
-        <option value="Standard"></option>
-        <option value="Express"></option>
-        <option value="Registered"></option>
-        <option value="International"></option>
-        <option value="Parcel Pickup"></option>
-      </datalist>
-    `;
-  },
-};

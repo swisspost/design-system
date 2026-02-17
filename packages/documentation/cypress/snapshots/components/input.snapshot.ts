@@ -1,5 +1,5 @@
 const BASEURL = '/iframe.html?id=snapshots--input';
-const types = ['text', 'password', 'date', 'datetimelocal', 'month', 'week', 'time'];
+const types = ['text', 'password', 'date', 'datetimelocal', 'month', 'week'];
 
 describe('Input', () => {
   describe('types', () => {
