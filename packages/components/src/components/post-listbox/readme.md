@@ -91,11 +91,13 @@ Type: `Promise<void>`
 ### Depends on
 
 - [post-popovercontainer](../post-popovercontainer)
+- [post-icon](../post-icon)
 
 ### Graph
 ```mermaid
 graph TD;
   post-listbox --> post-popovercontainer
+  post-listbox --> post-icon
   style post-listbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

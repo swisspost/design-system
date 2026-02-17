@@ -183,7 +183,10 @@ export class PostListbox {
           <div class="listbox-content" role="presentation">
             <slot></slot>
             <div class={{ 'blank-slate': true, 'blank-slate--visible': this.showBlankSlate }}>
-              <slot name="blank-slate"></slot>
+              <slot name="blank-slate">
+                <post-icon name="search" aria-hidden="true"></post-icon>
+                <p>Sorry, no results</p>
+              </slot>
             </div>
           </div>
         </post-popovercontainer>

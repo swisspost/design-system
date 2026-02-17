@@ -32,6 +32,7 @@ some content
  - [post-closebutton](../post-closebutton)
  - [post-header](../post-header)
  - [post-language-menu](../post-language-menu)
+ - [post-listbox](../post-listbox)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
  - [post-megadropdown-trigger](../post-megadropdown-trigger)
@@ -50,6 +51,7 @@ graph TD;
   post-closebutton --> post-icon
   post-header --> post-icon
   post-language-menu --> post-icon
+  post-listbox --> post-icon
   post-mainnavigation --> post-icon
   post-megadropdown --> post-icon
   post-megadropdown-trigger --> post-icon

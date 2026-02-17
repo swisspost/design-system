@@ -15,6 +15,15 @@
   display: none;
   padding: 1rem;
   text-align: center;
+  color: rgba(var(--post-contrast-color-rgb), 0.6);
+
+  post-icon {
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 0.25rem 0 0;
+  }
 }
 
 .blank-slate--visible {
