@@ -19,7 +19,7 @@ tokens.$default-map: components.$post-radio-button;
   align-items: center;
   gap: tokens.get('radio-button-gap-inline-text-start');
 
-  > input {
+  > input[type='radio'] {
     appearance: none;
     flex: none;
     display: inline-flex;
@@ -128,11 +128,11 @@ tokens.$default-map: components.$post-radio-button;
         }
       }
     }
+  }
 
-    > label {
-      line-height: 1;
-      vertical-align: middle;
-    }
+  > label {
+    line-height: 1;
+    vertical-align: middle;
   }
 }
 
