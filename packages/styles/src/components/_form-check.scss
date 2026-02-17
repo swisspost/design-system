@@ -38,14 +38,8 @@
   }
 
   // Checkbox
-  &:has(input[type='checkbox']):not(.form-switch) {
+  &:has(input[type='checkbox']):not(.form-switch):not(.form-check-sm) {
     padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
-
-    //fieldset > & {
-    //  &:not(:last-of-type) {
-    //    margin-bottom: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
-    //  }
-    //}
 
     > input[type='checkbox'] {
       ~ label {
@@ -223,8 +217,11 @@ fieldset .form-check-sm:has(input[type='checkbox']):not(.form-switch, .form-chec
 
 /* Checkbox small inline */
 fieldset
-  .form-check-sm.form-check-inline:has(input[type='checkbox']):not(.form-switch):not(
-    :last-of-type
-  ) {
-  margin-inline-end: tokens.get('checkbox-small-group-items-gap-inline', components.$post-checkbox);
+  .form-check-sm.form-check-inline:has(input[type='checkbox']):not(.form-switch, :last-of-type) {
+  margin-block-end: tokens.get('checkbox-small-group-items-gap-block', components.$post-checkbox);
+}
+
+fieldset .form-check-sm.form-check-inline:has(input[type='checkbox']):not(.form-switch) {
+  padding-block-start: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
+  padding-block-end: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
 }
