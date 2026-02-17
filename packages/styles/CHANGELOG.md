@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Fixed label alignment and floating label animation for supported browsers in text input fields and textareas. (by [@gfellerph](https://github.com/gfellerph) with [#7137](https://github.com/swisspost/design-system/pull/7137))
+
+- Aligned `ngx-toastr` styling with the existing toast component and documented the integration. (by [@leagrdv](https://github.com/leagrdv) with [#7106](https://github.com/swisspost/design-system/pull/7106))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+
 ## 10.0.0-next.60
 
 ### Major Changes
