@@ -130,3 +130,22 @@ export const Wrapped: StoryObj = {
     `;
   },
 };
+
+export const InfoIcon: StoryObj = {
+  render: () => {
+    return html`
+      <label> Tracking updates </label>
+      <post-popover-trigger>
+        <button class="btn btn-link btn-icon">
+          <post-icon aria-hidden="true" name="info"></post-icon>
+          <span class="visually-hidden">See more information</span>
+        </button>
+        <post-popover class="palette palette-accent" placement="top" text-close="Close" arrow="">
+          <p class="mb-0">
+            Follow your letter's journey with automatic updates at key delivery milestones.
+          </p>
+        </post-popover>
+      </post-popover-trigger>
+    `;
+  },
+};
