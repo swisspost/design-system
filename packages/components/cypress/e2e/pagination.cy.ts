@@ -103,10 +103,8 @@ describe('pagination', () => {
       cy.get('@ellipsis').should('exist');
     });
 
-    it('should hide ellipsis content from screen readers', () => {
-      cy.get('@ellipsis')
-        .find('.pagination-ellipsis-content')
-        .should('have.attr', 'aria-hidden', 'true');
+    it('should hide ellipsis from screen readers', () => {
+      cy.get('@ellipsis').should('have.attr', 'aria-hidden', 'true');
     });
 
     it('should always show first and last page buttons', () => {
