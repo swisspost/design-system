@@ -10,7 +10,7 @@ export interface RuleDocs {
  */
 const patchedRuleCreator = (
   urlCreator: (ruleName: string, ruleDirectory: string) => string,
-): ReturnType<typeof ESLintUtils.RuleCreator<RuleDocs>> => {
+): ReturnType<typeof ESLintUtils.RuleCreator> => {
   return function createRule({ name, meta, defaultOptions, create }) {
     return {
       meta: {
