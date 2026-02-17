@@ -3,7 +3,7 @@
 @use '../../_generated/component-names.scss' as *;
 
 :where(#{$component-names}) {
-  &:not([data-hydrated]) {
+  &:not(.hydrated, [data-hydrated]) {
     visibility: hidden;
   }
 
