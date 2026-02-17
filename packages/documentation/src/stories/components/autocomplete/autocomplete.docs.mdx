@@ -1,0 +1,120 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as AutocompleteStories from './autocomplete.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={AutocompleteStories} />
+
+<div className="docs-title">
+  # Autocomplete
+
+  <link-design of={JSON.stringify(AutocompleteStories)}></link-design>
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  An accessible autocomplete component that combines a text input with a filterable dropdown list of options.
+  It is composed of three elements: <code>&lt;post-autocomplete&gt;</code>, <code>&lt;post-listbox&gt;</code>, and <code>&lt;post-listbox-option&gt;</code>.
+</div>
+
+<Canvas sourceState="shown" of={AutocompleteStories.Default} />
+<Controls of={AutocompleteStories.Default} />
+
+<ComponentsPackageInstall component="<post-autocomplete>" />
+
+## Usage
+
+The autocomplete component requires three elements working together:
+
+- **`<post-autocomplete>`** — The container that manages the input field, keyboard interactions, and ARIA attributes.
+- **`<post-listbox>`** — The dropdown that displays the available options, positioned using a popover.
+- **`<post-listbox-option>`** — Individual selectable options within the listbox.
+
+### Nested structure
+
+The simplest usage nests the `<post-listbox>` inside `<post-autocomplete>`. The component automatically sets up the ARIA connection between the input and the listbox.
+
+```html
+<post-autocomplete>
+  <div class="form-floating">
+    <input type="text" class="form-control" placeholder=" " />
+    <label>Canton</label>
+  </div>
+
+  <post-listbox>
+    <post-listbox-option value="BE">Bern</post-listbox-option>
+    <post-listbox-option value="ZH">Zürich</post-listbox-option>
+  </post-listbox>
+</post-autocomplete>
+```
+
+### Detached structure
+
+Alternatively, the listbox can be placed outside the autocomplete and linked via the `options` attribute referencing the listbox's `id`.
+
+<Canvas of={AutocompleteStories.DetachedListbox} />
+
+## Examples
+
+### With hint text
+
+Use standard form hint markup inside the slotted content to provide guidance.
+
+<Canvas of={AutocompleteStories.WithHint} />
+
+### Filter threshold
+
+Use the `filter-threshold` property to require a minimum number of characters before filtering begins. This is useful for large option lists or when filtering is backed by an API call.
+
+<Canvas of={AutocompleteStories.WithFilterThreshold} />
+
+### Clearable
+
+Set the `clearable` attribute to display a clear button that resets the input and the filter.
+
+<Canvas of={AutocompleteStories.Clearable} />
+
+### Custom filtering
+
+The `postFilterRequest` event is cancellable. Call `event.preventDefault()` to handle filtering yourself — for example, to use "starts with" matching or to fetch options from an API.
+
+<Canvas of={AutocompleteStories.CustomFiltering} />
+
+## Accessibility
+
+The autocomplete component follows the [WAI-ARIA Combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/).
+
+### ARIA attributes
+
+The component automatically sets the following attributes on the slotted `<input>`:
+
+| Attribute | Description |
+|---|---|
+| `role="combobox"` | Identifies the input as a combobox. |
+| `aria-autocomplete="list"` | Indicates that a list of suggestions is available. |
+| `aria-expanded` | Reflects whether the listbox is currently open. |
+| `aria-controls` | Points to the associated listbox element. |
+| `aria-activedescendant` | Points to the currently highlighted option. |
+
+A live region with `aria-live="polite"` announces the number of available results to screen readers whenever the list is filtered.
+
+### Keyboard interactions
+
+| Key | Behaviour |
+|---|---|
+| <kbd>Down Arrow</kbd> | Opens the listbox or moves to the next option. Wraps to the first option at the end. |
+| <kbd>Up Arrow</kbd> | Opens the listbox or moves to the previous option. Wraps to the last option at the start. |
+| <kbd>Alt</kbd> + <kbd>Down Arrow</kbd> | Opens the listbox without changing the active option. |
+| <kbd>Enter</kbd> | Selects the currently highlighted option. |
+| <kbd>Escape</kbd> | Closes the listbox. |
+| <kbd>Tab</kbd> | Accepts the current selection and moves focus to the next form element. |
+| <kbd>Home</kbd> / <kbd>End</kbd> | Moves to the first or last visible option. |
+| <kbd>Space</kbd> | Opens the listbox if closed. |
+
+### Validation
+
+The component supports native HTML validation (e.g. `<input required>`). Two default behaviours assist with validation:
+
+- **No value selected**: The input is cleared on blur.
+- **Value selected**: The input is restored to the selected option's text on blur.
