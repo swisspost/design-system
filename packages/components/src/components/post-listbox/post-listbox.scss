@@ -1,0 +1,16 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+:host {
+  display: block;
+}
+
+.listbox-content {
+  max-height: 16rem;
+  overflow-y: auto;
+  padding-block: 0.25rem;
+}
+
+.sr-only {
+  @include utilities.visuallyhidden();
+}

@@ -1,0 +1,23 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: block;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  color: var(--post-current-fg);
+
+  &:hover,
+  &.active {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  &.selected {
+    font-weight: 700;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--post-focus-color, #0571a5);
+    outline-offset: -2px;
+  }
+}
