@@ -743,10 +743,8 @@ export class PostPagination {
    */
   private renderEllipsis(key: string) {
     return (
-      <li class="pagination-item pagination-ellipsis" key={key}>
-        <span class="pagination-ellipsis-content" aria-hidden="true">
-          {ELLIPSIS}
-        </span>
+      <li class="pagination-item pagination-ellipsis" key={key} aria-hidden="true">
+        <span class="pagination-ellipsis-content">{ELLIPSIS}</span>
       </li>
     );
   }
