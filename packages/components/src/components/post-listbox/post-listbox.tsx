@@ -15,6 +15,7 @@ let listboxIdCounter = 0;
 
 /**
  * @slot - Default slot for `<post-listbox-option>` elements.
+ * @slot blank-slate - Content shown when no options match the current filter (e.g. an image or message).
  */
 
 @Component({
@@ -44,6 +45,11 @@ export class PostListbox {
   @State() liveText: string = '';
 
   /**
+   * Whether the blank-slate slot should be displayed.
+   */
+  @State() showBlankSlate: boolean = false;
+
+  /**
    * Fires when the listbox visibility changes.
    */
   @Event({ bubbles: true, composed: true }) postListboxToggle: EventEmitter<{ isOpen: boolean }>;
@@ -67,7 +73,7 @@ export class PostListbox {
   @Listen('postOptionSelected')
   handleOptionSelected(event: CustomEvent<{ value: string; text: string }>) {
     // Deselect all other options
-    const options = Array.from(this.host.querySelectorAll('post-listbox-option'));
+    const options = this.getAllOptions();
     for (const option of options) {
       (option as any).selected = false;
       (option as any).active = false;
@@ -88,7 +94,7 @@ export class PostListbox {
    */
   @Method()
   async filter(query: string): Promise<void> {
-    const options = Array.from(this.host.querySelectorAll('post-listbox-option'));
+    const options = this.getAllOptions();
     const normalizedQuery = query.toLowerCase().trim();
 
     for (const option of options) {
@@ -129,7 +135,7 @@ export class PostListbox {
    */
   @Method()
   async getOptions(): Promise<HTMLPostListboxOptionElement[]> {
-    return Array.from(this.host.querySelectorAll('post-listbox-option'));
+    return this.getAllOptions();
   }
 
   /**
@@ -137,15 +143,20 @@ export class PostListbox {
    */
   @Method()
   async getVisibleOptions(): Promise<HTMLPostListboxOptionElement[]> {
-    return Array.from(this.host.querySelectorAll('post-listbox-option')).filter(
-      opt => opt.style.display !== 'none',
-    );
+    return this.getAllOptions().filter(opt => opt.style.display !== 'none');
+  }
+
+  /**
+   * Synchronous helper to get all options (for internal use without await).
+   */
+  private getAllOptions(): HTMLPostListboxOptionElement[] {
+    return Array.from(this.host.querySelectorAll('post-listbox-option'));
   }
 
   private updateVisibleCount() {
-    const options = Array.from(this.host.querySelectorAll('post-listbox-option'));
-    const count = options.filter(opt => opt.style.display !== 'none').length;
+    const count = this.getAllOptions().filter(opt => opt.style.display !== 'none').length;
     this.visibleCount = count;
+    this.showBlankSlate = count === 0;
 
     if (count === 0) {
       this.liveText = 'No results available.';
@@ -171,6 +182,9 @@ export class PostListbox {
         >
           <div class="listbox-content" role="presentation">
             <slot></slot>
+            <div class={{ 'blank-slate': true, 'blank-slate--visible': this.showBlankSlate }}>
+              <slot name="blank-slate"></slot>
+            </div>
           </div>
         </post-popovercontainer>
         <div

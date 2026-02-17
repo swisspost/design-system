@@ -143,31 +143,42 @@ export const DetachedListbox: StoryObj = {
 };
 
 export const CustomFiltering: StoryObj = {
-  render: () => html`
-    <post-autocomplete filter-threshold="1" id="custom-filter-autocomplete">
-      <div class="form-floating">
-        <input type="text" class="form-control" placeholder=" " />
-        <label>Canton (custom filter)</label>
-        <p class="form-hint">Filters using "starts with" instead of "contains".</p>
-      </div>
+  render: () => {
+    // Attach the event listener after the story renders
+    setTimeout(() => {
+      const autocomplete = document.querySelector('#custom-filter-autocomplete');
+      if (!autocomplete || (autocomplete as any).__customFilterAttached) return;
+      (autocomplete as any).__customFilterAttached = true;
 
-      <post-listbox id="custom-filter-listbox">
-        ${CANTON_OPTIONS}
-      </post-listbox>
-    </post-autocomplete>
-
-    <script type="module">
-      const autocomplete = document.getElementById('custom-filter-autocomplete');
-      autocomplete.addEventListener('postFilterRequest', (event) => {
+      autocomplete.addEventListener('postFilterRequest', ((event: CustomEvent<string>) => {
         event.preventDefault();
         const query = event.detail.toLowerCase();
-        const listbox = document.getElementById('custom-filter-listbox');
+        const listbox = document.querySelector('#custom-filter-listbox') as HTMLPostListboxElement;
+        if (!listbox) return;
+
         const options = listbox.querySelectorAll('post-listbox-option');
+        let visibleCount = 0;
         options.forEach(option => {
-          const text = option.textContent.trim().toLowerCase();
-          option.setHidden(!text.startsWith(query));
+          const text = (option.textContent || '').trim().toLowerCase();
+          const matches = text.startsWith(query);
+          option.style.display = matches ? '' : 'none';
+          if (matches) visibleCount++;
         });
-      });
-    </script>
-  `,
+      }) as EventListener);
+    }, 0);
+
+    return html`
+      <post-autocomplete filter-threshold="1" id="custom-filter-autocomplete">
+        <div class="form-floating">
+          <input type="text" class="form-control" placeholder=" " />
+          <label>Canton (custom filter)</label>
+          <p class="form-hint">Filters using "starts with" instead of "contains".</p>
+        </div>
+
+        <post-listbox id="custom-filter-listbox">
+          ${CANTON_OPTIONS}
+        </post-listbox>
+      </post-autocomplete>
+    `;
+  },
 };

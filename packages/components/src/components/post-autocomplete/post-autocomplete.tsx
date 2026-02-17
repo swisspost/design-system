@@ -208,8 +208,8 @@ export class PostAutocomplete {
 
     const value = this.inputEl.value;
 
-    // Reset selection when user types
-    this.selectedText = null;
+    // Don't clear selectedText here — on blur the input will restore
+    // to the last selected value if the user didn't pick a new option.
     this.clearActiveDescendant();
 
     if (value.length >= this.filterThreshold) {
@@ -311,8 +311,13 @@ export class PostAutocomplete {
     // Use a small delay so any pending selection can complete
     setTimeout(() => {
       if (this.selectedText) {
+        // Restore input to the last selected value
         if (this.inputEl) {
           this.inputEl.value = this.selectedText;
+        }
+        // Reset filter so all options are visible next time
+        if (this.listboxEl) {
+          this.listboxEl.filter('');
         }
       } else {
         if (this.inputEl) {

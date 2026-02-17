@@ -11,6 +11,16 @@
   padding-block: 0.25rem;
 }
 
+.blank-slate {
+  display: none;
+  padding: 1rem;
+  text-align: center;
+}
+
+.blank-slate--visible {
+  display: block;
+}
+
 .sr-only {
   @include utilities.visuallyhidden();
 }

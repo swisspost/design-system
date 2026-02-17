@@ -80,9 +80,10 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot | Description                                        |
-| ---- | -------------------------------------------------- |
-|      | Default slot for `<post-listbox-option>` elements. |
+| Slot            | Description                                                                        |
+| --------------- | ---------------------------------------------------------------------------------- |
+|                 | Default slot for `<post-listbox-option>` elements.                                 |
+| `"blank-slate"` | Content shown when no options match the current filter (e.g. an image or message). |
 
 
 ## Dependencies
