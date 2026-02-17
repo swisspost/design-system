@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
 import { version } from '@root/package.json';
 
 let optionIdCounter = 0;
@@ -29,15 +29,9 @@ export class PostListboxOption {
 
   /**
    * Whether this option is currently the active descendant (visually highlighted).
-   * Managed by the parent listbox.
+   * Managed by the parent listbox or autocomplete.
    */
-  @State() active: boolean = false;
-
-  /**
-   * Whether this option is hidden by filtering.
-   * Managed by the parent listbox.
-   */
-  @State() hidden: boolean = false;
+  @Prop({ reflect: true, mutable: true }) active: boolean = false;
 
   /**
    * Fires when this option is selected. Bubbles up to the listbox and autocomplete.
@@ -50,52 +44,20 @@ export class PostListboxOption {
   connectedCallback() {
     this.optionId = `post-listbox-option-${optionIdCounter++}`;
     this.host.setAttribute('data-version', version);
-  }
-
-  componentWillLoad() {
-    // Set up role and id through the host element
     this.host.setAttribute('role', 'option');
     this.host.id = this.host.id || this.optionId;
   }
 
   /**
-   * Returns the text content of the option.
+   * Selects this option and emits the postOptionSelected event.
    */
-  public getTextContent(): string {
-    return this.host.textContent?.trim() || '';
-  }
-
-  /**
-   * Returns the unique id of this option element.
-   */
-  public getOptionId(): string {
-    return this.host.id;
-  }
-
-  /**
-   * Sets the active (highlighted) state.
-   */
-  public setActive(isActive: boolean): void {
-    this.active = isActive;
-    this.host.setAttribute('aria-selected', String(isActive));
-  }
-
-  /**
-   * Sets the hidden (filtered out) state.
-   */
-  public setHidden(isHidden: boolean): void {
-    this.hidden = isHidden;
-    this.host.style.display = isHidden ? 'none' : '';
-  }
-
-  /**
-   * Selects this option and emits the selection event.
-   */
-  public select(): void {
+  @Method()
+  async select(): Promise<void> {
     this.selected = true;
+    const text = this.host.textContent?.trim() || '';
     this.postOptionSelected.emit({
-      value: this.value ?? this.getTextContent(),
-      text: this.getTextContent(),
+      value: this.value ?? text,
+      text,
     });
   }
 
@@ -108,10 +70,7 @@ export class PostListboxOption {
       <Host
         data-version={version}
         onClick={this.handleClick}
-        class={{
-          'active': this.active,
-          'selected': this.selected,
-        }}
+        aria-selected={String(this.active)}
       >
         <slot></slot>
       </Host>

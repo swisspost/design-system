@@ -25,15 +25,10 @@ import { checkEmptyOrType } from '@/utils';
 })
 export class PostAutocomplete {
   private inputEl: HTMLInputElement | null = null;
-  private listboxEl: (HTMLPostListboxElement & {
-    filter: (query: string) => Promise<void>;
-    show: (target: HTMLElement) => Promise<void>;
-    hide: () => Promise<void>;
-    getOptions: () => any[];
-    getVisibleOptions: () => any[];
-  }) | null = null;
+  private listboxEl: HTMLPostListboxElement | null = null;
   private selectedText: string | null = null;
   private activeIndex: number = -1;
+  private isSelecting: boolean = false;
 
   @Element() host: HTMLPostAutocompleteElement;
 
@@ -78,6 +73,8 @@ export class PostAutocomplete {
 
   connectedCallback() {
     this.host.setAttribute('data-version', version);
+    // Prevent input blur when clicking options inside the component
+    this.host.addEventListener('mousedown', this.handleMouseDown);
   }
 
   componentDidLoad() {
@@ -88,6 +85,10 @@ export class PostAutocomplete {
 
   disconnectedCallback() {
     this.teardownInput();
+    this.host.removeEventListener('mousedown', this.handleMouseDown);
+    if (this.listboxEl && this.options) {
+      this.listboxEl.removeEventListener('mousedown', this.handleMouseDown);
+    }
   }
 
   /**
@@ -100,9 +101,13 @@ export class PostAutocomplete {
     // Find listbox: either nested or referenced by id
     if (this.options) {
       const root = this.host.getRootNode() as Document | ShadowRoot;
-      this.listboxEl = root.getElementById(this.options) as any;
+      this.listboxEl = root.getElementById(this.options) as HTMLPostListboxElement;
+      // For detached listbox, also prevent blur when clicking its options
+      if (this.listboxEl) {
+        this.listboxEl.addEventListener('mousedown', this.handleMouseDown);
+      }
     } else {
-      this.listboxEl = this.host.querySelector('post-listbox') as any;
+      this.listboxEl = this.host.querySelector('post-listbox');
     }
   }
 
@@ -136,21 +141,49 @@ export class PostAutocomplete {
   }
 
   /**
+   * Prevent the input from losing focus when clicking on listbox options.
+   */
+  private handleMouseDown = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('post-listbox-option') || target.closest('post-listbox')) {
+      e.preventDefault();
+    }
+  };
+
+  /**
+   * Get all options from the associated listbox via direct DOM query.
+   */
+  private getOptions(): HTMLPostListboxOptionElement[] {
+    if (!this.listboxEl) return [];
+    return Array.from(this.listboxEl.querySelectorAll('post-listbox-option'));
+  }
+
+  /**
+   * Get only visible (non-hidden) options.
+   */
+  private getVisibleOptions(): HTMLPostListboxOptionElement[] {
+    return this.getOptions().filter(opt => opt.style.display !== 'none');
+  }
+
+  /**
    * Listen for option selection events from the listbox.
    */
   @Listen('postOptionSelected')
   handleOptionSelected(event: CustomEvent<{ value: string; text: string }>) {
+    this.isSelecting = true;
     this.selectedText = event.detail.text;
 
     if (this.inputEl) {
       this.inputEl.value = this.selectedText;
-      // Dispatch a native input event so frameworks pick up the change
-      this.inputEl.dispatchEvent(new globalThis.Event('input', { bubbles: true }));
-      this.inputEl.dispatchEvent(new globalThis.Event('change', { bubbles: true }));
     }
 
     this.closeListbox();
     this.inputEl?.focus();
+
+    // Reset the flag after the current event cycle
+    requestAnimationFrame(() => {
+      this.isSelecting = false;
+    });
   }
 
   /**
@@ -165,21 +198,19 @@ export class PostAutocomplete {
     }
 
     if (!this.isExpanded) {
-      this.activeIndex = -1;
-      this.activeDescendantId = '';
-      this.inputEl?.removeAttribute('aria-activedescendant');
+      this.clearActiveDescendant();
     }
   }
 
   private handleInput = () => {
-    if (!this.inputEl) return;
+    // Skip processing during programmatic selection
+    if (this.isSelecting || !this.inputEl) return;
+
     const value = this.inputEl.value;
 
-    // Reset selection when input changes
+    // Reset selection when user types
     this.selectedText = null;
-    this.activeIndex = -1;
-    this.activeDescendantId = '';
-    this.inputEl.removeAttribute('aria-activedescendant');
+    this.clearActiveDescendant();
 
     if (value.length >= this.filterThreshold) {
       // Emit the cancellable filter request event
@@ -205,7 +236,6 @@ export class PostAutocomplete {
       case 'ArrowDown':
         e.preventDefault();
         if (e.altKey) {
-          // Alt + Down: open listbox
           this.openListbox();
         } else if (!this.isExpanded) {
           this.openListbox();
@@ -240,7 +270,6 @@ export class PostAutocomplete {
 
       case 'Tab':
         if (this.isExpanded) {
-          // Accept current selection if any, then let tab proceed naturally
           if (this.activeIndex >= 0) {
             this.selectActiveOption();
           }
@@ -258,46 +287,40 @@ export class PostAutocomplete {
       case 'End':
         if (this.isExpanded) {
           e.preventDefault();
-          const visibleOptions = this.listboxEl?.getVisibleOptions() || [];
+          const visibleOptions = this.getVisibleOptions();
           this.setActiveDescendant(visibleOptions.length - 1);
         }
         break;
 
       case ' ':
-        // Space opens the listbox if closed, otherwise let it type
         if (!this.isExpanded) {
-          // Don't prevent default - allow the space character in the input
           this.openListbox();
         }
         break;
 
       default:
-        // Other characters are handled by the input event
         break;
     }
   };
 
   private handleFocus = () => {
-    // Re-discover elements in case DOM changed
     this.discoverElements();
   };
 
   private handleBlur = () => {
-    // Delay to allow click events on options to fire first
+    // Use a small delay so any pending selection can complete
     setTimeout(() => {
       if (this.selectedText) {
-        // Restore the selected value text
         if (this.inputEl) {
           this.inputEl.value = this.selectedText;
         }
       } else {
-        // No value selected: clear the input
         if (this.inputEl) {
           this.inputEl.value = '';
         }
       }
       this.closeListbox();
-    }, 200);
+    }, 150);
   };
 
   private async openListbox() {
@@ -310,15 +333,24 @@ export class PostAutocomplete {
     await this.listboxEl.hide();
   }
 
-  private moveActiveDescendant(direction: number) {
-    if (!this.listboxEl) return;
+  private clearActiveDescendant() {
+    this.activeIndex = -1;
+    this.activeDescendantId = '';
+    this.inputEl?.removeAttribute('aria-activedescendant');
 
-    const visibleOptions = this.listboxEl.getVisibleOptions();
+    // Clear active state on all options
+    for (const opt of this.getOptions()) {
+      (opt as any).active = false;
+    }
+  }
+
+  private moveActiveDescendant(direction: number) {
+    const visibleOptions = this.getVisibleOptions();
     if (visibleOptions.length === 0) return;
 
     // Clear previous active
     if (this.activeIndex >= 0 && this.activeIndex < visibleOptions.length) {
-      visibleOptions[this.activeIndex].setActive(false);
+      (visibleOptions[this.activeIndex] as any).active = false;
     }
 
     // Calculate new index with wrapping
@@ -333,45 +365,40 @@ export class PostAutocomplete {
   }
 
   private setActiveDescendant(index: number) {
-    if (!this.listboxEl) return;
-
-    const visibleOptions = this.listboxEl.getVisibleOptions();
+    const visibleOptions = this.getVisibleOptions();
     if (index < 0 || index >= visibleOptions.length) return;
 
     // Clear all active states
     for (const opt of visibleOptions) {
-      opt.setActive(false);
+      (opt as any).active = false;
     }
 
     this.activeIndex = index;
     const option = visibleOptions[index];
-    option.setActive(true);
+    (option as any).active = true;
 
-    const optionId = option.getOptionId();
-    this.activeDescendantId = optionId;
+    this.activeDescendantId = option.id;
 
     if (this.inputEl) {
-      this.inputEl.setAttribute('aria-activedescendant', optionId);
+      this.inputEl.setAttribute('aria-activedescendant', option.id);
     }
 
-    // Scroll the option into view
+    // Scroll the active option into view
     option.scrollIntoView?.({ block: 'nearest' });
   }
 
   private selectActiveOption() {
-    if (!this.listboxEl || this.activeIndex < 0) return;
+    if (this.activeIndex < 0) return;
 
-    const visibleOptions = this.listboxEl.getVisibleOptions();
+    const visibleOptions = this.getVisibleOptions();
     if (this.activeIndex < visibleOptions.length) {
-      visibleOptions[this.activeIndex].select();
+      (visibleOptions[this.activeIndex] as any).select();
     }
   }
 
   private handleClear = () => {
     if (this.inputEl) {
       this.inputEl.value = '';
-      this.inputEl.dispatchEvent(new globalThis.Event('input', { bubbles: true }));
-      this.inputEl.dispatchEvent(new globalThis.Event('change', { bubbles: true }));
       this.inputEl.focus();
     }
     this.selectedText = null;

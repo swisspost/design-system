@@ -31,6 +31,26 @@ Type: `Promise<void>`
 
 
 
+### `getOptions() => Promise<HTMLPostListboxOptionElement[]>`
+
+Returns all post-listbox-option children.
+
+#### Returns
+
+Type: `Promise<HTMLPostListboxOptionElement[]>`
+
+
+
+### `getVisibleOptions() => Promise<HTMLPostListboxOptionElement[]>`
+
+Returns only the visible (non-hidden) options.
+
+#### Returns
+
+Type: `Promise<HTMLPostListboxOptionElement[]>`
+
+
+
 ### `hide() => Promise<void>`
 
 Hides the listbox popover.

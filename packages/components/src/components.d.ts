@@ -337,6 +337,14 @@ export namespace Components {
          */
         "filter": (query: string) => Promise<void>;
         /**
+          * Returns all post-listbox-option children.
+         */
+        "getOptions": () => Promise<HTMLPostListboxOptionElement[]>;
+        /**
+          * Returns only the visible (non-hidden) options.
+         */
+        "getVisibleOptions": () => Promise<HTMLPostListboxOptionElement[]>;
+        /**
           * Hides the listbox popover.
          */
         "hide": () => Promise<void>;
@@ -347,6 +355,15 @@ export namespace Components {
         "show": (target: HTMLElement) => Promise<void>;
     }
     interface PostListboxOption {
+        /**
+          * Whether this option is currently the active descendant (visually highlighted). Managed by the parent listbox or autocomplete.
+          * @default false
+         */
+        "active": boolean;
+        /**
+          * Selects this option and emits the postOptionSelected event.
+         */
+        "select": () => Promise<void>;
         /**
           * Represents an initially selected option.
           * @default false
@@ -1483,6 +1500,11 @@ declare namespace LocalJSX {
         "onPostListboxToggle"?: (event: PostListboxCustomEvent<{ isOpen: boolean }>) => void;
     }
     interface PostListboxOption {
+        /**
+          * Whether this option is currently the active descendant (visually highlighted). Managed by the parent listbox or autocomplete.
+          * @default false
+         */
+        "active"?: boolean;
         /**
           * Fires when this option is selected. Bubbles up to the listbox and autocomplete.
          */

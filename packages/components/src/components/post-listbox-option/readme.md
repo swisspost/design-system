@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                                         | Type      | Default     |
-| ---------- | ---------- | ------------------------------------------------------------------- | --------- | ----------- |
-| `selected` | `selected` | Represents an initially selected option.                            | `boolean` | `false`     |
-| `value`    | `value`    | A value string, similar to `<option value="val1">Value 1</option>`. | `string`  | `undefined` |
+| Property   | Attribute  | Description                                                                                                                   | Type      | Default     |
+| ---------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `active`   | `active`   | Whether this option is currently the active descendant (visually highlighted). Managed by the parent listbox or autocomplete. | `boolean` | `false`     |
+| `selected` | `selected` | Represents an initially selected option.                                                                                      | `boolean` | `false`     |
+| `value`    | `value`    | A value string, similar to `<option value="val1">Value 1</option>`.                                                           | `string`  | `undefined` |
 
 
 ## Events
@@ -18,6 +19,19 @@
 | Event                | Description                                                                     | Type                                            |
 | -------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------- |
 | `postOptionSelected` | Fires when this option is selected. Bubbles up to the listbox and autocomplete. | `CustomEvent<{ value: string; text: string; }>` |
+
+
+## Methods
+
+### `select() => Promise<void>`
+
+Selects this option and emits the postOptionSelected event.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Slots

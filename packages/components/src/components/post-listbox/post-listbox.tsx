@@ -67,16 +67,14 @@ export class PostListbox {
   @Listen('postOptionSelected')
   handleOptionSelected(event: CustomEvent<{ value: string; text: string }>) {
     // Deselect all other options
-    const options = this.getOptions();
+    const options = Array.from(this.host.querySelectorAll('post-listbox-option'));
     for (const option of options) {
-      option.selected = false;
-      option.setActive(false);
+      (option as any).selected = false;
+      (option as any).active = false;
     }
 
     // The event target is the selected option
-    const selectedOption = event.target as HTMLPostListboxOptionElement & {
-      selected: boolean;
-    };
+    const selectedOption = event.target as any;
     selectedOption.selected = true;
 
     // Close the listbox after selection
@@ -90,15 +88,15 @@ export class PostListbox {
    */
   @Method()
   async filter(query: string): Promise<void> {
-    const options = this.getOptions();
+    const options = Array.from(this.host.querySelectorAll('post-listbox-option'));
     const normalizedQuery = query.toLowerCase().trim();
 
     for (const option of options) {
       if (!normalizedQuery) {
-        option.setHidden(false);
+        option.style.display = '';
       } else {
-        const text = option.getTextContent().toLowerCase();
-        option.setHidden(!text.includes(normalizedQuery));
+        const text = (option.textContent || '').trim().toLowerCase();
+        option.style.display = text.includes(normalizedQuery) ? '' : 'none';
       }
     }
 
@@ -129,31 +127,24 @@ export class PostListbox {
   /**
    * Returns all post-listbox-option children.
    */
-  public getOptions(): (HTMLPostListboxOptionElement & {
-    getTextContent: () => string;
-    getOptionId: () => string;
-    setActive: (active: boolean) => void;
-    setHidden: (hidden: boolean) => void;
-    select: () => void;
-  })[] {
-    return Array.from(this.host.querySelectorAll('post-listbox-option')) as any[];
+  @Method()
+  async getOptions(): Promise<HTMLPostListboxOptionElement[]> {
+    return Array.from(this.host.querySelectorAll('post-listbox-option'));
   }
 
   /**
    * Returns only the visible (non-hidden) options.
    */
-  public getVisibleOptions(): (HTMLPostListboxOptionElement & {
-    getTextContent: () => string;
-    getOptionId: () => string;
-    setActive: (active: boolean) => void;
-    setHidden: (hidden: boolean) => void;
-    select: () => void;
-  })[] {
-    return this.getOptions().filter(opt => opt.style.display !== 'none');
+  @Method()
+  async getVisibleOptions(): Promise<HTMLPostListboxOptionElement[]> {
+    return Array.from(this.host.querySelectorAll('post-listbox-option')).filter(
+      opt => opt.style.display !== 'none',
+    );
   }
 
   private updateVisibleCount() {
-    const count = this.getVisibleOptions().length;
+    const options = Array.from(this.host.querySelectorAll('post-listbox-option'));
+    const count = options.filter(opt => opt.style.display !== 'none').length;
     this.visibleCount = count;
 
     if (count === 0) {
