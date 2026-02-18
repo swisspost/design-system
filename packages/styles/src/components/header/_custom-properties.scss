@@ -78,6 +78,7 @@
 }
 
 post-header {
+  --post-local-header-align-items: center;
   --post-local-header-grid-template: 'main-nav' auto / 1fr;
 
   &:not(:has([slot='main-nav'])) {
@@ -90,6 +91,7 @@ post-header {
     --post-local-header-grid-template: 'main-nav local-nav' auto / minmax(0, 1fr) auto;
 
     &:has([slot='title']) {
+      --post-local-header-align-items: end;
       --post-local-header-grid-template: 'title local-nav' 1fr 'main-nav main-nav' auto / 1fr auto;
     }
   }
