@@ -1,7 +1,7 @@
-import { Component, Element, Host, h, State } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch, State } from '@stencil/core';
 import { debounce } from 'throttle-debounce';
 import { version } from '@root/package.json';
-import { getSlottedElement, repeatOnLongPress } from '@/utils';
+import { getSlottedElement, checkEmptyOrType, repeatOnLongPress } from '@/utils';
 
 function parseNumber(input: HTMLInputElement, key: 'value' | 'min' | 'max'): number | undefined {
   const value = parseFloat(input[key]);
@@ -56,6 +56,35 @@ export class PostNumberInput {
 
   get isAboveMax(): boolean {
     return compare(this.value, this.max, (v, m) => v > m);
+  }
+
+  /**
+   * The icon to be used in the control that increases the number in the input.
+   */
+  @Prop() incrementIcon = 'plus';
+
+  @Watch('incrementIcon')
+  validateIncrementIcon() {
+    checkEmptyOrType(this, 'incrementIcon', 'string');
+  }
+
+  /**
+   * The icon to be used in the control that decreases the number in the input.
+   */
+  @Prop() decrementIcon = 'minus';
+
+  @Watch('decrementIcon')
+  validateDecrementIcon() {
+    checkEmptyOrType(this, 'decrementIcon', 'string');
+  }
+
+  componentWillLoad() {
+    this.setupInput();
+  }
+
+  componentDidLoad() {
+    this.validateIncrementIcon();
+    this.validateDecrementIcon();
   }
 
   private setupInput = debounce(50, () => {
@@ -125,7 +154,7 @@ export class PostNumberInput {
             onPointerDown={() => this.step('down')}
             class={{ 'step-button': true, 'disabled': this.isDecrementDisabled }}
           >
-            <post-icon name="minus"></post-icon>
+            <post-icon name={this.decrementIcon}></post-icon>
           </div>
         )}
         <div class="input-container">
@@ -137,7 +166,7 @@ export class PostNumberInput {
             onPointerDown={() => this.step('up')}
             class={{ 'step-button': true, 'disabled': this.isIncrementDisabled }}
           >
-            <post-icon name="plus"></post-icon>
+            <post-icon name={this.incrementIcon}></post-icon>
           </div>
         )}
       </Host>
