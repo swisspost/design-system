@@ -22,9 +22,9 @@ export class ActiveThumb {
   el: HTMLElement;
   neighbors: Neighbors;
   positionBounds: Bounds;
-  hostBounds: Bounds;
+  trackBounds: Bounds;
 
-  private host: HTMLElement;
+  private track: HTMLElement;
   private relativePosition = 0;
   private isPositionUpdating = false;
 
@@ -46,7 +46,7 @@ export class ActiveThumb {
     return { previous: previousValue, next: nextValue };
   }
 
-  constructor(node: Node | EventTarget, host: HTMLElement, orientation: Orientation) {
+  constructor(node: Node | EventTarget, track: HTMLElement, orientation: Orientation) {
     if (!isThumb(node)) throw Error('An active thumb must be an HTML element with a slider role.');
 
     this.el = node;
@@ -55,22 +55,22 @@ export class ActiveThumb {
       next: isThumb(this.el.nextSibling) ? this.el.nextSibling : null,
     };
 
-    this.host = host;
-    this.hostBounds = this.getHostBounds(host, orientation);
+    this.track = track;
+    this.trackBounds = this.getTrackBounds(track, orientation);
 
     const minBound = this.neighbors.previous
       ? this.getOffset(this.neighbors.previous, orientation)
-      : this.hostBounds.min;
+      : this.trackBounds.min;
     const maxBound = this.neighbors.next
       ? this.getOffset(this.neighbors.next, orientation)
-      : this.hostBounds.max;
+      : this.trackBounds.max;
     this.positionBounds = { min: minBound, max: maxBound };
 
     this.updatePosition = this.updatePosition.bind(this);
   }
 
-  private getHostBounds(host: HTMLElement, orientation: Orientation): Bounds {
-    const rect = host.getBoundingClientRect();
+  private getTrackBounds(track: HTMLElement, orientation: Orientation): Bounds {
+    const rect = track.getBoundingClientRect();
     return orientation === 'vertical'
       ? { min: rect.top, max: rect.bottom }
       : { min: rect.left, max: rect.right };
@@ -85,7 +85,7 @@ export class ActiveThumb {
     this.isPositionUpdating = true;
 
     const cssProperty = this.isFirstThumb ? '--post-slider-fill-start' : '--post-slider-fill-end';
-    this.host.style.setProperty(cssProperty, this.relativePosition.toString());
+    this.track.style.setProperty(cssProperty, this.relativePosition.toString());
 
     requestAnimationFrame(this.updatePosition);
   }

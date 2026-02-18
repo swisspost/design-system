@@ -133,8 +133,8 @@ export class PostSlider {
     const positionBounds = this.activeThumb.positionBounds;
     const clampedPosition = clamp(cursorPosition, positionBounds.min, positionBounds.max);
 
-    const trackLength = this.activeThumb.hostBounds.max - this.activeThumb.hostBounds.min;
-    const positionFromStart = clampedPosition - this.activeThumb.hostBounds.min;
+    const trackLength = this.activeThumb.trackBounds.max - this.activeThumb.trackBounds.min;
+    const positionFromStart = clampedPosition - this.activeThumb.trackBounds.min;
     const relativePosition = positionFromStart / trackLength;
 
     const snappedValue = this.convertRelativePositionToValue(relativePosition);
