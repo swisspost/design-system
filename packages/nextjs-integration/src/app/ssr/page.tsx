@@ -258,7 +258,6 @@ export default function Home() {
         page={1}
         pageSize={10}
         collectionSize={100}
-        disabled={false}
         label="Pagination"
         textPrevious="Previous page"
         textNext="Next page"
