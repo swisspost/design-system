@@ -128,4 +128,9 @@ tokens.$default-map: utilities.$post-spacing;
       font-weight: 700;
     }
   }
+
+  post-closebutton {
+    inset-block-start: 2rem;
+    inset-inline-end: 2rem;
+  }
 }
