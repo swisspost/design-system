@@ -76,3 +76,21 @@
     --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0rem);
   }
 }
+
+post-header {
+  --post-local-header-grid-template: 'main-nav' auto / 1fr;
+
+  &:not(:has([slot='main-nav'])) {
+    &:has([slot='title']) {
+      --post-local-header-grid-template: 'title' 1fr / 1fr;
+    }
+  }
+
+  &:has([slot='local-nav']) {
+    --post-local-header-grid-template: 'main-nav local-nav' auto / 1fr auto;
+
+    &:has([slot='title']) {
+      --post-local-header-grid-template: 'title local-nav' 1fr 'main-nav main-nav' auto / 1fr auto;
+    }
+  }
+}

@@ -61,6 +61,8 @@ post-header {
 
   // links and buttons in the local header
   > :is([slot='local-nav']) {
+    grid-area: local-nav;
+
     @include media.only(mobile) {
       @include interactive-elements {
         padding: 0.25rem 0.75rem;
@@ -108,6 +110,7 @@ post-header {
   $header-title-line-height: 34px;
 
   [slot='title'] {
+    grid-area: title;
     margin: 0;
     font-size: 1.25rem;
     font-weight: 950;

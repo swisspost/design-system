@@ -39,7 +39,7 @@ export class PostHeader {
   private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
-    return this.device !== 'desktop' && this.hasNavigation;
+    return this.device !== 'desktop';
   }
 
   private animationOptions: Partial<AnimationOptions> = {
@@ -72,10 +72,6 @@ export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: Device = breakpoint.get('device');
-  @State() hasNavigation: boolean = false;
-  @State() hasLocalNav: boolean = false;
-  @State() hasAudience: boolean = false;
-  @State() hasTitle: boolean = false;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -122,7 +118,6 @@ export class PostHeader {
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
-    this.checkSlottedContent = this.checkSlottedContent.bind(this);
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
 
@@ -159,7 +154,6 @@ export class PostHeader {
 
   componentWillRender() {
     this.handleScrollEvent();
-    this.handleSlottedContentChanges();
     this.switchLanguageSwitchMode();
   }
 
@@ -360,22 +354,6 @@ export class PostHeader {
     }
   }
 
-  private handleSlottedContentChanges() {
-    if (!this.slottedContentObserver) {
-      this.checkSlottedContent();
-
-      this.slottedContentObserver = new MutationObserver(this.checkSlottedContent);
-      this.slottedContentObserver.observe(this.host, { childList: true });
-    }
-  }
-
-  private checkSlottedContent() {
-    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
-    this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
-    this.hasAudience = !!this.host.querySelector('[slot="audience"]');
-    this.hasTitle = !!this.host.querySelector('[slot="title"]');
-  }
-
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.hasBurgerMenu ? 'list' : 'menu';
     Array.from(this.host.querySelectorAll('post-language-menu')).forEach(languageSwitch => {
@@ -406,17 +384,10 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    const localNav = !this.hasTitle && (
-      <div class="local-nav">
-        <slot name="local-nav"></slot>
-      </div>
-    );
-
     if (this.device === 'desktop') {
       return (
         <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
           <slot name="main-nav"></slot>
-          {localNav}
         </div>
       );
     }
@@ -426,13 +397,11 @@ export class PostHeader {
         class={{
           'burger-menu': true,
           'extended': this.burgerMenuExtended,
-          'no-local-nav': !this.hasLocalNav,
           'megadropdown-open': this.megadropdownOpen,
         }}
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
       >
-        {localNav}
         <div class="burger-menu-body">
           <slot name="audience"></slot>
           <slot name="main-nav"></slot>
@@ -454,12 +423,7 @@ export class PostHeader {
         data-menu-extended={this.burgerMenuExtended}
       >
         <header>
-          <div
-            class={{
-              'global-header': true,
-              'no-audience': !this.hasAudience,
-            }}
-          >
+          <div class="global-header">
             <div class="section">
               <div class="logo">
                 <slot name="post-logo"></slot>
@@ -476,12 +440,12 @@ export class PostHeader {
                   <slot name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
-                {this.hasNavigation && this.device !== 'desktop' && (
+                {this.device !== 'desktop' && (
                   <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
                     <slot name="post-togglebutton"></slot>
                   </div>
                 )}
-                {this.hasNavigation && this.device !== 'desktop' && (
+                {this.device !== 'desktop' && (
                   <post-togglebutton
                     ref={el => (this.burgerMenuButton = el)}
                     onClick={() => this.toggleBurgerMenu()}
@@ -498,19 +462,10 @@ export class PostHeader {
               </div>
             </div>
           </div>
-          <div
-            ref={el => (this.localHeader = el)}
-            class={{
-              'local-header': true,
-              'no-title': !this.hasTitle,
-              'no-audience': !this.hasAudience,
-              'no-navigation': this.device !== 'desktop' || !this.hasNavigation,
-              'no-local-nav': !this.hasLocalNav,
-            }}
-          >
+          <div ref={el => (this.localHeader = el)} class="local-header">
             <div class="section">
               <slot name="title"></slot>
-              {this.hasTitle && <slot name="local-nav"></slot>}
+              <slot name="local-nav"></slot>
               {this.device === 'desktop' && this.renderNavigation()}
             </div>
           </div>
