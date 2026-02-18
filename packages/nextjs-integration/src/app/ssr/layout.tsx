@@ -66,7 +66,6 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <PostLanguageMenu
           text-change-language="Change the language"
           text-current-language="The currently selected language is #name."
-          variant="list"
           slot="language-menu"
         >
           <PostLanguageMenuItem code="de" name="German">
