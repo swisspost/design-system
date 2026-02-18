@@ -97,8 +97,7 @@ export default function Home() {
         </p>
       </PostCollapsible>
 
-      <h2>Icon</h2>
-      <PostIcon name="1000" />
+      <h2>Icons</h2>
 
       <div className="d-flex gap-16 flex-wrap">
         <figure>
