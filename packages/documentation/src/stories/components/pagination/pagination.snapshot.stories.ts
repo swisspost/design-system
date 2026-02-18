@@ -20,13 +20,8 @@ export const Pagination: Story = {
           ${PaginationStories.Default.render?.({ ...context.args }, context)}
           ${PaginationStories.ManyPages.render?.({ ...context.args }, context)}
           ${PaginationStories.PageOutOfRange.render?.({ ...context.args }, context)}
-          ${PaginationStories.Disabled.render?.({ ...context.args }, context)}
         </div>
       `,
-      {
-        // exclude dark scheme from snapshots
-        filter: scheme => scheme === 'light',
-      },
     );
   },
 };
