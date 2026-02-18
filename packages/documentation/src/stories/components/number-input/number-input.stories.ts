@@ -7,12 +7,7 @@ const meta: MetaComponent = {
   title: 'Raw Components/Form Number Input',
   component: 'post-number-input',
   tags: ['package:WebComponents', 'status:InProgress'],
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=14016-18313&t=xQdJ3KtfCT99hmhK-4',
-    },
-  },
+  parameters: {},
   render,
   args: {
     label: 'Quantity',
