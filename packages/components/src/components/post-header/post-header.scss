@@ -122,13 +122,6 @@ header,
     }
   }
 
-  .navigation {
-    grid-area: main-nav;
-    margin-inline-start: calc(-1 * var(--post-local-header-padding-inline-start));
-    margin-inline-end: calc(-1 * var(--post-local-header-padding-inline-end));
-    max-width: 100cqw;
-  }
-
   .local-nav {
     flex: 0 0 auto;
   }

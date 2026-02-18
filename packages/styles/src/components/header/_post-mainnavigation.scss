@@ -5,6 +5,12 @@
 @use './placeholders' as *;
 
 post-mainnavigation {
+  grid-area: main-nav;
+
+  &:where(post-header:has([slot='local-nav']):not(:has([slot='title']))) {
+    max-width: calc(100% + var(--post-local-header-padding-inline-start));
+  }
+
   > ul {
     @extend %header-list;
     column-gap: 0;

@@ -383,15 +383,7 @@ export class PostHeader {
     }
   }
 
-  private renderNavigation() {
-    if (this.device === 'desktop') {
-      return (
-        <div class={{ 'navigation': true, 'megadropdown-open': this.megadropdownOpen }}>
-          <slot name="main-nav"></slot>
-        </div>
-      );
-    }
-
+  private renderBurgerMenu() {
     return (
       <div
         class={{
@@ -466,10 +458,10 @@ export class PostHeader {
             <div class="section">
               <slot name="title"></slot>
               <slot name="local-nav"></slot>
-              {this.device === 'desktop' && this.renderNavigation()}
+              {this.device === 'desktop' && <slot name="main-nav"></slot>}
             </div>
           </div>
-          {this.device !== 'desktop' && this.renderNavigation()}
+          {this.device !== 'desktop' && this.renderBurgerMenu()}
         </header>
       </Host>
     );

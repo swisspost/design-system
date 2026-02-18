@@ -87,7 +87,7 @@ post-header {
   }
 
   &:has([slot='local-nav']) {
-    --post-local-header-grid-template: 'main-nav local-nav' auto / 1fr auto;
+    --post-local-header-grid-template: 'main-nav local-nav' auto / minmax(0, 1fr) auto;
 
     &:has([slot='title']) {
       --post-local-header-grid-template: 'title local-nav' 1fr 'main-nav main-nav' auto / 1fr auto;
