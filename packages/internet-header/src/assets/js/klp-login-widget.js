@@ -1353,43 +1353,47 @@ const vertx = window.vertx || {};
     }
 
     function trySubscription() {
+      if (isCurrentLocationPostCh()) {
         return null != getControlCookieVal();
+      } else {
+        return true;
+      }
     }
 
     function subscribe() {
-  if (!address) {
-    if (trySubscription()) {
-      log('Subscribing to get an address');
-      const startTime = new Date().getTime();
-      fetch(platformEndPoints.subscribe, {
-        method: 'GET',
-        credentials: 'include',
-        mode: 'cors',
-      })
-        .then(message => message.json())
-        .then(message => handleMessage(message))
-        .catch(error => {
-          log('Failed to subscribe: ' + error.message);
-          if (error instanceof TypeError) {
-            // Fetch cancelled by browser navigation — not an auth failure.
-            // Do NOT call logout(): this would delete NCTRL and prevent recovery.
-            log('Subscribe cancelled by navigation — preserving NCTRL, skipping logout.');
-            renderWidget();
-          } else {
-            logout();
-            renderWidget();
-          }
-        });
-      logPerformanceMetric('subscribe()', new Date().getTime() - startTime);
-    } else {
-      log('Control cookie not found, skipping subscription');
-      renderWidget();
+      if (!address) {
+        if (trySubscription()) {
+          log('Subscribing to get an address');
+          const startTime = new Date().getTime();
+          fetch(platformEndPoints.subscribe, {
+            method: 'GET',
+            credentials: 'include',
+            mode: 'cors',
+          })
+            .then(message => message.json())
+            .then(message => handleMessage(message))
+            .catch(error => {
+              log('Failed to subscribe: ' + error.message);
+              if (error instanceof TypeError) {
+                // Fetch cancelled by browser navigation — not an auth failure.
+                // Do NOT call logout(): this would delete NCTRL and prevent recovery.
+                log('Subscribe cancelled by navigation — preserving NCTRL, skipping logout.');
+                renderWidget();
+              } else {
+                logout();
+                renderWidget();
+              }
+            });
+          logPerformanceMetric('subscribe()', new Date().getTime() - startTime);
+        } else {
+          log('Control cookie not found, skipping subscription');
+          renderWidget();
+        }
+      } else {
+        log('Address available, skipping subscription');
+        openCommunication();
+      }
     }
-  } else {
-    log('Address available, skipping subscription');
-    openCommunication();
-  }
-}
 
     function openCommunication() {
       if (!eventBus) {
