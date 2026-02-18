@@ -114,7 +114,7 @@ const meta: MetaComponent = {
         labels: {
           'form-control-sm': 'Small',
           'form-control-rg': 'Regular (deprecated)',
-          'null': 'Middle',
+          'null': 'Medium',
           'form-control-lg': 'Large (deprecated)',
         },
       },
