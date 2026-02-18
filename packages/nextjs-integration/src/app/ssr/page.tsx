@@ -7,7 +7,6 @@ import {
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
-  PostIcon,
   PostLinkarea,
   PostMenu,
   PostMenuItem,
@@ -97,8 +96,46 @@ export default function Home() {
         </p>
       </PostCollapsible>
 
-      <h2>Icon</h2>
-      <PostIcon name="1000" />
+      <h2>Icons</h2>
+
+      <div className="d-flex gap-16 flex-wrap">
+        <figure>
+          <PostIconLetter className="fs-2"></PostIconLetter>
+          <figcaption>Line Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetterSolid className="fs-2"></PostIconLetterSolid>
+          <figcaption>Solid Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter style={{ color: 'red' }} className="fs-2"></PostIconLetter>
+          <figcaption>Colored Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-3"></PostIconLetter>
+          <figcaption>Sized Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives flipH={true} className="fs-2"></PostIconExplosives>
+          <figcaption>Flipped Horizontally</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives className="fs-2" flipV={true}></PostIconExplosives>
+          <figcaption>Flipped Vertically</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" rotate={90}></PostIconLetter>
+          <figcaption>Rotated</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" scale={1.5}></PostIconLetter>
+          <figcaption>Scaled</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" animation={'spin'}></PostIconLetter>
+          <figcaption>Spinning</figcaption>
+        </figure>
+      </div>
 
       <h2>Linkarea</h2>
       <PostLinkarea>
@@ -229,46 +266,6 @@ export default function Home() {
         textLast="Last page"
       />
 
-      <h2>Icons</h2>
-      <div className="d-flex gap-16 flex-wrap">
-        <style>{'post-icon { font-size: 32px }'}</style>
-        <figure>
-          <PostIconLetter></PostIconLetter>
-          <figcaption>Line Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetterSolid></PostIconLetterSolid>
-          <figcaption>Solid Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter style={{ color: 'red' }}></PostIconLetter>
-          <figcaption>Colored Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter style={{ fontSize: '2em' }}></PostIconLetter>
-          <figcaption>Sized Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconExplosives flipH={true}></PostIconExplosives>
-          <figcaption>Flipped Horizontally</figcaption>
-        </figure>
-        <figure>
-          <PostIconExplosives flipV={true}></PostIconExplosives>
-          <figcaption>Flipped Vertically</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter rotate={90}></PostIconLetter>
-          <figcaption>Rotated</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter scale={1.5}></PostIconLetter>
-          <figcaption>Scaled</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter animation={'spin'}></PostIconLetter>
-          <figcaption>Spinning</figcaption>
-        </figure>
-      </div>
     </>
   );
 }
