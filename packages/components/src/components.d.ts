@@ -396,6 +396,16 @@ export namespace Components {
         "for": string;
     }
     interface PostNumberInput {
+        /**
+          * The icon to be used in the control that decreases the number in the input.
+          * @default 'minus'
+         */
+        "decrementIcon": string;
+        /**
+          * The icon to be used in the control that increases the number in the input.
+          * @default 'plus'
+         */
+        "incrementIcon": string;
     }
     interface PostPagination {
         /**
@@ -1410,6 +1420,16 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostNumberInput {
+        /**
+          * The icon to be used in the control that decreases the number in the input.
+          * @default 'minus'
+         */
+        "decrementIcon"?: string;
+        /**
+          * The icon to be used in the control that increases the number in the input.
+          * @default 'plus'
+         */
+        "incrementIcon"?: string;
     }
     interface PostPagination {
         /**

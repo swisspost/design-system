@@ -126,7 +126,11 @@ function render(args: Args, context: StoryContext) {
     : nothing;
 
   return html`
-    <post-number-input class=${args.floatingLabel ? 'form-floating' : nothing}>
+    <post-number-input
+      class=${args.floatingLabel ? 'form-floating' : nothing}
+      increment-icon=${args.incrementIcon || nothing}
+      decrement-icon=${args.decrementIcon || nothing}
+    >
       ${args.floatingLabel ? [input, label] : [label, input]}
     </post-number-input>
   `;
