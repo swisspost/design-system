@@ -7,7 +7,6 @@ import {
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
-  PostIcon,
   PostLinkarea,
   PostMenu,
   PostMenuItem,
