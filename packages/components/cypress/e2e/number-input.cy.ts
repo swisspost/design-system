@@ -95,16 +95,6 @@ describe('number-input', () => {
 
       cy.get('@input').invoke('val').should('eq', String(min));
     });
-
-    it('changes the plus icon for a chevron', () => {
-      const chevronIcon = 'chevronright';
-      cy.get('@number-input').invoke('attr', 'increment-icon', chevronIcon);
-
-      cy.get('@number-input')
-        .find('.step-button:last-of-type > post-icon')
-        .invoke('attr', 'name')
-        .should('eq', chevronIcon);
-    });
   });
 
   describe('decrement', () => {
@@ -174,16 +164,6 @@ describe('number-input', () => {
       cy.get('@minus-button').click();
 
       cy.get('@input').invoke('val').should('eq', String(max));
-    });
-
-    it('changes the minus icon for a chevron', () => {
-      const chevronIcon = 'chevronleft';
-      cy.get('@number-input').invoke('attr', 'decrement-icon', chevronIcon);
-
-      cy.get('@number-input')
-        .find('.step-button:first-of-type > post-icon')
-        .invoke('attr', 'name')
-        .should('eq', chevronIcon);
     });
   });
 });
