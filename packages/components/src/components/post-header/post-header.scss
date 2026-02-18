@@ -98,8 +98,8 @@ header,
   position: relative;
   background-color: #fff;
   min-height: var(--post-local-header-expanded-min-height);
-  display: flex;
-  align-items: var(--post-local-header-align-items);
+  display: var(--post-local-header-display, flex);
+  align-items: var(--post-local-header-align-items, center);
 
   .section {
     width: 100%;

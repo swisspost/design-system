@@ -36,7 +36,7 @@
     );
   }
 
-  // microsite
+  // portal & microsite
   &:has(post-header post-mainnavigation) {
     --post-global-header-expanded-height: 4rem;
     --post-local-header-reduced-height: 0rem;
@@ -71,28 +71,64 @@
     }
   }
 
-  // portal
+  // portal only
   &:not(:has(post-header [slot='title'])) {
     --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0rem);
   }
 }
 
 post-header {
-  --post-local-header-align-items: center;
-  --post-local-header-grid-template: 'main-nav' auto / 1fr;
+  // Hide local header if it has neither title nor main navigation
+  &:not(:has([slot='title']), :has([slot='main-nav'])) {
+    --post-local-header-display: none;
+  }
 
-  &:not(:has([slot='main-nav'])) {
-    &:has([slot='title']) {
-      --post-local-header-grid-template: 'title' 1fr / 1fr;
+  // On tablet & mobile, Hide local header if it has no title
+  @include media.max(desktop) {
+    &:not(:has([slot='title'])) {
+      --post-local-header-display: none;
     }
   }
 
-  &:has([slot='local-nav']) {
-    --post-local-header-grid-template: 'main-nav local-nav' auto / minmax(0, 1fr) auto;
+  // -------------------------------
+  // Local header layouts without local-nav
+  // -------------------------------
 
-    &:has([slot='title']) {
-      --post-local-header-align-items: end;
-      --post-local-header-grid-template: 'title local-nav' 1fr 'main-nav main-nav' auto / 1fr auto;
+  // Only main navigation (Portal)
+  &:has([slot='main-nav']):not(:has([slot='title'])) {
+    --post-local-header-grid-template: 'main-nav' auto / 1fr;
+  }
+
+  // Only title (One-pager)
+  &:has([slot='title']):not(:has([slot='main-nav'])) {
+    --post-local-header-grid-template: 'title' 1fr / 1fr;
+  }
+
+  // Both title and main navigation (Microsite)
+  &:has([slot='title']):has([slot='main-nav']) {
+    --post-local-header-align-items: end;
+    --post-local-header-grid-template: 'title' 1fr 'main-nav' auto / 1fr;
+  }
+
+  // -------------------------------
+  // Local header layouts with local-nav
+  // -------------------------------
+
+  &:has([slot='local-nav']) {
+    // Main-nav + local-nav, no title (Portal)
+    &:has([slot='main-nav']):not(:has([slot='title'])) {
+      --post-local-header-grid-template: 'main-nav local-nav' auto / minmax(0, 1fr) auto;
+    }
+
+    // Title + local-nav, no main-nav (One-pager)
+    &:has([slot='title']):not(:has([slot='main-nav'])) {
+      --post-local-header-grid-template: 'title local-nav' 1fr / minmax(0, 1fr) auto;
+    }
+
+    // Title + main-nav + local-nav (Microsite)
+    &:has([slot='title']):has([slot='main-nav']) {
+      --post-local-header-grid-template: 'title local-nav' 1fr 'main-nav main-nav' auto /
+        minmax(0, 1fr) auto;
     }
   }
 }
