@@ -31,15 +31,15 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 <PackageDocs changelog={changelog}>
   ## Installation
 
-  <Source code={`npm install @swisspost/design-system-components`} language="bash" />
+<Source code={`npm install @swisspost/design-system-components`} language="bash" />
 
-  ## Usage
+## Usage
 
-  There are different ways how to consume our web-components, and it depends on your project setup, which one is best suited.
+There are different ways how to consume our web-components, and it depends on your project setup, which one is best suited.
 
   <post-tabs>
-    <post-tab-header panel="library">Component Library</post-tab-header>
-    <post-tab-panel name="library">
+    <post-tab-item name="library">Component Library</post-tab-item>
+    <post-tab-panel for="library">
       ### The Library approach
 
       Best, if you don't want to handle lazy-loading yourself.
@@ -72,13 +72,13 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
       You can also get our component library from a <a href="https://en.wikipedia.org/wiki/Content_delivery_network" rel="noopener">CDN</a>. See the examples below to know how to set it up.
 
       <post-tabs>
-        <post-tab-header panel="jsdelivr">jsDelivr</post-tab-header>
-        <post-tab-panel name="jsdelivr">
+        <post-tab-item name="jsdelivr">jsDelivr</post-tab-item>
+        <post-tab-panel for="jsdelivr">
           <Source code={SampleLibraryCdnJsdelivr} language="html" />
         </post-tab-panel>
 
-        <post-tab-header panel="unpkg">unpkg</post-tab-header>
-        <post-tab-panel name="unpkg">
+        <post-tab-item name="unpkg">unpkg</post-tab-item>
+        <post-tab-panel for="unpkg">
           <Source code={SampleLibraryCdnUnpkg} language="html" />
         </post-tab-panel>
       </post-tabs>
@@ -88,8 +88,8 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
       </post-banner>
     </post-tab-panel>
 
-    <post-tab-header panel="standalone">Standalone Components</post-tab-header>
-    <post-tab-panel name="standalone">
+    <post-tab-item name="standalone">Standalone Components</post-tab-item>
+    <post-tab-panel for="standalone">
         ### The Standalone approach
         {/* stencil dist-custom-elements output-target */}
 
@@ -118,13 +118,13 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
         </post-banner>
 
         <post-tabs>
-          <post-tab-header panel="jsdelivr">jsDelivr</post-tab-header>
-          <post-tab-panel name="jsdelivr">
+          <post-tab-item name="jsdelivr">jsDelivr</post-tab-item>
+          <post-tab-panel for="jsdelivr">
             <Source code={SampleStandaloneCdnJsdelivr} language="html" />
           </post-tab-panel>
 
-          <post-tab-header panel="unpkg">unpkg</post-tab-header>
-          <post-tab-panel name="unpkg">
+          <post-tab-item name="unpkg">unpkg</post-tab-item>
+          <post-tab-panel for="unpkg">
             <Source code={SampleStandaloneCdnUnpkg} language="html" />
           </post-tab-panel>
         </post-tabs>
@@ -133,5 +133,6 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
           <p>Make sure to replace `{tag|version}` with the tag/version you want to, or remove `@{tag|version}` to use the latest version.</p>
         </post-banner>
     </post-tab-panel>
+
   </post-tabs>
 </PackageDocs>

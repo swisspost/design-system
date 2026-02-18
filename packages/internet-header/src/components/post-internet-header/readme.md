@@ -1,7 +1,5 @@
 # post-internet-header
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -37,7 +35,7 @@
 
 ## Methods
 
-### `getCurrentLanguage() => Promise<'de' | 'fr' | 'it' | 'en' | string>`
+### `getCurrentLanguage() => Promise<"de" | "fr" | "it" | "en" | string>`
 
 Get the currently set language as a two letter string ("de", "fr" "it" or "en")
 

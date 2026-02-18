@@ -1,16 +1,16 @@
 # post-breadcrumbs-new
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property               | Attribute   | Description                                  | Type     | Default     |
-| ---------------------- | ----------- | -------------------------------------------- | -------- | ----------- |
-| `homeText`             | `home-text` | The text label for the home breadcrumb item. | `string` | `'Home'`    |
-| `homeUrl` _(required)_ | `home-url`  | The URL for the home breadcrumb item.        | `string` | `undefined` |
+| Property                       | Attribute          | Description                                                                          | Type     | Default     |
+| ------------------------------ | ------------------ | ------------------------------------------------------------------------------------ | -------- | ----------- |
+| `homeUrl` _(required)_         | `home-url`         | The URL for the home breadcrumb item.                                                | `string` | `undefined` |
+| `textBreadcrumbs` _(required)_ | `text-breadcrumbs` | The accessible label for the breadcrumb component.                                   | `string` | `undefined` |
+| `textHome` _(required)_        | `text-home`        | The text label for the home breadcrumb item.                                         | `string` | `undefined` |
+| `textMoreItems` _(required)_   | `text-more-items`  | The accessible label for the breadcrumb menu when breadcrumb items are concatenated. | `string` | `undefined` |
 
 
 ## Dependencies

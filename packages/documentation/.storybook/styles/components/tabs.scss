@@ -6,15 +6,15 @@
 tokens.$default-map: utilities.$post-spacing;
 
 @include mixins.style-docs-only-guard('post-tabs') {
-  &::part(tabs) {
+  &::part(post-tabs) {
     background: none;
   }
 
-  &::part(content) {
+  &::part(post-tabs-content) {
     position: relative;
   }
 
-  > post-tab-header {
+  > post-tab-item {
     border-top-left-radius: post.$border-radius;
     border-top-right-radius: post.$border-radius;
 
@@ -28,7 +28,7 @@ tokens.$default-map: utilities.$post-spacing;
       }
     }
 
-    ~ post-tab-header {
+    ~ post-tab-item {
       margin-left: 1px;
     }
   }
@@ -36,7 +36,7 @@ tokens.$default-map: utilities.$post-spacing;
   &:where(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
     margin-top: tokens.get('utility-gap-32');
 
-    &::part(tabs) {
+    &::part(post-tabs) {
       &::before {
         display: block;
         content: '';
@@ -52,11 +52,11 @@ tokens.$default-map: utilities.$post-spacing;
   }
 
   &:not(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
-    > post-tab-header {
+    > post-tab-item {
       font-size: 0.875rem;
     }
 
-    &::part(content) {
+    &::part(post-tabs-content) {
       &::after {
         display: block;
         content: '';

@@ -1,24 +1,21 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
-import { getLabelText, getValidationMessages } from '@/utils/form-elements';
-
-const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
-  'null': undefined,
-  'is-valid': false,
-  'is-invalid': true,
-};
+import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Form Input',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   render: render,
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=21-168&node-type=canvas&t=BXfJ1qmQAdwMxjBE-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21-168',
+    },
+    controls: {
+      exclude: ['List id'],
     },
   },
   args: {
@@ -111,6 +108,16 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    list: {
+      name: 'List id',
+      description: 'The id of the datalist providing options to the user.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
+    },
     disabled: {
       name: 'Disabled',
       description:
@@ -163,7 +170,7 @@ export default meta;
 type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
-  const id = context.id ?? `ExampleTextarea_${context.name}`;
+  const id = context.id ?? `ExampleInput_${context.name}`;
   const classes = ['form-control', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
@@ -192,6 +199,7 @@ function render(args: Args, context: StoryContext) {
       class="${classes}"
       type="${args.type}"
       placeholder="${args.placeholder || nothing}"
+      list="${args.list || nothing}"
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
@@ -233,5 +241,28 @@ export const Validation: Story = {
     validation: 'is-invalid',
     hint: '',
     floatingLabel: true,
+  },
+};
+
+export const Autocomplete: Story = {
+  args: {
+    id: 'postal-option',
+    list: 'postal-options',
+    label: 'Postal Option',
+    placeholder: 'Start typing...',
+    hint: 'Start typing to see suggested options, for example “Registered” or “Express”.',
+  },
+  render: (args, context) => {
+    return html`
+      ${render(args, context)}
+
+      <datalist id=${args.list}>
+        <option value="Standard"></option>
+        <option value="Express"></option>
+        <option value="Registered"></option>
+        <option value="International"></option>
+        <option value="Parcel Pickup"></option>
+      </datalist>
+    `;
   },
 };

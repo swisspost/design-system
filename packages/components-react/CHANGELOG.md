@@ -1,5 +1,132 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Fixed export paths for the react icons to improve tree-shakeability. Icons are no longer exported as default. (by [@gfellerph](https://github.com/gfellerph) with [#7149](https://github.com/swisspost/design-system/pull/7149))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.61
+
+## 10.0.0-next.60
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.60
+
+## 10.0.0-next.59
+
+### Minor Changes
+
+- Add generated React Server Component icon exports built from @swisspost/design-system-icons. It's now possible to import react- and SSR-ready icons directly like `import { PostIconLetter } from @swisspost/design-system-components-react/icons` and use it like `<PostIconLetter size="1.5em"></PostIconLetter`>. With this change, it's no longer necessary to list the `@swisspost/design-system-icons` as a dependency of the project. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.59
+
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.58
+
+## 10.0.0-next.57
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.57
+
+## 10.0.0-next.56
+
+### Major Changes
+
+- Refactored `<post-tabs>` component:
+  - Renamed `post-tab-header` component to `post-tab-item`
+  - Renamed `panel` property to `name` in `post-tab-item` component
+  - Renamed `name` property to `for` in `post-tab-panel` component
+  - Renamed `activePanel` property to `activeTab` in `post-tabs` component
+
+  BEFORE:
+
+  ```html
+  <post-tabs active-panel="first">
+    <post-tab-header panel="first">First tab</post-tab-header>
+    <post-tab-header panel="second">Second tab</post-tab-header>
+    <post-tab-header panel="third">Third tab</post-tab-header>
+
+    <post-tab-panel name="first"> This is the content of the first tab. </post-tab-panel>
+    <post-tab-panel name="second"> This is the content of the second tab. </post-tab-panel>
+    <post-tab-panel name="third"> This is the content of the third tab. </post-tab-panel>
+  </post-tabs>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-tabs active-tab="first">
+    <post-tab-item name="first">First tab</post-tab-item>
+    <post-tab-item name="second">Second tab</post-tab-item>
+    <post-tab-item name="third">Third tab</post-tab-item>
+
+    <post-tab-panel for="first"> This is the content of the first tab. </post-tab-panel>
+    <post-tab-panel for="second"> This is the content of the second tab. </post-tab-panel>
+    <post-tab-panel for="third"> This is the content of the third tab. </post-tab-panel>
+  </post-tabs>
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) with
+  [#6350](https://github.com/swisspost/design-system/pull/6350))
+  ````
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.56
+
+## 10.0.0-next.55
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.55
+
+## 10.0.0-next.54
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.54
+
+## 10.0.0-next.53
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.53
+
+## 10.0.0-next.52
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.52
+
+## 10.0.0-next.51
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.51
+
+## 10.0.0-next.50
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.50
+
 ## 10.0.0-next.49
 
 ### Patch Changes
@@ -457,7 +584,6 @@
 ### Major Changes
 
 - Synchronized the versions of the following packages:
-
   - @swisspost/design-system-styles
   - @swisspost/design-system-components
   - @swisspost/design-system-components-react

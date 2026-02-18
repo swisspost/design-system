@@ -1,10 +1,14 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as CollapsibleStories from './collapsible.stories';
+import meta, * as CollapsibleStories from './collapsible.stories';
 import SampleCustomTrigger from './collapsible-custom-trigger.sample?raw';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={CollapsibleStories} />
 
 # Collapsible
+
+<PackageTag meta={meta} />
 
 <p className="lead">Toggle the visibility of content across your project.</p>
 
@@ -13,6 +17,8 @@ Collapsing an element will animate the height from its current value to 0.
 
 <Canvas sourceState="shown" of={CollapsibleStories.Default} />
 <Controls of={CollapsibleStories.Default} />
+
+<ComponentsPackageInstall component="<post-collapsible>" />
 
 ## Examples
 
@@ -30,7 +36,4 @@ The `<post-collapsible>` component offers a `.toggle()` method that allows you t
 This method is asynchronous and returns a promise that resolves with the current open state.
 It optionally takes a boolean parameter: `true` forces it open, and `false` forces it closed.
 
-<Source
-  code={SampleCustomTrigger}
-  language="typescript"
-/>
+<Source code={SampleCustomTrigger} language="typescript" />

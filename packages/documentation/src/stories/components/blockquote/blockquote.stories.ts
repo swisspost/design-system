@@ -5,13 +5,13 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'a4c7d5fa-9f8d-4a95-820b-ae4ce9ab4f03',
   title: 'Components/Blockquote',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderBlockquote,
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=20767-5527&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=4204-33806',
     },
   },
   args: {

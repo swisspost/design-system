@@ -1,17 +1,11 @@
 @use 'sass:map';
 @use 'sass:list';
 
-@use './color' as color-mx;
 @use './utilities' as utilities-mx;
-@use './../functions/contrast' as contrast-fn;
 
-@use './../variables/spacing';
-@use './../variables/components/close';
 @use './../variables/components/notification';
 @use '../tokens/components';
 @use '../functions/tokens';
-
-tokens.$default-map: components.$post-banner;
 
 @mixin notification-size($size) {
   $default-var: list.nth(notification.$notification-variants, 1);
@@ -24,13 +18,13 @@ tokens.$default-map: components.$post-banner;
   box-sizing: border-box;
 
   box-shadow: $elevation;
-  border-radius: tokens.get('banner-border-radius');
+  border-radius: tokens.get('banner-border-radius', components.$post-banner);
 
   padding: $padding-y $padding-x;
   padding-inline-start: calc(#{$padding-x} + #{$icon-size} + #{$gap});
   font-weight: notification.$notification-font-weight;
-  border-style: tokens.get('banner-border-style');
-  border-width: tokens.get('banner-border-width');
+  border-style: tokens.get('banner-border-style', components.$post-banner);
+  border-width: tokens.get('banner-border-width', components.$post-banner);
   position: relative;
   color: var(--post-current-fg);
 
@@ -93,26 +87,5 @@ tokens.$default-map: components.$post-banner;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-  }
-}
-
-@mixin notification-dismissible($size, $close: 'btn-close') {
-  $padding-x: map.get(notification.$notification-padding-x-map, $size);
-  $gap: map.get(notification.$notification-gap-map, $size);
-
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-  & {
-    pointer-events: auto;
-    position: relative;
-  }
-
-  &:not(.banner-action):not(.alert-action) {
-    padding-inline-end: calc(#{$padding-x} + #{$gap} + #{close.$close-size});
-  }
-
-  > .#{$close} {
-    position: absolute;
-    inset-block-start: spacing.$spacer;
-    inset-inline-end: $padding-x;
   }
 }

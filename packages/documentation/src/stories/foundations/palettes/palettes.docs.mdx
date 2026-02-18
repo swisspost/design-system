@@ -1,18 +1,20 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as paletteStories from './palettes.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as paletteStories from './palettes.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={paletteStories} />
 
-<div className="docs-title">
-  # Palettes
-</div>
+<div className="docs-title"># Palettes</div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Easily apply colors to a section of your page using predefined color sets.
 </div>
 
 There are four different palettes:
+
 - **Default** - The standard palette used when no other palette is specified.
 - **Alternate** - Used to differentiate alternating sections from the body, without strong emphasis or highlighting.
 - **Accent** - A complementary color used for highlights and emphasis.

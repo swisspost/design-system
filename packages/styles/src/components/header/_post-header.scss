@@ -1,75 +1,9 @@
 @use '../../mixins/media';
-@use '../../mixins/utilities';
-@use '../../variables/color';
 @use '../../functions/tokens';
-@use '../../tokens/elements';
-@use '../../mixins/button' as button-mx;
-@use 'mixins' as *;
+@use '../../tokens/components';
 
-tokens.$default-map: elements.$post-link;
-
-:root:has(post-header) {
-  // expanded height
-  --post-local-header-expanded-height: var(
-    --post-local-header-expanded-min-height
-  ); // default value later updated with JavaScript
-  --post-header-expanded-height: calc(
-    var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
-  );
-
-  // reduced height
-  --post-global-header-reduced-height: var(--post-global-header-expanded-height);
-  --post-local-header-reduced-height: var(--post-local-header-expanded-height);
-  --post-header-reduced-height: calc(
-    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height)
-  );
-
-  // total height (dynamic depending on the scroll position)
-  --post-header-height: max(
-    var(--post-header-expanded-height) - var(--post-header-scroll-top, 0px),
-    var(--post-header-reduced-height)
-  );
-
-  // microsite
-  &:has(post-header post-mainnavigation) {
-    --post-global-header-expanded-height: 4rem;
-    --post-local-header-reduced-height: 0rem; /* stylelint-disable-line length-zero-no-unit */ // needed for calculation
-
-    @include media.only(mobile) {
-      --post-local-header-expanded-min-height: 3rem;
-    }
-
-    @include media.only(tablet) {
-      --post-local-header-expanded-min-height: 3.5rem;
-    }
-
-    @include media.only(desktop) {
-      --post-global-header-expanded-height: 4.5rem;
-      --post-local-header-expanded-min-height: 7rem;
-
-      // header reducing on desktop
-      --post-global-header-reduced-height: 1.5rem;
-      --post-local-header-reduced-height: 3.5rem;
-      --post-main-navigation-height: var(--post-local-header-reduced-height);
-    }
-  }
-
-  // one pager
-  &:not(:has(post-header post-mainnavigation)) {
-    --post-global-header-expanded-height: 4rem;
-    --post-local-header-expanded-min-height: 3.5rem;
-
-    @include media.only(desktop) {
-      --post-global-header-expanded-height: 4.5rem;
-      --post-local-header-expanded-min-height: 4rem;
-    }
-  }
-
-  // no title
-  &:not(:has(post-header [slot='title'])) {
-    --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0);
-  }
-}
+@use './mixins' as *;
+@use './placeholders' as *;
 
 body:has(post-header) {
   scroll-padding-top: var(--post-header-height);
@@ -79,151 +13,121 @@ body:has(post-header) {
   overflow: hidden !important;
 }
 
-post-header {
-  height: var(--post-header-height);
-
-  &:not(:defined),
-  &:not([data-hydrated]) {
-    display: block;
-  }
-
-  ul[slot='meta-navigation'] {
-    gap: 0 4px;
-
-    &:where(post-header:has(post-mainnavigation) > *) {
-      @include media.max(lg) {
-        flex-direction: column;
-
-        a,
-        button {
-          justify-content: space-between;
-          border-radius: 0;
-          @include mobile-header-interactive;
-
-          @include utilities.focus-style-custom {
-            border-radius: 4px;
-          }
-        }
-      }
-
-      @include media.max(lg) {
-        a,
-        button {
-          flex-direction: row-reverse;
-          justify-content: flex-end;
-        }
-      }
-
-      @include media.max(sm) {
-        a,
-        button {
-          font-size: 14px;
-          gap: 0.5rem;
-
-          > post-icon {
-            height: 1rem;
-            width: 1rem;
-          }
-        }
-      }
-    }
-  }
-
-  [slot='title'] {
-    margin: 0;
-    flex-shrink: 10;
-    z-index: 3;
-    font-weight: 900;
-
-    @include media.min(sm) {
-      margin-inline-start: 12px;
-    }
-
-    @include media.max(sm) {
-      margin-inline-start: 8px;
-    }
-
-    @include media.min(lg) {
-      font-size: 28px;
-      line-height: 34px;
-    }
-
-    @include media.max(lg) {
-      font-size: 20px;
-      max-width: calc(100vw - 8px - 16px);
-    }
-  }
-
-  button:not(post-mainnavigation *, post-language-switch *) {
-    @include button-mx.reset-button;
-
-    &:hover {
-      color: tokens.get('link-hover-fg');
-    }
-  }
-
-  a,
-  button,
-  post-togglebutton {
-    &:not(post-mainnavigation *, post-language-switch *) {
-      @include subsidiary-header-interactive;
-
-      post-icon {
-        height: 24px;
-        width: 24px;
-      }
-
-      @include media.max(sm) {
-        padding: 8px;
-
-        .visually-hidden-sm {
-          @include utilities.visuallyhidden;
-        }
-      }
-    }
-  }
-
-  button,
-  a {
-    &:not(post-mainnavigation *, post-language-switch *) {
-      display: flex;
-
-      @include media.max(sm) {
-        padding: 4px 10px;
-      }
-    }
-  }
-
-  a.selected,
-  post-togglebutton[aria-pressed='true'] {
-    &:not(post-mainnavigation *) {
-      color: color.$white;
-      background: #050400;
-    }
-  }
-
-  post-togglebutton {
-    @include utilities.high-contrast-mode() {
-      background-color: ButtonFace !important;
-      border: 1px solid ButtonBorder !important;
-      color: ButtonText !important;
-
-      &:hover {
-        background-color: Highlight !important;
-
-        post-icon {
-          color: HighlightText;
-        }
-      }
-    }
-  }
-
-  > .list-inline:where(:not([slot])) {
-    gap: 4px;
-  }
-}
-
 // Added to prevent Back-to-top button from showing up before header is hydrated
 body:has(post-header:not([data-hydrated])) post-back-to-top {
   visibility: hidden !important;
+}
+
+post-header {
+  &:not(:defined),
+  &:not([data-hydrated]) {
+    display: block;
+    height: var(--post-header-height);
+  }
+
+  // all header lists
+  > ul {
+    @extend %header-list;
+  }
+
+  // all slotted links and buttons
+  > * {
+    @include interactive-elements {
+      @extend %header-control;
+    }
+  }
+
+  // links and buttons remaining in the global and local headers on tablet and mobile
+  > :is([slot='global-nav-primary'], [slot='post-login'], [slot='local-nav']) {
+    @include media.max(desktop) {
+      flex-direction: row;
+    }
+
+    @include media.only(mobile) {
+      @include interactive-elements {
+        @include nav-item-icon-only;
+      }
+    }
+  }
+
+  // links and buttons remaining in the global header on tablet and mobile
+  > :is([slot='global-nav-primary'], [slot='post-login']) {
+    @include media.only(mobile) {
+      @include interactive-elements {
+        padding: 0.625rem;
+      }
+    }
+  }
+
+  // links and buttons in the local header
+  > :is([slot='local-nav']) {
+    @include media.only(mobile) {
+      @include interactive-elements {
+        padding: 0.25rem 0.75rem;
+      }
+    }
+  }
+
+  // audience
+  > [slot='audience'] {
+    &:where(ul) {
+      @include media.only(tablet) {
+        flex-direction: row;
+        margin-block: 1rem;
+      }
+
+      @include media.only(mobile) {
+        gap: 0.5rem;
+      }
+    }
+
+    @include interactive-elements {
+      padding-inline: 1rem;
+    }
+  }
+
+  // meta navigation on desktop
+  > [slot='global-nav-secondary'] {
+    @include media.max(desktop) {
+      &:where(ul) {
+        flex-direction: column;
+      }
+
+      @include interactive-elements {
+        flex-direction: row-reverse;
+        @include nav-item-block-layout;
+
+        > post-icon {
+          margin: unset;
+        }
+      }
+    }
+  }
+
+  // title
+  $header-title-line-height: 34px;
+
+  [slot='title'] {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 950;
+
+    @include media.only(desktop) {
+      font-size: 1.75rem;
+      line-height: $header-title-line-height;
+    }
+  }
+
+  // global user menu trigger
+  [slot='post-login'] > post-menu-trigger > button {
+    display: block;
+  }
+
+  // local user menu trigger
+  .local-login button {
+    display: block;
+    margin-block: calc(
+      (#{$header-title-line-height} - #{tokens.get('avatar-size', components.$post-avatar)}) / 2
+    );
+  }
 }

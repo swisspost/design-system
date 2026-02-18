@@ -1,14 +1,18 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as TableStories from './table.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as TableStories from './table.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={TableStories} />
 
 <div className="docs-title">
   # Table
 
-  <link-design of={JSON.stringify(TableStories)}></link-design>
+<link-design of={JSON.stringify(TableStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Customize the native <code>&lt;table&gt;</code> element with CSS that changes the element’s
@@ -20,7 +24,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   <Controls of={TableStories.Default} />
 </div>
 
-<StylesPackageImport components={["table"]} />
+<StylesPackageImport components={['table']} />
 
 ## Usage examples
 
@@ -32,9 +36,4 @@ When buttons are placed in a table, be sure to use `alignment: middle`, respecti
 
 ### Interactive Table in Angular
 
-If an interactive data table is needed, we recommend the table component from the PrimeNG UI Suite. To make it look like a Swiss Post component, please use our [@swisspost/design-system-styles-primeng](/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs) package.
-
-However, this component can only be used in Angular projects. See the [PrimeNG Table documentation](https://primeng.org/table) for full usage instructions.
-
-The LTS versions would need a license, so it's recommended not to use LTS.
-https://primeng.org/table
+If an interactive data table is needed, we recommend using [AG Grid](https://www.ag-grid.com/).

@@ -1,19 +1,36 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as FooterStories from './footer.stories';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import meta, * as FooterStories from './footer.stories';
+import PackageTag from '@/shared/package-tag';
+import LandmarkCorrect from '../../../shared/samples/landmark-placement-example.sample.html?raw';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
-<Meta of={FooterStories}/>
+<Meta of={FooterStories} />
 
 <div className="docs-title">
   # Composable Footer
 
-  <link-design of={JSON.stringify(FooterStories)}></link-design>
+<link-design of={JSON.stringify(FooterStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <p className="lead">The composable footer component for your Swiss Post page.</p>
 
 Internally the `<post-footer>` component has a fix structure, but it offers a number of slots, which can be used to add your very own content, so it ultimatly fulfills everyones requirements.
 
-
-<Canvas of={FooterStories.Default} />
-
+<Canvas of={FooterStories.Default} sourceState="shown" />
 <Controls of={FooterStories.Default} />
+
+<ComponentsPackageInstall component="<post-footer>" />
+
+## Accessibility
+
+### Contentinfo Landmark
+
+The footer provides a **contentinfo landmark** that contains metadata about the parent document, such as copyright information, legal links, and contact details. Screen reader users can jump directly to the contentinfo using landmark navigation shortcuts.
+Each page must have **exactly one contentinfo landmark** at the top level, placed after the `<main>` element:
+
+<Source code={LandmarkCorrect} language="html" />
+
+For more information, see the [WAI-ARIA Contentinfo Landmark documentation](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/contentinfo.html).

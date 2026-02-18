@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as CardStories from './card.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as CardStories from './card.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={CardStories} />
 
@@ -10,6 +11,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <link-design of={JSON.stringify(CardStories)}></link-design>
 
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">Cards provide a flexible and extensible content container.</div>
 
@@ -27,33 +30,24 @@ This is easily customizable using the grid for example. For more details on that
 
 ## Interactivity
 
-Card elements can contain many things, they can be interactive or not. Interactive cards will have a shadow and an hover effect. To make your card interactive, simply add the `post-linkarea` component around it.
-To read more about it, read our [post-linkarea docs](/?path=/docs/1d52b794-768b-464e-90eb-4fd15774aa90--docs).
+Card elements can contain many things, they can be interactive or not.
+Interactive cards have a shadow and an hover effect.
+
+To make your card interactive, simply use a `post-linkarea` component as container.
+To know more about it, read our [post-linkarea documentation](/?path=/docs/1d52b794-768b-464e-90eb-4fd15774aa90--docs).
 
 <post-banner>
-  Do not place more than one interactive element on an interactive card. If your card should contain
-  more than one action, consider using a non-interactive card which can contain multiple different
-  actionable/interactive elements.
+  Interactive cards must include exactly one anchor element.
+
+  Cards that require more than one link should use a non-interactive card, which allows a broader range of interactive elements.
 </post-banner>
 
-<Canvas sourceState="shown" of={CardStories.Foundation} />
+<Canvas of={CardStories.Interactivity} />
 
-## Examples
+## Hidden Link
 
-### Palettes
+For accessibility, an interactive card must always contain a link so it can be discovered by screen readers.
+The link may be visually hidden so it does not appear within the card.
 
-Cards should never be the same color as its section's background. Therefore, depending on the palette, the card's background color will adapt.
+<Canvas of={CardStories.HiddenLink} />
 
-<Canvas sourceState="hidden" of={CardStories.Palette} />
-
-### Custom Content
-
-A card is simply a box which can contain a wide variety of content, including images, text, links, and more.
-
-<Canvas of={CardStories.CustomContent} />
-
-### List Interactive
-
-Create lists of content in a card by simply using a list interactive in place of the card body.
-
-<Canvas of={CardStories.ListGroup} />

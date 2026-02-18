@@ -1,11 +1,12 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 import * as CardControlStandardHTMLStories from './standard-html/card-control.stories';
 import firefoxFallbackSnippet from './standard-html/card-control-firefox-fallback.sample.ts?raw';
 
 import * as CardControlStories from './web-component/card-control.stories';
 import SampleCardControlMethods from './web-component/card-control-methods.sample?raw';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={CardControlStories} />
 
@@ -21,13 +22,13 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 <post-banner>
   <p slot="heading">There are various methods to integrate this component into your project.</p>
 
-  We advise opting for the "Standard HTML" approach for when you need full access to the input
-  field and using the "Web Component" method in every other case.
+We advise opting for the "Standard HTML" approach for when you need full access to the input
+field and using the "Web Component" method in every other case.
 </post-banner>
 
 <post-tabs>
-  <post-tab-header panel="standardhtml">Standard HTML</post-tab-header>
-  <post-tab-panel name="standardhtml">
+  <post-tab-item name="standardhtml">Standard HTML</post-tab-item>
+  <post-tab-panel for="standardhtml">
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
       <Controls of={CardControlStandardHTMLStories.Default} />
@@ -74,15 +75,13 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
   </post-tab-panel>
 
-<post-tab-header panel="webcomponent">Webcomponent</post-tab-header>
-<post-tab-panel name="webcomponent">
+<post-tab-item name="webcomponent">Webcomponent</post-tab-item>
+<post-tab-panel for="webcomponent">
 
 <Canvas of={CardControlStories.Default} sourceState="shown" />
 <Controls of={CardControlStories.Default} />
 
-    ## Installation
-
-    The `<post-card-control>` element is part of the `@swisspost/design-system-components` package. For more information, read the <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">getting started with components guide</a>.
+    <ComponentsPackageInstall component="<post-card-control>" />
 
     ## Examples
 

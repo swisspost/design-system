@@ -7,12 +7,12 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
   title: 'Components/Button',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Stable'],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=302-9575&m=dev',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=17-163&m=dev',
     },
   },
   args: {
@@ -144,12 +144,12 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
         labels: {
-          'null': 'None',
-          'search': 'Search',
-          'edit': 'Edit',
-          'save': 'Save',
-          'trash': 'Remove',
-          'heart': 'Like',
+          null: 'None',
+          search: 'Search',
+          edit: 'Edit',
+          save: 'Save',
+          trash: 'Remove',
+          heart: 'Like',
         },
       },
       options: ['null', 'search', 'edit', 'save', 'trash', 'heart'],
@@ -167,12 +167,12 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
         labels: {
-          'null': 'None',
-          'search': 'Search',
-          'edit': 'Edit',
-          'save': 'Save',
-          'trash': 'Remove',
-          'heart': 'Like',
+          null: 'None',
+          search: 'Search',
+          edit: 'Edit',
+          save: 'Save',
+          trash: 'Remove',
+          heart: 'Like',
         },
       },
       options: ['null', 'search', 'edit', 'save', 'trash', 'heart'],
@@ -261,19 +261,19 @@ const VariantsTemplate = {
     },
   },
   decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      html` <div class="d-flex gap-12 flex-wrap">${story(context.args, context)}</div> `,
-  ],
-  render: (args: Args) =>
-    html`
-      ${repeat(args.variants, (variant: string) =>
-        Template.render({
-          ...args,
-          text: variant.replace(/^btn-(.)/g, (_m: string, g: string) => g.toUpperCase()),
-          variant,
-        }),
-      )}
+    (story: StoryFn, context: StoryContext) => html`
+      <div class="d-flex gap-12 flex-wrap">${story(context.args, context)}</div>
     `,
+  ],
+  render: (args: Args) => html`
+    ${repeat(args.variants, (variant: string) =>
+      Template.render({
+        ...args,
+        text: variant.replace(/^btn-(.)/g, (_m: string, g: string) => g.toUpperCase()),
+        variant,
+      }),
+    )}
+  `,
 };
 
 export const FullWidth: Story = {

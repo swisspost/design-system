@@ -1,13 +1,18 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as PopoverStories from './popover.stories';
+import meta, * as PopoverStories from './popover.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={PopoverStories} />
 
 <div className="docs-title">
   # Popover
 
-  <link-design of={JSON.stringify(PopoverStories)}></link-design>
+<link-design of={JSON.stringify(PopoverStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   For longer, informative messages or explanations and also simple interactive elements like links.
@@ -16,8 +21,16 @@ import * as PopoverStories from './popover.stories';
 <Canvas sourceState="shown" of={PopoverStories.Default} />
 <Controls of={PopoverStories.Default} />
 
-## Installation
+## Wrapped Popover
 
-<div>
-  The `<post-popover>` element is part of the `@swisspost/design-system-components` package. For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
-</div>
+The `<post-popover>` can be nested within the `<post-popover-trigger>` to establish the trigger–popover relationship, eliminating the need for an explicit id reference.
+
+<Canvas sourceState="shown" of={PopoverStories.Wrapped} />
+
+<ComponentsPackageInstall component="<post-popover>" />
+
+## Usage with an info icon
+
+An info icon can be paired with a popover to provide users with quick access to additional information when needed.
+
+<Canvas sourceState="shown" of={PopoverStories.InfoIcon} />

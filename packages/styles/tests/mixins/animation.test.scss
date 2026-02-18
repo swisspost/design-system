@@ -2,5 +2,4 @@
 
 body {
   @include animation.hover-animation(10px, 500px, 500px);
-  @include animation.hover-animation-svg-icon(red, 2021);
 }

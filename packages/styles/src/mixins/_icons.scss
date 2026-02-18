@@ -9,45 +9,43 @@
 @use './../mixins/utilities';
 @use './../utilities/env-variables' as icon-version;
 
-@mixin icon($name) {
-  $icon: icon-fn.get-svg-url($name);
-  mask-image: url('#{$icon}');
+// Default path for icons
+$icons-default-path: '../icons/temp';
+
+/**
+ * Light mixin that applies only the mask image.
+ *
+ * Intended for internal use where full control over icon styles is needed.
+ * Not documented for Design System users.
+ */
+@mixin mask-image($name, $path: $icons-default-path) {
+  mask-image: var(--post-icon-#{$name});
   background-color: currentColor;
-  color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
-  forced-color-adjust: preserve-parent-color;
-}
 
-$loaded-icons: () !default;
-
-@mixin load-icon-css($name, $path: '../icons/temp') {
-  @if list.index($loaded-icons, $name) == null {
-    $loaded-icons: list.append($loaded-icons, $name) !global;
+  // An extra selector is required to avoid having nested rule errors
+  & {
     @at-root {
       @include meta.load-css('#{$path}/#{$name}');
     }
   }
 }
 
-@mixin post-icon($name, $color: inherit, $width: 1em, $height: 1em) {
+/**
+ * Full-featured icon mixin.
+ *
+ * Documented for Design System users.
+ * Use with caution internally as it applies additional styles beyond the mask.
+ */
+@mixin icon($name, $path: $icons-default-path, $color: inherit, $size: 1em) {
+  @include mask-image($name, $path);
   display: inline-block;
-  width: $width;
-  height: $height;
+  width: $size;
+  height: $size;
   vertical-align: -0.15em;
-  background-color: currentColor;
   color: $color;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: var(--post-icon-#{$name});
-  mask-image: var(--post-icon-#{$name});
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-position: center center;
   mask-position: center center;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-size: 100%;
   mask-size: 100%;
-  @include load-icon-css($name);
 }
 
 @mixin remove-icon() {

@@ -1,14 +1,18 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as InputStories from './input.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as InputStories from './input.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={InputStories} />
 
 <div className="docs-title">
   # Input
 
-  <link-design of={JSON.stringify(InputStories)}></link-design>
+<link-design of={JSON.stringify(InputStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Customize the native `<input>` with CSS that changes the element’s initial appearance.
@@ -21,11 +25,9 @@ Custom input elements need only the class `.form-control` to trigger the custom 
   <Controls of={InputStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-input']} required={{ 'validation': true }} />
+<StylesPackageImport components={['form-input']} required={{ validation: true }} />
 
-## Concrete Examples of Application
-
-The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+## Examples
 
 ### Floating Label
 
@@ -35,3 +37,16 @@ But note that the `<input>` element must come first, so we can ensure the correc
 Ensure that `placeholder` attribute is set (even with an empty value) so the label can act as a placeholder when no value is set.
 
 <Canvas of={InputStories.FloatingLabel} />
+
+### Autocomplete
+
+You can provide users with a list of suggested options for an input field using a standard HTML `<input>` paired with a `<datalist>`.
+
+The `list` attribute links the input to the datalist, allowing suggestions to appear as the user types while still permitting custom values.
+The browser handles filtering automatically, so no additional scripts are required for basic functionality.
+
+This approach is supported in most modern browsers and can be extended for dynamic options by generating `<option>` elements programmatically.
+
+You can find more information in the [MDN documentation for the datalist element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/datalist).
+
+<Canvas of={InputStories.Autocomplete} />

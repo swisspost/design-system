@@ -10,13 +10,20 @@ function shouldProcessEvent(
   event: Event,
   tag: string,
   host: HTMLElement,
-  ignoreNestedComponents: boolean
+  ignoreNestedComponents: boolean,
+  allowDescendants: boolean = false,
 ): boolean {
   if (!(event instanceof Event && event.target instanceof HTMLElement)) return false;
 
   const eventTarget = event.target;
 
-  if (eventTarget.localName !== tag) return false;
+  if (allowDescendants) {
+    // Accept event if target or any ancestor matches tag
+    if (!eventTarget.closest(tag)) return false;
+  } else {
+    // Only accept event if target exactly matches tag
+    if (eventTarget.localName !== tag) return false;
+  }
 
   if (ignoreNestedComponents) {
     // Find the closest parent with the same tag as the host
@@ -35,18 +42,28 @@ function shouldProcessEvent(
  */
 export function EventFrom(
   tag: string,
-  option: { ignoreNestedComponents: boolean } = { ignoreNestedComponents: true }
+  option?: { ignoreNestedComponents?: boolean; allowDescendants?: boolean },
 ) {
-  return function (
-    target: object,
-    propertyKey: string,
-    descriptor?: PropertyDescriptor
-  ) {
+  // Set default values here
+  const opts = {
+    ignoreNestedComponents: true,
+    allowDescendants: false,
+    ...option,
+  };
+  return function (target: object, propertyKey: string, descriptor?: PropertyDescriptor) {
     if (descriptor) {
       const originalMethod = descriptor.value;
 
       descriptor.value = function (event: Event) {
-        if (!shouldProcessEvent(event, tag, this.host, option.ignoreNestedComponents)) {
+        if (
+          !shouldProcessEvent(
+            event,
+            tag,
+            this.host,
+            opts.ignoreNestedComponents,
+            opts.allowDescendants,
+          )
+        ) {
           return;
         }
 
@@ -60,7 +77,7 @@ export function EventFrom(
       // Create hidden storage for original method
       Object.defineProperty(target, privateKey, {
         writable: true,
-        configurable: true
+        configurable: true,
       });
 
       // Replace property with getter/setter
@@ -75,7 +92,7 @@ export function EventFrom(
           if (typeof originalFunction === 'function') {
             // Store original and add new behavior
             this[privateKey] = (event: Event) => {
-              if (!shouldProcessEvent(event, tag, this.host, option.ignoreNestedComponents)) {
+              if (!shouldProcessEvent(event, tag, this.host, opts.ignoreNestedComponents)) {
                 return;
               }
 
@@ -86,7 +103,7 @@ export function EventFrom(
           }
         },
         configurable: true,
-        enumerable: true
+        enumerable: true,
       });
     }
   };

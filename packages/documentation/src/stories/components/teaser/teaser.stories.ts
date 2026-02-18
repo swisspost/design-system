@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '68699b2c-ec1f-467d-81ae-8b3f48d7c595',
   title: 'Components/Card Teaser',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:Experimental'],
   parameters: {
     design: {
       type: 'figma',
@@ -72,8 +72,7 @@ export default meta;
 type Story = StoryObj;
 
 export function renderTeaserCard(args: Args) {
-  return html`<post-linkarea>
-    <div class="card teaser-card${args.size === 'lg' ? ' teaser-card-lg' : ''}">
+  return html`<post-linkarea class="card teaser-card${args.size === 'lg' ? ' teaser-card-lg' : ''}">
       <img src="https://picsum.photos/id/38/500/400" alt="My placeholder image">
       <div>
         <div>
@@ -84,7 +83,6 @@ export function renderTeaserCard(args: Args) {
           args.buttonLabel
         } <post-icon name="arrowright"></post-icon></post-icon></a>
       </div>
-    </div>
   </post-linkarea>
   `;
 }

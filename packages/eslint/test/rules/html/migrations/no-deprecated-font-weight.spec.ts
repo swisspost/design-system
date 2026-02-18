@@ -14,12 +14,12 @@ htmlRuleTester.run(name, rule, {
     {
       code: '<p class="bold">My text</p>',
       output: '<p class="fw-bold">My text</p>',
-      errors: [{ messageId: 'deprecatedBold' }],
+      errors: [{ messageId: 'bold' }],
     },
     {
       code: '<p class="regular">My text</p>',
       output: '<p class="fw-regular">My text</p>',
-      errors: [{ messageId: 'deprecatedRegular' }],
+      errors: [{ messageId: 'regular' }],
     },
   ],
 });

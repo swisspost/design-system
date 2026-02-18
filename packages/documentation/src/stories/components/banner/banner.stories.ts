@@ -27,14 +27,16 @@ const meta: MetaComponent<PostBannerControls> = {
     },
   },
   args: {
-    innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    innerHTML:
+      '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     type: 'info',
     dismissible: false,
     dismissed: false,
   },
   argTypes: {
     dismissible: {
-      description: 'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
+      description:
+        'If `true`, a close button (×) is displayed and the banner can be dismissed by the user.',
       table: {
         category: 'content',
         type: {
@@ -70,22 +72,18 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
   }
 
   if (dismissed) {
-    return html`
-      <button class="btn btn-secondary" @click=${() => updateArgs({ dismissed: false })}>
-        Reset Banner
-      </button>`;
+    return html` <button class="btn btn-secondary" @click=${() => updateArgs({ dismissed: false })}>
+      Reset Banner
+    </button>`;
   }
 
   return html`
-  <post-banner .type=${type} @postDismissed=${() => updateArgs({ dismissed: true })}>
+    <post-banner
+      type=${type === 'info' ? nothing : type}
+      @postDismissed=${() => updateArgs({ dismissed: true })}
+    >
       ${dismissible
-        ? html`
-            <post-closebutton
-              slot="close-button"
-            >
-              Close
-            </post-closebutton>
-          `
+        ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
         : nothing}
       ${unsafeHTML(innerHTML ?? '')}
     </post-banner>

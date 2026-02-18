@@ -1,19 +1,9 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
+import { ANIMATION_KEYS, PostIconAnimation } from '@/types/icon-animations';
 
 const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/`;
-const ANIMATION_NAMES = [
-  'cylon',
-  'cylon-vertical',
-  'spin',
-  'spin-reverse',
-  'fade',
-  'throb',
-] as const;
-const ANIMATION_KEYS = [...ANIMATION_NAMES];
-
-type Animation = (typeof ANIMATION_NAMES)[number];
 
 /**
  * @class PostIcon - representing a stencil component
@@ -30,7 +20,7 @@ export class PostIcon {
   /**
    * The name of the animation.
    */
-  @Prop() readonly animation?: Animation;
+  @Prop({ reflect: true }) readonly animation?: PostIconAnimation;
 
   @Watch('animation')
   validateAnimation() {
@@ -48,14 +38,19 @@ export class PostIcon {
   }
 
   /**
+   * A full URL to the icon file. When set, this property has the highest priority.
+   */
+  @Prop() readonly url?: string;
+
+  /**
    * When set to `true`, the icon will be flipped horizontally.
    */
-  @Prop() readonly flipH?: boolean = false;
+  @Prop({ reflect: true }) readonly flipH?: boolean = false;
 
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
-  @Prop() readonly flipV?: boolean = false;
+  @Prop({ reflect: true }) readonly flipV?: boolean = false;
 
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
@@ -106,6 +101,10 @@ export class PostIcon {
       return `${CDN_URL}${fileName}`;
     }
 
+    if (this.url) {
+      return this.url;
+    }
+
     const isAbsolute = (url: string) => /^https?:\/\//.test(url);
     const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
     const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
@@ -114,9 +113,12 @@ export class PostIcon {
     const baseHref = IS_BROWSER
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
-    const metaIconBase = IS_BROWSER
-      ? document.querySelector('meta[name="design-system-settings"]')?.getAttribute('data-post-icon-base') || ''
-      : '';
+
+    let metaIconBase = '';
+    if (IS_BROWSER) {
+      const metaTag = document.querySelector('meta[name="design-system-settings"]');
+      metaIconBase = metaTag?.getAttribute('data-post-icon-base') || '';
+    }
 
     // Function to build the first part of the URL when 'this.base' or 'metaIconBase' are relative
     const buildUrlWithBase = (relativeUrl: string) => {

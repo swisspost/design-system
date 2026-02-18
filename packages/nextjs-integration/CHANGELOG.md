@@ -1,5 +1,102 @@
 # @swisspost/design-system-nextjs-integration
 
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.61
+  - @swisspost/design-system-components-react@10.0.0-next.61
+
+## 10.0.0-next.60
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.60
+  - @swisspost/design-system-components-react@10.0.0-next.60
+
+## 10.0.0-next.59
+
+### Patch Changes
+
+- Added new react icon demo cases. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+- Updated dependencies:
+  - @swisspost/design-system-components-react@10.0.0-next.59
+  - @swisspost/design-system-styles@10.0.0-next.59
+
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.58
+  - @swisspost/design-system-components-react@10.0.0-next.58
+
+## 10.0.0-next.57
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.57
+  - @swisspost/design-system-components-react@10.0.0-next.57
+
+## 10.0.0-next.56
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.56
+  - @swisspost/design-system-components-react@10.0.0-next.56
+
+## 10.0.0-next.55
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.55
+  - @swisspost/design-system-components-react@10.0.0-next.55
+
+## 10.0.0-next.54
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.54
+  - @swisspost/design-system-components-react@10.0.0-next.54
+
+## 0.1.14-next.53
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.53
+  - @swisspost/design-system-components-react@10.0.0-next.53
+
+## 0.1.14-next.52
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.52
+  - @swisspost/design-system-components-react@10.0.0-next.52
+
+## 0.1.14-next.51
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.51
+  - @swisspost/design-system-components-react@10.0.0-next.51
+
+## 0.1.14-next.50
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.50
+  - @swisspost/design-system-components-react@10.0.0-next.50
+
 ## 0.1.14-next.49
 
 ### Patch Changes

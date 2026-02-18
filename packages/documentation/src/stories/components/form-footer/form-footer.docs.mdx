@@ -1,16 +1,21 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as FormFooterStories from './form-footer.stories';
+import meta, * as FormFooterStories from './form-footer.stories';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={FormFooterStories} />
 
 <div className="docs-title">
   # Footer
 
-  <link-design of={JSON.stringify(FormFooterStories)}></link-design>
+<link-design of={JSON.stringify(FormFooterStories)}></link-design>
+
 </div>
 
+<PackageTag meta={meta} />
+
 <div className="lead">
-  The form footer is placed at the end/bottom of a form or a form step, in case the form is splitted with a stepper. It provides workflow-related actions to the form or form step.
+  The form footer is placed at the end/bottom of a form or a form step, in case the form is splitted
+  with a stepper. It provides workflow-related actions to the form or form step.
 </div>
 
 <Canvas sourceState="shown" of={FormFooterStories.Default} />

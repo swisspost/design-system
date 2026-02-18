@@ -20,7 +20,7 @@ jobs:
     steps:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
-        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -37,10 +37,12 @@ jobs:
       - name: Configure GitHub User
         uses: ./.github/actions/configure-github-user
 
-      - name: Stage and commit build artifacts
+      - name: Abort workflow, if uncommitted changes are detected
         run: |
-          git add .
-          git diff --staged --quiet || git commit -m "chore: add generated files for publish test"
+          if [[ $(git status --porcelain) ]]; then
+            echo "Error: Unclean working tree! Commit changes first, then release again..."
+            exit 1
+          fi
 
       # This will fail the build if something in the publish setup is not correct
       # before changeset magic is starting to run
@@ -65,7 +67,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           PUBLISHED: ${{ steps.changesets.outputs.published }}
           PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.publishedPackages }}
@@ -95,7 +97,7 @@ jobs:
     steps:
       # Checkout the Branch which has been pushed ('main' or 'release/v*')
       - name: Checkout
-        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -111,7 +113,7 @@ jobs:
       # Read the status Files and collect release data on the @swisspost/design-system-styles package
       - name: Prepare Release Data
         id: release-data-pre
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const fs = require('fs')
@@ -180,7 +182,7 @@ jobs:
 
       - name: Checkout previous Major Version
         if: fromJSON(steps.release-data-pre.outputs.result).isMajor == true
-        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           ref: ${{ steps.release-branch-exists.outputs.exists == 'true' && fromJSON(steps.release-data-pre.outputs.result).branchName || steps.previous-major-version.outputs.tagName }}
 
@@ -190,7 +192,7 @@ jobs:
 
       - name: Finalize Release Data
         id: release-data
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const fs = require('fs')
@@ -212,7 +214,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           REF_NAME: ${{ github.ref_name }}
           RELEASE_DATA: ${{ steps.release-data.outputs.result }}
@@ -248,7 +250,7 @@ jobs:
     steps:
       # Checkout the changeset Branch
       - name: Checkout
-        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: changeset-release/main
@@ -262,7 +264,7 @@ jobs:
       - name: Update or create Documentation _redirects
         id: update-redirects
         if: fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const fs = require('fs')
@@ -284,7 +286,7 @@ jobs:
             return true
 
       - name: Update Documentation versions.json
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const fs = require('fs')
@@ -326,7 +328,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           REF_NAME: ${{ github.ref_name }}
           RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
@@ -358,13 +360,13 @@ jobs:
     steps:
       # Checkout the commit with the release.old.version tag (e.g. @swisspost/design-system-styles@5.3.2)
       - name: Checkout
-        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: ${{ fromJSON(needs.collect-release-data.outputs.release-data).tagName }}
 
       - name: Add distribution tag for old major version
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const fs = require('fs')
@@ -424,7 +426,7 @@ jobs:
           netlify deploy --filter @swisspost/design-system-documentation --dir packages/documentation/storybook-static --prod
 
       - name: Update Changeset config.json
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const fs = require('fs')
@@ -438,7 +440,7 @@ jobs:
             }, null, 2) + '\n')
 
       - name: Update Documentation netlify.config.json
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const fs = require('fs')
@@ -462,7 +464,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
         with:
@@ -490,7 +492,7 @@ jobs:
     if: github.ref_name == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
     steps:
       - name: Checkout
-        uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
@@ -504,7 +506,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
         with:

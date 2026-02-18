@@ -7,7 +7,7 @@
     "include": ["prebuild.ts", "prebuild.spec.ts"]
   },
   "compilerOptions": {
-    "types": ["node", "jest", "mock-fs"],
+    "types": ["node", "jest"],
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"]
@@ -28,6 +28,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": [".config/*", "src", "types"],
+  "include": [".config/*", "src", "types", "prebuild.spec.ts", "vrt/**/*", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }

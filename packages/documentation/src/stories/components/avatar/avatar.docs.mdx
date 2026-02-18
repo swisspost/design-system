@@ -1,14 +1,19 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import * as AvatarPictureStories from './avatar.stories';
+import meta, * as AvatarPictureStories from './avatar.stories';
 import AvatarSample from './avatar.sample.scss?raw';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={AvatarPictureStories} />
 
 <div className="docs-title">
   # Avatar
 
-  <link-design of={JSON.stringify(AvatarPictureStories)}></link-design>
+<link-design of={JSON.stringify(AvatarPictureStories)}></link-design>
+
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   Display a user's profile picture or their initials if the picture is unavailable.
@@ -16,6 +21,8 @@ import AvatarSample from './avatar.sample.scss?raw';
 
 <Canvas of={AvatarPictureStories.Default} sourceState="shown" />
 <Controls of={AvatarPictureStories.Default} />
+
+<ComponentsPackageInstall component="<post-avatar>" />
 
 ## Interactive Wrapper Element
 
@@ -52,21 +59,21 @@ The properties are used in the order as follows:
 
 1. If you use an `<img>` tag in the default slot (for example to show a self hosted image), this will override the other properties.<br/><br/>
    <post-banner class="mb-16">
-     We do not check if the image can be loaded, so make sure the image is available!
+   We do not check if the image can be loaded, so make sure the image is available!
    </post-banner>
 2. If you use the `userid` property (to show a company internal user picture) and a picture is available, this will override the `email` property, as well as `firstname` and `lastname`.<br/><br/>
    <post-banner class="mb-16">
-     This will only work on `post.ch` urls and only in internal projects.
+   This will only work on `post.ch` urls and only in internal projects.
    </post-banner>
 3. If you use the `email` property (to show a users picture provided through gravatar.com) and a picture is available, this will override the `firstname` and `lastname` properties.<br/><br/>
    <post-banner class="mb-16">
-     Don't know Gravatar or haven't set up a profile yet, let's change this:
-     [Signup](https://gravatar.com) now!
+   Don't know Gravatar or haven't set up a profile yet, let's change this:
+   [Signup](https://gravatar.com) now!
    </post-banner>
 4. As an overall fallback the `firstname` and `lastname` properties are used to show at least some initials. And as an addition, `firstname` and `lastname` (if defined) are also used on all the other methods to set the `alt` tag of the image (if not already defined).<br/><br/>
    <post-banner class="mb-16">
-     Because of big differences in the naming convenions around the world, we only set the
-     `firstname` as required property.
+   Because of big differences in the naming convenions around the world, we only set the
+   `firstname` as required property.
    </post-banner>
 
 ## Check the Content Security Policy

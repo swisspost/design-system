@@ -1,13 +1,24 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { version } from '@root/package.json';
-import { fadeIn, fadeOut } from '@/animations';
-import { componentOnReady } from '@/utils';
+import { fade } from '@/animations';
+import { componentOnReady, checkRequiredAndType } from '@/utils';
 
 /**
- * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
- * @slot default - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
- * @part tabs - The container element that holds the set of tabs.
- * @part content - The container element that displays the content of the currently active tab.
+ * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
+ * @slot panels - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
+ * @part post-tabs - The container element that holds the set of tabs.
+ * @part post-tabs-content - The container element that displays the content of the currently active tab. Only available in panels mode.
  */
 
 @Component({
@@ -16,47 +27,203 @@ import { componentOnReady } from '@/utils';
   shadow: true,
 })
 export class PostTabs {
-  private activeTab: HTMLPostTabHeaderElement;
+  private currentActiveTab: HTMLPostTabItemElement;
   private showing: Animation;
   private hiding: Animation;
   private isLoaded = false;
+  private contentObserver: MutationObserver;
 
-  private get tabs(): HTMLPostTabHeaderElement[] {
-    return Array.from(
-      this.host.querySelectorAll<HTMLPostTabHeaderElement>('post-tab-header'),
-    ).filter(tab => tab.closest('post-tabs') === this.host);
+  @State() isNavigationMode: boolean = false;
+
+  private get tabs(): HTMLPostTabItemElement[] {
+    return Array.from(this.host.querySelectorAll<HTMLPostTabItemElement>('post-tab-item')).filter(
+      tab => tab.closest('post-tabs') === this.host,
+    );
+  }
+
+  private get panels(): HTMLPostTabPanelElement[] {
+    return Array.from(this.host.querySelectorAll<HTMLPostTabPanelElement>('post-tab-panel')).filter(
+      panel => panel.closest('post-tabs') === this.host,
+    );
   }
 
   @Element() host: HTMLPostTabsElement;
 
   /**
-   * The name of the panel that is initially shown.
-   * If not specified, it defaults to the panel associated with the first tab.
-   *
-   * **Changing this value after initialization has no effect.**
+   * The name of the tab in the panel mode that is initially active.
+   * Changing this value after initialization has no effect.
+   * If not specified, defaults to the first tab.
    */
-  @Prop() readonly activePanel?: HTMLPostTabPanelElement['name'];
+  @Prop() readonly activeTab?: string;
 
   /**
    * When set to true, this property allows the tabs container to span the
+   * Changing this value after initialization has no effect.
    * full width of the screen, from edge to edge.
    */
   @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
+   * The accessible label for the tabs component in navigation mode.
+   */
+  @Prop({ reflect: true }) readonly label?: string;
+
+  @Watch('label')
+  validateLabel() {
+    if (this.isNavigationMode) {
+      checkRequiredAndType(this, 'label', 'string');
+    }
+  }
+
+  /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
-   * The payload is the name of the newly shown panel.
+   * The payload is the name of the newly active tab.
+   * Only emitted in panel mode.
    */
   @Event() postChange: EventEmitter<string>;
 
+  componentWillRender() {
+    this.detectMode();
+  }
+
   componentDidLoad() {
     this.moveMisplacedTabs();
+    this.moveMisplacedPanels();
     this.enableTabs();
+    this.setupContentObserver();
+    this.validateLabel();
 
-    const initiallyActivePanel = this.activePanel || this.tabs[0]?.panel;
-    void this.show(initiallyActivePanel);
+    if (this.isNavigationMode) {
+      const activeTab = this.findActiveNavigationTab();
+      if (activeTab) {
+        this.activateTab(activeTab);
+      }
+    } else {
+      const tabToActivate = this.activeTab || this.tabs[0]?.name;
+      if (tabToActivate) {
+        void this.show(tabToActivate);
+      }
+    }
 
     this.isLoaded = true;
+  }
+
+  disconnectedCallback() {
+    if (this.showing) {
+      this.showing.cancel();
+      this.showing = null;
+    }
+    if (this.hiding) {
+      this.hiding.cancel();
+      this.hiding = null;
+    }
+
+    if (this.contentObserver) {
+      this.contentObserver.disconnect();
+    }
+  }
+
+  private setupContentObserver() {
+    const config: MutationObserverInit = {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-navigation-mode', 'aria-current'],
+    };
+
+    this.contentObserver = new MutationObserver(this.handleContentChange.bind(this));
+    this.contentObserver.observe(this.host, config);
+  }
+
+  private handleContentChange(mutations: MutationRecord[]) {
+    const shouldRedetect = this.shouldRedetectMode(mutations);
+    const ariaCurrentChanged = this.hasAriaCurrentChanged(mutations);
+
+    if (ariaCurrentChanged && this.isNavigationMode) {
+      this.updateActiveNavigationTab();
+    }
+
+    if (shouldRedetect) {
+      this.handleModeChange();
+    }
+  }
+
+  private shouldRedetectMode(mutations: MutationRecord[]): boolean {
+    return mutations.some(mutation => {
+      if (mutation.type === 'childList') {
+        return mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0;
+      }
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-navigation-mode') {
+        return true;
+      }
+      return false;
+    });
+  }
+
+  private hasAriaCurrentChanged(mutations: MutationRecord[]): boolean {
+    return mutations.some(
+      mutation => mutation.type === 'attributes' && mutation.attributeName === 'aria-current',
+    );
+  }
+
+  private updateActiveNavigationTab(): void {
+    const activeTab = this.findActiveNavigationTab();
+    if (activeTab && activeTab !== this.currentActiveTab) {
+      this.activateTab(activeTab);
+    }
+  }
+
+  private handleModeChange(): void {
+    const previousMode = this.isNavigationMode;
+    this.detectMode();
+
+    if (previousMode !== this.isNavigationMode) {
+      this.enableTabs();
+      this.initializeActiveTab();
+    }
+  }
+
+  private initializeActiveTab(): void {
+    if (this.isNavigationMode) {
+      const activeTab = this.findActiveNavigationTab();
+      if (activeTab) {
+        this.activateTab(activeTab);
+      }
+    } else {
+      const tabToActivate = this.activeTab || this.tabs[0]?.name;
+      if (tabToActivate) {
+        void this.show(tabToActivate);
+      }
+    }
+  }
+
+  private detectMode() {
+    // Check for navigation mode by looking for anchor elements in tabs
+    // This works even before post-tab-item sets data-navigation-mode attribute
+    const hasNavigationTabs = this.tabs.some(tab => {
+      const hasAnchor = tab.querySelector('a') !== null;
+      const navModeAttr = tab.getAttribute('data-navigation-mode') === 'true';
+      return hasAnchor || navModeAttr;
+    });
+
+    const hasPanels = this.panels.length > 0;
+
+    if (hasNavigationTabs && hasPanels) {
+      throw new Error(
+        'PostTabs: Mixed mode detected. Cannot use both navigation mode (anchor elements) and panel mode (post-tab-panel elements) at the same time.',
+      );
+    }
+
+    this.isNavigationMode = hasNavigationTabs;
+  }
+
+  private findActiveNavigationTab(): HTMLPostTabItemElement | null {
+    return (
+      this.tabs.find(tab => {
+        const anchor = tab.querySelector('a[aria-current="page"]');
+        return anchor !== null;
+      }) || null
+    );
   }
 
   /**
@@ -64,26 +231,27 @@ export class PostTabs {
    * Any other panel that was previously shown becomes hidden and its associated tab is unselected.
    */
   @Method()
-  async show(panelName: string) {
+  async show(tabName: string) {
     // do nothing if the tab is already active
-    if (panelName === this.activeTab?.panel) {
+    if (tabName === this.currentActiveTab?.name) {
       return;
     }
 
-    const previousTab = this.activeTab;
-    const newTab: HTMLPostTabHeaderElement = this.host.querySelector(
-      `post-tab-header[panel=${panelName}]`,
+    const previousTab = this.currentActiveTab;
+    const newTab: HTMLPostTabItemElement = this.host.querySelector(
+      `post-tab-item[name=${tabName}]`,
     );
+
     this.activateTab(newTab);
 
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
     if (this.showing) {
-      this.showing.effect['target'].style.display = 'none';
       this.showing.finish();
+      this.showing = null;
     }
 
     // hide the currently visible panel only if no other animation is running
-    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.panel);
+    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
 
     // wait for any hiding animation to complete before showing the selected tab
     if (this.hiding) await this.hiding.finished;
@@ -93,15 +261,27 @@ export class PostTabs {
     // wait for any display animation to complete for the returned promise to fully resolve
     if (this.showing) await this.showing.finished;
 
-    if (this.isLoaded) this.postChange.emit(this.activeTab.panel);
+    if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
   }
 
   private moveMisplacedTabs() {
     if (!this.tabs) return;
 
     this.tabs.forEach(tab => {
-      if (tab.getAttribute('slot') === 'tabs') return;
-      tab.setAttribute('slot', 'tabs');
+      // Tab items should go in the default slot, so remove any slot attribute
+      if (tab.getAttribute('slot')) {
+        tab.removeAttribute('slot');
+      }
+    });
+  }
+
+  private moveMisplacedPanels() {
+    if (!this.panels) return;
+
+    this.panels.forEach(panel => {
+      if (panel.getAttribute('slot') !== 'panels') {
+        panel.setAttribute('slot', 'panels');
+      }
     });
   }
 
@@ -111,21 +291,28 @@ export class PostTabs {
     this.tabs.forEach(async tab => {
       await componentOnReady(tab);
 
-      // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
+      // In navigation mode, navigation is handled by the consumer's routing
+      if (this.isNavigationMode) {
+        return;
+      }
+
+      // Panel mode: set up ARIA relationships and event handlers
       if (tab.getAttribute('aria-controls')) return;
 
-      const tabPanel = this.getPanel(tab.panel);
-      tab.setAttribute('aria-controls', tabPanel.id);
-      tabPanel.setAttribute('aria-labelledby', tab.id);
+      const tabPanel = this.getPanel(tab.name);
+      if (tabPanel) {
+        tab.setAttribute('aria-controls', tabPanel.id);
+        tabPanel.setAttribute('aria-labelledby', tab.id);
+      }
 
       tab.addEventListener('click', () => {
-        void this.show(tab.panel);
+        void this.show(tab.name);
       });
 
       tab.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          void this.show(tab.panel);
+          void this.show(tab.name);
         }
       });
 
@@ -133,33 +320,39 @@ export class PostTabs {
         if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') this.navigateTabs(tab, e.key);
       });
     });
-
     // if the currently active tab was removed from the DOM then select the first one
-    if (this.activeTab && !this.activeTab.isConnected) {
-      void this.show(this.tabs[0]?.panel);
+    if (this.currentActiveTab && !this.currentActiveTab.isConnected) {
+      void this.show(this.tabs[0]?.name);
     }
   }
 
-  private activateTab(tab: HTMLPostTabHeaderElement) {
-    if (this.activeTab) {
-      this.activeTab.setAttribute('aria-selected', 'false');
-      this.activeTab.setAttribute('tabindex', '-1');
-      this.activeTab.classList.remove('active');
+  private activateTab(tab: HTMLPostTabItemElement) {
+    // Deactivate previous tab
+    if (this.currentActiveTab) {
+      this.currentActiveTab.classList.remove('active');
+
+      if (!this.isNavigationMode) {
+        this.currentActiveTab.setAttribute('aria-selected', 'false');
+        this.currentActiveTab.setAttribute('tabindex', '-1');
+      }
     }
 
-    tab.setAttribute('aria-selected', 'true');
-    tab.setAttribute('tabindex', '0');
     tab.classList.add('active');
 
-    this.activeTab = tab;
+    if (!this.isNavigationMode) {
+      tab.setAttribute('aria-selected', 'true');
+      tab.setAttribute('tabindex', '0');
+    }
+
+    this.currentActiveTab = tab;
   }
 
-  private hidePanel(panelName: HTMLPostTabPanelElement['name']) {
+  private hidePanel(panelName: HTMLPostTabPanelElement['for']) {
     const previousPanel = this.getPanel(panelName);
 
     if (!previousPanel) return;
 
-    this.hiding = fadeOut(previousPanel);
+    this.hiding = fade(previousPanel, 'out');
     this.hiding.onfinish = () => {
       previousPanel.style.display = 'none';
       this.hiding = null;
@@ -167,48 +360,62 @@ export class PostTabs {
   }
 
   private showSelectedPanel() {
-    const panel = this.getPanel(this.activeTab.panel);
+    const panel = this.getPanel(this.currentActiveTab.name);
+    if (!panel) return;
     panel.style.display = 'block';
 
     // prevent the initially selected panel from fading in
     if (!this.isLoaded) return;
 
-    this.showing = fadeIn(panel);
+    this.showing = fade(panel, 'in');
     this.showing.onfinish = () => {
       this.showing = null;
     };
   }
 
   private getPanel(name: string): HTMLPostTabPanelElement {
-    return this.host.querySelector(`post-tab-panel[name=${name}]`);
+    return this.host.querySelector<HTMLPostTabPanelElement>(`post-tab-panel[for=${name}]`);
   }
 
-  private navigateTabs(tab: HTMLPostTabHeaderElement, key: 'ArrowRight' | 'ArrowLeft') {
+  private navigateTabs(tab: HTMLPostTabItemElement, key: 'ArrowRight' | 'ArrowLeft') {
     const activeTabIndex = Array.from(this.tabs).indexOf(tab);
 
-    let nextTab: HTMLPostTabHeaderElement;
+    let nextTab: HTMLPostTabItemElement;
     if (key === 'ArrowRight') {
       nextTab = this.tabs[activeTabIndex + 1] || this.tabs[0];
     } else {
       nextTab = this.tabs[activeTabIndex - 1] || this.tabs[this.tabs.length - 1];
     }
-
     if (!nextTab) return;
 
     nextTab.focus();
+    void this.show(nextTab.name);
   }
 
   render() {
+    const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
+
     return (
       <Host data-version={version}>
-        <div class="tabs-wrapper" part="tabs">
-          <div class="tabs" role="tablist">
-            <slot name="tabs" onSlotchange={() => this.enableTabs()} />
+        <div class="tabs-wrapper" part="post-tabs">
+          <TabsContainer
+            class="tabs"
+            role={this.isNavigationMode ? undefined : 'tablist'}
+            aria-label={this.isNavigationMode ? this.label : undefined}
+          >
+            <slot
+              onSlotchange={() => {
+                this.moveMisplacedTabs();
+                this.enableTabs();
+              }}
+            />
+          </TabsContainer>
+        </div>
+        {!this.isNavigationMode && (
+          <div class="tab-content" part="post-tabs-content">
+            <slot name="panels" onSlotchange={() => this.moveMisplacedPanels()} />
           </div>
-        </div>
-        <div class="tab-content" part="content">
-          <slot onSlotchange={() => this.moveMisplacedTabs()} />
-        </div>
+        )}
       </Host>
     );
   }

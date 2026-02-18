@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "10.0.0-next.49",
+  "version": "10.0.0-next.61",
   "description": "Design System React Components for easy integration with the React ecosystem",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -28,38 +28,48 @@
     "./post-components.css": "./dist/post-components.css",
     ".": {
       "types": "./dist/types/index.d.ts",
-      "node": "./dist/index.server.js",
       "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "node": "./dist/index.server.js"
     },
     "./server": {
       "types": "./dist/types/index.server.d.ts",
-      "import": "./dist/index.server.js",
-      "require": "./dist/index.server.js"
+      "import": "./dist/index.server.js"
+    },
+    "./icons": {
+      "types": "./dist/types/icons-generated/index.d.ts",
+      "import": "./dist/icons-generated/index.js",
+      "node": "./dist/icons-generated/index.js"
+    },
+    "./icons/*": {
+      "types": "./dist/types/icons-generated/*.d.ts",
+      "import": "./dist/icons-generated/*.js",
+      "node": "./dist/icons-generated/*.js"
     }
   },
   "scripts": {
-    "build": "pnpm clean && tsc -p .",
+    "build": "pnpm clean && pnpm build:icons && tsc -p .",
     "postbuild": "pnpm copy:styles:dist",
-    "clean": "rimraf dist",
+    "build:icons": "node scripts/generate-icons.mjs",
+    "clean": "rimraf dist src/icons-generated",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "copy:styles:dist": "copyfiles -f src/stencil-generated/post-components.css dist/"
   },
   "dependencies": {
-    "@stencil/react-output-target": "0.8.2",
-    "@stencil/ssr": "0.1.1",
-    "@swisspost/design-system-components": "workspace:10.0.0-next.49"
+    "@stencil/react-output-target": "1.2.0",
+    "@stencil/ssr": "0.3.0",
+    "@swisspost/design-system-components": "workspace:10.0.0-next.61"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
+    "@swisspost/design-system-icons": "workspace:10.0.0-next.61",
     "@types/node": "22.10.5",
-    "@types/react": "18.3.23",
+    "@types/react": "18.3.27",
     "@types/react-dom": "18.3.7",
     "copyfiles": "2.4.1",
-    "eslint": "9.18.0",
+    "eslint": "9.26.0",
     "eslint-plugin-react": "7.37.5",
-    "globals": "16.0.0",
+    "globals": "17.3.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "rimraf": "6.0.1",

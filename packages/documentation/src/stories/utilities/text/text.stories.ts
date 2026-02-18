@@ -5,6 +5,7 @@ import { MetaExtended } from '@root/types';
 const meta: MetaExtended = {
   id: 'c55681df-4d21-469d-a5b3-c67686e7c104',
   title: 'Utilities/Text',
+  tags: ['status:Stable'],
   parameters: {
     badges: [],
   },
@@ -19,36 +20,32 @@ export const FontFamily: Story = {
 };
 
 export const FontSize: Story = {
-  render: () =>
-    html`
-      ${Array.from({ length: 11 }, (_, i) => html`<p class="fs-${i + 1}">This is a text.</p>`)}
-    `,
+  render: () => html`
+    ${Array.from({ length: 11 }, (_, i) => html`<p class="fs-${i + 1}">This is a text.</p>`)}
+  `,
 };
 
 export const FontWeight: Story = {
-  render: () =>
-    html`
-      <p class="fw-normal">This is a normal text.</p>
-      <p class="fw-bold">This is a bold text.</p>
-      <p class="fw-black">This is a black text.</p>
-    `,
+  render: () => html`
+    <p class="fw-normal">This is a normal text.</p>
+    <p class="fw-bold">This is a bold text.</p>
+    <p class="fw-black">This is a black text.</p>
+  `,
 };
 
 export const FontStyle: Story = {
-  render: () =>
-    html`
-      <p class="fst-normal">This is a normal text.</p>
-      <p class="fst-italic">This is an italic text.</p>
-    `,
+  render: () => html`
+    <p class="fst-normal">This is a normal text.</p>
+    <p class="fst-italic">This is an italic text.</p>
+  `,
 };
 
 export const LineHeight: Story = {
-  render: () =>
-    html`
-      <p class="my-text lh-1">This text has a line height equal to the font size.</p>
-      <p class="my-text lh-sm">This text has a small line height.</p>
-      <p class="my-text lh-lg">This text has a large line height.</p>
-    `,
+  render: () => html`
+    <p class="my-text lh-1">This text has a line height equal to the font size.</p>
+    <p class="my-text lh-sm">This text has a small line height.</p>
+    <p class="my-text lh-lg">This text has a large line height.</p>
+  `,
 };
 
 export const TextColorReset: Story = {
@@ -125,4 +122,3 @@ export const SmallText: StoryObj = {
     <h2>This is a title with <span class="small">smaller text inside</span></h2>
   `,
 };
-

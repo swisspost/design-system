@@ -91,11 +91,9 @@ export const config: Config = {
     reactOutputTarget({
       customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated',
-    }),
-    reactOutputTarget({
-      customElementsDir: 'react',
-      outDir: '../components-react/src/stencil-generated/server',
       hydrateModule: '@swisspost/design-system-components/hydrate',
+      clientModule: '@swisspost/design-system-components-react',
+      serializeShadowRoot: 'declarative-shadow-dom',
     }),
     /**
      * This output-target type automates the creation of Angular component wrappers for the Stencil web-components.
@@ -144,6 +142,7 @@ export const config: Config = {
       '<rootDir>/hydrate/',
       '<rootDir>/www/',
       '<rootDir>/cypress',
+      '<rootDir>/vrt',
     ],
   },
 };

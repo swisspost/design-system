@@ -1,7 +1,5 @@
 @use 'sass:map';
 @use '../functions/tokens';
-@use '../functions/icons';
-@use './../mixins/icons' as icon-mixin;
 @use '../tokens/components';
 
 tokens.$default-map: components.$post-validation;
@@ -111,10 +109,10 @@ input[type='radio'],
   }
 
   ~ .invalid-feedback::before {
-    @include icon-mixin.icon('warning');
+    background-image: var(--post-signal-icon-error);
   }
 
   ~ .valid-feedback::before {
-    @include icon-mixin.icon('success');
+    background-image: var(--post-signal-icon-success);
   }
 }

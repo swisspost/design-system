@@ -1,11 +1,43 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/components/header/placeholders' as *;
 
-post-megadropdown-trigger {
-  width: 100%;
+:host {
   position: relative;
-  z-index: 3;
+  display: inline-block;
+}
 
-  @include media.max(lg) {
-    z-index: 4;
+button {
+  @extend %mainnavigation-control;
+  @include header-mx.nav-item-rotating-chevron;
+
+  // Bellow styles prevent layout shifts caused by the real button toggling between normal and bold font-weights.
+  > span {
+    position: relative;
+
+    // The hidden text provides size to the host.
+    > span[aria-hidden] {
+      font-weight: 700;
+      visibility: hidden;
+    }
+
+    // The visible text is positioned on top of the hidden one and adopts the same height and width.
+    > span:not([aria-hidden]) {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  @include media.only(desktop) {
+    @include header-mx.active-state {
+      font-weight: 700;
+    }
+  }
+
+  @include media.max(desktop) {
+    post-icon {
+      margin-inline-start: auto;
+      transform: rotate(-90deg) !important;
+    }
   }
 }

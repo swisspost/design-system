@@ -1,0 +1,78 @@
+/* stylelint-disable length-zero-no-unit */ // needed for calculation
+
+@use '../../mixins/media';
+
+:root:has(post-header) {
+  // expanded height
+  --post-local-header-expanded-height: var(
+    --post-local-header-expanded-min-height
+  ); // default value later updated with JavaScript
+  --post-header-expanded-height: calc(
+    var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
+  );
+
+  // reduced height
+  --post-global-header-reduced-height: var(--post-global-header-expanded-height);
+  --post-local-header-reduced-height: var(--post-local-header-expanded-height);
+  --post-header-reduced-height: calc(
+    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height)
+  );
+
+  // total height (dynamic depending on the scroll position)
+  --post-global-header-height: max(
+    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px),
+    var(--post-global-header-reduced-height)
+  );
+  --post-local-header-height: max(
+    var(--post-local-header-expanded-height) - var(--post-header-scroll-top, 0px),
+    var(--post-local-header-reduced-height)
+  );
+  --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
+
+  // header height adapted for case when mobile menu is open and page is scrolled down
+  &:has([data-menu-extended]) {
+    --post-header-height: (
+      var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
+    );
+  }
+
+  // microsite
+  &:has(post-header post-mainnavigation) {
+    --post-global-header-expanded-height: 4rem;
+    --post-local-header-reduced-height: 0rem;
+
+    @include media.only(mobile) {
+      --post-local-header-expanded-min-height: 3rem;
+    }
+
+    @include media.only(tablet) {
+      --post-local-header-expanded-min-height: 3.5rem;
+    }
+
+    @include media.only(desktop) {
+      --post-global-header-expanded-height: 4.5rem;
+      --post-local-header-expanded-min-height: 7rem;
+
+      // header reducing on desktop
+      --post-global-header-reduced-height: 1.5rem;
+      --post-local-header-reduced-height: 3.5rem;
+      --post-main-navigation-height: var(--post-local-header-reduced-height);
+    }
+  }
+
+  // one pager
+  &:not(:has(post-header post-mainnavigation)) {
+    --post-global-header-expanded-height: 4rem;
+    --post-local-header-expanded-min-height: 3.5rem;
+
+    @include media.only(desktop) {
+      --post-global-header-expanded-height: 4.5rem;
+      --post-local-header-expanded-min-height: 4rem;
+    }
+  }
+
+  // portal
+  &:not(:has(post-header [slot='title'])) {
+    --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0rem);
+  }
+}

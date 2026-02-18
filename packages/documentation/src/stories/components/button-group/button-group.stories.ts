@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:InProgress'],
   render: renderButtonGroup,
   parameters: {
     badges: [],
@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   },
   args: {
     size: 'btn-md',
-    element: 'button',
+    element: 'radio',
     label_1: 'Left',
     label_2: 'Middle',
     label_3: 'Right',
@@ -45,13 +45,13 @@ const meta: MetaComponent = {
       control: {
         type: 'radio',
         labels: {
+          radio: 'Radio Buttons',
+          checkbox: 'Checkboxes',
           button: 'Buttons',
           link: 'Links',
-          checkbox: 'Checkboxes',
-          radio: 'Radio Buttons',
         },
       },
-      options: ['button', 'link', 'checkbox', 'radio'],
+      options: ['radio', 'checkbox', 'button', 'link'],
       table: {
         category: 'General',
       },
@@ -128,17 +128,16 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story =>
-      html`
-        <div
-          @click="${(e: Event) => {
-            const target = e.target as HTMLElement;
-            if (target.tagName === 'A' || target.tagName === 'BUTTON') e.preventDefault();
-          }}"
-        >
-          ${story()}
-        </div>
-      `,
+    story => html`
+      <div
+        @click="${(e: Event) => {
+          const target = e.target as HTMLElement;
+          if (target.tagName === 'A' || target.tagName === 'BUTTON') e.preventDefault();
+        }}"
+      >
+        ${story()}
+      </div>
+    `,
   ],
 };
 

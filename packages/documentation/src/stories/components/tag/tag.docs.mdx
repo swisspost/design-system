@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as TagStories from './tag.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import meta, * as TagStories from './tag.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
 
 <Meta of={TagStories} />
 
@@ -10,6 +11,8 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <link-design of={JSON.stringify(TagStories)}></link-design>
 
 </div>
+
+<PackageTag meta={meta} />
 
 <div className="lead">
   A small label, generally appearing inside or in close proximity to another larger interface

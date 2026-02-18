@@ -15,31 +15,51 @@ type Story = StoryObj;
 export const BreadcrumbsSnapshots: Story = {
   render: (_args: Args, context: StoryContext) => {
     const scenarios = [
-      { label: 'Default', story: Default.render?.(context.args, context) || html`<p>Error rendering Default</p>` },
-      { label: 'Concatenated', story: Concatenated.render?.(context.args, context) || html`<p>Error rendering Concatenated</p>` },
+      {
+        label: 'Default',
+        story: Default.render?.(context.args, context) || html`<p>Error rendering Default</p>`,
+      },
+      {
+        label: 'Concatenated',
+        story:
+          Concatenated.render?.(context.args, context) || html`<p>Error rendering Concatenated</p>`,
+      },
       {
         label: 'Long Text',
         story: html`
-          <post-breadcrumbs home-url="/" home-text="Home">
-            <post-breadcrumb-item url="/section1">This is a very long breadcrumb item </post-breadcrumb-item>
-            <post-breadcrumb-item url="/section2">Another long breadcrumb item</post-breadcrumb-item>
-            <post-breadcrumb-item url="/section3">Yet another long item that tests wrapping behavior</post-breadcrumb-item>
+          <post-breadcrumbs
+            home-url="/"
+            text-home="Home"
+            text-breadcrumbs="Breadcrumbs"
+            text-more-items="More items"
+          >
+            <post-breadcrumb-item url="/section1"
+              >This is a very long breadcrumb item
+            </post-breadcrumb-item>
+            <post-breadcrumb-item url="/section2"
+              >Another long breadcrumb item</post-breadcrumb-item
+            >
+            <post-breadcrumb-item url="/section3"
+              >Yet another long item that tests wrapping behavior</post-breadcrumb-item
+            >
           </post-breadcrumbs>
         `,
       },
     ];
 
-    return schemes(() => html`
-      <div class="d-flex flex-column gap-24">
-        ${scenarios.map(
-          (scenario) => html`
-            <div>
-              <h4>${scenario.label}</h4>
-              ${scenario.story}
-            </div>
-          `
-        )}
-      </div>
-    `);
+    return schemes(
+      () => html`
+        <div class="d-flex flex-column gap-24">
+          ${scenarios.map(
+            scenario => html`
+              <div>
+                <h4>${scenario.label}</h4>
+                ${scenario.story}
+              </div>
+            `,
+          )}
+        </div>
+      `,
+    );
   },
 };

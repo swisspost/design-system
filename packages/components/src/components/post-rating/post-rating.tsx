@@ -25,9 +25,9 @@ export class PostRating {
   @State() hoveredIndex: number;
 
   /**
-   * Defines a hidden label for the component.
+   * A hidden, descriptive label that explains the role of the rating component to assistive technologies.
    */
-  @Prop() readonly label: string = 'Rating';
+  @Prop({ reflect: true }) readonly label!: string;
 
   /**
    * Defines the total amount of stars rendered in the component.
@@ -149,7 +149,7 @@ export class PostRating {
           aria-valuemin="0"
           aria-valuemax={this.stars}
           aria-valuenow={this.currentRating}
-          aria-valuetext={`${this.currentRating} out of ${this.stars}`}
+          aria-valuetext={`${this.currentRating} / ${this.stars}`}
           aria-readonly={this.readonly ? 'true' : 'false'}
           onKeyDown={this.keydownHandler}
           onBlur={this.blurHandler}
@@ -169,8 +169,8 @@ export class PostRating {
               onMouseEnter={e => this.hoverHandler(i, e)}
               onMouseLeave={e => this.hoverHandler(i, e)}
             >
-              <post-icon name="2062" class="stroke"></post-icon>
-              <post-icon name="2574" class="fill"></post-icon>
+              <post-icon name="favoritestar" class="stroke"></post-icon>
+              <post-icon name="favoritestar-solid" class="fill"></post-icon>
             </div>
           ))}
         </div>

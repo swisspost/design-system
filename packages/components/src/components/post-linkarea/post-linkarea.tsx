@@ -25,10 +25,12 @@ export class PostLinkarea {
   private checkInteractiveElements() {
     this.interactiveElements = this.host.querySelectorAll(INTERACTIVE_ELEMENTS_SELECTOR);
 
-    if (this.interactiveElements.length > 1) {
+    if (this.interactiveElements.length !== 1) {
       console.error(
-        `The \`post-linkarea\` currently contains ${this.interactiveElements.length} interactive elements when it should contain only one.`,
+        `The \`post-linkarea\` currently contains ${this.interactiveElements.length} interactive elements when it should contain exactly one.`,
       );
+    } else {
+      this.interactiveElements[0].style.setProperty('outline', 'unset', 'important');
     }
   }
 
@@ -46,7 +48,7 @@ export class PostLinkarea {
 
   render() {
     return (
-      <Host data-version={version} onClick={(e: MouseEvent) => this.dispatchClick(e)} tabindex="0">
+      <Host data-version={version} onClick={(e: MouseEvent) => this.dispatchClick(e)}>
         <slot></slot>
       </Host>
     );

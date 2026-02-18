@@ -1,0 +1,72 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+:host {
+  // The following variables will affect the header to minimize it on scroll
+  --post-global-header-top: calc(
+    var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)
+  );
+  --post-header-top: calc(var(--post-header-reduced-height) - var(--post-header-expanded-height));
+
+  --post-logo-height: calc(
+    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px)
+  );
+  --post-global-controls-top: clamp(
+    /* 0 when header is static, large negative when header shrinks to enable offset */ 1000 *
+      (var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)),
+    calc(
+      -1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))
+    ),
+    0px
+  );
+
+  @include media.only(desktop) {
+    --post-header-gap: 0.25rem;
+    --post-global-header-padding-inline-start: 0.25rem;
+    --post-global-header-padding-inline-end: 0.5rem;
+    --post-local-header-padding-inline-start: 0.75rem;
+    --post-local-header-padding-inline-end: 0.5rem;
+  }
+
+  @include media.only(tablet) {
+    --post-header-gap: 0.75rem 0.25rem;
+    --post-global-header-padding-inline-start: 0.25rem;
+    --post-global-header-padding-inline-end: 0.25rem;
+    --post-local-header-padding-inline-start: 0.75rem;
+    --post-local-header-padding-inline-end: 0.25rem;
+    --post-local-header-padding-block: 0rem;
+    --post-burger-menu-padding-inline: 2.5rem;
+    --post-burger-menu-body-gap: 2rem;
+    --post-burger-menu-footer-gap: 1.5rem;
+  }
+
+  // this is being discussed in Figma
+  @include media.only(sm) {
+    --post-burger-menu-padding-inline: 1rem;
+  }
+
+  @include media.only(mobile) {
+    --post-header-gap: 0.75rem 0.25rem;
+    --post-global-header-padding-inline-start: 0rem;
+    --post-global-header-padding-inline-end: 0.5rem;
+    --post-local-header-padding-inline-start: 0.5rem;
+    --post-local-header-padding-inline-end: 0.5rem;
+    --post-local-header-padding-block: 0rem;
+    --post-burger-menu-padding-inline: 1rem;
+    --post-burger-menu-body-gap: 1.5rem;
+    --post-burger-menu-footer-gap: 1rem;
+  }
+}
+
+:host(:not([full-width])),
+:host([full-width="false"]) {
+  --post-header-content-max-width: 1440px;
+}
+
+:host([data-expanded]), // case when mobile menu is closed and focus is moved inside the local-header
+:host([data-menu-extended]) // case when mobile menu is open and page is scrolled down
+{
+  --post-header-top: 0;
+  --post-global-header-top: -0.001px; // Fixes a Firefox rendering engine (Gecko) glitch related to position sticky, causing the header to be positioned incorrectly.
+  --post-global-controls-top: 0;
+  --post-logo-height: var(--post-global-header-expanded-height);
+}

@@ -1,9 +1,9 @@
-@use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
-@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/mixins/media' as media-mx;
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use './custom-properties';
 
 *,
 ::before,
@@ -11,293 +11,209 @@
   box-sizing: border-box;
 }
 
+:host,
+header,
+.global-header,
+.local-header {
+  transition: inset-block-start animation.$transition-time-simple
+    animation.$transition-easing-default;
+}
+
+.global-header,
+.local-header,
+.burger-menu {
+  box-shadow: elevation.$elevation-300;
+}
+
+.section,
+.navigation,
+.sliding-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--post-header-gap);
+  flex-wrap: wrap;
+}
+
+.section {
+  max-width: var(--post-header-content-max-width);
+  margin-inline: auto;
+}
+
 :host {
+  container-type: inline-size;
+  display: block;
+  position: sticky;
+  inset-block-start: var(--post-header-top);
   z-index: commons.$zindex-header;
-  position: relative;
 
-  // The following variables will affect the header to minimize it on scroll
-  --post-logo-height: calc(var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px));
-  --post-global-header-top: calc(
-    var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)
-  );
-  --post-local-header-top: calc(
-    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height) - var(--post-local-header-expanded-height)
-  );
-  --post-global-controls-top: clamp(
-    1000 * var(--post-global-header-top), /* 0 when header is static, large negative when header shrinks to enable offset */
-    calc(-1 * min(var(--post-header-scroll-top, 0px) / 4, var(--post-global-header-reduced-height))),
-    0px
-  );
-
-  @include media.only(desktop) {
-    // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
-    &:has(.global-sub > *:not(.logo):focus-within),
-    &:has(.local-sub:focus-within) {
-      --post-global-header-top: 0;
-      --post-local-header-top: var(--post-global-header-expanded-height);
-      --post-logo-height: var(--post-global-header-expanded-height);
-      --post-global-controls-top: 0;
+  post-togglebutton {
+    @include header-mx.nav-item-base;
+    @include media-mx.only(mobile) {
+      padding: 0.625rem;
+      @include header-mx.nav-item-icon-only;
     }
   }
-}
-
-.d-flex {
-  display: flex;
-}
-
-.space-between {
-  justify-content: space-between;
 }
 
 .global-header {
-  background-color: #ffcc00;
-  display: flex;
-  justify-content: space-between;
+  z-index: 2; // local header should slide bellow the global header
   position: sticky;
-  padding-inline: 4px;
-  height: var(--post-global-header-expanded-height);
+  inset-block-start: var(--post-global-header-top);
+  background-color: #ffcc00;
 
-  @include media.max(lg) {
-    z-index: 4;
-    inset-block-start: 0;
+  .section {
+    height: var(--post-global-header-expanded-height);
+    padding-inline-start: var(--post-global-header-padding-inline-start);
+    padding-inline-end: var(--post-global-header-padding-inline-end);
   }
 
-  @include media.min(lg) {
-    z-index: 5;
-    padding-inline-end: 8px;
-    inset-block-start: var(--post-global-header-top);
-    transition: inset-block-start 0.2s ease-in-out;
+  &:has(~ .local-header:not(.no-title.no-navigation)),
+  &:has(~ .burger-menu.extended) {
+    box-shadow: none;
   }
 
-  &:has(+ .local-header.no-navigation.no-title) {
-    box-shadow: elevation.$elevation-300;
-  }
-}
-
-.global-sub {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-
-  @include media.min(lg) {
-    // targets the right links and language switch to hide them on scroll
-    &:not(:has(.logo)) {
-      position: relative;
-      transition: inset-block-start 0.2s ease-in-out;
-      inset-block-start: var(--post-global-controls-top);
-    }
-
-    // targets the target group
-    &:not(:last-child):not(:first-child) {
-      flex-grow: 1;
-    }
-  }
-}
-
-.align-end {
-  align-items: flex-end;
-}
-
-.logo {
-  flex: 1 0 auto;
-  height: var(--post-global-header-expanded-height);
-  width: var(--post-global-header-expanded-height);
-  min-height: var(--post-global-header-reduced-height);
-  align-self: flex-end;
-
-  @include media.min(lg) {
-    transition: height 0.2 ease-in-out;
+  .logo {
+    align-self: flex-end;
+    width: var(--post-global-header-expanded-height);
     height: var(--post-logo-height);
+    min-height: var(--post-global-header-reduced-height);
+    max-height: 100%;
+    margin-inline-end: calc(1.25rem - var(--post-header-gap));
   }
-}
 
-::slotted(ul) {
-  margin-block: 0 !important;
-  list-style: none;
-  display: flex;
-  padding-inline-start: 0;
-  gap: 1rem;
-  flex-shrink: 0 !important;
+  .sliding-controls {
+    flex-grow: 1;
+    justify-content: flex-end;
+    position: relative;
+    inset-block-start: var(--post-global-controls-top);
+  }
+
+  .audience {
+    margin-inline-end: auto;
+  }
+
+  &.no-audience .audience {
+    display: none;
+  }
 }
 
 .local-header {
-  display: flex;
-  position: sticky;
-  inset-block-start: var(--post-local-header-top);
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4px;
-  min-height: var(--post-local-header-expanded-min-height);
-  background: color.$white;
-  transition: box-shadow 0.2s ease-in-out;
+  position: relative;
+  background-color: #fff;
 
-  &::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background-color: #e1e0dc;
-    inset-block-end: -1px;
-    z-index: 1;
+  .section {
+    min-height: var(--post-local-header-expanded-min-height);
+    padding-inline-start: var(--post-local-header-padding-inline-start);
+    padding-inline-end: var(--post-local-header-padding-inline-end);
+    padding-block: var(--post-local-header-padding-block);
+  }
 
-    @include utilities.high-contrast-mode() {
-      background-color: Highlight;
+  // having both title AND navigation
+  &:not(.no-title, .no-navigation) .section {
+    padding-block-start: 1.125rem;
+  }
+
+  // missing both title AND navigation
+  &.no-title.no-navigation {
+    display: none;
+  }
+
+  &:has(.navigation.megadropdown-open),
+  &:has(~ .burger-menu.extended) {
+    box-shadow: none;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      height: 1px;
+      background-color: #e1e0dc;
     }
   }
 
-  @include media.min(lg) {
-    z-index: 3;
-    box-shadow: elevation.$elevation-300;
-    transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
-
-    &:not(.no-title) {
-      padding-block-start: 18px;
-    }
+  .navigation {
+    flex: 1 0 100%;
+    height: var(--post-main-navigation-height);
+    margin-inline-start: calc(-1 * var(--post-local-header-padding-inline-start));
+    max-width: 100cqw;
   }
 
-  @include media.max(lg) {
-    z-index: 3;
-    padding-block: 8px;
-
-    flex-wrap: wrap;
-    gap: 12px;
-
-    &.local-header-mobile-extended {
-      &::after {
-        inset-block-end: 0;
-      }
-    }
-
-    &:not(.local-header-mobile-extended) {
-      box-shadow: elevation.$elevation-300;
-    }
+  &.no-navigation .navigation {
+    display: none;
   }
 
-  &.no-navigation {
-    padding-block: 0;
+  .local-nav {
+    flex: 0 0 auto;
+  }
 
+  &.no-local-nav {
     .navigation {
+      margin-inline-end: calc(-1 * var(--post-local-header-padding-inline-end));
+    }
+
+    .local-nav {
+      display: none;
+    }
+  }
+}
+
+.burger-menu {
+  z-index: -1; // burger-menu should slide bellow the local header
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 100%;
+  height: calc(
+    min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+  );
+  overflow: hidden auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+
+  &.extended.megadropdown-open {
+    overflow: hidden;
+  }
+
+  &:not(.extended) {
+    transform: translateY(-100%);
+    display: none;
+
+    > * {
       display: none;
     }
   }
 
-  &.no-navigation.no-title {
-    display: none;
-  }
-}
-
-.local-sub {
-  margin-inline-end: 16px;
-
-  @include media.max(lg) {
-    margin-inline-end: 4px;
-  }
-}
-
-::slotted(.list-inline) {
-  margin: 0 !important;
-  z-index: 3 !important;
-  position: relative !important;
-}
-
-.mobile-toggle {
-  @include media.min(lg) {
-    display: none;
-  }
-}
-
-.navigation {
-  width: 100%;
-
-  @include media.min(lg) {
-    inset-block-start: var(--post-global-header-reduced-height);
-
-    &::before {
-      display: block;
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: color.$white;
-    }
-  }
-}
-
-// only for tablet and mobile
-@include media.max(lg) {
-  .navigation {
-    position: sticky;
-    z-index: 2;
-    inset-inline: 0;
-    inset-block-start: var(--post-header-height);
-  }
-
-  .mobile-menu {
-    background-color: #fafafa;
-  }
-
-  ::slotted(post-mainnavigation),
-  .navigation-footer {
-    padding-block: 16px 24px;
-    padding-inline: 40px;
-  }
-
-  ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
-    display: none;
+  .burger-menu-body,
+  .burger-menu-footer {
+    display: flex;
     flex-direction: column;
-
-    .navigation.extended & {
-      display: flex;
-    }
+    padding-inline: var(--post-burger-menu-padding-inline);
   }
 
-  ::slotted(post-mainnavigation) {
-    padding-block: 24px;
+  .burger-menu-body {
+    flex-grow: 1;
+    padding-block: 1.5rem;
+    gap: var(--post-burger-menu-body-gap);
   }
 
-  .navigation.extended {
-    > div {
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      overflow-x: hidden;
-      height: calc(
-        min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
-      );
-    }
-
-    &.megadropdown-open {
-      > div {
-        overflow-y: hidden;
-      }
-    }
-
-    ::slotted(post-mainnavigation) {
-      flex-grow: 1 !important;
-    }
-  }
-
-  .navigation-footer {
+  .burger-menu-footer {
     background-color: #f0efed;
-    gap: 24px;
-
-    ::slotted(post-language-switch) {
-      margin-top: 16px;
-    }
-
-    @include media.max(sm) {
-      gap: 16px;
-    }
+    padding-block: 1rem 1.5rem;
+    gap: var(--post-burger-menu-footer-gap);
   }
-}
 
-// only for mobile
-@include media.max(sm) {
-  ::slotted(post-mainnavigation),
-  .navigation-footer {
-    padding-inline: 16px;
+  .local-nav {
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-inline: 0.25rem;
+  }
+
+  &.no-local-nav .local-nav {
+    display: none;
   }
 }
