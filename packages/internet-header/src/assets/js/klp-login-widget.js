@@ -1375,9 +1375,9 @@ const vertx = window.vertx || {};
             .catch(error => {
               log('Failed to subscribe: ' + error.message);
               if (error instanceof TypeError) {
-                // Fetch cancelled by browser navigation — not an auth failure.
-                // Do NOT call logout(): this would delete NCTRL and prevent recovery.
-                log('Subscribe cancelled by navigation — preserving NCTRL, skipping logout.');
+                // Fetch cancelled by browser navigation, not an auth failure.
+                // Do not call logout(): this would delete NCTRL and prevent recovery.
+                log('Subscribe cancelled by navigation: preserving NCTRL, skipping logout.');
                 renderWidget();
               } else {
                 logout();
