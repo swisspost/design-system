@@ -100,6 +100,45 @@ export default function Home() {
       <h2>Icon</h2>
       <PostIcon name="1000" />
 
+      <div className="d-flex gap-16 flex-wrap">
+        <figure>
+          <PostIconLetter className="fs-2"></PostIconLetter>
+          <figcaption>Line Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetterSolid className="fs-2"></PostIconLetterSolid>
+          <figcaption>Solid Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter style={{ color: 'red' }} className="fs-3"></PostIconLetter>
+          <figcaption>Colored Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-3"></PostIconLetter>
+          <figcaption>Sized Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives flipH={true} className="fs-2"></PostIconExplosives>
+          <figcaption>Flipped Horizontally</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives className="fs-2" flipV={true}></PostIconExplosives>
+          <figcaption>Flipped Vertically</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" rotate={90}></PostIconLetter>
+          <figcaption>Rotated</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" scale={1.5}></PostIconLetter>
+          <figcaption>Scaled</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" animation={'spin'}></PostIconLetter>
+          <figcaption>Spinning</figcaption>
+        </figure>
+      </div>
+
       <h2>Linkarea</h2>
       <PostLinkarea>
         <div className="card">
@@ -230,45 +269,6 @@ export default function Home() {
         textLast="Last page"
       />
 
-      <h2>Icons</h2>
-      <div className="d-flex gap-16 flex-wrap">
-        <figure>
-          <PostIconLetter className="fs-3"></PostIconLetter>
-          <figcaption>Line Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetterSolid className="fs-3"></PostIconLetterSolid>
-          <figcaption>Solid Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter style={{ color: 'red' }} className="fs-3"></PostIconLetter>
-          <figcaption>Colored Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter className="fs-3"></PostIconLetter>
-          <figcaption>Sized Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconExplosives flipH={true} className="fs-3"></PostIconExplosives>
-          <figcaption>Flipped Horizontally</figcaption>
-        </figure>
-        <figure>
-          <PostIconExplosives className="fs-3" flipV={true}></PostIconExplosives>
-          <figcaption>Flipped Vertically</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter className="fs-3" rotate={90}></PostIconLetter>
-          <figcaption>Rotated</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter className="fs-3" scale={1.5}></PostIconLetter>
-          <figcaption>Scaled</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter className="fs-3" animation={'spin'}></PostIconLetter>
-          <figcaption>Spinning</figcaption>
-        </figure>
-      </div>
     </>
   );
 }
