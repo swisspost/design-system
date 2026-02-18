@@ -120,13 +120,14 @@ export class PostSlider {
   private setupThumbDrag(event: PointerEvent) {
     this.activeThumb = new ActiveThumb(event.target, this.host, this.orient);
     this.activeThumb.el.classList.add('active');
+    this.activeThumb.el.setPointerCapture(event.pointerId);
 
     document.addEventListener('pointermove', this.dragThumb);
     document.addEventListener('pointerup', this.releaseThumb);
   }
 
   private dragThumb(event: PointerEvent) {
-    if (!this.activeThumb) return;
+    if (!this.activeThumb || !this.activeThumb.el.hasPointerCapture(event.pointerId)) return;
 
     const cursorPosition = this.orient === 'vertical' ? event.clientY : event.clientX;
 
@@ -144,13 +145,14 @@ export class PostSlider {
     this.updateThumbValue(snappedValue);
   }
 
-  private releaseThumb() {
+  private releaseThumb(event: PointerEvent) {
     if (!this.activeThumb) return;
 
     document.removeEventListener('pointermove', this.dragThumb);
     document.removeEventListener('pointerup', this.releaseThumb);
 
     this.activeThumb.el.classList.remove('active');
+    this.activeThumb.el.releasePointerCapture(event.pointerId);
     this.activeThumb = null;
 
     this.postChange.emit(this.value);
