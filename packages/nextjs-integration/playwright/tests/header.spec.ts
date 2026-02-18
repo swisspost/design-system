@@ -32,7 +32,6 @@ test.describe('Sticky header behavior', () => {
     // After scrolling back up, the header should still remain pinned
     const headerBox = await header.boundingBox();
     expect(headerBox).not.toBeNull();
-
     expect(headerBox!.y).toBe(0);
   });
 });
