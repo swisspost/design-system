@@ -94,12 +94,6 @@ tokens.$default-map: components.$post-pagination;
     background-color: tokens.get('pagination-number-color-selected-enabled-bg');
     border-color: tokens.get('pagination-number-color-selected-enabled-stroke');
     cursor: default;
-
-    &:hover {
-      color: tokens.get('pagination-number-color-selected-hovered-fg');
-      background-color: tokens.get('pagination-number-color-selected-hovered-bg');
-      border-color: tokens.get('pagination-number-color-selected-hovered-stroke');
-    }
   }
 }
 
