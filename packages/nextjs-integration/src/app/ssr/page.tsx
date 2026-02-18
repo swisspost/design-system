@@ -108,7 +108,7 @@ export default function Home() {
           <figcaption>Solid Icon</figcaption>
         </figure>
         <figure>
-          <PostIconLetter style={{ color: 'red' }} className="fs-3"></PostIconLetter>
+          <PostIconLetter style={{ color: 'red' }} className="fs-2"></PostIconLetter>
           <figcaption>Colored Icon</figcaption>
         </figure>
         <figure>
