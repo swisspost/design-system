@@ -39,14 +39,6 @@ header,
   inset-block-start: var(--post-header-top);
   z-index: commons.$zindex-header;
   box-shadow: elevation.$elevation-300;
-
-  post-togglebutton {
-    @include header-mx.nav-item-base;
-    @include media-mx.only(mobile) {
-      padding: 0.625rem;
-      @include header-mx.nav-item-icon-only;
-    }
-  }
 }
 
 .global-header {
@@ -96,12 +88,12 @@ header,
   align-items: var(--post-local-header-align-items, center);
 
   .section {
+    display: grid;
+    grid-template: var(--post-local-header-grid-template);
     width: 100%;
     padding-inline-start: var(--post-local-header-padding-inline-start);
     padding-inline-end: var(--post-local-header-padding-inline-end);
     padding-block: var(--post-local-header-padding-block);
-    display: grid;
-    grid-template: var(--post-local-header-grid-template);
   }
 
   &:has(~ .burger-menu.extended) {
@@ -124,6 +116,20 @@ header,
     slot[name="main-nav"] {
       display: none;
     }
+  }
+}
+
+.burger-button {
+  @include header-mx.nav-item-base;
+  display: var(--post-burger-button-display, flex);
+
+  @include media-mx.only(mobile) {
+    @include header-mx.nav-item-icon-only;
+    padding: 0.625rem;
+  }
+
+  @include media-mx.only(desktop) {
+    display: none;
   }
 }
 

@@ -78,6 +78,11 @@
 }
 
 post-header {
+  // hide burger button if there is no main navigation
+  &:not(:has([slot='main-nav'])) {
+    --post-burger-button-display: none;
+  }
+
   // Hide local header if it has neither title nor main navigation
   &:not(:has([slot='title']), :has([slot='main-nav'])) {
     --post-local-header-display: none;

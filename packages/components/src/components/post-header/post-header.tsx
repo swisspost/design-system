@@ -43,14 +43,14 @@ export class PostHeader {
   private burgerMenuButton: HTMLPostTogglebuttonElement | null;
   private burgerMenu: HTMLElement;
   private burgerMenuAnimation: Animation;
-  private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
   private localHeader: HTMLElement;
+  private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
-    return this.device !== 'desktop' && this.hasNavigation;
+    return this.device !== 'desktop' && this.hasMainNav;
   }
 
   private animationOptions: Partial<AnimationOptions> = {
@@ -84,7 +84,7 @@ export class PostHeader {
 
   @State() device: Device = breakpoint.get('device');
   @State() hasTitle: boolean = true;
-  @State() hasNavigation: boolean = true;
+  @State() hasMainNav: boolean = true;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -382,7 +382,7 @@ export class PostHeader {
     if (Build.isServer) return;
 
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
-    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
+    this.hasMainNav = !!this.host.querySelector('[slot="main-nav"]');
   }
 
   private switchLanguageSwitchMode() {
@@ -395,23 +395,20 @@ export class PostHeader {
   @Listen('focusin')
   @Listen('focusout')
   onFocusChange(e: FocusEvent) {
-    const alwaysVisibleElements =
-      this.device === 'desktop'
-        ? '.navigation' // logo isn’t included since it would be too small to focus on effectively.
-        : '.global-header, .burger-menu';
-    const isHeaderExpanded =
-      // ensure the expanded state stays accurate during focus changes,
-      // e.g., when the focused element is removed from the DOM
-      // during a window resize
-      e.target === document.activeElement &&
-      this.host.matches(':focus-within') &&
-      !this.host.shadowRoot.querySelector(`:where(${alwaysVisibleElements}):focus-within`);
+    const isHeaderFocused =
+      e.target === document.activeElement && this.host.matches(':focus-within');
 
-    if (isHeaderExpanded) {
-      this.host.setAttribute('data-expanded', '');
-    } else {
-      this.host.removeAttribute('data-expanded');
-    }
+    const mustRemainCollapsedOnDesktop =
+      this.device === 'desktop' && this.host.querySelector('post-mainnavigation:focus-within');
+
+    const mustRemainCollapsedOnNonDesktop =
+      this.device !== 'desktop' &&
+      this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
+
+    const isHeaderExpanded =
+      isHeaderFocused && !mustRemainCollapsedOnDesktop && !mustRemainCollapsedOnNonDesktop;
+
+    this.host.toggleAttribute('data-expanded', isHeaderExpanded);
   }
 
   private renderBurgerMenu() {
@@ -441,6 +438,9 @@ export class PostHeader {
   }
 
   render() {
+    const onDesktop = Build.isServer || this.device === 'desktop';
+    const onTabletAndMobile = Build.isServer || this.device !== 'desktop';
+
     return (
       <Host
         data-version={version}
@@ -455,19 +455,20 @@ export class PostHeader {
                 <slot name="post-logo"></slot>
               </div>
               <div class="sliding-controls">
-                {this.device === 'desktop' && (
+                {onDesktop && (
                   <div class="audience">
                     <slot name="audience"></slot>
                   </div>
                 )}
                 <slot name="global-nav-primary"></slot>
-                {!this.hasBurgerMenu && [
+                {(onDesktop || !this.hasMainNav) && [
                   <slot name="global-nav-secondary"></slot>,
                   <slot name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
-                {this.hasBurgerMenu && (
+                {onTabletAndMobile && this.hasMainNav && (
                   <post-togglebutton
+                    class="burger-button"
                     ref={el => (this.burgerMenuButton = el)}
                     onClick={() => this.toggleBurgerMenu()}
                   >
@@ -486,11 +487,11 @@ export class PostHeader {
           <div ref={el => (this.localHeader = el)} class="local-header">
             <div class="section">
               <slot name="title"></slot>
-              {(this.device === 'desktop' || this.hasTitle) && <slot name="local-nav"></slot>}
-              {this.device === 'desktop' && <slot name="main-nav"></slot>}
+              {(onDesktop || this.hasTitle) && <slot name="local-nav"></slot>}
+              {onDesktop && <slot name="main-nav"></slot>}
             </div>
           </div>
-          {this.device !== 'desktop' && this.renderBurgerMenu()}
+          {this.hasBurgerMenu && this.renderBurgerMenu()}
         </header>
       </Host>
     );
