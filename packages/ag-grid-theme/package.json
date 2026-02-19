@@ -1,7 +1,7 @@
 {
   "name": "@swisspost/design-system-ag-grid-theme",
   "version": "1.0.0",
-  "description": "Theme styling for the AG Grid library",
+  "description": "The Swiss Post Design System theme for AG Grid",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "main": "dist/index.js",

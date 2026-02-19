@@ -13,7 +13,7 @@ Swiss Post theme for the AG Grid library
 Install the AG Grid Theme package
 
 ```bash
-npm install @swisspost/ag-grid-theme
+npm install @swisspost/design-system-ag-grid-theme
 ```
 
 ## Usage
