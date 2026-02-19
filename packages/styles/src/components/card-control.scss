@@ -1,331 +1,157 @@
-@use '../variables/color';
-@use '../variables/commons';
-@use '../variables/spacing';
-@use '../variables/components/forms';
 @use '../variables/components/form-check';
-@use '../mixins/utilities' as utilities-mx;
+@use '../mixins/forms' as forms-mx;
+@use '../mixins/utilities' as utility-mx;
 @use '../functions/tokens';
+@use '../tokens/components';
 @use '../tokens/utilities';
 
-tokens.$default-map: utilities.$post-spacing;
+tokens.$default-map: components.$post-card-control;
 
-/*
-* There are a whole bunch of !important statments in this file.
-* They are necessary and should not be removed, because we need to override the .form-check styles here.
-*/
 fieldset {
-  .radio-button-card,
-  .checkbox-button-card {
+  .card-control {
     &:not(:last-child) {
-      margin-bottom: tokens.get('utility-gap-16');
+      margin-bottom: tokens.get('utility-gap-16', utilities.$post-spacing);
     }
   }
 }
 
-.radio-button-card,
-.checkbox-button-card {
-  --post-card-control-border-color: #{color.$gray-60};
-  --post-card-control-bg: #{color.$white};
-  --post-card-control-color: #{color.$gray-80};
-  --post-card-control-input-border-color: #{color.$gray-80};
-  --post-card-control-input-bg: #{color.$white};
+.card-control {
+  --post-current-bg: var(--post-card-control-bg);
+  --post-current-fg: var(--post-card-control-fg);
+
+  --post-card-control-scheme: #{tokens.get('card-control-unselected-scheme')};
+  --post-card-control-padding: 1rem;
+  --post-card-control-bg: #{tokens.get('card-control-unselected-bg')};
+  --post-card-control-border-width: 2px;
+  --post-card-control-border-style: solid;
+  --post-card-control-border-color: #{tokens.get('card-control-unselected-stroke')};
+  --post-card-control-border-radius: 8px;
+  --post-card-control-column-gap: 1rem;
+  --post-card-control-color: #{tokens.get('card-control-unselected-fg')};
+
+  --post-card-control-input-margin-block: 4px;
+  --post-card-control-label-padding-block: 1px;
+  --post-card-control-label-font-weight: 700;
+  --post-card-control-icon-size: 32px;
+  --post-card-control-description-font-size: 1rem;
 
   display: grid;
-  grid-template: 'input label icon' 'input content content' / min-content auto min-content;
-  align-items: center;
-  gap: 0 tokens.get('utility-gap-8');
-  position: relative;
-  padding: tokens.get('utility-gap-16');
-  width: 100%;
+  grid-template-areas: 'input label icon';
+  grid-template-columns: min-content 1fr max-content;
+  column-gap: var(--post-card-control-column-gap);
+  align-content: start;
+  padding: var(--post-card-control-padding);
   background-color: var(--post-card-control-bg);
-  border: tokens.get('utility-gap-2') solid var(--post-card-control-border-color);
-  border-radius: commons.$border-radius;
+  border-width: var(--post-card-control-border-width);
+  border-style: var(--post-card-control-border-style);
+  border-color: var(--post-card-control-border-color);
+  border-radius: var(--post-card-control-border-radius);
   color: var(--post-card-control-color);
   cursor: pointer;
 
-  > input {
-    grid-area: input;
-    position: relative;
-    z-index: 2;
-    margin: tokens.get('utility-gap-4') 0;
-    background-color: var(--post-card-control-input-bg) !important;
-    border-color: var(--post-card-control-input-border-color) !important;
-    color: var(--post-card-control-input-border-color) !important;
-    cursor: inherit;
-    transition: none;
+  @include utility-mx.focus-style();
 
-    @include utilities-mx.focus-style-none();
-
-    &:hover:not([disabled]) ~ label {
-      color: color.$black;
-      background-color: transparent !important;
-    }
-
-    &:focus,
-    &:focus-visible {
-      box-shadow: none;
-    }
-
-    ~ label {
-      color: var(--post-current-fg) !important;
-    }
+  &:not(:has(input:disabled)):hover {
+    --post-card-control-border-color: #{tokens.get('card-control-unselected-hovered-stroke')};
+    --post-card-control-color: #{tokens.get('card-control-unselected-hovered-fg')};
   }
 
-  label {
-    grid-area: label;
-    margin: tokens.get('utility-gap-4') 0;
-    padding: 0;
-    border-radius: inherit;
-    transition: none;
-
-    &::before {
-      display: block;
-      content: '';
-      position: absolute;
-      inset: calc(tokens.get('utility-gap-2') * -1);
-      border-radius: inherit;
-    }
-
-    > * {
-      display: block;
-      // Lift content above the :before element to make it selectable
-      position: relative;
-      z-index: 2;
-    }
-
-    &:not(:has(+ post-icon)) {
-      grid-area: 1 / label / 1 / icon;
-    }
-  }
-
-  .card-control--content {
-    grid-area: content;
-  }
-
-  post-icon {
-    grid-area: icon;
-    width: tokens.get('utility-gap-32');
-    height: tokens.get('utility-gap-32');
-    pointer-events: none;
-  }
-
-  &:where(:not(:has(input:disabled)), :not(.disabled)) {
-    &:where(:has(input:checked), .checked) {
-      --post-card-control-border-color: #{color.$black};
-      --post-card-control-bg: #{color.$yellow};
-    }
-
-    &:where(:has(input:invalid), :has(input[aria-invalid]), :has(input.is-invalid), .is-invalid) {
-      --post-card-control-border-color: #{color.$error};
-      --post-card-control-color: #{color.$error};
-      --post-card-control-input-border-color: #{color.$error};
-    }
-
-    &:where(:hover) {
-      --post-card-control-border-color: #{color.$gray-80};
-      --post-card-control-bg: #{color.$gray-60};
-      --post-card-control-color: #{color.$white};
-      --post-card-control-input-border-color: #{color.$black};
-    }
-
-    input:focus-visible ~ label::before {
-      outline-offset: forms.$input-focus-outline-thickness;
-      outline: forms.$input-focus-outline-thickness solid commons.$outline-color;
-    }
-  }
-
-  &:where(:has(input:disabled), .disabled) {
-    --post-card-control-border-color: #{color.$gray-60};
-    --post-card-control-bg: transparent;
-    --post-card-control-color: #{color.$gray-60};
-    --post-card-control-input-border-color: #{color.$gray-60};
-    --post-card-control-input-bg: transparent;
-
-    border-style: dashed;
+  &:has(input:disabled) {
+    --post-card-control-border-style: dashed;
+    --post-card-control-border-color: #{tokens.get('card-control-unselected-disabled-stroke')};
+    --post-card-control-color: #{tokens.get('card-control-unselected-disabled-fg')};
     cursor: default;
+  }
 
-    input.form-check-input[type] {
-      padding: forms.$input-border-width;
+  &:has(input:checked) {
+    --post-card-control-scheme: #{tokens.get('card-control-selected-scheme')};
+    --post-card-control-bg: #{tokens.get('card-control-selected-bg')};
+    --post-card-control-border-color: #{tokens.get('card-control-selected-stroke')};
+    --post-card-control-color: #{tokens.get('card-control-selected-fg')};
+
+    &:not(:has(input:disabled)):hover {
+      --post-card-control-border-color: #{tokens.get('card-control-selected-hovered-stroke')};
+      --post-card-control-color: #{tokens.get('card-control-selected-hovered-fg')};
+    }
+
+    &:has(input:disabled) {
+      --post-card-control-border-style: dashed;
+      --post-card-control-border-color: #{tokens.get('card-control-selected-disabled-stroke')};
+      --post-card-control-color: #{tokens.get('card-control-selected-disabled-fg')};
     }
   }
 
-  @include utilities-mx.high-contrast-mode() {
-    --post-card-control-border-color: FieldText;
-    --post-card-control-bg: Field;
-    --post-card-control-color: FieldText;
-    --post-card-control-input-border-color: FieldText;
-    --post-card-control-input-bg: Field;
+  > * {
+    // HINT: keeping the color-scheme on the child elements, prevents the focus-outline from having the wrong color in some cases.
+    color-scheme: var(--post-card-control-scheme);
 
-    outline: tokens.get('utility-gap-2') solid Field;
-    outline-offset: calc(tokens.get('utility-gap-2') * -2);
+    // every custom-content is located on: row 2, column 'label' to 'icon'
+    grid-row: 2;
+    grid-column: label / icon;
+  }
 
-    input.form-check-input[type] {
-      outline: tokens.get('utility-gap-2') solid Field;
-      background-color: Field !important;
+  &:where(:has(> .card-control--description)) > * {
+    // if a description is present (located on row 2, column 'label' to 'icon'),
+    // every custom-content needs to be re-located to: row 3, column 'label' to 'icon'
+    grid-row: 3;
+  }
 
-      &::after {
-        border-color: Field !important;
-      }
+  > input {
+    grid-row: 1;
+    grid-column: input;
+    margin: var(--post-card-control-input-margin-block) 0 !important;
+    outline: 0 none !important;
+    transition: none !important;
+
+    &[type='checkbox'] {
+      @include forms-mx.checkbox(
+        $custom-hover-selector: '.card-control:hover > input:not([disabled])'
+      );
     }
 
-    label.form-check-label,
-    .card-control--content {
-      background-color: var(--post-card-control-bg) !important;
+    &[type='radio'] {
+      @include forms-mx.radio-button(
+        $custom-hover-selector: '.card-control:hover > input:not([disabled])'
+      );
     }
+  }
 
-    &:where(:not(:has(input:disabled)), :not(.disabled)) {
-      &:where(:has(input:checked), .checked) {
-        --post-card-control-border-color: FieldText;
-        --post-card-control-bg: SelectedItem;
-        --post-card-control-color: FieldText;
-        --post-card-control-input-border-color: FieldText;
+  > label {
+    grid-row: 1;
+    grid-column: label / icon;
+    padding-block: var(--post-card-control-label-padding-block);
+    font-weight: var(--post-card-control-label-font-weight);
+    cursor: inherit;
+  }
 
-        input.form-check-input[type] {
-          &::after {
-            background-color: FieldText !important;
-          }
-        }
-      }
-
-      &:where(:hover) {
-        --post-card-control-border-color: Highlight;
-        --post-card-control-bg: Field;
-        --post-card-control-color: FieldText;
-        --post-card-control-input-border-color: Highlight;
-      }
+  &:has(> .card-control--icon) {
+    > label {
+      grid-column: label;
     }
+  }
 
-    &:where(:has(input:disabled), .disabled) {
-      --post-card-control-border-color: GrayText;
-      --post-card-control-bg: Field;
-      --post-card-control-color: FieldText;
-      --post-card-control-input-border-color: GrayText;
-      --post-card-control-input-bg: Field;
+  > .card-control--icon {
+    grid-row: 1;
+    grid-column: icon;
+    width: 1em;
+    height: 1em;
+    font-size: var(--post-card-control-icon-size);
+    line-height: 1;
 
-      &:where(:has(input:checked), .checked) {
-        --post-card-control-bg: SelectedItem;
-        --post-card-control-color: SelectedItemText;
+    &:not(post-icon) {
+      width: auto;
 
-        position: relative;
-        background-color: Field;
-
-        &::before {
-          display: block;
-          content: '';
-          position: absolute;
-          inset: tokens.get('utility-gap-2');
-          background-color: SelectedItem;
-          z-index: 1;
-        }
-
-        > * {
-          position: relative;
-          z-index: 2;
-        }
-
-        input.form-check-input[type] {
-          &::after {
-            background-color: FieldText !important;
-          }
-        }
+      > * {
+        width: auto !important;
+        height: 100% !important;
       }
     }
   }
-}
 
-@each $bg in color.$dark-backgrounds {
-  #{$bg} {
-    .radio-button-card,
-    .checkbox-button-card {
-      --post-card-control-border-color: #{color.$white};
-      --post-card-control-bg: transparent;
-      --post-card-control-color: #{color.$white};
-      --post-card-control-input-border-color: #{color.$white};
-      --post-card-control-input-bg: transparent;
-
-      &:where(:not(:has(input:disabled)), :not(.disabled)) {
-        &:where(:has(input:checked), .checked) {
-          --post-card-control-border-color: #{color.$yellow};
-          --post-card-control-bg: #{color.$yellow};
-          --post-card-control-color: #{color.$gray-80};
-          --post-card-control-input-border-color: #{color.$gray-80};
-          --post-card-control-input-bg: #{color.$white};
-        }
-
-        &:where(
-          :has(input:invalid),
-          :has(input[aria-invalid]),
-          :has(input.is-invalid),
-          .is-invalid
-        ) {
-          --post-card-control-border-color: #{color.$error};
-          --post-card-control-bg: #{color.$error-background};
-          --post-card-control-color: #{color.$error};
-          --post-card-control-input-border-color: #{color.$error};
-          --post-card-control-input-bg: #{color.$white};
-
-          &:where(:has(input:checked), .checked) {
-            --post-card-control-bg: #{color.$yellow};
-          }
-        }
-
-        &:where(:hover) {
-          --post-card-control-border-color: #{color.$black};
-          --post-card-control-bg: #{color.$gray-20};
-          --post-card-control-color: #{color.$black};
-          --post-card-control-input-border-color: #{color.$black};
-          --post-card-control-input-bg: #{color.$white};
-        }
-
-        input:focus-visible ~ label::before {
-          outline-color: color.$white;
-        }
-      }
-
-      &:where(:has(input:disabled), .disabled) {
-        --post-card-control-border-color: color.$white-alpha-80;
-        --post-card-control-bg: transparent;
-        --post-card-control-color: color.$white-alpha-80;
-        --post-card-control-input-border-color: color.$white-alpha-80;
-        --post-card-control-input-bg: transparent;
-      }
-
-      @include utilities-mx.high-contrast-mode() {
-        --post-card-control-border-color: FieldText;
-        --post-card-control-bg: Field;
-        --post-card-control-color: FieldText;
-        --post-card-control-input-border-color: FieldText;
-        --post-card-control-input-bg: Field;
-
-        &:where(:not(:has(input:disabled)), :not(.disabled)) {
-          &:where(:has(input:checked), .checked) {
-            --post-card-control-border-color: FieldText;
-            --post-card-control-bg: SelectedItem;
-            --post-card-control-color: SelectedItemText;
-            --post-card-control-input-border-color: FieldText;
-          }
-
-          &:where(:hover) {
-            --post-card-control-border-color: Highlight;
-            --post-card-control-bg: Field;
-            --post-card-control-color: FieldText;
-            --post-card-control-input-border-color: Highlight;
-          }
-        }
-
-        &:where(:has(input:disabled), .disabled) {
-          --post-card-control-border-color: GrayText;
-          --post-card-control-bg: Field;
-          --post-card-control-color: FieldText;
-          --post-card-control-input-border-color: GrayText;
-          --post-card-control-input-bg: Field;
-
-          &:where(:has(input:checked), .checked) {
-            --post-card-control-bg: SelectedItem;
-            --post-card-control-color: SelectedItemText;
-          }
-        }
-      }
-    }
+  > .card-control--description {
+    grid-row: 2;
+    grid-column: label / icon;
+    align-items: start;
+    font-size: var(--post-card-control-description-font-size);
   }
 }

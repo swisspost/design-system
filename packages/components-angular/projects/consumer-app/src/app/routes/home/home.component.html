@@ -25,12 +25,9 @@
 
 <div class="my-24">
   <h2>Post Banner</h2>
-  <post-banner><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-banner>
-</div>
-
-<div class="my-24">
-  <h2>Post Card-Control</h2>
-  <post-card-control type="checkbox" label="label"></post-card-control>
+  <post-banner>
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </post-banner>
 </div>
 
 <div class="my-24">
@@ -90,8 +87,8 @@
   <post-popover-trigger for="popover-one">
     <button type="button" class="btn btn-secondary">Popover Trigger</button>
   </post-popover-trigger>
-  <post-popover class="palette palette-accent" id="popover-one" placement="top" textClose="Close"
-    ><div id="popoverContent">
+  <post-popover class="palette palette-accent" id="popover-one" placement="top" textClose="Close">
+    <div id="popoverContent">
       <h2 class="h6">Optional title</h2>
       <p class="mb-0">
         A longer message that needs more time to read. <a href="#">Links</a> are also possible.
@@ -162,12 +159,8 @@
 
 <div class="my-24">
   <h2>Post Stepper</h2>
-  <post-stepper
-    textCompletedStep="Completed step"
-    textCurrentStep="Current step"
-    textStepNumber="Step #number:"
-    [currentIndex]="1"
-  >
+  <post-stepper textCompletedStep="Completed step" textCurrentStep="Current step" textStepNumber="Step #number:"
+    [currentIndex]="1">
     <post-stepper-item> Step 1 </post-stepper-item>
     <post-stepper-item> Step 2 </post-stepper-item>
     <post-stepper-item> Step 3 </post-stepper-item>
@@ -177,15 +170,6 @@
 
 <div class="my-24">
   <h2>Post Pagination</h2>
-  <post-pagination
-    page="1"
-    pageSize="10"
-    collectionSize="100"
-    label="Pagination"
-    textPrevious="Previous page"
-    textNext="Next page"
-    textPage="Page"
-    textFirst="First page"
-    textLast="Last page"
-  ></post-pagination>
+  <post-pagination page="1" pageSize="10" collectionSize="100" label="Pagination" textPrevious="Previous page"
+    textNext="Next page" textPage="Page" textFirst="First page" textLast="Last page"></post-pagination>
 </div>

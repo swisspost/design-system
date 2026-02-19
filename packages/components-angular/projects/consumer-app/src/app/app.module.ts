@@ -6,17 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { providePostComponents } from '@swisspost/design-system-components-angular';
 
 import { AppComponent } from './app.component';
-import { CardControlComponent } from './routes/card-control/card-control.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    AppComponent,
-    CardControlComponent,
-  ],
+  imports: [CommonModule, BrowserModule, AppRoutingModule, FormsModule, AppComponent],
   providers: [providePostComponents()],
   bootstrap: [AppComponent],
 })

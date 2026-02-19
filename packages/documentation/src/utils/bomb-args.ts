@@ -7,7 +7,7 @@
  * @returns
  */
 export const bombArgs = (variants: { [key: string]: unknown[] | undefined }) => {
-  return (function recurse(keys): Array<{ [key: string]: unknown }> {
+  const argsArray = (function recurse(keys): Array<{ [key: string]: unknown }> {
     if (!keys.length) return [{}];
     const result = recurse(keys.slice(1));
     const variantsArray = variants[keys[0]] ?? [];
@@ -18,4 +18,6 @@ export const bombArgs = (variants: { [key: string]: unknown[] | undefined }) => 
       [],
     );
   })(Object.keys(variants));
+
+  return Array.from(new Set(argsArray));
 };
