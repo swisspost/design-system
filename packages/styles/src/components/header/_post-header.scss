@@ -133,4 +133,10 @@ post-header {
       (#{$header-title-line-height} - #{tokens.get('avatar-size', components.$post-avatar)}) / 2
     );
   }
+
+  &:has(post-mainnavigation) post-language-menu[variant='menu'] {
+    @include media.max(desktop) {
+      display: none;
+    }
+  }
 }
