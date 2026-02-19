@@ -456,6 +456,7 @@ const vertx = window.vertx || {};
       }
     }
 
+
     function audit(message) {
       const auditingEvent = JSON.stringify({
         adr: address,
@@ -1364,6 +1365,12 @@ const vertx = window.vertx || {};
       if (!address) {
         if (trySubscription()) {
           log('Subscribing to get an address');
+          if (window.console && window.console.info) {
+            console.info('[klp-login-widget] subscribe attempt', {
+              hasNctrl: document.cookie.includes(controlCookieName + '='),
+              userAgent: navigator.userAgent,
+            });
+          }
           const startTime = new Date().getTime();
           fetch(platformEndPoints.subscribe, {
             method: 'GET',
@@ -1374,6 +1381,16 @@ const vertx = window.vertx || {};
             .then(message => handleMessage(message))
             .catch(error => {
               log('Failed to subscribe: ' + error.message);
+              if (window.console && window.console.warn) {
+                console.warn('[klp-login-widget] subscribe failed', {
+                  errorType: error.constructor ? error.constructor.name : typeof error,
+                  errorMessage: error.message,
+                  isTypeError: error instanceof TypeError,
+                  hasNctrl: document.cookie.includes(controlCookieName + '='),
+                  userAgent: navigator.userAgent,
+                  url: window.location.href,
+                });
+              }
               if (error instanceof TypeError) {
                 // Fetch cancelled by browser navigation, not an auth failure.
                 // Do not call logout(): this would delete NCTRL and prevent recovery.
