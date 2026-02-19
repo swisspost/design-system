@@ -1388,7 +1388,7 @@ const vertx = window.vertx || {};
                   isTypeError: error instanceof TypeError,
                   hasNctrl: document.cookie.includes(controlCookieName + '='),
                   userAgent: navigator.userAgent,
-                  url: window.location.href,
+                  url: globalThis.location.href,
                 });
               }
               if (error instanceof TypeError) {
