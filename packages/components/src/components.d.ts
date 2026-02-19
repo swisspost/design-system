@@ -209,8 +209,6 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
-    interface PostEnvTest {
-    }
     interface PostFooter {
         /**
           * The textFooter to add to the footer (visually hidden).
@@ -776,12 +774,6 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-    interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
-    }
-    var HTMLPostEnvTestElement: {
-        prototype: HTMLPostEnvTestElement;
-        new (): HTMLPostEnvTestElement;
-    };
     interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
     }
     var HTMLPostFooterElement: {
@@ -1042,7 +1034,6 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
-        "post-env-test": HTMLPostEnvTestElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
@@ -1243,8 +1234,6 @@ declare namespace LocalJSX {
           * Link the trigger to a post-collapsible with this id
          */
         "for": string;
-    }
-    interface PostEnvTest {
     }
     interface PostFooter {
         /**
@@ -1644,7 +1633,6 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
-        "post-env-test": PostEnvTest;
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
@@ -1692,7 +1680,6 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
-            "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
