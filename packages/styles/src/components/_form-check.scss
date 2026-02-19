@@ -181,14 +181,14 @@ fieldset {
   }
 
   .form-check {
-    // Grouped / Vertical (default)
+    // Grouped / Vertical
     &:not(.form-check-inline):not(.form-check-sm):not(:last-of-type) {
       padding-block-start: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
       padding-block-end: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
       margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
     }
 
-    // Inline / Horizontal spacing for default size
+    // Inline / Horizontal spacing (default)
     &.form-check-inline:has(input[type='checkbox']):not(
         .form-switch,
         .form-check-sm,
@@ -200,7 +200,7 @@ fieldset {
 
   // Small group spacing
   .form-check-sm {
-    // Small vertical groups
+    // Small vertical group
     &:has(input[type='checkbox']):not(.form-switch, .form-check-inline, :last-of-type) {
       margin-block-end: tokens.get(
         'checkbox-small-group-items-gap-block',
@@ -213,7 +213,7 @@ fieldset {
       padding-block-end: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
     }
 
-    // Small inline
+    // Small inline group
     &.form-check-inline:has(input[type='checkbox']):not(.form-switch, :last-of-type) {
       margin-inline-end: tokens.get(
         'checkbox-small-group-items-gap-inline',
