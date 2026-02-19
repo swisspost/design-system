@@ -199,8 +199,16 @@ fieldset .form-check:not(.form-check-inline):not(.form-check-sm):not(:last-of-ty
 }
 
 /* Spacing Checkbox Group Inline/Horizontal default */
-fieldset .form-check.form-check-inline {
-  margin-inline-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
+fieldset
+  .form-check.form-check-inline:has(input[type='checkbox']):not(
+    .form-switch,
+    .form-check-sm,
+    :last-of-type
+  ) {
+  margin-inline-end: tokens.get(
+    'checkbox-group-items-gap-inline',
+    components.$post-checkbox
+  );
 }
 
 // Small group spacing
@@ -218,7 +226,7 @@ fieldset .form-check-sm:has(input[type='checkbox']):not(.form-switch, .form-chec
 /* Checkbox small inline */
 fieldset
   .form-check-sm.form-check-inline:has(input[type='checkbox']):not(.form-switch, :last-of-type) {
-  margin-block-end: tokens.get('checkbox-small-group-items-gap-block', components.$post-checkbox);
+  margin-inline-end: tokens.get('checkbox-small-group-items-gap-inline', components.$post-checkbox);
 }
 
 fieldset .form-check-sm.form-check-inline:has(input[type='checkbox']):not(.form-switch) {
