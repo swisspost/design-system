@@ -60,7 +60,7 @@ post-header {
   }
 
   // links and buttons in the local header
-  > :is([slot='local-nav']) {
+  > [slot='local-nav'] {
     grid-area: local-nav;
 
     @include media.only(mobile) {

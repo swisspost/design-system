@@ -19,14 +19,7 @@ header,
     animation.$transition-easing-default;
 }
 
-.global-header,
-.local-header,
-.burger-menu {
-  box-shadow: elevation.$elevation-300;
-}
-
 .section,
-.navigation,
 .sliding-controls {
   display: flex;
   align-items: center;
@@ -41,11 +34,11 @@ header,
 }
 
 :host {
-  container-type: inline-size;
   display: block;
   position: sticky;
   inset-block-start: var(--post-header-top);
   z-index: commons.$zindex-header;
+  box-shadow: elevation.$elevation-300;
 
   post-togglebutton {
     @include header-mx.nav-item-base;
@@ -68,11 +61,6 @@ header,
     padding-inline-end: var(--post-global-header-padding-inline-end);
   }
 
-  &:has(~ .local-header),
-  &:has(~ .burger-menu.extended) {
-    box-shadow: none;
-  }
-
   .logo {
     align-self: flex-end;
     width: var(--post-global-header-expanded-height);
@@ -92,6 +80,12 @@ header,
   .audience {
     margin-inline-end: auto;
   }
+
+  @include media-mx.max(desktop) {
+    slot:where([name="audience"], [name="global-nav-secondary"]) {
+      display: none;
+    }
+  }
 }
 
 .local-header {
@@ -110,10 +104,7 @@ header,
     grid-template: var(--post-local-header-grid-template);
   }
 
-  &:has(.navigation.megadropdown-open),
   &:has(~ .burger-menu.extended) {
-    box-shadow: none;
-
     &::after {
       content: '';
       display: block;
@@ -127,6 +118,12 @@ header,
 
   .local-nav {
     flex: 0 0 auto;
+  }
+
+  @include media-mx.max(desktop) {
+    slot[name="main-nav"] {
+      display: none;
+    }
   }
 }
 

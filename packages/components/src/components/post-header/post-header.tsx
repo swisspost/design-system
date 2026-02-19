@@ -1,4 +1,15 @@
-import { Component, h, Host, State, Element, Method, Watch, Listen, Prop } from '@stencil/core';
+import {
+  Component,
+  h,
+  Host,
+  State,
+  Element,
+  Method,
+  Watch,
+  Listen,
+  Prop,
+  Build,
+} from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -39,7 +50,7 @@ export class PostHeader {
   private localHeader: HTMLElement;
 
   private get hasBurgerMenu(): boolean {
-    return this.device !== 'desktop';
+    return this.device !== 'desktop' && this.hasNavigation;
   }
 
   private animationOptions: Partial<AnimationOptions> = {
@@ -72,6 +83,8 @@ export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: Device = breakpoint.get('device');
+  @State() hasTitle: boolean = true;
+  @State() hasNavigation: boolean = true;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -118,6 +131,7 @@ export class PostHeader {
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
+    this.checkSlottedContent = this.checkSlottedContent.bind(this);
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
 
@@ -154,6 +168,7 @@ export class PostHeader {
 
   componentWillRender() {
     this.handleScrollEvent();
+    this.handleSlottedContentChanges();
     this.switchLanguageSwitchMode();
   }
 
@@ -354,6 +369,22 @@ export class PostHeader {
     }
   }
 
+  private handleSlottedContentChanges() {
+    if (!this.slottedContentObserver) {
+      this.checkSlottedContent();
+
+      this.slottedContentObserver = new MutationObserver(this.checkSlottedContent);
+      this.slottedContentObserver.observe(this.host, { childList: true });
+    }
+  }
+
+  private checkSlottedContent() {
+    if (Build.isServer) return;
+
+    this.hasTitle = !!this.host.querySelector('[slot="title"]');
+    this.hasNavigation = !!this.host.querySelector('[slot="main-nav"]');
+  }
+
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.hasBurgerMenu ? 'list' : 'menu';
     Array.from(this.host.querySelectorAll('post-language-menu')).forEach(languageSwitch => {
@@ -394,6 +425,9 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
       >
+        <div class="local-nav">
+          <slot name="local-nav"></slot>
+        </div>
         <div class="burger-menu-body">
           <slot name="audience"></slot>
           <slot name="main-nav"></slot>
@@ -432,12 +466,7 @@ export class PostHeader {
                   <slot name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
-                {this.device !== 'desktop' && (
-                  <div onClick={() => this.toggleBurgerMenu()} class="burger-menu-toggle">
-                    <slot name="post-togglebutton"></slot>
-                  </div>
-                )}
-                {this.device !== 'desktop' && (
+                {this.hasBurgerMenu && (
                   <post-togglebutton
                     ref={el => (this.burgerMenuButton = el)}
                     onClick={() => this.toggleBurgerMenu()}
@@ -457,7 +486,7 @@ export class PostHeader {
           <div ref={el => (this.localHeader = el)} class="local-header">
             <div class="section">
               <slot name="title"></slot>
-              <slot name="local-nav"></slot>
+              {(this.device === 'desktop' || this.hasTitle) && <slot name="local-nav"></slot>}
               {this.device === 'desktop' && <slot name="main-nav"></slot>}
             </div>
           </div>
