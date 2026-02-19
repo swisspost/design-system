@@ -456,6 +456,7 @@ const vertx = window.vertx || {};
       }
     }
 
+
     function audit(message) {
       const auditingEvent = JSON.stringify({
         adr: address,
@@ -1364,7 +1365,7 @@ const vertx = window.vertx || {};
       if (!address) {
         if (trySubscription()) {
           log('Subscribing to get an address');
-          if (window.console && window.console.info) {
+          if (globalThis.console && globalThis.console.info) {
             console.info('[klp-login-widget] subscribe attempt', {
               hasNctrl: document.cookie.includes(controlCookieName + '='),
               userAgent: navigator.userAgent,
@@ -1380,7 +1381,7 @@ const vertx = window.vertx || {};
             .then(message => handleMessage(message))
             .catch(error => {
               log('Failed to subscribe: ' + error.message);
-              if (window.console && window.console.warn) {
+              if (globalThis.console && globalThis.console.warn) {
                 console.warn('[klp-login-widget] subscribe failed', {
                   errorType: error.constructor ? error.constructor.name : typeof error,
                   errorMessage: error.message,
