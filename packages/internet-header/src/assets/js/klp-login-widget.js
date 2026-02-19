@@ -456,7 +456,6 @@ const vertx = window.vertx || {};
       }
     }
 
-
     function audit(message) {
       const auditingEvent = JSON.stringify({
         adr: address,
