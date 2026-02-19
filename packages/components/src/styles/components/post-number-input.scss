@@ -1,0 +1,11 @@
+post-number-input input[type="number"] {
+  appearance: textfield;
+  border-radius: 0;
+  border-inline: unset;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

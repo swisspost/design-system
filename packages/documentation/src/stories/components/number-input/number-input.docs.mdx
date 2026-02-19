@@ -1,0 +1,19 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as NumberInputStories from './number-input.stories';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={NumberInputStories} />
+
+<div className="docs-title">
+  # Number Input
+
+ <link-design of={JSON.stringify(NumberInputStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<p className="lead">A control for editing a numeric value with buttons for decrementing / incrementing.</p>
+
+<Canvas of={NumberInputStories.Default} sourceState="shown" />
+<Controls of={NumberInputStories.Default} />

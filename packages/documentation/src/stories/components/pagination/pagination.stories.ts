@@ -1,13 +1,13 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { useArgs } from 'storybook/preview-api';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'd6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f',
-  title: 'Raw Components/Pagination',
+  title: 'Components/Pagination',
   component: 'post-pagination',
-  tags: ['package:WebComponents', 'status:Experimental', 'devOnly'],
+  tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
     badges: [],
     design: {
@@ -19,7 +19,6 @@ const meta: MetaComponent = {
     page: 1,
     pageSize: 10,
     collectionSize: 100,
-    disabled: false,
     label: 'Pagination',
     textPrevious: 'Previous page',
     textNext: 'Next page',
@@ -44,13 +43,6 @@ const meta: MetaComponent = {
       control: 'number',
       table: {
         category: 'Props',
-      },
-    },
-    disabled: {
-      control: 'boolean',
-      table: {
-        category: 'Props',
-        defaultValue: { summary: 'false' },
       },
     },
     label: {
@@ -104,7 +96,6 @@ export const Default: Story = {
         page=${args.page}
         page-size=${args.pageSize}
         collection-size=${args.collectionSize}
-        disabled="${args.disabled ? true : nothing}"
         label=${args.label}
         text-previous=${args.textPrevious}
         text-next=${args.textNext}
@@ -142,30 +133,6 @@ export const PageOutOfRange: Story = {
       page="50"
       page-size="10"
       collection-size="40"
-      label="Pagination"
-      text-previous="Previous page"
-      text-next="Next page"
-      text-page="Page"
-      text-first="First page"
-      text-last="Last page"
-    ></post-pagination>
-  `,
-};
-
-export const Disabled: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: 'Render the pagination in a disabled state to prevent interaction.',
-      },
-    },
-  },
-  render: () => html`
-    <post-pagination
-      page="1"
-      page-size="10"
-      collection-size="100"
-      disabled="true"
       label="Pagination"
       text-previous="Previous page"
       text-next="Next page"
