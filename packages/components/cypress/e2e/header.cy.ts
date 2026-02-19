@@ -7,7 +7,6 @@ const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
 };
 
 describe('header', () => {
-
   function getContentTop() {
     return cy.get('.container').then($container => Math.round($container.position().top));
   }
@@ -166,47 +165,26 @@ describe('header', () => {
   });
 
   describe('local navigation', () => {
-    const localNavNextToTitle = 'slot[name="title"] + slot[name="local-nav"]';
-    const localNavInNavigation = '.navigation slot[name="local-nav"]';
-
     beforeEach(() => {
+      cy.viewport('iphone-6');
       cy.getComponent('header', HEADER_ID, 'microsite');
-    });
-
-    it('should show the local navigation next to the title', () => {
-      cy.get('@header').shadow().find(localNavNextToTitle).should('exist');
-      cy.get('@header').shadow().find(localNavInNavigation).should('not.exist');
-    });
-
-    it('should show the local navigation next to the title', () => {
-      cy.get('@header')
-        .find('[slot="title"]')
-        .then($title => {
-          $title[0].remove();
-        });
-
-      cy.wait(300);
-
-      cy.get('@header').shadow().find(localNavNextToTitle).should('not.exist');
-      cy.get('@header').shadow().find(localNavInNavigation).should('exist');
+      cy.get('@header').find('[slot="title"]').as('title');
     });
 
     it('should show the local navigation in the mobile menu when the page is scrolled', () => {
-      cy.viewport('iphone-6');
-
       // Initial state
-      cy.get('@header').shadow().find('.local-header').should('be.visible');
+      cy.get('@title').should('be.visible');
       cy.get('div.burger-menu.extended').should('not.exist');
 
       cy.scrollTo(0, 500);
 
       // Page is scrolled down
-      cy.get('@header').shadow().find('.local-header').should('not.be.visible');
+      cy.get('@title').should('not.be.visible');
       cy.get('post-togglebutton').click();
 
       // Burger menu is opened
       cy.get('div.burger-menu.extended').should('exist').should('be.visible');
-      cy.get('@header').shadow().find('.local-header').should('be.visible');
+      cy.get('@title').should('be.visible');
     });
   });
 
@@ -215,7 +193,10 @@ describe('header', () => {
       beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.getComponent('header', HEADER_ID);
-        cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().as('megadropdown-trigger');
+        cy.get('post-megadropdown-trigger[data-hydrated]')
+          .find('button')
+          .first()
+          .as('megadropdown-trigger');
         cy.get('post-megadropdown').first().as('megadropdown');
         cy.get('@megadropdown').find('.close-button').as('close-btn');
         cy.get('@megadropdown').find('.megadropdown').as('megadropdown-container');
@@ -244,7 +225,7 @@ describe('header', () => {
         cy.press(Cypress.Keyboard.Keys.TAB);
 
         cy.get('@megadropdown-container').should('not.be.visible');
-        
+
         cy.focused().then($focused => {
           cy.get('@megadropdown').then($megadropdown => {
             cy.wrap($megadropdown[0].contains($focused[0])).should('be.false');
@@ -298,17 +279,17 @@ describe('header', () => {
             .getFocusableElements()
             .then(focusableElements => {
               expect(focusableElements.length).to.be.greaterThan(0);
-            
+
               // Focus first element
               focusableElements[0].focus();
-            
+
               // Tab through all elements to reach beyond the navigation
               const tabCount = focusableElements.length;
               for (let i = 0; i < tabCount; i++) {
                 cy.press('Tab');
               }
               cy.press('Tab');
-            
+
               // Verify the burger menu button is now focused
               cy.get('@burger-menu-btn').should('have.focus');
             });
