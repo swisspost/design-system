@@ -8,7 +8,7 @@
 tokens.$default-map: components.$post-button;
 
 :host {
-  display: flex !important;
+  display: flex;
 }
 
 .visually-hidden {
