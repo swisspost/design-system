@@ -103,6 +103,7 @@ tokens.$default-map: utilities.$post-spacing;
     padding: 2rem 1rem 1rem 1rem;
     border-left: 1px solid #e1e0dc;
     overflow-y: auto;
+    width: auto;
   }
 
   .icon-panel-content {
@@ -127,10 +128,5 @@ tokens.$default-map: utilities.$post-spacing;
     dt {
       font-weight: 700;
     }
-  }
-
-  post-closebutton {
-    inset-block-start: 2rem;
-    inset-inline-end: 2rem;
   }
 }
