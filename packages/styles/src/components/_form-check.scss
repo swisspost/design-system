@@ -239,3 +239,51 @@ fieldset .form-check-sm.form-check-inline:has(input[type='checkbox']):not(.form-
   padding-block-start: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
   padding-block-end: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
 }
+
+// Radiobutton Group
+/* Radiobutton Group / Grouped/Vertical */
+fieldset .form-check:not(.form-check-inline):not(.form-check-sm):not(:last-of-type) {
+  padding-block-start: tokens.get('radio-button-padding-block-single', components.$post-radio-button);
+  padding-block-end: tokens.get('radio-button-padding-block-single', components.$post-radio-button);
+  margin-block-end: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
+}
+
+/* Radiobutton Group / Inline/Horizontal */
+fieldset:has(.form-check-inline) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Spacing for Radiobutton Group Grouped/Vertical default */
+fieldset .form-check:not(.form-check-inline):not(.form-check-sm):not(:last-of-type) {
+  margin-block-end: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
+}
+
+/* Spacing Radiobutton Group Inline/Horizontal default */
+fieldset .form-check.form-check-inline {
+  margin-inline-end: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
+}
+
+// Small group spacing
+/* Radiobutton small vertical */
+fieldset
+.form-check-sm:has(input[type='radio']):not(.form-switch, .form-check-inline, :last-of-type) {
+  margin-block-end: tokens.get('radio-button-small-group-items-gap-block', components.$post-radio-button);
+}
+
+fieldset .form-check-sm:has(input[type='checkbox']):not(.form-switch, .form-check-inline) {
+  padding-block-start: tokens.get('radio-button-small-padding-block', components.$post-radio-button);
+  padding-block-end: tokens.get('radio-button-small-padding-block', components.$post-radio-button);
+}
+
+/* Radiobutton small inline */
+fieldset
+.form-check-sm.form-check-inline:has(input[type='radio']):not(.form-switch, :last-of-type) {
+  margin-block-end: tokens.get('radio-button-small-group-items-gap-block', components.$post-radio-button);
+}
+
+fieldset .form-check-sm.form-check-inline:has(input[type='radio']):not(.form-switch) {
+  padding-block-start: tokens.get('radio-button-small-padding-block', components.$post-radio-button);
+  padding-block-end: tokens.get('radio-button-small-padding-block', components.$post-radio-button);
+}
