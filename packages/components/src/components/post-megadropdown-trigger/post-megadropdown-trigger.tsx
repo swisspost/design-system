@@ -1,6 +1,6 @@
-import { Component, Element, Prop, h, Host, Watch, State } from '@stencil/core';
+import { Component, Element, Prop, h, Host, Watch, State, Build, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, EventFrom, IS_BROWSER } from '@/utils';
+import { checkRequiredAndType, EventFrom } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -10,7 +10,7 @@ import { checkRequiredAndType, EventFrom, IS_BROWSER } from '@/utils';
 export class PostMegadropdownTrigger {
   @Element() host: HTMLPostMegadropdownTriggerElement;
 
-  private mutationObserver = new MutationObserver(this.cloneSlottedButton.bind(this));
+  private mutationObserver: MutationObserver;
   private interactiveButton: HTMLButtonElement;
 
   @State() private isMegadropdownExpanded: boolean = false;
@@ -31,31 +31,33 @@ export class PostMegadropdownTrigger {
     checkRequiredAndType(this, 'for', 'string');
   }
 
-  constructor() {
-    this.onMegadropdownToggled = this.onMegadropdownToggled.bind(this);
-  }
-
-  connectedCallback() {
-    this.mutationObserver.observe(this.host, { childList: true, subtree: true });
-  }
-
-  componentWillLoad() {
-    this.cloneSlottedButton();
+  componentWillRender() {
+    this.handleSlottedContentChanges();
   }
 
   componentDidLoad() {
     this.validateFor();
-
-    // Check if the mega dropdown attached to the trigger is expanded or not
-    if (IS_BROWSER) document.addEventListener('postToggleMegadropdown', this.onMegadropdownToggled);
   }
 
   disconnectedCallback() {
-    document.removeEventListener('postToggleMegadropdown', this.onMegadropdownToggled);
+    if (this.mutationObserver) this.mutationObserver.disconnect();
   }
 
-  private cloneSlottedButton() {
-    this.slottedContent = this.host.innerHTML;
+  @Listen('postToggleMegadropdown', { target: 'document' })
+  @EventFrom('post-megadropdown', { ignoreNestedComponents: false })
+  onMegadropdownToggled(event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) {
+    if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
+      const wasMegadropdownExpanded = this.isMegadropdownExpanded;
+      this.isMegadropdownExpanded = event.detail.isVisible;
+
+      const haveBeenClosed = wasMegadropdownExpanded && !this.isMegadropdownExpanded;
+      if (!haveBeenClosed || !event.detail.focusParent) return;
+
+      // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
+      setTimeout(() => {
+        this.interactiveButton.focus();
+      }, 100);
+    }
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {
@@ -67,6 +69,19 @@ export class PostMegadropdownTrigger {
     }
 
     return ref as HTMLPostMegadropdownElement;
+  }
+
+  private handleSlottedContentChanges() {
+    if (Build.isServer) return;
+
+    this.cloneSlottedButton();
+
+    this.mutationObserver = new MutationObserver(this.cloneSlottedButton.bind(this));
+    this.mutationObserver.observe(this.host, { childList: true, subtree: true });
+  }
+
+  private cloneSlottedButton() {
+    this.slottedContent = this.host.innerHTML;
   }
 
   private onClick() {
@@ -83,22 +98,6 @@ export class PostMegadropdownTrigger {
     this.megadropdown.toggle();
   }
 
-  @EventFrom('post-megadropdown', { ignoreNestedComponents: false })
-  private onMegadropdownToggled(event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) {
-    if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
-      const wasMegadropdownExpanded = this.isMegadropdownExpanded;
-      this.isMegadropdownExpanded = event.detail.isVisible;
-
-      const haveBeenClosed = wasMegadropdownExpanded && !this.isMegadropdownExpanded;
-      if (!haveBeenClosed || !event.detail.focusParent) return;
-
-      // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
-      setTimeout(() => {
-        this.interactiveButton.focus();
-      }, 100);
-    }
-  }
-
   render() {
     return (
       <Host data-version={version}>
@@ -112,10 +111,10 @@ export class PostMegadropdownTrigger {
           class={{ active: this.active }}
         >
           <span>
-            <span>
+            <span innerHTML={this.slottedContent}></span>
+            <span aria-hidden="true">
               <slot></slot>
             </span>
-            <span aria-hidden="true" innerHTML={this.slottedContent}></span>
           </span>
           <post-icon name="chevrondown"></post-icon>
         </button>
