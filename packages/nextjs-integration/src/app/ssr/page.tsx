@@ -11,6 +11,7 @@ import {
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
+  PostNumberInput,
   PostPagination,
   PostPopover,
   PostPopoverTrigger,
@@ -166,6 +167,12 @@ export default function Home() {
           </PostMenuItem>
         </PostMenuItem>
       </PostMenu>
+
+      <h2>Number Input</h2>
+      <PostNumberInput className="form-floating">
+        <input type="number" id="quantity" className="form-control" placeholder="" />
+        <label htmlFor="quantity">Quantity</label>
+      </PostNumberInput>
 
       <h2>Pagination</h2>
       <PostPagination
