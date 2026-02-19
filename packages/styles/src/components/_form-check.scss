@@ -205,10 +205,7 @@ fieldset
     .form-check-sm,
     :last-of-type
   ) {
-  margin-inline-end: tokens.get(
-    'checkbox-group-items-gap-inline',
-    components.$post-checkbox
-  );
+  margin-inline-end: tokens.get('checkbox-group-items-gap-inline', components.$post-checkbox);
 }
 
 // Small group spacing
