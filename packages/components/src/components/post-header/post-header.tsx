@@ -491,8 +491,9 @@ export class PostHeader {
           <div ref={el => (this.localHeader = el)} class="local-header">
             <div class="section">
               <slot name="title"></slot>
-              {(onDesktop || this.hasTitle) && <slot name="local-nav"></slot>}
+              {this.hasTitle && <slot name="local-nav"></slot>}
               {onDesktop && <slot name="main-nav"></slot>}
+              {onDesktop && !this.hasTitle && <slot name="local-nav"></slot>}
             </div>
           </div>
           {this.hasBurgerMenu && this.renderBurgerMenu()}
