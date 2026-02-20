@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { Inline } from './checkbox.stories';
+import meta, { Inline, renderGroup } from './checkbox.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -24,7 +24,7 @@ export const Checkbox: Story = {
     });
     return schemes(
       scheme => html`
-        <div class="d-flex flex-wrap gap-16">
+        <div class="mt-32 d-flex gap-16 flex-column">
           ${[
             ...bombArgs({
               checked: ['indeterminate'],
@@ -60,6 +60,36 @@ export const Checkbox: Story = {
           })}
           <div class="mt-32 w-full"></div>
           ${Inline.render?.({ ...context.args, ...Inline.args }, context)}
+        </div>
+        <div class="mt-32 d-flex gap-16 flex-column">
+          ${(() => {
+            const combos = bombArgs({
+              inline: [false, true],
+              size: ['null', 'form-check-sm'],
+            });
+
+            return combos.map((combo: Args, idx: number) => {
+              const ctx = {
+                ...context,
+                id: `${scheme}-checkbox-group-${crypto.randomUUID()}-${idx}`,
+                name: `${combo.inline ? 'Inline' : 'Grouped'} ${
+                  combo.size === 'form-check-sm' ? 'Small' : 'Default'
+                }`,
+              };
+
+              return html`
+                <div class="mt-16">
+                  ${renderGroup(
+                    {
+                      hiddenLegend: false,
+                      ...combo,
+                    },
+                    ctx,
+                  )}
+                </div>
+              `;
+            });
+          })()}
         </div>
       `,
     );

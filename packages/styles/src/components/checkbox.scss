@@ -16,7 +16,12 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
   @include utility-mx.focus-style();
 }
 
+// Default Checkbox
 .form-check:not(.form-switch):has(input[type='checkbox']) {
+  display: flex;
+  align-items: center;
+  gap: tokens.get('checkbox-gap-inline-text-start');
+
   > input {
     appearance: none;
     flex: none;
@@ -122,6 +127,22 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
           }
         }
       }
+    }
+  }
+
+  > label {
+    line-height: 1;
+    vertical-align: middle;
+  }
+}
+
+.form-check-sm:not(.form-switch):has(input[type='checkbox']) {
+  > input[type='checkbox'] {
+    width: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+    height: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+
+    &::after {
+      mask-size: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
     }
   }
 }
