@@ -34,7 +34,7 @@
     "fetchSVGs": "ts-node src/fetch.ts"
   },
   "devDependencies": {
-    "@eslint/js": "9.18.0",
+    "@eslint/js": "10.0.1",
     "@tsconfig/node22": "22.0.5",
     "@types/jest": "29.5.14",
     "@types/mock-fs": "4.13.4",

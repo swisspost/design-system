@@ -45,7 +45,7 @@
     "@angular/cli": "20.3.14",
     "@angular/compiler-cli": "20.3.16",
     "@cypress/schematic": "3.0.0",
-    "@eslint/js": "9.18.0",
+    "@eslint/js": "10.0.1",
     "@swisspost/design-system-components-angular": "workspace:10.0.0-next.61",
     "angular-eslint": "19.8.1",
     "copyfiles": "2.4.1",

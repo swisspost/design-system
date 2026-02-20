@@ -41,8 +41,8 @@ importers:
         specifier: 0.4.2
         version: 0.4.2
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       eslint:
         specifier: 9.26.0
         version: 9.26.0(hono@4.11.3)(jiti@2.6.1)
@@ -90,8 +90,8 @@ importers:
         specifier: 1.2.5
         version: 1.2.5(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@percy/cli':
         specifier: 1.31.8
         version: 1.31.8(typescript@5.8.3)
@@ -241,8 +241,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0(@angular/cli@20.3.14(@types/node@25.0.3)(chokidar@4.0.1)(hono@4.11.3))(@angular/core@20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@swisspost/design-system-components-angular':
         specifier: workspace:10.0.0-next.61
         version: link:dist/components
@@ -321,8 +321,8 @@ importers:
         version: link:../components
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@swisspost/design-system-icons':
         specifier: workspace:10.0.0-next.61
         version: link:../icons
@@ -385,8 +385,8 @@ importers:
         version: link:../internet-header
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@eslint/markdown':
         specifier: 7.5.1
         version: 7.5.1
@@ -515,8 +515,8 @@ importers:
         version: 8.2.0
     devDependencies:
       '@eslint/js':
-        specifier: 9.19.0
-        version: 9.19.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@types/eslint-scope':
         specifier: 3.7.7
         version: 3.7.7
@@ -560,8 +560,8 @@ importers:
   packages/icons:
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@tsconfig/node22':
         specifier: 22.0.5
         version: 22.0.5
@@ -666,8 +666,8 @@ importers:
         specifier: 1.2.5
         version: 1.2.5(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@percy/cli':
         specifier: 1.31.8
         version: 1.31.8(typescript@5.8.3)
@@ -793,8 +793,8 @@ importers:
         version: 19.1.1(react@19.1.1)
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@next/eslint-plugin-next':
         specifier: 15.1.5
         version: 15.1.5
@@ -924,8 +924,8 @@ importers:
   packages/tokens:
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))
       '@tokens-studio/sd-transforms':
         specifier: 2.0.3
         version: 2.0.3(style-dictionary@5.1.1)
@@ -2234,13 +2234,14 @@ packages:
     resolution: {integrity: sha512-Kr+LPIUVKz2qkx1HAMH8q1q6azbqBAsXJUxBl/ODDuVPX45Z9DfwB8tPjTi6nNZ8BuM3nbJxC5zCAg5elnBUTQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/js@9.18.0':
-    resolution: {integrity: sha512-fK6L7rxcq6/z+AaQMtiFTkvbHkBLNlwyRxHpKawP0x3u9+NC6MQTnFW+AdpwC6gfHTW0051cokQgtTN2FqlxQA==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@eslint/js@9.19.0':
-    resolution: {integrity: sha512-rbq9/g38qjfqFLOVPvwjIvFFdNziEC5S65jmjPw5r6A//QH+W91akh9irMwjDN8zKUTak6W9EsAv4m/7Wnw0UQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+  '@eslint/js@10.0.1':
+    resolution: {integrity: sha512-zeR9k5pd4gxjZ0abRoIaxdc7I3nDktoXZk2qOv9gCNWx3mVwEn32VRhyLaRsDiJjTs0xq/T8mfPtyuXu7GWBcA==}
+    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+    peerDependencies:
+      eslint: ^10.0.0
+    peerDependenciesMeta:
+      eslint:
+        optional: true
 
   '@eslint/js@9.26.0':
     resolution: {integrity: sha512-I9XlJawFdSMvWjDt6wksMCrgns5ggLNfFwFvnShsleWruvXM514Qxk8V246efTw+eo9JABvVz+u3q2RiAowKxQ==}
@@ -4531,6 +4532,11 @@ packages:
 
   acorn@8.15.0:
     resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.16.0:
+    resolution: {integrity: sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -12833,9 +12839,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@9.18.0': {}
-
-  '@eslint/js@9.19.0': {}
+  '@eslint/js@10.0.1(eslint@9.26.0(hono@4.11.3)(jiti@2.6.1))':
+    optionalDependencies:
+      eslint: 9.26.0(hono@4.11.3)(jiti@2.6.1)
 
   '@eslint/js@9.26.0': {}
 
@@ -15322,6 +15328,8 @@ snapshots:
   acorn@8.14.1: {}
 
   acorn@8.15.0: {}
+
+  acorn@8.16.0: {}
 
   agent-base@6.0.2:
     dependencies:
@@ -22606,7 +22614,7 @@ snapshots:
   terser@5.46.0:
     dependencies:
       '@jridgewell/source-map': 0.3.11
-      acorn: 8.15.0
+      acorn: 8.16.0
       commander: 2.20.3
       source-map-support: 0.5.21
 
@@ -23370,7 +23378,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.15.0
+      acorn: 8.16.0
       browserslist: 4.28.1
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.19.0
