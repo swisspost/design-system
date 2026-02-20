@@ -7,11 +7,11 @@ import {
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
-  PostIcon,
   PostLinkarea,
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
+  PostNumberInput,
   PostPagination,
   PostPopover,
   PostPopoverTrigger,
@@ -97,8 +97,46 @@ export default function Home() {
         </p>
       </PostCollapsible>
 
-      <h2>Icon</h2>
-      <PostIcon name="1000" />
+      <h2>Icons</h2>
+
+      <div className="d-flex gap-16 flex-wrap">
+        <figure>
+          <PostIconLetter className="fs-2"></PostIconLetter>
+          <figcaption>Line Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetterSolid className="fs-2"></PostIconLetterSolid>
+          <figcaption>Solid Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter style={{ color: 'red' }} className="fs-2"></PostIconLetter>
+          <figcaption>Colored Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-3"></PostIconLetter>
+          <figcaption>Sized Icon</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives flipH={true} className="fs-2"></PostIconExplosives>
+          <figcaption>Flipped Horizontally</figcaption>
+        </figure>
+        <figure>
+          <PostIconExplosives className="fs-2" flipV={true}></PostIconExplosives>
+          <figcaption>Flipped Vertically</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" rotate={90}></PostIconLetter>
+          <figcaption>Rotated</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" scale={1.5}></PostIconLetter>
+          <figcaption>Scaled</figcaption>
+        </figure>
+        <figure>
+          <PostIconLetter className="fs-2" animation={'spin'}></PostIconLetter>
+          <figcaption>Spinning</figcaption>
+        </figure>
+      </div>
 
       <h2>Linkarea</h2>
       <PostLinkarea>
@@ -130,6 +168,25 @@ export default function Home() {
         </PostMenuItem>
       </PostMenu>
 
+      <h2>Number Input</h2>
+      <PostNumberInput className="form-floating">
+        <input type="number" id="quantity" className="form-control" placeholder="" />
+        <label htmlFor="quantity">Quantity</label>
+      </PostNumberInput>
+
+      <h2>Pagination</h2>
+      <PostPagination
+        page={1}
+        pageSize={10}
+        collectionSize={100}
+        label="Pagination"
+        textPrevious="Previous page"
+        textNext="Next page"
+        textPage="Page"
+        textFirst="First page"
+        textLast="Last page"
+      />
+
       <h2>Popover</h2>
       <PostPopoverTrigger for="popover-one">
         {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
@@ -151,6 +208,19 @@ export default function Home() {
 
       <h2>Rating</h2>
       <PostRating label="Rating"></PostRating>
+
+      <h2>Stepper</h2>
+      <PostStepper
+        textCompletedStep="Completed step"
+        textCurrentStep="Current step"
+        textStepNumber="Step #number:"
+        currentIndex={1}
+      >
+        <PostStepperItem> Step 1 </PostStepperItem>
+        <PostStepperItem> Step 2 </PostStepperItem>
+        <PostStepperItem> Step 3 </PostStepperItem>
+        <PostStepperItem> Step 4 </PostStepperItem>
+      </PostStepper>
 
       <h2>Tabs - Panel Variant</h2>
       <PostTabs>
@@ -184,8 +254,6 @@ export default function Home() {
         </PostTabItem>
       </PostTabs>
 
-      <h2>Tag</h2>
-
       <h2>Toggle Button</h2>
       <PostTogglebutton className="btn btn-primary">
         <span data-showwhen="untoggled">Untoggled</span>
@@ -202,74 +270,6 @@ export default function Home() {
       <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
         Hi there 👋
       </PostTooltip>
-
-      <h2>Post Stepper</h2>
-      <PostStepper
-        textCompletedStep="Completed step"
-        textCurrentStep="Current step"
-        textStepNumber="Step #number:"
-        currentIndex={1}
-      >
-        <PostStepperItem> Step 1 </PostStepperItem>
-        <PostStepperItem> Step 2 </PostStepperItem>
-        <PostStepperItem> Step 3 </PostStepperItem>
-        <PostStepperItem> Step 4 </PostStepperItem>
-      </PostStepper>
-
-      <h2>Pagination</h2>
-      <PostPagination
-        page={1}
-        pageSize={10}
-        collectionSize={100}
-        disabled={false}
-        label="Pagination"
-        textPrevious="Previous page"
-        textNext="Next page"
-        textPage="Page"
-        textFirst="First page"
-        textLast="Last page"
-      />
-
-      <h2>Icons</h2>
-      <div className="d-flex gap-16 flex-wrap">
-        <style>{'post-icon { font-size: 32px }'}</style>
-        <figure>
-          <PostIconLetter></PostIconLetter>
-          <figcaption>Line Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetterSolid></PostIconLetterSolid>
-          <figcaption>Solid Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter style={{ color: 'red' }}></PostIconLetter>
-          <figcaption>Colored Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter style={{ fontSize: '2em' }}></PostIconLetter>
-          <figcaption>Sized Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconExplosives flipH={true}></PostIconExplosives>
-          <figcaption>Flipped Horizontally</figcaption>
-        </figure>
-        <figure>
-          <PostIconExplosives flipV={true}></PostIconExplosives>
-          <figcaption>Flipped Vertically</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter rotate={90}></PostIconLetter>
-          <figcaption>Rotated</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter scale={1.5}></PostIconLetter>
-          <figcaption>Scaled</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter animation={'spin'}></PostIconLetter>
-          <figcaption>Spinning</figcaption>
-        </figure>
-      </div>
     </>
   );
 }
