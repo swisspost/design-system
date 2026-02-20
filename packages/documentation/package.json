@@ -37,7 +37,7 @@
     "@swisspost/internet-header": "workspace:10.0.0-next.61"
   },
   "devDependencies": {
-    "@eslint/js": "9.18.0",
+    "@eslint/js": "10.0.1",
     "@eslint/markdown": "7.5.1",
     "@kurbar/storybook-addon-docs-stencil": "8.0.0",
     "@lit/task": "1.0.3",
