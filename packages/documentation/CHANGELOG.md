@@ -1,5 +1,24 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.63
+
+### Minor Changes
+
+- Documented the `post-pagination` component and added design-token–based styles aligned with the design. (by [@leagrdv](https://github.com/leagrdv) with [#7163](https://github.com/swisspost/design-system/pull/7163))
+
+### Patch Changes
+
+- Updated the `post-header` documentation to remove the `variant="list"` attribute from the `post-language-menu`. Removing this attribute enables correct server-side rendering of the language menu. (by [@alizedebray](https://github.com/alizedebray) with [#7178](https://github.com/swisspost/design-system/pull/7178))
+
+- Documented the usage of a popover with an info icon. (by [@leagrdv](https://github.com/leagrdv) with [#7153](https://github.com/swisspost/design-system/pull/7153))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.62
+  - @swisspost/design-system-styles@10.0.0-next.62
+  - @swisspost/design-system-components@10.0.0-next.62
+  - @swisspost/design-system-components-react@10.0.0-next.62
+  - @swisspost/internet-header@10.0.0-next.62
+  - @swisspost/design-system-tokens@10.0.0-next.62
+
 ## 6.0.0-next.62
 
 ### Patch Changes

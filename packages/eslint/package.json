@@ -1,7 +1,7 @@
 {
   "name": "@swisspost/design-system-eslint",
   "private": false,
-  "version": "10.0.0-next.61",
+  "version": "10.0.0-next.62",
   "description": "A set of custom ESLint rules to help keeping projects using the Swiss Post Design System up-to-date.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",

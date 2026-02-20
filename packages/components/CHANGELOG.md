@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.62
+
+### Minor Changes
+
+- Documented the `post-pagination` component and added design-token–based styles aligned with the design. (by [@leagrdv](https://github.com/leagrdv) with [#7163](https://github.com/swisspost/design-system/pull/7163))
+
+### Patch Changes
+
+- Updated global styles to prevent web components from being visible until they are fully loaded, avoiding unstyled flashes. (by [@alizedebray](https://github.com/alizedebray) with [#7179](https://github.com/swisspost/design-system/pull/7179))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.62
+  - @swisspost/design-system-styles@10.0.0-next.62
+
 ## 10.0.0-next.61
 
 ### Patch Changes
