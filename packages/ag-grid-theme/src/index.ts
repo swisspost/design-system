@@ -1,0 +1,1 @@
+export { swissPostTheme } from './theme';
