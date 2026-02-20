@@ -89,7 +89,7 @@ export class PostBanner {
 
   render() {
     return (
-      <Host data-version={version} role="alert">
+      <Host data-version={version} role="alert" data-color-scheme="light">
         <slot name="close-button" />
 
         <slot name="heading" />

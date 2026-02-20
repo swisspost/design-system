@@ -1,10 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/mixins/icons';
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/mixins/color-scheme';
-
-@use '@swisspost/design-system-styles/variables/components/notification';
-@use '@swisspost/design-system-styles/variables/spacing';
 
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
@@ -33,7 +28,6 @@ tokens.$default-map: components.$post-banner;
   // Default to info styles when no type attribute is present
   background-color: tokens.get('banner-info-bg');
   border-color: tokens.get('banner-info-border-color');
-  @include color-scheme.set(tokens.get('post-banner-info-bg-scheme'));
 
   &::before {
     content: '';
@@ -51,7 +45,6 @@ tokens.$default-map: components.$post-banner;
   :host([type='#{$name}']) {
     background-color: tokens.get('banner-#{$name}-bg');
     border-color: tokens.get('banner-#{$name}-border-color');
-    @include color-scheme.set(tokens.get('post-banner-#{$name}-bg-scheme'));
 
     &::before {
       background-image: var(--post-signal-icon-#{$name});
