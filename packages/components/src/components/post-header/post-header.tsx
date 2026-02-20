@@ -85,6 +85,7 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasTitle: boolean = true;
   @State() hasMainNav: boolean = true;
+  @State() hasLocalNav: boolean = true;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -383,6 +384,7 @@ export class PostHeader {
 
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
     this.hasMainNav = !!this.host.querySelector('[slot="main-nav"]');
+    this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
   }
 
   private switchLanguageSwitchMode() {
@@ -422,9 +424,11 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
       >
-        <div class="local-nav">
-          <slot name="local-nav"></slot>
-        </div>
+        {this.hasLocalNav && !this.hasTitle && (
+          <div class="local-nav">
+            <slot name="local-nav"></slot>
+          </div>
+        )}
         <div class="burger-menu-body">
           <slot name="audience"></slot>
           <slot name="main-nav"></slot>

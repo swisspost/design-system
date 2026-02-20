@@ -6,11 +6,11 @@
   display: flex;
   user-select: none;
   max-width: var(--post-header-content-max-width);
-  margin-inline-start: calc(-1 * var(--post-local-header-padding-inline-start));
-  margin-inline-end: calc(-1 * var(--post-local-header-padding-inline-end));
 
   @include media.only(desktop) {
     width: fit-content;
+    margin-inline-start: calc(-1 * var(--post-local-header-padding-inline-start));
+    margin-inline-end: calc(-1 * var(--post-local-header-padding-inline-end));
     overflow: hidden;
   }
 }
