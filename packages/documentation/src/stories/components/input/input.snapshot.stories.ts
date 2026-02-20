@@ -99,8 +99,3 @@ export const Inputweek: Story = {
     type: 'week',
   },
 };
-export const Inputtime: Story = {
-  args: {
-    type: 'time',
-  },
-};
