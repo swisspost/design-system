@@ -165,13 +165,33 @@ describe('header', () => {
   });
 
   describe('local navigation', () => {
+    const localNavNextToTitle = 'slot[name="title"] + slot[name="local-nav"]';
+    const localNavNextToMainNav = 'slot[name="main-nav"] + slot[name="local-nav"]';
+
     beforeEach(() => {
-      cy.viewport('iphone-6');
       cy.getComponent('header', HEADER_ID, 'microsite');
       cy.get('@header').find('[slot="title"]').as('title');
     });
 
+    it('should show the local navigation next to the title', () => {
+      cy.get('@header').shadow().find(localNavNextToTitle).should('exist');
+      cy.get('@header').shadow().find(localNavNextToMainNav).should('not.exist');
+    });
+
+    it('should show the local navigation next to the title', () => {
+      cy.get('@title').then($title => {
+        $title[0].remove();
+      });
+
+      cy.wait(300);
+
+      cy.get('@header').shadow().find(localNavNextToTitle).should('not.exist');
+      cy.get('@header').shadow().find(localNavNextToMainNav).should('exist');
+    });
+
     it('should show the local navigation in the mobile menu when the page is scrolled', () => {
+      cy.viewport('iphone-6');
+
       // Initial state
       cy.get('@title').should('be.visible');
       cy.get('div.burger-menu.extended').should('not.exist');
