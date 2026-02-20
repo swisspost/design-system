@@ -60,7 +60,13 @@ post-header {
   }
 
   // links and buttons in the local header
-  > :is([slot='local-nav']) {
+  > [slot='local-nav'] {
+    grid-area: local-nav;
+
+    &:where(ul) {
+      align-items: center;
+    }
+
     @include media.only(mobile) {
       @include interactive-elements {
         padding: 0.25rem 0.75rem;
@@ -105,32 +111,33 @@ post-header {
   }
 
   // title
-  $header-title-line-height: 34px;
-
   [slot='title'] {
+    grid-area: title;
+    flex-grow: 1;
     margin: 0;
     font-size: 1.25rem;
     font-weight: 950;
 
     @include media.only(desktop) {
       font-size: 1.75rem;
-      line-height: $header-title-line-height;
+      line-height: 34px;
     }
   }
 
-  // global user menu trigger
-  [slot='post-login'] > post-menu-trigger > button {
-    display: block;
+  // user menu trigger
+  [slot='post-login'],
+  .local-login {
+    > post-menu-trigger > button {
+      display: block;
+      border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
+    }
   }
 
-  // local user menu trigger
-  .local-login button {
-    display: block;
-    margin-block: calc(
-      (#{$header-title-line-height} - #{tokens.get('avatar-size', components.$post-avatar)}) / 2
-    );
+  .local-login {
+    margin-block: -0.25rem;
   }
 
+  // language menu
   &:has(post-mainnavigation) post-language-menu[variant='menu'] {
     @include media.max(desktop) {
       display: none;
