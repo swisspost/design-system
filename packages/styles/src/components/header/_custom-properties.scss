@@ -1,24 +1,135 @@
-/* stylelint-disable length-zero-no-unit */ // needed for calculation
+/* stylelint-disable length-zero-no-unit */
 
 @use '../../mixins/media';
 
+// ============================================================
+// Variant: Portal — main-nav only, no title, no local-nav
+// Variant: Jobs — main-nav + local-nav, no title
+// ============================================================
+
+:root:has(post-header [slot='main-nav']):not(:has(post-header [slot='title'])) {
+  --post-global-header-expanded-height: 4rem;
+  --post-local-header-reduced-height: 0rem;
+  --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0rem);
+
+  @include media.only(desktop) {
+    --post-global-header-expanded-height: 4.5rem;
+    --post-global-header-reduced-height: 1.5rem;
+    --post-local-header-reduced-height: 3.5rem;
+    --post-main-navigation-height: var(--post-local-header-reduced-height);
+  }
+}
+
+post-header:has([slot='main-nav']):not(:has([slot='title'])) {
+  // Hide local header on tablet & mobile (no title present)
+  @include media.max(desktop) {
+    --post-local-header-display: none;
+  }
+
+  // Portal: main-nav only
+  &:not(:has([slot='local-nav'])) {
+    --post-local-header-grid-template: 'main-nav' auto / 1fr;
+  }
+
+  // Jobs: main-nav + local-nav
+  &:has([slot='local-nav']) {
+    --post-local-header-grid-template: 'main-nav local-nav' auto / minmax(0, 1fr) auto;
+  }
+}
+
+// ============================================================
+// Variant: Microsite — main-nav + title, optional local-nav
+// ============================================================
+
+:root:has(post-header [slot='main-nav']):has(post-header [slot='title']) {
+  --post-global-header-expanded-height: 4rem;
+  --post-local-header-reduced-height: 0rem;
+
+  @include media.only(mobile) {
+    --post-local-header-expanded-min-height: 3rem;
+  }
+
+  @include media.only(tablet) {
+    --post-local-header-expanded-min-height: 3.5rem;
+  }
+
+  @include media.only(desktop) {
+    --post-global-header-expanded-height: 4.5rem;
+    --post-local-header-expanded-min-height: 7rem;
+    --post-global-header-reduced-height: 1.5rem;
+    --post-local-header-reduced-height: 3.5rem;
+    --post-main-navigation-height: var(--post-local-header-reduced-height);
+  }
+}
+
+post-header:has([slot='main-nav']):has([slot='title']) {
+  --post-local-header-align-items: end;
+
+  // Microsite without local-nav
+  &:not(:has([slot='local-nav'])) {
+    --post-local-header-grid-template: 'title' 1fr 'main-nav' auto / 1fr;
+  }
+
+  // Microsite with local-nav
+  &:has([slot='local-nav']) {
+    --post-local-header-grid-template: 'title local-nav' 1fr 'main-nav main-nav' auto /
+      minmax(0, 1fr) auto;
+  }
+}
+
+// ============================================================
+// Variant: One-pager — title only, no main-nav, optional local-nav
+// ============================================================
+
+:root:has(post-header):not(:has(post-header [slot='main-nav'])) {
+  --post-global-header-expanded-height: 4rem;
+  --post-local-header-expanded-min-height: 3.5rem;
+
+  @include media.only(desktop) {
+    --post-global-header-expanded-height: 4.5rem;
+    --post-local-header-expanded-min-height: 4rem;
+  }
+}
+
+post-header:not(:has([slot='main-nav'])) {
+  // Hide burger button (no main navigation)
+  --post-burger-button-display: none;
+
+  // Hide local header if there is no title either
+  &:not(:has([slot='title'])) {
+    --post-local-header-display: none;
+  }
+
+  // One-pager without local-nav
+  &:has([slot='title']):not(:has([slot='local-nav'])) {
+    --post-local-header-grid-template: 'title' 1fr / 1fr;
+  }
+
+  // One-pager with local-nav
+  &:has([slot='title']):has([slot='local-nav']) {
+    --post-local-header-grid-template: 'title local-nav' 1fr / minmax(0, 1fr) auto;
+  }
+}
+
+// ============================================================
+// Shared / base custom properties
+// ============================================================
+
 :root:has(post-header) {
-  // expanded height
-  --post-local-header-expanded-height: var(
-    --post-local-header-expanded-min-height
-  ); // default value later updated with JavaScript
+  // --- Expanded height ---
+  --post-local-header-expanded-height: var(--post-local-header-expanded-min-height);
   --post-header-expanded-height: calc(
     var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
   );
 
-  // reduced height
+  // --- Reduced height ---
   --post-global-header-reduced-height: var(--post-global-header-expanded-height);
   --post-local-header-reduced-height: var(--post-local-header-expanded-height);
   --post-header-reduced-height: calc(
     var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height)
   );
 
-  // total height (dynamic depending on the scroll position)
+  // --- Total height (dynamic based on scroll position) ---
   --post-global-header-height: max(
     var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px),
     var(--post-global-header-reduced-height)
@@ -29,111 +140,10 @@
   );
   --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
 
-  // header height adapted for case when mobile menu is open and page is scrolled down
+  // Override when mobile menu is open and page is scrolled
   &:has([data-menu-extended]) {
     --post-header-height: (
       var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
     );
-  }
-
-  // portal & microsite
-  &:has(post-header post-mainnavigation) {
-    --post-global-header-expanded-height: 4rem;
-    --post-local-header-reduced-height: 0rem;
-
-    @include media.only(mobile) {
-      --post-local-header-expanded-min-height: 3rem;
-    }
-
-    @include media.only(tablet) {
-      --post-local-header-expanded-min-height: 3.5rem;
-    }
-
-    @include media.only(desktop) {
-      --post-global-header-expanded-height: 4.5rem;
-      --post-local-header-expanded-min-height: 7rem;
-
-      // header reducing on desktop
-      --post-global-header-reduced-height: 1.5rem;
-      --post-local-header-reduced-height: 3.5rem;
-      --post-main-navigation-height: var(--post-local-header-reduced-height);
-    }
-  }
-
-  // one pager
-  &:not(:has(post-header post-mainnavigation)) {
-    --post-global-header-expanded-height: 4rem;
-    --post-local-header-expanded-min-height: 3.5rem;
-
-    @include media.only(desktop) {
-      --post-global-header-expanded-height: 4.5rem;
-      --post-local-header-expanded-min-height: 4rem;
-    }
-  }
-
-  // portal only
-  &:not(:has(post-header [slot='title'])) {
-    --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0rem);
-  }
-}
-
-post-header {
-  // hide burger button if there is no main navigation
-  &:not(:has([slot='main-nav'])) {
-    --post-burger-button-display: none;
-  }
-
-  // Hide local header if it has neither title nor main navigation
-  &:not(:has([slot='title']), :has([slot='main-nav'])) {
-    --post-local-header-display: none;
-  }
-
-  // On tablet & mobile, Hide local header if it has no title
-  @include media.max(desktop) {
-    &:not(:has([slot='title'])) {
-      --post-local-header-display: none;
-    }
-  }
-
-  // -------------------------------
-  // Local header layouts without local-nav
-  // -------------------------------
-
-  // Only main navigation (Portal)
-  &:has([slot='main-nav']):not(:has([slot='title'])) {
-    --post-local-header-grid-template: 'main-nav' auto / 1fr;
-  }
-
-  // Only title (One-pager)
-  &:has([slot='title']):not(:has([slot='main-nav'])) {
-    --post-local-header-grid-template: 'title' 1fr / 1fr;
-  }
-
-  // Both title and main navigation (Microsite)
-  &:has([slot='title']):has([slot='main-nav']) {
-    --post-local-header-align-items: end;
-    --post-local-header-grid-template: 'title' 1fr 'main-nav' auto / 1fr;
-  }
-
-  // -------------------------------
-  // Local header layouts with local-nav
-  // -------------------------------
-
-  &:has([slot='local-nav']) {
-    // Main-nav + local-nav, no title (Portal)
-    &:has([slot='main-nav']):not(:has([slot='title'])) {
-      --post-local-header-grid-template: 'main-nav local-nav' auto / minmax(0, 1fr) auto;
-    }
-
-    // Title + local-nav, no main-nav (One-pager)
-    &:has([slot='title']):not(:has([slot='main-nav'])) {
-      --post-local-header-grid-template: 'title local-nav' 1fr / minmax(0, 1fr) auto;
-    }
-
-    // Title + main-nav + local-nav (Microsite)
-    &:has([slot='title']):has([slot='main-nav']) {
-      --post-local-header-grid-template: 'title local-nav' 1fr 'main-nav main-nav' auto /
-        minmax(0, 1fr) auto;
-    }
   }
 }
