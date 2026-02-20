@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.62
+
+### Minor Changes
+
+- Added styles for icon buttons to be used as button links. (by [@leagrdv](https://github.com/leagrdv) with [#7153](https://github.com/swisspost/design-system/pull/7153))
+
+### Patch Changes
+
+- Added missing validation icons on valid and invalid form inputs that are not floating. (by [@leagrdv](https://github.com/leagrdv) with [#7200](https://github.com/swisspost/design-system/pull/7200))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.62
+
 ## 10.0.0-next.61
 
 ### Patch Changes
