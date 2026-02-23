@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 1.16.0
+
+### Minor Changes
+
+- Added analytics click tracking for the KLP login widget 'Settings' link. (by [@myrta2302](https://github.com/myrta2302) with [#7066](https://github.com/swisspost/design-system/pull/7066))
+
+### Patch Changes
+
+- Fixed KLP Login Widget incorrectly displaying `Login` button for authenticated users instead of their avatar. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7114](https://github.com/swisspost/design-system/pull/7114))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.7.0
+
 ## 1.15.24
 
 ### Patch Changes

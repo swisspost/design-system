@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.7.0
+
+### Minor Changes
+
+- Added support for Angular version 21. (by [@myrta2302](https://github.com/myrta2302) with [#7145](https://github.com/swisspost/design-system/pull/7145))
+
 ## 9.6.0
 
 ## 9.5.1
