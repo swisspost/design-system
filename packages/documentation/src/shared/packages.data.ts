@@ -111,7 +111,7 @@ export const packages: IPackage[] = [
     type: PackageType.Angular,
     link: {
       github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header',
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/intranet-header',
         ariaLabel: 'Source of Intranet-Header package',
       },
       docs: {

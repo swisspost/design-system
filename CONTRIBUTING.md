@@ -3,7 +3,7 @@
 These contribution guidelines apply to this repository in general and describe how to set up and maintain the repository. You can find dedicated guidelines in each package.
 
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
-- [Intranet Header Component](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
+- [Intranet Header Component](./packages/intranet-header/CONTRIBUTING.md)
 
 ## Setup
 
