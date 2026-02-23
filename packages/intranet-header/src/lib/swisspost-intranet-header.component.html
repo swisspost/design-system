@@ -1,0 +1,177 @@
+<header class="navbar navbar-expand-md flex-md-nowrap p-0" #domWrapper>
+  <div class="nav-down">
+    <div class="intranet-header">
+      <div class="d-flex align-items-center flex-nowrap">
+        <div id="logo" class="bg-logo d-sm-block">
+          <a [href]="this.logoUrl" class="navbar-brand header-logo">
+            <span class="visually-hidden">{{ getPostLogoText() }}</span>
+          </a>
+        </div>
+        <div
+          class="title px-4"
+          [ngClass]="{ 'flex-shrink-1': !condenseHeader, 'flex-shrink-0': condenseHeader }"
+        >
+          <h1 class="m-0 font-weight-bold">{{ siteTitle }}</h1>
+        </div>
+        @if (hasNavbar && condenseHeader && !isMobile) {
+          <nav
+            aria-label="navigation"
+            class="justify-content-start top-navigation condense m-0 d-md-flex"
+            [ngClass]="{ 'd-none': !openedMenu }"
+          >
+            <ng-container *ngTemplateOutlet="navbar"></ng-container>
+            @if (showIntranetSearch) {
+              <div class="col search-textbox d-md-none">
+                <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
+              </div>
+            }
+          </nav>
+        }
+        @if (showIntranetSearch) {
+          <div
+            id="intranetSearch"
+            class="col search-textbox d-none d-md-block"
+            [ngClass]="{ 'col-3': condenseHeader }"
+          >
+            <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
+          </div>
+        }
+        @if (optionHeaderContent) {
+          <div
+            id="optionHeaderContent"
+            class="settings ms-auto flex-shrink-0 d-flex align-self-stretch"
+          >
+            <div class="align-self-stretch d-flex" display="dynamic" container="body">
+              <div class="align-self-center p-16">
+                <div #headerExtraContent>
+                  <ng-container
+                    [ngTemplateOutlet]="optionHeaderContent"
+                    [ngTemplateOutletContext]="headerExtraContent"
+                  ></ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+        <div
+          [ngClass]="{ 'ms-auto': !optionHeaderContent }"
+          class="settings flex-shrink-0 d-flex align-self-stretch"
+        >
+          <div
+            class="align-self-stretch d-flex"
+            #optionDropdown="ngbDropdown"
+            ngbDropdown
+            autoClose="outside"
+            display="dynamic"
+            container="body"
+            placement="bottom-right"
+          >
+            <button
+              class="btn btn-tertiary px-16 rounded-0 flex-shrink-0 no-toggle-arrow"
+              id="profileMenu"
+              ngbDropdownToggle
+            >
+              <img [src]="avatarUrl" class="profile-image align-self-center" alt="" />
+            </button>
+            <div class="dropdown-menu" id="languageParent" ngbDropdownMenu>
+              <div class="language-menu">
+                @for (appLang of appLangs; track appLang) {
+                  <ng-container>
+                    @if (!isLanguageActive(appLang)) {
+                      <button
+                        type="button"
+                        class="btn btn-secondary dropdown-item"
+                        (click)="handleLanguageChange(appLang)"
+                      >
+                        {{ appLang.toUpperCase() }}
+                      </button>
+                    }
+                    @if (isLanguageActive(appLang)) {
+                      <div class="dropdown-item active">
+                        {{ appLang.toUpperCase() }}
+                      </div>
+                    }
+                  </ng-container>
+                }
+              </div>
+              <div class="other-items">
+                @if (currentUserId && !hideCurrentUserId) {
+                  <div class="dropdown-item">
+                    {{ currentUserId }}
+                  </div>
+                }
+                @if (displayName) {
+                  <div class="dropdown-item">
+                    {{ displayName }}
+                  </div>
+                }
+                @if (additionalInfo) {
+                  <div class="dropdown-item">
+                    {{ additionalInfo }}
+                  </div>
+                }
+                <ng-container
+                  [ngTemplateOutlet]="optionDropdownContent"
+                  [ngTemplateOutletContext]="{ dropdownRef: optionDropdown }"
+                ></ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        @if (hasNavbar) {
+          <button
+            (click)="toggleMenu()"
+            id="nav-toggler"
+            class="btn btn-lg btn-tertiary px-16 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
+          >
+            <em class="pi pi-2070"></em>
+          </button>
+        }
+      </div>
+    </div>
+    @if (hasNavbar && (!condenseHeader || isMobile)) {
+      <nav
+        class="row justify-content-center top-navigation m-0 d-md-flex"
+        aria-label="navigation"
+        [ngClass]="{ 'd-none': !openedMenu }"
+      >
+        <ng-container *ngTemplateOutlet="navbar"></ng-container>
+      </nav>
+    }
+    @if (showIntranetSearch && ((condenseHeader && !openedMenu) || !condenseHeader)) {
+      <div class="search-textbox d-md-none">
+        <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
+      </div>
+    }
+  </div>
+</header>
+
+<ng-template #navbar>
+  <div class="navbar-collapse" id="navbarsDefault">
+    <ul
+      id="nav"
+      class="navbar-nav justify-content-center"
+      [ngClass]="{ 'mx-auto': !condenseHeader }"
+    >
+      <ng-content></ng-content>
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template #intranetSearch>
+  <form [action]="searchUrl">
+    <div class="input-group mx-auto">
+      <input
+        type="text"
+        name="k"
+        class="form-control"
+        placeholder="{{ getPlaceholderSearchIntranet() }}"
+      />
+      <div class="input-group-append d-flex align-items-center">
+        <button class="btn pr-4" type="submit">
+          <span><em class="pi pi-2069"></em></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>

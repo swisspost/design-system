@@ -1,39 +1,43 @@
 {
-  "name": "intranet-header",
-  "version": "0.0.0",
+  "name": "@swisspost/design-system-intranet-header",
+  "version": "9.6.0",
+  "description": "Intranet header for internal Swiss Post applications as an Angular component.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/intranet-header",
+    "access": "public",
+    "linkDirectory": true
+  },
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "build": "ng-packagr -p ng-package.json",
+    "watch": "ng build --watch"
   },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
+  "peerDependencies": {
+    "@angular/core": ">=17.0.0 <22.0.0",
+    "@angular/common": ">=17.0.0 <22.0.0"
   },
-  "private": true,
-  "packageManager": "pnpm@9.6.0",
   "dependencies": {
-    "@angular/common": "^21.1.0",
-    "@angular/compiler": "^21.1.0",
-    "@angular/core": "^21.1.0",
-    "@angular/forms": "^21.1.0",
-    "@angular/platform-browser": "^21.1.0",
-    "@angular/router": "^21.1.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "2.3.0"
   },
   "devDependencies": {
-    "@angular/cli": "^21.1.4",
-    "@angular/compiler-cli": "^21.1.0",
-    "typescript": "~5.9.2"
-  }
+    "@angular/common": "21.1.5",
+    "@angular/compiler-cli": "21.1.5",
+    "@angular/core": "21.1.5",
+    "@angular/platform-browser": "21.1.5",
+    "@angular/router": "21.1.5",
+    "@ng-bootstrap/ng-bootstrap": "20.0.0",
+    "ng-packagr": "21.1.5",
+    "rxjs": "7.8.2",
+    "typescript": "5.9.2"
+  },
+  "sideEffects": false
 }

@@ -1,59 +1,59 @@
-# IntranetHeader
+# Swisspost Intranet Header
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
-## Development server
+The Angular header component for Intranet applications.
 
-To start a local development server, run:
+## Documentation
 
-```bash
-ng serve
-```
+- Technical docs: [Swiss Post Design System](https://design-system.post.ch/#/post-samples/intranet-layout)
+- Design docs: [Experience Hub](https://www.experience-hub.ch/document/2803)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Usage
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Install the header in your Angular project:
 
 ```bash
-ng generate component component-name
+npm install @swisspost/design-system-intranet-header
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+In your `app.module.ts`, add the header to your imports:
 
-```bash
-ng generate --help
+```typescript
+// Other imports ....
+import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet-header';
+
+@NgModule({
+  declarations: [
+    // ...
+  ],
+  imports: [
+    // ...
+    SwissPostIntranetHeaderModule,
+  ],
+  // ...
+})
+export class AppModule {}
 ```
 
-## Building
+In your templates, the Intranet Header is available as:
 
-To build the project run:
-
-```bash
-ng build
+```html
+<sp-intranet-header></sp-intranet-header>
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Contribute
 
-## Running unit tests
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Considering supporting the Swiss Post Design System with your contribution? Whether you like to contribute new patterns, fix a bug, spotted a typo or have ideas for improvement - we'd love to hear from you. Learn how you can contribute to this project in the [intranet header contribution guidelines](./CONTRIBUTING.md) and also take a look at the [general contribution guidelines](../../../../CONTRIBUTING.md).
 
-```bash
-ng test
-```
+For any questions regarding the pattern library, you can reach out on the [discussions page](https://github.com/swisspost/design-system/discussions).
 
-## Running end-to-end tests
+In order to keep our community open and inclusive, we expect you to read and follow our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
-For end-to-end (e2e) testing, run:
+## License
 
-```bash
-ng e2e
-```
+Software contained in this repository is published by the Swiss Post Ltd. under the [Apache 2.0 License](./LICENSE).
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+© 2024 Swiss Post, Ltd.
