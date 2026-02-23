@@ -1,6 +1,9 @@
 # post-internet-header
 
+
+
 <!-- Auto Generated Below -->
+
 
 ## Properties
 
@@ -25,11 +28,13 @@
 | `skiplinks`               | `skiplinks`                  | <span style="color:red">**[DEPRECATED]**</span> please implement the skiplinks component. This option will be removed in the next major release.<br/><br/>Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.                                                                                                                                                                              | `boolean`                                                                 | `true`                                 |
 | `stickyness`              | `stickyness`                 | <span style="color:red">**[DEPRECATED]**</span> this option will no longer be configurable with the new header in the next major release.<br/><br/>Sticky behaviour of the header.                                                                                                                                                                                                                                                   | `"full" \| "main" \| "minimal" \| "none"`                                 | `'minimal'`                            |
 
+
 ## Events
 
 | Event          | Description                                          | Type                |
 | -------------- | ---------------------------------------------------- | ------------------- |
 | `headerLoaded` | Fires when the header has been rendered to the page. | `CustomEvent<void>` |
+
 
 ## Methods
 
@@ -42,6 +47,7 @@
 Type: `Promise<string>`
 
 string
+
 
 ## Dependencies
 
@@ -56,7 +62,6 @@ string
 - [post-klp-login-widget](../post-klp-login-widget)
 
 ### Graph
-
 ```mermaid
 graph TD;
   swisspost-internet-header --> post-skiplinks
@@ -70,6 +75,6 @@ graph TD;
   style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
