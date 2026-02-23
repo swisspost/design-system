@@ -34,6 +34,7 @@ some content
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
  - [post-megadropdown-trigger](../post-megadropdown-trigger)
+ - [post-number-input](../post-number-input)
  - [post-pagination](../post-pagination)
  - [post-rating](../post-rating)
 
@@ -51,6 +52,7 @@ graph TD;
   post-mainnavigation --> post-icon
   post-megadropdown --> post-icon
   post-megadropdown-trigger --> post-icon
+  post-number-input --> post-icon
   post-pagination --> post-icon
   post-rating --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px

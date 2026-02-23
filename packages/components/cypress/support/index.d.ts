@@ -13,6 +13,7 @@ declare global {
         key: string,
         value: string | number | boolean | File | null,
       ): Chainable<void>;
+      getFocusableElements(): Chainable<HTMLElement[]>;
     }
   }
 }

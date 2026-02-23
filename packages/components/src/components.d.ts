@@ -282,7 +282,7 @@ export namespace Components {
         "textCurrentLanguage": string;
         /**
           * Whether the component is rendered as a list or a menu
-          * @default 'list'
+          * @default 'menu'
          */
         "variant": SwitchVariant;
     }
@@ -395,15 +395,13 @@ export namespace Components {
          */
         "for": string;
     }
+    interface PostNumberInput {
+    }
     interface PostPagination {
         /**
           * The total number of items in the collection.
          */
         "collectionSize": number;
-        /**
-          * If true, the pagination is disabled.
-         */
-        "disabled"?: boolean;
         /**
           * A descriptive label for the pagination navigation, used by assistive technologies.
          */
@@ -899,6 +897,12 @@ declare global {
         prototype: HTMLPostMenuTriggerElement;
         new (): HTMLPostMenuTriggerElement;
     };
+    interface HTMLPostNumberInputElement extends Components.PostNumberInput, HTMLStencilElement {
+    }
+    var HTMLPostNumberInputElement: {
+        prototype: HTMLPostNumberInputElement;
+        new (): HTMLPostNumberInputElement;
+    };
     interface HTMLPostPaginationElementEventMap {
         "postChange": number;
     }
@@ -1052,6 +1056,7 @@ declare global {
         "post-menu": HTMLPostMenuElement;
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
+        "post-number-input": HTMLPostNumberInputElement;
         "post-pagination": HTMLPostPaginationElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
@@ -1308,7 +1313,7 @@ declare namespace LocalJSX {
         "textCurrentLanguage": string;
         /**
           * Whether the component is rendered as a list or a menu
-          * @default 'list'
+          * @default 'menu'
          */
         "variant"?: SwitchVariant;
     }
@@ -1404,15 +1409,13 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostNumberInput {
+    }
     interface PostPagination {
         /**
           * The total number of items in the collection.
          */
         "collectionSize": number;
-        /**
-          * If true, the pagination is disabled.
-         */
-        "disabled"?: boolean;
         /**
           * A descriptive label for the pagination navigation, used by assistive technologies.
          */
@@ -1655,6 +1658,7 @@ declare namespace LocalJSX {
         "post-menu": PostMenu;
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
+        "post-number-input": PostNumberInput;
         "post-pagination": PostPagination;
         "post-popover": PostPopover;
         "post-popover-trigger": PostPopoverTrigger;
@@ -1705,6 +1709,7 @@ declare module "@stencil/core" {
             "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
+            "post-number-input": LocalJSX.PostNumberInput & JSXBase.HTMLAttributes<HTMLPostNumberInputElement>;
             "post-pagination": LocalJSX.PostPagination & JSXBase.HTMLAttributes<HTMLPostPaginationElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;

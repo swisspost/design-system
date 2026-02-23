@@ -1,5 +1,11 @@
 # @swisspost/design-system-eslint
 
+## 10.0.0-next.61
+
+### Minor Changes
+
+- Added support for Angular dynamic class bindings in class replacement migration rule, supporting [class.foo], [ngClass], and [class] attributes. (by [@myrta2302](https://github.com/myrta2302) with [#6979](https://github.com/swisspost/design-system/pull/6979))
+
 ## 10.0.0-next.60
 
 ## 10.0.0-next.59
