@@ -18,26 +18,43 @@
     "linkDirectory": true
   },
   "scripts": {
-    "build": "ng-packagr -p ng-package.json",
-    "watch": "ng build --watch"
+    "ng": "ng",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "lint": "ng lint"
   },
   "peerDependencies": {
-    "@angular/core": ">=17.0.0 <22.0.0",
-    "@angular/common": ">=17.0.0 <22.0.0"
+    "@angular/common": ">=17.0.0 <22.0.0",
+    "@angular/core": ">=17.0.0 <22.0.0"
   },
   "dependencies": {
     "tslib": "2.3.0"
   },
   "devDependencies": {
+    "@angular-eslint/builder": "21.2.0",
+    "@angular/cli": "21.1.5",
     "@angular/common": "21.1.0",
     "@angular/compiler-cli": "21.1.0",
     "@angular/core": "21.1.0",
     "@angular/platform-browser": "21.1.0",
     "@angular/router": "21.1.0",
+    "@eslint/js": "^9.39.2",
     "@ng-bootstrap/ng-bootstrap": "20.0.0",
+    "angular-eslint": "21.2.0",
+    "eslint": "^9.39.2",
     "ng-packagr": "21.1.0",
     "rxjs": "7.8.2",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "typescript-eslint": "8.50.1"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "keywords": [
+    "components",
+    "intranet",
+    "header",
+    "angular",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
 }

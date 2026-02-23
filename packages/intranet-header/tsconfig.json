@@ -13,7 +13,12 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "outDir": "out-tsc/lib",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "types": []
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -21,13 +26,7 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": [],
-  "references": [
-    {
-      "path": "./aaazzz/tsconfig.lib.json"
-    },
-    {
-      "path": "./aaazzz/tsconfig.spec.json"
-    }
+  "include": [
+    "src/**/*.ts"
   ]
 }

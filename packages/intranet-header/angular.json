@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "pnpm",
+    "schematicCollections": [
+      "angular-eslint"
+    ]
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "intranet-header": {
+      "projectType": "library",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "post",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "tsconfig.prod.json"
+            },
+            "development": {
+              "tsConfig": "tsconfig.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "**/*.ts",
+              "**/*.html"
+            ],
+            "eslintConfig": "eslint.config.js"
+          }
+        }
+      }
+    }
+  }
+}
