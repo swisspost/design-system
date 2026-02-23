@@ -456,6 +456,7 @@ const vertx = window.vertx || {};
       }
     }
 
+
     function audit(message) {
       const auditingEvent = JSON.stringify({
         adr: address,
@@ -1364,6 +1365,12 @@ const vertx = window.vertx || {};
       if (!address) {
         if (trySubscription()) {
           log('Subscribing to get an address');
+          if (globalThis.console && globalThis.console.info) {
+            console.info('[klp-login-widget] subscribe attempt', {
+              hasNctrl: document.cookie.includes(controlCookieName + '='),
+              userAgent: navigator.userAgent,
+            });
+          }
           const startTime = new Date().getTime();
           fetch(platformEndPoints.subscribe, {
             method: 'GET',
@@ -1374,8 +1381,25 @@ const vertx = window.vertx || {};
             .then(message => handleMessage(message))
             .catch(error => {
               log('Failed to subscribe: ' + error.message);
-              logout();
-              renderWidget();
+              if (globalThis.console && globalThis.console.warn) {
+                console.warn('[klp-login-widget] subscribe failed', {
+                  errorType: error.constructor ? error.constructor.name : typeof error,
+                  errorMessage: error.message,
+                  isTypeError: error instanceof TypeError,
+                  hasNctrl: document.cookie.includes(controlCookieName + '='),
+                  userAgent: navigator.userAgent,
+                  url: globalThis.location.href,
+                });
+              }
+              if (error instanceof TypeError) {
+                // Fetch cancelled by browser navigation, not an auth failure.
+                // Do not call logout(): this would delete NCTRL and prevent recovery.
+                log('Subscribe cancelled by navigation: preserving NCTRL, skipping logout.');
+                renderWidget();
+              } else {
+                logout();
+                renderWidget();
+              }
             });
           logPerformanceMetric('subscribe()', new Date().getTime() - startTime);
         } else {
