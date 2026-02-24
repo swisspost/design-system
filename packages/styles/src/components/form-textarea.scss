@@ -113,15 +113,17 @@ textarea.form-control {
         #{tokens.get('textarea-label-padding-inline-end')}
     );
     border: 0;
+    border-top-left-radius: tokens.get('textarea-border-radius');
     color: tokens.get('textarea-enabled-fg');
+    background-color: transparent;
     height: auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     transition:
+      background-color 0.2s ease-in-out,
       padding-block-start 0.2s ease-in-out,
       font-size 0.2s ease-in-out;
-    background-color: tokens.get('textarea-enabled-bg');
 
     /* Fixes subpixel rendering gap at 125% OS scaling
    Prevents the half-pixel of the upper text line from appearing between
@@ -138,6 +140,14 @@ textarea.form-control {
     &::placeholder {
       color: transparent;
       opacity: 0;
+      /* 
+       * Does not work in firefox because it's non-standard behaviour.
+       * Implemented as progressive enhancement for the browsers that support it.
+       * https://stackoverflow.com/questions/16381895/firefox-transition-placeholder-opacity
+      */
+      transition:
+        opacity 0.25s linear,
+        background-color 0.25s linear;
     }
 
     &:focus,
@@ -145,12 +155,14 @@ textarea.form-control {
       ~ label {
         font-size: tokens.get('textarea-label-filled-font-size');
         padding-block-start: tokens.get('textarea-label-filled-padding-block-start');
+        background-color: tokens.get('textarea-enabled-bg');
       }
     }
 
     &:focus::placeholder {
       color: tokens.get('textarea-placeholder-fg');
       opacity: 1;
+      transition: opacity 0.35s 0.15s linear;
     }
 
     &:disabled ~ label {
@@ -160,7 +172,6 @@ textarea.form-control {
 
     &:not(:disabled):hover ~ label {
       color: tokens.get('textarea-hover-fg');
-      background-color: tokens.get('textarea-hover-bg');
     }
 
     &:is(.is-valid, .is-invalid) {

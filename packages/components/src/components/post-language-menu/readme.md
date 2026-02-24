@@ -9,7 +9,7 @@
 | ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ----------- |
 | `textChangeLanguage` _(required)_  | `text-change-language`  | A title for the list of language options                                                                                                                | `string`           | `undefined` |
 | `textCurrentLanguage` _(required)_ | `text-current-language` | An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name. | `string`           | `undefined` |
-| `variant`                          | `variant`               | Whether the component is rendered as a list or a menu                                                                                                   | `"list" \| "menu"` | `'list'`    |
+| `variant`                          | `variant`               | Whether the component is rendered as a list or a menu                                                                                                   | `"list" \| "menu"` | `'menu'`    |
 
 
 ## Dependencies

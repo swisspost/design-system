@@ -1,3 +1,5 @@
+import { getRoot } from '@/utils/get-root';
+
 const focusableSelector = `:where(${[
   'button',
   'input:not([type="hidden"])',
@@ -30,7 +32,7 @@ export function getFocusableChildren(element: Element | Document | ShadowRoot): 
     `${focusableSelector}:not(${focusDisablingSelector})`,
   );
 
-  return Array.from(focusableChildren).filter(isVisible);
+  return Array.from(focusableChildren).filter(el => !isFocusBlockedByCSS(el));
 }
 
 // Searches deeper across shadow DOM
@@ -78,15 +80,36 @@ export function getDeepFocusableChildren(
   return focusableElements;
 }
 
-function isVisible(el: HTMLElement): boolean {
+function isFocusBlockedByCSS(el: Element | Document | ShadowRoot): boolean {
+  if (el instanceof Document) {
+    return false;
+  }
+
+  if (el instanceof ShadowRoot) {
+    return isFocusBlockedByCSS(el.host);
+  }
+
+  if (typeof el.checkVisibility === 'function') {
+    return !el.checkVisibility({ visibilityProperty: true });
+  }
+
   const style = window.getComputedStyle(el);
-  return style.display !== 'none' && style.visibility !== 'hidden';
+  if (style.display === 'none' || style.visibility !== 'visible') {
+    return true;
+  }
+
+  if (el.parentElement) {
+    return isFocusBlockedByCSS(el.parentElement);
+  }
+
+  const root = getRoot(el);
+  return isFocusBlockedByCSS(root);
 }
 
 function isElementFocusable(node: Element | ShadowRoot): node is HTMLElement {
   return (
     node instanceof HTMLElement &&
     node.matches(`${focusableSelector}:not(${focusDisablingSelector})`) &&
-    isVisible(node)
+    !isFocusBlockedByCSS(node)
   );
 }

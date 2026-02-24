@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.62
+
+### Patch Changes
+
+- Updated the table documentation to recommend using AG Grid instead of the PrimeNG DataTable. (by [@alizedebray](https://github.com/alizedebray) with [#7139](https://github.com/swisspost/design-system/pull/7139))
+
+- Aligned `ngx-toastr` styling with the existing toast component and documented the integration. (by [@leagrdv](https://github.com/leagrdv) with [#7106](https://github.com/swisspost/design-system/pull/7106))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+  - @swisspost/design-system-styles@10.0.0-next.61
+  - @swisspost/design-system-components@10.0.0-next.61
+  - @swisspost/design-system-components-react@10.0.0-next.61
+  - @swisspost/internet-header@10.0.0-next.61
+  - @swisspost/design-system-tokens@10.0.0-next.61
+
 ## 6.0.0-next.61
 
 ### Patch Changes

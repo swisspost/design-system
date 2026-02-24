@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Added null guard when reading step label during initial render. (by [@leagrdv](https://github.com/leagrdv) with [#7097](https://github.com/swisspost/design-system/pull/7097))
+
+- Fixed focus being applied to hidden items across multiple components. (by [@alizedebray](https://github.com/alizedebray) with [#7075](https://github.com/swisspost/design-system/pull/7075))
+
+- Added foreground and background color transitions to `post-avatar` component. (by [@alizedebray](https://github.com/alizedebray) with [#7072](https://github.com/swisspost/design-system/pull/7072))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+  - @swisspost/design-system-styles@10.0.0-next.61
+
 ## 10.0.0-next.60
 
 ### Minor Changes
