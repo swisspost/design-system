@@ -1,17 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Inject,
-  Input,
-  LOCALE_ID,
-  NgZone,
-  OnInit,
-  SecurityContext,
-  TemplateRef,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, LOCALE_ID, NgZone, OnInit, SecurityContext, TemplateRef, ViewChild, ChangeDetectorRef, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
 import { fromEvent, Subject } from 'rxjs';
@@ -33,6 +20,12 @@ import { NgbDropdown, NgbDropdownToggle, NgbDropdownMenu } from '@ng-bootstrap/n
     ],
 })
 export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
+  lang = inject(LOCALE_ID);
+  private router = inject(Router);
+  private zone = inject(NgZone);
+  private domSanitizer = inject(DomSanitizer);
+  private cd = inject(ChangeDetectorRef);
+
   @Input() siteTitle = '';
   @Input() languages = 'de,fr,it,en';
   @Input() currentUserId = '';
@@ -40,8 +33,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   @Input() additionalInfo = '';
   @Input() hasNavbar = true;
   @Input() showIntranetSearch = false;
-  @Input() optionDropdownContent!: TemplateRef<any>;
-  @Input() optionHeaderContent!: TemplateRef<any>;
+  @Input() optionDropdownContent!: TemplateRef<unknown>;
+  @Input() optionHeaderContent!: TemplateRef<unknown>;
   @Input() logoUrl = '';
   @Input() searchUrl = '';
   @Input() hideCurrentUserId = false;
@@ -95,13 +88,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   private profileMenuElement!: HTMLElement;
   private navChanges!: MutationObserver;
 
-  constructor(
-    @Inject(LOCALE_ID) public lang: string,
-    private router: Router,
-    private zone: NgZone,
-    private domSanitizer: DomSanitizer,
-    private cd: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
         if (this.openedMenuOverflow) {
