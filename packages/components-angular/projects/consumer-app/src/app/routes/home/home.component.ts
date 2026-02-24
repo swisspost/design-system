@@ -25,6 +25,7 @@ import {
   PostTooltipTrigger,
   PostStepper,
   PostStepperItem,
+  PostClosebutton,
   PostNumberInput,
 } from 'components';
 
@@ -38,6 +39,7 @@ import {
     PostAvatar,
     PostBanner,
     PostCardControl,
+    PostClosebutton,
     PostCollapsible,
     PostCollapsibleTrigger,
     PostIcon,
