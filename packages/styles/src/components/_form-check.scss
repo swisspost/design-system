@@ -38,10 +38,6 @@
     > input[type='checkbox'] {
       ~ label {
         padding-block: tokens.get('checkbox-label-padding-block', components.$post-checkbox);
-        padding-inline-start: tokens.get(
-          'checkbox-gap-inline-text-start',
-          components.$post-checkbox
-        );
         color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
       }
 
@@ -154,10 +150,6 @@
       > input[type='checkbox'] ~ label {
         font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
         padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
-        padding-inline-start: tokens.get(
-          'checkbox-gap-inline-text-start',
-          components.$post-checkbox
-        );
       }
     }
   }
