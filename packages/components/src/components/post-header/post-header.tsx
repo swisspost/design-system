@@ -419,7 +419,7 @@ export class PostHeader {
         class={{
           'burger-menu': true,
           'extended': this.burgerMenuExtended,
-          'megadropdown-open': this.megadropdownOpen,
+          'second-level-open': this.megadropdownOpen,
         }}
         style={{ '--post-header-navigation-current-inset': `${this.burgerMenu?.scrollTop ?? 0}px` }}
         ref={el => (this.burgerMenu = el)}
@@ -488,7 +488,10 @@ export class PostHeader {
               </div>
             </div>
           </div>
-          <div ref={el => (this.localHeader = el)} class="local-header">
+          <div
+            ref={el => (this.localHeader = el)}
+            class={{ 'local-header': true, 'megadropdown-open': this.megadropdownOpen }}
+          >
             <div class="section">
               <slot name="title"></slot>
               {this.hasTitle && <slot name="local-nav"></slot>}

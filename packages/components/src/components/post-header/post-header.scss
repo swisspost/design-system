@@ -108,6 +108,7 @@ header,
     }
   }
 
+  &:where(.megadropdown-open),
   &:has(~ .burger-menu.extended) {
     &::after {
       content: '';
@@ -158,7 +159,7 @@ header,
   flex-direction: column;
   background-color: #fafafa;
 
-  &.extended.megadropdown-open {
+  &.extended.second-level-open {
     overflow: hidden;
   }
 
