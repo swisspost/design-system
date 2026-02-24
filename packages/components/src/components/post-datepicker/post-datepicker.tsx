@@ -19,7 +19,7 @@ import AirDatepicker, {
 import IMask, { InputMask } from 'imask';
 
 import { localesMap } from './locales';
-import { checkEmptyOrType, checkRequiredAndType } from '@/utils';
+import { checkEmptyOrDate, checkEmptyOrType, checkRequiredAndType } from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -43,51 +43,30 @@ export class PostDatepicker {
   @State() inputDisabled = false;
 
   /**
-   * Selected date
-   * If range datepicker: Selected start date
+   * The datepicker's selected date. If in range mode, the selected start date.
    */
   @Prop() selectedStartDate?: string;
   @Watch('selectedStartDate')
   validateSelectedStartDate() {
-    checkEmptyOrType(this, 'selectedStartDate', 'string');
-
-    if (this.selectedStartDate) {
-      const date = new Date(this.selectedStartDate);
-
-      if (isNaN(date.getTime())) {
-        console.error(
-          'Selected start date is not valid. Format should either be DD/MM/YYYY or YYYY/MM/DD',
-        );
-      }
-    }
+    checkEmptyOrDate(this, 'selectedStartDate');
   }
 
   /**
-   * Selected end date for range datepicker only
+   * The datepicker's selected end date (for range datepicker only).
    */
   @Prop() selectedEndDate?: string;
   @Watch('selectedEndDate')
   validateSelectedEndDate() {
-    checkEmptyOrType(this, 'selectedEndDate', 'string');
-
-    if (this.selectedEndDate) {
-      const date = new Date(this.selectedEndDate);
-
-      if (isNaN(date.getTime())) {
-        console.error(
-          'Selected end date is not valid. Format should either be DD/MM/YYYY or YYYY/MM/DD',
-        );
-      }
-    }
+    checkEmptyOrDate(this, 'selectedEndDate');
   }
 
   /**
-   * Whether the datepicker expects a range selection or a single date selection
+   * Whether the datepicker expects a range selection or a single date selection.
    */
   @Prop() range?: boolean = false;
 
   /**
-   * Minimun possible date to select
+   * Minimun possible date to select.
    */
   @Prop() min?: string;
   @Watch('min')
@@ -104,7 +83,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Maximum possible date to select
+   * Maximum possible date to select.
    */
   @Prop() max?: string;
   @Watch('max')
@@ -121,24 +100,23 @@ export class PostDatepicker {
   }
 
   /**
-   * Used to extend the existing on render cell to disable dates
+   * Used to extend the existing on render cell to disable dates.
    */
   @Prop() renderCellCallback?: AirDatepickerCustomOptions['onRenderCell'];
 
   /**
-   * Whether the calendar is inline in the page (not showing in a popover when input clicked)
+   * Whether the calendar is inline in the page (not showing in a popover when input clicked).
    */
   @Prop() inline = false;
   @Watch('inline')
   validateInline() {
-    console.log('is inline', this.inline, this.dpInput);
     if (!this.inline && !this.dpInput) {
       console.error('A non-inline datepicker should contain one input');
     }
   }
 
   /**
-   * Label for "Next month" button
+   * Label for "Next month" button.
    */
   @Prop({ reflect: true }) textNextMonth!: string;
   @Watch('textNextMonth')
@@ -147,7 +125,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Label for "Next year" button
+   * Label for "Next year" button.
    */
   @Prop({ reflect: true }) textNextYear!: string;
   @Watch('textNextYear')
@@ -156,7 +134,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Label for "Next decade" button
+   * Label for "Next decade" button.
    */
   @Prop({ reflect: true }) textNextDecade!: string;
   @Watch('textNextDecade')
@@ -165,7 +143,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Label for "Previous month" button
+   * Label for "Previous month" button.
    */
   @Prop({ reflect: true }) textPreviousMonth!: string;
   @Watch('textPreviousMonth')
@@ -174,7 +152,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Label for "Previous year" button
+   * Label for "Previous year" button.
    */
   @Prop({ reflect: true }) textPreviousYear!: string;
   @Watch('textPreviousYear')
@@ -183,7 +161,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Label for "Previous decade" button
+   * Label for "Previous decade" button.
    */
   @Prop({ reflect: true }) textPreviousDecade!: string;
   @Watch('textPreviousDecade')
@@ -192,7 +170,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Label for the "Switch to year view" title button
+   * Label for the "Switch to year view" title button.
    */
   @Prop({ reflect: true }) textSwitchYear!: string;
   @Watch('textSwitchYear')
@@ -201,8 +179,8 @@ export class PostDatepicker {
   }
 
   /**
-   * Label for the toggle button that opens the calendar
-   * Only needed when calendar is connected to input
+   * Label for the toggle button that opens the calendar.
+   * It is only needed when the calendar is connected to the input.
    */
   @Prop() textToggleCalendar?: string;
   @Watch('textToggleCalendar')
@@ -216,12 +194,12 @@ export class PostDatepicker {
   @State() locale: string = document.documentElement.lang;
 
   /**
-   * An event emitted when a date or a range of dates have been selected
+   * An event emitted when a date or a range of dates have been selected.
    */
   @Event() postUpdateDates: EventEmitter<Date | Date[]>;
 
   /**
-   * Displays the popover calendar, focusing the first calendar item
+   * Displays the popover calendar, focusing the first calendar item.
    * @param target - The HTML element relative to which the popover calendar should be displayed
    */
   @Method()
@@ -236,7 +214,7 @@ export class PostDatepicker {
   }
 
   /**
-   * Hides the popover calendar
+   * Hides the popover calendar.
    */
   @Method()
   async hide() {

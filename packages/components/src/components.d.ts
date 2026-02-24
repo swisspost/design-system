@@ -213,74 +213,74 @@ export namespace Components {
     }
     interface PostDatepicker {
         /**
-          * Hides the popover calendar
+          * Hides the popover calendar.
          */
         "hide": () => Promise<void>;
         /**
-          * Whether the calendar is inline in the page (not showing in a popover when input clicked)
+          * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
          */
         "inline": boolean;
         /**
-          * Maximum possible date to select
+          * Maximum possible date to select.
          */
         "max"?: string;
         /**
-          * Minimun possible date to select
+          * Minimun possible date to select.
          */
         "min"?: string;
         /**
-          * Whether the datepicker expects a range selection or a single date selection
+          * Whether the datepicker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
         /**
-          * Used to extend the existing on render cell to disable dates
+          * Used to extend the existing on render cell to disable dates.
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * Selected end date for range datepicker only
+          * The datepicker's selected end date (for range datepicker only).
          */
         "selectedEndDate"?: string;
         /**
-          * Selected date If range datepicker: Selected start date
+          * The datepicker's selected date. If in range mode, the selected start date.
          */
         "selectedStartDate"?: string;
         /**
-          * Displays the popover calendar, focusing the first calendar item
+          * Displays the popover calendar, focusing the first calendar item.
           * @param target - The HTML element relative to which the popover calendar should be displayed
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Label for "Next decade" button
+          * Label for "Next decade" button.
          */
         "textNextDecade": string;
         /**
-          * Label for "Next month" button
+          * Label for "Next month" button.
          */
         "textNextMonth": string;
         /**
-          * Label for "Next year" button
+          * Label for "Next year" button.
          */
         "textNextYear": string;
         /**
-          * Label for "Previous decade" button
+          * Label for "Previous decade" button.
          */
         "textPreviousDecade": string;
         /**
-          * Label for "Previous month" button
+          * Label for "Previous month" button.
          */
         "textPreviousMonth": string;
         /**
-          * Label for "Previous year" button
+          * Label for "Previous year" button.
          */
         "textPreviousYear": string;
         /**
-          * Label for the "Switch to year view" title button
+          * Label for the "Switch to year view" title button.
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar Only needed when calendar is connected to input
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
          */
         "textToggleCalendar"?: string;
     }
@@ -1343,69 +1343,69 @@ declare namespace LocalJSX {
     }
     interface PostDatepicker {
         /**
-          * Whether the calendar is inline in the page (not showing in a popover when input clicked)
+          * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
          */
         "inline"?: boolean;
         /**
-          * Maximum possible date to select
+          * Maximum possible date to select.
          */
         "max"?: string;
         /**
-          * Minimun possible date to select
+          * Minimun possible date to select.
          */
         "min"?: string;
         /**
-          * An event emitted when a date or a range of dates have been selected
+          * An event emitted when a date or a range of dates have been selected.
          */
         "onPostUpdateDates"?: (event: PostDatepickerCustomEvent<Date | Date[]>) => void;
         /**
-          * Whether the datepicker expects a range selection or a single date selection
+          * Whether the datepicker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
         /**
-          * Used to extend the existing on render cell to disable dates
+          * Used to extend the existing on render cell to disable dates.
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * Selected end date for range datepicker only
+          * The datepicker's selected end date (for range datepicker only).
          */
         "selectedEndDate"?: string;
         /**
-          * Selected date If range datepicker: Selected start date
+          * The datepicker's selected date. If in range mode, the selected start date.
          */
         "selectedStartDate"?: string;
         /**
-          * Label for "Next decade" button
+          * Label for "Next decade" button.
          */
         "textNextDecade": string;
         /**
-          * Label for "Next month" button
+          * Label for "Next month" button.
          */
         "textNextMonth": string;
         /**
-          * Label for "Next year" button
+          * Label for "Next year" button.
          */
         "textNextYear": string;
         /**
-          * Label for "Previous decade" button
+          * Label for "Previous decade" button.
          */
         "textPreviousDecade": string;
         /**
-          * Label for "Previous month" button
+          * Label for "Previous month" button.
          */
         "textPreviousMonth": string;
         /**
-          * Label for "Previous year" button
+          * Label for "Previous year" button.
          */
         "textPreviousYear": string;
         /**
-          * Label for the "Switch to year view" title button
+          * Label for the "Switch to year view" title button.
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar Only needed when calendar is connected to input
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
          */
         "textToggleCalendar"?: string;
     }

@@ -47,46 +47,6 @@ const meta: MetaComponent = {
         arg: 'range',
       },
     },
-    textToggleCalendar: {
-      table: {
-        category: 'Labels',
-      },
-    },
-    textNextDecade: {
-      table: {
-        category: 'Labels',
-      },
-    },
-    textNextMonth: {
-      table: {
-        category: 'Labels',
-      },
-    },
-    textNextYear: {
-      table: {
-        category: 'Labels',
-      },
-    },
-    textPreviousDecade: {
-      table: {
-        category: 'Labels',
-      },
-    },
-    textPreviousMonth: {
-      table: {
-        category: 'Labels',
-      },
-    },
-    textPreviousYear: {
-      table: {
-        category: 'Labels',
-      },
-    },
-    textSwitchYear: {
-      table: {
-        category: 'Labels',
-      },
-    },
   },
 };
 export default meta;
