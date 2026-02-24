@@ -13,7 +13,7 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "publishConfig": {
-    "directory": "../../dist/intranet-header",
+    "directory": "dist/intranet-header",
     "access": "public",
     "linkDirectory": true
   },
