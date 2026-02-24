@@ -14,16 +14,23 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
-import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgbDropdown, NgbDropdownToggle, NgbDropdownMenu } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
 @Component({
-  selector: 'sp-intranet-header',
-  templateUrl: './swisspost-intranet-header.component.html',
-  styleUrls: ['./swisspost-intranet-header.component.scss'],
-  standalone: false,
+    selector: 'sp-intranet-header',
+    templateUrl: './swisspost-intranet-header.component.html',
+    styleUrls: ['./swisspost-intranet-header.component.scss'],
+    imports: [
+        NgClass,
+        NgTemplateOutlet,
+        NgbDropdown,
+        NgbDropdownToggle,
+        NgbDropdownMenu,
+    ],
 })
 export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   @Input() siteTitle = '';

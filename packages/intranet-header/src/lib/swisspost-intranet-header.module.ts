@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { SwissPostIntranetHeaderComponent } from './swisspost-intranet-header.component';
 
+/**
+ * Keep module for backwards compatibility
+ */
 @NgModule({
-  declarations: [SwissPostIntranetHeaderComponent],
-  imports: [RouterModule, CommonModule, NgbModule],
-  exports: [SwissPostIntranetHeaderComponent],
+    imports: [SwissPostIntranetHeaderComponent],
+    exports: [SwissPostIntranetHeaderComponent],
 })
 export class SwissPostIntranetHeaderModule {}
