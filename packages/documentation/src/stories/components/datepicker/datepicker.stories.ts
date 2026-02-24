@@ -1,6 +1,7 @@
 import { Args, StoryObj, StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
+import { spreadArgs } from '@/utils';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
@@ -62,69 +63,24 @@ function render(args: Args) {
 
 function renderPopupRange(args: Args) {
   return html`
-    <post-datepicker id=${args.id} range="true" ?min="${args.min}" ?max="${args.max}"
-    text-toggle-calendar="${args.textToggleCalendar}"
-    text-next-decade="${args.textNextDecade}"
-    text-next-month="${args.textNextMonth}"
-    text-next-year="${args.textNextYear}"
-    text-previous-decade="${args.textPreviousDecade}"
-    text-previous-month="${args.textPreviousMonth}"
-    text-previous-year="${args.textPreviousYear}"
-    text-switch-year="${args.textSwitchYear}">
+    <post-datepicker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
     </post-datepicker>`;
 }
 
 function renderInlineRange(args: Args) {
-  return html` <post-datepicker
-    id=${args.id}
-    inline="true"
-    range="true"
-    ?min="${args.min}"
-    ?max="${args.max}"
-    text-toggle-calendar="${args.textToggleCalendar}"
-    text-next-decade="${args.textNextDecade}"
-    text-next-month="${args.textNextMonth}"
-    text-next-year="${args.textNextYear}"
-    text-previous-decade="${args.textPreviousDecade}"
-    text-previous-month="${args.textPreviousMonth}"
-    text-previous-year="${args.textPreviousYear}"
-    text-switch-year="${args.textSwitchYear}"
-  >
-  </post-datepicker>`;
+  return html` <post-datepicker ${spreadArgs(args)}> </post-datepicker>`;
 }
 
 function renderPopupSimple(args: Args) {
   return html`
-    <post-datepicker id=${args.id} ?min="${args.min}" ?max="${args.max}"
-    text-toggle-calendar="${args.textToggleCalendar}"
-    text-next-decade="${args.textNextDecade}"
-    text-next-month="${args.textNextMonth}"
-    text-next-year="${args.textNextYear}"
-    text-previous-decade="${args.textPreviousDecade}"
-    text-previous-month="${args.textPreviousMonth}"
-    text-previous-year="${args.textPreviousYear}"
-    text-switch-year="${args.textSwitchYear}">
+    <post-datepicker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
     </post-datepicker>`;
 }
 
 function renderInlineSimple(args: Args) {
-  return html` <post-datepicker
-    id=${args.id}
-    inline="true"
-    ?min="${args.min}"
-    ?max="${args.max}"
-    text-toggle-calendar="${args.textToggleCalendar}"
-    text-next-decade="${args.textNextDecade}"
-    text-next-month="${args.textNextMonth}"
-    text-next-year="${args.textNextYear}"
-    text-previous-decade="${args.textPreviousDecade}"
-    text-previous-month="${args.textPreviousMonth}"
-    text-previous-year="${args.textPreviousYear}"
-    text-switch-year="${args.textSwitchYear}"
-  >
-  </post-datepicker>`;
+  return html` <post-datepicker ${spreadArgs(args)}> </post-datepicker>`;
 }
 
 type Story = StoryObj;
