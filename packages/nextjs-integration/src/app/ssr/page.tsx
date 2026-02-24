@@ -7,11 +7,7 @@ import {
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
-<<<<<<< HEAD
   PostDatepicker,
-  PostIcon,
-=======
->>>>>>> main
   PostLinkarea,
   PostMenu,
   PostMenuItem,
