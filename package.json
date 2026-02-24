@@ -120,7 +120,7 @@
   "packageManager": "pnpm@10.29.3",
   "pnpm": {
     "peerDependencyRules": {
-      "ignoreMissing": {},
+      "ignoreMissing": [],
       "allowedVersions": {
         "@typescript-eslint/eslint-plugin": ">=7",
         "@typescript-eslint/parser": ">=7",
