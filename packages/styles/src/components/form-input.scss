@@ -1,6 +1,7 @@
 @use './../functions/tokens';
 @use './../tokens/components';
 @use './../mixins/utilities';
+@use './../mixins/forms' as forms-mx;
 
 tokens.$default-map: components.$post-text-input;
 
@@ -222,6 +223,9 @@ input.form-control {
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
+      background-size: tokens.get('input-sizing-icon') tokens.get('input-sizing-icon');
+      background-position: top 50% right tokens.get('input-validation-icon-position-inline-end');
+      background-repeat: no-repeat;
       padding-inline-end: calc(
         #{tokens.get('input-padding-inline-end')} +
           #{tokens.get('input-validation-icon-position-inline-end')} +
@@ -229,6 +233,11 @@ input.form-control {
       );
     }
   }
+}
+
+// Only adds validation icons as background-image on none floating elements
+*:not(.form-floating) > input.form-control {
+  @include forms-mx.validation-icons;
 }
 
 .form-label:has(+ input.form-control[disabled]) {

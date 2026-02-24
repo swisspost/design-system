@@ -61,7 +61,7 @@
     "eslint-plugin-mdx": "3.6.2",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-storybook": "9.0.10",
-    "globals": "16.0.0",
+    "globals": "17.3.0",
     "lit": "3.3.2",
     "lit-html": "3.3.2",
     "prettier": "3.6.2",
