@@ -13,7 +13,7 @@
       "projectType": "library",
       "root": "",
       "sourceRoot": "src",
-      "prefix": "post",
+      "prefix": "sp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
