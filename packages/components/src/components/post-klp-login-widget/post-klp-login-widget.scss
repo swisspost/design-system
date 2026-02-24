@@ -1,0 +1,55 @@
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/elements';
+@use '@swisspost/design-system-styles/tokens/helpers';
+
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+tokens.$default-map: components.$post-button;
+
+:host {
+  display: contents;
+
+  ::slotted([slot="header"]) {
+    padding: 1rem;
+  }
+}
+
+a {
+  @include header-mx.nav-item-base;
+
+  @include media.only(mobile) {
+    @include header-mx.nav-item-icon-only;
+    padding: 0.625rem;
+  }
+}
+
+post-menu-trigger button {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  display: block;
+  cursor: pointer;
+}
+
+post-menu-trigger button:focus {
+  @include utilities.focus-style;
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+}
+
+post-menu-item {
+  display: block;
+  width: 100%;
+}
+
+post-menu-item a {
+  width: auto;
+  display: flex;
+  justify-content: start;
+}
+
+post-menu div[slot="header"] p {
+  margin: 0;
+}

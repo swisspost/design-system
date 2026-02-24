@@ -54,21 +54,24 @@
         </li>
       </ul>
 
-      <!-- Local controls (optional) -->
-      <ul slot="local-nav">
-        <li>
-          <a href="#">
-            <span>Search</span>
-            <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>Login</span>
-            <post-icon aria-hidden="true" name="login"></post-icon>
-          </a>
-        </li>
-      </ul>
+    <ul slot="local-nav">
+      <li>
+        <a href="#">
+          <span>Search</span>
+          <post-icon aria-hidden="true" name="search"></post-icon>
+        </a>
+      </li>
+    </ul>
+
+    <post-klp-login-widget
+      login-url="https://login.post.ch/"
+      logout-url="https://logout.post.ch/"
+      text-user-profile="Mein Profil"
+      text-messages="Nachrichten"
+      text-settings="Einstellungen"
+      text-logout="Logout"
+      slot="post-login"
+    ></post-klp-login-widget>
 
       <!-- Main navigation -->
       <post-mainnavigation slot="main-nav" text-main="Haupt">
@@ -164,5 +167,30 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+    <script>
+  // Mock the session fetch so the widget renders the logged-in state locally
+  const originalFetch = window.fetch;
+  window.fetch = function (url, options) {
+    if (url.includes('/v1/session/subscribe')) {
+      return Promise.resolve({
+        json: () =>
+          Promise.resolve({
+            data: {
+              name: 'John',
+              surname: 'Doe',
+              email: 'john.doe@post.ch',
+              userType: 'private',
+            },
+          }),
+      });
+    }
+    return originalFetch(url, options);
+  };
+
+  document.querySelector('post-klp-login-widget').addEventListener('postLogout', e => {
+    console.log('Logout triggered, redirect to:', e.detail);
+    // window.location.href = e.detail;
+  });
+</script>
   </body>
 </html>

@@ -21,6 +21,19 @@
 | `"default"` | Slot for inserting a custom image as avatar. |
 
 
+## Dependencies
+
+### Used by
+
+ - [post-klp-login-widget](../post-klp-login-widget)
+
+### Graph
+```mermaid
+graph TD;
+  post-klp-login-widget --> post-avatar
+  style post-avatar fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

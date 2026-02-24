@@ -30,6 +30,7 @@ some content
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
  - [post-header](../post-header)
+ - [post-klp-login-widget](../post-klp-login-widget)
  - [post-language-menu](../post-language-menu)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
@@ -48,6 +49,7 @@ graph TD;
   post-card-control --> post-icon
   post-closebutton --> post-icon
   post-header --> post-icon
+  post-klp-login-widget --> post-icon
   post-language-menu --> post-icon
   post-mainnavigation --> post-icon
   post-megadropdown --> post-icon

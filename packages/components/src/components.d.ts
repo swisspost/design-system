@@ -271,6 +271,32 @@ export namespace Components {
          */
         "url"?: string;
     }
+    interface PostKlpLoginWidget {
+        /**
+          * The URL to redirect to when the user clicks the login link.
+         */
+        "loginUrl": string;
+        /**
+          * The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect.
+         */
+        "logoutUrl": string;
+        /**
+          * Label for the "Logout" button.
+         */
+        "textLogout": string;
+        /**
+          * Label for the "Messages" menu item.
+         */
+        "textMessages": string;
+        /**
+          * Label for the "Settings" menu item.
+         */
+        "textSettings": string;
+        /**
+          * Label for the "My Profile" menu item.
+         */
+        "textUserProfile": string;
+    }
     interface PostLanguageMenu {
         /**
           * A title for the list of language options
@@ -644,6 +670,10 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostKlpLoginWidgetCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostKlpLoginWidgetElement;
+}
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageMenuItemElement;
@@ -802,6 +832,23 @@ declare global {
     var HTMLPostIconElement: {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
+    };
+    interface HTMLPostKlpLoginWidgetElementEventMap {
+        "postLogout": string;
+    }
+    interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostKlpLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostKlpLoginWidgetElement, ev: PostKlpLoginWidgetCustomEvent<HTMLPostKlpLoginWidgetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostKlpLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostKlpLoginWidgetElement, ev: PostKlpLoginWidgetCustomEvent<HTMLPostKlpLoginWidgetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostKlpLoginWidgetElement: {
+        prototype: HTMLPostKlpLoginWidgetElement;
+        new (): HTMLPostKlpLoginWidgetElement;
     };
     interface HTMLPostLanguageMenuElement extends Components.PostLanguageMenu, HTMLStencilElement {
     }
@@ -1046,6 +1093,7 @@ declare global {
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
+        "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
@@ -1301,6 +1349,36 @@ declare namespace LocalJSX {
           * A full URL to the icon file. When set, this property has the highest priority.
          */
         "url"?: string;
+    }
+    interface PostKlpLoginWidget {
+        /**
+          * The URL to redirect to when the user clicks the login link.
+         */
+        "loginUrl": string;
+        /**
+          * The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect.
+         */
+        "logoutUrl": string;
+        /**
+          * Emitted when the user clicks the logout button. The event payload is the `logoutUrl` — the consumer is responsible for handling the redirect.
+         */
+        "onPostLogout"?: (event: PostKlpLoginWidgetCustomEvent<string>) => void;
+        /**
+          * Label for the "Logout" button.
+         */
+        "textLogout": string;
+        /**
+          * Label for the "Messages" menu item.
+         */
+        "textMessages": string;
+        /**
+          * Label for the "Settings" menu item.
+         */
+        "textSettings": string;
+        /**
+          * Label for the "My Profile" menu item.
+         */
+        "textUserProfile": string;
     }
     interface PostLanguageMenu {
         /**
@@ -1648,6 +1726,7 @@ declare namespace LocalJSX {
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
+        "post-klp-login-widget": PostKlpLoginWidget;
         "post-language-menu": PostLanguageMenu;
         "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
@@ -1699,6 +1778,7 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
             "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
