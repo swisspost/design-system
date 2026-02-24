@@ -180,6 +180,16 @@ fieldset {
     align-items: flex-start;
   }
 
+  legend {
+    margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
+  }
+
+  &:has(.form-check-sm) {
+    legend {
+      margin-block-end: tokens.get('checkbox-small-group-gap-block', components.$post-checkbox);
+    }
+  }
+
   .form-check {
     // Grouped / Vertical
     &:not(.form-check-inline):not(.form-check-sm):not(:last-of-type) {
