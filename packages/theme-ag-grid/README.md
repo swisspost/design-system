@@ -1,4 +1,4 @@
-# Swiss Post AG Grid Theme
+# Swiss Post Theme AG Grid
 
 ![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
@@ -10,10 +10,10 @@ Swiss Post theme for the AG Grid library
 
 ## Installation
 
-Install the AG Grid Theme package
+Install the Theme AG Grid package
 
 ```bash
-npm install @swisspost/design-system-ag-grid-theme
+npm install @swisspost/design-system-theme-ag-grid
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm install @swisspost/design-system-ag-grid-theme
 To use the theme, simply import it from the package and use it within the grid options of your table.
 
 ```javascript
-import { swissPostTheme } from '@swisspost/design-system-ag-grid-theme';
+import { swissPostTheme } from '@swisspost/design-system-theme-ag-grid';
 
 myOptions: GridOptions = {
   theme: swissPostTheme,

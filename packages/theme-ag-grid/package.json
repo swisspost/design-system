@@ -1,6 +1,6 @@
 {
-  "name": "@swisspost/design-system-ag-grid-theme",
-  "version": "1.0.0",
+  "name": "@swisspost/design-system-theme-ag-grid",
+  "version": "9.7.0",
   "description": "The Swiss Post Design System theme for AG Grid",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
