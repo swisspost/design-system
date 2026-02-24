@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
-  title: 'Components/Datepicker',
+  title: 'Raw Components/Datepicker',
   component: 'post-datepicker',
   tags: ['package:WebComponents'],
   render,
