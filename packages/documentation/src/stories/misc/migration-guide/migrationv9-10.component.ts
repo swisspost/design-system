@@ -432,7 +432,9 @@ export class MigrationV99Component extends LitElement {
                           >🪄 migration rule</span
                         >
                         Card Control webcomponent <code>post-card-control</code> will be removed
-                        <span class="info"> Card Control now uses standard HTML component. </span>
+                        <span class="info">
+                          Card Control now uses standard HTML component and will be renamed.
+                        </span>
                       </label>
                     </div>
                   </li>
