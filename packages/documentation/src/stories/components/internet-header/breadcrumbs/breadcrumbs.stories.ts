@@ -1,7 +1,7 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
-import { getAttributes } from '@/utils';
+import { getAttributes, addDeprecation } from '@/utils';
 import customItems from './overrides/custom-items';
 import { MetaComponent } from '@root/types';
 
@@ -22,6 +22,7 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
   argTypes: {
     customItems: {
       name: 'custom-items',
+      description: addDeprecation('swisspost-internet-breadcrumbs', 'customItems', 'overlays will no longer be provided in the next major release, therefore this method will no longer be needed.'),
       control: 'object',
       table: {
         type: {
@@ -29,6 +30,10 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
         },
       },
     },
+    hideButtons: {
+      name: 'hide-buttons',
+      description: addDeprecation('swisspost-internet-breadcrumbs', 'hideButtons', 'Help and Contact buttons will no longer be provided in the next major release, therefore this prop will no longer be needed.'),
+    }
   },
 };
 
