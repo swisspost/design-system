@@ -4,7 +4,6 @@ import customFooterConfig from './custom-config/custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';
 import { MetaComponent } from '@root/types';
 import { addDeprecation } from '@/utils';
-import osFlyoutOverrides from '@/stories/components/internet-header/header/config/os-flyout-overrides';
 
 const meta: MetaComponent = {
   id: '27fc009d-3eec-43a9-b3a2-55531e721817',
