@@ -66,7 +66,6 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <PostLanguageMenu
           text-change-language="Change the language"
           text-current-language="The currently selected language is #name."
-          variant="list"
           slot="language-menu"
         >
           <PostLanguageMenuItem code="de" name="German">
@@ -103,7 +102,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             <li>
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
               <PostMegadropdown id="letters" text-close="Close" text-back="Back">
-                <a className="megadropdown-overview-link" href="/letters">
+                <a className="post-megadropdown-overview" href="/letters">
                   Overview Letters
                 </a>
                 <div className="row row-cols-1 row-cols-sm-2">
@@ -157,7 +156,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             <li>
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
               <PostMegadropdown id="packages" text-close="Close" text-back="Back">
-                <a className="megadropdown-overview-link" href="/packages">
+                <a className="post-megadropdown-overview" href="/packages">
                   Overview Packages
                 </a>
                 <div className="row row-cols-1 row-cols-sm-2">
