@@ -122,7 +122,6 @@ export namespace Components {
         "configProxy"?: string;
         /**
           * Customize the header config loaded from the post portal.
-          * @deprecated
          */
         "customConfig"?: string | ICustomConfig;
         /**
@@ -164,7 +163,6 @@ export namespace Components {
         "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
-          * @deprecated
          */
         "meta": boolean;
         /**
@@ -177,7 +175,6 @@ export namespace Components {
         "project": string;
         /**
           * Toggle the search button.
-          * @deprecated
          */
         "search": boolean;
         /**
@@ -426,7 +423,6 @@ declare namespace LocalJSX {
         "configProxy"?: string;
         /**
           * Customize the header config loaded from the post portal.
-          * @deprecated
          */
         "customConfig"?: string | ICustomConfig;
         /**
@@ -463,7 +459,6 @@ declare namespace LocalJSX {
         "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
-          * @deprecated
          */
         "meta"?: boolean;
         /**
@@ -480,7 +475,6 @@ declare namespace LocalJSX {
         "project"?: string;
         /**
           * Toggle the search button.
-          * @deprecated
          */
         "search"?: boolean;
         /**

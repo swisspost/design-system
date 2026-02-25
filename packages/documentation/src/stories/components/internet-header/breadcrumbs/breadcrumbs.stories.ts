@@ -4,8 +4,9 @@ import { spread } from '@open-wc/lit-helpers';
 import { getAttributes, addDeprecation } from '@/utils';
 import customItems from './overrides/custom-items';
 import { MetaComponent } from '@root/types';
+import osFlyoutOverrides from '@/stories/components/internet-header/header/config/os-flyout-overrides';
 
-const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
+const meta: MetaComponent = {
   id: '4347e5bf-8bf2-4f44-9075-9faaa53591ed',
   title: 'Components/Internet Header/Breadcrumbs',
   component: 'swisspost-internet-breadcrumbs',
@@ -21,8 +22,6 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
   },
   argTypes: {
     customItems: {
-      name: 'custom-items',
-      description: addDeprecation('swisspost-internet-breadcrumbs', 'customItems', 'overlays will no longer be provided in the next major release, therefore this method will no longer be needed.'),
       control: 'object',
       table: {
         type: {
@@ -31,8 +30,14 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
       },
     },
     hideButtons: {
-      name: 'hide-buttons',
       description: addDeprecation('swisspost-internet-breadcrumbs', 'hideButtons', 'Help and Contact buttons will no longer be provided in the next major release, therefore this prop will no longer be needed.'),
+      table: {
+        category: 'Deprecated props',
+      },
+    },
+    'method-toggleOverlayById': {
+      name: 'toggleOverlayById',
+      description: addDeprecation('swisspost-internet-breadcrumbs', 'toggleOverlayById', 'overlays will no longer be provided in the next major release, therefore this method will no longer be needed.'),
     }
   },
 };

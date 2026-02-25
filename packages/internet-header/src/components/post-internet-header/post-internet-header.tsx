@@ -54,7 +54,6 @@ export class PostInternetHeader {
 
   /**
    * Toggle the meta navigation.
-   * @deprecated
    */
   @Prop() meta: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
@@ -65,7 +64,6 @@ export class PostInternetHeader {
 
   /**
    * Toggle the search button.
-   * @deprecated
    */
   @Prop() search: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
@@ -92,7 +90,6 @@ export class PostInternetHeader {
 
   /**
    * Customize the header config loaded from the post portal.
-   * @deprecated
    */
   @Prop() customConfig?: string | ICustomConfig;
 
