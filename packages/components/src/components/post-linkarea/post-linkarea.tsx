@@ -41,6 +41,13 @@ export class PostLinkarea {
     }
 
     if (dispatchEvent) {
+      const el = interactiveElements[0];
+
+      // Don't dispatch click if it's a disabled input
+      if (el instanceof HTMLInputElement && el.disabled) {
+        return;
+      }
+
       interactiveElements[0].dispatchEvent(
         new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
       );

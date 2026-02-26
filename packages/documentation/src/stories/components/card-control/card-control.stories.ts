@@ -186,7 +186,7 @@ function renderComponent(args: Args, context: StoryContext) {
         type=${args.type}
         name=${args.type === 'radio' && args.groupName ? args.groupName : nothing}
         ?checked=${args.checked}
-        disabled=${args.disabled ? 'disabled' : nothing}
+        ?disabled=${args.disabled}
         aria-invalid=${args.groupName || args.validation === 'null' ? nothing : 'true'}
         aria-describedby=${args.groupName || args.validation === 'null'
           ? nothing
