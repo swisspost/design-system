@@ -174,6 +174,19 @@ export default function Home() {
         <label htmlFor="quantity">Quantity</label>
       </PostNumberInput>
 
+      <h2>Pagination</h2>
+      <PostPagination
+        page={1}
+        pageSize={10}
+        collectionSize={100}
+        label="Pagination"
+        textPrevious="Previous page"
+        textNext="Next page"
+        textPage="Page"
+        textFirst="First page"
+        textLast="Last page"
+      />
+
       <h2>Popover</h2>
       <PostPopoverTrigger for="popover-one">
         {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
@@ -195,6 +208,19 @@ export default function Home() {
 
       <h2>Rating</h2>
       <PostRating label="Rating"></PostRating>
+
+      <h2>Stepper</h2>
+      <PostStepper
+        textCompletedStep="Completed step"
+        textCurrentStep="Current step"
+        textStepNumber="Step #number:"
+        currentIndex={1}
+      >
+        <PostStepperItem> Step 1 </PostStepperItem>
+        <PostStepperItem> Step 2 </PostStepperItem>
+        <PostStepperItem> Step 3 </PostStepperItem>
+        <PostStepperItem> Step 4 </PostStepperItem>
+      </PostStepper>
 
       <h2>Tabs - Panel Variant</h2>
       <PostTabs>
@@ -228,8 +254,6 @@ export default function Home() {
         </PostTabItem>
       </PostTabs>
 
-      <h2>Tag</h2>
-
       <h2>Toggle Button</h2>
       <PostTogglebutton className="btn btn-primary">
         <span data-showwhen="untoggled">Untoggled</span>
@@ -246,33 +270,6 @@ export default function Home() {
       <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
         Hi there 👋
       </PostTooltip>
-
-      <h2>Post Stepper</h2>
-      <PostStepper
-        textCompletedStep="Completed step"
-        textCurrentStep="Current step"
-        textStepNumber="Step #number:"
-        currentIndex={1}
-      >
-        <PostStepperItem> Step 1 </PostStepperItem>
-        <PostStepperItem> Step 2 </PostStepperItem>
-        <PostStepperItem> Step 3 </PostStepperItem>
-        <PostStepperItem> Step 4 </PostStepperItem>
-      </PostStepper>
-
-      <h2>Pagination</h2>
-      <PostPagination
-        page={1}
-        pageSize={10}
-        collectionSize={100}
-        label="Pagination"
-        textPrevious="Previous page"
-        textNext="Next page"
-        textPage="Page"
-        textFirst="First page"
-        textLast="Last page"
-      />
-
     </>
   );
 }

@@ -282,7 +282,7 @@ export namespace Components {
         "textCurrentLanguage": string;
         /**
           * Whether the component is rendered as a list or a menu
-          * @default 'list'
+          * @default 'menu'
          */
         "variant": SwitchVariant;
     }
@@ -1313,7 +1313,7 @@ declare namespace LocalJSX {
         "textCurrentLanguage": string;
         /**
           * Whether the component is rendered as a list or a menu
-          * @default 'list'
+          * @default 'menu'
          */
         "variant"?: SwitchVariant;
     }
