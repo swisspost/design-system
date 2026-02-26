@@ -1514,12 +1514,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="components-card_control"
+                        id="others-standard_html_alert"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.standard_html_alert}"
                       />
-                      <label class="form-check-label" for="components-card_control">
+                      <label class="form-check-label" for="others-standard_html_alert">
                         Standard HTML Alert component (<code>.alert</code>,
                         <code>.alert-*</code>) removed
                         <span class="info">
