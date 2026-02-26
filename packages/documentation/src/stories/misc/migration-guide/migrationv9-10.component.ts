@@ -428,11 +428,8 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.standard_html_alert}"
                       />
                       <label class="form-check-label" for="components-card_control">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
                         <code>post-card-control</code> component removed
-                        <span class="info">
-                          Replace by the selection card.
-                        </span>
+                        <span class="info"> Replace by the selection card. </span>
                       </label>
                     </div>
                   </li>
@@ -471,6 +468,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -499,6 +497,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -513,6 +512,21 @@ export class MigrationV99Component extends LitElement {
                         >
                         <code>.form-text</code> class has been renamed to
                         <code>.form-hint</code>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-card_control"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.standard_html_alert}"
+                      />
+                      <label class="form-check-label" for="components-card_control">
+                        <code>post-card-control</code> component removed
+                        <span class="info"> Replace by the selection card. </span>
                       </label>
                     </div>
                   </li>
