@@ -422,18 +422,16 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others-standard_html_alert"
+                        id="components-card_control"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.standard_html_alert}"
                       />
-                      <label class="form-check-label" for="others-standard_html_alert">
+                      <label class="form-check-label" for="components-card_control">
                         <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
-                        >
-                        Card Control webcomponent <code>post-card-control</code> will be removed
+                        <code>post-card-control</code> component removed
                         <span class="info">
-                          Card Control now uses standard HTML component and will be renamed.
+                          Replace by the selection card.
                         </span>
                       </label>
                     </div>
@@ -1502,12 +1500,12 @@ export class MigrationV99Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others-standard_html_alert"
+                        id="components-card_control"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.standard_html_alert}"
                       />
-                      <label class="form-check-label" for="others-standard_html_alert">
+                      <label class="form-check-label" for="components-card_control">
                         Standard HTML Alert component (<code>.alert</code>,
                         <code>.alert-*</code>) removed
                         <span class="info">
