@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.16.1
+
+### Patch Changes
+
+- Removed the `@deprecated` JSDoc annotations from the `swisspost-internet-header` and `swisspost-internet-breadcrumbs` components to prevent Sonar errors. (by [@alizedebray](https://github.com/alizedebray) with [#7221](https://github.com/swisspost/design-system/pull/7221))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.8.0
+
 ## 1.16.0
 
 ### Minor Changes
