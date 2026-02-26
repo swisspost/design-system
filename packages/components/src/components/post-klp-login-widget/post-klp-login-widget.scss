@@ -34,6 +34,10 @@ post-menu-trigger button {
   cursor: pointer;
 }
 
+post-avatar:hover {
+  --post-avatar-bg: #{tokens.get('avatar-hover-bg', components.$post-avatar)};
+}
+
 post-menu-trigger button:focus {
   @include utilities.focus-style;
   border-radius: tokens.get('focus-border-radius', helpers.$post-focus);

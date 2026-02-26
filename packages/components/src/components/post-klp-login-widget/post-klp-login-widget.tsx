@@ -123,7 +123,7 @@ export class PostKlpLoginWidget {
         {this.sessionData ? (
           <div style={{ display: 'contents' }}>
             <post-menu-trigger for={this.menuId}>
-              <button class="btn btn-tertiary">
+              <button class="btn btn-link" type="button">
                 <post-avatar
                   firstname={this.sessionData.name}
                   lastname={this.sessionData.surname}

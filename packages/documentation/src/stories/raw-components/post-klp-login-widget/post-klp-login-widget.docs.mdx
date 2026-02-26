@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as KlpLoginWidgetStories from './post-klp-login-widget.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={KlpLoginWidgetStories} />
+
+<div className="docs-title">
+  # KLP Login Widget
+
+<link-design of={JSON.stringify(KlpLoginWidgetStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<p className="lead">
+  A login widget that detects the current KLP session and renders either a login link or a user menu.
+</p>
+
+<Canvas of={KlpLoginWidgetStories.Default} sourceState="shown" />
+<Controls of={KlpLoginWidgetStories.Default} />
+
+<ComponentsPackageInstall component="<post-klp-login-widget>" />
