@@ -15,7 +15,10 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "files": [
-    "dist"
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
   ],
   "publishConfig": {
     "access": "public",
