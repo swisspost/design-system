@@ -18,8 +18,6 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
 
 // Default Checkbox
 .form-check:not(.form-switch):has(input[type='checkbox']) {
-  display: flex;
-  align-items: center;
   gap: tokens.get('checkbox-gap-inline-text-start');
 
   > input {
