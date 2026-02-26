@@ -29,6 +29,7 @@
     "dependencies": {
       "@ng-bootstrap/ng-bootstrap": ">=17.0.0 < 21.0.0",
       "bootstrap": "~5.3.8",
+      "@swisspost/design-system-theme-ag-grid": "9.7.0",
       "@swisspost/design-system-changelog-github": "1.0.2",
       "@swisspost/design-system-components": "9.7.0",
       "@swisspost/design-system-components-angular-workspace": "1.1.39",
