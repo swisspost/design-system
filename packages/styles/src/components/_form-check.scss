@@ -143,8 +143,6 @@
 
   // Small variant (Checkbox & Radio Button)
   &.form-check-sm:not(.form-switch) {
-    display: flex;
-    align-items: center;
 
     &:has(input[type='checkbox']) {
       > input[type='checkbox'] ~ label {
