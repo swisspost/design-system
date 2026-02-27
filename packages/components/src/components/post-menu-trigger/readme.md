@@ -16,7 +16,7 @@
 
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-language-menu](../post-language-menu)
- - [post-login-widget](../post-klp-login-widget)
+ - [post-login-widget](../post-login-widget)
 
 ### Graph
 ```mermaid

@@ -61,6 +61,14 @@ const meta: MetaComponent = {
       table: { category: 'Props' },
     },
   },
+  decorators: [
+    story => html`
+      <div
+        class="d-flex justify-content-start">
+        ${story()}
+      </div>
+    `,
+  ],
 };
 
 export default meta;

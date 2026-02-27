@@ -50,24 +50,3 @@ When no active session is detected, the widget renders a login link pointing to 
 ## Logged In
 
 When an active session is found, the widget renders a `<post-avatar>` inside a menu trigger. Clicking the avatar opens a dropdown containing the user's name, links to their profile, messages, and settings, and a logout button.
-
-## Logout Handling
-
-The widget does **not** perform the logout redirect itself. Instead, it emits a `postLogout` event with the `logout-url` as the payload, letting the consuming application handle the redirect:
-
-```js
-document.querySelector('post-login-widget').addEventListener('postLogout', (e) => {
-  window.location.href = e.detail;
-});
-```
-
-## Internationalization
-
-All visible labels are configurable via props to support the four Swiss Post languages (German, French, Italian, English):
-
-| Prop                | Description                     |
-| ------------------- | ------------------------------- |
-| `text-user-profile` | Label for the "My Profile" link |
-| `text-messages`     | Label for the "Messages" link   |
-| `text-settings`     | Label for the "Settings" link   |
-| `text-logout`       | Label for the "Logout" button   |

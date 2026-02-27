@@ -8,7 +8,7 @@
 ### Used by
 
  - [post-breadcrumbs](../post-breadcrumbs)
- - [post-login-widget](../post-klp-login-widget)
+ - [post-login-widget](../post-login-widget)
 
 ### Graph
 ```mermaid

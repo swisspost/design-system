@@ -31,7 +31,7 @@ some content
  - [post-closebutton](../post-closebutton)
  - [post-header](../post-header)
  - [post-language-menu](../post-language-menu)
- - [post-login-widget](../post-klp-login-widget)
+ - [post-login-widget](../post-login-widget)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
  - [post-megadropdown-trigger](../post-megadropdown-trigger)
