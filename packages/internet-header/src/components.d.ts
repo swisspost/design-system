@@ -7,15 +7,13 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DropdownEvent, NavMainEntity } from "./models/header.model";
 import { Event } from "@stencil/core";
-import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
+import { Environment, ICustomConfig, Link } from "./models/general.model";
 import { StickynessOptions } from "./models/implementor.model";
-import { Environment, ICustomConfig } from "./models/general.model";
 import { IAvailableLanguage } from "./models/language.model";
 export { DropdownEvent, NavMainEntity } from "./models/header.model";
 export { Event } from "@stencil/core";
-export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
+export { Environment, ICustomConfig, Link } from "./models/general.model";
 export { StickynessOptions } from "./models/implementor.model";
-export { Environment, ICustomConfig } from "./models/general.model";
 export { IAvailableLanguage } from "./models/language.model";
 export namespace Components {
     /**
@@ -98,17 +96,7 @@ export namespace Components {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | IBreadcrumbItem[];
-        /**
-          * Hide all buttons.
-          * @default false
-         */
-        "hideButtons": boolean;
-        /**
-          * Toggle an overlay associated with a button.
-          * @param overlayId
-         */
-        "toggleOverlayById": (overlayId: IBreadcrumbOverlay["id"]) => Promise<void>;
+        "customItems"?: string | Array<Link>;
     }
     interface SwisspostInternetFooter {
     }
@@ -410,12 +398,7 @@ declare namespace LocalJSX {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | IBreadcrumbItem[];
-        /**
-          * Hide all buttons.
-          * @default false
-         */
-        "hideButtons"?: boolean;
+        "customItems"?: string | Array<Link>;
     }
     interface SwisspostInternetFooter {
     }
