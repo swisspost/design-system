@@ -205,9 +205,7 @@ export class PostBreadcrumbs {
                             {item.text}
                           </a>
                         ) : (
-                          <span aria-label={item.label} aria-description={item.description}>
-                            {item.text}
-                          </span>
+                          <span>{item.text}</span>
                         )}
                       </post-menu-item>
                     ))}
