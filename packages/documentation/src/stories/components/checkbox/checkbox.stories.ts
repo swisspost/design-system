@@ -261,13 +261,12 @@ export const Inline: Story = {
 };
 
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
-  const generatedUuid = crypto.randomUUID();
-  const uniqueSuffix = context.id ?? generatedUuid;
+  const uniqueSuffix = crypto.randomUUID();
 
-  const baseId = `${context.viewMode ?? 'view'}_${(context.name ?? '').replace(
-    /\s/g,
-    '-',
-  )}_${uniqueSuffix}_Checkbox`;
+  //const baseId = `${context.viewMode ?? 'view'}_${(context.name ?? '').replace(
+  //  /\s/g,
+  //  '-',
+  //)}_${uniqueSuffix}_Checkbox`;
 
   const itemClass = [
     'form-check',
@@ -284,7 +283,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
       <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
 
       ${labels.map((label, index) => {
-        const id = `${baseId}-${index}`;
+        const id = `${uniqueSuffix}-${index}`;
         return html`
           <div class="${itemClass}">
             <input
