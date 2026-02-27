@@ -10,6 +10,9 @@ type SessionData = {
   userType: string;
 };
 
+// TODO: 'post-login-widget' is a temporary name to avoid conflict with 'post-klp-login-widget' 
+// which is part of @swisspost/internet-header. Rename to 'post-klp-login-widget' after 
+// @swisspost/internet-header components are migrated.
 @Component({
   tag: 'post-login-widget',
   styleUrl: 'post-login-widget.scss',

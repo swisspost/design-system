@@ -6,7 +6,7 @@ import {
   PostFooter,
   PostHeader,
   PostIcon,
-  PostKlpLoginWidget,
+  PostLoginWidget,
   PostLanguageMenuItem,
   PostLanguageMenu,
   PostLogo,
@@ -84,7 +84,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostLanguageMenu>
 
         {/* Klp Login Widget */}
-        <PostKlpLoginWidget
+        <PostLoginWidget
           login-url="https://login.post.ch/"
           logout-url="https://logout.post.ch/"
           text-user-profile="Mein Profil"
@@ -92,7 +92,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           text-settings="Einstellungen"
           text-logout="Logout"
           slot="post-login"
-        ></PostKlpLoginWidget>
+        ></PostLoginWidget>
         {/* Main navigation */}
         <PostMainnavigation slot="main-nav" text-main="Main">
           <ul>
