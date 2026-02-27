@@ -37,13 +37,13 @@
 ### Graph
 ```mermaid
 graph TD;
-  post-klp-login-widget --> post-menu-trigger
-  post-klp-login-widget --> post-avatar
-  post-klp-login-widget --> post-menu
-  post-klp-login-widget --> post-menu-item
-  post-klp-login-widget --> post-icon
+  post-login-widget --> post-menu-trigger
+  post-login-widget --> post-avatar
+  post-login-widget --> post-menu
+  post-login-widget --> post-menu-item
+  post-login-widget --> post-icon
   post-menu --> post-popovercontainer
-  style post-klp-login-widget fill:#f9f,stroke:#333,stroke-width:4px
+  style post-login-widget fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

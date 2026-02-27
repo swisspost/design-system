@@ -82,8 +82,8 @@ Type: `Promise<void>`
 ### Used by
 
  - [post-breadcrumbs](../post-breadcrumbs)
- - [post-klp-login-widget](../post-klp-login-widget)
  - [post-language-menu](../post-language-menu)
+ - [post-login-widget](../post-klp-login-widget)
 
 ### Depends on
 
@@ -94,8 +94,8 @@ Type: `Promise<void>`
 graph TD;
   post-menu --> post-popovercontainer
   post-breadcrumbs --> post-menu
-  post-klp-login-widget --> post-menu
   post-language-menu --> post-menu
+  post-login-widget --> post-menu
   style post-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

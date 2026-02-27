@@ -25,12 +25,12 @@
 
 ### Used by
 
- - [post-klp-login-widget](../post-klp-login-widget)
+ - [post-login-widget](../post-klp-login-widget)
 
 ### Graph
 ```mermaid
 graph TD;
-  post-klp-login-widget --> post-avatar
+  post-login-widget --> post-avatar
   style post-avatar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

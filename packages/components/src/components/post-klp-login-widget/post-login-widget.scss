@@ -2,19 +2,13 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
-@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/helpers';
-
 @use '@swisspost/design-system-styles/mixins/utilities';
 
 tokens.$default-map: components.$post-button;
 
 :host {
   display: contents;
-
-  ::slotted([slot="header"]) {
-    padding: 1rem;
-  }
 }
 
 a {
@@ -54,6 +48,6 @@ post-menu-item a {
   justify-content: start;
 }
 
-post-menu div[slot="header"] p {
+post-menu div[slot='header'] p {
   margin: 0;
 }

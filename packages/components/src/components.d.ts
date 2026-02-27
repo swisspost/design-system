@@ -271,32 +271,6 @@ export namespace Components {
          */
         "url"?: string;
     }
-    interface PostKlpLoginWidget {
-        /**
-          * The URL to redirect to when the user clicks the login link.
-         */
-        "loginUrl": string;
-        /**
-          * The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect.
-         */
-        "logoutUrl": string;
-        /**
-          * Label for the "Logout" button.
-         */
-        "textLogout": string;
-        /**
-          * Label for the "Messages" menu item.
-         */
-        "textMessages": string;
-        /**
-          * Label for the "Settings" menu item.
-         */
-        "textSettings": string;
-        /**
-          * Label for the "My Profile" menu item.
-         */
-        "textUserProfile": string;
-    }
     interface PostLanguageMenu {
         /**
           * A title for the list of language options
@@ -339,6 +313,32 @@ export namespace Components {
         "variant"?: SwitchVariant;
     }
     interface PostLinkarea {
+    }
+    interface PostLoginWidget {
+        /**
+          * The URL to redirect to when the user clicks the login link.
+         */
+        "loginUrl": string;
+        /**
+          * The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect.
+         */
+        "logoutUrl": string;
+        /**
+          * Label for the "Logout" button.
+         */
+        "textLogout": string;
+        /**
+          * Label for the "Messages" menu item.
+         */
+        "textMessages": string;
+        /**
+          * Label for the "Settings" menu item.
+         */
+        "textSettings": string;
+        /**
+          * Label for the "My Profile" menu item.
+         */
+        "textUserProfile": string;
     }
     interface PostLogo {
         /**
@@ -670,13 +670,13 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostKlpLoginWidgetCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostKlpLoginWidgetElement;
-}
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageMenuItemElement;
+}
+export interface PostLoginWidgetCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostLoginWidgetElement;
 }
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -833,23 +833,6 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
-    interface HTMLPostKlpLoginWidgetElementEventMap {
-        "postLogout": string;
-    }
-    interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostKlpLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostKlpLoginWidgetElement, ev: PostKlpLoginWidgetCustomEvent<HTMLPostKlpLoginWidgetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostKlpLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostKlpLoginWidgetElement, ev: PostKlpLoginWidgetCustomEvent<HTMLPostKlpLoginWidgetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostKlpLoginWidgetElement: {
-        prototype: HTMLPostKlpLoginWidgetElement;
-        new (): HTMLPostKlpLoginWidgetElement;
-    };
     interface HTMLPostLanguageMenuElement extends Components.PostLanguageMenu, HTMLStencilElement {
     }
     var HTMLPostLanguageMenuElement: {
@@ -879,6 +862,23 @@ declare global {
     var HTMLPostLinkareaElement: {
         prototype: HTMLPostLinkareaElement;
         new (): HTMLPostLinkareaElement;
+    };
+    interface HTMLPostLoginWidgetElementEventMap {
+        "postLogout": string;
+    }
+    interface HTMLPostLoginWidgetElement extends Components.PostLoginWidget, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostLoginWidgetElement: {
+        prototype: HTMLPostLoginWidgetElement;
+        new (): HTMLPostLoginWidgetElement;
     };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
@@ -1093,10 +1093,10 @@ declare global {
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
-        "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
+        "post-login-widget": HTMLPostLoginWidgetElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1350,36 +1350,6 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
-    interface PostKlpLoginWidget {
-        /**
-          * The URL to redirect to when the user clicks the login link.
-         */
-        "loginUrl": string;
-        /**
-          * The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect.
-         */
-        "logoutUrl": string;
-        /**
-          * Emitted when the user clicks the logout button. The event payload is the `logoutUrl` — the consumer is responsible for handling the redirect.
-         */
-        "onPostLogout"?: (event: PostKlpLoginWidgetCustomEvent<string>) => void;
-        /**
-          * Label for the "Logout" button.
-         */
-        "textLogout": string;
-        /**
-          * Label for the "Messages" menu item.
-         */
-        "textMessages": string;
-        /**
-          * Label for the "Settings" menu item.
-         */
-        "textSettings": string;
-        /**
-          * Label for the "My Profile" menu item.
-         */
-        "textUserProfile": string;
-    }
     interface PostLanguageMenu {
         /**
           * A title for the list of language options
@@ -1426,6 +1396,36 @@ declare namespace LocalJSX {
         "variant"?: SwitchVariant;
     }
     interface PostLinkarea {
+    }
+    interface PostLoginWidget {
+        /**
+          * The URL to redirect to when the user clicks the login link.
+         */
+        "loginUrl": string;
+        /**
+          * The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect.
+         */
+        "logoutUrl": string;
+        /**
+          * Emitted when the user clicks the logout button. The event payload is the `logoutUrl` — the consumer is responsible for handling the redirect.
+         */
+        "onPostLogout"?: (event: PostLoginWidgetCustomEvent<string>) => void;
+        /**
+          * Label for the "Logout" button.
+         */
+        "textLogout": string;
+        /**
+          * Label for the "Messages" menu item.
+         */
+        "textMessages": string;
+        /**
+          * Label for the "Settings" menu item.
+         */
+        "textSettings": string;
+        /**
+          * Label for the "My Profile" menu item.
+         */
+        "textUserProfile": string;
     }
     interface PostLogo {
         /**
@@ -1726,10 +1726,10 @@ declare namespace LocalJSX {
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
-        "post-klp-login-widget": PostKlpLoginWidget;
         "post-language-menu": PostLanguageMenu;
         "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
+        "post-login-widget": PostLoginWidget;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
@@ -1778,10 +1778,10 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
-            "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
             "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
+            "post-login-widget": LocalJSX.PostLoginWidget & JSXBase.HTMLAttributes<HTMLPostLoginWidgetElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;

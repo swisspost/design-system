@@ -1,0 +1,73 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as LoginWidgetStories from './login-widget.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={LoginWidgetStories} />
+
+<div className="docs-title">
+  # Login Widget
+
+<link-design of={JSON.stringify(LoginWidgetStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  Display a login link when the user is logged out, or an avatar with a user menu when the user is logged in.
+</div>
+
+The `<post-login-widget>` integrates with the Swiss Post authentication system (KLP). It automatically fetches the current session on load and renders the appropriate UI — a login link for unauthenticated users, or an avatar-triggered dropdown menu with account links for authenticated users.
+
+<Canvas of={LoginWidgetStories.Default} sourceState="shown" />
+<Controls of={LoginWidgetStories.Default} />
+
+<ComponentsPackageInstall component="<post-login-widget>" />
+
+## Usage in the Header
+
+Place the widget in the `post-login` slot of `<post-header>`:
+
+```html
+<post-header text-menu="Menu">
+  <post-login-widget
+    slot="post-login"
+    login-url="https://account.post.ch/login"
+    logout-url="https://account.post.ch/logout"
+    text-user-profile="My Profile"
+    text-messages="Messages"
+    text-settings="Settings"
+    text-logout="Logout"
+  ></post-login-widget>
+</post-header>
+```
+
+## Logged Out
+
+When no active session is detected, the widget renders a login link pointing to the `login-url` prop. On mobile the label is hidden and only the icon is shown.
+
+## Logged In
+
+When an active session is found, the widget renders a `<post-avatar>` inside a menu trigger. Clicking the avatar opens a dropdown containing the user's name, links to their profile, messages, and settings, and a logout button.
+
+## Logout Handling
+
+The widget does **not** perform the logout redirect itself. Instead, it emits a `postLogout` event with the `logout-url` as the payload, letting the consuming application handle the redirect:
+
+```js
+document.querySelector('post-login-widget').addEventListener('postLogout', (e) => {
+  window.location.href = e.detail;
+});
+```
+
+## Internationalization
+
+All visible labels are configurable via props to support the four Swiss Post languages (German, French, Italian, English):
+
+| Prop                | Description                     |
+| ------------------- | ------------------------------- |
+| `text-user-profile` | Label for the "My Profile" link |
+| `text-messages`     | Label for the "Messages" link   |
+| `text-settings`     | Label for the "Settings" link   |
+| `text-logout`       | Label for the "Logout" button   |

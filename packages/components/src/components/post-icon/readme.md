@@ -30,8 +30,8 @@ some content
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
  - [post-header](../post-header)
- - [post-klp-login-widget](../post-klp-login-widget)
  - [post-language-menu](../post-language-menu)
+ - [post-login-widget](../post-klp-login-widget)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
  - [post-megadropdown-trigger](../post-megadropdown-trigger)
@@ -49,8 +49,8 @@ graph TD;
   post-card-control --> post-icon
   post-closebutton --> post-icon
   post-header --> post-icon
-  post-klp-login-widget --> post-icon
   post-language-menu --> post-icon
+  post-login-widget --> post-icon
   post-mainnavigation --> post-icon
   post-megadropdown --> post-icon
   post-megadropdown-trigger --> post-icon

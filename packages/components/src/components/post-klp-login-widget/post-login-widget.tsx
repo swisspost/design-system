@@ -11,16 +11,16 @@ type SessionData = {
 };
 
 @Component({
-  tag: 'post-klp-login-widget',
-  styleUrl: 'post-klp-login-widget.scss',
+  tag: 'post-login-widget',
+  styleUrl: 'post-login-widget.scss',
   shadow: true,
 })
-export class PostKlpLoginWidget {
+export class PostLoginWidget {
   private static readonly SUBSCRIBE_URL = 'https://n.account.post.ch/v1/session/subscribe';
 
   private readonly menuId = `p${nanoid(11)}`;
 
-  @Element() host: HTMLPostKlpLoginWidgetElement;
+  @Element() host: HTMLPostLoginWidgetElement;
 
   @State() sessionData: SessionData | null = null;
   @State() isLoading: boolean = true;
@@ -93,19 +93,13 @@ export class PostKlpLoginWidget {
   }
 
   async componentDidLoad() {
-    this.validateLoginUrl();
-    this.validateLogoutUrl();
-    this.validateTextUserProfile();
-    this.validateTextMessages();
-    this.validateTextSettings();
-    this.validateTextLogout();
-
     try {
-      const response = await fetch(PostKlpLoginWidget.SUBSCRIBE_URL, { credentials: 'include' });
+      const response = await fetch(PostLoginWidget.SUBSCRIBE_URL, { credentials: 'include' });
       const json = await response.json();
-      this.sessionData = json.data;
+      this.sessionData = json.data ?? null;
     } catch (e) {
-      console.warn('post-klp-login-widget: session fetch failed', e);
+      console.warn('post-login-widget: session fetch failed', e);
+      this.sessionData = null;
     } finally {
       this.isLoading = false;
     }
