@@ -11,12 +11,14 @@ import { ButtonType, Placement, Size } from "./components/post-closebutton/types
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
+import { Orientation } from "./components/post-slider/orientation";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
+export { Orientation } from "./components/post-slider/orientation";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -529,6 +531,37 @@ export namespace Components {
          */
         "stars": number;
     }
+    interface PostSlider {
+        /**
+          * The greatest value in the range of permitted values.
+          * @default 100
+         */
+        "max": number;
+        /**
+          * The lowest value in the range of permitted values.
+          * @default 0
+         */
+        "min": number;
+        /**
+          * The orientation of the slider: "horizontal" or "vertical".
+          * @default 'horizontal'
+         */
+        "orient": Orientation;
+        /**
+          * If true, the slider has two thumbs allowing for range selection.
+          * @default false
+         */
+        "range": boolean;
+        /**
+          * The granularity that the value must adhere to.
+          * @default 1
+         */
+        "step": number | 'any';
+        /**
+          * The number or range initially selected.
+         */
+        "value"?: number | [number, number];
+    }
     interface PostStepper {
         /**
           * Defines the currently active step
@@ -667,6 +700,10 @@ export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
 export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostRatingElement;
+}
+export interface PostSliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostSliderElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -971,6 +1008,24 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
+    interface HTMLPostSliderElementEventMap {
+        "postInput": number | [number, number];
+        "postChange": number | [number, number];
+    }
+    interface HTMLPostSliderElement extends Components.PostSlider, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostSliderElementEventMap>(type: K, listener: (this: HTMLPostSliderElement, ev: PostSliderCustomEvent<HTMLPostSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostSliderElementEventMap>(type: K, listener: (this: HTMLPostSliderElement, ev: PostSliderCustomEvent<HTMLPostSliderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostSliderElement: {
+        prototype: HTMLPostSliderElement;
+        new (): HTMLPostSliderElement;
+    };
     interface HTMLPostStepperElement extends Components.PostStepper, HTMLStencilElement {
     }
     var HTMLPostStepperElement: {
@@ -1062,6 +1117,7 @@ declare global {
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
+        "post-slider": HTMLPostSliderElement;
         "post-stepper": HTMLPostStepperElement;
         "post-stepper-item": HTMLPostStepperItemElement;
         "post-tab-item": HTMLPostTabItemElement;
@@ -1545,6 +1601,45 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
+    interface PostSlider {
+        /**
+          * The greatest value in the range of permitted values.
+          * @default 100
+         */
+        "max"?: number;
+        /**
+          * The lowest value in the range of permitted values.
+          * @default 0
+         */
+        "min"?: number;
+        /**
+          * Event dispatched when a thumb is released after sliding, payload is the current value.
+         */
+        "onPostChange"?: (event: PostSliderCustomEvent<number | [number, number]>) => void;
+        /**
+          * Event dispatched while a thumb is sliding, payload is the current value.
+         */
+        "onPostInput"?: (event: PostSliderCustomEvent<number | [number, number]>) => void;
+        /**
+          * The orientation of the slider: "horizontal" or "vertical".
+          * @default 'horizontal'
+         */
+        "orient"?: Orientation;
+        /**
+          * If true, the slider has two thumbs allowing for range selection.
+          * @default false
+         */
+        "range"?: boolean;
+        /**
+          * The granularity that the value must adhere to.
+          * @default 1
+         */
+        "step"?: number | 'any';
+        /**
+          * The number or range initially selected.
+         */
+        "value"?: number | [number, number];
+    }
     interface PostStepper {
         /**
           * Defines the currently active step
@@ -1664,6 +1759,7 @@ declare namespace LocalJSX {
         "post-popover-trigger": PostPopoverTrigger;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
+        "post-slider": PostSlider;
         "post-stepper": PostStepper;
         "post-stepper-item": PostStepperItem;
         "post-tab-item": PostTabItem;
@@ -1715,6 +1811,7 @@ declare module "@stencil/core" {
             "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
+            "post-slider": LocalJSX.PostSlider & JSXBase.HTMLAttributes<HTMLPostSliderElement>;
             "post-stepper": LocalJSX.PostStepper & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
             "post-stepper-item": LocalJSX.PostStepperItem & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
             "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;

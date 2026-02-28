@@ -1,0 +1,17 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as SliderStories from './slider.stories';
+
+<Meta of={SliderStories} />
+
+<div className="docs-title">
+  # Slider
+
+  <link-design of={JSON.stringify(SliderStories)}></link-design>
+</div>
+
+<div className="lead">
+  Select numeric values by dragging one or more thumbs along a track.
+</div>
+
+<Canvas sourceState="shown" of={SliderStories.Default} />
+<Controls of={SliderStories.Default} />
