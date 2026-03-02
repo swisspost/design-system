@@ -137,18 +137,20 @@ export class PostHeader {
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
+    const previousDevice = this.device;
     this.device = e.detail;
     this.switchLanguageSwitchMode();
 
-    if (this.device === 'desktop' && this.burgerMenuExtended) {
-      this.closeBurgerMenu();
+    const wasDesktop = previousDevice === 'desktop';
+    const isNowMobileOrTablet = this.device !== 'desktop';
+    const isNowDesktop = this.device === 'desktop';
+
+    if (wasDesktop && isNowMobileOrTablet && this.megadropdownOpen) {
+      this.burgerMenuExtended = true;
     }
 
-    if (this.device !== 'desktop') {
-      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
-        dropdown.hide(false, true);
-      });
-      this.megadropdownOpen = false;
+    if (isNowDesktop && this.burgerMenuExtended) {
+      this.closeBurgerMenu();
     }
   };
 
@@ -178,6 +180,13 @@ export class PostHeader {
     this.validateFullWidth();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
+
+    // When a megadropdown is open on desktop and the user resizes to mobile, we set
+    // burgerMenuExtended = true but burgerMenuButton doesn't exist yet — it only renders
+    // on mobile/tablet. Syncing here ensures it gets the correct toggled state on resize.
+    if (this.burgerMenuButton && this.burgerMenuButton.toggled !== this.burgerMenuExtended) {
+      this.burgerMenuButton.toggled = this.burgerMenuExtended;
+    }
   }
 
   componentDidLoad() {
