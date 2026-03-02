@@ -103,7 +103,6 @@ const COMPONENTS = {
   <post-language-menu
     text-change-language="Change the language"
     text-current-language="The currently selected language is English."
-    variant="list"
     name="language-menu-example"
     slot="language-menu"
   >
@@ -346,21 +345,42 @@ const VARIANTS = {
   },
 
   'microsite-loggedout': {
-    components: ['logo', 'languageMenu', 'title', 'localNavMicrosite', 'globalLogin', 'mainNavigation'],
+    components: [
+      'logo',
+      'languageMenu',
+      'title',
+      'localNavMicrosite',
+      'globalLogin',
+      'mainNavigation',
+    ],
     replacements: {
       '{{TITLE_TEXT}}': '[Microsite Title]',
     },
   },
 
   'microsite-loggedin': {
-    components: ['logo', 'languageMenu', 'title', 'localNavMicrosite', 'globalUserMenu', 'mainNavigation'],
+    components: [
+      'logo',
+      'languageMenu',
+      'title',
+      'localNavMicrosite',
+      'globalUserMenu',
+      'mainNavigation',
+    ],
     replacements: {
       '{{TITLE_TEXT}}': '[Microsite Title]',
     },
   },
 
   'jobs-loggedout': {
-    components: ['logo', 'audience', 'globalNavSecondaryJobsOnly', 'languageMenu', 'mainNavigation', 'localNavJobs'],
+    components: [
+      'logo',
+      'audience',
+      'globalNavSecondaryJobsOnly',
+      'languageMenu',
+      'mainNavigation',
+      'localNavJobs',
+    ],
     replacements: {
       '{{AUDIENCE_CURRENT}}': '',
       '{{LOCAL_NAV_LOGIN_OR_USER}}': COMPONENTS.localLogin,
@@ -370,13 +390,13 @@ const VARIANTS = {
 
   'jobs-loggedin': {
     components: [
-      'logo', 
-      'audience', 
-      'globalNavSecondaryJobsOnly', 
-      'languageMenu', 
+      'logo',
+      'audience',
+      'globalNavSecondaryJobsOnly',
+      'languageMenu',
       'globalUserMenu',
-      'mainNavigation', 
-      'localNavJobs'
+      'mainNavigation',
+      'localNavJobs',
     ],
     replacements: {
       '{{AUDIENCE_CURRENT}}': '',
@@ -385,7 +405,15 @@ const VARIANTS = {
   },
 
   'portal-loggedout': {
-    components: ['logo', 'audience', 'globalNavPrimary', 'globalNavSecondary', 'languageMenu', 'globalLogin', 'mainNavigation'],
+    components: [
+      'logo',
+      'audience',
+      'globalNavPrimary',
+      'globalNavSecondary',
+      'languageMenu',
+      'globalLogin',
+      'mainNavigation',
+    ],
     replacements: {
       '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
       '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
@@ -393,7 +421,15 @@ const VARIANTS = {
   },
 
   'portal-loggedin': {
-    components: ['logo', 'audience', 'globalNavPrimary', 'globalNavSecondary', 'languageMenu', 'globalUserMenu', 'mainNavigation'],
+    components: [
+      'logo',
+      'audience',
+      'globalNavPrimary',
+      'globalNavSecondary',
+      'languageMenu',
+      'globalUserMenu',
+      'mainNavigation',
+    ],
     replacements: {
       '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
       '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
@@ -409,9 +445,10 @@ function generateVariantHTML(variantName, config) {
     .join('\n  ');
 
   // Start with base template
-  let html = BASE_TEMPLATE
-    .replace('{{VARIANT_NAME}}', variantName)
-    .replace('{{HEADER_CONTENT}}', headerContent);
+  let html = BASE_TEMPLATE.replace('{{VARIANT_NAME}}', variantName).replace(
+    '{{HEADER_CONTENT}}',
+    headerContent,
+  );
 
   // Apply variant-specific replacements
   Object.entries(config.replacements || {}).forEach(([placeholder, value]) => {
@@ -446,22 +483,15 @@ function generateVariantHTML(variantName, config) {
 
 // Main function
 function generateAllVariants() {
-  const outputDir = path.join(
-    path.dirname(fileURLToPath(import.meta.url)),
-    '../www/vrt'
-  );
-  
+  const outputDir = path.join(path.dirname(fileURLToPath(import.meta.url)), '../www/vrt');
+
   fs.mkdirSync(outputDir, { recursive: true });
 
   console.log('Generating header HTML files...\n');
 
   Object.entries(VARIANTS).forEach(([variantName, config]) => {
     const html = generateVariantHTML(variantName, config);
-    fs.writeFileSync(
-      path.join(outputDir, `post-header-${variantName}.html`),
-      html,
-      'utf8'
-    );
+    fs.writeFileSync(path.join(outputDir, `post-header-${variantName}.html`), html, 'utf8');
     console.log(`✅ Generated: post-header-${variantName}.html`);
   });
 
