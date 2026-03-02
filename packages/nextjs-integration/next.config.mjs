@@ -8,11 +8,6 @@ const nextConfig = {
         destination: '/ssr',
         permanent: true,
       },
-      {
-        source: '/header/',
-        destination: '/header/microsite',
-        permanent: true,
-      },
     ];
   },
   images: {
