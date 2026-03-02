@@ -64,12 +64,19 @@ export class PostBreadcrumbs {
     checkRequiredAndType(this, 'textMoreItems', 'string');
   }
 
+  componentDidRender() {
+    const items = Array.from(this.host.querySelectorAll('post-breadcrumb-item'));
+
+    if (items.length !== this.breadcrumbItems.length) {
+      this.updateBreadcrumbItems();
+    }
+  }
+
   componentDidLoad() {
     this.validateHomeUrl();
     this.validateTextHome();
     this.validateTextBreadcrumbs();
     this.validateTextMoreItems();
-    this.updateBreadcrumbItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
   }
