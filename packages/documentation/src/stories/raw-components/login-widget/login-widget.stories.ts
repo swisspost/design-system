@@ -131,11 +131,11 @@ const widgetTemplate = (args: Args) => html`
 `;
 
 export const Default: Story = {
-  decorators: [withMockSession(MOCK_SESSION)],
+  decorators: [withMockSession(null)],
   render: widgetTemplate,
 };
 
 export const LoggedIn: Story = {
-  decorators: [withMockSession(null)],
+  decorators: [withMockSession(MOCK_SESSION)],
   render: widgetTemplate,
 };
