@@ -191,8 +191,7 @@ function renderComponent(args: Args, context: StoryContext) {
         aria-describedby=${args.groupName || args.validation === 'null'
           ? nothing
           : `${id} ${validationId}`}
-        @input="${onChange}"
-        @change="${onChange}"
+        @change="${args.onChange ?? onChange}"
       />
       <label for=${id}>${args.label}</label>
       ${icon()} ${description()} ${customContent()}
@@ -290,7 +289,14 @@ export const Grouping: Story = {
     groupName: 'grouping_group',
   },
   render: (args: Args, context: StoryContext) => {
+    const [_args, updateArgs] = useArgs();
     const [validationId] = useState(_.validationId(context));
+    const items = Array.from({ length: STORY_GROUPING_AMOUNT_OF_ITEMS }).map((_, i) => [
+      `checked${i + 1}`,
+      args[`checked${i + 1}`],
+    ]);
+
+    resetRadioButtons();
 
     return html`<fieldset
       disabled=${args.disabled ? 'disabled' : nothing}
@@ -299,13 +305,44 @@ export const Grouping: Story = {
     >
       <legend>Group Legend</legend>
 
-      ${Array.from({ length: STORY_GROUPING_AMOUNT_OF_ITEMS }).map(render)}
-      ${_.validation(validationId)}
+      ${items.map(render)} ${_.validation(validationId)}
     </fieldset>`;
 
     function render(_v: unknown, i: number) {
       const label = `Label ${i + 1}`;
-      return html`${meta.render?.({ ...args, label, checked: undefined }, context)}`;
+      const checkedName = `checked${i + 1}`;
+
+      function onChange(e: InputEvent) {
+        const target = e.target as HTMLInputElement;
+        const changedArg = { [checkedName]: target?.checked ?? false };
+        const radioButtonArgs = items
+          .filter(([name]) => name !== checkedName)
+          .reduce(
+            (checkedValues, [name]) => ({
+              ...checkedValues,
+              [name]: false,
+            }),
+            changedArg,
+          );
+
+        updateArgs(args.type === 'radio' ? radioButtonArgs : changedArg);
+      }
+
+      return html`${meta.render?.(
+        { ...args, label, disabled: undefined, checked: args[checkedName], onChange },
+        context,
+      )}`;
+    }
+
+    function resetRadioButtons() {
+      if (args.type === 'radio') {
+        items
+          .filter(([_, checked]) => checked)
+          .slice(0, -1)
+          .forEach(([name]) => {
+            updateArgs({ [name]: false });
+          });
+      }
     }
   },
 };
@@ -315,21 +352,30 @@ export const Lineup: Story = {
     class: 'h-full',
   },
   render: (args: Args, context: StoryContext) => {
+    const [_args, updateArgs] = useArgs();
+
     return html`<div class="row g-16">
-      ${STORY_LINEUP_LABELS.map(
-        (label: string, i: number) =>
-          html`<div class="col-sm-6 col-lg-4">
-            ${meta.render?.(
-              {
-                ...args,
-                checked: undefined,
-                label,
-                description: STORY_LINEUP_DESCRIPTIONS[i],
-              },
-              context,
-            )}
-          </div>`,
-      )}
+      ${STORY_LINEUP_LABELS.map((label: string, i: number) => {
+        const checkedName = `checked${i + 1}`;
+
+        function onChange(e: InputEvent) {
+          const target = e.target as HTMLInputElement;
+          updateArgs({ [checkedName]: target?.checked ?? false });
+        }
+
+        return html`<div class="col-sm-6 col-lg-4">
+          ${meta.render?.(
+            {
+              ...args,
+              label,
+              description: STORY_LINEUP_DESCRIPTIONS[i],
+              checked: args[checkedName],
+              onChange,
+            },
+            context,
+          )}
+        </div>`;
+      })}
     </div>`;
   },
 };
