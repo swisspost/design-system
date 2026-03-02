@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import meta from './login-widget.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
