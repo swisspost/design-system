@@ -124,7 +124,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
  */
 @mixin nav-item-icon-only() {
   > :not(post-icon) {
-    display: none;
+    @include utilities.visuallyhidden();
   }
 
   > post-icon {
