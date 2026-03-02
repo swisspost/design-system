@@ -52,6 +52,10 @@ header,
     @include media-mx.only(mobile) {
       padding: 0.625rem;
       @include header-mx.nav-item-icon-only;
+
+      span {
+        @include visually-hidden;
+      }
     }
   }
 }
