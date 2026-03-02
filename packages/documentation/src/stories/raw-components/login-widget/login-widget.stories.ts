@@ -9,6 +9,8 @@ const MOCK_SESSION = {
   userType: 'private',
 };
 
+const originalFetch = window.fetch;
+
 /**
  * Decorator that intercepts the KLP session fetch and returns mock session data,
  * so the logged-in state of <post-login-widget> can be previewed without a real session.
@@ -16,8 +18,10 @@ const MOCK_SESSION = {
  */
 function withMockSession(session: typeof MOCK_SESSION | null) {
   return (story: StoryFn, context: StoryContext) => {
-    const originalFetch = window.fetch;
+    // Always restore to the original fetch first to avoid decorator chain issues
+    window.fetch = originalFetch;
 
+    // Set up the mock BEFORE rendering the story
     window.fetch = function (url, options) {
       if (url.toString().includes('/v1/session/subscribe')) {
         return Promise.resolve({
@@ -37,6 +41,7 @@ function withMockSession(session: typeof MOCK_SESSION | null) {
         obs.disconnect();
       }
     });
+    
     observer.observe(document.body, {
       subtree: true,
       attributes: true,
@@ -119,16 +124,21 @@ export default meta;
 
 type Story = StoryObj;
 
-const widgetTemplate = (args: Args) => html`
-  <post-login-widget
-    login-url=${args.loginUrl}
-    logout-url=${args.logoutUrl}
-    text-user-profile=${args.textUserProfile}
-    text-messages=${args.textMessages}
-    text-settings=${args.textSettings}
-    text-logout=${args.textLogout}
-  ></post-login-widget>
-`;
+const widgetTemplate = (args: Args, context: StoryContext) => {
+  // Use story name as key to force component remount when switching stories
+  const storyKey = context.story?.name || 'default';
+  return html`
+    <post-login-widget
+      key=${storyKey}
+      login-url=${args.loginUrl}
+      logout-url=${args.logoutUrl}
+      text-user-profile=${args.textUserProfile}
+      text-messages=${args.textMessages}
+      text-settings=${args.textSettings}
+      text-logout=${args.textLogout}
+    ></post-login-widget>
+  `;
+};
 
 export const Default: Story = {
   decorators: [withMockSession(null)],
