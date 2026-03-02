@@ -9,7 +9,7 @@ const contentByType: Record<
     description: string;
     imageUrl: string;
     secondaryButtonLabel?: string;
-    extraClass?: string;
+    extraClass: string;
   }
 > = {
   '400': {
@@ -28,7 +28,7 @@ const contentByType: Record<
       '\n' +
       'Please contact your IT administrator.',
     imageUrl: '/images/content/401.svg',
-    extraClass: 'align-section-end',
+    extraClass: '',
   },
   '403': {
     subtitle: 'No entry.',
@@ -130,8 +130,8 @@ function render(type: ErrorType) {
 
   return html`
     <div class="palette palette-alternate error-container">
-      <div class="container">
-        <div class="row align-items-center">
+      <div class="container ">
+        <div class="d-flex align-items-center flex-sm-column flex-md-row flex-lg-row">
           <div class="col">
             <h2 class="palette-text mt-16">
               Error ${type}
@@ -141,7 +141,7 @@ function render(type: ErrorType) {
 
             <p class="mt-16 mb-32">${description}</p>
 
-            <div class="button-section">
+            <div class=" d-flex gap-3 pb-5 flex-column flex-md-row align-items-stretch">
               ${secondaryButtonLabel
                 ? html`
                     <a
@@ -171,7 +171,9 @@ function render(type: ErrorType) {
                   `}
             </div>
           </div>
-          <div class="col error-container--image ${extraClass}">
+          <div
+            class="col d-flex justify-content-end align-items-end pb-5 align-self-end gap-3 flex-lg-column align-self-lg-stretch align-items-md-center align-self-sm-center align-items-sm-center flex-md-row ${extraClass} mt-sm-6 "
+          >
             <img src="${imageUrl}" alt="" />
           </div>
         </div>
