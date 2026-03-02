@@ -1,5 +1,4 @@
 @use '@swisspost/design-system-styles/variables/commons';
-@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/mixins/media' as media-mx;
@@ -53,10 +52,6 @@ header,
     @include media-mx.only(mobile) {
       padding: 0.625rem;
       @include header-mx.nav-item-icon-only;
-
-      span {
-        @include utilities-mx.visuallyhidden();
-      }
     }
   }
 }
