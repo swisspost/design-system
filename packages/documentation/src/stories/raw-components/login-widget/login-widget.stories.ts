@@ -10,43 +10,34 @@ const MOCK_SESSION = {
 };
 
 const originalFetch = window.fetch;
+let currentMockSession: typeof MOCK_SESSION | null = null;
 
 /**
  * Decorator that intercepts the KLP session fetch and returns mock session data,
  * so the logged-in state of <post-login-widget> can be previewed without a real session.
- * The fetch is restored only after the component has hydrated (data-hydrated attribute is set).
  */
 function withMockSession(session: typeof MOCK_SESSION | null) {
   return (story: StoryFn, context: StoryContext) => {
-    // Always restore to the original fetch first to avoid decorator chain issues
-    window.fetch = originalFetch;
+    // Set the current mock session before rendering
+    currentMockSession = session;
 
-    // Set up the mock BEFORE rendering the story
+    // Override fetch to use the current mock session
     window.fetch = function (url, options) {
       if (url.toString().includes('/v1/session/subscribe')) {
         return Promise.resolve({
-          json: () => Promise.resolve({ data: session }),
+          json: () => Promise.resolve({ data: currentMockSession }),
         } as Response);
       }
       return originalFetch(url, options);
-    };
+    } as typeof fetch;
 
     const result = story(context.args, context);
 
-    // Restore fetch once the component finishes hydrating
-    const observer = new MutationObserver((_, obs) => {
-      const widget = document.querySelector('post-login-widget');
-      if (widget?.hasAttribute('data-hydrated')) {
-        window.fetch = originalFetch;
-        obs.disconnect();
-      }
-    });
-    
-    observer.observe(document.body, {
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['data-hydrated'],
-    });
+    // Clean up after story renders
+    setTimeout(() => {
+      window.fetch = originalFetch;
+      currentMockSession = null;
+    }, 100);
 
     return result;
   };
