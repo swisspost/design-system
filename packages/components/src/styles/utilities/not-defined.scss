@@ -3,13 +3,11 @@
 @use '../../_generated/component-names.scss' as *;
 
 :where(#{$component-names}) {
-  &:not(.hydrated, [data-hydrated]) {
+  &:not(:defined):not(.hydrated, [data-hydrated]) {
     visibility: hidden;
-  }
 
-  @media (scripting: enabled) {
-    &:not(:defined) {
-      visibility: hidden;
+    @media (scripting: none) {
+      visibility: visible;
     }
   }
 }
