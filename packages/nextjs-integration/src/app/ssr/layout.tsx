@@ -93,6 +93,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           text-logout="Logout"
           slot="post-login"
         ></PostLoginWidget>
+
         {/* Main navigation */}
         <PostMainnavigation slot="main-nav" text-main="Main">
           <ul>
