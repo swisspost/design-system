@@ -123,23 +123,23 @@ $post-icon-success-solid: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDo
   border-radius: tokens.get('stepper-border-radius-round');
   text-indent: initial;
 
-  :host(:not(:first-child, :last-child)) & {
+  :host(:not(:first-child, :last-child)) > & {
     margin-inline: auto;
   }
 
-  :host(:last-child) & {
+  :host(:last-child) > & {
     margin-inline-start: auto;
   }
 
   // Completed steps
-  :host(.stepper-item-completed) & {
+  :host(.stepper-item-completed) > & {
     color: transparent; // Hides the number on completed step
     background-color: tokens.get('stepper-completed-stroke');
     border-color: tokens.get('stepper-completed-stroke');
   }
 
   // Future steps
-  :host(.stepper-item-inactive) & {
+  :host(.stepper-item-inactive) > & {
     color: tokens.get('stepper-disabled-fg');
     background-color: tokens.get('stepper-disabled-bg');
     border-color: tokens.get('stepper-disabled-stroke');
@@ -162,7 +162,7 @@ $checkIconSize: calc(
   height: $checkIconSize;
   color: tokens.get('stepper-completed-bg');
 
-  :host(:first-child) & {
+  :host(:first-child) > & {
     inset-inline-start: tokens.get('stepper-border-width');
   }
 
@@ -170,12 +170,12 @@ $checkIconSize: calc(
     inset-inline-start: calc(50% - ($checkIconSize / 2));
   }
 
-  :host(:last-child) & {
+  :host(:last-child) > & {
     inset-inline-end: tokens.get('stepper-border-width');
   }
 
   // show only for completed steps
-  :host(.stepper-item-completed) & {
+  :host(.stepper-item-completed) > & {
     content: '';
   }
 }
@@ -203,9 +203,11 @@ $checkIconSize: calc(
       content: unset;
     }
   }
+
   .stepper-item-content {
     margin-inline: 0 !important;
   }
+
   .label {
     display: none;
   }
