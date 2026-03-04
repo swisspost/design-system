@@ -63,7 +63,7 @@ export const Checkbox: Story = {
         </div>
         <div>
           <h2 class="h4 mt-24">Grouped checkboxes</h2>
-          <div class="d-flex gap-16">
+          <div class="d-flex flex-column gap-16">
             ${(() => {
               const combos = bombArgs({
                 inline: [false, true],
