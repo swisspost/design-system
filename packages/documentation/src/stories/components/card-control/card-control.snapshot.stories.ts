@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 import meta from './card-control.stories';
 
@@ -12,7 +12,7 @@ export default {
 };
 
 const PALETTE_TEST_COMPONENT_TYPES = ['radio', 'checkbox'];
-const PALETTE_TEST_PALETTE_TYPES = ['default'];
+const PALETTE_TEST_PALETTE_TYPES = ['default', 'alternate', 'accent', 'brand'];
 const PALETTE_TEST_ARGS = {
   description: 'Description',
   icon: 'component',
@@ -28,6 +28,11 @@ const bombedArgs = bombArgs({
 }).filter(args => !(args.icon === 'component' && args.customIcon !== null));
 
 export const CardControl: StoryObj = {
+  args: {
+    // this prevents the components to update their checked argument when clicking on one of them,
+    // which allows us to test the checked state of each component instance in isolation
+    onChange: () => {},
+  },
   render: (_args: Args, context: StoryContext) => {
     return html`
       <nav>
@@ -83,7 +88,6 @@ export const CardControl: StoryObj = {
                 </div>`,
             )}
           `,
-          { filter: scheme => scheme === COLOR_SCHEMES.light },
         )}
       </div>
     `;
