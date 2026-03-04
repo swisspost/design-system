@@ -6,6 +6,7 @@ import {
 } from '@/models/general.model';
 import { state } from '@/data/store';
 import { getUserLang } from './language.service';
+import { markActiveRoute } from './route.service';
 
 // Prevent double requests
 let request: Promise<IPortalConfig> | null = null;
@@ -31,6 +32,7 @@ export const getLocalizedConfig = async ({
   projectId,
   environment,
   language,
+  activeRouteProp,
 }: LocalizedConfigParameters): Promise<ILocalizedConfig> => {
   const ppmConfig = getPPMConfig();
   let localizedConfig: ILocalizedConfig;
@@ -54,6 +56,14 @@ export const getLocalizedConfig = async ({
 
     // Clone config for more predictable state updates
     localizedConfig = { ...config[lang] };
+  }
+
+  // Mark active route
+  if (activeRouteProp != null) {
+    localizedConfig.header.navMain = markActiveRoute(
+      localizedConfig.header.navMain,
+      activeRouteProp,
+    );
   }
 
   // Set the new language choice

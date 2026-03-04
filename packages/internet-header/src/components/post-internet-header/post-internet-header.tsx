@@ -1,7 +1,7 @@
 import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { version } from '@root/package.json';
-import { Environment } from '@/models/general.model';
+import { ActiveRouteProp, Environment } from '@/models/general.model';
 import { dispose, state } from '@/data/store';
 
 @Component({
@@ -23,6 +23,12 @@ export class PostInternetHeader {
    * Target environment. Choose 'int01' for local testing.
    */
   @Prop() environment: Environment = 'prod';
+
+  /**
+   * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
+   * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
+   */
+  @Prop() activeRoute?: ActiveRouteProp = 'auto';
 
   /**
    * Displays the header at full width for full-screen applications
@@ -54,7 +60,7 @@ export class PostInternetHeader {
       state.environment = this.environment.toLocaleLowerCase() as Environment;
       if (this.language !== undefined) state.currentLanguage = this.language;
 
-      await this.setConfig();
+      await this.updateConfig();
     } catch (error) {
       console.error(error);
     }
@@ -69,7 +75,12 @@ export class PostInternetHeader {
   @Watch('language')
   async handleLanguageChange(newValue: string) {
     state.currentLanguage = newValue;
-    await this.setConfig();
+    await this.updateConfig();
+  }
+
+  @Watch('activeRoute')
+  async handleActiveRouteChange() {
+    await this.updateConfig();
   }
 
   @Listen('postChange')
@@ -83,11 +94,12 @@ export class PostInternetHeader {
     }
   }
 
-  private async setConfig() {
+  private async updateConfig() {
     state.localizedConfig = await getLocalizedConfig({
       projectId: this.project,
       environment: this.environment,
       language: this.language,
+      activeRouteProp: this.activeRoute,
     });
   }
 
