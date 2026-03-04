@@ -19,7 +19,7 @@ import AirDatepicker, {
 import IMask, { InputMask } from 'imask';
 
 import { localesMap } from './locales';
-import { checkEmptyOrDate, checkEmptyOrType, checkRequiredAndType } from '@/utils';
+import { checkEmptyOrDate, checkRequiredAndType } from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -71,15 +71,7 @@ export class PostDatepicker {
   @Prop() min?: string;
   @Watch('min')
   validateMin() {
-    checkEmptyOrType(this, 'min', 'string');
-
-    if (this.min) {
-      const date = new Date(this.min);
-
-      if (isNaN(date.getTime())) {
-        console.error('Min date is not valid. Format should either be DD/MM/YYYY or YYYY/MM/DD');
-      }
-    }
+    checkEmptyOrDate(this, 'min');
   }
 
   /**
@@ -88,15 +80,7 @@ export class PostDatepicker {
   @Prop() max?: string;
   @Watch('max')
   validateMax() {
-    checkEmptyOrType(this, 'max', 'string');
-
-    if (this.max) {
-      const date = new Date(this.max);
-
-      if (isNaN(date.getTime())) {
-        console.error('Max date is not valid. Format should either be DD/MM/YYYY or YYYY/MM/DD');
-      }
-    }
+    checkEmptyOrDate(this, 'max');
   }
 
   /**
@@ -648,6 +632,7 @@ export class PostDatepicker {
             c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
           });
 
+          console.log('emiting', date);
           this.postUpdateDates.emit(date);
 
           // If selected date is added dynamically after user has typed it in the input

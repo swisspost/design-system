@@ -6,7 +6,7 @@ export function checkDate<T extends { host: HTMLElement }>(component: T, prop: k
     prop,
   )}\` of the \`${componentName}\` component must be a valid date.`;
 
-  if (typeof value !== 'string' || typeof value !== 'object') {
+  if (typeof value !== 'string') {
     console.error(message);
     return;
   }
