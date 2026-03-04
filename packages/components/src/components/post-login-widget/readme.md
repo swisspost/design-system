@@ -1,4 +1,4 @@
-# post-klp-login-widget
+# post-login-widget
 
 
 
@@ -12,6 +12,7 @@
 | `loginUrl` _(required)_        | `login-url`         | The URL to redirect to when the user clicks the login link.                                                                               | `string` | `undefined` |
 | `logoutUrl` _(required)_       | `logout-url`        | The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect. | `string` | `undefined` |
 | `textLogout` _(required)_      | `text-logout`       | Label for the "Logout" button.                                                                                                            | `string` | `undefined` |
+| `textMenuLabel` _(required)_   | `text-menu-label`   | Accessible label for the user menu.                                                                                                       | `string` | `undefined` |
 | `textMessages` _(required)_    | `text-messages`     | Label for the "Messages" menu item.                                                                                                       | `string` | `undefined` |
 | `textSettings` _(required)_    | `text-settings`     | Label for the "Settings" menu item.                                                                                                       | `string` | `undefined` |
 | `textUserProfile` _(required)_ | `text-user-profile` | Label for the "My Profile" menu item.                                                                                                     | `string` | `undefined` |

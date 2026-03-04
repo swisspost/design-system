@@ -328,6 +328,10 @@ export namespace Components {
          */
         "textLogout": string;
         /**
+          * Accessible label for the user menu.
+         */
+        "textMenuLabel": string;
+        /**
           * Label for the "Messages" menu item.
          */
         "textMessages": string;
@@ -1414,6 +1418,10 @@ declare namespace LocalJSX {
           * Label for the "Logout" button.
          */
         "textLogout": string;
+        /**
+          * Accessible label for the user menu.
+         */
+        "textMenuLabel": string;
         /**
           * Label for the "Messages" menu item.
          */
