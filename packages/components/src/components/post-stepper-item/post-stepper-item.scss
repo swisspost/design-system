@@ -55,10 +55,7 @@ $post-icon-success-solid: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDo
 
 :host(.stepper-item-current:not(:first-child))::before,
 :host(.stepper-item-current:last-child)::after,
-:host(.stepper-item-completed)::after,
-:host(.stepper-item-after-completed)::before
-// ,:host(.stepper-item-completed + *)::before
-{
+:host(.stepper-item-completed)::after {
   background-color: tokens.get('stepper-connector-completed');
   z-index: 1;
 }
@@ -222,34 +219,31 @@ $checkIconSize: calc(
   :host(.stepper-item-current:not(:first-child))::before,
   :host(.stepper-item-current:last-child)::after,
   :host(.stepper-item-completed)::after,
-  :host(.stepper-item-completed)::before,
-  :host(.stepper-item-after-completed)::before {
+  :host(.stepper-item-completed)::before {
     background-color: Highlight !important;
   }
 
-  .stepper-item-content {
-    &::before {
-      forced-color-adjust: none;
-    }
+  .stepper-item-content::before {
+    forced-color-adjust: none;
+  }
 
-    .stepper-item-current > &::before {
-      background-color: Canvas;
-      color: CanvasText;
-    }
+  :host(.stepper-item-current) .stepper-item-content::before {
+    background-color: Canvas;
+    color: CanvasText;
+  }
 
-    .stepper-item-completed > &::before,
-    .stepper-item-inactive > &::before {
-      border-color: Canvas;
-      background-color: CanvasText;
-    }
+  :host(.stepper-item-completed) .stepper-item-content::before,
+  :host(.stepper-item-inactive) .stepper-item-content::before {
+    border-color: Canvas;
+    background-color: CanvasText;
+  }
 
-    .stepper-item-inactive > &::before {
-      color: Canvas;
-    }
+  :host(.stepper-item-inactive) .stepper-item-content::before {
+    color: Canvas;
+  }
 
-    &::after {
-      color: Canvas;
-    }
+  .stepper-item-content::after {
+    color: Canvas;
   }
 }
 
