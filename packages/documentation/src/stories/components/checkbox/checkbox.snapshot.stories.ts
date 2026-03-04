@@ -24,7 +24,7 @@ export const Checkbox: Story = {
     });
     return schemes(
       scheme => html`
-        <div class="mt-32 d-flex gap-16 flex-column">
+        <div class="d-flex flex-wrap gap-16">
           ${[
             ...bombArgs({
               checked: ['indeterminate'],
@@ -58,38 +58,36 @@ export const Checkbox: Story = {
               </span>
             `;
           })}
-          <div class="mt-32 w-full"></div>
-          ${Inline.render?.({ ...context.args, ...Inline.args }, context)}
-        </div>
-        <div class="mt-32 d-flex gap-16 flex-column">
-          ${(() => {
-            const combos = bombArgs({
-              inline: [false, true],
-              size: ['null', 'form-check-sm'],
-            });
+          <div class="d-flex gap-16">
+            ${(() => {
+              const combos = bombArgs({
+                inline: [false, true],
+                size: ['null', 'form-check-sm'],
+              });
 
-            return combos.map((combo: Args, idx: number) => {
-              const ctx = {
-                ...context,
-                id: `${scheme}-checkbox-group-${crypto.randomUUID()}-${idx}`,
-                name: `${combo.inline ? 'Inline' : 'Grouped'} ${
-                  combo.size === 'form-check-sm' ? 'Small' : 'Default'
-                }`,
-              };
+              return combos.map((combo: Args, idx: number) => {
+                const ctx = {
+                  ...context,
+                  id: `${scheme}-checkbox-group-${crypto.randomUUID()}-${idx}`,
+                  name: `${combo.inline ? 'Inline' : 'Grouped'} ${
+                    combo.size === 'form-check-sm' ? 'Small' : 'Default'
+                  }`,
+                };
 
-              return html`
-                <div class="mt-16">
-                  ${renderGroup(
-                    {
-                      hiddenLegend: false,
-                      ...combo,
-                    },
-                    ctx,
-                  )}
-                </div>
-              `;
-            });
-          })()}
+                return html`
+                  <div class="mt-16">
+                    ${renderGroup(
+                      {
+                        hiddenLegend: false,
+                        ...combo,
+                      },
+                      ctx,
+                    )}
+                  </div>
+                `;
+              });
+            })()}
+          </div>
         </div>
       `,
     );
