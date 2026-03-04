@@ -1,5 +1,5 @@
 import { IPortalConfig } from '@/models/general.model';
-import * as testConfigRaw from '../assets/config/test-configuration.json';
+import * as testConfigRaw from '@/assets/config/test-configuration.json';
 import {
   fetchConfig,
   generateConfigUrl,

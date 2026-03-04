@@ -2,7 +2,7 @@ import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@s
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { version } from '@root/package.json';
 import { Environment } from '@/models/general.model';
-import { dispose, state } from '../../data/store';
+import { dispose, state } from '@/data/store';
 
 @Component({
   tag: 'swisspost-internet-header',
