@@ -4,8 +4,6 @@ import {
   ILocalizedConfig,
   LocalizedConfigParameters,
 } from '@/models/general.model';
-import { NavMainEntity } from '@/models/header.model';
-import { uniqueId } from '@/utils/utils';
 import { state } from '@/data/store';
 import { getUserLang } from './language.service';
 
@@ -57,8 +55,6 @@ export const getLocalizedConfig = async ({
     // Clone config for more predictable state updates
     localizedConfig = { ...config[lang] };
   }
-
-  setMainNavigationIds(localizedConfig?.header?.navMain);
 
   // Set the new language choice
   state.currentLanguage = lang;
@@ -128,14 +124,4 @@ export const generateConfigUrl = (projectId: string, environment: Environment): 
  */
 export const isValidProjectId = (projectId: string): boolean => {
   return projectId !== '' && projectId.length > 0 && /^[a-zA-Z][\w-]*[a-zA-Z0-9]$/.test(projectId);
-};
-
-/**
- * Set unique ID's on main navigation entities but conserve flyout_os to be able to
- * identify the online-service flyout, which can be configured by osFlyoutOverrides
- */
-export const setMainNavigationIds = (navMainEntities: NavMainEntity[]): void => {
-  navMainEntities.forEach(navMainEntity => {
-    navMainEntity.id = navMainEntity.id === 'flyout_os' ? navMainEntity.id : uniqueId('main-nav-');
-  });
 };

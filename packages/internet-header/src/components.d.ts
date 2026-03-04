@@ -5,12 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DropdownEvent } from "./models/header.model";
-import { Event } from "@stencil/core";
 import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 import { Environment } from "./models/general.model";
-export { DropdownEvent } from "./models/header.model";
-export { Event } from "@stencil/core";
 export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 export { Environment } from "./models/general.model";
 export namespace Components {
@@ -24,8 +20,6 @@ export namespace Components {
          */
         "active": boolean;
     }
-    interface PostHeaderLogo {
-    }
     interface PostKlpLoginWidget {
         /**
           * Override the logout-url provided by the portal config.
@@ -35,58 +29,6 @@ export namespace Components {
           * Sets the focus on the login button
          */
         "setFocus": () => Promise<void>;
-    }
-    interface PostLanguageSwitch2 {
-        /**
-          * Visualization of the language switch. Possible values: 'dropdown' | 'list'
-         */
-        "mode": 'dropdown' | 'list';
-        /**
-          * Open or close the language switch programatically
-          * @param force Boolean to force a state
-          * @returns Boolean indicating new state
-         */
-        "toggleDropdown": (force?: boolean) => Promise<boolean>;
-    }
-    interface PostMainNavigation {
-        /**
-          * Open a specific flyout
-          * @param id Flyout ID
-         */
-        "setActiveFlyout": (id: string | null) => Promise<void>;
-        /**
-          * Focus the main navigation toggle button
-         */
-        "setFocus": () => Promise<void>;
-        /**
-          * Toggle the main navigation (only visible on mobile)
-          * @param force Force a state
-          * @returns Boolean indicating new state
-         */
-        "toggleDropdown": (force?: boolean) => Promise<boolean>;
-    }
-    interface PostMetaNavigation {
-        /**
-          * Displays the meta-navigation in full-width.
-          * @default false
-         */
-        "fullWidth"?: boolean;
-        /**
-          * Displays the meta-navigation horihontally or vertically. Allowed values: 'horizontal' | 'vertical'
-         */
-        "orientation": 'horizontal' | 'vertical';
-    }
-    interface PostSearch {
-        /**
-          * Sets the focus on the search button
-         */
-        "setFocus": () => Promise<void>;
-        /**
-          * Toggle the dropdown and optionally force an open/closed state
-          * @param force Boolean to force open/closed state
-          * @returns Boolean indicating open state of the component
-         */
-        "toggleDropdown": (force?: boolean | Event) => Promise<boolean>;
     }
     interface PostSkiplinks {
     }
@@ -129,18 +71,6 @@ export namespace Components {
         "project": string;
     }
 }
-export interface PostLanguageSwitch2CustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostLanguageSwitch2Element;
-}
-export interface PostMainNavigationCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostMainNavigationElement;
-}
-export interface PostSearchCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostSearchElement;
-}
 export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSwisspostInternetHeaderElement;
@@ -156,76 +86,11 @@ declare global {
         prototype: HTMLFocusTrapElement;
         new (): HTMLFocusTrapElement;
     };
-    interface HTMLPostHeaderLogoElement extends Components.PostHeaderLogo, HTMLStencilElement {
-    }
-    var HTMLPostHeaderLogoElement: {
-        prototype: HTMLPostHeaderLogoElement;
-        new (): HTMLPostHeaderLogoElement;
-    };
     interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
     }
     var HTMLPostKlpLoginWidgetElement: {
         prototype: HTMLPostKlpLoginWidgetElement;
         new (): HTMLPostKlpLoginWidgetElement;
-    };
-    interface HTMLPostLanguageSwitch2ElementEventMap {
-        "dropdownToggled": DropdownEvent;
-        "languageChanged": string;
-    }
-    interface HTMLPostLanguageSwitch2Element extends Components.PostLanguageSwitch2, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostLanguageSwitch2ElementEventMap>(type: K, listener: (this: HTMLPostLanguageSwitch2Element, ev: PostLanguageSwitch2CustomEvent<HTMLPostLanguageSwitch2ElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostLanguageSwitch2ElementEventMap>(type: K, listener: (this: HTMLPostLanguageSwitch2Element, ev: PostLanguageSwitch2CustomEvent<HTMLPostLanguageSwitch2ElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostLanguageSwitch2Element: {
-        prototype: HTMLPostLanguageSwitch2Element;
-        new (): HTMLPostLanguageSwitch2Element;
-    };
-    interface HTMLPostMainNavigationElementEventMap {
-        "dropdownToggled": DropdownEvent;
-        "flyoutToggled": string | null;
-    }
-    interface HTMLPostMainNavigationElement extends Components.PostMainNavigation, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostMainNavigationElementEventMap>(type: K, listener: (this: HTMLPostMainNavigationElement, ev: PostMainNavigationCustomEvent<HTMLPostMainNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostMainNavigationElementEventMap>(type: K, listener: (this: HTMLPostMainNavigationElement, ev: PostMainNavigationCustomEvent<HTMLPostMainNavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostMainNavigationElement: {
-        prototype: HTMLPostMainNavigationElement;
-        new (): HTMLPostMainNavigationElement;
-    };
-    interface HTMLPostMetaNavigationElement extends Components.PostMetaNavigation, HTMLStencilElement {
-    }
-    var HTMLPostMetaNavigationElement: {
-        prototype: HTMLPostMetaNavigationElement;
-        new (): HTMLPostMetaNavigationElement;
-    };
-    interface HTMLPostSearchElementEventMap {
-        "dropdownToggled": DropdownEvent;
-    }
-    interface HTMLPostSearchElement extends Components.PostSearch, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostSearchElementEventMap>(type: K, listener: (this: HTMLPostSearchElement, ev: PostSearchCustomEvent<HTMLPostSearchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostSearchElementEventMap>(type: K, listener: (this: HTMLPostSearchElement, ev: PostSearchCustomEvent<HTMLPostSearchElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostSearchElement: {
-        prototype: HTMLPostSearchElement;
-        new (): HTMLPostSearchElement;
     };
     interface HTMLPostSkiplinksElement extends Components.PostSkiplinks, HTMLStencilElement {
     }
@@ -264,12 +129,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "focus-trap": HTMLFocusTrapElement;
-        "post-header-logo": HTMLPostHeaderLogoElement;
         "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
-        "post-language-switch-2": HTMLPostLanguageSwitch2Element;
-        "post-main-navigation": HTMLPostMainNavigationElement;
-        "post-meta-navigation": HTMLPostMetaNavigationElement;
-        "post-search": HTMLPostSearchElement;
         "post-skiplinks": HTMLPostSkiplinksElement;
         "swisspost-internet-breadcrumbs": HTMLSwisspostInternetBreadcrumbsElement;
         "swisspost-internet-footer": HTMLSwisspostInternetFooterElement;
@@ -287,54 +147,11 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
     }
-    interface PostHeaderLogo {
-    }
     interface PostKlpLoginWidget {
         /**
           * Override the logout-url provided by the portal config.
          */
         "logoutUrl"?: string;
-    }
-    interface PostLanguageSwitch2 {
-        /**
-          * Visualization of the language switch. Possible values: 'dropdown' | 'list'
-         */
-        "mode"?: 'dropdown' | 'list';
-        /**
-          * Fires when the dropdown has been toggled.
-         */
-        "onDropdownToggled"?: (event: PostLanguageSwitch2CustomEvent<DropdownEvent>) => void;
-        /**
-          * Fires when the language has been changed.
-         */
-        "onLanguageChanged"?: (event: PostLanguageSwitch2CustomEvent<string>) => void;
-    }
-    interface PostMainNavigation {
-        /**
-          * Fires when the dropdown has been toggled.
-         */
-        "onDropdownToggled"?: (event: PostMainNavigationCustomEvent<DropdownEvent>) => void;
-        /**
-          * Fires when the flyout has been toggled.
-         */
-        "onFlyoutToggled"?: (event: PostMainNavigationCustomEvent<string | null>) => void;
-    }
-    interface PostMetaNavigation {
-        /**
-          * Displays the meta-navigation in full-width.
-          * @default false
-         */
-        "fullWidth"?: boolean;
-        /**
-          * Displays the meta-navigation horihontally or vertically. Allowed values: 'horizontal' | 'vertical'
-         */
-        "orientation"?: 'horizontal' | 'vertical';
-    }
-    interface PostSearch {
-        /**
-          * Fires when the dropdown has been toggled.
-         */
-        "onDropdownToggled"?: (event: PostSearchCustomEvent<DropdownEvent>) => void;
     }
     interface PostSkiplinks {
     }
@@ -377,12 +194,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "focus-trap": FocusTrap;
-        "post-header-logo": PostHeaderLogo;
         "post-klp-login-widget": PostKlpLoginWidget;
-        "post-language-switch-2": PostLanguageSwitch2;
-        "post-main-navigation": PostMainNavigation;
-        "post-meta-navigation": PostMetaNavigation;
-        "post-search": PostSearch;
         "post-skiplinks": PostSkiplinks;
         "swisspost-internet-breadcrumbs": SwisspostInternetBreadcrumbs;
         "swisspost-internet-footer": SwisspostInternetFooter;
@@ -398,12 +210,7 @@ declare module "@stencil/core" {
              * @param active activate or deactivate the focus trap
              */
             "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
-            "post-header-logo": LocalJSX.PostHeaderLogo & JSXBase.HTMLAttributes<HTMLPostHeaderLogoElement>;
             "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
-            "post-language-switch-2": LocalJSX.PostLanguageSwitch2 & JSXBase.HTMLAttributes<HTMLPostLanguageSwitch2Element>;
-            "post-main-navigation": LocalJSX.PostMainNavigation & JSXBase.HTMLAttributes<HTMLPostMainNavigationElement>;
-            "post-meta-navigation": LocalJSX.PostMetaNavigation & JSXBase.HTMLAttributes<HTMLPostMetaNavigationElement>;
-            "post-search": LocalJSX.PostSearch & JSXBase.HTMLAttributes<HTMLPostSearchElement>;
             "post-skiplinks": LocalJSX.PostSkiplinks & JSXBase.HTMLAttributes<HTMLPostSkiplinksElement>;
             "swisspost-internet-breadcrumbs": LocalJSX.SwisspostInternetBreadcrumbs & JSXBase.HTMLAttributes<HTMLSwisspostInternetBreadcrumbsElement>;
             "swisspost-internet-footer": LocalJSX.SwisspostInternetFooter & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;

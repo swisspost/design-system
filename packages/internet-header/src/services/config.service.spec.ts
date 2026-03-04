@@ -1,12 +1,10 @@
-import { ILocalizedCustomConfig, IPortalConfig } from '@/models/general.model';
-import { NavMainEntity } from '@/models/header.model';
+import { IPortalConfig } from '@/models/general.model';
 import * as testConfigRaw from '../assets/config/test-configuration.json';
 import {
   fetchConfig,
   generateConfigUrl,
   getLocalizedConfig,
   isValidProjectId,
-  setMainNavigationIds,
 } from './config.service';
 
 const testConfig: IPortalConfig = testConfigRaw as IPortalConfig;
@@ -34,25 +32,6 @@ describe('config.service.ts', () => {
       expect(isValidProjectId('test.bla')).toBe(false);
       expect(isValidProjectId('test,xy')).toBe(false);
       expect(isValidProjectId('')).toBe(false);
-    });
-  });
-
-  describe('setMainNavigationIds', () => {
-    it('should replace all main nav ids with browser compatible ids and keep flyout_os', () => {
-      const base = [
-        { id: 123 },
-        { id: 'flyout_os' },
-        { id: '-11' },
-        { id: '%' },
-      ] as NavMainEntity[];
-      setMainNavigationIds(base);
-      expect(base).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            id: expect.stringMatching(/^main-nav-.+|^flyout_os$/gi),
-          }),
-        ]),
-      );
     });
   });
 
@@ -103,71 +82,6 @@ describe('config.service.ts', () => {
         language: 'de',
       });
       expect(config).toEqual(testConfig.de);
-    });
-
-    it('should modify the config correctly', async () => {
-      const config = await getLocalizedConfig({
-        projectId: 'test',
-        environment: 'int01',
-        language: 'de',
-        localizedCustomConfig: {
-          header: {
-            navMain: [
-              {
-                title: 'New Navmain',
-                flyout: [
-                  {
-                    title: 'New Navcol',
-                    linkList: [
-                      {
-                        title: 'New Navlink',
-                        url: '/',
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        } as ILocalizedCustomConfig,
-      });
-
-      const [lastMainNav] = config.header.navMain.slice(-1);
-
-      expect(lastMainNav.title).toBe('New Navmain');
-
-      if (!lastMainNav?.flyout) {
-        console.warn('lastMainNav.flyout is undefined, skipping test.');
-        return;
-      }
-      expect(lastMainNav.flyout.length).toBe(1);
-    });
-
-    it('should extend flyout_os', async () => {
-      const config = await getLocalizedConfig({
-        projectId: 'test',
-        environment: 'int01',
-        language: 'de',
-        osFlyoutOverrides: {
-          flyout: [
-            {
-              title: 'OS Extender',
-              linkList: [
-                {
-                  title: 'Added link',
-                  url: '/',
-                },
-              ],
-            },
-          ],
-        } as NavMainEntity,
-      });
-      const osFlyout = config.header.navMain.find(nav => nav.id === 'flyout_os');
-      if (!osFlyout || !osFlyout.flyout) {
-        console.warn('osFlyout or osFlyout.flyout is undefined, skipping test.');
-        return;
-      }
-      expect(osFlyout.flyout[0].linkList.length).toBe(2);
     });
   });
 });
