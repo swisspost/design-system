@@ -82,19 +82,19 @@ $post-icon-success-solid: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDo
     text-align: center;
   }
 
-  :host(:last-child) & {
+  :host(:last-child) > & {
     margin-inline-start: auto;
     margin-inline-end: calc(40px / -2); // negative margin matching the container padding
     text-align: end;
   }
 
   // Completed steps
-  :host(.stepper-item-completed) & {
+  :host(.stepper-item-completed) > & {
     color: tokens.get('stepper-text-enabled-fg');
   }
 
   // Current step
-  :host(.stepper-item-current) & {
+  :host(.stepper-item-current) > & {
     font-weight: tokens.get('stepper-step-label-selected-font-weight');
     color: tokens.get('stepper-text-enabled-fg');
 
