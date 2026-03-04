@@ -24,6 +24,8 @@ export const Checkbox: Story = {
     });
     return schemes(
       scheme => html`
+        <h1>Checkboxes</h1>
+        <h2 class="h4">Single checkbox</h2>
         <div class="d-flex flex-wrap gap-16">
           ${[
             ...bombArgs({
@@ -58,6 +60,9 @@ export const Checkbox: Story = {
               </span>
             `;
           })}
+        </div>
+        <div>
+          <h2 class="h4 mt-24">Grouped checkboxes</h2>
           <div class="d-flex gap-16">
             ${(() => {
               const combos = bombArgs({
