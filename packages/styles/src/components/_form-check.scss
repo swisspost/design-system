@@ -150,6 +150,8 @@
   // Small variant (Checkbox & Radio Button)
   &.form-check-sm:not(.form-switch) {
     &:has(input[type='checkbox']) {
+      padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
+
       > input[type='checkbox'] ~ label {
         font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
         padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
