@@ -143,12 +143,14 @@
     }
   }
 
+  fieldset[disabled] &,
   &[disabled] {
     background-color: tokens.get('checkbox-disabled-bg', components.$post-checkbox);
     border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
       tokens.get('checkbox-border-style-disabled', components.$post-checkbox)
       tokens.get('checkbox-disabled-stroke', components.$post-checkbox);
     color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
+    cursor: default;
 
     @include utility-mx.high-contrast-mode() {
       background-color: Field;
@@ -259,12 +261,14 @@
     }
   }
 
+  fieldset[disabled] &,
   &[disabled] {
     background-color: tokens.get('radio-button-disabled-bg', components.$post-radio-button);
     border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
       tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
       tokens.get('radio-button-disabled-stroke', components.$post-radio-button);
     color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
+    cursor: default;
 
     &:checked {
       &::after {
