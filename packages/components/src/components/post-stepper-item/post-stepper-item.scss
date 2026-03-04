@@ -14,15 +14,6 @@ $post-icon-success-solid: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDo
   position: relative;
   padding-inline-start: 0;
 
-  &:not(:first-child) {
-    padding-inline-start: calc(#{tokens.get('stepper-indicator')} / 2);
-  }
-
-  &:not(:last-child) {
-    padding-inline-end: calc(#{tokens.get('stepper-indicator')} / 2);
-    grid-column: span 2;
-  }
-
   // progress bar
   &::before,
   &::after {
@@ -34,31 +25,40 @@ $post-icon-success-solid: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDo
     background-color: tokens.get('stepper-connector-next');
     inset-inline: 0;
   }
+}
 
-  &:not(:first-child, :last-child) {
-    &::before {
-      inset-inline-end: 50%;
-    }
+:host(:not(:first-child)) {
+  padding-inline-start: calc(#{tokens.get('stepper-indicator')} / 2);
+}
 
-    &::after {
-      inset-inline-start: 50%;
-    }
+:host(:not(:last-child)) {
+  padding-inline-end: calc(#{tokens.get('stepper-indicator')} / 2);
+  grid-column: span 2;
+}
+
+:host(:not(:first-child, :last-child)) {
+  &::before {
+    inset-inline-end: 50%;
+  }
+
+  &::after {
+    inset-inline-start: 50%;
   }
 }
 
 :host(.stepper-item-current:not(:last-child))::after,
 :host(.stepper-item-current:first-child)::before,
-:host(.stepper-item-current + *:last-child)::after,    //this needs to change
-:host(.stepper-item-current + *)::before {
-  //this needs to change
+:host(.stepper-item-after-current)::before,
+:host(.stepper-item-after-current:last-child)::after {
   background-color: tokens.get('stepper-connector-active');
 }
 
 :host(.stepper-item-current:not(:first-child))::before,
 :host(.stepper-item-current:last-child)::after,
 :host(.stepper-item-completed)::after,
-:host(.stepper-item-completed)::before,
-:host(.stepper-item-completed + *::before) {
+:host(.stepper-item-after-completed)::before
+// ,:host(.stepper-item-completed + *)::before
+{
   background-color: tokens.get('stepper-connector-completed');
   z-index: 1;
 }
@@ -194,27 +194,21 @@ $checkIconSize: calc(
     &::after {
       inset-inline-start: 0 !important;
     }
+  }
 
-    &:last-child {
-      flex: 0 0 32px;
+  :host(:last-child) {
+    flex: 0 0 32px;
 
-      &::after {
-        content: unset;
-      }
+    &::after {
+      content: unset;
     }
   }
-}
-
-:host(.stepper-item-content) {
-  margin-inline: 0 !important;
-
-  > span {
+  .stepper-item-content {
+    margin-inline: 0 !important;
+  }
+  .label {
     display: none;
   }
-}
-
-.visually-hidden {
-  @include utilities.visuallyhidden();
 }
 
 @include utilities.high-contrast-mode {
@@ -227,9 +221,7 @@ $checkIconSize: calc(
   :host(.stepper-item-current:last-child)::after,
   :host(.stepper-item-completed)::after,
   :host(.stepper-item-completed)::before,
-  :host(.stepper-item-completed + *)::before {
-    //this needs to change
-
+  :host(.stepper-item-after-completed)::before {
     background-color: Highlight !important;
   }
 
@@ -257,4 +249,8 @@ $checkIconSize: calc(
       color: Canvas;
     }
   }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
 }

@@ -99,19 +99,19 @@ export class PostStepper {
     this.updateActiveStepNumber();
 
     this.stepItems.forEach((el, i) => {
-      const labelEl = el.querySelector('.label');
-
-      if (this.currentIndex === i && labelEl) {
-        this.mobileActiveStepName = labelEl.innerHTML;
+      if (this.currentIndex === i) {
+        this.mobileActiveStepName = el.innerHTML;
       }
 
       // Update "post-stepper-item" classes to show correct status
       el.classList.toggle('stepper-item-completed', this.currentIndex > i);
       el.classList.toggle('stepper-item-current', this.currentIndex === i);
       el.classList.toggle('stepper-item-inactive', this.currentIndex < i);
+      el.classList.toggle('stepper-item-after-current', i === this.currentIndex + 1);
 
       // Update accessibility label depending on status (Completed/Current/-)
-      const hiddenLabel = el.querySelector('.step-hidden-label');
+      const hiddenLabel = el.shadowRoot?.querySelector('.step-hidden-label');
+
       if (hiddenLabel) {
         let labelText = '';
 
