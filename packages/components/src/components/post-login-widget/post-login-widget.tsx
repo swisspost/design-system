@@ -60,6 +60,11 @@ export class PostLoginWidget {
   @Prop({ reflect: true }) readonly textLogout!: string;
 
   /**
+   * Accessible label for the user menu.
+   */
+  @Prop({ reflect: true }) readonly textMenuLabel!: string;
+
+  /**
    * Emitted when the user clicks the logout button.
    * The event payload is the `logoutUrl` — the consumer is responsible for handling the redirect.
    */
@@ -95,6 +100,11 @@ export class PostLoginWidget {
     checkRequiredAndType(this, 'textLogout', 'string');
   }
 
+  @Watch('textMenuLabel')
+  validateTextMenuLabel() {
+    checkRequiredAndType(this, 'textMenuLabel', 'string');
+  }
+
   async componentDidLoad() {
     try {
       const response = await fetch(PostLoginWidget.SUBSCRIBE_URL, { credentials: 'include' });
@@ -118,7 +128,7 @@ export class PostLoginWidget {
     return (
       <Host data-version={version}>
         {this.sessionData ? (
-          <div style={{ display: 'contents' }}>
+          <div class="user-menu-wrapper">
             <post-menu-trigger for={this.menuId}>
               <button class="btn btn-link" type="button">
                 <post-avatar
@@ -128,7 +138,7 @@ export class PostLoginWidget {
               </button>
             </post-menu-trigger>
 
-            <post-menu id={this.menuId} label="User menu">
+            <post-menu id={this.menuId} label={this.textMenuLabel}>
               <div slot="header" style={{ display: 'flex' }}>
                 <post-avatar
                   firstname={this.sessionData.name}

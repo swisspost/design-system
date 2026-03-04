@@ -91,6 +91,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           text-messages="Nachrichten"
           text-settings="Einstellungen"
           text-logout="Logout"
+          text-menu-label="User menu"
           slot="post-login"
         ></PostLoginWidget>
 

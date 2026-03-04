@@ -11,6 +11,10 @@ tokens.$default-map: components.$post-button;
   display: contents;
 }
 
+.user-menu-wrapper {
+  display: contents;
+}
+
 a {
   @include header-mx.nav-item-base;
 
