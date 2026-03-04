@@ -3,8 +3,7 @@
 "@swisspost/design-system-components-angular-workspace": patch
 ---
 
-The `post-card-control` web component in the `@next` version will be removed. The current standard HTML will be renamed. 
-Therefore, changes were made:
-- Added a deprecation message in the v9 docs, mentioning the removal of the web component in the nest major release.
-- Remove deprecation message in the v9 docs that states the removal of the standard HTML.
-- Add a deprecation message in the v9 docs, mentioning the renaming of the standard HTML component.
+Updated `post-card-control` deprecation messages to clarify the different timelines for standard HTML and web component:
+- Changed the deprecation message for standard HTML component to indicate renaming instead of removal.
+- Added deprecation message for web component indicating removal in the next major version.
+
