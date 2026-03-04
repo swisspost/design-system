@@ -243,7 +243,7 @@ export const Grouped: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Hidden Legend'],
+      include: ['Size'],
     },
   },
 };
@@ -252,37 +252,11 @@ export const Inline: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Hidden Legend'],
+      include: ['Size'],
     },
   },
   args: {
     inline: true,
-  },
-};
-
-// Small Checkbox Group
-export const GroupedSmall: Story = {
-  render: renderGroup,
-  parameters: {
-    controls: {
-      include: ['Hidden Legend'],
-    },
-  },
-  args: {
-    size: 'form-check-sm',
-  },
-};
-
-export const InlineSmall: Story = {
-  render: renderGroup,
-  parameters: {
-    controls: {
-      include: ['Hidden Legend'],
-    },
-  },
-  args: {
-    inline: true,
-    size: 'form-check-sm',
   },
 };
 
