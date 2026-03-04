@@ -177,7 +177,7 @@ export class PostInternetHeader {
               </li>
 
               <li>
-                <post-megadropdown-trigger htmlFor="letters">Letters</post-megadropdown-trigger>
+                <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
                 <post-megadropdown id="letters" text-close="Close" text-back="Back">
                   <a class="post-megadropdown-overview" href="/letters">
                     Overview Letters
@@ -230,7 +230,7 @@ export class PostInternetHeader {
                 </post-megadropdown>
               </li>
               <li>
-                <post-megadropdown-trigger htmlFor="packages">Packages</post-megadropdown-trigger>
+                <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
                 <post-megadropdown id="packages" text-close="Close" text-back="Back">
                   <a class="post-megadropdown-overview" href="/packages">
                     Overview Packages
