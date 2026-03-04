@@ -52,12 +52,12 @@ const meta: MetaComponent = {
       },
     },
     activeRoute: {
-      description: addDeprecation('swisspost-internet-header', 'activeRoute', 'values will no longer be accepted in the next major release. Use "none" for false and "auto" for true. All other values remain unchanged.'),
+      description: addDeprecation('swisspost-internet-header', 'activeRoute', 'boolean values will no longer be accepted in the next major release. Use "none" for false and "auto" for true. All other values remain unchanged.'),
       control: {
         type: 'text',
       },
       table: {
-        category: 'Deprecated props',
+        category: 'Optional props',
       },
     },
     configProxy: {
