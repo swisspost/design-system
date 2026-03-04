@@ -205,8 +205,7 @@ fieldset {
     }
 
     &:has(input[type='checkbox']):not(.form-switch) {
-      padding-block-start: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
-      padding-block-end: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
+      padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
     }
 
     // Small inline group
