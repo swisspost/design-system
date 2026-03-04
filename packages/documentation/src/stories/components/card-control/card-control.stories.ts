@@ -185,8 +185,8 @@ function renderComponent(args: Args, context: StoryContext) {
         class=${args.validation === 'null' ? nothing : args.validation}
         type=${args.type}
         name=${args.type === 'radio' && args.groupName ? args.groupName : nothing}
-        ?checked=${args.checked}
-        ?disabled=${args.disabled}
+        ?checked=${args.checked ?? nothing}
+        ?disabled=${args.disabled ?? nothing}
         aria-invalid=${args.groupName || args.validation === 'null' ? nothing : 'true'}
         aria-describedby=${args.groupName || args.validation === 'null'
           ? nothing
@@ -299,7 +299,7 @@ export const Grouping: Story = {
     resetRadioButtons();
 
     return html`<fieldset
-      disabled=${args.disabled ? 'disabled' : nothing}
+      ?disabled=${args.disabled ?? nothing}
       aria-invalid=${args.validation === 'null' ? nothing : 'true'}
       aria-describedby=${args.validation === 'null' ? nothing : validationId}
     >
