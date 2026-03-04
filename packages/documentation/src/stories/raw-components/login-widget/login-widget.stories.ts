@@ -5,7 +5,7 @@ import { renderUserMenu } from '../../components/header/renderers/user-menu';
 
 const meta: MetaComponent = {
   id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
-  title: 'Components/Login Widget',
+  title: 'Raw Components/Login Widget',
   component: 'post-login-widget',
   tags: ['package:WebComponents', 'status:Experimental'],
   parameters: {
