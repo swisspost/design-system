@@ -180,7 +180,7 @@ export class PostLoginWidget {
           </div>
         ) : (
           <a href={this.loginUrl}>
-            Login
+            <span>Login</span>
             <post-icon name="login" />
           </a>
         )}

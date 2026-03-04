@@ -21,6 +21,10 @@ a {
   @include media.only(mobile) {
     @include header-mx.nav-item-icon-only;
     padding: 0.625rem;
+
+    span {
+      @include utilities.visuallyhidden;
+    }
   }
 }
 
