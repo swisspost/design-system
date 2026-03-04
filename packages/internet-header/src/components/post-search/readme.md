@@ -41,10 +41,6 @@ Boolean indicating open state of the component
 
 ## Dependencies
 
-### Used by
-
- - [swisspost-internet-header](../post-internet-header)
-
 ### Depends on
 
 - [focus-trap](../shared)
@@ -53,7 +49,6 @@ Boolean indicating open state of the component
 ```mermaid
 graph TD;
   post-search --> focus-trap
-  swisspost-internet-header --> post-search
   style post-search fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -5,18 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DropdownEvent, NavMainEntity } from "./models/header.model";
+import { DropdownEvent } from "./models/header.model";
 import { Event } from "@stencil/core";
 import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
-import { StickynessOptions } from "./models/implementor.model";
-import { Environment, ICustomConfig } from "./models/general.model";
-import { IAvailableLanguage } from "./models/language.model";
-export { DropdownEvent, NavMainEntity } from "./models/header.model";
+import { Environment } from "./models/general.model";
+export { DropdownEvent } from "./models/header.model";
 export { Event } from "@stencil/core";
 export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
-export { StickynessOptions } from "./models/implementor.model";
-export { Environment, ICustomConfig } from "./models/general.model";
-export { IAvailableLanguage } from "./models/language.model";
+export { Environment } from "./models/general.model";
 export namespace Components {
     /**
      * Trap the focus inside a specific container.
@@ -114,19 +110,6 @@ export namespace Components {
     }
     interface SwisspostInternetHeader {
         /**
-          * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
-          * @default 'auto'
-         */
-        "activeRoute"?: 'auto' | false | string;
-        /**
-          * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
-         */
-        "configProxy"?: string;
-        /**
-          * Customize the header config loaded from the post portal.
-         */
-        "customConfig"?: string | ICustomConfig;
-        /**
           * Target environment. Choose 'int01' for local testing.
           * @default 'prod'
          */
@@ -137,64 +120,13 @@ export namespace Components {
          */
         "fullWidth"?: boolean;
         /**
-          * Get the currently set language as a two letter string ("de", "fr" "it" or "en")
-          * @returns string
-         */
-        "getCurrentLanguage": () => Promise<"de" | "fr" | "it" | "en" | string>;
-        /**
           * Initial language to be used. Overrides automatic language detection.
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
-          * The header uses this cookie to set the language. Disables automatic language detection.
-         */
-        "languageCookieKey"?: string;
-        /**
-          * The header uses this local storage key to set the language. Disables automatic language selection.
-          * @default 'swisspost-internet-header-language'
-         */
-        "languageLocalStorageKey"?: string;
-        /**
-          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you would like to stay on subpages when the user changes language.
-         */
-        "languageSwitchOverrides"?: string | IAvailableLanguage[];
-        /**
-          * Toggle the login link (when logged out) or the user widget (when logged in).
-          * @default true
-         */
-        "login": boolean;
-        /**
-          * Override the logout-url provided by the portal config.
-         */
-        "logoutUrl"?: string;
-        /**
-          * Toggle the meta navigation.
-          * @default true
-         */
-        "meta": boolean;
-        /**
-          * Online Services only: Add custom links to the special online service navigation entry
-         */
-        "osFlyoutOverrides"?: string | NavMainEntity;
-        /**
           * Your project id, previously passed as query string parameter serviceId.
          */
         "project": string;
-        /**
-          * Toggle the search button.
-          * @default true
-         */
-        "search": boolean;
-        /**
-          * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
-          * @default true
-         */
-        "skiplinks": boolean;
-        /**
-          * Sticky behaviour of the header.
-          * @default 'minimal'
-         */
-        "stickyness": StickynessOptions;
     }
 }
 export interface PostLanguageSwitch2CustomEvent<T> extends CustomEvent<T> {
@@ -421,19 +353,6 @@ declare namespace LocalJSX {
     }
     interface SwisspostInternetHeader {
         /**
-          * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
-          * @default 'auto'
-         */
-        "activeRoute"?: 'auto' | false | string;
-        /**
-          * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
-         */
-        "configProxy"?: string;
-        /**
-          * Customize the header config loaded from the post portal.
-         */
-        "customConfig"?: string | ICustomConfig;
-        /**
           * Target environment. Choose 'int01' for local testing.
           * @default 'prod'
          */
@@ -448,59 +367,13 @@ declare namespace LocalJSX {
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
-          * The header uses this cookie to set the language. Disables automatic language detection.
-         */
-        "languageCookieKey"?: string;
-        /**
-          * The header uses this local storage key to set the language. Disables automatic language selection.
-          * @default 'swisspost-internet-header-language'
-         */
-        "languageLocalStorageKey"?: string;
-        /**
-          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you would like to stay on subpages when the user changes language.
-         */
-        "languageSwitchOverrides"?: string | IAvailableLanguage[];
-        /**
-          * Toggle the login link (when logged out) or the user widget (when logged in).
-          * @default true
-         */
-        "login"?: boolean;
-        /**
-          * Override the logout-url provided by the portal config.
-         */
-        "logoutUrl"?: string;
-        /**
-          * Toggle the meta navigation.
-          * @default true
-         */
-        "meta"?: boolean;
-        /**
           * Fires when the header has been rendered to the page.
          */
         "onHeaderLoaded"?: (event: SwisspostInternetHeaderCustomEvent<void>) => void;
         /**
-          * Online Services only: Add custom links to the special online service navigation entry
-         */
-        "osFlyoutOverrides"?: string | NavMainEntity;
-        /**
           * Your project id, previously passed as query string parameter serviceId.
          */
         "project"?: string;
-        /**
-          * Toggle the search button.
-          * @default true
-         */
-        "search"?: boolean;
-        /**
-          * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
-          * @default true
-         */
-        "skiplinks"?: boolean;
-        /**
-          * Sticky behaviour of the header.
-          * @default 'minimal'
-         */
-        "stickyness"?: StickynessOptions;
     }
     interface IntrinsicElements {
         "focus-trap": FocusTrap;

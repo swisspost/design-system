@@ -56,19 +56,6 @@ Type: `Promise<boolean>`
 Boolean indicating new state
 
 
-## Dependencies
-
-### Used by
-
- - [swisspost-internet-header](../post-internet-header)
-
-### Graph
-```mermaid
-graph TD;
-  swisspost-internet-header --> post-main-navigation
-  style post-main-navigation fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
