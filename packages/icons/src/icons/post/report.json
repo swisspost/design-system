@@ -27388,6 +27388,340 @@
       "modifiedAt": "2025-11-29T08:05:04.073Z"
     },
     {
+      "uuid": "5d2ee4f0-f764-11f0-b3dc-0050568d2654",
+      "id": 8786530,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8786530/storage/MDA4Nzg2NTMwLzAvbWFzdGVy",
+        "keywords": [
+          "Foto",
+          "photon detection",
+          "Fotonachweis",
+          "Preuve photographique",
+          "Prova fotografica"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2749.svg",
+        "basename": "2749",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-22T07:31:28.000Z",
+      "modifiedAt": "2026-01-23T15:24:42.000Z"
+    },
+    {
+      "uuid": "5a7c6290-f779-11f0-b3dc-0050568d2654",
+      "id": 8789148,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8789148/storage/MDA4Nzg5MTQ4LzAvbWFzdGVy",
+        "keywords": [
+          "Postschalter",
+          "Postal counter",
+          "Contatore postale",
+          "Compteur postal",
+          "Served Counter",
+          "Bedienter Schalter",
+          "Guichet desservi",
+          "Sportello servito"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2750.svg",
+        "basename": "2750",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-22T10:01:42.000Z",
+      "modifiedAt": "2026-01-23T15:24:42.000Z"
+    },
+    {
+      "uuid": "fcd58302-f779-11f0-b3dc-0050568d2654",
+      "id": 8789229,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8789229/storage/MDA4Nzg5MjI5LzAvbWFzdGVy",
+        "keywords": [
+          "Automat",
+          "Vending machine",
+          "Macchinario",
+          "Automate",
+          "self-service",
+          "Selbstbedienung",
+          "Libre-service",
+          "Self-service"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2751.svg",
+        "basename": "2751",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-22T10:06:15.000Z",
+      "modifiedAt": "2026-01-23T15:34:55.000Z"
+    },
+    {
+      "uuid": "29b24c30-fce0-11f0-8bff-0050568d2654",
+      "id": 8953525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8953525/storage/MDA4OTUzNTI1LzAvbWFzdGVy",
+        "keywords": [
+          "Retrieve waste",
+          "Abfall zurückholen",
+          "Reprise des déchets",
+          "Riprendere i rifiuti",
+          "Undelete",
+          "Löschen rückgängig machen",
+          "Annuler la suppression",
+          "Annullare la cancellazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2752.svg",
+        "basename": "2752",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-29T07:00:15.000Z",
+      "modifiedAt": "2026-01-30T06:05:04.075Z"
+    },
+    {
+      "uuid": "c34dd580-fda3-11f0-bb98-0050568d2654",
+      "id": 8970660,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8970660/storage/MDA4OTcwNjYwLzAvbWFzdGVy",
+        "keywords": [
+          "Trophäe",
+          "Trophy",
+          "Trofeo",
+          "Trophée",
+          "Pokal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2753.svg",
+        "basename": "2753",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-30T06:20:24.000Z",
+      "modifiedAt": "2026-01-31T06:05:02.338Z"
+    },
+    {
+      "uuid": "38a9e420-1214-11f1-86d5-0050568d2654",
+      "id": 9281964,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281964/storage/MDA5MjgxOTY0LzAvbWFzdGVy",
+        "keywords": [
+          "Address unknown",
+          "Adresse Unbekannt",
+          "Adresse inconnue",
+          "Indirizzo sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2754.svg",
+        "basename": "2754",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:35:48.000Z",
+      "modifiedAt": "2026-02-25T07:05:06.206Z"
+    },
+    {
+      "uuid": "d39eed90-1214-11f1-86d5-0050568d2654",
+      "id": 9281969,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281969/storage/MDA5MjgxOTY5LzAvbWFzdGVy",
+        "keywords": [
+          "Firma",
+          "Company",
+          "Société",
+          "Società",
+          "Company Unknown",
+          "Firma Unbekannt",
+          "Entreprise inconnue",
+          "Ditta Sconosciuta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2755.svg",
+        "basename": "2755",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:40:08.000Z",
+      "modifiedAt": "2026-02-25T07:05:06.206Z"
+    },
+    {
+      "uuid": "8af521d0-1215-11f1-86d5-0050568d2654",
+      "id": 9281974,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281974/storage/MDA5MjgxOTc0LzAvbWFzdGVy",
+        "keywords": [
+          "Abroad",
+          "Ins Ausland",
+          "À l’étranger",
+          "All’estero"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2756.svg",
+        "basename": "2756",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:45:16.000Z",
+      "modifiedAt": "2026-02-25T07:05:06.206Z"
+    },
+    {
+      "uuid": "3f802820-1216-11f1-86d5-0050568d2654",
+      "id": 9281980,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281980/storage/MDA5MjgxOTgwLzAvbWFzdGVy",
+        "keywords": [
+          "Unknown person",
+          "Person Unbekannt",
+          "Personne inconnue",
+          "Persona sconosciuta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2757.svg",
+        "basename": "2757",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:50:18.000Z",
+      "modifiedAt": "2026-02-25T07:05:06.206Z"
+    },
+    {
+      "uuid": "7a017660-1217-11f1-86d5-0050568d2654",
+      "id": 9281986,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281986/storage/MDA5MjgxOTg2LzAvbWFzdGVy",
+        "keywords": [
+          "Unknown Moved",
+          "Unbekannt Weggezogen",
+          "Déménagé à une adresse inconnue",
+          "Sconosciuto Traslocato"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2758.svg",
+        "basename": "2758",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:59:06.000Z",
+      "modifiedAt": "2026-02-25T07:05:06.206Z"
+    },
+    {
+      "uuid": "76464db0-1218-11f1-86d5-0050568d2654",
+      "id": 9281991,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281991/storage/MDA5MjgxOTkxLzAvbWFzdGVy",
+        "keywords": [
+          "Grabstein",
+          "Gravestone",
+          "Pietra tombale",
+          "Pierre Tombale",
+          "verstorbene Person",
+          "Fallen Person",
+          "Persona Caduta",
+          "Personne Tombée",
+          "Deceased",
+          "Verstorben",
+          "Décédé",
+          "Deceduto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2759.svg",
+        "basename": "2759",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T07:06:09.000Z",
+      "modifiedAt": "2026-02-25T07:11:27.000Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40626,13 +40960,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1070,
+    "success": 1081,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-01-20T06:14:47.420Z",
-  "version": "10.0.0-next.57"
+  "created": "2026-02-25T07:12:46.073Z",
+  "version": "10.0.0-next.61"
 }

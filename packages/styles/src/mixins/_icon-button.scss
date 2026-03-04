@@ -17,6 +17,12 @@
   min-height: 0;
   vertical-align: text-bottom;
 
+  // Button links have no padding to be "flush" with a text content
+  &.btn-link {
+    width: tokens.get('icon-button-#{$actual-size}-icon', components.$post-icon-button);
+    height: tokens.get('icon-button-#{$actual-size}-icon', components.$post-icon-button);
+  }
+
   > post-icon {
     display: block;
     width: tokens.get('icon-button-#{$actual-size}-icon', components.$post-icon-button);

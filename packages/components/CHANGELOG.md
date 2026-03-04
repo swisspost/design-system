@@ -1,5 +1,61 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.62
+
+### Minor Changes
+
+- Updated `post-header` and its sub-components to support Server-Side Rendering. (by [@alizedebray](https://github.com/alizedebray) with [#7208](https://github.com/swisspost/design-system/pull/7208))
+
+- Documented the `post-pagination` component and added design-token–based styles aligned with the design. (by [@leagrdv](https://github.com/leagrdv) with [#7163](https://github.com/swisspost/design-system/pull/7163))
+
+### Patch Changes
+
+- Added null guard in `post-back-to-top` component to prevent errors during SSR hydration. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7213](https://github.com/swisspost/design-system/pull/7213))
+
+- Refactored the `post-banner` styles to reduce the final compiled output size. (by [@alizedebray](https://github.com/alizedebray) with [#7204](https://github.com/swisspost/design-system/pull/7204))
+
+- Fixed an accessibility violation in the `post-header` component on mobile where icon-only interactive elements were missing text alternatives. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7241](https://github.com/swisspost/design-system/pull/7241))
+
+- Updated global styles to prevent web components from being visible until they are fully loaded, avoiding unstyled flashes. (by [@alizedebray](https://github.com/alizedebray) with [#7179](https://github.com/swisspost/design-system/pull/7179))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.62
+  - @swisspost/design-system-styles@10.0.0-next.62
+
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Added null guard when reading step label during initial render. (by [@leagrdv](https://github.com/leagrdv) with [#7097](https://github.com/swisspost/design-system/pull/7097))
+
+- Fixed focus being applied to hidden items across multiple components. (by [@alizedebray](https://github.com/alizedebray) with [#7075](https://github.com/swisspost/design-system/pull/7075))
+
+- Added foreground and background color transitions to `post-avatar` component. (by [@alizedebray](https://github.com/alizedebray) with [#7072](https://github.com/swisspost/design-system/pull/7072))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+  - @swisspost/design-system-styles@10.0.0-next.61
+
+## 10.0.0-next.60
+
+### Minor Changes
+
+- Updated the `post-closebutton` component with new `size` and `position` properties and revised styles. The component is now intended to be absolutely positioned in the top-right corner of the element it closes. (by [@alizedebray](https://github.com/alizedebray) with [#6948](https://github.com/swisspost/design-system/pull/6948))
+
+### Patch Changes
+
+- Fixed the timing of the `postToggle` event in `post-collapsible` component, ensuring it is emitted before the transition. (by [@alizedebray](https://github.com/alizedebray) with [#7074](https://github.com/swisspost/design-system/pull/7074))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.60
+  - @swisspost/design-system-styles@10.0.0-next.60
+
+## 10.0.0-next.59
+
+### Patch Changes
+
+- Updated the focus behavior of the `post-linkarea` component. It now displays a focus ring when the contained link is focused, while links inside a `post-linkarea` no longer show their own focus ring. (by [@alizedebray](https://github.com/alizedebray) with [#7002](https://github.com/swisspost/design-system/pull/7002))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.59
+  - @swisspost/design-system-styles@10.0.0-next.59
+
 ## 10.0.0-next.58
 
 ### Patch Changes

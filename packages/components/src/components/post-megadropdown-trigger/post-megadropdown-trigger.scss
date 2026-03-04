@@ -19,6 +19,10 @@ button {
     > span[aria-hidden] {
       font-weight: 700;
       visibility: hidden;
+
+      &:where(span:empty + *) {
+        visibility: visible;
+      }
     }
 
     // The visible text is positioned on top of the hidden one and adopts the same height and width.

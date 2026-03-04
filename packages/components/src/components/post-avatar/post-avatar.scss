@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/variables/components/button';
 @use '@swisspost/design-system-styles/core' as post;
 
 tokens.$default-map: components.$post-avatar;
@@ -64,6 +65,7 @@ img,
   color: var(--post-avatar-fg);
   text-transform: uppercase;
   font-weight: 400;
+  transition: button.$btn-transition;
 
   span {
     @include post.visuallyhidden();

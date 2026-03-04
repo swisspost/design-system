@@ -3,6 +3,7 @@ name: '[subtask] Design Docs'
 about: Sub-issue to define the specifications and examples of a component in the documentation.
 title: '[design-documentation] component_name_here'
 labels: '🎨 figma'
+type: task
 assignees: ''
 ---
 

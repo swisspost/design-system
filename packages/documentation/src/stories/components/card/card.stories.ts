@@ -164,7 +164,7 @@ export const Interactivity: Story = {
       title: 'Non-interactive card',
       body:
         'A non-interactive card is not clickable. ' +
-        'It contains however either none or more than one interactive elements where each of them triggers different actions. ',
+        'It contains however either none, one or more interactive elements where each of them triggers different actions.',
     })}
   `,
 };
@@ -174,5 +174,9 @@ export const HiddenLink: Story = {
   args: {
     interactive: true,
     hiddenLink: true,
+    title: 'Interactive card with hidden link',
+    body:
+      'Although the card appears to have no link,' +
+      'inspecting the code reveals a visually hidden link included to ensure accessibility support.',
   },
 };

@@ -271,7 +271,13 @@ export class MigrationV99Component extends LitElement {
                           <li>pagination → <i>coming soon</i></li>
                           <li>progressbar → <i>coming soon</i></li>
                           <li>timepicker → <i>coming soon</i></li>
-                          <li>typeahead → <i>coming soon</i></li>
+                          <li>
+                            typeahead →
+                            <a
+                              href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
+                              >input with datalist</a
+                            >
+                          </li>
                         </ul>
                         <span class="info"
                           >Each removed Ng-Bootstrap component has (or will have) an equivalent in

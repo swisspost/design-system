@@ -35,7 +35,6 @@ const meta: MetaComponent = {
         <post-language-menu
           text-change-language="Change the language"
           text-current-language="The currently selected language is #name."
-          variant="list"
           name="language-menu-example"
           slot="language-menu"
         >
