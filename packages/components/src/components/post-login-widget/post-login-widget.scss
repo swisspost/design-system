@@ -52,6 +52,10 @@ post-menu-item a {
   justify-content: start;
 }
 
+[slot='header'] {
+  display: flex;
+}
+
 post-menu div[slot='header'] p {
   margin: 0;
 }

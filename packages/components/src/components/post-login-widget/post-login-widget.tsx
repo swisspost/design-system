@@ -139,7 +139,7 @@ export class PostLoginWidget {
             </post-menu-trigger>
 
             <post-menu id={this.menuId} label={this.textMenuLabel}>
-              <div slot="header" style={{ display: 'flex' }}>
+              <div slot="header">
                 <post-avatar
                   firstname={this.sessionData.name}
                   lastname={this.sessionData.surname}
