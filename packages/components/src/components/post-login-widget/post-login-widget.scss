@@ -28,38 +28,44 @@ a {
   }
 }
 
-post-menu-trigger button {
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  display: block;
-  cursor: pointer;
+post-menu-trigger {
+  button {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    display: block;
+    cursor: pointer;
+
+    &:focus {
+      @include utilities.focus-style;
+      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    }
+  }
 }
 
-post-avatar:hover {
-  --post-avatar-bg: #{tokens.get('avatar-hover-bg', components.$post-avatar)};
-}
+post-avatar {
+  border: none;
 
-post-menu-trigger button:focus {
-  @include utilities.focus-style;
-  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+  &:hover {
+    --post-avatar-bg: #{tokens.get('avatar-hover-bg', components.$post-avatar)};
+  }
 }
 
 post-menu-item {
   display: block;
   width: 100%;
-}
 
-post-menu-item a {
-  width: auto;
-  display: flex;
-  justify-content: start;
+  a {
+    width: auto;
+    display: flex;
+    justify-content: start;
+  }
 }
 
 [slot='header'] {
   display: flex;
-}
 
-post-menu div[slot='header'] p {
-  margin: 0;
+  p {
+    margin: 0;
+  }
 }
