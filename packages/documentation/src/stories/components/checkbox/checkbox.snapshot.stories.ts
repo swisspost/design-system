@@ -65,24 +65,13 @@ export const Checkbox: Story = {
                 size: ['null', 'form-check-sm'],
               });
 
-              return combos.map((combo: Args, idx: number) => {
-                const ctx = {
-                  ...context,
-                  id: `${scheme}-checkbox-group-${crypto.randomUUID()}-${idx}`,
-                  name: `${combo.inline ? 'Inline' : 'Grouped'} ${
-                    combo.size === 'form-check-sm' ? 'Small' : 'Default'
-                  }`,
-                };
-
+              return combos.map((combo: Args) => {
                 return html`
                   <div class="mt-16">
-                    ${renderGroup(
-                      {
-                        hiddenLegend: false,
-                        ...combo,
-                      },
-                      ctx,
-                    )}
+                    ${renderGroup({
+                      hiddenLegend: false,
+                      ...combo,
+                    })}
                   </div>
                 `;
               });
