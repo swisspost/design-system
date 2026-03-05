@@ -525,8 +525,12 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.standard_html_alert}"
                       />
                       <label class="form-check-label" for="components-card_control">
-                        <code>post-card-control</code> component removed
-                        <span class="info"> Replace by the selection card. </span>
+                        CSS classes for Standard HTML <code>card-control</code> component renamed
+                        <span class="info">
+                          Replace <code>.checkbox-button-card</code> and
+                          <code>.radio-button-card</code> with
+                          <code>.selection-card</code> component.
+                        </span>
                       </label>
                     </div>
                   </li>
