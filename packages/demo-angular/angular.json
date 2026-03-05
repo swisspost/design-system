@@ -55,6 +55,7 @@
               }
             ],
             "styles": [
+              "node_modules/@swisspost/design-system-styles/intranet.css",
               "src/styles.scss"
             ]
           },
