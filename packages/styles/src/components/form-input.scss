@@ -183,9 +183,9 @@ input.form-control {
 
       &:focus-within {
         border-radius: 4px;
-          outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
-  outline: tokens.get('focus-outline-color', helpers.$post-focus) none
-  tokens.get('focus-outline-width', helpers.$post-focus) !important;
+        outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
+        outline: tokens.get('focus-outline-color', helpers.$post-focus) none
+          tokens.get('focus-outline-width', helpers.$post-focus) !important;
       }
     }
 
