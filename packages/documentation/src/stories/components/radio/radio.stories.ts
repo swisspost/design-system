@@ -75,7 +75,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the radio button and controls the display of the corresponding return message. <post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs">validation guidelines here</a>.</p></post-banner> ',
+        'Defines the validation state of the radio button and controls the display of the corresponding return message. <post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#radio-button">validation guidelines here</a>.</p></post-banner> ',
       control: {
         type: 'radio',
         labels: { 'null': 'Default', 'is-valid': 'Valid', 'is-invalid': 'Invalid' },
