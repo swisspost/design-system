@@ -1,5 +1,7 @@
 # @swisspost/design-system-theme-ag-grid
 
+## 9.9.0
+
 ## 9.8.0
 
 ### Minor Changes

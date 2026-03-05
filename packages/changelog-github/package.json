@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-changelog-github",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A changelog entry generator for GitHub that links to PRs and users",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
