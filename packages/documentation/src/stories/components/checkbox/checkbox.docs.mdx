@@ -54,6 +54,7 @@ The indeterminate state can only be set via JavaScript and is styled using the `
 ### Grouped
 
 To show a checkbox group, just wrap your checkboxes in a `fieldset`.
+Use the small variant `.form-check-sm` to render small checkboxes.
 
 <post-banner>
   Don't forget to add also a `<legend>` element.
@@ -67,11 +68,10 @@ Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe
   <Controls of={checkboxStories.Grouped} />
 </div>
 
-Use the small variant `.form-check-sm` to render small checkboxes.
-
 ### Inline
 
 To show the checkboxes inline, just add the `.form-check-inline` class to each of the checkboxes in a group.
+Use the small variant `.form-check-sm` combined with the `.form-check-inline` class to render small checkboxes in an inline group.
 
 <post-banner>
   Don't forget to wrap your checkbox group in a <code>&lt;fieldset&gt;</code> that includes a <code>&lt;legend&gt;</code> element.
@@ -84,6 +84,4 @@ Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe
 <div className="hide-col-default">
   <Controls of={checkboxStories.Inline} />
 </div>
-
-Use the small variant combined with the `.form-check-inline` class to render small checkboxes in an inline group.
 
