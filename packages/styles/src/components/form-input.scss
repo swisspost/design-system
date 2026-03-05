@@ -165,6 +165,77 @@ input.form-control {
     }
   }
 
+  &[type='time'] {
+    // Make the native browser clock icon transparent while keeping it interactive.
+    // The native indicator sits below our custom icon and handles the click/open behavior.
+    &::-webkit-calendar-picker-indicator {
+      background: transparent;
+      cursor: pointer;
+      position: absolute;
+      inset-inline-end: tokens.get('input-padding-inline-end');
+      top: 50%;                          // ← add
+      transform: translateY(-50%);       // ← add
+      width: tokens.get('input-sizing-icon');
+      height: tokens.get('input-sizing-icon');
+      z-index: 1;
+      padding: 0;
+      margin: 0;
+
+      &:focus-within {
+        border-radius: 4px;
+          outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
+  outline: tokens.get('focus-outline-color', helpers.$post-focus) none
+  tokens.get('focus-outline-width', helpers.$post-focus) !important;
+      }
+    }
+
+    // Custom time icon overlay.
+    // pointer-events: none ensures clicks pass through to the native picker indicator beneath.
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      inset-inline-end: tokens.get('input-padding-inline-end');
+      top: 50%;
+      transform: translateY(-50%);
+      width: tokens.get('input-sizing-icon');
+      height: tokens.get('input-sizing-icon');
+      pointer-events: none;
+      background-color: tokens.get('input-color-enabled-fg');
+      z-index: 2;
+
+      @include icons-mx.mask-image('time');
+    }
+
+    &:disabled::after {
+      background-color: tokens.get('input-color-disabled-fg');
+    }
+
+    &:hover:not(:disabled)::after {
+      background-color: tokens.get('input-color-hover-fg');
+    }
+
+    // When validation icons are shown, shift the custom icon left to avoid overlap
+    &.is-valid,
+    &.is-invalid {
+      &::after {
+        inset-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} +
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-sizing-icon')}
+        );
+      }
+
+      &::-webkit-calendar-picker-indicator {
+        inset-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} +
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-sizing-icon')}
+        );
+      }
+    }
+  }
+
   &::placeholder {
     color: tokens.get('input-color-enabled-fg');
     opacity: 1;
@@ -357,21 +428,6 @@ input.form-control {
         padding-inline-end: tokens.get('input-label-empty-padding-inline-end');
       }
     }
-
-    &[type='time'] {
-      &::-webkit-calendar-picker-indicator {
-        height: tokens.get('input-sizing-icon');
-        width: tokens.get('input-sizing-icon');
-        position: absolute;
-        right: calc(#{tokens.get('input-padding-inline-end')} - 3px);
-        top: calc(#{tokens.get('input-sizing-height')} / 2 - 2px);
-        transform: translateY(-50%);
-        cursor: pointer;
-        z-index: 3;
-        border-radius: 4px;
-        background: transparent;
-      }
-    }
   }
 
   > input.form-control:-webkit-autofill {
@@ -382,26 +438,6 @@ input.form-control {
       color: tokens.get('input-color-selected-fg');
       font-size: tokens.get('input-label-filled-font-size');
       background-color: tokens.get('input-color-selected-bg');
-    }
-  }
-
-  &:has(> input.form-control[type='time']) {
-    &::after {
-      content: '';
-      position: absolute;
-      right: tokens.get('input-padding-inline-end');
-      top: calc(#{tokens.get('input-sizing-height')} / 2);
-      transform: translateY(-50%);
-      width: tokens.get('input-sizing-icon');
-      height: tokens.get('input-sizing-icon');
-      pointer-events: none;
-    }
-
-
-    &::after {
-      z-index: 5;
-      background-color: tokens.get('input-color-enabled-fg');
-      @include icons-mx.mask-image('time');
     }
   }
 
