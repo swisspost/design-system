@@ -22,6 +22,7 @@ const meta: MetaComponent = {
     textMessages: 'Messages',
     textSettings: 'Settings',
     textLogout: 'Logout',
+    textMenuLabel: 'User menu',
   },
   argTypes: {
     loginUrl: {
@@ -61,6 +62,12 @@ const meta: MetaComponent = {
       control: { type: 'text' },
       table: { category: 'Props' },
     },
+    textMenuLabel: {
+      name: 'text-menu-label',
+      description: 'Accessible label for the user menu.',
+      control: { type: 'text' },
+      table: { category: 'Props' },
+    },
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => html`
@@ -84,6 +91,7 @@ export const Default: Story = {
       text-messages=${args.textMessages}
       text-settings=${args.textSettings}
       text-logout=${args.textLogout}
+      text-menu-label=${args.textMenuLabel}
     ></post-login-widget>
   `,
 };

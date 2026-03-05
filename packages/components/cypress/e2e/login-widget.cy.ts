@@ -22,7 +22,8 @@ describe('login-widget', () => {
         .and('have.attr', 'text-user-profile', 'My Profile')
         .and('have.attr', 'text-messages', 'Messages')
         .and('have.attr', 'text-settings', 'Settings')
-        .and('have.attr', 'text-logout', 'Logout');
+        .and('have.attr', 'text-logout', 'Logout')
+        .and('have.attr', 'text-menu-label', 'User menu');
     });
 
     it('should log an error when loginUrl prop is missing', () => {
@@ -70,6 +71,14 @@ describe('login-widget', () => {
         cy.spy(win.console, 'error').as('consoleError');
       });
       cy.get('@login-widget').invoke('removeAttr', 'text-logout');
+      cy.get('@consoleError').should('be.called');
+    });
+
+    it('should log an error when textMenuLabel prop is missing', () => {
+      cy.window().then(win => {
+        cy.spy(win.console, 'error').as('consoleError');
+      });
+      cy.get('@login-widget').invoke('removeAttr', 'text-menu-label');
       cy.get('@consoleError').should('be.called');
     });
   });

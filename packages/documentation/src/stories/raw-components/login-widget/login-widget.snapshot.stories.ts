@@ -22,6 +22,7 @@ export const PostLoginWidget: Story = {
         text-messages=${args.textMessages}
         text-settings=${args.textSettings}
         text-logout=${args.textLogout}
+        text-menu-label=${args.textMenuLabel}
       ></post-login-widget>
     `);
   },
