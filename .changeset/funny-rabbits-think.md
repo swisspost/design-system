@@ -3,4 +3,4 @@
 "@swisspost/design-system-styles": minor
 ---
 
-The CSS `.form-check-sm` class has been added to the Form Radio Button component and the variant size is added to the component's documunetation.
+Added the small variant class `.form-check-sm` to the form radio button.
