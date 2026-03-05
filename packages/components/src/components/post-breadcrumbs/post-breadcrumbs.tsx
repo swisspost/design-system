@@ -67,7 +67,9 @@ export class PostBreadcrumbs {
   }
 
   componentWillLoad() {
-    this.updateBreadcrumbItems();
+    setTimeout(() => {
+      this.updateBreadcrumbItems();
+    });
   }
 
   componentDidLoad() {
@@ -77,7 +79,7 @@ export class PostBreadcrumbs {
     this.validateTextMoreItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
-    this.updateBreadcrumbItems();
+    //this.updateBreadcrumbItems();
   }
 
   disconnectedCallback() {
