@@ -42,7 +42,3 @@ ol {
     display: none;
   }
 }
-
-:has(+ span:empty) {
-  display: none;
-}
