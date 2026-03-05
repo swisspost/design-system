@@ -1,5 +1,12 @@
 # @swisspost/design-system-changelog-github
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated `post-card-control` deprecation messages to clarify the different timelines for standard HTML and web component: - Changed the deprecation message for standard HTML component to indicate renaming instead of removal.
+  - Added deprecation message for web component indicating removal in the next major version. (by [@bucknatt](https://github.com/bucknatt) with [#7219](https://github.com/swisspost/design-system/pull/7219))
+
 ## 1.0.2
 
 ### Patch Changes
