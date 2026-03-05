@@ -67,6 +67,7 @@ export class PostBreadcrumbs {
   }
 
   componentWillLoad() {
+    console.log('renders');
     setTimeout(() => {
       this.updateBreadcrumbItems();
     });
