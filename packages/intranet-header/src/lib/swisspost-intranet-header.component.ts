@@ -33,8 +33,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   @Input() additionalInfo = '';
   @Input() hasNavbar = true;
   @Input() showIntranetSearch = false;
-  @Input() optionDropdownContent!: TemplateRef<unknown>;
-  @Input() optionHeaderContent!: TemplateRef<unknown>;
+  @Input() optionDropdownContent!: TemplateRef<any>;
+  @Input() optionHeaderContent!: TemplateRef<any>;
   @Input() logoUrl = '';
   @Input() searchUrl = '';
   @Input() hideCurrentUserId = false;
