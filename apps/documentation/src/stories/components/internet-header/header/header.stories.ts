@@ -1,6 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { spreadArgs } from '@/utils';
+import { addDeprecation, spreadArgs } from '@/utils';
 import customConfig from './config/custom-config';
 import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';
@@ -52,6 +52,7 @@ const meta: MetaComponent = {
       },
     },
     activeRoute: {
+      description: addDeprecation('swisspost-internet-header', 'activeRoute', 'values will no longer be accepted in the next major release. Use "none" for false and "auto" for true. All other values remain unchanged.'),
       control: {
         type: 'text',
       },
@@ -60,50 +61,59 @@ const meta: MetaComponent = {
       },
     },
     configProxy: {
+      description: addDeprecation('swisspost-internet-header', 'configProxy', 'this functionality will no longer be provided in the next major release and was deprecated previously.'),
       control: false,
       table: {
         category: 'Deprecated props',
       },
     },
     languageCookieKey: {
+      description: addDeprecation('swisspost-internet-header', 'languageCookieKey', 'this will no longer be supported in the next major release due to low usage, in favor of a project-specific solution.'),
       control: false,
       table: {
         category: 'Deprecated props',
       },
     },
     logoutUrl: {
+      description: addDeprecation('swisspost-internet-header', 'logoutUrl', 'use the new configuration API to specify the logout URL. This option will be removed in the next major release.'),
       control: false,
       table: {
         category: 'Deprecated props',
       },
     },
     languageLocalStorageKey: {
+      description: addDeprecation('swisspost-internet-header', 'languageLocalStorageKey', 'this will no longer be supported in the next major release due to low usage, in favor of a project-specific solution.'),
       control: false,
       table: {
         category: 'Deprecated props',
       },
     },
     login: {
+      description: addDeprecation('swisspost-internet-header', 'login', 'use the new configuration API to show or hide the login. This option will be removed in the next major release.'),
       table: {
         category: 'Deprecated props',
       },
     },
     meta: {
+      description: addDeprecation('swisspost-internet-header', 'meta', 'use the new configuration API to show or hide the meta navigation links. This option will be removed in the next major release.'),
       table: {
         category: 'Deprecated props',
       },
     },
     search: {
+      description: addDeprecation('swisspost-internet-header', 'search', 'use the new configuration API to show or hide the search. This option will be removed in the next major release.'),
       table: {
         category: 'Deprecated props',
       },
     },
     skiplinks: {
+      description: addDeprecation('swisspost-internet-header', 'skiplinks', 'please implement the skiplinks component. This option will be removed in the next major release.'),
       table: {
         category: 'Deprecated props',
       },
     },
     stickyness: {
+      description: addDeprecation('swisspost-internet-header', 'stickyness', 'this option will no longer be configurable with the new header in the next major release.'),
       control: {
         labels: {
           full: 'full',
@@ -122,6 +132,7 @@ const meta: MetaComponent = {
       },
     },
     customConfig: {
+      description: addDeprecation('swisspost-internet-header', 'customConfig', 'use the main navigation slot to add custom menu entries. This option will be removed in the next major release.'),
       control: 'object',
       table: {
         category: 'Deprecated props',
@@ -132,6 +143,7 @@ const meta: MetaComponent = {
       },
     },
     selfAdminOrigin: {
+      description: addDeprecation('swisspost-internet-header', 'selfAdminOrigin', 'use the new configuration API to specify these URLs. This option will be removed in the next major release.'),
       control: {
         type: 'text',
       },
@@ -140,6 +152,7 @@ const meta: MetaComponent = {
       },
     },
     languageSwitchOverrides: {
+      description: addDeprecation('swisspost-internet-header', 'languageSwitchOverrides', 'use the language menu slot to override the language switch and specify custom URLs. This option will be removed in the next major release.'),
       control: {
         type: 'object',
       },
@@ -152,6 +165,7 @@ const meta: MetaComponent = {
       },
     },
     osFlyoutOverrides: {
+      description: addDeprecation('swisspost-internet-header', 'stickyness', 'the new header will no longer include this flyout in the next major release. Use the main navigation slot to add application-specific menu items.'),
       control: 'object',
       table: {
         category: 'Deprecated props',
@@ -161,6 +175,10 @@ const meta: MetaComponent = {
         },
       },
     },
+    'method-getCurrentLanguage': {
+      name: 'getCurrentLanguage',
+      description: addDeprecation('swisspost-internet-header', 'getCurrentLanguage', 'use `document.documentElement.lang` instead.')
+    }
   },
   decorators: [
     story => html`
