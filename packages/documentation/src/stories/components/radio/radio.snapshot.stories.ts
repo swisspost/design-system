@@ -11,13 +11,6 @@ export default {
   title: 'Snapshots',
 };
 
-// Simple id generator for snapshots: timestamp + counter
-let __snapshotCounter = 0;
-function snapshotId(prefix = '') {
-  __snapshotCounter += 1;
-  return `${prefix}${Date.now().toString(36)}-${__snapshotCounter.toString(36)}`;
-}
-
 type Story = StoryObj;
 
 export const Radio: Story = {
@@ -44,40 +37,42 @@ export const Radio: Story = {
               requiredOptional: ['null', 'required', 'optional'],
             }),
           ]
-            // remove disabled & validated examples
             .filter(
               (args: Args) =>
                 !(args.disabled && args.validation !== 'null') &&
                 !(args.requiredOptional === 'required' && args.disabled === true),
             )
             .map((args: Args) => {
-              const id = `${scheme}-${snapshotId()}`;
+              context.id = `${scheme}-${crypto.randomUUID()}`;
               return meta.render?.(
                 { ...context.args, ...args, name: `${scheme}-snapshot-group` },
-                { ...context, id },
+                context,
               );
             })}
         </div>
 
-        <!-- Radio Group: vertical/horizontal x default/small -->
         <div class="mt-16 d-flex gap-16 flex-column">
           ${(() => {
             const combos = bombArgs({
               inline: [false, true],
               size: ['null', 'form-check-sm'],
             });
-            return combos.map((combo: Args, idx: number) => {
-              const ctx = {
-                ...context,
-                id: `${scheme}-group-${snapshotId()}-${idx}`,
-                name: `${combo.inline ? 'Inline' : 'Grouped'} ${combo.size === 'form-check-sm' ? 'Small' : 'Default'}`,
-              };
-              return html`<div class="mt-16">
-                ${renderGroup(
-                  { label: 'Label', hiddenLegend: false, checkedRadio: null, ...combo },
-                  ctx,
-                )}
-              </div>`;
+
+            return combos.map((combo: Args) => {
+              context.id = `${scheme}-${crypto.randomUUID()}`;
+              return html`
+                <div class="mt-16">
+                  ${renderGroup(
+                    {
+                      label: 'Label',
+                      hiddenLegend: false,
+                      checkedRadio: null,
+                      ...combo,
+                    },
+                    context,
+                  )}
+                </div>
+              `;
             });
           })()}
         </div>
