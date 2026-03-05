@@ -105,7 +105,6 @@ export class PostStepper {
       console.error(
         'The selected-index cannot be higher than the current-index, as only the current and completed steps can be selected.',
       );
-      return;
     }
   }
 
@@ -146,11 +145,11 @@ export class PostStepper {
         let labelText = '';
 
         if (this.currentIndex > i) {
-          labelText = `${this.textCompletedStep}:`;
+          labelText = `${this.textCompletedStep}: `;
         }
 
         if (this.selectedIndex === i) {
-          labelText = `${labelText} ${this.textCurrentStep}:`;
+          labelText = `${labelText}${this.textCurrentStep}: `;
         }
 
         hiddenLabel.textContent = labelText;
