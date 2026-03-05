@@ -3,6 +3,7 @@ import { html } from 'lit';
 import customFooterConfig from './custom-config/custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';
 import { MetaComponent } from '@root/types';
+import { addDeprecation } from '@/utils';
 
 const meta: MetaComponent = {
   id: '27fc009d-3eec-43a9-b3a2-55531e721817',
@@ -22,8 +23,9 @@ const meta: MetaComponent = {
   argTypes: {
     customConfig: {
       control: 'object',
-      description: '<span className="mb-micro alert alert-warning alert-sm">**Deprecated:** use the new API to specify footer links in all four columns.</span>',
+      description: addDeprecation('swisspost-internet-footer', 'customConfig', 'use the new API to specify footer links in all four columns. This option will be removed in the next major release.'),
       table: {
+        category: 'Deprecated props',
         type: {
           summary: 'ICustomConfig',
           detail: JSON.stringify(customFooterConfig),
