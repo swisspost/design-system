@@ -120,7 +120,9 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.validation != 'null' ? `${args.validation}-desc-${id}` : nothing}"
+      aria-describedby="${args.validation != 'null'
+        ? `${args.validation}-id-${context.id}`
+        : nothing}"
       @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
       ?required="${args.requiredOptional === 'required'}"
     />
