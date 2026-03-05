@@ -369,6 +369,7 @@ input.form-control {
         cursor: pointer;
         z-index: 3;
         border-radius: 4px;
+        background: transparent;
       }
     }
   }
@@ -385,7 +386,6 @@ input.form-control {
   }
 
   &:has(> input.form-control[type='time']) {
-    &::before,
     &::after {
       content: '';
       position: absolute;
@@ -397,11 +397,6 @@ input.form-control {
       pointer-events: none;
     }
 
-    &::before {
-      border-radius: 4px;
-      z-index: 4;
-      background-color: white;
-    }
 
     &::after {
       z-index: 5;
