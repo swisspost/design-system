@@ -34,13 +34,13 @@ export const Radio: Story = {
               checked: [false, true],
               disabled: [false, true],
               size: ['null', 'form-check-sm'],
-              validation: Array.from(context.argTypes.validation.options ?? []),
+              validation: context.argTypes.validation.options,
               requiredOptional: ['null', 'required', 'optional'],
             }),
             ...bombArgs({
               hiddenLabel: [true],
               disabled: [false, true],
-              validation: Array.from(context.argTypes.validation.options ?? []),
+              validation: context.argTypes.validation.options,
               requiredOptional: ['null', 'required', 'optional'],
             }),
           ]
