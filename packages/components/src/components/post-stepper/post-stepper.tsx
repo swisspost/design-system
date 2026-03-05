@@ -8,19 +8,19 @@ import { checkRequiredAndPattern, checkRequiredAndType } from '@/utils';
   shadow: true,
 })
 export class PostStepper {
-  @Element() host!: HTMLPostStepperElement;
+  @Element() host: HTMLPostStepperElement;
 
   private stepItems!: NodeListOf<HTMLPostStepperItemElement>;
 
   /**
    * Active step label is for visual purposes on mobile only
    */
-  @State() mobileActiveStepLabel!: string;
+  @State() mobileActiveStepLabel: string;
 
   /**
    * Active step name is for visual purposes on mobile only
    */
-  @State() mobileActiveStepName!: string;
+  @State() mobileActiveStepName: string;
 
   /**
    * "Current step" label for accessibility
@@ -62,7 +62,9 @@ export class PostStepper {
   @Watch('currentIndex')
   validateCurrentIndex() {
     checkRequiredAndType(this, 'currentIndex', 'number');
-    this.updateSteps();
+    if (this.stepItems) {
+      this.updateSteps();
+    }
   }
 
   componentDidLoad() {
@@ -80,7 +82,9 @@ export class PostStepper {
     if (this.textStepNumber) {
       const labelTemplate = this.textStepNumber;
       this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.currentIndex + 1}`);
-      this.updateMobileActiveStepVisibility();
+      if (this.stepItems) {
+        this.updateMobileActiveStepVisibility();
+      }
     }
   }
 

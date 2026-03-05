@@ -7,8 +7,6 @@
 
 tokens.$default-map: components.$post-stepper;
 
-// $post-icon-success-solid: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxzeW1ib2wgaWQ9Imktc3VjY2Vzcy1zb2xpZCI+PHN5bWJvbCBpZD0iczE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiPjxwYXRoIGQ9Ik03Ljk5LS4wOUMzLjU4LS4wOSAwIDMuNDkgMCA3LjkxczMuNTggOCA3Ljk5IDggOC0zLjU4IDgtOC0zLjU4LTgtOC04bTMuMzIgNi4xTDcuNTIgMTEuMiA0LjYzIDguNDRhLjc0Ni43NDYgMCAwIDEtLjAyLTEuMDZjLjI5LS4zLjc2LS4zMSAxLjA2LS4wMmwxLjY1IDEuNTggMi43OC0zLjgxYS43NTEuNzUxIDAgMSAxIDEuMjIuODhaIi8+PC9zeW1ib2w+PHN5bWJvbCBpZD0iczI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik0xMS45OSAwQzUuMzYgMCAwIDUuMzggMCAxMnM1LjM3IDEyIDEyIDEyIDEyLTUuMzcgMTItMTJTMTguNjIgMCAxMS45OSAwbTQuNzcgOC44Ni01LjUxIDcuNTYtNC4xMy0zLjk1Yy0uMzUtLjMzLS4zNi0uODktLjAzLTEuMjRzLjg5LS4zNiAxLjI0LS4wM2wyLjY5IDIuNTcgNC4zMy01Ljk0Yy4yOC0uMzkuODMtLjQ4IDEuMjItLjE5LjM5LjI4LjQ4LjgzLjE5IDEuMjIiLz48L3N5bWJvbD48c3ltYm9sIGlkPSJzMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE1Ljk5IDBjLTguODQgMC0xNiA3LjE2LTE2IDE2czcuMTYgMTYgMTYgMTYgMTYtNy4xNiAxNi0xNi03LjE2LTE2LTE2LTE2bTYuNzkgMTEuMjItNy45MSAxMC44NS01Ljg1LTUuNThhLjk5Ni45OTYgMCAwIDEtLjAzLTEuNDEuOTk2Ljk5NiAwIDAgMSAxLjQxLS4wM2w0LjE5IDQuMDEgNi41Ny05LjAxYy4zMi0uNDUuOTUtLjU0IDEuNC0uMjIuNDUuMzMuNTQuOTUuMjIgMS40WiIvPjwvc3ltYm9sPjxzeW1ib2wgaWQ9InM0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMTkuOTktLjA2Yy0xMS4wNSAwLTIwIDguOTYtMjAgMjBzOC45NSAyMCAyMCAyMCAyMC04Ljk1IDIwLTIwLTguOTYtMjAtMjAtMjBtOC4zOCAxMy45Ni05LjgxIDEzLjQ1LTcuMjEtNi44OGMtLjQ1LS40My0uNDctMS4xNC0uMDQtMS41OXMxLjE0LS40NyAxLjU5LS4wNGw1LjM1IDUuMTEgOC4yOS0xMS4zOGMuMzctLjUgMS4wNy0uNjEgMS41Ny0uMjUuNS4zNy42MSAxLjA3LjI1IDEuNTdaIi8+PC9zeW1ib2w+PHN5bWJvbCBpZD0iczQ4IiB2aWV3Qm94PSIwIDAgNDggNDgiPjxwYXRoIGQ9Ik0yMy45OS0uMDFjLTEzLjI2IDAtMjQgMTAuNzQtMjQgMjRzMTAuNzUgMjQgMjQgMjQgMjQtMTAuNzUgMjQtMjQtMTAuNzUtMjQtMjQtMjRtOS45OCAxNi42OC0xMS43IDE2LjA1LTguNTYtOC4xOGExLjI1IDEuMjUgMCAwIDEtLjA0LTEuNzdjLjQ4LS41IDEuMjctLjUyIDEuNzctLjA0bDYuNSA2LjIxTDMxLjk2IDE1LjJjLjQxLS41NiAxLjE5LS42OCAxLjc1LS4yN3MuNjggMS4xOS4yNyAxLjc1WiIvPjwvc3ltYm9sPjxzeW1ib2wgaWQ9InM2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cGF0aCBkPSJNMzEuOTggMGMtMTcuNjcgMC0zMiAxNC4zMi0zMiAzMnMxNC4zMyAzMiAzMiAzMiAzMi0xNC4zMyAzMi0zMi0xNC4zMi0zMi0zMi0zMm0xMy4wNyAyMi4wOC0xNS40IDIxLjEzLTExLjE4LTEwLjY4Yy0uNTUtLjUyLS41Ny0xLjM5LS4wNC0xLjk0LjUyLS41NSAxLjQtLjU3IDEuOTQtLjA0bDguOTEgOC41MSAxMy41NS0xOC41OWExLjM3NSAxLjM3NSAwIDAgMSAyLjIyIDEuNjJaIi8+PC9zeW1ib2w+PHVzZSBzdHlsZT0iZGlzcGxheTogdmFyKC0tczE2LCBub25lKSIgaHJlZj0iI3MxNiIvPjx1c2Ugc3R5bGU9ImRpc3BsYXk6IHZhcigtLXMyNCwgbm9uZSkiIGhyZWY9IiNzMjQiLz48dXNlIHN0eWxlPSJkaXNwbGF5OiB2YXIoLS1zMzIsIG5vbmUpIiBocmVmPSIjczMyIi8+PHVzZSBzdHlsZT0iZGlzcGxheTogdmFyKC0tczQwLCBub25lKSIgaHJlZj0iI3M0MCIvPjx1c2Ugc3R5bGU9ImRpc3BsYXk6IHZhcigtLXM0OCwgbm9uZSkiIGhyZWY9IiNzNDgiLz48dXNlIHN0eWxlPSJkaXNwbGF5OiB2YXIoLS1zNjQsIG5vbmUpIiBocmVmPSIjczY0Ii8+PC9zeW1ib2w+PC9kZWZzPjxzdHlsZT5AbWVkaWEgKG1heC13aWR0aDogMjMuOThweCkge2d7LS1zMTY6YmxvY2s7fX1AbWVkaWEgKG1pbi13aWR0aDogMjRweCkgYW5kIChtYXgtd2lkdGg6IDMxLjk4cHgpIHtney0tczI0OmJsb2NrO319QG1lZGlhIChtaW4td2lkdGg6IDMycHgpIGFuZCAobWF4LXdpZHRoOiAzOS45OHB4KSB7Z3stLXMzMjpibG9jazt9fUBtZWRpYSAobWluLXdpZHRoOiA0MHB4KSBhbmQgKG1heC13aWR0aDogNDcuOThweCkge2d7LS1zNDA6YmxvY2s7fX1AbWVkaWEgKG1pbi13aWR0aDogNDhweCkgYW5kIChtYXgtd2lkdGg6IDYzLjk4cHgpIHtney0tczQ4OmJsb2NrO319QG1lZGlhIChtaW4td2lkdGg6IDY0cHgpIHtney0tczY0OmJsb2NrO319PC9zdHlsZT48Zz48dXNlIGhyZWY9IiNpLXN1Y2Nlc3Mtc29saWQiLz48L2c+PC9zdmc+');
-
 :host {
   grid-row: 1;
   position: relative;
@@ -27,16 +25,16 @@ tokens.$default-map: components.$post-stepper;
   }
 }
 
-:host(:not(:first-child)) {
+:host(:not(:first-of-type)) {
   padding-inline-start: calc(#{tokens.get('stepper-indicator')} / 2);
 }
 
-:host(:not(:last-child)) {
+:host(:not(:last-of-type)) {
   padding-inline-end: calc(#{tokens.get('stepper-indicator')} / 2);
   grid-column: span 2;
 }
 
-:host(:not(:first-child, :last-child)) {
+:host(:not(:first-of-type, :last-of-type)) {
   &::before {
     inset-inline-end: 50%;
   }
@@ -46,15 +44,15 @@ tokens.$default-map: components.$post-stepper;
   }
 }
 
-:host(.stepper-item-current:not(:last-child))::after,
-:host(.stepper-item-current:first-child)::before,
+:host(.stepper-item-current:not(:last-of-type))::after,
+:host(.stepper-item-current:first-of-type)::before,
 :host(.stepper-item-after-current)::before,
-:host(.stepper-item-after-current:last-child)::after {
+:host(.stepper-item-after-current:last-of-type)::after {
   background-color: tokens.get('stepper-connector-active');
 }
 
-:host(.stepper-item-current:not(:first-child))::before,
-:host(.stepper-item-current:last-child)::after,
+:host(.stepper-item-current:not(:first-of-type))::before,
+:host(.stepper-item-current:last-of-type)::after,
 :host(.stepper-item-completed)::after {
   background-color: tokens.get('stepper-connector-completed');
   z-index: 1;
@@ -74,12 +72,12 @@ tokens.$default-map: components.$post-stepper;
   word-break: break-word;
   font-size: tokens.get('stepper-step-label-font-size');
 
-  :host(:not(:first-child, :last-child)) > & {
+  :host(:not(:first-of-type, :last-of-type)) > & {
     margin-inline: auto;
     text-align: center;
   }
 
-  :host(:last-child) > & {
+  :host(:last-of-type) > & {
     margin-inline-start: auto;
     margin-inline-end: calc(40px / -2); // negative margin matching the container padding
     text-align: end;
@@ -114,17 +112,17 @@ tokens.$default-map: components.$post-stepper;
   width: tokens.get('stepper-indicator');
   box-sizing: border-box;
   margin-block-end: tokens.get('stepper-gap-text-start');
-  color: tokens.get('stepper-enabled-fg');
-  background-color: tokens.get('stepper-enabled-bg');
-  border: tokens.get('stepper-border-width') solid tokens.get('stepper-enabled-stroke');
+  color: tokens.get('stepper-disabled-fg');
+  background-color: tokens.get('stepper-disabled-bg');
+  border: tokens.get('stepper-border-width') solid tokens.get('stepper-disabled-stroke');
   border-radius: tokens.get('stepper-border-radius-round');
   text-indent: initial;
 
-  :host(:not(:first-child, :last-child)) > & {
+  :host(:not(:first-of-type, :last-of-type)) > & {
     margin-inline: auto;
   }
 
-  :host(:last-child) > & {
+  :host(:last-of-type) > & {
     margin-inline-start: auto;
   }
 
@@ -135,11 +133,11 @@ tokens.$default-map: components.$post-stepper;
     border-color: tokens.get('stepper-completed-stroke');
   }
 
-  // Future steps
-  :host(.stepper-item-inactive) > & {
-    color: tokens.get('stepper-disabled-fg');
-    background-color: tokens.get('stepper-disabled-bg');
-    border-color: tokens.get('stepper-disabled-stroke');
+  // // Future steps
+  :host(.stepper-item-current) > & {
+    color: tokens.get('stepper-enabled-fg');
+    background-color: tokens.get('stepper-enabled-bg');
+    border: tokens.get('stepper-border-width') solid tokens.get('stepper-enabled-stroke');
   }
 }
 
@@ -159,15 +157,15 @@ $checkIconSize: calc(
   height: $checkIconSize;
   color: tokens.get('stepper-completed-bg');
 
-  :host(:first-child) > & {
+  :host(:first-of-type) > & {
     inset-inline-start: tokens.get('stepper-border-width');
   }
 
-  :host(:not(:first-child, :last-child)) > & {
+  :host(:not(:first-of-type, :last-of-type)) > & {
     inset-inline-start: calc(50% - ($checkIconSize / 2));
   }
 
-  :host(:last-child) > & {
+  :host(:last-of-type) > & {
     inset-inline-end: tokens.get('stepper-border-width');
   }
 
@@ -184,16 +182,12 @@ $checkIconSize: calc(
     margin-inline: 0;
     padding: 0 !important;
 
-    &::before {
-      content: unset;
-    }
-
     &::after {
       inset-inline-start: 0 !important;
     }
   }
 
-  :host(:last-child) {
+  :host(:last-of-type) {
     flex: 0 0 32px;
 
     &::after {
@@ -216,8 +210,8 @@ $checkIconSize: calc(
     background-color: CanvasText !important;
   }
 
-  :host(.stepper-item-current:not(:first-child))::before,
-  :host(.stepper-item-current:last-child)::after,
+  :host(.stepper-item-current:not(:first-of-type))::before,
+  :host(.stepper-item-current:last-of-type)::after,
   :host(.stepper-item-completed)::after,
   :host(.stepper-item-completed)::before {
     background-color: Highlight !important;
