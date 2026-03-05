@@ -10,7 +10,7 @@ import { checkRequiredAndPattern, checkRequiredAndType } from '@/utils';
 export class PostStepper {
   @Element() host: HTMLPostStepperElement;
 
-  private stepItems!: NodeListOf<HTMLPostStepperItemElement>;
+  private stepItems: NodeListOf<HTMLPostStepperItemElement>;
 
   /**
    * Active step label is for visual purposes on mobile only
@@ -151,7 +151,7 @@ export class PostStepper {
           <slot onSlotchange={() => this.updateSteps()}></slot>
         </ol>
         <div class="active-step" aria-hidden="true">
-          {this.mobileActiveStepLabel}
+          <span class="active-step-label">{this.mobileActiveStepLabel}</span>
           <span innerHTML={this.mobileActiveStepName}></span>
         </div>
       </Host>

@@ -182,6 +182,10 @@ $checkIconSize: calc(
     margin-inline: 0;
     padding: 0 !important;
 
+    &::before {
+      content: unset;
+    }
+
     &::after {
       inset-inline-start: 0 !important;
     }
