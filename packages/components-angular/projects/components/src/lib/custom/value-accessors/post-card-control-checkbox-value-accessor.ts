@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Directive({
@@ -21,7 +21,7 @@ export class PostCardControlCheckboxValueAccessorDirective implements ControlVal
   };
   protected lastValue: any;
 
-  constructor(protected el: ElementRef) {}
+  protected el = inject(ElementRef);
 
   writeValue(value: any) {
     this.el.nativeElement.checked = this.lastValue = value === null ? false : value;

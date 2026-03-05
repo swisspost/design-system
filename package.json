@@ -82,6 +82,7 @@
     "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",
     "primeng:lint": "pnpm --filter design-system-styles-primeng-workspace lint",
     "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix",
+    "theme-ag-grid:build": "pnpm --filter design-system-theme-ag-grid build"
     "demo-angular": "pnpm demo-angular:start",
     "demo-angular:start": "pnpm --filter design-system-demo-angular... --parallel --stream start",
     "demo-angular:build": "pnpm --filter design-system-demo-angular build",
