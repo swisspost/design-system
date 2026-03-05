@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta from './radio.stories';
+import meta, { renderGroup } from './radio.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -37,7 +37,6 @@ export const Radio: Story = {
               requiredOptional: ['null', 'required', 'optional'],
             }),
           ]
-            // remove disabled & validated examples
             .filter(
               (args: Args) =>
                 !(args.disabled && args.validation !== 'null') &&
@@ -45,8 +44,37 @@ export const Radio: Story = {
             )
             .map((args: Args) => {
               context.id = `${scheme}-${crypto.randomUUID()}`;
-              return meta.render?.({ ...context.args, ...args }, context);
+              return meta.render?.(
+                { ...context.args, ...args, name: `${scheme}-snapshot-group` },
+                context,
+              );
             })}
+        </div>
+
+        <div class="mt-16 d-flex gap-16 flex-column">
+          ${(() => {
+            const combos = bombArgs({
+              inline: [false, true],
+              size: ['null', 'form-check-sm'],
+            });
+
+            return combos.map((combo: Args) => {
+              context.id = `${scheme}-${crypto.randomUUID()}`;
+              return html`
+                <div class="mt-16">
+                  ${renderGroup(
+                    {
+                      label: 'Label',
+                      hiddenLegend: false,
+                      checkedRadio: null,
+                      ...combo,
+                    },
+                    context,
+                  )}
+                </div>
+              `;
+            });
+          })()}
         </div>
       `,
     );
