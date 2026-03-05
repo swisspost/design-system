@@ -311,6 +311,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -325,6 +326,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -343,6 +345,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -364,6 +367,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -379,6 +383,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -410,6 +415,21 @@ export class MigrationV99Component extends LitElement {
                             </li>
                           </ul>
                         </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-card_control"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.standard_html_alert}"
+                      />
+                      <label class="form-check-label" for="components-card_control">
+                        <code>post-card-control</code> component removed
+                        <span class="info"> Replace by the selection card. </span>
                       </label>
                     </div>
                   </li>
@@ -448,6 +468,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -476,6 +497,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -490,6 +512,25 @@ export class MigrationV99Component extends LitElement {
                         >
                         <code>.form-text</code> class has been renamed to
                         <code>.form-hint</code>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="styles-card_control"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.standard_html_alert}"
+                      />
+                      <label class="form-check-label" for="components-card_control">
+                        CSS classes for Standard HTML <code>card-control</code> component renamed
+                        <span class="info">
+                          Replace <code>.checkbox-button-card</code> and
+                          <code>.radio-button-card</code> with
+                          <code>.selection-card</code> component.
+                        </span>
                       </label>
                     </div>
                   </li>
@@ -1534,6 +1575,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -1550,6 +1592,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
