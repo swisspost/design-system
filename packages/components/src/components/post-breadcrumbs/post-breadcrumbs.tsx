@@ -17,6 +17,8 @@ type BreadcrumbItem = {
 export class PostBreadcrumbs {
   @Element() host: HTMLPostBreadcrumbsElement;
 
+  private slotRef?: HTMLSlotElement;
+
   /**
    * The URL for the home breadcrumb item.
    */
@@ -64,8 +66,6 @@ export class PostBreadcrumbs {
     checkRequiredAndType(this, 'textMoreItems', 'string');
   }
 
-  private observer?: MutationObserver;
-
   componentDidLoad() {
     this.validateHomeUrl();
     this.validateTextHome();
@@ -74,20 +74,10 @@ export class PostBreadcrumbs {
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
     this.updateBreadcrumbItems();
-
-    this.observer = new MutationObserver(() => {
-      this.updateBreadcrumbItems();
-    });
-
-    this.observer.observe(this.host, {
-      childList: true,
-      subtree: true,
-    });
   }
 
   disconnectedCallback() {
     window.removeEventListener('resize', this.handleResize);
-    this.observer?.disconnect();
   }
 
   // Waits for breadcrumbs navigation reference to be available
@@ -101,19 +91,21 @@ export class PostBreadcrumbs {
 
   // Updates breadcrumb items and sets the last item
   private updateBreadcrumbItems() {
-    const items = Array.from(this.host.querySelectorAll('post-breadcrumb-item'));
+    const nodes = this.slotRef
+      ?.assignedElements({ flatten: true })
+      .filter(el => el.tagName === 'POST-BREADCRUMB-ITEM') as HTMLElement[];
 
-    if (items.length === this.breadcrumbItems.length) {
-      return;
-    }
+    if (!nodes?.length) return;
 
-    this.breadcrumbItems = items.map(item => ({
+    const newItems = nodes.map(item => ({
       text: item.textContent || '',
       url: item.getAttribute('url') ?? undefined,
       description: item.getAttribute('description') ?? undefined,
       label: item.getAttribute('label') ?? undefined,
     }));
-    this.lastItem = this.breadcrumbItems[this.breadcrumbItems.length - 1];
+
+    this.breadcrumbItems = newItems;
+    this.lastItem = newItems[newItems.length - 1];
   }
 
   // Handles resizing to check concatenation
@@ -167,6 +159,12 @@ export class PostBreadcrumbs {
 
     return (
       <Host data-version={version}>
+        <div class="visually-hidden" aria-hidden="true">
+          <slot
+            ref={el => (this.slotRef = el as HTMLSlotElement)}
+            onSlotchange={() => this.updateBreadcrumbItems()}
+          ></slot>
+        </div>
         <nav
           aria-label={this.textBreadcrumbs}
           class="breadcrumbs-nav"
