@@ -8,6 +8,7 @@
 | Property      | Attribute     | Description                                                                                 | Type            | Default     |
 | ------------- | ------------- | ------------------------------------------------------------------------------------------- | --------------- | ----------- |
 | `description` | `description` | ARIA description for additional context, read after the breadcrumb item content or `label`. | `string`        | `undefined` |
+| `inert`       | `inert`       | For elements that are marely rendered for configuration                                     | `boolean`       | `false`     |
 | `label`       | `label`       | ARIA label, screen readers will use this instead of the breadcrumb item content.            | `string`        | `undefined` |
 | `url`         | `url`         | The optional URL to which the breadcrumb item will link.                                    | `URL \| string` | `undefined` |
 
@@ -24,6 +25,7 @@
 ### Used by
 
  - [post-breadcrumbs](../post-breadcrumbs)
+ - [post-breadcrumbs-parent](../post-breadcrumbs-parent)
 
 ### Depends on
 
@@ -34,6 +36,7 @@
 graph TD;
   post-breadcrumb-item --> post-icon
   post-breadcrumbs --> post-breadcrumb-item
+  post-breadcrumbs-parent --> post-breadcrumb-item
   style post-breadcrumb-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

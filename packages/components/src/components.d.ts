@@ -7,12 +7,14 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { Link } from "./components/post-breadcrumbs-parent/post-breadcrumbs-parent";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { Link } from "./components/post-breadcrumbs-parent/post-breadcrumbs-parent";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
@@ -102,6 +104,11 @@ export namespace Components {
          */
         "description"?: string;
         /**
+          * For elements that are marely rendered for configuration
+          * @default false
+         */
+        "inert": boolean;
+        /**
           * ARIA label, screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
@@ -127,6 +134,12 @@ export namespace Components {
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
         "textMoreItems": string;
+    }
+    interface PostBreadcrumbsParent {
+        /**
+          * * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
+         */
+        "customItems"?: string | Array<Link>;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -734,6 +747,12 @@ declare global {
         prototype: HTMLPostBreadcrumbsElement;
         new (): HTMLPostBreadcrumbsElement;
     };
+    interface HTMLPostBreadcrumbsParentElement extends Components.PostBreadcrumbsParent, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbsParentElement: {
+        prototype: HTMLPostBreadcrumbsParentElement;
+        new (): HTMLPostBreadcrumbsParentElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -1046,6 +1065,7 @@ declare global {
         "post-banner": HTMLPostBannerElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-breadcrumbs": HTMLPostBreadcrumbsElement;
+        "post-breadcrumbs-parent": HTMLPostBreadcrumbsParentElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
@@ -1149,6 +1169,11 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
+          * For elements that are marely rendered for configuration
+          * @default false
+         */
+        "inert"?: boolean;
+        /**
           * ARIA label, screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
@@ -1174,6 +1199,12 @@ declare namespace LocalJSX {
           * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
          */
         "textMoreItems": string;
+    }
+    interface PostBreadcrumbsParent {
+        /**
+          * * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
+         */
+        "customItems"?: string | Array<Link>;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1656,6 +1687,7 @@ declare namespace LocalJSX {
         "post-banner": PostBanner;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-breadcrumbs": PostBreadcrumbs;
+        "post-breadcrumbs-parent": PostBreadcrumbsParent;
         "post-card-control": PostCardControl;
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
@@ -1701,6 +1733,7 @@ declare module "@stencil/core" {
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             "post-breadcrumbs": LocalJSX.PostBreadcrumbs & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsElement>;
+            "post-breadcrumbs-parent": LocalJSX.PostBreadcrumbsParent & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsParentElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
