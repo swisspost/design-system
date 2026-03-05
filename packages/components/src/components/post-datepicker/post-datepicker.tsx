@@ -277,7 +277,6 @@ export class PostDatepicker {
 
       if (!target) {
         const firstOfMonth = new Date(this.currentViewYear, this.currentViewMonth, 1);
-
         target = cells.find(
           cell =>
             Number(cell.dataset.date) === 1 &&
@@ -316,7 +315,7 @@ export class PostDatepicker {
       target.focus();
     }
 
-    // Update start date to <match the active cell
+    // Update start date to match the active cell
     this.startDate = new Date(
       Number(target.dataset.year),
       Number(target.dataset.month),
@@ -632,7 +631,6 @@ export class PostDatepicker {
             c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
           });
 
-          console.log('emiting', date);
           this.postUpdateDates.emit(date);
 
           // If selected date is added dynamically after user has typed it in the input
@@ -646,11 +644,11 @@ export class PostDatepicker {
             if (Array.isArray(date)) {
               const dates = date.map(d => this.dateToDateStr(d));
               this.inputMask.value = dates.join(' - ');
-              this.inputMask.updateValue();
+              this.updateInputValue();
             } else if (date) {
               // If there is a date, set it to the input. No date = same date as before
               this.inputMask.value = this.dateToDateStr(date);
-              this.inputMask.updateValue();
+              this.updateInputValue();
             }
 
             // If range & only one date has been selected, user should stay in the DP
@@ -686,6 +684,13 @@ export class PostDatepicker {
 
       this.handleSelectedDates();
     }
+  }
+
+  private updateInputValue() {
+    this.inputMask.updateValue();
+    // Emit the native input and change events
+    this.dpInput.dispatchEvent(new InputEvent('input', { bubbles: true }));
+    this.dpInput.dispatchEvent(new InputEvent('change', { bubbles: true }));
   }
 
   private handleSelectedDates() {
@@ -876,6 +881,7 @@ export class PostDatepicker {
           this.selectedStartDate = start.toString();
           this.selectedEndDate = end.toString();
           this.dpInstance.selectDate([start, end]);
+          this.dpInstance.setViewDate(start);
         }
       } else {
         if (this.dpInput.value) {
@@ -887,6 +893,7 @@ export class PostDatepicker {
 
           // Select the date in the datepicker
           this.dpInstance.selectDate(date);
+          this.dpInstance.setViewDate(date);
         }
       }
     });
