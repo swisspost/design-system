@@ -32522,6 +32522,199 @@
       "modifiedAt": "2026-01-31T06:05:02.338Z"
     },
     {
+      "uuid": "38d58800-1214-11f1-86d5-0050568d2654",
+      "id": 9281965,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281965/storage/MDA5MjgxOTY0LzAvbWFzdGVy",
+        "keywords": [
+          "Adresse",
+          "Address",
+          "Indirizzo",
+          "Address unknown",
+          "Adresse Unbekannt",
+          "Adresse inconnue",
+          "Indirizzo sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2754.svg",
+        "basename": "2754",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:35:48.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "d3ce3af0-1214-11f1-86d5-0050568d2654",
+      "id": 9281970,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281970/storage/MDA5MjgxOTY5LzAvbWFzdGVy",
+        "keywords": [
+          "Firma",
+          "Company",
+          "Société",
+          "Società",
+          "Company Unknown",
+          "Firma Unbekannt",
+          "Entreprise inconnue",
+          "Ditta Sconosciuta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2755.svg",
+        "basename": "2755",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:40:08.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "8b246f30-1215-11f1-86d5-0050568d2654",
+      "id": 9281975,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281975/storage/MDA5MjgxOTc0LzAvbWFzdGVy",
+        "keywords": [
+          "Abroad",
+          "Ausland",
+          "Estero",
+          "Étranger",
+          "Ins Ausland",
+          "À l’étranger",
+          "All’estero"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2756.svg",
+        "basename": "2756",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:45:16.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "3fad2b90-1216-11f1-86d5-0050568d2654",
+      "id": 9281981,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281981/storage/MDA5MjgxOTgwLzAvbWFzdGVy",
+        "keywords": [
+          "Person",
+          "Persona",
+          "Personne",
+          "Unknown person",
+          "Person Unbekannt",
+          "Personne inconnue",
+          "Persona sconosciuta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2757.svg",
+        "basename": "2757",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:50:19.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "7a2726d0-1217-11f1-86d5-0050568d2654",
+      "id": 9281987,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281987/storage/MDA5MjgxOTg2LzAvbWFzdGVy",
+        "keywords": [
+          "Umzug",
+          "Moving house",
+          "Trasloco",
+          "Déménagement",
+          "Unknown Moved",
+          "Unbekannt Weggezogen",
+          "Déménagé à une adresse inconnue",
+          "Sconosciuto Traslocato"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2758.svg",
+        "basename": "2758",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:59:06.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "7670e020-1218-11f1-86d5-0050568d2654",
+      "id": 9281992,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281992/storage/MDA5MjgxOTkxLzAvbWFzdGVy",
+        "keywords": [
+          "Grabstein",
+          "Gravestone",
+          "Pietra tombale",
+          "Pierre Tombale",
+          "verstorbene Person",
+          "Fallen Person",
+          "Persona Caduta",
+          "Personne Tombée",
+          "Deceased",
+          "Verstorben",
+          "Décédé",
+          "Deceduto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2759.svg",
+        "basename": "2759",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T07:06:10.000Z",
+      "modifiedAt": "2026-02-26T07:05:01.396Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -44960,37 +45153,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
-      "id": 352299,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3058.svg",
-        "basename": "3058",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:42.000Z"
-    },
-    {
       "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
       "id": 352314,
       "type": "picture.pictogram.",
@@ -45020,6 +45182,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:43.000Z"
+    },
+    {
+      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
+      "id": 352299,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3058.svg",
+        "basename": "3058",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:42.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -45133,11 +45326,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-02-01T03:38:54.513Z",
+  "created": "2026-03-01T03:30:15.955Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1073
+    "success": 1079
   },
-  "version": "9.6.0"
+  "version": "9.8.0"
 }
