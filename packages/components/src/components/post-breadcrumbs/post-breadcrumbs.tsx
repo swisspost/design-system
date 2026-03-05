@@ -66,6 +66,10 @@ export class PostBreadcrumbs {
     checkRequiredAndType(this, 'textMoreItems', 'string');
   }
 
+  componentWillLoad() {
+    this.updateBreadcrumbItems();
+  }
+
   componentDidLoad() {
     this.validateHomeUrl();
     this.validateTextHome();
@@ -96,6 +100,8 @@ export class PostBreadcrumbs {
       .filter(el => el.tagName === 'POST-BREADCRUMB-ITEM') as HTMLElement[];
 
     if (!nodes?.length) return;
+
+    console.log('my nodes bb', nodes, nodes[0].getAttribute('url'));
 
     const newItems = nodes.map(item => ({
       text: item.textContent || '',

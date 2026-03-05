@@ -28,11 +28,6 @@ export class PostBreadcrumbItem {
    */
   @Prop({ reflect: true }) description?: string;
 
-  /**
-   * For elements that are marely rendered for configuration
-   */
-  @Prop({ reflect: true }) inert: boolean = false;
-
   private validUrl?: string;
 
   /**
@@ -75,10 +70,6 @@ export class PostBreadcrumbItem {
   }
 
   render() {
-    if (this.inert) {
-      return <Host hidden></Host>;
-    }
-
     return (
       <Host data-version={version}>
         <post-icon name="chevronright" class="breadcrumb-item-icon" />

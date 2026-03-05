@@ -104,11 +104,6 @@ export namespace Components {
          */
         "description"?: string;
         /**
-          * For elements that are marely rendered for configuration
-          * @default false
-         */
-        "inert": boolean;
-        /**
           * ARIA label, screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
@@ -1168,11 +1163,6 @@ declare namespace LocalJSX {
           * ARIA description for additional context, read after the breadcrumb item content or `label`.
          */
         "description"?: string;
-        /**
-          * For elements that are marely rendered for configuration
-          * @default false
-         */
-        "inert"?: boolean;
         /**
           * ARIA label, screen readers will use this instead of the breadcrumb item content.
          */

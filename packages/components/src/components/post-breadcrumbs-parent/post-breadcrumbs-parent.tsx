@@ -67,12 +67,7 @@ export class PostBreadcrumbsParent {
           textMoreItems="More"
         >
           {items.map(item => (
-            <post-breadcrumb-item
-              inert
-              label={item.label}
-              description={item.description}
-              url={item.url}
-            >
+            <post-breadcrumb-item label={item.label} description={item.description} url={item.url}>
               {item.text}
             </post-breadcrumb-item>
           ))}
