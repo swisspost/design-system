@@ -34,7 +34,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
   <PostTabHeader panel="standardhtml">Standard HTML</PostTabHeader>
   <PostTabPanel name="standardhtml">
     <PostAlert type="warning">
-      The card-control standard HTML is deprecated and will be removed in a future version.
+      The card-control standard HTML will be renamed in a future version.
     </PostAlert>
 
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
@@ -92,6 +92,10 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
   <PostTabHeader panel="webcomponent">Webcomponent</PostTabHeader>
   <PostTabPanel name="webcomponent">
+    <PostAlert type="warning">
+      The card-control webcomponent is deprecated and will be removed in the next major version.
+    </PostAlert>
+
     <Canvas of={CardControlStories.Default} sourceState="shown"/>
     <Controls of={CardControlStories.Default} />
 
