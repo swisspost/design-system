@@ -1,5 +1,35 @@
 # @swisspost/design-system-documentation
 
+## 5.9.0
+
+### Minor Changes
+
+- Added a new `@swisspost/design-system-theme-ag-grid` package, exposing a shared AG Grid theme so all applications use the same datatable styling and stay visually consistent. (by [@leagrdv](https://github.com/leagrdv) with [#7173](https://github.com/swisspost/design-system/pull/7173))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-theme-ag-grid@9.8.0
+  - @swisspost/internet-header@1.16.1
+  - @swisspost/design-system-styles@9.8.0
+  - @swisspost/design-system-components@9.8.0
+  - @swisspost/design-system-components-react@9.8.0
+  - @swisspost/design-system-icons@9.8.0
+
+## 5.8.8
+
+### Patch Changes
+
+- Updated deprecation informations for form element sizes. (by [@leagrdv](https://github.com/leagrdv) with [#7180](https://github.com/swisspost/design-system/pull/7180))
+
+- Added deprecation information for properties and methods that will be removed in future versions of the `swisspost-internet-header`, `swisspost-internet-breadcrumbs`, and `swisspost-internet-footer` components. (by [@alizedebray](https://github.com/alizedebray) with [#6946](https://github.com/swisspost/design-system/pull/6946))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.7.0
+  - @swisspost/internet-header@1.16.0
+  - @swisspost/design-system-styles@9.7.0
+  - @swisspost/design-system-components@9.7.0
+  - @swisspost/design-system-components-react@9.7.0
+
 ## 5.8.7
 
 ### Patch Changes

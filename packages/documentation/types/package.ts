@@ -6,4 +6,5 @@ export enum PackageType {
   InternetHeader = 'InternetHeader',
   IntranetHeader = 'IntranetHeader',
   Assets = 'Assets',
+  Ts = 'Typescript',
 }
