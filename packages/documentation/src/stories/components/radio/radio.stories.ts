@@ -99,8 +99,9 @@ const meta: MetaComponent = {
 
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
-  const id = randomUUID();
-  const name = `radio-name-${id}`;
+
+  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
+
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
   const useAriaLabel = args.hiddenLabel;
@@ -112,7 +113,6 @@ function render(args: Args, context: StoryContext) {
   const control = html`
     <input
       id="${id}"
-      name="${name}"
       class="${ifDefined(radioClass)}"
       type="radio"
       ?checked="${args.checked}"
@@ -141,13 +141,11 @@ export const Default: Story = {};
 
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  const generatedUuid: string = randomUUID();
-  const uniqueSuffix: string = context.id ?? generatedUuid;
-  const baseId = `${context.viewMode ?? 'view'}_${(context.name ?? '').replace(/\s/g, '-')}_${uniqueSuffix}_ExampleRadio`;
-  const id1 = `${baseId}-1`;
-  const id2 = `${baseId}-2`;
-  const id3 = `${baseId}-3`;
-  const id4 = `${baseId}-4`;
+  const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
+  const id1 = baseId + '1';
+  const id2 = baseId + '2';
+  const id3 = baseId + '3';
+  const id4 = baseId + '4';
 
   function onChange(e: Event, value: number) {
     const changeTarget = e.target as HTMLElement;
@@ -160,21 +158,13 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
     }
   }
 
-  const itemClass = [
-    'form-check',
-    args.size && args.size !== 'null' ? args.size : undefined,
-    args.inline ? 'form-check-inline' : undefined,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   return html`
     <fieldset>
       <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
-      <div class="${itemClass}">
+      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id1}"
-          name="${context.id ?? baseId}-group"
+          name="Inline_ExampleRadio_Group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 1}"
@@ -182,10 +172,10 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id1}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="${itemClass}">
+      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id2}"
-          name="${context.id ?? baseId}-group"
+          name="Inline_ExampleRadio_Group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 2}"
@@ -193,10 +183,10 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id2}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="${itemClass}">
+      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id3}"
-          name="${context.id ?? baseId}-group"
+          name="Inline_ExampleRadio_Group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 3}"
@@ -204,10 +194,10 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id3}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="${itemClass}">
+      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id4}"
-          name="${context.id ?? baseId}-group"
+          name="Inline_ExampleRadio_Group"
           class="form-check-input"
           type="radio"
           ?checked="${args.checkedRadio === 4}"
@@ -237,14 +227,3 @@ export const Validation: Story = {
   parameters: { controls: { exclude: ['Hidden Legend', 'Label', 'Hidden Label', 'Disabled'] } },
   args: { validation: 'is-invalid' },
 };
-
-// To generate secure Id, prefer crypto.randomUUID,
-// else a simple timestamp+counter.
-export function randomUUID(): string {
-  const maybeCrypto = (globalThis as unknown as { crypto?: { randomUUID?: () => string } }).crypto;
-  if (maybeCrypto && typeof maybeCrypto.randomUUID === 'function') return maybeCrypto.randomUUID();
-  // fallback: timestamp + counter as short id
-  const g = globalThis as unknown as { __randomUUIDFallbackCounter?: number };
-  g.__randomUUIDFallbackCounter = (g.__randomUUIDFallbackCounter || 0) + 1;
-  return `${Date.now().toString(36)}-${g.__randomUUIDFallbackCounter.toString(36)}`;
-}
