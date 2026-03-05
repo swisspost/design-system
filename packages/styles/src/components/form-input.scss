@@ -173,8 +173,8 @@ input.form-control {
       cursor: pointer;
       position: absolute;
       inset-inline-end: tokens.get('input-padding-inline-end');
-      top: 50%;                          // ← add
-      transform: translateY(-50%);       // ← add
+      top: 50%;
+      transform: translateY(-50%);
       width: tokens.get('input-sizing-icon');
       height: tokens.get('input-sizing-icon');
       z-index: 1;
