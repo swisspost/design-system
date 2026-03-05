@@ -2,6 +2,8 @@
 @use './../tokens/components';
 @use './../mixins/utilities';
 @use './../mixins/forms' as forms-mx;
+@use './../mixins/icons' as icons-mx;
+@use './../tokens/helpers';
 
 tokens.$default-map: components.$post-text-input;
 
@@ -355,6 +357,20 @@ input.form-control {
         padding-inline-end: tokens.get('input-label-empty-padding-inline-end');
       }
     }
+
+    &[type='time'] {
+      &::-webkit-calendar-picker-indicator {
+        height: tokens.get('input-sizing-icon');
+        width: tokens.get('input-sizing-icon');
+        position: absolute;
+        right: calc(#{tokens.get('input-padding-inline-end')} - 3px);
+        top: calc(#{tokens.get('input-sizing-height')} / 2 - 2px);
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 3;
+        border-radius: 4px;
+      }
+    }
   }
 
   > input.form-control:-webkit-autofill {
@@ -365,6 +381,32 @@ input.form-control {
       color: tokens.get('input-color-selected-fg');
       font-size: tokens.get('input-label-filled-font-size');
       background-color: tokens.get('input-color-selected-bg');
+    }
+  }
+
+  &:has(> input.form-control[type='time']) {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      right: tokens.get('input-padding-inline-end');
+      top: calc(#{tokens.get('input-sizing-height')} / 2);
+      transform: translateY(-50%);
+      width: tokens.get('input-sizing-icon');
+      height: tokens.get('input-sizing-icon');
+      pointer-events: none;
+    }
+
+    &::before {
+      border-radius: 4px;
+      z-index: 4;
+      background-color: white;
+    }
+
+    &::after {
+      z-index: 5;
+      background-color: tokens.get('input-color-enabled-fg');
+      @include icons-mx.mask-image('time');
     }
   }
 
