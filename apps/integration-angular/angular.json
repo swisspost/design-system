@@ -9,7 +9,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "demo-angular": {
+    "integration-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -87,10 +87,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "demo-angular:build:production"
+              "buildTarget": "integration-angular:build:production"
             },
             "development": {
-              "buildTarget": "demo-angular:build:development"
+              "buildTarget": "integration-angular:build:development"
             }
           },
           "defaultConfiguration": "development"

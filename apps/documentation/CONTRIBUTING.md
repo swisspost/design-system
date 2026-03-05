@@ -54,7 +54,7 @@ export NODE_TLS_REJECT_UNAUTHORIZED=0
 7. Create your cypress tests
 
 ```javascript
-// packages/documentation/cypress/integration/example.spec.js
+// apps/documentation/cypress/integration/example.spec.js
 
 describe('Integration test with visual testing', function () {
   it('Loads the homepage', function () {

@@ -1,5 +1,5 @@
 {
-  "name": "@swisspost/design-system-demo-angular",
+  "name": "@swisspost/design-system-integration-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
