@@ -44,7 +44,7 @@ const meta: MetaComponent = {
       name: 'Size',
       description: 'Defines the size of the component.',
       control: {
-        type: 'radio',
+        type: 'select',
         labels: {
           'null': 'Default',
           'form-check-sm': 'Small',
