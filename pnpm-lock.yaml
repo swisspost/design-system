@@ -41,8 +41,8 @@ importers:
         specifier: 0.4.2
         version: 0.4.2
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       eslint:
         specifier: 9.26.0
         version: 9.26.0(jiti@2.6.1)
@@ -90,8 +90,8 @@ importers:
         specifier: 1.2.5
         version: 1.2.5(eslint@9.26.0(jiti@2.6.1))
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@percy/cli':
         specifier: 1.31.8
         version: 1.31.8(typescript@5.8.3)
@@ -241,8 +241,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0(@angular/cli@20.3.14(@types/node@22.10.5)(chokidar@4.0.3)(hono@4.12.3))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@swisspost/design-system-components-angular':
         specifier: workspace:10.0.0-next.62
         version: link:dist/components
@@ -321,8 +321,8 @@ importers:
         version: link:../components
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@swisspost/design-system-icons':
         specifier: workspace:10.0.0-next.62
         version: link:../icons
@@ -385,8 +385,8 @@ importers:
         version: link:../internet-header
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@eslint/markdown':
         specifier: 7.5.1
         version: 7.5.1
@@ -515,8 +515,8 @@ importers:
         version: 8.2.0
     devDependencies:
       '@eslint/js':
-        specifier: 9.19.0
-        version: 9.19.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@types/eslint-scope':
         specifier: 3.7.7
         version: 3.7.7
@@ -560,8 +560,8 @@ importers:
   packages/icons:
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@tsconfig/node22':
         specifier: 22.0.5
         version: 22.0.5
@@ -666,8 +666,8 @@ importers:
         specifier: 1.2.5
         version: 1.2.5(eslint@9.26.0(jiti@2.6.1))
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@percy/cli':
         specifier: 1.31.8
         version: 1.31.8(typescript@5.8.3)
@@ -793,8 +793,8 @@ importers:
         version: 19.1.1(react@19.1.1)
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@next/eslint-plugin-next':
         specifier: 15.1.5
         version: 15.1.5
@@ -924,8 +924,8 @@ importers:
   packages/tokens:
     devDependencies:
       '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
+        specifier: 10.0.1
+        version: 10.0.1(eslint@9.26.0(jiti@2.6.1))
       '@tokens-studio/sd-transforms':
         specifier: 2.0.3
         version: 2.0.3(style-dictionary@5.1.1)
@@ -1920,13 +1920,14 @@ packages:
     resolution: {integrity: sha512-4h4MVF8pmBsncB60r0wSJiIeUKTSD4m7FmTFThG8RHlsg9ajqckLm9OraguFGZE4vVdpiI1Q4+hFnisopmG6gQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/js@9.18.0':
-    resolution: {integrity: sha512-fK6L7rxcq6/z+AaQMtiFTkvbHkBLNlwyRxHpKawP0x3u9+NC6MQTnFW+AdpwC6gfHTW0051cokQgtTN2FqlxQA==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@eslint/js@9.19.0':
-    resolution: {integrity: sha512-rbq9/g38qjfqFLOVPvwjIvFFdNziEC5S65jmjPw5r6A//QH+W91akh9irMwjDN8zKUTak6W9EsAv4m/7Wnw0UQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+  '@eslint/js@10.0.1':
+    resolution: {integrity: sha512-zeR9k5pd4gxjZ0abRoIaxdc7I3nDktoXZk2qOv9gCNWx3mVwEn32VRhyLaRsDiJjTs0xq/T8mfPtyuXu7GWBcA==}
+    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+    peerDependencies:
+      eslint: ^10.0.0
+    peerDependenciesMeta:
+      eslint:
+        optional: true
 
   '@eslint/js@9.26.0':
     resolution: {integrity: sha512-I9XlJawFdSMvWjDt6wksMCrgns5ggLNfFwFvnShsleWruvXM514Qxk8V246efTw+eo9JABvVz+u3q2RiAowKxQ==}
@@ -5191,9 +5192,19 @@ packages:
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -8701,6 +8712,11 @@ packages:
 
   promise-inflight@1.0.1:
     resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
 
   promise-retry@2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
@@ -8784,9 +8800,6 @@ packages:
 
   queue@6.0.2:
     resolution: {integrity: sha512-iHZWu+q3IdFZFX36ro/lKBkSvfkztY5Y7HMiPlOUjhupPcG2JMfst2KKEpu5XndviX/3UhFbRngUPNKtgvtZiA==}
-
-  randombytes@2.1.0:
-    resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
 
   range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
@@ -9279,9 +9292,6 @@ packages:
     resolution: {integrity: sha512-1gnZf7DFcoIcajTjTwjwuDjzuz4PPcY2StKPlsGAQ1+YH20IRVrBaXSWmdjowTJ6u8Rc01PoYOGHXfP1mYcZNQ==}
     engines: {node: '>= 18'}
 
-  serialize-javascript@6.0.2:
-    resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
-
   serve-static@2.2.1:
     resolution: {integrity: sha512-xRXBn0pPqQTVQiC8wyQrKs2MOlX24zQ0POGaj0kultvoOCstBQM5yvOhAVSUwOMjQtTvsPWoNCHfPGwaaQJhTw==}
     engines: {node: '>= 18'}
@@ -9763,8 +9773,8 @@ packages:
     resolution: {integrity: sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==}
     engines: {node: '>=8'}
 
-  terser-webpack-plugin@5.3.16:
-    resolution: {integrity: sha512-h9oBFCWrq78NyWWVcSwZarJkZ01c2AyGrzs1crmHZO3QUg9D61Wu4NPjBy69n7JqylFF5y+CsUZYmYEIZ3mR+Q==}
+  terser-webpack-plugin@5.3.17:
+    resolution: {integrity: sha512-YR7PtUp6GMU91BgSJmlaX/rS2lGDbAF7D+Wtq7hRO+MiljNmodYvqslzCFiYVAgW+Qoaaia/QUIP4lGXufjdZw==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       '@swc/core': '*'
@@ -11639,10 +11649,12 @@ snapshots:
       jsonc-parser: 3.3.1
       rxjs: 7.8.2
 
-  '@cypress/xvfb@1.2.4':
+  '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7(supports-color@8.1.1)
       lodash.once: 4.1.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
@@ -11852,9 +11864,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@9.18.0': {}
-
-  '@eslint/js@9.19.0': {}
+  '@eslint/js@10.0.1(eslint@9.26.0(jiti@2.6.1))':
+    optionalDependencies:
+      eslint: 9.26.0(jiti@2.6.1)
 
   '@eslint/js@9.26.0': {}
 
@@ -12706,6 +12718,8 @@ snapshots:
       proc-log: 4.2.0
       semver: 7.7.4
       walk-up-path: 3.0.1
+    transitivePeerDependencies:
+      - bluebird
 
   '@npmcli/fs@4.0.0':
     dependencies:
@@ -12722,6 +12736,8 @@ snapshots:
       promise-retry: 2.0.1
       semver: 7.7.4
       which: 4.0.0
+    transitivePeerDependencies:
+      - bluebird
 
   '@npmcli/git@6.0.3':
     dependencies:
@@ -12759,6 +12775,8 @@ snapshots:
       normalize-package-data: 6.0.2
       proc-log: 4.2.0
       semver: 7.7.4
+    transitivePeerDependencies:
+      - bluebird
 
   '@npmcli/package-json@6.2.0':
     dependencies:
@@ -14774,6 +14792,8 @@ snapshots:
       raw-body: 2.5.3
       type-is: 1.6.18
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
 
   body-parser@2.2.2:
     dependencies:
@@ -15133,6 +15153,8 @@ snapshots:
       finalhandler: 1.1.2
       parseurl: 1.3.3
       utils-merge: 1.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   content-disposition@0.5.4:
     dependencies:
@@ -15370,7 +15392,7 @@ snapshots:
   cypress@14.3.2:
     dependencies:
       '@cypress/request': 3.0.10
-      '@cypress/xvfb': 1.2.4
+      '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.10
       arch: 2.2.0
@@ -15461,17 +15483,21 @@ snapshots:
 
   debug-fabulous@1.1.0:
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7(supports-color@8.1.1)
       memoizee: 0.4.17
       object-assign: 4.1.1
+    transitivePeerDependencies:
+      - supports-color
 
   debug@2.6.9:
     dependencies:
       ms: 2.0.0
 
-  debug@3.2.7:
+  debug@3.2.7(supports-color@8.1.1):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 8.1.1
 
   debug@4.4.3(supports-color@5.5.0):
     dependencies:
@@ -15955,6 +15981,7 @@ snapshots:
       unist-util-visit: 5.1.0
       vfile: 6.0.3
     transitivePeerDependencies:
+      - bluebird
       - supports-color
 
   eslint-plugin-cypress@4.2.0(eslint@9.26.0(jiti@2.6.1)):
@@ -15998,6 +16025,7 @@ snapshots:
       unified: 11.0.5
       vfile: 6.0.3
     transitivePeerDependencies:
+      - bluebird
       - remark-lint-file-extension
       - supports-color
 
@@ -16409,6 +16437,8 @@ snapshots:
       parseurl: 1.3.3
       statuses: 1.5.0
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
 
   finalhandler@2.1.1:
     dependencies:
@@ -16820,6 +16850,8 @@ snapshots:
       source-map: 0.6.1
       strip-bom-string: 1.0.0
       through2: 2.0.5
+    transitivePeerDependencies:
+      - supports-color
 
   gulp@5.0.1:
     dependencies:
@@ -18171,6 +18203,8 @@ snapshots:
     dependencies:
       '@npmcli/config': 8.3.4
       import-meta-resolve: 4.2.0
+    transitivePeerDependencies:
+      - bluebird
 
   loader-runner@4.3.1: {}
 
@@ -19977,10 +20011,6 @@ snapshots:
     dependencies:
       inherits: 2.0.4
 
-  randombytes@2.1.0:
-    dependencies:
-      safe-buffer: 5.2.1
-
   range-parser@1.2.1: {}
 
   raw-body@2.5.3:
@@ -20572,10 +20602,6 @@ snapshots:
       statuses: 2.0.2
     transitivePeerDependencies:
       - supports-color
-
-  serialize-javascript@6.0.2:
-    dependencies:
-      randombytes: 2.1.0
 
   serve-static@2.2.1:
     dependencies:
@@ -21254,12 +21280,11 @@ snapshots:
 
   term-size@2.2.1: {}
 
-  terser-webpack-plugin@5.3.16(webpack@5.105.3):
+  terser-webpack-plugin@5.3.17(webpack@5.105.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
-      serialize-javascript: 6.0.2
       terser: 5.46.0
       webpack: 5.105.3
 
@@ -21653,6 +21678,7 @@ snapshots:
       vfile-statistics: 3.0.0
       yaml: 2.8.2
     transitivePeerDependencies:
+      - bluebird
       - supports-color
 
   unified@11.0.5:
@@ -21990,7 +22016,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.16(webpack@5.105.3)
+      terser-webpack-plugin: 5.3.17(webpack@5.105.3)
       watchpack: 2.5.1
       webpack-sources: 3.3.4
     transitivePeerDependencies:
