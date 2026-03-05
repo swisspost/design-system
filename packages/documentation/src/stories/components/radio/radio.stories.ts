@@ -53,7 +53,7 @@ const meta: MetaComponent = {
       name: 'Size',
       description: 'Defines the size of the component.',
       control: {
-        type: 'radio',
+        type: 'select',
         labels: { 'null': 'Default', 'form-check-sm': 'Small' },
       },
       options: ['null', 'form-check-sm'],
@@ -158,10 +158,14 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
     }
   }
 
+  const formCheckClasses = ['form-check', args.size, args.inline ? 'form-check-inline' : '']
+    .filter(c => c && c !== 'null')
+    .join(' ');
+
   return html`
     <fieldset>
       <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
+      <div class="${formCheckClasses}">
         <input
           id="${id1}"
           name="Inline_ExampleRadio_Group"
@@ -172,7 +176,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id1}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
+      <div class="${formCheckClasses}">
         <input
           id="${id2}"
           name="Inline_ExampleRadio_Group"
@@ -183,7 +187,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id2}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
+      <div class="${formCheckClasses}">
         <input
           id="${id3}"
           name="Inline_ExampleRadio_Group"
@@ -194,7 +198,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id3}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
+      <div class="${formCheckClasses}">
         <input
           id="${id4}"
           name="Inline_ExampleRadio_Group"
@@ -211,14 +215,22 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
 
 export const Grouped: Story = {
   render: renderGroup,
-  parameters: { controls: { exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'] } },
+  parameters: {
+    controls: {
+      include: ['Size'],
+    },
+  },
   args: { checkedRadio: null },
   argTypes: { checkedRadio: { table: { disable: true } } },
 };
 
 export const Inline: Story = {
   render: renderGroup,
-  parameters: { controls: { exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'] } },
+  parameters: {
+    controls: {
+      include: ['Size'],
+    },
+  },
   args: { checkedRadio: null, inline: true },
   argTypes: { checkedRadio: { table: { disable: true } } },
 };
