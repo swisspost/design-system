@@ -24,7 +24,6 @@
 ### Used by
 
  - [post-breadcrumbs](../post-breadcrumbs)
- - [post-breadcrumbs-parent](../post-breadcrumbs-parent)
 
 ### Depends on
 
@@ -35,7 +34,6 @@
 graph TD;
   post-breadcrumb-item --> post-icon
   post-breadcrumbs --> post-breadcrumb-item
-  post-breadcrumbs-parent --> post-breadcrumb-item
   style post-breadcrumb-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

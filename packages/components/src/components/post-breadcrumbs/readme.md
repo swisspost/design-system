@@ -15,10 +15,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [post-breadcrumbs-parent](../post-breadcrumbs-parent)
-
 ### Depends on
 
 - [post-icon](../post-icon)
@@ -37,7 +33,6 @@ graph TD;
   post-breadcrumbs --> post-breadcrumb-item
   post-menu --> post-popovercontainer
   post-breadcrumb-item --> post-icon
-  post-breadcrumbs-parent --> post-breadcrumbs
   style post-breadcrumbs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
