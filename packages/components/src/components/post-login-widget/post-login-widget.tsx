@@ -118,9 +118,9 @@ export class PostLoginWidget {
     }
   }
 
-  private handleLogout() {
+  private handleLogout = () => {
     this.postLogout.emit(this.logoutUrl);
-  }
+  };
 
   render() {
     if (this.isLoading) return <Host data-version={version} />;
@@ -181,7 +181,7 @@ export class PostLoginWidget {
         ) : (
           <a href={this.loginUrl}>
             <span>Login</span>
-            <post-icon name="login" />
+            <post-icon name="login" aria-hidden="true" />
           </a>
         )}
       </Host>
