@@ -1,0 +1,34 @@
+{
+  "name": "@swisspost/design-system-demo-angular",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "21.2.0",
+    "@angular/compiler": "21.2.0",
+    "@angular/core": "21.2.0",
+    "@angular/forms": "21.2.0",
+    "@angular/platform-browser": "21.2.0",
+    "@angular/router": "21.2.0",
+    "@swisspost/design-system-intranet-header": "workspace:9.8.0",
+    "@swisspost/design-system-styles": "workspace:9.8.0",
+    "rxjs": "7.8.2",
+    "tslib": "2.3.0"
+  },
+  "devDependencies": {
+    "@angular-eslint/builder": "21.0.0",
+    "@angular/build": "21.2.0",
+    "@angular/cli": "21.2.0",
+    "@angular/compiler-cli": "21.2.0",
+    "@eslint/js": "9.39.1",
+    "angular-eslint": "21.0.0",
+    "eslint": "9.39.1",
+    "typescript": "5.9.2",
+    "typescript-eslint": "8.46.4"
+  }
+}
