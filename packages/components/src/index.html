@@ -164,5 +164,71 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+
+    <div style="width: 280px; padding-inline-start: 24px">
+      <post-autocomplete>
+        <div class="form-floating">
+          <input class="form-control" type="text" id="autocomplete-input" placeholder="Search..." />
+          <label class="form-label" for="autocomplete-input">Country</label>
+          <p class="form-hint">I'm a hint text</p>
+          <p class="form-invalid">I'm an error message</p>
+        </div>
+        <post-listbox>
+          <div slot="blank-slate">Nothing to see here</div>
+          <post-listbox-option class="form-control" value="Switzerland"></post-listbox-option>
+          <post-listbox-option value="Germany"></post-listbox-option>
+          <post-listbox-option value="France"></post-listbox-option>
+          <post-listbox-option value="Italy"></post-listbox-option>
+          <post-listbox-option value="Austria"></post-listbox-option>
+          <post-listbox-option value="Spain"></post-listbox-option>
+          <post-listbox-option value="Portugal"></post-listbox-option>
+          <post-listbox-option value="Netherlands"></post-listbox-option>
+          <post-listbox-option value="Belgium"></post-listbox-option>
+          <post-listbox-option value="Sweden"></post-listbox-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <div style="width: 280px; padding-inline-start: 24px">
+      <post-autocomplete class="form-floating" options="options-detached">
+        <input class="form-control" type="text" id="autocomplete-input-2" placeholder="Search..." />
+        <label for="autocomplete-input-2">Country</label>
+      </post-autocomplete>
+    </div>
+
+    <post-listbox id="options-detached">
+      <div slot="blank-slate">Nothing to see here</div>
+      <post-listbox-option value="Switzerland"></post-listbox-option>
+      <post-listbox-option value="Germany"></post-listbox-option>
+      <post-listbox-option value="France"></post-listbox-option>
+      <post-listbox-option value="Italy"></post-listbox-option>
+      <post-listbox-option value="Austria"></post-listbox-option>
+      <post-listbox-option value="Spain"></post-listbox-option>
+      <post-listbox-option value="Portugal"></post-listbox-option>
+      <post-listbox-option value="Netherlands"></post-listbox-option>
+      <post-listbox-option value="Belgium"></post-listbox-option>
+      <post-listbox-option value="Sweden"></post-listbox-option>
+    </post-listbox>
+
+    <div style="width: 280px; padding-inline-start: 24px">
+      <post-autocomplete class="form-floating" options="options-detached-2">
+        <input class="form-control" type="text" id="autocomplete-input-3" placeholder="Search..." />
+        <label for="autocomplete-input-3">Country</label>
+      </post-autocomplete>
+    </div>
+
+    <post-listbox id="options-detached-2">
+      <div slot="blank-slate">Nothing to see here</div>
+      <post-listbox-option value="Switzerland"></post-listbox-option>
+      <post-listbox-option value="Germany"></post-listbox-option>
+      <post-listbox-option value="France"></post-listbox-option>
+      <post-listbox-option value="Italy"></post-listbox-option>
+      <post-listbox-option value="Austria"></post-listbox-option>
+      <post-listbox-option value="Spain"></post-listbox-option>
+      <post-listbox-option value="Portugal"></post-listbox-option>
+      <post-listbox-option value="Netherlands"></post-listbox-option>
+      <post-listbox-option value="Belgium"></post-listbox-option>
+      <post-listbox-option value="Sweden"></post-listbox-option>
+    </post-listbox>
   </body>
 </html>

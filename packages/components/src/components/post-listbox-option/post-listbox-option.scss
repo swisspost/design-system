@@ -1,0 +1,35 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  padding: 12px 12px 9px 16px;
+  background-color: #fff;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+:host(:hover),
+:host([data-active='true']) {
+  border-bottom: 3px solid #504f4b;
+}
+
+:host([aria-selected]) {
+  background-color: #f0efed;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+:host(:focus-visible) {
+  outline: 2px solid #050400;
+  outline-offset: 2px;
+}
+
+post-icon {
+  width: 24px;
+  height: 24px;
+}
