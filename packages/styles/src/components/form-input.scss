@@ -166,8 +166,6 @@ input.form-control {
   }
 
   &[type='time'] {
-    // Make the native browser clock icon transparent while keeping it interactive.
-    // The native indicator sits below our custom icon and handles the click/open behavior.
     &::-webkit-calendar-picker-indicator {
       background: transparent;
       cursor: pointer;
@@ -190,8 +188,7 @@ input.form-control {
       }
     }
 
-    // Custom time icon overlay.
-    // pointer-events: none ensures clicks pass through to the native picker indicator beneath.
+    // Custom time icon overlay that forwards clicks to the native picker (pointer-events: none).
     &::after {
       content: '';
       display: block;
@@ -216,7 +213,6 @@ input.form-control {
       background-color: tokens.get('input-color-hover-fg');
     }
 
-    // When validation icons are shown, shift the custom icon left to avoid overlap
     &.is-valid,
     &.is-invalid {
       &::after {
