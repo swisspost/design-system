@@ -35,6 +35,8 @@ fieldset {
   --post-card-control-icon-size: 32px;
   --post-card-control-description-font-size: 1rem;
 
+  --post-card-control-bg-hover: var(--post-card-control-bg);
+
   display: grid;
   grid-template-areas: 'input label icon';
   grid-template-columns: min-content 1fr max-content;
@@ -54,6 +56,11 @@ fieldset {
   &:not(:has(input:disabled)):hover {
     --post-card-control-border-color: #{tokens.get('card-control-unselected-hovered-stroke')};
     --post-card-control-color: #{tokens.get('card-control-unselected-hovered-fg')};
+    --post-card-control-bg-hover: #{tokens.get('card-control-unselected-hovered-bg-mix')};
+
+    background-image:
+      linear-gradient(var(--post-card-control-bg-hover), var(--post-card-control-bg-hover)),
+      linear-gradient(var(--post-card-control-bg), var(--post-card-control-bg));
   }
 
   &:has(input:disabled) {
@@ -72,6 +79,7 @@ fieldset {
     &:not(:has(input:disabled)):hover {
       --post-card-control-border-color: #{tokens.get('card-control-selected-hovered-stroke')};
       --post-card-control-color: #{tokens.get('card-control-selected-hovered-fg')};
+      --post-card-control-bg-hover: #{tokens.get('card-control-selected-hovered-bg-mix')};
     }
 
     &:has(input:disabled) {
