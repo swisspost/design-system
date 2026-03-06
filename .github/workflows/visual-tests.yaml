@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 0
 
@@ -39,7 +39,7 @@ jobs:
         run: pnpm bootstrap
 
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -62,7 +62,7 @@ jobs:
 
       - name: Get baseline snapshots from cache
         id: snapshot-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: packages/components/vrt/__screenshots__
           key: vrt-${{ steps.baseline.outputs.branch }}-${{ hashFiles('packages/components/src/**/*.scss', 'packages/components/src/**/*.tsx', 'packages/components/vrt/**/*.js') }}
@@ -131,7 +131,7 @@ jobs:
       - name: Check VRT approval in PR description
         if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure'
         id: check-approval
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
             const { data: pr } = await github.rest.pulls.get({
@@ -158,7 +158,7 @@ jobs:
 
       - name: Upload test results
         if: failure() && github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: playwright-report-${{ github.run_id }}
           path: packages/components/test-results
@@ -166,7 +166,7 @@ jobs:
 
       - name: Upload diff screenshots
         if: failure() && github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: playwright-diffs-${{ github.run_id }}
           path: |
@@ -177,7 +177,7 @@ jobs:
 
       - name: Comment PR with VRT results
         if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure' && steps.check-approval.outputs.approved != 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
             await github.rest.issues.createComment({
