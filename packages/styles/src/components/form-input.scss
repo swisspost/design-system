@@ -209,6 +209,10 @@ input.form-control {
       background-color: tokens.get('input-color-hover-fg');
     }
 
+    &:disabled::after {
+      display: none;
+    }
+
     &.is-valid,
     &.is-invalid {
       &::after {
