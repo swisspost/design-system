@@ -2,6 +2,8 @@
 @use './../tokens/components';
 @use './../mixins/utilities';
 @use './../mixins/forms' as forms-mx;
+@use './../mixins/icons' as icons-mx;
+@use './../tokens/helpers';
 
 tokens.$default-map: components.$post-text-input;
 
@@ -160,6 +162,74 @@ input.form-control {
 
     &:not(:disabled):not([readonly]) {
       cursor: pointer;
+    }
+  }
+
+  &[type='time'] {
+    &::-webkit-calendar-picker-indicator {
+      background: transparent;
+      cursor: pointer;
+      position: absolute;
+      inset-inline-end: tokens.get('input-padding-inline-end');
+      top: 50%;
+      transform: translateY(-50%);
+      width: tokens.get('input-sizing-icon');
+      height: tokens.get('input-sizing-icon');
+      z-index: 1;
+      padding: 0;
+      margin: 0;
+
+      &:focus-within {
+        border-radius: 4px;
+        outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
+        outline: tokens.get('focus-outline-color', helpers.$post-focus)
+          tokens.get('post-focus-border-style', helpers.$post-focus)
+          tokens.get('focus-outline-width', helpers.$post-focus) !important;
+      }
+    }
+
+    // Custom time icon overlay that forwards clicks to the native picker (pointer-events: none).
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      inset-inline-end: tokens.get('input-padding-inline-end');
+      top: 50%;
+      transform: translateY(-50%);
+      width: tokens.get('input-sizing-icon');
+      height: tokens.get('input-sizing-icon');
+      pointer-events: none;
+      background-color: tokens.get('input-color-enabled-fg');
+      z-index: 2;
+
+      @include icons-mx.mask-image('time');
+    }
+
+    &:not(:disabled):has(::-webkit-calendar-picker-indicator:hover)::after {
+      background-color: tokens.get('input-color-hover-fg');
+    }
+
+    &:disabled::after {
+      display: none;
+    }
+
+    &.is-valid,
+    &.is-invalid {
+      &::after {
+        inset-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} +
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-sizing-icon')}
+        );
+      }
+
+      &::-webkit-calendar-picker-indicator {
+        inset-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} +
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-sizing-icon')}
+        );
+      }
     }
   }
 
