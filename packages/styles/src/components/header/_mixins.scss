@@ -78,6 +78,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 
   &:hover {
     @include button.button-variant-def('hover', 'primary');
+    box-shadow: none;
   }
 
   @include active-state {
