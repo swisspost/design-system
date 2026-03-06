@@ -1,18 +1,23 @@
-import { Component, Host, h, State } from '@stencil/core';
+import { Component, h, Host, Prop, State } from '@stencil/core';
+import { version } from '@root/package.json';
 import { state } from '@/data/store';
-import { SvgSprite } from '@/utils/svg-sprite.component';
-import { translate } from '@/services/language.service';
-import { PostFooterBlockCustom } from './components/post-footer-block-custom.component';
-import { PostFooterBlockList } from './components/post-footer-block-list.component';
-import { PostFooterBlockAddress } from './components/post-footer-block-address.component';
-import { PostFooterBlockContact } from './components/post-footer-block-contact.component';
+import { LinkList } from '@/components/shared';
 
 @Component({
   tag: 'swisspost-internet-footer',
   styleUrl: 'post-internet-footer.scss',
-  shadow: true,
 })
 export class PostInternetFooter {
+  /**
+   * Visually hidden label for the footer.
+   */
+  @Prop({ reflect: true }) readonly textFooter!: string;
+
+  /**
+   * Label for the "Cookie Settings" button.
+   */
+  @Prop({ reflect: true }) readonly textCookieSettings!: string;
+
   @State() liveSupportEnabled = false;
   @State() cookieSettingsEnabled = false;
 
@@ -69,13 +74,7 @@ export class PostInternetFooter {
   }
 
   render() {
-    // There is something wrong entirely
-    if (state === undefined) {
-      console.warn(
-        `Internet Footer: Could not load config. Please make sure that you included the <swisspost-internet-header></swisspost-internet-header> component.`,
-      );
-      return null;
-    }
+    console.log(state.localizedConfig);
 
     // Config has not loaded yet
     if (!state.localizedConfig) {
@@ -93,57 +92,56 @@ export class PostInternetFooter {
     }
 
     const footerConfig = state.localizedConfig.footer;
-    const customFooterConfig = state.localizedCustomConfig?.footer;
 
     return (
-      <Host>
-        <SvgSprite />
-        <footer class="post-internet-footer light fs-6">
-          <h2 class="visually-hidden">{footerConfig.title}</h2>
-          {customFooterConfig?.block && <PostFooterBlockCustom block={customFooterConfig?.block} />}
-          <div class="footer-container container">
-            {footerConfig.block
-              .filter(block => block.columnType === 'list')
-              .map(block => (
-                <PostFooterBlockList key={block.title} block={block} />
-              ))}
-            {footerConfig.block
-              .filter(block => block.columnType === 'contact')
-              .map(block => (
-                <PostFooterBlockContact
-                  key={block.title}
-                  block={block}
-                  liveSupportEnabled={this.liveSupportEnabled}
-                />
-              ))}
-            {footerConfig.block
-              .filter(block => block.columnType === 'address')
-              .map(block => (
-                <PostFooterBlockAddress key={block.title} block={block} />
-              ))}
+      <Host data-version={version}>
+        <post-footer text-footer={this.textFooter}>
+          {footerConfig.sections.map((section, i) => (
+            <LinkList
+              config={section}
+              titleTag="span"
+              titleSlot={`grid-${i + 1}-title`}
+              listSlot={`grid-${i + 1}`}
+            />
+          ))}
+
+          <div slot="socialmedia">
+            <LinkList
+              config={footerConfig.socialLinks}
+              titleTag="h3"
+              linkProps={{ class: 'btn btn-primary btn-icon', hiddenText: true }}
+            />
           </div>
-          <div class="copyright container">
-            <span>{footerConfig.entry.text}</span>
-            <ul class="no-list footer-meta-links">
-              {footerConfig.links !== undefined
-                ? footerConfig.links.map(link => (
-                    <li key={link.url}>
-                      <a class="nav-link" href={link.url} target={link.target}>
-                        {link.text}
-                      </a>
-                    </li>
-                  ))
-                : null}
+
+          <div slot="app">
+            <LinkList
+              config={footerConfig.appStoreLinks}
+              titleTag="h3"
+              linkProps={{ class: 'app-store-badge', hiddenText: true }}
+            />
+          </div>
+
+          <div slot="businesssectors">
+            <LinkList config={footerConfig.companyLinks} titleTag="h3" />
+          </div>
+
+          <div slot="meta">
+            <LinkList config={footerConfig.complianceLinks} hiddenTitle={true}>
               {this.cookieSettingsEnabled && (
                 <li>
-                  <button class="nav-link cookie-settings" onClick={this.handleCookieSettingsClick}>
-                    {translate('Cookie Settings')}
+                  <button
+                    class="btn btn-link cookie-settings"
+                    onClick={this.handleCookieSettingsClick}
+                  >
+                    {this.textCookieSettings}
                   </button>
                 </li>
               )}
-            </ul>
+            </LinkList>
           </div>
-        </footer>
+
+          <p slot="copyright">{footerConfig.copyright}</p>
+        </post-footer>
       </Host>
     );
   }

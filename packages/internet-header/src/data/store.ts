@@ -11,7 +11,7 @@ export interface HeaderState {
   localizedCustomConfig?: ILocalizedCustomConfig;
 }
 
-export const { state, reset, dispose } = createStore<HeaderState>({
+export const { state, onChange, reset, dispose } = createStore<HeaderState>({
   projectId: null,
   currentLanguage: null,
   localizedConfig: null,
