@@ -1,44 +1,44 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Inject,
-  Input,
-  LOCALE_ID,
-  NgZone,
-  OnInit,
-  SecurityContext,
-  TemplateRef,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, LOCALE_ID, NgZone, OnInit, SecurityContext, TemplateRef, ViewChild, ChangeDetectorRef, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
-import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgbDropdown, NgbDropdownToggle, NgbDropdownMenu } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
 @Component({
-  selector: 'sp-intranet-header',
-  templateUrl: './swisspost-intranet-header.component.html',
-  styleUrls: ['./swisspost-intranet-header.component.scss'],
-  standalone: false,
+    selector: 'sp-intranet-header',
+    templateUrl: './swisspost-intranet-header.component.html',
+    styleUrls: ['./swisspost-intranet-header.component.scss'],
+    imports: [
+        NgClass,
+        NgTemplateOutlet,
+        NgbDropdown,
+        NgbDropdownToggle,
+        NgbDropdownMenu,
+    ],
 })
 export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
-  @Input() siteTitle: string = '';
+  lang = inject(LOCALE_ID);
+  private router = inject(Router);
+  private zone = inject(NgZone);
+  private domSanitizer = inject(DomSanitizer);
+  private cd = inject(ChangeDetectorRef);
+
+  @Input() siteTitle = '';
   @Input() languages = 'de,fr,it,en';
-  @Input() currentUserId: string = '';
-  @Input() displayName: string = '';
-  @Input() additionalInfo: string = '';
+  @Input() currentUserId = '';
+  @Input() displayName = '';
+  @Input() additionalInfo = '';
   @Input() hasNavbar = true;
   @Input() showIntranetSearch = false;
   @Input() optionDropdownContent!: TemplateRef<any>;
   @Input() optionHeaderContent!: TemplateRef<any>;
-  @Input() logoUrl: string = '';
-  @Input() searchUrl: string = '';
-  @Input() hideCurrentUserId: boolean = false;
-  @Input() condenseHeader: boolean = false;
+  @Input() logoUrl = '';
+  @Input() searchUrl = '';
+  @Input() hideCurrentUserId = false;
+  @Input() condenseHeader = false;
 
   @ViewChild('domWrapper') dom!: ElementRef;
   @ViewChild('optionDropdown') optionDropdown!: NgbDropdown;
@@ -53,9 +53,9 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   openedMenuOverflow = false;
 
   localization: {
-    moreLabel: { [key: string]: string };
-    searchPlaceholder: { [key: string]: string };
-    postLogo: { [key: string]: string };
+    moreLabel: Record<string, string>;
+    searchPlaceholder: Record<string, string>;
+    postLogo: Record<string, string>;
   } = {
     moreLabel: {
       de: 'Mehr',
@@ -80,7 +80,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   private windowResize$ = new Subject();
   private moreElement!: HTMLElement | null;
   private navElement!: HTMLElement;
-  private navItems!: Array<HTMLElement>;
+  private navItems!: HTMLElement[];
   private logoElement!: HTMLElement;
   private titleElement!: HTMLElement;
   private optionHeaderContentElement!: HTMLElement;
@@ -88,13 +88,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   private profileMenuElement!: HTMLElement;
   private navChanges!: MutationObserver;
 
-  constructor(
-    @Inject(LOCALE_ID) public lang: string,
-    private router: Router,
-    private zone: NgZone,
-    private domSanitizer: DomSanitizer,
-    private cd: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
         if (this.openedMenuOverflow) {
@@ -282,7 +276,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   public navigationResize() {
     this.setUpRefs();
 
-    const navItems: Array<HTMLElement> = [];
+    const navItems: HTMLElement[] = [];
 
     if (this.moreElement == null) return;
 
