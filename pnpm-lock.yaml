@@ -69,8 +69,8 @@ importers:
         specifier: 0.8.0
         version: 0.8.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.9.3))(eslint@8.57.0)(typescript@5.9.3))(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.9.3))(eslint-plugin-react@7.35.0(eslint@8.57.0))(eslint@8.57.0)(typescript@5.9.3)
       '@stencil/angular-output-target':
-        specifier: 0.8.4
-        version: 0.8.4(@stencil/core@4.19.2)
+        specifier: 1.3.0
+        version: 1.3.0(@stencil/core@4.19.2)
       '@stencil/react-output-target':
         specifier: 0.5.3
         version: 0.5.3(@stencil/core@4.19.2)
@@ -4964,8 +4964,8 @@ packages:
       eslint-plugin-react: ^7.0.0
       typescript: ^4.9.4 || ^5.0.0
 
-  '@stencil/angular-output-target@0.8.4':
-    resolution: {integrity: sha512-QvmHTueXXs5vB9W2L12uEzFmAuR8sqATJV2b+SCFmYsjJSaymiSqR3dKo2wnr0tZiTgU1t16BWaUKiSh3wPXpw==}
+  '@stencil/angular-output-target@1.3.0':
+    resolution: {integrity: sha512-sh21V5+RatCHxlDZtfsNZ9IzDgXTf3abh0bvsQzULnRbnbJ0pOMCoiphVroJ1gyWw6XxPcmEJ1KNfhFomymWYg==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
 
@@ -18091,7 +18091,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil/angular-output-target@0.8.4(@stencil/core@4.19.2)':
+  '@stencil/angular-output-target@1.3.0(@stencil/core@4.19.2)':
     dependencies:
       '@stencil/core': 4.19.2
 
