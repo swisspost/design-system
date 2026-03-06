@@ -31,7 +31,7 @@ export class PostListboxOption {
         id={`post-listbox-option-${this.id}`}
       >
         <slot>{this.value}</slot>
-        {this.selected && <post-icon name="checkmark"></post-icon>}
+        {this.selected && <post-icon aria-hidden="true" name="checkmark"></post-icon>}
       </Host>
     );
   }

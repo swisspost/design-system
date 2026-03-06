@@ -212,7 +212,7 @@ export class PostAutocomplete {
         <slot />
         {this.clearable && this.inputValue && (
           <button type="button" class="autocomplete-clear" onClick={this.onClearClick}>
-            <post-icon name="closex"></post-icon>
+            <post-icon aria-hidden="true" name="closex"></post-icon>
           </button>
         )}
         <post-icon aria-hidden="true" class="autocomplete-icon" name="chevronDown"></post-icon>
