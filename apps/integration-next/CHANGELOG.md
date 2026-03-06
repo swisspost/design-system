@@ -1,4 +1,4 @@
-# @swisspost/design-system-nextjs-integration
+# @swisspost/design-system-integration-next
 
 ## 0.1.44
 

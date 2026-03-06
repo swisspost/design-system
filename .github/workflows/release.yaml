@@ -260,7 +260,7 @@ jobs:
             const fs = require('fs')
             const release = ${{ needs.collect-release-data.outputs.release-data }}
 
-            const redirectsPath = './packages/documentation/public/_redirects'
+            const redirectsPath = './apps/documentation/public/_redirects'
             let redirects = ''
             const redirect = `/v${release.old.major}   https://${release.old.siteUrl}.netlify.app`
 
@@ -282,7 +282,7 @@ jobs:
             const fs = require('fs')
             const release = ${{ needs.collect-release-data.outputs.release-data }}
 
-            const versionsPath = './packages/documentation/public/assets/versions.json'
+            const versionsPath = './apps/documentation/public/assets/versions.json'
             const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'))
 
             const currentVersion = versions.find(version => version.version.startsWith(release.old.major))
@@ -294,7 +294,7 @@ jobs:
 
             if (release.isMajor) {
               currentVersion.url = `https://${release.old.siteUrl}.netlify.app`
-              
+
               versions.unshift({
                 title: `Version ${release.new.major}`,
                 version: release.new.version,

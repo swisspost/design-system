@@ -76,7 +76,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
 ];
 
-const BASEURL = 'https://github.com/swisspost/design-system/tree/main/packages/documentation';
+const BASEURL = 'https://github.com/swisspost/design-system/tree/main/apps/documentation';
 
 function getGitHubUrl(path: String) {
   return `${BASEURL}${path.replace(/^\./, '').replace(/\.stories\.ts$/, '.docs.mdx')}`;
