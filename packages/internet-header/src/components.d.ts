@@ -6,9 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
-import { Environment } from "./models/general.model";
+import { ActiveRouteProp, Environment } from "./models/general.model";
 export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
-export { Environment } from "./models/general.model";
+export { ActiveRouteProp, Environment } from "./models/general.model";
 export namespace Components {
     /**
      * Trap the focus inside a specific container.
@@ -51,6 +51,11 @@ export namespace Components {
     interface SwisspostInternetFooter {
     }
     interface SwisspostInternetHeader {
+        /**
+          * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
+          * @default 'auto'
+         */
+        "activeRoute"?: ActiveRouteProp;
         /**
           * Target environment. Choose 'int01' for local testing.
           * @default 'prod'
@@ -169,6 +174,11 @@ declare namespace LocalJSX {
     interface SwisspostInternetFooter {
     }
     interface SwisspostInternetHeader {
+        /**
+          * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
+          * @default 'auto'
+         */
+        "activeRoute"?: ActiveRouteProp;
         /**
           * Target environment. Choose 'int01' for local testing.
           * @default 'prod'
