@@ -90,13 +90,20 @@ post-stepper-item {
     color: tokens.get('stepper-text-enabled-fg');
   }
 
-  // Current step
-  .stepper-item-current > & {
+  // Selected step
+  .stepper-item-selected > & {
     font-weight: tokens.get('stepper-step-label-selected-font-weight');
-    color: tokens.get('stepper-text-enabled-fg');
 
     &::before {
       font-weight: tokens.get('body-font-weight', elements.$post-body);
+    }
+  }
+
+  // Current step
+  .stepper-item-current > & {
+    color: tokens.get('stepper-text-enabled-fg');
+
+    &::before {
       color: tokens.get('stepper-enabled-fg');
     }
   }
