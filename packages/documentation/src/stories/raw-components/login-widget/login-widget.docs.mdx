@@ -1,0 +1,38 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as LoginWidgetStories from './login-widget.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={LoginWidgetStories} />
+
+<div className="docs-title">
+  # Login Widget
+
+<link-design of={JSON.stringify(LoginWidgetStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  Display a login link when the user is logged out, or an avatar with a user menu when the user is logged in.
+</div>
+
+The `<post-login-widget>` connects to the Swiss Post authentication system (KLP) and automatically renders the correct UI based on the current session state.
+
+<Canvas sourceState="shown" of={LoginWidgetStories.Default} />
+<div className="hide-col-default">
+  <Controls of={LoginWidgetStories.Default} />
+</div>
+
+<ComponentsPackageInstall component="<post-login-widget>" />
+
+
+## Examples
+
+### Logged In
+
+When an active session is found, the widget renders a `<post-avatar>` button that opens a dropdown
+with the user's name, links to their profile, messages, settings, and a logout button.
+
+<Canvas of={LoginWidgetStories.LoggedIn} />

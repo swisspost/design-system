@@ -16,12 +16,14 @@
 
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-language-menu](../post-language-menu)
+ - [post-login-widget](../post-login-widget)
 
 ### Graph
 ```mermaid
 graph TD;
   post-breadcrumbs --> post-menu-trigger
   post-language-menu --> post-menu-trigger
+  post-login-widget --> post-menu-trigger
   style post-menu-trigger fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
