@@ -35,7 +35,7 @@ button {
   @include media.only(desktop) {
     @include header-mx.active-state {
       font-weight: 700;
-      background-color: #F0EFED;
+      background-color: #f0efed;
       color: #050400;
     }
   }
