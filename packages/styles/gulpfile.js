@@ -179,21 +179,7 @@ gulp.task('sass:dev', () => {
 });
 
 /**
- * Compile scss tests
- */
-gulp.task(
-  'sass:tests',
-  gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', () => {
-    return gulp.src('./tests/**/*.scss').pipe(
-      gulpSass.sync({
-        loadPaths: [...options.loadPaths, './'],
-        quietDeps: true,
-      }),
-    );
-  }),
-);
 
-/**
  * Watch task for scss development
  */
 gulp.task(
