@@ -108,6 +108,7 @@ header,
     }
   }
 
+  &:where(.megadropdown-open),
   &:has(~ .burger-menu.extended) {
     &::after {
       content: '';
