@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use '@swisspost/design-system-styles/components/header/placeholders' as *;
+@use '@swisspost/design-system-styles/variables/elevation';
 
 :host {
   position: relative;
@@ -34,7 +35,14 @@ button {
 
   @include media.only(desktop) {
     @include header-mx.active-state {
-      font-weight: 700;
+      background-color: #f0efed;
+      color: #050400;
+      border-block-end: 1px solid #f0efed;
+      z-index: 2;
+
+      &:hover {
+        border-block-end: 1px solid #f0efed;
+      }
     }
   }
 
