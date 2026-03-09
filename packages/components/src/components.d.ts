@@ -853,8 +853,6 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-<<<<<<< 7109-replace-is_browseris_server-utils-with-buildisbrowser-stencilcore-variable
-=======
     interface HTMLPostDatepickerElementEventMap {
         "postUpdateDates": Date | Date[];
     }
@@ -1139,11 +1137,7 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
-<<<<<<< 7109-replace-is_browseris_server-utils-with-buildisbrowser-stencilcore-variable
-=======
         "post-datepicker": HTMLPostDatepickerElement;
-        "post-env-test": HTMLPostEnvTestElement;
->>>>>>> main
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
@@ -1345,8 +1339,6 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
-<<<<<<< 7109-replace-is_browseris_server-utils-with-buildisbrowser-stencilcore-variable
-=======
     interface PostDatepicker {
         /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
@@ -1415,9 +1407,6 @@ declare namespace LocalJSX {
          */
         "textToggleCalendar"?: string;
     }
-    interface PostEnvTest {
-    }
->>>>>>> main
     interface PostFooter {
         /**
           * The textFooter to add to the footer (visually hidden).
@@ -1816,11 +1805,7 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
-<<<<<<< 7109-replace-is_browseris_server-utils-with-buildisbrowser-stencilcore-variable
-=======
         "post-datepicker": PostDatepicker;
-        "post-env-test": PostEnvTest;
->>>>>>> main
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
@@ -1868,11 +1853,7 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
-<<<<<<< 7109-replace-is_browseris_server-utils-with-buildisbrowser-stencilcore-variable
-=======
             "post-datepicker": LocalJSX.PostDatepicker & JSXBase.HTMLAttributes<HTMLPostDatepickerElement>;
-            "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
->>>>>>> main
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
