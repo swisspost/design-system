@@ -2,11 +2,7 @@
 @use 'src/variables/type' as typevars;
 
 body {
-  @include mixins.hover-animation(10px, 500px, 500px);
   @include mixins.focus-outline();
-
-  @include mixins.font-smoothing();
-  @include mixins.font-smoothing-reset();
 }
 
 ul {
@@ -15,24 +11,4 @@ ul {
 
 .visually-hidden {
   @include mixins.visuallyhidden();
-}
-
-.visually-hidden-reset {
-  @include mixins.visuallyhidden-reset();
-}
-
-.visually-hidden-focusable {
-  @include mixins.visuallyhidden-focusable();
-}
-
-.replace-text {
-  @include mixins.replace-text();
-}
-
-.truncate {
-  @include mixins.truncate();
-}
-
-.full-width-underscore {
-  @include mixins.full-width-underscore(black, 3px);
 }

@@ -7,23 +7,3 @@ ul {
 .visually-hidden {
   @include utilities.visuallyhidden();
 }
-
-.visually-hidden-reset {
-  @include utilities.visuallyhidden-reset();
-}
-
-.visually-hidden-focusable {
-  @include utilities.visuallyhidden-focusable();
-}
-
-.replace-text {
-  @include utilities.replace-text();
-}
-
-.truncate {
-  @include utilities.truncate();
-}
-
-.full-width-underscore {
-  @include utilities.full-width-underscore(black, 3px);
-}
