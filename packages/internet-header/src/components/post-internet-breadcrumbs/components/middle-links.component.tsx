@@ -1,6 +1,6 @@
 import { h } from '@stencil/core';
-import { SvgIcon } from '../../../utils/svg-icon.component';
-import { IBreadcrumbItem } from '../../../models/breadcrumbs.model';
+import { SvgIcon } from '@/utils/svg-icon.component';
+import { IBreadcrumbItem } from '@/models/breadcrumbs.model';
 
 export const MiddleLinks = (props: {
   items: IBreadcrumbItem[];
