@@ -211,8 +211,6 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
-<<<<<<< 7109-replace-is_browseris_server-utils-with-buildisbrowser-stencilcore-variable
-=======
     interface PostDatepicker {
         /**
           * Hides the popover calendar.
@@ -286,9 +284,6 @@ export namespace Components {
          */
         "textToggleCalendar"?: string;
     }
-    interface PostEnvTest {
-    }
->>>>>>> main
     interface PostFooter {
         /**
           * The textFooter to add to the footer (visually hidden).
