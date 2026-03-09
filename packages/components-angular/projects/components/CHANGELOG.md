@@ -1,5 +1,13 @@
 # @swisspost/design-system-components-angular
 
+## 9.9.0
+
+### Patch Changes
+
+- Fixed Stencil runtime errors caused by unknown host elements. (by [@alizedebray](https://github.com/alizedebray) with [#7276](https://github.com/swisspost/design-system/pull/7276))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.9.0
+
 ## 9.8.0
 
 ### Patch Changes

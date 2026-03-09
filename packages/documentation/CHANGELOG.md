@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 5.9.1
+
+### Patch Changes
+
+- Updated the documentation of the `activeRoute` property of the `swisspost-internet-header` component. (by [@alizedebray](https://github.com/alizedebray) with [#7256](https://github.com/swisspost/design-system/pull/7256))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.9.0
+  - @swisspost/design-system-styles@9.9.0
+  - @swisspost/design-system-components@9.9.0
+  - @swisspost/design-system-components-react@9.9.0
+  - @swisspost/design-system-theme-ag-grid@9.9.0
+  - @swisspost/internet-header@1.16.2
+
 ## 5.9.0
 
 ### Minor Changes
