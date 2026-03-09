@@ -9,13 +9,13 @@ import { DropdownEvent, NavMainEntity } from "./models/header.model";
 import { Event } from "@stencil/core";
 import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 import { StickynessOptions } from "./models/implementor.model";
-import { Environment, ICustomConfig } from "./models/general.model";
+import { ActiveRouteProp, Environment, ICustomConfig } from "./models/general.model";
 import { IAvailableLanguage } from "./models/language.model";
 export { DropdownEvent, NavMainEntity } from "./models/header.model";
 export { Event } from "@stencil/core";
 export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 export { StickynessOptions } from "./models/implementor.model";
-export { Environment, ICustomConfig } from "./models/general.model";
+export { ActiveRouteProp, Environment, ICustomConfig } from "./models/general.model";
 export { IAvailableLanguage } from "./models/language.model";
 export namespace Components {
     /**
@@ -115,7 +115,7 @@ export namespace Components {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
          */
-        "activeRoute"?: 'auto' | false | string;
+        "activeRoute"?: ActiveRouteProp;
         /**
           * Define a proxy URL for the config fetch request.
          */
@@ -416,7 +416,7 @@ declare namespace LocalJSX {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
          */
-        "activeRoute"?: 'auto' | false | string;
+        "activeRoute"?: ActiveRouteProp;
         /**
           * Define a proxy URL for the config fetch request.
          */
