@@ -1,8 +1,5 @@
 import { createStore } from '@stencil/store';
-import { Environment, ILocalizedConfig, ILocalizedCustomConfig } from '../models/general.model';
-import { NavMainEntity } from '../models/header.model';
-import { IAvailableLanguage } from '../models/language.model';
-import { StickynessOptions } from '../components';
+import { Environment, ILocalizedConfig, ILocalizedCustomConfig } from '@/models/general.model';
 
 export interface HeaderState {
   localizedConfig: ILocalizedConfig | null;
@@ -11,11 +8,7 @@ export interface HeaderState {
   environment: Environment;
   search: boolean;
   login: boolean;
-  meta: boolean;
-  languageSwitchOverrides?: IAvailableLanguage[];
   localizedCustomConfig?: ILocalizedCustomConfig;
-  osFlyoutOverrides?: NavMainEntity;
-  stickyness: StickynessOptions;
 }
 
 export const { state, reset, dispose } = createStore<HeaderState>({
@@ -25,6 +18,4 @@ export const { state, reset, dispose } = createStore<HeaderState>({
   environment: 'prod',
   search: true,
   login: true,
-  meta: true,
-  stickyness: 'minimal',
 });
