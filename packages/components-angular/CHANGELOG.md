@@ -1,5 +1,14 @@
 # @swisspost/design-system-components-angular-workspace
 
+## 1.1.41
+
+### Patch Changes
+
+- Clarified the deprecation of the `post-card-control` component. The web component will be removed in the next major release, while the standard HTML implementation will remain available under a new name. (by [@bucknatt](https://github.com/bucknatt) with [#7219](https://github.com/swisspost/design-system/pull/7219))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.9.0
+  - @swisspost/design-system-components@9.9.0
+
 ## 1.1.40
 
 ### Patch Changes
