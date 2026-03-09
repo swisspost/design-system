@@ -3,7 +3,5 @@
 "@swisspost/design-system-components-angular-workspace": patch
 ---
 
-Updated `post-card-control` deprecation messages to clarify the different timelines for standard HTML and web component:
-- Changed the deprecation message for standard HTML component to indicate renaming instead of removal.
-- Added deprecation message for web component indicating removal in the next major version.
-
+Clarified the deprecation of the `post-card-control` component.
+The web component will be removed in the next major release, while the standard HTML implementation will remain available under a new name. 
