@@ -32715,6 +32715,47 @@
       "modifiedAt": "2026-02-26T07:05:01.396Z"
     },
     {
+      "uuid": "cb57acf0-187f-11f1-a5c3-0050568d2654",
+      "id": 9346932,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9346932/storage/MDA5MzQ2OTMxLzAvbWFzdGVy",
+        "keywords": [
+          "contenitore",
+          "container",
+          "conteneur",
+          "Container",
+          "Frachtcontainer",
+          "Cargo Container",
+          "Contenitore di carico",
+          "Conteneur De Fret",
+          "Transport",
+          "Trasporto",
+          "transhipment",
+          "Umschlag",
+          "Enveloppe",
+          "Busta",
+          "Fracht",
+          "freight",
+          "Fret"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2760.svg",
+        "basename": "2760",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-05T10:40:57.000Z",
+      "modifiedAt": "2026-03-05T10:45:47.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -45153,37 +45194,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:43.000Z"
-    },
-    {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
       "id": 352299,
       "type": "picture.pictogram.",
@@ -45213,6 +45223,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:42.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:43.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -45326,11 +45367,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-03-01T03:30:15.955Z",
+  "created": "2026-03-08T03:17:38.769Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1079
+    "success": 1080
   },
   "version": "9.8.0"
 }
