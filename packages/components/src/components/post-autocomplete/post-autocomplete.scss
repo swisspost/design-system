@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/functions/forms' as forms-fx;
+@use '@swisspost/design-system-styles/mixins/media';
 
 :host {
   position: relative;
@@ -19,6 +20,10 @@
   width: 24px;
   height: 24px;
   pointer-events: none;
+
+  @include media.min(md) {
+    inset-block-start: 20px;
+  }
 }
 
 :host([open]) .autocomplete-icon {
