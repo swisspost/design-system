@@ -67,7 +67,7 @@ export function renderMainnavigation() {
         <li>
           <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
           <post-megadropdown id="packages" text-close="Close" text-back="Back">
-            <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
+            <a class="post-megadropdown-overview" href="/packages" aria-current="page">Overview Packages</a>
 
             <div class="row row-cols-1 row-cols-sm-2">
               <div class="col">
