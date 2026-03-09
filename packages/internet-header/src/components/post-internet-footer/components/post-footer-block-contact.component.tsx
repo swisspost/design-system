@@ -1,5 +1,5 @@
 import { h } from '@stencil/core';
-import { BlockEntity } from '../../../models/footer.model';
+import { BlockEntity } from '@/models/footer.model';
 
 function stripHtml(html: string): string {
   const doc = new DOMParser().parseFromString(html, 'text/html');
