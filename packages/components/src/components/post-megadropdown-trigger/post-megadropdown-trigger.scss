@@ -40,6 +40,10 @@ button {
       box-shadow: elevation.$elevation-400;
       border-block-end: 1px solid #f0efed;
       z-index: 2;
+
+      &:hover {
+        border-block-end: 1px solid #e1e0dc;
+      }
     }
   }
 
