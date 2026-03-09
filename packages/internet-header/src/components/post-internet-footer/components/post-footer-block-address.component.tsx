@@ -1,5 +1,5 @@
 import { h } from '@stencil/core';
-import { BlockEntity } from '../../../models/footer.model';
+import { BlockEntity } from '@/models/footer.model';
 import { PostFooterBlockSocials } from './post-footer-block-socials.component';
 
 export const PostFooterBlockAddress = (props: { block: BlockEntity; key: string }) => {

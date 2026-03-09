@@ -1,5 +1,5 @@
 import { h } from '@stencil/core';
-import { ContentEntity } from '../../../models/footer.model';
+import { ContentEntity } from '@/models/footer.model';
 
 export const PostFooterBlockSocials = (props: { content: ContentEntity; key: string }) => {
   return (

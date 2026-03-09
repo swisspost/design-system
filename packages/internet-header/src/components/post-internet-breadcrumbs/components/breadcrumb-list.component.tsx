@@ -1,6 +1,6 @@
 import { h } from '@stencil/core';
-import { IBreadcrumbItem } from '../../../models/breadcrumbs.model';
-import { SvgIcon } from '../../../utils/svg-icon.component';
+import { IBreadcrumbItem } from '@/models/breadcrumbs.model';
+import { SvgIcon } from '@/utils/svg-icon.component';
 import { MiddleDropdown } from './middle-dropdown.component';
 import { MiddleLinks } from './middle-links.component';
 
