@@ -5,12 +5,13 @@
 
 ## Properties
 
-| Property      | Attribute     | Description                                                             | Type                                                                      | Default     |
-| ------------- | ------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------- |
-| `environment` | `environment` | Target environment. Choose 'int01' for local testing.                   | `"dev01" \| "dev02" \| "devs1" \| "int01" \| "int02" \| "prod" \| "test"` | `'prod'`    |
-| `fullWidth`   | `full-width`  | Displays the header at full width for full-screen applications          | `boolean \| undefined`                                                    | `false`     |
-| `language`    | `language`    | Initial language to be used. Overrides automatic language detection.    | `"de" \| "en" \| "fr" \| "it" \| undefined`                               | `undefined` |
-| `project`     | `project`     | Your project id, previously passed as query string parameter serviceId. | `string`                                                                  | `undefined` |
+| Property      | Attribute      | Description                                                                                                                                                                                                               | Type                                                                      | Default     |
+| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------- |
+| `activeRoute` | `active-route` | Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison. | `string \| undefined`                                                     | `'auto'`    |
+| `environment` | `environment`  | Target environment. Choose 'int01' for local testing.                                                                                                                                                                     | `"dev01" \| "dev02" \| "devs1" \| "int01" \| "int02" \| "prod" \| "test"` | `'prod'`    |
+| `fullWidth`   | `full-width`   | Displays the header at full width for full-screen applications                                                                                                                                                            | `boolean \| undefined`                                                    | `false`     |
+| `language`    | `language`     | Initial language to be used. Overrides automatic language detection.                                                                                                                                                      | `"de" \| "en" \| "fr" \| "it" \| undefined`                               | `undefined` |
+| `project`     | `project`      | Your project id, previously passed as query string parameter serviceId.                                                                                                                                                   | `string`                                                                  | `undefined` |
 
 
 ## Events
