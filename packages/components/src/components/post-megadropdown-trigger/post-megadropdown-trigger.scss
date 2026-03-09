@@ -35,7 +35,6 @@ button {
 
   @include media.only(desktop) {
     @include header-mx.active-state {
-      font-weight: 700;
       background-color: #f0efed;
       color: #050400;
       box-shadow: elevation.$elevation-400;
