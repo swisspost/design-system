@@ -870,13 +870,6 @@ declare global {
         prototype: HTMLPostDatepickerElement;
         new (): HTMLPostDatepickerElement;
     };
-    interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
-    }
-    var HTMLPostEnvTestElement: {
-        prototype: HTMLPostEnvTestElement;
-        new (): HTMLPostEnvTestElement;
-    };
->>>>>>> main
     interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
     }
     var HTMLPostFooterElement: {
