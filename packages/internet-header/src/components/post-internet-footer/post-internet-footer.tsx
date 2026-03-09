@@ -1,11 +1,11 @@
 import { Component, Host, h, State } from '@stencil/core';
-import { state } from '../../data/store';
-import { SvgSprite } from '../../utils/svg-sprite.component';
+import { state } from '@/data/store';
+import { SvgSprite } from '@/utils/svg-sprite.component';
+import { translate } from '@/services/language.service';
 import { PostFooterBlockCustom } from './components/post-footer-block-custom.component';
 import { PostFooterBlockList } from './components/post-footer-block-list.component';
 import { PostFooterBlockAddress } from './components/post-footer-block-address.component';
 import { PostFooterBlockContact } from './components/post-footer-block-contact.component';
-import { translate } from '../../services/language.service';
 
 @Component({
   tag: 'swisspost-internet-footer',
