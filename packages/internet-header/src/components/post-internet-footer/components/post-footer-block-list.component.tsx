@@ -1,5 +1,5 @@
 import { h } from '@stencil/core';
-import { CustomBlockEntity } from '../../../models/footer.model';
+import { CustomBlockEntity } from '@/models/footer.model';
 
 export const PostFooterBlockList = (props: { block: CustomBlockEntity; key: string }) => {
   return (

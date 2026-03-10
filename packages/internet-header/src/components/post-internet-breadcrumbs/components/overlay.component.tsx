@@ -1,6 +1,6 @@
 import { h } from '@stencil/core';
-import { SvgIcon } from '../../../utils/svg-icon.component';
-import { IBreadcrumbOverlay } from '../../../models/breadcrumbs.model';
+import { SvgIcon } from '@/utils/svg-icon.component';
+import { IBreadcrumbOverlay } from '@/models/breadcrumbs.model';
 
 /**
  * Overlay implementation with focus trap according to

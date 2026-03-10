@@ -1,5 +1,5 @@
-import '../../assets/js/klp-login-widget.js';
-import { ILoginWidgetOptions } from '../../models/header.model.js';
+import '@/assets/js/klp-login-widget.js';
+import { ILoginWidgetOptions } from '@/models/header.model.js';
 
 export const initializeKLPLoginWidget = (containerId: string, options: ILoginWidgetOptions) => {
   if (options === undefined) return;
