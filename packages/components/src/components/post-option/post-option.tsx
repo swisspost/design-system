@@ -19,7 +19,7 @@ export class PostOption {
   /**
    * The value of the option. This is what gets submitted when the option is selected.
    */
-  @Prop() value!: string;
+  @Prop({ reflect: true }) value!: string;
 
   /**
    * If `true`, the option is disabled and cannot be selected.
@@ -30,7 +30,7 @@ export class PostOption {
    * If `true`, the option is currently selected.
    * This is managed by the parent listbox/autocomplete.
    */
-  @Prop({ reflect: true, mutable: true }) selected = false;
+  @Prop({ reflect: true }) selected = false;
 
   /**
    * Emitted when the option is clicked or selected via keyboard.

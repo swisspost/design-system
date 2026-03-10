@@ -71,7 +71,7 @@ export class PostAutocomplete {
   /**
    * If `true`, automatically highlights the first matching option.
    */
-  @Prop() autoHighlight = true;
+  @Prop() autoHighlight = false;
 
   /**
    * If `true`, the dropdown is currently open.
