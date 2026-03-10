@@ -66,11 +66,11 @@ export class PostAccordionItem {
   }
 
   private onSlotLogoChange() {
-    this.slottedLogo = this.host.querySelector('img[slot="logo"]');
+    this.slottedLogo = this.host.querySelector('img[slot="logo"], post-icon[slot="logo"]');
   }
 
   componentWillRender() {
-    this.slottedLogo = this.host.querySelector('img[slot="logo"]');
+    this.slottedLogo = this.host.querySelector('img[slot="logo"], post-icon[slot="logo"]');
   }
 
   render() {
@@ -89,7 +89,8 @@ export class PostAccordionItem {
               <span
                 class={{
                   'logo-container': true,
-                  'has-image': !!this.slottedLogo,
+                  'has-image': !!this.slottedLogo && this.slottedLogo.tagName === 'IMG',
+                  'has-icon': !!this.slottedLogo && this.slottedLogo.tagName === 'POST-ICON',
                 }}
               >
                 <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
