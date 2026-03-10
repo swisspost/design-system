@@ -1,0 +1,18 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+post-listbox {
+  display: block;
+  max-height: 16rem; // ~10 options visible
+  overflow-y: auto;
+  background-color: post.$white;
+  border-radius: post.$border-radius;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: post.$size-line solid post.$focus-color;
+    outline-offset: calc(-1 * post.$size-line);
+  }
+}

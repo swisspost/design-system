@@ -1,4 +1,23 @@
 <div class="my-24">
+  <h2>Autocomplete</h2>
+  <label for="country-input" class="form-label">Country</label>
+  <post-autocomplete label="Search countries">
+    <input
+      id="country-input"
+      type="text"
+      class="form-control"
+      placeholder="Type to search..."
+      autocomplete="off"
+    />
+    <div slot="options">
+      @for (country of countries; track country) {
+        <post-option [value]="country">{{ country }}</post-option>
+      }
+    </div>
+  </post-autocomplete>
+</div>
+
+<div class="my-24">
   <h2>Accordion</h2>
   <post-accordion [headingLevel]="3">
     <post-accordion-item>

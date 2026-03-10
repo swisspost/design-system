@@ -1,0 +1,104 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as AutocompleteStories from './autocomplete.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={AutocompleteStories} />
+
+<div className="docs-title">
+  # Autocomplete
+
+<link-design of={JSON.stringify(AutocompleteStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  An autocomplete component that provides suggestions as the user types, improving form completion efficiency and accuracy.
+</div>
+
+<Canvas sourceState="shown" of={AutocompleteStories.Default} />
+<Controls of={AutocompleteStories.Default} />
+
+<ComponentsPackageInstall component="<post-autocomplete>" />
+
+## Usage
+
+The autocomplete component wraps a native `<input>` element and displays matching options in a dropdown as the user types.
+
+```html
+<post-autocomplete label="Search countries">
+  <input type="text" class="form-control" placeholder="Type to search..." />
+  <div slot="options">
+    <post-option value="switzerland">Switzerland</post-option>
+    <post-option value="germany">Germany</post-option>
+    <post-option value="france">France</post-option>
+  </div>
+</post-autocomplete>
+```
+
+## Accessibility
+
+The autocomplete component implements the WAI-ARIA combobox pattern with the following features:
+
+- The input has `role="combobox"` with `aria-autocomplete="list"`
+- The dropdown listbox is connected via `aria-owns`
+- Keyboard navigation is fully supported (Arrow keys, Enter, Escape, Home, End)
+- Screen reader announcements for the number of available suggestions
+- Focus management ensures proper focus return when closing
+
+## Examples
+
+### Minimum Characters
+
+Use the `min-chars` property to control how many characters must be typed before showing suggestions.
+This is useful for large option lists to avoid overwhelming the user.
+
+<Canvas of={AutocompleteStories.WithMinChars} />
+
+### Auto Highlight
+
+By default, the first matching option is automatically highlighted for quick selection.
+Set `auto-highlight="false"` to disable this behavior.
+
+<Canvas of={AutocompleteStories.NoAutoHighlight} />
+
+### With Icons
+
+Options can include icons or other content to provide additional context.
+
+<Canvas of={AutocompleteStories.WithIcons} />
+
+### Disabled Options
+
+Options can be disabled to prevent selection while still being visible.
+
+<Canvas of={AutocompleteStories.WithDisabledOptions} />
+
+### Form Integration
+
+The autocomplete works with standard form controls and Bootstrap form styling.
+
+<Canvas of={AutocompleteStories.WithFormGroup} />
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| <kbd>↓</kbd> | Open dropdown / Move to next option |
+| <kbd>↑</kbd> | Move to previous option |
+| <kbd>Enter</kbd> | Select highlighted option |
+| <kbd>Escape</kbd> | Close dropdown |
+| <kbd>Home</kbd> | Jump to first option |
+| <kbd>End</kbd> | Jump to last option |
+| <kbd>Tab</kbd> | Close dropdown and move focus |
+
+## Events
+
+| Event | Description |
+|-------|-------------|
+| `postSelect` | Fired when an option is selected. Detail contains `{ value, label }` |
+| `postInput` | Fired when the input value changes |
+| `postOpen` | Fired when the dropdown opens |
+| `postClose` | Fired when the dropdown closes |
