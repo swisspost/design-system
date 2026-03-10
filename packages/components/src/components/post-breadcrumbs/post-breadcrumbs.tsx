@@ -168,7 +168,7 @@ export class PostBreadcrumbs {
       <Host data-version={version}>
         <div class="visually-hidden" aria-hidden="true">
           <slot
-            ref={el => (this.slotRef = el as HTMLSlotElement)}
+            ref={el => (this.slotRef = el)}
             onSlotchange={() => this.updateBreadcrumbItems()}
           ></slot>
         </div>
