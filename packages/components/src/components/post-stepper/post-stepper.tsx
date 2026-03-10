@@ -109,7 +109,7 @@ export class PostStepper {
   private updateActiveStepNumber() {
     if (this.textStepNumber) {
       const labelTemplate = this.textStepNumber;
-      this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.currentIndex + 1}`);
+      this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.selectedIndex + 1}`);
       if (this.stepItems) {
         this.updateMobileActiveStepVisibility();
       }
@@ -127,7 +127,7 @@ export class PostStepper {
     this.updateActiveStepNumber();
 
     this.stepItems.forEach((el, i) => {
-      if (this.currentIndex === i) {
+      if (this.selectedIndex === i) {
         this.mobileActiveStepName = el.innerHTML;
       }
 
