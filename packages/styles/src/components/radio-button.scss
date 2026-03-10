@@ -15,8 +15,6 @@ tokens.$default-map: components.$post-radio-button;
 
 // Default Radio
 .form-check:not(.form-switch):has(input[type='radio']) {
-  display: flex;
-  align-items: center;
   gap: tokens.get('radio-button-gap-inline-text-start');
 
   > input[type='radio'] {
