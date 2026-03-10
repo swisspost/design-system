@@ -145,7 +145,7 @@ export const WithFormGroup: StoryObj = {
 };
 
 export const WithIcons: StoryObj = {
-  render: (_args: Args) => html`
+  render: () => html`
     <div style="min-height: 400px; padding-top: 50px;">
       <label for="city-input" class="form-label">City</label>
       <post-autocomplete label="Search cities" min-chars="1">
@@ -184,7 +184,7 @@ export const WithIcons: StoryObj = {
 };
 
 export const WithDisabledOptions: StoryObj = {
-  render: (_args: Args) => html`
+  render: () => html`
     <div style="min-height: 400px; padding-top: 50px;">
       <label for="product-input" class="form-label">Product</label>
       <post-autocomplete label="Search products" min-chars="0">
