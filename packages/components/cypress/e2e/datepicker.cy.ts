@@ -14,7 +14,7 @@ describe('datepicker', () => {
 
     it('should open calendar popover on button click', () => {
       cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
-      cy.get('.popover-content').should('be.visible');
+      cy.get('@datepicker').find('.popover-content').should('be.visible');
     });
 
     it('should have correct order in navigation', () => {
