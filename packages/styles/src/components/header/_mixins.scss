@@ -97,7 +97,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   }
 
   @include utilities.focus-style-custom {
-    outline-offset: tokens.get('focus-outline-offset2', helpers.$post-focus) !important;
+    outline-offset: calc(2 * tokens.get('focus-outline-offset2', helpers.$post-focus)) !important;
     border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
   }
 
