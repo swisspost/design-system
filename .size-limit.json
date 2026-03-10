@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Styles: Full stylesheet (index.css)",
+    "path": "packages/styles/dist/index.css",
+    "limit": "600 kB",
+    "brotli": false
+  },
+  {
+    "name": "Styles: Basics (basics.css)",
+    "path": "packages/styles/dist/basics.css",
+    "limit": "210 kB",
+    "brotli": false
+  },
+  {
+    "name": "Styles: Post Default theme",
+    "path": "packages/styles/dist/post-default.css",
+    "limit": "700 kB",
+    "brotli": false
+  },
+  {
+    "name": "Styles: Post Compact theme",
+    "path": "packages/styles/dist/post-compact.css",
+    "limit": "700 kB",
+    "brotli": false
+  },
+  {
+    "name": "Styles: Elements (elements.css)",
+    "path": "packages/styles/dist/elements.css",
+    "limit": "10 kB",
+    "brotli": false
+  },
+  {
+    "name": "Styles: Component CSS (total)",
+    "path": "packages/styles/dist/components/*.css",
+    "limit": "320 kB",
+    "brotli": false
+  },
+  {
+    "name": "Styles: card.css",
+    "path": "packages/styles/dist/components/card.css",
+    "limit": "60 kB",
+    "brotli": false
+  },
+  {
+    "name": "Styles: card-control.css",
+    "path": "packages/styles/dist/components/card-control.css",
+    "limit": "40 kB",
+    "brotli": false
+  },
+  {
+    "name": "Components: Stencil runtime",
+    "path": "packages/components/dist/esm/index-*.js",
+    "limit": "115 kB",
+    "brotli": false
+  },
+  {
+    "name": "Components: Custom elements (total)",
+    "path": "packages/components/dist/components/*.js",
+    "limit": "760 kB",
+    "brotli": false
+  },
+  {
+    "name": "Components: post-datepicker.js (known large)",
+    "path": "packages/components/dist/components/post-datepicker.js",
+    "limit": "380 kB",
+    "brotli": false,
+    "message": "The datepicker bundles air-datepicker, imask, and the full design system basics.css into its shadow DOM. See post-datepicker.scss for optimization opportunities."
+  },
+  {
+    "name": "Components: focusable.js",
+    "path": "packages/components/dist/components/focusable.js",
+    "limit": "55 kB",
+    "brotli": false
+  },
+  {
+    "name": "Components: post-card-control.js",
+    "path": "packages/components/dist/components/post-card-control.js",
+    "limit": "45 kB",
+    "brotli": false
+  },
+  {
+    "name": "Components: post-popovercontainer2.js",
+    "path": "packages/components/dist/components/post-popovercontainer2.js",
+    "limit": "50 kB",
+    "brotli": false
+  }
+]

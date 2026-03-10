@@ -1,0 +1,37 @@
+###
+#
+# Checks bundle size budgets for styles and components packages.
+# Posts size comparison as a PR comment using the size-limit GitHub action.
+#
+###
+
+name: Size budgets
+on:
+  pull_request:
+    paths:
+      - 'packages/styles/**'
+      - 'packages/components/**'
+      - 'packages/tokens/**'
+
+jobs:
+  size:
+    name: Size budget
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install dependencies and build packages
+        run: pnpm bootstrap
+
+      - name: Check size budgets
+        uses: andresz1/size-limit-action@v1.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          script: check:size
