@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { Default, Clearable, WithHelperText, Disabled } from './autocomplete.stories';
+import meta, { Default } from './autocomplete.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';

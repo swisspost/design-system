@@ -293,6 +293,9 @@ export class PostAutocomplete {
     const input = e.target as HTMLInputElement;
     const value = input.value;
 
+    // Don't process input if the input is disabled
+    if (input.disabled) return;
+
     // Check if we meet the filter threshold
     if (value.length >= (this.filterThreshold ?? 0)) {
       const event = this.postFilterRequest.emit(value);
@@ -318,6 +321,9 @@ export class PostAutocomplete {
   };
 
   private readonly handleKeyDown = async (e: KeyboardEvent) => {
+    // Don't process keyboard events if the input is disabled
+    if (this.inputElement?.disabled) return;
+
     const { key } = e;
 
     switch (key) {
