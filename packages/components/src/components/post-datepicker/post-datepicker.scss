@@ -1,6 +1,6 @@
 @use 'air-datepicker/air-datepicker.css';
 @use '@swisspost/design-system-styles/components/validation.scss';
-@use '@swisspost/design-system-styles/components/form-search-input.scss';
+@use '@swisspost/design-system-styles/mixins' as form-input-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/tokens/components' as components;
@@ -616,26 +616,11 @@ tokens.$default-map: components.$post-datepicker;
   position: relative;
 
   button {
-    z-index: 1;
-    padding: 0;
-    position: absolute;
-    top: 50%;
+    @include form-input-mx.input-btn();
     right: tokens.get(
       'search-position-inline-end-icon',
       components.$post-search-input
     ); // should this be 16px?
-    transform: translateY(-50%);
-    background: none;
-    border: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: tokens.get('input-search-icon-border-radius', components.$post-search-input);
-    transition:
-      opacity 0.2s ease,
-      visibility 0.2s ease,
-      fill 0.2s ease;
-
     &[disabled] {
       color: #696864;
     }
@@ -643,30 +628,11 @@ tokens.$default-map: components.$post-datepicker;
     &:not([disabled]) {
       cursor: pointer;
     }
-
-    post-icon {
-      width: tokens.get('input-sizing-icon', components.$post-text-input);
-      height: tokens.get('input-sizing-icon', components.$post-text-input);
-    }
   }
 }
 
-// .calendar-input-range {
-//   border: 2px solid black;
-//   border-radius: 4px;
-//   display: flex;
-//   padding: 12px;
-
-//   &.disabled {
-//     color: tokens.get('input-color-disabled-fg', components.$post-text-input);
-//     background-color: tokens.get('input-color-disabled-bg', components.$post-text-input);
-//     border-color: tokens.get('input-color-disabled-border', components.$post-text-input);
-//     border-style: tokens.get('input-border-style-disabled', components.$post-text-input);
-//   }
+// ::slotted(input) {
+//   border: unset;
+//   background-color: transparent;
+//   flex-grow: 1;
 // }
-
-::slotted(input) {
-  border: unset;
-  background-color: transparent;
-  flex-grow: 1;
-}
