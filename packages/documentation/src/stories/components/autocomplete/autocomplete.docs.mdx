@@ -1,0 +1,156 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as AutocompleteStories from './autocomplete.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={AutocompleteStories} />
+
+<div className="docs-title">
+  # Autocomplete
+
+<link-design of={JSON.stringify(AutocompleteStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  An autocomplete component that allows users to search and select from a list of options.
+  It provides keyboard navigation, filtering, and full accessibility support.
+</div>
+
+<Canvas sourceState="shown" of={AutocompleteStories.Default} />
+<Controls of={AutocompleteStories.Default} />
+
+<ComponentsPackageInstall component="<post-autocomplete>" />
+
+## Usage
+
+The autocomplete component consists of three elements working together:
+
+1. **`<post-autocomplete>`** - The main container that orchestrates the behavior
+2. **`<post-listbox>`** - The dropdown container for options
+3. **`<post-option>`** - Individual selectable options
+
+### Basic Structure
+
+```html
+<post-autocomplete>
+  <label for="my-input" class="form-label">Country</label>
+  <input type="text" id="my-input" class="form-control" autocomplete="off" />
+  <post-listbox>
+    <post-option value="ch">Switzerland</post-option>
+    <post-option value="de">Germany</post-option>
+    <post-option value="fr">France</post-option>
+  </post-listbox>
+</post-autocomplete>
+```
+
+## Accessibility
+
+The autocomplete component follows the [WAI-ARIA Combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/) with the following features:
+
+- The input has `role="combobox"` with proper `aria-expanded`, `aria-owns`, and `aria-autocomplete` attributes
+- Keyboard navigation with Arrow keys, Enter, Escape, Home, and End
+- Screen reader announcements for the number of available options
+- Active option is indicated via `aria-activedescendant`
+
+### Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `↓` | Open dropdown, move to next option |
+| `↑` | Move to previous option |
+| `Enter` | Select the active option |
+| `Escape` | Close the dropdown |
+| `Home` | Move to first option |
+| `End` | Move to last option |
+| `Tab` | Select active option (if any) and move focus |
+
+## Examples
+
+### Filter Threshold
+
+Use the `filter-threshold` property to require a minimum number of characters before filtering begins.
+This is useful for large option lists where you don't want to show all options immediately.
+
+<Canvas of={AutocompleteStories.WithFilterThreshold} />
+
+### Clearable
+
+Add the `clearable` property to show a clear button that allows users to reset the selection.
+
+<Canvas of={AutocompleteStories.Clearable} />
+
+### Helper Text
+
+Include helper text to provide additional context or instructions.
+
+<Canvas of={AutocompleteStories.WithHelperText} />
+
+### Disabled State
+
+The autocomplete can be disabled by adding the `disabled` attribute to the input element.
+
+<Canvas of={AutocompleteStories.Disabled} />
+
+### Many Options
+
+When dealing with many options, consider using a filter threshold to improve performance and usability.
+
+<Canvas of={AutocompleteStories.ManyOptions} />
+
+## Events
+
+The component emits the following events:
+
+| Event | Detail | Description |
+|-------|--------|-------------|
+| `postFilterRequest` | `string` | Fired when the input value changes and meets the filter threshold. Can be cancelled to handle filtering externally. |
+| `postSelect` | `{ value: string, text: string }` | Fired when an option is selected. |
+| `postClear` | `void` | Fired when the autocomplete is cleared. |
+
+### Custom Filtering
+
+To implement custom filtering (e.g., server-side search), listen for the `postFilterRequest` event and call `preventDefault()`:
+
+```javascript
+const autocomplete = document.querySelector('post-autocomplete');
+const listbox = autocomplete.querySelector('post-listbox');
+
+autocomplete.addEventListener('postFilterRequest', async (event) => {
+  event.preventDefault();
+  
+  // Fetch options from server
+  const query = event.detail;
+  const results = await fetchOptions(query);
+  
+  // Update listbox options
+  listbox.innerHTML = results
+    .map(r => `<post-option value="${r.id}">${r.name}</post-option>`)
+    .join('');
+});
+```
+
+## Angular Integration
+
+The autocomplete works with Angular forms through the slotted `<input>` element.
+Apply your form control directives directly to the input:
+
+```html
+<post-autocomplete>
+  <label for="country" class="form-label">Country</label>
+  <input
+    type="text"
+    id="country"
+    class="form-control"
+    formControlName="country"
+    autocomplete="off"
+  />
+  <post-listbox>
+    <post-option *ngFor="let country of countries" [value]="country.code">
+      {{ country.name }}
+    </post-option>
+  </post-listbox>
+</post-autocomplete>
+```

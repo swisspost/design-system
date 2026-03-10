@@ -1,0 +1,55 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/media';
+
+:host {
+  display: block;
+  position: relative;
+}
+
+.autocomplete-wrapper {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.clear-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #767675;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    color: #050400;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  post-icon {
+    font-size: 1rem;
+  }
+}
+
+// Ensure slotted inputs have room for the clear button when clearable is enabled
+:host([clearable]) ::slotted(input) {
+  padding-inline-end: 2.5rem;
+}
+
+// Visually hidden class for status announcements
+// Note: This class is added to light DOM, but we define the styles here for reference
+// The actual .visually-hidden styles should be available from Bootstrap/Post styles

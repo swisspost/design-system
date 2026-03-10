@@ -1,0 +1,43 @@
+@use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/mixins/media';
+
+post-option {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #050400;
+  cursor: pointer;
+  user-select: none;
+
+  @include media.min(md) {
+    font-size: 1rem;
+    padding-block: 0.75rem;
+  }
+
+  @include media.min(lg) {
+    font-size: 1.25rem;
+    padding-block: 0.8125rem;
+  }
+
+  &:hover,
+  &[active] {
+    background-color: #504f4b;
+    color: #fff;
+  }
+
+  &[aria-selected='true'] {
+    font-weight: 700;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+    border-radius: 4px;
+  }
+}
