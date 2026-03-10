@@ -1,4 +1,4 @@
-import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ErrorPageStories from './error-page.stories';
 
 <Meta of={ErrorPageStories} />
@@ -14,3 +14,6 @@ A generic error page pattern with an image. The image can be exchanged based on 
   </a>
 
 <Canvas of={ErrorPageStories.Default} sourceState="shown" />
+  <div className="hide-col-default">
+    <Controls of={ErrorPageStories.Default} />
+  </div>
