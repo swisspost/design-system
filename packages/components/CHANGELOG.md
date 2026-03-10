@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.63
+
+### Patch Changes
+
+- Fixed inconsistent resize behavior of the post-megadropdown component by preserving its open state when resizing between breakpoints. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7001](https://github.com/swisspost/design-system/pull/7001))
+
+- Fixed animation behavior when switching between open megadropdowns. The entry animation is now skipped if another megadropdown is already open. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7001](https://github.com/swisspost/design-system/pull/7001))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.63
+  - @swisspost/design-system-styles@10.0.0-next.63
+
 ## 10.0.0-next.62
 
 ### Minor Changes

@@ -71,14 +71,20 @@ importers:
         specifier: 4.41.1
         version: 4.41.1
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../styles/dist
+      air-datepicker:
+        specifier: 3.6.0
+        version: 3.6.0
       ally.js:
         specifier: 1.4.1
         version: 1.4.1
+      imask:
+        specifier: 7.6.1
+        version: 7.6.1
       long-press-event:
         specifier: 2.5.0
         version: 2.5.0
@@ -114,7 +120,7 @@ importers:
         specifier: 3.0.12
         version: 3.0.12(@stencil/core@4.41.1)
       '@swisspost/design-system-eslint':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../eslint
       '@types/jest':
         specifier: 29.5.14
@@ -190,10 +196,10 @@ importers:
     dependencies:
       '@angular/animations':
         specifier: 20.3.16
-        version: 20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+        version: 20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))
       '@angular/common':
         specifier: 20.3.16
-        version: 20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+        version: 20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/compiler':
         specifier: 20.3.16
         version: 20.3.16
@@ -202,10 +208,10 @@ importers:
         version: 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/forms':
         specifier: 20.3.16
-        version: 20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+        version: 20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@angular/platform-browser':
         specifier: 20.3.16
-        version: 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+        version: 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))
       '@angular/platform-browser-dynamic':
         specifier: 20.3.16
         version: 20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler@20.3.16)(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))
@@ -213,10 +219,10 @@ importers:
         specifier: 20.3.16
         version: 20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.2
@@ -244,7 +250,7 @@ importers:
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:dist/components
       angular-eslint:
         specifier: 19.8.1
@@ -293,15 +299,15 @@ importers:
     dependencies:
       '@angular/common':
         specifier: '>=19.0.0 <21.0.0'
-        version: 20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+        version: 20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core':
         specifier: '>=19.0.0 <21.0.0'
         version: 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/forms':
         specifier: '>=19.0.0 <21.0.0'
-        version: 20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+        version: 20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -317,14 +323,14 @@ importers:
         specifier: 0.3.0
         version: 0.3.0(next@16.1.5(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0))(vite@7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.0)(yaml@2.8.2))(webpack@5.105.3)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../components
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../icons
       '@types/node':
         specifier: 22.10.5
@@ -366,22 +372,22 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../internet-header
     devDependencies:
       '@eslint/js':
@@ -415,7 +421,7 @@ importers:
         specifier: 9.0.18
         version: 9.0.18(lit@3.3.2)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.0)(yaml@2.8.2)))(vite@7.1.12(@types/node@22.10.5)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.0)(yaml@2.8.2))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../components-angular/dist/components
       '@types/css-modules':
         specifier: 1.0.5
@@ -549,7 +555,7 @@ importers:
         version: 6.0.1
       ts-jest:
         specifier: 29.4.6
-        version: 29.4.6(@babel/core@7.28.3)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.3))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
+        version: 29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -627,7 +633,7 @@ importers:
         version: 3.3.3
       ts-jest:
         specifier: 29.4.6
-        version: 29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5))(typescript@5.8.3)
+        version: 29.4.6(@babel/core@7.28.3)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.3))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.10.5)(typescript@5.8.3)
@@ -641,10 +647,10 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -730,7 +736,7 @@ importers:
         version: 4.2.0(eslint@9.26.0(jiti@2.6.1))
       eslint-plugin-jest:
         specifier: 28.11.0
-        version: 28.11.0(@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(jest@29.7.0(@types/node@22.10.5))(typescript@5.8.3)
+        version: 28.11.0(@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@9.26.0(jiti@2.6.1))
@@ -769,7 +775,7 @@ importers:
         version: 2.1.3
       ts-jest:
         specifier: 29.4.6
-        version: 29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5))(typescript@5.8.3)
+        version: 29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -780,10 +786,10 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../styles/dist
       next:
         specifier: 16.1.5
@@ -805,7 +811,7 @@ importers:
         specifier: 1.56.1
         version: 1.56.1
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../components
       '@tailwindcss/postcss':
         specifier: 4.1.18
@@ -853,14 +859,14 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../icons
       gulp-sourcemaps:
         specifier: 3.0.0
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../tokens/dist
       '@types/node':
         specifier: 22.10.5
@@ -1396,6 +1402,10 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
+
+  '@babel/runtime-corejs3@7.29.0':
+    resolution: {integrity: sha512-TgUkdp71C9pIbBcHudc+gXZnihEDOjUAmXO1VO4HHGES7QLZcShR0stfKIxLSNIYx2fqhmJChOjm/wkF8wv4gA==}
+    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.28.6':
     resolution: {integrity: sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==}
@@ -4213,6 +4223,9 @@ packages:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
 
+  air-datepicker@3.6.0:
+    resolution: {integrity: sha512-+txUkqa949rXBJDmkQAIb/GehZECJYF4rm9XJxVYtEX22C9WvBpE/XwCUQZBopKIkpg4ycAySJ9lH3JOg9qQTw==}
+
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
     peerDependencies:
@@ -4982,6 +4995,9 @@ packages:
   copyfiles@2.4.1:
     resolution: {integrity: sha512-fereAvAvxDrQDOXybk3Qu3dPbOoKoysFMWtkY3mv5BsL8//OSZVL5DCLYqgRfY5cWirgRzlC+WSrxp6Bo3eNZg==}
     hasBin: true
+
+  core-js-pure@3.48.0:
+    resolution: {integrity: sha512-1slJgk89tWC51HQ1AEqG+s2VuwpTRr8ocu4n20QUcH1v9lAN0RXen0Q0AABa/DK1I7RrNWLucplOHMx8hfTGTw==}
 
   core-util-is@1.0.2:
     resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
@@ -6474,6 +6490,10 @@ packages:
     resolution: {integrity: sha512-rH+46sQJ2dlwfjfhCyNx5thzrv+dtmBIhPHk0zgRUukHzZ/kRueTJXoYYsclBaKcSMBWuGbOFXtioLpzTb5euw==}
     engines: {node: '>=16.x'}
     hasBin: true
+
+  imask@7.6.1:
+    resolution: {integrity: sha512-sJlIFM7eathUEMChTh9Mrfw/IgiWgJqBKq2VNbyXvBZ7ev/IlO6/KQTKlV/Fm+viQMLrFLG/zCuudrLIwgK2dg==}
+    engines: {npm: '>=4.0.0'}
 
   immutable@4.3.7:
     resolution: {integrity: sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==}
@@ -10919,7 +10939,7 @@ snapshots:
       eslint: 9.26.0(jiti@2.6.1)
       typescript: 5.8.3
 
-  '@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))':
+  '@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
       '@angular/core': 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
       tslib: 2.8.1
@@ -10958,7 +10978,7 @@ snapshots:
       watchpack: 2.4.4
     optionalDependencies:
       '@angular/core': 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
-      '@angular/platform-browser': 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/platform-browser': 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))
       karma: 6.4.4
       less: 4.5.1
       lmdb: 3.4.2
@@ -11005,7 +11025,7 @@ snapshots:
       - hono
       - supports-color
 
-  '@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)':
+  '@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)':
     dependencies:
       '@angular/core': 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
       rxjs: 7.8.2
@@ -11039,35 +11059,35 @@ snapshots:
       '@angular/compiler': 20.3.16
       zone.js: 0.15.1
 
-  '@angular/forms@20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)':
+  '@angular/forms@20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)':
     dependencies:
-      '@angular/common': 20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/common': 20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core': 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
-      '@angular/platform-browser': 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/platform-browser': 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))
       rxjs: 7.8.2
       tslib: 2.8.1
 
   '@angular/platform-browser-dynamic@20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler@20.3.16)(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))':
     dependencies:
-      '@angular/common': 20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/common': 20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/compiler': 20.3.16
       '@angular/core': 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
-      '@angular/platform-browser': 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/platform-browser': 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))
       tslib: 2.8.1
 
-  '@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))':
+  '@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
-      '@angular/common': 20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/common': 20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core': 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
       tslib: 2.8.1
     optionalDependencies:
-      '@angular/animations': 20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/animations': 20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))
 
   '@angular/router@20.3.16(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)':
     dependencies:
-      '@angular/common': 20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/common': 20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core': 20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
-      '@angular/platform-browser': 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/platform-browser': 20.3.16(@angular/animations@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.16(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.17(rxjs@7.8.2)(zone.js@0.15.1))
       rxjs: 7.8.2
       tslib: 2.8.1
 
@@ -11369,6 +11389,10 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.0
       '@babel/helper-plugin-utils': 7.28.6
+
+  '@babel/runtime-corejs3@7.29.0':
+    dependencies:
+      core-js-pure: 3.48.0
 
   '@babel/runtime@7.28.6': {}
 
@@ -14313,6 +14337,8 @@ snapshots:
       clean-stack: 2.2.0
       indent-string: 4.0.0
 
+  air-datepicker@3.6.0: {}
+
   ajv-formats@2.1.1(ajv@8.18.0):
     optionalDependencies:
       ajv: 8.18.0
@@ -15199,6 +15225,8 @@ snapshots:
       untildify: 4.0.0
       yargs: 16.2.0
 
+  core-js-pure@3.48.0: {}
+
   core-util-is@1.0.2: {}
 
   core-util-is@1.0.3: {}
@@ -16008,7 +16036,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(jest@29.7.0(@types/node@22.10.5))(typescript@5.8.3):
+  eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/utils': 8.49.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
       eslint: 9.26.0(jiti@2.6.1)
@@ -17139,6 +17167,10 @@ snapshots:
   image-size@1.2.1:
     dependencies:
       queue: 6.0.2
+
+  imask@7.6.1:
+    dependencies:
+      '@babel/runtime-corejs3': 7.29.0
 
   immutable@4.3.7: {}
 
@@ -21431,7 +21463,7 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
-  ts-jest@29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5))(typescript@5.8.3):
+  ts-jest@29.4.6(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
