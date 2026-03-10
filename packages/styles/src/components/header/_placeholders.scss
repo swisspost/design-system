@@ -29,6 +29,9 @@
   @include media.only(desktop) {
     padding: 1rem 0.75rem;
     gap: 0.5rem;
-    box-shadow: none;
+
+    &::before {
+      content: unset;
+    }
   }
 }

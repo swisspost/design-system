@@ -74,14 +74,26 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   border-radius: 0;
   line-height: 1.5;
   outline-color: currentColor !important;
-  box-shadow: inset 0 -1px 0 #050400;
+
+  &::before {
+    content: '';
+    background-color: #050400;
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    height: var(--post-nav-item-border-width);
+  }
 
   &:hover {
     @include button.button-variant-def('hover', 'primary');
+
+    &::before {
+      background-color: transparent;
+    }
   }
 
   @include active-state {
-    box-shadow: inset 0 -1px 0 #050400;
+    box-shadow: none;
   }
 
   @include utilities.focus-inset;
