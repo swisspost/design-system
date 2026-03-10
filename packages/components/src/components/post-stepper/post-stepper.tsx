@@ -62,8 +62,10 @@ export class PostStepper {
   @Watch('currentIndex')
   validateCurrentIndex() {
     checkRequiredAndType(this, 'currentIndex', 'number');
-    this.updateSteps();
-    this.checkIndexes();
+    if (this.stepItems) {
+      this.updateSteps();
+      this.checkIndexes();
+    }
   }
 
   /**
@@ -82,10 +84,6 @@ export class PostStepper {
     }
 
     this.updateSteps();
-  }
-
-  connectedCallback() {
-    this.stepItems = document.querySelectorAll(null);
   }
 
   componentDidLoad() {
@@ -111,8 +109,10 @@ export class PostStepper {
   private updateActiveStepNumber() {
     if (this.textStepNumber) {
       const labelTemplate = this.textStepNumber;
-      this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.selectedIndex + 1}`);
-      this.updateMobileActiveStepVisibility();
+      this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.currentIndex + 1}`);
+      if (this.stepItems) {
+        this.updateMobileActiveStepVisibility();
+      }
     }
   }
 
@@ -127,10 +127,8 @@ export class PostStepper {
     this.updateActiveStepNumber();
 
     this.stepItems.forEach((el, i) => {
-      const labelEl = el.querySelector('.label');
-
-      if (this.selectedIndex === i && labelEl) {
-        this.mobileActiveStepName = labelEl.innerHTML;
+      if (this.currentIndex === i) {
+        this.mobileActiveStepName = el.innerHTML;
       }
 
       // Update "post-stepper-item" classes to show correct status
@@ -138,9 +136,11 @@ export class PostStepper {
       el.classList.toggle('stepper-item-current', this.currentIndex === i);
       el.classList.toggle('stepper-item-selected', this.selectedIndex === i);
       el.classList.toggle('stepper-item-inactive', this.currentIndex < i);
+      el.classList.toggle('stepper-item-after-current', i === this.currentIndex + 1);
 
       // Update accessibility label depending on status (Completed/Current/-)
-      const hiddenLabel = el.querySelector('.step-hidden-label');
+      const hiddenLabel = el.shadowRoot?.querySelector('.step-hidden-label');
+
       if (hiddenLabel) {
         let labelText = '';
 
@@ -182,7 +182,7 @@ export class PostStepper {
           <slot onSlotchange={() => this.updateSteps()}></slot>
         </ol>
         <div class="active-step" aria-hidden="true">
-          {this.mobileActiveStepLabel}
+          <span class="active-step-label">{this.mobileActiveStepLabel}</span>
           <span innerHTML={this.mobileActiveStepName}></span>
         </div>
       </Host>
