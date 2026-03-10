@@ -546,7 +546,7 @@ export class PostDatepicker {
     if (this.range) {
       const baseRangeOpts = {
         mask: 'from - to',
-        lazy: false,
+        lazy: true,
         overwrite: true,
       };
       if (this.euFormat) {
@@ -568,7 +568,7 @@ export class PostDatepicker {
     } else {
       const baseSingleOpts = {
         ...baseDateOpts,
-        lazy: false,
+        lazy: true,
         overwrite: true,
       };
       if (this.euFormat) {
