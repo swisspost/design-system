@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "10.0.0-next.61",
+  "version": "10.0.0-next.63",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -55,7 +55,7 @@
     "nodemon": "3.1.11",
     "prettier": "3.6.2",
     "rimraf": "6.0.1",
-    "svgo": "3.3.2",
+    "svgo": "3.3.3",
     "ts-jest": "29.4.6",
     "ts-node": "10.9.2",
     "typescript": "5.8.3",

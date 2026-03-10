@@ -1,5 +1,37 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.63
+
+### Patch Changes
+
+- Fixed inconsistent resize behavior of the post-megadropdown component by preserving its open state when resizing between breakpoints. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7001](https://github.com/swisspost/design-system/pull/7001))
+
+- Fixed animation behavior when switching between open megadropdowns. The entry animation is now skipped if another megadropdown is already open. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7001](https://github.com/swisspost/design-system/pull/7001))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.63
+  - @swisspost/design-system-styles@10.0.0-next.63
+
+## 10.0.0-next.62
+
+### Minor Changes
+
+- Updated `post-header` and its sub-components to support Server-Side Rendering. (by [@alizedebray](https://github.com/alizedebray) with [#7208](https://github.com/swisspost/design-system/pull/7208))
+
+- Documented the `post-pagination` component and added design-token–based styles aligned with the design. (by [@leagrdv](https://github.com/leagrdv) with [#7163](https://github.com/swisspost/design-system/pull/7163))
+
+### Patch Changes
+
+- Added null guard in `post-back-to-top` component to prevent errors during SSR hydration. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7213](https://github.com/swisspost/design-system/pull/7213))
+
+- Refactored the `post-banner` styles to reduce the final compiled output size. (by [@alizedebray](https://github.com/alizedebray) with [#7204](https://github.com/swisspost/design-system/pull/7204))
+
+- Fixed an accessibility violation in the `post-header` component on mobile where icon-only interactive elements were missing text alternatives. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7241](https://github.com/swisspost/design-system/pull/7241))
+
+- Updated global styles to prevent web components from being visible until they are fully loaded, avoiding unstyled flashes. (by [@alizedebray](https://github.com/alizedebray) with [#7179](https://github.com/swisspost/design-system/pull/7179))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.62
+  - @swisspost/design-system-styles@10.0.0-next.62
+
 ## 10.0.0-next.61
 
 ### Patch Changes

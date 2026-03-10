@@ -1,5 +1,44 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.63
+
+### Minor Changes
+
+- Added icons: `2760` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7274](https://github.com/swisspost/design-system/pull/7274))
+
+- Added icons:
+  - `bulkparcels` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bundle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `digitaltransformation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `honeypot` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `network` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `outofswitzerland` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `scaningqrcode` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `test` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownadress` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknowncompany` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownmovedaway` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownperson` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7274](https://github.com/swisspost/design-system/pull/7274))
+
+## 10.0.0-next.62
+
+### Minor Changes
+
+- Added icons:
+  - `achievement` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `books` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `europe` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `giftcard` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `handtruck` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `namechange` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `photoproof` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `physiotherapy` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `resident` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `task` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `training` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7183](https://github.com/swisspost/design-system/pull/7183))
+
+- Added icons: `2754`, `2755`, `2756`, `2757`, `2758` and `2759` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7218](https://github.com/swisspost/design-system/pull/7218))
+
 ## 10.0.0-next.61
 
 ### Minor Changes
