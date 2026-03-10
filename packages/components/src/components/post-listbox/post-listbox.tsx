@@ -36,7 +36,7 @@ let listboxId = 0;
 export class PostListbox {
   private internalId = `post-listbox-${listboxId++}`;
 
-  @Element() host: HTMLElement;
+  @Element() host: HTMLPostListboxElement;
 
   /**
    * The currently selected value.

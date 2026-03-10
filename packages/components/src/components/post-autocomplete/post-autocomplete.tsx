@@ -55,7 +55,7 @@ export class PostAutocomplete {
     END: 'End',
   };
 
-  @Element() host: HTMLElement;
+  @Element() host: HTMLPostAutocompleteElement;
 
   /**
    * The current value of the autocomplete input.

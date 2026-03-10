@@ -14,7 +14,7 @@ let optionId = 0;
 export class PostOption {
   private internalId = `post-option-${optionId++}`;
 
-  @Element() host: HTMLElement;
+  @Element() host: HTMLPostOptionElement;
 
   /**
    * The value of the option. This is what gets submitted when the option is selected.
