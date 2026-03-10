@@ -2,7 +2,8 @@
 name: '[subtask] Tokens'
 about: Sub-issue to create design tokens for a component.
 title: '[tokens] component_name_here'
-labels: 'needs: design, 🔮 tokens'
+labels: '🔮 tokens'
+type: task
 assignees: ''
 ---
 
