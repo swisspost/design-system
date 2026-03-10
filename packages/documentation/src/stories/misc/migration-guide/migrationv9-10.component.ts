@@ -128,7 +128,7 @@ export class MigrationV99Component extends LitElement {
               <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">plain HTML</a>).
             </p>
             <p>
-              We’ve reworked utility classes to be
+              We've reworked utility classes to be
               <b>pixel-based and more intuitive</b> — for example, <code>.p-16</code> now clearly
               means "16px padding", instead of guessing what <code>.p-3</code> stood for. We've also
               simplified things overall: fewer breakpoints, fewer font-size classes, and a more
