@@ -18,7 +18,7 @@ export default (props: PropsWithChildren<DocsContainerProps>) => {
   const { children, context } = props;
   const container =
     context.channel.data.docsPrepared[0].parameters.layout === 'fullscreen'
-      ? 'container extended-container'
+      ? 'container sb-container-extended'
       : 'container';
   const pathToStoryFile = context?.storyIdToCSFFile?.values()?.next()?.value?.meta
     ?.parameters?.fileName;
