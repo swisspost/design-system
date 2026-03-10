@@ -64,11 +64,13 @@ export class MigrationV99Component extends LitElement {
       alert_fixed_bottom: false,
       topic_teaser: false,
       chip: false,
+      components_card_control: false,
       accent_colors: false,
       spinner_sizes: false,
       standard_html_alert: false,
       spinner: false,
       stepper: false,
+      styles_card_control: false,
       dialog_icon: false,
       subnavigation: false,
     },
@@ -425,7 +427,7 @@ export class MigrationV99Component extends LitElement {
                         id="components-card_control"
                         class="form-check-input"
                         type="checkbox"
-                        ?checked="${this.state.others.standard_html_alert}"
+                        ?checked="${this.state.others.components_card_control}"
                       />
                       <label class="form-check-label" for="components-card_control">
                         <code>post-card-control</code> component removed
@@ -522,9 +524,9 @@ export class MigrationV99Component extends LitElement {
                         id="styles-card_control"
                         class="form-check-input"
                         type="checkbox"
-                        ?checked="${this.state.others.standard_html_alert}"
+                        ?checked="${this.state.others.styles_card_control}"
                       />
-                      <label class="form-check-label" for="components-card_control">
+                      <label class="form-check-label" for="styles_card_control">
                         CSS classes for Standard HTML <code>card-control</code> component renamed
                         <span class="info">
                           Replace <code>.checkbox-button-card</code> and
