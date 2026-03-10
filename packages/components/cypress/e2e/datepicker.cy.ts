@@ -1,7 +1,8 @@
 const DATEPICKER_ID = 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e';
-
-describe('datepicker', () => {
+import { isPopoverSupported } from './popovercontainer.cy';
+describe('datepicker', { includeShadowDom: true }, () => {
   describe('default', () => {
+    const selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
     beforeEach(() => {
       cy.getComponent('datepicker', DATEPICKER_ID);
       cy.get('@datepicker').find('input').as('input');
@@ -13,13 +14,9 @@ describe('datepicker', () => {
     });
 
     it('should open calendar popover on button click', () => {
+      cy.get(selector).should('not.exist');
       cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
-      cy.get('@datepicker')
-        .shadow()
-        .find('post-popovercontainer')
-        .shadow()
-        .find('.popover-content')
-        .should('be.visible');
+      cy.get(selector).should('exist');
     });
 
     it('should have correct order in navigation', () => {
