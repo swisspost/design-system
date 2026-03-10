@@ -34,6 +34,10 @@ ol {
   font-weight: tokens.get('stepper-step-label-selected-font-weight');
   color: tokens.get('stepper-text-enabled-fg');
 
+  .active-step-label:has(+ span:empty) {
+    visibility: hidden;
+  }
+
   @include media.min(md) {
     display: none;
   }
