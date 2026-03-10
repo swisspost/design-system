@@ -130,7 +130,7 @@ export class MigrationV99Component extends LitElement {
             <p>
               We've reworked utility classes to be
               <b>pixel-based and more intuitive</b> — for example, <code>.p-16</code> now clearly
-              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We’ve also
+              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We've also
               simplified things overall: fewer breakpoints, fewer font-size classes, and a more
               consistent color palette (no more purple or coral buttons 🎨).
             </p>
@@ -183,13 +183,36 @@ export class MigrationV99Component extends LitElement {
             </p>
           </li>
           <li>
+            <h3>Run Automigration Scripts 🪄</h3>
+            <p>
+              Many breaking changes can be fixed automatically using the
+              <code>@swisspost/design-system-eslint</code> package. These migration rules scan your
+              HTML and TypeScript files and apply fixes where possible.
+            </p>
+            <ol>
+              <li>
+                Install the ESLint package as a dev dependency:
+                <code languages="['bash']">npm install @swisspost/design-system-eslint --save-dev</code>
+              </li>
+              <li>
+                Run the migration rules with the <code>--fix</code> flag at the root of your
+                project:
+                <code languages="['bash']">eslint -c @swisspost/design-system-eslint/migrations.js --fix</code>
+                <span class="info">
+                  💡 This command applies migration rules without requiring any changes to your
+                  existing ESLint configuration.
+                </span>
+              </li>
+              <li>
+                Review the changes applied by the script and make sure every automatic
+                <span class="tag tag-sm tag-info">🪄 migration rule</span> was applied correctly.
+              </li>
+            </ol>
+
+          </li>
+          <li>
             <h3>Component Migration 🤓</h3>
             <div class="my-16">
-              <p>
-                💡 Many changes are automatically handled by the migration scripts. Each 🪄 symbol
-                means that <b>automatic migration rules</b> can handle the changes, but you should
-                still verify the results manually.
-              </p>
               <div class="form-check">
                 <input
                   id="state-general-hide_automigration"
