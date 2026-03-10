@@ -14,7 +14,7 @@ let optionId = 0;
 export class PostOption {
   private internalId = `post-option-${optionId++}`;
 
-  @Element() host: HTMLPostOptionElement;
+  @Element() host: HTMLElement;
 
   /**
    * The value of the option. This is what gets submitted when the option is selected.
@@ -38,13 +38,13 @@ export class PostOption {
   @Event() postOptionSelect: EventEmitter<string>;
 
   @Watch('value')
-  validateValue(newValue: string) {
-    checkRequiredAndType(newValue, 'string', 'The `value` property of post-option is required.');
+  validateValue() {
+    checkRequiredAndType(this, 'value', 'string');
   }
 
   connectedCallback() {
     this.host.setAttribute('data-version', version);
-    this.validateValue(this.value);
+    this.validateValue();
     this.setupAttributes();
   }
 

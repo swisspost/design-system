@@ -11,7 +11,17 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { getRoot, EventFrom } from '@/utils';
+import { EventFrom } from '@/utils';
+
+/**
+ * Interface representing the properties of a post-option element.
+ * Used for type safety when accessing option properties.
+ */
+interface PostOptionElement extends HTMLElement {
+  value: string;
+  disabled: boolean;
+  selected: boolean;
+}
 
 let listboxId = 0;
 
@@ -26,7 +36,7 @@ let listboxId = 0;
 export class PostListbox {
   private internalId = `post-listbox-${listboxId++}`;
 
-  @Element() host: HTMLPostListboxElement;
+  @Element() host: HTMLElement;
 
   /**
    * The currently selected value.
@@ -58,8 +68,6 @@ export class PostListbox {
    */
   @Event() postFocus: EventEmitter<{ value: string; index: number }>;
 
-  private root?: Document | ShadowRoot | null;
-
   private readonly KEYCODES = {
     UP: 'ArrowUp',
     DOWN: 'ArrowDown',
@@ -71,7 +79,6 @@ export class PostListbox {
 
   connectedCallback() {
     this.host.setAttribute('data-version', version);
-    this.root = getRoot(this.host);
     this.setupAttributes();
     this.host.addEventListener('keydown', this.handleKeyDown);
   }
@@ -83,7 +90,7 @@ export class PostListbox {
   componentDidLoad() {
     // Set initial active index if value is set
     if (this.value) {
-      const options = this.getOptions();
+      const options = this.getOptionsSync();
       const index = options.findIndex(opt => opt.value === this.value);
       if (index >= 0) {
         this.activeIndex = index;
@@ -123,7 +130,7 @@ export class PostListbox {
 
   @Watch('activeIndex')
   updateActiveDescendant() {
-    const options = this.getOptions();
+    const options = this.getOptionsSync();
     if (this.activeIndex >= 0 && options[this.activeIndex]) {
       const activeOption = options[this.activeIndex];
       this.host.setAttribute('aria-activedescendant', activeOption.id);
@@ -136,17 +143,17 @@ export class PostListbox {
    * Returns all post-option elements in the listbox.
    */
   @Method()
-  async getOptions(): Promise<HTMLPostOptionElement[]> {
+  async getOptions(): Promise<PostOptionElement[]> {
     return this.getOptionsSync();
   }
 
-  private getOptionsSync(): HTMLPostOptionElement[] {
+  private getOptionsSync(): PostOptionElement[] {
     const slot = this.host.shadowRoot?.querySelector('slot');
     if (!slot) return [];
 
     const assignedElements = slot.assignedElements({ flatten: true });
     return assignedElements.filter(
-      (el): el is HTMLPostOptionElement => el.tagName.toLowerCase() === 'post-option'
+      (el): el is PostOptionElement => el.tagName.toLowerCase() === 'post-option'
     );
   }
 
@@ -211,7 +218,7 @@ export class PostListbox {
     }
   }
 
-  private selectOption(option: HTMLPostOptionElement) {
+  private selectOption(option: PostOptionElement) {
     if (option.disabled) return;
 
     const options = this.getOptionsSync();

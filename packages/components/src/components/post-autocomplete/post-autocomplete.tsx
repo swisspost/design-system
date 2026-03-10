@@ -13,7 +13,17 @@ import {
 import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
-import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
+import { checkEmptyOrOneOf, EventFrom } from '@/utils';
+
+/**
+ * Interface representing the properties of a post-option element.
+ * Used for type safety when accessing option properties.
+ */
+interface PostOptionElement extends HTMLElement {
+  value: string;
+  disabled: boolean;
+  selected: boolean;
+}
 
 let autocompleteId = 0;
 
@@ -32,7 +42,6 @@ let autocompleteId = 0;
 export class PostAutocomplete {
   private internalId = `post-autocomplete-${autocompleteId++}`;
   private popoverRef: HTMLPostPopovercontainerElement;
-  private listboxRef: HTMLPostListboxElement;
   private inputElement: HTMLInputElement | null = null;
   private liveRegion: HTMLElement | null = null;
 
@@ -46,7 +55,7 @@ export class PostAutocomplete {
     END: 'End',
   };
 
-  @Element() host: HTMLPostAutocompleteElement;
+  @Element() host: HTMLElement;
 
   /**
    * The current value of the autocomplete input.
@@ -86,7 +95,7 @@ export class PostAutocomplete {
   /**
    * The filtered options to display based on current input.
    */
-  @State() visibleOptions: HTMLPostOptionElement[] = [];
+  @State() visibleOptions: PostOptionElement[] = [];
 
   /**
    * Emitted when an option is selected.
@@ -108,8 +117,6 @@ export class PostAutocomplete {
    */
   @Event() postClose: EventEmitter<void>;
 
-  private root?: Document | ShadowRoot | null;
-
   @Watch('placement')
   validatePlacement() {
     checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
@@ -117,7 +124,6 @@ export class PostAutocomplete {
 
   connectedCallback() {
     this.host.setAttribute('data-version', version);
-    this.root = getRoot(this.host);
     this.createLiveRegion();
   }
 
@@ -297,22 +303,22 @@ export class PostAutocomplete {
     this.postInput.emit('');
   }
 
-  private getAllOptions(): HTMLPostOptionElement[] {
+  private getAllOptions(): PostOptionElement[] {
     const optionsSlot = this.host.shadowRoot?.querySelector('slot[name="options"]') as HTMLSlotElement;
     if (!optionsSlot) return [];
 
     const assigned = optionsSlot.assignedElements({ flatten: true });
     
     // Handle both direct post-option children and post-listbox wrapper
-    const options: HTMLPostOptionElement[] = [];
+    const options: PostOptionElement[] = [];
     
     for (const el of assigned) {
       if (el.tagName.toLowerCase() === 'post-option') {
-        options.push(el as HTMLPostOptionElement);
+        options.push(el as PostOptionElement);
       } else if (el.tagName.toLowerCase() === 'post-listbox') {
         // Get options from inside the listbox
         const listboxOptions = el.querySelectorAll('post-option');
-        options.push(...Array.from(listboxOptions) as HTMLPostOptionElement[]);
+        options.push(...Array.from(listboxOptions) as PostOptionElement[]);
       }
     }
     
@@ -381,7 +387,7 @@ export class PostAutocomplete {
     this.updateAriaActiveDescendant();
   }
 
-  private selectOption(option: HTMLPostOptionElement) {
+  private selectOption(option: PostOptionElement) {
     const value = option.value;
     const label = option.textContent?.trim() || value;
     
@@ -552,7 +558,6 @@ export class PostAutocomplete {
             id={listboxId}
             role="listbox"
             aria-label={this.label || 'Suggestions'}
-            onPostOptionSelect={this.handleOptionSelect.bind(this)}
           >
             <slot name="options"></slot>
           </div>
