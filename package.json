@@ -103,11 +103,14 @@
     "tokens:lint": "pnpm --filter design-system-tokens lint",
     "tokens:lint:fix": "pnpm --filter design-system-tokens lint:fix",
     "tokens:usage": "node ./utilities/token-checker.cjs",
+    "check:size": "size-limit",
     "changeset:publish": "pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
     "@changesets/cli": "2.29.8",
+    "@size-limit/file": "12.0.1",
+    "size-limit": "12.0.1",
     "start-server-and-test": "2.1.3",
     "turbo": "2.5.8"
   },
