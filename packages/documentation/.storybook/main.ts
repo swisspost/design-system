@@ -1,13 +1,11 @@
-import { createRequire } from 'node:module';
-import { dirname, join } from 'node:path';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import type { InlineConfig } from 'vite';
-import pkg from '@/../package.json';
+import pkg from '../package.json' with { type: 'json' };
 import { mergeConfig } from 'vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-
-const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -50,9 +48,15 @@ const config: StorybookConfig = {
     },
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@kurbar/storybook-addon-docs-stencil'),
-    './addons/styles-switcher/register',
-    './addons/version-switcher/register',
   ],
+
+  managerEntries(entry = []) {
+    return [
+      ...entry,
+      fileURLToPath(import.meta.resolve('./addons/styles-switcher/register.tsx')),
+      fileURLToPath(import.meta.resolve('./addons/version-switcher/register.tsx')),
+    ];
+  },
 
   staticDirs: [
     {
@@ -103,5 +107,5 @@ const config: StorybookConfig = {
 export default config;
 
 function getAbsolutePath(value: string): string {
-  return dirname(require.resolve(join(value, 'package.json')));
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }
