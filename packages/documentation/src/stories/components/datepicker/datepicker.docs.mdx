@@ -8,13 +8,15 @@ import DatepickerDisableSample from './datepicker-disable.sample?raw';
 <div className="docs-title">
   # Datepicker
 
-  <link-design of={JSON.stringify(DatepickerStories)}></link-design>
+<link-design of={JSON.stringify(DatepickerStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead mb-16">
-A date pickers enables the user to input a single date or a date range via regular text input or selection within a fly-out calendar. 
+  A date picker enables the user to input a single date or a date range via regular text input or
+  selection within a fly-out calendar.
 </div>
 
 It is built on top of the AirDatepicker library and provides full keyboard navigation and accessible markup to ensure usability for all users.
@@ -40,7 +42,6 @@ Range input calendars allow users to select a start and end date. These are idea
 
 ## Disabling dates
 
-
 The Datepicker provides a `renderCellCallback` property, which is triggered for each calendar cell when rendering. It allows you to dynamically modify the state of individual cells, including disabling certain dates or applying custom classes. This callback essentially acts as an event that fires during cell render, giving full control over accessibility and visual presentation.
 
 For more details, you can refer to the [AirDatepicker `onRenderCell` documentation](https://air-datepicker.com/docs?scrollTo=onRenderCell).
@@ -50,4 +51,3 @@ The following example shows a calendar where all Sundays are disabled:
 <Canvas sourceState="hidden" of={DatepickerStories.DisabledDates} />
 
 <Source code={DatepickerDisableSample} language="typescript" />
-

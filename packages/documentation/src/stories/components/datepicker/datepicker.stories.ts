@@ -5,7 +5,7 @@ import { spreadArgs } from '@/utils';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
-  title: 'Raw Components/Datepicker',
+  title: 'Components/Datepicker',
   component: 'post-datepicker',
   tags: ['package:WebComponents'],
   render,
