@@ -157,7 +157,6 @@
 @mixin focus-inset($additional-selector: '') {
   &#{$additional-selector} {
     outline-offset: tokens.get('focus-outline-offset2', helpers.$post-focus) !important;
-    border-radius: tokens.get('focus-border-radius', helpers.$post-focus) !important;
   }
 }
 
