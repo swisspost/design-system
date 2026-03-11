@@ -1,5 +1,4 @@
 @use 'air-datepicker/air-datepicker.css';
-@use '@swisspost/design-system-styles/components/validation.scss';
 @use '@swisspost/design-system-styles/mixins/form-input.scss' as form-input-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/tokens/components' as components;
@@ -15,7 +14,7 @@ tokens.$default-map: components.$post-datepicker;
   /* --------------------------------------------
    * General
    * ------------------------------------------ */
-  --adp-cell-background-color-in-range: unset; // keeping this because of potential ardp bug
+  --adp-cell-background-color-in-range: unset; // needed because of ardp behavior
 
   font-family: inherit;
   font-size: var(--post-device-font-size-8);
@@ -136,15 +135,15 @@ tokens.$default-map: components.$post-datepicker;
       .air-datepicker-body--day-name {
         text-transform: capitalize;
         font-size: inherit;
-        color: tokens.get('post-datepicker-header-weekdays-color');
-      } //  post-datepicker-header-weekdays-color-fg- is this used ???
+        color: tokens.get('post-datepicker-header-weekdays-color-fg');
+      }
     }
 
     .air-datepicker-body--cells {
       min-height: tokens.get('post-datepicker-grid-min-height');
       padding: tokens.get('post-datepicker-grid-padding');
       background: tokens.get('post-datepicker-grid-color-enabled-bg');
-      row-gap: 2px; // add token
+      row-gap: tokens.get('post-datepicker-grid-gap-block');
 
       /* View-specific styles */
 
@@ -214,8 +213,8 @@ tokens.$default-map: components.$post-datepicker;
               color: tokens.get('post-datepicker-grid-day-cell-element-color-disabled-fg');
               border: 2px dashed
                 tokens.get('post-datepicker-grid-day-cell-element-color-disabled-border');
-              width: 38px; // to add token instead of the padding token
-              height: 38px; // to add token instead of the padding token
+              width: tokens.get('post-datepicker-grid-day-cell-element-disabled-size');
+              height: tokens.get('post-datepicker-grid-day-cell-element-disabled-size');
               outline: none;
               display: flex;
               align-self: center;
@@ -252,9 +251,7 @@ tokens.$default-map: components.$post-datepicker;
       &.-years- {
         grid-template-columns: repeat(4, tokens.get('post-datepicker-grid-year-cell-width'));
         grid-auto-rows: tokens.get('post-datepicker-grid-year-cell-height');
-        column-gap: tokens.get(
-          'post-datepicker-grid-year-gap-inline'
-        ); // this is applied wrong in figma ?!
+        column-gap: tokens.get('post-datepicker-grid-year-gap-inline');
 
         .air-datepicker-cell {
           &.-year- {
@@ -289,8 +286,8 @@ tokens.$default-map: components.$post-datepicker;
               color: tokens.get('post-datepicker-grid-year-cell-element-color-selected-fg');
               background-color: tokens.get(
                 'post-datepicker-grid-year-cell-element-color-selected-bg'
-              ); // IS THIS WRONG?
-              border: 2px solid // should the border-width be tokenized?
+              );
+              border: 2px solid
                 tokens.get('post-datepicker-grid-year-cell-element-color-selected-border');
             }
 
@@ -353,7 +350,7 @@ tokens.$default-map: components.$post-datepicker;
 
               &:not(.-current-) {
                 background: tokens.get('post-datepicker-grid-month-cell-element-color-hovered-bg');
-              } // which wins the selected or the current?
+              }
             }
 
             /* Months: Selected */
@@ -388,7 +385,7 @@ tokens.$default-map: components.$post-datepicker;
                 );
                 color: tokens.get(
                   'post-datepicker-grid-month-cell-element-current-color-hovered-fg'
-                ); //wrong token  -> color assigned?
+                );
               }
             }
           }
@@ -628,12 +625,10 @@ tokens.$default-map: components.$post-datepicker;
 
   button {
     @include form-input-mx.input-btn();
-    right: tokens.get(
-      'search-position-inline-end-icon',
-      components.$post-search-input
-    ); // should this be 16px?
+
+    right: tokens.get('search-position-inline-end-icon', components.$post-search-input);
     &[disabled] {
-      color: #696864;
+      color: tokens.get('post-datepicker-grid-day-cell-element-color-disabled-fg');
     }
 
     &:not([disabled]) {
@@ -642,8 +637,13 @@ tokens.$default-map: components.$post-datepicker;
   }
 }
 
-// ::slotted(input) {
-//   border: unset;
-//   background-color: transparent;
-//   flex-grow: 1;
-// }
+:host {
+  ::slotted(input.form-control:is(.is-invalid, .is-valid):not(:disabled)) {
+    background-position: top 50% right
+      calc(
+        #{tokens.get('search-position-inline-end-icon', components.$post-search-input)} +
+          #{tokens.get('post-datepicker-input-icons-gap-inline')} +
+          #{tokens.get('select-sizing-icon', components.$post-select)}
+      ) !important;
+  }
+}
