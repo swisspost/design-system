@@ -189,7 +189,6 @@ fieldset {
 
   .form-check {
     &:not(.form-check-inline):not(.form-check-sm):not(:last-of-type) {
-      padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
       margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
     }
 
