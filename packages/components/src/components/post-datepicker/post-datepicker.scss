@@ -1,8 +1,7 @@
 @use 'air-datepicker/air-datepicker.css';
 @use '@swisspost/design-system-styles/components/validation.scss';
-@use '@swisspost/design-system-styles/mixins' as form-input-mx;
+@use '@swisspost/design-system-styles/mixins/form-input.scss' as form-input-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
-@use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/tokens/components' as components;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/variables/elevation';
@@ -145,7 +144,8 @@ tokens.$default-map: components.$post-datepicker;
       min-height: tokens.get('post-datepicker-grid-min-height');
       padding: tokens.get('post-datepicker-grid-padding');
       background: tokens.get('post-datepicker-grid-color-enabled-bg');
-      row-gap: 12px; // to add token
+      row-gap: 2px; // add token
+
       /* View-specific styles */
 
       &.-days- {
@@ -153,6 +153,15 @@ tokens.$default-map: components.$post-datepicker;
         grid-auto-rows: tokens.get('post-datepicker-grid-day-cell-size');
 
         .air-datepicker-cell {
+          > * {
+            box-sizing: border-box;
+          }
+
+          &::before,
+          &::after {
+            box-sizing: border-box;
+          }
+
           /* Day */
           &.-day- {
             width: tokens.get('post-datepicker-grid-day-cell-size');
@@ -217,6 +226,7 @@ tokens.$default-map: components.$post-datepicker;
             &.-current-:not(.-disabled-, .-other-month-) {
               border: 2px solid
                 tokens.get('post-datepicker-grid-day-cell-element-current-color-enabled-border');
+              z-index: 2;
 
               &.-selected- {
                 background: tokens.get('post-datepicker-grid-day-cell-element-color-selected-bg');
@@ -263,6 +273,7 @@ tokens.$default-map: components.$post-datepicker;
 
             &:not(.-disabled-) {
               @include utilities.focus-style();
+              z-index: 2;
             }
 
             /* Years: Hovered */
