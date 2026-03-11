@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/mixins/icons' as icons;
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/variables/commons';
 
 tokens.$default-map: components.$post-floating-button;
 
@@ -15,6 +16,7 @@ tokens.$default-map: components.$post-floating-button;
   );
   --post-back-to-top-elevation: #{tokens.get('floating-button-elevation')};
   position: fixed;
+  z-index: commons.$zindex-header - 1;
   inset-block-start: var(--post-back-to-top-position-top);
   inset-inline-end: tokens.get('floating-button-position-right');
 
