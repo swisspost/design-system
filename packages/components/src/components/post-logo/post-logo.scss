@@ -20,11 +20,6 @@
 .logo-link {
   @include utilities.focus-style;
   @include utilities.focus-inset;
-}
-
-.logo-link {
-  @include utilities.focus-style;
-  @include utilities.focus-inset;
 
   &:focus,
   &:focus-visible {
