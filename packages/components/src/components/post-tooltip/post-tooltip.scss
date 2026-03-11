@@ -16,25 +16,21 @@ tokens.$default-map: utilities.$post-spacing;
   display: contents;
 }
 
-post-popovercontainer {
-  // Creates a safe space around the popovercontainer for save pointer crossing between trigger and tooltip
-  &[arrow] {
-    &::after {
-      position: absolute;
-      content: '';
-      inset: -13px;
-      z-index: -1;
-    }
-  }
+// Creates a safe space around the popovercontainer for save pointer crossing between trigger and tooltip
+post-popovercontainer[arrow]::after {
+  position: absolute;
+  content: '';
+  inset: -13px;
+  z-index: -1;
+}
 
-  & > div {
-    color: var(--post-current-fg);
-    background-color: var(--post-current-bg);
-    padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
-    max-width: var(--post-tooltip-max-width, 280px);
-    width: inherit;
-    min-height: 32px;
-    word-wrap: break-word;
-    white-space: normal;
-  }
+post-popovercontainer::part(post-popovercontainer-content) {
+  color: var(--post-current-fg);
+  background-color: var(--post-current-bg);
+  padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
+  max-width: var(--post-tooltip-max-width, 280px);
+  width: inherit;
+  min-height: 32px;
+  word-wrap: break-word;
+  white-space: normal;
 }
