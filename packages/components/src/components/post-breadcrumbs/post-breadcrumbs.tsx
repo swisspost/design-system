@@ -2,6 +2,13 @@ import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
 
+type BreadcrumbItem = {
+  url: string | undefined;
+  text: string;
+  description: string | undefined;
+  label: string | undefined;
+};
+
 @Component({
   tag: 'post-breadcrumbs',
   styleUrl: 'post-breadcrumbs.scss',
@@ -9,6 +16,8 @@ import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
 })
 export class PostBreadcrumbs {
   @Element() host: HTMLPostBreadcrumbsElement;
+
+  private slotRef?: HTMLSlotElement;
 
   /**
    * The URL for the home breadcrumb item.
@@ -30,12 +39,12 @@ export class PostBreadcrumbs {
    */
   @Prop({ reflect: true }) textMoreItems!: string;
 
-  @State() breadcrumbItems: { url: string; text: string }[] = [];
+  @State() breadcrumbItems: BreadcrumbItem[] = [];
   @State() isConcatenated: boolean;
   @State() lastWindowWidth: number;
 
   private breadcrumbsNavRef?: HTMLElement;
-  private lastItem: { url: string; text: string };
+  private lastItem: BreadcrumbItem;
 
   @Watch('homeUrl')
   validateHomeUrl() {
@@ -58,7 +67,9 @@ export class PostBreadcrumbs {
   }
 
   componentWillLoad() {
-    this.updateBreadcrumbItems();
+    setTimeout(() => {
+      this.updateBreadcrumbItems();
+    });
   }
 
   componentDidLoad() {
@@ -85,13 +96,23 @@ export class PostBreadcrumbs {
 
   // Updates breadcrumb items and sets the last item
   private updateBreadcrumbItems() {
-    this.breadcrumbItems = Array.from(this.host.querySelectorAll('post-breadcrumb-item')).map(
-      item => ({
-        text: item.textContent || '',
-        url: item.getAttribute('url') || '',
-      }),
-    );
-    this.lastItem = this.breadcrumbItems[this.breadcrumbItems.length - 1];
+    const nodes = this.slotRef
+      ?.assignedElements({ flatten: true })
+      .filter(el => el.tagName === 'POST-BREADCRUMB-ITEM') as HTMLElement[];
+
+    if (!nodes?.length) return;
+
+    console.log('my nodes bb', nodes, nodes[0].getAttribute('url'));
+
+    const newItems = nodes.map(item => ({
+      text: item.textContent || '',
+      url: item.getAttribute('url') ?? undefined,
+      description: item.getAttribute('description') ?? undefined,
+      label: item.getAttribute('label') ?? undefined,
+    }));
+
+    this.breadcrumbItems = newItems;
+    this.lastItem = newItems[newItems.length - 1];
   }
 
   // Handles resizing to check concatenation
@@ -145,6 +166,12 @@ export class PostBreadcrumbs {
 
     return (
       <Host data-version={version}>
+        <div class="visually-hidden" aria-hidden="true">
+          <slot
+            ref={el => (this.slotRef = el)}
+            onSlotchange={() => this.updateBreadcrumbItems()}
+          ></slot>
+        </div>
         <nav
           aria-label={this.textBreadcrumbs}
           class="breadcrumbs-nav"
@@ -190,7 +217,17 @@ export class PostBreadcrumbs {
                           }
                         }}
                       >
-                        {item.url ? <a href={item.url}>{item.text}</a> : <span>{item.text}</span>}
+                        {item.url ? (
+                          <a
+                            href={item.url}
+                            aria-label={item.label}
+                            aria-description={item.description}
+                          >
+                            {item.text}
+                          </a>
+                        ) : (
+                          <span>{item.text}</span>
+                        )}
                       </post-menu-item>
                     ))}
                   </post-menu>
@@ -199,7 +236,12 @@ export class PostBreadcrumbs {
             ) : (
               visibleItems.map(item => (
                 <li>
-                  <post-breadcrumb-item url={item.url} key={item.url || item.text}>
+                  <post-breadcrumb-item
+                    url={item.url}
+                    label={item.label}
+                    description={item.description}
+                    key={item.url || item.text}
+                  >
                     {item.text}
                   </post-breadcrumb-item>
                 </li>
@@ -208,7 +250,12 @@ export class PostBreadcrumbs {
 
             {this.lastItem && (
               <li aria-current="page">
-                <post-breadcrumb-item url={this.lastItem.url} tabindex={-1}>
+                <post-breadcrumb-item
+                  url={this.lastItem.url}
+                  label={this.lastItem.label}
+                  description={this.lastItem.description}
+                  tabindex={-1}
+                >
                   {this.lastItem.text}
                 </post-breadcrumb-item>
               </li>
@@ -225,6 +272,8 @@ export class PostBreadcrumbs {
               <post-breadcrumb-item
                 url={item.url}
                 key={`hidden-${item.url || item.text}`}
+                label={item.label}
+                description={item.description}
                 class="hidden-breadcrumb-item"
               >
                 {item.text}

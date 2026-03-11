@@ -5,9 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
+import { Link } from "./models/general.model";
 import { ActiveRouteProp, Environment } from "./models/general.model";
-export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
+export { Link } from "./models/general.model";
 export { ActiveRouteProp, Environment } from "./models/general.model";
 export namespace Components {
     /**
@@ -36,17 +36,7 @@ export namespace Components {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | IBreadcrumbItem[];
-        /**
-          * Hide all buttons.
-          * @default false
-         */
-        "hideButtons": boolean;
-        /**
-          * Toggle an overlay associated with a button.
-          * @param overlayId
-         */
-        "toggleOverlayById": (overlayId: IBreadcrumbOverlay["id"]) => Promise<void>;
+        "customItems"?: string | Array<Link>;
     }
     interface SwisspostInternetFooter {
     }
@@ -164,12 +154,7 @@ declare namespace LocalJSX {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | IBreadcrumbItem[];
-        /**
-          * Hide all buttons.
-          * @default false
-         */
-        "hideButtons"?: boolean;
+        "customItems"?: string | Array<Link>;
     }
     interface SwisspostInternetFooter {
     }

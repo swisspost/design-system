@@ -114,7 +114,7 @@ export class PostInternetHeader {
 
     return (
       <Host data-version={version}>
-        <post-header text-menu="Menu">
+        <post-header textMenu="Menu">
           <post-logo slot="post-logo" url="/">
             Homepage
           </post-logo>
@@ -155,9 +155,8 @@ export class PostInternetHeader {
           </ul>
 
           <post-language-menu
-            text-change-language="Change the language"
-            text-current-language="The currently selected language is #name."
-            name="language-menu-example"
+            textChangeLanguage="Change the language"
+            textCurrentLanguage="The currently selected language is #name."
             slot="language-menu"
           >
             <post-language-menu-item code="de" name="German">
@@ -169,7 +168,7 @@ export class PostInternetHeader {
             <post-language-menu-item code="it" name="Italian">
               it
             </post-language-menu-item>
-            <post-language-menu-item active="true" code="en" name="English">
+            <post-language-menu-item active={true} code="en" name="English">
               en
             </post-language-menu-item>
           </post-language-menu>
@@ -179,7 +178,7 @@ export class PostInternetHeader {
             <post-icon name="login"></post-icon>
           </a>
 
-          <post-mainnavigation slot="main-nav" text-main="Main">
+          <post-mainnavigation slot="main-nav" textMain="Main">
             <ul>
               <li>
                 <a href="/letters">Letters</a>
@@ -190,7 +189,7 @@ export class PostInternetHeader {
 
               <li>
                 <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-                <post-megadropdown id="letters" text-close="Close" text-back="Back">
+                <post-megadropdown id="letters" textClose="Close" textBack="Back">
                   <a class="post-megadropdown-overview" href="/letters">
                     Overview Letters
                   </a>
@@ -243,7 +242,7 @@ export class PostInternetHeader {
               </li>
               <li>
                 <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-                <post-megadropdown id="packages" text-close="Close" text-back="Back">
+                <post-megadropdown id="packages" textClose="Close" textBack="Back">
                   <a class="post-megadropdown-overview" href="/packages">
                     Overview Packages
                   </a>
