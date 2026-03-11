@@ -74,7 +74,6 @@ export class PostInternetFooter {
   }
 
   render() {
-    console.log(state.localizedConfig);
 
     // Config has not loaded yet
     if (!state.localizedConfig) {
