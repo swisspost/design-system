@@ -138,6 +138,28 @@
 <main class="container my-16">
   <h1>Hurray, it works!</h1>
   <router-outlet></router-outlet>
+
+  <!-- Autocomplete example -->
+  <div class="my-8">
+    <post-autocomplete options="consumer-listbox">
+      <label class="form-label" for="consumer-autocomplete-input">Country</label>
+      <input
+        id="consumer-autocomplete-input"
+        class="form-control"
+        type="text"
+        placeholder="Start typing to search..."
+      />
+    </post-autocomplete>
+
+    <post-listbox id="consumer-listbox">
+      <post-option value="switzerland">Switzerland</post-option>
+      <post-option value="germany">Germany</post-option>
+      <post-option value="france">France</post-option>
+      <post-option value="italy">Italy</post-option>
+      <post-option value="austria">Austria</post-option>
+      <span slot="blank-slate">No matching countries found.</span>
+    </post-listbox>
+  </div>
 </main>
 
 <post-back-to-top textBackToTop="Back to top"></post-back-to-top>

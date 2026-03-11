@@ -1,0 +1,35 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+post-option {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: post.$gray-80;
+  user-select: none;
+
+  &:hover:not([aria-disabled='true']) {
+    background-color: post.$gray-10;
+  }
+
+  &[aria-selected='true'] {
+    background-color: post.$yellow;
+    font-weight: 700;
+  }
+
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &[data-active='true']:not([aria-disabled='true']) {
+    background-color: post.$gray-10;
+    outline: 2px solid post.$black;
+    outline-offset: -2px;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
