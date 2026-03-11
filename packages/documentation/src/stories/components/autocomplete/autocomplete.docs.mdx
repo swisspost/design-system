@@ -1,0 +1,119 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as AutocompleteStories from './autocomplete.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={AutocompleteStories} />
+
+<div className="docs-title">
+  # Autocomplete
+
+  <link-design of={JSON.stringify(AutocompleteStories)}></link-design>
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  A combobox component that allows users to filter and select from a list of options by typing in an input field.
+</div>
+
+<Canvas sourceState="shown" of={AutocompleteStories.Default} />
+<Controls of={AutocompleteStories.Default} />
+
+<ComponentsPackageInstall component="<post-autocomplete>" />
+
+## Structure
+
+The Autocomplete component consists of three elements:
+
+- **post-autocomplete**: The main container that manages the combobox behavior
+- **post-listbox**: The dropdown panel containing the options
+- **post-option**: Individual selectable options within the listbox
+
+```html
+<post-autocomplete>
+  <label for="my-input" class="form-label">Select a country</label>
+  <input id="my-input" class="form-control" type="text" placeholder="Type to search..." />
+  <post-listbox>
+    <post-option value="ch">Switzerland</post-option>
+    <post-option value="de">Germany</post-option>
+    <post-option value="fr">France</post-option>
+  </post-listbox>
+</post-autocomplete>
+```
+
+## Examples
+
+### Filter Threshold
+
+Use the `filter-threshold` property to control when filtering begins.
+Set to `0` (default) to show all options on focus, or set a higher value to require more characters before filtering starts.
+
+<Canvas of={AutocompleteStories.WithFilterThreshold} />
+
+### Clearable
+
+Add the `clearable` property to show a clear button when the input has a value.
+
+<Canvas of={AutocompleteStories.Clearable} />
+
+### Disabled State
+
+Use the `disabled` property to disable the entire autocomplete component.
+
+<Canvas of={AutocompleteStories.Disabled} />
+
+### Disabled Options
+
+Individual options can be disabled by adding the `disabled` attribute to `post-option` elements.
+
+<Canvas of={AutocompleteStories.WithDisabledOptions} />
+
+### Required in Forms
+
+The autocomplete supports form validation. Use the `required` property to make the field required.
+
+<Canvas of={AutocompleteStories.Required} />
+
+### Floating Label
+
+The autocomplete works with Bootstrap's floating label pattern.
+
+<Canvas of={AutocompleteStories.InFloatingLabel} />
+
+### With Hint Text
+
+Add descriptive text below the autocomplete using standard form text.
+
+<Canvas of={AutocompleteStories.WithHintText} />
+
+## Custom Filtering
+
+By default, the autocomplete filters options by matching the input value against option labels (case-insensitive).
+You can implement custom filtering by listening to the `postFilterRequest` event and calling `preventDefault()`.
+
+<Canvas of={AutocompleteStories.CustomFiltering} />
+
+## Keyboard Navigation
+
+The autocomplete supports full keyboard navigation:
+
+| Key | Action |
+|-----|--------|
+| **Arrow Down** | Open listbox (if closed) or move to next option |
+| **Arrow Up** | Open listbox (if closed) or move to previous option |
+| **Home** | Move to first option |
+| **End** | Move to last option |
+| **Enter** | Select the active option |
+| **Escape** | Close the listbox |
+| **Tab** | Close the listbox and move focus |
+
+## Accessibility
+
+The autocomplete implements the [ARIA Combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/) with the following features:
+
+- `role="combobox"` on the input element
+- `aria-expanded` reflects the listbox open state
+- `aria-activedescendant` points to the currently active option
+- `aria-controls` links the input to the listbox
+- Options have `role="option"` with appropriate `aria-selected` and `aria-disabled` states
