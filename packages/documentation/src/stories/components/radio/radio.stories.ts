@@ -101,7 +101,7 @@ function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
-
+  const groupName = `${context.id}-radio`;
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
   const useAriaLabel = args.hiddenLabel;
@@ -113,6 +113,7 @@ function render(args: Args, context: StoryContext) {
   const control = html`
     <input
       id="${id}"
+      name="${groupName}"
       class="${ifDefined(radioClass)}"
       type="radio"
       ?checked="${args.checked}"
