@@ -17,8 +17,8 @@ export const Radio: Story = {
   render: (_args: Args, context: StoryContext) => {
     return schemes(
       scheme => html`
-        <h1>Radio-buttons</h1>
-        <h2 class="h4">Single radio-button</h2>
+        <h1>Radio Buttons</h1>
+        <h2 class="h4">Single Radio Button</h2>
         <div class="d-flex flex-wrap gap-16">
           ${[
             ...bombArgs({
@@ -50,7 +50,7 @@ export const Radio: Story = {
             })}
         </div>
 
-        <h2 class="h4 mt-24">Grouped radio-buttons</h2>
+        <h2 class="h4 mt-24">Grouped Radio Buttons</h2>
         <div class="d-flex flex-column gap-16">
           ${(() => {
             const combos = bombArgs({
