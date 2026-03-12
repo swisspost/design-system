@@ -27767,6 +27767,148 @@
       "modifiedAt": "2026-03-05T10:47:40.000Z"
     },
     {
+      "uuid": "5a33f190-1d0d-11f1-9174-0050568d2654",
+      "id": 9438307,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438307/storage/MDA5NDM4MzA3LzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "weiblich",
+          "Female",
+          "Femmina",
+          "Féminin",
+          "Frau",
+          "Woman",
+          "Donna",
+          "Femme"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2761.svg",
+        "basename": "2761",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T05:44:21.000Z",
+      "modifiedAt": "2026-03-11T05:49:48.000Z"
+    },
+    {
+      "uuid": "3e021eb0-1d0e-11f1-9174-0050568d2654",
+      "id": 9438311,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438311/storage/MDA5NDM4MzExLzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "männlich",
+          "Male",
+          "Maschio",
+          "Masculin",
+          "Mann",
+          "Man",
+          "Uomo",
+          "Homme"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2762.svg",
+        "basename": "2762",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T05:50:43.000Z",
+      "modifiedAt": "2026-03-11T06:01:57.000Z"
+    },
+    {
+      "uuid": "ed9388e0-1d0f-11f1-9174-0050568d2654",
+      "id": 9438317,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438317/storage/MDA5NDM4MzE3LzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "gender-neutral",
+          "geschlechtsneutral",
+          "Sexe neutre",
+          "NEUTRALITÀ DI GENERE",
+          "nonbinary",
+          "nonbinär",
+          "Non binaire",
+          "non binario"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2763.svg",
+        "basename": "2763",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T06:02:47.000Z",
+      "modifiedAt": "2026-03-12T05:05:02.785Z"
+    },
+    {
+      "uuid": "7c605c50-1dfc-11f1-bfa2-0050568d2654",
+      "id": 9445449,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445449/storage/MDA5NDQ1NDQ5LzAvbWFzdGVy",
+        "keywords": [
+          "Post Visa Prepaid",
+          "Visa prépayé",
+          "Visa prepagata",
+          "Kreditkarte",
+          "Credit Card",
+          "Carta di credito",
+          "Carte De Crédit",
+          "Prepaid",
+          "Prépayé",
+          "Prepagato"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2764.svg",
+        "basename": "2764",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T10:16:08.000Z",
+      "modifiedAt": "2026-03-12T16:05:09.904Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -39136,11 +39278,716 @@
       },
       "createdAt": "2025-01-16T13:19:36.000Z",
       "modifiedAt": "2025-01-17T13:05:01.173Z"
+    },
+    {
+      "uuid": "7a416a90-1e15-11f1-941a-0050568d2654",
+      "id": 9445535,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445535/storage/MDA5NDQ1NTM1LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_16.svg",
+        "basename": "EditAI_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:15:01.000Z",
+      "modifiedAt": "2026-03-12T13:29:42.000Z"
+    },
+    {
+      "uuid": "79d3b4a0-1e15-11f1-941a-0050568d2654",
+      "id": 9445534,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445534/storage/MDA5NDQ1NTM0LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_24.svg",
+        "basename": "EditAI_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:15:01.000Z",
+      "modifiedAt": "2026-03-12T13:32:50.000Z"
+    },
+    {
+      "uuid": "796a6b80-1e15-11f1-941a-0050568d2654",
+      "id": 9445533,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445533/storage/MDA5NDQ1NTMzLzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_32.svg",
+        "basename": "EditAI_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:15:00.000Z",
+      "modifiedAt": "2026-03-12T13:32:24.000Z"
+    },
+    {
+      "uuid": "78f49f40-1e15-11f1-941a-0050568d2654",
+      "id": 9445532,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445532/storage/MDA5NDQ1NTMyLzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_40.svg",
+        "basename": "EditAI_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:59.000Z",
+      "modifiedAt": "2026-03-12T13:30:27.000Z"
+    },
+    {
+      "uuid": "7880ced0-1e15-11f1-941a-0050568d2654",
+      "id": 9445531,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445531/storage/MDA5NDQ1NTMxLzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_48.svg",
+        "basename": "EditAI_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:59.000Z",
+      "modifiedAt": "2026-03-12T13:32:00.000Z"
+    },
+    {
+      "uuid": "77d96b40-1e15-11f1-941a-0050568d2654",
+      "id": 9445530,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445530/storage/MDA5NDQ1NTMwLzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_64.svg",
+        "basename": "EditAI_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:57.000Z",
+      "modifiedAt": "2026-03-12T13:18:04.000Z"
+    },
+    {
+      "uuid": "777be1f0-1e15-11f1-941a-0050568d2654",
+      "id": 9445529,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445529/storage/MDA5NDQ1NTI5LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_16.svg",
+        "basename": "EditAI_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:57.000Z",
+      "modifiedAt": "2026-03-12T13:30:12.000Z"
+    },
+    {
+      "uuid": "775e6ee1-1e15-11f1-941a-0050568d2654",
+      "id": 9445528,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445528/storage/MDA5NDQ1NTI4LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_24.svg",
+        "basename": "EditAI_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:57.000Z",
+      "modifiedAt": "2026-03-12T13:31:41.000Z"
+    },
+    {
+      "uuid": "76e54740-1e15-11f1-941a-0050568d2654",
+      "id": 9445527,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445527/storage/MDA5NDQ1NTI3LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_32.svg",
+        "basename": "EditAI_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:56.000Z",
+      "modifiedAt": "2026-03-12T13:29:55.000Z"
+    },
+    {
+      "uuid": "7603c0e0-1e15-11f1-941a-0050568d2654",
+      "id": 9445525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445525/storage/MDA5NDQ1NTI1LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_40.svg",
+        "basename": "EditAI_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:54.000Z",
+      "modifiedAt": "2026-03-12T13:30:48.000Z"
+    },
+    {
+      "uuid": "7604d250-1e15-11f1-941a-0050568d2654",
+      "id": 9445526,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445526/storage/MDA5NDQ1NTI2LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_48.svg",
+        "basename": "EditAI_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:54.000Z",
+      "modifiedAt": "2026-03-12T13:31:30.000Z"
+    },
+    {
+      "uuid": "76021330-1e15-11f1-941a-0050568d2654",
+      "id": 9445524,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445524/storage/MDA5NDQ1NTI0LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_64.svg",
+        "basename": "EditAI_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:54.000Z",
+      "modifiedAt": "2026-03-12T13:32:38.000Z"
     }
   ],
   "errored": [],
   "noSVG": [],
-  "wrongViewBox": [],
+  "wrongViewBox": [
+    {
+      "uuid": "7a416a90-1e15-11f1-941a-0050568d2654",
+      "id": 9445535,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445535/storage/MDA5NDQ1NTM1LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_16.svg",
+        "basename": "EditAI_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:15:01.000Z",
+      "modifiedAt": "2026-03-12T13:29:42.000Z"
+    },
+    {
+      "uuid": "79d3b4a0-1e15-11f1-941a-0050568d2654",
+      "id": 9445534,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445534/storage/MDA5NDQ1NTM0LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_24.svg",
+        "basename": "EditAI_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:15:01.000Z",
+      "modifiedAt": "2026-03-12T13:32:50.000Z"
+    },
+    {
+      "uuid": "78f49f40-1e15-11f1-941a-0050568d2654",
+      "id": 9445532,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445532/storage/MDA5NDQ1NTMyLzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_40.svg",
+        "basename": "EditAI_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:59.000Z",
+      "modifiedAt": "2026-03-12T13:30:27.000Z"
+    },
+    {
+      "uuid": "7880ced0-1e15-11f1-941a-0050568d2654",
+      "id": 9445531,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445531/storage/MDA5NDQ1NTMxLzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_48.svg",
+        "basename": "EditAI_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:59.000Z",
+      "modifiedAt": "2026-03-12T13:32:00.000Z"
+    },
+    {
+      "uuid": "77d96b40-1e15-11f1-941a-0050568d2654",
+      "id": 9445530,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445530/storage/MDA5NDQ1NTMwLzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Shape_64.svg",
+        "basename": "EditAI_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:57.000Z",
+      "modifiedAt": "2026-03-12T13:18:04.000Z"
+    },
+    {
+      "uuid": "777be1f0-1e15-11f1-941a-0050568d2654",
+      "id": 9445529,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445529/storage/MDA5NDQ1NTI5LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_16.svg",
+        "basename": "EditAI_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:57.000Z",
+      "modifiedAt": "2026-03-12T13:30:12.000Z"
+    },
+    {
+      "uuid": "775e6ee1-1e15-11f1-941a-0050568d2654",
+      "id": 9445528,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445528/storage/MDA5NDQ1NTI4LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_24.svg",
+        "basename": "EditAI_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:57.000Z",
+      "modifiedAt": "2026-03-12T13:31:41.000Z"
+    },
+    {
+      "uuid": "7603c0e0-1e15-11f1-941a-0050568d2654",
+      "id": 9445525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445525/storage/MDA5NDQ1NTI1LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_40.svg",
+        "basename": "EditAI_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:54.000Z",
+      "modifiedAt": "2026-03-12T13:30:48.000Z"
+    },
+    {
+      "uuid": "7604d250-1e15-11f1-941a-0050568d2654",
+      "id": 9445526,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445526/storage/MDA5NDQ1NTI2LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_48.svg",
+        "basename": "EditAI_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:54.000Z",
+      "modifiedAt": "2026-03-12T13:31:30.000Z"
+    },
+    {
+      "uuid": "76021330-1e15-11f1-941a-0050568d2654",
+      "id": 9445524,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445524/storage/MDA5NDQ1NTI0LzAvbWFzdGVy",
+        "keywords": [
+          "Intelligenza artificiale",
+          "Künstliche Intelligenz",
+          "Artificial intelligence",
+          "Intelligence artificielle",
+          "Éditer",
+          "Edit",
+          "Modificare",
+          "Editieren"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "EditAI_Solid_Shape_64.svg",
+        "basename": "EditAI_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T13:14:54.000Z",
+      "modifiedAt": "2026-03-12T13:32:38.000Z"
+    }
+  ],
   "noKeywords": [
     {
       "uuid": "01442c10-df42-11e7-a943-005056a94f4a",
@@ -41005,13 +41852,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1082,
+    "success": 1098,
     "errors": 0,
     "noSVG": 0,
-    "wrongViewBox": 0,
+    "wrongViewBox": 10,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-03-10T06:04:17.866Z",
-  "version": "10.0.0-next.62"
+  "created": "2026-03-12T16:35:02.118Z",
+  "version": "10.0.0-next.63"
 }
