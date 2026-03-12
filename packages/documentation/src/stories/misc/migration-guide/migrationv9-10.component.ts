@@ -210,7 +210,6 @@ export class MigrationV99Component extends LitElement {
                 <span class="tag tag-sm tag-info">🪄 migration rule</span> was applied correctly.
               </li>
             </ol>
-
           </li>
           <li>
             <h3>Component Migration 🤓</h3>
