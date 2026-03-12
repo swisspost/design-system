@@ -1,5 +1,19 @@
 # @swisspost/internet-header
 
+## 10.0.0-next.63
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.63
+
+## 10.0.0-next.62
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.62
+
 ## 10.0.0-next.61
 
 ### Patch Changes

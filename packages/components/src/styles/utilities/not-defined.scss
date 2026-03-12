@@ -2,6 +2,12 @@
 @use 'sass:list';
 @use '../../_generated/component-names.scss' as *;
 
-:where(#{$component-names}):not([data-hydrated], :defined) {
-  visibility: hidden;
+:where(#{$component-names}) {
+  &:not(:defined):not(.hydrated, [data-hydrated]) {
+    visibility: hidden;
+
+    @media (scripting: none) {
+      visibility: visible;
+    }
+  }
 }

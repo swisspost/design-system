@@ -75,6 +75,8 @@ export class PostBackToTop {
 
     const elevationHeight = this.getSecondPixelValue(elevationParts);
 
+    if (!positionTop || positionTop === 'auto' || !elevationHeight) return;
+
     // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
     this.translateY =
       (-1 * 100) / 100 -

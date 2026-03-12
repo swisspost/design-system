@@ -77,11 +77,18 @@ Type: `Promise<boolean>`
 |      | Default slot for placing content inside the popovercontainer. |
 
 
+## Shadow Parts
+
+| Part                              | Description |
+| --------------------------------- | ----------- |
+| `"post-popovercontainer-content"` |             |
+
+
 ## Dependencies
 
 ### Used by
 
- - [post-listbox](../post-listbox)
+ - [post-datepicker](../post-datepicker)
  - [post-menu](../post-menu)
  - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)
@@ -89,7 +96,7 @@ Type: `Promise<boolean>`
 ### Graph
 ```mermaid
 graph TD;
-  post-listbox --> post-popovercontainer
+  post-datepicker --> post-popovercontainer
   post-menu --> post-popovercontainer
   post-popover --> post-popovercontainer
   post-tooltip --> post-popovercontainer
