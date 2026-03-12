@@ -5,4 +5,5 @@ export enum PackageType {
   Angular = 'Angular',
   InternetHeader = 'InternetHeader',
   Assets = 'Assets',
+  Ts = 'Typescript',
 }
