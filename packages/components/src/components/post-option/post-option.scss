@@ -1,0 +1,50 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+post-option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: post.$size-mini post.$size-regular;
+  gap: post.$size-mini;
+  font-size: post.$font-size-sm;
+  color: post.$gray-80;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: none;
+  text-align: start;
+  transition:
+    background-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
+
+  &:hover:not([aria-disabled='true']) {
+    background-color: post.$gray-10;
+  }
+
+  &:focus-visible {
+    outline: post.$size-line solid post.$focus-color;
+    outline-offset: calc(-1 * post.$size-line);
+    border-radius: post.$border-radius;
+  }
+
+  &[aria-selected='true'] {
+    background-color: post.$yellow;
+    font-weight: post.$font-weight-bold;
+
+    &:hover:not([aria-disabled='true']) {
+      background-color: post.$yellow-dark;
+    }
+  }
+
+  &[aria-disabled='true'] {
+    color: post.$gray-40;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  post-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+}
