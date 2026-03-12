@@ -2,7 +2,6 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/placeholders/text';
 @use '@swisspost/design-system-styles/placeholders/color' as color-ph;
-@use '@swisspost/design-system-styles/functions';
 @use '@swisspost/design-system-styles/components/button';
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
@@ -175,7 +174,7 @@ address {
   gap: 0.5rem 1.5rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
-  font-size: functions.px-to-rem(12px);
+  font-size: 0.75rem;
 
   > span {
     font-weight: 700;
