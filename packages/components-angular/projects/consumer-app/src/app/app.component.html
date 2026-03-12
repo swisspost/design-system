@@ -52,11 +52,16 @@
   </post-language-menu>
 
   <!-- Global header login/user menu -->
-
-  <a href="" slot="post-login">
-    <span>Login</span>
-    <post-icon name="login"></post-icon>
-  </a>
+  <post-login-widget
+    loginUrl="https://login.post.ch/"
+    logoutUrl="https://logout.post.ch/"
+    textUserProfile="Mein Profil"
+    textMessages="Nachrichten"
+    textSettings="Einstellungen"
+    textLogout="Logout"
+    textMenuLabel="User menu"
+    slot="post-login"
+  ></post-login-widget>
 
   <!-- Main navigation -->
   <post-mainnavigation slot="main-nav" textMain="Main">

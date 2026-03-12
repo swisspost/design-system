@@ -32,6 +32,7 @@ some content
  - [post-datepicker](../post-datepicker)
  - [post-header](../post-header)
  - [post-language-menu](../post-language-menu)
+ - [post-login-widget](../post-login-widget)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
  - [post-megadropdown-trigger](../post-megadropdown-trigger)
@@ -51,6 +52,7 @@ graph TD;
   post-datepicker --> post-icon
   post-header --> post-icon
   post-language-menu --> post-icon
+  post-login-widget --> post-icon
   post-mainnavigation --> post-icon
   post-megadropdown --> post-icon
   post-megadropdown-trigger --> post-icon

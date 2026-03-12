@@ -389,6 +389,36 @@ export namespace Components {
     }
     interface PostLinkarea {
     }
+    interface PostLoginWidget {
+        /**
+          * The URL to redirect to when the user clicks the login link.
+         */
+        "loginUrl": string;
+        /**
+          * The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect.
+         */
+        "logoutUrl": string;
+        /**
+          * Label for the "Logout" button.
+         */
+        "textLogout": string;
+        /**
+          * Accessible label for the user menu.
+         */
+        "textMenuLabel": string;
+        /**
+          * Label for the "Messages" menu item.
+         */
+        "textMessages": string;
+        /**
+          * Label for the "Settings" menu item.
+         */
+        "textSettings": string;
+        /**
+          * Label for the "My Profile" menu item.
+         */
+        "textUserProfile": string;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -727,6 +757,10 @@ export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageMenuItemElement;
 }
+export interface PostLoginWidgetCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostLoginWidgetElement;
+}
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMegadropdownElement;
@@ -928,6 +962,23 @@ declare global {
     var HTMLPostLinkareaElement: {
         prototype: HTMLPostLinkareaElement;
         new (): HTMLPostLinkareaElement;
+    };
+    interface HTMLPostLoginWidgetElementEventMap {
+        "postLogout": string;
+    }
+    interface HTMLPostLoginWidgetElement extends Components.PostLoginWidget, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostLoginWidgetElement: {
+        prototype: HTMLPostLoginWidgetElement;
+        new (): HTMLPostLoginWidgetElement;
     };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
@@ -1146,6 +1197,7 @@ declare global {
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
+        "post-login-widget": HTMLPostLoginWidgetElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1514,6 +1566,40 @@ declare namespace LocalJSX {
     }
     interface PostLinkarea {
     }
+    interface PostLoginWidget {
+        /**
+          * The URL to redirect to when the user clicks the login link.
+         */
+        "loginUrl": string;
+        /**
+          * The URL to redirect to after the user logs out. Emitted as the payload of the `postLogout` event so the consumer can handle the redirect.
+         */
+        "logoutUrl": string;
+        /**
+          * Emitted when the user clicks the logout button. The event payload is the `logoutUrl` — the consumer is responsible for handling the redirect.
+         */
+        "onPostLogout"?: (event: PostLoginWidgetCustomEvent<string>) => void;
+        /**
+          * Label for the "Logout" button.
+         */
+        "textLogout": string;
+        /**
+          * Accessible label for the user menu.
+         */
+        "textMenuLabel": string;
+        /**
+          * Label for the "Messages" menu item.
+         */
+        "textMessages": string;
+        /**
+          * Label for the "Settings" menu item.
+         */
+        "textSettings": string;
+        /**
+          * Label for the "My Profile" menu item.
+         */
+        "textUserProfile": string;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -1817,6 +1903,7 @@ declare namespace LocalJSX {
         "post-language-menu": PostLanguageMenu;
         "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
+        "post-login-widget": PostLoginWidget;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
@@ -1869,6 +1956,7 @@ declare module "@stencil/core" {
             "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
+            "post-login-widget": LocalJSX.PostLoginWidget & JSXBase.HTMLAttributes<HTMLPostLoginWidgetElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
