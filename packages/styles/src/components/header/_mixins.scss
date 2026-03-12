@@ -74,7 +74,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   border-radius: 0;
   line-height: 1.5;
   outline-color: currentColor !important;
-  border-bottom: var(--post-nav-item-border-width) solid #050400;
+  border-bottom: var(--post-nav-item-border-width) solid currentColor;
 
   &:hover {
     @include button.button-variant-def('hover', 'primary');
@@ -82,7 +82,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   }
 
   @include active-state {
-    border-bottom-color: #050400;
+    border-bottom-color: currentColor;
   }
 
   @include utilities.focus-inset;
