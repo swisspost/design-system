@@ -1,6 +1,7 @@
 import {
   PostAccordion,
   PostAccordionItem,
+  PostAutocomplete,
   PostAvatar,
   PostBanner,
   PostCardControl,
@@ -9,10 +10,12 @@ import {
   PostCollapsibleTrigger,
   PostDatepicker,
   PostLinkarea,
+  PostListbox,
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
   PostNumberInput,
+  PostOption,
   PostPagination,
   PostPopover,
   PostPopoverTrigger,
@@ -68,6 +71,27 @@ export default function Home() {
 
       <h2>Avatar</h2>
       <PostAvatar firstname="Firstname" lastname="Lastname"></PostAvatar>
+
+      <h2>Autocomplete</h2>
+      <PostAutocomplete>
+        <label htmlFor="country-input" className="form-label">
+          Country
+        </label>
+        <input
+          type="text"
+          id="country-input"
+          className="form-control"
+          placeholder="Search for a country..."
+          autoComplete="off"
+        />
+        <PostListbox id="country-listbox">
+          <PostOption value="ch">Switzerland</PostOption>
+          <PostOption value="de">Germany</PostOption>
+          <PostOption value="at">Austria</PostOption>
+          <PostOption value="fr">France</PostOption>
+          <PostOption value="it">Italy</PostOption>
+        </PostListbox>
+      </PostAutocomplete>
 
       <h2>Banner</h2>
       <PostBanner>

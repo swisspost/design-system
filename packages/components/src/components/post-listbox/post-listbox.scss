@@ -1,0 +1,29 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/media';
+
+:host {
+  display: block;
+}
+
+.listbox-content {
+  display: flex;
+  flex-direction: column;
+  padding-block: 0.5rem;
+  min-width: 10rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.blank-slate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: #767675;
+  font-style: italic;
+
+  ::slotted(img) {
+    max-width: 100%;
+    height: auto;
+  }
+}
