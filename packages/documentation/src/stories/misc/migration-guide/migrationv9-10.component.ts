@@ -199,7 +199,7 @@ export class MigrationV99Component extends LitElement {
               <li>
                 Run the migration rules with the <code>--fix</code> flag at the root of your
                 project:
-                <code languages="['bash']">eslint -c @swisspost/design-system-eslint/migrations.js --fix</code>
+                <code languages="['bash']">npx eslint -c node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix</code>
                 <span class="info">
                   💡 This command applies migration rules without requiring any changes to your
                   existing ESLint configuration.
