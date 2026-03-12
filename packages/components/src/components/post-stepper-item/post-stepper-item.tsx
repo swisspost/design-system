@@ -4,7 +4,7 @@ import { version } from '@root/package.json';
 @Component({
   tag: 'post-stepper-item',
   styleUrl: 'post-stepper-item.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostStepperItem {
   render() {
