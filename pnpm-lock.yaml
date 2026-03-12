@@ -384,7 +384,7 @@ importers:
         specifier: workspace:10.0.0-next.63
         version: link:../styles/dist
       '@swisspost/design-system-theme-ag-grid':
-        specifier: workspace:10.0.0-next.62
+        specifier: workspace:10.0.0-next.63
         version: link:../theme-ag-grid
       '@swisspost/design-system-tokens':
         specifier: workspace:10.0.0-next.63
