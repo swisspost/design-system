@@ -88,13 +88,20 @@ tokens.$default-map: components.$post-stepper;
     color: tokens.get('stepper-text-enabled-fg');
   }
 
-  // Current step
-  :host(.stepper-item-current) > & {
+  // Selected step
+  :host(.stepper-item-selected) > & {
     font-weight: tokens.get('stepper-step-label-selected-font-weight');
-    color: tokens.get('stepper-text-enabled-fg');
 
     &::before {
       font-weight: tokens.get('body-font-weight', elements.$post-body);
+    }
+  }
+
+  // Current step
+  :host(.stepper-item-current) > & {
+    color: tokens.get('stepper-text-enabled-fg');
+
+    &::before {
       color: tokens.get('stepper-enabled-fg');
     }
   }
