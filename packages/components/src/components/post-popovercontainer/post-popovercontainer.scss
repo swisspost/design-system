@@ -17,13 +17,13 @@
 // https://caniuse.com/?search=popover
 @layer polyfill {
   @supports not selector(:popover-open) {
-    [popover]:not(.\:popover-open) {
+    :host([popover]:not(.\:popover-open)) {
       display: none;
     }
   }
 }
 
-:where(post-popovercontainer) {
+:host {
   background-color: transparent;
   border: transparent;
   position: fixed;
@@ -43,70 +43,6 @@
     @include utilities.high-contrast-mode {
       border: 2px solid transparent; // border is needed in HCM because the shadow is not visible
     }
-  }
-
-  &[tooltip] {
-    @include utilities.visuallyhidden();
-  }
-
-  // Safe space overlay styles
-  &[safe-space]::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: auto;
-  }
-
-  &[safe-space='triangle']::after {
-    clip-path: polygon(
-      var(--post-safe-space-cursor-x, 0) var(--post-safe-space-cursor-y, 0),
-      var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
-        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0)),
-      var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
-        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0))
-    );
-  }
-
-  &[safe-space='trapezoid']::after {
-    clip-path: polygon(
-      var(--post-safe-space-trigger-x-start, var(--post-safe-space-trigger-x, 0))
-        var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-start, 0)),
-      var(--post-safe-space-trigger-x-end, var(--post-safe-space-trigger-x, 0))
-        var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-end, 0)),
-      var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
-        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0)),
-      var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
-        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0))
-    );
-  }
-
-  &:not(:has(.arrow)) > div {
-    box-shadow: elevation.$elevation-300;
-  }
-
-  &:has(.arrow) > div {
-    filter: drop-shadow(1px 2px 3px hsla(216, 9%, 11%, 0.15))
-      drop-shadow(2px 4px 6px hsla(225, 17%, 9%, 0.15))
-      drop-shadow(4px 8px 12px hsla(225, 7%, 11%, 0.15));
-  }
-
-  &:has(.arrow.top) > div {
-    filter: drop-shadow(0px -2px 3px hsla(216, 9%, 11%, 0.15))
-      drop-shadow(0px -4px 6px hsla(225, 17%, 9%, 0.15))
-      drop-shadow(0px -8px 12px hsla(225, 7%, 11%, 0.15));
-  }
-
-  &:has(.arrow.left) > div {
-    filter: drop-shadow(-2px 0px 3px hsla(216, 9%, 11%, 0.15))
-      drop-shadow(-4px 0px 6px hsla(225, 17%, 9%, 0.15))
-      drop-shadow(-8px 0px 12px hsla(225, 7%, 11%, 0.15));
-  }
-
-  &:has(.arrow.right) > div {
-    filter: drop-shadow(2px 0px 3px hsla(216, 9%, 11%, 0.15))
-      drop-shadow(4px 0px 6px hsla(225, 17%, 9%, 0.15))
-      drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));
   }
 
   $arrow-rotation: 45deg;
@@ -166,4 +102,68 @@
       }
     }
   }
+}
+
+:host([tooltip]) {
+  @include utilities.visuallyhidden();
+}
+
+// Safe space overlay styles
+:host([safe-space])::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: auto;
+}
+
+:host([safe-space='triangle'])::after {
+  clip-path: polygon(
+    var(--post-safe-space-cursor-x, 0) var(--post-safe-space-cursor-y, 0),
+    var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
+      var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0)),
+    var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
+      var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0))
+  );
+}
+
+:host([safe-space='trapezoid'])::after {
+  clip-path: polygon(
+    var(--post-safe-space-trigger-x-start, var(--post-safe-space-trigger-x, 0))
+      var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-start, 0)),
+    var(--post-safe-space-trigger-x-end, var(--post-safe-space-trigger-x, 0))
+      var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-end, 0)),
+    var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
+      var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0)),
+    var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
+      var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0))
+  );
+}
+
+:host(:not(:has(.arrow))) > div {
+  box-shadow: elevation.$elevation-300;
+}
+
+:host(:has(.arrow)) > div {
+  filter: drop-shadow(1px 2px 3px hsla(216, 9%, 11%, 0.15))
+    drop-shadow(2px 4px 6px hsla(225, 17%, 9%, 0.15))
+    drop-shadow(4px 8px 12px hsla(225, 7%, 11%, 0.15));
+}
+
+:host(:has(.arrow[dynamic-placement='top'])) > div {
+  filter: drop-shadow(0px -2px 3px hsla(216, 9%, 11%, 0.15))
+    drop-shadow(0px -4px 6px hsla(225, 17%, 9%, 0.15))
+    drop-shadow(0px -8px 12px hsla(225, 7%, 11%, 0.15));
+}
+
+:host(:has(.arrow[dynamic-placement='left'])) > div {
+  filter: drop-shadow(-2px 0px 3px hsla(216, 9%, 11%, 0.15))
+    drop-shadow(-4px 0px 6px hsla(225, 17%, 9%, 0.15))
+    drop-shadow(-8px 0px 12px hsla(225, 7%, 11%, 0.15));
+}
+
+:host(:has(.arrow[dynamic-placement='right'])) > div {
+  filter: drop-shadow(2px 0px 3px hsla(216, 9%, 11%, 0.15))
+    drop-shadow(4px 0px 6px hsla(225, 17%, 9%, 0.15))
+    drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));
 }
