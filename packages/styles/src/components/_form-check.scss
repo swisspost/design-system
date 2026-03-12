@@ -20,7 +20,7 @@
 
   &-inline {
     display: inline-flex;
-    vertical-align: top;
+    vertical-align: middle;
   }
 
   &:has(> input:not(:only-child)) {
