@@ -37,10 +37,12 @@ jobs:
       - name: Configure GitHub User
         uses: ./.github/actions/configure-github-user
 
-      - name: Stage and commit build artifacts
+      - name: Abort workflow, if uncommitted changes are detected
         run: |
-          git add .
-          git diff --staged --quiet || git commit -m "chore: add generated files for publish test"
+          if [[ $(git status --porcelain) ]]; then
+            echo "Error: Unclean working tree! Commit changes first, then release again..."
+            exit 1
+          fi
 
       # This will fail the build if something in the publish setup is not correct
       # before changeset magic is starting to run

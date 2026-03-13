@@ -17,8 +17,7 @@
       "@swisspost/internet-header",
       "@swisspost/design-system-nextjs-integration",
       "@swisspost/design-system-styles",
-      "@swisspost/design-system-styles-primeng-workspace",
-      "@swisspost/design-system-styles-primeng",
+      "@swisspost/design-system-theme-ag-grid",
       "@swisspost/design-system-tokens"
     ]
   ],

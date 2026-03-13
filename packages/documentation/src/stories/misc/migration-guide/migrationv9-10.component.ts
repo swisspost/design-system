@@ -271,7 +271,13 @@ export class MigrationV99Component extends LitElement {
                           <li>pagination → <i>coming soon</i></li>
                           <li>progressbar → <i>coming soon</i></li>
                           <li>timepicker → <i>coming soon</i></li>
-                          <li>typeahead → <i>coming soon</i></li>
+                          <li>
+                            typeahead →
+                            <a
+                              href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
+                              >input with datalist</a
+                            >
+                          </li>
                         </ul>
                         <span class="info"
                           >Each removed Ng-Bootstrap component has (or will have) an equivalent in
@@ -423,7 +429,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.forms.tooltip_validation}"
                       />
-                      <label class="form-check-label" for="forms-tooltip_validation">
+                      <label class="form-check-label" for="forms-tooltip_validation"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Tooltip validation classes removed
                         <ul>
                           <li><code>.valid-tooltip</code></li>
@@ -447,7 +456,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.forms.input_sizes}"
                       />
-                      <label class="form-check-label" for="forms-input_sizes">
+                      <label class="form-check-label" for="forms-input_sizes"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Form field size classes removed
                         <ul>
                           <li><code>.form-control-sm</code></li>
@@ -783,6 +795,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.utilities.background}"
                       />
                       <label class="form-check-label" for="utilities-background">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Background color classes (<code>.bg-*</code>) removed
                         <span class="info"
                           >Colors are now handled by
@@ -823,7 +838,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.utilities.removed_various_utilities}"
                       />
-                      <label class="form-check-label" for="utilities-removed_various_utilities">
+                      <label class="form-check-label" for="utilities-removed_various_utilities"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Utility classes removed
                         <ul>
                           <li>
@@ -911,7 +929,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.utilities.text_color}"
                       />
-                      <label class="form-check-label" for="utilities-text_color">
+                      <label class="form-check-label" for="utilities-text_color"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Text color classes (<code>.text-*</code>) removed
                         <ul>
                           <li><code>.text-primary</code></li>
@@ -1093,7 +1114,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.typography.line_height_variables}"
                       />
-                      <label class="form-check-label" for="typography-line_height_variables">
+                      <label class="form-check-label" for="typography-line_height_variables"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Line height variables and classes removed
                         <ul>
                           <li><code>$line-heights</code></li>
@@ -1144,7 +1168,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.typography.weight_light}"
                       />
-                      <label class="form-check-label" for="typography-weight_light">
+                      <label class="form-check-label" for="typography-weight_light"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Light font weight (300) removed as the new Swiss Post Sans does not provide
                         it
                         <ul>
@@ -1187,7 +1214,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.typography.monospace}"
                       />
-                      <label class="form-check-label" for="typography-monospace">
+                      <label class="form-check-label" for="typography-monospace"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Monospace font removed
                         <ul>
                           <li><code>.font-monospace</code></li>
@@ -1213,7 +1243,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.others.card}"
                       />
-                      <label class="form-check-label" for="others-card">
+                      <label class="form-check-label" for="others-card"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Some card component elements have been removed
                         <ul>
                           <li><code>.card-header</code></li>
@@ -1246,6 +1279,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.card_group}"
                       />
                       <label class="form-check-label" for="others-card_group">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         <code>.card-group</code> removed
                         <span class="info"
                           >Card elements should be set inside a
@@ -1283,7 +1319,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.others.button_animated}"
                       />
-                      <label class="form-check-label" for="others-button_animated">
+                      <label class="form-check-label" for="others-button_animated"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         <code>.btn-animated</code> class removed
                         <span class="info"
                           >The class can safely be removed, there will simply be no icon animation
@@ -1321,6 +1360,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.breadcrumb_item}"
                       />
                       <label class="form-check-label" for="others-breadcrumb_item">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         <code>.breadcrumb-item</code> class removed
                         <span class="info">
                           The <code>post-breadcrumb-item</code> component should be used instead,
@@ -1341,6 +1383,9 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.others.alert_fixed_bottom}"
                       />
                       <label class="form-check-label" for="others-alert_fixed_bottom">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         <code>.alert-fixed-bottom</code> class removed
                         <span class="info"
                           >Use
@@ -1397,7 +1442,10 @@ export class MigrationV99Component extends LitElement {
                         type="checkbox"
                         ?checked="${this.state.others.accent_colors}"
                       />
-                      <label class="form-check-label" for="others-accent_colors">
+                      <label class="form-check-label" for="others-accent_colors"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
                         Accent colors removed
                         <ul>
                           <li>

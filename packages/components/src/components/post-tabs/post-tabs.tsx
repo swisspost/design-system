@@ -104,6 +104,8 @@ export class PostTabs {
         void this.show(tabToActivate);
       }
     }
+
+    this.isLoaded = true;
   }
 
   disconnectedCallback() {

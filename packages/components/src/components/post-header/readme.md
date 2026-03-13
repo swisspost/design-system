@@ -5,22 +5,23 @@
 
 ## Properties
 
-| Property                | Attribute   | Description                          | Type     | Default     |
-| ----------------------- | ----------- | ------------------------------------ | -------- | ----------- |
-| `textMenu` _(required)_ | `text-menu` | The label of the burger menu button. | `string` | `undefined` |
+| Property                | Attribute    | Description                                                                 | Type      | Default     |
+| ----------------------- | ------------ | --------------------------------------------------------------------------- | --------- | ----------- |
+| `fullWidth`             | `full-width` | Makes the header content span the full width on screens larger than 1440px. | `boolean` | `false`     |
+| `textMenu` _(required)_ | `text-menu`  | The label of the burger menu button.                                        | `string`  | `undefined` |
 
 
 ## Methods
 
-### `toggleBurgerMenu(force?: boolean) => Promise<void>`
+### `toggleBurgerMenu(nextExtendedState?: boolean) => Promise<void>`
 
 Toggles the burger navigation menu.
 
 #### Parameters
 
-| Name    | Type      | Description |
-| ------- | --------- | ----------- |
-| `force` | `boolean` |             |
+| Name                | Type      | Description |
+| ------------------- | --------- | ----------- |
+| `nextExtendedState` | `boolean` |             |
 
 #### Returns
 

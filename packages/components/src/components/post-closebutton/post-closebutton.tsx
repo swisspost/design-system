@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkEmptyOrOneOf } from '@/utils';
-import { BUTTON_TYPES, ButtonType } from './button-types';
+import { checkEmptyOrOneOf, checkRequiredAndOneOf } from '@/utils';
+import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
 
 /**
  * @slot default - Slot for placing visually hidden label in the close button.
@@ -17,13 +17,33 @@ export class PostClosebutton {
   @Element() host: HTMLPostClosebuttonElement;
 
   /**
-   * Overrides the close button's type ("button" by default)
+   * The "type" attribute used for the close button
    */
   @Prop() buttonType?: ButtonType = 'button';
 
   @Watch('buttonType')
   validateButtonType() {
     checkEmptyOrOneOf(this, 'buttonType', BUTTON_TYPES);
+  }
+
+  /**
+   * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
+   */
+  @Prop({ reflect: true }) placement: Placement = 'auto';
+
+  @Watch('placement')
+  validatePlacement() {
+    checkRequiredAndOneOf(this, 'placement', PLACEMENT);
+  }
+
+  /**
+   * The size of the close button.
+   */
+  @Prop({ reflect: true }) size: Size = 'default';
+
+  @Watch('size')
+  validateSize() {
+    checkRequiredAndOneOf(this, 'size', SIZE);
   }
 
   componentDidLoad() {
@@ -46,6 +66,9 @@ export class PostClosebutton {
 
   private checkContent() {
     this.validateButtonType();
+    this.validatePlacement();
+    this.validateSize();
+
     if (!this.host.querySelector('.visually-hidden').textContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
@@ -54,7 +77,7 @@ export class PostClosebutton {
   render() {
     return (
       <Host data-version={version}>
-        <button class="btn" type={this.buttonType}>
+        <button type={this.buttonType} class="btn btn-icon btn-secondary btn-sm">
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
             <slot></slot>

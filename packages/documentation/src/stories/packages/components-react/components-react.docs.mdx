@@ -3,6 +3,7 @@ import * as PackageStories from './components-react.stories';
 import GlobalCSSSample from './global-css.sample.css?raw';
 import CSRSample from './csr.sample.tsx?raw';
 import SSRSample from './ssr.sample.tsx?raw';
+import IconSample from './icon.sample.tsx?raw';
 import changelog from '@/../../components-react/CHANGELOG.md?raw';
 import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
@@ -53,7 +54,7 @@ Import the packages global styles. They are required for the components to work 
 
 <Source code={GlobalCSSSample} language="scss" />
 
-Importing the components to your project.
+### Client side rendering (CSR)
 
 The package provides two different javascript entry points. One for CSR (Client-Side Rendering) and one for SSR (Server-Side Rendering).
 
@@ -61,7 +62,14 @@ The CSR entry point is the default one and can be used in any project, that uses
 
 <Source code={CSRSample} language="typescript" />
 
+### Server side rendering (SSR)
+
 The SSR entry point is needed for server-side rendering (e.g. in a NextJS project).
 
-  <Source code={SSRSample} language="typescript" />
+<Source code={SSRSample} language="typescript" />
+
+### Icons
+The package now includes generated React Server Component icon exports built from `@swisspost/design-system-icons`, therefore it's no longer necessary to have the icons package installed as a dependency to use icons. Under the hood, the `<post-icon>` component is being used to render the icons consistently, therefore also all the properties from this component are available for the react icons. See the [icon documentation](https://next.design-system.post.ch/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs) for more information on it's features. Import react- and SSR-ready icons directly like:
+
+<Source code={IconSample} language="typescript" />
 </PackageDocs>

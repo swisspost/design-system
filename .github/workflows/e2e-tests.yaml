@@ -30,7 +30,7 @@ jobs:
           use_cache: false
 
       - name: Cache cypress
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        uses: actions/cache@565629816435f6c0b50676926c9b05c254113c0c
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}

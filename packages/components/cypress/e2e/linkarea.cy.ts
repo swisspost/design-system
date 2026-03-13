@@ -4,7 +4,7 @@ describe('post-linkarea', { baseUrl: null }, () => {
   describe('default', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-linkarea.test.html');
-      cy.get('post-linkarea .card').as('card');
+      cy.get('post-linkarea.card').as('card');
       cy.get('@card').find('a').as('link');
     });
 

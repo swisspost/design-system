@@ -7,6 +7,7 @@ import {
   PostCardControl,
   PostCollapsible,
   PostCollapsibleTrigger,
+  PostDatepicker,
   PostIcon,
   PostLinkarea,
   PostMenu,
@@ -25,6 +26,8 @@ import {
   PostTooltipTrigger,
   PostStepper,
   PostStepperItem,
+  PostClosebutton,
+  PostNumberInput,
 } from 'components';
 
 @Component({
@@ -37,8 +40,10 @@ import {
     PostAvatar,
     PostBanner,
     PostCardControl,
+    PostClosebutton,
     PostCollapsible,
     PostCollapsibleTrigger,
+    PostDatepicker,
     PostIcon,
     PostLinkarea,
     PostMenu,
@@ -57,6 +62,7 @@ import {
     PostTooltipTrigger,
     PostStepper,
     PostStepperItem,
+    PostNumberInput,
   ],
 })
 export class HomeComponent {

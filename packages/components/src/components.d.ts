@@ -7,14 +7,18 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
-import { ButtonType } from "./components/post-closebutton/button-types";
+import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
+import { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
+import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
-import { Placement } from "@floating-ui/dom";
+import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
-export { ButtonType } from "./components/post-closebutton/button-types";
+export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
+export { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
+export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
-export { Placement } from "@floating-ui/dom";
+export { Placement as Placement1 } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -171,10 +175,20 @@ export namespace Components {
     }
     interface PostClosebutton {
         /**
-          * Overrides the close button's type ("button" by default)
+          * The "type" attribute used for the close button
           * @default 'button'
          */
         "buttonType"?: ButtonType;
+        /**
+          * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
+          * @default 'auto'
+         */
+        "placement": Placement;
+        /**
+          * The size of the close button.
+          * @default 'default'
+         */
+        "size": Size;
     }
     interface PostCollapsible {
         /**
@@ -197,6 +211,79 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostDatepicker {
+        /**
+          * Hides the popover calendar.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Whether the calendar is inline in the page (not showing in a popover when input clicked).
+          * @default false
+         */
+        "inline": boolean;
+        /**
+          * Maximum possible date to select.
+         */
+        "max"?: string;
+        /**
+          * Minimun possible date to select.
+         */
+        "min"?: string;
+        /**
+          * Whether the datepicker expects a range selection or a single date selection.
+          * @default false
+         */
+        "range"?: boolean;
+        /**
+          * Used to extend the existing on render cell to disable dates.
+         */
+        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
+        /**
+          * The datepicker's selected end date (for range datepicker only).
+         */
+        "selectedEndDate"?: string;
+        /**
+          * The datepicker's selected date. If in range mode, the selected start date.
+         */
+        "selectedStartDate"?: string;
+        /**
+          * Displays the popover calendar, focusing the first calendar item.
+          * @param target - The HTML element relative to which the popover calendar should be displayed
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Label for "Next decade" button.
+         */
+        "textNextDecade": string;
+        /**
+          * Label for "Next month" button.
+         */
+        "textNextMonth": string;
+        /**
+          * Label for "Next year" button.
+         */
+        "textNextYear": string;
+        /**
+          * Label for "Previous decade" button.
+         */
+        "textPreviousDecade": string;
+        /**
+          * Label for "Previous month" button.
+         */
+        "textPreviousMonth": string;
+        /**
+          * Label for "Previous year" button.
+         */
+        "textPreviousYear": string;
+        /**
+          * Label for the "Switch to year view" title button.
+         */
+        "textSwitchYear": string;
+        /**
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+         */
+        "textToggleCalendar"?: string;
+    }
     interface PostEnvTest {
     }
     interface PostFooter {
@@ -207,13 +294,18 @@ export namespace Components {
     }
     interface PostHeader {
         /**
+          * Makes the header content span the full width on screens larger than 1440px.
+          * @default false
+         */
+        "fullWidth": boolean;
+        /**
           * The label of the burger menu button.
          */
         "textMenu": string;
         /**
           * Toggles the burger navigation menu.
          */
-        "toggleBurgerMenu": (force?: boolean) => Promise<void>;
+        "toggleBurgerMenu": (nextExtendedState?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -222,7 +314,7 @@ export namespace Components {
         /**
           * The name of the animation.
          */
-        "animation"?: Animation;
+        "animation"?: PostIconAnimation;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
@@ -249,6 +341,10 @@ export namespace Components {
           * The number for the css scale transformation.
          */
         "scale"?: number;
+        /**
+          * A full URL to the icon file. When set, this property has the highest priority.
+         */
+        "url"?: string;
     }
     interface PostLanguageMenu {
         /**
@@ -256,12 +352,12 @@ export namespace Components {
          */
         "textChangeLanguage": string;
         /**
-          * A descriptive text for the list of language options
+          * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
          */
         "textCurrentLanguage": string;
         /**
           * Whether the component is rendered as a list or a menu
-          * @default 'list'
+          * @default 'menu'
          */
         "variant": SwitchVariant;
     }
@@ -355,7 +451,7 @@ export namespace Components {
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Displays the popover menu, focusing the first menu item.
           * @param target - The HTML element relative to which the popover menu should be displayed.
@@ -374,15 +470,13 @@ export namespace Components {
          */
         "for": string;
     }
+    interface PostNumberInput {
+    }
     interface PostPagination {
         /**
           * The total number of items in the collection.
          */
         "collectionSize": number;
-        /**
-          * If true, the pagination is disabled.
-         */
-        "disabled"?: boolean;
         /**
           * A descriptive label for the pagination navigation, used by assistive technologies.
          */
@@ -430,7 +524,7 @@ export namespace Components {
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Programmatically display the popover
           * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
@@ -455,11 +549,6 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Animation style
-          * @default null
-         */
-        "animation"?: 'pop-in' | null;
-        /**
           * Whether or not to display a little pointer arrow
           * @default false
          */
@@ -477,14 +566,14 @@ export namespace Components {
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Enables a safespace through which the cursor can be moved without the popover being disabled
          */
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param target A focusable element inside the trigger component that controls the popover
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
@@ -576,10 +665,6 @@ export namespace Components {
     }
     interface PostTooltip {
         /**
-          * Choose a tooltip animation
-         */
-        "animation"?: 'pop-in';
-        /**
           * Whether or not to display a little pointer arrow
           * @default false
          */
@@ -597,7 +682,7 @@ export namespace Components {
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Programmatically display the tooltip.
           * @param target An element where the tooltip should be shown
@@ -633,6 +718,10 @@ export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
+}
+export interface PostDatepickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostDatepickerElement;
 }
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -766,6 +855,23 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
+    interface HTMLPostDatepickerElementEventMap {
+        "postUpdateDates": Date | Date[];
+    }
+    interface HTMLPostDatepickerElement extends Components.PostDatepicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostDatepickerElement: {
+        prototype: HTMLPostDatepickerElement;
+        new (): HTMLPostDatepickerElement;
+    };
     interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
     }
     var HTMLPostEnvTestElement: {
@@ -886,6 +992,12 @@ declare global {
     var HTMLPostMenuTriggerElement: {
         prototype: HTMLPostMenuTriggerElement;
         new (): HTMLPostMenuTriggerElement;
+    };
+    interface HTMLPostNumberInputElement extends Components.PostNumberInput, HTMLStencilElement {
+    }
+    var HTMLPostNumberInputElement: {
+        prototype: HTMLPostNumberInputElement;
+        new (): HTMLPostNumberInputElement;
     };
     interface HTMLPostPaginationElementEventMap {
         "postChange": number;
@@ -1026,6 +1138,7 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-datepicker": HTMLPostDatepickerElement;
         "post-env-test": HTMLPostEnvTestElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
@@ -1040,6 +1153,7 @@ declare global {
         "post-menu": HTMLPostMenuElement;
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
+        "post-number-input": HTMLPostNumberInputElement;
         "post-pagination": HTMLPostPaginationElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
@@ -1195,10 +1309,20 @@ declare namespace LocalJSX {
     }
     interface PostClosebutton {
         /**
-          * Overrides the close button's type ("button" by default)
+          * The "type" attribute used for the close button
           * @default 'button'
          */
         "buttonType"?: ButtonType;
+        /**
+          * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
+          * @default 'auto'
+         */
+        "placement"?: Placement;
+        /**
+          * The size of the close button.
+          * @default 'default'
+         */
+        "size"?: Size;
     }
     interface PostCollapsible {
         /**
@@ -1217,6 +1341,74 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostDatepicker {
+        /**
+          * Whether the calendar is inline in the page (not showing in a popover when input clicked).
+          * @default false
+         */
+        "inline"?: boolean;
+        /**
+          * Maximum possible date to select.
+         */
+        "max"?: string;
+        /**
+          * Minimun possible date to select.
+         */
+        "min"?: string;
+        /**
+          * An event emitted when a date or a range of dates have been selected.
+         */
+        "onPostUpdateDates"?: (event: PostDatepickerCustomEvent<Date | Date[]>) => void;
+        /**
+          * Whether the datepicker expects a range selection or a single date selection.
+          * @default false
+         */
+        "range"?: boolean;
+        /**
+          * Used to extend the existing on render cell to disable dates.
+         */
+        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
+        /**
+          * The datepicker's selected end date (for range datepicker only).
+         */
+        "selectedEndDate"?: string;
+        /**
+          * The datepicker's selected date. If in range mode, the selected start date.
+         */
+        "selectedStartDate"?: string;
+        /**
+          * Label for "Next decade" button.
+         */
+        "textNextDecade": string;
+        /**
+          * Label for "Next month" button.
+         */
+        "textNextMonth": string;
+        /**
+          * Label for "Next year" button.
+         */
+        "textNextYear": string;
+        /**
+          * Label for "Previous decade" button.
+         */
+        "textPreviousDecade": string;
+        /**
+          * Label for "Previous month" button.
+         */
+        "textPreviousMonth": string;
+        /**
+          * Label for "Previous year" button.
+         */
+        "textPreviousYear": string;
+        /**
+          * Label for the "Switch to year view" title button.
+         */
+        "textSwitchYear": string;
+        /**
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+         */
+        "textToggleCalendar"?: string;
+    }
     interface PostEnvTest {
     }
     interface PostFooter {
@@ -1226,6 +1418,11 @@ declare namespace LocalJSX {
         "textFooter": string;
     }
     interface PostHeader {
+        /**
+          * Makes the header content span the full width on screens larger than 1440px.
+          * @default false
+         */
+        "fullWidth"?: boolean;
         /**
           * The label of the burger menu button.
          */
@@ -1238,7 +1435,7 @@ declare namespace LocalJSX {
         /**
           * The name of the animation.
          */
-        "animation"?: Animation;
+        "animation"?: PostIconAnimation;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
@@ -1265,6 +1462,10 @@ declare namespace LocalJSX {
           * The number for the css scale transformation.
          */
         "scale"?: number;
+        /**
+          * A full URL to the icon file. When set, this property has the highest priority.
+         */
+        "url"?: string;
     }
     interface PostLanguageMenu {
         /**
@@ -1272,12 +1473,12 @@ declare namespace LocalJSX {
          */
         "textChangeLanguage": string;
         /**
-          * A descriptive text for the list of language options
+          * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
          */
         "textCurrentLanguage": string;
         /**
           * Whether the component is rendered as a list or a menu
-          * @default 'list'
+          * @default 'menu'
          */
         "variant"?: SwitchVariant;
     }
@@ -1363,7 +1564,7 @@ declare namespace LocalJSX {
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
     }
     interface PostMenuItem {
     }
@@ -1373,15 +1574,13 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostNumberInput {
+    }
     interface PostPagination {
         /**
           * The total number of items in the collection.
          */
         "collectionSize": number;
-        /**
-          * If true, the pagination is disabled.
-         */
-        "disabled"?: boolean;
         /**
           * A descriptive label for the pagination navigation, used by assistive technologies.
          */
@@ -1429,7 +1628,7 @@ declare namespace LocalJSX {
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Define the text of the close button for assistive technology
          */
@@ -1442,11 +1641,6 @@ declare namespace LocalJSX {
         "for"?: string;
     }
     interface PostPopovercontainer {
-        /**
-          * Animation style
-          * @default null
-         */
-        "animation"?: 'pop-in' | null;
         /**
           * Whether or not to display a little pointer arrow
           * @default false
@@ -1481,7 +1675,7 @@ declare namespace LocalJSX {
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
         /**
           * Enables a safespace through which the cursor can be moved without the popover being disabled
          */
@@ -1577,10 +1771,6 @@ declare namespace LocalJSX {
     }
     interface PostTooltip {
         /**
-          * Choose a tooltip animation
-         */
-        "animation"?: 'pop-in';
-        /**
           * Whether or not to display a little pointer arrow
           * @default false
          */
@@ -1594,7 +1784,7 @@ declare namespace LocalJSX {
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'top'
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
     }
     interface PostTooltipTrigger {
         /**
@@ -1619,6 +1809,7 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-datepicker": PostDatepicker;
         "post-env-test": PostEnvTest;
         "post-footer": PostFooter;
         "post-header": PostHeader;
@@ -1633,6 +1824,7 @@ declare namespace LocalJSX {
         "post-menu": PostMenu;
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
+        "post-number-input": PostNumberInput;
         "post-pagination": PostPagination;
         "post-popover": PostPopover;
         "post-popover-trigger": PostPopoverTrigger;
@@ -1666,6 +1858,7 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-datepicker": LocalJSX.PostDatepicker & JSXBase.HTMLAttributes<HTMLPostDatepickerElement>;
             "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
@@ -1683,6 +1876,7 @@ declare module "@stencil/core" {
             "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
+            "post-number-input": LocalJSX.PostNumberInput & JSXBase.HTMLAttributes<HTMLPostNumberInputElement>;
             "post-pagination": LocalJSX.PostPagination & JSXBase.HTMLAttributes<HTMLPostPaginationElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;

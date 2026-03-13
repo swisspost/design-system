@@ -1,0 +1,69 @@
+###
+#
+# Validate icon downloads in icon update PRs
+#
+# Builds icons, validates report.json, and fails if any issues are detected.
+#
+###
+
+name: Validate Icons
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+    paths:
+      - 'packages/icons/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'swisspost'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install dependencies
+        run: pnpm --filter design-system-icons... install --ignore-scripts
+
+      - name: Build icons (generates report.json)
+        run: pnpm --filter design-system-icons build
+
+      - name: Validate Icon Quality
+        id: validate-icons
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const { validateIconReport } = require('.github/workflows/scripts/validate-icons.mjs')
+            return validateIconReport()
+
+      - name: Comment PR with Results
+        if: always()
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          VALIDATION_RESULT: ${{ steps.validate-icons.outputs.result }}
+        with:
+          script: |
+            const { commentValidationResults } = require('.github/workflows/scripts/validate-icons.mjs')
+            await commentValidationResults(github, context, process.env.VALIDATION_RESULT)
+
+      - name: Fail if validation failed
+        if: steps.validate-icons.outputs.result == 'false'
+        run: |
+          echo "❌ Icon validation failed. Please check the PR comment for details."
+          exit 1
+
+      - name: Success
+        if: steps.validate-icons.outputs.result == 'true'
+        run: |
+          echo "✅ All icons validated successfully!"
