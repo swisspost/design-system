@@ -1,5 +1,5 @@
 post-accordion > post-accordion-item ~ post-accordion-item {
   --post-collapsible-initial-height: 0;
   --post-collapsible-initial-overflow: hidden;
-  --post-accordion-icon-initial-transform: rotate(180deg);
+  --post-accordion-icon-initial-transform: #{accordion.$accordion-icon-transform};
 }
