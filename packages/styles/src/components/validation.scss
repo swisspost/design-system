@@ -14,11 +14,10 @@ Default feedback message classes
   width: 100%;
   margin: 0;
   font-size: tokens.get('post-validation-font-size');
-}
 
-.form-control-sm + .valid-feedback,
-.form-control-sm + .invalid-feedback {
-  font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+  .form-control-sm + & {
+    font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+  }
 }
 
 /*
