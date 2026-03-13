@@ -10,6 +10,21 @@ tokens.$default-map: components.$post-assist;
   font-size: tokens.get('assist-font-size');
 }
 
-.form-control:disabled .form-hint {
-  color: tokens.get('assist-disabled-fg');
+.form-control:disabled {
+  & + .form-label + .valid-feedback + .form-hint,
+  & + .form-label + .invalid-feedback + .form-hint,
+  & + .form-label + .form-hint,
+  & + .valid-feedback + .form-hint,
+  & + .invalid-feedback + .form-hint,
+  & + .form-hint {
+    color: tokens.get('assist-disabled-fg');
+  }
+}
+
+.form-control-sm {
+  & + .valid-feedback + .form-hint,
+  & + .invalid-feedback + .form-hint,
+  & + .form-hint {
+    font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+  }
 }

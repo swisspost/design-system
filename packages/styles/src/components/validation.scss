@@ -16,6 +16,11 @@ Default feedback message classes
   font-size: tokens.get('post-validation-font-size');
 }
 
+.form-control-sm + .valid-feedback,
+.form-control-sm + .invalid-feedback {
+  font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+}
+
 /*
  Valid input feedback
 */
