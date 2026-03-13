@@ -230,7 +230,7 @@ export namespace Components {
          */
         "min"?: string;
         /**
-          * Whether the datepicker expects a range selection or a single date selection.
+          * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
@@ -239,11 +239,11 @@ export namespace Components {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The datepicker's selected end date (for range datepicker only).
+          * The date picker's selected end date (for range date picker only).
          */
         "selectedEndDate"?: string;
         /**
-          * The datepicker's selected date. If in range mode, the selected start date.
+          * The date picker's selected date. If in range mode, the selected start date.
          */
         "selectedStartDate"?: string;
         /**
@@ -1360,7 +1360,7 @@ declare namespace LocalJSX {
          */
         "onPostUpdateDates"?: (event: PostDatePickerCustomEvent<Date | Date[]>) => void;
         /**
-          * Whether the datepicker expects a range selection or a single date selection.
+          * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
@@ -1369,11 +1369,11 @@ declare namespace LocalJSX {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The datepicker's selected end date (for range datepicker only).
+          * The date picker's selected end date (for range date picker only).
          */
         "selectedEndDate"?: string;
         /**
-          * The datepicker's selected date. If in range mode, the selected start date.
+          * The date picker's selected date. If in range mode, the selected start date.
          */
         "selectedStartDate"?: string;
         /**

@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Published `post-datepicker` web component.
+Published `post-date-picker` web component.

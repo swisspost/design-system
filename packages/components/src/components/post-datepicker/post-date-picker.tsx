@@ -43,7 +43,7 @@ export class PostDatePicker {
   @State() inputDisabled = false;
 
   /**
-   * The datepicker's selected date. If in range mode, the selected start date.
+   * The date picker's selected date. If in range mode, the selected start date.
    */
   @Prop({ mutable: true }) selectedStartDate?: string;
   @Watch('selectedStartDate')
@@ -52,7 +52,7 @@ export class PostDatePicker {
   }
 
   /**
-   * The datepicker's selected end date (for range datepicker only).
+   * The date picker's selected end date (for range date picker only).
    */
   @Prop({ mutable: true }) selectedEndDate?: string;
   @Watch('selectedEndDate')
@@ -61,7 +61,7 @@ export class PostDatePicker {
   }
 
   /**
-   * Whether the datepicker expects a range selection or a single date selection.
+   * Whether the date picker expects a range selection or a single date selection.
    */
   @Prop() range?: boolean = false;
 
@@ -95,7 +95,7 @@ export class PostDatePicker {
   @Watch('inline')
   validateInline() {
     if (!this.inline && !this.dpInput) {
-      console.error('A non-inline datepicker should contain one input');
+      console.error('A non-inline date picker should contain one input');
     }
   }
 
@@ -229,7 +229,7 @@ export class PostDatePicker {
     if (!this.dpInput) return;
 
     const observer = new MutationObserver(() => {
-      this.syncDatepickerState();
+      this.syncDatePickerState();
     });
 
     observer.observe(this.dpInput, {
@@ -371,7 +371,7 @@ export class PostDatePicker {
   }
 
   /**
-   * Loop through the datepicker when not in inline mode
+   * Loop through the date picker when not in inline mode
    */
   private handleTab = (e: KeyboardEvent) => {
     if (this.inline || (e.key !== 'Tab' && e.key !== 'Escape')) return;
@@ -523,7 +523,7 @@ export class PostDatePicker {
   }
 
   /**
-   * Set up the masks on the inputs to reflect the datepickers
+   * Set up the masks on the inputs to reflect the date pickers
    */
   private setUpMask() {
     const usBlockOpts = {
@@ -583,7 +583,7 @@ export class PostDatePicker {
     }
   }
 
-  private configDatepicker() {
+  private configDatePicker() {
     const slot = this.host.shadowRoot.querySelector<HTMLSlotElement>('slot');
     const assignedNodes = slot && slot.assignedElements();
     const locale = localesMap[this.locale] || localesMap.en;
@@ -713,7 +713,7 @@ export class PostDatePicker {
         (!this.selectedStartDate && this.selectedEndDate)
       ) {
         console.error(
-          'The range datepicker expects either no selected dates or both of them defined.',
+          'The range date picker expects either no selected dates or both of them defined.',
         );
       } else if (this.selectedStartDate && this.selectedEndDate) {
         this.dpInstance.selectDate([this.selectedStartDate, this.selectedEndDate]);
@@ -925,7 +925,7 @@ export class PostDatePicker {
     return date instanceof Date && !isNaN(date.getTime());
   }
 
-  private syncDatepickerState() {
+  private syncDatePickerState() {
     if (this.dpInput.disabled) {
       this.inputDisabled = true;
     }
@@ -934,7 +934,7 @@ export class PostDatePicker {
   async componentDidLoad() {
     this.euFormat = document.documentElement.lang !== 'en-US';
 
-    this.configDatepicker();
+    this.configDatePicker();
     this.setupGridObserver();
     this.setupNavObserver();
     this.setupInputObserver();
@@ -959,7 +959,7 @@ export class PostDatePicker {
       this.addInputListener();
 
       requestAnimationFrame(() => {
-        this.syncDatepickerState();
+        this.syncDatePickerState();
       });
     }
   }

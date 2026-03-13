@@ -33,7 +33,7 @@ describe('datepicker', { includeShadowDom: true }, () => {
         .should('have.attr', 'data-action', 'next');
     });
 
-    it('should update input value when selecting a day in the datepicker', () => {
+    it('should update input value when selecting a day in the date picker', () => {
       cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
 
       cy.get('@datepicker')
