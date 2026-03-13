@@ -1,7 +1,11 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
+import { JSXBase } from '@stencil/core/internal';
 import { version } from '@root/package.json';
 import { state } from '@/data/store';
-import { LinkList } from '@/components/shared';
+import { LinkListConfig } from '@/models/shared.model';
+import { createIdFrom } from '@/utils/create-id-from';
+import { getText } from '@/utils/get-text';
+import { Link, LinkProps, Title, TitleProps } from '@/components/internal';
 
 @Component({
   tag: 'swisspost-internet-footer',
@@ -73,8 +77,28 @@ export class PostInternetFooter {
     window['UC_UI']['showSecondLayer']();
   }
 
-  render() {
+  private renderListWithTitle(
+    config: LinkListConfig,
+    props: { titleProps?: TitleProps; listProps?: JSXBase.HTMLAttributes; linkProps?: LinkProps },
+  ) {
+    const { titleProps, linkProps } = props;
 
+    const titleText = getText(config.title);
+    const titleId = createIdFrom(titleText);
+
+    return [
+      <Title {...titleProps} config={config.title} id={titleId} />,
+      <ul aria-labelledby={titleId}>
+        {config.items.map(item => (
+          <li>
+            <Link {...linkProps} config={item} />
+          </li>
+        ))}
+      </ul>,
+    ];
+  }
+
+  render() {
     // Config has not loaded yet
     if (!state.localizedConfig) {
       return null;
@@ -95,48 +119,50 @@ export class PostInternetFooter {
     return (
       <Host data-version={version}>
         <post-footer text-footer={this.textFooter}>
-          {footerConfig.sections.map((section, i) => (
-            <LinkList
-              config={section}
-              titleTag="span"
-              titleSlot={`grid-${i + 1}-title`}
-              listSlot={`grid-${i + 1}`}
-            />
-          ))}
+          {footerConfig.sections.map((section, i) =>
+            this.renderListWithTitle(section, {
+              titleProps: { tag: 'span', slot: `grid-${i + 1}-title` },
+              listProps: { slot: `grid-${i + 1}` },
+              linkProps: { class: 'btn btn-primary btn-icon', hiddenText: true },
+            }),
+          )}
 
           <div slot="socialmedia">
-            <LinkList
-              config={footerConfig.socialLinks}
-              titleTag="h3"
-              linkProps={{ class: 'btn btn-primary btn-icon', hiddenText: true }}
-            />
+            {this.renderListWithTitle(footerConfig.socialLinks, {
+              titleProps: { tag: 'h3' },
+              linkProps: { class: 'btn btn-primary btn-icon', hiddenText: true },
+            })}
           </div>
 
           <div slot="app">
-            <LinkList
-              config={footerConfig.appStoreLinks}
-              titleTag="h3"
-              linkProps={{ class: 'app-store-badge', hiddenText: true }}
-            />
+            {this.renderListWithTitle(footerConfig.appStoreLinks, {
+              titleProps: { tag: 'h3' },
+              linkProps: { class: 'app-store-badge', hiddenText: true },
+            })}
           </div>
 
           <div slot="businesssectors">
-            <LinkList config={footerConfig.companyLinks} titleTag="h3" />
+            {this.renderListWithTitle(footerConfig.companyLinks, {
+              titleProps: { tag: 'h3' },
+            })}
           </div>
 
           <div slot="meta">
-            <LinkList config={footerConfig.complianceLinks} hiddenTitle={true}>
-              {this.cookieSettingsEnabled && (
-                <li>
-                  <button
-                    class="btn btn-link cookie-settings"
-                    onClick={this.handleCookieSettingsClick}
-                  >
-                    {this.textCookieSettings}
-                  </button>
-                </li>
-              )}
-            </LinkList>
+            <ul aria-label={getText(footerConfig.complianceLinks.title)}>
+              {footerConfig.complianceLinks.items.map(item => (
+                <Link config={item} />
+              ))}
+            </ul>
+            {this.cookieSettingsEnabled && (
+              <li>
+                <button
+                  class="btn btn-link cookie-settings"
+                  onClick={this.handleCookieSettingsClick}
+                >
+                  {this.textCookieSettings}
+                </button>
+              </li>
+            )}
           </div>
 
           <p slot="copyright">{footerConfig.copyright}</p>

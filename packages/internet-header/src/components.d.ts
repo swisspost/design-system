@@ -63,17 +63,17 @@ export namespace Components {
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
           * @default 'auto'
          */
-        "activeRoute"?: ActiveRouteProp;
+        "activeRoute": ActiveRouteProp;
         /**
           * Target environment. Choose 'int01' for local testing.
           * @default 'prod'
          */
         "environment": Environment;
         /**
-          * Displays the header at full width for full-screen applications
+          * Makes the header content span the full width on screens larger than 1440px.
           * @default false
          */
-        "fullWidth"?: boolean;
+        "fullWidth": boolean;
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
@@ -82,6 +82,38 @@ export namespace Components {
           * Your project id, previously passed as query string parameter serviceId.
          */
         "project": string;
+        /**
+          * Visually hidden label for the back button.
+         */
+        "textBack": string;
+        /**
+          * Visually hidden label for the language menu.
+         */
+        "textChangeLanguage": string;
+        /**
+          * Visually hidden label for the close button.
+         */
+        "textClose": string;
+        /**
+          * Visually hidden label for the current language.
+         */
+        "textCurrentLanguage": string;
+        /**
+          * Visually hidden label for the current user.
+         */
+        "textCurrentUser": string;
+        /**
+          * Visually hidden label for the main navigation element.
+         */
+        "textMain": string;
+        /**
+          * Visually hidden label for the burger menu button.
+         */
+        "textMenu": string;
+        /**
+          * Visually hidden label for the user menu.
+         */
+        "textUserLinks": string;
     }
 }
 export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
@@ -201,7 +233,7 @@ declare namespace LocalJSX {
          */
         "environment"?: Environment;
         /**
-          * Displays the header at full width for full-screen applications
+          * Makes the header content span the full width on screens larger than 1440px.
           * @default false
          */
         "fullWidth"?: boolean;
@@ -216,7 +248,39 @@ declare namespace LocalJSX {
         /**
           * Your project id, previously passed as query string parameter serviceId.
          */
-        "project"?: string;
+        "project": string;
+        /**
+          * Visually hidden label for the back button.
+         */
+        "textBack": string;
+        /**
+          * Visually hidden label for the language menu.
+         */
+        "textChangeLanguage": string;
+        /**
+          * Visually hidden label for the close button.
+         */
+        "textClose": string;
+        /**
+          * Visually hidden label for the current language.
+         */
+        "textCurrentLanguage": string;
+        /**
+          * Visually hidden label for the current user.
+         */
+        "textCurrentUser": string;
+        /**
+          * Visually hidden label for the main navigation element.
+         */
+        "textMain": string;
+        /**
+          * Visually hidden label for the burger menu button.
+         */
+        "textMenu": string;
+        /**
+          * Visually hidden label for the user menu.
+         */
+        "textUserLinks": string;
     }
     interface IntrinsicElements {
         "focus-trap": FocusTrap;

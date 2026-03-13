@@ -22,37 +22,16 @@ const meta: MetaComponent = {
     project: 'test',
     environment: 'int01',
     language: 'en',
-  },
-  argTypes: {
-    project: {
-      control: false,
-      table: {
-        category: 'Required props',
-      },
-      type: {
-        name: 'string',
-        required: true,
-      },
-    },
-    environment: {
-      control: false,
-      table: {
-        category: 'Optional props',
-      },
-    },
-    fullWidth: {
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Optional props',
-      },
-    },
-    language: {
-      table: {
-        category: 'Optional props',
-      },
-    },
+    activeRoute: 'auto',
+    fullWidth: false,
+    textMain: 'Main',
+    textMenu: 'Menu',
+    textChangeLanguage: 'Change the language',
+    textCurrentLanguage: 'The currently selected language is #name.',
+    textCurrentUser: 'Current user is John Doe.',
+    textUserLinks: 'User links',
+    textClose: 'Close',
+    textBack: 'Back',
   },
   decorators: [
     story => html`

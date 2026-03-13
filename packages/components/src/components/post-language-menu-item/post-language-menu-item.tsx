@@ -64,6 +64,16 @@ export class PostLanguageMenuItem {
   }
 
   /**
+   * A description for the language read by screen-readers for improved accessibility.
+   */
+  @Prop() description?: string;
+
+  @Watch('description')
+  validateDescription() {
+    checkEmptyOrType(this, 'description', 'string');
+  }
+
+  /**
    * The URL used for the href attribute of the internal anchor.
    * This field is optional; if not provided, a button will be used internally instead of an anchor.
    */
@@ -77,6 +87,7 @@ export class PostLanguageMenuItem {
   componentDidLoad() {
     this.validateCode();
     this.validateName();
+    this.validateDescription();
     this.validateUrl();
 
     if (!this.name && this.isNameRequired()) {
@@ -133,6 +144,7 @@ export class PostLanguageMenuItem {
             href={this.url}
             hrefLang={lang}
             lang={lang}
+            aria-description={this.description}
             onClick={() => this.emitChange()}
             onKeyDown={emitOnKeyDown}
           >
@@ -143,6 +155,7 @@ export class PostLanguageMenuItem {
           <button
             aria-current={this.active ? 'true' : undefined}
             lang={lang}
+            aria-description={this.description}
             onClick={() => this.emitChange()}
             onKeyDown={emitOnKeyDown}
           >
