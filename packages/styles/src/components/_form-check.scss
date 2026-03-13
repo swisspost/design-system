@@ -101,7 +101,7 @@
 
     fieldset > & {
       &:not(:last-of-type) {
-        margin-bottom: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
+        margin-block-end: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
       }
     }
 
