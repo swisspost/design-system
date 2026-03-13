@@ -563,6 +563,11 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Offset for more precise placement
+          * @default 0
+         */
+        "offset"?: number;
+        /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
@@ -1651,6 +1656,11 @@ declare namespace LocalJSX {
           * @default 8
          */
         "edgeGap"?: number;
+        /**
+          * Offset for more precise placement
+          * @default 0
+         */
+        "offset"?: number;
         /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */

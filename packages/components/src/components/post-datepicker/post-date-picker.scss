@@ -207,7 +207,7 @@ tokens.$default-map: components.$post-datepicker;
 
             /* Day: Selected */
             &.-selected-:not(.-other-month-) {
-              z-index: 2;
+              z-index: 1;
               color: tokens.get('post-datepicker-grid-day-cell-element-color-selected-fg');
               background: tokens.get('post-datepicker-grid-day-cell-element-color-selected-bg');
 
@@ -611,6 +611,7 @@ tokens.$default-map: components.$post-datepicker;
                     forced-color-adjust: none;
                   }
                 }
+
                 &:after {
                   z-index: -1;
                   background: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-bg');
@@ -618,6 +619,7 @@ tokens.$default-map: components.$post-datepicker;
                     'post-datepicker-grid-day-cell-element-color-hovered-bg'
                   );
                   border-inline: none;
+
                   @include utilities.high-contrast-mode {
                     background-color: Highlight;
                     color: HighlightText;
@@ -631,7 +633,7 @@ tokens.$default-map: components.$post-datepicker;
           &.-range-from-:not(.-other-month-, .-disabled-) {
             &:hover::before,
             &.-selected-::before {
-              right: -1px;
+              right: -2px;
               width: calc(
                 50% + tokens.get('post-datepicker-grid-day-range-in-range-container-border-width')
               );
@@ -656,7 +658,7 @@ tokens.$default-map: components.$post-datepicker;
           &.-range-to-:not(.-other-month-, .-disabled-) {
             &:hover::before,
             &.-selected-::before {
-              left: -1px;
+              left: -2px;
               width: calc(
                 50% + tokens.get('post-datepicker-grid-day-range-in-range-container-border-width')
               );
@@ -690,8 +692,9 @@ tokens.$default-map: components.$post-datepicker;
 
   button {
     @include form-input-mx.input-btn();
-
+    outline-offset: 4px;
     right: tokens.get('search-position-inline-end-icon', components.$post-search-input);
+
     &[disabled] {
       color: tokens.get('post-datepicker-grid-day-cell-element-color-disabled-fg');
     }

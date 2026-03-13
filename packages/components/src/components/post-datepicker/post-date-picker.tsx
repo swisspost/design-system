@@ -209,6 +209,8 @@ export class PostDatePicker {
     }
   }
 
+  private flyoutOffset: number;
+
   private currentViewMonth: number;
   private currentViewYear: number;
   private currentViewType: AirDatepickerViews = 'days';
@@ -382,13 +384,11 @@ export class PostDatePicker {
     }
 
     const active = this.host.shadowRoot.activeElement as HTMLElement;
-    console.log(active);
 
     if (active === this.titleBtn && e.shiftKey) {
       e.preventDefault();
       const activeCell = this.getCells().find(c => c.tabIndex === 0);
       if (activeCell) {
-        console.log(activeCell);
         activeCell.focus();
       }
     }
@@ -517,7 +517,7 @@ export class PostDatePicker {
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
     this.setActiveCell(
-      this.selectedStartDate ? new Date(this.selectedStartDate) : this.startDate,
+      this.selectedStartDate ? this.dateStrToDate(this.selectedStartDate) : this.today,
       focusOnDate,
     );
   }
@@ -890,7 +890,9 @@ export class PostDatePicker {
         const endValid = this.isValidDate(end);
 
         if (startValid && endValid) {
-          this.skipOnSelectCount = 2;
+          // Check if user entered dates in wrong order
+          const reversed = start > end;
+          this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
           this.dpInstance.selectDate([start, end]);
           this.dpInstance.setViewDate(start);
         } else if (startValid && !endValid) {
@@ -917,6 +919,7 @@ export class PostDatePicker {
   private resetSelection() {
     this.skipOnSelectCount = 0;
     this.dpInstance.clear();
+    this.dpInstance.setViewDate(this.today);
     this.selectedStartDate = '';
     this.selectedEndDate = '';
   }
@@ -1001,7 +1004,11 @@ export class PostDatePicker {
                 <post-icon name="calendar"></post-icon>
               </button>
             </div>
-            <post-popovercontainer placement="bottom-end" ref={e => (this.popoverRef = e)}>
+            <post-popovercontainer
+              placement="bottom-end"
+              offset={this.flyoutOffset}
+              ref={e => (this.popoverRef = e)}
+            >
               <div class="datepicker-container"></div>
             </post-popovercontainer>
           </div>
