@@ -55,9 +55,9 @@ export default meta;
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
   if (args.range) {
-    return args.inline ? renderInlineRange(args) : renderPopupRange(args);
+    return args.inline ? renderInline(args) : renderPopupRange(args);
   } else {
-    return args.inline ? renderInlineSimple(args) : renderPopupSimple(args);
+    return args.inline ? renderInline(args) : renderPopupSimple(args);
   }
 }
 
@@ -69,7 +69,7 @@ function renderPopupRange(args: Args) {
     </post-date-picker>`;
 }
 
-function renderInlineRange(args: Args) {
+function renderInline(args: Args) {
   return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
 }
 
@@ -77,12 +77,8 @@ function renderPopupSimple(args: Args) {
   return html`
     <post-date-picker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
-      <p class="form-hint">Format: DD.MM.YYYY - DD.MM.YYYY</p>
+      <p class="form-hint">Format: DD.MM.YYYY</p>
     </post-date-picker>`;
-}
-
-function renderInlineSimple(args: Args) {
-  return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
 }
 
 type Story = StoryObj;
