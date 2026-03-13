@@ -53,7 +53,7 @@ const meta: MetaComponent = {
     },
     size: {
       name: 'Size',
-      description: 'Defines the size of the input. A small input cannot have a floating label.',
+      description: 'Defines the size of the select. A small select cannot have a floating label.',
       control: {
         type: 'radio',
         labels: {
