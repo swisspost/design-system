@@ -65,12 +65,12 @@ tokens.$default-map: components.$post-accordion;
   }
 
   post-icon {
-  flex: none;
-  width: tokens.get('accordion-icon-size');
-  aspect-ratio: 1;
-  transition: accordion.$accordion-icon-transition;
-  transform: var(--post-accordion-icon-initial-transform, none);
-}
+    flex: none;
+    width: tokens.get('accordion-icon-size');
+    aspect-ratio: 1;
+    transition: accordion.$accordion-icon-transition;
+    transform: var(--post-accordion-icon-initial-transform, none);
+  }
 
   &.collapsed {
     padding-block-start: tokens.get('accordion-header-padding-block-closed');
