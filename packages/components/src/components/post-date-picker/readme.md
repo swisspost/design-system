@@ -12,10 +12,10 @@
 | `inline`                          | `inline`               | Whether the calendar is inline in the page (not showing in a popover when input clicked).                           | `boolean`                                                                                                        | `false`     |
 | `max`                             | `max`                  | Maximum possible date to select.                                                                                    | `string`                                                                                                         | `undefined` |
 | `min`                             | `min`                  | Minimun possible date to select.                                                                                    | `string`                                                                                                         | `undefined` |
-| `range`                           | `range`                | Whether the datepicker expects a range selection or a single date selection.                                        | `boolean`                                                                                                        | `false`     |
+| `range`                           | `range`                | Whether the date picker expects a range selection or a single date selection.                                       | `boolean`                                                                                                        | `false`     |
 | `renderCellCallback`              | --                     | Used to extend the existing on render cell to disable dates.                                                        | `(data: { date: Date; cellType: AirDatepickerViewsSingle; datepicker: AirDatepicker<HTMLDivElement>; }) => void` | `undefined` |
-| `selectedEndDate`                 | `selected-end-date`    | The datepicker's selected end date (for range datepicker only).                                                     | `string`                                                                                                         | `undefined` |
-| `selectedStartDate`               | `selected-start-date`  | The datepicker's selected date. If in range mode, the selected start date.                                          | `string`                                                                                                         | `undefined` |
+| `selectedEndDate`                 | `selected-end-date`    | The date picker's selected end date (for range date picker only).                                                   | `string`                                                                                                         | `undefined` |
+| `selectedStartDate`               | `selected-start-date`  | The date picker's selected date. If in range mode, the selected start date.                                         | `string`                                                                                                         | `undefined` |
 | `textNextDecade` _(required)_     | `text-next-decade`     | Label for "Next decade" button.                                                                                     | `string`                                                                                                         | `undefined` |
 | `textNextMonth` _(required)_      | `text-next-month`      | Label for "Next month" button.                                                                                      | `string`                                                                                                         | `undefined` |
 | `textNextYear` _(required)_       | `text-next-year`       | Label for "Next year" button.                                                                                       | `string`                                                                                                         | `undefined` |
@@ -45,15 +45,9 @@ Type: `Promise<void>`
 
 
 
-### `show(target: HTMLElement) => Promise<void>`
+### `show() => Promise<void>`
 
 Displays the popover calendar, focusing the first calendar item.
-
-#### Parameters
-
-| Name     | Type          | Description                                                                   |
-| -------- | ------------- | ----------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | - The HTML element relative to which the popover calendar should be displayed |
 
 #### Returns
 
@@ -72,9 +66,9 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  post-datepicker --> post-icon
-  post-datepicker --> post-popovercontainer
-  style post-datepicker fill:#f9f,stroke:#333,stroke-width:4px
+  post-date-picker --> post-icon
+  post-date-picker --> post-popovercontainer
+  style post-date-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

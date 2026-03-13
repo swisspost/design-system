@@ -11,9 +11,12 @@ export function checkDate<T extends { host: HTMLElement }>(component: T, prop: k
     return;
   }
 
-  const date = new Date(value);
+  // Try ISO format first, then EU format (dd.mm.yyyy)
+  const isoDate = new Date(value);
+  const [d, m, y] = value.split('.');
+  const euDate = new Date(+y, +m - 1, +d);
 
-  if (isNaN(date.getTime())) {
+  if (isNaN(isoDate.getTime()) && isNaN(euDate.getTime())) {
     console.error(message);
   }
 }
