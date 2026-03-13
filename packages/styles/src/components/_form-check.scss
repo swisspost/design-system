@@ -263,35 +263,42 @@ fieldset:has(input[type='radio']) {
 
   // Small group spacing
   .form-check-sm {
-    // Small vertical group
-    &:has(input[type='radio']):not(.form-switch, .form-check-inline, :last-of-type) {
-      margin-block-end: tokens.get(
-        'radio-button-small-group-items-gap-block',
-        components.$post-radio-button
-      );
-    }
+    &:has(input[type='radio']) {
+      // Small vertical group
+      &:not(.form-switch):not(.form-check-inline):not(:last-of-type) {
+        margin-block-end: tokens.get(
+          'radio-button-small-group-items-gap-block',
+          components.$post-radio-button
+        );
+      }
 
-    &:has(input[type='radio']):not(.form-switch, .form-check-inline) {
-      padding-block: tokens.get('radio-button-small-padding-block', components.$post-radio-button);
-    }
+      &:not(.form-switch):not(.form-check-inline) {
+        padding-block: tokens.get(
+          'radio-button-small-padding-block',
+          components.$post-radio-button
+        );
+      }
 
-    // Small inline group
-    &.form-check-inline:has(input[type='radio']):not(.form-switch, :last-of-type) {
-      margin-inline-end: tokens.get(
-        'radio-button-small-group-items-gap-inline',
-        components.$post-radio-button
-      );
-    }
+      // Small inline group
+      &.form-check-inline {
+        &:not(.form-switch):not(:last-of-type) {
+          margin-inline-end: tokens.get(
+            'radio-button-small-group-items-gap-inline',
+            components.$post-radio-button
+          );
+        }
 
-    &.form-check-inline:has(input[type='radio']):not(.form-switch) {
-      padding-block-start: tokens.get(
-        'radio-button-small-padding-block',
-        components.$post-radio-button
-      );
-      padding-block-end: tokens.get(
-        'radio-button-small-padding-block',
-        components.$post-radio-button
-      );
+        &:not(.form-switch) {
+          padding-block-start: tokens.get(
+            'radio-button-small-padding-block',
+            components.$post-radio-button
+          );
+          padding-block-end: tokens.get(
+            'radio-button-small-padding-block',
+            components.$post-radio-button
+          );
+        }
+      }
     }
   }
 }
