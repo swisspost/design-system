@@ -164,5 +164,83 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+
+    <!-- Nested example -->
+    <post-autocomplete>
+      <div class="form-floating">
+        <input />
+        <label>Address</label>
+        <p class="form-hint">I'm a hint text</p>
+        <p class="form-invalid">I'm an error message</p>
+      </div>
+
+      <post-listbox>
+        <post-listbox-option value="AG">Aargau</post-listbox-option>
+        <post-listbox-option value="AR">Appenzell Ausserrhoden</post-listbox-option>
+        <post-listbox-option value="AI">Appenzell Innerrhoden</post-listbox-option>
+        <post-listbox-option value="BL">Basel-Landschaft</post-listbox-option>
+        <post-listbox-option value="BS">Basel-Stadt</post-listbox-option>
+        <post-listbox-option value="BE">Bern</post-listbox-option>
+        <post-listbox-option value="FR">Fribourg</post-listbox-option>
+        <post-listbox-option value="GE">Genève</post-listbox-option>
+        <post-listbox-option value="GL">Glarus</post-listbox-option>
+        <post-listbox-option value="GR">Graubünden</post-listbox-option>
+        <post-listbox-option value="JU">Jura</post-listbox-option>
+        <post-listbox-option value="LU">Luzern</post-listbox-option>
+        <post-listbox-option value="NE">Neuchâtel</post-listbox-option>
+        <post-listbox-option value="NW">Nidwalden</post-listbox-option>
+        <post-listbox-option value="OW">Obwalden</post-listbox-option>
+        <post-listbox-option value="SG">St. Gallen</post-listbox-option>
+        <post-listbox-option value="SH">Schaffhausen</post-listbox-option>
+        <post-listbox-option value="SZ">Schwyz</post-listbox-option>
+        <post-listbox-option value="SO">Solothurn</post-listbox-option>
+        <post-listbox-option value="TG">Thurgau</post-listbox-option>
+        <post-listbox-option value="TI">Ticino</post-listbox-option>
+        <post-listbox-option value="UR">Uri</post-listbox-option>
+        <post-listbox-option value="VS">Valais</post-listbox-option>
+        <post-listbox-option value="VD">Vaud</post-listbox-option>
+        <post-listbox-option value="ZG">Zug</post-listbox-option>
+        <post-listbox-option value="ZH">Zürich</post-listbox-option>
+      </post-listbox>
+    </post-autocomplete>
+
+    <!-- Detached example -->
+    <post-autocomplete options="lstbx" class="form-floating">
+      <div class="form-floating">
+        <input />
+        <label>Address</label>
+        <p class="form-hint">I'm a hint text</p>
+        <p class="form-invalid">I'm an error message</p>
+      </div>
+    </post-autocomplete>
+
+    <post-listbox id="lstbx">
+      <post-listbox-option value="AG">Aargau</post-listbox-option>
+      <post-listbox-option value="AR">Appenzell Ausserrhoden</post-listbox-option>
+      <post-listbox-option value="AI">Appenzell Innerrhoden</post-listbox-option>
+      <post-listbox-option value="BL">Basel-Landschaft</post-listbox-option>
+      <post-listbox-option value="BS">Basel-Stadt</post-listbox-option>
+      <post-listbox-option value="BE">Bern</post-listbox-option>
+      <post-listbox-option value="FR">Fribourg</post-listbox-option>
+      <post-listbox-option value="GE">Genève</post-listbox-option>
+      <post-listbox-option value="GL">Glarus</post-listbox-option>
+      <post-listbox-option value="GR">Graubünden</post-listbox-option>
+      <post-listbox-option value="JU">Jura</post-listbox-option>
+      <post-listbox-option value="LU">Luzern</post-listbox-option>
+      <post-listbox-option value="NE">Neuchâtel</post-listbox-option>
+      <post-listbox-option value="NW">Nidwalden</post-listbox-option>
+      <post-listbox-option value="OW">Obwalden</post-listbox-option>
+      <post-listbox-option value="SG">St. Gallen</post-listbox-option>
+      <post-listbox-option value="SH">Schaffhausen</post-listbox-option>
+      <post-listbox-option value="SZ">Schwyz</post-listbox-option>
+      <post-listbox-option value="SO">Solothurn</post-listbox-option>
+      <post-listbox-option value="TG">Thurgau</post-listbox-option>
+      <post-listbox-option value="TI">Ticino</post-listbox-option>
+      <post-listbox-option value="UR">Uri</post-listbox-option>
+      <post-listbox-option value="VS">Valais</post-listbox-option>
+      <post-listbox-option value="VD">Vaud</post-listbox-option>
+      <post-listbox-option value="ZG">Zug</post-listbox-option>
+      <post-listbox-option value="ZH">Zürich</post-listbox-option>
+    </post-listbox>
   </body>
 </html>
