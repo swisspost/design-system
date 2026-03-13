@@ -1,0 +1,25 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/variables/elevation';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  margin-top: 2px;
+  border-radius: 4px;
+  background: #fff;
+  max-height: 384px;
+  overflow: auto;
+  box-shadow: elevation.$elevation-300;
+}
+
+:host([hidden]),
+:host([aria-hidden='true']) {
+  display: none;
+}
+
+::slotted([slot='blank-slate']) {
+  display: block;
+  padding: 0.75rem;
+  color: post.$gray-60;
+}
