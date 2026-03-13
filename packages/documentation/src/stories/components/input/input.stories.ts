@@ -160,6 +160,10 @@ const meta: MetaComponent = {
           'is-invalid': 'Invalid',
         },
       },
+      if: {
+        arg: 'disabled',
+        truthy: false,
+      },
       options: ['null', 'is-valid', 'is-invalid'],
       table: {
         category: 'States',
