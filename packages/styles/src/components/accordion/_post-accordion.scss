@@ -1,3 +1,5 @@
+@use './../../variables/components/accordion';
+
 post-accordion > post-accordion-item ~ post-accordion-item {
   --post-collapsible-initial-height: 0;
   --post-collapsible-initial-overflow: hidden;
