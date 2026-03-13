@@ -1,6 +1,7 @@
 @use './../../variables/components/accordion';
 
-post-accordion > post-accordion-item ~ post-accordion-item {
+post-accordion > post-accordion-item.sc-post-accordion-item-h ~ post-accordion-item.sc-post-accordion-item-h {
   --post-collapsible-initial-height: 0;
   --post-collapsible-initial-overflow: hidden;
+  --post-accordion-icon-initial-transform: #{accordion.$accordion-icon-transform};
 }

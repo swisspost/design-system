@@ -24,6 +24,10 @@ tokens.$default-map: components.$post-accordion;
   }
 }
 
+:host([collapsed]) .accordion-button post-icon {
+  transform: accordion.$accordion-icon-transform;
+}
+
 .accordion-header {
   color: tokens.get('accordion-enabled-fg');
   font-size: tokens.get('accordion-header-font-size');
@@ -61,11 +65,12 @@ tokens.$default-map: components.$post-accordion;
   }
 
   post-icon {
-    flex: none;
-    width: tokens.get('accordion-icon-size');
-    aspect-ratio: 1;
-    transition: accordion.$accordion-icon-transition;
-  }
+  flex: none;
+  width: tokens.get('accordion-icon-size');
+  aspect-ratio: 1;
+  transition: accordion.$accordion-icon-transition;
+  transform: var(--post-accordion-icon-initial-transform, none);
+}
 
   &.collapsed {
     padding-block-start: tokens.get('accordion-header-padding-block-closed');
