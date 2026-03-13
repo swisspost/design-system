@@ -27,6 +27,12 @@ tokens.$default-map: components.$post-select;
   color: tokens.get('select-color-enabled-fg');
   background-image: forms-fx.select-arrow-icon('enabled');
 
+  &.form-select-sm {
+    min-height: tokens.get('select-small-sizing-height');
+    padding-block: tokens.get('select-non-floating-small-padding-block');
+    background-size: tokens.get('select-small-sizing-icon');
+  }
+
   &:disabled {
     opacity: 1;
     color: tokens.get('select-color-disabled-fg');
@@ -171,6 +177,18 @@ tokens.$default-map: components.$post-select;
 
     @include forms-mx.validation-icons();
   }
+}
+
+.form-label:has(+ select.form-select[disabled]) {
+  color: tokens.get('select-color-disabled-fg');
+}
+
+.form-label:has(+ select.form-select-sm) {
+  display: block;
+  padding-inline: tokens.get('select-non-floating-small-label-padding-inline');
+  padding-block: tokens.get('select-non-floating-small-label-padding-block');
+  font-weight: tokens.get('select-non-floating-small-label-font-weight');
+  font-size: initial;
 }
 
 .form-floating {
