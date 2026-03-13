@@ -15,6 +15,7 @@ tokens.$default-map: components.$post-datepicker;
    * General
    * ------------------------------------------ */
   --adp-cell-background-color-in-range: unset; // needed because of ardp behavior
+  --adp-hover-color: unset; // needed because of ardp behavior
 
   font-family: inherit;
   font-size: var(--post-device-font-size-8);
@@ -54,6 +55,11 @@ tokens.$default-map: components.$post-datepicker;
         display: flex;
         align-items: center;
         padding: 0 0 0 tokens.get('post-datepicker-header-dropdown-padding-inline-start');
+        color: tokens.get('post-datepicker-header-dropdown-color-enabled-fg');
+
+        &.-disabled-:hover {
+          color: tokens.get('post-datepicker-header-dropdown-color-enabled-fg') !important;
+        }
 
         &:hover {
           background: unset;
@@ -144,6 +150,7 @@ tokens.$default-map: components.$post-datepicker;
       padding: tokens.get('post-datepicker-grid-padding');
       background: tokens.get('post-datepicker-grid-color-enabled-bg');
       row-gap: tokens.get('post-datepicker-grid-gap-block');
+      border-radius: tokens.get('post-datepicker-border-radius');
 
       /* View-specific styles */
 
@@ -275,7 +282,7 @@ tokens.$default-map: components.$post-datepicker;
             }
 
             &.-other-decade- {
-              color: unset;
+              color: tokens.get('post-datepicker-grid-year-cell-element-color-enabled-fg');
             }
 
             &:not(.-disabled-) {
@@ -346,7 +353,7 @@ tokens.$default-map: components.$post-datepicker;
             }
 
             &.-other-decade- {
-              color: unset;
+              color: tokens.get('post-datepicker-grid-year-cell-element-color-enabled-fg');
             }
 
             &:not(.-disabled-) {

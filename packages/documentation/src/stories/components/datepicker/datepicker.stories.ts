@@ -65,6 +65,7 @@ function renderPopupRange(args: Args) {
   return html`
     <post-datepicker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
+      <p class="form-hint">Format: DD.MM.YYYY - DD.MM.YYYY</p>
     </post-datepicker>`;
 }
 
@@ -76,6 +77,7 @@ function renderPopupSimple(args: Args) {
   return html`
     <post-datepicker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
+      <p class="form-hint">Format: DD.MM.YYYY - DD.MM.YYYY</p>
     </post-datepicker>`;
 }
 

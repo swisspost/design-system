@@ -122,6 +122,11 @@ export class PostPopovercontainer {
    */
   @Prop() readonly edgeGap?: number = 8;
 
+  // /**
+  //  * Offset for more precise placement
+  //  */
+  // @Prop() readonly offset?: number = 'top';
+
   /**
    * Whether or not to display a little pointer arrow
    */

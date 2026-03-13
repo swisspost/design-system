@@ -45,15 +45,9 @@ Type: `Promise<void>`
 
 
 
-### `show(target: HTMLElement) => Promise<void>`
+### `show() => Promise<void>`
 
 Displays the popover calendar, focusing the first calendar item.
-
-#### Parameters
-
-| Name     | Type          | Description                                                                   |
-| -------- | ------------- | ----------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | - The HTML element relative to which the popover calendar should be displayed |
 
 #### Returns
 
