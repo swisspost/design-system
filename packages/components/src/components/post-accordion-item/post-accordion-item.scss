@@ -65,7 +65,6 @@ tokens.$default-map: components.$post-accordion;
     width: tokens.get('accordion-icon-size');
     aspect-ratio: 1;
     transition: accordion.$accordion-icon-transition;
-    transform: var(--post-accordion-icon-initial-transform, none);
   }
 
   &.collapsed {
