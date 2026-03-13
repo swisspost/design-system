@@ -18,6 +18,10 @@
   width: fit-content;
   border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
 
+  &-inline {
+    display: inline-flex;
+  }
+
   &:has(> input:not(:only-child)) {
     @include utility-mx.focus-style();
 
