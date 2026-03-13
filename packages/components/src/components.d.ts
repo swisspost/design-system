@@ -8,14 +8,14 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-import { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
+import { AirDatepickerCustomOptions } from "./components/post-datepicker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-export { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
+export { AirDatepickerCustomOptions } from "./components/post-datepicker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
@@ -211,7 +211,7 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
-    interface PostDatepicker {
+    interface PostDatePicker {
         /**
           * Hides the popover calendar.
          */
@@ -719,9 +719,9 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostDatepickerCustomEvent<T> extends CustomEvent<T> {
+export interface PostDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostDatepickerElement;
+    target: HTMLPostDatePickerElement;
 }
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -855,22 +855,22 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-    interface HTMLPostDatepickerElementEventMap {
+    interface HTMLPostDatePickerElementEventMap {
         "postUpdateDates": Date | Date[];
     }
-    interface HTMLPostDatepickerElement extends Components.PostDatepicker, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLPostDatePickerElement extends Components.PostDatePicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPostDatepickerElement: {
-        prototype: HTMLPostDatepickerElement;
-        new (): HTMLPostDatepickerElement;
+    var HTMLPostDatePickerElement: {
+        prototype: HTMLPostDatePickerElement;
+        new (): HTMLPostDatePickerElement;
     };
     interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
     }
@@ -1138,7 +1138,7 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
-        "post-datepicker": HTMLPostDatepickerElement;
+        "post-date-picker": HTMLPostDatePickerElement;
         "post-env-test": HTMLPostEnvTestElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
@@ -1341,7 +1341,7 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
-    interface PostDatepicker {
+    interface PostDatePicker {
         /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
@@ -1358,7 +1358,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when a date or a range of dates have been selected.
          */
-        "onPostUpdateDates"?: (event: PostDatepickerCustomEvent<Date | Date[]>) => void;
+        "onPostUpdateDates"?: (event: PostDatePickerCustomEvent<Date | Date[]>) => void;
         /**
           * Whether the datepicker expects a range selection or a single date selection.
           * @default false
@@ -1809,7 +1809,7 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
-        "post-datepicker": PostDatepicker;
+        "post-date-picker": PostDatePicker;
         "post-env-test": PostEnvTest;
         "post-footer": PostFooter;
         "post-header": PostHeader;
@@ -1858,7 +1858,7 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
-            "post-datepicker": LocalJSX.PostDatepicker & JSXBase.HTMLAttributes<HTMLPostDatepickerElement>;
+            "post-date-picker": LocalJSX.PostDatePicker & JSXBase.HTMLAttributes<HTMLPostDatePickerElement>;
             "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;

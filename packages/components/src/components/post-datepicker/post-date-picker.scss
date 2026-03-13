@@ -397,9 +397,8 @@ tokens.$default-map: components.$post-datepicker;
 
             /* Months: Current */
             &.-current- {
-              border-color: tokens.get(
-                'post-datepicker-grid-month-cell-element-current-color-enabled-border'
-              );
+              border: 2px solid
+                tokens.get('post-datepicker-grid-month-cell-element-current-color-enabled-border');
 
               &:hover {
                 border-color: tokens.get(

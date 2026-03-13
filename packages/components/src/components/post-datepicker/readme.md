@@ -66,9 +66,9 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  post-datepicker --> post-icon
-  post-datepicker --> post-popovercontainer
-  style post-datepicker fill:#f9f,stroke:#333,stroke-width:4px
+  post-date-picker --> post-icon
+  post-date-picker --> post-popovercontainer
+  style post-date-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

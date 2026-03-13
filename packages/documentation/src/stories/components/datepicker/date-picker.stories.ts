@@ -5,8 +5,8 @@ import { spreadArgs } from '@/utils';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
-  title: 'Components/Datepicker',
-  component: 'post-datepicker',
+  title: 'Components/Date Picker',
+  component: 'post-date-picker',
   tags: ['package:WebComponents'],
   render,
   parameters: {
@@ -52,7 +52,7 @@ const meta: MetaComponent = {
 };
 export default meta;
 
-// Setting different instances of the post-datepicker forces the rerender of the component and make sure it updates when args change
+// Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
   if (args.range) {
     return args.inline ? renderInlineRange(args) : renderPopupRange(args);
@@ -63,26 +63,26 @@ function render(args: Args) {
 
 function renderPopupRange(args: Args) {
   return html`
-    <post-datepicker ${spreadArgs(args)}>
+    <post-date-picker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
       <p class="form-hint">Format: DD.MM.YYYY - DD.MM.YYYY</p>
-    </post-datepicker>`;
+    </post-date-picker>`;
 }
 
 function renderInlineRange(args: Args) {
-  return html` <post-datepicker ${spreadArgs(args)}> </post-datepicker>`;
+  return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
 }
 
 function renderPopupSimple(args: Args) {
   return html`
-    <post-datepicker ${spreadArgs(args)}>
+    <post-date-picker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
       <p class="form-hint">Format: DD.MM.YYYY - DD.MM.YYYY</p>
-    </post-datepicker>`;
+    </post-date-picker>`;
 }
 
 function renderInlineSimple(args: Args) {
-  return html` <post-datepicker ${spreadArgs(args)}> </post-datepicker>`;
+  return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
 }
 
 type Story = StoryObj;
@@ -119,7 +119,7 @@ export const DisabledDates: Story = {
       return html`${story(context.args, context)}
         <script>
           window.addEventListener('DOMContentLoaded', () => {
-            const dp = document.querySelector('post-datepicker#disabled-dates');
+            const dp = document.querySelector('post-date-picker#disabled-dates');
             dp.renderCellCallback = ({ date, cellType }) => {
               if (cellType === 'day' && date.getDay() === 0) {
                 return { disabled: true, classes: 'is-sunday' };

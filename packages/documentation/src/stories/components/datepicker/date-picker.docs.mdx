@@ -1,14 +1,14 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import meta, * as DatepickerStories from './datepicker.stories';
+import meta, * as DatePickerStories from './date-picker.stories';
 import PackageTag from '@/shared/package-tag';
-import DatepickerDisableSample from './datepicker-disable.sample?raw';
+import DatePickerDisableSample from './date-picker-disable.sample?raw';
 
-<Meta of={DatepickerStories} />
+<Meta of={DatePickerStories} />
 
 <div className="docs-title">
-  # Datepicker
+  # Date Picker
 
-<link-design of={JSON.stringify(DatepickerStories)}></link-design>
+<link-design of={JSON.stringify(DatePickerStories)}></link-design>
 
 </div>
 
@@ -21,9 +21,9 @@ import DatepickerDisableSample from './datepicker-disable.sample?raw';
 
 It is built on top of the AirDatepicker library and provides full keyboard navigation and accessible markup to ensure usability for all users.
 
-<Canvas sourceState="shown" of={DatepickerStories.Default} />
+<Canvas sourceState="shown" of={DatePickerStories.Default} />
 <div className="hide-col-default">
-  <Controls of={DatepickerStories.Default} />
+  <Controls of={DatePickerStories.Default} />
 </div>
 
 ## Examples
@@ -32,13 +32,13 @@ It is built on top of the AirDatepicker library and provides full keyboard navig
 
 Inline calendars are rendered directly in the page content, rather than being attached to an input. They are useful for dashboards, forms, or any context where a persistent calendar view is needed.
 
-<Canvas sourceState="hidden" of={DatepickerStories.Inline} />
+<Canvas sourceState="hidden" of={DatePickerStories.Inline} />
 
 ### Range input calendar
 
 Range input calendars allow users to select a start and end date. These are ideal for booking systems, event planners, or any scenario where date ranges are relevant.
 
-<Canvas sourceState="hidden" of={DatepickerStories.Range} />
+<Canvas sourceState="hidden" of={DatePickerStories.Range} />
 
 ## Disabling dates
 
@@ -48,6 +48,6 @@ For more details, you can refer to the [AirDatepicker `onRenderCell` documentati
 
 The following example shows a calendar where all Sundays are disabled:
 
-<Canvas sourceState="hidden" of={DatepickerStories.DisabledDates} />
+<Canvas sourceState="hidden" of={DatePickerStories.DisabledDates} />
 
-<Source code={DatepickerDisableSample} language="typescript" />
+<Source code={DatePickerDisableSample} language="typescript" />

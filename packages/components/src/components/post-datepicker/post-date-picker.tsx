@@ -31,12 +31,12 @@ export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDiv
 }
 
 @Component({
-  tag: 'post-datepicker',
-  styleUrl: 'post-datepicker.scss',
+  tag: 'post-date-picker',
+  styleUrl: 'post-date-picker.scss',
   shadow: true,
 })
-export class PostDatepicker {
-  @Element() host: HTMLPostDatepickerElement;
+export class PostDatePicker {
+  @Element() host: HTMLPostDatePickerElement;
 
   @State() today = new Date();
 
