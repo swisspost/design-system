@@ -183,13 +183,37 @@ export class MigrationV99Component extends LitElement {
             </p>
           </li>
           <li>
+            <h3>Run Automigration Scripts 🪄</h3>
+            <p>
+              Many breaking changes can be fixed automatically using the
+              <code>@swisspost/design-system-eslint</code> package. These migration rules scan your
+              HTML and TypeScript files and apply fixes where possible. Each item marked with
+              <span class="tag tag-sm tag-info">🪄 migration rule</span> in the checklist below
+              is covered by these scripts.
+            </p>
+            <ol>
+              <li>
+                Install the ESLint package as a dev dependency:
+                <code languages="['bash']">npm install @swisspost/design-system-eslint --save-dev</code>
+              </li>
+              <li>
+                Run the migration rules with the <code>--fix</code> flag at the root of your
+                project:
+                <code languages="['bash']">npx eslint -c node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix</code>
+                <span class="info">
+                  💡 This command applies migration rules without requiring any changes to your
+                  existing ESLint configuration.
+                </span>
+              </li>
+              <li>
+                Review the changes applied by the script and make sure every automatic
+                <span class="tag tag-sm tag-info">🪄 migration rule</span> was applied correctly.
+              </li>
+            </ol>
+          </li>
+          <li>
             <h3>Component Migration 🤓</h3>
             <div class="my-16">
-              <p>
-                💡 Many changes are automatically handled by the migration scripts. Each 🪄 symbol
-                means that <b>automatic migration rules</b> can handle the changes, but you should
-                still verify the results manually.
-              </p>
               <div class="form-check">
                 <input
                   id="state-general-hide_automigration"
