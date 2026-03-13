@@ -89,7 +89,7 @@ Type: `Promise<boolean>`
 
 ### Used by
 
- - [post-date-picker](../post-datepicker)
+ - [post-date-picker](../post-date-picker)
  - [post-menu](../post-menu)
  - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)

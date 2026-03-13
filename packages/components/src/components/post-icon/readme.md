@@ -29,7 +29,7 @@ some content
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
- - [post-date-picker](../post-datepicker)
+ - [post-date-picker](../post-date-picker)
  - [post-header](../post-header)
  - [post-language-menu](../post-language-menu)
  - [post-mainnavigation](../post-mainnavigation)
