@@ -38,7 +38,7 @@ export async function createCssFiles(
       const baseName = sanitizeForCSSVariable(path.parse(file).name);
       const svgContent = fs.readFileSync(filePath, 'utf8');
 
-      let cssContent = `:root { --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}"); }`;
+      let cssContent = `:root, :host{ --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}"); }`;
 
       cssContent = await format(cssContent, { parser: 'css' });
 
