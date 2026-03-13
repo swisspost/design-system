@@ -284,8 +284,6 @@ export namespace Components {
          */
         "textToggleCalendar"?: string;
     }
-    interface PostEnvTest {
-    }
     interface PostFooter {
         /**
           * The textFooter to add to the footer (visually hidden).
@@ -872,12 +870,6 @@ declare global {
         prototype: HTMLPostDatepickerElement;
         new (): HTMLPostDatepickerElement;
     };
-    interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
-    }
-    var HTMLPostEnvTestElement: {
-        prototype: HTMLPostEnvTestElement;
-        new (): HTMLPostEnvTestElement;
-    };
     interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
     }
     var HTMLPostFooterElement: {
@@ -1139,7 +1131,6 @@ declare global {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-datepicker": HTMLPostDatepickerElement;
-        "post-env-test": HTMLPostEnvTestElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
@@ -1408,8 +1399,6 @@ declare namespace LocalJSX {
           * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
          */
         "textToggleCalendar"?: string;
-    }
-    interface PostEnvTest {
     }
     interface PostFooter {
         /**
@@ -1810,7 +1799,6 @@ declare namespace LocalJSX {
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-datepicker": PostDatepicker;
-        "post-env-test": PostEnvTest;
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
@@ -1859,7 +1847,6 @@ declare module "@stencil/core" {
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
             "post-datepicker": LocalJSX.PostDatepicker & JSXBase.HTMLAttributes<HTMLPostDatepickerElement>;
-            "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
