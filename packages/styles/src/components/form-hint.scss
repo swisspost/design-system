@@ -11,11 +11,7 @@ tokens.$default-map: components.$post-assist;
 }
 
 .form-control:disabled {
-  + .form-label + .valid-feedback + .form-hint,
-  + .form-label + .invalid-feedback + .form-hint,
   + .form-label + .form-hint,
-  + .valid-feedback + .form-hint,
-  + .invalid-feedback + .form-hint,
   + .form-hint {
     color: tokens.get('assist-disabled-fg');
   }
