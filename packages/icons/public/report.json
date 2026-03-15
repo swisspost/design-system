@@ -32756,6 +32756,148 @@
       "modifiedAt": "2026-03-05T10:45:47.000Z"
     },
     {
+      "uuid": "5a71e4f0-1d0d-11f1-9174-0050568d2654",
+      "id": 9438308,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438308/storage/MDA5NDM4MzA3LzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "weiblich",
+          "Female",
+          "Femmina",
+          "Féminin",
+          "Frau",
+          "Woman",
+          "Donna",
+          "Femme"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2761.svg",
+        "basename": "2761",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T05:44:21.000Z",
+      "modifiedAt": "2026-03-11T05:48:13.000Z"
+    },
+    {
+      "uuid": "3e251000-1d0e-11f1-9174-0050568d2654",
+      "id": 9438312,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438312/storage/MDA5NDM4MzExLzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "männlich",
+          "Male",
+          "Maschio",
+          "Masculin",
+          "Mann",
+          "Man",
+          "Uomo",
+          "Homme"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2762.svg",
+        "basename": "2762",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T05:50:43.000Z",
+      "modifiedAt": "2026-03-11T05:52:57.000Z"
+    },
+    {
+      "uuid": "edb51aa0-1d0f-11f1-9174-0050568d2654",
+      "id": 9438318,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438318/storage/MDA5NDM4MzE3LzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "gender-neutral",
+          "geschlechtsneutral",
+          "Sexe neutre",
+          "NEUTRALITÀ DI GENERE",
+          "nonbinary",
+          "nonbinär",
+          "Non binaire",
+          "non binario"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2763.svg",
+        "basename": "2763",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T06:02:47.000Z",
+      "modifiedAt": "2026-03-12T05:05:02.785Z"
+    },
+    {
+      "uuid": "7c948bb0-1dfc-11f1-bfa2-0050568d2654",
+      "id": 9445450,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445450/storage/MDA5NDQ1NDQ5LzAvbWFzdGVy",
+        "keywords": [
+          "Kreditkarte",
+          "Credit Card",
+          "Carta di credito",
+          "Carte De Crédit",
+          "Post Visa Prepaid",
+          "Visa prépayé",
+          "Visa prepagata",
+          "Prepaid",
+          "Prépayé",
+          "Prepagato"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2764.svg",
+        "basename": "2764",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T10:16:08.000Z",
+      "modifiedAt": "2026-03-13T10:05:01.147Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -45194,37 +45336,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
-      "id": 352299,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3058.svg",
-        "basename": "3058",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:42.000Z"
-    },
-    {
       "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
       "id": 352314,
       "type": "picture.pictogram.",
@@ -45254,6 +45365,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:43.000Z"
+    },
+    {
+      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
+      "id": 352299,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3058.svg",
+        "basename": "3058",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:42.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -45367,11 +45509,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-03-08T03:17:38.769Z",
+  "created": "2026-03-15T03:40:51.853Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1080
+    "success": 1084
   },
-  "version": "9.8.0"
+  "version": "9.9.0"
 }
