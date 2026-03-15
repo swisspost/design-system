@@ -1,0 +1,8 @@
+@use './../../variables/components/accordion';
+
+post-accordion:not(:has([collapsed]))
+  > post-accordion-item ~ post-accordion-item {
+  --post-collapsible-initial-height: 0;
+  --post-collapsible-initial-overflow: hidden;
+  --post-accordion-icon-initial-transform: #{accordion.$accordion-icon-transform};
+}
