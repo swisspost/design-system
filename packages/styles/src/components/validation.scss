@@ -66,6 +66,15 @@ textarea {
   }
 }
 
+input.form-control-sm + .invalid-feedback,
+input.form-control-sm + .valid-feedback {
+  margin-block: tokens.get('hint-small-padding-block', components.$post-assist) !important;
+
+  &:has(+ .form-hint) {
+    margin-block-end: tokens.get('hint-small-gap-block', components.$post-assist) !important;
+  }
+}
+
 /*
  Checkbox and Radio box specific classes
 */
