@@ -297,6 +297,7 @@ export const FloatingLabel: Story = {
 };
 
 export const Small: Story = {
+  ...Template,
   args: {
     floatingLabel: false,
     size: 'small',
