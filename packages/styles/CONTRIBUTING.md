@@ -32,8 +32,6 @@ This ensures independent component styles that can be reused. The mechanics of t
 
 Component file names are lower- and kebab-cased (`floating-label.scss`) and don't start with an underscore (~~`_floatingLabel.scss`~~) as they are not partial scss files - they can be compiled standalone and produce valid, usable CSS.
 
-Every component file should have a corresponding test file importing the component to check if a standalone build works.
-
 ### Dependencies/licensing
 
 Licenses of third party packages that are bundled with the output need to be included in the output and delivered with the output code.
