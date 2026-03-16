@@ -193,13 +193,13 @@ export class MigrationV99Component extends LitElement {
             </p>
             <ol>
               <li>
-                Install the ESLint package as a dev dependency:
+                Install the Design System ESLint package as a dev dependency:
                 <code languages="['bash']">npm install @swisspost/design-system-eslint --save-dev</code>
               </li>
               <li>
-                Run the migration rules with the <code>--fix</code> flag at the root of your
-                project:
-                <code languages="['bash']">npx eslint -c node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix</code>
+                Run the migration rules using the official ESLint runner with the --fix flag at the root of your project:
+                <code languages="['bash']">npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix
+                </code>
                 <span class="info">
                   💡 This command applies migration rules without requiring any changes to your
                   existing ESLint configuration.
