@@ -186,10 +186,10 @@ export class MigrationV99Component extends LitElement {
             <h3>Run Automigration Scripts 🪄</h3>
             <p>
               Many breaking changes can be fixed automatically using the
-              <code>@swisspost/design-system-eslint</code> package. These migration rules scan your
+              <code>@swisspost/design-system-eslint</code> package. Our very own, custom migration rules scan your
               HTML and TypeScript files and apply fixes where possible. Each item marked with
               <span class="tag tag-sm tag-info">🪄 migration rule</span> in the checklist below
-              is covered by these scripts.
+              is covered by one of them.
             </p>
             <ol>
               <li>
