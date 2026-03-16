@@ -32,56 +32,53 @@
   }
 
   // Checkbox
-  &:has(input[type='checkbox']):not(.form-switch) {
+  &:not(.form-check-sm):has(input[type='checkbox']):not(.form-switch) {
     gap: tokens.get('checkbox-gap-inline-text-start', components.$post-checkbox);
+    padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
 
-    &:not(.form-check-sm) {
-      padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
-
-      fieldset > & {
-        &:not(:last-of-type) {
-          margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
-        }
-      }
-
-      > input[type='checkbox'] {
-        ~ label {
-          padding-block: tokens.get('checkbox-label-padding-block', components.$post-checkbox);
-          color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
-        }
-
-        &:not([disabled]) {
-          ~ label {
-            cursor: pointer;
-          }
-
-          &:hover ~ label {
-            color: tokens.get('checkbox-hover-fg', components.$post-checkbox);
-
-            @include utility-mx.high-contrast-mode() {
-              color: Highlight;
-            }
-          }
-        }
-
-        &[disabled] ~ label {
-          color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
-
-          @include utility-mx.high-contrast-mode() {
-            color: GrayText;
-          }
-        }
+    fieldset > & {
+      &:not(:last-of-type) {
+        margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
       }
     }
 
-    // Small variant
-    &.form-check-sm {
-      padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
-
-      > input[type='checkbox'] ~ label {
-        font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
-        padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
+    > input[type='checkbox'] {
+      ~ label {
+        padding-block: tokens.get('checkbox-label-padding-block', components.$post-checkbox);
+        color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
       }
+
+      &:not([disabled]) {
+        ~ label {
+          cursor: pointer;
+        }
+
+        &:hover ~ label {
+          color: tokens.get('checkbox-hover-fg', components.$post-checkbox);
+
+          @include utility-mx.high-contrast-mode() {
+            color: Highlight;
+          }
+        }
+      }
+
+      &[disabled] ~ label {
+        color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
+
+        @include utility-mx.high-contrast-mode() {
+          color: GrayText;
+        }
+      }
+    }
+  }
+
+  // Small variant
+  &.form-check-sm:has(input[type='checkbox']):not(.form-switch) {
+    padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
+
+    > input[type='checkbox'] ~ label {
+      font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
+      padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
     }
   }
 

@@ -148,6 +148,9 @@ function renderComponent(args: Args, context: StoryContext) {
   const [validationId] = useState(_.validationId(context));
 
   const classes = args.class ? `card-control ${args.class}` : 'card-control';
+  const input: HTMLInputElement | null = document.querySelector(`#${id}`);
+
+  if (input) input.checked = args.checked;
 
   function icon() {
     if (args.customIcon) {
@@ -176,7 +179,7 @@ function renderComponent(args: Args, context: StoryContext) {
 
   function onChange(e: InputEvent) {
     const target = e.target as HTMLInputElement;
-    updateArgs({ checked: target?.checked ?? false });
+    updateArgs({ checked: target.checked });
   }
 
   return html` <post-linkarea class=${classes}>
@@ -185,8 +188,8 @@ function renderComponent(args: Args, context: StoryContext) {
         class=${args.validation === 'null' ? nothing : args.validation}
         type=${args.type}
         name=${args.type === 'radio' && args.groupName ? args.groupName : nothing}
-        ?checked=${args.checked ?? nothing}
-        ?disabled=${args.disabled ?? nothing}
+        ?checked=${args.checked}
+        ?disabled=${args.disabled}
         aria-invalid=${args.groupName || args.validation === 'null' ? nothing : 'true'}
         aria-describedby=${args.groupName || args.validation === 'null'
           ? nothing
