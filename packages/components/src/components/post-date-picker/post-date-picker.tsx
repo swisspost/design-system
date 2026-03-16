@@ -184,7 +184,6 @@ export class PostDatePicker {
 
   /**
    * Displays the popover calendar, focusing the first calendar item.
-   * @param target - The HTML element relative to which the popover calendar should be displayed
    */
   @Method()
   async show() {
