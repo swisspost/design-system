@@ -13,12 +13,12 @@ export default {
 
 type Story = StoryObj;
 
-export const Datepicker: Story = {
+export const DatePicker: Story = {
   render: (_args: Args, context: StoryContext) => {
     return schemes(
       () => html`
         <div class="row">
-          <h1>Datepicker</h1>
+          <h1>Date Picker</h1>
           ${bombArgs({
             inline: [true, false],
             range: [true, false],

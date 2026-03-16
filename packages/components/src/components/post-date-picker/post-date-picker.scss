@@ -11,9 +11,7 @@ tokens.$default-map: components.$post-datepicker;
 /* Flyout Styles */
 
 .air-datepicker {
-  /* --------------------------------------------
-   * General
-   * ------------------------------------------ */
+  /* General */
   --adp-cell-background-color-in-range: unset; // needed because of ardp behavior
   --adp-hover-color: unset; // needed because of ardp behavior
 
@@ -33,9 +31,7 @@ tokens.$default-map: components.$post-datepicker;
     font-family: inherit;
   }
 
-  /* --------------------------------------------
-   * Navigation
-   * ------------------------------------------ */
+  /* Navigation */
 
   .air-datepicker--navigation {
     border-start-start-radius: inherit;
@@ -125,9 +121,7 @@ tokens.$default-map: components.$post-datepicker;
     }
   }
 
-  /* --------------------------------------------
-   * Content
-   * ------------------------------------------ */
+  /* Content */
   .air-datepicker--content {
     padding: 0 !important;
 
@@ -299,7 +293,7 @@ tokens.$default-map: components.$post-datepicker;
 
             /* Years: Selected */
             &.-selected-:not(.-selected- ~ .-selected-) {
-              // style only the start date year
+              // Design dictates to style only the start date year
               color: tokens.get('post-datepicker-grid-year-cell-element-color-selected-fg');
               background-color: tokens.get(
                 'post-datepicker-grid-year-cell-element-color-selected-bg'
@@ -377,7 +371,7 @@ tokens.$default-map: components.$post-datepicker;
 
             /* Months: Selected */
             &.-selected-:not(.-selected- ~ .-selected-) {
-              // style only the start date year
+              // Design dictates to style only the start date month
               color: tokens.get('post-datepicker-grid-month-cell-element-color-selected-fg');
               background-color: tokens.get(
                 'post-datepicker-grid-month-cell-element-color-selected-bg'
@@ -690,10 +684,6 @@ tokens.$default-map: components.$post-datepicker;
 
     &[disabled] {
       color: tokens.get('post-datepicker-grid-day-cell-element-color-disabled-fg');
-    }
-
-    &:not([disabled]) {
-      cursor: pointer;
     }
   }
 }
