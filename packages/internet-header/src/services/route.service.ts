@@ -12,7 +12,7 @@ export const markActiveRoute = (
   activeRouteProp: ActiveRouteProp,
 ): NavMainEntity[] => {
   // Don't highlight any route
-  if (activeRouteProp === false) {
+  if (activeRouteProp === 'none') {
     return config;
   }
 

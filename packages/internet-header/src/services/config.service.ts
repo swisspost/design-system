@@ -2,20 +2,14 @@ import {
   Environment,
   IPortalConfig,
   ILocalizedConfig,
-  ICustomConfig,
-  ILocalizedCustomConfig,
   LocalizedConfigParameters,
-} from '../models/general.model';
-import { NavMainEntity } from '../models/header.model';
-import { getUserLang, persistLanguageChoice } from './language.service';
-import { uniqueId } from '../utils/utils';
+} from '@/models/general.model';
+import { state } from '@/data/store';
+import { getUserLang } from './language.service';
 import { markActiveRoute } from './route.service';
 
 // Prevent double requests
 let request: Promise<IPortalConfig> | null = null;
-
-// Cache the original os flyout to use it for updates
-let osFlyoutCache: NavMainEntity | null = null;
 
 const getPPMConfig = (): ILocalizedConfig | null => {
   const ppmConfigScript = document.querySelector('#PPM_HEADER_DATA');
@@ -38,11 +32,7 @@ export const getLocalizedConfig = async ({
   projectId,
   environment,
   language,
-  cookieKey,
-  localStorageKey,
   activeRouteProp,
-  localizedCustomConfig,
-  osFlyoutOverrides,
 }: LocalizedConfigParameters): Promise<ILocalizedConfig> => {
   const ppmConfig = getPPMConfig();
   let localizedConfig: ILocalizedConfig;
@@ -58,7 +48,7 @@ export const getLocalizedConfig = async ({
     }
 
     config = await request;
-    lang = getUserLang(Object.keys(config), language, localStorageKey, cookieKey);
+    lang = getUserLang(Object.keys(config), language);
 
     if (lang === undefined) {
       throw new Error('Internet Header: unable to determine current language');
@@ -68,97 +58,18 @@ export const getLocalizedConfig = async ({
     localizedConfig = { ...config[lang] };
   }
 
-  // Merge custom config with portal config
-  if (localizedCustomConfig) {
-    const header = localizedCustomConfig?.header?.navMain
-      ? {
-          ...localizedConfig.header,
-          navMain: [...localizedConfig.header.navMain, ...localizedCustomConfig.header.navMain],
-        }
-      : localizedConfig.header;
-    localizedConfig = {
-      ...localizedConfig,
-      header,
-    };
-  }
-
-  // Add entries to flyout_os
-  if (osFlyoutOverrides)
-    localizedConfig.header.navMain = mergeOsFlyoutOverrides(localizedConfig, osFlyoutOverrides);
-
   // Mark active route
-  if (activeRouteProp != null)
+  if (activeRouteProp != null) {
     localizedConfig.header.navMain = markActiveRoute(
       localizedConfig.header.navMain,
       activeRouteProp,
     );
-
-  setMainNavigationIds(localizedConfig?.header?.navMain);
+  }
 
   // Set the new language choice
-  persistLanguageChoice(lang, cookieKey, localStorageKey);
+  state.currentLanguage = lang;
 
   return localizedConfig;
-};
-
-/**
- * Merge portal config with custom os flyout overrides
- * @param config Localized config
- * @param osFlyoutOverrides Overrides for the flyout
- * @returns Merged localized config
- */
-export const mergeOsFlyoutOverrides = (
-  config: ILocalizedConfig,
-  osFlyoutOverrides: NavMainEntity,
-): NavMainEntity[] => {
-  if (osFlyoutOverrides == null) return config.header.navMain;
-
-  return config.header.navMain.map(mainNav => {
-    if (mainNav.id !== 'flyout_os') return mainNav;
-
-    if (osFlyoutCache === null) {
-      osFlyoutCache = JSON.parse(JSON.stringify(mainNav)) as NavMainEntity;
-    }
-
-    const mainNavText = osFlyoutOverrides.text ?? osFlyoutCache.text;
-    const mainNavTitle = osFlyoutOverrides.title ?? osFlyoutCache.title;
-
-    if (
-      osFlyoutCache.flyout == null ||
-      osFlyoutCache.flyout.length === 0 ||
-      osFlyoutOverrides.flyout == null ||
-      osFlyoutOverrides.flyout.length === 0
-    )
-      return {
-        ...mainNav,
-        title: mainNavTitle,
-        text: mainNavText,
-      };
-
-    // Add entries for os flyout columns without overriding existing config
-    const mainNavFlyout = [
-      ...osFlyoutCache.flyout.map((col, index) => {
-        const overrides = osFlyoutOverrides.flyout?.[index]; // Check if overrides exist
-        const title = overrides?.title ?? col.title;
-
-        // Check if the linkList exists in the overrides and then use it
-        const linkList = overrides?.linkList != null ? overrides.linkList : [];
-
-        return {
-          title,
-          linkList: [...col.linkList, ...linkList],
-        };
-      }),
-      ...(osFlyoutOverrides.flyout?.slice(osFlyoutCache.flyout.length) || []),
-    ];
-
-    return {
-      ...mainNav,
-      text: mainNavText,
-      title: mainNavTitle,
-      flyout: mainNavFlyout,
-    } as NavMainEntity;
-  });
 };
 
 /**
@@ -191,7 +102,7 @@ export const fetchConfig = async (
 };
 
 /**
- * Generate an URL with all necessary query params to get the configuration.
+ * Generate a URL with all necessary query params to get the configuration.
  * Project id "test" will return a test configuration
  * @param projectId string
  * @param environment int01, int02 or prod
@@ -218,50 +129,9 @@ export const generateConfigUrl = (projectId: string, environment: Environment): 
 /**
  * Check if project id contains only URL safe characters
  *
- * @param projectId Project Id string
+ * @param projectId Project ID string
  * @returns The valid project id
  */
 export const isValidProjectId = (projectId: string): boolean => {
   return projectId !== '' && projectId.length > 0 && /^[a-zA-Z][\w-]*[a-zA-Z0-9]$/.test(projectId);
-};
-
-/**
- * Get the localized config object from a custom config
- *
- * @param config String or json object of the custom config
- * @param language Specific language
- * @returns Localized custom config object
- */
-export const getLocalizedCustomConfig = (
-  config: string | ICustomConfig,
-  language: string,
-): ILocalizedCustomConfig | undefined => {
-  let customConfig: ICustomConfig;
-  try {
-    customConfig = typeof config === 'string' ? JSON.parse(config) : config;
-  } catch (error) {
-    throw new Error(
-      `Internet Header: Custom config is invalid. Make sure your custom config contains valid JSON syntax and matches the definition. `,
-    );
-  }
-  const localizedCustomConfig: ILocalizedCustomConfig | undefined = customConfig[language];
-  if (localizedCustomConfig?.header?.navMain)
-    setMainNavigationIds(localizedCustomConfig.header.navMain);
-  return localizedCustomConfig;
-};
-
-/**
- * Check if mobile header styles are applied or not
- * @returns True if browser is smaller than 1024px
- */
-export const isMobile = () => window.innerWidth < 1024;
-
-/**
- * Set unique ID's on main navigation entities but conserve flyout_os to be able to
- * identify the online-service flyout, which can be configured by osFlyoutOverrides
- */
-export const setMainNavigationIds = (navMainEntities: NavMainEntity[]): void => {
-  navMainEntities.forEach(navMainEntity => {
-    navMainEntity.id = navMainEntity.id === 'flyout_os' ? navMainEntity.id : uniqueId('main-nav-');
-  });
 };

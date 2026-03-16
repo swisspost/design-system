@@ -1,6 +1,8 @@
 @use 'form-check';
 @use '../mixins/forms' as forms-mx;
 @use '../mixins/utilities' as utility-mx;
+@use './../tokens/components';
+@use './../functions/tokens';
 
 :where(.form-check > input[type='checkbox']) {
   @include utility-mx.focus-style();
@@ -8,4 +10,13 @@
 
 .form-check:not(.form-switch) > input[type='checkbox'] {
   @include forms-mx.checkbox();
+}
+
+.form-check.form-check-sm:not(.form-switch) > input[type='checkbox'] {
+  width: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+  height: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+
+  &::after {
+    mask-size: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+  }
 }
