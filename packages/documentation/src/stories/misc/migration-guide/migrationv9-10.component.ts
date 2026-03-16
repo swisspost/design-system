@@ -201,8 +201,8 @@ export class MigrationV99Component extends LitElement {
                 <code languages="['bash']">npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix
                 </code>
                 <span class="info">
-                  💡 This command applies migration rules without requiring any changes to your
-                  existing ESLint configuration.
+                  💡 This command applies migration rules using the official ESLint package without installing it as a project 
+                  dependency or modifying your existing ESLint configuration.
                 </span>
               </li>
               <li>
