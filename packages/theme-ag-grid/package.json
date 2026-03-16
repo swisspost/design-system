@@ -26,9 +26,14 @@
   },
   "private": false,
   "scripts": {
-    "build": "npx tsc"
+    "build": "tsc"
   },
-  "keywords": ["design-system", "ag-grid", "ui", "frontend"],
+  "keywords": [
+    "design-system",
+    "ag-grid",
+    "ui",
+    "frontend"
+  ],
   "peerDependencies": {
     "ag-grid-community": "^33.3.2"
   },

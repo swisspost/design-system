@@ -564,7 +564,6 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Offset for more precise placement
-          * @default 0
          */
         "offset"?: number;
         /**
@@ -1658,7 +1657,6 @@ declare namespace LocalJSX {
         "edgeGap"?: number;
         /**
           * Offset for more precise placement
-          * @default 0
          */
         "offset"?: number;
         /**

@@ -125,7 +125,7 @@ export class PostPopovercontainer {
   /**
    * Offset for more precise placement
    */
-  @Prop() readonly offset?: number = 0;
+  @Prop() readonly offset?: number;
 
   /**
    * Whether or not to display a little pointer arrow

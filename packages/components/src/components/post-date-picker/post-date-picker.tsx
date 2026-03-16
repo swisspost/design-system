@@ -209,7 +209,7 @@ export class PostDatePicker {
     }
   }
 
-  private flyoutOffset: number;
+  private flyoutOffset: number = 4;
 
   private currentViewMonth: number;
   private currentViewYear: number;
