@@ -1,0 +1,82 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as AutocompleteStories from './autocomplete.stories';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={AutocompleteStories} />
+
+<div className="docs-title">
+  # Autocomplete
+
+  <link-design of={JSON.stringify(AutocompleteStories)}></link-design>
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  The Autocomplete component provides a text input with a filterable dropdown list of options,
+  allowing users to quickly find and select a value from a large set.
+</div>
+
+It is built with two web components: `post-autocomplete` wraps a standard `<input>` element and manages filtering, keyboard navigation, and selection logic, while `post-listbox` renders the dropdown with `post-option` items. Both components are connected via the `options` attribute.
+
+<Canvas sourceState="shown" of={AutocompleteStories.Default} />
+<div className="hide-col-default">
+  <Controls of={AutocompleteStories.Default} />
+</div>
+
+## Examples
+
+### Clearable
+
+When the `clearable` attribute is set, a clear button appears in the input once a value is entered, allowing users to reset both the input text and the current selection with a single click.
+
+<Canvas sourceState="hidden" of={AutocompleteStories.Clearable} />
+
+### Custom Filter Threshold
+
+By default, filtering begins after 1 character. Use the `filter-threshold` attribute to require more characters before the list starts filtering. This is useful for very large option sets where single-character matches would return too many results.
+
+<Canvas sourceState="hidden" of={AutocompleteStories.CustomFilterThreshold} />
+
+### Custom Filtering
+
+For advanced use cases, you can handle filtering yourself by listening to the `postFilterRequest` event and calling `preventDefault()`. This gives you full control over the matching logic — for example, filtering only by prefix instead of substring.
+
+<Canvas sourceState="hidden" of={AutocompleteStories.CustomFiltering} />
+
+### Empty State
+
+When no options match the current input, a blank-slate message is displayed. You can customize this message using the `blank-slate` slot on the `post-listbox` element.
+
+<Canvas sourceState="hidden" of={AutocompleteStories.EmptyState} />
+
+### Disabled Options
+
+Individual options can be disabled by adding the `disabled` attribute to `post-option` elements. Disabled options are visible but cannot be selected via click or keyboard.
+
+<Canvas sourceState="hidden" of={AutocompleteStories.DisabledOptions} />
+
+## Keyboard Navigation
+
+The autocomplete supports full keyboard navigation following the WAI-ARIA combobox pattern:
+
+| Key | Action |
+|-----|--------|
+| <kbd>ArrowDown</kbd> | Move highlight to the next visible option |
+| <kbd>ArrowUp</kbd> | Move highlight to the previous visible option |
+| <kbd>Enter</kbd> | Select the currently highlighted option |
+| <kbd>Escape</kbd> | Close the dropdown without selecting |
+| <kbd>Home</kbd> | Highlight the first visible option |
+| <kbd>End</kbd> | Highlight the last visible option |
+| <kbd>Tab</kbd> | Close the dropdown and move focus |
+
+## Accessibility
+
+The component implements the [WAI-ARIA Combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/) with the following features:
+
+- The input has `role="combobox"` with `aria-autocomplete="list"`
+- `aria-expanded` reflects the dropdown open/closed state
+- `aria-activedescendant` tracks the currently highlighted option
+- `aria-controls` links the input to the listbox
+- Options have `role="option"` with `aria-selected` and `aria-disabled` states
+- A live region announces the number of matching results as the user types

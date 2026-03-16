@@ -59,6 +59,31 @@ export namespace Components {
          */
         "toggle": (force?: boolean) => Promise<boolean>;
     }
+    interface PostAutocomplete {
+        /**
+          * Whether the input shows a clear button when it has a value.
+          * @default false
+         */
+        "clearable": boolean;
+        /**
+          * Debounce delay in milliseconds for input filtering.
+          * @default 300
+         */
+        "debounceTimeout": number;
+        /**
+          * Minimum number of characters before filtering begins.
+          * @default 1
+         */
+        "filterThreshold": number;
+        /**
+          * ID reference pointing to the associated `post-listbox` element.
+         */
+        "options": string;
+        /**
+          * Clears input, clears selection, resets filter, closes dropdown.
+         */
+        "reset": () => Promise<void>;
+    }
     interface PostAvatar {
         /**
           * Provides a custom description for the avatar, used for accessibility purposes.
@@ -389,6 +414,32 @@ export namespace Components {
     }
     interface PostLinkarea {
     }
+    interface PostListbox {
+        /**
+          * Filter child `post-option` elements by matching their text content against the query string (case-insensitive substring match). Returns the count of visible (matching) options.
+         */
+        "filter": (query: string) => Promise<number>;
+        /**
+          * Returns an array of currently visible `post-option` elements.
+         */
+        "getVisibleOptions": () => Promise<HTMLElement[]>;
+        /**
+          * Hide the dropdown popover.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Remove all filter state and make all options visible again.
+         */
+        "resetFilter": () => Promise<void>;
+        /**
+          * Show the dropdown popover.
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Sync the internal `visibleCount` and `isEmpty` state with the current DOM visibility of options. Call this after performing custom/external filtering to keep the blank-slate and live-region announcements correct.
+         */
+        "updateVisibility": () => Promise<void>;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -471,6 +522,22 @@ export namespace Components {
         "for": string;
     }
     interface PostNumberInput {
+    }
+    interface PostOption {
+        /**
+          * Whether this option is disabled and cannot be selected.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Whether this option is currently selected.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * The value of this option. Used as the selection value when the option is chosen.
+         */
+        "value": string;
     }
     interface PostPagination {
         /**
@@ -707,6 +774,10 @@ export namespace Components {
         "for": string;
     }
 }
+export interface PostAutocompleteCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostAutocompleteElement;
+}
 export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostBannerElement;
@@ -734,6 +805,10 @@ export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
 export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMenuElement;
+}
+export interface PostOptionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostOptionElement;
 }
 export interface PostPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -763,6 +838,25 @@ declare global {
     var HTMLPostAccordionItemElement: {
         prototype: HTMLPostAccordionItemElement;
         new (): HTMLPostAccordionItemElement;
+    };
+    interface HTMLPostAutocompleteElementEventMap {
+        "postFilterRequest": { query: string };
+        "postChange": { value: string | null };
+        "postInput": { value: string };
+    }
+    interface HTMLPostAutocompleteElement extends Components.PostAutocomplete, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostAutocompleteElementEventMap>(type: K, listener: (this: HTMLPostAutocompleteElement, ev: PostAutocompleteCustomEvent<HTMLPostAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostAutocompleteElementEventMap>(type: K, listener: (this: HTMLPostAutocompleteElement, ev: PostAutocompleteCustomEvent<HTMLPostAutocompleteElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostAutocompleteElement: {
+        prototype: HTMLPostAutocompleteElement;
+        new (): HTMLPostAutocompleteElement;
     };
     interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
     }
@@ -929,6 +1023,12 @@ declare global {
         prototype: HTMLPostLinkareaElement;
         new (): HTMLPostLinkareaElement;
     };
+    interface HTMLPostListboxElement extends Components.PostListbox, HTMLStencilElement {
+    }
+    var HTMLPostListboxElement: {
+        prototype: HTMLPostListboxElement;
+        new (): HTMLPostListboxElement;
+    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -998,6 +1098,23 @@ declare global {
     var HTMLPostNumberInputElement: {
         prototype: HTMLPostNumberInputElement;
         new (): HTMLPostNumberInputElement;
+    };
+    interface HTMLPostOptionElementEventMap {
+        "postOptionSelected": { value: string };
+    }
+    interface HTMLPostOptionElement extends Components.PostOption, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostOptionElementEventMap>(type: K, listener: (this: HTMLPostOptionElement, ev: PostOptionCustomEvent<HTMLPostOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostOptionElementEventMap>(type: K, listener: (this: HTMLPostOptionElement, ev: PostOptionCustomEvent<HTMLPostOptionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostOptionElement: {
+        prototype: HTMLPostOptionElement;
+        new (): HTMLPostOptionElement;
     };
     interface HTMLPostPaginationElementEventMap {
         "postChange": number;
@@ -1129,6 +1246,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
+        "post-autocomplete": HTMLPostAutocompleteElement;
         "post-avatar": HTMLPostAvatarElement;
         "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
@@ -1146,6 +1264,7 @@ declare global {
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
+        "post-listbox": HTMLPostListboxElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1154,6 +1273,7 @@ declare global {
         "post-menu-item": HTMLPostMenuItemElement;
         "post-menu-trigger": HTMLPostMenuTriggerElement;
         "post-number-input": HTMLPostNumberInputElement;
+        "post-option": HTMLPostOptionElement;
         "post-pagination": HTMLPostPaginationElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
@@ -1192,6 +1312,39 @@ declare namespace LocalJSX {
           * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
          */
         "headingLevel"?: HeadingLevel;
+    }
+    interface PostAutocomplete {
+        /**
+          * Whether the input shows a clear button when it has a value.
+          * @default false
+         */
+        "clearable"?: boolean;
+        /**
+          * Debounce delay in milliseconds for input filtering.
+          * @default 300
+         */
+        "debounceTimeout"?: number;
+        /**
+          * Minimum number of characters before filtering begins.
+          * @default 1
+         */
+        "filterThreshold"?: number;
+        /**
+          * Fired when the selected value changes.
+         */
+        "onPostChange"?: (event: PostAutocompleteCustomEvent<{ value: string | null }>) => void;
+        /**
+          * Cancellable event fired before filtering. If `event.preventDefault()` is called, internal filtering is skipped and the consumer handles filtering externally.
+         */
+        "onPostFilterRequest"?: (event: PostAutocompleteCustomEvent<{ query: string }>) => void;
+        /**
+          * Fired on every input keystroke (after debounce).
+         */
+        "onPostInput"?: (event: PostAutocompleteCustomEvent<{ value: string }>) => void;
+        /**
+          * ID reference pointing to the associated `post-listbox` element.
+         */
+        "options": string;
     }
     interface PostAvatar {
         /**
@@ -1514,6 +1667,8 @@ declare namespace LocalJSX {
     }
     interface PostLinkarea {
     }
+    interface PostListbox {
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -1575,6 +1730,26 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostNumberInput {
+    }
+    interface PostOption {
+        /**
+          * Whether this option is disabled and cannot be selected.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Emitted when the option is clicked or activated. Detail: `{ value: string }`.
+         */
+        "onPostOptionSelected"?: (event: PostOptionCustomEvent<{ value: string }>) => void;
+        /**
+          * Whether this option is currently selected.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * The value of this option. Used as the selection value when the option is chosen.
+         */
+        "value": string;
     }
     interface PostPagination {
         /**
@@ -1800,6 +1975,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
+        "post-autocomplete": PostAutocomplete;
         "post-avatar": PostAvatar;
         "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
@@ -1817,6 +1993,7 @@ declare namespace LocalJSX {
         "post-language-menu": PostLanguageMenu;
         "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
+        "post-listbox": PostListbox;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
@@ -1825,6 +2002,7 @@ declare namespace LocalJSX {
         "post-menu-item": PostMenuItem;
         "post-menu-trigger": PostMenuTrigger;
         "post-number-input": PostNumberInput;
+        "post-option": PostOption;
         "post-pagination": PostPagination;
         "post-popover": PostPopover;
         "post-popover-trigger": PostPopoverTrigger;
@@ -1846,6 +2024,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
+            "post-autocomplete": LocalJSX.PostAutocomplete & JSXBase.HTMLAttributes<HTMLPostAutocompleteElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
@@ -1869,6 +2048,7 @@ declare module "@stencil/core" {
             "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
+            "post-listbox": LocalJSX.PostListbox & JSXBase.HTMLAttributes<HTMLPostListboxElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
@@ -1877,6 +2057,7 @@ declare module "@stencil/core" {
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
             "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
             "post-number-input": LocalJSX.PostNumberInput & JSXBase.HTMLAttributes<HTMLPostNumberInputElement>;
+            "post-option": LocalJSX.PostOption & JSXBase.HTMLAttributes<HTMLPostOptionElement>;
             "post-pagination": LocalJSX.PostPagination & JSXBase.HTMLAttributes<HTMLPostPaginationElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
