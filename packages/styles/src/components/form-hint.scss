@@ -31,18 +31,13 @@ tokens.$default-map: components.$post-assist;
   }
 }
 
-.form-control-sm {
-  + .form-hint,
-  + .valid-feedback + .form-hint,
-  + .invalid-feedback + .form-hint {
+.form-hint,
+.valid-feedback + .form-hint,
+.invalid-feedback + .form-hint {
+  .form-control-sm + & {
     font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
   }
-}
-
-.form-select-sm {
-  + .form-hint,
-  + .valid-feedback + .form-hint,
-  + .invalid-feedback + .form-hint {
+  .form-select-sm + & {
     font-size: tokens.get('select-small-assist-font-size', components.$post-select);
   }
 }
