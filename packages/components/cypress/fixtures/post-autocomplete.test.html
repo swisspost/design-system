@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autocomplete Test</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        padding: 2rem;
+      }
+      .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      .form-control {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .form-hint {
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        color: #666;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .test-section {
+        margin-bottom: 3rem;
+      }
+      h2 {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="test-section">
+      <h2>Basic Autocomplete</h2>
+      <post-autocomplete id="autocomplete-basic">
+        <label for="input-basic" class="form-label">Country</label>
+        <input type="text" id="input-basic" class="form-control" placeholder="Start typing..." autocomplete="off" />
+        <post-listbox id="listbox-basic">
+          <post-option value="ch">Switzerland</post-option>
+          <post-option value="de">Germany</post-option>
+          <post-option value="at">Austria</post-option>
+          <post-option value="fr">France</post-option>
+          <post-option value="it">Italy</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <div class="test-section">
+      <h2>Autocomplete with Filter Threshold</h2>
+      <post-autocomplete id="autocomplete-threshold" filter-threshold="2">
+        <label for="input-threshold" class="form-label">City</label>
+        <input type="text" id="input-threshold" class="form-control" placeholder="Type at least 2 characters..." autocomplete="off" />
+        <post-listbox id="listbox-threshold">
+          <post-option value="zurich">Zurich</post-option>
+          <post-option value="geneva">Geneva</post-option>
+          <post-option value="basel">Basel</post-option>
+          <post-option value="bern">Bern</post-option>
+          <post-option value="lausanne">Lausanne</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <div class="test-section">
+      <h2>Clearable Autocomplete</h2>
+      <post-autocomplete id="autocomplete-clearable" clearable>
+        <label for="input-clearable" class="form-label">Language</label>
+        <input type="text" id="input-clearable" class="form-control" placeholder="Select a language..." autocomplete="off" />
+        <post-listbox id="listbox-clearable">
+          <post-option value="en">English</post-option>
+          <post-option value="de">German</post-option>
+          <post-option value="fr">French</post-option>
+          <post-option value="it">Italian</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <div class="test-section">
+      <h2>Disabled Autocomplete</h2>
+      <post-autocomplete id="autocomplete-disabled">
+        <label for="input-disabled" class="form-label">Disabled Field</label>
+        <input type="text" id="input-disabled" class="form-control" placeholder="This is disabled" autocomplete="off" disabled />
+        <post-listbox id="listbox-disabled">
+          <post-option value="a">Option A</post-option>
+          <post-option value="b">Option B</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+  </body>
+</html>
