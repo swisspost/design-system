@@ -218,6 +218,14 @@ input.form-control {
 
     &.is-valid,
     &.is-invalid {
+      &:not(:disabled) {
+        padding-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} +
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-sizing-icon')} * 2
+        );
+      }
+
       $validation-inset: calc(
         #{tokens.get('input-padding-inline-end')} +
           #{tokens.get('input-validation-icon-position-inline-end')} +
