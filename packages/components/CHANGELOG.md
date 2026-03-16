@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.64
+
+### Minor Changes
+
+- Updated `post-menu` component to support Server-Side Rendering. Fixed 'Cannot read properties of undefined (reading 'removeEventListener')' error in `post-popover` component. (by [@myrta2302](https://github.com/myrta2302) with [#7224](https://github.com/swisspost/design-system/pull/7224))
+
+- Updated `post-stepper` component to support Server-Side Rendering. (by [@myrta2302](https://github.com/myrta2302) with [#7252](https://github.com/swisspost/design-system/pull/7252))
+
+### Patch Changes
+
+- Fixed the `post-back-to-top` button being overlaid by the `post-stepper` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7321](https://github.com/swisspost/design-system/pull/7321))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.64
+  - @swisspost/design-system-styles@10.0.0-next.64
+
 ## 10.0.0-next.63
 
 ### Patch Changes
