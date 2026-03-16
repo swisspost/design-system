@@ -7,6 +7,15 @@
 
 tokens.$default-map: components.$post-text-input;
 
+@mixin time-icon-position($inset-inline-end: tokens.get('input-padding-inline-end')) {
+  position: absolute;
+  inset-inline-end: $inset-inline-end;
+  top: 50%;
+  transform: translateY(-50%);
+  width: tokens.get('input-sizing-icon');
+  height: tokens.get('input-sizing-icon');
+}
+
 input.form-control {
   display: block;
   width: 100%;
@@ -166,15 +175,14 @@ input.form-control {
   }
 
   &[type='time'] {
+    padding-inline-end: calc(
+      #{tokens.get('input-padding-inline-end')} + #{tokens.get('input-sizing-icon')}
+    );
+
     &::-webkit-calendar-picker-indicator {
+      @include time-icon-position;
       background: transparent;
       cursor: pointer;
-      position: absolute;
-      inset-inline-end: tokens.get('input-padding-inline-end');
-      top: 50%;
-      transform: translateY(-50%);
-      width: tokens.get('input-sizing-icon');
-      height: tokens.get('input-sizing-icon');
       z-index: 1;
       padding: 0;
       margin: 0;
@@ -190,14 +198,9 @@ input.form-control {
 
     // Custom time icon overlay that forwards clicks to the native picker (pointer-events: none).
     &::after {
+      @include time-icon-position;
       content: '';
       display: block;
-      position: absolute;
-      inset-inline-end: tokens.get('input-padding-inline-end');
-      top: 50%;
-      transform: translateY(-50%);
-      width: tokens.get('input-sizing-icon');
-      height: tokens.get('input-sizing-icon');
       pointer-events: none;
       background-color: tokens.get('input-color-enabled-fg');
       z-index: 2;
@@ -215,20 +218,18 @@ input.form-control {
 
     &.is-valid,
     &.is-invalid {
+      $validation-inset: calc(
+        #{tokens.get('input-padding-inline-end')} +
+          #{tokens.get('input-validation-icon-position-inline-end')} +
+          #{tokens.get('input-sizing-icon')}
+      );
+
       &::after {
-        inset-inline-end: calc(
-          #{tokens.get('input-padding-inline-end')} +
-            #{tokens.get('input-validation-icon-position-inline-end')} +
-            #{tokens.get('input-sizing-icon')}
-        );
+        @include time-icon-position($validation-inset);
       }
 
       &::-webkit-calendar-picker-indicator {
-        inset-inline-end: calc(
-          #{tokens.get('input-padding-inline-end')} +
-            #{tokens.get('input-validation-icon-position-inline-end')} +
-            #{tokens.get('input-sizing-icon')}
-        );
+        @include time-icon-position($validation-inset);
       }
     }
   }
