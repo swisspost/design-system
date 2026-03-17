@@ -74,17 +74,41 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   border-radius: 0;
   line-height: 1.5;
   outline-color: currentColor !important;
-  box-shadow: inset 0 -1px 0 #050400;
+  border-bottom: var(--post-nav-item-border-width) solid currentColor;
 
   &:hover {
     @include button.button-variant-def('hover', 'primary');
+    border-bottom-color: transparent;
   }
 
   @include active-state {
     box-shadow: inset 0 -1px 0 #050400;
   }
 
-  @include utilities.focus-inset;
+  @include utilities.focus-style-custom {
+    outline: none !important;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: calc(-1 * tokens.get('focus-outline-offset2', helpers.$post-focus));
+      border-width: tokens.get('focus-outline-width', helpers.$post-focus);
+      border-style: tokens.get('focus-border-style', helpers.$post-focus);
+      border-color: tokens.get('focus-outline-color', helpers.$post-focus);
+      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+      pointer-events: none;
+    }
+
+    &:hover::after {
+      border-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus);
+    }
+
+    @include active-state {
+      &::after {
+        border-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus);
+      }
+    }
+  }
 
   > post-icon:where(:last-child) {
     margin-inline-start: auto;

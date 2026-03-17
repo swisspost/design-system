@@ -1,5 +1,39 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.65
+
+### Minor Changes
+
+- Added a new `@swisspost/design-system-theme-ag-grid` package, exposing a shared AG Grid theme so all applications use the same datatable styling and stay visually consistent. (by [@leagrdv](https://github.com/leagrdv) with [#7253](https://github.com/swisspost/design-system/pull/7253))
+
+- Added the small variant class `.form-check-sm` to the form checkbox. (by [@bucknatt](https://github.com/bucknatt) with [#7211](https://github.com/swisspost/design-system/pull/7211))
+
+### Patch Changes
+
+- Added two required properties for the `swisspost-internet-footer` component:
+  - `textFooter` a visually hidden label for the footer.
+  - `textCookieSettings` a label for the "Cookie Settings" button. (by [@alizedebray](https://github.com/alizedebray) with [#7239](https://github.com/swisspost/design-system/pull/7239))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.64
+  - @swisspost/internet-header@10.0.0-next.64
+  - @swisspost/design-system-components@10.0.0-next.64
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.64
+  - @swisspost/design-system-styles@10.0.0-next.64
+  - @swisspost/design-system-components-react@10.0.0-next.64
+  - @swisspost/design-system-tokens@10.0.0-next.64
+
+## 6.0.0-next.64
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.63
+  - @swisspost/design-system-components@10.0.0-next.63
+  - @swisspost/design-system-components-react@10.0.0-next.63
+  - @swisspost/design-system-styles@10.0.0-next.63
+  - @swisspost/internet-header@10.0.0-next.63
+  - @swisspost/design-system-tokens@10.0.0-next.63
+
 ## 6.0.0-next.63
 
 ### Minor Changes
