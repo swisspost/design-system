@@ -1,0 +1,87 @@
+@use 'sass:map';
+@use '../functions/tokens';
+@use '../tokens/elements';
+
+tokens.$default-map: elements.$post-heading;
+.inline-notification {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: 2px solid var(--post-inline-notification-border);
+  background: var(--post-inline-notification-bg);
+  align-items: center;
+  min-width: 297px;
+
+  &::before {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    align-self: center;
+    font-size: tokens.get('h4-font-size');
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    align-self: center;
+  }
+
+  &.inline-notification-multi-line {
+    align-items: flex-start;
+
+    &::before {
+      margin-top: 2px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      flex-basis: calc(100% - 40px);
+    }
+
+    p {
+      flex-basis: calc(100% - 40px);
+      margin-left: 40px;
+    }
+  }
+
+  &.inline-notification-info {
+    --post-inline-notification-border: #0050A1;
+    --post-inline-notification-bg: #BFD3E7;
+  }
+
+  &.inline-notification-success {
+    --post-inline-notification-border: #107800;
+    --post-inline-notification-bg: #C3DDBF;
+  }
+
+  &.inline-notification-warning {
+    --post-inline-notification-border: #D93D00;
+    --post-inline-notification-bg: #F5CEBF;
+  }
+
+  &.inline-notification-error {
+    --post-inline-notification-border: #B20000;
+    --post-inline-notification-bg: #EBBFBF;
+  }
+
+  @each $name in 'info', 'success', 'warning', 'error' {
+    &.inline-notification-#{$name} {
+      &::before {
+        background-image: var(--post-signal-icon-#{$name});
+      }
+    }
+  }
+}
+
+:export {
+  inline-notification-variants: info, success, warning, error;
+}
