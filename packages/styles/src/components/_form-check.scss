@@ -189,7 +189,7 @@ fieldset {
 
   .form-check {
     &:not(.form-check-inline):not(.form-check-sm):not(:last-of-type) {
-      margin-block-end: tokens.get('f', components.$post-checkbox);
+      margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
     }
 
     // Inline spacing
