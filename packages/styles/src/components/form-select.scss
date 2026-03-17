@@ -31,7 +31,7 @@ tokens.$default-map: components.$post-select;
     min-height: tokens.get('select-small-sizing-height');
     padding-block: tokens.get('select-non-floating-small-padding-block');
     background-size: tokens.get('select-small-sizing-icon');
-    font-size: unset;
+    font-size: tokens.get('select-non-floating-small-font-size');
   }
 
   &:disabled {
@@ -189,7 +189,7 @@ tokens.$default-map: components.$post-select;
   padding-inline: tokens.get('select-non-floating-small-label-padding-inline');
   padding-block: tokens.get('select-non-floating-small-label-padding-block');
   font-weight: tokens.get('select-non-floating-small-label-font-weight');
-  font-size: unset;
+  font-size: tokens.get('select-non-floating-small-font-size');
 }
 
 .form-floating {
