@@ -82,7 +82,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   }
 
   @include active-state {
-    box-shadow: inset 0 -1px 0 #050400;
+    box-shadow: none;
   }
 
   @include utilities.focus-style-custom {
