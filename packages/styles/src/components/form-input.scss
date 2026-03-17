@@ -7,7 +7,9 @@
 
 tokens.$default-map: components.$post-text-input;
 
-@mixin time-icon-position($inset-inline-end: tokens.get('input-padding-inline-end')) {
+@mixin time-icon-position(
+  $inset-inline-end: tokens.get('input-validation-icon-position-inline-end')
+) {
   position: absolute;
   inset-inline-end: $inset-inline-end;
   top: 50%;
@@ -176,7 +178,9 @@ input.form-control {
 
   &[type='time'] {
     padding-inline-end: calc(
-      #{tokens.get('input-padding-inline-end')} + #{tokens.get('input-sizing-icon')}
+      #{tokens.get('input-padding-inline-end')} +
+        #{tokens.get('input-validation-icon-position-inline-end')} +
+        #{tokens.get('input-sizing-icon')}
     );
 
     &::-webkit-calendar-picker-indicator {
@@ -220,9 +224,9 @@ input.form-control {
     &.is-invalid {
       &:not(:disabled) {
         padding-inline-end: calc(
-          #{tokens.get('input-padding-inline-end')} +
-            #{tokens.get('input-validation-icon-position-inline-end')} +
-            #{tokens.get('input-sizing-icon')} * 2
+          #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('post-datepicker-input-icons-gap-inline', components.$post-datepicker)} +
+            #{tokens.get('input-sizing-icon')} * 2 + #{tokens.get('input-padding-inline-end')}
         );
       }
 
@@ -233,11 +237,23 @@ input.form-control {
       );
 
       &::after {
-        @include time-icon-position($validation-inset);
+        @include time-icon-position(
+          calc(
+            tokens.get('input-validation-icon-position-inline-end') +
+              #{tokens.get('input-sizing-icon')} +
+              #{tokens.get('post-datepicker-input-icons-gap-inline', components.$post-datepicker)}
+          )
+        );
       }
 
       &::-webkit-calendar-picker-indicator {
-        @include time-icon-position($validation-inset);
+        @include time-icon-position(
+          calc(
+            tokens.get('input-validation-icon-position-inline-end') +
+              #{tokens.get('input-sizing-icon')} +
+              #{tokens.get('post-datepicker-input-icons-gap-inline', components.$post-datepicker)}
+          )
+        );
       }
     }
   }
