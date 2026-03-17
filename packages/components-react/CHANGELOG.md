@@ -1,5 +1,34 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.64
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.64
+
+## 10.0.0-next.63
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.63
+
+## 10.0.0-next.62
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.62
+
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Fixed export paths for the react icons to improve tree-shakeability. Icons are no longer exported as default. (by [@gfellerph](https://github.com/gfellerph) with [#7149](https://github.com/swisspost/design-system/pull/7149))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.61
+
 ## 10.0.0-next.60
 
 ### Patch Changes

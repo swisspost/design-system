@@ -41,8 +41,7 @@ type ValidatableProp =
   | 'textPrevious'
   | 'textPage'
   | 'textFirst'
-  | 'textLast'
-  | 'disabled';
+  | 'textLast';
 
 @Component({
   tag: 'post-pagination',
@@ -104,11 +103,6 @@ export class PostPagination {
   @Prop({ reflect: true }) readonly textLast!: string;
 
   /**
-   * If true, the pagination is disabled.
-   */
-  @Prop() readonly disabled?: boolean;
-
-  /**
    * Event emitted when the page changes.
    */
   @Event() postChange: EventEmitter<number>;
@@ -164,11 +158,6 @@ export class PostPagination {
   @Watch('textLast')
   validateTextLast() {
     this.validateProp('textLast', 'string', true);
-  }
-
-  @Watch('disabled')
-  validateDisabled() {
-    this.validateProp('disabled', 'boolean', false);
   }
 
   @Watch('page')
@@ -236,7 +225,6 @@ export class PostPagination {
     this.validateProp('textPage', 'string', true);
     this.validateProp('textFirst', 'string', true);
     this.validateProp('textLast', 'string', true);
-    this.validateProp('disabled', 'boolean', false);
   }
 
   /**
@@ -701,7 +689,7 @@ export class PostPagination {
    * Handles page change when a page button is clicked.
    */
   private handlePageClick(pageNumber: number) {
-    if (this.disabled || pageNumber === this.page) return;
+    if (pageNumber === this.page) return;
 
     this.emitPageChange(pageNumber);
   }
@@ -710,7 +698,7 @@ export class PostPagination {
    * Handles previous button click.
    */
   private handlePrevious() {
-    if (this.disabled || this.page <= 1) return;
+    if (this.page <= 1) return;
 
     this.emitPageChange(this.page - 1);
   }
@@ -720,7 +708,7 @@ export class PostPagination {
    */
   private handleNext() {
     const totalPages = this.getTotalPages();
-    if (this.disabled || this.page >= totalPages) return;
+    if (this.page >= totalPages) return;
 
     this.emitPageChange(this.page + 1);
   }
@@ -755,10 +743,8 @@ export class PostPagination {
    */
   private renderEllipsis(key: string) {
     return (
-      <li class="pagination-item pagination-ellipsis" key={key}>
-        <span class="pagination-ellipsis-content" aria-hidden="true">
-          {ELLIPSIS}
-        </span>
+      <li class="pagination-item pagination-ellipsis" key={key} aria-hidden="true">
+        <span class="pagination-ellipsis-content">{ELLIPSIS}</span>
       </li>
     );
   }
@@ -781,8 +767,7 @@ export class PostPagination {
           aria-current={isCurrent ? 'page' : undefined}
           onClick={() => this.handlePageClick(pageNumber)}
           onKeyDown={e => this.handleKeyDown(e, () => this.handlePageClick(pageNumber))}
-          disabled={this.disabled ? true : undefined}
-          tabIndex={this.disabled ? -1 : 0}
+          tabIndex={0}
         >
           <span aria-hidden="true">{pageNumber}</span>
         </button>
@@ -804,31 +789,21 @@ export class PostPagination {
    */
   private renderControlButton(
     iconName: string,
+    isPrev: boolean,
     label: string,
-    isDisabled: boolean,
     onClick: () => void,
-    rotateIcon: boolean = false,
   ) {
     return (
       <li class="pagination-item pagination-control">
         <button
           type="button"
-          class={{
-            'pagination-link': true,
-            'pagination-control-button': true,
-            'pagination-link-disabled': isDisabled,
-          }}
+          class={`pagination-control-button btn btn-icon btn-secondary ${isPrev ? 'prev-button' : 'next-button'}`}
           aria-label={label}
           onClick={onClick}
           onKeyDown={e => this.handleKeyDown(e, onClick)}
-          disabled={isDisabled}
-          tabIndex={isDisabled ? -1 : 0}
+          tabIndex={0}
         >
-          <post-icon
-            name={iconName}
-            class={rotateIcon ? 'pagination-icon-rotated' : undefined}
-            aria-hidden="true"
-          ></post-icon>
+          <post-icon name={iconName} aria-hidden="true"></post-icon>
           <span class="visually-hidden">{label}</span>
         </button>
       </li>
@@ -838,11 +813,13 @@ export class PostPagination {
   /**
    * Renders minimal hidden items for measurement
    */
-  private renderHiddenItems(totalPages: number) {
+  private renderHiddenItems(totalPages: number, isPrevHidden: boolean, isNextHidden: boolean) {
     return [
-      <button class="pagination-link pagination-control-button hidden-control-button" disabled>
-        <post-icon name="chevronleft" aria-hidden="true"></post-icon>
-      </button>,
+      !isPrevHidden && (
+        <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+          <post-icon name="chevronleftwide" aria-hidden="true"></post-icon>
+        </button>
+      ),
       <button
         class="pagination-link pagination-control-button hidden-page-button"
         aria-label={this.buildPageLabel(totalPages)}
@@ -853,13 +830,11 @@ export class PostPagination {
       <span class="pagination-ellipsis-content hidden-ellipsis" aria-hidden="true">
         {ELLIPSIS}
       </span>,
-      <button class="pagination-link pagination-control-button hidden-control-button" disabled>
-        <post-icon
-          name="chevronleft"
-          class="pagination-icon-rotated"
-          aria-hidden="true"
-        ></post-icon>
-      </button>,
+      !isNextHidden && (
+        <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+          <post-icon name="chevronrightwide" aria-hidden="true"></post-icon>
+        </button>
+      ),
     ];
   }
 
@@ -870,8 +845,8 @@ export class PostPagination {
       return null;
     }
 
-    const isPrevDisabled = this.disabled || this.page <= 1;
-    const isNextDisabled = this.disabled || this.page >= totalPages;
+    const isPrevHidden = this.page <= 1;
+    const isNextHidden = this.page >= totalPages;
 
     return (
       <Host slot="post-pagination" data-version={version}>
@@ -883,26 +858,24 @@ export class PostPagination {
         >
           <ul class="pagination-list" role="list">
             {/* Previous Button */}
-            {this.renderControlButton('chevronleft', this.textPrevious, isPrevDisabled, () =>
-              this.handlePrevious(),
-            )}
+            {!isPrevHidden &&
+              this.renderControlButton('chevronleftwide', true, this.textPrevious, () =>
+                this.handlePrevious(),
+              )}
 
             {/* Page Items */}
             {this.items.map((item, index) => this.renderItem(item, index))}
 
             {/* Next Button */}
-            {this.renderControlButton(
-              'chevronleft',
-              this.textNext,
-              isNextDisabled,
-              () => this.handleNext(),
-              true,
-            )}
+            {!isNextHidden &&
+              this.renderControlButton('chevronrightwide', false, this.textNext, () =>
+                this.handleNext(),
+              )}
           </ul>
 
           {/* Hidden items container for width measurement */}
           <div class="hidden-items" aria-hidden="true" ref={el => (this.hiddenItemsRef = el)}>
-            {this.renderHiddenItems(totalPages)}
+            {this.renderHiddenItems(totalPages, isPrevHidden, isNextHidden)}
           </div>
         </nav>
       </Host>

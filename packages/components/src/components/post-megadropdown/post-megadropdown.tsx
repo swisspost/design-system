@@ -148,9 +148,12 @@ export class PostMegadropdown {
       if (trigger) this.megadropdownTitle = trigger.innerHTML;
     }
 
+    let switching = false;
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
+      // We're switching from another megadropdown => do not run the entry animation
+      switching = true;
     }
 
     this.cancelAnimation();
@@ -162,17 +165,23 @@ export class PostMegadropdown {
     // Update trigger state
     this.postToggleMegadropdown.emit({ isVisible: true });
 
-    try {
-      await this.animate('in');
+    if (switching) {
+      // When switching between megadropdowns, skip entry animation
       this.focusFirst();
-      // After the megadropdown has finished entry animation
       this.addListeners();
-    } catch {
-      // Open animation was cancelled - reset state
-      this.removeListeners();
-      this.isVisible = false;
-      if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
-      this.postToggleMegadropdown.emit({ isVisible: false, focusParent: true });
+    } else {
+      try {
+        await this.animate('in');
+        this.focusFirst();
+        // After the megadropdown has finished entry animation
+        this.addListeners();
+      } catch {
+        // Open animation was cancelled - reset state
+        this.removeListeners();
+        this.isVisible = false;
+        if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
+        this.postToggleMegadropdown.emit({ isVisible: false, focusParent: true });
+      }
     }
   }
 
@@ -220,6 +229,7 @@ export class PostMegadropdown {
     this.removeListeners();
     this.postToggleMegadropdown.emit({ isVisible: false, focusParent: false });
     this.isVisible = false;
+    if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
   }
 
   // Run the respective animation

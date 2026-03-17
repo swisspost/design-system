@@ -1,5 +1,77 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.65
+
+### Minor Changes
+
+- Added a new `@swisspost/design-system-theme-ag-grid` package, exposing a shared AG Grid theme so all applications use the same datatable styling and stay visually consistent. (by [@leagrdv](https://github.com/leagrdv) with [#7253](https://github.com/swisspost/design-system/pull/7253))
+
+- Added the small variant class `.form-check-sm` to the form checkbox. (by [@bucknatt](https://github.com/bucknatt) with [#7211](https://github.com/swisspost/design-system/pull/7211))
+
+### Patch Changes
+
+- Added two required properties for the `swisspost-internet-footer` component:
+  - `textFooter` a visually hidden label for the footer.
+  - `textCookieSettings` a label for the "Cookie Settings" button. (by [@alizedebray](https://github.com/alizedebray) with [#7239](https://github.com/swisspost/design-system/pull/7239))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.64
+  - @swisspost/internet-header@10.0.0-next.64
+  - @swisspost/design-system-components@10.0.0-next.64
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.64
+  - @swisspost/design-system-styles@10.0.0-next.64
+  - @swisspost/design-system-components-react@10.0.0-next.64
+  - @swisspost/design-system-tokens@10.0.0-next.64
+
+## 6.0.0-next.64
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.63
+  - @swisspost/design-system-components@10.0.0-next.63
+  - @swisspost/design-system-components-react@10.0.0-next.63
+  - @swisspost/design-system-styles@10.0.0-next.63
+  - @swisspost/internet-header@10.0.0-next.63
+  - @swisspost/design-system-tokens@10.0.0-next.63
+
+## 6.0.0-next.63
+
+### Minor Changes
+
+- Moved the form element `<input type="time" />` documentation to its own **Form timepicker** documentation page. (by [@leagrdv](https://github.com/leagrdv) with [#7199](https://github.com/swisspost/design-system/pull/7199))
+
+- Documented the `post-pagination` component and added design-token–based styles aligned with the design. (by [@leagrdv](https://github.com/leagrdv) with [#7163](https://github.com/swisspost/design-system/pull/7163))
+
+### Patch Changes
+
+- Updated the `post-header` documentation to remove the `variant="list"` attribute from the `post-language-menu`. Removing this attribute enables correct server-side rendering of the language menu. (by [@alizedebray](https://github.com/alizedebray) with [#7178](https://github.com/swisspost/design-system/pull/7178))
+
+- Fixed close button alignment on the detail panel of the search icon page. (by [@leagrdv](https://github.com/leagrdv) with [#7207](https://github.com/swisspost/design-system/pull/7207))
+
+- Documented the usage of a popover with an info icon. (by [@leagrdv](https://github.com/leagrdv) with [#7153](https://github.com/swisspost/design-system/pull/7153))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.62
+  - @swisspost/design-system-components@10.0.0-next.62
+  - @swisspost/design-system-styles@10.0.0-next.62
+  - @swisspost/design-system-components-react@10.0.0-next.62
+  - @swisspost/internet-header@10.0.0-next.62
+  - @swisspost/design-system-tokens@10.0.0-next.62
+
+## 6.0.0-next.62
+
+### Patch Changes
+
+- Updated the table documentation to recommend using AG Grid instead of the PrimeNG DataTable. (by [@alizedebray](https://github.com/alizedebray) with [#7139](https://github.com/swisspost/design-system/pull/7139))
+
+- Aligned `ngx-toastr` styling with the existing toast component and documented the integration. (by [@leagrdv](https://github.com/leagrdv) with [#7106](https://github.com/swisspost/design-system/pull/7106))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+  - @swisspost/design-system-styles@10.0.0-next.61
+  - @swisspost/design-system-components@10.0.0-next.61
+  - @swisspost/design-system-components-react@10.0.0-next.61
+  - @swisspost/internet-header@10.0.0-next.61
+  - @swisspost/design-system-tokens@10.0.0-next.61
+
 ## 6.0.0-next.61
 
 ### Patch Changes

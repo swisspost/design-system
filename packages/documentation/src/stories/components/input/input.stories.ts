@@ -92,7 +92,6 @@ const meta: MetaComponent = {
         'datetime-local',
         'month',
         'week',
-        'time',
       ],
       table: {
         category: 'General',

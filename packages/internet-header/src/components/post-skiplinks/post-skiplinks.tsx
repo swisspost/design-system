@@ -1,8 +1,8 @@
 import { Component, Element, h, Host } from '@stencil/core';
-import { state } from '../../data/store';
-import { FocusableElement } from '../../models/header.model';
-import { translate } from '../../services/language.service';
-import { SvgIcon } from '../../utils/svg-icon.component';
+import { state } from '@/data/store';
+import { FocusableElement } from '@/models/header.model';
+import { translate } from '@/services/language.service';
+import { SvgIcon } from '@/utils/svg-icon.component';
 
 @Component({
   tag: 'post-skiplinks',

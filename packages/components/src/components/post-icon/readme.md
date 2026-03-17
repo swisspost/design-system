@@ -29,11 +29,13 @@ some content
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
+ - [post-datepicker](../post-datepicker)
  - [post-header](../post-header)
  - [post-language-menu](../post-language-menu)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
  - [post-megadropdown-trigger](../post-megadropdown-trigger)
+ - [post-number-input](../post-number-input)
  - [post-pagination](../post-pagination)
  - [post-rating](../post-rating)
 
@@ -46,11 +48,13 @@ graph TD;
   post-breadcrumbs --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
+  post-datepicker --> post-icon
   post-header --> post-icon
   post-language-menu --> post-icon
   post-mainnavigation --> post-icon
   post-megadropdown --> post-icon
   post-megadropdown-trigger --> post-icon
+  post-number-input --> post-icon
   post-pagination --> post-icon
   post-rating --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
