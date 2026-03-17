@@ -175,8 +175,8 @@
   }
 }
 
-// Checkbox Group
 fieldset {
+  // Checkbox Group
   legend {
     margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
   }
@@ -189,7 +189,7 @@ fieldset {
 
   .form-check {
     &:not(.form-check-inline):not(.form-check-sm):not(:last-of-type) {
-      margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
+      margin-block-end: tokens.get('f', components.$post-checkbox);
     }
 
     // Inline spacing
@@ -228,9 +228,8 @@ fieldset {
       padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
     }
   }
-}
 
-// Radiobutton Group
+  // Radiobutton Group
   legend {
     margin-block-end: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
   }
@@ -282,11 +281,7 @@ fieldset {
         }
 
         &:not(.form-switch) {
-          padding-block-start: tokens.get(
-            'radio-button-small-padding-block',
-            components.$post-radio-button
-          );
-          padding-block-end: tokens.get(
+          padding-block: tokens.get(
             'radio-button-small-padding-block',
             components.$post-radio-button
           );
