@@ -231,13 +231,6 @@ fieldset {
 }
 
 // Radiobutton Group
-fieldset:has(input[type='radio']) {
-  &:has(.form-check-inline) {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
-
   legend {
     margin-block-end: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
   }
