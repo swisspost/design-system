@@ -1,5 +1,20 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.64
+
+### Major Changes
+
+- Removed the sass mixin button-color-variant because colored buttons should no longer be used. (by [@gfellerph](https://github.com/gfellerph) with [#6935](https://github.com/swisspost/design-system/pull/6935))
+
+### Minor Changes
+
+- Added the small variant class `.form-check-sm` to the form checkbox. (by [@bucknatt](https://github.com/bucknatt) with [#7211](https://github.com/swisspost/design-system/pull/7211))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.64
+
 ## 10.0.0-next.63
 
 ### Patch Changes
