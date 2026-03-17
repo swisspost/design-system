@@ -1,0 +1,17 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as listGroupStories from './list-group.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={listGroupStories} />
+
+<div className="docs-title">
+  # List group
+</div>
+
+<div className="lead">
+  Lists consist of related content grouped together and organized vertically.
+</div>
+
+<Canvas sourceState="shown" of={listGroupStories.Default} />
+
+<StylesPackageImport components={['list-group']} />
