@@ -1,5 +1,28 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.64
+
+### Minor Changes
+
+- Added icons: `2760` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7290](https://github.com/swisspost/design-system/pull/7290))
+
+- Added icons:
+  - `bulkparcels` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bundle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `digitaltransformation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `glasses` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `honeypot` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `network` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `outofswitzerland` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `scaningqrcode` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `test` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownadress` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknowncompany` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownmovedaway` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownperson` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7290](https://github.com/swisspost/design-system/pull/7290))
+
+- Added `:host` selector to make icon CSS variables accessible within component ShadowDOM. (by [@myrta2302](https://github.com/myrta2302) with [#7252](https://github.com/swisspost/design-system/pull/7252))
+
 ## 10.0.0-next.63
 
 ### Minor Changes
