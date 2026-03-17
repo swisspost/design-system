@@ -77,6 +77,13 @@ Type: `Promise<boolean>`
 |      | Default slot for placing content inside the popovercontainer. |
 
 
+## Shadow Parts
+
+| Part                              | Description |
+| --------------------------------- | ----------- |
+| `"post-popovercontainer-content"` |             |
+
+
 ## Dependencies
 
 ### Used by

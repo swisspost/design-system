@@ -73,22 +73,12 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   gap: 1rem;
   border-radius: 0;
   line-height: 1.5;
-
-  &::before {
-    content: '';
-    background-color: #050400;
-    position: absolute;
-    inset-inline: 0;
-    inset-block-end: 0;
-    height: var(--post-nav-item-border-width);
-  }
+  outline-color: currentColor !important;
+  border-bottom: var(--post-nav-item-border-width) solid currentColor;
 
   &:hover {
     @include button.button-variant-def('hover', 'primary');
-
-    &::before {
-      background-color: transparent;
-    }
+    border-bottom-color: transparent;
   }
 
   @include active-state {
