@@ -27567,7 +27567,7 @@
         }
       },
       "createdAt": "2026-02-25T06:35:48.000Z",
-      "modifiedAt": "2026-02-25T07:05:06.206Z"
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
     },
     {
       "uuid": "d39eed90-1214-11f1-86d5-0050568d2654",
@@ -27599,7 +27599,7 @@
         }
       },
       "createdAt": "2026-02-25T06:40:08.000Z",
-      "modifiedAt": "2026-02-25T07:05:06.206Z"
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
     },
     {
       "uuid": "8af521d0-1215-11f1-86d5-0050568d2654",
@@ -27627,7 +27627,7 @@
         }
       },
       "createdAt": "2026-02-25T06:45:16.000Z",
-      "modifiedAt": "2026-02-25T07:05:06.206Z"
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
     },
     {
       "uuid": "3f802820-1216-11f1-86d5-0050568d2654",
@@ -27655,7 +27655,7 @@
         }
       },
       "createdAt": "2026-02-25T06:50:18.000Z",
-      "modifiedAt": "2026-02-25T07:05:06.206Z"
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
     },
     {
       "uuid": "7a017660-1217-11f1-86d5-0050568d2654",
@@ -27683,7 +27683,7 @@
         }
       },
       "createdAt": "2026-02-25T06:59:06.000Z",
-      "modifiedAt": "2026-02-25T07:05:06.206Z"
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
     },
     {
       "uuid": "76464db0-1218-11f1-86d5-0050568d2654",
@@ -27719,7 +27719,194 @@
         }
       },
       "createdAt": "2026-02-25T07:06:09.000Z",
-      "modifiedAt": "2026-02-25T07:11:27.000Z"
+      "modifiedAt": "2026-02-26T07:05:01.396Z"
+    },
+    {
+      "uuid": "cb2949f0-187f-11f1-a5c3-0050568d2654",
+      "id": 9346931,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9346931/storage/MDA5MzQ2OTMxLzAvbWFzdGVy",
+        "keywords": [
+          "contenitore",
+          "container",
+          "conteneur",
+          "Container",
+          "Frachtcontainer",
+          "Cargo Container",
+          "Contenitore di carico",
+          "Conteneur De Fret",
+          "Transport",
+          "Trasporto",
+          "Fracht",
+          "freight",
+          "Fret",
+          "transhipment",
+          "Umschlag",
+          "Enveloppe",
+          "Busta",
+          "manutentionnaire",
+          "addetto alla manutenzione",
+          "Handling",
+          "handler"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2760.svg",
+        "basename": "2760",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-05T10:40:57.000Z",
+      "modifiedAt": "2026-03-05T10:47:40.000Z"
+    },
+    {
+      "uuid": "5a33f190-1d0d-11f1-9174-0050568d2654",
+      "id": 9438307,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438307/storage/MDA5NDM4MzA3LzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "weiblich",
+          "Female",
+          "Femmina",
+          "Féminin",
+          "Frau",
+          "Woman",
+          "Donna",
+          "Femme"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2761.svg",
+        "basename": "2761",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T05:44:21.000Z",
+      "modifiedAt": "2026-03-11T05:49:48.000Z"
+    },
+    {
+      "uuid": "3e021eb0-1d0e-11f1-9174-0050568d2654",
+      "id": 9438311,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438311/storage/MDA5NDM4MzExLzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "männlich",
+          "Male",
+          "Maschio",
+          "Masculin",
+          "Mann",
+          "Man",
+          "Uomo",
+          "Homme"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2762.svg",
+        "basename": "2762",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T05:50:43.000Z",
+      "modifiedAt": "2026-03-11T06:01:57.000Z"
+    },
+    {
+      "uuid": "ed9388e0-1d0f-11f1-9174-0050568d2654",
+      "id": 9438317,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438317/storage/MDA5NDM4MzE3LzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "gender-neutral",
+          "geschlechtsneutral",
+          "Sexe neutre",
+          "NEUTRALITÀ DI GENERE",
+          "nonbinary",
+          "nonbinär",
+          "Non binaire",
+          "non binario"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2763.svg",
+        "basename": "2763",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T06:02:47.000Z",
+      "modifiedAt": "2026-03-12T05:05:02.785Z"
+    },
+    {
+      "uuid": "7c605c50-1dfc-11f1-bfa2-0050568d2654",
+      "id": 9445449,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445449/storage/MDA5NDQ1NDQ5LzAvbWFzdGVy",
+        "keywords": [
+          "Post Visa Prepaid",
+          "Visa prépayé",
+          "Visa prepagata",
+          "Kreditkarte",
+          "Credit Card",
+          "Carta di credito",
+          "Carte De Crédit",
+          "Prepaid",
+          "Prépayé",
+          "Prepagato"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2764.svg",
+        "basename": "2764",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T10:16:08.000Z",
+      "modifiedAt": "2026-03-13T10:05:01.147Z"
     },
     {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
@@ -40960,13 +41147,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1081,
+    "success": 1086,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-02-25T07:12:46.073Z",
-  "version": "10.0.0-next.61"
+  "created": "2026-03-17T07:50:14.958Z",
+  "version": "10.0.0-next.62"
 }
