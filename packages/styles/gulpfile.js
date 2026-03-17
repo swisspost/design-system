@@ -179,7 +179,6 @@ gulp.task('sass:dev', () => {
 });
 
 /**
-
  * Watch task for scss development
  */
 gulp.task(
