@@ -32,8 +32,6 @@ This ensures independent component styles that can be reused. The mechanics of t
 
 Component file names are lower- and kebab-cased (`floating-label.scss`) and don't start with an underscore (~~`_floatingLabel.scss`~~) as they are not partial scss files - they can be compiled standalone and produce valid, usable CSS.
 
-Every component file should have a corresponding test file importing the component to check if a standalone build works.
-
 ### Dependencies/licensing
 
 Licenses of third party packages that are bundled with the output need to be included in the output and delivered with the output code.
@@ -57,20 +55,6 @@ npm run build
 
 # Rebuild on change
 npm run start
-```
-
-## Unit tests
-
-As of now, possibilities to unit-test scss files are limited. [Jest](https://jestjs.io/) along with a custom [jest transformer](./tests/jest-scss-transformer.js) is used to compile every test file. A simple [matching library](./tests/jest.scss) is available for evaluating with commands like `equal`, `not-equal` or checking if lists are ascending/descending. Tests fail if there was an error during compilation and are successful otherwise, no matter the output.
-
-- **Components**: Check if every component file is able to be built individually.
-- **Functions**: Basic unit testing is possible by checking output
-- **Mixins**: Check if mixins can be called, output eval however is not possible
-- **Placehoders**: Check if file can be compiled, output cannot be evaluated
-- **Variables**: No dedicated tests necessary
-
-```bash
-npm run test
 ```
 
 ## Integration tests
