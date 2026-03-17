@@ -25,7 +25,7 @@ input.form-control {
   &.form-control-sm {
     height: tokens.get('input-small-sizing-height');
     padding-block: tokens.get('input-non-floating-small-padding-block');
-    font-size: unset;
+    font-size: tokens.get('input-non-floating-small-font-size');
   }
 
   &:focus {
@@ -264,7 +264,7 @@ input.form-control {
   padding-inline: tokens.get('input-non-floating-small-label-padding-inline');
   padding-block: tokens.get('input-non-floating-small-label-padding-block');
   font-weight: tokens.get('input-non-floating-small-label-font-weight');
-  font-size: unset;
+  font-size: tokens.get('input-non-floating-small-font-size');
 }
 
 .form-floating {
