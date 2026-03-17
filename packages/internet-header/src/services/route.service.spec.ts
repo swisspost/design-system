@@ -4,8 +4,8 @@ import {
   getSimilarityScore,
   markActiveRoute,
 } from './route.service';
-import * as testConfig from '../assets/config/test-configuration.json';
-import { NavMainEntity } from '../models/header.model';
+import * as testConfig from '@/assets/config/test-configuration.json';
+import { NavMainEntity } from '@/models/header.model';
 
 describe('route.service.ts', () => {
   describe('getSimilarityScore', () => {

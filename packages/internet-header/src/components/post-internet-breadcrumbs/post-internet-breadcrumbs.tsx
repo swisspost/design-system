@@ -1,14 +1,14 @@
 import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { debounce } from 'throttle-debounce';
 import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { SvgIcon } from '../../utils/svg-icon.component';
-import { state } from '../../data/store';
-import { OverlayComponent } from './components/overlay.component';
+import { SvgIcon } from '@/utils/svg-icon.component';
+import { state } from '@/data/store';
 import { iframeResizer } from 'iframe-resizer';
-import { IBreadcrumbItem, IBreadcrumbOverlay } from '../../models/breadcrumbs.model';
-import { SvgSprite } from '../../utils/svg-sprite.component';
+import { IBreadcrumbItem, IBreadcrumbOverlay } from '@/models/breadcrumbs.model';
+import { SvgSprite } from '@/utils/svg-sprite.component';
+import { prefersReducedMotion } from '@/utils/utils';
+import { OverlayComponent } from './components/overlay.component';
 import { BreadcrumbList } from './components/breadcrumb-list.component';
-import { prefersReducedMotion } from '../../utils/utils';
 
 @Component({
   tag: 'swisspost-internet-breadcrumbs',

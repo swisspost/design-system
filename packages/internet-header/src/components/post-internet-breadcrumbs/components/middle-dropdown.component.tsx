@@ -1,8 +1,8 @@
 import { h } from '@stencil/core';
-import { SvgIcon } from '../../../utils/svg-icon.component';
-import { IBreadcrumbItem } from '../../../models/breadcrumbs.model';
+import { SvgIcon } from '@/utils/svg-icon.component';
+import { IBreadcrumbItem } from '@/models/breadcrumbs.model';
 import { MiddleLinks } from './middle-links.component';
-import { translate } from '../../../services/language.service';
+import { translate } from '@/services/language.service';
 
 export const MiddleDropdown = (props: {
   items: IBreadcrumbItem[];

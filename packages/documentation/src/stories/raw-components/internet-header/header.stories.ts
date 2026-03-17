@@ -1,14 +1,6 @@
-import {
-  Args,
-  StoryContext,
-  StoryObj,
-  WebComponentsRenderer,
-} from '@storybook/web-components-vite';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { fakeContent, spreadArgs } from '@/utils';
-import customConfig from './config/custom-config';
-import osFlyoutOverrides from './config/os-flyout-overrides';
-import languageSwitchOverrides from './config/language-switch-overrides';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -56,109 +48,9 @@ const meta: MetaComponent = {
         category: 'Optional props',
       },
     },
-    activeRoute: {
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Optional props',
-      },
-    },
-    configProxy: {
-      control: false,
-      table: {
-        category: 'Deprecated',
-      },
-    },
-    languageCookieKey: {
-      control: false,
-      table: {
-        category: 'Optional props',
-      },
-    },
-    logoutUrl: {
-      control: false,
-      table: {
-        category: 'Optional props',
-      },
-    },
-    languageLocalStorageKey: {
-      control: false,
-      table: {
-        category: 'Optional props',
-      },
-    },
-    login: {
-      table: {
-        category: 'Optional props',
-      },
-    },
-    meta: {
-      table: {
-        category: 'Optional props',
-      },
-    },
-    search: {
-      table: {
-        category: 'Optional props',
-      },
-    },
-    skiplinks: {
-      table: {
-        category: 'Optional props',
-      },
-    },
-    stickyness: {
-      control: {
-        labels: {
-          full: 'full (deprecated, use "main")',
-          minimal: 'minimal',
-          main: 'main',
-          none: 'none',
-        },
-      },
-      table: {
-        category: 'Optional props',
-      },
-    },
     language: {
       table: {
         category: 'Optional props',
-      },
-    },
-    customConfig: {
-      control: 'object',
-      table: {
-        category: 'Optional props',
-        subcategory: 'Overrides',
-        type: {
-          summary: 'ICustomConfig',
-          detail: JSON.stringify(customConfig),
-        },
-      },
-    },
-    languageSwitchOverrides: {
-      control: {
-        type: 'object',
-      },
-      table: {
-        category: 'Optional props',
-        subcategory: 'Overrides',
-        type: {
-          summary: 'IAvailableLanguage[]',
-          detail: JSON.stringify(languageSwitchOverrides),
-        },
-      },
-    },
-    osFlyoutOverrides: {
-      control: 'object',
-      table: {
-        category: 'Optional props',
-        subcategory: 'Overrides',
-        type: {
-          summary: 'NavMainEntity',
-          detail: JSON.stringify(osFlyoutOverrides),
-        },
       },
     },
   },
@@ -183,64 +75,3 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {};
-
-export const CssVariables = {
-  render: (args: Args, context: StoryContext<WebComponentsRenderer>) => {
-    return html`
-      <style>
-        #my-div {
-          z-index: 1000;
-          top: 0;
-          transition: var(--post-header-slide-in-transition);
-        }
-
-        swisspost-internet-header.scrolling-up + #my-div {
-          top: var(--post-header-height);
-        }
-      </style>
-      ${meta.render && meta.render(args, context)}
-      <p id="my-div" class="position-sticky palette palette-accent p-16">
-        I am sticky! I am always positioned right below the header when you scroll up and down.
-      </p>
-    `;
-  },
-};
-
-export const LanguageSwitchOverrides: Story = {
-  args: {
-    languageSwitchOverrides,
-  },
-  parameters: {
-    controls: {
-      include: ['languageSwitchOverrides'],
-    },
-  },
-};
-
-export const CustomConfig: Story = {
-  args: {
-    customConfig,
-  },
-  parameters: {
-    controls: {
-      include: ['customConfig'],
-    },
-  },
-};
-
-export const OSFlyoutOverrides: Story = {
-  args: {
-    osFlyoutOverrides,
-  },
-  parameters: {
-    controls: {
-      include: ['osFlyoutOverrides'],
-    },
-  },
-};
-
-export const CustomContent: Story = {
-  args: {
-    innerHTML: `<p class="mx-16 mb-0" slot="main">Hello, User!</p>`,
-  },
-};
