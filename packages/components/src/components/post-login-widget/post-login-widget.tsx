@@ -1,6 +1,6 @@
 import { Component, Element, Event, EventEmitter, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
+import { checkRequiredAndType, IS_BROWSER } from '@/utils';
 import { nanoid } from 'nanoid';
 
 type SessionData = {
@@ -106,6 +106,11 @@ export class PostLoginWidget {
   }
 
   async componentDidLoad() {
+    if (!IS_BROWSER) {
+      this.isLoading = false;
+      return;
+    }
+
     try {
       const response = await fetch(PostLoginWidget.SUBSCRIBE_URL, { credentials: 'include' });
       const json = await response.json();
