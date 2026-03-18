@@ -318,7 +318,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('hides the tooltip programmatically', () => {
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       shouldBeOpen();
