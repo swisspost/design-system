@@ -228,11 +228,12 @@ input.form-control {
             #{tokens.get('post-datepicker-input-icons-gap-inline', components.$post-datepicker)} +
             #{tokens.get('input-sizing-icon')} * 2 + #{tokens.get('input-padding-inline-end')}
         );
-        background-position: top 50% right calc(
-          #{tokens.get('input-validation-icon-position-inline-end')} +
-            #{tokens.get('post-datepicker-input-icons-gap-inline', components.$post-datepicker)} +
-            #{tokens.get('input-sizing-icon')}
-        );
+        background-position: top 50% right
+          calc(
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+              #{tokens.get('post-datepicker-input-icons-gap-inline', components.$post-datepicker)} +
+              #{tokens.get('input-sizing-icon')}
+          );
       }
     }
   }
@@ -349,7 +350,7 @@ input.form-control {
     pointer-events: none;
     background-image: var(--post-signal-icon-error);
   }
-  
+
   &:has(> input.form-control[type='time'].is-valid:not(:disabled))::after,
   &:has(> input.form-control[type='time']:-webkit-autofill.is-valid)::after,
   &:has(> input.form-control[type='time'].is-invalid:not(:disabled))::after,
