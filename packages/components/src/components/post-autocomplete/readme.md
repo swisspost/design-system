@@ -12,6 +12,13 @@
 | `options`         | `options`          | Optional idref to connect the autocomplete with the options dropdown if not nested | `string`  | `undefined` |
 
 
+## Events
+
+| Event            | Description | Type                  |
+| ---------------- | ----------- | --------------------- |
+| `filteringEvent` |             | `CustomEvent<string>` |
+
+
 ## Slots
 
 | Slot        | Description                                         |

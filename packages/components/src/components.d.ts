@@ -407,21 +407,17 @@ export namespace Components {
     }
     interface PostListbox {
         /**
-          * Closes the listbox
-         */
-        "close": () => Promise<void>;
-        /**
           * Uses the internal default filtering mode to filter the list of options. An empty string resets the filter to it's original state.
          */
         "filter": (query: string) => Promise<void>;
         /**
+          * Closes the listbox
+         */
+        "hide": () => Promise<void>;
+        /**
           * Navigates the listbox options in the specified direction and scrolls the active option into view.
          */
         "navigate": (direction: "up" | "down" | "first" | "last") => Promise<void>;
-        /**
-          * Opens the listbox
-         */
-        "open": () => Promise<void>;
         /**
           * Resets the filter to show all options
          */
@@ -430,6 +426,10 @@ export namespace Components {
           * Selects the currently highlighted option in the listbox and scrolls it into view.
          */
         "selectActive": () => Promise<void>;
+        /**
+          * Opens the listbox
+         */
+        "show": () => Promise<void>;
     }
     interface PostListboxOption {
         /**
@@ -765,6 +765,10 @@ export namespace Components {
         "for": string;
     }
 }
+export interface PostAutocompleteCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostAutocompleteElement;
+}
 export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostBannerElement;
@@ -830,7 +834,18 @@ declare global {
         prototype: HTMLPostAccordionItemElement;
         new (): HTMLPostAccordionItemElement;
     };
+    interface HTMLPostAutocompleteElementEventMap {
+        "filteringEvent": string;
+    }
     interface HTMLPostAutocompleteElement extends Components.PostAutocomplete, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostAutocompleteElementEventMap>(type: K, listener: (this: HTMLPostAutocompleteElement, ev: PostAutocompleteCustomEvent<HTMLPostAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostAutocompleteElementEventMap>(type: K, listener: (this: HTMLPostAutocompleteElement, ev: PostAutocompleteCustomEvent<HTMLPostAutocompleteElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostAutocompleteElement: {
         prototype: HTMLPostAutocompleteElement;
@@ -1313,6 +1328,7 @@ declare namespace LocalJSX {
           * @default 0
          */
         "filterThreshold"?: number;
+        "onFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
         /**
           * Optional idref to connect the autocomplete with the options dropdown if not nested
          */

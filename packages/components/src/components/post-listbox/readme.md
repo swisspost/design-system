@@ -12,16 +12,6 @@
 
 ## Methods
 
-### `close() => Promise<void>`
-
-Closes the listbox
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 ### `filter(query: string) => Promise<void>`
 
 Uses the internal default filtering mode to filter the list of options.
@@ -32,6 +22,16 @@ An empty string resets the filter to it's original state.
 | Name    | Type     | Description |
 | ------- | -------- | ----------- |
 | `query` | `string` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `hide() => Promise<void>`
+
+Closes the listbox
 
 #### Returns
 
@@ -55,16 +55,6 @@ Type: `Promise<void>`
 
 
 
-### `open() => Promise<void>`
-
-Opens the listbox
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 ### `resetFilter() => Promise<void>`
 
 Resets the filter to show all options
@@ -78,6 +68,16 @@ Type: `Promise<void>`
 ### `selectActive() => Promise<void>`
 
 Selects the currently highlighted option in the listbox and scrolls it into view.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `show() => Promise<void>`
+
+Opens the listbox
 
 #### Returns
 

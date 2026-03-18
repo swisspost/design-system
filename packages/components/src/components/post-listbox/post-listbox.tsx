@@ -18,9 +18,9 @@ import { EventFrom } from '@/utils';
   shadow: true,
 })
 export class PostListbox {
-  private options: HTMLPostListboxOptionElement[] = [];
   private highlightedIndex: number = -1;
   private visibleOptions: HTMLPostListboxOptionElement[] = [];
+  private readonly diacriticPattern = /[\u0300-\u036f]/u;
   @Element() host: HTMLPostListboxElement;
   @State() private isOpen: boolean = false;
 
@@ -29,12 +29,15 @@ export class PostListbox {
    */
   @Event() postOptionActive: EventEmitter<string | null>;
 
+  private get options() {
+    return Array.from(this.host.querySelectorAll('post-listbox-option'));
+  }
+
   componentWillLoad() {
     this.registerOptions();
   }
 
   private registerOptions() {
-    this.options = Array.from(this.host.querySelectorAll('post-listbox-option'));
     this.visibleOptions = this.options;
   }
 
@@ -55,13 +58,13 @@ export class PostListbox {
 
   /** Opens the listbox */
   @Method()
-  async open() {
+  async show() {
     this.isOpen = true;
   }
 
   /** Closes the listbox */
   @Method()
-  async close() {
+  async hide() {
     this.isOpen = false;
   }
 
@@ -70,12 +73,19 @@ export class PostListbox {
   @Method()
   async filter(query: string) {
     this.visibleOptions = this.options.filter(option => {
-      const label = (option.textContent || option.value || '').trim();
-      const isVisible = label.toLocaleLowerCase().includes(query.toLocaleLowerCase());
+      const normalizedText = this.normalizeText(option.textContent);
+      const normalizedValue = this.normalizeText(option.value);
+      const normalizedQuery = this.normalizeText(query);
+      const isVisible =
+        normalizedValue.includes(normalizedQuery) || normalizedText.includes(normalizedQuery);
       option.hidden = !isVisible;
       return isVisible;
     });
     this.clearActive();
+  }
+
+  private normalizeText(text: string) {
+    return text.trim().normalize('NFD').replace(this.diacriticPattern, '').toLocaleLowerCase();
   }
 
   /** Resets the filter to show all options */
