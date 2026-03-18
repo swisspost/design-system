@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event            | Description | Type                  |
-| ---------------- | ----------- | --------------------- |
-| `filteringEvent` |             | `CustomEvent<string>` |
+| Event                | Description                                                     | Type                  |
+| -------------------- | --------------------------------------------------------------- | --------------------- |
+| `postFilteringEvent` | Cancelable event emitted when the input value is to be filtered | `CustomEvent<string>` |
 
 
 ## Slots

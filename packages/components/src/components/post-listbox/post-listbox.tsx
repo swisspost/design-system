@@ -72,10 +72,10 @@ export class PostListbox {
    * An empty string resets the filter to it's original state. */
   @Method()
   async filter(query: string) {
+    const normalizedQuery = this.normalizeText(query);
     this.visibleOptions = this.options.filter(option => {
       const normalizedText = this.normalizeText(option.textContent);
       const normalizedValue = this.normalizeText(option.value);
-      const normalizedQuery = this.normalizeText(query);
       const isVisible =
         normalizedValue.includes(normalizedQuery) || normalizedText.includes(normalizedQuery);
       option.hidden = !isVisible;
@@ -122,7 +122,7 @@ export class PostListbox {
         break;
     }
     const activeOption = this.visibleOptions[this.highlightedIndex];
-    activeOption.scrollIntoView({ block: 'nearest' });
+    activeOption.scrollIntoView({ behavior: 'smooth', block: 'end' });
     activeOption.highlighted = true;
     this.postOptionActive.emit(activeOption.id);
   }
@@ -135,7 +135,6 @@ export class PostListbox {
     if (this.highlightedIndex >= 0) {
       const activeOption = this.visibleOptions[this.highlightedIndex];
       this.setSelectedByValue(activeOption.value);
-      activeOption.scrollIntoView({ block: 'nearest' });
       this.host.dispatchEvent(
         new CustomEvent('postOptionSelected', { bubbles: true, detail: activeOption.value }),
       );

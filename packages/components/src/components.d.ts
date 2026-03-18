@@ -835,7 +835,7 @@ declare global {
         new (): HTMLPostAccordionItemElement;
     };
     interface HTMLPostAutocompleteElementEventMap {
-        "filteringEvent": string;
+        "postFilteringEvent": string;
     }
     interface HTMLPostAutocompleteElement extends Components.PostAutocomplete, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostAutocompleteElementEventMap>(type: K, listener: (this: HTMLPostAutocompleteElement, ev: PostAutocompleteCustomEvent<HTMLPostAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1328,7 +1328,10 @@ declare namespace LocalJSX {
           * @default 0
          */
         "filterThreshold"?: number;
-        "onFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
+        /**
+          * Cancelable event emitted when the input value is to be filtered
+         */
+        "onPostFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
         /**
           * Optional idref to connect the autocomplete with the options dropdown if not nested
          */

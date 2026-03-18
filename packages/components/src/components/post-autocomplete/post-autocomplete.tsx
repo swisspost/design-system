@@ -12,11 +12,6 @@ import { debounce } from '@/utils';
   shadow: true,
 })
 export class PostAutocomplete {
-  private readonly onOptionSelected = (event: Event) =>
-    this.handleOptionSelected(event as CustomEvent<string>);
-  private readonly onOptionActive = (event: Event) =>
-    this.handleOptionActive(event as CustomEvent<string | null>);
-  private readonly onClearClick = () => this.clearInput();
   private readonly debouncedHandleInput = debounce((event: Event) => this.handleInput(event), 250);
   @Element() host: HTMLPostAutocompleteElement;
 
@@ -31,7 +26,8 @@ export class PostAutocomplete {
 
   @State() inputValue: string = '';
 
-  @Event({ cancelable: true }) filteringEvent: EventEmitter<string>;
+  /** Cancelable event emitted when the input value is to be filtered */
+  @Event({ cancelable: true }) postFilteringEvent: EventEmitter<string>;
 
   private get inputElement() {
     return this.host.querySelector('input');
@@ -69,6 +65,7 @@ export class PostAutocomplete {
       this.inputElement.addEventListener('input', this.debouncedHandleInput);
       this.inputElement.addEventListener('keydown', this.handleKeyDown);
       this.inputElement.addEventListener('blur', this.handleOnBlur);
+      this.inputElement.addEventListener('click', this.showListBox);
     }
   }
 
@@ -77,20 +74,21 @@ export class PostAutocomplete {
       this.inputElement.removeEventListener('input', this.debouncedHandleInput);
       this.inputElement.removeEventListener('keydown', this.handleKeyDown);
       this.inputElement.removeEventListener('blur', this.handleOnBlur);
+      this.inputElement.removeEventListener('click', this.showListBox);
     }
   }
 
   private attachListboxListeners() {
     if (this.listBoxElement) {
-      this.listBoxElement.addEventListener('postOptionSelected', this.onOptionSelected);
-      this.listBoxElement.addEventListener('postOptionActive', this.onOptionActive);
+      this.listBoxElement.addEventListener('postOptionSelected', this.handleOptionSelected);
+      this.listBoxElement.addEventListener('postOptionActive', this.handleOptionActive);
     }
   }
 
   private detachListboxListeners() {
     if (this.listBoxElement) {
-      this.listBoxElement.removeEventListener('postOptionSelected', this.onOptionSelected);
-      this.listBoxElement.removeEventListener('postOptionActive', this.onOptionActive);
+      this.listBoxElement.removeEventListener('postOptionSelected', this.handleOptionSelected);
+      this.listBoxElement.removeEventListener('postOptionActive', this.handleOptionActive);
     }
   }
 
@@ -105,7 +103,7 @@ export class PostAutocomplete {
     const { value } = event.target as HTMLInputElement;
     const query = value.trim();
     if (query && query.length >= this.filterThreshold) {
-      const { defaultPrevented } = this.filteringEvent.emit(query);
+      const { defaultPrevented } = this.postFilteringEvent.emit(query);
       if (!defaultPrevented) {
         this.listBoxElement.filter(query);
       }
@@ -156,50 +154,50 @@ export class PostAutocomplete {
     }
   };
 
-  private handleOptionSelected(e: CustomEvent<string>) {
+  private readonly handleOptionSelected = (e: CustomEvent<string>) => {
     const value = e.detail;
     this.inputElement.value = value;
     this.inputValue = value;
     this.hideListBox();
-  }
+  };
 
-  private handleOptionActive(e: CustomEvent<string | null>) {
+  private readonly handleOptionActive = (e: CustomEvent<string | null>) => {
     const value = e.detail;
     if (value) {
       this.inputElement.setAttribute('aria-activedescendant', value);
     } else {
       this.inputElement.removeAttribute('aria-activedescendant');
     }
-  }
+  };
 
-  private hideListBox() {
+  private readonly hideListBox = () => {
     this.listBoxElement.hide();
     this.inputElement.ariaExpanded = 'false';
     this.host.removeAttribute('open');
     this.inputElement.removeAttribute('aria-activedescendant');
-  }
+  };
 
-  private showListBox() {
+  private readonly showListBox = () => {
     this.listBoxElement.show();
     this.inputElement.ariaExpanded = 'true';
     this.host.setAttribute('open', '');
-  }
+  };
 
-  private clearInput() {
+  private readonly clearInput = () => {
     if (this.inputElement) {
       this.inputElement.value = '';
       this.inputValue = '';
       this.listBoxElement.resetFilter();
       this.hideListBox();
     }
-  }
+  };
 
   render() {
     return (
       <Host data-version={version}>
         <slot />
         {this.clearable && this.inputValue && (
-          <button type="button" class="autocomplete-clear" onClick={this.onClearClick}>
+          <button type="button" class="autocomplete-clear" onClick={this.clearInput}>
             <post-icon aria-hidden="true" name="closex"></post-icon>
           </button>
         )}
