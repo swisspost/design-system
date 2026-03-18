@@ -3,10 +3,10 @@ import {
   PostAccordionItem,
   PostAvatar,
   PostBanner,
-  PostCardControl,
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
+  PostDatepicker,
   PostLinkarea,
   PostMenu,
   PostMenuItem,
@@ -73,9 +73,6 @@ export default function Home() {
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </PostBanner>
 
-      <h2>Card Control</h2>
-      <PostCardControl label="Label" type="checkbox" />
-
       <h2>Close Button</h2>
       <PostClosebutton>Close button</PostClosebutton>
 
@@ -96,6 +93,20 @@ export default function Home() {
           Contentus momentus vero siteos et accusam iretea et justo.
         </p>
       </PostCollapsible>
+
+      <h2>Datepicker</h2>
+      <PostDatepicker
+        textToggleCalendar="Open calendar"
+        textNextDecade="Next decade"
+        textNextMonth="Next month"
+        textNextYear="Next year"
+        textPreviousDecade="Previous decade"
+        textPreviousMonth="Previous month"
+        textPreviousYear="Previous year"
+        textSwitchYear="Switch to year view"
+      >
+        <input type="text" />
+      </PostDatepicker>
 
       <h2>Icons</h2>
 

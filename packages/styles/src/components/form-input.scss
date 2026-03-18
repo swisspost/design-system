@@ -35,6 +35,12 @@ input.form-control {
   padding-block: tokens.get('input-standalone-padding-block');
   height: tokens.get('input-sizing-height');
 
+  &.form-control-sm {
+    height: tokens.get('input-small-sizing-height');
+    padding-block: tokens.get('input-non-floating-small-padding-block');
+    font-size: tokens.get('input-non-floating-small-font-size');
+  }
+
   &:focus {
     border-color: tokens.get('input-color-selected-border');
     background-color: tokens.get('input-color-selected-bg');
@@ -302,6 +308,15 @@ input.form-control {
           #{tokens.get('input-validation-icon-position-inline-end')} +
           #{tokens.get('input-sizing-icon')}
       );
+
+      &.form-control-sm {
+        background-size: tokens.get('input-small-sizing-icon') tokens.get('input-small-sizing-icon');
+        padding-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} +
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-small-sizing-icon')}
+        );
+      }
     }
   }
 }
@@ -313,6 +328,14 @@ input.form-control {
 
 .form-label:has(+ input.form-control[disabled]) {
   color: tokens.get('input-color-disabled-fg');
+}
+
+.form-label:has(+ input.form-control-sm) {
+  display: block;
+  padding-inline: tokens.get('input-non-floating-small-label-padding-inline');
+  padding-block: tokens.get('input-non-floating-small-label-padding-block');
+  font-weight: tokens.get('input-non-floating-small-label-font-weight');
+  font-size: tokens.get('input-non-floating-small-font-size');
 }
 
 .form-floating {
@@ -392,7 +415,7 @@ input.form-control {
       color: transparent;
       opacity: 0;
 
-      /* 
+      /*
        * Does not work in firefox because it's non-standard behaviour.
        * Implemented as progressive enhancement for the browsers that support it.
        * https://stackoverflow.com/questions/16381895/firefox-transition-placeholder-opacity
