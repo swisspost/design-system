@@ -122,12 +122,23 @@ export class PostLoginWidget {
     this.postLogout.emit(this.logoutUrl);
   };
 
-  render() {
-    if (this.isLoading) return <Host data-version={version} />;
+  private renderLoginLink() {
+    return (
+      <a href={this.loginUrl}>
+        <span>Login</span>
+        <post-icon name="login" aria-hidden="true" />
+      </a>
+    );
+  }
 
+  render() {
     return (
       <Host data-version={version}>
-        {this.sessionData ? (
+        {!this.sessionData ? (
+          // Show login link while loading or if not logged in
+          this.renderLoginLink()
+        ) : (
+          // Show user menu once logged in
           <div class="user-menu-wrapper">
             <post-menu-trigger for={this.menuId}>
               <button class="btn btn-link" type="button">
@@ -178,11 +189,6 @@ export class PostLoginWidget {
               </post-menu-item>
             </post-menu>
           </div>
-        ) : (
-          <a href={this.loginUrl}>
-            <span>Login</span>
-            <post-icon name="login" aria-hidden="true" />
-          </a>
         )}
       </Host>
     );
