@@ -28,6 +28,7 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     label: {
@@ -46,6 +47,25 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the input. A small input cannot have a floating label.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          small: 'Small',
+        },
+      },
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
+      options: ['null', 'small'],
       table: {
         category: 'General',
       },
@@ -140,6 +160,10 @@ const meta: MetaComponent = {
           'is-invalid': 'Invalid',
         },
       },
+      if: {
+        arg: 'disabled',
+        truthy: false,
+      },
       options: ['null', 'is-valid', 'is-invalid'],
       table: {
         category: 'States',
@@ -170,7 +194,9 @@ type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
   const id = context.id ?? `ExampleInput_${context.name}`;
-  const classes = ['form-control', args.validation].filter(c => c && c !== 'null').join(' ');
+  const classes = ['form-control', args.validation, args.size === 'small' && 'form-control-sm']
+    .filter(c => c && c !== 'null')
+    .join(' ');
 
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
 
@@ -227,6 +253,13 @@ export const FloatingLabel: Story = {
   args: {
     floatingLabel: true,
     hint: '',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    floatingLabel: false,
+    size: 'small',
   },
 };
 
