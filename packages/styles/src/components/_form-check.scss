@@ -32,7 +32,8 @@
   }
 
   // Checkbox
-  &:has(input[type='checkbox']):not(.form-switch):not(.form-check-sm) {
+  &:not(.form-check-sm):has(input[type='checkbox']):not(.form-switch) {
+    gap: tokens.get('checkbox-gap-inline-text-start', components.$post-checkbox);
     padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
 
     fieldset > & {
@@ -68,6 +69,16 @@
           color: GrayText;
         }
       }
+    }
+  }
+
+  // Small variant
+  &.form-check-sm:has(input[type='checkbox']):not(.form-switch) {
+    padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
+
+    > input[type='checkbox'] ~ label {
+      font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
+      padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
     }
   }
 
@@ -143,18 +154,6 @@
         @include utility-mx.high-contrast-mode() {
           color: GrayText;
         }
-      }
-    }
-  }
-
-  // Small variant (Checkbox & Radio Button)
-  &.form-check-sm:not(.form-switch) {
-    &:has(input[type='checkbox']) {
-      padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
-
-      > input[type='checkbox'] ~ label {
-        font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
-        padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
       }
     }
   }
