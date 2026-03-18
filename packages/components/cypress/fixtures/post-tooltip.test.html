@@ -51,20 +51,24 @@
       ><span id="non-focusable-span">non-focusable</span></post-tooltip-trigger
     >
 
-    <!-- arrow and method triggers -->
+    <!-- arrow prop: verifies has-arrow class is applied to post-popovercontainer -->
     <post-tooltip-trigger for="tooltip-arrow">
       <button id="arrow-trigger">arrow trigger</button>
     </post-tooltip-trigger>
+
+    <!-- methods: used to test show(), hide(), toggle() and the open prop reflection -->
     <post-tooltip-trigger for="tooltip-methods">
       <button id="method-trigger">method trigger</button>
     </post-tooltip-trigger>
+
     <post-tooltip id="tooltip-arrow" arrow>Arrow tooltip</post-tooltip>
     <post-tooltip id="tooltip-methods" placement="bottom">Methods tooltip</post-tooltip>
 
     <!-- layout test section — tightly packed so tooltip visually overlaps neighbors -->
+    <!-- All elements here must not shift position (top/left) when the tooltip is shown -->
     <div class="tooltip-layout-container">
 
-      <!-- stepper directly above the trigger row -->
+      <!-- stepper directly above the trigger row — must not shift vertically -->
       <post-stepper
         id="layout-stepper"
         current-index="1"
@@ -78,7 +82,7 @@
         <post-stepper-item>Step 3</post-stepper-item>
       </post-stepper>
 
-      <!-- tabs directly above the trigger row -->
+      <!-- tabs directly above the trigger row — must not shift vertically -->
       <post-tabs id="layout-tabs" class="tooltip-layout-spacing">
         <post-tab-item name="tab-one">Tab one</post-tab-item>
         <post-tab-item name="tab-two">Tab two</post-tab-item>
@@ -88,7 +92,7 @@
         <post-tab-panel for="tab-three">Content of tab three</post-tab-panel>
       </post-tabs>
 
-      <!-- accordion directly above the trigger -->
+      <!-- accordion directly above the trigger — must not shift vertically -->
       <post-accordion heading-level="3" class="tooltip-layout-spacing">
         <post-accordion-item id="layout-accordion-item">
           <span slot="header">Accordion above trigger</span>
@@ -96,18 +100,19 @@
         </post-accordion-item>
       </post-accordion>
 
-      <!-- paragraph directly above trigger -->
+      <!-- paragraph directly above trigger — must not reflow -->
       <p id="paragraph-before">
         Paragraph before trigger — must not reflow.
       </p>
 
-      <!-- trigger row: trigger flanked by dense content on both sides -->
+      <!-- trigger row: trigger flanked by dense inline content on both sides -->
       <div class="tooltip-trigger-row">
         <span id="text-before-trigger">Text before</span>
         <post-tooltip-trigger for="tooltip-layout">
           <button id="layout-trigger">trigger</button>
         </post-tooltip-trigger>
         <span id="text-after-trigger">Text after — must not shift.</span>
+        <!-- reference boxes: fixed-size siblings that must not shift when tooltip opens -->
         <div
           id="reference-box"
           class="tooltip-reference-box"
@@ -120,20 +125,21 @@
         >
           ref 2
         </div>
+        <!-- second trigger: used to test layout shift on siblings from a different anchor point -->
         <post-tooltip-trigger for="tooltip-layout">
           <button id="layout-trigger-2">trigger 2</button>
         </post-tooltip-trigger>
       </div>
 
-      <!-- paragraph directly below trigger -->
+      <!-- paragraph directly below trigger — must not shift or reflow -->
       <p id="paragraph-after">
         Paragraph after trigger — must not shift.
       </p>
 
-      <!-- rating directly below trigger -->
+      <!-- rating directly below trigger — must not shift vertically -->
       <post-rating id="layout-rating" label="Rating" class="tooltip-layout-spacing"></post-rating>
 
-      <!-- pagination directly below trigger -->
+      <!-- pagination directly below trigger — must not shift vertically -->
       <post-pagination
         id="layout-pagination"
         page="1"
@@ -148,7 +154,7 @@
         class="tooltip-layout-spacing"
       ></post-pagination>
 
-      <!-- form input directly below -->
+      <!-- form input directly below — must not shift vertically -->
       <div>
         <label for="test-input">Label</label>
         <input id="test-input" type="text" placeholder="Should not move" />

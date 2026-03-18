@@ -5,21 +5,12 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   const shouldBeOpen = () => cy.get('.\\:popover-open, :popover-open').should('exist');
   const shouldBeClosed = (alias: string) => cy.get(alias).should('not.be.visible');
 
-  // Suppress ResizeObserver errors that fire during animations in every test
+  // Suppress ResizeObserver errors that fire during animations in every test.
+  // cy.on (not Cypress.on) binds to the window of the current test's page,
+  // which is what cy.visit() creates. Cypress.on would run too early.
   beforeEach(() => {
-    cy.window().then(win => {
-      const OriginalResizeObserver = win.ResizeObserver;
-      win.ResizeObserver = class extends OriginalResizeObserver {
-        constructor(callback: ResizeObserverCallback) {
-          super((entries, observer) => {
-            try {
-              callback(entries, observer);
-            } catch (e) {
-              // suppress
-            }
-          });
-        }
-      };
+    cy.on('uncaught:exception', err => {
+      if (err.message.includes('ResizeObserver loop')) return false;
     });
   });
 
@@ -305,7 +296,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
           ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
-      cy.get('.\\:popover-open, :popover-open').should('have.length', 1);
+      shouldBeOpen();
     });
   });
 
@@ -410,6 +401,20 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     const snapRect = (selector: string) =>
       cy.get(selector).then($el => $el[0].getBoundingClientRect());
 
+    // Asserts that an element does not shift position (top + left) when the tooltip is shown.
+    // Pass triggerId to use a different trigger than the default #layout-trigger.
+    const assertNoLayoutShift = (selector: string, triggerId?: string) => {
+      snapRect(selector).then(before => {
+        showLayoutTooltip(triggerId);
+        cy.get(selector).then($el => {
+          const after = $el[0].getBoundingClientRect();
+          expect(after.top).to.equal(before.top);
+          expect(after.left).to.equal(before.left);
+        });
+        hideLayoutTooltip();
+      });
+    };
+
     it('does not shift the stepper above the trigger', () => {
       snapRect('#layout-stepper').then(before => {
         showLayoutTooltip();
@@ -436,17 +441,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       });
     });
 
-    it('does not shift the accordion above the trigger', () => {
-      snapRect('#layout-accordion-item').then(before => {
-        showLayoutTooltip();
-        cy.get('#layout-accordion-item').then($el => {
-          const after = $el[0].getBoundingClientRect();
-          expect(after.top).to.equal(before.top);
-          expect(after.left).to.equal(before.left);
-        });
-        hideLayoutTooltip();
-      });
-    });
+    it('does not shift the accordion above the trigger', () => assertNoLayoutShift('#layout-accordion-item'));
 
     it('does not reflow paragraph text before the trigger', () => {
       snapRect('#paragraph-before').then(before => {
@@ -472,77 +467,17 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       });
     });
 
-    it('does not shift inline text after the trigger', () => {
-      snapRect('#text-after-trigger').then(before => {
-        showLayoutTooltip();
-        cy.get('#text-after-trigger').then($el => {
-          const after = $el[0].getBoundingClientRect();
-          expect(after.top).to.equal(before.top);
-          expect(after.left).to.equal(before.left);
-        });
-        hideLayoutTooltip();
-      });
-    });
+    it('does not shift inline text after the trigger', () => assertNoLayoutShift('#text-after-trigger'));
 
-    it('does not shift sibling reference boxes when tooltip is shown', () => {
-      snapRect('#reference-box').then(before => {
-        showLayoutTooltip('#layout-trigger-2');
-        cy.get('#reference-box').then($el => {
-          const after = $el[0].getBoundingClientRect();
-          expect(after.top).to.equal(before.top);
-          expect(after.left).to.equal(before.left);
-        });
-        hideLayoutTooltip();
-      });
-    });
+    it('does not shift sibling reference boxes when tooltip is shown', () => assertNoLayoutShift('#reference-box', '#layout-trigger-2'));
 
-    it('does not shift a second sibling reference box when tooltip is shown', () => {
-      snapRect('#reference-box-2').then(before => {
-        showLayoutTooltip('#layout-trigger-2');
-        cy.get('#reference-box-2').then($el => {
-          const after = $el[0].getBoundingClientRect();
-          expect(after.top).to.equal(before.top);
-          expect(after.left).to.equal(before.left);
-        });
-        hideLayoutTooltip();
-      });
-    });
+    it('does not shift a second sibling reference box when tooltip is shown', () => assertNoLayoutShift('#reference-box-2', '#layout-trigger-2'));
 
-    it('does not shift the rating below the trigger', () => {
-      snapRect('#layout-rating').then(before => {
-        showLayoutTooltip();
-        cy.get('#layout-rating').then($el => {
-          const after = $el[0].getBoundingClientRect();
-          expect(after.top).to.equal(before.top);
-          expect(after.left).to.equal(before.left);
-        });
-        hideLayoutTooltip();
-      });
-    });
+    it('does not shift the rating below the trigger', () => assertNoLayoutShift('#layout-rating'));
 
-    it('does not shift the pagination below the trigger', () => {
-      snapRect('#layout-pagination').then(before => {
-        showLayoutTooltip();
-        cy.get('#layout-pagination').then($el => {
-          const after = $el[0].getBoundingClientRect();
-          expect(after.top).to.equal(before.top);
-          expect(after.left).to.equal(before.left);
-        });
-        hideLayoutTooltip();
-      });
-    });
+    it('does not shift the pagination below the trigger', () => assertNoLayoutShift('#layout-pagination'));
 
-    it('does not shift the form input below the trigger', () => {
-      snapRect('#test-input').then(before => {
-        showLayoutTooltip();
-        cy.get('#test-input').then($el => {
-          const after = $el[0].getBoundingClientRect();
-          expect(after.top).to.equal(before.top);
-          expect(after.left).to.equal(before.left);
-        });
-        hideLayoutTooltip();
-      });
-    });
+    it('does not shift the form input below the trigger', () => assertNoLayoutShift('#test-input'));
 
     it('does not change the trigger element dimensions when tooltip is shown', () => {
       snapRect('#layout-trigger').then(before => {
