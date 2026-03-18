@@ -8,6 +8,32 @@
       href="../../node_modules/@swisspost/design-system-styles/post-default.css"
       rel="stylesheet"
     />
+    <style>
+      .tooltip-layout-container {
+        padding: 24px;
+      }
+      .tooltip-layout-spacing {
+        margin-bottom: 4px;
+      }
+      .tooltip-trigger-row {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .tooltip-reference-box {
+        display: inline-block;
+        width: 80px;
+        height: 32px;
+        background: lightgray;
+      }
+      #paragraph-before {
+        margin: 0 0 4px;
+      }
+      #paragraph-after {
+        margin: 4px 0;
+      }
+    </style>
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
   <body>
@@ -36,7 +62,7 @@
     <post-tooltip id="tooltip-methods" placement="bottom">Methods tooltip</post-tooltip>
 
     <!-- layout test section — tightly packed so tooltip visually overlaps neighbors -->
-    <div style="padding: 24px;">
+    <div class="tooltip-layout-container">
 
       <!-- stepper directly above the trigger row -->
       <post-stepper
@@ -45,7 +71,7 @@
         text-completed-step="Completed step"
         text-current-step="Current step"
         text-step-number="Step #number:"
-        style="margin-bottom: 4px;"
+        class="tooltip-layout-spacing"
       >
         <post-stepper-item>Step 1</post-stepper-item>
         <post-stepper-item>Step 2</post-stepper-item>
@@ -53,7 +79,7 @@
       </post-stepper>
 
       <!-- tabs directly above the trigger row -->
-      <post-tabs id="layout-tabs" style="margin-bottom: 4px;">
+      <post-tabs id="layout-tabs" class="tooltip-layout-spacing">
         <post-tab-item name="tab-one">Tab one</post-tab-item>
         <post-tab-item name="tab-two">Tab two</post-tab-item>
         <post-tab-item name="tab-three">Tab three</post-tab-item>
@@ -63,7 +89,7 @@
       </post-tabs>
 
       <!-- accordion directly above the trigger -->
-      <post-accordion heading-level="3" style="margin-bottom: 4px;">
+      <post-accordion heading-level="3" class="tooltip-layout-spacing">
         <post-accordion-item id="layout-accordion-item">
           <span slot="header">Accordion above trigger</span>
           <p id="accordion-body-text">Accordion body content.</p>
@@ -71,12 +97,12 @@
       </post-accordion>
 
       <!-- paragraph directly above trigger -->
-      <p id="paragraph-before" style="margin: 0 0 4px;">
+      <p id="paragraph-before">
         Paragraph before trigger — must not reflow.
       </p>
 
       <!-- trigger row: trigger flanked by dense content on both sides -->
-      <div style="display: flex; align-items: center; gap: 4px; flex-wrap: wrap;">
+      <div class="tooltip-trigger-row">
         <span id="text-before-trigger">Text before</span>
         <post-tooltip-trigger for="tooltip-layout">
           <button id="layout-trigger">trigger</button>
@@ -84,13 +110,13 @@
         <span id="text-after-trigger">Text after — must not shift.</span>
         <div
           id="reference-box"
-          style="display: inline-block; width: 80px; height: 32px; background: lightgray;"
+          class="tooltip-reference-box"
         >
           ref 1
         </div>
         <div
           id="reference-box-2"
-          style="display: inline-block; width: 80px; height: 32px; background: lightgray;"
+          class="tooltip-reference-box"
         >
           ref 2
         </div>
@@ -100,12 +126,12 @@
       </div>
 
       <!-- paragraph directly below trigger -->
-      <p id="paragraph-after" style="margin: 4px 0;">
+      <p id="paragraph-after">
         Paragraph after trigger — must not shift.
       </p>
 
       <!-- rating directly below trigger -->
-      <post-rating id="layout-rating" label="Rating" style="margin-bottom: 4px;"></post-rating>
+      <post-rating id="layout-rating" label="Rating" class="tooltip-layout-spacing"></post-rating>
 
       <!-- pagination directly below trigger -->
       <post-pagination
@@ -119,7 +145,7 @@
         text-page="Page"
         text-first="First page"
         text-last="Last page"
-        style="margin-bottom: 4px;"
+        class="tooltip-layout-spacing"
       ></post-pagination>
 
       <!-- form input directly below -->
