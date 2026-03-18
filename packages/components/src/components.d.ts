@@ -407,6 +407,10 @@ export namespace Components {
     }
     interface PostListbox {
         /**
+          * Clears the currently selected option
+         */
+        "clearSelection": () => Promise<void>;
+        /**
           * Uses the internal default filtering mode to filter the list of options. An empty string resets the filter to it's original state.
          */
         "filter": (query: string) => Promise<void>;
@@ -418,10 +422,6 @@ export namespace Components {
           * Navigates the listbox options in the specified direction and scrolls the active option into view.
          */
         "navigate": (direction: "up" | "down" | "first" | "last") => Promise<void>;
-        /**
-          * Resets the filter to show all options
-         */
-        "resetFilter": () => Promise<void>;
         /**
           * Selects the currently highlighted option in the listbox and scrolls it into view.
          */

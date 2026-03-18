@@ -12,6 +12,16 @@
 
 ## Methods
 
+### `clearSelection() => Promise<void>`
+
+Clears the currently selected option
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `filter(query: string) => Promise<void>`
 
 Uses the internal default filtering mode to filter the list of options.
@@ -48,16 +58,6 @@ Navigates the listbox options in the specified direction and scrolls the active 
 | Name        | Type                                  | Description |
 | ----------- | ------------------------------------- | ----------- |
 | `direction` | `"up" \| "down" \| "first" \| "last"` |             |
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `resetFilter() => Promise<void>`
-
-Resets the filter to show all options
 
 #### Returns
 

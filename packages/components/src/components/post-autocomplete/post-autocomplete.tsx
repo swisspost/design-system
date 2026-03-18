@@ -94,26 +94,27 @@ export class PostAutocomplete {
 
   private readonly handleOnBlur = () => {
     this.inputElement.value = this.inputValue;
-    this.listBoxElement.resetFilter();
+    this.listBoxElement.filter('');
     this.hideListBox();
   };
 
   private readonly handleInput = (event: Event) => {
     if (!this.listBoxElement) return;
-    const { value } = event.target as HTMLInputElement;
-    const query = value.trim();
-    if (query && query.length >= this.filterThreshold) {
-      const { defaultPrevented } = this.postFilteringEvent.emit(query);
-      if (!defaultPrevented) {
-        this.listBoxElement.filter(query);
-      }
+    const value = (event.target as HTMLInputElement).value.trim();
+    const query = value.length >= this.filterThreshold ? value : '';
+    // Allow for consuming parent to handle filtering (e.g. for async data) and prevent default filtering behavior
+    const { defaultPrevented } = this.postFilteringEvent.emit(
+      query && query.length >= this.filterThreshold ? query : '',
+    );
+    if (defaultPrevented) return;
+
+    this.listBoxElement.filter(query);
+
+    if (query) {
       this.showListBox();
-      return;
-    }
-    if (!query) {
+    } else {
       this.inputValue = '';
     }
-    this.listBoxElement.resetFilter();
   };
 
   private readonly handleKeyDown = (event: KeyboardEvent) => {
@@ -187,7 +188,7 @@ export class PostAutocomplete {
     if (this.inputElement) {
       this.inputElement.value = '';
       this.inputValue = '';
-      this.listBoxElement.resetFilter();
+      this.listBoxElement.clearSelection();
       this.hideListBox();
     }
   };

@@ -37,24 +37,23 @@ export class PostListbox {
     this.registerOptions();
   }
 
-  private registerOptions() {
+  private readonly registerOptions = () => {
     this.visibleOptions = this.options;
-  }
+  };
 
-  private setSelectedByValue(value: string) {
+  private readonly updateSelection = (value?: string) => {
     this.options.forEach(option => {
-      const isSelected = option.value === value;
-      option.selected = isSelected;
+      option.selected = option.value === value;
       option.highlighted = false;
     });
     this.highlightedIndex = -1;
-    this.resetFilter();
-  }
+    this.filter('');
+  };
 
-  private clearActive() {
+  private readonly clearActive = () => {
     this.highlightedIndex = -1;
     this.postOptionActive.emit(null);
-  }
+  };
 
   /** Opens the listbox */
   @Method()
@@ -73,30 +72,37 @@ export class PostListbox {
   @Method()
   async filter(query: string) {
     const normalizedQuery = this.normalizeText(query);
-    this.visibleOptions = this.options.filter(option => {
-      const normalizedText = this.normalizeText(option.textContent);
-      const normalizedValue = this.normalizeText(option.value);
-      const isVisible =
-        normalizedValue.includes(normalizedQuery) || normalizedText.includes(normalizedQuery);
-      option.hidden = !isVisible;
-      return isVisible;
-    });
+    if (normalizedQuery) {
+      this.visibleOptions = this.options.filter(option => {
+        const normalizedText = this.normalizeText(option.textContent);
+        const normalizedValue = this.normalizeText(option.value);
+        const isVisible =
+          normalizedValue.includes(normalizedQuery) || normalizedText.includes(normalizedQuery);
+        option.hidden = !isVisible;
+        return isVisible;
+      });
+    } else {
+      this.resetFilter();
+    }
     this.clearActive();
   }
 
-  private normalizeText(text: string) {
+  private readonly normalizeText = (text: string) => {
     return text.trim().normalize('NFD').replace(this.diacriticPattern, '').toLocaleLowerCase();
-  }
+  };
 
-  /** Resets the filter to show all options */
-  @Method()
-  async resetFilter() {
+  private readonly resetFilter = () => {
     this.visibleOptions = this.options;
     this.options.forEach(option => {
       option.hidden = false;
       option.highlighted = false;
     });
-    this.clearActive();
+  };
+
+  /** Clears the currently selected option */
+  @Method()
+  async clearSelection() {
+    this.updateSelection();
   }
 
   /** Navigates the listbox options in the specified direction and scrolls the active option into view.*/
@@ -134,7 +140,7 @@ export class PostListbox {
   async selectActive() {
     if (this.highlightedIndex >= 0) {
       const activeOption = this.visibleOptions[this.highlightedIndex];
-      this.setSelectedByValue(activeOption.value);
+      this.updateSelection(activeOption.value);
       this.host.dispatchEvent(
         new CustomEvent('postOptionSelected', { bubbles: true, detail: activeOption.value }),
       );
@@ -144,7 +150,7 @@ export class PostListbox {
   @Listen('postOptionSelected')
   @EventFrom('post-listbox-option')
   optionClicked(event: CustomEvent<string>) {
-    this.setSelectedByValue(event.detail);
+    this.updateSelection(event.detail);
   }
 
   render() {
