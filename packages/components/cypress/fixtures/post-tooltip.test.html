@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      href="../../node_modules/@swisspost/design-system-styles/post-default.css"
+      rel="stylesheet"
+    />
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
   <body>
@@ -20,5 +24,112 @@
     <post-tooltip-trigger for="tooltip-one"
       ><span id="non-focusable-span">non-focusable</span></post-tooltip-trigger
     >
+
+    <!-- arrow and method triggers -->
+    <post-tooltip-trigger for="tooltip-arrow">
+      <button id="arrow-trigger">arrow trigger</button>
+    </post-tooltip-trigger>
+    <post-tooltip-trigger for="tooltip-methods">
+      <button id="method-trigger">method trigger</button>
+    </post-tooltip-trigger>
+    <post-tooltip id="tooltip-arrow" arrow>Arrow tooltip</post-tooltip>
+    <post-tooltip id="tooltip-methods" placement="bottom">Methods tooltip</post-tooltip>
+
+    <!-- layout test section — tightly packed so tooltip visually overlaps neighbors -->
+    <div style="padding: 24px;">
+
+      <!-- stepper directly above the trigger row -->
+      <post-stepper
+        id="layout-stepper"
+        current-index="1"
+        text-completed-step="Completed step"
+        text-current-step="Current step"
+        text-step-number="Step #number:"
+        style="margin-bottom: 4px;"
+      >
+        <post-stepper-item>Step 1</post-stepper-item>
+        <post-stepper-item>Step 2</post-stepper-item>
+        <post-stepper-item>Step 3</post-stepper-item>
+      </post-stepper>
+
+      <!-- tabs directly above the trigger row -->
+      <post-tabs id="layout-tabs" style="margin-bottom: 4px;">
+        <post-tab-item name="tab-one">Tab one</post-tab-item>
+        <post-tab-item name="tab-two">Tab two</post-tab-item>
+        <post-tab-item name="tab-three">Tab three</post-tab-item>
+        <post-tab-panel for="tab-one">Content of tab one</post-tab-panel>
+        <post-tab-panel for="tab-two">Content of tab two</post-tab-panel>
+        <post-tab-panel for="tab-three">Content of tab three</post-tab-panel>
+      </post-tabs>
+
+      <!-- accordion directly above the trigger -->
+      <post-accordion heading-level="3" style="margin-bottom: 4px;">
+        <post-accordion-item id="layout-accordion-item">
+          <span slot="header">Accordion above trigger</span>
+          <p id="accordion-body-text">Accordion body content.</p>
+        </post-accordion-item>
+      </post-accordion>
+
+      <!-- paragraph directly above trigger -->
+      <p id="paragraph-before" style="margin: 0 0 4px;">
+        Paragraph before trigger — must not reflow.
+      </p>
+
+      <!-- trigger row: trigger flanked by dense content on both sides -->
+      <div style="display: flex; align-items: center; gap: 4px; flex-wrap: wrap;">
+        <span id="text-before-trigger">Text before</span>
+        <post-tooltip-trigger for="tooltip-layout">
+          <button id="layout-trigger">trigger</button>
+        </post-tooltip-trigger>
+        <span id="text-after-trigger">Text after — must not shift.</span>
+        <div
+          id="reference-box"
+          style="display: inline-block; width: 80px; height: 32px; background: lightgray;"
+        >
+          ref 1
+        </div>
+        <div
+          id="reference-box-2"
+          style="display: inline-block; width: 80px; height: 32px; background: lightgray;"
+        >
+          ref 2
+        </div>
+        <post-tooltip-trigger for="tooltip-layout">
+          <button id="layout-trigger-2">trigger 2</button>
+        </post-tooltip-trigger>
+      </div>
+
+      <!-- paragraph directly below trigger -->
+      <p id="paragraph-after" style="margin: 4px 0;">
+        Paragraph after trigger — must not shift.
+      </p>
+
+      <!-- rating directly below trigger -->
+      <post-rating id="layout-rating" label="Rating" style="margin-bottom: 4px;"></post-rating>
+
+      <!-- pagination directly below trigger -->
+      <post-pagination
+        id="layout-pagination"
+        page="1"
+        page-size="10"
+        collection-size="100"
+        label="Pagination"
+        text-previous="Previous page"
+        text-next="Next page"
+        text-page="Page"
+        text-first="First page"
+        text-last="Last page"
+        style="margin-bottom: 4px;"
+      ></post-pagination>
+
+      <!-- form input directly below -->
+      <div>
+        <label for="test-input">Label</label>
+        <input id="test-input" type="text" placeholder="Should not move" />
+      </div>
+
+    </div>
+
+    <post-tooltip id="tooltip-layout">Layout tooltip</post-tooltip>
   </body>
 </html>
