@@ -227,7 +227,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('reflects open=true when shown programmatically', () => {
       cy.get('#method-trigger').then($el => {
         cy.get('@tooltip').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       cy.get('@tooltip').should('have.attr', 'open');
@@ -236,7 +236,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('reflects open=false after hide()', () => {
       cy.get('#method-trigger').then($el => {
         cy.get('@tooltip').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       cy.get('@tooltip').then($tooltip => {
@@ -248,7 +248,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('makes the host element visible when open', () => {
       cy.get('#method-trigger').then($el => {
         cy.get('@tooltip').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       cy.get('@tooltip').should('not.have.css', 'display', 'none');
@@ -267,7 +267,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('renders with an arrow when arrow prop is set', () => {
       cy.get('#arrow-trigger').then($el => {
         cy.get('#tooltip-arrow').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       cy.get('#tooltip-arrow').find('post-popovercontainer').should('have.class', 'has-arrow');
@@ -287,7 +287,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       shouldBeClosed('@tooltip');
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       shouldBeOpen();
@@ -296,13 +296,13 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('does nothing if tooltip is already open', () => {
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       shouldBeOpen();
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       cy.get('.\\:popover-open, :popover-open').should('have.length', 1);
@@ -339,7 +339,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       shouldBeClosed('@tooltip');
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).toggle($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).toggle($el[0]);
         });
       });
       shouldBeOpen();
@@ -348,13 +348,13 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('closes the tooltip when open', () => {
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       shouldBeOpen();
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).toggle($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).toggle($el[0]);
         });
       });
       shouldBeClosed('@tooltip');
@@ -364,7 +364,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       shouldBeClosed('@tooltip');
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).toggle($el[0] as HTMLElement, true);
+          ($tooltip[0] as HTMLPostTooltipElement).toggle($el[0], true);
         });
       });
       shouldBeOpen();
@@ -373,13 +373,13 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('forces closed with force=false', () => {
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       shouldBeOpen();
       cy.get('#method-trigger').then($el => {
         cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).toggle($el[0] as HTMLElement, false);
+          ($tooltip[0] as HTMLPostTooltipElement).toggle($el[0], false);
         });
       });
       shouldBeClosed('@tooltip');
@@ -395,7 +395,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     const showLayoutTooltip = (triggerId = '#layout-trigger') => {
       cy.get(triggerId).then($el => {
         cy.get('#tooltip-layout').then($tooltip => {
-          ($tooltip[0] as HTMLPostTooltipElement).show($el[0] as HTMLElement);
+          ($tooltip[0] as HTMLPostTooltipElement).show($el[0]);
         });
       });
       cy.get('.\\:popover-open, :popover-open').should('exist');
