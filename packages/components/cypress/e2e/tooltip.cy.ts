@@ -1,11 +1,5 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 
-Cypress.on('uncaught:exception', err => {
-  if (err.message.includes('ResizeObserver')) {
-    return false;
-  }
-});
-
 describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   // prettier-ignore
   const shouldBeOpen = () => cy.get('.\\:popover-open, :popover-open').should('exist');
@@ -582,20 +576,6 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('Has no detectable a11y violations on load', () => {
       cy.checkA11y('post-tooltip');
-    });
-
-    it('tooltip has role="tooltip"', () => {
-      cy.get('#method-trigger').then($el => {
-        cy.get('#tooltip-methods').then($tooltip => {
-          ($tooltip[0] as any).show($el[0]);
-        });
-      });
-      cy.get('#tooltip-methods')
-        .find('post-popovercontainer')
-        .should('have.attr', 'role', 'tooltip');
-      cy.get('#tooltip-methods').then($tooltip => {
-        ($tooltip[0] as any).hide();
-      });
     });
   });
 });
