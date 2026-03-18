@@ -14,6 +14,10 @@ Default feedback message classes
   width: 100%;
   margin: 0;
   font-size: tokens.get('post-validation-font-size');
+
+  .form-control-sm + & {
+    font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+  }
 }
 
 /*
@@ -59,6 +63,15 @@ textarea {
   ~ .valid-feedback {
     margin-block: tokens.get('assist-padding-block', components.$post-assist) !important;
     padding-inline: tokens.get('validation-input-padding-inline');
+  }
+}
+
+input.form-control-sm + .invalid-feedback,
+input.form-control-sm + .valid-feedback {
+  margin-block: tokens.get('hint-small-padding-block', components.$post-assist) !important;
+
+  &:has(+ .form-hint) {
+    margin-block-end: tokens.get('hint-small-gap-block', components.$post-assist) !important;
   }
 }
 
