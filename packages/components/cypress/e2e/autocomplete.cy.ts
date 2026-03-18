@@ -20,7 +20,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
         .invoke('attr', 'id')
         .should('match', /^[0-9a-f-]{36}$/)
         .then(listboxId => {
-          cy.get('@input').should('have.attr', 'aria-controls', listboxId as string);
+          cy.get('@input').should('have.attr', 'aria-controls', listboxId);
         });
     });
 
