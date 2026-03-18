@@ -212,10 +212,6 @@ input.form-control {
       @include icons-mx.mask-image('time');
     }
 
-    &:not(:disabled):has(::-webkit-calendar-picker-indicator:hover)::after {
-      background-color: tokens.get('input-color-hover-fg');
-    }
-
     &:disabled::after {
       display: none;
     }
