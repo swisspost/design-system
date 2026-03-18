@@ -208,7 +208,7 @@ export class PostDatePicker {
     }
   }
 
-  private flyoutOffset: number = 4;
+  private static readonly FLYOUT_OFFSET: number = 4;
 
   private currentViewMonth: number;
   private currentViewYear: number;
@@ -928,9 +928,7 @@ export class PostDatePicker {
   }
 
   private syncDatePickerState() {
-    if (this.dpInput.disabled) {
-      this.inputDisabled = true;
-    }
+    this.inputDisabled = this.dpInput.disabled;
   }
 
   async componentDidLoad() {
@@ -1005,7 +1003,7 @@ export class PostDatePicker {
             </div>
             <post-popovercontainer
               placement="bottom-end"
-              offset={this.flyoutOffset}
+              offset={PostDatePicker.FLYOUT_OFFSET}
               ref={e => (this.popoverRef = e)}
             >
               <div class="datepicker-container"></div>
