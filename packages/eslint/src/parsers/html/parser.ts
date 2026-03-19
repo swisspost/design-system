@@ -191,6 +191,7 @@ export function parseForESLint(code: string): {
   const scopeManager = new ScopeManager({});
 
   // @ts-expect-error Create a global scope for the ScopeManager, the types for Scope also seem to be wrong: https://github.com/eslint/js/blob/main/packages/eslint-scope/lib/scope.js#L141
+  // NOSONAR
   new Scope(scopeManager, 'module', null, ast, false);
 
   return {
