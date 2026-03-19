@@ -4,6 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      href="../../node_modules/@swisspost/design-system-styles/post-default.css"
+      rel="stylesheet"
+    />
+    <style>
+      .tooltip-layout-container {
+        padding: 24px;
+      }
+      .tooltip-layout-spacing {
+        margin-bottom: 4px;
+      }
+      .tooltip-trigger-row {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .tooltip-reference-box {
+        display: inline-block;
+        width: 80px;
+        height: 32px;
+        background: lightgray;
+      }
+      #paragraph-before {
+        margin: 0 0 4px;
+      }
+      #paragraph-after {
+        margin: 4px 0;
+      }
+    </style>
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
   <body>
@@ -20,5 +50,118 @@
     <post-tooltip-trigger for="tooltip-one"
       ><span id="non-focusable-span">non-focusable</span></post-tooltip-trigger
     >
+
+    <!-- arrow prop: verifies has-arrow class is applied to post-popovercontainer -->
+    <post-tooltip-trigger for="tooltip-arrow">
+      <button id="arrow-trigger">arrow trigger</button>
+    </post-tooltip-trigger>
+
+    <!-- methods: used to test show(), hide(), toggle() and the open prop reflection -->
+    <post-tooltip-trigger for="tooltip-methods">
+      <button id="method-trigger">method trigger</button>
+    </post-tooltip-trigger>
+
+    <post-tooltip id="tooltip-arrow" arrow>Arrow tooltip</post-tooltip>
+    <post-tooltip id="tooltip-methods" placement="bottom">Methods tooltip</post-tooltip>
+
+    <!-- layout test section — tightly packed so tooltip visually overlaps neighbors -->
+    <!-- All elements here must not shift position (top/left) when the tooltip is shown -->
+    <div class="tooltip-layout-container">
+
+      <!-- stepper directly above the trigger row — must not shift vertically -->
+      <post-stepper
+        id="layout-stepper"
+        current-index="1"
+        text-completed-step="Completed step"
+        text-current-step="Current step"
+        text-step-number="Step #number:"
+        class="tooltip-layout-spacing"
+      >
+        <post-stepper-item>Step 1</post-stepper-item>
+        <post-stepper-item>Step 2</post-stepper-item>
+        <post-stepper-item>Step 3</post-stepper-item>
+      </post-stepper>
+
+      <!-- tabs directly above the trigger row — must not shift vertically -->
+      <post-tabs id="layout-tabs" class="tooltip-layout-spacing">
+        <post-tab-item name="tab-one">Tab one</post-tab-item>
+        <post-tab-item name="tab-two">Tab two</post-tab-item>
+        <post-tab-item name="tab-three">Tab three</post-tab-item>
+        <post-tab-panel for="tab-one">Content of tab one</post-tab-panel>
+        <post-tab-panel for="tab-two">Content of tab two</post-tab-panel>
+        <post-tab-panel for="tab-three">Content of tab three</post-tab-panel>
+      </post-tabs>
+
+      <!-- accordion directly above the trigger — must not shift vertically -->
+      <post-accordion heading-level="3" class="tooltip-layout-spacing">
+        <post-accordion-item id="layout-accordion-item">
+          <span slot="header">Accordion above trigger</span>
+          <p id="accordion-body-text">Accordion body content.</p>
+        </post-accordion-item>
+      </post-accordion>
+
+      <!-- paragraph directly above trigger — must not reflow -->
+      <p id="paragraph-before">
+        Paragraph before trigger — must not reflow.
+      </p>
+
+      <!-- trigger row: trigger flanked by dense inline content on both sides -->
+      <div class="tooltip-trigger-row">
+        <span id="text-before-trigger">Text before</span>
+        <post-tooltip-trigger for="tooltip-layout">
+          <button id="layout-trigger">trigger</button>
+        </post-tooltip-trigger>
+        <span id="text-after-trigger">Text after — must not shift.</span>
+        <!-- reference boxes: fixed-size siblings that must not shift when tooltip opens -->
+        <div
+          id="reference-box"
+          class="tooltip-reference-box"
+        >
+          ref 1
+        </div>
+        <div
+          id="reference-box-2"
+          class="tooltip-reference-box"
+        >
+          ref 2
+        </div>
+        <!-- second trigger: used to test layout shift on siblings from a different anchor point -->
+        <post-tooltip-trigger for="tooltip-layout">
+          <button id="layout-trigger-2">trigger 2</button>
+        </post-tooltip-trigger>
+      </div>
+
+      <!-- paragraph directly below trigger — must not shift or reflow -->
+      <p id="paragraph-after">
+        Paragraph after trigger — must not shift.
+      </p>
+
+      <!-- rating directly below trigger — must not shift vertically -->
+      <post-rating id="layout-rating" label="Rating" class="tooltip-layout-spacing"></post-rating>
+
+      <!-- pagination directly below trigger — must not shift vertically -->
+      <post-pagination
+        id="layout-pagination"
+        page="1"
+        page-size="10"
+        collection-size="100"
+        label="Pagination"
+        text-previous="Previous page"
+        text-next="Next page"
+        text-page="Page"
+        text-first="First page"
+        text-last="Last page"
+        class="tooltip-layout-spacing"
+      ></post-pagination>
+
+      <!-- form input directly below — must not shift vertically -->
+      <div>
+        <label for="test-input">Label</label>
+        <input id="test-input" type="text" placeholder="Should not move" />
+      </div>
+
+    </div>
+
+    <post-tooltip id="tooltip-layout">Layout tooltip</post-tooltip>
   </body>
 </html>
