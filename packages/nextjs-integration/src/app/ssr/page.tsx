@@ -105,7 +105,8 @@ export default function Home() {
         textPreviousYear="Previous year"
         textSwitchYear="Switch to year view"
       >
-        <input type="text" />
+        <input className="form-control" type="text" />
+        <p className="form-hint">Format: DD.MM.YYYY</p>
       </PostDatePicker>
 
       <h2>Icons</h2>
