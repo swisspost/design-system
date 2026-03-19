@@ -654,7 +654,7 @@ export class PostDatePicker {
             this.selectedEndDate = this.dateToIso(date[1]);
           } else if (!Array.isArray(date)) {
             this.selectedStartDate = this.dateToIso(date);
-            this.selectedEndDate = '';
+            this.selectedEndDate = undefined;
           }
 
           this.postUpdateDates.emit(date);
