@@ -154,7 +154,6 @@
     }
   }
 
-<<<<<<< 6290-htmlcss-radio-button-small
   // Small variant (Checkbox & Radio Button)
   &.form-check-sm:not(.form-switch) {
     &:has(input[type='checkbox']) {
@@ -177,8 +176,6 @@
     }
   }
 
-=======
->>>>>>> main
   > label {
     transition: color #{animation.$transition-base-timing};
     flex: 1;
