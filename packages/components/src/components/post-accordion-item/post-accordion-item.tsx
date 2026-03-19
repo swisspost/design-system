@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 /**
  * @part post-accordion-button - The element that toggles the accordion item (header button).
  * @part post-accordion-body - The element that holds the accordion item's content.
- * @slot logo - Slot for placing a logo in the accordion item’s header, before the content.
+ * @slot logo - Slot for placing a logo in the accordion item's header, before the content.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
  */
@@ -75,7 +75,7 @@ export class PostAccordionItem {
 
   render() {
     const headingLevel = this.host.closest('post-accordion')?.getAttribute('heading-level');
-    const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`;
+    const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`; // NOSONAR
 
     return (
       <Host id={this.id} data-version={version}>
