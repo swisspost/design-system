@@ -950,8 +950,8 @@ export class PostDatePicker {
     this.skipOnSelectCount = 0;
     this.dpInstance.clear();
     this.dpInstance.setViewDate(this.today);
-    this.selectedStartDate = '';
-    this.selectedEndDate = '';
+    this.selectedStartDate = undefined;
+    this.selectedEndDate = undefined;
   }
 
   private isValidDate(date: Date): boolean {
