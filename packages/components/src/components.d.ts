@@ -222,11 +222,11 @@ export namespace Components {
          */
         "inline": boolean;
         /**
-          * Maximum possible date to select.
+          * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "max"?: string;
         /**
-          * Minimun possible date to select.
+          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
@@ -239,11 +239,11 @@ export namespace Components {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The date picker's selected end date (for range date picker only).
+          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedEndDate"?: string;
         /**
-          * The date picker's selected date. If in range mode, the selected start date.
+          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedStartDate"?: string;
         /**
@@ -1351,11 +1351,11 @@ declare namespace LocalJSX {
          */
         "inline"?: boolean;
         /**
-          * Maximum possible date to select.
+          * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "max"?: string;
         /**
-          * Minimun possible date to select.
+          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
@@ -1372,11 +1372,11 @@ declare namespace LocalJSX {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The date picker's selected end date (for range date picker only).
+          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedEndDate"?: string;
         /**
-          * The date picker's selected date. If in range mode, the selected start date.
+          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedStartDate"?: string;
         /**

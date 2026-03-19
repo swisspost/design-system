@@ -201,7 +201,7 @@ tokens.$default-map: components.$post-datepicker;
 
             /* Day: Selected */
             &.-selected-:not(.-other-month-) {
-              z-index: 1;
+              z-index: 2;
               color: tokens.get('post-datepicker-grid-day-cell-element-color-selected-fg');
               background: tokens.get('post-datepicker-grid-day-cell-element-color-selected-bg');
 

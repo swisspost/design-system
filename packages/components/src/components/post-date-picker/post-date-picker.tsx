@@ -19,7 +19,7 @@ import AirDatepicker, {
 import IMask, { InputMask } from 'imask';
 
 import { localesMap } from './locales';
-import { checkEmptyOrDate, checkRequiredAndType } from '@/utils';
+import { checkEmptyOrDate, checkRequiredAndType, isIsoDate } from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -44,43 +44,50 @@ export class PostDatePicker {
 
   /**
    * The date picker's selected date. If in range mode, the selected start date.
+   * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
   @Prop({ mutable: true }) selectedStartDate?: string;
   @Watch('selectedStartDate')
   validateSelectedStartDate() {
     checkEmptyOrDate(this, 'selectedStartDate');
+    this.warnIfNotIso('selectedStartDate');
   }
 
   /**
    * The date picker's selected end date (for range date picker only).
+   * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
   @Prop({ mutable: true }) selectedEndDate?: string;
   @Watch('selectedEndDate')
   validateSelectedEndDate() {
     checkEmptyOrDate(this, 'selectedEndDate');
+    this.warnIfNotIso('selectedEndDate');
   }
 
   /**
    * Whether the date picker expects a range selection or a single date selection.
+   *
    */
   @Prop() range?: boolean = false;
 
   /**
-   * Minimun possible date to select.
+   * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
   @Prop() min?: string;
   @Watch('min')
   validateMin() {
     checkEmptyOrDate(this, 'min');
+    this.warnIfNotIso('min');
   }
 
   /**
-   * Maximum possible date to select.
+   * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
   @Prop() max?: string;
   @Watch('max')
   validateMax() {
     checkEmptyOrDate(this, 'max');
+    this.warnIfNotIso('max');
   }
 
   /**
@@ -515,8 +522,9 @@ export class PostDatePicker {
 
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
+
     this.setActiveCell(
-      this.selectedStartDate ? this.dateStrToDate(this.selectedStartDate) : this.today,
+      this.selectedStartDate ? this.isoToDate(this.selectedStartDate) : this.today,
       focusOnDate,
     );
   }
@@ -642,10 +650,10 @@ export class PostDatePicker {
 
           // update props
           if (Array.isArray(date) && date.length === 2) {
-            this.selectedStartDate = this.dateToDateStr(date[0]);
-            this.selectedEndDate = this.dateToDateStr(date[1]);
+            this.selectedStartDate = this.dateToIso(date[0]);
+            this.selectedEndDate = this.dateToIso(date[1]);
           } else if (!Array.isArray(date)) {
-            this.selectedStartDate = this.dateToDateStr(date);
+            this.selectedStartDate = this.dateToIso(date);
             this.selectedEndDate = '';
           }
 
@@ -715,12 +723,31 @@ export class PostDatePicker {
           'The range date picker expects either no selected dates or both of them defined.',
         );
       } else if (this.selectedStartDate && this.selectedEndDate) {
-        this.dpInstance.selectDate([this.selectedStartDate, this.selectedEndDate]);
+        this.dpInstance.selectDate([
+          this.isoToDate(this.selectedStartDate),
+          this.isoToDate(this.selectedEndDate),
+        ]);
       }
     } else {
       if (this.selectedStartDate) {
-        this.dpInstance.selectDate(this.selectedStartDate);
+        this.dpInstance.selectDate(this.isoToDate(this.selectedStartDate));
       }
+    }
+  }
+
+  private isoToDate(iso: string): Date {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+
+  private warnIfNotIso(prop: 'selectedStartDate' | 'selectedEndDate' | 'min' | 'max') {
+    const value = this[prop];
+    if (!value) return;
+
+    if (!isIsoDate(value)) {
+      console.error(
+        `The prop \`${prop}\` of the \`${this.host.localName}\` component must be in ISO format (YYYY-MM-DD).`,
+      );
     }
   }
 
@@ -743,6 +770,10 @@ export class PostDatePicker {
 
   private splitRangeDates(rangeStr: string): string[] {
     return rangeStr.split(' - ');
+  }
+
+  private dateToIso(date: Date): string {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
   }
 
   private dateStrToDate(dateStr: string): Date {
