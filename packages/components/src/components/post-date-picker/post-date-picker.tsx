@@ -19,7 +19,7 @@ import AirDatepicker, {
 import IMask, { InputMask } from 'imask';
 
 import { localesMap } from './locales';
-import { checkEmptyOrDate, checkRequiredAndType, isIsoDate } from '@/utils';
+import { checkEmptyOrDate, checkRequiredAndType, IS_BROWSER, isIsoDate } from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -182,7 +182,7 @@ export class PostDatePicker {
   }
 
   @State() startDate = new Date();
-  @State() locale: string = document.documentElement.lang;
+  @State() locale: string = IS_BROWSER ? document.documentElement.lang : 'en';
 
   /**
    * An event emitted when a date or a range of dates have been selected.
@@ -234,6 +234,7 @@ export class PostDatePicker {
   private navObserver: MutationObserver;
 
   private setupInputObserver() {
+    if (typeof MutationObserver === 'undefined') return;
     if (!this.dpInput) return;
 
     const observer = new MutationObserver(() => {
@@ -806,11 +807,13 @@ export class PostDatePicker {
    * Add role and aria-label to each grid cell
    */
   private internalOnRenderCell({ date, cellType }) {
+    const safeLocale = this.locale || 'en';
+
     if (cellType === 'day') {
       return {
         attrs: {
           'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(this.locale, {
+          'aria-label': date.toLocaleDateString(safeLocale, {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
@@ -822,7 +825,7 @@ export class PostDatePicker {
       return {
         attrs: {
           'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(this.locale, {
+          'aria-label': date.toLocaleDateString(safeLocale, {
             year: 'numeric',
             month: 'long',
           }),
@@ -832,7 +835,7 @@ export class PostDatePicker {
       return {
         attrs: {
           'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(this.locale, {
+          'aria-label': date.toLocaleDateString(safeLocale, {
             year: 'numeric',
           }),
         },
@@ -863,6 +866,7 @@ export class PostDatePicker {
   }
 
   private setupNavObserver() {
+    if (typeof MutationObserver === 'undefined') return;
     const nav = this.dpContainer.querySelector('.air-datepicker-nav');
     if (!nav) return;
 
@@ -885,6 +889,7 @@ export class PostDatePicker {
   }
 
   private setupGridObserver() {
+    if (typeof MutationObserver === 'undefined') return;
     const grid = this.dpContainer.querySelector('.air-datepicker-body--cells');
     if (!grid) return;
 

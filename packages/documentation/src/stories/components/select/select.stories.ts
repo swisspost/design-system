@@ -28,6 +28,7 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     label: {
@@ -46,6 +47,25 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the select. A small select cannot have a floating label.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          small: 'Small',
+        },
+      },
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
+      options: ['null', 'small'],
       table: {
         category: 'General',
       },
@@ -185,6 +205,7 @@ const Template: Story = {
     const classes = [
       'form-select',
       args.validation,
+      args.size === 'small' && 'form-select-sm',
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
     ]
       .filter(c => c && c !== 'null')
@@ -272,6 +293,14 @@ export const FloatingLabel: Story = {
   args: {
     floatingLabel: true,
     hint: '',
+  },
+};
+
+export const Small: Story = {
+  ...Template,
+  args: {
+    floatingLabel: false,
+    size: 'small',
   },
 };
 

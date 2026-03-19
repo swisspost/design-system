@@ -27,7 +27,6 @@ some content
  - [post-back-to-top](../post-back-to-top)
  - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-breadcrumbs](../post-breadcrumbs)
- - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
  - [post-date-picker](../post-date-picker)
  - [post-header](../post-header)
@@ -46,7 +45,6 @@ graph TD;
   post-back-to-top --> post-icon
   post-breadcrumb-item --> post-icon
   post-breadcrumbs --> post-icon
-  post-card-control --> post-icon
   post-closebutton --> post-icon
   post-date-picker --> post-icon
   post-header --> post-icon
