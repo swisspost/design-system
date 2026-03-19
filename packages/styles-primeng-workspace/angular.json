@@ -60,7 +60,7 @@
             ],
             "styles": ["projects/styles-primeng-showcase/src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["projects/styles-primeng/src"]
+              "includePaths": ["dist/styles-primeng"]
             },
             "scripts": [],
             "browser": "projects/styles-primeng-showcase/src/main.ts"
