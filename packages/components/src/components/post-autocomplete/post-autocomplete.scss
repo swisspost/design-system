@@ -1,4 +1,3 @@
-@use '@swisspost/design-system-styles/functions/forms' as forms-fx;
 @use '@swisspost/design-system-styles/mixins/media';
 
 :host {
@@ -13,17 +12,21 @@
   inset-block-start: 56px;
 }
 
-.autocomplete-icon {
+.autocomplete-icon,
+.autocomplete-clear {
   position: absolute;
   inset-block-start: 16px;
-  inset-inline-end: 16px;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
 
   @include media.min(md) {
     inset-block-start: 20px;
   }
+}
+
+.autocomplete-icon {
+  inset-inline-end: 16px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
 }
 
 :host([open]) .autocomplete-icon {
@@ -31,12 +34,16 @@
 }
 
 .autocomplete-clear {
-  position: absolute;
-  inset-block-start: 16px;
-  inset-inline-end: 48px;
-  width: 24px;
-  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset-inline-end: 42px;
   background: none;
   border: none;
   cursor: pointer;
+
+  > post-icon {
+    width: 20px;
+    height: 20px;
+  }
 }

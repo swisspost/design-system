@@ -198,7 +198,7 @@ export class PostAutocomplete {
       <Host data-version={version}>
         <slot />
         {this.clearable && this.inputValue && (
-          <button type="button" class="autocomplete-clear" onClick={this.clearInput}>
+          <button type="button" class=" autocomplete-clear" onClick={this.clearInput}>
             <post-icon aria-hidden="true" name="closex"></post-icon>
           </button>
         )}
