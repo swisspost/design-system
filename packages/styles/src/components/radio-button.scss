@@ -1,18 +1,12 @@
 @use 'form-check';
-@use '../variables/color';
-@use '../variables/animation';
-@use '../mixins/color' as color-mx;
-@use '../mixins/icons' as icons-mx;
+@use '../mixins/forms' as forms-mx;
 @use '../mixins/utilities' as utility-mx;
-@use '../tokens/components';
-@use '../functions/tokens';
-
-tokens.$default-map: components.$post-radio-button;
 
 :where(.form-check > input[type='radio']) {
   @include utility-mx.focus-style();
 }
 
+<<<<<<< 6290-htmlcss-radio-button-small
 // Default Radio
 .form-check:not(.form-switch):has(input[type='radio']) {
   column-gap: tokens.get('radio-button-gap-inline-text-start');
@@ -140,4 +134,8 @@ tokens.$default-map: components.$post-radio-button;
       height: tokens.get('radio-button-small-icon-dot');
     }
   }
+=======
+.form-check > input[type='radio'] {
+  @include forms-mx.radio-button();
+>>>>>>> main
 }

@@ -49,6 +49,14 @@ export namespace Components {
         "toggleOverlayById": (overlayId: IBreadcrumbOverlay["id"]) => Promise<void>;
     }
     interface SwisspostInternetFooter {
+        /**
+          * Label for the "Cookie Settings" button.
+         */
+        "textCookieSettings": string;
+        /**
+          * Visually hidden label for the footer.
+         */
+        "textFooter": string;
     }
     interface SwisspostInternetHeader {
         /**
@@ -172,6 +180,14 @@ declare namespace LocalJSX {
         "hideButtons"?: boolean;
     }
     interface SwisspostInternetFooter {
+        /**
+          * Label for the "Cookie Settings" button.
+         */
+        "textCookieSettings": string;
+        /**
+          * Visually hidden label for the footer.
+         */
+        "textFooter": string;
     }
     interface SwisspostInternetHeader {
         /**
