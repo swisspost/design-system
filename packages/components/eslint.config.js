@@ -112,4 +112,18 @@ export default [
     ...pluginCypress.configs.recommended,
     rules: {},
   },
+  ...dsEslintConfigs.unicornRecommended,
+  {
+    name: 'post/unicorn/overrides',
+    files: ['**/*.{js,ts,jsx,tsx}'],
+    rules: {
+      'unicorn/no-null': 'off',
+      'unicorn/consistent-function-scoping': 'off',
+      'unicorn/no-array-reduce': 'off',
+      'unicorn/prefer-ternary': 'off',
+      'unicorn/no-negated-condition': 'off',
+      'unicorn/switch-case-braces': 'off',
+      'unicorn/no-lonely-if': 'off',  
+    },
+  },
 ];
