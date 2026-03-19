@@ -735,11 +735,6 @@ export class PostDatePicker {
     }
   }
 
-  private isoToDate(iso: string): Date {
-    const [y, m, d] = iso.split('-').map(Number);
-    return new Date(y, m - 1, d);
-  }
-
   private warnIfNotIso(prop: 'selectedStartDate' | 'selectedEndDate' | 'min' | 'max') {
     const value = this[prop];
     if (!value) return;
@@ -770,6 +765,11 @@ export class PostDatePicker {
 
   private splitRangeDates(rangeStr: string): string[] {
     return rangeStr.split(' - ');
+  }
+
+  private isoToDate(iso: string): Date {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
   }
 
   private dateToIso(date: Date): string {
