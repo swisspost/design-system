@@ -106,8 +106,8 @@ export class PostPopoverTrigger {
       }
     }
 
-    this.trigger.addEventListener('click', this.boundHandleToggle);
-    this.trigger.addEventListener('keydown', this.boundHandleKeyDown);
+    this.trigger?.addEventListener('click', this.boundHandleToggle);
+    this.trigger?.addEventListener('keydown', this.boundHandleKeyDown);
   }
 
   private handleToggle() {
@@ -145,8 +145,8 @@ export class PostPopoverTrigger {
   }
 
   disconnectedCallback() {
-    this.trigger.removeEventListener('click', this.boundHandleToggle);
-    this.trigger.removeEventListener('keydown', this.boundHandleKeyDown);
+    this.trigger?.removeEventListener('click', this.boundHandleToggle);
+    this.trigger?.removeEventListener('keydown', this.boundHandleKeyDown);
     this.popover?.removeEventListener('postToggle', this.boundHandlePostToggle);
   }
 

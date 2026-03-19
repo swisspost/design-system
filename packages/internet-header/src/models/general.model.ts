@@ -1,6 +1,6 @@
 import { IHeaderConfig, ICustomHeaderConfig, NavMainEntity } from './header.model';
 import { Breadcrumbs } from './breadcrumbs.model';
-import { IFooterConfig, ICustomFooterConfig } from './footer.model';
+import { FooterConfig } from './footer.model';
 
 declare global {
   interface Window {
@@ -21,7 +21,7 @@ export interface IPortalConfig {
 export interface ILocalizedConfig {
   header: IHeaderConfig;
   breadcrumbs: Breadcrumbs;
-  footer?: IFooterConfig;
+  footer?: FooterConfig;
 }
 
 export interface ICustomConfig {
@@ -33,7 +33,6 @@ export interface ICustomConfig {
 
 export interface ILocalizedCustomConfig {
   header?: ICustomHeaderConfig;
-  footer?: ICustomFooterConfig;
 }
 
 export type Environment = 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod';

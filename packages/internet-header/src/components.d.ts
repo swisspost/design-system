@@ -39,6 +39,14 @@ export namespace Components {
         "customItems"?: string | Array<Link>;
     }
     interface SwisspostInternetFooter {
+        /**
+          * Label for the "Cookie Settings" button.
+         */
+        "textCookieSettings": string;
+        /**
+          * Visually hidden label for the footer.
+         */
+        "textFooter": string;
     }
     interface SwisspostInternetHeader {
         /**
@@ -157,6 +165,14 @@ declare namespace LocalJSX {
         "customItems"?: string | Array<Link>;
     }
     interface SwisspostInternetFooter {
+        /**
+          * Label for the "Cookie Settings" button.
+         */
+        "textCookieSettings": string;
+        /**
+          * Visually hidden label for the footer.
+         */
+        "textFooter": string;
     }
     interface SwisspostInternetHeader {
         /**

@@ -1,5 +1,0 @@
-@use 'src/mixins/forms';
-
-body {
-  @include forms.focus-outline();
-}

@@ -66,11 +66,11 @@ export class PostBreadcrumbs {
     checkRequiredAndType(this, 'textMoreItems', 'string');
   }
 
-  componentWillLoad() {
-    setTimeout(() => {
-      this.updateBreadcrumbItems();
-    });
-  }
+  // componentWillLoad() {
+  //   setTimeout(() => {
+  //     this.updateBreadcrumbItems();
+  //   });
+  // }
 
   componentDidLoad() {
     this.validateHomeUrl();
@@ -79,6 +79,7 @@ export class PostBreadcrumbs {
     this.validateTextMoreItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
+    this.updateBreadcrumbItems();
   }
 
   disconnectedCallback() {
@@ -101,8 +102,6 @@ export class PostBreadcrumbs {
       .filter(el => el.tagName === 'POST-BREADCRUMB-ITEM') as HTMLElement[];
 
     if (!nodes?.length) return;
-
-    console.log('my nodes bb', nodes, nodes[0].getAttribute('url'));
 
     const newItems = nodes.map(item => ({
       text: item.textContent || '',
