@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added a `selected-index` prop to the `post-stepper` to indicate the user's currently selected step.
+Added an optional `selected-index` prop to the `post-stepper` to indicate the user's currently selected step.

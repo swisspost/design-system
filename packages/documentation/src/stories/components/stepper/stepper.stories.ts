@@ -20,7 +20,6 @@ const meta: MetaComponent = {
   },
   args: {
     currentIndex: 2,
-    selectedIndex: 2,
     textCompletedStep: 'Completed step',
     textCurrentStep: 'Current step',
     textStepNumber: 'Step #number:',

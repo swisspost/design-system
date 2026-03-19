@@ -156,16 +156,19 @@ $checkIconSize: calc(
 .stepper-item-content::after {
   display: block;
   position: absolute;
-  inset-block-start: tokens.get('stepper-border-width');
+  inset-block-start: calc(
+    (tokens.get('stepper-indicator') - tokens.get('stepper-icon-completed-size')) / 2
+  );
   z-index: 1;
-  background-color: tokens.get('stepper-enabled-fg');
   @include icons.mask-image('checkmark-solid');
   width: tokens.get('stepper-icon-completed-size');
   height: tokens.get('stepper-icon-completed-size');
-  //color: tokens.get('stepper-enabled-fg');
+  background-color: tokens.get('stepper-enabled-fg');
 
   :host(:first-of-type) > & {
-    inset-inline-start: tokens.get('stepper-border-width');
+    inset-inline-start: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-completed-size')) / 2
+    );
   }
 
   :host(:not(:first-of-type, :last-of-type)) > & {
@@ -173,7 +176,9 @@ $checkIconSize: calc(
   }
 
   :host(:last-of-type) > & {
-    inset-inline-end: tokens.get('stepper-border-width');
+    inset-inline-end: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-completed-size')) / 2
+    );
   }
 
   // show only for completed steps
@@ -181,10 +186,21 @@ $checkIconSize: calc(
     content: '';
   }
 
+  // current step, edit icon
   :host([aria-current='step']) > & {
     @include icons.mask-image('edit-solid');
     width: tokens.get('stepper-icon-current-size');
     height: tokens.get('stepper-icon-current-size');
+    background-color: tokens.get('stepper-enabled-fg');
+    inset-block-start: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-current-size')) / 2
+    );
+  }
+
+  :host([aria-current='step']:first-of-type) > & {
+    inset-inline-start: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-current-size')) / 2
+    );
   }
 
   :host([aria-current='step']:not(:first-of-type, :last-of-type)) > & {
