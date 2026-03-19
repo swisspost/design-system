@@ -7,7 +7,7 @@ import { version } from '@root/package.json';
   shadow: true,
 })
 export class PostListboxOption {
-  private readonly id = crypto.randomUUID();
+  private readonly optionId = crypto.randomUUID();
   /** A value string, similar to <option value="val1">Value 1</option> */
   @Prop({ reflect: true }) readonly value!: string;
 
@@ -30,7 +30,7 @@ export class PostListboxOption {
         /* Prevent focus change from triggering onblur event in post-autocomplete */
         onPointerDown={(e: PointerEvent) => e.preventDefault()}
         onClick={() => this.postOptionSelected.emit(this.value)}
-        id={`post-listbox-option-${this.id}`}
+        id={`post-listbox-option-${this.optionId}`}
       >
         <slot>{this.value}</slot>
         {this.selected && <post-icon aria-hidden="true" name="checkmark"></post-icon>}
