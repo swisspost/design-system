@@ -2,6 +2,8 @@ import { Meta, Source } from '@storybook/blocks';
 import * as GettingStartedStories from './components-angular.stories';
 import AngularAppModuleSample from './angular-app-module.sample.ts?raw';
 import AngularAppComponentSample from './angular-app-component.sample.html?raw';
+import AngularAppStandaloneHtmlSample from './angular-app-standalone.sample.html?raw';
+import AngularAppStandaloneComponentSample from './angular-app-standalone-component.sample.ts?raw';
 
 <Meta of={GettingStartedStories} />
 
@@ -50,6 +52,7 @@ The Design System Angular Components, ready for use in your Angular project.
         <td>16.x</td>
       </tr>
     </tbody>
+
   </table>
 </div>
 
@@ -57,7 +60,17 @@ The Design System Angular Components, ready for use in your Angular project.
 
 <Source code={`npm install @swisspost/design-system-components-angular`} language="bash" />
 
-## Usage
+## Standalone application usage
+
+Importing the components to your project.
+
+<Source code={AngularAppStandaloneComponentSample} language="typescript" />
+
+Usage within your template.
+
+<Source code={AngularAppStandaloneHtmlSample} language="html" />
+
+## Module-based application usage
 
 Importing the components to your project.
 
