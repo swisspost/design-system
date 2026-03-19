@@ -9,12 +9,10 @@
 
 tokens.$default-map: components.$post-cards;
 
-@include icons-mx.custom-property('arrowright');
-
 .card {
   display: flex;
   flex-direction: column;
-  transition: all 250ms;
+  transition: background-color 250ms;
   border-radius: tokens.get('card-border-radius');
   background-color: tokens.get('card-bg');
   color: tokens.get('card-fg');

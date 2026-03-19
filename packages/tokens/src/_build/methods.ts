@@ -89,15 +89,18 @@ function createTokenSets(tokensFile: RawTokenJson): TokenSets {
 
   // only add non component layer sets to source files
   // component layer sets can not be resolved in the browser, and therefore are not usable as sources
-  const source = Object.entries(normalized).reduce((sets, [name, set]) => {
-    const { baseDefinition } = getDefinition(name);
+  const source = Object.entries(normalized).reduce(
+    (sets, [name, set]) => {
+      const { baseDefinition } = getDefinition(name);
 
-    if (baseDefinition.layer !== TOKENSET_LAYERS.component) {
-      return { ...sets, [name]: set };
-    } else {
-      return sets;
-    }
-  }, {} as TokenSets['source']);
+      if (baseDefinition.layer !== TOKENSET_LAYERS.component) {
+        return { ...sets, [name]: set };
+      } else {
+        return sets;
+      }
+    },
+    {} as TokenSets['source'],
+  );
 
   // combine tokensets by group so they can be outputted in a single file
   const output = Object.entries(normalized).reduce(

@@ -13,7 +13,9 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 </div>
 
 <div className="lead">
-  A banner shows general notifications for a product or system, not a specific task and should therefore not require the user to take immediate action. Banners can persist across multiple sessions.
+  A banner shows general notifications for a product or system, not a specific task and should
+  therefore not require the user to take immediate action. Banners can persist across multiple
+  sessions.
 </div>
 
 <Canvas sourceState="shown" of={BannerStories.Default} />
@@ -46,4 +48,4 @@ Although the label remains hidden from view, it is essential for ensuring access
 Alternatively, you can use any button, including action buttons within the banner, as a trigger for dismissing the banner using the `.dismiss()` method.
 This method operates asynchronously and returns a promise that resolves once the fade-out animation has finished.
 
-<Source code={BannerDismissSample} language="typescript"/>
+<Source code={BannerDismissSample} language="typescript" />

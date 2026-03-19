@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -70,7 +70,8 @@
               },
               width: function () {
                 return (
-                  x('Custom width calculation function not defined'), document.body.scrollWidth
+                  x('Custom width calculation function not defined'),
+                  document.body.scrollWidth
                 );
               },
             },
@@ -87,7 +88,7 @@
                 },
               },
             );
-            window.addEventListener('test', ae, ne), window.removeEventListener('test', ae, ne);
+            (window.addEventListener('test', ae, ne), window.removeEventListener('test', ae, ne));
           } catch (e) {}
           var oe,
             o,
@@ -181,16 +182,16 @@
                   ie
                 );
               });
-          k(window, 'message', function (t) {
+          (k(window, 'message', function (t) {
             var n = {
               init: function () {
-                (W = t.data),
+                ((W = t.data),
                   (X = t.source),
                   se(),
                   (q = !1),
                   setTimeout(function () {
                     H = !1;
-                  }, l);
+                  }, l));
               },
               reset: function () {
                 H
@@ -208,11 +209,11 @@
               },
               pageInfo: function () {
                 var e = i();
-                R('PageInfoFromParent called from parent: ' + e), $(JSON.parse(e)), R(' --');
+                (R('PageInfoFromParent called from parent: ' + e), $(JSON.parse(e)), R(' --'));
               },
               message: function () {
                 var e = i();
-                R('onMessage called from parent: ' + e), G(JSON.parse(e)), R(' --');
+                (R('onMessage called from parent: ' + e), G(JSON.parse(e)), R(' --'));
               },
             };
             function o() {
@@ -237,11 +238,11 @@
               (!1 === q
                 ? e()
                 : r()
-                ? n.init()
-                : R('Ignored message of type "' + o() + '". Received before initialization.'));
+                  ? n.init()
+                  : R('Ignored message of type "' + o() + '". Received before initialization.'));
           }),
             k(window, 'readystatechange', Ne),
-            Ne();
+            Ne());
         }
         function ae() {}
         function k(e, t, n, o) {
@@ -272,7 +273,7 @@
           }
           {
             var n;
-            (n = W.slice(J).split(':')),
+            ((n = W.slice(J).split(':')),
               (w = n[0]),
               (u = a === n[1] ? u : Number(n[1])),
               (d = a === n[2] ? d : e(n[2])),
@@ -300,15 +301,15 @@
                 (m = 'heightCalculationMethod' in n ? n.heightCalculationMethod : m),
                 (M = 'widthCalculationMethod' in n ? n.widthCalculationMethod : M),
                 (m = t(m, 'height')),
-                (M = t(M, 'width')));
+                (M = t(M, 'width'))));
           }
           function o(e) {
             F(0, 0, e.type, e.screenY + ':' + e.screenX);
           }
           function i(e, t) {
-            R('Add event listener: ' + t), k(window.document, e, o);
+            (R('Add event listener: ' + t), k(window.document, e, o));
           }
-          R('TargetOrigin for parent set to: ' + T),
+          (R('TargetOrigin for parent set to: ' + T),
             le(
               'margin',
               (function (e, t) {
@@ -367,13 +368,13 @@
                 F(0, 0, 'message', JSON.stringify(e), t);
               },
               setHeightCalculationMethod: function (e) {
-                (m = e), he();
+                ((m = e), he());
               },
               setWidthCalculationMethod: function (e) {
-                (M = e), ge();
+                ((M = e), ge());
               },
               setTargetOrigin: function (e) {
-                R('Set targetOrigin: ' + e), (T = e);
+                (R('Set targetOrigin: ' + e), (T = e));
               },
               size: function (e, t) {
                 L('size', 'parentIFrame.size(' + ((e || '') + (t ? ',' + t : '')) + ')', e, t);
@@ -421,7 +422,7 @@
                   function (e) {
                     '#' !== e.getAttribute('href') &&
                       k(e, 'click', function (e) {
-                        e.preventDefault(), o(this.getAttribute('href'));
+                        (e.preventDefault(), o(this.getAttribute('href')));
                       });
                   },
                 );
@@ -440,7 +441,7 @@
               return { findTarget: o };
             })()),
             L('init', 'Init message from host page'),
-            Z();
+            Z());
         }
         function de(e) {
           var t = e.split('Callback');
@@ -467,20 +468,20 @@
               function t() {
                 L(n.eventName, n.eventType);
               }
-              (ee[e] = t), k(window, e, t, { passive: !0 });
+              ((ee[e] = t), k(window, e, t, { passive: !0 }));
             },
             remove: function (e) {
               var t = ee[e];
-              delete ee[e], window.removeEventListener(e, t, !1);
+              (delete ee[e], window.removeEventListener(e, t, !1));
             },
           };
-          n.eventNames && Array.prototype.map
+          (n.eventNames && Array.prototype.map
             ? ((n.eventName = n.eventNames[0]), n.eventNames.map(e[n.method]))
             : e[n.method](n.eventName),
-            R(ue(n.method) + ' event listener: ' + n.eventType);
+            R(ue(n.method) + ' event listener: ' + n.eventType));
         }
         function fe(e) {
-          t({
+          (t({
             method: e,
             eventType: 'Animation Start',
             eventNames: ['animationstart', 'webkitAnimationStart'],
@@ -537,7 +538,7 @@
                 'otransitionend',
               ],
             }),
-            'child' === b && t({ method: e, eventType: 'IFrame Resized', eventName: 'resize' });
+            'child' === b && t({ method: e, eventType: 'IFrame Resized', eventName: 'resize' }));
         }
         function me(e, t, n, o) {
           return (
@@ -576,13 +577,13 @@
                             Array.prototype.forEach.call(e.target.querySelectorAll('img'), t);
                       }
                       function o(e) {
-                        R('Remove listeners from ' + e.src),
+                        (R('Remove listeners from ' + e.src),
                           e.removeEventListener('load', i, !1),
                           e.removeEventListener('error', r, !1),
-                          u.splice(u.indexOf(e), 1);
+                          u.splice(u.indexOf(e), 1));
                       }
                       function n(e, t, n) {
-                        o(e.target), L(t, n + ': ' + e.target.src);
+                        (o(e.target), L(t, n + ': ' + e.target.src));
                       }
                       function i(e) {
                         n(e, 'imageLoad', 'Image loaded');
@@ -591,8 +592,11 @@
                         n(e, 'imageLoadFailed', 'Image load failed');
                       }
                       function a(e) {
-                        L('mutationObserver', 'mutationObserver: ' + e[0].target + ' ' + e[0].type),
-                          e.forEach(t);
+                        (L(
+                          'mutationObserver',
+                          'mutationObserver: ' + e[0].target + ' ' + e[0].type,
+                        ),
+                          e.forEach(t));
                       }
                       var u = [],
                         c = window.MutationObserver || window.WebKitMutationObserver,
@@ -676,12 +680,12 @@
           function r(e, t) {
             return !(Math.abs(e - t) <= E);
           }
-          (n = a === n ? C[m]() : n),
+          ((n = a === n ? C[m]() : n),
             (o = a === o ? z[M]() : o),
-            r(f, n) || (d && r(S, o)) || 'init' === e ? (Se(), F((f = n), (S = o), e)) : i();
+            r(f, n) || (d && r(S, o)) || 'init' === e ? (Se(), F((f = n), (S = o), e)) : i());
         }
         function Oe() {
-          (A = Date.now()), (N = null), (ie = oe.apply(o, I)), N || (o = I = null);
+          ((A = Date.now()), (N = null), (ie = oe.apply(o, I)), N || (o = I = null));
         }
         function L(e, t, n, o) {
           i && e in j
@@ -690,18 +694,18 @@
               ('init' === e ? Ee : re)(e, t, n, o));
         }
         function Se() {
-          i || ((i = !0), R('Trigger event lock on')),
+          (i || ((i = !0), R('Trigger event lock on')),
             clearTimeout(Y),
             (Y = setTimeout(function () {
-              (i = !1), R('Trigger event lock off'), R('--');
-            }, l));
+              ((i = !1), R('Trigger event lock off'), R('--'));
+            }, l)));
         }
         function Me(e) {
-          (f = C[m]()), (S = z[M]()), F(f, S, e);
+          ((f = C[m]()), (S = z[M]()), F(f, S, e));
         }
         function Ie(e) {
           var t = m;
-          (m = n), R('Reset trigger event: ' + e), Se(), Me('reset'), (m = t);
+          ((m = n), R('Reset trigger event: ' + e), Se(), Me('reset'), (m = t));
         }
         function F(e, t, n, o, i) {
           !0 === V &&

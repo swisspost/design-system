@@ -4,4 +4,4 @@ describe('Search', () => {
     cy.get('.search-input', { timeout: 30000 }).should('be.visible');
     cy.percySnapshot('Search', { widths: [400] });
   });
-})
+});

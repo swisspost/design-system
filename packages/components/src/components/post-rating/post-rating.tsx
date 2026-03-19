@@ -25,7 +25,7 @@ export class PostRating {
   @State() hoveredIndex: number;
 
   /**
-   * Defines a hidden label for the component.
+   * A hidden, descriptive label that explains the role of the rating component to assistive technologies.
    */
   @Prop({ reflect: true }) readonly label!: string;
 

@@ -1,7 +1,5 @@
 # post-collapsible-trigger
 
-
-
 <!-- Auto Generated Below -->
 
 

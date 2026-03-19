@@ -1,7 +1,5 @@
 # post-internet-breadcrumbs
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -15,7 +13,7 @@
 
 ## Methods
 
-### `toggleOverlayById(overlayId: IBreadcrumbOverlay['id']) => Promise<void>`
+### `toggleOverlayById(overlayId: IBreadcrumbOverlay["id"]) => Promise<void>`
 
 Toggle an overlay associated with a button.
 

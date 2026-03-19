@@ -4,19 +4,15 @@ import {
   PostBackToTop,
   PostBreadcrumbItem,
   PostBreadcrumbs,
-  PostClosebutton,
   PostFooter,
   PostHeader,
   PostIcon,
   PostLanguageMenuItem,
   PostLanguageMenu,
-  PostList,
-  PostListItem,
   PostLogo,
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
-  PostTogglebutton,
 } from 'components';
 import { CommonModule } from '@angular/common';
 
@@ -32,19 +28,15 @@ import { CommonModule } from '@angular/common';
     PostBackToTop,
     PostBreadcrumbItem,
     PostBreadcrumbs,
-    PostClosebutton,
     PostFooter,
     PostHeader,
     PostIcon,
     PostLanguageMenuItem,
     PostLanguageMenu,
-    PostList,
-    PostListItem,
     PostLogo,
     PostMainnavigation,
     PostMegadropdown,
     PostMegadropdownTrigger,
-    PostTogglebutton,
   ],
 })
 export class AppComponent implements OnInit {
@@ -76,10 +68,12 @@ export class AppComponent implements OnInit {
       overviewLink: '/letters',
       sections: [
         {
+          id: 'send-letters',
           title: 'Send letters',
           links: this.megadropdownLinks.standard,
         },
         {
+          id: 'step-by-step-letters',
           title: 'Step by step',
           titleLink: '/step-by-step',
           links: this.megadropdownLinks.packages,
@@ -93,10 +87,12 @@ export class AppComponent implements OnInit {
       overviewLink: '/packages',
       sections: [
         {
+          id: 'send-packages',
           title: 'Send packages',
           links: this.megadropdownLinks.packages,
         },
         {
+          id: 'step-by-step-packages',
           title: 'Step by step',
           titleLink: '/step-by-step',
           links: this.megadropdownLinks.packages,

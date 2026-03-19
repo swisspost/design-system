@@ -20,7 +20,7 @@ const meta: MetaComponent = {
   argTypes: {
     for: {
       name: 'for',
-      control: false
+      control: false,
     },
     delay: {
       name: 'delay',
@@ -33,7 +33,7 @@ export default meta;
 export const Default: StoryObj = {
   render: (args: Args, context: StoryContext) => {
     const tooltipId = `tooltip-${context.id}`;
-    
+
     return html`
       <post-tooltip-trigger
         for=${tooltipId}
@@ -41,9 +41,7 @@ export const Default: StoryObj = {
       >
         <button class="btn btn-secondary btn-large">Tooltip with delay</button>
       </post-tooltip-trigger>
-      <post-tooltip id=${tooltipId}>
-        This is the tooltip content
-      </post-tooltip>
+      <post-tooltip id=${tooltipId}> This is the tooltip content </post-tooltip>
     `;
   },
 };

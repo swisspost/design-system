@@ -5,7 +5,7 @@
   display: block;
 }
 
-:where([part='menu']) {
+:where([part='post-menu']) {
   display: flex;
   flex-direction: column;
   padding-block: 0.5rem;

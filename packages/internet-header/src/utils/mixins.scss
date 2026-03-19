@@ -1,7 +1,7 @@
-@use "sass:map";
+@use 'sass:map';
 @use 'sass:selector';
 @use 'sass:string';
-@use "@swisspost/design-system-styles/variables/breakpoints";
+@use '@swisspost/design-system-styles/variables/breakpoints';
 
 @mixin min($point) {
   @media (min-width: map.get(breakpoints.$grid-breakpoints, $point)) {
@@ -59,7 +59,7 @@
 @mixin _responsive-custom-property($var, $values) {
   $previous-value: null;
   @each $breakpoint, $value in $values {
-    @if($value == $previous-value) {
+    @if ($value == $previous-value) {
       // no styles
     } @else if($breakpoint == xs) {
       @include _custom-property($var, $value);
@@ -75,5 +75,5 @@
 
 @mixin _custom-property($var, $value) {
   $is-root: selector.is-superselector(&, ':root');
-  #{$var}: if($is-root, $value, var(#{string.insert($var, "post-", 3)}, $value));
+  #{$var}: if($is-root, $value, var(#{string.insert($var, 'post-', 3)}, $value));
 }

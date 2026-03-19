@@ -8,7 +8,7 @@ type CapturedError = {
 /**
  * Sets up error monitoring for specific components.
  * Captures console.error and uncaught errors.
- * 
+ *
  * @param componentNames - Array of component names to monitor for errors
  * @returns Object containing:
  *   - errors: Live array of error messages (used by tests)
@@ -24,13 +24,13 @@ export function setupComponentErrorCapture(componentNames: string[]) {
   return {
     errors,
     captured,
-    onBeforeLoad
+    onBeforeLoad,
   };
 
   /**
    * Sets up error listeners on the application window before it loads.
    * Intercepts console.error calls and window error events.
-   * 
+   *
    * @param win - Cypress AUT window object
    */
   function onBeforeLoad(win: Cypress.AUTWindow): void {
@@ -56,7 +56,7 @@ export function setupComponentErrorCapture(componentNames: string[]) {
   /**
    * Adds an error to the captured errors array if it passes all filters.
    * Applies relevance checking.
-   * 
+   *
    * @param message - The error message to capture
    * @param source - The source of the error ('console' or 'error')
    * @param stack - Optional stack trace for the error
@@ -73,13 +73,13 @@ export function setupComponentErrorCapture(componentNames: string[]) {
   /**
    * Extracts a readable message from various error formats.
    * Handles strings, Error objects, and other values gracefully.
-   * 
+   *
    * @param arg - Error object, string, or any value to extract message from
    * @returns Extracted error message as a string
    */
   function extractMessage(arg: unknown): string {
     if (typeof arg === 'string') return arg;
-    
+
     // Handle Error-like objects
     if (arg && typeof arg === 'object') {
       if ('message' in arg && arg.message) {
@@ -89,7 +89,7 @@ export function setupComponentErrorCapture(componentNames: string[]) {
         return String(arg.stack);
       }
     }
-    
+
     // Fallback: try to serialize or convert to string
     try {
       return JSON.stringify(arg);
@@ -101,7 +101,7 @@ export function setupComponentErrorCapture(componentNames: string[]) {
   /**
    * Determines if an error message is relevant to the monitored components.
    * An error is considered relevant if it mentions any of the component names.
-   * 
+   *
    * @param message - Error message to check for component relevance
    * @returns True if the error mentions a monitored component, false otherwise
    */
@@ -114,7 +114,7 @@ export function setupComponentErrorCapture(componentNames: string[]) {
 /**
  * Asserts that no component errors were captured during testing.
  * Throws an error with detailed information if any errors were found.
- * 
+ *
  * @param errors - Array of error messages captured during test execution
  * @param componentNames - Array of component names that were monitored
  * @throws Error if any errors were captured, with formatted error details

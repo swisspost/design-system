@@ -103,15 +103,15 @@ StyleDictionary.registerFormat({
   name: 'swisspost/tailwind-v4-format',
   format: async ({ dictionary, options, file }) => {
     const header = await fileHeader({ file, commentStyle: 'long' }); // CSS comments
-    
+
     const themeVariables = dictionary.allTokens.reduce<Record<string, TokenProperty>>(
       (allTokens, token) => {
         const tokenPath = token.path.slice(token.path.indexOf(TOKENSET_PREFIX) + 1);
-        
+
         const cssVarName = `--${tokenPath.join('-')}`;
-        
+
         const tokenValue = getTokenValue(options, token);
-        
+
         allTokens[cssVarName] = tokenValue;
         return allTokens;
       },

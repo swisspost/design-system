@@ -31,13 +31,13 @@ export class PostPopover {
   }
 
   /**
-   * Define the caption of the close button for assistive technology
+   * Define the text of the close button for assistive technology
    */
-  @Prop({ reflect: true }) readonly closeButtonCaption!: string;
+  @Prop({ reflect: true }) readonly textClose!: string;
 
-  @Watch('closeButtonCaption')
-  validateCloseButtonCaption() {
-    checkRequiredAndType(this, 'closeButtonCaption', 'string');
+  @Watch('textClose')
+  validateTextClose() {
+    checkRequiredAndType(this, 'textClose', 'string');
   }
   /**
    * Show a little indicator arrow
@@ -47,7 +47,7 @@ export class PostPopover {
 
   componentDidLoad() {
     this.validatePlacement();
-    this.validateCloseButtonCaption();
+    this.validateTextClose();
   }
 
   /**
@@ -56,7 +56,8 @@ export class PostPopover {
    */
   @Method()
   async show(target: HTMLElement) {
-    this.popoverRef.show(target);
+    await this.popoverRef.show(target);
+    this.focusFirstEl();
   }
 
   /**
@@ -74,11 +75,14 @@ export class PostPopover {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
-    await this.popoverRef.toggle(target, force);
+    const isOpen = await this.popoverRef.toggle(target, force);
+    if (isOpen) this.focusFirstEl();
+  }
 
+  private focusFirstEl() {
     const focusableChildren = getDeepFocusableChildren(this.host);
 
-    // find first focusable element
+    // Find first focusable element
     const firstFocusable = focusableChildren[0];
 
     if (firstFocusable) {
@@ -98,9 +102,7 @@ export class PostPopover {
             <div class="popover-content">
               <slot></slot>
             </div>
-            <post-closebutton onClick={() => this.hide()}>
-              {this.closeButtonCaption}
-            </post-closebutton>
+            <post-closebutton onClick={() => this.hide()}>{this.textClose}</post-closebutton>
           </div>
         </post-popovercontainer>
       </Host>

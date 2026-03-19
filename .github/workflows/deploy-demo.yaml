@@ -57,7 +57,7 @@ jobs:
               core.setFailed('Invalid issue number - must be a positive integer');
               return;
             }
-            
+
             core.setOutput('safe_id', rawId);
             core.setOutput('issue_number', issueNumber);
 

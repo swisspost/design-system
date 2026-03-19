@@ -55,41 +55,42 @@ export const Textarea: Story = {
 
     return schemes(
       scheme => html`
-      <div>
-        <h1>Textarea</h1>
-        <h2 class="h4">Floating Label</h2>
-        <div class="row">
-          ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
-            context.id = crypto.randomUUID();
-            return html` <div class="col-md-6 mb-16">
-              <h3 class="h6">${args.title}</h3>
-              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
-            </div>`;
-          })}
-        </div>
+        <div>
+          <h1>Textarea</h1>
+          <h2 class="h4">Floating Label</h2>
+          <div class="row">
+            ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
+              context.id = crypto.randomUUID();
+              return html` <div class="col-md-6 mb-16">
+                <h3 class="h6">${args.title}</h3>
+                <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+              </div>`;
+            })}
+          </div>
 
-        <h2 class="h4">Standard Label</h2>
-        <div class="row">
-          ${getCombinations('floatingLabel', [false], combinations).map((args: Args) => {
-            context.id = crypto.randomUUID();
-            return html` <div class="col-md-6 mb-16">
-              <h3 class="h6">${args.title}</h3>
-              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
-            </div>`;
-          })}
-        </div>
+          <h2 class="h4">Standard Label</h2>
+          <div class="row">
+            ${getCombinations('floatingLabel', [false], combinations).map((args: Args) => {
+              context.id = crypto.randomUUID();
+              return html` <div class="col-md-6 mb-16">
+                <h3 class="h6">${args.title}</h3>
+                <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+              </div>`;
+            })}
+          </div>
 
-        <h2 class="h3">Disabled with Overflow Text - ${scheme} Theme</h2>
-        <div class="row">
-          ${disabledOverflowTextCombinations.map((args: Args) => {
-            context.id = crypto.randomUUID();
-            return html` <div class="col-md-6 mb-16">
-              <h3 class="h6">${args.title}</h3>
-              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
-            </div>`;
-          })}
+          <h2 class="h3">Disabled with Overflow Text - ${scheme} Theme</h2>
+          <div class="row">
+            ${disabledOverflowTextCombinations.map((args: Args) => {
+              context.id = crypto.randomUUID();
+              return html` <div class="col-md-6 mb-16">
+                <h3 class="h6">${args.title}</h3>
+                <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+              </div>`;
+            })}
+          </div>
         </div>
-      </div>
-    `);
+      `,
+    );
   },
 };

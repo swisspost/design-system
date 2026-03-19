@@ -1,5 +1,76 @@
 # @swisspost/internet-header
 
+## 10.0.0-next.64
+
+### Major Changes
+
+- Added two required properties for the `swisspost-internet-footer` component:
+  - `textFooter` a visually hidden label for the footer.
+  - `textCookieSettings` a label for the "Cookie Settings" button. (by [@alizedebray](https://github.com/alizedebray) with [#7239](https://github.com/swisspost/design-system/pull/7239))
+
+- Updated the design and configuration of the `swisspost-internet-footer` component. (by [@alizedebray](https://github.com/alizedebray) with [#7239](https://github.com/swisspost/design-system/pull/7239))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.64
+
+## 10.0.0-next.63
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.63
+
+## 10.0.0-next.62
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.62
+
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.61
+
+## 10.0.0-next.60
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.60
+
+## 10.0.0-next.59
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.59
+
+## 10.0.0-next.58
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.58
+
+## 10.0.0-next.57
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.57
+
+## 10.0.0-next.56
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.56
+
 ## 10.0.0-next.55
 
 ### Patch Changes

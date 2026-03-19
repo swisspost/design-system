@@ -18,12 +18,11 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 # @swisspost/internet-header
 
 <div className="npm-package-link">
-  [![npm version](https://badge.fury.io/js/@swisspost%2Finternet-header.svg)](https://badge.fury.io/js/@swisspost%2Finternet-header)
+  [![npm
+  version](https://badge.fury.io/js/@swisspost%2Finternet-header.svg)](https://badge.fury.io/js/@swisspost%2Finternet-header)
 </div>
 
-<div className='lead'>
-  The header for client-facing applications.
-</div>
+<div className="lead">The header for client-facing applications.</div>
 
 <PackageDocs changelog={changelog}>
   <div className="card my-40">
@@ -55,168 +54,181 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
         If you are not sure what's configured for your project, please reach out to the post-portal team as well.
       </post-banner>
     </div>
+
   </div>
 
-  ## Installation
+## Installation
 
-  ### Choose between lazy-loaded or bare component version
+### Choose between lazy-loaded or bare component version
 
-  Internet-header package provide two versions:
+Internet-header package provide two versions:
 
-  - Lazy-loaded (default): it allows better performance by dynamically load the component when used, so it reduces bundle size, startup time and first paint.
-  - Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
+- Lazy-loaded (default): it allows better performance by dynamically load the component when used, so it reduces bundle size, startup time and first paint.
+- Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
 
-  <post-tabs>
-    <post-tab-item name="with-bundler">Install with a bundler</post-tab-item>
-    <post-tab-panel for="with-bundler">
-      All the popular frameworks come with some form of bundler.
-      This makes it easy to use npm packages like the Internet Header as you can import,
-      bundle and deliver the header with your own code.
+<post-tabs>
+  <post-tab-item name="with-bundler">Install with a bundler</post-tab-item>
+  <post-tab-panel for="with-bundler">
 
-      When working with Angular or any other framework, the easiest installation method is via npm.
+    All the popular frameworks come with some form of bundler.
+    This makes it easy to use npm packages like the Internet Header as you can import,
+    bundle and deliver the header with your own code.
 
-      <Source code={`npm install @swisspost/internet-header`} dark={SourceDarkScheme} language="bash" />
+    When working with Angular or any other framework, the easiest installation method is via npm.
 
-      <Source code={SampleFrameworks} dark={SourceDarkScheme} language="html" />
+    <Source code={`npm install @swisspost/internet-header`} dark={SourceDarkScheme} language="bash" />
 
-      <div>
-        <div className="row">
-          <div className="col-md-6">
-            <p className="fw-bold">Lazy-Loaded</p>
-            <Source code={SampleLazyLoaded} dark={SourceDarkScheme} language="javascript" />
-          </div>
-          <div className="col-md-6">
-            <p className="fw-bold">Bare Component</p>
-            <Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" />
-          </div>
+    <Source code={SampleFrameworks} dark={SourceDarkScheme} language="html" />
+
+    <div>
+      <div className="row">
+        <div className="col-md-6">
+      <p className="fw-bold">Lazy-Loaded</p>
+      <Source code={SampleLazyLoaded} dark={SourceDarkScheme} language="javascript" />
+        </div>
+        <div className="col-md-6">
+      <p className="fw-bold">Bare Component</p>
+      <Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" />
         </div>
       </div>
-    </post-tab-panel>
+    </div>
 
-    <post-tab-item name="with-cdn">Include from a CDN</post-tab-item>
-    <post-tab-panel for="with-cdn">
-      If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
-      Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
+  </post-tab-panel>
+  <post-tab-item name="with-cdn">Include from a CDN</post-tab-item>
+  <post-tab-panel for="with-cdn">
 
-      Available CDNs:
+    If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
+    Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
 
-      - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/internet-header](https://cdn.jsdelivr.net/npm/@swisspost/internet-header).
-      - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
+    Available CDNs:
 
-      <div>
-        <div className="row">
-          <div className="col-md-6">
-            <p className="fw-bold">Lazy-Loaded</p>
-            <Source code={SampleCDNLazyLoaded} dark={SourceDarkScheme} language="html" />
-          </div>
-          <div className="col-md-6">
-            <p className="fw-bold">Bare Component</p>
-            <Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" />
-          </div>
+    - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/internet-header](https://cdn.jsdelivr.net/npm/@swisspost/internet-header).
+    - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
+
+    <div>
+      <div className="row">
+        <div className="col-md-6">
+      <p className="fw-bold">Lazy-Loaded</p>
+      <Source code={SampleCDNLazyLoaded} dark={SourceDarkScheme} language="html" />
+        </div>
+        <div className="col-md-6">
+      <p className="fw-bold">Bare Component</p>
+      <Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" />
         </div>
       </div>
-    </post-tab-panel>
-  </post-tabs>
+    </div>
 
-  ### Usage with Angular
+  </post-tab-panel>
+</post-tabs>
 
-  For Angular user, please have a look at [How to integrate Web Components inside Angular](/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs#usage-of-web-components)
+### Usage with Angular
 
-  ## CSS Variables
+For Angular user, please have a look at [How to integrate Web Components inside Angular](/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs#usage-of-web-components)
 
-  The internet header package provides a stylesheet aimed at facilitating the use of key CSS variables beyond the header itself.
-  This stylesheet allows you to access CSS variables to implement styling relative to the header as needed, but it is completely optional.
+## CSS Variables
 
-  <post-tabs>
-    <post-tab-item name="sass-import">Sass Import</post-tab-item>
-    <post-tab-panel for="sass-import">
-      <Source code={`@use "@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css";`} dark={SourceDarkScheme} language="scss" />
-    </post-tab-panel>
-    <post-tab-item name="html-import">HTML Import</post-tab-item>
-    <post-tab-panel for="html-import">
-      <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css"/>`} dark={SourceDarkScheme} language="html" />
-    </post-tab-panel>
-  </post-tabs>
+The internet header package provides a stylesheet aimed at facilitating the use of key CSS variables beyond the header itself.
+This stylesheet allows you to access CSS variables to implement styling relative to the header as needed, but it is completely optional.
 
-  ## Migration from the old header
+<post-tabs>
+  <post-tab-item name="sass-import">Sass Import</post-tab-item>
+  <post-tab-panel for="sass-import">
+    <Source
+      code={`@use "@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css";`}
+      dark={SourceDarkScheme}
+      language="scss"
+    />
+  </post-tab-panel>
+  <post-tab-item name="html-import">HTML Import</post-tab-item>
+  <post-tab-panel for="html-import">
+    <Source
+      code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css"/>`}
+      dark={SourceDarkScheme}
+      language="html"
+    />
+  </post-tab-panel>
+</post-tabs>
 
-  This guide aims to give a broad overview of how a migration can be performed.
-  Different projects have different levels of integration with the header,
-  and therefore require more steps to migrate.
+## Migration from the old header
 
-  ### Architecture
+This guide aims to give a broad overview of how a migration can be performed.
+Different projects have different levels of integration with the header,
+and therefore require more steps to migrate.
 
-  The "new"
-  Internet Header Web Component aims
-  to encapsulate as much as possible whereas the old header had a big influence on the page —
-  limiting design decisions and flexibility of the markup structure.
-  The Web Component Header consists of one script and three standard Web Components that can be freely placed on the page.
-  It's even possible to render those elements with Angular
-  (or any other framework) to easier pass settings into the component.
+### Architecture
 
-  The new header is built
-  to work with the existing Sitecore configuration
-  already existing for your project to make the migration as smooth as possible.
+The "new"
+Internet Header Web Component aims
+to encapsulate as much as possible whereas the old header had a big influence on the page —
+limiting design decisions and flexibility of the markup structure.
+The Web Component Header consists of one script and three standard Web Components that can be freely placed on the page.
+It's even possible to render those elements with Angular
+(or any other framework) to easier pass settings into the component.
 
-  ### Support
+The new header is built
+to work with the existing Sitecore configuration
+already existing for your project to make the migration as smooth as possible.
 
-  If you need support during your migration,
-  don't hesitate
-  to contact the [Design System Team](https://github.com/swisspost/design-system/discussions/categories/general) on GitHub.
+### Support
 
-  ### 1. Remove the old header
+If you need support during your migration,
+don't hesitate
+to contact the [Design System Team](https://github.com/swisspost/design-system/discussions/categories/general) on GitHub.
 
-  In your index.html, you should find three scripts associated with the old header.
-  One to load static assets, one to configure it and one to load it.
+### 1. Remove the old header
 
-  - You can remove the configuration and the loader scripts, but remember your `serviceid`.
-  - Try to remove the `staticassets` script to check if you still need it
+In your index.html, you should find three scripts associated with the old header.
+One to load static assets, one to configure it and one to load it.
 
-  <Source code={SampleOld} dark={true} language="html" />
+- You can remove the configuration and the loader scripts, but remember your `serviceid`.
+- Try to remove the `staticassets` script to check if you still need it
 
-  ### 2. Fix your app styles
+<Source code={SampleOld} dark={true} language="html" />
 
-  The old header was responsible for wrapping your main code (here `#os_content`) with custom `<div>`s.
-  The new header does not provide those wrappers.
-  Instead, every page has control over the main markup structure.
-  A possible replacement of the above code could be:
+### 2. Fix your app styles
 
-  <Source code={SampleFixAppStyles} dark={true} language="html" />
+The old header was responsible for wrapping your main code (here `#os_content`) with custom `<div>`s.
+The new header does not provide those wrappers.
+Instead, every page has control over the main markup structure.
+A possible replacement of the above code could be:
 
-  - Likely you'll need the class `container` around your main content to align it properly in the center.
-  - For improved semantic markup, consider wrapping the main page content in a `<main>` tag. ([Learn more about the `<main>` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main)).
-  - Check if you need the `staticasset` stylesheets linked in the header
+<Source code={SampleFixAppStyles} dark={true} language="html" />
 
-  If you need to do any other changes,
-  please make a post to the [Design System Teams Channel](https://teams.microsoft.com/l/channel/19%3ae7fa68fb13eb40b4bf4604edea5f4b3e%40thread.tacv2/%25F0%259F%259A%2591%2520Support?groupId=123c7c9e-052a-40e6-98d3-6cc6d46bad0a&tenantId=3ae7c479-0cf1-47f4-8f84-929f364eff67)
-  in order to inform the devs to update this guide and provide useful information for other developers.
+- Likely you'll need the class `container` around your main content to align it properly in the center.
+- For improved semantic markup, consider wrapping the main page content in a `<main>` tag. ([Learn more about the `<main>` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main)).
+- Check if you need the `staticasset` stylesheets linked in the header
 
-  ### 3. jQuery
+If you need to do any other changes,
+please make a post to the [Design System Teams Channel](https://teams.microsoft.com/l/channel/19%3ae7fa68fb13eb40b4bf4604edea5f4b3e%40thread.tacv2/%25F0%259F%259A%2591%2520Support?groupId=123c7c9e-052a-40e6-98d3-6cc6d46bad0a&tenantId=3ae7c479-0cf1-47f4-8f84-929f364eff67)
+in order to inform the devs to update this guide and provide useful information for other developers.
 
-  The new Header does not ship jQuery anymore.
-  While jQuery v3.6 is an internal dependency for the Login Widget,
-  every project is now responsible for loading and updating jQuery individually.
-  If you are depending on an older (&lt;3.5) version of jQuery, please update.
-  There is a long list of [known jQuery vulnerabilities](https://security.snyk.io/package/npm/jquery).
+### 3. jQuery
 
-  ### 4. Install the new header
+The new Header does not ship jQuery anymore.
+While jQuery v3.6 is an internal dependency for the Login Widget,
+every project is now responsible for loading and updating jQuery individually.
+If you are depending on an older (&lt;3.5) version of jQuery, please update.
+There is a long list of [known jQuery vulnerabilities](https://security.snyk.io/package/npm/jquery).
 
-  Please refer to the [Internet Header installation instructions](/?path=/docs/9b02bcb2-3b6a-4271-b550-675a62ff3890--docs) for an installation guide.
+### 4. Install the new header
 
-  After installation, you're ready to add the new tags to your markup:
+Please refer to the [Internet Header installation instructions](/?path=/docs/9b02bcb2-3b6a-4271-b550-675a62ff3890--docs) for an installation guide.
 
-  <Source code={SampleInstall} dark={SourceDarkScheme} language="html" />
+After installation, you're ready to add the new tags to your markup:
 
-  Place the new elements as described (and needed) as shown above.
-  The breadcrumbs need a `container` wrapper to align themselves with the content of your page,
-  the header and the footer already provide a container.
-  If you don't have breadcrumbs, you can just delete the `<aside>` and the `<swisspost-internet-breadcrumbs>`.
+<Source code={SampleInstall} dark={SourceDarkScheme} language="html" />
 
-  ### 5. Working with the new header
+Place the new elements as described (and needed) as shown above.
+The breadcrumbs need a `container` wrapper to align themselves with the content of your page,
+the header and the footer already provide a container.
+If you don't have breadcrumbs, you can just delete the `<aside>` and the `<swisspost-internet-breadcrumbs>`.
 
-  If you need to change settings during runtime, you can get a reference to the header by querying:
+### 5. Working with the new header
 
-  <Source code={SampleReference} dark={SourceDarkScheme} language="typescript" />
+If you need to change settings during runtime, you can get a reference to the header by querying:
 
-  At the [Internet Header configuration page](/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs) you can find a list of possible options.
+<Source code={SampleReference} dark={SourceDarkScheme} language="typescript" />
+
+At the [Internet Header configuration page](/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs) you can find a list of possible options.
+
 </PackageDocs>

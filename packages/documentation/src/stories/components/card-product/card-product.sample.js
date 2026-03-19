@@ -5,7 +5,7 @@ function syncHeights() {
   nodes.forEach(node => {
     const group = node.getAttribute('data-sync-height-with');
     const groupHeight = heightByGroup.get(group);
-    
+
     node.style.height = 'auto';
     const nodeHeight = node.offsetHeight;
 
@@ -15,9 +15,7 @@ function syncHeights() {
   });
 
   heightByGroup.forEach((height, group) => {
-    const groupNodes = document.querySelectorAll(
-      `[data-sync-height-with="${group}"]`
-    );
+    const groupNodes = document.querySelectorAll(`[data-sync-height-with="${group}"]`);
 
     groupNodes.forEach(node => {
       node.style.height = `${height}px`;

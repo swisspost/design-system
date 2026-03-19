@@ -1,4 +1,14 @@
-import { Component, Element, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Host,
+  h,
+  Prop,
+  State,
+  Event,
+  EventEmitter,
+  Watch,
+} from '@stencil/core';
 import { version } from '@root/package.json';
 import { nanoid } from 'nanoid';
 import { checkEmptyOrType, checkRequiredAndType, debounce } from '@/utils';
@@ -15,16 +25,23 @@ const MIDDLE_RANGE_START = 2; // Middle range starts from page 2 (page 1 is alwa
 /**
  * Type-safe pagination item definition using discriminated union.
  */
-type PaginationItem = 
-  | { type: 'page'; page: number }
-  | { type: 'ellipsis' };
+type PaginationItem = { type: 'page'; page: number } | { type: 'ellipsis' };
 
 type SectionType = 'none' | 'page' | 'ellipsis';
 
 /**
  * Valid prop names for validation
  */
-type ValidatableProp = 'page' | 'pageSize' | 'collectionSize' | 'label' | 'labelPrevious' | 'labelNext' | 'labelPage' | 'labelFirst' | 'labelLast' | 'disabled';
+type ValidatableProp =
+  | 'page'
+  | 'pageSize'
+  | 'collectionSize'
+  | 'label'
+  | 'textNext'
+  | 'textPrevious'
+  | 'textPage'
+  | 'textFirst'
+  | 'textLast';
 
 @Component({
   tag: 'post-pagination',
@@ -33,62 +50,57 @@ type ValidatableProp = 'page' | 'pageSize' | 'collectionSize' | 'label' | 'label
 })
 export class PostPagination {
   @Element() host: HTMLPostPaginationElement;
-  
+
   @State() private paginationId: string;
   @State() private maxVisiblePages: number;
   @State() private items: PaginationItem[] = [];
-  
+
   /**
    * The current active page number.
-   * 
+   *
    * **If not specified, defaults to the first page.**
    */
   @Prop({ mutable: true }) page?: number;
-  
+
   /**
    * The number of items per page.
    */
   @Prop({ reflect: true }) pageSize!: number;
-  
+
   /**
    * The total number of items in the collection.
    */
   @Prop({ reflect: true }) collectionSize!: number;
-  
+
   /**
-   * Accessible label for the pagination navigation.
+   * A descriptive label for the pagination navigation, used by assistive technologies.
    */
   @Prop({ reflect: true }) readonly label!: string;
 
   /**
    * Accessible label for the previous page button.
    */
-  @Prop({ reflect: true }) readonly labelPrevious!: string;
+  @Prop({ reflect: true }) readonly textPrevious!: string;
 
   /**
    * Accessible label for the next page button.
    */
-  @Prop({ reflect: true }) readonly labelNext!: string;
+  @Prop({ reflect: true }) readonly textNext!: string;
 
   /**
    * Prefix text for page number labels.
    */
-  @Prop({ reflect: true }) readonly labelPage!: string;
+  @Prop({ reflect: true }) readonly textPage!: string;
 
   /**
    * Prefix text for the first page label.
    */
-  @Prop({ reflect: true }) readonly labelFirst!: string;
+  @Prop({ reflect: true }) readonly textFirst!: string;
 
   /**
    * Prefix text for the last page label.
    */
-  @Prop({ reflect: true }) readonly labelLast!: string;
-
-  /**
-   * If true, the pagination is disabled.
-   */
-  @Prop() readonly disabled?: boolean;
+  @Prop({ reflect: true }) readonly textLast!: string;
 
   /**
    * Event emitted when the page changes.
@@ -99,7 +111,7 @@ export class PostPagination {
   private hiddenItemsRef?: HTMLElement;
   private lastWindowWidth = window.innerWidth;
   private loaded: boolean = false;
-  
+
   private debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
   private measurementTimeoutId: number | null = null;
 
@@ -107,52 +119,47 @@ export class PostPagination {
   validatePage() {
     this.validateProp('page', 'number', false);
   }
-  
+
   @Watch('pageSize')
   validatePageSize() {
     this.validateProp('pageSize', 'number', true);
   }
-  
+
   @Watch('collectionSize')
   validateCollectionSize() {
     this.validateProp('collectionSize', 'number', true);
   }
-  
+
   @Watch('label')
   validateLabel() {
     this.validateProp('label', 'string', true);
   }
-  
-  @Watch('labelPrevious')
-  validateLabelPrevious() {
-    this.validateProp('labelPrevious', 'string', true);
+
+  @Watch('textPrevious')
+  validateTextPrevious() {
+    this.validateProp('textPrevious', 'string', true);
   }
-  
-  @Watch('labelNext')
-  validateLabelNext() {
-    this.validateProp('labelNext', 'string', true);
+
+  @Watch('textNext')
+  validateTextNext() {
+    this.validateProp('textNext', 'string', true);
   }
-  
-  @Watch('labelPage')
-  validateLabelPage() {
-    this.validateProp('labelPage', 'string', true);
+
+  @Watch('textPage')
+  validateTextPage() {
+    this.validateProp('textPage', 'string', true);
   }
-  
-  @Watch('labelFirst')
-  validateLabelFirst() {
-    this.validateProp('labelFirst', 'string', true);
+
+  @Watch('textFirst')
+  validateTextFirst() {
+    this.validateProp('textFirst', 'string', true);
   }
-  
-  @Watch('labelLast')
-  validateLabelLast() {
-    this.validateProp('labelLast', 'string', true);
+
+  @Watch('textLast')
+  validateTextLast() {
+    this.validateProp('textLast', 'string', true);
   }
-  
-  @Watch('disabled')
-  validateDisabled() {
-    this.validateProp('disabled', 'boolean', false);
-  }
-  
+
   @Watch('page')
   @Watch('pageSize')
   @Watch('collectionSize')
@@ -175,15 +182,15 @@ export class PostPagination {
   componentDidLoad() {
     this.loaded = true;
     this.runAllValidations();
-    
+
     this.scheduleMeasurement();
   }
 
   disconnectedCallback() {
     this.loaded = false;
-    
+
     window.removeEventListener('resize', this.debouncedResize);
-    
+
     if (this.measurementTimeoutId !== null) {
       clearTimeout(this.measurementTimeoutId);
       this.measurementTimeoutId = null;
@@ -193,7 +200,11 @@ export class PostPagination {
   /**
    * Validate a prop with the appropriate check function
    */
-  private validateProp(propName: ValidatableProp, type: 'string' | 'number' | 'boolean', required: boolean = true) {
+  private validateProp(
+    propName: ValidatableProp,
+    type: 'string' | 'number' | 'boolean',
+    required: boolean = true,
+  ) {
     if (required) {
       checkRequiredAndType(this, propName, type);
     } else {
@@ -209,12 +220,11 @@ export class PostPagination {
     this.validateProp('pageSize', 'number', true);
     this.validateProp('collectionSize', 'number', true);
     this.validateProp('label', 'string', true);
-    this.validateProp('labelPrevious', 'string', true);
-    this.validateProp('labelNext', 'string', true);
-    this.validateProp('labelPage', 'string', true);
-    this.validateProp('labelFirst', 'string', true);
-    this.validateProp('labelLast', 'string', true);
-    this.validateProp('disabled', 'boolean', false);
+    this.validateProp('textPrevious', 'string', true);
+    this.validateProp('textNext', 'string', true);
+    this.validateProp('textPage', 'string', true);
+    this.validateProp('textFirst', 'string', true);
+    this.validateProp('textLast', 'string', true);
   }
 
   /**
@@ -222,10 +232,10 @@ export class PostPagination {
    */
   private scheduleMeasurement() {
     if (!this.loaded) return;
-    
+
     this.measurementTimeoutId = window.setTimeout(() => {
       const canMeasure = this.navRef?.clientWidth > 0 && this.hiddenItemsRef;
-      
+
       if (canMeasure) {
         this.measureAndCalculateVisiblePages();
       } else {
@@ -239,9 +249,9 @@ export class PostPagination {
    */
   private handleResizeInternal() {
     if (!this.loaded) return;
-    
+
     if (window.innerWidth === this.lastWindowWidth) return;
-    
+
     this.lastWindowWidth = window.innerWidth;
     this.measureAndCalculateVisiblePages();
   }
@@ -271,7 +281,7 @@ export class PostPagination {
     const controlButtonsWidth = this.getControlButtonsWidth();
     const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button');
     const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis');
-    
+
     if (!pageButton) return;
 
     const singleButtonWidth = pageButton.getBoundingClientRect().width;
@@ -282,7 +292,7 @@ export class PostPagination {
     // Calculate how many page buttons can fit
     const maxPages = Math.floor((widthForPages + gap) / (singleButtonWidth + gap));
     const clampedMaxPages = Math.max(MIN_VISIBLE_PAGES, Math.min(maxPages, totalPages));
-    
+
     this.maxVisiblePages = clampedMaxPages;
     this.updatePagesWithValidation();
   }
@@ -292,18 +302,20 @@ export class PostPagination {
    */
   private getControlButtonsWidth(): number {
     if (!this.hiddenItemsRef) return 0;
-    
+
     const controlButtons = Array.from(
-      this.hiddenItemsRef.querySelectorAll('.hidden-control-button')
+      this.hiddenItemsRef.querySelectorAll('.hidden-control-button'),
     );
-    
-    const totalWidth = controlButtons
-      .reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
-    
+
+    const totalWidth = controlButtons.reduce(
+      (sum, el) => sum + el.getBoundingClientRect().width,
+      0,
+    );
+
     return totalWidth;
   }
 
-  /** 
+  /**
    * Gets the horizontal padding of the pagination container
    */
   private getPaginationPadding(): number {
@@ -319,7 +331,7 @@ export class PostPagination {
    */
   private getAvailableWidth(): number {
     if (!this.navRef) return 0;
-    
+
     return this.host.parentElement?.clientWidth ?? window.innerWidth;
   }
 
@@ -378,7 +390,7 @@ export class PostPagination {
   private getSections(startPage: number, endPage: number, totalPages: number) {
     const leftGap = startPage - 1;
     const rightGap = totalPages - endPage;
-    
+
     return {
       leftSection: this.sectionForGap(leftGap),
       rightSection: this.sectionForGap(rightGap),
@@ -395,7 +407,7 @@ export class PostPagination {
     const middle = Math.max(0, endPage - startPage + 1);
     const leftCount = leftSection === 'none' ? 0 : 1;
     const rightCount = rightSection === 'none' ? 0 : 1;
-    
+
     // Always include first page (1) and last page (totalPages) = EDGE_ITEM_COUNT pages
     // Plus any left/right sections (ellipsis or pages) and middle pages
     return EDGE_ITEM_COUNT + leftCount + rightCount + middle;
@@ -415,30 +427,40 @@ export class PostPagination {
   /**
    * Adjust start/end pages to avoid gap=2 scenarios
    */
-  private adjustForGapTwo(startPage: number, endPage: number, totalPages: number, middleSlots: number) {
+  private adjustForGapTwo(
+    startPage: number,
+    endPage: number,
+    totalPages: number,
+    middleSlots: number,
+  ) {
     const adjusted = { startPage, endPage };
-    
+
     // Fix rightGap=GAP_THRESHOLD_FOR_PAGE to maintain visual consistency
     const rightGap = totalPages - endPage;
     if (rightGap === GAP_THRESHOLD_FOR_PAGE) {
       adjusted.endPage = totalPages - 1;
       adjusted.startPage = Math.max(MIDDLE_RANGE_START, adjusted.endPage - middleSlots + 1);
     }
-    
+
     // Fix leftGap=GAP_THRESHOLD_FOR_PAGE to maintain symmetry
     const leftGap = adjusted.startPage - 1;
     if (leftGap === GAP_THRESHOLD_FOR_PAGE) {
       adjusted.startPage = MIDDLE_RANGE_START;
       adjusted.endPage = Math.min(totalPages - 1, adjusted.startPage + middleSlots - 1);
     }
-    
+
     return adjusted;
   }
 
   /**
    * Ensure we have the desired number of middle slots
    */
-  private ensureMiddleSlots(startPage: number, endPage: number, totalPages: number, middleSlots: number) {
+  private ensureMiddleSlots(
+    startPage: number,
+    endPage: number,
+    totalPages: number,
+    middleSlots: number,
+  ) {
     const adjusted = { startPage, endPage };
     const actualSlots = endPage - startPage + 1;
 
@@ -460,7 +482,7 @@ export class PostPagination {
     endPage: number,
     totalPages: number,
     maxVisible: number,
-    currentPage: number
+    currentPage: number,
   ): { startPage: number; endPage: number } {
     const adjusted = { startPage, endPage };
     let totalItems = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
@@ -468,7 +490,7 @@ export class PostPagination {
     while (totalItems > maxVisible) {
       const distLeft = currentPage - adjusted.startPage;
       const distRight = adjusted.endPage - currentPage;
-      
+
       if (distRight >= distLeft && adjusted.endPage > adjusted.startPage) {
         adjusted.endPage = Math.max(adjusted.startPage - 1, adjusted.endPage - 1);
       } else if (adjusted.startPage < adjusted.endPage) {
@@ -476,7 +498,7 @@ export class PostPagination {
       } else {
         break;
       }
-      
+
       const newTotal = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
       if (newTotal === totalItems) break;
       totalItems = newTotal;
@@ -492,7 +514,7 @@ export class PostPagination {
     startPage: number,
     endPage: number,
     totalPages: number,
-    maxVisible: number
+    maxVisible: number,
   ): { startPage: number; endPage: number } {
     const adjusted = { startPage, endPage };
     let totalItems = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
@@ -500,7 +522,7 @@ export class PostPagination {
     while (totalItems < maxVisible) {
       const canExpandLeft = adjusted.startPage > MIDDLE_RANGE_START;
       const canExpandRight = adjusted.endPage < totalPages - 1;
-      
+
       if (canExpandLeft) {
         adjusted.startPage = Math.max(MIDDLE_RANGE_START, adjusted.startPage - 1);
       } else if (canExpandRight) {
@@ -508,7 +530,7 @@ export class PostPagination {
       } else {
         break;
       }
-      
+
       const newTotal = this.computeTotalItems(adjusted.startPage, adjusted.endPage, totalPages);
       if (newTotal === totalItems) break;
       totalItems = newTotal;
@@ -521,11 +543,11 @@ export class PostPagination {
    * Balance total items to match maxVisible by trimming or expanding
    */
   private balanceTotalItems(
-    startPage: number, 
-    endPage: number, 
-    totalPages: number, 
-    maxVisible: number, 
-    currentPage: number
+    startPage: number,
+    endPage: number,
+    totalPages: number,
+    maxVisible: number,
+    currentPage: number,
   ) {
     const trimmed = this.trimExcessItems(startPage, endPage, totalPages, maxVisible, currentPage);
     return this.expandToFillSlots(trimmed.startPage, trimmed.endPage, totalPages, maxVisible);
@@ -563,42 +585,57 @@ export class PostPagination {
 
     // Adjust for gap=2 scenarios and balance items
     const gapAdjusted = this.adjustForGapTwo(startPage, endPage, totalPages, middleSlots);
-    const slotAdjusted = this.ensureMiddleSlots(gapAdjusted.startPage, gapAdjusted.endPage, totalPages, middleSlots);
-    return this.balanceTotalItems(slotAdjusted.startPage, slotAdjusted.endPage, totalPages, maxVisible, currentPage);
+    const slotAdjusted = this.ensureMiddleSlots(
+      gapAdjusted.startPage,
+      gapAdjusted.endPage,
+      totalPages,
+      middleSlots,
+    );
+    return this.balanceTotalItems(
+      slotAdjusted.startPage,
+      slotAdjusted.endPage,
+      totalPages,
+      maxVisible,
+      currentPage,
+    );
   }
 
   /**
    * Build pagination items with ellipsis
    */
-  private buildPaginationItems(startPage: number, endPage: number, totalPages: number): PaginationItem[] {
+  private buildPaginationItems(
+    startPage: number,
+    endPage: number,
+    totalPages: number,
+  ): PaginationItem[] {
     const items: PaginationItem[] = [];
     const hasMiddlePages = startPage <= endPage;
 
     // First page
     items.push({ type: 'page', page: 1 });
-    
+
     if (hasMiddlePages) {
       const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
-      
+
       // Left section (ellipsis or page 2)
       if (leftSection === 'page') {
         items.push({ type: 'page', page: 2 });
       } else if (leftSection === 'ellipsis') {
         items.push({ type: 'ellipsis' });
       }
-    
+
       // Middle pages
       for (let i = startPage; i <= endPage; i++) {
         items.push({ type: 'page', page: i });
       }
-    
+
       // Right section (ellipsis or second-to-last page)
       if (rightSection === 'page') {
         items.push({ type: 'page', page: totalPages - 1 });
       } else if (rightSection === 'ellipsis') {
         items.push({ type: 'ellipsis' });
       }
-    
+
       // Last page
       items.push({ type: 'page', page: totalPages });
 
@@ -612,17 +649,9 @@ export class PostPagination {
    */
   private generateSmallPagination(currentPage: number, totalPages: number): PaginationItem[] {
     if (currentPage === 1 || currentPage === totalPages) {
-      return [
-        { type: 'page', page: 1 },
-        { type: 'ellipsis' },
-        { type: 'page', page: totalPages },
-      ];
+      return [{ type: 'page', page: 1 }, { type: 'ellipsis' }, { type: 'page', page: totalPages }];
     }
-    return [
-      { type: 'ellipsis' },
-      { type: 'page', page: currentPage },
-      { type: 'ellipsis' },
-    ];
+    return [{ type: 'ellipsis' }, { type: 'page', page: currentPage }, { type: 'ellipsis' }];
   }
 
   /**
@@ -660,7 +689,7 @@ export class PostPagination {
    * Handles page change when a page button is clicked.
    */
   private handlePageClick(pageNumber: number) {
-    if (this.disabled || pageNumber === this.page) return;
+    if (pageNumber === this.page) return;
 
     this.emitPageChange(pageNumber);
   }
@@ -669,8 +698,8 @@ export class PostPagination {
    * Handles previous button click.
    */
   private handlePrevious() {
-    if (this.disabled || this.page <= 1) return;
-    
+    if (this.page <= 1) return;
+
     this.emitPageChange(this.page - 1);
   }
 
@@ -679,8 +708,8 @@ export class PostPagination {
    */
   private handleNext() {
     const totalPages = this.getTotalPages();
-    if (this.disabled || this.page >= totalPages) return;
-    
+    if (this.page >= totalPages) return;
+
     this.emitPageChange(this.page + 1);
   }
 
@@ -699,14 +728,14 @@ export class PostPagination {
    */
   private buildPageLabel(pageNumber: number): string {
     const totalPages = this.getTotalPages();
-    
+
     if (pageNumber === 1) {
-      return `${this.labelFirst}, ${this.labelPage} ${pageNumber}`;
+      return `${this.textFirst}, ${this.textPage} ${pageNumber}`;
     }
     if (pageNumber === totalPages) {
-      return `${this.labelLast}, ${this.labelPage} ${pageNumber}`;
+      return `${this.textLast}, ${this.textPage} ${pageNumber}`;
     }
-    return `${this.labelPage} ${pageNumber}`;
+    return `${this.textPage} ${pageNumber}`;
   }
 
   /**
@@ -714,10 +743,8 @@ export class PostPagination {
    */
   private renderEllipsis(key: string) {
     return (
-      <li class="pagination-item pagination-ellipsis" key={key}>
-        <span class="pagination-ellipsis-content" aria-hidden="true">
-          {ELLIPSIS}
-        </span>
+      <li class="pagination-item pagination-ellipsis" key={key} aria-hidden="true">
+        <span class="pagination-ellipsis-content">{ELLIPSIS}</span>
       </li>
     );
   }
@@ -739,9 +766,8 @@ export class PostPagination {
           aria-label={this.buildPageLabel(pageNumber)}
           aria-current={isCurrent ? 'page' : undefined}
           onClick={() => this.handlePageClick(pageNumber)}
-          onKeyDown={(e) => this.handleKeyDown(e, () => this.handlePageClick(pageNumber))}
-          disabled={this.disabled ? true : undefined}
-          tabIndex={this.disabled ? -1 : 0}
+          onKeyDown={e => this.handleKeyDown(e, () => this.handlePageClick(pageNumber))}
+          tabIndex={0}
         >
           <span aria-hidden="true">{pageNumber}</span>
         </button>
@@ -753,7 +779,7 @@ export class PostPagination {
    * Renders a pagination item.
    */
   private renderItem(item: PaginationItem, index: number) {
-    return item.type === 'ellipsis' 
+    return item.type === 'ellipsis'
       ? this.renderEllipsis(`ellipsis-${index}`)
       : this.renderPageButton(item.page);
   }
@@ -763,27 +789,21 @@ export class PostPagination {
    */
   private renderControlButton(
     iconName: string,
+    isPrev: boolean,
     label: string,
-    isDisabled: boolean,
     onClick: () => void,
-    rotateIcon: boolean = false
   ) {
     return (
       <li class="pagination-item pagination-control">
         <button
           type="button"
-          class={{
-            'pagination-link': true,
-            'pagination-control-button': true,
-            'pagination-link-disabled': isDisabled,
-          }}
+          class={`pagination-control-button btn btn-icon btn-secondary ${isPrev ? 'prev-button' : 'next-button'}`}
           aria-label={label}
           onClick={onClick}
-          onKeyDown={(e) => this.handleKeyDown(e, onClick)}
-          disabled={isDisabled}
-          tabIndex={isDisabled ? -1 : 0}
+          onKeyDown={e => this.handleKeyDown(e, onClick)}
+          tabIndex={0}
         >
-          <post-icon name={iconName} class={rotateIcon ? 'pagination-icon-rotated' : undefined} aria-hidden="true"></post-icon>
+          <post-icon name={iconName} aria-hidden="true"></post-icon>
           <span class="visually-hidden">{label}</span>
         </button>
       </li>
@@ -793,11 +813,13 @@ export class PostPagination {
   /**
    * Renders minimal hidden items for measurement
    */
-  private renderHiddenItems(totalPages: number) {
+  private renderHiddenItems(totalPages: number, isPrevHidden: boolean, isNextHidden: boolean) {
     return [
-      <button class="pagination-link pagination-control-button hidden-control-button" disabled>
-        <post-icon name="chevronleft" aria-hidden="true"></post-icon>
-      </button>,
+      !isPrevHidden && (
+        <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+          <post-icon name="chevronleftwide" aria-hidden="true"></post-icon>
+        </button>
+      ),
       <button
         class="pagination-link pagination-control-button hidden-page-button"
         aria-label={this.buildPageLabel(totalPages)}
@@ -808,21 +830,23 @@ export class PostPagination {
       <span class="pagination-ellipsis-content hidden-ellipsis" aria-hidden="true">
         {ELLIPSIS}
       </span>,
-      <button class="pagination-link pagination-control-button hidden-control-button" disabled>
-        <post-icon name="chevronleft" class="pagination-icon-rotated" aria-hidden="true"></post-icon>
-      </button>
+      !isNextHidden && (
+        <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+          <post-icon name="chevronrightwide" aria-hidden="true"></post-icon>
+        </button>
+      ),
     ];
   }
 
   render() {
     const totalPages = this.getTotalPages();
-    
+
     if (totalPages <= 1) {
       return null;
     }
 
-    const isPrevDisabled = this.disabled || this.page <= 1;
-    const isNextDisabled = this.disabled || this.page >= totalPages;
+    const isPrevHidden = this.page <= 1;
+    const isNextHidden = this.page >= totalPages;
 
     return (
       <Host slot="post-pagination" data-version={version}>
@@ -834,29 +858,24 @@ export class PostPagination {
         >
           <ul class="pagination-list" role="list">
             {/* Previous Button */}
-            {this.renderControlButton(
-              'chevronleft',
-              this.labelPrevious,
-              isPrevDisabled,
-              () => this.handlePrevious()
-            )}
+            {!isPrevHidden &&
+              this.renderControlButton('chevronleftwide', true, this.textPrevious, () =>
+                this.handlePrevious(),
+              )}
 
             {/* Page Items */}
             {this.items.map((item, index) => this.renderItem(item, index))}
 
             {/* Next Button */}
-            {this.renderControlButton(
-              'chevronleft',
-              this.labelNext,
-              isNextDisabled,
-              () => this.handleNext(),
-              true
-            )}
+            {!isNextHidden &&
+              this.renderControlButton('chevronrightwide', false, this.textNext, () =>
+                this.handleNext(),
+              )}
           </ul>
 
           {/* Hidden items container for width measurement */}
           <div class="hidden-items" aria-hidden="true" ref={el => (this.hiddenItemsRef = el)}>
-            {this.renderHiddenItems(totalPages)}
+            {this.renderHiddenItems(totalPages, isPrevHidden, isNextHidden)}
           </div>
         </nav>
       </Host>

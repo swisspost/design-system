@@ -26,7 +26,7 @@ const meta: MetaComponent = {
     innerHtml:
       'A longer message that needs more time to read. <a href="#">Links</a> are also possible.',
     palette: 'palette-accent',
-    closeButtonCaption: 'Close',
+    textClose: 'Close',
     placement: 'top',
     arrow: true,
     title: true,
@@ -70,8 +70,8 @@ const meta: MetaComponent = {
         },
       },
     },
-    closeButtonCaption: {
-      name: 'Close button caption',
+    textClose: {
+      name: 'Close',
     },
     arrow: {
       name: 'Arrow',
@@ -102,7 +102,7 @@ function render(args: Args) {
       class="palette ${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
-      close-button-caption="${args.closeButtonCaption}"
+      text-close="${args.textClose}"
       ?arrow="${args.arrow}"
       style="${args.maxWidth ? '--post-popover-max-width: ' + args.maxWidth : nothing}"
     >
@@ -120,15 +120,29 @@ export const Wrapped: StoryObj = {
     return html`
       <post-popover-trigger>
         <button class="btn btn-secondary">Popover Trigger</button>
-        <post-popover
-          class="palette palette-accent"
-          placement="top"
-          close-button-caption="Close"
-          arrow=""
-        >
+        <post-popover class="palette palette-accent" placement="top" text-close="Close" arrow="">
           <h2 class="h6">Optional title</h2>
           <p class="mb-0">
             A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+          </p>
+        </post-popover>
+      </post-popover-trigger>
+    `;
+  },
+};
+
+export const InfoIcon: StoryObj = {
+  render: () => {
+    return html`
+      <label> Tracking updates </label>
+      <post-popover-trigger>
+        <button class="btn btn-link btn-icon">
+          <post-icon aria-hidden="true" name="info"></post-icon>
+          <span class="visually-hidden">See more information</span>
+        </button>
+        <post-popover class="palette palette-accent" placement="top" text-close="Close" arrow="">
+          <p class="mb-0">
+            Follow your letter's journey with automatic updates at key delivery milestones.
           </p>
         </post-popover>
       </post-popover-trigger>

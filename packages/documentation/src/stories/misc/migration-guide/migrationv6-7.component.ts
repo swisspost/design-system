@@ -34,40 +34,45 @@ export class MigrationV67Component extends LitElement {
           <li>
             <h3>Package Update 🩺</h3>
             <ol>
-            ${this.angular
-              ? html`
-                  <li>
-                    <p>
-                      Use
-                      <a href="https://update.angular.io/">Angular Update Guide</a>
-                      to update Angular to version 17
-                    </p>
-                `
-              : nothing}
+            ${
+              this.angular
+                ? html`
+                    <li>
+                      <p>
+                        Use
+                        <a href="https://update.angular.io/">Angular Update Guide</a>
+                        to update Angular to version 17
+                      </p>
+                    </li>
+                  `
+                : nothing
+            }
 
-            ${this.angular
-              ? html`
-                  <li>
-                    <p>
-                      Update ng-bootstrap to version 16.x.x:
-                      <code languages="['bash']">
-                        npm install @ng-bootstrap/ng-bootstrap@16
-                      </code>
-                    </p>
-                    <p class="mt-2">
-                      See the
-                      <a
-                        href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        ng-bootstrap 16.x.x changelog
-                      </a>
-                      for more details.
-                    </p>
-                  </li>
-                `
-              : nothing}
+            ${
+              this.angular
+                ? html`
+                    <li>
+                      <p>
+                        Update ng-bootstrap to version 16.x.x:
+                        <code languages="['bash']">
+                          npm install @ng-bootstrap/ng-bootstrap@16
+                        </code>
+                      </p>
+                      <p class="mt-2">
+                        See the
+                        <a
+                          href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          ng-bootstrap 16.x.x changelog
+                        </a>
+                        for more details.
+                      </p>
+                    </li>
+                  `
+                : nothing
+            }
               
               <li>
                 <p>
@@ -285,7 +290,9 @@ export class MigrationV67Component extends LitElement {
                           </p>
                           <p class="info">
                             See the
-                            <a href="/?path=/docs/4d1b4185-e04d-494a-ab38-2b56c1778b0b--docs">Accordion component documentation</a>
+                            <a href="/?path=/docs/4d1b4185-e04d-494a-ab38-2b56c1778b0b--docs"
+                              >Accordion component documentation</a
+                            >
                             for more detailed information.
                           </p>
                         </li>

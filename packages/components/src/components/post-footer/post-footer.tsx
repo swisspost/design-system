@@ -22,16 +22,16 @@ export class PostFooter {
   @Element() host: HTMLPostFooterElement;
 
   /**
-   * The label to add to the footer (visually hidden).
+   * The textFooter to add to the footer (visually hidden).
    */
-  @Prop({ reflect: true }) readonly label!: string;
+  @Prop({ reflect: true }) readonly textFooter!: string;
 
   @State() device: Device = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
 
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
+  @Watch('textFooter')
+  validateTextFooter() {
+    checkRequiredAndType(this, 'textFooter', 'string');
   }
 
   constructor() {
@@ -43,7 +43,7 @@ export class PostFooter {
   }
 
   componentWillLoad() {
-    this.validateLabel();
+    this.validateTextFooter();
 
     // initialize grid visibility by checking the content of each slot
     GRID_SLOTS.forEach(slotName => {
@@ -60,15 +60,17 @@ export class PostFooter {
     this.device = e.detail;
   };
 
-  private readonly handleGridSlotChange = (...devices: string[]) => (e: Event) => {
-    if (devices.includes(this.device) && e.target instanceof HTMLSlotElement) {
-      this.updateGridSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
-    }
-  };
+  private handleGridSlotChange(...devices: string[]) {
+    return (e: Event) => {
+      if (devices.includes(this.device) && e.target instanceof HTMLSlotElement) {
+        this.updateGridSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
+      }
+    };
+  }
 
   private updateGridSlotDisplay(slotName: string, hasContent: boolean) {
     if (this.gridSlotDisplayed[slotName] !== hasContent) {
-      this.gridSlotDisplayed = {...this.gridSlotDisplayed, [slotName]: hasContent};
+      this.gridSlotDisplayed = { ...this.gridSlotDisplayed, [slotName]: hasContent };
     }
   }
 
@@ -76,7 +78,10 @@ export class PostFooter {
     return (
       <post-accordion headingLevel={3} multiple={true}>
         {GRID_SLOTS.map(slotName => (
-          <post-accordion-item class={{ 'd-none': !this.gridSlotDisplayed[slotName] }} collapsed={true}>
+          <post-accordion-item
+            class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}
+            collapsed={true}
+          >
             <span slot="header">
               <slot name={slotName + '-title'}></slot>
             </span>
@@ -102,7 +107,7 @@ export class PostFooter {
     return (
       <Host data-version={version} data-color-scheme="light">
         <footer>
-          <h2 class="visually-hidden">{this.label}</h2>
+          <h2 class="visually-hidden">{this.textFooter}</h2>
 
           <div class="footer-container">
             <div class="footer-grid">

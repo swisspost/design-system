@@ -8,6 +8,8 @@ const meta: Meta = {
     controls: {
       exclude: [
         'accordion-item', // this CSS part is for internal use only
+        'post-accordion-button',
+        'post-accordion-body',
       ],
     },
   },
@@ -22,21 +24,25 @@ const meta: Meta = {
         disable: true,
       },
     },
-    'css-shadow-parts-accordion-button': {
-      name: 'post-accordion-button',
+    'post-accordion-button': {
+      name: 'post-accordion-button ', // trailing space is intentional to avoid conflict with auto-generated part
+      description: 'The element that toggles the accordion item (header button).',
+      control: false,
       table: {
+        category: 'CSS Shadow Parts',
         type: {
-          summary: 'css selector',
-          detail: '::part(post-accordion-button) { ... }',
+          summary: 'CSS Selector',
         },
       },
     },
-    'css-shadow-parts-accordion-body': {
-      name: 'post-accordion-body',
+    'post-accordion-body': {
+      name: 'post-accordion-body ', // trailing space is intentional to avoid conflict with auto-generated part
+      description: "The element that holds the accordion item's content.",
+      control: false,
       table: {
+        category: 'CSS Shadow Parts',
         type: {
-          summary: 'css selector',
-          detail: '::part(post-accordion-body) { ... }',
+          summary: 'CSS Selector',
         },
       },
     },

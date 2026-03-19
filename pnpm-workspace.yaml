@@ -1,5 +1,4 @@
 packages:
   - 'packages/*'
   - 'packages/components-angular/projects/*'
-  - 'packages/styles-primeng-workspace/projects/*'
   - 'figma-plugins/*'

@@ -7,6 +7,8 @@ import metaComponentsReact from '@/stories/packages/components-react/components-
 import metaInternetHeader from '@/stories/packages/internet-header/internet-header.stories';
 import metaIcons from '@/stories/packages/icons/package-icons.stories';
 import metaTokens from '@/stories/packages/tokens/tokens.stories';
+import metaThemeAGGrid from '@/stories/packages/theme-ag-grid/theme-ag-grid.stories';
+
 import { PackageType } from '@/../types';
 
 interface IPackage {
@@ -146,6 +148,26 @@ export const packages: IPackage[] = [
       alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-icons'])}`,
+  },
+  {
+    name: 'Theme AG Grid',
+    docsStoryId: metaThemeAGGrid.id,
+    type: PackageType.Ts,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/theme-ag-grid',
+        ariaLabel: 'Source of Theme AG Grid package',
+      },
+      docs: {
+        href: generateDocsRelativeLink(metaThemeAGGrid.id),
+        ariaLabel: 'Getting started with Theme AG Grid package',
+      },
+    },
+    img: {
+      src: '/assets/images/packages/theme-ag-grid.svg',
+      alt: '',
+    },
+    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-theme-ag-grid'])}`,
   },
   {
     name: 'Tokens',

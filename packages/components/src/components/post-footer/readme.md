@@ -1,15 +1,13 @@
 # post-footer
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property             | Attribute | Description                                       | Type     | Default     |
-| -------------------- | --------- | ------------------------------------------------- | -------- | ----------- |
-| `label` _(required)_ | `label`   | The label to add to the footer (visually hidden). | `string` | `undefined` |
+| Property                  | Attribute     | Description                                            | Type     | Default     |
+| ------------------------- | ------------- | ------------------------------------------------------ | -------- | ----------- |
+| `textFooter` _(required)_ | `text-footer` | The textFooter to add to the footer (visually hidden). | `string` | `undefined` |
 
 
 ## Slots

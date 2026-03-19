@@ -106,11 +106,8 @@ StyleDictionary.registerPreprocessor({
         if (typeof context[key] === 'object' && context[key] !== null) {
           if (isToken) {
             if (tokenType === 'shadow' && typeof tokenValue === 'string') {
-              context[key].$extensions[
-                'studio.tokens'
-              ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
-                match === '{' ? '[[' : ']]',
-              )}`;
+              context[key].$extensions['studio.tokens'].boxShadowKeepRefsWorkaroundValue =
+                `${tokenValue.replace(/[{}]/g, match => (match === '{' ? '[[' : ']]'))}`;
             }
           } else if (typeof value === 'object' && value !== null) {
             traverse(value);

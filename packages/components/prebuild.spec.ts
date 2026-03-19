@@ -23,7 +23,7 @@ describe('prebuild', () => {
         'post-back-to-tlop': '',
         'post-breadcrumbs': '',
         'post-breadcrumbs-item': '',
-        'some-other-folder': ''
+        'some-other-folder': '',
       },
       'src/components/',
     );

@@ -1,15 +1,13 @@
 # post-back-to-top
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property             | Attribute | Description                                                                                                             | Type     | Default     |
-| -------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `label` _(required)_ | `label`   | The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view. | `string` | `undefined` |
+| Property                     | Attribute          | Description                                                                                                             | Type     | Default     |
+| ---------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `textBackToTop` _(required)_ | `text-back-to-top` | The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view. | `string` | `undefined` |
 
 
 ## Dependencies

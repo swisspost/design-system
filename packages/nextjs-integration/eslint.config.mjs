@@ -12,7 +12,7 @@ import hooksPlugin from 'eslint-plugin-react-hooks';
 export default [
   {
     name: 'post/global/ignores',
-    ignores: ['dist/*'],
+    ignores: ['dist/*', '.next/*'],
   },
   {
     name: 'post/defaults',

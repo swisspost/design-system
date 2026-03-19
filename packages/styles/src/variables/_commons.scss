@@ -48,12 +48,3 @@ $named-zindex-map: (
   'toast': $zindex-toast,
   'fixed': $zindex-fixed,
 );
-
-// Z-index
-
-$z-indexes: (
-  subnavigation: (
-    underscore-root,
-    underscore-link,
-  ),
-) !default;

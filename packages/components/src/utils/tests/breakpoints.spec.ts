@@ -1,6 +1,6 @@
 // Mock throttle to call the function immediately without delay
 jest.mock('throttle-debounce', () => ({
-  throttle: jest.fn().mockImplementation((_, fn) => fn)
+  throttle: jest.fn().mockImplementation((_, fn) => fn),
 }));
 
 // Mock CSS variables data used for breakpoints

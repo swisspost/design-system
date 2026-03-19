@@ -35,7 +35,9 @@ const storedDevMode = localStorage.getItem('devModeEnabled');
 let initialEnv = process.env.NODE_ENV || 'production';
 
 if (storedDevMode !== null) {
-  initialEnv = JSON.parse(storedDevMode) ? 'development' : 'production';
+  // Check for 'development'/'production' value for backwards compatibility
+  initialEnv =
+    storedDevMode === 'true' || storedDevMode === 'development' ? 'development' : 'production';
 }
 
 document.documentElement.setAttribute('data-env', initialEnv);

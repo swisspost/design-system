@@ -9,10 +9,11 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <div className="docs-title">
  # Back To Top
 
-  <link-design of={JSON.stringify(BackToTopStories)}></link-design>
+<link-design of={JSON.stringify(BackToTopStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead">
   The Back to top component enables the user to scroll back to the top of the page with only a
@@ -22,8 +23,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <Source code={BackToTop} language="html" />
 
 <post-banner>
-  The `label` property is essential for accessibility and must provide a clear, descriptive text for
-  the Back to Top button.
+  The `textBackToTop` property is essential for accessibility and must provide a clear, descriptive
+  text for the Back to Top button.
 </post-banner>
 
 <ComponentsPackageInstall component="<post-back-to-top>" />
@@ -35,7 +36,8 @@ Click the button below to view a full-screen example of the Back To Top button.
 <a
   className="btn btn-primary"
   target="_blank"
-  href={`?path=%2Fstory%2F1a1b4cab-d0a8-4b01-bd85-b70e18668cb5--default&full=true`} rel="noreferrer"
+  href={`?path=%2Fstory%2F1a1b4cab-d0a8-4b01-bd85-b70e18668cb5--default&full=true`}
+  rel="noreferrer"
 >
   Back To Top example
 </a>

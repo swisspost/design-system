@@ -8,10 +8,11 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <div className="docs-title">
   # Button Close
 
-  <link-design of={JSON.stringify(CloseButtonStories)}></link-design>
+<link-design of={JSON.stringify(CloseButtonStories)}></link-design>
+
 </div>
 
-<PackageTag meta={meta}/>
+<PackageTag meta={meta} />
 
 <div className="lead">
   The close button is a web component. It is a slightly adapted version of the icon button, intended
@@ -26,3 +27,27 @@ The value inside the `<post-closebutton>` element will be rendered inside the bu
 </div>
 
 <ComponentsPackageInstall component="<post-closebutton>" />
+
+### Automatic Positioning
+
+By default, the `post-closebutton` positions itself automatically.
+This means the component applies its own positioning styles to place the button at the top-right corner of the element it closes.
+
+<post-banner type="info">
+  For this to work correctly, the closable element must be the **offset parent** of the close button.
+  The offset parent of an element is the nearest ancestor whose `position` is not `static`.
+  If no such ancestor exists, the offset parent defaults to the `body`.
+
+  To make the closable element the offset parent, give it a non-static position.
+  You can do this by using utility classes such as `.position-relative` or `.position-absolute`.
+</post-banner>
+
+<Canvas sourceState="shown" of={CloseButtonStories.AutomaticPositioning} />
+
+### Manual Positioning
+
+If the available space around the closable element is insufficient for the default automatic positioning,
+you can switch to manual positioning utsing the `position="manual"` property.
+
+When `position="manual"` is used, no positioning styles are applied by the component.
+The button is rendered inline like a regular button, and you are responsible for providing any styles needed to place it.

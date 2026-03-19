@@ -109,26 +109,14 @@
       background-color: rgba(post.$yellow, 0.4);
       color: post.$black;
     }
-
-    .label-with-icon {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-
-      img {
-        width: 1rem;
-        height: 1rem;
-        flex-shrink: 0;
-      }
-    }
   }
 
   #misc,
   [data-item-id^='health'],
   :is(#raw-components, [data-parent-id='raw-components']):where([data-env='production'] *),
   :is(#accessibility-practices, [data-parent-id='accessibility-practices']):where(
-      [data-env='production'] *
-    ) {
+    [data-env='production'] *
+  ) {
     display: none;
   }
 
@@ -139,6 +127,18 @@
 
   [data-parent-id='misc']:where(:not([data-parent-id='misc'] + *)) {
     margin-block-start: 1rem;
+  }
+}
+
+.label-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  img {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
   }
 }
 

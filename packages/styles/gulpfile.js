@@ -38,13 +38,14 @@ gulp.task('copy-icon-files-to-dist', () => {
 /**
  * Copy task
  */
-gulp.task('copy', 
+gulp.task(
+  'copy',
   gulp.series('copy-icon-files-to-dist', () => {
     return gulp
       .src(['./LICENSE', './README.md', './package.json', './src/**/*.scss'])
       .pipe(newer(options.outputDir))
       .pipe(gulp.dest(options.outputDir));
-  })
+  }),
 );
 
 /**
@@ -178,21 +179,6 @@ gulp.task('sass:dev', () => {
 });
 
 /**
- * Compile scss tests
- */
-gulp.task(
-  'sass:tests',
-  gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', () => {
-    return gulp.src('./tests/**/*.scss').pipe(
-      gulpSass.sync({
-        loadPaths: [...options.loadPaths, './'],
-        quietDeps: true,
-      }),
-    );
-  }),
-);
-
-/**
  * Watch task for scss development
  */
 gulp.task(
@@ -211,7 +197,14 @@ exports.default = gulp.task(
     'prebuild-env-vars',
     gulp.parallel(
       'map-icons',
-      gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', 'copy', 'transform-package-json', 'autoprefixer', 'sass'),
+      gulp.series(
+        'temporarily-copy-token-files',
+        'temporarily-copy-icon-files',
+        'copy',
+        'transform-package-json',
+        'autoprefixer',
+        'sass',
+      ),
     ),
   ),
 );

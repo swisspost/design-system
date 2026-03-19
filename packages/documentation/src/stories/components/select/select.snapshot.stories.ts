@@ -75,57 +75,92 @@ export const Select: Story = {
       () => html`
         <div class="d-flex gap-16 flex-column">
           <h2>Floating Label</h2>
-          ${bombArgsGeneratedDefault.map(
-            (args: Args) =>
-              html`
-                <div>
+          <div class="row">
+            ${bombArgsGeneratedDefault.map(
+              (args: Args) => html`
+                <div class="col-md-6 col-lg-4 mb-32">
                   ${FloatingLabel.render?.(
                     { ...context.args, ...FloatingLabel.args, ...args },
                     { ...context, id: `a-${crypto.randomUUID()}` },
                   )}
                 </div>
               `,
-          )}
+            )}
+          </div>
 
-          <h2>Default</h2>
-          ${bombArgsGeneratedDefault
-            .map((args: Args) => ({ ...args, floatingLabel: false }))
-            .map((args: Args) => {
-              return html`
-                <div>
-                  ${Default.render?.(
-                    { ...context.args, ...Default.args, ...args },
-                    { ...context, id: `a-${crypto.randomUUID()}` },
-                  )}
-                </div>
-              `;
-            })}
+          <h2>Standard - Default size</h2>
+          <div class="row">
+            ${bombArgsGeneratedDefault
+              .map((args: Args) => ({ ...args, floatingLabel: false }))
+              .map((args: Args) => {
+                return html`
+                  <div class="col-md-6 col-lg-4 mb-32">
+                    ${Default.render?.(
+                      { ...context.args, ...Default.args, ...args },
+                      { ...context, id: `a-${crypto.randomUUID()}` },
+                    )}
+                  </div>
+                `;
+              })}
+          </div>
+          <h2>Standard - Small size</h2>
+          <div class="row">
+            ${bombArgsGeneratedDefault
+              .map((args: Args) => ({ ...args, floatingLabel: false, size: 'small' }))
+              .map((args: Args) => {
+                return html`
+                  <div class="col-md-6 col-lg-4 mb-32">
+                    ${Default.render?.(
+                      { ...context.args, ...Default.args, ...args },
+                      { ...context, id: `a-${crypto.randomUUID()}` },
+                    )}
+                  </div>
+                `;
+              })}
+          </div>
           <h2>Multiple - Floating Label</h2>
-          ${bombArgsGeneratedMultiple.map(
-            (args: Args) =>
-              html`
-                <div>
+          <div class="row">
+            ${bombArgsGeneratedMultiple.map(
+              (args: Args) => html`
+                <div class="col-md-6 col-lg-4 mb-32">
                   ${FloatingLabel.render?.(
                     { ...context.args, ...FloatingLabel.args, ...args },
                     { ...context, id: `a-${crypto.randomUUID()}` },
                   )}
                 </div>
               `,
-          )}
-          <h2>Multiple - Default</h2>
-          ${bombArgsGeneratedMultiple
-            .map((args: Args) => ({ ...args, floatingLabel: false }))
-            .map(
-              (args: Args) =>
-                html`
-                  <div>
+            )}
+          </div>
+          <h2>Multiple - Standard - Default size</h2>
+          <div class="row">
+            ${bombArgsGeneratedMultiple
+              .map((args: Args) => ({ ...args, floatingLabel: false }))
+              .map(
+                (args: Args) => html`
+                  <div class="col-md-6 col-lg-4 mb-32">
                     ${Default.render?.(
                       { ...context.args, ...Default.args, ...args },
                       { ...context, id: `a-${crypto.randomUUID()}` },
                     )}
                   </div>
                 `,
-            )}
+              )}
+          </div>
+          <h2>Multiple - Standard - Small size</h2>
+          <div class="row">
+            ${bombArgsGeneratedMultiple
+              .map((args: Args) => ({ ...args, floatingLabel: false, size: 'small' }))
+              .map(
+                (args: Args) => html`
+                  <div class="col-md-6 col-lg-4 mb-32">
+                    ${Default.render?.(
+                      { ...context.args, ...Default.args, ...args },
+                      { ...context, id: `a-${crypto.randomUUID()}` },
+                    )}
+                  </div>
+                `,
+              )}
+          </div>
         </div>
       `,
     );

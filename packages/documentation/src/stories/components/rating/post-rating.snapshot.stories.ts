@@ -27,17 +27,16 @@ export const Rating: Story = {
         })
           .filter((args: Args) => args.currentRating <= args.stars)
           .map(
-            (args: Args) =>
-              html`
-                <div class="d-flex gap-16">
-                  <div class="w-half">
-                    ${meta.render?.({ ...context.args, ...args, readonly: false }, context)}
-                  </div>
-                  <div class="w-half">
-                    ${meta.render?.({ ...context.args, ...args, readonly: true }, context)}
-                  </div>
+            (args: Args) => html`
+              <div class="d-flex gap-16">
+                <div class="w-half">
+                  ${meta.render?.({ ...context.args, ...args, readonly: false }, context)}
                 </div>
-              `,
+                <div class="w-half">
+                  ${meta.render?.({ ...context.args, ...args, readonly: true }, context)}
+                </div>
+              </div>
+            `,
           )}
       `,
     );

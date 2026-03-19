@@ -17,7 +17,7 @@ import SampleUse from './elevation-use.sample.scss?raw';
 The higher the elevation, the larger and softer the shadow, expressing a greater distance between an element and the one behind it.
 
 <div className="elevation-container">
-  {forEach(SCSS_VARIABLES.elevation, function({ key }) {
+  {forEach(SCSS_VARIABLES.elevation, function ({ key }) {
     return <ElevationTile key={key} level={key} />;
   })}
 </div>
@@ -34,7 +34,4 @@ The easiest way to add an elevation to an element is to apply an elevation class
 
 Import the elevation variables from the Design System Styles package from the `core` sass file with `@use`. This way, the elevation variables are scoped and don't mix with your own variables.
 
-<Source
-  code={SampleUse}
-  language="scss"
-/>
+<Source code={SampleUse} language="scss" />

@@ -1,6 +1,5 @@
 # Contributing to the Design System ESLint Plugin
 
-
 This guide will walk you through the steps required to get started and create new custom rules.
 Please note that these guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md) from the root of the repository.
 
@@ -35,7 +34,7 @@ pnpm eslint:test
 When creating a new custom rule, you need to create three separate files:
 
 1. **Rule Implementation** in the `src/rules` directory
-2. **Rule Tests** in the `tests/rules` directory 
+2. **Rule Tests** in the `tests/rules` directory
 3. **Rule Documentation** in the `docs/rules` directory
 
 Each of these files must have the same name as the rule.

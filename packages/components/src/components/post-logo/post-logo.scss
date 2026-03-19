@@ -19,10 +19,10 @@
 
 .logo-link {
   @include utilities.focus-style;
-}
+  @include utilities.focus-inset;
 
-.logo-link :focus,
-:focus-visible
-{
-  border-radius: 2px;
+  &:focus,
+  &:focus-visible {
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+  }
 }

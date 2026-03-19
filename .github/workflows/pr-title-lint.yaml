@@ -1,6 +1,6 @@
-name: "Lint PR title"
+name: 'Lint PR title'
 
-on: 
+on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
 

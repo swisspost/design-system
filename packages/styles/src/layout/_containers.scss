@@ -30,13 +30,16 @@ tokens.$default-map: components.$post-container;
 
 .container {
   --post-container-max-width: #{tokens.get('grid-max-width')};
-  --post-container-offset: calc(
-    max((100vw - var(--post-container-max-width)) / 2, 0px) + var(--post-container-padding-inline)
-  );
-
   max-width: var(--post-container-max-width);
+
+  // Offset for `.container` is: padding-inline + max(0px, (100vw - container-max-width) / 2)
+  --post-container-offset: calc(
+    var(--post-container-padding-inline) +
+      max(0px, calc((100vw - var(--post-container-max-width)) / 2))
+  );
 }
 
 .container-fluid {
+  // Offset for `.container-fluid` is the padding-inline
   --post-container-offset: var(--post-container-padding-inline);
 }

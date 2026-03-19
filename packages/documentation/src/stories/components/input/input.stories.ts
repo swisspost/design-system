@@ -14,6 +14,9 @@ const meta: MetaComponent = {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21-168',
     },
+    controls: {
+      exclude: ['List id'],
+    },
   },
   args: {
     label: 'Label',
@@ -25,6 +28,7 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     label: {
@@ -43,6 +47,25 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the input. A small input cannot have a floating label.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          small: 'Small',
+        },
+      },
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
+      options: ['null', 'small'],
       table: {
         category: 'General',
       },
@@ -89,7 +112,6 @@ const meta: MetaComponent = {
         'datetime-local',
         'month',
         'week',
-        'time',
       ],
       table: {
         category: 'General',
@@ -98,6 +120,16 @@ const meta: MetaComponent = {
     hint: {
       name: 'Helper Text',
       description: 'Text to place in the help text area of the component.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
+    },
+    list: {
+      name: 'List id',
+      description: 'The id of the datalist providing options to the user.',
       control: {
         type: 'text',
       },
@@ -128,6 +160,10 @@ const meta: MetaComponent = {
           'is-invalid': 'Invalid',
         },
       },
+      if: {
+        arg: 'disabled',
+        truthy: false,
+      },
       options: ['null', 'is-valid', 'is-invalid'],
       table: {
         category: 'States',
@@ -157,8 +193,10 @@ export default meta;
 type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
-  const id = context.id ?? `ExampleTextarea_${context.name}`;
-  const classes = ['form-control', args.validation].filter(c => c && c !== 'null').join(' ');
+  const id = context.id ?? `ExampleInput_${context.name}`;
+  const classes = ['form-control', args.validation, args.size === 'small' && 'form-control-sm']
+    .filter(c => c && c !== 'null')
+    .join(' ');
 
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
 
@@ -186,6 +224,7 @@ function render(args: Args, context: StoryContext) {
       class="${classes}"
       type="${args.type}"
       placeholder="${args.placeholder || nothing}"
+      list="${args.list || nothing}"
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
@@ -217,6 +256,13 @@ export const FloatingLabel: Story = {
   },
 };
 
+export const Small: Story = {
+  args: {
+    floatingLabel: false,
+    size: 'small',
+  },
+};
+
 export const Validation: Story = {
   parameters: {
     controls: {
@@ -227,5 +273,28 @@ export const Validation: Story = {
     validation: 'is-invalid',
     hint: '',
     floatingLabel: true,
+  },
+};
+
+export const Autocomplete: Story = {
+  args: {
+    id: 'postal-option',
+    list: 'postal-options',
+    label: 'Postal Option',
+    placeholder: 'Start typing...',
+    hint: 'Start typing to see suggested options, for example “Registered” or “Express”.',
+  },
+  render: (args, context) => {
+    return html`
+      ${render(args, context)}
+
+      <datalist id=${args.list}>
+        <option value="Standard"></option>
+        <option value="Express"></option>
+        <option value="Registered"></option>
+        <option value="International"></option>
+        <option value="Parcel Pickup"></option>
+      </datalist>
+    `;
   },
 };

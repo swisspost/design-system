@@ -18,17 +18,17 @@ export class PostBreadcrumbs {
   /**
    * The text label for the home breadcrumb item.
    */
-  @Prop({ reflect: true }) homeText!: string;
+  @Prop({ reflect: true }) textHome!: string;
 
   /**
    * The accessible label for the breadcrumb component.
    */
-  @Prop({ reflect: true }) label!: string;
+  @Prop({ reflect: true }) textBreadcrumbs!: string;
 
   /**
    * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
    */
-  @Prop({ reflect: true }) menuLabel!: string;
+  @Prop({ reflect: true }) textMoreItems!: string;
 
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
@@ -42,19 +42,19 @@ export class PostBreadcrumbs {
     checkRequiredAndUrl(this, 'homeUrl');
   }
 
-  @Watch('homeText')
-  validateHomeText() {
-    checkRequiredAndType(this, 'homeText', 'string');
+  @Watch('textHome')
+  validateTextHome() {
+    checkRequiredAndType(this, 'textHome', 'string');
   }
 
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
+  @Watch('textBreadcrumbs')
+  validateTextBreadcrumbs() {
+    checkRequiredAndType(this, 'textBreadcrumbs', 'string');
   }
 
-  @Watch('menuLabel')
-  validateMenuLabel() {
-    checkRequiredAndType(this, 'menuLabel', 'string');
+  @Watch('textMoreItems')
+  validateTextMoreItems() {
+    checkRequiredAndType(this, 'textMoreItems', 'string');
   }
 
   componentWillLoad() {
@@ -63,9 +63,9 @@ export class PostBreadcrumbs {
 
   componentDidLoad() {
     this.validateHomeUrl();
-    this.validateHomeText();
-    this.validateLabel();
-    this.validateMenuLabel();
+    this.validateTextHome();
+    this.validateTextBreadcrumbs();
+    this.validateTextMoreItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
   }
@@ -146,14 +146,14 @@ export class PostBreadcrumbs {
     return (
       <Host data-version={version}>
         <nav
-          aria-label={this.label}
+          aria-label={this.textBreadcrumbs}
           class="breadcrumbs-nav"
           ref={el => (this.breadcrumbsNavRef = el)}
         >
           <ol class="no-list breadcrumbs-list">
             <li>
               <a href={this.homeUrl} class="breadcrumb-link">
-                <span class="visually-hidden">{this.homeText}</span>
+                <span class="visually-hidden">{this.textHome}</span>
                 <post-icon name="home" class="home-icon" />
               </a>
             </li>
@@ -177,7 +177,7 @@ export class PostBreadcrumbs {
                       ...
                     </button>
                   </post-menu-trigger>
-                  <post-menu id="breadcrumb-menu" label={this.menuLabel}>
+                  <post-menu id="breadcrumb-menu" label={this.textMoreItems}>
                     {visibleItems.map(item => (
                       <post-menu-item
                         key={item.url || item.text}
@@ -218,7 +218,7 @@ export class PostBreadcrumbs {
           {/* Hidden items for width calculation */}
           <div class="hidden-items">
             <a href={this.homeUrl} class="hidden-breadcrumb-item">
-              <span class="visually-hidden">{this.homeText}</span>
+              <span class="visually-hidden">{this.textHome}</span>
               <post-icon name="home" class="home-icon" />
             </a>
             {this.breadcrumbItems.map(item => (

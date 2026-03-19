@@ -7,8 +7,6 @@
 @use '../tokens/components';
 @use '../functions/tokens';
 
-tokens.$default-map: components.$post-banner;
-
 @mixin notification-size($size) {
   $default-var: list.nth(notification.$notification-variants, 1);
   $icon-size: map.get(notification.$notification-icon-size-map, $size);
@@ -20,13 +18,13 @@ tokens.$default-map: components.$post-banner;
   box-sizing: border-box;
 
   box-shadow: $elevation;
-  border-radius: tokens.get('banner-border-radius');
+  border-radius: tokens.get('banner-border-radius', components.$post-banner);
 
   padding: $padding-y $padding-x;
   padding-inline-start: calc(#{$padding-x} + #{$icon-size} + #{$gap});
   font-weight: notification.$notification-font-weight;
-  border-style: tokens.get('banner-border-style');
-  border-width: tokens.get('banner-border-width');
+  border-style: tokens.get('banner-border-style', components.$post-banner);
+  border-width: tokens.get('banner-border-width', components.$post-banner);
   position: relative;
   color: var(--post-current-fg);
 

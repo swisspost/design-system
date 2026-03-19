@@ -99,7 +99,7 @@ describe('post-language-menu', () => {
       cy.get('@language-menu').find('post-menu').should('have.attr', 'role', 'menu');
       cy.get('@language-menu')
         .find('post-language-menu-item')
-        .find('button[role="menuitem"]')
+        .find('button[role="menuitem"]:visible')
         .should('have.length', 2);
     });
   });

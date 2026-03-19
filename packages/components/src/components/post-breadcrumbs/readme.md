@@ -1,18 +1,16 @@
 # post-breadcrumbs-new
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property                 | Attribute    | Description                                                                          | Type     | Default     |
-| ------------------------ | ------------ | ------------------------------------------------------------------------------------ | -------- | ----------- |
-| `homeText` _(required)_  | `home-text`  | The text label for the home breadcrumb item.                                         | `string` | `undefined` |
-| `homeUrl` _(required)_   | `home-url`   | The URL for the home breadcrumb item.                                                | `string` | `undefined` |
-| `label` _(required)_     | `label`      | The accessible label for the breadcrumb component.                                   | `string` | `undefined` |
-| `menuLabel` _(required)_ | `menu-label` | The accessible label for the breadcrumb menu when breadcrumb items are concatenated. | `string` | `undefined` |
+| Property                       | Attribute          | Description                                                                          | Type     | Default     |
+| ------------------------------ | ------------------ | ------------------------------------------------------------------------------------ | -------- | ----------- |
+| `homeUrl` _(required)_         | `home-url`         | The URL for the home breadcrumb item.                                                | `string` | `undefined` |
+| `textBreadcrumbs` _(required)_ | `text-breadcrumbs` | The accessible label for the breadcrumb component.                                   | `string` | `undefined` |
+| `textHome` _(required)_        | `text-home`        | The text label for the home breadcrumb item.                                         | `string` | `undefined` |
+| `textMoreItems` _(required)_   | `text-more-items`  | The accessible label for the breadcrumb menu when breadcrumb items are concatenated. | `string` | `undefined` |
 
 
 ## Dependencies

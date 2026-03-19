@@ -1,9 +1,9 @@
 # `no-deprecated-btn-rg`
 
 Flags deprecated `btn-rg` class and suggests removal or replacement with `btn-sm`.
+
 - Type: suggestion
 - 🔧 Supports autofix (--fix)
-
 
 ## Rule Options
 

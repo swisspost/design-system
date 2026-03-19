@@ -1,7 +1,5 @@
 # post-tabs
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -51,10 +49,10 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part        | Description                                                                                                 |
-| ----------- | ----------------------------------------------------------------------------------------------------------- |
-| `"content"` | The container element that displays the content of the currently active tab. Only available in panels mode. |
-| `"tabs"`    | The container element that holds the set of tabs.                                                           |
+| Part                  | Description                                                                                                 |
+| --------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `"post-tabs"`         | The container element that holds the set of tabs.                                                           |
+| `"post-tabs-content"` | The container element that displays the content of the currently active tab. Only available in panels mode. |
 
 
 ----------------------------------------------
