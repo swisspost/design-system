@@ -11,8 +11,5 @@ export function isIsoDate(value: string): boolean {
   const m = String(date.getUTCMonth() + 1).padStart(2, '0');
   const d = String(date.getUTCDate()).padStart(2, '0');
 
-  console.log('real date', date.getTime());
-  console.log(y, m, d);
-
   return `${y}-${m}-${d}` === value;
 }
