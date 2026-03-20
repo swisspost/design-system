@@ -10,23 +10,35 @@ tokens.$default-map: components.$post-assist;
   font-size: tokens.get('assist-font-size');
 }
 
-.form-control:disabled {
+.form-control:disabled,
+.form-select:disabled {
   + .form-label + .form-hint,
   + .form-hint {
     color: tokens.get('assist-disabled-fg');
   }
 }
 
-.form-control-sm {
+.form-control-sm,
+.form-select-sm {
   + .form-hint {
     margin-block: tokens.get('hint-small-padding-block') !important;
-    font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
   }
 
   + .valid-feedback + .form-hint,
   + .invalid-feedback + .form-hint {
     margin-block-end: tokens.get('hint-small-padding-block') !important;
     margin-block-start: tokens.get('hint-small-gap-block') !important;
+  }
+}
+
+.form-hint,
+.valid-feedback + .form-hint,
+.invalid-feedback + .form-hint {
+  .form-control-sm + & {
     font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+  }
+
+  .form-select-sm + & {
+    font-size: tokens.get('select-small-assist-font-size', components.$post-select);
   }
 }

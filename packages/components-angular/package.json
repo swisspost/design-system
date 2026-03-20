@@ -32,7 +32,6 @@
     "@angular/core": "20.3.18",
     "@angular/forms": "20.3.16",
     "@angular/platform-browser": "20.3.16",
-    "@angular/platform-browser-dynamic": "20.3.16",
     "@angular/router": "20.3.16",
     "@swisspost/design-system-components": "workspace:10.0.0-next.64",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.64",

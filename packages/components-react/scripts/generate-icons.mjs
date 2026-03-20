@@ -83,7 +83,7 @@ const getSvgFiles = async dir => {
           Number.isNaN(Number.parseInt(entry.name)),
       )
       .map(entry => entry.name)
-      .sort()
+      .sort((a, b) => a.localeCompare(b))
   );
 };
 
