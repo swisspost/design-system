@@ -170,7 +170,7 @@ tokens.$default-map: components.$post-datepicker;
 
             &:not(.-disabled-) {
               @include utilities.focus-style() {
-                z-index: 2;
+                z-index: 3;
               }
             }
 
@@ -281,7 +281,7 @@ tokens.$default-map: components.$post-datepicker;
 
             &:not(.-disabled-) {
               @include utilities.focus-style();
-              z-index: 2;
+              z-index: 3;
             }
 
             /* Years: Hovered */
@@ -448,6 +448,7 @@ tokens.$default-map: components.$post-datepicker;
                 z-index: -1;
                 background: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-bg');
                 border-radius: tokens.get('post-datepicker-grid-cell-element-border-radius');
+                border-color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-bg');
 
                 @include utilities.high-contrast-mode {
                   border: none;
@@ -495,7 +496,7 @@ tokens.$default-map: components.$post-datepicker;
 
             &:not(.-disabled-) {
               @include utilities.focus-style() {
-                z-index: 2;
+                z-index: 3;
               }
 
               &:hover::after {
@@ -605,7 +606,6 @@ tokens.$default-map: components.$post-datepicker;
                   border-color: tokens.get(
                     'post-datepicker-grid-day-cell-element-color-hovered-bg'
                   );
-                  border-inline: none;
 
                   @include utilities.high-contrast-mode {
                     background-color: Highlight;
@@ -620,24 +620,25 @@ tokens.$default-map: components.$post-datepicker;
           &.-range-from-:not(.-other-month-, .-disabled-) {
             &:hover::before,
             &.-selected-::before {
-              right: -2px;
-              width: calc(
-                50% + tokens.get('post-datepicker-grid-day-range-in-range-container-border-width')
-              );
+              right: -1px;
+              width: 50%;
               background: linear-gradient(
                 to right,
                 transparent 50%,
                 tokens.get('post-datepicker-grid-day-range-in-range-container-color-selected-bg')
                   50%
               );
-              border-block: tokens.get(
+              border-image: tokens.get(
                   'post-datepicker-grid-day-range-in-range-container-border-width'
                 )
                 solid
                 tokens.get(
                   'post-datepicker-grid-day-range-in-range-container-color-selected-border'
                 );
-              border-inline: none;
+            }
+
+            &.-current-:hover::before {
+              right: -2px;
             }
           }
 
@@ -645,25 +646,30 @@ tokens.$default-map: components.$post-datepicker;
           &.-range-to-:not(.-other-month-, .-disabled-) {
             &:hover::before,
             &.-selected-::before {
-              left: -2px;
-              width: calc(
-                50% + tokens.get('post-datepicker-grid-day-range-in-range-container-border-width')
-              );
+              left: -1px;
+              width: 50%;
               background: linear-gradient(
                 to right,
                 tokens.get('post-datepicker-grid-day-range-in-range-container-color-selected-bg')
                   50%,
                 transparent 50%
               );
-              border-block: tokens.get(
+              border-image: tokens.get(
                   'post-datepicker-grid-day-range-in-range-container-border-width'
                 )
                 solid
                 tokens.get(
                   'post-datepicker-grid-day-range-in-range-container-color-selected-border'
                 );
-              border-inline: none;
             }
+            &.-current-:hover::before {
+              left: -2px;
+            }
+          }
+
+          &.-range-to-.-range-from-:hover::before {
+            background: none;
+            border: none;
           }
         }
       }
