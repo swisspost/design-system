@@ -135,6 +135,7 @@ export default [
       'unicorn/prefer-switch': 'off',
       'unicorn/prefer-add-event-listener': 'off',
       'unicorn/prefer-modern-dom-apis': 'off',
+      'unicorn/prefer-query-selector': 'off',
     },
   },
   {

@@ -61,7 +61,7 @@ export class PostMegadropdownTrigger {
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {
-    const ref = document.querySelector(`#${this.for}`);
+    const ref = document.getElementById(this.for);
 
     if (ref?.localName !== 'post-megadropdown') {
       console.warn(`No post-megadropdown found with ID: ${this.for}`);

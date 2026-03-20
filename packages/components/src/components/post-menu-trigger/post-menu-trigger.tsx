@@ -85,7 +85,7 @@ export class PostMenuTrigger {
   }
 
   private getMenu(): HTMLPostMenuElement | null {
-    const ref = this.root.querySelector(`#${this.for}`);
+    const ref = this.root.getElementById(this.for);
     if (ref && ref.localName === 'post-menu') return ref as HTMLPostMenuElement;
 
     console.warn(`No post-menu found with ID: ${this.for}`);

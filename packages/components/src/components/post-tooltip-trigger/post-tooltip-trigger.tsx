@@ -61,7 +61,7 @@ export class PostTooltipTrigger {
   private get tooltip(): HTMLPostTooltipElement | null {
     if (!IS_BROWSER) return null;
 
-    const ref = document.querySelector(`#${this.for}`);
+    const ref = document.getElementById(this.for);
     return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
   }
 
