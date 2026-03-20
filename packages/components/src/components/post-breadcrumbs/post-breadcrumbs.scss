@@ -20,11 +20,22 @@ tokens.$default-map: components.$post-breadcrumb;
 }
 
 .hidden-items {
-  gap: tokens.get('breadcrumb-gap-inline-outer');
   position: absolute;
   height: 0;
   overflow: hidden;
   white-space: nowrap;
+  display: flex;
+  flex-wrap: wrap;
+
+  .hidden-breadcrumb-item {
+    display: inline-flex;
+    padding-inline-end: tokens.get('breadcrumb-gap-inline-outer');
+
+    &:last-child {
+      padding-inline-end: 0;
+      font-weight: tokens.get('breadcrumb-selected-font-weight');
+    }
+  }
 }
 
 .breadcrumbs-list {
