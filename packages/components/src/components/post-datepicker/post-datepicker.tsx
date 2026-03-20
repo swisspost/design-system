@@ -9,6 +9,7 @@ import {
   EventEmitter,
   Event,
   Watch,
+  Build,
 } from '@stencil/core';
 import AirDatepicker, {
   AirDatepickerOptions,
@@ -19,7 +20,7 @@ import AirDatepicker, {
 import IMask, { InputMask } from 'imask';
 
 import { localesMap } from './locales';
-import { checkEmptyOrDate, checkRequiredAndType, IS_BROWSER } from '@/utils';
+import { checkEmptyOrDate, checkRequiredAndType } from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -175,7 +176,7 @@ export class PostDatepicker {
   }
 
   @State() startDate = new Date();
-  @State() locale: string = IS_BROWSER ? document.documentElement.lang : 'en';
+  @State() locale: string = Build.isBrowser ? document.documentElement.lang : 'en';
 
   /**
    * An event emitted when a date or a range of dates have been selected.
