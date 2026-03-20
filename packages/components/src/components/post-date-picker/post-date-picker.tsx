@@ -19,7 +19,13 @@ import AirDatepicker, {
 import IMask, { InputMask } from 'imask';
 
 import { localesMap } from './locales';
-import { checkEmptyOrDate, checkRequiredAndType, IS_BROWSER, checkIsoDate } from '@/utils';
+import {
+  checkEmptyOrDate,
+  checkRequiredAndType,
+  IS_BROWSER,
+  checkIsoDate,
+  isIsoDate,
+} from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -233,16 +239,21 @@ export class PostDatePicker {
 
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
+  private inputObserver: MutationObserver;
 
   private setupInputObserver() {
     if (typeof MutationObserver === 'undefined') return;
     if (!this.dpInput) return;
 
-    const observer = new MutationObserver(() => {
+    if (this.inputObserver) {
+      this.inputObserver.disconnect();
+    }
+
+    this.inputObserver = new MutationObserver(() => {
       this.syncDatePickerState();
     });
 
-    observer.observe(this.dpInput, {
+    this.inputObserver.observe(this.dpInput, {
       attributes: true,
       attributeFilter: ['disabled'],
     });
@@ -363,6 +374,45 @@ export class PostDatePicker {
 
   private skipOnSelectCount = 0;
   private skipFocusOnNextRender = false;
+
+  private handleInputBlur = () => {
+    if (this.range) {
+      const dates = this.splitRangeDates(this.inputMask.value);
+      const start = this.dateStrToDate(dates[0]);
+      const end = this.dateStrToDate(dates[1]);
+
+      const startValid = this.isValidDate(start);
+      const endValid = this.isValidDate(end);
+
+      if (startValid && endValid) {
+        // Check if user entered dates in wrong order
+        const reversed = start > end;
+        this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
+        this.dpInstance.selectDate([start, end]);
+        this.dpInstance.setViewDate(start);
+      } else if (startValid && !endValid) {
+        this.dpInstance.clear();
+        this.dpInstance.selectDate(start);
+        this.dpInstance.setViewDate(start);
+      } else {
+        this.resetSelection();
+      }
+    } else {
+      const date = this.dateStrToDate(this.inputMask.value);
+
+      if (this.isValidDate(date)) {
+        this.skipOnSelectCount = 1;
+        this.dpInstance.selectDate(date);
+        this.dpInstance.setViewDate(date);
+      } else {
+        this.resetSelection();
+      }
+    }
+  };
+
+  private handlePrevNextClick = () => {
+    this.skipFocusOnNextRender = true;
+  };
 
   /**
    * Update previous and next button labels based on the current calendar view
@@ -526,7 +576,7 @@ export class PostDatePicker {
     body.addEventListener('keydown', this.handleGridKeydown);
 
     this.setActiveCell(
-      this.selectedStartDate ? this.isoToDate(this.selectedStartDate) : this.today,
+      this.isoToDate(this.selectedStartDate) ? this.isoToDate(this.selectedStartDate) : this.today,
       focusOnDate,
     );
   }
@@ -698,13 +748,8 @@ export class PostDatePicker {
       this.dpInstance = new AirDatepicker(this.dpContainer, options);
       this.reorderNavigation();
 
-      this.prevBtn?.addEventListener('click', () => {
-        this.skipFocusOnNextRender = true;
-      });
-
-      this.nextBtn?.addEventListener('click', () => {
-        this.skipFocusOnNextRender = true;
-      });
+      this.prevBtn?.addEventListener('click', this.handlePrevNextClick);
+      this.nextBtn?.addEventListener('click', this.handlePrevNextClick);
 
       this.handleSelectedDates();
     }
@@ -733,7 +778,7 @@ export class PostDatePicker {
         ]);
       }
     } else {
-      if (this.selectedStartDate) {
+      if (this.selectedStartDate && this.isoToDate(this.selectedStartDate)) {
         this.dpInstance.selectDate(this.isoToDate(this.selectedStartDate));
       }
     }
@@ -760,7 +805,8 @@ export class PostDatePicker {
     return rangeStr.split(' - ');
   }
 
-  private isoToDate(iso: string): Date {
+  private isoToDate(iso: string): Date | null {
+    if (!isIsoDate(iso)) return null;
     const [y, m, d] = iso.split('-').map(Number);
     return new Date(y, m - 1, d);
   }
@@ -907,40 +953,7 @@ export class PostDatePicker {
   }
 
   private addInputListener() {
-    this.dpInput.addEventListener('blur', () => {
-      if (this.range) {
-        const dates = this.splitRangeDates(this.inputMask.value);
-        const start = this.dateStrToDate(dates[0]);
-        const end = this.dateStrToDate(dates[1]);
-
-        const startValid = this.isValidDate(start);
-        const endValid = this.isValidDate(end);
-
-        if (startValid && endValid) {
-          // Check if user entered dates in wrong order
-          const reversed = start > end;
-          this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
-          this.dpInstance.selectDate([start, end]);
-          this.dpInstance.setViewDate(start);
-        } else if (startValid && !endValid) {
-          this.dpInstance.clear();
-          this.dpInstance.selectDate(start);
-          this.dpInstance.setViewDate(start);
-        } else {
-          this.resetSelection();
-        }
-      } else {
-        const date = this.dateStrToDate(this.inputMask.value);
-
-        if (this.isValidDate(date)) {
-          this.skipOnSelectCount = 1;
-          this.dpInstance.selectDate(date);
-          this.dpInstance.setViewDate(date);
-        } else {
-          this.resetSelection();
-        }
-      }
-    });
+    this.dpInput.addEventListener('blur', this.handleInputBlur);
   }
 
   private resetSelection() {
@@ -996,8 +1009,16 @@ export class PostDatePicker {
     this.host.shadowRoot?.removeEventListener('keydown', this.handleTab, true);
     this.titleBtn?.removeEventListener('click', this.forceTitleClickToYear);
 
+    let body = this.dpContainer.querySelector('.air-datepicker-body--cells');
+    body?.removeEventListener('keydown', this.handleGridKeydown);
+
+    this.prevBtn?.removeEventListener('click', this.handlePrevNextClick);
+    this.nextBtn?.removeEventListener('click', this.handlePrevNextClick);
+    this.dpInput?.removeEventListener('blur', this.handleInputBlur);
+
     this.gridObserver?.disconnect();
     this.navObserver?.disconnect();
+    this.inputObserver?.disconnect();
 
     if (this.dpInstance) {
       this.dpInstance.destroy();
