@@ -814,8 +814,8 @@ export class PostDatepicker {
       ...base,
       ...custom,
       attrs: {
-        ...base.attrs,
-        ...custom.attrs,
+        ...(base.attrs ?? {}),
+        ...(custom.attrs ?? {}),
       },
       classes: [base.classes, custom.classes].filter(Boolean).join(' '),
       disabled: base.disabled || custom.disabled,
