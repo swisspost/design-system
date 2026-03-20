@@ -137,4 +137,12 @@ export default [
       'unicorn/prefer-modern-dom-apis': 'off',
     },
   },
+  {
+    // environment.ts intentionally uses typeof global/window to distinguish Node vs browser environments
+    name: 'post/unicorn/environment-overrides',
+    files: ['**/utils/environment.ts'],
+    rules: {
+      'unicorn/prefer-global-this': 'off',
+    },
+  },
 ];
