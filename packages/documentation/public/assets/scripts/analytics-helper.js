@@ -33,7 +33,7 @@ class GTM {
 
   getEnvironment() {
     return (Object.entries(this.environments.envs).find(([_env, hosts = '']) =>
-      hosts.split(',').some(host => window.location.host.indexOf(host) === 0),
+      hosts.split(',').some(host => globalThis.location.host.startsWith(host)),
     ) ?? [this.environments.fallback])[0];
   }
 
@@ -42,4 +42,4 @@ class GTM {
   }
 }
 
-window.__GTM__ = new GTM();
+globalThis.__GTM__ = new GTM();

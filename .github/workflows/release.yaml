@@ -7,15 +7,14 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
-
 jobs:
   changeset-magic:
     name: Set up Changeset PR or Release Packages
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
     environment: npm-release
     steps:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
