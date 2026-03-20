@@ -346,8 +346,8 @@ export class PostPagination {
    * Clamps the page number to valid range
    */
   private clampPageToValidRange(totalPages: number): number {
-    const invalidTotalPages = totalPages === 0 || this.invalidSize || isNaN(totalPages);
-    const invalidPage = !this.page || this.page < 1 || isNaN(this.page);
+    const invalidTotalPages = totalPages === 0 || this.invalidSize || Number.isNaN(totalPages);
+    const invalidPage = !this.page || this.page < 1 || Number.isNaN(this.page);
     const pageExceedsTotal = this.page > totalPages;
 
     if (invalidTotalPages || invalidPage) {

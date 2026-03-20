@@ -97,7 +97,7 @@ export class PostCollapsibleTrigger {
    * Retrieve the post-collapsible controlled by the trigger
    */
   private get collapsible(): HTMLPostCollapsibleElement | null {
-    const ref = this.root.getElementById(this.for);
+    const ref = this.root.querySelector(`#${this.for}`);
 
     if (ref && ref.localName === 'post-collapsible') {
       return ref as HTMLPostCollapsibleElement;

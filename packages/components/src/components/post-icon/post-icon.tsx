@@ -159,8 +159,8 @@ export class PostIcon {
       '-webkit-mask-image': `url(${url})`,
       'mask-image': `url('${url}')`,
       'transform':
-        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
-        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
+        (this.scale && !Number.isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
+        (this.rotate && !Number.isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
       .filter(([_key, value]) => value !== null)
       .map(( [key, value]) => [key, value]));

@@ -60,7 +60,7 @@ export class PostPopoverTrigger {
 
   // Gets the associated to the trigger popover element
   private get popover(): HTMLPostPopoverElement | null {
-    const ref = this.host.querySelector('post-popover') ?? document.getElementById(this.for);
+    const ref = this.host.querySelector('post-popover') ?? document.querySelector(`#${this.for}`);
 
     if (!ref) {
       const target = this.for ? `with ID: ${this.for}` : 'inside the <post-popover-trigger>';
