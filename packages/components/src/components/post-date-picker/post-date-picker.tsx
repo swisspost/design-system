@@ -1009,7 +1009,7 @@ export class PostDatePicker {
     this.host.shadowRoot?.removeEventListener('keydown', this.handleTab, true);
     this.titleBtn?.removeEventListener('click', this.forceTitleClickToYear);
 
-    let body = this.dpContainer.querySelector('.air-datepicker-body--cells');
+    const body = this.dpContainer.querySelector('.air-datepicker-body--cells');
     body?.removeEventListener('keydown', this.handleGridKeydown);
 
     this.prevBtn?.removeEventListener('click', this.handlePrevNextClick);
