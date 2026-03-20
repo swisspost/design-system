@@ -55,7 +55,7 @@ class Breakpoint {
   private dispatchEvent(property: BreakpointProperty): void {
     if (IS_SERVER) return;
 
-    window.dispatchEvent(
+    globalThis.dispatchEvent(
       new CustomEvent(`postBreakpoint:${property}`, { detail: this.currentBreakpoint[property] }),
     );
   }

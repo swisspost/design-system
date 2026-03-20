@@ -4,7 +4,7 @@ import { version } from '@root/package.json';
 import { getSlottedElement, repeatOnLongPress } from '@/utils';
 
 function parseNumber(input: HTMLInputElement, key: 'value' | 'min' | 'max'): number | undefined {
-  const value = parseFloat(input[key]);
+  const value = Number.parseFloat(input[key]);
   return isNaN(value) ? undefined : value;
 }
 

@@ -4,7 +4,7 @@ describe('isMotionReduced', () => {
   let matchMedia;
 
   beforeEach(() => {
-    matchMedia = window.matchMedia = jest.fn();
+    matchMedia = globalThis.matchMedia = jest.fn();
   });
 
   it('should return true if reduced motion is requested', () => {

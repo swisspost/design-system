@@ -232,7 +232,7 @@ describe('header', () => {
             cy.get('@close-btn')
               .find('button')
               .then($closeBtn => {
-                expect(focusableElements[focusableElements.length - 1]).to.equal($closeBtn[0]);
+                expect(focusableElements.at(-1)).to.equal($closeBtn[0]);
               });
           });
       });
@@ -369,7 +369,7 @@ describe('header', () => {
               .getFocusableElements()
               .then(focusableElements => {
                 cy.get('@back-btn').then($backBtn => {
-                  expect(focusableElements[focusableElements.length - 1]).to.equal($backBtn[0]);
+                  expect(focusableElements.at(-1)).to.equal($backBtn[0]);
                 });
               });
           });

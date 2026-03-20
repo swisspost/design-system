@@ -263,7 +263,7 @@ export class PostDatepicker {
 
   private setActiveCell(date: Date, focusOnDate: boolean = true) {
     const cells = this.getCells();
-    if (!cells.length) return;
+    if (cells.length === 0) return;
 
     let target: HTMLElement | undefined;
 
@@ -305,7 +305,7 @@ export class PostDatepicker {
 
     // fallback
     if (!target) {
-      target = cells[cells.length - 1];
+      target = cells.at(-1);
     }
 
     // Make only the target focusable
@@ -814,8 +814,8 @@ export class PostDatepicker {
       ...base,
       ...custom,
       attrs: {
-        ...(base.attrs ?? {}),
-        ...(custom.attrs ?? {}),
+        ...base.attrs,
+        ...custom.attrs,
       },
       classes: [base.classes, custom.classes].filter(Boolean).join(' '),
       disabled: base.disabled || custom.disabled,

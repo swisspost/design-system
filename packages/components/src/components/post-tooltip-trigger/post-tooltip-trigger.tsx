@@ -40,7 +40,7 @@ export class PostTooltipTrigger {
   /**
    * Timeout ID for the delay.
    */
-  private delayTimeout: number | null = null;
+  private delayTimeout: ReturnType<typeof globalThis.setTimeout> | null = null;
 
   /**
    * Bound event handlers for proper removal
@@ -202,7 +202,7 @@ export class PostTooltipTrigger {
   private interestHandler() {
     if (this.trigger) {
       if (this.delay > 0) {
-        this.delayTimeout = window.setTimeout(() => {
+        this.delayTimeout = globalThis.setTimeout(() => {
           this.tooltip?.show(this.trigger);
           this.delayTimeout = null;
         }, this.delay);

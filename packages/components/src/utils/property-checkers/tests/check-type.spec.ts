@@ -32,7 +32,7 @@ describe('checkType', () => {
         undefined,
         null,
         42,
-        NaN,
+        Number.NaN,
         'string',
         [],
         {},
@@ -57,7 +57,7 @@ describe('checkType', () => {
 
     it('should not log an error if the value is a number', () => {
       const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      [42, 4.2, 4_200, 2.4434634e9].forEach(number => {
+      [42, 4.2, 4200, 2.443_463_4e9].forEach(number => {
         runCheckForValue(number);
         expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
       });
@@ -108,7 +108,7 @@ describe('checkType', () => {
         null,
         true,
         42,
-        NaN,
+        Number.NaN,
         [],
         {},
         () => {
@@ -146,7 +146,7 @@ describe('checkType', () => {
         null,
         true,
         42,
-        NaN,
+        Number.NaN,
         'string',
         {},
         () => {
@@ -183,7 +183,7 @@ describe('checkType', () => {
         undefined,
         true,
         42,
-        NaN,
+        Number.NaN,
         'string',
         () => {
           /* empty */
@@ -221,7 +221,7 @@ describe('checkType', () => {
     });
     it('should log an error if the value is not a function', () => {
       const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      [undefined, null, true, 42, NaN, 'string', [], {}]
+      [undefined, null, true, 42, Number.NaN, 'string', [], {}]
         .filter(nonFn => !isValueEmpty(nonFn))
         .forEach(nonFn => {
           runCheckForValue(nonFn);

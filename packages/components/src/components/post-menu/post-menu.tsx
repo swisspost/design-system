@@ -190,7 +190,7 @@ export class PostMenu {
 
   private controlKeyDownHandler(e: KeyboardEvent) {
     const menuItems = this.getSlottedItems();
-    if (!menuItems.length) {
+    if (menuItems.length === 0) {
       return;
     }
 

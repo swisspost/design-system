@@ -26,10 +26,10 @@
 const MOCKED_USERAGENT = 'MockNavigator';
 const MOCKED_ORIGIN = 'http://mockdoc.stenciljs.com';
 
-const isNodeEnv = typeof global !== 'undefined';
-const hasWindow = typeof window !== 'undefined';
-const isMockedUserAgent = hasWindow && window.navigator.userAgent === MOCKED_USERAGENT;
-const isMockedOrigin = hasWindow && window.location.origin === MOCKED_ORIGIN;
+const isNodeEnv = typeof globalThis !== 'undefined';
+const hasWindow = typeof globalThis !== 'undefined';
+const isMockedUserAgent = hasWindow && globalThis.navigator.userAgent === MOCKED_USERAGENT;
+const isMockedOrigin = hasWindow && globalThis.location.origin === MOCKED_ORIGIN;
 
 /**
  * This is the natural hydrate app environment
@@ -41,7 +41,7 @@ const isHydrateAppEnv = isNodeEnv && isMockedUserAgent && isMockedOrigin;
  * This is the test app server test env
  * Is `true` if the server unit test runs (`false` if the browser unit test runs)
  */
-const isTestAppServerTestEnv = isNodeEnv && isMockedUserAgent && global.IS_HYDRATEAPP_SERVERTEST;
+const isTestAppServerTestEnv = isNodeEnv && isMockedUserAgent && globalThis.IS_HYDRATEAPP_SERVERTEST;
 
 /**
  * This is the final hydrate app flag

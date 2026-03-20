@@ -11,7 +11,7 @@ describe('checkArrayOf', () => {
     true,
     false,
     42,
-    NaN,
+    Number.NaN,
     'string',
     '',
     [],

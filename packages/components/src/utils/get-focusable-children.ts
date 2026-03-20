@@ -49,7 +49,7 @@ export function getDeepFocusableChildren(
   // SLOT
   if (el instanceof HTMLSlotElement) {
     const assigned = el.assignedElements({ flatten: true });
-    nodes = assigned.length ? assigned : Array.from(el.children);
+    nodes = assigned.length > 0 ? assigned : Array.from(el.children);
   }
 
   // SHADOW ROOT
@@ -93,7 +93,7 @@ function isFocusBlockedByCSS(el: Element | Document | ShadowRoot): boolean {
     return !el.checkVisibility({ visibilityProperty: true });
   }
 
-  const style = window.getComputedStyle(el);
+  const style = globalThis.getComputedStyle(el);
   if (style.display === 'none' || style.visibility !== 'visible') {
     return true;
   }
