@@ -67,7 +67,7 @@ export class PostPopoverTrigger {
       console.error(`No post-popover found ${target}.`);
       return null;
     }
-    return ref?.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
+    return ref.localName === 'post-popover' ? (ref as HTMLPostPopoverElement) : null;
   }
 
   private setupTrigger() {
