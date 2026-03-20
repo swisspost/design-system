@@ -115,6 +115,30 @@
   }
 }
 
+@mixin focus-style-custom($additional-selector: '') {
+  // :has(:focus-visible) mimic a focus-visible-within pseudo-class
+  &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {
+    @content;
+  }
+
+  // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
+  @supports not selector(:has(:focus-visible)) {
+    &:is(:focus-visible, :focus-within, .pretend-focus)#{$additional-selector} {
+      @content;
+    }
+  }
+}
+
+@mixin focus-hover-style-custom($additional-selector: '') {
+  @include focus-style-custom($additional-selector) {
+    @content;
+  }
+
+  &:hover#{$additional-selector} {
+    @content;
+  }
+}
+
 @mixin disabled-style($additional-selector: '') {
   &:disabled#{$additional-selector} {
     pointer-events: none;
