@@ -34,7 +34,6 @@
     "styles:play": "pnpm --filter design-system-styles play",
     "styles:start": "pnpm --filter design-system-styles start",
     "styles:build": "pnpm --filter design-system-styles build",
-    "styles:unit": "pnpm --filter design-system-styles unit",
     "styles:lint": "pnpm --filter design-system-styles lint",
     "styles:lint:fix": "pnpm --filter design-system-styles lint:fix",
     "components": "pnpm components:start",
@@ -104,7 +103,8 @@
     "tokens:lint:fix": "pnpm --filter design-system-tokens lint:fix",
     "tokens:usage": "node ./utilities/token-checker.cjs",
     "changeset:publish": "pnpm changeset publish",
-    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
+    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
+    "theme-ag-grid:build": "pnpm --filter design-system-theme-ag-grid build"
   },
   "devDependencies": {
     "@changesets/cli": "2.29.8",

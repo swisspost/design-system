@@ -54,6 +54,7 @@ export type PostPopoverElement = HTMLElement & PopoverElement;
 @Component({
   tag: 'post-popovercontainer',
   styleUrl: 'post-popovercontainer.scss',
+  shadow: true,
 })
 export class PostPopovercontainer {
   private static readonly STATIC_SIDES = {
@@ -217,9 +218,11 @@ export class PostPopovercontainer {
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
     this.eventTarget = target;
+
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
       this.calculatePosition();
+
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
     }
@@ -231,7 +234,7 @@ export class PostPopovercontainer {
    * Handles the popover opening process and emits related events.
    */
   private open() {
-    const content: HTMLElement = this.host.querySelector('.popover-content');
+    const content: HTMLElement = this.host.shadowRoot?.querySelector('.popover-content');
     this.startAutoupdates();
 
     if (content) {
@@ -520,7 +523,7 @@ export class PostPopovercontainer {
   render() {
     return (
       <Host data-version={version} popover="auto">
-        <div class="popover-content">
+        <div part="post-popovercontainer-content" class="popover-content">
           {this.arrow && (
             <span
               dynamic-placement={this.dynamicPlacement}
