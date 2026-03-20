@@ -28,9 +28,9 @@
 
 ## Events
 
-| Event             | Description                                                          | Type                          |
-| ----------------- | -------------------------------------------------------------------- | ----------------------------- |
-| `postUpdateDates` | An event emitted when a date or a range of dates have been selected. | `CustomEvent<Date \| Date[]>` |
+| Event             | Description                                                          | Type                              |
+| ----------------- | -------------------------------------------------------------------- | --------------------------------- |
+| `postUpdateDates` | An event emitted when a date or a range of dates have been selected. | `CustomEvent<string \| string[]>` |
 
 
 ## Methods

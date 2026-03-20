@@ -19,7 +19,7 @@ import AirDatepicker, {
 import IMask, { InputMask } from 'imask';
 
 import { localesMap } from './locales';
-import { checkEmptyOrDate, checkRequiredAndType, IS_BROWSER, isIsoDate } from '@/utils';
+import { checkEmptyOrDate, checkRequiredAndType, IS_BROWSER, checkIsoDate } from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -50,7 +50,7 @@ export class PostDatePicker {
   @Watch('selectedStartDate')
   validateSelectedStartDate() {
     checkEmptyOrDate(this, 'selectedStartDate');
-    this.warnIfNotIso('selectedStartDate');
+    checkIsoDate(this, 'selectedStartDate');
   }
 
   /**
@@ -61,7 +61,7 @@ export class PostDatePicker {
   @Watch('selectedEndDate')
   validateSelectedEndDate() {
     checkEmptyOrDate(this, 'selectedEndDate');
-    this.warnIfNotIso('selectedEndDate');
+    checkIsoDate(this, 'selectedEndDate');
   }
 
   /**
@@ -77,7 +77,7 @@ export class PostDatePicker {
   @Watch('min')
   validateMin() {
     checkEmptyOrDate(this, 'min');
-    this.warnIfNotIso('min');
+    checkIsoDate(this, 'min');
   }
 
   /**
@@ -87,7 +87,7 @@ export class PostDatePicker {
   @Watch('max')
   validateMax() {
     checkEmptyOrDate(this, 'max');
-    this.warnIfNotIso('max');
+    checkIsoDate(this, 'max');
   }
 
   /**
@@ -187,7 +187,7 @@ export class PostDatePicker {
   /**
    * An event emitted when a date or a range of dates have been selected.
    */
-  @Event() postUpdateDates: EventEmitter<Date | Date[]>;
+  @Event() postUpdateDates: EventEmitter<string | string[]>;
 
   /**
    * Displays the popover calendar, focusing the first calendar item.
@@ -197,6 +197,7 @@ export class PostDatePicker {
     if (this.popoverRef) {
       await this.popoverRef.show(this.dpInput);
       this.enhanceAccessibility();
+      this.host.shadowRoot.removeEventListener('keydown', this.handleTab, true); // remove before adding
       this.host.shadowRoot.addEventListener('keydown', this.handleTab, true);
     } else {
       console.error('show: popoverRef is null or undefined');
@@ -658,7 +659,9 @@ export class PostDatePicker {
             this.selectedEndDate = undefined;
           }
 
-          this.postUpdateDates.emit(date);
+          this.postUpdateDates.emit(
+            Array.isArray(date) ? date.map(d => this.dateToIso(d)) : this.dateToIso(date),
+          );
 
           // Assign value to the input, close the popover and focus on the input
           if (this.dpInput) {
@@ -733,17 +736,6 @@ export class PostDatePicker {
       if (this.selectedStartDate) {
         this.dpInstance.selectDate(this.isoToDate(this.selectedStartDate));
       }
-    }
-  }
-
-  private warnIfNotIso(prop: 'selectedStartDate' | 'selectedEndDate' | 'min' | 'max') {
-    const value = this[prop];
-    if (!value) return;
-
-    if (!isIsoDate(value)) {
-      console.error(
-        `The prop \`${prop}\` of the \`${this.host.localName}\` component must be in ISO format (YYYY-MM-DD).`,
-      );
     }
   }
 
@@ -1001,12 +993,11 @@ export class PostDatePicker {
   }
 
   disconnectedCallback() {
-    this.host.shadowRoot.removeEventListener('keydown', this.handleTab);
+    this.host.shadowRoot?.removeEventListener('keydown', this.handleTab, true);
     this.titleBtn?.removeEventListener('click', this.forceTitleClickToYear);
 
-    if (this.gridObserver) {
-      this.gridObserver.disconnect();
-    }
+    this.gridObserver?.disconnect();
+    this.navObserver?.disconnect();
 
     if (this.dpInstance) {
       this.dpInstance.destroy();

@@ -637,7 +637,8 @@ tokens.$default-map: components.$post-datepicker;
                 );
             }
 
-            &.-current-:hover::before {
+            &:hover::before,
+            &.-selected-.-current-::before {
               right: -2px;
             }
           }
@@ -662,7 +663,9 @@ tokens.$default-map: components.$post-datepicker;
                   'post-datepicker-grid-day-range-in-range-container-color-selected-border'
                 );
             }
-            &.-current-:hover::before {
+
+            &:hover::before,
+            &.-selected-.-current-::before {
               left: -2px;
             }
           }
