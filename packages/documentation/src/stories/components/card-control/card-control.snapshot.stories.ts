@@ -41,7 +41,7 @@ export const CardControl: StoryObj = {
           ${PALETTE_TEST_COMPONENT_TYPES.map(
             type =>
               html`<li>
-                  <a href="#${type}" @click=${(e: MouseEvent) => scrollToClickHandler(e)}
+                  <a href="#${type}_light" @click=${(e: MouseEvent) => scrollToClickHandler(e)}
                     >${type}</a
                   >
                 </li>
@@ -49,7 +49,7 @@ export const CardControl: StoryObj = {
                   palette =>
                     html`<li>
                       <a
-                        href="#${type}_${palette}"
+                        href="#${type}_${palette}_light"
                         @click=${(e: MouseEvent) => scrollToClickHandler(e)}
                         >${type}@${palette}</a
                       >
@@ -61,11 +61,11 @@ export const CardControl: StoryObj = {
       <hr class="my-32" />
       <div class="row row-cols-2 g-0">
         ${schemes(
-          () => html`
+          scheme => html`
             ${PALETTE_TEST_COMPONENT_TYPES.map(
               type =>
                 html`<div class="px-8">
-                  <p id=${type} class="mt-32 fw-bold">Type: ${type}</p>
+                  <p id="${type}_${scheme}" class="mt-32 fw-bold">Type: ${type}</p>
                   ${bombedArgs.map(
                     args =>
                       html`<fieldset class="mx-0">
@@ -78,7 +78,7 @@ export const CardControl: StoryObj = {
                   ${PALETTE_TEST_PALETTE_TYPES.map(
                     palette =>
                       html`<div class="palette palette-${palette} p-32">
-                        <fieldset id="${type}_${palette}" class="mx-0">
+                        <fieldset id="${type}_${palette}_${scheme}" class="mx-0">
                           <legend style="text-transform: capitalize">Palette: ${palette}</legend>
                           ${renderComponent(type)}
                         </fieldset>
