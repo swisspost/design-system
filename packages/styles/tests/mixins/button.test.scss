@@ -1,9 +1,0 @@
-@use 'src/mixins/button';
-
-body {
-  @include button.reset-button();
-  @include button.button-size(sm);
-  @include button.button-size(rg);
-  @include button.button-size(md);
-  @include button.button-size(lg);
-}
