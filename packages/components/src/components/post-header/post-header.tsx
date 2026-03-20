@@ -18,7 +18,7 @@ import { fade } from '@/animations';
 import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 import { AnimationOptions } from '@/animations/types';
-import { checkRequiredAndType } from '@/utils';
+import { checkRequiredAndType, IS_BROWSER } from '@/utils';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -155,15 +155,17 @@ export class PostHeader {
   };
 
   connectedCallback() {
-    window.addEventListener('resize', this.throttledResize, { passive: true });
-    window.addEventListener('scroll', this.handleScrollEvent, {
-      passive: true,
-    });
-    this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
-      passive: true,
-    });
-    document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
+    if (IS_BROWSER) {
+      window.addEventListener('resize', this.throttledResize, { passive: true });
+      window.addEventListener('scroll', this.handleScrollEvent, {
+        passive: true,
+      });
+      this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
+        passive: true,
+      });
+      document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
+      globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
+    }
 
     this.handleScrollParentResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
@@ -198,12 +200,14 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
-    window.removeEventListener('resize', this.throttledResize);
-    window.removeEventListener('scroll', this.handleScrollEvent);
-    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
-    document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-    this.host.removeEventListener('keydown', this.keyboardHandler);
+    if (IS_BROWSER) {
+      globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
+      window.removeEventListener('resize', this.throttledResize);
+      window.removeEventListener('scroll', this.handleScrollEvent);
+      if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+      document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
+      this.host.removeEventListener('keydown', this.keyboardHandler);
+    }
     if (this.host.shadowRoot) {
       this.host.shadowRoot.removeEventListener('click', this.handleLinkClick);
     }

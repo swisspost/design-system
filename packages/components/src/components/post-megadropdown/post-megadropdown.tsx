@@ -15,7 +15,7 @@ import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { slide } from '@/animations';
 import { fadeSlide, FadeSlideOptions } from '@/animations/fade-slide';
-import { checkRequiredAndType } from '@/utils';
+import { checkRequiredAndType, IS_BROWSER } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown',
@@ -99,7 +99,9 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    if (IS_BROWSER) {
+      globalThis.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    }
   }
 
   componentDidRender() {
@@ -115,7 +117,9 @@ export class PostMegadropdown {
   }
 
   disconnectedCallback() {
-    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    if (IS_BROWSER) {
+      globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    }
 
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();

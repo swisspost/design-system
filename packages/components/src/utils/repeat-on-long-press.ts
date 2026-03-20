@@ -8,14 +8,18 @@ export function repeatOnLongPress(callback: () => void, options?: LongPressOptio
 
   const handler = () => {
     stop();
-    globalThis.removeEventListener('pointerup', handler);
-    globalThis.removeEventListener('pointercancel', handler);
-    globalThis.removeEventListener('pointerleave', handler);
+    if (typeof globalThis !== 'undefined') {
+      globalThis.removeEventListener('pointerup', handler);
+      globalThis.removeEventListener('pointercancel', handler);
+      globalThis.removeEventListener('pointerleave', handler);
+    }
   };
 
-  globalThis.addEventListener('pointerup', handler);
-  globalThis.addEventListener('pointercancel', handler);
-  globalThis.addEventListener('pointerleave', handler);
+  if (typeof globalThis !== 'undefined') {
+    globalThis.addEventListener('pointerup', handler);
+    globalThis.addEventListener('pointercancel', handler);
+    globalThis.addEventListener('pointerleave', handler);
+  }
 }
 
 function repeat(

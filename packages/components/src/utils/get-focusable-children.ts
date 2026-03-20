@@ -93,8 +93,8 @@ function isFocusBlockedByCSS(el: Element | Document | ShadowRoot): boolean {
     return !el.checkVisibility({ visibilityProperty: true });
   }
 
-  const style = globalThis.getComputedStyle(el);
-  if (style.display === 'none' || style.visibility !== 'visible') {
+  const style = el.ownerDocument?.defaultView?.getComputedStyle(el);
+  if (!style || style.display === 'none' || style.visibility !== 'visible') {
     return true;
   }
 
