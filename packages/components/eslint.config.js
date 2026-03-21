@@ -147,4 +147,12 @@ export default [
       'unicorn/prefer-global-this': 'off',
     },
   },
+  {
+    // getFocusableElements() returns a jQuery object which does not support .at()
+    name: 'post/unicorn/cypress-overrides',
+    files: ['cypress/**/*.{ts,js}'],
+    rules: {
+      'unicorn/prefer-at': 'off',
+    },
+  },
 ];
