@@ -27909,6 +27909,34 @@
       "modifiedAt": "2026-03-13T10:05:01.147Z"
     },
     {
+      "uuid": "e7e8c810-2359-11f1-abe9-0050568d2654",
+      "id": 9554534,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9554534/storage/MDA5NTU0NTM0LzAvbWFzdGVy",
+        "keywords": [
+          "Address unknown",
+          "Adresse Unbekannt",
+          "Adresse inconnue",
+          "Indirizzo sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2765.svg",
+        "basename": "2765",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-19T06:07:27.000Z",
+      "modifiedAt": "2026-03-19T06:10:05.000Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -41147,13 +41175,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1086,
+    "success": 1087,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-03-17T08:35:38.390Z",
+  "created": "2026-03-22T03:20:57.953Z",
   "version": "10.0.0-next.64"
 }
