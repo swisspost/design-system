@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/tokens/helpers';
@@ -7,20 +8,12 @@
 
 tokens.$default-map: components.$post-button;
 
-:host {
-  display: contents;
-}
-
-.user-menu-wrapper {
-  display: contents;
-}
 
 a {
   @include header-mx.nav-item-base;
 
   @include media.only(mobile) {
     @include header-mx.nav-item-icon-only;
-    padding: 0.625rem;
 
     span {
       @include utilities.visuallyhidden;
@@ -30,10 +23,7 @@ a {
 
 post-menu-trigger {
   button {
-    padding: 0;
-    border: 0;
-    background-color: transparent;
-    display: block;
+    @include button.reset-button;
     cursor: pointer;
 
     &:focus {
@@ -52,8 +42,6 @@ post-avatar {
 }
 
 post-menu-item {
-  display: block;
-  width: 100%;
 
   a {
     width: auto;
