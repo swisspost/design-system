@@ -6,10 +6,7 @@
 @use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/mixins/utilities';
 
-tokens.$default-map: components.$post-button;
-
-
-a {
+:host > a {
   @include header-mx.nav-item-base;
 
   @include media.only(mobile) {
@@ -26,7 +23,7 @@ post-menu-trigger {
     @include button.reset-button;
     cursor: pointer;
 
-    &:focus {
+    &:focus-visible {
       @include utilities.focus-style;
       border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
     }
@@ -38,22 +35,10 @@ post-avatar {
 
   &:hover {
     --post-avatar-bg: #{tokens.get('avatar-hover-bg', components.$post-avatar)};
+    --post-avatar-fg: #{tokens.get('avatar-hover-fg', components.$post-avatar)};
   }
 }
 
-post-menu-item {
-
-  a {
-    width: auto;
-    display: flex;
-    justify-content: start;
-  }
-}
-
-[slot='header'] {
-  display: flex;
-
-  p {
-    margin: 0;
-  }
+[slot='header'] p {
+  margin: 0;
 }
