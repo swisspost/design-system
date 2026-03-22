@@ -29,20 +29,20 @@
 
 ### Depends on
 
+- [post-icon](../post-icon)
 - [post-menu-trigger](../post-menu-trigger)
 - [post-avatar](../post-avatar)
 - [post-menu](../post-menu)
 - [post-menu-item](../post-menu-item)
-- [post-icon](../post-icon)
 
 ### Graph
 ```mermaid
 graph TD;
+  post-login-widget --> post-icon
   post-login-widget --> post-menu-trigger
   post-login-widget --> post-avatar
   post-login-widget --> post-menu
   post-login-widget --> post-menu-item
-  post-login-widget --> post-icon
   post-menu --> post-popovercontainer
   style post-login-widget fill:#f9f,stroke:#333,stroke-width:4px
 ```
