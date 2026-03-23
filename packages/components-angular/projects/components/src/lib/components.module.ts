@@ -7,14 +7,10 @@ import {
 } from '@angular/core';
 import { defineCustomElements, setNonce } from '@swisspost/design-system-components/loader';
 import { DIRECTIVES } from './stencil-generated';
-import { PostCardControlCheckboxValueAccessorDirective } from './custom/value-accessors/post-card-control-checkbox-value-accessor';
-import { PostCardControlRadioValueAccessorDirective } from './custom/value-accessors/post-card-control-radio-value-accessor';
 
 export function providePostComponents(): EnvironmentProviders {
   return makeEnvironmentProviders([
     ...DIRECTIVES,
-    PostCardControlCheckboxValueAccessorDirective,
-    PostCardControlRadioValueAccessorDirective,
 
     provideEnvironmentInitializer(() => () => {
       // Check if Post components are already defined, if so do nothing
