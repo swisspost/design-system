@@ -28,19 +28,6 @@
   );
 }
 
-@function add-stroke-color($svg, $color, $stroke-width: null) {
-  $color: color.get-hex-string($color);
-  $clean-color: utilities.replace('#{$color}', '#', '%23');
-
-  @return set-svg-properties(
-    $svg,
-    (
-      'stroke': $clean-color,
-      'stroke-width': $stroke-width,
-    )
-  );
-}
-
 @function set-svg-properties($svg, $properties) {
   @each $shape in rect, circle, ellipse, line, polyline, polygon, path {
     $lookup: '%3C#{$shape}';
