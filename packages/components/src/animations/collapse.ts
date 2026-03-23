@@ -11,7 +11,7 @@ const animationOptions: KeyframeAnimationOptions = {
 };
 
 export function collapse(el: HTMLElement): Animation {
-  const elHeight = IS_BROWSER ? el.ownerDocument?.defaultView?.getComputedStyle(el).height : `${el.scrollHeight}px`;
+  const elHeight = IS_BROWSER ? globalThis.getComputedStyle(el).height : `${el.scrollHeight}px`;
   const expandedKeyframe: Keyframe = { height: elHeight };
 
   return el.animate([expandedKeyframe, collapsedKeyframe], animationOptions);
