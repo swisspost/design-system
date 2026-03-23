@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 5.8.0
+
+### Minor Changes
+
+- Documented the List Group component. (by [@leagrdv](https://github.com/leagrdv) with [#7361](https://github.com/swisspost/design-system/pull/7361))
+
 ## 5.7.1
 
 ### Patch Changes
