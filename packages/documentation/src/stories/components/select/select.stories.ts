@@ -285,11 +285,6 @@ export const Default: Story = {
 
 export const FloatingLabel: Story = {
   ...Template,
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
   args: {
     floatingLabel: true,
     hint: '',
@@ -314,27 +309,6 @@ export const FloatingLabelPlaceholder: Story = {
   args: {
     floatingLabel: true,
     floatingLabelPlaceholder: true,
-    hint: '',
-  },
-};
-
-export const Validation: Story = {
-  ...Template,
-  parameters: {
-    controls: {
-      exclude: [
-        'Label',
-        'Floating Label',
-        'Hidden Label',
-        'Options',
-        'Multiple',
-        'Helper Text',
-        'Disabled',
-      ],
-    },
-  },
-  args: {
-    validation: 'is-invalid',
     hint: '',
   },
 };

@@ -217,29 +217,12 @@ function renderButtonGroup(args: Args, context: StoryContext) {
 export const Default: Story = {};
 
 export const Sizing: Story = {
-  parameters: {
-    controls: {
-      exclude: [
-        'Variant',
-        'First Label',
-        'Second Label',
-        'Third Label',
-        'Checked Button',
-        'Selected Button',
-      ],
-    },
-  },
   args: {
     size: 'btn-sm',
   },
 };
 
 export const Checks: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Size', 'First Label', 'Second Label', 'Third Label'],
-    },
-  },
   args: {
     element: 'checkbox',
     selected: [1, 3],
