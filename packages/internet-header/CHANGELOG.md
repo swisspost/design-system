@@ -1,5 +1,12 @@
 # @swisspost/internet-header
 
+## 1.16.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.10.0
+
 ## 1.16.2
 
 ### Patch Changes

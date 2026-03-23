@@ -1,5 +1,23 @@
 # @swisspost/design-system-documentation
 
+## 5.10.0
+
+### Minor Changes
+
+- Documented the usage of the `@swisspost/design-system-components-angular` package with standalone components. (by [@leagrdv](https://github.com/leagrdv) with [#7345](https://github.com/swisspost/design-system/pull/7345))
+
+- Documented the List Group component. (by [@leagrdv](https://github.com/leagrdv) with [#7360](https://github.com/swisspost/design-system/pull/7360))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.10.0
+  - @swisspost/design-system-styles@9.10.0
+  - @swisspost/design-system-components@9.10.0
+  - @swisspost/design-system-components-react@9.10.0
+  - @swisspost/design-system-theme-ag-grid@9.10.0
+  - @swisspost/internet-header@1.16.3
+
 ## 5.9.1
 
 ### Patch Changes
