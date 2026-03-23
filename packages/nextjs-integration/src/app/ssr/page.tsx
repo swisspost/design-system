@@ -112,39 +112,43 @@ export default function Home() {
 
       <div className="d-flex gap-16 flex-wrap">
         <figure>
-          <PostIconLetter className="fs-2"></PostIconLetter>
+          <PostIconLetter className="fs-2" base="/post-icons"></PostIconLetter>
           <figcaption>Line Icon</figcaption>
         </figure>
         <figure>
-          <PostIconLetterSolid className="fs-2"></PostIconLetterSolid>
+          <PostIconLetterSolid className="fs-2" base="/post-icons"></PostIconLetterSolid>
           <figcaption>Solid Icon</figcaption>
         </figure>
         <figure>
-          <PostIconLetter style={{ color: 'red' }} className="fs-2"></PostIconLetter>
+          <PostIconLetter
+            style={{ color: 'red' }}
+            className="fs-2"
+            base="/post-icons"
+          ></PostIconLetter>
           <figcaption>Colored Icon</figcaption>
         </figure>
         <figure>
-          <PostIconLetter className="fs-3"></PostIconLetter>
+          <PostIconLetter className="fs-3" base="/post-icons"></PostIconLetter>
           <figcaption>Sized Icon</figcaption>
         </figure>
         <figure>
-          <PostIconExplosives flipH={true} className="fs-2"></PostIconExplosives>
+          <PostIconExplosives flipH={true} className="fs-2" base="/post-icons"></PostIconExplosives>
           <figcaption>Flipped Horizontally</figcaption>
         </figure>
         <figure>
-          <PostIconExplosives className="fs-2" flipV={true}></PostIconExplosives>
+          <PostIconExplosives className="fs-2" flipV={true} base="/post-icons"></PostIconExplosives>
           <figcaption>Flipped Vertically</figcaption>
         </figure>
         <figure>
-          <PostIconLetter className="fs-2" rotate={90}></PostIconLetter>
+          <PostIconLetter className="fs-2" rotate={90} base="/post-icons"></PostIconLetter>
           <figcaption>Rotated</figcaption>
         </figure>
         <figure>
-          <PostIconLetter className="fs-2" scale={1.5}></PostIconLetter>
+          <PostIconLetter className="fs-2" scale={1.5} base="/post-icons"></PostIconLetter>
           <figcaption>Scaled</figcaption>
         </figure>
         <figure>
-          <PostIconLetter className="fs-2" animation={'spin'}></PostIconLetter>
+          <PostIconLetter className="fs-2" animation={'spin'} base="/post-icons"></PostIconLetter>
           <figcaption>Spinning</figcaption>
         </figure>
       </div>
