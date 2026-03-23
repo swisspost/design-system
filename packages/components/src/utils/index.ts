@@ -13,3 +13,5 @@ export * from './is-value-empty';
 export * from './repeat-on-long-press';
 export * from './sass-export';
 export * from './timeout';
+
+export * from './is-iso-date';

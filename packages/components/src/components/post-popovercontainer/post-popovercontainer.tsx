@@ -124,6 +124,11 @@ export class PostPopovercontainer {
   @Prop() readonly edgeGap?: number = 8;
 
   /**
+   * Offset for more precise placement
+   */
+  @Prop() readonly offset?: number;
+
+  /**
    * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
@@ -429,7 +434,7 @@ export class PostPopovercontainer {
           });
         },
       }),
-      offset(this.arrow ? gap + 4 : gap),
+      offset(this.offset ?? (this.arrow ? gap + 4 : gap)),
     ];
 
     if (this.arrow) {
