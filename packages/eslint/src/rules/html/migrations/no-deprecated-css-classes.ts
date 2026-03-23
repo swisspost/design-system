@@ -8,6 +8,7 @@ const classNames: string[] = [
   '.form-control-lg',
   '.form-select-rg',
   '.form-select-lg',
+  '.form-select-empty',
   '.vertical-gutters',
   '.border-gutters',
   '.container-reset',
