@@ -576,7 +576,7 @@ export class PostDatePicker {
     body.addEventListener('keydown', this.handleGridKeydown);
 
     this.setActiveCell(
-      this.isoToDate(this.selectedStartDate) ? this.isoToDate(this.selectedStartDate) : this.today,
+      this.isoToDate(this.selectedStartDate) || this.today,
       focusOnDate,
     );
   }
@@ -965,7 +965,7 @@ export class PostDatePicker {
   }
 
   private isValidDate(date: Date): boolean {
-    return date instanceof Date && !isNaN(date.getTime());
+    return date instanceof Date && !Number.isNaN(date.getTime());
   }
 
   private syncDatePickerState() {
