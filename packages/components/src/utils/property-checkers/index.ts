@@ -20,4 +20,4 @@ export const checkRequiredAndType = requiredAnd(checkType);
 export const checkRequiredAndUrl = requiredAnd(checkUrl);
 export const checkRequiredAndArrayOf = requiredAnd(checkArrayOf);
 
-export {checkIsoDate} from '@/utils/property-checkers/check-iso-date';
+export { checkIsoDate } from './check-iso-date';
