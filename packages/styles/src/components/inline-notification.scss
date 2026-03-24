@@ -3,6 +3,7 @@
 @use '../tokens/elements';
 
 tokens.$default-map: elements.$post-heading;
+
 .inline-notification {
   display: inline-flex;
   flex-wrap: wrap;
@@ -28,7 +29,7 @@ tokens.$default-map: elements.$post-heading;
   h3,
   h4,
   h5,
-  h6{
+  h6 {
     margin: 0;
     padding: 0;
     align-self: center;
