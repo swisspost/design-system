@@ -2,7 +2,7 @@ import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
-import meta from './card-control.stories';
+import meta from './selection-card.stories';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -27,7 +27,7 @@ const bombedArgs = bombArgs({
   customIconImg: ['<img src="https://picsum.photos/id/433/100/80" alt="My Custom Icon Image"/>'],
 }).filter(args => !(args.icon === 'component' && args.customIcon !== null));
 
-export const CardControl: StoryObj = {
+export const SelectionCard: StoryObj = {
   args: {
     // this prevents the components to update their checked argument when clicking on one of them,
     // which allows us to test the checked state of each component instance in isolation

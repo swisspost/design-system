@@ -1,21 +1,21 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
-import * as CardControlStandardHTMLStories from './card-control.stories';
+import * as SelectionCardStories from './selection-card.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
 
-<Meta of={CardControlStandardHTMLStories} />
+<Meta of={SelectionCardStories} />
 
 <div className="docs-title">
-  # Card-Control
+  # Selection card
 
-<link-design of={JSON.stringify(CardControlStandardHTMLStories)}></link-design>
+<link-design of={JSON.stringify(SelectionCardStories)}></link-design>
 
 </div>
 
 <p className="lead">For a more specialized visualization of checkbox and radio elements.</p>
 
-<Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
+<Canvas sourceState="shown" of={SelectionCardStories.Default} />
 <div className="hide-col-default">
-  <Controls of={CardControlStandardHTMLStories.Default} />
+  <Controls of={SelectionCardStories.Default} />
 </div>
 
 ## Examples
@@ -26,9 +26,9 @@ You can use our built-in icons by using our `post-icon` component.
 If this is not sufficient, you can also use a custom icon by providing a `<svg>` or `<img>` element.
 See how this can be achieved in the following example.
 
-<Canvas of={CardControlStandardHTMLStories.CustomIcon} />
+<Canvas of={SelectionCardStories.CustomIcon} />
 <div className="hide-col-default">
-  <Controls of={CardControlStandardHTMLStories.CustomIcon} />
+  <Controls of={SelectionCardStories.CustomIcon} />
 </div>
 
 ### Custom content
@@ -36,12 +36,20 @@ See how this can be achieved in the following example.
 If you need to add additional content to the component, you can do that as shown in the example below.
 
 <post-banner type="warning">
-  <p slot="heading">Even if it is generally possible to add other interactive elements within the component, this is strongly discouraged.</p>
-  <p>It can cause confusion when the hit area of nested interactive elements is not clearly separated from the component, may result in invalid HTML, and event bubbling can lead to unexpected behavior.<br/>
-  More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
+  <p slot="heading">
+    Even if it is generally possible to add other interactive elements within the component, this is
+    strongly discouraged.
+  </p>
+  <p>
+    It can cause confusion when the hit area of nested interactive elements is not clearly separated
+    from the component, may result in invalid HTML, and event bubbling can lead to unexpected
+    behavior.
+    <br />
+    More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a>
+  </p>
 </post-banner>
 
-<Canvas of={CardControlStandardHTMLStories.CustomContent} />
+<Canvas of={SelectionCardStories.CustomContent} />
 
 ### Grouping
 
@@ -63,9 +71,9 @@ Multiple instances of the component can be grouped together using a `<fieldset>`
   </ul>
 </post-banner>
 
-<Canvas of={CardControlStandardHTMLStories.Grouping} />
+<Canvas of={SelectionCardStories.Grouping} />
 <div className="hide-col-default">
-  <Controls of={CardControlStandardHTMLStories.Grouping} />
+  <Controls of={SelectionCardStories.Grouping} />
 </div>
 
 ### Lined up
@@ -73,6 +81,6 @@ Multiple instances of the component can be grouped together using a `<fieldset>`
 If you use this component multiple times in a grid and some instances contain more content than others, their heights will differ.
 To align them, simply add the class `.h-full` to all of them.
 
-<Canvas of={CardControlStandardHTMLStories.Lineup} />
+<Canvas of={SelectionCardStories.Lineup} />
 
 <StylesPackageImport components={['choice-control-card']} />
