@@ -1,5 +1,17 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.65
+
+### Minor Changes
+
+- Added icons: `2761`, `2762`, `2763` and `2764` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7357](https://github.com/swisspost/design-system/pull/7357))
+
+- Added icons:
+  - `agent` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `editai` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `postoneweb` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `searchai` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7357](https://github.com/swisspost/design-system/pull/7357))
+
 ## 10.0.0-next.64
 
 ### Minor Changes
