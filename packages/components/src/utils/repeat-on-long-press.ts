@@ -1,4 +1,4 @@
-import { Build } from '@stencil/core';
+import { IS_BROWSER } from './environment';
 
 type LongPressOptions = {
   delayMs?: number;
@@ -10,14 +10,14 @@ export function repeatOnLongPress(callback: () => void, options?: LongPressOptio
 
   const handler = () => {
     stop();
-    if (Build.isBrowser) {
+    if (IS_BROWSER) {
       globalThis.removeEventListener('pointerup', handler);
       globalThis.removeEventListener('pointercancel', handler);
       globalThis.removeEventListener('pointerleave', handler);
     }
   };
 
-  if (Build.isBrowser) {
+  if (IS_BROWSER) {
     globalThis.addEventListener('pointerup', handler);
     globalThis.addEventListener('pointercancel', handler);
     globalThis.addEventListener('pointerleave', handler);
