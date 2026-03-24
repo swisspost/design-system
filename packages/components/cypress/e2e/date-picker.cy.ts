@@ -1,42 +1,42 @@
 const DATEPICKER_ID = 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e';
 import { isPopoverSupported } from './popovercontainer.cy';
-describe('datepicker', { includeShadowDom: true }, () => {
+describe('date-picker', { includeShadowDom: true }, () => {
   describe('default', () => {
     const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
     beforeEach(() => {
-      cy.getComponent('datepicker', DATEPICKER_ID);
-      cy.get('@datepicker').find('input').as('input');
+      cy.getComponent('date-picker', DATEPICKER_ID);
+      cy.get('@date-picker').find('input').as('input');
     });
 
     it('should render', () => {
-      cy.get('@datepicker').should('exist');
+      cy.get('@date-picker').should('exist');
       cy.get('@input').should('exist');
     });
 
     it('should open calendar popover on button click', () => {
       cy.get(selector).should('not.exist');
-      cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
+      cy.get('@date-picker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
       cy.get(selector).should('exist');
     });
 
     it('should have correct order in navigation', () => {
-      cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
+      cy.get('@date-picker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .find('.air-datepicker-nav > div:first-child')
         .should('have.class', 'air-datepicker-nav--title');
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .find('.air-datepicker-nav > div:nth-child(2)')
         .should('have.attr', 'data-action', 'prev');
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .find('.air-datepicker-nav > div:nth-child(3)')
         .should('have.attr', 'data-action', 'next');
     });
 
-    it('should update input value when selecting a day in the datepicker', () => {
-      cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
+    it('should update input value when selecting a day in the date picker', () => {
+      cy.get('@date-picker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .shadow()
         .find('.datepicker-container')
         .find('.air-datepicker-cell.-day-:not(.-other-month-)')
@@ -56,26 +56,26 @@ describe('datepicker', { includeShadowDom: true }, () => {
     });
 
     it('should open year view when clicking on title', () => {
-      cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
+      cy.get('@date-picker').shadow().find('button[aria-haspopup="true"]').click().wait(500);
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .shadow()
         .find('.datepicker-container')
         .find('.air-datepicker-nav--title button')
         .click();
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .find('.air-datepicker-body.-years-')
         .should('exist')
         .should('not.have.class', '-hidden-');
 
-      cy.get('@datepicker').find('.air-datepicker-body.-days-').should('have.class', '-hidden-');
+      cy.get('@date-picker').find('.air-datepicker-body.-days-').should('have.class', '-hidden-');
     });
 
     it('should return focus to the input on Escape', () => {
-      cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click();
+      cy.get('@date-picker').shadow().find('button[aria-haspopup="true"]').click();
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .shadow()
         .find('.datepicker-container .air-datepicker-cell.-day-:not(.-other-month-)')
         .first()
@@ -100,32 +100,32 @@ describe('datepicker', { includeShadowDom: true }, () => {
         cy.window().then(win => {
           cy.spy(win.console, 'error').as('consoleError');
         });
-        cy.get('@datepicker').invoke('attr', label, null);
+        cy.get('@date-picker').invoke('attr', label, null);
         cy.get('@consoleError').should('be.called');
       });
     });
 
     it('should have correct ARIA roles and labels', () => {
-      cy.get('@datepicker').shadow().find('button[aria-haspopup="true"]').click();
+      cy.get('@date-picker').shadow().find('button[aria-haspopup="true"]').click();
 
-      cy.get('@datepicker').shadow().find('.datepicker-container [role="grid"]').should('exist');
+      cy.get('@date-picker').shadow().find('.datepicker-container [role="grid"]').should('exist');
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .shadow()
         .find('.datepicker-container .air-datepicker-nav--title button')
         .should('have.attr', 'aria-label', 'Switch to year view');
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .shadow()
         .find('.datepicker-container [data-action="next"] button')
         .should('have.attr', 'aria-label', 'Next month');
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .shadow()
         .find('.datepicker-container [data-action="prev"] button')
         .should('have.attr', 'aria-label', 'Previous month');
 
-      cy.get('@datepicker')
+      cy.get('@date-picker')
         .shadow()
         .find('.datepicker-container .air-datepicker-cell')
         .first()
@@ -135,32 +135,32 @@ describe('datepicker', { includeShadowDom: true }, () => {
 
   describe('inline', () => {
     beforeEach(() => {
-      cy.getComponent('datepicker', DATEPICKER_ID, 'inline');
+      cy.getComponent('date-picker', DATEPICKER_ID, 'inline');
     });
 
     it('should render', () => {
-      cy.get('@datepicker').should('exist');
-      cy.get('@datepicker').shadow().find('.datepicker-container').should('exist');
+      cy.get('@date-picker').should('exist');
+      cy.get('@date-picker').shadow().find('.datepicker-container').should('exist');
     });
   });
 
   describe('inline range', () => {
     beforeEach(() => {
-      cy.getComponent('datepicker', DATEPICKER_ID, 'inline-range');
+      cy.getComponent('date-picker', DATEPICKER_ID, 'inline-range');
     });
 
     it('should render', () => {
-      cy.get('@datepicker').should('exist');
+      cy.get('@date-picker').should('exist');
     });
   });
 
   describe('range', () => {
     beforeEach(() => {
-      cy.getComponent('datepicker', DATEPICKER_ID, 'range');
+      cy.getComponent('date-picker', DATEPICKER_ID, 'range');
     });
 
     it('should render', () => {
-      cy.get('@datepicker').should('exist');
+      cy.get('@date-picker').should('exist');
     });
   });
 });
