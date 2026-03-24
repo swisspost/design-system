@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch, Build } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, breakpoint, Device, IS_BROWSER } from '@/utils';
+import { checkRequiredAndType, breakpoint, Device } from '@/utils';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
 
@@ -39,7 +39,7 @@ export class PostFooter {
   }
 
   connectedCallback() {
-    if (IS_BROWSER) {
+    if (Build.isBrowser) {
       globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
     }
   }
@@ -55,7 +55,7 @@ export class PostFooter {
   }
 
   disconnectedCallback() {
-    if (IS_BROWSER) {
+    if (Build.isBrowser) {
       globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
     }
   }

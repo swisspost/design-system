@@ -10,12 +10,13 @@ import {
   Prop,
   State,
   Watch,
+  Build
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { slide } from '@/animations';
 import { fadeSlide, FadeSlideOptions } from '@/animations/fade-slide';
-import { checkRequiredAndType, IS_BROWSER } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown',
@@ -99,7 +100,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    if (IS_BROWSER) {
+    if (Build.isBrowser) {
       globalThis.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
     }
   }
@@ -117,7 +118,7 @@ export class PostMegadropdown {
   }
 
   disconnectedCallback() {
-    if (IS_BROWSER) {
+    if (Build.isBrowser) {
       globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
     }
 

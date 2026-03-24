@@ -18,7 +18,7 @@ import { fade } from '@/animations';
 import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
 import { EventFrom } from '@/utils/event-from';
 import { AnimationOptions } from '@/animations/types';
-import { checkRequiredAndType, IS_BROWSER } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -155,7 +155,7 @@ export class PostHeader {
   };
 
   connectedCallback() {
-    if (IS_BROWSER) {
+    if (Build.isBrowser) {
       window.addEventListener('resize', this.throttledResize, { passive: true });
       window.addEventListener('scroll', this.handleScrollEvent, {
         passive: true,
@@ -200,7 +200,7 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    if (IS_BROWSER) {
+    if (Build.isBrowser) {
       globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
       window.removeEventListener('resize', this.throttledResize);
       window.removeEventListener('scroll', this.handleScrollEvent);

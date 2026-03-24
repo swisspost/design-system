@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch, State, Build } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkEmptyOrUrl, IS_BROWSER } from '@/utils';
 
@@ -38,7 +38,7 @@ export class PostBreadcrumbItem {
   private constructUrl(value: unknown): string | undefined {
     const hasBaseURL = /^https?:\/\//.test(String(this.url));
     if (typeof value === 'string') {
-      const origin = IS_BROWSER ? globalThis.location.origin : '';
+      const origin = Build.isBrowser ? globalThis.location.origin : '';
       this.fullUrl = hasBaseURL ? value : `${origin}${value}`;
       checkEmptyOrUrl(this, 'fullUrl');
       return this.fullUrl;
