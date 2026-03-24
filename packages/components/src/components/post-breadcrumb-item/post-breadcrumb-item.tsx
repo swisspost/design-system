@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, Watch, State, Build } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkEmptyOrUrl, IS_BROWSER } from '@/utils';
+import { checkEmptyOrUrl } from '@/utils';
 
 /**
  * @slot default - Slot for placing the text inside the breadcrumb item.
