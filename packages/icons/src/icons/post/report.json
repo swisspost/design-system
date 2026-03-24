@@ -27481,6 +27481,434 @@
       "modifiedAt": "2026-01-23T15:34:55.000Z"
     },
     {
+      "uuid": "29b24c30-fce0-11f0-8bff-0050568d2654",
+      "id": 8953525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8953525/storage/MDA4OTUzNTI1LzAvbWFzdGVy",
+        "keywords": [
+          "Retrieve waste",
+          "Abfall zurückholen",
+          "Reprise des déchets",
+          "Riprendere i rifiuti",
+          "Undelete",
+          "Löschen rückgängig machen",
+          "Annuler la suppression",
+          "Annullare la cancellazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2752.svg",
+        "basename": "2752",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-29T07:00:15.000Z",
+      "modifiedAt": "2026-01-30T06:05:04.075Z"
+    },
+    {
+      "uuid": "c34dd580-fda3-11f0-bb98-0050568d2654",
+      "id": 8970660,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8970660/storage/MDA4OTcwNjYwLzAvbWFzdGVy",
+        "keywords": [
+          "Trophäe",
+          "Trophy",
+          "Trofeo",
+          "Trophée",
+          "Pokal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2753.svg",
+        "basename": "2753",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-01-30T06:20:24.000Z",
+      "modifiedAt": "2026-01-31T06:05:02.338Z"
+    },
+    {
+      "uuid": "38a9e420-1214-11f1-86d5-0050568d2654",
+      "id": 9281964,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281964/storage/MDA5MjgxOTY0LzAvbWFzdGVy",
+        "keywords": [
+          "Address unknown",
+          "Adresse Unbekannt",
+          "Adresse inconnue",
+          "Indirizzo sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2754.svg",
+        "basename": "2754",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:35:48.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "d39eed90-1214-11f1-86d5-0050568d2654",
+      "id": 9281969,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281969/storage/MDA5MjgxOTY5LzAvbWFzdGVy",
+        "keywords": [
+          "Firma",
+          "Company",
+          "Société",
+          "Società",
+          "Company Unknown",
+          "Firma Unbekannt",
+          "Entreprise inconnue",
+          "Ditta Sconosciuta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2755.svg",
+        "basename": "2755",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:40:08.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "8af521d0-1215-11f1-86d5-0050568d2654",
+      "id": 9281974,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281974/storage/MDA5MjgxOTc0LzAvbWFzdGVy",
+        "keywords": [
+          "Abroad",
+          "Ins Ausland",
+          "À l’étranger",
+          "All’estero"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2756.svg",
+        "basename": "2756",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:45:16.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "3f802820-1216-11f1-86d5-0050568d2654",
+      "id": 9281980,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281980/storage/MDA5MjgxOTgwLzAvbWFzdGVy",
+        "keywords": [
+          "Unknown person",
+          "Person Unbekannt",
+          "Personne inconnue",
+          "Persona sconosciuta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2757.svg",
+        "basename": "2757",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:50:18.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "7a017660-1217-11f1-86d5-0050568d2654",
+      "id": 9281986,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281986/storage/MDA5MjgxOTg2LzAvbWFzdGVy",
+        "keywords": [
+          "Unknown Moved",
+          "Unbekannt Weggezogen",
+          "Déménagé à une adresse inconnue",
+          "Sconosciuto Traslocato"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2758.svg",
+        "basename": "2758",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T06:59:06.000Z",
+      "modifiedAt": "2026-02-26T06:05:01.311Z"
+    },
+    {
+      "uuid": "76464db0-1218-11f1-86d5-0050568d2654",
+      "id": 9281991,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9281991/storage/MDA5MjgxOTkxLzAvbWFzdGVy",
+        "keywords": [
+          "Grabstein",
+          "Gravestone",
+          "Pietra tombale",
+          "Pierre Tombale",
+          "verstorbene Person",
+          "Fallen Person",
+          "Persona Caduta",
+          "Personne Tombée",
+          "Deceased",
+          "Verstorben",
+          "Décédé",
+          "Deceduto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2759.svg",
+        "basename": "2759",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-02-25T07:06:09.000Z",
+      "modifiedAt": "2026-02-26T07:05:01.396Z"
+    },
+    {
+      "uuid": "cb2949f0-187f-11f1-a5c3-0050568d2654",
+      "id": 9346931,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9346931/storage/MDA5MzQ2OTMxLzAvbWFzdGVy",
+        "keywords": [
+          "contenitore",
+          "container",
+          "conteneur",
+          "Container",
+          "Frachtcontainer",
+          "Cargo Container",
+          "Contenitore di carico",
+          "Conteneur De Fret",
+          "Transport",
+          "Trasporto",
+          "Fracht",
+          "freight",
+          "Fret",
+          "transhipment",
+          "Umschlag",
+          "Enveloppe",
+          "Busta",
+          "manutentionnaire",
+          "addetto alla manutenzione",
+          "Handling",
+          "handler"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2760.svg",
+        "basename": "2760",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-05T10:40:57.000Z",
+      "modifiedAt": "2026-03-05T10:47:40.000Z"
+    },
+    {
+      "uuid": "5a33f190-1d0d-11f1-9174-0050568d2654",
+      "id": 9438307,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438307/storage/MDA5NDM4MzA3LzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "weiblich",
+          "Female",
+          "Femmina",
+          "Féminin",
+          "Frau",
+          "Woman",
+          "Donna",
+          "Femme"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2761.svg",
+        "basename": "2761",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T05:44:21.000Z",
+      "modifiedAt": "2026-03-11T05:49:48.000Z"
+    },
+    {
+      "uuid": "3e021eb0-1d0e-11f1-9174-0050568d2654",
+      "id": 9438311,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438311/storage/MDA5NDM4MzExLzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "männlich",
+          "Male",
+          "Maschio",
+          "Masculin",
+          "Mann",
+          "Man",
+          "Uomo",
+          "Homme"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2762.svg",
+        "basename": "2762",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T05:50:43.000Z",
+      "modifiedAt": "2026-03-11T06:01:57.000Z"
+    },
+    {
+      "uuid": "ed9388e0-1d0f-11f1-9174-0050568d2654",
+      "id": 9438317,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9438317/storage/MDA5NDM4MzE3LzAvbWFzdGVy",
+        "keywords": [
+          "Gender",
+          "Geschlecht",
+          "Sexe",
+          "Sesso",
+          "gender-neutral",
+          "geschlechtsneutral",
+          "Sexe neutre",
+          "NEUTRALITÀ DI GENERE",
+          "nonbinary",
+          "nonbinär",
+          "Non binaire",
+          "non binario"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2763.svg",
+        "basename": "2763",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-11T06:02:47.000Z",
+      "modifiedAt": "2026-03-12T05:05:02.785Z"
+    },
+    {
+      "uuid": "7c605c50-1dfc-11f1-bfa2-0050568d2654",
+      "id": 9445449,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9445449/storage/MDA5NDQ1NDQ5LzAvbWFzdGVy",
+        "keywords": [
+          "Post Visa Prepaid",
+          "Visa prépayé",
+          "Visa prepagata",
+          "Kreditkarte",
+          "Credit Card",
+          "Carta di credito",
+          "Carte De Crédit",
+          "Prepaid",
+          "Prépayé",
+          "Prepagato"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2764.svg",
+        "basename": "2764",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-12T10:16:08.000Z",
+      "modifiedAt": "2026-03-13T10:05:01.147Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -40719,13 +41147,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1073,
+    "success": 1086,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-01-25T02:42:05.762Z",
-  "version": "10.0.0-next.58"
+  "created": "2026-03-17T08:35:38.390Z",
+  "version": "10.0.0-next.64"
 }

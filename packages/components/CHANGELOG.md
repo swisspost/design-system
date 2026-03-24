@@ -1,5 +1,95 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.65
+
+### Major Changes
+
+- Removes the `post-card-control` web component. The component is now provided only as an HTML/CSS `.card-control` implementation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+### Patch Changes
+
+- Patched the `post-linkarea` web component, so it can not only be used for click event delegation on interactive cards, but also for the newly implemented `.card-control` HTML/CSS component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+- Fixed a console warning for the `post-banner` component that appeared when dismissing it. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7363](https://github.com/swisspost/design-system/pull/7363))
+
+- Fixed the calculation of `post-breadcrumbs` item widths used to determine when concatenation is applied. (by [@leagrdv](https://github.com/leagrdv) with [#7275](https://github.com/swisspost/design-system/pull/7275))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.65
+  - @swisspost/design-system-styles@10.0.0-next.65
+
+## 10.0.0-next.64
+
+### Minor Changes
+
+- Updated `post-menu` component to support Server-Side Rendering. Fixed 'Cannot read properties of undefined (reading 'removeEventListener')' error in `post-popover` component. (by [@myrta2302](https://github.com/myrta2302) with [#7224](https://github.com/swisspost/design-system/pull/7224))
+
+- Updated `post-stepper` component to support Server-Side Rendering. (by [@myrta2302](https://github.com/myrta2302) with [#7252](https://github.com/swisspost/design-system/pull/7252))
+
+### Patch Changes
+
+- Fixed the `post-back-to-top` button being overlaid by the `post-stepper` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7321](https://github.com/swisspost/design-system/pull/7321))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.64
+  - @swisspost/design-system-styles@10.0.0-next.64
+
+## 10.0.0-next.63
+
+### Patch Changes
+
+- Fixed inconsistent resize behavior of the post-megadropdown component by preserving its open state when resizing between breakpoints. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7001](https://github.com/swisspost/design-system/pull/7001))
+
+- Fixed animation behavior when switching between open megadropdowns. The entry animation is now skipped if another megadropdown is already open. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7001](https://github.com/swisspost/design-system/pull/7001))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.63
+  - @swisspost/design-system-styles@10.0.0-next.63
+
+## 10.0.0-next.62
+
+### Minor Changes
+
+- Updated `post-header` and its sub-components to support Server-Side Rendering. (by [@alizedebray](https://github.com/alizedebray) with [#7208](https://github.com/swisspost/design-system/pull/7208))
+
+- Documented the `post-pagination` component and added design-token–based styles aligned with the design. (by [@leagrdv](https://github.com/leagrdv) with [#7163](https://github.com/swisspost/design-system/pull/7163))
+
+### Patch Changes
+
+- Added null guard in `post-back-to-top` component to prevent errors during SSR hydration. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7213](https://github.com/swisspost/design-system/pull/7213))
+
+- Refactored the `post-banner` styles to reduce the final compiled output size. (by [@alizedebray](https://github.com/alizedebray) with [#7204](https://github.com/swisspost/design-system/pull/7204))
+
+- Fixed an accessibility violation in the `post-header` component on mobile where icon-only interactive elements were missing text alternatives. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7241](https://github.com/swisspost/design-system/pull/7241))
+
+- Updated global styles to prevent web components from being visible until they are fully loaded, avoiding unstyled flashes. (by [@alizedebray](https://github.com/alizedebray) with [#7179](https://github.com/swisspost/design-system/pull/7179))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.62
+  - @swisspost/design-system-styles@10.0.0-next.62
+
+## 10.0.0-next.61
+
+### Patch Changes
+
+- Added null guard when reading step label during initial render. (by [@leagrdv](https://github.com/leagrdv) with [#7097](https://github.com/swisspost/design-system/pull/7097))
+
+- Fixed focus being applied to hidden items across multiple components. (by [@alizedebray](https://github.com/alizedebray) with [#7075](https://github.com/swisspost/design-system/pull/7075))
+
+- Added foreground and background color transitions to `post-avatar` component. (by [@alizedebray](https://github.com/alizedebray) with [#7072](https://github.com/swisspost/design-system/pull/7072))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.61
+  - @swisspost/design-system-styles@10.0.0-next.61
+
+## 10.0.0-next.60
+
+### Minor Changes
+
+- Updated the `post-closebutton` component with new `size` and `position` properties and revised styles. The component is now intended to be absolutely positioned in the top-right corner of the element it closes. (by [@alizedebray](https://github.com/alizedebray) with [#6948](https://github.com/swisspost/design-system/pull/6948))
+
+### Patch Changes
+
+- Fixed the timing of the `postToggle` event in `post-collapsible` component, ensuring it is emitted before the transition. (by [@alizedebray](https://github.com/alizedebray) with [#7074](https://github.com/swisspost/design-system/pull/7074))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.60
+  - @swisspost/design-system-styles@10.0.0-next.60
+
 ## 10.0.0-next.59
 
 ### Patch Changes

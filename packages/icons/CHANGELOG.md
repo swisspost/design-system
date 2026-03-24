@@ -1,5 +1,104 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.65
+
+### Minor Changes
+
+- Added icons: `2761`, `2762`, `2763` and `2764` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7357](https://github.com/swisspost/design-system/pull/7357))
+
+- Added icons:
+  - `agent` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `editai` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `postoneweb` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `searchai` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7357](https://github.com/swisspost/design-system/pull/7357))
+
+## 10.0.0-next.64
+
+### Minor Changes
+
+- Added icons: `2760` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7290](https://github.com/swisspost/design-system/pull/7290))
+
+- Added icons:
+  - `bulkparcels` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bundle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `digitaltransformation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `glasses` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `honeypot` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `network` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `outofswitzerland` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `scaningqrcode` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `test` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownadress` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknowncompany` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownmovedaway` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownperson` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7290](https://github.com/swisspost/design-system/pull/7290))
+
+- Added `:host` selector to make icon CSS variables accessible within component ShadowDOM. (by [@myrta2302](https://github.com/myrta2302) with [#7252](https://github.com/swisspost/design-system/pull/7252))
+
+## 10.0.0-next.63
+
+### Minor Changes
+
+- Added icons: `2760` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7274](https://github.com/swisspost/design-system/pull/7274))
+
+- Added icons:
+  - `bulkparcels` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bundle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `digitaltransformation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `honeypot` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `network` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `outofswitzerland` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `scaningqrcode` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `test` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownadress` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknowncompany` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownmovedaway` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `unknownperson` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7274](https://github.com/swisspost/design-system/pull/7274))
+
+## 10.0.0-next.62
+
+### Minor Changes
+
+- Added icons:
+  - `achievement` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `books` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `europe` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `giftcard` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `handtruck` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `namechange` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `photoproof` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `physiotherapy` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `resident` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `task` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `training` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7183](https://github.com/swisspost/design-system/pull/7183))
+
+- Added icons: `2754`, `2755`, `2756`, `2757`, `2758` and `2759` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7218](https://github.com/swisspost/design-system/pull/7218))
+
+## 10.0.0-next.61
+
+### Minor Changes
+
+- Added icons:
+  - `coordination` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `datacollection` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentselected` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `gamecontroller` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `history` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `scratchtowin` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `trophy` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7162](https://github.com/swisspost/design-system/pull/7162))
+
+## 10.0.0-next.60
+
+### Minor Changes
+
+- Added icons: `2752` and `2753` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7115](https://github.com/swisspost/design-system/pull/7115))
+
+- Added icons:
+  - `bulkmailing` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `soup` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `token` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `variable` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7115](https://github.com/swisspost/design-system/pull/7115))
+
 ## 10.0.0-next.59
 
 ### Minor Changes
