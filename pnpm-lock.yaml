@@ -516,6 +516,9 @@ importers:
       cheerio:
         specifier: 1.0.0
         version: 1.0.0
+      eslint-plugin-unicorn:
+        specifier: ^56.0.0
+        version: 56.0.1(eslint@9.26.0(jiti@2.6.1))
       eslint-scope:
         specifier: 8.2.0
         version: 8.2.0
@@ -541,9 +544,6 @@ importers:
       eslint:
         specifier: 9.26.0
         version: 9.26.0(jiti@2.6.1)
-      eslint-plugin-unicorn:
-        specifier: ^56.0.0
-        version: 56.0.1(eslint@9.26.0(jiti@2.6.1))
       globals:
         specifier: 17.3.0
         version: 17.3.0
@@ -5019,6 +5019,9 @@ packages:
     resolution: {integrity: sha512-fereAvAvxDrQDOXybk3Qu3dPbOoKoysFMWtkY3mv5BsL8//OSZVL5DCLYqgRfY5cWirgRzlC+WSrxp6Bo3eNZg==}
     hasBin: true
 
+  core-js-compat@3.49.0:
+    resolution: {integrity: sha512-VQXt1jr9cBz03b331DFDCCP90b3fanciLkgiOoy8SBHy06gNf+vQ1A3WFLqG7I8TipYIKeYK9wxd0tUrvHcOZA==}
+
   core-js-pure@3.49.0:
     resolution: {integrity: sha512-XM4RFka59xATyJv/cS3O3Kml72hQXUeGRuuTmMYFxwzc9/7C8OYTaIR/Ji+Yt8DXzsFLNhat15cE/JP15HrCgw==}
 
@@ -6358,6 +6361,9 @@ packages:
 
   hookified@2.1.0:
     resolution: {integrity: sha512-ootKng4eaxNxa7rx6FJv2YKef3DuhqbEj3l70oGXwddPQEEnISm50TEZQclqiLTAtilT2nu7TErtCO523hHkyg==}
+
+  hosted-git-info@2.8.9:
+    resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
 
   hosted-git-info@7.0.2:
     resolution: {integrity: sha512-puUZAUKT5m8Zzvs72XWy3HtvVbTWljRE66cP60bxJzAqf2DgICo7lYTY2IHUmLnNpjYvw5bvmoHvPc0QO2a62w==}
@@ -13984,7 +13990,7 @@ snapshots:
   '@typescript-eslint/project-service@8.49.0(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.49.0(typescript@5.8.3)
-      '@typescript-eslint/types': 8.57.0
+      '@typescript-eslint/types': 8.57.1
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -15277,6 +15283,10 @@ snapshots:
       through2: 2.0.5
       untildify: 4.0.0
       yargs: 16.2.0
+
+  core-js-compat@3.49.0:
+    dependencies:
+      browserslist: 4.28.1
 
   core-js-pure@3.49.0: {}
 
@@ -17050,6 +17060,8 @@ snapshots:
   hookified@1.15.1: {}
 
   hookified@2.1.0: {}
+
+  hosted-git-info@2.8.9: {}
 
   hosted-git-info@7.0.2:
     dependencies:
