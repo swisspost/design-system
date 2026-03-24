@@ -73,8 +73,8 @@ export class PostBanner {
 
     await dismissal.finished;
 
-    this.host.remove();
     this.postDismissed.emit();
+    this.host.remove();
   }
 
   @Listen('click')

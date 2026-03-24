@@ -1,5 +1,65 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.66
+
+### Major Changes
+
+- Removes the `post-card-control` web component. The component is now provided only as an HTML/CSS `.card-control` implementation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+### Minor Changes
+
+- Introduces a new HTML/CSS `.card-control` component that consolidates the previous `.radio-button-card`, `.checkbox-button-card`, and the `post-card-control` web component into a simplified, single HTML/CSS implementation. This brings consistent styling, behavior, and token usage across the design system while preserving and unifying existing functionality. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+- Added the small variant `.form-control-sm` to the text input. (by [@leagrdv](https://github.com/leagrdv) with [#7330](https://github.com/swisspost/design-system/pull/7330))
+
+- Added the small variant `.form-select-sm` to the select. (by [@leagrdv](https://github.com/leagrdv) with [#7333](https://github.com/swisspost/design-system/pull/7333))
+
+### Patch Changes
+
+- Added a section in the migration guide on how to run the automigration scripts. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7296](https://github.com/swisspost/design-system/pull/7296))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.65
+  - @swisspost/design-system-styles@10.0.0-next.65
+  - @swisspost/design-system-components@10.0.0-next.65
+  - @swisspost/design-system-tokens@10.0.0-next.65
+  - @swisspost/design-system-components-react@10.0.0-next.65
+  - @swisspost/internet-header@10.0.0-next.65
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.65
+
+## 6.0.0-next.65
+
+### Minor Changes
+
+- Added a new `@swisspost/design-system-theme-ag-grid` package, exposing a shared AG Grid theme so all applications use the same datatable styling and stay visually consistent. (by [@leagrdv](https://github.com/leagrdv) with [#7253](https://github.com/swisspost/design-system/pull/7253))
+
+- Added the small variant class `.form-check-sm` to the form checkbox. (by [@bucknatt](https://github.com/bucknatt) with [#7211](https://github.com/swisspost/design-system/pull/7211))
+
+### Patch Changes
+
+- Added two required properties for the `swisspost-internet-footer` component:
+  - `textFooter` a visually hidden label for the footer.
+  - `textCookieSettings` a label for the "Cookie Settings" button. (by [@alizedebray](https://github.com/alizedebray) with [#7239](https://github.com/swisspost/design-system/pull/7239))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.64
+  - @swisspost/internet-header@10.0.0-next.64
+  - @swisspost/design-system-components@10.0.0-next.64
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.64
+  - @swisspost/design-system-styles@10.0.0-next.64
+  - @swisspost/design-system-components-react@10.0.0-next.64
+  - @swisspost/design-system-tokens@10.0.0-next.64
+
+## 6.0.0-next.64
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.63
+  - @swisspost/design-system-components@10.0.0-next.63
+  - @swisspost/design-system-components-react@10.0.0-next.63
+  - @swisspost/design-system-styles@10.0.0-next.63
+  - @swisspost/internet-header@10.0.0-next.63
+  - @swisspost/design-system-tokens@10.0.0-next.63
+
 ## 6.0.0-next.63
 
 ### Minor Changes

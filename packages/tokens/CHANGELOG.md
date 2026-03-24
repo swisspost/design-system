@@ -1,5 +1,15 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.65
+
+### Minor Changes
+
+- Introduces a new HTML/CSS `.card-control` component that consolidates the previous `.radio-button-card`, `.checkbox-button-card`, and the `post-card-control` web component into a simplified, single HTML/CSS implementation. This brings consistent styling, behavior, and token usage across the design system while preserving and unifying existing functionality. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+## 10.0.0-next.64
+
+## 10.0.0-next.63
+
 ## 10.0.0-next.62
 
 ## 10.0.0-next.61

@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { Inline } from './checkbox.stories';
+import meta, { renderGroup } from './checkbox.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -24,6 +24,8 @@ export const Checkbox: Story = {
     });
     return schemes(
       scheme => html`
+        <h1>Checkboxes</h1>
+        <h2 class="h4">Single checkbox</h2>
         <div class="d-flex flex-wrap gap-16">
           ${[
             ...bombArgs({
@@ -58,8 +60,28 @@ export const Checkbox: Story = {
               </span>
             `;
           })}
-          <div class="mt-32 w-full"></div>
-          ${Inline.render?.({ ...context.args, ...Inline.args }, context)}
+        </div>
+        <div>
+          <h2 class="h4 mt-24">Grouped checkboxes</h2>
+          <div class="d-flex flex-column gap-16">
+            ${(() => {
+              const combos = bombArgs({
+                inline: [false, true],
+                size: ['null', 'form-check-sm'],
+              });
+
+              return combos.map((combo: Args) => {
+                return html`
+                  <div class="mt-16">
+                    ${renderGroup({
+                      hiddenLegend: false,
+                      ...combo,
+                    })}
+                  </div>
+                `;
+              });
+            })()}
+          </div>
         </div>
       `,
     );
