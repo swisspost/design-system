@@ -23,7 +23,12 @@ tokens.$default-map: elements.$post-heading;
     height: 32px;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6{
     margin: 0;
     padding: 0;
     align-self: center;
@@ -44,7 +49,12 @@ tokens.$default-map: elements.$post-heading;
       margin-top: 2px;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       flex-basis: calc(100% - 40px);
     }
 
@@ -55,23 +65,23 @@ tokens.$default-map: elements.$post-heading;
   }
 
   &.inline-notification-info {
-    --post-inline-notification-border: #0050A1;
-    --post-inline-notification-bg: #BFD3E7;
+    --post-inline-notification-border: #0050a1;
+    --post-inline-notification-bg: #bfd3e7;
   }
 
   &.inline-notification-success {
     --post-inline-notification-border: #107800;
-    --post-inline-notification-bg: #C3DDBF;
+    --post-inline-notification-bg: #c3ddbf;
   }
 
   &.inline-notification-warning {
-    --post-inline-notification-border: #D93D00;
-    --post-inline-notification-bg: #F5CEBF;
+    --post-inline-notification-border: #d93d00;
+    --post-inline-notification-bg: #f5cebf;
   }
 
   &.inline-notification-error {
-    --post-inline-notification-border: #B20000;
-    --post-inline-notification-bg: #EBBFBF;
+    --post-inline-notification-border: #b20000;
+    --post-inline-notification-bg: #ebbfbf;
   }
 
   @each $name in 'info', 'success', 'warning', 'error' {
