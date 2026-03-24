@@ -1,5 +1,17 @@
 # @swisspost/design-system-components-angular-workspace
 
+## 10.0.0-next.65
+
+### Major Changes
+
+- Removes the `post-card-control` web component. The component is now provided only as an HTML/CSS `.card-control` implementation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.65
+  - @swisspost/design-system-components@10.0.0-next.65
+
 ## 10.0.0-next.64
 
 ### Patch Changes
