@@ -1,11 +1,9 @@
-import { translations } from '../assets/i18n/translations';
-import { state } from '../data/store';
+import { translations } from '@/assets/i18n/translations';
+import { state } from '@/data/store';
 
 export const getUserLang = (
   supportedLanguages: string[],
   implementorPreferredLanguage?: string,
-  localStorageKey?: string,
-  cookieKey?: string,
 ) => {
   // If there are no supported languages, well...
   if (supportedLanguages.length === 0) {
@@ -33,14 +31,6 @@ export const getUserLang = (
     // Check url pathname
     url.pathname.split('/').find(segment => supportedLanguages.includes(segment)),
 
-    // Check local storage with the key provided
-    localStorageKey !== undefined ? window.localStorage.getItem(localStorageKey) : null,
-
-    // Check cookies
-    getCookie('language'),
-    getCookie('lang'),
-    cookieKey !== undefined ? getCookie(cookieKey) : null,
-
     // Check document language
     document.documentElement.lang,
 
@@ -64,46 +54,6 @@ export const getUserLang = (
   }
 
   return lang;
-};
-
-/**
- * Persist chosen language to local storage
- * @param lang Currently chose language, two char string
- */
-export const persistLanguageChoice = (
-  lang: string,
-  cookieKey?: string,
-  localStorageKey?: string,
-) => {
-  if (localStorageKey !== undefined) {
-    window.localStorage.setItem(localStorageKey, lang);
-  }
-
-  if (cookieKey !== undefined) {
-    setCookie(cookieKey, lang);
-  }
-
-  state.currentLanguage = lang;
-};
-
-/**
- * Read a cookie by name
- * https://stackoverflow.com/questions/5639346/what-is-the-shortest-function-for-reading-a-cookie-by-name-in-javascript?rq=1
- * @param name Cookie name
- * @returns Cookie value or an empty string
- */
-export const getCookie = (name: string) => {
-  return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
-};
-
-/**
- * Write a new cookie
- * https://developer.mozilla.org/en-US/docs/Web/API/document/cookie#A_little_framework.3A_a_complete_cookies_reader.2Fwriter_with_full_unicode_support
- * @param key
- * @param value
- */
-export const setCookie = (key: string, value: string) => {
-  document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; Secure`;
 };
 
 const getPreferredLanguageFromBrowser = (supportedLanguages: string[]): string | null => {
