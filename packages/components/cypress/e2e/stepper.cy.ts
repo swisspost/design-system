@@ -140,7 +140,7 @@ describe('stepper', { baseUrl: null }, () => {
       .find('post-stepper-item')
       .eq(1)
       .find('.step-hidden-label')
-      .should('have.text', 'Current step:');
+      .should('have.text', 'Current step: ');
   });
 
   it('should set completed label on completed step', () => {
@@ -150,7 +150,18 @@ describe('stepper', { baseUrl: null }, () => {
       .find('post-stepper-item')
       .eq(0)
       .find('.step-hidden-label')
-      .should('have.text', 'Completed step:');
+      .should('have.text', 'Completed step: ');
+  });
+
+  it('should set current label on a completed and active step', () => {
+    cy.get('post-stepper')
+      .invoke('attr', 'current-index', 3)
+      .invoke('attr', 'selected-index', 1)
+      .wait(100)
+      .find('post-stepper-item')
+      .eq(1)
+      .find('.step-hidden-label')
+      .should('have.text', 'Completed step: Current step: ');
   });
 
   it('should set correct mobile label on stepper', () => {

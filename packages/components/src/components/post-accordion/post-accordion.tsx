@@ -34,7 +34,7 @@ export class PostAccordion {
   /**
    * If `true`, multiple `post-accordion-item` can be open at the same time.
    */
-  @Prop() readonly multiple: boolean = false;
+  @Prop({ reflect: true }) readonly multiple: boolean = false;
 
   componentWillLoad() {
     this.registerAccordionItems();
