@@ -13,6 +13,7 @@ tokens.$default-map: elements.$post-heading;
   background: var(--post-inline-notification-bg);
   align-items: center;
   min-width: 297px;
+  max-width: 600px;
 
   &::before {
     content: '';
