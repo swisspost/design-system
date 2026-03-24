@@ -7,12 +7,8 @@
 
 tokens.$default-map: components.$post-selection-card;
 
-fieldset {
-  .selection-card {
-    &:not(:last-child) {
-      margin-bottom: tokens.get('utility-gap-16', utilities.$post-spacing);
-    }
-  }
+fieldset .selection-card:not(:last-child) {
+  margin-bottom: tokens.get('utility-gap-16', utilities.$post-spacing);
 }
 
 .selection-card {
@@ -132,10 +128,8 @@ fieldset {
     cursor: inherit;
   }
 
-  &:has(> .selection-card--icon) {
-    > label {
-      grid-column: label;
-    }
+  &:has(> .selection-card--icon) > label {
+    grid-column: label;
   }
 
   > .selection-card--icon {
