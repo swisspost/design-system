@@ -1,6 +1,6 @@
 import { Component, Element, Event, EventEmitter, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, IS_BROWSER } from '@/utils';
+import { checkRequiredAndType, IS_SERVER } from '@/utils';
 import { nanoid } from 'nanoid';
 
 type SessionData = {
@@ -26,7 +26,6 @@ export class PostLoginWidget {
   @Element() host: HTMLPostLoginWidgetElement;
 
   @State() sessionData: SessionData | null = null;
-  @State() isLoading: boolean = true;
 
   /**
    * The URL to redirect to when the user clicks the login link.
@@ -106,10 +105,7 @@ export class PostLoginWidget {
   }
 
   async componentDidLoad() {
-    if (!IS_BROWSER) {
-      this.isLoading = false;
-      return;
-    }
+    if (IS_SERVER) return;
 
     try {
       const response = await fetch(PostLoginWidget.SUBSCRIBE_URL, { credentials: 'include' });
@@ -118,8 +114,6 @@ export class PostLoginWidget {
     } catch (e) {
       console.warn('post-login-widget: session fetch failed', e);
       this.sessionData = null;
-    } finally {
-      this.isLoading = false;
     }
   }
 
@@ -136,62 +130,63 @@ export class PostLoginWidget {
     );
   }
 
+  private renderUserMenu() {
+    return (
+      <li class="user-menu-wrapper">
+        <post-menu-trigger for={this.menuId} style={{ display: "block" }}>
+          <button class="btn btn-link" type="button">
+            <post-avatar
+              firstname={this.sessionData!.name}
+              lastname={this.sessionData!.surname}
+            />
+          </button>
+        </post-menu-trigger>
+
+        <post-menu id={this.menuId} label={this.textMenuLabel}>
+          <div slot="header">
+            <post-avatar
+              firstname={this.sessionData!.name}
+              lastname={this.sessionData!.surname}
+            />
+            {this.sessionData!.name} {this.sessionData!.surname}
+          </div>
+
+          <post-menu-item>
+            <a href="#">
+              <post-icon aria-hidden="true" name="profile"></post-icon>
+              {this.textUserProfile}
+            </a>
+          </post-menu-item>
+
+          <post-menu-item>
+            <a href="#">
+              <post-icon aria-hidden="true" name="letter"></post-icon>
+              {this.textMessages}
+            </a>
+          </post-menu-item>
+
+          <post-menu-item>
+            <a href="#">
+              <post-icon aria-hidden="true" name="gear"></post-icon>
+              {this.textSettings}
+            </a>
+          </post-menu-item>
+
+          <post-menu-item>
+            <button type="button" onClick={() => this.handleLogout()}>
+              <post-icon aria-hidden="true" name="logout"></post-icon>
+              {this.textLogout}
+            </button>
+          </post-menu-item>
+        </post-menu>
+      </li>
+    );
+  }
+
   render() {
     return (
       <Host data-version={version}>
-        {!this.sessionData ? (
-          // Show login link while loading or if not logged in
-          this.renderLoginLink()
-        ) : (
-          // Show user menu once logged in
-<li class="user-menu-wrapper">            <post-menu-trigger for={this.menuId} style={{ display: "block" }}>
-              <button class="btn btn-link" type="button">
-                <post-avatar
-                  firstname={this.sessionData.name}
-                  lastname={this.sessionData.surname}
-                />
-              </button>
-            </post-menu-trigger>
-
-            <post-menu id={this.menuId} label={this.textMenuLabel}>
-              <div slot="header">
-                <post-avatar
-                  firstname={this.sessionData.name}
-                  lastname={this.sessionData.surname}
-                />
-                  {this.sessionData.name} {this.sessionData.surname}
-              </div>
-
-              <post-menu-item>
-                <a href="https://www.post.ch/selfadmin/">
-                  <post-icon aria-hidden="true" name="profile"></post-icon>
-                  {this.textUserProfile}
-                </a>
-              </post-menu-item>
-
-              <post-menu-item>
-                <a href="https://www.post.ch/selfadmin/messages/">
-                  <post-icon aria-hidden="true" name="letter"></post-icon>
-                  {this.textMessages}
-                </a>
-              </post-menu-item>
-
-              <post-menu-item>
-                <a href="https://www.post.ch/selfadmin/settings/">
-                  <post-icon aria-hidden="true" name="gear"></post-icon>
-                  {this.textSettings}
-                </a>
-              </post-menu-item>
-
-              <post-menu-item>
-                <button type="button" onClick={() => this.handleLogout()}>
-                  <post-icon aria-hidden="true" name="logout"></post-icon>
-                  {this.textLogout}
-                </button>
-              </post-menu-item>
-            </post-menu>
-          </li>
-        )}
+        {!this.sessionData ? this.renderLoginLink() : this.renderUserMenu()}
       </Host>
     );
   }

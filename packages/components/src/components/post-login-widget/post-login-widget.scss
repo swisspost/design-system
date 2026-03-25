@@ -25,6 +25,7 @@ post-menu-trigger {
   button {
     @include button.reset-button;
     cursor: pointer;
+
     &:focus {
       outline: none;
     }
