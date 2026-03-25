@@ -1,5 +1,31 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.66
+
+### Major Changes
+
+- Removes the `post-card-control` web component. The component is now provided only as an HTML/CSS `.card-control` implementation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+### Minor Changes
+
+- Introduces a new HTML/CSS `.card-control` component that consolidates the previous `.radio-button-card`, `.checkbox-button-card`, and the `post-card-control` web component into a simplified, single HTML/CSS implementation. This brings consistent styling, behavior, and token usage across the design system while preserving and unifying existing functionality. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+- Added the small variant `.form-control-sm` to the text input. (by [@leagrdv](https://github.com/leagrdv) with [#7330](https://github.com/swisspost/design-system/pull/7330))
+
+- Added the small variant `.form-select-sm` to the select. (by [@leagrdv](https://github.com/leagrdv) with [#7333](https://github.com/swisspost/design-system/pull/7333))
+
+### Patch Changes
+
+- Added a section in the migration guide on how to run the automigration scripts. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7296](https://github.com/swisspost/design-system/pull/7296))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.65
+  - @swisspost/design-system-styles@10.0.0-next.65
+  - @swisspost/design-system-components@10.0.0-next.65
+  - @swisspost/design-system-tokens@10.0.0-next.65
+  - @swisspost/design-system-components-react@10.0.0-next.65
+  - @swisspost/internet-header@10.0.0-next.65
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.65
+
 ## 6.0.0-next.65
 
 ### Minor Changes
