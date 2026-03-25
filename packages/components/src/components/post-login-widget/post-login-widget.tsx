@@ -132,7 +132,7 @@ export class PostLoginWidget {
 
   private renderUserMenu() {
     return (
-      <li class="user-menu-wrapper">
+      <div class="user-menu-wrapper">
         <post-menu-trigger for={this.menuId}>
           <button class="btn btn-link" type="button">
             <post-avatar
@@ -179,7 +179,7 @@ export class PostLoginWidget {
             </button>
           </post-menu-item>
         </post-menu>
-      </li>
+      </div>
     );
   }
 

@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { renderUserMenu } from '../../components/header/renderers/user-menu';
 
 const meta: MetaComponent = {
   id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
@@ -83,6 +82,13 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+      },
+    },
+  },
   render: (args: Args) => html`
     <post-login-widget
       login-url=${args.loginUrl}
@@ -97,5 +103,42 @@ export const Default: Story = {
 };
 
 export const LoggedIn: Story = {
-  render: () => renderUserMenu(),
+  loaders: [
+    async () => {
+      // Mock the session endpoint to show the logged-in UI in documentation
+      const originalFetch = window.fetch;
+      window.fetch = ((input: RequestInfo | URL, init?: RequestInit) => {
+        const urlString = input instanceof Request ? input.url : String(input);
+        if (urlString.includes('n.account.post.ch/v1/session/subscribe')) {
+          return Promise.resolve(
+            new Response(
+              JSON.stringify({
+                data: {
+                  name: 'John',
+                  surname: 'Doe',
+                  email: 'john.doe@example.com',
+                  userType: 'private',
+                },
+              }),
+              { status: 200, headers: { 'Content-Type': 'application/json' } }
+            )
+          );
+        }
+        return originalFetch(input, init);
+      }) as typeof fetch;
+
+      return originalFetch;
+    },
+  ],
+  render: (args: Args) => html`
+    <post-login-widget
+      login-url=${args.loginUrl}
+      logout-url=${args.logoutUrl}
+      text-user-profile=${args.textUserProfile}
+      text-messages=${args.textMessages}
+      text-settings=${args.textSettings}
+      text-logout=${args.textLogout}
+      text-menu-label=${args.textMenuLabel}
+    ></post-login-widget>
+  `,
 };
