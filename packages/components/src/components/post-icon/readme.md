@@ -28,7 +28,7 @@ some content
  - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-closebutton](../post-closebutton)
- - [post-datepicker](../post-datepicker)
+ - [post-date-picker](../post-date-picker)
  - [post-header](../post-header)
  - [post-language-menu](../post-language-menu)
  - [post-login-widget](../post-login-widget)
@@ -47,7 +47,7 @@ graph TD;
   post-breadcrumb-item --> post-icon
   post-breadcrumbs --> post-icon
   post-closebutton --> post-icon
-  post-datepicker --> post-icon
+  post-date-picker --> post-icon
   post-header --> post-icon
   post-language-menu --> post-icon
   post-login-widget --> post-icon

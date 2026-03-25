@@ -488,7 +488,6 @@ export class MigrationV99Component extends LitElement {
                         <ul>
                           <li><code>.form-control-rg</code></li>
                           <li><code>.form-control-lg</code></li>
-                          <li><code>.form-select-sm</code></li>
                           <li><code>.form-select-rg</code></li>
                           <li><code>.form-select-lg</code></li>
                         </ul>
