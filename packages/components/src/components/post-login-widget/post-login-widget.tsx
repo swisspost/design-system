@@ -131,24 +131,20 @@ export class PostLoginWidget {
   }
 
   private renderUserMenu() {
+    const { name, surname } = this.sessionData!;
+
     return (
       <div class="user-menu-wrapper">
         <post-menu-trigger for={this.menuId}>
           <button class="btn btn-link" type="button">
-            <post-avatar
-              firstname={this.sessionData!.name}
-              lastname={this.sessionData!.surname}
-            />
+            <post-avatar firstname={name} lastname={surname} />
           </button>
         </post-menu-trigger>
 
         <post-menu id={this.menuId} label={this.textMenuLabel}>
           <div slot="header">
-            <post-avatar
-              firstname={this.sessionData!.name}
-              lastname={this.sessionData!.surname}
-            />
-            {this.sessionData!.name} {this.sessionData!.surname}
+            <post-avatar firstname={name} lastname={surname} />
+            {name} {surname}
           </div>
 
           <post-menu-item>
