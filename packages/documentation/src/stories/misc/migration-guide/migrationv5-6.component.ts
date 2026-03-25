@@ -50,10 +50,13 @@ export class MigrationV56Component extends LitElement {
                 <div>
                   Update Bootstrap to version
                   5.3.x${this.angular ? html` and ng-bootstrap to version 15.x.x` : nothing}:
-                  <code languages="['bash']">
-                    npm install bootstrap@5.3
-                    ${this.angular ? html` @ng-bootstrap/ng-bootstrap@15 ` : nothing}
-                  </code>
+                  ${this.angular
+                    ? html`
+                        <code-block
+                          .code=${`npm install bootstrap@5.3 @ng-bootstrap/ng-bootstrap@15`}
+                        ></code-block>
+                      `
+                    : html`<code-block .code=${`npm install bootstrap@5.3`}></code-block>`}
                 </div>
 
                 <div class="mt-2">
@@ -81,7 +84,7 @@ export class MigrationV56Component extends LitElement {
               <li>
                 <p>
                   Update Design System style package to version 6:
-                  <code languages="['bash']">npm install @swisspost/design-system-styles@6</code>
+                  <code-block .code=${`npm install @swisspost/design-system-styles@6`}></code-block>
                 </p>
               </li>
             </ol>
@@ -99,12 +102,11 @@ export class MigrationV56Component extends LitElement {
                     <li>
                       You should now be able to run the following command to apply all automatic
                       migrations to your application:
-                      <code languages="['bash']">
-                        npm install @swisspost/design-system-migrations<br />
-                        npx ng update @swisspost/design-system-migrations --from=5 --to=6
-                        --migrate-only --allow-dirty<br />
-                        npm uninstall @swisspost/design-system-migrations
-                      </code>
+                      <code-block
+                        .code=${`npm install @swisspost/design-system-migrations
+npx ng update @swisspost/design-system-migrations --from=5 --to=6 --migrate-only --allow-dirty
+npm uninstall @swisspost/design-system-migrations`}
+                      ></code-block>
                     </li>
                   </ol>
                 </li>

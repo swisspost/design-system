@@ -1,0 +1,42 @@
+@use '@swisspost/design-system-styles/core.scss' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+:host {
+  .wrapper {
+    position: relative;
+    background: post.$black-alpha-80;
+    color: post.$white;
+    border-radius: tokens.get('utility-gap-4');
+    padding-inline: tokens.get('utility-gap-16');
+    margin-block: tokens.get('utility-gap-8');
+    font-family: monospace;
+    font-size: 0.875rem;
+    overflow-x: hidden;
+
+    button {
+      position: absolute;
+      inset-inline-end: 0;
+      inset-block-end: 0;
+      background: post.$black;
+      color: post.$white;
+      border: none;
+      border-radius: tokens.get('utility-gap-4');
+      padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-family: post.$font-family-sans-serif;
+
+      &:hover {
+        background: post.$gray-60;
+      }
+    }
+
+    pre {
+      margin: 0;
+      overflow-x: auto;
+    }
+  }
+}

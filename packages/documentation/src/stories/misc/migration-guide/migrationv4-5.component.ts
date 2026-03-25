@@ -46,17 +46,27 @@ export class MigrationV45Component extends LitElement {
               ${this._isIntranet() ? html`<span>and the old intranet header</span>` : nothing}
               package${this._isIntranet() ? html`<span>s</span>` : nothing}.
             </p>
-            <code languages="['bash']">
-              npm uninstall @******/common-web-frontend
-              ${this._isIntranet() ? html` @******/common-web-frontend-intranet-header ` : nothing}
-            </code>
+            ${this._isIntranet()
+              ? html`
+                  <code-block
+                    .code=${`npm uninstall @******/common-web-frontend @******/common-web-frontend-intranet-header`}
+                  ></code-block>
+                `
+              : html`
+                  <code-block .code=${`npm uninstall @******/common-web-frontend`}></code-block>
+                `}
           </li>
           <li>
             <h3>New Package Installation 📦</h3>
-            <code languages="['bash']">
-              npm install @swisspost/design-system-styles@5
-              ${this._isIntranet() ? html` @swisspost/design-system-intranet-header@3 ` : nothing}
-            </code>
+            ${this._isIntranet()
+              ? html`
+                  <code-block
+                    .code=${`npm install @swisspost/design-system-styles@5 @swisspost/design-system-intranet-header@3`}
+                  ></code-block>
+                `
+              : html`
+                  <code-block .code=${`npm install @swisspost/design-system-styles@5`}></code-block>
+                `}
           </li>
           <li>
             <h3>Package Update 🩺</h3>
@@ -88,12 +98,12 @@ export class MigrationV45Component extends LitElement {
                     <li>
                       You should now be able to run the following command to apply all automatic
                       migrations to your application:
-                      <code languages="['bash']">
-                        npm install @swisspost/design-system-migrations<br />
-                        npx ng update @swisspost/design-system-migrations --from=4 --to=5
-                        --migrate-only --allow-dirty<br />
-                        npm uninstall @swisspost/design-system-migrations
-                      </code>
+
+                      <code-block
+                        .code=${`npm install @swisspost/design-system-migrations
+npx ng update @swisspost/design-system-migrations --from=4 --to=5 --migrate-only --allow-dirty
+npm uninstall @swisspost/design-system-migrations`}
+                      ></code-block>
                     </li>
                   </ol>
                 </li>
@@ -161,10 +171,13 @@ export class MigrationV45Component extends LitElement {
       <div>
         Update Bootstrap to version
         5.1.x${this.angular ? html` and ng-bootstrap to version 12.x.x` : nothing}:
-        <code languages="['bash']">
-          npm install bootstrap@5.1
-          ${this.angular ? html` @ng-bootstrap/ng-bootstrap@12 ` : nothing}
-        </code>
+        ${this.angular
+          ? html`
+              <code-block
+                .code=${`npm install bootstrap@5.1 @ng-bootstrap/ng-bootstrap@12`}
+              ></code-block>
+            `
+          : html`<code-block .code=${`npm install bootstrap@5.1`}></code-block>`}
       </div>
 
       <div class="mt-2">
