@@ -88,13 +88,20 @@ tokens.$default-map: components.$post-stepper;
     color: tokens.get('stepper-text-enabled-fg');
   }
 
-  // Current step
-  :host(.stepper-item-current) > & {
+  // Selected step
+  :host(.stepper-item-selected) > & {
     font-weight: tokens.get('stepper-step-label-selected-font-weight');
-    color: tokens.get('stepper-text-enabled-fg');
 
     &::before {
       font-weight: tokens.get('body-font-weight', elements.$post-body);
+    }
+  }
+
+  // Current step
+  :host(.stepper-item-current) > & {
+    color: tokens.get('stepper-text-enabled-fg');
+
+    &::before {
       color: tokens.get('stepper-enabled-fg');
     }
   }
@@ -129,7 +136,7 @@ tokens.$default-map: components.$post-stepper;
   // Completed steps
   :host(.stepper-item-completed) > & {
     color: transparent; // Hides the number on completed step
-    background-color: tokens.get('stepper-completed-stroke');
+    background-color: tokens.get('stepper-completed-bg');
     border-color: tokens.get('stepper-completed-stroke');
   }
 
@@ -149,29 +156,55 @@ $checkIconSize: calc(
 .stepper-item-content::after {
   display: block;
   position: absolute;
-  inset-block-start: tokens.get('stepper-border-width');
+  inset-block-start: calc(
+    (tokens.get('stepper-indicator') - tokens.get('stepper-icon-completed-size')) / 2
+  );
   z-index: 1;
+  @include icons.mask-image('checkmark-solid');
+  width: tokens.get('stepper-icon-completed-size');
+  height: tokens.get('stepper-icon-completed-size');
   background-color: tokens.get('stepper-enabled-fg');
-  @include icons.mask-image('success-solid');
-  width: $checkIconSize;
-  height: $checkIconSize;
-  color: tokens.get('stepper-completed-bg');
 
   :host(:first-of-type) > & {
-    inset-inline-start: tokens.get('stepper-border-width');
+    inset-inline-start: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-completed-size')) / 2
+    );
   }
 
   :host(:not(:first-of-type, :last-of-type)) > & {
-    inset-inline-start: calc(50% - ($checkIconSize / 2));
+    inset-inline-start: calc(50% - (tokens.get('stepper-icon-completed-size') / 2));
   }
 
   :host(:last-of-type) > & {
-    inset-inline-end: tokens.get('stepper-border-width');
+    inset-inline-end: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-completed-size')) / 2
+    );
   }
 
   // show only for completed steps
   :host(.stepper-item-completed) > & {
     content: '';
+  }
+
+  // current step, edit icon
+  :host([aria-current='step']) > & {
+    @include icons.mask-image('edit-solid');
+    width: tokens.get('stepper-icon-current-size');
+    height: tokens.get('stepper-icon-current-size');
+    background-color: tokens.get('stepper-enabled-fg');
+    inset-block-start: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-current-size')) / 2
+    );
+  }
+
+  :host([aria-current='step']:first-of-type) > & {
+    inset-inline-start: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-current-size')) / 2
+    );
+  }
+
+  :host([aria-current='step']:not(:first-of-type, :last-of-type)) > & {
+    inset-inline-start: calc(50% - (tokens.get('stepper-icon-current-size') / 2));
   }
 }
 
