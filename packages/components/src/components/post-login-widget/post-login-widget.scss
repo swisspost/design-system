@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/mixins/avatar' as avatar-mx;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/tokens/helpers';
@@ -19,22 +20,13 @@
 }
 
 post-menu-trigger {
+  @include avatar-mx.avatar-styles;
+
   button {
     @include button.reset-button;
     cursor: pointer;
-
-    &:focus-visible {
-      @include utilities.focus-style;
-      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    &:focus {
+      outline: none;
     }
-  }
-}
-
-post-avatar {
-  border: none;
-
-  &:hover {
-    --post-avatar-bg: #{tokens.get('avatar-hover-bg', components.$post-avatar)};
-    --post-avatar-fg: #{tokens.get('avatar-hover-fg', components.$post-avatar)};
   }
 }

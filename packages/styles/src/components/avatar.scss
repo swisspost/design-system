@@ -1,40 +1,11 @@
 @use '../tokens/components';
 @use '../functions/tokens';
+@use '../mixins/avatar' as avatar-mx;
 @use './../mixins/utilities';
 
 tokens.$default-map: components.$post-avatar;
 
 a,
 button {
-  &:where(:has(post-avatar:only-child)) {
-    display: inline-flex;
-    padding: 0;
-    background-color: transparent;
-    border: 0 none;
-    border-radius: tokens.get('avatar-border-radius');
-    text-decoration: none;
-  }
-
-  &:hover {
-    post-avatar {
-      --post-avatar-bg: #{tokens.get('avatar-hover-bg')};
-      --post-avatar-fg: #{tokens.get('avatar-hover-fg')};
-
-      &::after {
-        background-color: tokens.get('avatar-image-hover-opacity');
-      }
-    }
-  }
-
-  @include utilities.focus-style;
-}
-
-button {
-  &:where(:has(post-avatar:only-child)):hover {
-    @include utilities.high-contrast-mode() {
-      post-avatar {
-        --post-avatar-bg: Highlight !important;
-      }
-    }
-  }
+  @include avatar-mx.avatar-styles;
 }

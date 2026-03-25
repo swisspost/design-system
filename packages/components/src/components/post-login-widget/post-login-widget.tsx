@@ -144,8 +144,7 @@ export class PostLoginWidget {
           this.renderLoginLink()
         ) : (
           // Show user menu once logged in
-          <div class="user-menu-wrapper">
-            <post-menu-trigger for={this.menuId}>
+<li class="user-menu-wrapper">            <post-menu-trigger for={this.menuId} style={{ display: "block" }}>
               <button class="btn btn-link" type="button">
                 <post-avatar
                   firstname={this.sessionData.name}
@@ -191,7 +190,7 @@ export class PostLoginWidget {
                 </button>
               </post-menu-item>
             </post-menu>
-          </div>
+          </li>
         )}
       </Host>
     );
