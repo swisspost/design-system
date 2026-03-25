@@ -38,7 +38,3 @@ post-avatar {
     --post-avatar-fg: #{tokens.get('avatar-hover-fg', components.$post-avatar)};
   }
 }
-
-[slot='header'] p {
-  margin: 0;
-}

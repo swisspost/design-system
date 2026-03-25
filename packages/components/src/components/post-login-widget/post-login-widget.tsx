@@ -160,9 +160,7 @@ export class PostLoginWidget {
                   firstname={this.sessionData.name}
                   lastname={this.sessionData.surname}
                 />
-                <p>
                   {this.sessionData.name} {this.sessionData.surname}
-                </p>
               </div>
 
               <post-menu-item>
