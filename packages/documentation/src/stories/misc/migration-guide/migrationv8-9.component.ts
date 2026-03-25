@@ -47,7 +47,7 @@ export class MigrationV89Component extends LitElement {
                     <li>
                       <p>
                         <i>If used within your project</i>, upgrade PrimeNG to version 19:
-                        <code-block .code=${'npm install primeng@19'}></code-block>
+                        <code-block code=${'npm install primeng@19'}></code-block>
                       </p>
                     </li>
                   `
@@ -55,9 +55,9 @@ export class MigrationV89Component extends LitElement {
               <li>
                 <p>
                   Update Design System styles and components packages to version 9:
-                  <code-block .code=${'npm install @swisspost/design-system-styles@9'}></code-block>
+                  <code-block code=${'npm install @swisspost/design-system-styles@9'}></code-block>
                   <code-block
-                    .code=${this.angular
+                    code=${this.angular
                       ? 'npm install @swisspost/design-system-components-angular@9'
                       : 'npm install @swisspost/design-system-components@9'}
                   ></code-block>

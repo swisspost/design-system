@@ -47,7 +47,7 @@ export class MigrationV45Component extends LitElement {
               package${this._isIntranet() ? html`<span>s</span>` : nothing}.
             </p>
             <code-block
-              .code=${this._isIntranet()
+              code=${this._isIntranet()
                 ? 'npm uninstall @******/common-web-frontend @******/common-web-frontend-intranet-header'
                 : 'npm uninstall @******/common-web-frontend'}
             ></code-block>
@@ -55,7 +55,7 @@ export class MigrationV45Component extends LitElement {
           <li>
             <h3>New Package Installation 📦</h3>
             <code-block
-              .code=${this._isIntranet()
+              code=${this._isIntranet()
                 ? 'npm install @swisspost/design-system-styles@5 @swisspost/design-system-intranet-header@3'
                 : 'npm install @swisspost/design-system-styles@5'}
             ></code-block>
@@ -92,7 +92,7 @@ export class MigrationV45Component extends LitElement {
                       migrations to your application:
 
                       <code-block
-                        .code=${`npm install @swisspost/design-system-migrations
+                        code=${`npm install @swisspost/design-system-migrations
 npx ng update @swisspost/design-system-migrations --from=4 --to=5 --migrate-only --allow-dirty
 npm uninstall @swisspost/design-system-migrations`}
                       ></code-block>
@@ -164,7 +164,7 @@ npm uninstall @swisspost/design-system-migrations`}
         Update Bootstrap to version
         5.1.x${this.angular ? html` and ng-bootstrap to version 12.x.x` : nothing}:
         <code-block
-          .code=${this.angular
+          code=${this.angular
             ? 'npm install bootstrap@5.1 @ng-bootstrap/ng-bootstrap@12'
             : 'npm install bootstrap@5.1'}
         ></code-block>
