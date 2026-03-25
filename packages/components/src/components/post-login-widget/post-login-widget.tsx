@@ -133,7 +133,7 @@ export class PostLoginWidget {
   private renderUserMenu() {
     return (
       <li class="user-menu-wrapper">
-        <post-menu-trigger for={this.menuId} style={{ display: "block" }}>
+        <post-menu-trigger for={this.menuId}>
           <button class="btn btn-link" type="button">
             <post-avatar
               firstname={this.sessionData!.name}
