@@ -19,6 +19,7 @@ tokens.$default-map: components.$post-avatar;
   font-size: tokens.get('avatar-font-size');
   vertical-align: top;
   line-height: 1;
+  box-sizing: border-box;
 
   &::after {
     display: block;
