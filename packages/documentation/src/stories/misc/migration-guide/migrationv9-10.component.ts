@@ -162,18 +162,12 @@ export class MigrationV910Component extends LitElement {
             <p>
               Update Design System styles and components packages to version 10 by running these two
               commands in your project root:
-              <code-block .code=${`npm install @swisspost/design-system-styles@10`}></code-block>
-              ${this.angular
-                ? html`
-                    <code-block
-                      .code=${`npm install @swisspost/design-system-components-angular@10`}
-                    ></code-block>
-                  `
-                : html`
-                    <code-block
-                      .code=${`npm install @swisspost/design-system-components@10`}
-                    ></code-block>
-                  `}
+              <code-block .code=${'npm install @swisspost/design-system-styles@10'}></code-block>
+              <code-block
+                .code=${this.angular
+                  ? 'npm install @swisspost/design-system-components-angular@10'
+                  : 'npm install @swisspost/design-system-components@10'}
+              ></code-block>
               ${!this.angular
                 ? html`
                     <p class="mt-8">
@@ -202,14 +196,14 @@ export class MigrationV910Component extends LitElement {
               <li>
                 Install the Design System ESLint package as a dev dependency:
                 <code-block
-                  .code=${`npm install @swisspost/design-system-eslint --save-dev`}
+                  .code=${'npm install @swisspost/design-system-eslint --save-dev'}
                 ></code-block>
               </li>
               <li>
                 Run the migration rules using the official ESLint runner with the --fix flag at the
                 root of your project:
                 <code-block
-                  .code=${`npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix`}
+                  .code=${'npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix'}
                 ></code-block>
                 <span class="info">
                   💡 This command applies migration rules using the official ESLint package without
@@ -1650,7 +1644,9 @@ export class MigrationV910Component extends LitElement {
                 Once you've verified that your project builds and displays correctly, uninstall the
                 packages by running:
                 <code-block
-                  .code=${`npm uninstall bootstrap @ng-bootstrap/ng-bootstrap`}
+                  .code=${this.angular
+                    ? 'npm uninstall bootstrap @ng-bootstrap/ng-bootstrap'
+                    : 'npm uninstall bootstrap'}
                 ></code-block>
               </li>
             </ol>

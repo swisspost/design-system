@@ -55,7 +55,7 @@ export class MigrationV67Component extends LitElement {
                       <p>
                         Update ng-bootstrap to version 16.x.x:
                         <code-block
-                          .code=${`npm install @ng-bootstrap/ng-bootstrap@16`}
+                          .code=${'npm install @ng-bootstrap/ng-bootstrap@16'}
                         ></code-block>
                       </p>
                       <p class="mt-2">
@@ -77,7 +77,7 @@ export class MigrationV67Component extends LitElement {
               <li>
                 <p>
                   Update Design System style package to version 7:
-                  <code-block .code=${`npm install @swisspost/design-system-styles@7`}></code-block>
+                  <code-block .code=${'npm install @swisspost/design-system-styles@7'}></code-block>
                 </p>
               </li>
             </ol>

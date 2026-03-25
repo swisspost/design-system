@@ -50,13 +50,11 @@ export class MigrationV56Component extends LitElement {
                 <div>
                   Update Bootstrap to version
                   5.3.x${this.angular ? html` and ng-bootstrap to version 15.x.x` : nothing}:
-                  ${this.angular
-                    ? html`
-                        <code-block
-                          .code=${`npm install bootstrap@5.3 @ng-bootstrap/ng-bootstrap@15`}
-                        ></code-block>
-                      `
-                    : html`<code-block .code=${`npm install bootstrap@5.3`}></code-block>`}
+                  <code-block
+                    .code=${this.angular
+                      ? 'npm install bootstrap@5.3 @ng-bootstrap/ng-bootstrap@15'
+                      : 'npm install bootstrap@5.3'}
+                  ></code-block>
                 </div>
 
                 <div class="mt-2">
@@ -84,7 +82,7 @@ export class MigrationV56Component extends LitElement {
               <li>
                 <p>
                   Update Design System style package to version 6:
-                  <code-block .code=${`npm install @swisspost/design-system-styles@6`}></code-block>
+                  <code-block .code=${'npm install @swisspost/design-system-styles@6'}></code-block>
                 </p>
               </li>
             </ol>
