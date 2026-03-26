@@ -16,6 +16,8 @@ tokens.$default-map: utilities.$post-spacing;
 $dialog-types: 'info', 'error', 'success', 'warning';
 $border-radius: 0.5rem;
 
+.post-dialog,
+// deprecated
 dialog {
   box-shadow: elevation.$elevation-500;
   padding: 0;
@@ -80,26 +82,26 @@ dialog {
     top: auto;
     bottom: 2rem;
   }
-}
 
-dialog > .dialog-grid {
-  padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0;
-  border-radius: $border-radius;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  max-height: 90vh;
-  column-gap: tokens.get('utility-gap-16');
-  grid-template-columns: auto 1fr;
-  grid-template-areas:
-    'icon header'
-    'icon body'
-    'controls controls';
+  > .dialog-grid {
+    padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0;
+    border-radius: $border-radius;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    max-height: 90vh;
+    column-gap: tokens.get('utility-gap-16');
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      'icon header'
+      'icon body'
+      'controls controls';
 
-  // Propagate bg color to the controls
-  background-color: inherit;
+    // Propagate bg color to the controls
+    background-color: inherit;
 
-  &:not(:has(.dialog-controls)) {
-    padding-bottom: tokens.get('utility-gap-16');
+    &:not(:has(.dialog-controls)) {
+      padding-bottom: tokens.get('utility-gap-16');
+    }
   }
 }
 
@@ -178,6 +180,8 @@ dialog > .dialog-grid {
 // [slide-in, pop-in, none]
 // Progressively enhanced with currently experimental @starting-style which allows to animate stuff appearing in the top layer
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style
+.post-dialog:not([data-animation='none']),
+// deprecated
 dialog:not([data-animation='none']) {
   --_dialog-transition-duration: var(--dialog-transition-duration, 0.5s);
 
