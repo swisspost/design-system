@@ -130,8 +130,8 @@ export class PostLoginWidget {
     );
   }
 
-  private renderUserMenu() {
-    const { name, surname } = this.sessionData!;
+  private renderUserMenu(session: SessionData) {
+    const { name, surname } = session;
 
     return (
       <div class="user-menu-wrapper">
@@ -182,7 +182,7 @@ export class PostLoginWidget {
   render() {
     return (
       <Host data-version={version}>
-        {!this.sessionData ? this.renderLoginLink() : this.renderUserMenu()}
+        {!this.sessionData ? this.renderLoginLink() : this.renderUserMenu(this.sessionData)}
       </Host>
     );
   }

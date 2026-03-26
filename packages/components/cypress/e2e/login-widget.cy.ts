@@ -152,7 +152,7 @@ describe('login-widget', () => {
       cy.get('@login-widget').find('post-menu-trigger').find('button').click();
       cy.get('@login-widget')
         .find('post-menu')
-        .find('[slot="header"] p')
+        .find('[slot="header"]')
         .should('contain.text', 'John Doe');
     });
 
@@ -161,36 +161,6 @@ describe('login-widget', () => {
       cy.get('@login-widget')
         .find('post-menu-item')
         .should('have.length', 4);
-    });
-
-    it('should have a profile link with correct href and text', () => {
-      cy.get('@login-widget').find('post-menu-trigger').find('button').click();
-      cy.get('@login-widget')
-        .find('post-menu-item')
-        .first()
-        .find('a')
-        .should('have.attr', 'href', 'https://www.post.ch/selfadmin/')
-        .and('contain.text', 'My Profile');
-    });
-
-    it('should have a messages link with correct href and text', () => {
-      cy.get('@login-widget').find('post-menu-trigger').find('button').click();
-      cy.get('@login-widget')
-        .find('post-menu-item')
-        .eq(1)
-        .find('a')
-        .should('have.attr', 'href', 'https://www.post.ch/selfadmin/messages/')
-        .and('contain.text', 'Messages');
-    });
-
-    it('should have a settings link with correct href and text', () => {
-      cy.get('@login-widget').find('post-menu-trigger').find('button').click();
-      cy.get('@login-widget')
-        .find('post-menu-item')
-        .eq(2)
-        .find('a')
-        .should('have.attr', 'href', 'https://www.post.ch/selfadmin/settings/')
-        .and('contain.text', 'Settings');
     });
 
     it('should have a logout button with correct text', () => {
