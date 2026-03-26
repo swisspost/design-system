@@ -73,6 +73,7 @@
 
   // Small variant
   &.form-check-sm:has(input[type='checkbox']):not(.form-switch) {
+    gap: tokens.get('checkbox-gap-inline-text-start', components.$post-checkbox);
     padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
 
     > input[type='checkbox'] ~ label {
