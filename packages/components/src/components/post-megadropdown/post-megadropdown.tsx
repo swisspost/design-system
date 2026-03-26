@@ -10,7 +10,6 @@ import {
   Prop,
   State,
   Watch,
-  Build
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
@@ -100,9 +99,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    if (Build.isBrowser) {
-      globalThis.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
-    }
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
   }
 
   componentDidRender() {
@@ -118,9 +115,7 @@ export class PostMegadropdown {
   }
 
   disconnectedCallback() {
-    if (Build.isBrowser) {
-      globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
-    }
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
 
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();

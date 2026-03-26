@@ -155,17 +155,15 @@ export class PostHeader {
   };
 
   connectedCallback() {
-    if (Build.isBrowser) {
-      window.addEventListener('resize', this.throttledResize, { passive: true });
-      window.addEventListener('scroll', this.handleScrollEvent, {
-        passive: true,
-      });
-      this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
-        passive: true,
-      });
-      document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-      globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
-    }
+    globalThis.addEventListener('resize', this.throttledResize, { passive: true });
+    globalThis.addEventListener('scroll', this.handleScrollEvent, {
+      passive: true,
+    });
+    this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
+      passive: true,
+    });
+    document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.handleScrollParentResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
@@ -200,14 +198,12 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    if (Build.isBrowser) {
-      globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
-      window.removeEventListener('resize', this.throttledResize);
-      window.removeEventListener('scroll', this.handleScrollEvent);
-      if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
-      document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-      this.host.removeEventListener('keydown', this.keyboardHandler);
-    }
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
+    globalThis.removeEventListener('resize', this.throttledResize);
+    globalThis.removeEventListener('scroll', this.handleScrollEvent);
+    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
+    this.host.removeEventListener('keydown', this.keyboardHandler);
     if (this.host.shadowRoot) {
       this.host.shadowRoot.removeEventListener('click', this.handleLinkClick);
     }

@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Watch, Build } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 import { ANIMATION_KEYS, PostIconAnimation } from '@/types/icon-animations';
@@ -109,8 +109,8 @@ export class PostIcon {
     const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
     const cleanUrl = (url: string) => url.replaceAll(/([^:])\/\//g, '$1/');
 
-    const currentDomain = Build.isBrowser ? globalThis.location.origin : '';
-    const baseHref = Build.isBrowser
+    const currentDomain = IS_BROWSER ? globalThis.location.origin : '';
+    const baseHref = IS_BROWSER
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
 
@@ -162,7 +162,8 @@ export class PostIcon {
         (this.scale && !Number.isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
         (this.rotate && !Number.isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
-      .filter(([_key, value]) => value !== null));
+      .filter(([_key, value]) => value !== null)
+      .map(( [key, value]) => [key, value]));
   }
 
   componentDidLoad() {

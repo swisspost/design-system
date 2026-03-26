@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, State, Watch, Build } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndType, breakpoint, Device } from '@/utils';
 
@@ -39,9 +39,7 @@ export class PostFooter {
   }
 
   connectedCallback() {
-    if (Build.isBrowser) {
-      globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
-    }
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
   componentWillLoad() {
@@ -55,9 +53,7 @@ export class PostFooter {
   }
 
   disconnectedCallback() {
-    if (Build.isBrowser) {
-      globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
-    }
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
