@@ -1,7 +1,6 @@
-import { isMotionReduced } from '@/utils';
 import { Build } from '@stencil/core';
+import { isMotionReduced } from '@/utils';
 const collapseDuration = 350;
-
 const collapseEasing = 'ease';
 export const collapsedKeyframe: Keyframe = { height: '0', overflow: 'hidden' };
 
