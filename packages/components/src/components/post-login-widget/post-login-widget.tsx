@@ -19,7 +19,7 @@ type SessionData = {
   shadow: true,
 })
 export class PostLoginWidget {
-  private static readonly SUBSCRIBE_URL = 'https://n.account.post.ch/v1/session/subscribe';
+  private static readonly SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 
   private readonly menuId = `p${nanoid(11)}`;
 
@@ -108,7 +108,7 @@ export class PostLoginWidget {
     if (IS_SERVER) return;
 
     try {
-      const response = await fetch(PostLoginWidget.SUBSCRIBE_URL, { credentials: 'include' });
+      const response = await fetch(PostLoginWidget.SESSION_URL, { credentials: 'include' });
       const json = await response.json();
       this.sessionData = json.data ?? null;
     } catch (e) {
