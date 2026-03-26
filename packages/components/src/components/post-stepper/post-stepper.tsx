@@ -1,6 +1,7 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndPattern, checkRequiredAndType } from '@/utils';
+import { isValueEmpty } from '@/utils';
 
 @Component({
   tag: 'post-stepper',
@@ -76,7 +77,7 @@ export class PostStepper {
 
   @Watch('selectedIndex')
   validateSelectedIndex() {
-    if (this.selectedIndex === undefined) {
+    if (isValueEmpty(this.selectedIndex)) {
       this.selectedIndex = this.currentIndex;
     } else {
       checkRequiredAndType(this, 'selectedIndex', 'number');
