@@ -1,3 +1,14 @@
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit('./cypress/fixtures/post-stepper.test.html');
+    cy.get('post-stepper')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-stepper', before);
+      });
+  });
+});
+
 describe('stepper', { baseUrl: null }, () => {
   beforeEach(() => {
     cy.visit('./cypress/fixtures/post-stepper.test.html');

@@ -1,5 +1,16 @@
 import ClickOptions = Cypress.ClickOptions;
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit('./cypress/fixtures/post-linkarea.test.html');
+    cy.get('post-linkarea')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-linkarea', before);
+      });
+  });
+});
+
 describe('post-linkarea', { baseUrl: null }, () => {
   describe('default', () => {
     beforeEach(() => {

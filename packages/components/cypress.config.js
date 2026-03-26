@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import pkg from './package.json' with { type: 'json' };
+import * as fs from 'fs';
 
 export default defineConfig({
   e2e: {
@@ -10,6 +11,22 @@ export default defineConfig({
     viewportHeight: 576,
     env: {
       PACKAGE_VERSION: pkg.version,
+    },
+    setupNodeEvents(on) {
+      on('task', {
+        readJsonFile(filePath) {
+          try {
+            fs.mkdirSync('output', { recursive: true });
+            if (!fs.existsSync(filePath)) {
+              fs.writeFileSync(filePath, '{}', 'utf-8');
+              return {};
+            }
+            return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+          } catch {
+            return {};
+          }
+        },
+      });
     },
   },
   includeShadowDom: true,

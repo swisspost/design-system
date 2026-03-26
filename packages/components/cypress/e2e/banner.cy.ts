@@ -1,5 +1,16 @@
 const BANNER_ID = '105e67d8-31e9-4d0b-87ff-685aba31fd4c';
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${BANNER_ID}--default`);
+    cy.get('post-banner')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-banner', before);
+      });
+  });
+});
+
 describe('banner', () => {
   describe('default', () => {
     beforeEach(() => {

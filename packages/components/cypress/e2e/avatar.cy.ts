@@ -2,6 +2,17 @@ import { getGravatarUrl } from '../../src/components/post-avatar/avatar-utils';
 
 const PAGE_ID = '09aac03d-220e-4885-8fb8-1cfa01add188';
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${PAGE_ID}--default`);
+    cy.get('post-avatar')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-avatar', before);
+      });
+  });
+});
+
 describe('Avatar', () => {
   describe('Structure & Props', () => {
     beforeEach(() => {

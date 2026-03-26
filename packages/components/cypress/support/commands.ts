@@ -129,3 +129,29 @@ Cypress.Commands.add(
     return cy.wrap(Array.from(focusableElements));
   },
 );
+
+Cypress.Commands.add('writeMarkup', (tag: string, html?: string) => {
+  const key = tag
+    .replace(/^post-/, '')
+    .split('-')
+    .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+    .join('');
+
+  const capture = (markup: string) => {
+    cy.task('readJsonFile', 'output/markup-map.json').then(existing => {
+      const updated = {
+        ...((existing as object) || {}),
+        [key]: markup,
+      };
+      cy.writeFile('output/markup-map.json', JSON.stringify(updated, null, 2));
+    });
+  };
+
+  if (html) {
+    capture(html);
+  } else {
+    cy.get(tag)
+      .invoke('prop', 'outerHTML')
+      .then(markup => capture(markup));
+  }
+});

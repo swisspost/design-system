@@ -2,286 +2,306 @@ import {
   PostAccordion,
   PostAccordionItem,
   PostAvatar,
+  PostBackToTop,
   PostBanner,
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
   PostDatePicker,
-  PostLinkarea,
-  PostMenu,
-  PostMenuItem,
-  PostMenuTrigger,
-  PostNumberInput,
-  PostPagination,
+  PostFooter,
+  PostHeader,
+  PostIcon,
+  PostLanguageMenu,
+  PostLanguageMenuItem,
+  PostLogo,
+  PostMainnavigation,
+  PostMegadropdown,
+  PostMegadropdownTrigger,
   PostPopover,
   PostPopoverTrigger,
-  PostRating,
-  PostTabs,
-  PostTabItem,
-  PostTabPanel,
-  PostTogglebutton,
-  PostTooltipTrigger,
-  PostTooltip,
-  PostStepper,
-  PostStepperItem,
 } from '@swisspost/design-system-components-react/server';
-import {
-  PostIconExplosives,
-  PostIconLetter,
-  PostIconLetterSolid,
-} from '@swisspost/design-system-components-react/icons';
 
-export default function Home() {
+export default function Page() {
   return (
     <>
-      <h1>Design System Components</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
-        mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
-        iusto suscipit, omnis iste laboriosam!
-      </p>
+      <h4>PopoverTrigger</h4>
+      {/* PopoverTrigger */}
+      <PostPopoverTrigger for="popover-one">
+        <button className="btn btn-secondary">Popover Trigger</button>
+      </PostPopoverTrigger>
 
-      <h2>Accordion</h2>
+      <h4>Popover</h4>
+      {/* Popover */}
+      <PostPopover
+        id="popover-one"
+        textClose="Close"
+        data-version="10.0.0-next.65"
+        data-hydrated=""
+      >
+        <p id="testtext">
+          This is a <a href="">test</a>
+        </p>
+      </PostPopover>
+
+      <h4>Accordion</h4>
+      {/* Accordion */}
       <PostAccordion headingLevel={3}>
         <PostAccordionItem>
-          <span slot="header">Titulum 1</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
+          <span slot="header">Title 1</span>
+          <p>
+            Example content for accordion item 1. This is a sample text demonstrating how the
+            accordion component works.
+          </p>
         </PostAccordionItem>
-
         <PostAccordionItem>
-          <span slot="header">Titulum 2</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
+          <span slot="header">Title 2</span>
+          <p>
+            Example content for accordion item 2. This is a sample text demonstrating how the
+            accordion component works.
+          </p>
         </PostAccordionItem>
-
         <PostAccordionItem>
-          <span slot="header">Titulum 3</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
+          <span slot="header">Title 3</span>
+          <p>
+            Example content for accordion item 3. This is a sample text demonstrating how the
+            accordion component works.
+          </p>
         </PostAccordionItem>
       </PostAccordion>
 
-      <h2>Avatar</h2>
-      <PostAvatar firstname="Firstname" lastname="Lastname"></PostAvatar>
+      <h4>Avatar</h4>
+      {/* Avatar */}
+      <PostAvatar firstname="Firstname" description="The current user is Firstname." />
 
-      <h2>Banner</h2>
+      <h4>BackToTop</h4>
+      {/* BackToTop */}
+      <PostBackToTop textBackToTop="Back to top" />
+
+      <h4>Banner</h4>
+      {/* Banner */}
       <PostBanner>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+        <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
       </PostBanner>
 
-      <h2>Close Button</h2>
-      <PostClosebutton>Close button</PostClosebutton>
+      <h4>Closebutton</h4>
+      {/* Closebutton */}
+      <PostClosebutton>Close</PostClosebutton>
 
-      <h2>Collapsible</h2>
-      {/* The aria attributes need to be defined on the button already, otherwise nextjs will report a hydration error */}
+      <h4>CollapsibleTrigger</h4>
+      {/* CollapsibleTrigger */}
       <PostCollapsibleTrigger for="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
-        <button
-          className="btn btn-secondary"
-          aria-expanded={true}
-          aria-controls="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default"
-        >
-          Toggle Collapsible
-        </button>
+        <button className="btn btn-secondary">Toggle Collapsible</button>
       </PostCollapsibleTrigger>
 
-      <PostCollapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
+      <h4>Collapsible</h4>
+      {/* Collapsible */}
+      <PostCollapsible
+        id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default"
+        dataVersion="10.0.0-next.65"
+        data-hydrated=""
+      >
         <p className="border rounded p-24">
-          Contentus momentus vero siteos et accusam iretea et justo.
+          This is collapsible content that can be shown or hidden.
         </p>
       </PostCollapsible>
 
-      <h2>Date Picker</h2>
+      <h4>DatePicker</h4>
+      {/* DatePicker */}
       <PostDatePicker
         textToggleCalendar="Open calendar"
-        textNextDecade="Next decade"
-        textNextMonth="Next month"
-        textNextYear="Next year"
-        textPreviousDecade="Previous decade"
-        textPreviousMonth="Previous month"
-        textPreviousYear="Previous year"
-        textSwitchYear="Switch to year view"
+        text-next-decade="Next decade"
+        text-next-month="Next month"
+        text-next-year="Next year"
+        text-previous-decade="Previous decade"
+        text-previous-month="Previous month"
+        text-previous-year="Previous year"
+        text-switch-year="Switch to year view"
+        id="main"
       >
         <input className="form-control" type="text" />
         <p className="form-hint">Format: DD.MM.YYYY</p>
       </PostDatePicker>
 
-      <h2>Icons</h2>
-
-      <div className="d-flex gap-16 flex-wrap">
-        <figure>
-          <PostIconLetter className="fs-2"></PostIconLetter>
-          <figcaption>Line Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetterSolid className="fs-2"></PostIconLetterSolid>
-          <figcaption>Solid Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter style={{ color: 'red' }} className="fs-2"></PostIconLetter>
-          <figcaption>Colored Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter className="fs-3"></PostIconLetter>
-          <figcaption>Sized Icon</figcaption>
-        </figure>
-        <figure>
-          <PostIconExplosives flipH={true} className="fs-2"></PostIconExplosives>
-          <figcaption>Flipped Horizontally</figcaption>
-        </figure>
-        <figure>
-          <PostIconExplosives className="fs-2" flipV={true}></PostIconExplosives>
-          <figcaption>Flipped Vertically</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter className="fs-2" rotate={90}></PostIconLetter>
-          <figcaption>Rotated</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter className="fs-2" scale={1.5}></PostIconLetter>
-          <figcaption>Scaled</figcaption>
-        </figure>
-        <figure>
-          <PostIconLetter className="fs-2" animation={'spin'}></PostIconLetter>
-          <figcaption>Spinning</figcaption>
-        </figure>
-      </div>
-
-      <h2>Linkarea</h2>
-      <PostLinkarea>
-        <div className="card">
-          <div className="card-body">
-            <h5>Titulum</h5>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-            <a className="card-link" href="#test">
-              Ligilo teksto
+      <h4>Header</h4>
+      {/* Header */}
+      <PostHeader textMenu="Menu">
+        <PostLogo slot="post-logo" url="/">
+          Homepage
+        </PostLogo>
+        <ul slot="audience">
+          <li>
+            <a href="#" aria-current="location">
+              Private customers
             </a>
-          </div>
-        </div>
-      </PostLinkarea>
+          </li>
+          <li>
+            <a href="#">Business customers</a>
+          </li>
+        </ul>
+        <ul slot="global-nav-primary">
+          <li>
+            <a href="">
+              <span>Search</span>
+              <PostIcon aria-hidden="true" name="search" />
+            </a>
+          </li>
+        </ul>
+        <ul slot="global-nav-secondary">
+          <li>
+            <a href="">
+              Jobs
+              <PostIcon name="jobs" aria-hidden="true" />
+            </a>
+          </li>
+          <li>
+            <a href="">
+              Create Account
+              <PostIcon name="adduser" aria-hidden="true" />
+            </a>
+          </li>
+        </ul>
+        <PostLanguageMenu
+          textChangeLanguage="Change the language"
+          text-current-language="The currently selected language is #name."
+          name="language-menu-example"
+          slot="language-menu"
+        >
+          <PostLanguageMenuItem code="de" name="German">
+            de
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem code="fr" name="French">
+            fr
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem code="it" name="Italian">
+            it
+          </PostLanguageMenuItem>
+          <PostLanguageMenuItem active={true} code="en" name="English">
+            en
+          </PostLanguageMenuItem>
+        </PostLanguageMenu>
+        <a href="" slot="post-login">
+          <span>Login</span>
+          <PostIcon name="login" />
+        </a>
+        <PostMainnavigation slot="main-nav" textMain="Main">
+          <ul>
+            <li>
+              <a href="/letters">Letters</a>
+            </li>
+            <li>
+              <a href="/packages">Packages</a>
+            </li>
+            <li>
+              <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
+              <PostMegadropdown id="letters" textClose="Close" text-back="Back">
+                <a className="post-megadropdown-overview" href="/letters">
+                  Overview Letters
+                </a>
+                <div className="row row-cols-1 row-cols-sm-2">
+                  <div className="col">
+                    <p className="post-megadropdown-list-title" id="send-letters">
+                      Send letters
+                    </p>
+                    <ul className="post-megadropdown-list" aria-labelledby="send-letters">
+                      <li>
+                        <a href="/sch">Letters Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col">
+                    <a
+                      className="post-megadropdown-list-title"
+                      id="step-by-step-letters"
+                      href="/step-by-step"
+                    >
+                      Step by step
+                    </a>
+                    <ul className="post-megadropdown-list" aria-labelledby="step-by-step-letters">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </PostMegadropdown>
+            </li>
+            <li>
+              <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
+              <PostMegadropdown id="packages" textClose="Close" text-back="Back">
+                <a className="post-megadropdown-overview" href="/packages">
+                  Overview Packages
+                </a>
+                <div className="row row-cols-1 row-cols-sm-2">
+                  <div className="col">
+                    <p className="post-megadropdown-list-title" id="send-packages">
+                      Send packages
+                    </p>
+                    <ul className="post-megadropdown-list" aria-labelledby="send-packages">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col">
+                    <a
+                      className="post-megadropdown-list-title"
+                      id="step-by-step-packages"
+                      href="/step-by-step"
+                    >
+                      Step by step
+                    </a>
+                    <ul className="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+                      <li>
+                        <a href="/sch">Packages Switzerland</a>
+                      </li>
+                      <li>
+                        <a href="/kl">Small items abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Goods abroad</a>
+                      </li>
+                      <li>
+                        <a href="">Express and courier</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </PostMegadropdown>
+            </li>
+          </ul>
+        </PostMainnavigation>
+      </PostHeader>
 
-      <h2>Menu</h2>
-      {/* Throws Hydration Errors */}
-      <PostMenuTrigger for="menu-one">
-        <button className="btn btn-primary">Menu button</button>
-      </PostMenuTrigger>
-      <PostMenu id="menu-one" label="Menu">
-        <PostMenuItem>
-          <button>Example 1</button>
-        </PostMenuItem>
-        <PostMenuItem>
-          <a href="#test">Example 2</a>
-          <PostMenuItem>
-            <div>Example 3</div>
-          </PostMenuItem>
-        </PostMenuItem>
-      </PostMenu>
-
-      <h2>Number Input</h2>
-      <PostNumberInput className="form-floating">
-        <input type="number" id="quantity" className="form-control" placeholder="" />
-        <label htmlFor="quantity">Quantity</label>
-      </PostNumberInput>
-
-      <h2>Pagination</h2>
-      <PostPagination
-        page={1}
-        pageSize={10}
-        collectionSize={100}
-        label="Pagination"
-        textPrevious="Previous page"
-        textNext="Next page"
-        textPage="Page"
-        textFirst="First page"
-        textLast="Last page"
-      />
-
-      <h2>Popover</h2>
-      <PostPopoverTrigger for="popover-one">
-        {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
-        <button className="btn btn-secondary btn-large">Click here to see a popover</button>
-      </PostPopoverTrigger>
-      <PostPopover
-        className="palette palette-alternate"
-        id="popover-one"
-        placement="top"
-        textClose="Close"
-        arrow={true}
-      >
-        <h2 className="h6">Optional title</h2>
-        <p className="mb-0">
-          A longer message that needs more time to read. <a href="#test">Links</a> are also
-          possible.
-        </p>
-      </PostPopover>
-
-      <h2>Rating</h2>
-      <PostRating label="Rating"></PostRating>
-
-      <h2>Stepper</h2>
-      <PostStepper
-        textCompletedStep="Completed step"
-        textCurrentStep="Current step"
-        textStepNumber="Step #number:"
-        currentIndex={1}
-      >
-        <PostStepperItem> Step 1 </PostStepperItem>
-        <PostStepperItem> Step 2 </PostStepperItem>
-        <PostStepperItem> Step 3 </PostStepperItem>
-        <PostStepperItem> Step 4 </PostStepperItem>
-      </PostStepper>
-
-      <h2>Tabs - Panel Variant</h2>
-      <PostTabs>
-        <PostTabItem name="unua">Unua langeto</PostTabItem>
-        <PostTabItem name="dua">Dua langeto</PostTabItem>
-        <PostTabItem name="tria">Tria langeto</PostTabItem>
-
-        <PostTabPanel for="unua">
-          Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
-        </PostTabPanel>
-        <PostTabPanel for="dua">
-          Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
-        </PostTabPanel>
-        <PostTabPanel for="tria">
-          Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
-        </PostTabPanel>
-      </PostTabs>
-
-      <h2>Tabs - Navigation Variant</h2>
-      <PostTabs label="Tabs navigation">
-        <PostTabItem name="nav-first">
-          <a href="#first" aria-current="page">
-            First
-          </a>
-        </PostTabItem>
-        <PostTabItem name="nav-second">
-          <a href="#second">Second</a>
-        </PostTabItem>
-        <PostTabItem name="nav-third">
-          <a href="#third">Third</a>
-        </PostTabItem>
-      </PostTabs>
-
-      <h2>Toggle Button</h2>
-      <PostTogglebutton className="btn btn-primary">
-        <span data-showwhen="untoggled">Untoggled</span>
-        <span data-showwhen="toggled">Toggled</span>
-      </PostTogglebutton>
-
-      <h2>Tooltip</h2>
-      <PostTooltipTrigger for="tooltip-one">
-        {/* The aria-describedby attribute need to be defined on the button already, otherwise we'll get a hydration error */}
-        <button className="btn btn-secondary btn-large" aria-describedby="undefined tooltip-one">
-          Button
-        </button>
-      </PostTooltipTrigger>
-      <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
-        Hi there 👋
-      </PostTooltip>
+      <h4>Icon</h4>
+      {/* Icon */}
+      <PostIcon name="stampapostplus" />
     </>
   );
 }

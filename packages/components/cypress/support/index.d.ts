@@ -14,6 +14,7 @@ declare global {
         value: string | number | boolean | File | null,
       ): Chainable<void>;
       getFocusableElements(): Chainable<HTMLElement[]>;
+      writeMarkup(tag: string, html?: string): Chainable<void>;
     }
   }
 }

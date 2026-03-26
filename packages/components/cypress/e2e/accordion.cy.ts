@@ -1,5 +1,16 @@
 const ACCORDION_ID = '4d1b4185-e04d-494a-ab38-2b56c1778b0b';
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${ACCORDION_ID}--default`);
+    cy.get('post-accordion')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-accordion', before);
+      });
+  });
+});
+
 describe('accordion', () => {
   describe('default', () => {
     beforeEach(() => {

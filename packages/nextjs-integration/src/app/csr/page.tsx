@@ -6,7 +6,7 @@ const CSRLayout = dynamic(() => import('../ssr/layout'), {
   ssr: false,
 });
 
-const CSRPage = dynamic(() => import('../ssr/page'), {
+const CSRPage = dynamic(() => import('../ssr/page__'), {
   ssr: false,
 });
 

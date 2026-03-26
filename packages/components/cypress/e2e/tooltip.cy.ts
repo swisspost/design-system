@@ -1,5 +1,16 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit('./cypress/fixtures/post-tooltip.test.html');
+    cy.get('post-tooltip-trigger')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-tooltip-trigger', before);
+      });
+  });
+});
+
 describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   // prettier-ignore
   const shouldBeOpen = () => cy.get('.\\:popover-open, :popover-open').should('exist');
@@ -441,7 +452,8 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       });
     });
 
-    it('does not shift the accordion above the trigger', () => assertNoLayoutShift('#layout-accordion-item'));
+    it('does not shift the accordion above the trigger', () =>
+      assertNoLayoutShift('#layout-accordion-item'));
 
     it('does not reflow paragraph text before the trigger', () => {
       snapRect('#paragraph-before').then(before => {
@@ -467,15 +479,19 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       });
     });
 
-    it('does not shift inline text after the trigger', () => assertNoLayoutShift('#text-after-trigger'));
+    it('does not shift inline text after the trigger', () =>
+      assertNoLayoutShift('#text-after-trigger'));
 
-    it('does not shift sibling reference boxes when tooltip is shown', () => assertNoLayoutShift('#reference-box', '#layout-trigger-2'));
+    it('does not shift sibling reference boxes when tooltip is shown', () =>
+      assertNoLayoutShift('#reference-box', '#layout-trigger-2'));
 
-    it('does not shift a second sibling reference box when tooltip is shown', () => assertNoLayoutShift('#reference-box-2', '#layout-trigger-2'));
+    it('does not shift a second sibling reference box when tooltip is shown', () =>
+      assertNoLayoutShift('#reference-box-2', '#layout-trigger-2'));
 
     it('does not shift the rating below the trigger', () => assertNoLayoutShift('#layout-rating'));
 
-    it('does not shift the pagination below the trigger', () => assertNoLayoutShift('#layout-pagination'));
+    it('does not shift the pagination below the trigger', () =>
+      assertNoLayoutShift('#layout-pagination'));
 
     it('does not shift the form input below the trigger', () => assertNoLayoutShift('#test-input'));
 
