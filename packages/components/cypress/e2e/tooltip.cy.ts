@@ -1,12 +1,19 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 
+const TOOLTIP_ID = 'cd684d90-e7a7-41a9-8923-b1b72ad9b384';
+
 describe('Extract markup', () => {
   it('should extract markup for consumer apps', () => {
-    cy.visit('./cypress/fixtures/post-tooltip.test.html');
+    cy.visit(`/iframe.html?id=${TOOLTIP_ID}--default`);
     cy.get('post-tooltip-trigger')
       .invoke('prop', 'outerHTML')
       .then(before => {
         cy.writeMarkup('post-tooltip-trigger', before);
+      });
+    cy.get('post-tooltip')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-tooltip', before);
       });
   });
 });

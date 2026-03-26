@@ -37,8 +37,11 @@ Object.values(components).forEach(html => {
   });
 });
 
+const LAYOUT_COMPONENTS = ['Header', 'Footer', 'BackToTop', 'Breadcrumbs'];
+
 // Render all components one after another
 const rendered = Object.entries(components)
+  .filter(([name]) => !LAYOUT_COMPONENTS.includes(name))
   .map(([name, html]) => ` <h4>${name}</h4>\n  {/* ${name} */}\n  ${transformToReact(html)}`)
   .join('\n\n');
 
@@ -47,6 +50,12 @@ const page = `import { ${[...allImports].sort().join(', ')} } from '@swisspost/d
 export default function Page() {
   return (
     <>
+     <h1>Design System Components</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
+        mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
+        iusto suscipit, omnis iste laboriosam!
+      </p>
 ${rendered}
     </>
   );

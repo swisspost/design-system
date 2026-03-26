@@ -71,7 +71,7 @@
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
     "postbuild": "pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
-    "generate-markup": "node generate-props=-map.mjs && node generate-components.mjs && node generate-layout.mjs",
+    "generate-markup": "node generate-props-map.mjs && node generate-components.mjs && node generate-layout.mjs",
     "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",

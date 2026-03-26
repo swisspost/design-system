@@ -1,6 +1,8 @@
+const STEPPER_ID = '7dc546d9-e248-4d06-befe-3ad62fcd310f';
+
 describe('Extract markup', () => {
   it('should extract markup for consumer apps', () => {
-    cy.visit('./cypress/fixtures/post-stepper.test.html');
+    cy.visit(`/iframe.html?id=${STEPPER_ID}--default`);
     cy.get('post-stepper')
       .invoke('prop', 'outerHTML')
       .then(before => {
