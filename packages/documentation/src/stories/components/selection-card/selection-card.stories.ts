@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
-  title: 'Components/Card Control',
+  title: 'Components/Selection Card',
   tags: ['package:Styles', 'status:InProgress'],
   render: renderComponent,
   parameters: {
@@ -96,7 +96,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the card control and controls the display of the corresponding return message.<post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs##card-control">validation guidelines here</a>.</p></post-banner> ',
+        'Defines the validation state of the selection card and controls the display of the corresponding return message.<post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs">validation guidelines here</a>.</p></post-banner> ',
       control: {
         type: 'radio',
         labels: {
@@ -147,7 +147,7 @@ function renderComponent(args: Args, context: StoryContext) {
   const [id] = useState(_.componentId(args, context));
   const [validationId] = useState(_.validationId(context));
 
-  const classes = args.class ? `card-control ${args.class}` : 'card-control';
+  const classes = args.class ? `selection-card ${args.class}` : 'selection-card';
   const input: HTMLInputElement | null = document.querySelector(`#${id}`);
 
   if (input) input.checked = args.checked;
@@ -155,11 +155,11 @@ function renderComponent(args: Args, context: StoryContext) {
   function icon() {
     if (args.customIcon) {
       const icon = args.customIcon === 'svg' ? args.customIconSvg : args.customIconImg;
-      return html`<div class="card-control--icon">${unsafeHTML(icon)}</div>`;
+      return html`<div class="selection-card--icon">${unsafeHTML(icon)}</div>`;
     } else {
       return args.icon && args.icon !== 'none'
         ? html`<post-icon
-            class="card-control--icon"
+            class="selection-card--icon"
             name="${args.icon}"
             aria-hidden="true"
           ></post-icon>`
@@ -169,7 +169,7 @@ function renderComponent(args: Args, context: StoryContext) {
 
   function description() {
     return args.description
-      ? html`<div class="card-control--description">${args.description}</div>`
+      ? html`<div class="selection-card--description">${args.description}</div>`
       : nothing;
   }
 
