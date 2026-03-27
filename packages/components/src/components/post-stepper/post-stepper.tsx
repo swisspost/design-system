@@ -77,7 +77,7 @@ export class PostStepper {
 
   @Watch('selectedIndex')
   validateSelectedIndex() {
-    if (isValueEmpty(this.selectedIndex)) {
+    if (this.selectedIndex === undefined || this.selectedIndex.toString() === '') {
       this.selectedIndex = this.currentIndex;
     } else {
       checkRequiredAndType(this, 'selectedIndex', 'number');
