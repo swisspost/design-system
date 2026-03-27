@@ -35,6 +35,7 @@ The following examples show the different characteristics of the component. Thes
 
 Wrap a pair of `<select>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
 But note that the `<select>` must come first, so we can ensure the correct styles.
+In order for the label to work as a placeholder, the select needs to have an empty option.
 
 <Canvas of={SelectStories.FloatingLabel} />
 
@@ -43,10 +44,3 @@ But note that the `<select>` must come first, so we can ensure the correct style
 Use `.form-select-sm` for a compact select. Floating labels are not supported with this variant.
 
 <Canvas of={SelectStories.Small} />
-
-#### With label as a placeholder
-
-If you use an empty option in your select and you want that your label acts as placeholder,
-you can dynamically add the class `.form-select-empty` to the `<select>` when there are no value defined or no option selected.
-
-<Canvas of={SelectStories.FloatingLabelPlaceholder} />
