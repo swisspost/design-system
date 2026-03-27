@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixed a cumulative layout shift (CLS) when server-side rendering a one-pager header without a title or local header part.
+Fixed a cumulative layout shift (CLS) when server-side rendering a one-pager header without a title and local header part.
