@@ -514,13 +514,10 @@ export class MigrationV99Component extends LitElement {
                         ?checked="${this.state.forms.select_empty}"
                       />
                       <label class="form-check-label" for="forms-select_empty">
-                        <span data-info="automigration" class="tag tag-sm tag-info">
-                          🪄 migration rule
-                        </span>
                         <code>.form-select-empty</code> class deprecated
                         <span class="info">
                           This class has been replaced by a modern CSS selector, which detects the
-                          presence of an empty value.
+                          presence of an empty option.
                         </span>
                       </label>
                     </div>
