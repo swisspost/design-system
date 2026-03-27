@@ -30,11 +30,13 @@ post-header {
     @extend %header-list;
   }
 
-  // all slotted links and buttons
-  > * {
-    @include interactive-elements {
-      @extend %header-control;
-    }
+  // all slotted links and buttons — split to avoid broken :is() output from nav-item-base
+  > *:where(a, button, [role='link'], [role='button']) {
+    @include nav-item-base;
+  }
+
+  > *:where(ul) > li > :where(a, button, [role='link'], [role='button']) {
+    @include nav-item-base;
   }
 
   // links and buttons remaining in the global and local headers on tablet and mobile
@@ -107,6 +109,19 @@ post-header {
           margin: unset;
         }
       }
+    }
+  }
+
+  // focus styles on explicit selectors to avoid broken :is() output
+  > [slot='global-nav-secondary']:where(a, button, [role='link'], [role='button']) {
+    @include media.max(desktop) {
+      @include nav-item-block-focus;
+    }
+  }
+
+  > [slot='global-nav-secondary']:where(ul) > li > :where(a, button, [role='link'], [role='button']) {
+    @include media.max(desktop) {
+      @include nav-item-block-focus;
     }
   }
 
