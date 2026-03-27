@@ -62,7 +62,8 @@ Default feedback message classes
 
 input:not([type='checkbox'], [type='radio']),
 select,
-textarea {
+textarea,
+post-number-input {
   ~ .invalid-feedback,
   ~ .valid-feedback {
     margin-block: tokens.get('assist-padding-block', components.$post-assist) !important;
@@ -70,6 +71,7 @@ textarea {
   }
 }
 
+post-number-input.number-input-sm,
 input.form-control-sm,
 select.form-select-sm {
   + .invalid-feedback,

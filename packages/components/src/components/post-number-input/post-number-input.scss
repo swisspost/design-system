@@ -1,24 +1,137 @@
 @use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/helpers';
+
+tokens.$default-map: components.$post-number-input;
 
 :host {
   display: inline-flex;
   align-items: end;
+  width: 100%;
+
+  ::slotted(input[type='number']),
+  .step-button {
+    border: tokens.get('number-input-border-width') tokens.get('number-input-border-style-default')
+      tokens.get('number-input-color-enabled-border') !important;
+    background-color: tokens.get('number-input-color-enabled-bg') !important;
+    height: tokens.get('number-input-sizing-height') !important;
+    color: tokens.get('number-input-color-enabled-fg') !important;
+  }
+
+  ::slotted(input[type='number']) {
+    border-radius: 0 !important;
+    border-inline-width: 0 !important;
+    padding-inline: tokens.get('number-input-field-padding-inline');
+    padding-block-start: tokens.get('number-input-field-padding-block-start');
+    padding-block-end: tokens.get('number-input-field-padding-block-end');
+  }
+
+  ::slotted(input[type='number']:focus) {
+    outline: none !important;
+  }
+
+  ::slotted(input[type='number']:disabled) {
+    border-inline-width: 0 !important;
+  }
+
+  ::slotted(input[type='number']:disabled),
+  .step-button.disabled {
+    background-color: tokens.get('number-input-color-disabled-bg');
+    color: tokens.get('number-input-color-disabled-fg') !important;
+    border-color: tokens.get('number-input-color-disabled-border') !important;
+    border-style: tokens.get('number-input-border-style-disabled') !important;
+  }
+}
+
+// Small number input
+:host(.number-input-sm) {
+  ::slotted(input[type='number']),
+  .step-button {
+    height: tokens.get('number-input-small-sizing-height') !important;
+  }
+
+  ::slotted(input[type='number']) {
+    font-size: tokens.get('number-input-non-floating-small-font-size') !important;
+    padding-inline: tokens.get('number-input-small-field-padding-inline') !important;
+    padding-block: tokens.get('number-input-non-floating-small-field-padding-block') !important;
+  }
+
+  ::slotted(input[type='number'].is-valid),
+  ::slotted(input[type='number'].is-invalid) {
+    background-size: tokens.get('number-input-small-validation-icon-size') !important;
+    padding-inline-end: calc(
+      (#{tokens.get('number-input-small-field-padding-inline')}* 2) +
+        #{tokens.get('number-input-small-validation-icon-size')}
+    ) !important;
+  }
+
+  .step-button {
+    padding-inline: tokens.get('number-input-small-action-button-padding-inline');
+    padding-block: tokens.get('number-input-small-action-button-padding-block');
+
+    post-icon {
+      width: tokens.get('number-input-small-action-button-icon-size');
+      height: tokens.get('number-input-small-action-button-icon-size');
+    }
+  }
+}
+
+:host(:hover) {
+  ::slotted(input[type='number']:not(:disabled)),
+  .step-button:not(.disabled) {
+    background-color: tokens.get('number-input-color-hover-bg');
+    border-color: tokens.get('number-input-color-hover-border') !important;
+
+    @include utilities.high-contrast-mode {
+      border-color: Highlight !important;
+    }
+  }
+
+  .step-button:not(.disabled),
+  .step-button:not(.disabled) post-icon {
+    color: tokens.get('number-input-color-hover-fg');
+  }
 }
 
 .input-container {
   position: relative;
+  flex-grow: 1;
+
+  // Add custom ::after to have rounded focus
+  &:focus-within {
+    &::after {
+      content: '';
+      pointer-events: none;
+      z-index: 2;
+      width: calc(100% + (#{tokens.get('number-input-border-width')} * 4));
+      height: calc(100% + (#{tokens.get('number-input-border-width')} * 2));
+      border: tokens.get('focus-outline-width', helpers.$post-focus)
+        tokens.get('focus-border-style', helpers.$post-focus)
+        tokens.get('focus-outline-color', helpers.$post-focus);
+      position: absolute;
+      border-radius: tokens.get('number-input-border-radius');
+      top: calc((#{tokens.get('number-input-border-width')} * 2) * -1);
+      left: calc((#{tokens.get('number-input-border-width')} * 3) * -1);
+    }
+  }
 }
 
 .step-button {
   @include button.button-base;
-  @include button.button-variant-def('enabled', 'secondary');
-  height: 60px;
-  padding-inline: 10px;
-  font-size: 32px;
+  transition: unset;
+  box-sizing: border-box;
   flex: 0 0 auto;
-  border-radius: 4px;
+  border-radius: tokens.get('number-input-border-radius');
+  padding-inline: tokens.get('number-input-action-button-padding-inline');
+  padding-block: tokens.get('number-input-action-button-padding-block');
+  box-shadow: tokens.get('number-input-action-button-elevation');
+
+  post-icon {
+    width: tokens.get('number-input-action-button-icon-size');
+    height: tokens.get('number-input-action-button-icon-size');
+  }
 
   &:first-of-type {
     border-start-end-radius: 0;
@@ -30,13 +143,7 @@
     border-end-start-radius: 0;
   }
 
-  &:hover {
-    @include button.button-variant-def('hover', 'secondary');
-  }
-
   &.disabled {
-    @include button.button-variant-def('disabled', 'secondary');
-    border-style: dashed;
     pointer-events: none;
     cursor: unset;
   }

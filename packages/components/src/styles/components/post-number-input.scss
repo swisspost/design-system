@@ -1,11 +1,88 @@
-post-number-input input[type="number"] {
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+
+tokens.$default-map: components.$post-number-input;
+
+// Non-floating label
+.form-label:has(+ post-number-input) {
+  display: block;
+}
+
+.form-label:has(+ post-number-input.number-input-sm) {
+  padding-inline: tokens.get('number-input-non-floating-small-label-padding-inline');
+  padding-block: tokens.get('number-input-non-floating-small-label-padding-block');
+  font-weight: tokens.get('number-input-non-floating-small-label-font-weight');
+  font-size: tokens.get('number-input-non-floating-small-font-size');
+}
+
+.form-label:has(+ post-number-input.disabled) {
+  color: tokens.get('number-input-color-disabled-fg');
+}
+
+// Floating label input
+post-number-input.form-floating {
+  > input.form-control {
+    padding: tokens.get('number-input-field-padding-block-start')
+      tokens.get('number-input-field-padding-inline')
+      tokens.get('number-input-field-padding-block-end');
+
+    ~ label {
+      color: tokens.get('number-input-color-enabled-fg') !important;
+    }
+
+    &:disabled ~ label {
+      color: tokens.get('number-input-color-disabled-fg') !important;
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      ~ label {
+        padding-block-start: tokens.get('number-input-label-padding-block-start');
+        padding-inline: tokens.get('number-input-label-padding-inline-start')
+          tokens.get('number-input-label-padding-inline-end');
+        font-size: tokens.get('number-input-label-font-size');
+      }
+    }
+
+    &:not(:disabled):hover {
+      ~ label {
+        color: tokens.get('number-input-color-hover-fg') !important;
+      }
+    }
+  }
+
+  &::after {
+    width: tokens.get('number-input-validation-icon-size');
+    height: tokens.get('number-input-validation-icon-size');
+  }
+
+  &:has(> input.form-control.is-valid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-valid)::after,
+  &:has(> input.form-control.is-invalid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
+    top: calc(#{tokens.get('number-input-sizing-height')} / 2);
+    right: calc(
+      #{tokens.get('number-input-validation-icon-padding-inline-end')} +
+        (#{tokens.get('number-input-action-button-padding-inline')}* 2) +
+        #{tokens.get('number-input-action-button-icon-size')} +
+        (#{tokens.get('number-input-border-width')} * 2)
+    );
+  }
+}
+
+post-number-input input[type='number'] {
   appearance: textfield;
-  border-radius: 0;
-  border-inline: unset;
 
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+  &::placeholder {
+    color: tokens.get('number-input-color-enabled-fg') !important;
+  }
+
+  &:disabled::placeholder {
+    color: tokens.get('number-input-color-disabled-fg') !important;
   }
 }
