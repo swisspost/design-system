@@ -17,7 +17,6 @@ describe('isMotionReduced', () => {
 
   it('should return false if reduced motion is not requested', async () => {
     matchMedia.mockReturnValue({ matches: false });
-
     expect(isMotionReduced()).toBe(false);
   });
 });
