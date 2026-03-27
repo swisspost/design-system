@@ -1,6 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
-@use '@swisspost/design-system-styles/components/header/placeholders' as *;
+@use '../../styles/components/header/mixins.scss' as header-mx;
+@use '../../styles/components/header/placeholders.scss' as *;
 
 :host {
   position: relative;

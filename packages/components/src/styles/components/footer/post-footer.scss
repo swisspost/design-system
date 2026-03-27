@@ -1,0 +1,110 @@
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/list';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+post-footer {
+  // mobile
+  --post-footer-grid-list-title-gap: 0;
+  --post-footer-grid-list-item-gap: 8px;
+
+  --post-footer-socialmedia-list-item-gap: 8px;
+  --post-footer-app-list-item-gap: 8px;
+  --post-footer-businesssector-list-item-gap: 8px;
+  --post-footer-meta-list-item-gap: 8px;
+
+  // tablet sm
+  @include media.min(sm) {
+    --post-footer-grid-list-title-gap: 8px;
+
+    --post-footer-socialmedia-list-item-gap: 16px;
+    --post-footer-businesssector-list-item-gap: 24px;
+    --post-footer-meta-list-item-gap: 16px;
+  }
+
+  // desktop lg
+  @include media.min(lg) {
+    --post-footer-meta-list-item-gap: 24px;
+  }
+
+  :is(h3, .h3) {
+    margin: 0;
+    font-size: inherit;
+  }
+
+  a {
+    &:not(.btn-icon, .app-store-badge) {
+      display: block;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+
+        @include utilities.high-contrast-mode() {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  // Grid item's title
+  span[slot|='grid'] {
+    display: block;
+    margin-block-end: var(--post-footer-grid-list-title-gap);
+  }
+
+  // Grid item's content
+  ul[slot|='grid'] {
+    @include list.list-bullet();
+    margin-block: 0;
+    padding-inline-start: 0;
+    list-style: none;
+
+    > li {
+      &::before {
+        display: none;
+      }
+
+      ~ li {
+        margin-block-start: var(--post-footer-grid-list-item-gap);
+      }
+    }
+  }
+
+  div:is([slot='socialmedia'], [slot='app'], [slot='businesssectors'], [slot='meta']) > ul {
+    @include list.list-inline();
+    margin: 0;
+  }
+
+  div[slot='socialmedia'] > ul {
+    gap: var(--post-footer-socialmedia-list-item-gap);
+  }
+
+  div[slot='app'] > ul {
+    gap: var(--post-footer-app-list-item-gap);
+  }
+
+  div[slot='businesssectors'] > ul {
+    gap: var(--post-footer-businesssector-list-item-gap);
+  }
+
+  div[slot='meta'] > ul {
+    row-gap: 0;
+    column-gap: var(--post-footer-meta-list-item-gap);
+  }
+
+  post-icon:is(div[slot='socialmedia'] > ul > li > a > *):not([name='letter']) {
+    width: 26px;
+    height: 26px;
+
+    @include media.max(md) {
+      width: 24px;
+      height: 24px;
+    }
+
+    @include media.max(sm) {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
