@@ -24,8 +24,8 @@ export class CodeBlock extends LitElement {
       this.timeoutId = window.setTimeout(() => {
         this.copied = false;
       }, 2000);
-    } catch (err) {
-      console.error('Copy failed', err);
+    } catch (error) {
+      console.warn(`Code Block: copying "${this.code}" failed!`, error);
     }
   }
 
