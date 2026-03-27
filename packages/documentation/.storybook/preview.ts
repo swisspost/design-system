@@ -14,7 +14,10 @@ import {
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
 
+// Load compiled package CSS (avoid importing compiled CSS from Sass)
 import '@swisspost/design-system-components/post-components.css';
+import '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
+
 import './styles/preview.scss';
 
 import { SyntaxHighlighter } from 'storybook/internal/components';

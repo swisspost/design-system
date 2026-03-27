@@ -1,14 +1,12 @@
-// importing the global component styles
-@use '@swisspost/design-system-components/post-components.css';
-
-// importing the complete styles package scss
+// importing the complete styles package scss (Sass modules must come first)
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/utilities';
-@use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
+
+// compiled CSS is imported from the Storybook preview JS to avoid Sass parsing
 
 tokens.$default-map: utilities.$post-spacing;
 
