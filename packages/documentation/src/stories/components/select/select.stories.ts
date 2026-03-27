@@ -15,6 +15,9 @@ const meta: MetaComponent = {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=21-183',
     },
+    controls: {
+      exclude: ['emptyOptionText'],
+    },
   },
   args: {
     label: 'Label',
@@ -29,6 +32,7 @@ const meta: MetaComponent = {
     validation: 'null',
     requiredOptional: 'null',
     size: 'null',
+    emptyOptionText: 'Choose an option',
   },
   argTypes: {
     label: {
@@ -192,6 +196,11 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    emptyOptionText: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 };
 
@@ -239,7 +248,7 @@ const Template: Story = {
         }}"
         ?required="${args.requiredOptional === 'required'}"
       >
-        <option></option>
+        <option>${args.emptyOptionText}</option>
         ${[
           options
             .slice(1)
@@ -280,6 +289,7 @@ export const FloatingLabel: Story = {
   args: {
     floatingLabel: true,
     hint: '',
+    emptyOptionText: '',
   },
 };
 
