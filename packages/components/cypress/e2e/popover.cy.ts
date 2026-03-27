@@ -7,13 +7,13 @@ describe('Extract markup', () => {
     cy.get('post-popover-trigger')
       .invoke('prop', 'outerHTML')
       .then(before => {
-        cy.writeMarkup('post-popover-trigger', before, { title: 'Popover' }).then(() => {
-          cy.get('post-popover')
-            .invoke('prop', 'outerHTML')
-            .then(html => {
-              cy.writeMarkup('post-popover', html, { noTitle: true });
-            });
-        });
+        cy.writeMarkup('post-popover-trigger', before, { title: 'Popover' });
+      });
+
+    cy.get('post-popover')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-popover', before, { noTitle: true });
       });
   });
 });

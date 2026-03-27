@@ -11,17 +11,23 @@ const propTypes = JSON.parse(
 export function transformToAngular(html) {
   return (
     html
-      // Remove all HTML comments
+      // Remove HTML and Lit comments
+      // <!--?lit$123$--> → ''
       .replace(/<!--[\s\S]*?-->/g, '')
-      // Keep class= as is (Angular uses class not className)
-      // Keep for= as is (Angular uses for not htmlFor)
-      // Convert post-* tags to PascalCase — NOT needed for Angular, tags stay as post-*
+
       // Convert kebab-case attributes to camelCase on post-* components (skip aria-*)
-      .replace(/(<post-[a-z-]+[^>]*?)(\s(?!aria-)([a-z]+(?:-[a-z]+)+)=)/g, (match, tag, attr) => {
-        const camel = attr.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-        return `${tag}${camel}`;
-      })
+      // <post-header text-menu="Menu"> → <post-header textMenu="Menu">
+      // Convert all kebab-case attributes to camelCase on post-* tags (skip aria-*)
+      .replace(/<post-[\w-]+[^>]*>/g, tag =>
+        tag.replace(/\s(?!aria-)([a-z]+(?:-[a-z]+)+)=/g, attr => {
+          return attr.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+        }),
+      )
+
       // Type-aware attribute conversion using prop-types.json
+      // headingLevel="3" → [headingLevel]="3" (number)
+      // multiple="true" → [multiple]="true" (boolean)
+      // name="search" → name="search" (string, unchanged)
       .replace(/(<post-[\w-]+)((?:\s+[^>]*?)*?)>/g, (match, tag, attrs) => {
         const componentName =
           'Post' +
@@ -42,14 +48,20 @@ export function transformToAngular(html) {
 
         return `${tag}${convertedAttrs}>`;
       })
+
       // Self-closing void elements
+      // <img src="foo.png"> → <img src="foo.png" />
       .replace(
         /<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)([^>]*)>/g,
         (_, tag, attrs) => `<${tag}${attrs} />`,
       )
-      // Clean up
+
+      // Clean up multiple blank lines
       .replace(/\n{3,}/g, '\n\n')
+
+      // Remove empty lines
       .replace(/^\s*[\r\n]/gm, '')
+
       .trim()
   );
 }

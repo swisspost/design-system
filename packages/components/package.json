@@ -71,7 +71,6 @@
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
     "postbuild": "pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
-    "generate-markup": "node scripts/generate-props-map.mjs && node scripts/generate-nextjs-components.mjs && node scripts/generate-nextjs-layout.mjs",
     "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
@@ -91,7 +90,8 @@
     "prebuild:script": "node --loader ts-node/esm prebuild.ts",
     "copy:component-names": "copyfiles -f src/_generated/component-names.json dist/",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
-    "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
+    "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/",
+    "generate-markup": "node scripts/generate-props-map.mjs && node scripts/generate-nextjs-components.mjs && node scripts/generate-angular-components.mjs"
   },
   "dependencies": {
     "@floating-ui/dom": "1.7.5",

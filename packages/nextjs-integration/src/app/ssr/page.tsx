@@ -1,23 +1,21 @@
-import { PostAccordion, PostAccordionItem, PostClosebutton } from '@swisspost/design-system-components-react/server';
+import { PostAccordion, PostAccordionItem, PostAvatar, PostBanner, PostStepper, PostStepperItem } from '@swisspost/design-system-components-react/server';
 import { PostIconExplosives, PostIconLetter, PostIconLetterSolid } from '@swisspost/design-system-components-react/icons';
 
 export default function Page() {
   return (
     <>
-     <h1>Design System Components</h1>
+      <h1>Design System Components</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
         mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
         iusto suscipit, omnis iste laboriosam!
       </p>
-  <h4>.mockElement</h4>
-  <div className="mock-element">
-    <PostClosebutton>
-      Close
-    </PostClosebutton>
-  </div>
+  <h2>Stepper</h2>
+  <PostStepper textCompletedStep="Completed step" text-current-step="Current step" text-step-number="Step #number:" current-index="2" selected-index="">
+       <PostStepperItem> Step 1 label</PostStepperItem>  <PostStepperItem> Step 2 label</PostStepperItem>  <PostStepperItem> Step 3 label</PostStepperItem>  <PostStepperItem> Step 4 label</PostStepperItem>  <PostStepperItem> Step 5 label</PostStepperItem> 
+    </PostStepper>
 
-  <h4>Accordion</h4>
+  <h2>Accordion</h2>
   <PostAccordion headingLevel={3}>
     <PostAccordionItem>
     <span slot="header">Title 1</span>
@@ -42,7 +40,15 @@ export default function Page() {
     </PostAccordionItem>
     </PostAccordion>
 
-  <div className="d-flex gap-16 flex-wrap">
+  <h2>Avatar</h2>
+  <PostAvatar firstname="Firstname" description="The current user is Firstname." />
+
+  <h2>Banner</h2>
+  <PostBanner>
+      <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
+    </PostBanner>
+      <h2>React Server Icons</h2>
+      <div className="d-flex gap-16 flex-wrap">
         <figure>
           <PostIconLetter className="fs-2"></PostIconLetter>
           <figcaption>Line Icon</figcaption>

@@ -1,7 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndPattern, checkRequiredAndType } from '@/utils';
-import { isValueEmpty } from '@/utils';
 
 @Component({
   tag: 'post-stepper',

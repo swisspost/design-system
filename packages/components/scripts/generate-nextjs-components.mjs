@@ -3,11 +3,31 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToReact } from './transform-to-react.mjs';
 
-const LAYOUT_COMPONENTS = ['Header', 'Footer', 'BackToTop', 'Breadcrumbs'];
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const componentsPath = path.resolve(__dirname, '../output/markup-map.json');
-const outputPath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/page.tsx');
+
+const pagePath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/page.tsx');
+const layoutPath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/layout.tsx');
+
+const LAYOUT_COMPONENTS = ['Header', 'Footer', 'BackToTop', 'Breadcrumbs'];
+
+// ─── LAYOUT.TSX ───────────────────────────────────────────────────────────────
+
+const layoutTemplate = `export default function Layout({ children }: { readonly children: React.ReactNode }) {
+  return (
+    <>
+      {/* COMPONENT:Header */}
+      <main style={{ paddingBlock: '3rem' }}>
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {/* COMPONENT:Breadcrumbs */}
+          {children}
+        </div>
+      </main>
+      {/* COMPONENT:Footer */}
+      {/* COMPONENT:BackToTop */}
+    </>
+  );
+}`;
 
 // Create markup-map.json if it doesn't exist
 fs.mkdirSync(path.dirname(componentsPath), { recursive: true });
@@ -22,49 +42,61 @@ if (Object.keys(components).length === 0) {
   process.exit(0);
 }
 
-// Collect all imports
-const allImports = new Set();
-Object.values(components).forEach(entry => {
-  const html = typeof entry === 'string' ? entry : entry.html;
-  const matches = [...html.matchAll(/<(post-[a-z-]+)/g)];
-  matches.forEach(([, tag]) => {
-    const pascal =
-      'Post' +
-      tag
-        .replace(/^post-/, '')
-        .split('-')
-        .map(p => p.charAt(0).toUpperCase() + p.slice(1))
-        .join('');
-    allImports.add(pascal);
-  });
-});
+function getHtml(entry) {
+  return typeof entry === 'string' ? entry : entry.html;
+}
 
-// Render all components
+function collectImports(entries) {
+  const allImports = new Set();
+  entries.forEach(entry => {
+    const html = getHtml(entry);
+    [...html.matchAll(/<(post-[a-z-]+)/g)].forEach(([, tag]) => {
+      const pascal =
+        'Post' +
+        tag
+          .replace(/^post-/, '')
+          .split('-')
+          .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+          .join('');
+      allImports.add(pascal);
+    });
+  });
+  return allImports;
+}
+
+// ─── PAGE.TSX ─────────────────────────────────────────────────────────────────
+
+const pageImports = collectImports(
+  Object.entries(components)
+    .filter(([name]) => !LAYOUT_COMPONENTS.includes(name))
+    .map(([, entry]) => entry),
+);
+
 const rendered = Object.entries(components)
   .filter(([name]) => !LAYOUT_COMPONENTS.includes(name))
   .map(([name, entry]) => {
-    const html = typeof entry === 'string' ? entry : entry.html;
+    const html = getHtml(entry);
     const title = typeof entry === 'string' ? name : entry.title;
     const heading = title ? `  <h2>${title}</h2>\n` : '';
     return `${heading}  ${transformToReact(html)}`;
   })
   .join('\n\n');
 
-const page = `import { ${[...allImports].sort().join(', ')} } from '@swisspost/design-system-components-react/server';
+const page = `import { ${[...pageImports].sort().join(', ')} } from '@swisspost/design-system-components-react/server';
 import { PostIconExplosives, PostIconLetter, PostIconLetterSolid } from '@swisspost/design-system-components-react/icons';
 
 export default function Page() {
   return (
     <>
-     <h1>Design System Components</h1>
+      <h1>Design System Components</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
         mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
         iusto suscipit, omnis iste laboriosam!
       </p>
 ${rendered}
-<h2>React Server Icons</h2>
-  <div className="d-flex gap-16 flex-wrap">
+      <h2>React Server Icons</h2>
+      <div className="d-flex gap-16 flex-wrap">
         <figure>
           <PostIconLetter className="fs-2"></PostIconLetter>
           <figcaption>Line Icon</figcaption>
@@ -107,6 +139,30 @@ ${rendered}
 }
 `;
 
-fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-fs.writeFileSync(outputPath, page, 'utf-8');
-console.log(`✅ page.tsx written → ${outputPath}`);
+fs.mkdirSync(path.dirname(pagePath), { recursive: true });
+fs.writeFileSync(pagePath, page, 'utf-8');
+console.log(`✅ page.tsx written → ${pagePath}`);
+
+// ─── LAYOUT.TSX ───────────────────────────────────────────────────────────────
+
+const usedNames = [...layoutTemplate.matchAll(/\{\/\* COMPONENT:(\w+) \*\/\}/g)].map(
+  ([, name]) => name,
+);
+const layoutImports = collectImports(usedNames.map(name => components[name]).filter(Boolean));
+
+let result = layoutTemplate.replace(/\{\/\* COMPONENT:(\w+) \*\/\}/g, (_, name) => {
+  const entry = components[name];
+  if (!entry) return `{/* WARNING: ${name} not found in markup-map.json */}`;
+  return transformToReact(getHtml(entry));
+});
+
+result = result
+  .replace(/^import type React from 'react';\n?/m, '')
+  .replace(/^import \{[^}]*\} from '@swisspost\/design-system-components-react\/server';\n?/m, '');
+
+result = `import { ${[...layoutImports].sort().join(', ')} } from '@swisspost/design-system-components-react/server';\n\n${result}`;
+result = result.replace(/^\s*[\r\n]/gm, '');
+
+fs.mkdirSync(path.dirname(layoutPath), { recursive: true });
+fs.writeFileSync(layoutPath, result, 'utf-8');
+console.log(`✅ layout.tsx written → ${layoutPath}`);
