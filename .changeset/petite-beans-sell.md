@@ -3,4 +3,17 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Deprecated the `.form-select-empty` class and replaced it with a modern CSS selector.
+Deprecated `.form-select-empty` CSS class. Floating label behavior is now automatic.
+
+BEFORE:
+<select class="form-select form-select-empty">
+  <option></option>
+  <option value="1">Option 1</option>
+</select>
+
+AFTER:
+
+<select class="form-select">
+  <option></option>
+  <option value="1">Option 1</option>
+</select>
