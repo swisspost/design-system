@@ -13,11 +13,7 @@ tokens.$default-map: components.$post-number-input;
 
   ::slotted(input[type='number']),
   .step-button {
-    border: tokens.get('number-input-border-width') tokens.get('number-input-border-style-default')
-      tokens.get('number-input-color-enabled-border') !important;
-    background-color: tokens.get('number-input-color-enabled-bg') !important;
     height: tokens.get('number-input-sizing-height') !important;
-    color: tokens.get('number-input-color-enabled-fg') !important;
   }
 
   ::slotted(input[type='number']) {
@@ -36,7 +32,6 @@ tokens.$default-map: components.$post-number-input;
     border-inline-width: 0 !important;
   }
 
-  ::slotted(input[type='number']:disabled),
   .step-button.disabled {
     background-color: tokens.get('number-input-color-disabled-bg');
     color: tokens.get('number-input-color-disabled-fg') !important;
@@ -79,13 +74,12 @@ tokens.$default-map: components.$post-number-input;
 }
 
 :host(:hover) {
-  ::slotted(input[type='number']:not(:disabled)),
   .step-button:not(.disabled) {
     background-color: tokens.get('number-input-color-hover-bg');
-    border-color: tokens.get('number-input-color-hover-border') !important;
+    border-color: tokens.get('number-input-color-hover-border');
 
     @include utilities.high-contrast-mode {
-      border-color: Highlight !important;
+      border-color: Highlight;
     }
   }
 
@@ -127,6 +121,10 @@ tokens.$default-map: components.$post-number-input;
   padding-inline: tokens.get('number-input-action-button-padding-inline');
   padding-block: tokens.get('number-input-action-button-padding-block');
   box-shadow: tokens.get('number-input-action-button-elevation');
+  border: tokens.get('number-input-border-width') tokens.get('number-input-border-style-default')
+    tokens.get('number-input-color-enabled-border');
+  background-color: tokens.get('number-input-color-enabled-bg');
+  color: tokens.get('number-input-color-enabled-fg');
 
   post-icon {
     width: tokens.get('number-input-action-button-icon-size');

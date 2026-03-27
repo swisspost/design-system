@@ -16,7 +16,7 @@ tokens.$default-map: components.$post-number-input;
 }
 
 .form-label:has(+ post-number-input.disabled) {
-  color: tokens.get('number-input-color-disabled-fg');
+  color: tokens.get('input-color-disabled-fg', components.$post-text-input);
 }
 
 // Floating label input
@@ -26,14 +26,6 @@ post-number-input.form-floating {
       tokens.get('number-input-field-padding-inline')
       tokens.get('number-input-field-padding-block-end');
 
-    ~ label {
-      color: tokens.get('number-input-color-enabled-fg') !important;
-    }
-
-    &:disabled ~ label {
-      color: tokens.get('number-input-color-disabled-fg') !important;
-    }
-
     &:focus,
     &:not(:placeholder-shown) {
       ~ label {
@@ -41,12 +33,6 @@ post-number-input.form-floating {
         padding-inline: tokens.get('number-input-label-padding-inline-start')
           tokens.get('number-input-label-padding-inline-end');
         font-size: tokens.get('number-input-label-font-size');
-      }
-    }
-
-    &:not(:disabled):hover {
-      ~ label {
-        color: tokens.get('number-input-color-hover-fg') !important;
       }
     }
   }
@@ -77,12 +63,5 @@ post-number-input input[type='number'] {
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
-  &::placeholder {
-    color: tokens.get('number-input-color-enabled-fg') !important;
-  }
-
-  &:disabled::placeholder {
-    color: tokens.get('number-input-color-disabled-fg') !important;
   }
 }
