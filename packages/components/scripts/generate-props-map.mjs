@@ -3,8 +3,8 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const inputPath = path.resolve(__dirname, 'dist/docs.json');
-const outputPath = path.resolve(__dirname, 'output/prop-types.json');
+const inputPath = path.resolve(__dirname, '../dist/docs.json');
+const outputPath = path.resolve(__dirname, '../output/prop-types.json');
 
 const docs = JSON.parse(fs.readFileSync(inputPath, 'utf-8'));
 

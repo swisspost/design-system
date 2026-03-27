@@ -8,12 +8,12 @@ describe('Extract markup', () => {
     cy.get('post-tooltip-trigger')
       .invoke('prop', 'outerHTML')
       .then(before => {
-        cy.writeMarkup('post-tooltip-trigger', before);
+        cy.writeMarkup('post-tooltip-trigger', before, { title: 'Tooltip' });
       });
     cy.get('post-tooltip')
       .invoke('prop', 'outerHTML')
       .then(before => {
-        cy.writeMarkup('post-tooltip', before);
+        cy.writeMarkup('post-tooltip', before, { noTitle: true });
       });
   });
 });

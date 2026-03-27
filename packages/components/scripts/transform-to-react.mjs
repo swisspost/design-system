@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const propTypes = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, 'output/prop-types.json'), 'utf-8'),
+  fs.readFileSync(path.resolve(__dirname, '../output/prop-types.json'), 'utf-8'),
 );
 export function transformToReact(html) {
   return (

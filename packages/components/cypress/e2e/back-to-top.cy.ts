@@ -6,7 +6,7 @@ describe('Extract markup', () => {
     cy.get('post-back-to-top')
       .invoke('prop', 'outerHTML')
       .then(before => {
-        cy.writeMarkup('post-back-to-top', before);
+        cy.writeMarkup('post-back-to-top', before, { noTitle: true });
       });
   });
 });

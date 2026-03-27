@@ -6,13 +6,13 @@ describe('Extract markup', () => {
     cy.get('post-collapsible-trigger')
       .invoke('prop', 'outerHTML')
       .then(before => {
-        cy.writeMarkup('post-collapsible-trigger', before);
+        cy.writeMarkup('post-collapsible-trigger', before, { title: 'Collapsible' });
       });
 
     cy.get('post-collapsible')
       .invoke('prop', 'outerHTML')
       .then(before => {
-        cy.writeMarkup('post-collapsible', before);
+        cy.writeMarkup('post-collapsible', before, { noTitle: true });
       });
   });
 });

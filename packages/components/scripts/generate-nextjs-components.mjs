@@ -4,8 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { transformToReact } from './transform-to-react.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const componentsPath = 'output/markup-map.json';
-const outputPath = path.resolve(__dirname, '../nextjs-integration/src/app/ssr/page.tsx');
+const componentsPath = path.resolve(__dirname, '../output/markup-map.json');
+const outputPath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/page.tsx');
 
 // Create markup-map.json if it doesn't exist
 fs.mkdirSync(path.dirname(componentsPath), { recursive: true });

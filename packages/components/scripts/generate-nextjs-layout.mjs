@@ -4,9 +4,9 @@ import { fileURLToPath } from 'node:url';
 import { transformToReact } from './transform-to-react.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const templatePath = '../nextjs-integration/src/app/ssr/layout.tsx';
-const componentsPath = 'output/markup-map.json';
-const outputPath = path.resolve(__dirname, '../nextjs-integration/src/app/ssr/layout.tsx');
+const templatePath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/layout.tsx');
+const componentsPath = path.resolve(__dirname, '../output/markup-map.json');
+const outputPath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/layout.tsx');
 
 // Create layout file if it doesn't exist
 

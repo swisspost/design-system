@@ -6,12 +6,12 @@ describe('Extract markup', () => {
     cy.get('post-menu-trigger')
       .invoke('prop', 'outerHTML')
       .then(before => {
-        cy.writeMarkup('post-menu-trigger', before);
+        cy.writeMarkup('post-menu-trigger', before, { title: 'Menu' });
       });
     cy.get('post-menu')
       .invoke('prop', 'outerHTML')
       .then(before => {
-        cy.writeMarkup('post-menu', before);
+        cy.writeMarkup('post-menu', before, { noTitle: true });
       });
   });
 });
