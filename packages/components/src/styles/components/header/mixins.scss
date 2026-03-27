@@ -62,7 +62,8 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 }
 
 /**
- styles for squared nav items (main navigation and burger menu)
+ layout-only styles for squared nav items (main navigation and burger menu)
+ safe to use inside complex/multi-part selectors
  */
 @mixin nav-item-block-layout {
   --post-nav-item-border-width: 1px;
@@ -85,7 +86,36 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
     box-shadow: none;
   }
 
-  @include utilities.focus-style-custom {
+  > post-icon:where(:last-child) {
+    margin-inline-start: auto;
+  }
+
+  @include media.only(mobile) {
+    padding: calc(0.5rem + 1.5px) 0.75rem calc(0.5rem + 1.5px - var(--post-nav-item-border-width))
+      0.5rem;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+
+    > post-icon {
+      font-size: 1rem;
+    }
+  }
+
+  @include media.only(tablet) {
+    > post-icon {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+/**
+ focus styles for squared nav items
+ must only be called on a single simple selector — never on a comma-separated
+ multi-part selector or inside @include interactive-elements, as Sass will
+ produce broken :is() output via button-base's focus-style mixin
+ */
+@mixin nav-item-block-focus {
+  &:is(:focus-visible, :has(:focus-visible), .pretend-focus) {
     outline: none !important;
 
     &::after {
@@ -110,24 +140,30 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
     }
   }
 
-  > post-icon:where(:last-child) {
-    margin-inline-start: auto;
-  }
+  @supports not selector(:has(:focus-visible)) {
+    &:is(:focus-visible, :focus-within, .pretend-focus) {
+      outline: none !important;
 
-  @include media.only(mobile) {
-    padding: calc(0.5rem + 1.5px) 0.75rem calc(0.5rem + 1.5px - var(--post-nav-item-border-width))
-      0.5rem;
-    gap: 0.5rem;
-    font-size: 0.875rem;
+      &::after {
+        content: '';
+        position: absolute;
+        inset: calc(-1 * tokens.get('focus-outline-offset2', helpers.$post-focus));
+        border-width: tokens.get('focus-outline-width', helpers.$post-focus);
+        border-style: tokens.get('focus-border-style', helpers.$post-focus);
+        border-color: tokens.get('focus-outline-color', helpers.$post-focus);
+        border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+        pointer-events: none;
+      }
 
-    > post-icon {
-      font-size: 1rem;
-    }
-  }
+      &:hover::after {
+        border-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus);
+      }
 
-  @include media.only(tablet) {
-    > post-icon {
-      font-size: 1.5rem;
+      @include active-state {
+        &::after {
+          border-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus);
+        }
+      }
     }
   }
 }
