@@ -82,10 +82,10 @@ const rendered = Object.entries(components)
   })
   .join('\n\n');
 
-const page = `import { ${[...pageImports].sort().join(', ')} } from '@swisspost/design-system-components-react/server';
+const homepage = `import { ${[...pageImports].sort().join(', ')} } from '@swisspost/design-system-components-react/server';
 import { PostIconExplosives, PostIconLetter, PostIconLetterSolid } from '@swisspost/design-system-components-react/icons';
 
-export default function Page() {
+export default function Home() {
   return (
     <>
       <h1>Design System Components</h1>
@@ -140,7 +140,7 @@ ${rendered}
 `;
 
 fs.mkdirSync(path.dirname(pagePath), { recursive: true });
-fs.writeFileSync(pagePath, page, 'utf-8');
+fs.writeFileSync(pagePath, homepage, 'utf-8');
 console.log(`✅ page.tsx written → ${pagePath}`);
 
 // ─── LAYOUT.TSX ───────────────────────────────────────────────────────────────
