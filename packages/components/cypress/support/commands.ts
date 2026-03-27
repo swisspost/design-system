@@ -140,7 +140,7 @@ Cypress.Commands.add(
       .join('');
 
     const capture = (markup: string) => {
-      cy.task('readJsonFile', '../output/markup-map.json').then(existing => {
+      cy.task('readJsonFile', 'output/markup-map.json').then(existing => {
         const updated = {
           ...((existing as object) || {}),
           [key]: {
@@ -148,7 +148,7 @@ Cypress.Commands.add(
             title: options?.noTitle ? null : (options?.title ?? key),
           },
         };
-        cy.writeFile('../output/markup-map.json', JSON.stringify(updated, null, 2));
+        cy.writeFile('output/markup-map.json', JSON.stringify(updated, null, 2));
       });
     };
 

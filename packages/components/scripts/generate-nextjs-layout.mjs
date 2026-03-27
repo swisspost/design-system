@@ -40,8 +40,9 @@ const usedNames = [...template.matchAll(/\{\/\* COMPONENT:(\w+) \*\/\}/g)].map((
 
 const allImports = new Set();
 usedNames.forEach(name => {
-  const html = components[name];
-  if (!html) return;
+  const entry = components[name];
+  if (!entry) return;
+  const html = typeof entry === 'string' ? entry : entry.html; // ← add this
   [...html.matchAll(/<(post-[a-z-]+)/g)].forEach(([, tag]) => {
     const pascal =
       'Post' +
@@ -54,10 +55,10 @@ usedNames.forEach(name => {
   });
 });
 
-// Replace component placeholders
 let result = template.replace(/\{\/\* COMPONENT:(\w+) \*\/\}/g, (_, name) => {
-  const html = components[name];
-  if (!html) return `{/* WARNING: ${name} not found in markup-map.json */}`;
+  const entry = components[name];
+  if (!entry) return `{/* WARNING: ${name} not found in markup-map.json */}`;
+  const html = typeof entry === 'string' ? entry : entry.html; // ← add this
   return transformToReact(html);
 });
 

@@ -12,6 +12,16 @@ export function transformToReact(html) {
     html
       // ✅ Remove comments FIRST
       .replace(/<!--[\s\S]*?-->/g, '')
+      // skip if already react
+      .replace(/<(\/?)post-([a-z]+(?:-[a-z]+)*)/g, (_, closing, name) => {
+        const pascal =
+          'Post' +
+          name
+            .split('-')
+            .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+            .join('');
+        return `<${closing}${pascal}`;
+      })
       // Convert style strings to JSX objects
       .replace(/style="([^"]*)"/g, (_, styles) => {
         const obj = styles
