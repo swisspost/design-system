@@ -6,14 +6,19 @@
 Deprecated `.form-select-empty` CSS class. Floating label behavior is now automatic.
 
 BEFORE:
+
+```html
 <select class="form-select form-select-empty">
   <option></option>
   <option value="1">Option 1</option>
 </select>
+```
 
 AFTER:
 
+```html
 <select class="form-select">
   <option></option>
   <option value="1">Option 1</option>
 </select>
+```
