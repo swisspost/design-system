@@ -47,6 +47,25 @@ const meta: MetaComponent = {
       },
       options: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
+    selectedIndex: {
+      name: 'selected-index',
+      control: {
+        type: 'select',
+        labels: {
+          0: 'Step 1',
+          1: 'Step 2',
+          2: 'Step 3',
+          3: 'Step 4',
+          4: 'Step 5',
+          5: 'Step 6',
+          6: 'Step 7',
+          7: 'Step 8',
+          8: 'Step 9',
+          9: 'Step 10',
+        },
+      },
+      options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    },
     stepsAmount: {
       name: 'Steps amount',
       description: 'The amount of steps in the stepper.',
@@ -69,6 +88,7 @@ function render(args: Args) {
       text-current-step="${args.textCurrentStep}"
       text-step-number="${args.textStepNumber}"
       current-index="${args.currentIndex}"
+      selected-index="${args.selectedIndex}"
     >
       ${Array.from({ length: args.stepsAmount }).map(
         (a, i) => html` <post-stepper-item> Step ${i + 1} label</post-stepper-item> `,
@@ -78,3 +98,10 @@ function render(args: Args) {
 }
 
 export const Default: StoryObj = {};
+
+export const Selected: StoryObj = {
+  args: {
+    selectedIndex: 1,
+    currentIndex: 3,
+  },
+};
