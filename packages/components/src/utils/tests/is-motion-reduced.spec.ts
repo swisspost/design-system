@@ -1,22 +1,17 @@
+import '../tests/helpers/mock-stencil-constants';
+import { mockConfig } from '../tests/helpers/mock-match-media';
+
+// Must be imported after mock helpers to ensure it uses the mocked environment
+import { isMotionReduced } from '../is-motion-reduced';
+
 describe('isMotionReduced', () => {
-  let matchMedia;
-  let isMotionReduced;
-
-  beforeEach(async () => {
-    jest.resetModules();
-    matchMedia = window.matchMedia = jest.fn();
-    const { Build } = await import('@stencil/core');
-    Build.isBrowser = true; // Mocking the Browser, as Stencil's Build.isBrowser = false and Build.isServer = true in Jest.
-    ({ isMotionReduced } = await import('../is-motion-reduced'));
-  });
-
-  it('should return true if reduced motion is requested', async () => {
-    matchMedia.mockReturnValue({ matches: true });
+  it('should return true if reduced motion is requested', () => {
+    mockConfig.matchMedia = true;
     expect(isMotionReduced()).toBe(true);
   });
 
-  it('should return false if reduced motion is not requested', async () => {
-    matchMedia.mockReturnValue({ matches: false });
+  it('should return false if reduced motion is not requested', () => {
+    mockConfig.matchMedia = false;
     expect(isMotionReduced()).toBe(false);
   });
 });
