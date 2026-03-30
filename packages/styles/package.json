@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@swisspost/design-system-tokens": "workspace:10.0.0-next.66",
-    "@types/node": "22.10.5",
+    "@types/node": "catalog:node",
     "autoprefixer": "10.4.24",
     "copyfiles": "2.4.1",
     "glob": "13.0.0",
