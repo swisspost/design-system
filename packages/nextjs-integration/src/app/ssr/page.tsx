@@ -129,27 +129,27 @@ export default function Home() {
           <figcaption>Colored Icon</figcaption>
         </figure>
         <figure>
-          <PostIconLetter className="fs-3" base="/post-icons"></PostIconLetter>
+          <PostIconLetter className="fs-3"></PostIconLetter>
           <figcaption>Sized Icon</figcaption>
         </figure>
         <figure>
-          <PostIconExplosives flipH={true} className="fs-2" base="/post-icons"></PostIconExplosives>
+          <PostIconExplosives flipH={true} className="fs-2"></PostIconExplosives>
           <figcaption>Flipped Horizontally</figcaption>
         </figure>
         <figure>
-          <PostIconExplosives className="fs-2" flipV={true} base="/post-icons"></PostIconExplosives>
+          <PostIconExplosives className="fs-2" flipV={true}></PostIconExplosives>
           <figcaption>Flipped Vertically</figcaption>
         </figure>
         <figure>
-          <PostIconLetter className="fs-2" rotate={90} base="/post-icons"></PostIconLetter>
+          <PostIconLetter className="fs-2" rotate={90}></PostIconLetter>
           <figcaption>Rotated</figcaption>
         </figure>
         <figure>
-          <PostIconLetter className="fs-2" scale={1.5} base="/post-icons"></PostIconLetter>
+          <PostIconLetter className="fs-2" scale={1.5}></PostIconLetter>
           <figcaption>Scaled</figcaption>
         </figure>
         <figure>
-          <PostIconLetter className="fs-2" animation={'spin'} base="/post-icons"></PostIconLetter>
+          <PostIconLetter className="fs-2" animation={'spin'}></PostIconLetter>
           <figcaption>Spinning</figcaption>
         </figure>
       </div>

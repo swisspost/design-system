@@ -96,16 +96,19 @@ export class PostIcon {
 
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
+    const isAbsolute = (url: string) => /^https?:\/\//.test(url) || url.startsWith('data:');
+
+    if (this.url) {
+      if (Build.isServer && !isAbsolute(this.url)) {
+        return `${CDN_URL}${fileName}`;
+      }
+      return this.url;
+    }
 
     if (Build.isServer && !this.base) {
       return `${CDN_URL}${fileName}`;
     }
 
-    if (this.url) {
-      return this.url;
-    }
-
-    const isAbsolute = (url: string) => /^https?:\/\//.test(url);
     const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
     const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
 
