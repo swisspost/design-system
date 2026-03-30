@@ -113,19 +113,15 @@ export default function Home() {
 
       <div className="d-flex gap-16 flex-wrap">
         <figure>
-          <PostIconLetter className="fs-2" base="/post-icons"></PostIconLetter>
+          <PostIconLetter className="fs-2"></PostIconLetter>
           <figcaption>Line Icon</figcaption>
         </figure>
         <figure>
-          <PostIconLetterSolid className="fs-2" base="/post-icons"></PostIconLetterSolid>
+          <PostIconLetterSolid className="fs-2"></PostIconLetterSolid>
           <figcaption>Solid Icon</figcaption>
         </figure>
         <figure>
-          <PostIconLetter
-            style={{ color: 'red' }}
-            className="fs-2"
-            base="/post-icons"
-          ></PostIconLetter>
+          <PostIconLetter style={{ color: 'red' }} className="fs-2"></PostIconLetter>
           <figcaption>Colored Icon</figcaption>
         </figure>
         <figure>
