@@ -31,7 +31,7 @@
   "devDependencies": {
     "@eslint/js": "9.18.0",
     "@tokens-studio/sd-transforms": "2.0.3",
-    "@types/node": "22.10.5",
+    "@types/node": "catalog:node",
     "copyfiles": "2.4.1",
     "eslint": "9.26.0",
     "globals": "17.3.0",

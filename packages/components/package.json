@@ -115,7 +115,7 @@
     "@stencil/sass": "3.0.12",
     "@swisspost/design-system-eslint": "workspace:10.0.0-next.66",
     "@types/jest": "29.5.14",
-    "@types/node": "22.10.5",
+    "@types/node": "catalog:node",
     "@typescript-eslint/parser": "7.18.0",
     "copyfiles": "2.4.1",
     "cypress": "14.3.2",
@@ -135,7 +135,7 @@
     "sass": "1.89.2",
     "throttle-debounce": "5.0.2",
     "ts-jest": "29.4.6",
-    "ts-node": "10.9.2",
+    "ts-node": "catalog:node",
     "typescript": "5.8.3",
     "typescript-eslint": "8.20.0"
   },
