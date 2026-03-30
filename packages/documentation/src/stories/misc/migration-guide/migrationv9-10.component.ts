@@ -21,6 +21,7 @@ export class MigrationV910Component extends LitElement {
     forms: {
       tooltip_validation: false,
       input_sizes: false,
+      select_empty: false,
       form_text: false,
     },
     grid: {
@@ -501,6 +502,23 @@ export class MigrationV910Component extends LitElement {
                           >These classes can safely be removed. All form inputs will now have the
                           same height.</span
                         >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="forms-select_empty"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.forms.select_empty}"
+                      />
+                      <label class="form-check-label" for="forms-select_empty">
+                        <code>.form-select-empty</code> class deprecated
+                        <span class="info">
+                          This class has been replaced by a modern CSS selector, which detects the
+                          presence of an empty option.
+                        </span>
                       </label>
                     </div>
                   </li>
