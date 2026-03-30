@@ -1,14 +1,10 @@
 @use 'sass:map';
 
-@use './../color';
 @use './../commons';
 @use './../animation';
 
-@use './../../functions/sizing';
-
 @use '../../functions/tokens';
 @use '../../tokens/components';
-@use '../../tokens/utilities';
 
 tokens.$default-map: components.$post-button;
 

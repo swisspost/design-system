@@ -36,7 +36,7 @@ export const Validation: Story = {
                     ...context.args,
                     validationValidation: validation,
                     scheme: scheme,
-                    componentName: Object.keys(Component.args!)[0],
+                    componentName: Object.keys(Component.args ?? {})[0],
                   };
                   return html`${render(args, context)}`;
                 })}

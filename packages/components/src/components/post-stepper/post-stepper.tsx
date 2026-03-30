@@ -55,18 +55,35 @@ export class PostStepper {
   }
 
   /**
-   * Defines the currently active step
+   * Defines the current step, which is the next step the user has to complete.
    */
   @Prop() currentIndex: number = -1;
 
   @Watch('currentIndex')
   validateCurrentIndex() {
     checkRequiredAndType(this, 'currentIndex', 'number');
-    this.updateSteps();
+    if (this.stepItems) {
+      this.updateSteps();
+      this.checkIndexes();
+    }
   }
 
-  connectedCallback() {
-    this.stepItems = document.querySelectorAll(null);
+  /**
+   * Defines the selected (active) step, which is the step the user is currently on.
+   * If not defined, the selected step is the current step.
+   */
+  @Prop() selectedIndex?: number;
+
+  @Watch('selectedIndex')
+  validateSelectedIndex() {
+    if (this.selectedIndex === undefined) {
+      this.selectedIndex = this.currentIndex;
+    } else {
+      checkRequiredAndType(this, 'selectedIndex', 'number');
+      this.checkIndexes();
+    }
+
+    this.updateSteps();
   }
 
   componentDidLoad() {
@@ -77,14 +94,25 @@ export class PostStepper {
     // Wait for slotchange
     setTimeout(() => {
       this.validateCurrentIndex();
+      this.validateSelectedIndex();
     });
+  }
+
+  private checkIndexes() {
+    if (this.selectedIndex > this.currentIndex) {
+      console.error(
+        'The selected-index cannot be higher than the current-index, as only the current and completed steps can be selected.',
+      );
+    }
   }
 
   private updateActiveStepNumber() {
     if (this.textStepNumber) {
       const labelTemplate = this.textStepNumber;
-      this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.currentIndex + 1}`);
-      this.updateMobileActiveStepVisibility();
+      this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.selectedIndex + 1}`);
+      if (this.stepItems) {
+        this.updateMobileActiveStepVisibility();
+      }
     }
   }
 
@@ -99,33 +127,36 @@ export class PostStepper {
     this.updateActiveStepNumber();
 
     this.stepItems.forEach((el, i) => {
-      const labelEl = el.querySelector('.label');
-
-      if (this.currentIndex === i && labelEl) {
-        this.mobileActiveStepName = labelEl.innerHTML;
+      if (this.selectedIndex === i) {
+        this.mobileActiveStepName = el.innerHTML;
       }
 
       // Update "post-stepper-item" classes to show correct status
       el.classList.toggle('stepper-item-completed', this.currentIndex > i);
       el.classList.toggle('stepper-item-current', this.currentIndex === i);
+      el.classList.toggle('stepper-item-selected', this.selectedIndex === i);
       el.classList.toggle('stepper-item-inactive', this.currentIndex < i);
+      el.classList.toggle('stepper-item-after-current', i === this.currentIndex + 1);
 
       // Update accessibility label depending on status (Completed/Current/-)
-      const hiddenLabel = el.querySelector('.step-hidden-label');
+      const hiddenLabel = el.shadowRoot?.querySelector('.step-hidden-label');
+
       if (hiddenLabel) {
         let labelText = '';
 
         if (this.currentIndex > i) {
-          labelText = `${this.textCompletedStep}:`;
-        } else if (this.currentIndex === i) {
-          labelText = `${this.textCurrentStep}:`;
+          labelText = `${this.textCompletedStep}: `;
+        }
+
+        if (this.selectedIndex === i) {
+          labelText = `${labelText}${this.textCurrentStep}: `;
         }
 
         hiddenLabel.textContent = labelText;
       }
 
       // Update accessibility aria attributes
-      if (this.currentIndex === i) {
+      if (this.selectedIndex === i) {
         el.setAttribute('aria-current', 'step');
         el.setAttribute('aria-live', 'polite');
       } else {
@@ -138,7 +169,7 @@ export class PostStepper {
   }
 
   private updateMobileActiveStepVisibility() {
-    if (this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
+    if (this.selectedIndex >= this.stepItems.length || this.selectedIndex < 0) {
       this.mobileActiveStepLabel = '';
       this.mobileActiveStepName = '';
     }
@@ -151,7 +182,7 @@ export class PostStepper {
           <slot onSlotchange={() => this.updateSteps()}></slot>
         </ol>
         <div class="active-step" aria-hidden="true">
-          {this.mobileActiveStepLabel}
+          <span class="active-step-label">{this.mobileActiveStepLabel}</span>
           <span innerHTML={this.mobileActiveStepName}></span>
         </div>
       </Host>

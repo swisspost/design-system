@@ -12,7 +12,7 @@ if (footerEl) {
 
     if (footerEl && isNewPage()) {
       contentReady();
-      currentPage = window.parent.location.href;
+      currentPage = globalThis.parent.location.href;
     }
   }).observe(previewIframe, {
     childList: true,
@@ -21,10 +21,10 @@ if (footerEl) {
 }
 
 function contentReady() {
-  window.dispatchEvent(new Event('storybook:contentReady'));
-  window.parent.dispatchEvent(new Event('storybook:contentReady'));
+  globalThis.dispatchEvent(new Event('storybook:contentReady'));
+  globalThis.parent.dispatchEvent(new Event('storybook:contentReady'));
 }
 
 function isNewPage() {
-  return currentPage !== window.parent.location.href;
+  return currentPage !== globalThis.parent.location.href;
 }
