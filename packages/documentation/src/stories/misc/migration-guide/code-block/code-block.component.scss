@@ -37,6 +37,26 @@ tokens.$default-map: utilities.$post-spacing;
     pre {
       margin: 0;
       overflow-x: auto;
+      scrollbar-color: post.$gray-60 transparent;
+      scrollbar-width: thin;
+      background: post.$gray-80;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: post.$gray-60;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: post.$gray-40;
+      }
     }
   }
 }
