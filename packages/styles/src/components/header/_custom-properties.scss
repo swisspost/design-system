@@ -91,6 +91,12 @@ post-header:has([slot='main-nav']):has([slot='title']) {
   }
 }
 
+// One-pager header: when there is no main-nav and no title,
+// ensure the local header collapses to zero height
+:root:has(post-header):not(:has(post-header [slot='main-nav'])):not(:has(post-header [slot='title'])) {
+  --post-local-header-expanded-min-height: 0rem;
+}
+
 post-header:not(:has([slot='main-nav'])) {
   // Hide burger button (no main navigation)
   --post-burger-button-display: none;
