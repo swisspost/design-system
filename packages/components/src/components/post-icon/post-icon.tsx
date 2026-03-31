@@ -111,7 +111,6 @@ export class PostIcon {
     }
 
     const isAbsolute = (url: string) => /^https?:\/\//.test(url);
-
     const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
     const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
 
