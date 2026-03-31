@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.66
+
+### Minor Changes
+
+- Added icons: `2765` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7375](https://github.com/swisspost/design-system/pull/7375))
+
 ## 10.0.0-next.65
 
 ### Minor Changes
