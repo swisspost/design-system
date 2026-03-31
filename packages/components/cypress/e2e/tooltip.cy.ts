@@ -415,10 +415,10 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       });
     };
 
-    it('does not shift the stepper above the trigger', () => {
-      snapRect('#layout-stepper').then(before => {
+    it('does not shift the button group above the trigger', () => {
+      snapRect('#layout-button-group').then(before => {
         showLayoutTooltip();
-        cy.get('#layout-stepper').then($el => {
+        cy.get('#layout-button-group').then($el => {
           const after = $el[0].getBoundingClientRect();
           expect(after.top).to.equal(before.top);
           expect(after.left).to.equal(before.left);

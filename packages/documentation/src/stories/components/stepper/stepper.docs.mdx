@@ -23,6 +23,17 @@ import PackageTag from '@/shared/package-tag';
   <Controls of={StepperStories.Default} />
 </div>
 
+## Selected step
+
+The current step and the selected step represent two different concepts:
+
+- The current step comes immediately after the last completed step. It is the next step the user should complete, but it may not be the currently selected step.
+- The selected step is the "currently active" step that the user is on. It can be either a completed step or the current step.
+
+Here is what a stepper looks like with different selected (in bold) and current (in black) steps:
+
+<Canvas sourceState="hidden" of={StepperStories.Selected} />
+
 ## Installation
 
 The `<post-stepper>` element is part of the `@swisspost/design-system-components` package.
