@@ -45,9 +45,11 @@ export class PostMenuTrigger {
   }
 
   private updateAriaExpanded(event: CustomEvent) {
-    const target = event.target as HTMLPostMenuElement;
+    const target = event
+      .composedPath()
+      .find(el => (el as HTMLElement).localName === 'post-menu') as HTMLPostMenuElement;
 
-    if (target.localName === 'post-menu' && target.id === this.for) {
+    if (target && target.id === this.for) {
       this.slottedButton.setAttribute('aria-expanded', event.detail.toString());
     }
   }
