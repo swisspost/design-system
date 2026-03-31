@@ -6,12 +6,12 @@ import { isMotionReduced } from '../is-motion-reduced';
 
 describe('isMotionReduced', () => {
   it('should return true if reduced motion is requested', () => {
-    mockConfig.matchMedia = true;
+    mockConfig.matches = true;
     expect(isMotionReduced()).toBe(true);
   });
 
   it('should return false if reduced motion is not requested', () => {
-    mockConfig.matchMedia = false;
+    mockConfig.matches = false;
     expect(isMotionReduced()).toBe(false);
   });
 });
