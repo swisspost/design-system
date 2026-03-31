@@ -1,11 +1,16 @@
 // Mock the browser's matchMedia API on the global object
-export const mockConfig = { matchMedia: false as boolean | undefined };
+
+export type mockConfigMediaType = {
+  matches: boolean;
+};
+
+export const mockConfig: mockConfigMediaType = { matches: false };
 
 Object.defineProperty(globalThis, 'matchMedia', {
   writable: true,
   value: jest.fn(() => ({
     writable: true,
-    matches: mockConfig.matchMedia ?? false,
+    matches: mockConfig.matches,
     addListener: jest.fn(),
     removeListener: jest.fn(),
   })),
