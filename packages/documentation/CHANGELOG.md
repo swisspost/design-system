@@ -1,5 +1,50 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.67
+
+### Minor Changes
+
+- Published `post-date-picker` web component. (by [@myrta2302](https://github.com/myrta2302) with [#7316](https://github.com/swisspost/design-system/pull/7316))
+
+- Added an optional `selected-index` prop to the `post-stepper` to indicate the user's currently selected step. (by [@leagrdv](https://github.com/leagrdv) with [#7266](https://github.com/swisspost/design-system/pull/7266))
+
+### Patch Changes
+
+- Renamed the Card control component to Selection card, along with its classes:
+  - `.card-control` is now `.selection-card`
+  - `.card-control--description` is now `.selection-card--description`
+  - `.card-control--icon` is now `.selection-card--icon` (by [@leagrdv](https://github.com/leagrdv) with [#7398](https://github.com/swisspost/design-system/pull/7398))
+
+- Deprecated `.form-select-empty` CSS class. Floating label behavior is now automatic.  
+  BEFORE:
+
+  ```html
+  <select class="form-select form-select-empty">
+    <option></option>
+    <option value="1">Option 1</option>
+  </select>
+  ```
+
+  AFTER:
+
+  ````html
+  <select class="form-select">
+    <option></option>
+    <option value="1">Option 1</option>
+  </select>
+  ``` (by [@leagrdv](https://github.com/leagrdv) with
+  [#7393](https://github.com/swisspost/design-system/pull/7393))
+  ````
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.66
+  - @swisspost/design-system-components@10.0.0-next.66
+  - @swisspost/design-system-styles@10.0.0-next.66
+  - @swisspost/design-system-components-react@10.0.0-next.66
+  - @swisspost/internet-header@10.0.0-next.66
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.66
+  - @swisspost/design-system-tokens@10.0.0-next.66
+
 ## 6.0.0-next.66
 
 ### Major Changes

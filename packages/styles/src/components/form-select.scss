@@ -240,7 +240,9 @@ tokens.$default-map: components.$post-select;
       background-color: tokens.get('select-color-disabled-bg');
     }
 
-    &:empty,
+    &:has(option[value='']:checked:empty),
+    &:has(option:not([value]):checked:empty),
+    // deprecated
     &.form-select-empty {
       ~ label {
         padding-block-start: tokens.get('select-label-empty-padding-block-start');

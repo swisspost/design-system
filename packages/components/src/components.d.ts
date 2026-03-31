@@ -558,10 +558,14 @@ export namespace Components {
     }
     interface PostStepper {
         /**
-          * Defines the currently active step
+          * Defines the current step, which is the next step the user has to complete.
           * @default -1
          */
         "currentIndex": number;
+        /**
+          * Defines the selected (active) step, which is the step the user is currently on. If not defined, the selected step is the current step.
+         */
+        "selectedIndex"?: number;
         /**
           * "Completed step" label for accessibility
          */
@@ -1591,10 +1595,14 @@ declare namespace LocalJSX {
     }
     interface PostStepper {
         /**
-          * Defines the currently active step
+          * Defines the current step, which is the next step the user has to complete.
           * @default -1
          */
         "currentIndex"?: number;
+        /**
+          * Defines the selected (active) step, which is the step the user is currently on. If not defined, the selected step is the current step.
+         */
+        "selectedIndex"?: number;
         /**
           * "Completed step" label for accessibility
          */
