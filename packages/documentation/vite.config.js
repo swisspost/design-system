@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'url';
+import { fileURLToPath, URL } from 'node:url';
 // https://vitejs.dev/config/
 
 /** @type {import('vite').UserConfig} */
