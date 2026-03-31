@@ -6,14 +6,16 @@ describe('Inline Notification', () => {
       cy.injectAxe();
     });
 
-    it('Has no detectable a11y violations on load for all variants', () => {
-      cy.checkA11y('#root-inner', {
-        rules: {
-          'color-contrast': {
-            enabled: false,
-          },
-        },
-      });
+    it('has no detectable a11y violations', () => {
+      cy.checkA11y('.inline-notification');
+    });
+  });
+
+  describe('Snapshots', () => {
+    it('renders all variants with and without title', () => {
+      cy.visit('/iframe.html?id=snapshots--inline-notification');
+      cy.get('.inline-notification', { timeout: 30000 }).should('be.visible');
+      cy.percySnapshot('Inline Notification - All Variants');
     });
   });
 });
