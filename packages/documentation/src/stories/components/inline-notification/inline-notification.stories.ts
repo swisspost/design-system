@@ -76,7 +76,11 @@ function renderInlineNotification(args: Args) {
   const titleHTML = title ? `<${headingLevel}>${title}</${headingLevel}>` : '';
 
   return html`
-    <div class="inline-notification inline-notification-${variant} ${layoutClass}" role="alert">
+    <div
+      class="inline-notification inline-notification-${variant} ${layoutClass}"
+      role="alert"
+      aria-label="${title || message}"
+    >
       ${unsafeHTML(titleHTML)}
       <p>${message}</p>
     </div>
