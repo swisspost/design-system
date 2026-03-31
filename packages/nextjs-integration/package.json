@@ -36,7 +36,7 @@
     "@next/eslint-plugin-next": "15.1.5",
     "@playwright/test": "1.56.1",
     "@swisspost/design-system-components": "workspace:10.0.0-next.66",
-    "@types/node": "22.10.5",
+    "@types/node": "catalog:node",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
     "eslint": "9.26.0",

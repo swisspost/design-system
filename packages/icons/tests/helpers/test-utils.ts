@@ -2,14 +2,14 @@
  * Common test utilities for icon tests
  */
 
-import fs from 'fs';
+import fs from 'node:fs';
 
 /**
  * Extract the report.json write call from fs.writeFileSync mock
  */
 export function getReportJsonCall(mockWriteFileSync: jest.Mock) {
-  const call = mockWriteFileSync.mock.calls.find(call =>
-    call[0].includes('report.json') && !call[0].includes('report.min.json')
+  const call = mockWriteFileSync.mock.calls.find(
+    call => call[0].includes('report.json') && !call[0].includes('report.min.json'),
   );
   return call;
 }
@@ -26,9 +26,7 @@ export function getReportJsonData(mockWriteFileSync: jest.Mock) {
  * Extract the report.min.json write call from fs.writeFileSync mock
  */
 export function getMinReportJsonCall(mockWriteFileSync: jest.Mock) {
-  const call = mockWriteFileSync.mock.calls.find(call =>
-    call[0].includes('report.min.json')
-  );
+  const call = mockWriteFileSync.mock.calls.find(call => call[0].includes('report.min.json'));
   return call;
 }
 
@@ -52,7 +50,7 @@ export function setupFsMocks() {
     unlinkSync: jest.spyOn(fs, 'unlinkSync').mockImplementation(() => {}),
     writeFileSync: jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {}),
     readFileSync: jest.spyOn(fs, 'readFileSync').mockReturnValue(''),
-    readdirSync: jest.spyOn(fs, 'readdirSync').mockReturnValue([] as unknown as fs.Dirent[]),
+    readdirSync: jest.spyOn(fs, 'readdirSync').mockImplementation(() => []),
   };
 }
 
@@ -178,7 +176,7 @@ export function expectCleanupBeforeCreation(
   calls: string[],
   identifier: string,
   cleanupPrefix: string = 'rm',
-  createPrefix: string = 'mkdir'
+  createPrefix: string = 'mkdir',
 ) {
   const cleanupIndex = calls.indexOf(`${cleanupPrefix}:${identifier}`);
   const createIndex = calls.indexOf(`${createPrefix}:${identifier}`);
