@@ -36,12 +36,12 @@ export class PostMenuTrigger {
     this.setAriaAttributes();
 
     if (this.root) {
-      this.root.addEventListener('toggleMenu', this.updateAriaExpanded);
+      this.root.addEventListener('postToggle', this.updateAriaExpanded);
     }
   }
 
   disconnectedCallback() {
-    this.root.removeEventListener('toggleMenu', this.updateAriaExpanded);
+    this.root.removeEventListener('postToggle', this.updateAriaExpanded);
   }
 
   private updateAriaExpanded(event: CustomEvent) {
