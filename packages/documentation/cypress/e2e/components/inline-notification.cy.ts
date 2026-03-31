@@ -7,7 +7,15 @@ describe('Inline Notification', () => {
     });
 
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', undefined, violations => {
+        violations.forEach(v => {
+          console.log(
+            v.id,
+            v.description,
+            v.nodes.map(n => n.html),
+          );
+        });
+      });
     });
   });
 });

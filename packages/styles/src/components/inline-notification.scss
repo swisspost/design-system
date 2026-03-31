@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../functions/tokens';
 @use '../tokens/elements';
+@use './../mixins/utilities';
 
 tokens.$default-map: elements.$post-heading;
 
@@ -61,7 +62,7 @@ tokens.$default-map: elements.$post-heading;
 
     p {
       flex-basis: calc(100% - 40px);
-      margin-left: 40px;
+      margin-inline-start: 40px;
     }
   }
 
@@ -92,8 +93,9 @@ tokens.$default-map: elements.$post-heading;
       }
     }
   }
+
+  @include utilities.high-contrast-mode {
+    border: 2px solid CanvasText;
+  }
 }
 
-:export {
-  inline-notification-variants: info, success, warning, error;
-}

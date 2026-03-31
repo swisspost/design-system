@@ -20,6 +20,7 @@ const meta: MetaComponent = {
     layout: 'single-line',
     title: 'Title',
     message: 'Message',
+    headingLevel: 'h4',
   },
   argTypes: {
     variant: {
@@ -54,6 +55,13 @@ const meta: MetaComponent = {
       table: {
         category: 'Content',
       },
+    },
+    headingLevel: {
+      name: 'Heading Level',
+      description: 'The heading tag used for the notification title.',
+      control: 'select',
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      table: { category: 'Content' },
     },
   },
 };
