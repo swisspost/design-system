@@ -1,5 +1,50 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.66
+
+### Major Changes
+
+- Renamed the Card control component to Selection card, along with its classes:
+  - `.card-control` is now `.selection-card`
+  - `.card-control--description` is now `.selection-card--description`
+  - `.card-control--icon` is now `.selection-card--icon` (by [@leagrdv](https://github.com/leagrdv) with [#7398](https://github.com/swisspost/design-system/pull/7398))
+
+- Deleted the following mixins and functions:
+  - Functions: `remove-nth`, `px-to-em`, `to-em`, `strip-unit`, `px-to-rem`, `to-rem`, `to-px`, `calculate-inner-height`, `calculate-single-box-shadow-size`
+  - Mixins: `font-smoothing`, `font-smoothing-reset`, `visuallyhidden-reset`, `visuallhidden-focusable`, `replace-text`, `truncate`, `full-width-underscore`, `focus-hover-style-custom` (by [@leagrdv](https://github.com/leagrdv) with [#7288](https://github.com/swisspost/design-system/pull/7288))
+
+### Patch Changes
+
+- Fixed a cumulative layout shift (CLS) when server-side rendering a one-pager header without a title and a local header part. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7416](https://github.com/swisspost/design-system/pull/7416))
+
+- Added a `.post-dialog` class to the `dialog` element for its styling. Styling is still being applied directly to the `dialog` for now but will be removed in a future version to prevent styling conflicts with other `dialog` elements on the page. (by [@leagrdv](https://github.com/leagrdv) with [#7394](https://github.com/swisspost/design-system/pull/7394))
+
+- Removed background color from `.list-interactive`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7411](https://github.com/swisspost/design-system/pull/7411))
+
+- Deprecated `.form-select-empty` CSS class. Floating label behavior is now automatic.  
+  BEFORE:
+
+  ```html
+  <select class="form-select form-select-empty">
+    <option></option>
+    <option value="1">Option 1</option>
+  </select>
+  ```
+
+  AFTER:
+
+  ````html
+  <select class="form-select">
+    <option></option>
+    <option value="1">Option 1</option>
+  </select>
+  ``` (by [@leagrdv](https://github.com/leagrdv) with
+  [#7393](https://github.com/swisspost/design-system/pull/7393))
+  ````
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.66
+
 ## 10.0.0-next.65
 
 ### Major Changes
