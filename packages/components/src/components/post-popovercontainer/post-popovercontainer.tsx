@@ -415,17 +415,26 @@ export class PostPopovercontainer {
 
   private async computeMainPosition() {
     const gap = this.edgeGap;
+    const isAligned = (this.placement || 'top').includes('-');
+
+    const flipMiddleware = flip({
+      padding: this.getHeaderHeight(),
+      crossAxis: false,
+    });
+
+    const shiftMiddleware = shift({
+      padding: gap,
+      limiter: limitShift({
+        offset: 32,
+      }),
+    });
+
     const middleware = [
-      flip({
-        padding: this.getHeaderHeight(),
-      }),
+      offset(this.offset ?? (this.arrow ? gap + 4 : gap)),
       inline(),
-      shift({
-        padding: gap,
-        limiter: limitShift({
-          offset: 32,
-        }),
-      }),
+      // Per floating-ui docs: for aligned placements (e.g. bottom-end),
+      // flip should come before shift. For non-aligned, shift before flip.
+      ...(isAligned ? [flipMiddleware, shiftMiddleware] : [shiftMiddleware, flipMiddleware]),
       size({
         apply({ availableWidth, elements }) {
           Object.assign(elements.floating.style, {
@@ -433,7 +442,6 @@ export class PostPopovercontainer {
           });
         },
       }),
-      offset(this.offset ?? (this.arrow ? gap + 4 : gap)),
     ];
 
     if (this.arrow) {
