@@ -21,6 +21,7 @@ export class MigrationV99Component extends LitElement {
     forms: {
       tooltip_validation: false,
       input_sizes: false,
+      select_empty: false,
       form_text: false,
     },
     grid: {
@@ -186,23 +187,29 @@ export class MigrationV99Component extends LitElement {
             <h3>Run Automigration Scripts 🪄</h3>
             <p>
               Many breaking changes can be fixed automatically using the
-              <code>@swisspost/design-system-eslint</code> package. Our very own, custom migration rules scan your
-              HTML and TypeScript files and apply fixes where possible. Each item marked with
-              <span class="tag tag-sm tag-info">🪄 migration rule</span> in the checklist below
-              is covered by one of them.
+              <code>@swisspost/design-system-eslint</code> package. Our very own, custom migration
+              rules scan your HTML and TypeScript files and apply fixes where possible. Each item
+              marked with <span class="tag tag-sm tag-info">🪄 migration rule</span> in the
+              checklist below is covered by one of them.
             </p>
             <ol>
               <li>
                 Install the Design System ESLint package as a dev dependency:
-                <code languages="['bash']">npm install @swisspost/design-system-eslint --save-dev</code>
+                <code languages="['bash']"
+                  >npm install @swisspost/design-system-eslint --save-dev</code
+                >
               </li>
               <li>
-                Run the migration rules using the official ESLint runner with the --fix flag at the root of your project:
-                <code languages="['bash']">npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix
+                Run the migration rules using the official ESLint runner with the --fix flag at the
+                root of your project:
+                <code languages="['bash']"
+                  >npx eslint --config
+                  node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix
                 </code>
                 <span class="info">
-                  💡 This command applies migration rules using the official ESLint package without installing it as a project 
-                  dependency or modifying your existing ESLint configuration.
+                  💡 This command applies migration rules using the official ESLint package without
+                  installing it as a project dependency or modifying your existing ESLint
+                  configuration.
                 </span>
               </li>
               <li>
@@ -495,6 +502,23 @@ export class MigrationV99Component extends LitElement {
                           >These classes can safely be removed. All form inputs will now have the
                           same height.</span
                         >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="forms-select_empty"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.forms.select_empty}"
+                      />
+                      <label class="form-check-label" for="forms-select_empty">
+                        <code>.form-select-empty</code> class deprecated
+                        <span class="info">
+                          This class has been replaced by a modern CSS selector, which detects the
+                          presence of an empty option.
+                        </span>
                       </label>
                     </div>
                   </li>
