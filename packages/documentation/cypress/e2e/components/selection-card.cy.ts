@@ -1,8 +1,8 @@
 describe('Choice-card', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
-      cy.visit('/iframe.html?id=snapshots--card-control');
-      cy.get('.card-control', { timeout: 30000 }).should('be.visible');
+      cy.visit('/iframe.html?id=snapshots--selection-card');
+      cy.get('.selection-card', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 
