@@ -89,11 +89,7 @@ export function createAutocompleteRenderer({ detached = false }: { detached?: bo
         </post-autocomplete>
 
         ${detached
-          ? html`
-              <div style="position: absolute; right:200px">
-                <post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>
-              </div>
-            `
+          ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
           : null}
       </div>
     `;
