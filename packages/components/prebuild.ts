@@ -63,7 +63,7 @@ export async function createComponentNameOutput(
   );
 }
 
-function copyAndConvertAirDatepickerLocales() {
+export function copyAndConvertAirDatepickerLocales() {
   // air-datepicker is in the package-level node_modules
   const SOURCE_LOCALE_PATH = path.resolve('./node_modules/air-datepicker/locale');
   const DEST_LOCALE_PATH = path.resolve('./src/components/post-date-picker/locales');
@@ -103,7 +103,6 @@ function copyAndConvertAirDatepickerLocales() {
       // Write the ESM file
       fs.writeFileSync(dest, content, 'utf8');
     });
-    console.log(`Converted ${files.length} air-datepicker locale files from CJS to ESM`);
   } else {
     console.warn('air-datepicker locale directory not found, skipping conversion');
   }
@@ -114,4 +113,7 @@ function prebuild() {
   copyAndConvertAirDatepickerLocales();
 }
 
-prebuild();
+// run prebuild automatically if script is executed directly in node
+if (process.argv[0].endsWith('node') && process.argv[1]?.endsWith('prebuild.ts')) {
+  prebuild();
+}

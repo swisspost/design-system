@@ -125,7 +125,7 @@ export const config: Config = {
   rollupPlugins: {
     before: [
       // Rollup dynamicImportVars plugin requires relative paths (starting with ./)
-      // We copy and convert air-datepicker CJS locales to ESM during prebuild
+      // We copy and convert and internalize air-datepicker CJS locales to ESM during prebuild
       dynamicImportVars({
         include: ['**/post-date-picker/air-locales.ts'],
       }),
@@ -141,6 +141,9 @@ export const config: Config = {
     ],
   },
   testing: {
+    moduleNameMapper: {
+      '^lcid$': '<rootDir>/src/utils/tests/__mocks__/lcid.cjs',
+    },
     testPathIgnorePatterns: [
       '<rootDir>/dist/',
       '<rootDir>/loader/',
