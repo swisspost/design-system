@@ -42,12 +42,22 @@ These classes control the display of corresponding feedback messages that should
 
 ### Radio Button
 
+Radio buttons are always used as part of a group. Validation is applied to the group as a whole, not to individual radio buttons.
+
+This example demonstrates how a validation message can be programmatically associated with a single radio input. However, in real-world usage, validation should be implemented at the group level.
+
 <Canvas sourceState="shown" of={ValidationStories.RadioButton} />
 <div className="hide-col-default">
   <Controls of={ValidationStories.RadioButton} />
 </div>
 
-### Radio Button Inline Group
+### Radio Button Group
+
+Radio buttons are validated as a group (all inputs sharing the same `name`), not individually. Validation feedback must be linked to every radio input using `aria-describedby`.
+
+When the group is `required` and no option is selected, `aria-invalid="true"` needs to be applied to all radio inputs.
+
+The `required` attribute only needs to be set on one radio input in the group.
 
 <Canvas sourceState="shown" of={ValidationStories.RadioButtonGroup} />
 <div className="hide-col-default">
