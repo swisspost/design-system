@@ -51,6 +51,8 @@ export class PostAutocomplete {
     if (!this.listBoxElement.id) this.listBoxElement.id = crypto.randomUUID();
     this.inputElement.setAttribute('aria-controls', this.listBoxElement.id);
     this.inputElement.setAttribute('aria-expanded', 'false');
+    // Because we're handling that and the browser would show a duplicate native autocomplete dropdown
+    this.inputElement.autocomplete = 'off';
     this.attachInputListeners();
     this.attachListboxListeners();
   }
