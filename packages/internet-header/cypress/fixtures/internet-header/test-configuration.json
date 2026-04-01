@@ -1101,286 +1101,131 @@
       "additionalAttributes": []
     },
     "footer": {
-      "title": "Fusszeile",
-      "asWebComponent": true,
-      "osLinks": {
-        "serviceName": "Standorte und Öffnungszeiten",
-        "links": []
-      },
-      "block": [
+      "sections": [
         {
-          "columnType": "list",
-          "title": "Direkt zu",
-          "links": [
-            {
-              "url": "https://www.postfinance.ch/",
-              "target": "_blank",
-              "text": "PostFinance",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.postauto.ch/",
-              "target": "_blank",
-              "text": "PostAuto",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://immobilien.post.ch/de",
-              "target": "_blank",
-              "text": "Immobilien",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://postcompanycars.post.ch/de",
-              "target": "_blank",
-              "text": "Post Company Cars",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.swisspostsolutions.com/de/startseite",
-              "target": "_blank",
-              "text": "Swiss Post Solutions",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            }
-          ],
-          "content": null
-        },
-        {
-          "columnType": "list",
-          "title": "Mehr Post",
-          "links": [
-            {
-              "url": "https://post.ch/de/ueber-uns/innovation",
-              "target": "",
-              "text": "Innovation",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/de/ueber-uns/verantwortung",
-              "target": "",
-              "text": "Verantwortung",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.postshop.ch/shop/de",
-              "target": "_blank",
-              "text": "Shop",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/de/ueber-uns/medien",
-              "target": "",
-              "text": "Medien",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/de/pages/corona",
-              "target": "",
-              "text": "Coronavirus",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            }
-          ],
-          "content": null
-        },
-        {
-          "columnType": "contact",
-          "title": "Contact Center",
-          "links": null,
-          "content": [
-            {
-              "address": null,
-              "describe": "CHF 0.08/Min. vom Schweizer Festnetz",
-              "hours": null,
-              "links": null,
-              "name": "phone",
-              "number": "+41 848 888 888",
-              "text": null,
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "07:30 - 18:00 Uhr",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Montag bis Freitag",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "08:00 - 12:00 Uhr",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Samstag",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "Bildschirm teilen",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Live Support",
-              "title": null
-            }
+          "title": "Titel 1",
+          "items": [
+            { "text": "Textlink 1", "url": "#" },
+            { "text": "Textlink 2", "url": "#" },
+            { "text": "Textlink 3", "url": "#" },
+            { "text": "Textlink 4", "url": "#" },
+            { "text": "Textlink 5", "url": "#" },
+            { "text": "Textlink 6", "url": "#" }
           ]
         },
         {
-          "columnType": "address",
-          "title": "Adresse Contact Center",
-          "links": null,
-          "content": [
-            {
-              "address": "Post CH Netz AG<br/>Contact Center Post<br/>Wankdorfallee 4<br/>3030 Bern",
-              "describe": null,
-              "hours": null,
-              "links": null,
-              "name": null,
-              "number": null,
-              "text": null,
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": null,
-              "links": [
-                {
-                  "url": "https://www.facebook.com/swisspost",
-                  "icon": "8004_facebook",
-                  "name": "Folgen Sie uns auf Facebook",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.instagram.com/swisspost/",
-                  "icon": "8007_instagram",
-                  "name": "Folgen Sie uns auf Instagram",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.youtube.com/swisspost",
-                  "icon": "8002_youtube",
-                  "name": "Folgen Sie uns auf Youtube",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.snapchat.com/add/swisspostjobs",
-                  "icon": "8017_snapchat",
-                  "name": "Folgen Sie uns auf Snapchat",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://twitter.com/PostSchweiz",
-                  "icon": "8000_twitter",
-                  "name": "Folgen Sie uns auf Twitter",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.xing.com/companies/dieschweizerischepost",
-                  "icon": "8001_xing",
-                  "name": "Folgen Sie uns auf Xing",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.linkedin.com/company/swiss-post",
-                  "icon": "8005_linkedin",
-                  "name": "Folgen Sie uns auf LinkedIn",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.kununu.com/ch/die-schweizerische-post",
-                  "icon": "8008_kununu",
-                  "name": "Folgen Sie uns auf Kununu",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                }
-              ],
-              "name": null,
-              "number": null,
-              "text": null,
-              "title": "Folgen Sie uns"
-            }
+          "title": "Titel 2",
+          "items": [
+            { "text": "Textlink 1", "url": "#" },
+            { "text": "Textlink 2", "url": "#" },
+            { "text": "Textlink 3", "url": "#" },
+            { "text": "Textlink 4", "url": "#" },
+            { "text": "Textlink 5", "url": "#" },
+            { "text": "Textlink 6", "url": "#" },
+            { "text": "Textlink 7", "url": "#" },
+            { "text": "Textlink 8", "url": "#" }
+          ]
+        },
+        {
+          "title": "Titel 3",
+          "items": [
+            { "text": "Textlink 1", "url": "#" },
+            { "text": "Textlink 2", "url": "#" },
+            { "text": "Textlink 3", "url": "#" },
+            { "text": "Textlink 4", "url": "#" },
+            { "text": "Textlink 5", "url": "#" },
+            { "text": "Textlink 6", "url": "#" },
+            { "text": "Textlink 7", "url": "#" },
+            { "text": "Textlink 8", "url": "#" }
+          ]
+        },
+        {
+          "title": "Titel 4",
+          "items": [
+            { "text": "Textlink 1", "url": "#" },
+            { "text": "Textlink 2", "url": "#" },
+            { "text": "Textlink 3", "url": "#" },
+            { "text": "Textlink 4", "url": "#" },
+            { "text": "Textlink 5", "url": "#" }
           ]
         }
       ],
-      "entry": {
-        "text": "© 2021 Die Schweizerische Post AG"
+      "socialLinks": {
+        "title": "Folgen Sie uns",
+        "items": [
+          { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
+          {
+            "text": "Instagram",
+            "url": "https://www.instagram.com/swisspost/",
+            "icon": "instagram"
+          },
+          { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
+          {
+            "text": "Snapchat",
+            "url": "https://www.snapchat.com/add/swisspostjobs",
+            "icon": "snapchat"
+          },
+          { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
+          {
+            "text": "Linkedin",
+            "url": "https://www.linkedin.com/company/swiss-post",
+            "icon": "linkedin"
+          },
+          {
+            "text": "Xing",
+            "url": "https://www.xing.com/companies/dieschweizerischepost",
+            "icon": "xing"
+          },
+          { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
+        ]
       },
-      "links": [
-        {
-          "url": "https://post.ch/de/pages/footer/barrierefreiheit-bei-der-post",
-          "target": "",
-          "text": "Barrierefreiheit",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/de/pages/footer/allgemeine-geschaeftsbedingungen-agb",
-          "target": "",
-          "text": "Allgemeine Geschäftsbedingungen",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/de/pages/footer/datenschutz-und-rechtliches",
-          "target": "",
-          "text": "Datenschutz und Rechtliches",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/de/pages/footer/impressum",
-          "target": "",
-          "text": "Impressum",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        }
-      ],
-      "classes": [],
-      "additionalAttributes": []
+      "appStoreLinks": {
+        "title": "App herunterladen",
+        "items": [
+          {
+            "text": "App bei Google Play herunterladen",
+            "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=de_CH&pli=1",
+            "image": {
+              "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
+              "alt": "Google Play Store Badge"
+            }
+          },
+          {
+            "text": "App im Apple Store herunterladen",
+            "url": "https://apps.apple.com/ch/app/die-post/id378676700",
+            "image": {
+              "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
+              "alt": "Apple App Store Badge"
+            }
+          }
+        ]
+      },
+      "companyLinks": {
+        "title": "Die Schweizerische Post AG",
+        "items": [
+          { "text": "PostAuto", "url": "https://www.postauto.ch" },
+          { "text": "PostFinance", "url": "https://www.postfinance.ch" }
+        ]
+      },
+      "complianceLinks": {
+        "title": "Meta",
+        "items": [
+          {
+            "text": "Barrierefreiheit",
+            "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
+          },
+          {
+            "text": "Allgemeine Geschäftsbedingungen",
+            "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
+          },
+          {
+            "text": "Datenschutz und Haftungsausschluss",
+            "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
+          },
+          { "text": "Impressum", "url": "https://www.post.ch/en/pages/footer/publication-details" }
+        ]
+      },
+      "copyright": "© Copyright 2024 Die Schweizerische Post AG. Alle Rechte vorbehalten."
     }
   },
   "fr": {
@@ -1704,286 +1549,134 @@
       "additionalAttributes": []
     },
     "footer": {
-      "title": "Pied de page",
-      "asWebComponent": true,
-      "osLinks": {
-        "serviceName": "Sites et heures d'ouverture",
-        "links": []
-      },
-      "block": [
+      "sections": [
         {
-          "columnType": "list",
-          "title": "Accéder à",
-          "links": [
-            {
-              "url": "https://www.postfinance.ch/fr",
-              "target": "_blank",
-              "text": "PostFinance",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.postauto.ch/fr",
-              "target": "_blank",
-              "text": "CarPostal",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://immobilien.post.ch/fr/",
-              "target": "_blank",
-              "text": "Immobilier",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://postcompanycars.post.ch/fr",
-              "target": "_blank",
-              "text": "Post Company Cars",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.swisspostsolutions.com/fr/page-d-accueil",
-              "target": "_blank",
-              "text": "Swiss Post Solutions",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            }
-          ],
-          "content": null
-        },
-        {
-          "columnType": "list",
-          "title": "Davantage de Poste",
-          "links": [
-            {
-              "url": "https://post.ch/fr/notre-profil/innovation",
-              "target": "",
-              "text": "Innovation",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/fr/notre-profil/responsabilite",
-              "target": "",
-              "text": "Responsabilité",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.postshop.ch/shop/fr",
-              "target": "_blank",
-              "text": "Boutique",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/fr/notre-profil/medias",
-              "target": "",
-              "text": "Médias",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/fr/pages/corona",
-              "target": "",
-              "text": "Coronavirus",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            }
-          ],
-          "content": null
-        },
-        {
-          "columnType": "contact",
-          "title": "Contact Center",
-          "links": null,
-          "content": [
-            {
-              "address": null,
-              "describe": "CHF 0.08/min. depuis le réseau fixe en Suisse",
-              "hours": null,
-              "links": null,
-              "name": "phone",
-              "number": "+41 848 888 888",
-              "text": null,
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "07h30 - 18h00",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Lundi à vendredi",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "08h00 - 12h00",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Samedi",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "Partager l'écran",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Live Support",
-              "title": null
-            }
+          "title": "Titre 1",
+          "items": [
+            { "text": "Lien texte 1", "url": "#" },
+            { "text": "Lien texte 2", "url": "#" },
+            { "text": "Lien texte 3", "url": "#" },
+            { "text": "Lien texte 4", "url": "#" },
+            { "text": "Lien texte 5", "url": "#" },
+            { "text": "Lien texte 6", "url": "#" }
           ]
         },
         {
-          "columnType": "address",
-          "title": "Adresse du Contact Center",
-          "links": null,
-          "content": [
-            {
-              "address": "Poste CH Réseau SA<br/>Contact Center Poste<br/>Wankdorfallee 4<br/>3030 Berne",
-              "describe": null,
-              "hours": null,
-              "links": null,
-              "name": null,
-              "number": null,
-              "text": null,
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": null,
-              "links": [
-                {
-                  "url": "https://www.facebook.com/swisspost",
-                  "icon": "8004_facebook",
-                  "name": "Suivez-nous sur Facebook",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.instagram.com/swisspost/",
-                  "icon": "8007_instagram",
-                  "name": "Suivez-nous sur Instagram",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.youtube.com/swisspost",
-                  "icon": "8002_youtube",
-                  "name": "Suivez-nous sur Youtube",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.snapchat.com/add/swisspostjobs",
-                  "icon": "8017_snapchat",
-                  "name": "Suivez-nous sur Snapchat",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://twitter.com/PostSchweiz",
-                  "icon": "8000_twitter",
-                  "name": "Suivez-nous sur Twitter",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.xing.com/companies/dieschweizerischepost",
-                  "icon": "8001_xing",
-                  "name": "Suivez-nous sur Xing",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.linkedin.com/company/swiss-post",
-                  "icon": "8005_linkedin",
-                  "name": "Suivez-nous sur LinkedIn",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.kununu.com/ch/die-schweizerische-post",
-                  "icon": "8008_kununu",
-                  "name": "Suivez-nous sur Kununu",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                }
-              ],
-              "name": null,
-              "number": null,
-              "text": null,
-              "title": "Suivez-nous"
-            }
+          "title": "Titre 2",
+          "items": [
+            { "text": "Lien texte 1", "url": "#" },
+            { "text": "Lien texte 2", "url": "#" },
+            { "text": "Lien texte 3", "url": "#" },
+            { "text": "Lien texte 4", "url": "#" },
+            { "text": "Lien texte 5", "url": "#" },
+            { "text": "Lien texte 6", "url": "#" },
+            { "text": "Lien texte 7", "url": "#" },
+            { "text": "Lien texte 8", "url": "#" }
+          ]
+        },
+        {
+          "title": "Titre 3",
+          "items": [
+            { "text": "Lien texte 1", "url": "#" },
+            { "text": "Lien texte 2", "url": "#" },
+            { "text": "Lien texte 3", "url": "#" },
+            { "text": "Lien texte 4", "url": "#" },
+            { "text": "Lien texte 5", "url": "#" },
+            { "text": "Lien texte 6", "url": "#" },
+            { "text": "Lien texte 7", "url": "#" },
+            { "text": "Lien texte 8", "url": "#" }
+          ]
+        },
+        {
+          "title": "Titre 4",
+          "items": [
+            { "text": "Lien texte 1", "url": "#" },
+            { "text": "Lien texte 2", "url": "#" },
+            { "text": "Lien texte 3", "url": "#" },
+            { "text": "Lien texte 4", "url": "#" },
+            { "text": "Lien texte 5", "url": "#" }
           ]
         }
       ],
-      "entry": {
-        "text": "© 2021 La Poste Suisse SA"
+      "socialLinks": {
+        "title": "Suivez-nous",
+        "items": [
+          { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
+          {
+            "text": "Instagram",
+            "url": "https://www.instagram.com/swisspost/",
+            "icon": "instagram"
+          },
+          { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
+          {
+            "text": "Snapchat",
+            "url": "https://www.snapchat.com/add/swisspostjobs",
+            "icon": "snapchat"
+          },
+          { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
+          {
+            "text": "Linkedin",
+            "url": "https://www.linkedin.com/company/swiss-post",
+            "icon": "linkedin"
+          },
+          {
+            "text": "Xing",
+            "url": "https://www.xing.com/companies/dieschweizerischepost",
+            "icon": "xing"
+          },
+          { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
+        ]
       },
-      "links": [
-        {
-          "url": "https://post.ch/fr/pages/footer/accessibilite-a-la-poste",
-          "target": "",
-          "text": "Accessibilité",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/fr/pages/footer/conditions-generales-cg",
-          "target": "",
-          "text": "Conditions générales",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/fr/pages/footer/protection-des-donnees-et-informations-legales",
-          "target": "",
-          "text": "Protection des données et informations légales",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/fr/pages/footer/impressum",
-          "target": "",
-          "text": "Impressum",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        }
-      ],
-      "classes": [],
-      "additionalAttributes": []
+      "appStoreLinks": {
+        "title": "Télécharger l'application",
+        "items": [
+          {
+            "text": "Télécharger l'application sur Google Play",
+            "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=fr_CH&pli=1",
+            "image": {
+              "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
+              "alt": "Badge Google Play Store"
+            }
+          },
+          {
+            "text": "Télécharger l'application sur l'Apple Store",
+            "url": "https://apps.apple.com/ch/app/die-post/id378676700",
+            "image": {
+              "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
+              "alt": "Badge Apple App Store"
+            }
+          }
+        ]
+      },
+      "companyLinks": {
+        "title": "La Poste Suisse SA",
+        "items": [
+          { "text": "CarPostal", "url": "https://www.postauto.ch" },
+          { "text": "PostFinance", "url": "https://www.postfinance.ch" }
+        ]
+      },
+      "complianceLinks": {
+        "title": "Méta",
+        "items": [
+          {
+            "text": "Accessibilité",
+            "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
+          },
+          {
+            "text": "Conditions générales",
+            "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
+          },
+          {
+            "text": "Protection des données et avertissement",
+            "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
+          },
+          {
+            "text": "Mentions légales",
+            "url": "https://www.post.ch/en/pages/footer/publication-details"
+          }
+        ]
+      },
+      "copyright": "© Copyright 2024 par La Poste Suisse SA. Tous droits réservés."
     }
   },
   "it": {
@@ -2307,286 +2000,131 @@
       "additionalAttributes": []
     },
     "footer": {
-      "title": "Piè di pagina",
-      "asWebComponent": true,
-      "osLinks": {
-        "serviceName": "Ubicazioni e orari di apertura",
-        "links": []
-      },
-      "block": [
+      "sections": [
         {
-          "columnType": "list",
-          "title": "Vai direttamente a",
-          "links": [
-            {
-              "url": "https://www.postfinance.ch/it",
-              "target": "_blank",
-              "text": "PostFinance",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.postauto.ch/it",
-              "target": "_blank",
-              "text": "AutoPostale",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://immobilien.post.ch/it/",
-              "target": "_blank",
-              "text": "Immobili",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://postcompanycars.post.ch/it",
-              "target": "_blank",
-              "text": "Post Company Cars",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.swisspostsolutions.com/en/home",
-              "target": "_blank",
-              "text": "Swiss Post Solutions",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            }
-          ],
-          "content": null
-        },
-        {
-          "columnType": "list",
-          "title": "Più Posta",
-          "links": [
-            {
-              "url": "https://post.ch/it/chi-siamo/innovazione",
-              "target": "",
-              "text": "Innovazione",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/it/chi-siamo/responsabilita",
-              "target": "",
-              "text": "Responsabilità",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.postshop.ch/shop/it",
-              "target": "_blank",
-              "text": "Shop",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/it/chi-siamo/media",
-              "target": "",
-              "text": "Media",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/it/pages/corona",
-              "target": "",
-              "text": "Coronavirus",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            }
-          ],
-          "content": null
-        },
-        {
-          "columnType": "contact",
-          "title": "Contact Center",
-          "links": null,
-          "content": [
-            {
-              "address": null,
-              "describe": "CHF 0.08/min da rete fissa svizzera",
-              "hours": null,
-              "links": null,
-              "name": "phone",
-              "number": "+41 848 888 888",
-              "text": null,
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "07.30 - 18.00",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Lunedì - venerdì",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "08.00 - 12.00",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Sabato",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "Condividere lo schermo",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Live Support",
-              "title": null
-            }
+          "title": "Titolo 1",
+          "items": [
+            { "text": "Link testo 1", "url": "#" },
+            { "text": "Link testo 2", "url": "#" },
+            { "text": "Link testo 3", "url": "#" },
+            { "text": "Link testo 4", "url": "#" },
+            { "text": "Link testo 5", "url": "#" },
+            { "text": "Link testo 6", "url": "#" }
           ]
         },
         {
-          "columnType": "address",
-          "title": "Indirizzo Contact Center",
-          "links": null,
-          "content": [
-            {
-              "address": "Posta CH Rete SA<br/>Contact Center Posta<br/>Wankdorfallee 4<br/>3030 Berna",
-              "describe": null,
-              "hours": null,
-              "links": null,
-              "name": null,
-              "number": null,
-              "text": null,
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": null,
-              "links": [
-                {
-                  "url": "https://www.facebook.com/swisspost",
-                  "icon": "8004_facebook",
-                  "name": "Seguici su Facebook",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.instagram.com/swisspost/",
-                  "icon": "8007_instagram",
-                  "name": "Seguici su Instagram",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.youtube.com/swisspost",
-                  "icon": "8002_youtube",
-                  "name": "Seguici su Youtube",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.snapchat.com/add/swisspostjobs",
-                  "icon": "8017_snapchat",
-                  "name": "Seguici su Snapchat",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://twitter.com/PostSchweiz",
-                  "icon": "8000_twitter",
-                  "name": "Seguici su Twitter",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.xing.com/companies/dieschweizerischepost",
-                  "icon": "8001_xing",
-                  "name": "Seguici su Xing",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.linkedin.com/company/swiss-post",
-                  "icon": "8005_linkedin",
-                  "name": "Seguici su LinkedIn",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.kununu.com/ch/die-schweizerische-post",
-                  "icon": "8008_kununu",
-                  "name": "Seguici su Kununu",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                }
-              ],
-              "name": null,
-              "number": null,
-              "text": null,
-              "title": "Seguici"
-            }
+          "title": "Titolo 2",
+          "items": [
+            { "text": "Link testo 1", "url": "#" },
+            { "text": "Link testo 2", "url": "#" },
+            { "text": "Link testo 3", "url": "#" },
+            { "text": "Link testo 4", "url": "#" },
+            { "text": "Link testo 5", "url": "#" },
+            { "text": "Link testo 6", "url": "#" },
+            { "text": "Link testo 7", "url": "#" },
+            { "text": "Link testo 8", "url": "#" }
+          ]
+        },
+        {
+          "title": "Titolo 3",
+          "items": [
+            { "text": "Link testo 1", "url": "#" },
+            { "text": "Link testo 2", "url": "#" },
+            { "text": "Link testo 3", "url": "#" },
+            { "text": "Link testo 4", "url": "#" },
+            { "text": "Link testo 5", "url": "#" },
+            { "text": "Link testo 6", "url": "#" },
+            { "text": "Link testo 7", "url": "#" },
+            { "text": "Link testo 8", "url": "#" }
+          ]
+        },
+        {
+          "title": "Titolo 4",
+          "items": [
+            { "text": "Link testo 1", "url": "#" },
+            { "text": "Link testo 2", "url": "#" },
+            { "text": "Link testo 3", "url": "#" },
+            { "text": "Link testo 4", "url": "#" },
+            { "text": "Link testo 5", "url": "#" }
           ]
         }
       ],
-      "entry": {
-        "text": "© 2021 La Posta Svizzera SA"
+      "socialLinks": {
+        "title": "Seguici",
+        "items": [
+          { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
+          {
+            "text": "Instagram",
+            "url": "https://www.instagram.com/swisspost/",
+            "icon": "instagram"
+          },
+          { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
+          {
+            "text": "Snapchat",
+            "url": "https://www.snapchat.com/add/swisspostjobs",
+            "icon": "snapchat"
+          },
+          { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
+          {
+            "text": "Linkedin",
+            "url": "https://www.linkedin.com/company/swiss-post",
+            "icon": "linkedin"
+          },
+          {
+            "text": "Xing",
+            "url": "https://www.xing.com/companies/dieschweizerischepost",
+            "icon": "xing"
+          },
+          { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
+        ]
       },
-      "links": [
-        {
-          "url": "https://post.ch/it/pages/footer/accessibilita-alla-posta",
-          "target": "",
-          "text": "Accessibilità",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/it/pages/footer/condizioni-generali-cg",
-          "target": "",
-          "text": "Condizioni generali",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/it/pages/footer/protezione-dei-dati-e-avvertenze-legali",
-          "target": "",
-          "text": "Protezione dei dati e avvertenze legali",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/it/pages/footer/colophon",
-          "target": "",
-          "text": "Colophon",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        }
-      ],
-      "classes": [],
-      "additionalAttributes": []
+      "appStoreLinks": {
+        "title": "Scarica l'app",
+        "items": [
+          {
+            "text": "Scarica l'app su Google Play",
+            "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=it_CH&pli=1",
+            "image": {
+              "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
+              "alt": "Badge Google Play Store"
+            }
+          },
+          {
+            "text": "Scarica l'app su Apple Store",
+            "url": "https://apps.apple.com/ch/app/die-post/id378676700",
+            "image": {
+              "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
+              "alt": "Badge Apple App Store"
+            }
+          }
+        ]
+      },
+      "companyLinks": {
+        "title": "La Posta Svizzera SA",
+        "items": [
+          { "text": "AutoPostale", "url": "https://www.postauto.ch" },
+          { "text": "PostFinance", "url": "https://www.postfinance.ch" }
+        ]
+      },
+      "complianceLinks": {
+        "title": "Meta",
+        "items": [
+          {
+            "text": "Accessibilità",
+            "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
+          },
+          {
+            "text": "Condizioni generali",
+            "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
+          },
+          {
+            "text": "Protezione dei dati e avvertenza",
+            "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
+          },
+          { "text": "Colophon", "url": "https://www.post.ch/en/pages/footer/publication-details" }
+        ]
+      },
+      "copyright": "© Copyright 2024 La Posta Svizzera SA. Tutti i diritti riservati."
     }
   },
   "en": {
@@ -2910,296 +2448,134 @@
       "additionalAttributes": []
     },
     "footer": {
-      "title": "Footer",
-      "asWebComponent": true,
-      "osLinks": {
-        "serviceName": "Locations and opening hours",
-        "links": []
-      },
-      "block": [
+      "sections": [
         {
-          "columnType": "list",
-          "title": "Go directly to",
-          "links": [
-            {
-              "url": "https://www.postfinance.ch/en",
-              "target": "_blank",
-              "text": "PostFinance",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.postauto.ch/en",
-              "target": "_blank",
-              "text": "PostBus",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://immobilien.post.ch/en/",
-              "target": "_blank",
-              "text": "Real Estate",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://postcompanycars.post.ch/en",
-              "target": "_blank",
-              "text": "Post Company Cars",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.swisspostsolutions.com/en/home",
-              "target": "_blank",
-              "text": "Swiss Post Solutions",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            }
-          ],
-          "content": null
-        },
-        {
-          "columnType": "list",
-          "title": "More from Swiss Post",
-          "links": [
-            {
-              "url": "https://post.ch/en/about-us/innovation",
-              "target": "",
-              "text": "Innovation",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/en/about-us/responsibility",
-              "target": "",
-              "text": "Responsibility",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://www.postshop.ch/shop/en",
-              "target": "_blank",
-              "text": "Shop",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/en/about-us/media",
-              "target": "",
-              "text": "Media",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            },
-            {
-              "url": "https://post.ch/en/pages/corona",
-              "target": "",
-              "text": "Coronavirus",
-              "title": "",
-              "classes": [],
-              "additionalAttributes": []
-            }
-          ],
-          "content": null
-        },
-        {
-          "columnType": "contact",
-          "title": "Contact Center",
-          "links": null,
-          "content": [
-            {
-              "address": null,
-              "describe": "CHF 0.08/min. from landline phones within Switzerland",
-              "hours": null,
-              "links": null,
-              "name": "phone",
-              "number": "+41 848 888 888",
-              "text": null,
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "7.30am - 6pm",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Monday till Friday",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "8am to 12 noon",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Saturday",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "<p>8&mdash;12</p>",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Bank holidays",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": "Share screen",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Live Support",
-              "title": null
-            }
+          "title": "Title 1",
+          "items": [
+            { "text": "Text link 1", "url": "#" },
+            { "text": "Text link 2", "url": "#" },
+            { "text": "Text link 3", "url": "#" },
+            { "text": "Text link 4", "url": "#" },
+            { "text": "Text link 5", "url": "#" },
+            { "text": "Text link 6", "url": "#" }
           ]
         },
         {
-          "columnType": "address",
-          "title": "Address Contact Center",
-          "links": null,
-          "content": [
-            {
-              "address": "Post CH Network Ltd<br/>Swiss Post Contact Center<br/>Wankdorfallee 4<br/>3030 Bern",
-              "describe": null,
-              "hours": null,
-              "links": null,
-              "name": null,
-              "number": null,
-              "text": null,
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
-              "hours": null,
-              "links": [
-                {
-                  "url": "https://www.facebook.com/swisspost",
-                  "icon": "8004_facebook",
-                  "name": "Follow us on Facebook",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.instagram.com/swisspost/",
-                  "icon": "8007_instagram",
-                  "name": "Follow us on Instagram",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.youtube.com/swisspost",
-                  "icon": "8002_youtube",
-                  "name": "Follow us on Youtube",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.snapchat.com/add/swisspostjobs",
-                  "icon": "8017_snapchat",
-                  "name": "Follow us on Snapchat",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://twitter.com/PostSchweiz",
-                  "icon": "8000_twitter",
-                  "name": "Follow us on Twitter",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.xing.com/companies/dieschweizerischepost",
-                  "icon": "8001_xing",
-                  "name": "Follow us on Xing",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.linkedin.com/company/swiss-post",
-                  "icon": "8005_linkedin",
-                  "name": "Follow us on LinkedIn",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                },
-                {
-                  "url": "https://www.kununu.com/ch/die-schweizerische-post",
-                  "icon": "8008_kununu",
-                  "name": "Follow us on Kununu",
-                  "target": "_blank",
-                  "classes": [],
-                  "additionalAttributes": []
-                }
-              ],
-              "name": null,
-              "number": null,
-              "text": null,
-              "title": "Follow us"
-            }
+          "title": "Title 2",
+          "items": [
+            { "text": "Text link 1", "url": "#" },
+            { "text": "Text link 2", "url": "#" },
+            { "text": "Text link 3", "url": "#" },
+            { "text": "Text link 4", "url": "#" },
+            { "text": "Text link 5", "url": "#" },
+            { "text": "Text link 6", "url": "#" },
+            { "text": "Text link 7", "url": "#" },
+            { "text": "Text link 8", "url": "#" }
+          ]
+        },
+        {
+          "title": "Title 3",
+          "items": [
+            { "text": "Text link 1", "url": "#" },
+            { "text": "Text link 2", "url": "#" },
+            { "text": "Text link 3", "url": "#" },
+            { "text": "Text link 4", "url": "#" },
+            { "text": "Text link 5", "url": "#" },
+            { "text": "Text link 6", "url": "#" },
+            { "text": "Text link 7", "url": "#" },
+            { "text": "Text link 8", "url": "#" }
+          ]
+        },
+        {
+          "title": "Title 4",
+          "items": [
+            { "text": "Text link 1", "url": "#" },
+            { "text": "Text link 2", "url": "#" },
+            { "text": "Text link 3", "url": "#" },
+            { "text": "Text link 4", "url": "#" },
+            { "text": "Text link 5", "url": "#" }
           ]
         }
       ],
-      "entry": {
-        "text": "© 2021 Swiss Post Ltd"
+      "socialLinks": {
+        "title": "Follow us",
+        "items": [
+          { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
+          {
+            "text": "Instagram",
+            "url": "https://www.instagram.com/swisspost/",
+            "icon": "instagram"
+          },
+          { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
+          {
+            "text": "Snapchat",
+            "url": "https://www.snapchat.com/add/swisspostjobs",
+            "icon": "snapchat"
+          },
+          { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
+          {
+            "text": "Linkedin",
+            "url": "https://www.linkedin.com/company/swiss-post",
+            "icon": "linkedin"
+          },
+          {
+            "text": "Xing",
+            "url": "https://www.xing.com/companies/dieschweizerischepost",
+            "icon": "xing"
+          },
+          { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
+        ]
       },
-      "links": [
-        {
-          "url": "https://post.ch/en/pages/footer/accessibility-at-swiss-post",
-          "target": "",
-          "text": "Accessibility",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/en/pages/footer/general-terms-and-conditions-gtc",
-          "target": "",
-          "text": "General Terms and Conditions",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/en/pages/footer/data-protection-and-disclaimer",
-          "target": "",
-          "text": "Data protection and disclaimer",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        },
-        {
-          "url": "https://post.ch/en/pages/footer/publication-details",
-          "target": "",
-          "text": "Publication details",
-          "title": "",
-          "classes": [],
-          "additionalAttributes": []
-        }
-      ],
-      "classes": [],
-      "additionalAttributes": []
+      "appStoreLinks": {
+        "title": "Download app",
+        "items": [
+          {
+            "text": "Download the App on Google Play",
+            "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=en_CH&pli=1",
+            "image": {
+              "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
+              "alt": "Google Play Store badge"
+            }
+          },
+          {
+            "text": "Download the App on the Apple Store",
+            "url": "https://apps.apple.com/ch/app/die-post/id378676700",
+            "image": {
+              "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
+              "alt": "Apple App Store badge"
+            }
+          }
+        ]
+      },
+      "companyLinks": {
+        "title": "Swiss Post Ltd.",
+        "items": [
+          { "text": "PostBus", "url": "https://www.postauto.ch" },
+          { "text": "PostFinance", "url": "https://www.postfinance.ch" }
+        ]
+      },
+      "complianceLinks": {
+        "title": "Meta",
+        "items": [
+          {
+            "text": "Accessibility",
+            "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
+          },
+          {
+            "text": "General Terms and Conditions",
+            "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
+          },
+          {
+            "text": "Data protection and disclaimer",
+            "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
+          },
+          {
+            "text": "Publication details",
+            "url": "https://www.post.ch/en/pages/footer/publication-details"
+          }
+        ]
+      },
+      "copyright": "© Copyright 2024 by Swiss Post Ltd. All rights reserved."
     }
   }
 }

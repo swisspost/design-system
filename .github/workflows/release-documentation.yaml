@@ -9,13 +9,12 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-permissions:
-  contents: read
-
 jobs:
   detect-version-change:
     name: Detect Version Change
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       changed: ${{ steps.check.outputs.changed }}
     steps:
@@ -45,6 +44,8 @@ jobs:
   release:
     name: Release Documentation
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     needs: detect-version-change
     if: needs.detect-version-change.outputs.changed == 'true'
     steps:

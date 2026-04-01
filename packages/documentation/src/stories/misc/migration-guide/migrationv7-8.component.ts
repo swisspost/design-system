@@ -49,9 +49,9 @@ export class MigrationV78Component extends LitElement {
                     <li>
                       <div>
                         Update ng-bootstrap to version 17.x.x:
-                        <code languages="['bash']">
-                          npm install @ng-bootstrap/ng-bootstrap@17
-                        </code>
+                        <code-block
+                          code=${'npm install @ng-bootstrap/ng-bootstrap@17'}
+                        ></code-block>
                       </div>
                       <div class="mt-2">
                         See the
@@ -71,7 +71,7 @@ export class MigrationV78Component extends LitElement {
               <li>
                 <p>
                   Update Design System style package to version 8:
-                  <code languages="['bash']">npm install @swisspost/design-system-styles@8</code>
+                  <code-block code=${'npm install @swisspost/design-system-styles@8'}></code-block>
                 </p>
               </li>
             </ol>

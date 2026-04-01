@@ -27,6 +27,13 @@ tokens.$default-map: components.$post-select;
   color: tokens.get('select-color-enabled-fg');
   background-image: forms-fx.select-arrow-icon('enabled');
 
+  &.form-select-sm {
+    min-height: tokens.get('select-small-sizing-height');
+    padding-block: tokens.get('select-non-floating-small-padding-block');
+    background-size: tokens.get('select-small-sizing-icon');
+    font-size: tokens.get('select-non-floating-small-font-size');
+  }
+
   &:disabled {
     opacity: 1;
     color: tokens.get('select-color-disabled-fg');
@@ -173,6 +180,18 @@ tokens.$default-map: components.$post-select;
   }
 }
 
+.form-label:has(+ select.form-select[disabled]) {
+  color: tokens.get('select-color-disabled-fg');
+}
+
+.form-label:has(+ select.form-select-sm) {
+  display: block;
+  padding-inline: tokens.get('select-non-floating-small-label-padding-inline');
+  padding-block: tokens.get('select-non-floating-small-label-padding-block');
+  font-weight: tokens.get('select-non-floating-small-label-font-weight');
+  font-size: tokens.get('select-non-floating-small-font-size');
+}
+
 .form-floating {
   position: relative;
 
@@ -221,7 +240,9 @@ tokens.$default-map: components.$post-select;
       background-color: tokens.get('select-color-disabled-bg');
     }
 
-    &:empty,
+    &:has(option[value='']:checked:empty),
+    &:has(option:not([value]):checked:empty),
+    // deprecated
     &.form-select-empty {
       ~ label {
         padding-block-start: tokens.get('select-label-empty-padding-block-start');
