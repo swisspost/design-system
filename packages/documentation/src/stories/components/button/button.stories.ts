@@ -254,12 +254,7 @@ export const Default: Story = {
   ...Template,
 };
 
-const VariantsTemplate = {
-  parameters: {
-    controls: {
-      exclude: ['Text', 'Tag', 'Type', 'Variant', 'variants'],
-    },
-  },
+export const FullWidth: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) => html`
       <div class="d-flex gap-12 flex-wrap">${story(context.args, context)}</div>
@@ -274,10 +269,6 @@ const VariantsTemplate = {
       }),
     )}
   `,
-};
-
-export const FullWidth: Story = {
-  ...VariantsTemplate,
   args: {
     variants: ['btn-primary'],
     additionalClasses: ['w-sm-full', 'w-md-auto'],

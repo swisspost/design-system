@@ -1,5 +1,96 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.66
+
+### Major Changes
+
+- Renamed the Card control component to Selection card, along with its classes:
+  - `.card-control` is now `.selection-card`
+  - `.card-control--description` is now `.selection-card--description`
+  - `.card-control--icon` is now `.selection-card--icon` (by [@leagrdv](https://github.com/leagrdv) with [#7398](https://github.com/swisspost/design-system/pull/7398))
+
+- Deleted the following mixins and functions:
+  - Functions: `remove-nth`, `px-to-em`, `to-em`, `strip-unit`, `px-to-rem`, `to-rem`, `to-px`, `calculate-inner-height`, `calculate-single-box-shadow-size`
+  - Mixins: `font-smoothing`, `font-smoothing-reset`, `visuallyhidden-reset`, `visuallhidden-focusable`, `replace-text`, `truncate`, `full-width-underscore`, `focus-hover-style-custom` (by [@leagrdv](https://github.com/leagrdv) with [#7288](https://github.com/swisspost/design-system/pull/7288))
+
+### Patch Changes
+
+- Fixed a cumulative layout shift (CLS) when server-side rendering a one-pager header without a title and a local header part. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7416](https://github.com/swisspost/design-system/pull/7416))
+
+- Added a `.post-dialog` class to the `dialog` element for its styling. Styling is still being applied directly to the `dialog` for now but will be removed in a future version to prevent styling conflicts with other `dialog` elements on the page. (by [@leagrdv](https://github.com/leagrdv) with [#7394](https://github.com/swisspost/design-system/pull/7394))
+
+- Removed background color from `.list-interactive`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7411](https://github.com/swisspost/design-system/pull/7411))
+
+- Deprecated `.form-select-empty` CSS class. Floating label behavior is now automatic.  
+  BEFORE:
+
+  ```html
+  <select class="form-select form-select-empty">
+    <option></option>
+    <option value="1">Option 1</option>
+  </select>
+  ```
+
+  AFTER:
+
+  ````html
+  <select class="form-select">
+    <option></option>
+    <option value="1">Option 1</option>
+  </select>
+  ``` (by [@leagrdv](https://github.com/leagrdv) with
+  [#7393](https://github.com/swisspost/design-system/pull/7393))
+  ````
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.66
+
+## 10.0.0-next.65
+
+### Major Changes
+
+- Introduces a new HTML/CSS `.card-control` component that consolidates the previous `.radio-button-card`, `.checkbox-button-card`, and the `post-card-control` web component into a simplified, single HTML/CSS implementation. This brings consistent styling, behavior, and token usage across the design system while preserving and unifying existing functionality. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+### Minor Changes
+
+- Added the small variant `.form-control-sm` to the text input. (by [@leagrdv](https://github.com/leagrdv) with [#7330](https://github.com/swisspost/design-system/pull/7330))
+
+- Added the small variant `.form-select-sm` to the select. (by [@leagrdv](https://github.com/leagrdv) with [#7333](https://github.com/swisspost/design-system/pull/7333))
+
+### Patch Changes
+
+- Fixed the `form-hint` and `form-label` color to be gray when the `form-control` associated to it is disabled. (by [@leagrdv](https://github.com/leagrdv) with [#7333](https://github.com/swisspost/design-system/pull/7333))
+
+- Fixed inconsistent navigation item separator thickness across browsers in the mobile menu of the `post-header`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7270](https://github.com/swisspost/design-system/pull/7270))
+
+- Replaced the native browser icon with the UI icon for the `timepicker` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7258](https://github.com/swisspost/design-system/pull/7258))
+
+- Fixed the `form-hint` color to be gray when the `form-control` associated to it is disabled. (by [@leagrdv](https://github.com/leagrdv) with [#7330](https://github.com/swisspost/design-system/pull/7330))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.65
+
+## 10.0.0-next.64
+
+### Major Changes
+
+- Removed the sass mixin button-color-variant because colored buttons should no longer be used. (by [@gfellerph](https://github.com/gfellerph) with [#6935](https://github.com/swisspost/design-system/pull/6935))
+
+### Minor Changes
+
+- Added the small variant class `.form-check-sm` to the form checkbox. (by [@bucknatt](https://github.com/bucknatt) with [#7211](https://github.com/swisspost/design-system/pull/7211))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.64
+
+## 10.0.0-next.63
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.63
+
 ## 10.0.0-next.62
 
 ### Minor Changes

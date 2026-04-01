@@ -94,6 +94,7 @@ export interface V910Checks {
   forms: {
     tooltip_validation: boolean;
     input_sizes: boolean;
+    select_empty: boolean;
     form_text: boolean;
     card_control: boolean;
   };

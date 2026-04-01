@@ -4,10 +4,8 @@ import { createClassUpdateRuleWrapper } from '../../../utils/create-class-update
 const classNames: string[] = [
   '.valid-tooltip',
   '.invalid-tooltip',
-  '.form-control-sm',
   '.form-control-rg',
   '.form-control-lg',
-  '.form-select-sm',
   '.form-select-rg',
   '.form-select-lg',
   '.vertical-gutters',
