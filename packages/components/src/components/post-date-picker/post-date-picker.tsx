@@ -1,4 +1,5 @@
 import {
+  Build,
   Component,
   Element,
   h,
@@ -15,16 +16,16 @@ import AirDatepicker, {
   AirDatepickerViews,
   AirDatepickerViewsSingle,
 } from 'air-datepicker';
-
+import { airDatepickerLocales } from './air-locales';
 import IMask, { InputMask } from 'imask';
-
-import { localesMap } from './locales';
 import {
   checkEmptyOrDate,
   checkRequiredAndType,
-  IS_BROWSER,
   checkIsoDate,
+  checkEmptyOrOneOf,
   isIsoDate,
+  LOCALES,
+  FALLBACK_LANGUAGE_CODE,
 } from '@/utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
@@ -44,9 +45,15 @@ export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDiv
 export class PostDatePicker {
   @Element() host: HTMLPostDatePickerElement;
 
-  @State() today = new Date();
-
-  @State() inputDisabled = false;
+  /**
+   * The date picker's selected locale.
+   * Should be a locale string (e.g. "it" or "it-CH").
+   */
+  @Prop() locale?: string = this.systemLocale;
+  @Watch('locale')
+  validateLocale() {
+    checkEmptyOrOneOf(this, 'locale', LOCALES);
+  }
 
   /**
    * The date picker's selected date. If in range mode, the selected start date.
@@ -187,8 +194,10 @@ export class PostDatePicker {
     }
   }
 
+  @State() inputDisabled = false;
+  @State() today = new Date();
   @State() startDate = new Date();
-  @State() locale: string = IS_BROWSER ? document.documentElement.lang : 'en';
+  // @State() locale: string = Build.isBrowser ? document.documentElement.lang : 'en';
 
   /**
    * An event emitted when a date or a range of dates have been selected.
@@ -240,6 +249,32 @@ export class PostDatePicker {
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
   private inputObserver: MutationObserver;
+
+  /**
+   * WARNING: Never use this.locale internally
+   * instead use this.localeCode or this.languageCode
+   * to ensure the value is valid and fallback is applied
+   */
+  private get systemLocale() {
+    if (Build.isServer) return FALLBACK_LANGUAGE_CODE;
+    return this.host.closest('[lang]')?.getAttribute('lang') ?? FALLBACK_LANGUAGE_CODE;
+  }
+
+  /**
+   * WARNING: Never use this.locale internally
+   * instead use this.localeCode or this.languageCode
+   * to ensure the value is valid and fallback is applied
+   */
+  private get localeCode() {
+    const locale = this.locale || FALLBACK_LANGUAGE_CODE;
+    const localeRegex = new RegExp(`^${locale}`, 'i');
+    const localeIsValid = LOCALES.some(lc => localeRegex.test(lc));
+    return localeIsValid ? locale : FALLBACK_LANGUAGE_CODE;
+  }
+
+  private get languageCode() {
+    return this.localeCode.split('-')[0];
+  }
 
   private setupInputObserver() {
     if (typeof MutationObserver === 'undefined') return;
@@ -642,13 +677,26 @@ export class PostDatePicker {
     }
   }
 
-  private configDatePicker() {
-    const slot = this.host.shadowRoot.querySelector<HTMLSlotElement>('slot');
-    const assignedNodes = slot && slot.assignedElements();
-    const locale = localesMap[this.locale] || localesMap.en;
+  private async airLocale() {
+    let localeName = FALLBACK_LANGUAGE_CODE;
+
+    if (airDatepickerLocales[this.languageCode]) {
+      localeName = this.languageCode;
+    } else {
+      console.warn(
+        `Post Date Picker: Locale module "${this.localeCode}" not found! Falling back to "${FALLBACK_LANGUAGE_CODE}".`,
+      );
+    }
+
+    const module = await airDatepickerLocales[localeName]?.();
+    return module.default;
+  }
+
+  private async configDatePicker() {
+    const locale = await this.airLocale();
 
     if (!this.inline) {
-      this.dpInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
+      this.dpInput = this.host.querySelector('input');
       this.setUpMask();
     }
 
@@ -674,7 +722,7 @@ export class PostDatePicker {
         minDate: this.min,
         maxDate: this.max,
         locale: locale,
-        dateFormat: (localesMap[this.locale] || localesMap.en).dateFormat,
+        dateFormat: locale.dateFormat,
         view: 'days',
         onChangeView: view => {
           this.currentViewType = view;
@@ -845,13 +893,11 @@ export class PostDatePicker {
    * Add role and aria-label to each grid cell
    */
   private internalOnRenderCell({ date, cellType }) {
-    const safeLocale = this.locale || 'en';
-
     if (cellType === 'day') {
       return {
         attrs: {
           'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(safeLocale, {
+          'aria-label': date.toLocaleDateString(this.localeCode, {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
@@ -863,7 +909,7 @@ export class PostDatePicker {
       return {
         attrs: {
           'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(safeLocale, {
+          'aria-label': date.toLocaleDateString(this.localeCode, {
             year: 'numeric',
             month: 'long',
           }),
@@ -873,7 +919,7 @@ export class PostDatePicker {
       return {
         attrs: {
           'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(safeLocale, {
+          'aria-label': date.toLocaleDateString(this.localeCode, {
             year: 'numeric',
           }),
         },
@@ -928,6 +974,7 @@ export class PostDatePicker {
 
   private setupGridObserver() {
     if (typeof MutationObserver === 'undefined') return;
+
     const grid = this.dpContainer.querySelector('.air-datepicker-body--cells');
     if (!grid) return;
 
@@ -975,11 +1022,12 @@ export class PostDatePicker {
   async componentDidLoad() {
     this.euFormat = document.documentElement.lang !== 'en-US';
 
-    this.configDatePicker();
+    await this.configDatePicker();
     this.setupGridObserver();
     this.setupNavObserver();
     this.setupInputObserver();
 
+    this.validateLocale();
     this.validateSelectedStartDate();
     this.validateSelectedEndDate();
     this.validateMin();
@@ -1048,6 +1096,9 @@ export class PostDatePicker {
               >
                 <post-icon name="calendar"></post-icon>
               </button>
+              <div>locale: {this.locale}</div>
+              <div>localeCode: {this.localeCode}</div>
+              <div>languageCode: {this.languageCode}</div>
             </div>
             <post-popovercontainer
               placement="bottom-end"

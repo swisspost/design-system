@@ -171,6 +171,11 @@ export namespace Components {
          */
         "inline": boolean;
         /**
+          * The date picker's selected locale. Should be a locale string (e.g. "it" or "it-CH").
+          * @default this.systemLocale
+         */
+        "locale"?: string;
+        /**
           * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "max"?: string;
@@ -1226,6 +1231,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "inline"?: boolean;
+        /**
+          * The date picker's selected locale. Should be a locale string (e.g. "it" or "it-CH").
+          * @default this.systemLocale
+         */
+        "locale"?: string;
         /**
           * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
