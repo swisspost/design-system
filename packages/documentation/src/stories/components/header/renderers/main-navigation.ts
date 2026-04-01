@@ -12,7 +12,7 @@ export function renderMainnavigation() {
           <a href="/letters">Letters</a>
         </li>
         <li>
-          <a href="/packages" aria-current="page">Packages</a>
+          <a href="/packages">Packages</a>
         </li>
 
         <!-- Level 1 with megadropdown -->
