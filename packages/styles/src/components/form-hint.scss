@@ -10,6 +10,7 @@ tokens.$default-map: components.$post-assist;
   font-size: tokens.get('assist-font-size');
 }
 
+post-number-input.disabled,
 .form-control:disabled,
 .form-select:disabled {
   + .form-label + .form-hint,
@@ -18,6 +19,7 @@ tokens.$default-map: components.$post-assist;
   }
 }
 
+post-number-input.number-input-sm,
 .form-control-sm,
 .form-select-sm {
   + .form-hint {
