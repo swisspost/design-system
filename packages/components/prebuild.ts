@@ -63,8 +63,55 @@ export async function createComponentNameOutput(
   );
 }
 
+function copyAndConvertAirDatepickerLocales() {
+  // air-datepicker is in the package-level node_modules
+  const SOURCE_LOCALE_PATH = path.resolve('./node_modules/air-datepicker/locale');
+  const DEST_LOCALE_PATH = path.resolve('./src/components/post-date-picker/locales');
+
+  // Ensure the destination directory exists
+  fs.mkdirSync(DEST_LOCALE_PATH, { recursive: true });
+
+  // Copy and convert all .js locale files from CJS to ESM
+  if (fs.existsSync(SOURCE_LOCALE_PATH)) {
+    const files = fs.readdirSync(SOURCE_LOCALE_PATH).filter(file => file.endsWith('.js'));
+    files.forEach(file => {
+      const src = path.join(SOURCE_LOCALE_PATH, file);
+      const dest = path.join(DEST_LOCALE_PATH, file);
+
+      // Read the CJS file
+      let content = fs.readFileSync(src, 'utf8');
+
+      // Convert from CJS to ESM
+      // Remove "use strict"
+      content = content.replace(/["']use strict["'];?\s*/g, '');
+
+      // Remove Object.defineProperty exports boilerplate
+      content = content.replace(
+        /Object\.defineProperty\(exports,\s*["']__esModule["'],\s*\{[\s\S]*?\}\);?\s*/g,
+        '',
+      );
+
+      // Remove exports.default = void 0;
+      content = content.replace(/exports\.default\s*=\s*void\s*0;?\s*/g, '');
+
+      // Convert var _default = {...} to const _default = {...}
+      content = content.replace(/var _default\s*=/g, 'const _default =');
+
+      // Convert exports.default = _default; to export default _default;
+      content = content.replace(/exports\.default\s*=\s*_default;?/g, 'export default _default;');
+
+      // Write the ESM file
+      fs.writeFileSync(dest, content, 'utf8');
+    });
+    console.log(`Converted ${files.length} air-datepicker locale files from CJS to ESM`);
+  } else {
+    console.warn('air-datepicker locale directory not found, skipping conversion');
+  }
+}
+
 function prebuild() {
   createComponentNameOutput(componentNameOutputOptions);
+  copyAndConvertAirDatepickerLocales();
 }
 
 prebuild();

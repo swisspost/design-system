@@ -54,6 +54,11 @@ export class PostDatePicker {
   validateLocale() {
     checkEmptyOrOneOf(this, 'locale', LOCALES);
   }
+  @Watch('locale')
+  async updateDatePickerLocale() {
+    const locale = await this.airLocale();
+    this.dpInstance.update({ locale } as Partial<AirDatepickerCustomOptions>);
+  }
 
   /**
    * The date picker's selected date. If in range mode, the selected start date.
@@ -274,6 +279,21 @@ export class PostDatePicker {
 
   private get languageCode() {
     return this.localeCode.split('-')[0];
+  }
+
+  private async airLocale() {
+    let localeName = FALLBACK_LANGUAGE_CODE;
+
+    if (airDatepickerLocales[this.languageCode]) {
+      localeName = this.languageCode;
+    } else {
+      console.warn(
+        `Post Date Picker: Locale module "${this.localeCode}" not found! Falling back to "${FALLBACK_LANGUAGE_CODE}".`,
+      );
+    }
+
+    const module = await airDatepickerLocales[localeName]?.();
+    return module.default;
   }
 
   private setupInputObserver() {
@@ -677,21 +697,6 @@ export class PostDatePicker {
     }
   }
 
-  private async airLocale() {
-    let localeName = FALLBACK_LANGUAGE_CODE;
-
-    if (airDatepickerLocales[this.languageCode]) {
-      localeName = this.languageCode;
-    } else {
-      console.warn(
-        `Post Date Picker: Locale module "${this.localeCode}" not found! Falling back to "${FALLBACK_LANGUAGE_CODE}".`,
-      );
-    }
-
-    const module = await airDatepickerLocales[localeName]?.();
-    return module.default;
-  }
-
   private async configDatePicker() {
     const locale = await this.airLocale();
 
@@ -1022,11 +1027,6 @@ export class PostDatePicker {
   async componentDidLoad() {
     this.euFormat = document.documentElement.lang !== 'en-US';
 
-    await this.configDatePicker();
-    this.setupGridObserver();
-    this.setupNavObserver();
-    this.setupInputObserver();
-
     this.validateLocale();
     this.validateSelectedStartDate();
     this.validateSelectedEndDate();
@@ -1041,6 +1041,11 @@ export class PostDatePicker {
     this.validateTextPreviousYear();
     this.validateTextSwitchYear();
     this.validateInline();
+
+    await this.configDatePicker();
+    this.setupGridObserver();
+    this.setupNavObserver();
+    this.setupInputObserver();
 
     if (this.inline) {
       requestAnimationFrame(() => this.enhanceAccessibility(false));
