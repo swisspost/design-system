@@ -86,6 +86,19 @@ Type: `Promise<void>`
 
 
 
+## Dependencies
+
+### Depends on
+
+- [post-popovercontainer](../post-popovercontainer)
+
+### Graph
+```mermaid
+graph TD;
+  post-listbox --> post-popovercontainer
+  style post-listbox fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

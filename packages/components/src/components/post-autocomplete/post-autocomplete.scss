@@ -5,13 +5,6 @@
   display: block;
 }
 
-::slotted(post-listbox) {
-  position: absolute;
-  width: 100%;
-  z-index: 100;
-  inset-block-start: 56px;
-}
-
 .autocomplete-icon,
 .autocomplete-clear {
   position: absolute;

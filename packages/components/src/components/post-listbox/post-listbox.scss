@@ -1,21 +1,17 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/variables/elevation';
 
-:host {
-  display: flex;
-  flex-direction: column;
-  padding: 8px 0;
-  margin-top: 2px;
+post-popovercontainer {
   border-radius: 4px;
-  background: #fff;
-  max-height: 384px;
-  overflow: auto;
+  overflow: hidden;
   box-shadow: elevation.$elevation-300;
 }
 
-:host([hidden]),
-:host([aria-hidden='true']) {
-  display: none;
+div[role='listbox'] {
+  max-height: 384px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 ::slotted([slot='blank-slate']) {

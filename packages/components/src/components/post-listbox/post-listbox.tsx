@@ -21,6 +21,7 @@ export class PostListbox {
   private highlightedIndex: number = -1;
   private visibleOptions: HTMLPostListboxOptionElement[] = [];
   private readonly diacriticPattern = /[\u0300-\u036f]/u;
+  private popoverContainer?: HTMLPostPopovercontainerElement;
   @Element() host: HTMLPostListboxElement;
   @State() private isOpen: boolean = false;
 
@@ -31,6 +32,14 @@ export class PostListbox {
 
   private get options() {
     return Array.from(this.host.querySelectorAll('post-listbox-option'));
+  }
+
+  private get inputElement(): HTMLInputElement | null {
+    let autocomplete = this.host.closest('post-autocomplete');
+    if (!autocomplete) {
+      autocomplete = document.querySelector(`post-autocomplete[for="${this.host.id}"]`);
+    }
+    return autocomplete?.querySelector('input');
   }
 
   componentWillLoad() {
@@ -59,12 +68,17 @@ export class PostListbox {
   @Method()
   async show() {
     this.isOpen = true;
+    const input = this.inputElement;
+    if (input) {
+      this.popoverContainer?.show(input);
+    }
   }
 
   /** Closes the listbox */
   @Method()
   async hide() {
     this.isOpen = false;
+    this.popoverContainer?.hide();
   }
 
   /** Uses the internal default filtering mode to filter the list of options.
@@ -155,8 +169,16 @@ export class PostListbox {
 
   render() {
     return (
-      <Host data-version={version} role="listbox" hidden={!this.isOpen}>
-        {this.visibleOptions.length === 0 ? <slot name="blank-slate" /> : <slot />}
+      <Host data-version={version}>
+        <post-popovercontainer placement="bottom-start" ref={el => (this.popoverContainer = el)}>
+          {this.visibleOptions.length === 0 ? (
+            <slot name="blank-slate" />
+          ) : (
+            <div role="listbox">
+              <slot />
+            </div>
+          )}
+        </post-popovercontainer>
       </Host>
     );
   }
