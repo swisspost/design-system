@@ -142,7 +142,7 @@ export const Default: Story = {};
 
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
+  const baseId = `${context.id}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
   const id1 = baseId + '1';
   const id2 = baseId + '2';
   const id3 = baseId + '3';
@@ -251,9 +251,4 @@ export const Inline: Story = {
       },
     },
   },
-};
-
-export const Validation: Story = {
-  parameters: { controls: { exclude: ['Hidden Legend', 'Label', 'Hidden Label', 'Disabled'] } },
-  args: { validation: 'is-invalid' },
 };
