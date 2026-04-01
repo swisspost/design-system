@@ -11,13 +11,13 @@
   justify-content: space-between;
 }
 
-:host(:hover),
-:host([data-active='true']) {
-  border-bottom: 3px solid #504f4b;
+:host(:hover) {
+  background-color: #f0efed;
 }
 
-:host([aria-selected]) {
-  background-color: #f0efed;
+:host([data-active='true']) {
+  outline: 2px solid black;
+  outline-offset: -4px;
 }
 
 :host([hidden]) {
