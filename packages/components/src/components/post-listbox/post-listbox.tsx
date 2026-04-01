@@ -59,12 +59,14 @@ export class PostListbox {
     const input = this.inputElement;
     if (input) {
       this.popoverContainer?.show(input);
+      this.host.role = 'listbox';
     }
   }
 
   /** Closes the listbox */
   @Method()
   async hide() {
+    this.host.removeAttribute('role');
     this.popoverContainer?.hide();
   }
 
@@ -158,13 +160,7 @@ export class PostListbox {
     return (
       <Host data-version={version}>
         <post-popovercontainer placement="bottom-start" ref={el => (this.popoverContainer = el)}>
-          {this.visibleOptions.length === 0 ? (
-            <slot name="blank-slate" />
-          ) : (
-            <div role="listbox">
-              <slot />
-            </div>
-          )}
+          {this.visibleOptions.length === 0 ? <slot name="blank-slate" /> : <slot />}
         </post-popovercontainer>
       </Host>
     );
