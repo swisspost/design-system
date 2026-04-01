@@ -1,0 +1,6 @@
+post-accordion:not([multiple]):not(:has([collapsed]))
+  > post-accordion-item ~ post-accordion-item {
+  --post-collapsible-initial-height: 0;
+  --post-collapsible-initial-overflow: hidden;
+  --post-accordion-icon-initial-transform: rotate(-180deg);
+}

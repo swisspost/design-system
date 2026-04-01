@@ -38,5 +38,3 @@ assignees: ''
 - [ ] Implement component functionality
 - [ ] Create developer-only documentation in Storybook
 - [ ] Add functional tests
-- [ ] Add React integration tests
-- [ ] Add Angular integration tests

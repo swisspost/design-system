@@ -4,11 +4,10 @@ import {
   PostAutocomplete,
   PostAvatar,
   PostBanner,
-  PostCardControl,
   PostClosebutton,
   PostCollapsible,
   PostCollapsibleTrigger,
-  PostDatepicker,
+  PostDatePicker,
   PostLinkarea,
   PostListbox,
   PostListboxOption,
@@ -77,9 +76,6 @@ export default function Home() {
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </PostBanner>
 
-      <h2>Card Control</h2>
-      <PostCardControl label="Label" type="checkbox" />
-
       <h2>Close Button</h2>
       <PostClosebutton>Close button</PostClosebutton>
 
@@ -101,8 +97,8 @@ export default function Home() {
         </p>
       </PostCollapsible>
 
-      <h2>Datepicker</h2>
-      <PostDatepicker
+      <h2>Date Picker</h2>
+      <PostDatePicker
         textToggleCalendar="Open calendar"
         textNextDecade="Next decade"
         textNextMonth="Next month"
@@ -112,8 +108,9 @@ export default function Home() {
         textPreviousYear="Previous year"
         textSwitchYear="Switch to year view"
       >
-        <input type="text" />
-      </PostDatepicker>
+        <input className="form-control" type="text" />
+        <p className="form-hint">Format: DD.MM.YYYY</p>
+      </PostDatePicker>
 
       <h2>Autocomplete</h2>
       <PostAutocomplete clearable={true}>
