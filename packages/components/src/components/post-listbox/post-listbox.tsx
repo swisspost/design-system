@@ -1,14 +1,4 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Listen,
-  Method,
-  State,
-  Event,
-  EventEmitter,
-} from '@stencil/core';
+import { Component, Element, h, Host, Listen, Method, Event, EventEmitter } from '@stencil/core';
 import { version } from '@root/package.json';
 import { EventFrom } from '@/utils';
 
@@ -23,7 +13,6 @@ export class PostListbox {
   private readonly diacriticPattern = /[\u0300-\u036f]/u;
   private popoverContainer?: HTMLPostPopovercontainerElement;
   @Element() host: HTMLPostListboxElement;
-  @State() private isOpen: boolean = false;
 
   /**
    *  Emitted option id for the active option
@@ -67,7 +56,6 @@ export class PostListbox {
   /** Opens the listbox */
   @Method()
   async show() {
-    this.isOpen = true;
     const input = this.inputElement;
     if (input) {
       this.popoverContainer?.show(input);
@@ -77,7 +65,6 @@ export class PostListbox {
   /** Closes the listbox */
   @Method()
   async hide() {
-    this.isOpen = false;
     this.popoverContainer?.hide();
   }
 
