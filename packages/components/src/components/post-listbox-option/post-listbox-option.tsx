@@ -25,7 +25,7 @@ export class PostListboxOption {
       <Host
         data-version={version}
         role="option"
-        aria-selected={this.selected}
+        aria-selected={`${this.selected}`}
         data-active={this.highlighted ? 'true' : null}
         /* Prevent focus change from triggering onblur event in post-autocomplete */
         onPointerDown={(e: PointerEvent) => e.preventDefault()}
