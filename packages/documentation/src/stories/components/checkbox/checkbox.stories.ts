@@ -27,6 +27,7 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     hiddenLegend: {
@@ -35,6 +36,21 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the component.',
+      control: {
+        type: 'select',
+        labels: {
+          'null': 'Default',
+          'form-check-sm': 'Small',
+        },
+      },
+      options: ['null', 'form-check-sm'],
       table: {
         category: 'General',
       },
@@ -212,58 +228,58 @@ export const Default: Story = {
   },
 };
 
-export const Validation: Story = {
-  parameters: {
-    controls: {
-      include: ['Validation'],
-    },
-  },
-  args: {
-    validation: 'is-invalid',
-  },
-};
-
 export const Grouped: Story = {
-  render: (args: Args, context: StoryContext) => html`
-    <fieldset>
-      <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
-        Legend
-      </legend>
-      ${['First Label', 'Second Label', 'Third Label', 'Fourth Label'].map((label, index) =>
-        renderCheckbox(
-          { ...args, label, checked: false },
-          { ...context, id: `${context.id}-${index}` },
-        ),
-      )}
-    </fieldset>
-  `,
+  render: renderGroup,
   parameters: {
     controls: {
-      include: ['Hidden Legend'],
+      include: ['Size'],
     },
   },
 };
 
 export const Inline: Story = {
-  render: (args: Args, context: StoryContext) => html`
-    <fieldset>
-      <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
-        Legend
-      </legend>
-      ${['First Label', 'Second Label', 'Third Label', 'Fourth Label'].map((label, index) =>
-        renderCheckbox(
-          { ...args, label, checked: false },
-          { ...context, id: `${context.id}-${index}` },
-        ),
-      )}
-    </fieldset>
-  `,
+  render: renderGroup,
   parameters: {
     controls: {
-      include: ['Hidden Legend'],
+      include: ['Size'],
     },
   },
   args: {
     inline: true,
   },
 };
+
+export function renderGroup(args: Args) {
+  const uniqueSuffix = crypto.randomUUID();
+
+  const itemClass = [
+    'form-check',
+    args.size && args.size !== 'null' ? args.size : undefined,
+    args.inline ? 'form-check-inline' : undefined,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const labels = ['First Label', 'Second Label', 'Third Label', 'Fourth Label'];
+
+  return html`
+    <fieldset>
+      <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
+
+      ${labels.map((label, index) => {
+        const id = `${uniqueSuffix}-${index}`;
+        return html`
+          <div class="${itemClass}">
+            <input
+              id="${id}"
+              type="checkbox"
+              ?disabled="${args.disabled}"
+              ?required="${args.requiredOptional === 'required'}"
+            />
+            <label for="${id}">${label}</label>
+          </div>
+        `;
+      })}
+    </fieldset>
+  `;
+}

@@ -4,9 +4,9 @@ import {
   PostAccordionItem,
   PostAvatar,
   PostBanner,
-  PostCardControl,
   PostCollapsible,
   PostCollapsibleTrigger,
+  PostDatePicker,
   PostIcon,
   PostLinkarea,
   PostMenu,
@@ -25,6 +25,8 @@ import {
   PostTooltipTrigger,
   PostStepper,
   PostStepperItem,
+  PostClosebutton,
+  PostNumberInput,
 } from 'components';
 
 @Component({
@@ -36,9 +38,10 @@ import {
     PostAccordionItem,
     PostAvatar,
     PostBanner,
-    PostCardControl,
+    PostClosebutton,
     PostCollapsible,
     PostCollapsibleTrigger,
+    PostDatePicker,
     PostIcon,
     PostLinkarea,
     PostMenu,
@@ -57,6 +60,7 @@ import {
     PostTooltipTrigger,
     PostStepper,
     PostStepperItem,
+    PostNumberInput,
   ],
 })
 export class HomeComponent {

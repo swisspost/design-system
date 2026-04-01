@@ -48,7 +48,7 @@ export class PostLanguageMenu {
   /**
    * Whether the component is rendered as a list or a menu
    */
-  @Prop() variant: SwitchVariant = 'list';
+  @Prop({ reflect: true }) variant: SwitchVariant = 'menu';
 
   @Watch('variant')
   validateVariant() {

@@ -29,9 +29,31 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
   return schemes(
     scheme => html`
       <h1>Inputs</h1>
-      <h2 class="h4">Standard</h2>
+      <h2 class="h4">Standard - Default size</h2>
       <div class="row">
         ${getCombinations('floatingLabel', [false], combinations)
+          .filter(
+            (args: Args) =>
+              !args.value ||
+              (args.value && (context.args.type === 'text' || context.args.type === 'password')),
+          )
+          .map((args: Args) => {
+            context.id = `${scheme}-${crypto.randomUUID()}`;
+            return html`
+              <div class="col-md-6 mb-16">
+                <h3 class="h6">${args.title}</h3>
+                <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+              </div>
+            `;
+          })}
+      </div>
+      <h2 class="h4">Standard - Small size</h2>
+      <div class="row">
+        ${getCombinations(
+          'floatingLabel',
+          [false],
+          combinations.map(c => ({ ...c, size: 'small' })),
+        )
           .filter(
             (args: Args) =>
               !args.value ||
@@ -97,10 +119,5 @@ export const Inputmonth: Story = {
 export const Inputweek: Story = {
   args: {
     type: 'week',
-  },
-};
-export const Inputtime: Story = {
-  args: {
-    type: 'time',
   },
 };

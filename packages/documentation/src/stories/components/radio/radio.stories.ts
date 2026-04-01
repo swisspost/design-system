@@ -237,11 +237,6 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
 
 export const Grouped: Story = {
   render: renderGroup,
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
-    },
-  },
   args: {
     checkedRadio: null,
   },
@@ -256,11 +251,6 @@ export const Grouped: Story = {
 
 export const Inline: Story = {
   render: renderGroup,
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
-    },
-  },
   args: {
     checkedRadio: null,
     inline: true,
@@ -271,16 +261,5 @@ export const Inline: Story = {
         disable: true,
       },
     },
-  },
-};
-
-export const Validation: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Hidden Legend', 'Label', 'Hidden Label', 'Disabled'],
-    },
-  },
-  args: {
-    validation: 'is-invalid',
   },
 };

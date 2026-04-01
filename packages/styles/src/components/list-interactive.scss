@@ -9,7 +9,6 @@ tokens.$default-map: components.$post-list;
 
 // Base class
 .list-interactive {
-  background-color: tokens.get('list-bg');
   list-style: none;
   padding: 0;
 

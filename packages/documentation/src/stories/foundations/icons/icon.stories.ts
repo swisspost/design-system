@@ -114,11 +114,6 @@ export const UI: Story = {
 };
 
 export const Color: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
   render: args =>
     renderVariants(args, [
       { style: 'color: blue' },
@@ -132,11 +127,6 @@ export const Color: Story = {
 };
 
 export const Size: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
   render: args =>
     renderVariants(args, [
       { style: 'font-size: 1rem' },
@@ -150,11 +140,6 @@ export const Size: Story = {
 };
 
 export const Flip: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
   render: args =>
     renderVariants(args, [
       {},
@@ -169,11 +154,6 @@ export const Flip: Story = {
 };
 
 export const Scale: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
   render: args => renderVariants(args, [{ scale: 0.5 }, {}, { scale: 1.5 }]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
@@ -182,11 +162,6 @@ export const Scale: Story = {
 };
 
 export const Rotate: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
   render: args =>
     renderVariants(args, [
       { rotate: -365 },
@@ -204,11 +179,6 @@ export const Rotate: Story = {
 };
 
 export const Animate: Story = {
-  parameters: {
-    controls: {
-      exclude: ['name', 'base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
   render: args =>
     renderAnimateVariants(args, [
       { name: 'dragleftright', animation: 'cylon' },

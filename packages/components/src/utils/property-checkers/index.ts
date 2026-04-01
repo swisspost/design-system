@@ -3,17 +3,22 @@ import { checkOneOf } from './check-one-of';
 import { checkPattern } from './check-pattern';
 import { checkType } from './check-type';
 import { checkUrl } from './check-url';
+import { checkDate } from './check-date';
 import { emptyOr } from './empty-or';
 import { checkArrayOf } from '@/utils/property-checkers/check-array-of';
+import { checkIsoDate } from '@/utils/property-checkers/check-iso-date';
 
 export const checkEmptyOrOneOf = emptyOr(checkOneOf);
 export const checkEmptyOrPattern = emptyOr(checkPattern);
 export const checkEmptyOrType = emptyOr(checkType);
 export const checkEmptyOrUrl = emptyOr(checkUrl);
 export const checkEmptyOrArrayOf = emptyOr(checkArrayOf);
+export const checkEmptyOrDate = emptyOr(checkDate);
 
 export const checkRequiredAndOneOf = requiredAnd(checkOneOf);
 export const checkRequiredAndPattern = requiredAnd(checkPattern);
 export const checkRequiredAndType = requiredAnd(checkType);
 export const checkRequiredAndUrl = requiredAnd(checkUrl);
 export const checkRequiredAndArrayOf = requiredAnd(checkArrayOf);
+
+export { checkIsoDate };
