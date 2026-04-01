@@ -219,18 +219,18 @@ export const Grouped: Story = {
   parameters: {
     controls: {
       include: ['Size'],
-  args: {
-    checkedRadio: null,
-  },
-  argTypes: {
-    checkedRadio: {
-      table: {
-        disable: true,
+      args: {
+        checkedRadio: null,
+      },
+      argTypes: {
+        checkedRadio: {
+          table: {
+            disable: true,
+          },
+        },
       },
     },
   },
-  args: { checkedRadio: null },
-  argTypes: { checkedRadio: { table: { disable: true } } },
 };
 
 export const Inline: Story = {
@@ -238,19 +238,19 @@ export const Inline: Story = {
   parameters: {
     controls: {
       include: ['Size'],
-  args: {
-    checkedRadio: null,
-    inline: true,
-  },
-  argTypes: {
-    checkedRadio: {
-      table: {
-        disable: true,
+      args: {
+        checkedRadio: null,
+        inline: true,
+      },
+      argTypes: {
+        checkedRadio: {
+          table: {
+            disable: true,
+          },
+        },
       },
     },
   },
-  args: { checkedRadio: null, inline: true },
-  argTypes: { checkedRadio: { table: { disable: true } } },
 };
 
 export const Validation: Story = {
