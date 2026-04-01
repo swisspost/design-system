@@ -71,9 +71,9 @@
     }
   }
 
-  // Small variant
+  // Small variant checkbox
   &.form-check-sm:has(input[type='checkbox']):not(.form-switch) {
-    gap: tokens.get('checkbox-gap-inline-text-start', components.$post-checkbox);
+    column-gap: tokens.get('checkbox-gap-inline-text-start', components.$post-checkbox);
     padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
 
     > input[type='checkbox'] ~ label {
@@ -155,25 +155,16 @@
     }
   }
 
-  // Small variant (Checkbox & Radio Button)
+  // Small variant radio
   &.form-check-sm:not(.form-switch) {
-    &:has(input[type='checkbox']) {
-      padding-block: tokens.get('checkbox-small-padding-block', components.$post-checkbox);
+    padding-block: tokens.get('radio-button-small-padding-block', components.$post-radio-button);
 
-      > input[type='checkbox'] ~ label {
-        font-size: tokens.get('checkbox-small-label-font-size', components.$post-checkbox);
-        padding-block: tokens.get('checkbox-small-label-padding-block', components.$post-checkbox);
-      }
-    }
-
-    &:has(input[type='radio']) {
-      > input[type='radio'] ~ label {
-        font-size: tokens.get('radio-button-small-label-font-size', components.$post-radio-button);
-        padding-block: tokens.get(
-          'radio-button-small-label-padding-block',
-          components.$post-radio-button
-        );
-      }
+    > input[type='radio'] ~ label {
+      font-size: tokens.get('radio-button-small-label-font-size', components.$post-radio-button);
+      padding-block: tokens.get(
+        'radio-button-small-label-padding-block',
+        components.$post-radio-button
+      );
     }
   }
 
@@ -193,17 +184,17 @@ fieldset {
     margin-block-end: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
 
     // Checkbox small
-    &:has(+ .form-check-sm:has(input[type='checkbox'])) {
+    &:has(+ .form-check-sm input[type='checkbox']) {
       margin-block-end: tokens.get('checkbox-small-group-gap-block', components.$post-checkbox);
     }
 
     // Radio (default)
-    &:has(+ .form-check:has(input[type='radio'])) {
+    &:has(+ .form-check input[type='radio']) {
       margin-block-end: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
     }
 
     // Radio small
-    &:has(+ .form-check-sm:has(input[type='radio'])) {
+    &:has(+ .form-check-sm input[type='radio']) {
       margin-block-end: tokens.get(
         'radio-button-small-group-gap-block',
         components.$post-radio-button
