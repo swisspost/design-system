@@ -29,8 +29,7 @@ export class PostAccordionItem {
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
    */
-  @Prop({ mutable: true }) collapsed?: boolean = false;
-
+@Prop({ mutable: true, reflect: true }) collapsed?: boolean = false;
   /**
    * Defines the hierarchical level of the accordion item header within the headings structure.
    * @deprecated set the `heading-level` property on the parent `post-accordion` instead.

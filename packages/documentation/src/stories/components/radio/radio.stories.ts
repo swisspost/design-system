@@ -219,6 +219,14 @@ export const Grouped: Story = {
   parameters: {
     controls: {
       include: ['Size'],
+  args: {
+    checkedRadio: null,
+  },
+  argTypes: {
+    checkedRadio: {
+      table: {
+        disable: true,
+      },
     },
   },
   args: { checkedRadio: null },
@@ -230,6 +238,15 @@ export const Inline: Story = {
   parameters: {
     controls: {
       include: ['Size'],
+  args: {
+    checkedRadio: null,
+    inline: true,
+  },
+  argTypes: {
+    checkedRadio: {
+      table: {
+        disable: true,
+      },
     },
   },
   args: { checkedRadio: null, inline: true },

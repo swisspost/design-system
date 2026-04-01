@@ -8,7 +8,7 @@ function dataRetriever() {
     v1IconNames: [],
     v2IconNames: [],
     getIcon(name) {
-      return `<use href="/post-icons/${name}.svg?v=${new Date().getTime()}#i-${name}"/>`;
+      return `<use href="/post-icons/${name}.svg?v=${Date.now()}#i-${name}"/>`;
     },
     async getData() {
       this.isLoading = true;
