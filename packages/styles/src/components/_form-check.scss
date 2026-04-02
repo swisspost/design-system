@@ -41,7 +41,7 @@
   }
 
   > input[type='radio'],
-  &:not(.form-switch) > input[type='checkbox'] {
+  > input[type='checkbox'] {
     &:not([disabled]) {
       ~ label {
         cursor: pointer;

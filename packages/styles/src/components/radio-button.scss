@@ -14,8 +14,7 @@ tokens.$default-map: components.$post-radio-button;
   @include forms-mx.radio-button();
 }
 
-// Small Radio
-.form-check-sm > input[type='radio'] {
+.form-check.form-check-sm > input[type='radio'] {
   width: tokens.get('radio-button-small-icon-size');
   height: tokens.get('radio-button-small-icon-size');
 
@@ -56,6 +55,7 @@ tokens.$default-map: components.$post-radio-button;
     }
   }
 
+  // Small
   &.form-check-sm {
     padding-block: tokens.get('radio-button-small-padding-block');
 

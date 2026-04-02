@@ -55,6 +55,7 @@ tokens.$default-map: components.$post-checkbox;
     }
   }
 
+  // Small
   &.form-check-sm {
     padding-block: tokens.get('checkbox-small-padding-block');
 
