@@ -550,6 +550,7 @@ export class PostDatePicker {
         this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
         this.dpInstance.selectDate([start, end]);
         this.dpInstance.setViewDate(start);
+        this.postUpdateDates.emit([this.dateToIso(start), this.dateToIso(end)]);
       } else if (startValid && !endValid) {
         this.dpInstance.clear();
         this.dpInstance.selectDate(start);
@@ -564,6 +565,7 @@ export class PostDatePicker {
         this.skipOnSelectCount = 1;
         this.dpInstance.selectDate(date);
         this.dpInstance.setViewDate(date);
+        this.postUpdateDates.emit(this.dateToIso(date));
       } else {
         this.resetSelection();
       }
