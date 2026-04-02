@@ -886,7 +886,6 @@ export class PostDatePicker {
             }
 
             this.popoverRef?.hide();
-            requestAnimationFrame(() => this.dpInput.focus());
           }
         },
         onShow: () => {
