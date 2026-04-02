@@ -68,9 +68,9 @@ export const SelectionCard: StoryObj = {
                   <p id="${type}_${scheme}" class="mt-32 fw-bold">Type: ${type}</p>
                   ${bombedArgs.map(
                     args =>
-                      html`<fieldset class="mx-0">
+                      html`<div class="mx-0 my-8">
                         ${meta.render?.({ ...args, type }, context)}
-                      </fieldset>`,
+                      </div>`,
                   )}
 
                   <hr class="mt-32">
@@ -103,6 +103,7 @@ export const SelectionCard: StoryObj = {
           { ...baseArgs, label: 'Checked, Disabled', checked: true, disabled: true },
           context,
         )}
+        ${meta.render?.({ ...baseArgs, label: 'Valid', validation: 'is-valid' }, context)}
         ${meta.render?.({ ...baseArgs, label: 'Invalid', validation: 'is-invalid' }, context)}
         ${meta.render?.(
           { ...baseArgs, label: 'Invalid, Checked', validation: 'is-invalid', checked: true },

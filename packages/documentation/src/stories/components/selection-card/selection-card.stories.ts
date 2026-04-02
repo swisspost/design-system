@@ -1,14 +1,105 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+import type { Args, ArgTypes, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
+import { VALIDATION_STATE_MAP } from '@/utils/form-elements';
+
+const commonArgs: ArgTypes = {
+  label: {
+    name: 'Label',
+    type: {
+      required: true,
+      name: 'string',
+    },
+    description: 'The main label of the input',
+    table: {
+      category: 'General',
+    },
+  },
+  icon: {
+    name: 'Icon',
+    control: {
+      type: 'select',
+    },
+    options: ['none', 'component', 'letter', 'letteropen', 'parcel'],
+    table: {
+      category: 'General',
+    },
+  },
+  description: {
+    name: 'Description',
+    description: 'A short additional description',
+    table: {
+      category: 'General',
+    },
+  },
+  checked: {
+    name: 'Checked',
+    type: 'boolean',
+    description: 'When set to `true`, places the component in the checked state.',
+    table: {
+      category: 'States',
+    },
+  },
+  disabled: {
+    name: 'Disabled',
+    description:
+      'When set to `true`, disables the component\'s functionality and places it in a disabled state.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
+    control: {
+      type: 'boolean',
+    },
+    table: {
+      category: 'States',
+    },
+  },
+};
+
+const typeArg: object = {
+  type: {
+    required: true,
+    name: 'string',
+  },
+  description: 'The type of the input element.',
+  control: {
+    type: 'radio',
+    labels: {
+      checkbox: 'Checkbox',
+      radio: 'Radio',
+    },
+  },
+  options: ['checkbox', 'radio'],
+  table: {
+    category: 'General',
+  },
+};
+
+const validationArg: object = {
+  description:
+    'Defines the validation state of the selection card and controls the display of the corresponding return message.<post-banner data-size="sm"><p>Validations work the same as a regular checkbox or radio button. Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs">validation guidelines here</a>.</p></post-banner> ',
+  control: {
+    type: 'radio',
+    labels: {
+      'null': 'Default',
+      'is-invalid': 'Invalid',
+      'is-valid': 'Valid',
+    },
+  },
+  if: {
+    arg: 'disabled',
+    truthy: false,
+  },
+  options: ['null', 'is-invalid', 'is-valid'],
+  table: {
+    category: 'States',
+  },
+};
 
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Selection Card',
-  tags: ['package:Styles', 'status:InProgress'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderComponent,
   parameters: {
     badges: [],
@@ -18,103 +109,28 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    type: 'checkbox',
     label: 'Label',
     description: '',
     icon: 'none',
     checked: false,
     disabled: false,
+    type: 'checkbox',
     validation: 'null',
   },
   argTypes: {
+    ...commonArgs,
     type: {
       name: 'Type',
-      type: {
-        required: true,
-        name: 'string',
-      },
-      description: 'The type of the input element.',
-      control: {
-        type: 'radio',
-        labels: {
-          checkbox: 'Checkbox',
-          radio: 'Radio',
-        },
-      },
-      options: ['checkbox', 'radio'],
-      table: {
-        category: 'General',
-      },
-    },
-    label: {
-      name: 'Label',
-      type: {
-        required: true,
-        name: 'string',
-      },
-      description: 'The main label of the input',
-      table: {
-        category: 'General',
-      },
-    },
-    description: {
-      name: 'Description',
-      description: 'A short additional description',
-      table: {
-        category: 'General',
-      },
-    },
-    icon: {
-      name: 'Icon',
-      control: {
-        type: 'select',
-      },
-      options: ['none', 'component', 'letter', 'letteropen', 'parcel'],
-      table: {
-        category: 'General',
-      },
-    },
-    checked: {
-      name: 'Checked',
-      type: 'boolean',
-      description: 'When set to `true`, places the component in the checked state.',
-      table: {
-        category: 'States',
-      },
-    },
-    disabled: {
-      name: 'Disabled',
-      description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'States',
-      },
+      ...typeArg,
     },
     validation: {
       name: 'Validation',
-      description:
-        'Defines the validation state of the selection card and controls the display of the corresponding return message.<post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs">validation guidelines here</a>.</p></post-banner> ',
-      control: {
-        type: 'radio',
-        labels: {
-          'null': 'Default',
-          'is-invalid': 'Invalid',
-        },
-      },
-      options: ['null', 'is-invalid'],
-      table: {
-        category: 'States',
-      },
+      ...validationArg,
     },
   },
 };
 
 export default meta;
-
-// DECORATORS
 
 // RENDERER
 
@@ -130,22 +146,25 @@ class RenderHelper {
     return `${storyName}_${this.id++}`;
   }
 
-  public validationId(context: StoryContext): string {
-    const storyName = this.storyName(context);
-    return `${storyName}_${this.id++}_Validation_Message`;
+  public validationId(id: string): string {
+    return `${id}_validation_message`;
   }
 
-  public validation(id: string) {
-    return html`<p class="invalid-feedback" id=${id}>Invalid message.</p>`;
+  public validationMessage(id: string, val: string) {
+    if (val === 'is-valid') {
+      return html`<p class="valid-feedback" id="${id}">Great success!</p>`;
+    } else if (val === 'is-invalid') {
+      return html`<p class="invalid-feedback" id="${id}">An error occurred!</p>`;
+    }
   }
 }
 
 const _ = new RenderHelper();
 
-function renderComponent(args: Args, context: StoryContext) {
+function renderComponent(args: Args, context: StoryContext, groupValidationId?: string) {
   const [_args, updateArgs] = useArgs();
   const [id] = useState(_.componentId(args, context));
-  const [validationId] = useState(_.validationId(context));
+  const validationId = groupValidationId ? groupValidationId : _.validationId(id);
 
   const classes = args.class ? `selection-card ${args.class}` : 'selection-card';
   const input: HTMLInputElement | null = document.querySelector(`#${id}`);
@@ -190,17 +209,14 @@ function renderComponent(args: Args, context: StoryContext) {
         name=${args.type === 'radio' && args.groupName ? args.groupName : nothing}
         ?checked=${args.checked}
         ?disabled=${args.disabled}
-        aria-invalid=${args.groupName || args.validation === 'null' ? nothing : 'true'}
-        aria-describedby=${args.groupName || args.validation === 'null'
-          ? nothing
-          : `${id} ${validationId}`}
+        ?aria-invalid=${VALIDATION_STATE_MAP[args.validation]}
+        aria-describedby=${args.validation !== 'null' ? validationId : nothing}
         @change="${args.onChange ?? onChange}"
       />
       <label for=${id}>${args.label}</label>
       ${icon()} ${description()} ${customContent()}
     </post-linkarea>
-
-    ${args.groupName ? nothing : _.validation(validationId)}`;
+    ${args.groupName ? nothing : _.validationMessage(validationId, args.validation)}`;
 }
 
 // STORIES
@@ -280,74 +296,96 @@ export const CustomContent: Story = {
   },
 };
 
+export function renderGroup(args: Args, context: StoryContext) {
+  const [_args, updateArgs] = useArgs();
+  args.validation = args.validationGroup;
+  const id = _.componentId(args, context);
+  const validationId = _.validationId(id);
+  const items = Array.from({ length: STORY_GROUPING_AMOUNT_OF_ITEMS }).map((_, i) => [
+    `checked${i + 1}`,
+    args[`checked${i + 1}`],
+  ]);
+
+  resetRadioButtons();
+
+  return html`<fieldset ?disabled=${args.disabled ?? nothing}>
+    <legend class="large">Group Legend</legend>
+
+    ${items.map(render)} ${_.validationMessage(validationId, args.validation)}
+  </fieldset>`;
+
+  function render(_v: unknown, i: number) {
+    const label = `Label ${i + 1}`;
+    const checkedName = `checked${i + 1}`;
+
+    function onChange(e: InputEvent) {
+      const target = e.target as HTMLInputElement;
+      const changedArg = { [checkedName]: target?.checked ?? false };
+      const radioButtonArgs = items
+        .filter(([name]) => name !== checkedName)
+        .reduce(
+          (checkedValues, [name]) => ({
+            ...checkedValues,
+            [name]: false,
+          }),
+          changedArg,
+        );
+
+      updateArgs(args.type === 'radio' ? radioButtonArgs : changedArg);
+    }
+
+    return html`${meta.render?.(
+      {
+        ...args,
+        label,
+        type: args.typeGroup,
+        validation: args.validationGroup,
+        disabled: undefined,
+        checked: args[checkedName],
+        onChange,
+      },
+      context,
+      validationId,
+    )}`;
+  }
+
+  function resetRadioButtons() {
+    if (args.typeGroup === 'radio') {
+      items
+        .filter(([_, checked]) => checked)
+        .slice(0, -1)
+        .forEach(([name]) => {
+          updateArgs({ [name]: false });
+        });
+    }
+  }
+}
+
 export const Grouping: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['Type', 'Disabled', 'Validation'],
+        include: ['Group type', 'Disabled', 'Group validation'],
       },
     },
   },
   args: {
     groupName: 'grouping_group',
+    typeGroup: 'checkbox',
+    validationGroup: 'null',
   },
-  render: (args: Args, context: StoryContext) => {
-    const [_args, updateArgs] = useArgs();
-    const [validationId] = useState(_.validationId(context));
-    const items = Array.from({ length: STORY_GROUPING_AMOUNT_OF_ITEMS }).map((_, i) => [
-      `checked${i + 1}`,
-      args[`checked${i + 1}`],
-    ]);
-
-    resetRadioButtons();
-
-    return html`<fieldset
-      ?disabled=${args.disabled ?? nothing}
-      aria-invalid=${args.validation === 'null' ? nothing : 'true'}
-      aria-describedby=${args.validation === 'null' ? nothing : validationId}
-    >
-      <legend>Group Legend</legend>
-
-      ${items.map(render)} ${_.validation(validationId)}
-    </fieldset>`;
-
-    function render(_v: unknown, i: number) {
-      const label = `Label ${i + 1}`;
-      const checkedName = `checked${i + 1}`;
-
-      function onChange(e: InputEvent) {
-        const target = e.target as HTMLInputElement;
-        const changedArg = { [checkedName]: target?.checked ?? false };
-        const radioButtonArgs = items
-          .filter(([name]) => name !== checkedName)
-          .reduce(
-            (checkedValues, [name]) => ({
-              ...checkedValues,
-              [name]: false,
-            }),
-            changedArg,
-          );
-
-        updateArgs(args.type === 'radio' ? radioButtonArgs : changedArg);
-      }
-
-      return html`${meta.render?.(
-        { ...args, label, disabled: undefined, checked: args[checkedName], onChange },
-        context,
-      )}`;
-    }
-
-    function resetRadioButtons() {
-      if (args.type === 'radio') {
-        items
-          .filter(([_, checked]) => checked)
-          .slice(0, -1)
-          .forEach(([name]) => {
-            updateArgs({ [name]: false });
-          });
-      }
-    }
+  argTypes: {
+    ...commonArgs,
+    typeGroup: {
+      name: 'Group type',
+      ...typeArg,
+    },
+    validationGroup: {
+      name: 'Group validation',
+      ...validationArg,
+    },
   },
+  render: renderGroup,
 };
 
 export const Lineup: Story = {
