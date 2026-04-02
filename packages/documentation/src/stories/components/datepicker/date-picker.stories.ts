@@ -59,25 +59,14 @@ export default meta;
 
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
-  if (args.range) {
-    return args.inline ? renderInline(args) : renderPopupRange(args);
-  } else {
-    return args.inline ? renderInline(args) : renderPopupSimple(args);
-  }
-}
-
-function renderPopupRange(args: Args) {
-  return html`
-    <post-date-picker ${spreadArgs(args)}>
-      <input class="form-control" type="text"></input>
-    </post-date-picker>`;
+  return args.inline ? renderInline(args) : renderPopup(args);
 }
 
 function renderInline(args: Args) {
   return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
 }
 
-function renderPopupSimple(args: Args) {
+function renderPopup(args: Args) {
   return html`
     <post-date-picker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
