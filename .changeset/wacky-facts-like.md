@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Implemented l11n into our existing Date Picker component.
+Added localization (l11n) support to the Date Picker component.
