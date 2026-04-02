@@ -74,7 +74,7 @@ tokens.$default-map: components.$post-radio-button;
   }
 }
 
-fieldset:has(.form-check input[type='checkbox']) {
+fieldset:has(.form-check input[type='radio']) {
   margin-block: tokens.get('radio-button-padding-block-group');
 }
 
