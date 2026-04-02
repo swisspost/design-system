@@ -171,7 +171,7 @@ export namespace Components {
          */
         "inline": boolean;
         /**
-          * The date picker's selected locale. Should be a locale string (e.g. "it" or "it-CH").
+          * The date picker's selected locale (e.g. "it" or "it-CH"). <br>Note: The Date Picker popup may not support the configured language and fall back to English, the right locale is important anyway to get the correct date format and text direction!
           * @default this.systemLocale
          */
         "locale"?: string;
@@ -1232,7 +1232,7 @@ declare namespace LocalJSX {
          */
         "inline"?: boolean;
         /**
-          * The date picker's selected locale. Should be a locale string (e.g. "it" or "it-CH").
+          * The date picker's selected locale (e.g. "it" or "it-CH"). <br>Note: The Date Picker popup may not support the configured language and fall back to English, the right locale is important anyway to get the correct date format and text direction!
           * @default this.systemLocale
          */
         "locale"?: string;

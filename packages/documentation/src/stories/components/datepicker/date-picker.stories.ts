@@ -1,7 +1,7 @@
 import { Args, StoryObj, StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { spreadArgs } from '@/utils';
+import { spreadArgs, LOCALES } from '@/utils';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
@@ -21,6 +21,7 @@ const meta: MetaComponent = {
   },
   args: {
     id: 'main',
+    locale: '',
     inline: false,
     range: false,
     textToggleCalendar: 'Open calendar',
@@ -33,6 +34,10 @@ const meta: MetaComponent = {
     textSwitchYear: 'Switch to year view',
   },
   argTypes: {
+    locale: {
+      control: 'select',
+      options: ['de-CH', 'fr-CH', 'it-CH', 'en', ...LOCALES],
+    },
     min: {
       control: 'text',
     },
@@ -65,7 +70,6 @@ function renderPopupRange(args: Args) {
   return html`
     <post-date-picker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
-      <p class="form-hint">Format: DD.MM.YYYY - DD.MM.YYYY</p>
     </post-date-picker>`;
 }
 
@@ -77,7 +81,6 @@ function renderPopupSimple(args: Args) {
   return html`
     <post-date-picker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
-      <p class="form-hint">Format: DD.MM.YYYY</p>
     </post-date-picker>`;
 }
 

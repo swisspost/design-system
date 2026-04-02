@@ -28,7 +28,9 @@ export const LANGUAGE_CODES_RTL = [
   'ur', // Urdu
   'yi', // Yiddish
 ];
-export const LOCALES = Array.from(new Set([...LANGUAGE_CODES, ...LOCALE_CODES].sort()));
+export const LOCALES = Array.from(
+  new Set([...LANGUAGE_CODES, ...LOCALE_CODES].sort((a, b) => a.localeCompare(b))),
+);
 export const FALLBACK_LANGUAGE_CODE = 'en';
 export const FALLBACK_LOCALE_CODE = 'en-GB';
 

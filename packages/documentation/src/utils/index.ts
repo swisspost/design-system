@@ -5,3 +5,4 @@ export * from './get-attributes';
 export * from './storybook-indexer';
 export * from './map-classes';
 export * from './spread-args';
+export * from './locales';
