@@ -46,7 +46,7 @@ export const Radio: Story = {
             )
             .map((args: Args) => {
               context.id = `${scheme}-${crypto.randomUUID()}`;
-              return meta.render?.({ ...context.args, ...args }, context);
+              return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div>`;
             })}
         </div>
 

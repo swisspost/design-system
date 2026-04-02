@@ -10,9 +10,6 @@ const meta: MetaComponent = {
   title: 'Components/Form Radio Button',
   tags: ['package:Styles', 'status:Stable'],
   parameters: {
-    controls: {
-      exclude: ['Hidden Legend'],
-    },
     badges: [],
     design: {
       type: 'figma',
@@ -100,20 +97,18 @@ const meta: MetaComponent = {
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
-  const groupName = `${context.id}-radio`;
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
   const useAriaLabel = args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}">${getLabelText(args)}</label> `
+    ? html` <label for="${context.id}">${getLabelText(args)}</label> `
     : null;
   const contextual: (TemplateResult | null)[] = getValidationMessages(args, context, false);
 
   const control = html`
     <input
-      id="${id}"
-      name="${groupName}"
+      id="${context.id}"
+      name="${context.id}"
       class="${ifDefined(radioClass)}"
       type="radio"
       ?checked="${args.checked}"
@@ -130,7 +125,8 @@ function render(args: Args, context: StoryContext) {
   `;
 
   return html`
-    <div class="${groupClasses}">${[control, label, ...contextual].filter(el => el !== null)}</div>
+    <div class="${groupClasses}">${[control, label].filter(el => el !== null)}</div>
+    ${contextual}
   `;
 }
 
@@ -138,22 +134,23 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    controls: {
+      exclude: ['Hidden Legend'],
+    },
+  },
+};
 
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  const baseId = `${context.id}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
-  const id1 = baseId + '1';
-  const id2 = baseId + '2';
-  const id3 = baseId + '3';
-  const id4 = baseId + '4';
 
   function onChange(e: Event, value: number) {
     const changeTarget = e.target as HTMLElement;
     updateArgs({ checkedRadio: value });
     if (document.activeElement === changeTarget) {
       setTimeout(() => {
-        const element: HTMLInputElement | null = document.querySelector(`#${changeTarget.id}`);
+        const element: HTMLInputElement | null = document.getElementById(changeTarget.id);
         if (element) element.focus();
       }, 25);
     }
@@ -165,51 +162,22 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
 
   return html`
     <fieldset>
-      <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
-      <div class="${formCheckClasses}">
-        <input
-          id="${id1}"
-          name="Inline_ExampleRadio_Group"
-          class="form-check-input"
-          type="radio"
-          ?checked="${args.checkedRadio === 1}"
-          @change="${(e: Event) => onChange(e, 1)}"
-        />
-        <label for="${id1}" class="form-check-label">${args.label}</label>
-      </div>
-      <div class="${formCheckClasses}">
-        <input
-          id="${id2}"
-          name="Inline_ExampleRadio_Group"
-          class="form-check-input"
-          type="radio"
-          ?checked="${args.checkedRadio === 2}"
-          @change="${(e: Event) => onChange(e, 2)}"
-        />
-        <label for="${id2}" class="form-check-label">${args.label}</label>
-      </div>
-      <div class="${formCheckClasses}">
-        <input
-          id="${id3}"
-          name="Inline_ExampleRadio_Group"
-          class="form-check-input"
-          type="radio"
-          ?checked="${args.checkedRadio === 3}"
-          @change="${(e: Event) => onChange(e, 3)}"
-        />
-        <label for="${id3}" class="form-check-label">${args.label}</label>
-      </div>
-      <div class="${formCheckClasses}">
-        <input
-          id="${id4}"
-          name="Inline_ExampleRadio_Group"
-          class="form-check-input"
-          type="radio"
-          ?checked="${args.checkedRadio === 4}"
-          @change="${(e: Event) => onChange(e, 4)}"
-        />
-        <label for="${id4}" class="form-check-label">${args.label}</label>
-      </div>
+      <legend class="${args.hiddenLegend ? 'visually-hidden' : nothing}">Legend</legend>
+      ${Array.from({ length: 4 }, (_, i) => {
+        return html`
+          <div class="${formCheckClasses}">
+            <input
+              id="${context.id}${i + 1}"
+              name="${context.id}"
+              class="form-check-input"
+              type="radio"
+              ?checked="${args.checkedRadio === i + 1}"
+              @change="${(e: Event) => onChange(e, i + 1)}"
+            />
+            <label for="${context.id}${i + 1}" class="form-check-label">${args.label}</label>
+          </div>
+        `;
+      })}
     </fieldset>
   `;
 }
@@ -218,16 +186,16 @@ export const Grouped: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Size'],
-      args: {
-        checkedRadio: null,
-      },
-      argTypes: {
-        checkedRadio: {
-          table: {
-            disable: true,
-          },
-        },
+      include: ['Size', 'Hidden Legend'],
+    },
+  },
+  args: {
+    checkedRadio: null,
+  },
+  argTypes: {
+    checkedRadio: {
+      table: {
+        disable: true,
       },
     },
   },
@@ -237,17 +205,17 @@ export const Inline: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Size'],
-      args: {
-        checkedRadio: null,
-        inline: true,
-      },
-      argTypes: {
-        checkedRadio: {
-          table: {
-            disable: true,
-          },
-        },
+      include: ['Size', 'Hidden Legend'],
+    },
+  },
+  args: {
+    checkedRadio: null,
+    inline: true,
+  },
+  argTypes: {
+    checkedRadio: {
+      table: {
+        disable: true,
       },
     },
   },

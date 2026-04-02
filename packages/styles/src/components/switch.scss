@@ -210,4 +210,31 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
       padding-inline-start: tokens.get('switch-gap-inline-text');
     }
   }
+
+  > input[type='checkbox'] {
+    ~ label {
+      color: tokens.get('switch-text-enabled-fg');
+    }
+
+    &:not([disabled]) {
+      ~ label {
+        cursor: pointer;
+      }
+
+      &:hover ~ label {
+        color: tokens.get('switch-text-enabled-fg');
+
+        @include utility-mx.high-contrast-mode() {
+          color: Highlight;
+        }
+      }
+    }
+
+    &[disabled] ~ label {
+      color: tokens.get('switch-text-disabled-fg');
+      @include utility-mx.high-contrast-mode() {
+        color: GrayText;
+      }
+    }
+  }
 }
