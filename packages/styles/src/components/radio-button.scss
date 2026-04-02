@@ -80,7 +80,7 @@ fieldset:has(.form-check input[type='checkbox']) {
 
 fieldset legend {
   &:has(+ .form-check input[type='radio']) {
-    font-size: tokens.get('checkbox-group-legend-font-size');
+    font-size: tokens.get('radio-button-group-legend-font-size');
     margin-block-end: tokens.get('radio-button-gap-block-group');
   }
 
