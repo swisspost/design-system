@@ -6,6 +6,7 @@ import '@swisspost/design-system-components';
 
 @Component({
   tag: 'swisspost-internet-breadcrumbs',
+  styleUrl: 'post-internet-breadcrumbs.scss',
   shadow: false,
 })
 export class PostInternetBreadcrumbs {
@@ -37,21 +38,12 @@ export class PostInternetBreadcrumbs {
   }
 
   render() {
-    // There is something wrong entirely
-    // eslint-disable-next-line @stencil-community/strict-boolean-conditions
-    if (!state) {
-      console.warn(
-        `Internet Breadcrumbs: Could not load config. Please make sure that you included the <swisspost-internet-header></swisspost-internet-header> component.`,
-      );
-      return null;
-    }
-
     // Config is not loaded yet
     if (!state.localizedConfig) {
       return null;
     }
 
-    // Config has loaded but there is no breadcrumbs config
+    // There is no breadcrumb config
     // eslint-disable-next-line @stencil-community/strict-boolean-conditions
     if (!state.localizedConfig.breadcrumbs) {
       console.warn(
