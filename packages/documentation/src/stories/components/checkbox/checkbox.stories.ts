@@ -228,17 +228,6 @@ export const Default: Story = {
   },
 };
 
-export const Validation: Story = {
-  parameters: {
-    controls: {
-      include: ['Validation'],
-    },
-  },
-  args: {
-    validation: 'is-invalid',
-  },
-};
-
 export const Grouped: Story = {
   render: renderGroup,
   parameters: {

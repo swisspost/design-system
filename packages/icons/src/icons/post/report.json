@@ -28610,6 +28610,34 @@
       "modifiedAt": "2026-03-27T10:40:51.000Z"
     },
     {
+      "uuid": "5e5381b0-2cc0-11f1-a537-0050568d2654",
+      "id": 9667644,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9667644/storage/MDA5NjY3NjQ0LzAvbWFzdGVy",
+        "keywords": [
+          "Location unknown",
+          "Standort unbekannt",
+          "Site inconnu",
+          "Ubicazione sconosciuta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2777.svg",
+        "basename": "2777",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-31T05:13:35.000Z",
+      "modifiedAt": "2026-03-31T15:05:00.602Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -41869,13 +41897,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1108,
+    "success": 1109,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-03-29T03:34:50.897Z",
-  "version": "10.0.0-next.65"
+  "created": "2026-03-31T15:43:58.052Z",
+  "version": "10.0.0-next.66"
 }

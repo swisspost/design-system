@@ -54,9 +54,9 @@ export class MigrationV67Component extends LitElement {
                     <li>
                       <p>
                         Update ng-bootstrap to version 16.x.x:
-                        <code languages="['bash']">
-                          npm install @ng-bootstrap/ng-bootstrap@16
-                        </code>
+                        <code-block
+                          code=${'npm install @ng-bootstrap/ng-bootstrap@16'}
+                        ></code-block>
                       </p>
                       <p class="mt-2">
                         See the
@@ -73,11 +73,11 @@ export class MigrationV67Component extends LitElement {
                   `
                 : nothing
             }
-              
+
               <li>
                 <p>
                   Update Design System style package to version 7:
-                  <code languages="['bash']">npm install @swisspost/design-system-styles@7</code>
+                  <code-block code=${'npm install @swisspost/design-system-styles@7'}></code-block>
                 </p>
               </li>
             </ol>
@@ -96,12 +96,11 @@ export class MigrationV67Component extends LitElement {
                       <li>
                         You should now be able to run the following command to apply all automatic
                         migrations to your application:
-                        <code languages="['bash']">
-                          npm install @swisspost/design-system-migrations<br />
-                          npx ng update @swisspost/design-system-migrations --from=6 --to=7
-                          --migrate-only --allow-dirty<br />
-                          npm uninstall @swisspost/design-system-migrations
-                        </code>
+                        <code-block
+                          code=${`npm install @swisspost/design-system-migrations
+npx ng update @swisspost/design-system-migrations --from=6 --to=7 --migrate-only --allow-dirty
+npm uninstall @swisspost/design-system-migrations`}
+                        ></code-block>
                       </li>
                     </ol>
                   </li>

@@ -245,11 +245,6 @@ function render(args: Args, context: StoryContext) {
 export const Default: Story = {};
 
 export const FloatingLabel: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
   args: {
     floatingLabel: true,
     hint: '',
@@ -260,19 +255,6 @@ export const Small: Story = {
   args: {
     floatingLabel: false,
     size: 'small',
-  },
-};
-
-export const Validation: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled'],
-    },
-  },
-  args: {
-    validation: 'is-invalid',
-    hint: '',
-    floatingLabel: true,
   },
 };
 
