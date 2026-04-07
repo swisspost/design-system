@@ -33596,6 +33596,38 @@
       "modifiedAt": "2026-03-27T10:39:23.000Z"
     },
     {
+      "uuid": "5e7b5500-2cc0-11f1-a537-0050568d2654",
+      "id": 9667645,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9667645/storage/MDA5NjY3NjQ0LzAvbWFzdGVy",
+        "keywords": [
+          "location",
+          "Standort",
+          "Site",
+          "Ubicazione",
+          "Location unknown",
+          "Standort unbekannt",
+          "Site inconnu",
+          "Ubicazione sconosciuta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2777.svg",
+        "basename": "2777",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-03-31T05:13:35.000Z",
+      "modifiedAt": "2026-04-01T05:05:04.223Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -46047,37 +46079,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
-      "id": 352299,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3058.svg",
-        "basename": "3058",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:42.000Z"
-    },
-    {
       "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
       "id": 352314,
       "type": "picture.pictogram.",
@@ -46107,6 +46108,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:43.000Z"
+    },
+    {
+      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
+      "id": 352299,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3058.svg",
+        "basename": "3058",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:42.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -46220,11 +46252,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-03-29T03:45:02.498Z",
+  "created": "2026-04-05T03:43:51.652Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1106
+    "success": 1107
   },
-  "version": "9.10.0"
+  "version": "9.11.0"
 }
