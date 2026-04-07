@@ -71,7 +71,9 @@ export class PostBreadcrumbs {
     this.validateTextMoreItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
-    this.updateBreadcrumbItems();
+    requestAnimationFrame(() => {
+      this.updateBreadcrumbItems();
+    });
   }
 
   disconnectedCallback() {
