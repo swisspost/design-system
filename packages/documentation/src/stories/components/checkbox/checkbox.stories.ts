@@ -232,7 +232,7 @@ export const Grouped: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Size'],
+      include: ['Size', 'Hidden Legend'],
     },
   },
 };
@@ -241,7 +241,7 @@ export const Inline: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Size'],
+      include: ['Size', 'Hidden Legend'],
     },
   },
   args: {
