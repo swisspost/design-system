@@ -28,8 +28,8 @@ pnpm components-react:build
 Then, to focus only on the component being tested, isolate it in the Next.js application.
 Comment out all components that are not under test and their imports in the following files:
 
-- `packages/integration-next/src/app/ssr/layout.tsx`
-- `packages/integration-next/src/app/ssr/page.tsx`
+- `apps/integration-next/src/app/ssr/layout.tsx`
+- `apps/integration-next/src/app/ssr/page.tsx`
 
 Finally, serve the application with:
 

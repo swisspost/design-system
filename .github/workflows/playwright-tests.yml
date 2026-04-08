@@ -6,7 +6,7 @@ on:
       - 'packages/styles/**'
       - 'packages/components/**'
       - 'packages/components-react/**'
-      - 'packages/integration-next/**'
+      - 'apps/integration-next/**'
 
 permissions:
   contents: read
