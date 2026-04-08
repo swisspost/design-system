@@ -33,8 +33,18 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 
       <!-- Meta navigation -->
       <ul slot="global-nav-secondary">
-        <li><a href="">Jobs</a></li>
-        <li><a href="">About us</a></li>
+        <li>
+          <a href="">
+            Career
+            <post-icon name="rocket" aria-hidden="true"></post-icon>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            Create Account
+            <post-icon name="adduser" aria-hidden="true"></post-icon>
+          </a>
+        </li>
       </ul>
 
       <!-- Language switch -->
