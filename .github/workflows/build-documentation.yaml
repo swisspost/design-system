@@ -15,6 +15,7 @@ on:
   pull_request:
     types: [opened, synchronize, edited, reopened]
     paths:
+      - 'apps/**'
       - 'packages/**'
 
 permissions:
