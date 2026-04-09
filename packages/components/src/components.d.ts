@@ -8,14 +8,14 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-import { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
+import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-export { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
+export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
@@ -122,57 +122,6 @@ export namespace Components {
          */
         "textMoreItems": string;
     }
-    /**
-     * @class PostCardControl - representing a stencil component
-     */
-    interface PostCardControl {
-        /**
-          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
-          * @default false
-         */
-        "checked": boolean;
-        /**
-          * Defines the description in the control-label.
-         */
-        "description"?: string;
-        /**
-          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
-          * @default false
-         */
-        "disabled": boolean;
-        /**
-          * A hidden public method to reset the group controls `checked` state to `false`.
-         */
-        "groupReset": () => Promise<void>;
-        /**
-          * Defines the icon `name` inside the card. <post-banner data-size="sm"><p>If not set the icon will not show up.</p></post-banner>
-         */
-        "icon"?: string;
-        /**
-          * Defines the text in the control-label.
-         */
-        "label": string;
-        /**
-          * Defines the `name` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</p></post-banner> <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
-         */
-        "name"?: string;
-        /**
-          * A public method to reset the controls `checked` and `validity` state. The validity state is set to `undefined`, so it's neither valid nor invalid.
-         */
-        "reset": () => Promise<void>;
-        /**
-          * Defines the `type` attribute of the control.
-         */
-        "type": 'checkbox' | 'radio';
-        /**
-          * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
-         */
-        "validity"?: boolean;
-        /**
-          * Defines the `value` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
-         */
-        "value"?: string;
-    }
     interface PostClosebutton {
         /**
           * The "type" attribute used for the close button
@@ -211,7 +160,7 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
-    interface PostDatepicker {
+    interface PostDatePicker {
         /**
           * Hides the popover calendar.
          */
@@ -222,15 +171,15 @@ export namespace Components {
          */
         "inline": boolean;
         /**
-          * Maximum possible date to select.
+          * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "max"?: string;
         /**
-          * Minimun possible date to select.
+          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
-          * Whether the datepicker expects a range selection or a single date selection.
+          * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
@@ -239,18 +188,17 @@ export namespace Components {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The datepicker's selected end date (for range datepicker only).
+          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedEndDate"?: string;
         /**
-          * The datepicker's selected date. If in range mode, the selected start date.
+          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedStartDate"?: string;
         /**
           * Displays the popover calendar, focusing the first calendar item.
-          * @param target - The HTML element relative to which the popover calendar should be displayed
          */
-        "show": (target: HTMLElement) => Promise<void>;
+        "show": () => Promise<void>;
         /**
           * Label for "Next decade" button.
          */
@@ -567,6 +515,10 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Offset for more precise placement
+         */
+        "offset"?: number;
+        /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
@@ -610,10 +562,14 @@ export namespace Components {
     }
     interface PostStepper {
         /**
-          * Defines the currently active step
+          * Defines the current step, which is the next step the user has to complete.
           * @default -1
          */
         "currentIndex": number;
+        /**
+          * Defines the selected (active) step, which is the step the user is currently on. If not defined, the selected step is the current step.
+         */
+        "selectedIndex"?: number;
         /**
           * "Completed step" label for accessibility
          */
@@ -715,17 +671,13 @@ export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostBannerElement;
 }
-export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostCardControlElement;
-}
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostDatepickerCustomEvent<T> extends CustomEvent<T> {
+export interface PostDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostDatepickerElement;
+    target: HTMLPostDatePickerElement;
 }
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -809,27 +761,6 @@ declare global {
         prototype: HTMLPostBreadcrumbsElement;
         new (): HTMLPostBreadcrumbsElement;
     };
-    interface HTMLPostCardControlElementEventMap {
-        "postInput": { state: boolean; value: string };
-        "postChange": { state: boolean; value: string };
-    }
-    /**
-     * @class PostCardControl - representing a stencil component
-     */
-    interface HTMLPostCardControlElement extends Components.PostCardControl, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostCardControlElement: {
-        prototype: HTMLPostCardControlElement;
-        new (): HTMLPostCardControlElement;
-    };
     interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
     }
     var HTMLPostClosebuttonElement: {
@@ -859,22 +790,22 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-    interface HTMLPostDatepickerElementEventMap {
-        "postUpdateDates": Date | Date[];
+    interface HTMLPostDatePickerElementEventMap {
+        "postUpdateDates": string | string[];
     }
-    interface HTMLPostDatepickerElement extends Components.PostDatepicker, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLPostDatePickerElement extends Components.PostDatePicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPostDatepickerElement: {
-        prototype: HTMLPostDatepickerElement;
-        new (): HTMLPostDatepickerElement;
+    var HTMLPostDatePickerElement: {
+        prototype: HTMLPostDatePickerElement;
+        new (): HTMLPostDatePickerElement;
     };
     interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
     }
@@ -1138,11 +1069,10 @@ declare global {
         "post-banner": HTMLPostBannerElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-breadcrumbs": HTMLPostBreadcrumbsElement;
-        "post-card-control": HTMLPostCardControlElement;
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
-        "post-datepicker": HTMLPostDatepickerElement;
+        "post-date-picker": HTMLPostDatePickerElement;
         "post-env-test": HTMLPostEnvTestElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
@@ -1260,57 +1190,6 @@ declare namespace LocalJSX {
          */
         "textMoreItems": string;
     }
-    /**
-     * @class PostCardControl - representing a stencil component
-     */
-    interface PostCardControl {
-        /**
-          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
-          * @default false
-         */
-        "checked"?: boolean;
-        /**
-          * Defines the description in the control-label.
-         */
-        "description"?: string;
-        /**
-          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
-          * @default false
-         */
-        "disabled"?: boolean;
-        /**
-          * Defines the icon `name` inside the card. <post-banner data-size="sm"><p>If not set the icon will not show up.</p></post-banner>
-         */
-        "icon"?: string;
-        /**
-          * Defines the text in the control-label.
-         */
-        "label": string;
-        /**
-          * Defines the `name` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</p></post-banner> <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
-         */
-        "name"?: string;
-        /**
-          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <post-banner data-size="sm"><p>If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</p></post-banner>
-         */
-        "onPostChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
-        /**
-          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
-         */
-        "onPostInput"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
-        /**
-          * Defines the `type` attribute of the control.
-         */
-        "type": 'checkbox' | 'radio';
-        /**
-          * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
-         */
-        "validity"?: boolean;
-        /**
-          * Defines the `value` attribute of the control. <post-banner data-size="sm"><p>This is a required property, when the control is used with type `radio`.</p></post-banner>
-         */
-        "value"?: string;
-    }
     interface PostClosebutton {
         /**
           * The "type" attribute used for the close button
@@ -1345,26 +1224,26 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
-    interface PostDatepicker {
+    interface PostDatePicker {
         /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
          */
         "inline"?: boolean;
         /**
-          * Maximum possible date to select.
+          * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "max"?: string;
         /**
-          * Minimun possible date to select.
+          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
           * An event emitted when a date or a range of dates have been selected.
          */
-        "onPostUpdateDates"?: (event: PostDatepickerCustomEvent<Date | Date[]>) => void;
+        "onPostUpdateDates"?: (event: PostDatePickerCustomEvent<string | string[]>) => void;
         /**
-          * Whether the datepicker expects a range selection or a single date selection.
+          * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
@@ -1373,11 +1252,11 @@ declare namespace LocalJSX {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The datepicker's selected end date (for range datepicker only).
+          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedEndDate"?: string;
         /**
-          * The datepicker's selected date. If in range mode, the selected start date.
+          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedStartDate"?: string;
         /**
@@ -1660,6 +1539,10 @@ declare namespace LocalJSX {
          */
         "edgeGap"?: number;
         /**
+          * Offset for more precise placement
+         */
+        "offset"?: number;
+        /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
         "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
@@ -1720,10 +1603,14 @@ declare namespace LocalJSX {
     }
     interface PostStepper {
         /**
-          * Defines the currently active step
+          * Defines the current step, which is the next step the user has to complete.
           * @default -1
          */
         "currentIndex"?: number;
+        /**
+          * Defines the selected (active) step, which is the step the user is currently on. If not defined, the selected step is the current step.
+         */
+        "selectedIndex"?: number;
         /**
           * "Completed step" label for accessibility
          */
@@ -1813,11 +1700,10 @@ declare namespace LocalJSX {
         "post-banner": PostBanner;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-breadcrumbs": PostBreadcrumbs;
-        "post-card-control": PostCardControl;
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
-        "post-datepicker": PostDatepicker;
+        "post-date-picker": PostDatePicker;
         "post-env-test": PostEnvTest;
         "post-footer": PostFooter;
         "post-header": PostHeader;
@@ -1859,14 +1745,10 @@ declare module "@stencil/core" {
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             "post-breadcrumbs": LocalJSX.PostBreadcrumbs & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsElement>;
-            /**
-             * @class PostCardControl - representing a stencil component
-             */
-            "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
-            "post-datepicker": LocalJSX.PostDatepicker & JSXBase.HTMLAttributes<HTMLPostDatepickerElement>;
+            "post-date-picker": LocalJSX.PostDatePicker & JSXBase.HTMLAttributes<HTMLPostDatePickerElement>;
             "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;

@@ -1,10 +1,10 @@
-@use 'form-check';
 @use '../variables/color';
 @use '../variables/commons';
 @use '../variables/type';
 @use '../variables/spacing';
 @use '../variables/animation';
 @use '../mixins/color' as color-mx;
+@use '../mixins/forms' as forms-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
 @use '../tokens/components' as components;
@@ -15,7 +15,7 @@ tokens.$default-map: components.$post-switch;
 $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='M7.51712 12.1332L4.30712 8.69325C4.02712 8.39325 4.03712 7.91325 4.34712 7.63325C4.64712 7.35325 5.12712 7.36325 5.40712 7.67325L7.31712 9.72325L10.7171 4.57325C10.9471 4.22325 11.4071 4.13325 11.7571 4.36325C12.1071 4.59325 12.1971 5.05325 11.9671 5.40325L7.51712 12.1332Z'/></svg>");
 
 .form-switch {
-  display: flex;
+  @include forms-mx.form-check-base();
 
   .form-check-input {
     appearance: none;
@@ -208,6 +208,20 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
 
     &:not(.order-first) {
       padding-inline-start: tokens.get('switch-gap-inline-text');
+    }
+  }
+
+  > input[type='checkbox'] {
+    ~ label {
+      color: tokens.get('switch-text-enabled-fg');
+    }
+
+    &:not([disabled]):hover ~ label {
+      color: tokens.get('switch-text-enabled-fg');
+    }
+
+    &[disabled] ~ label {
+      color: tokens.get('switch-text-disabled-fg');
     }
   }
 }

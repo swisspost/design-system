@@ -47,10 +47,10 @@ class StorybookEventManager {
   #emit(type = null) {
     if (Object.values(this.#EVENTS).includes(type)) {
       setTimeout(() => {
-        window.dispatchEvent(new Event(type));
+        globalThis.dispatchEvent(new Event(type));
       });
     }
   }
 }
 
-new StorybookEventManager();
+const storybookEventManager = new StorybookEventManager();

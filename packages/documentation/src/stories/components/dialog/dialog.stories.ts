@@ -165,6 +165,7 @@ const Template = {
 
     return html`
       <dialog
+        class="post-dialog"
         data-type="${args.type !== 'default' ? args.type : nothing}"
         data-size="${args.size}"
         data-position="${args.position}"
