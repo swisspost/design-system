@@ -120,27 +120,30 @@ export const Validation: Story = {
         <div class="col-md-6">
           <div class="form-floating">
             <input
-              id="formControlInvalid"
+              id="form-control-invalid"
               type="text"
               class="form-control is-invalid"
               placeholder=" "
+              aria-invalid="true"
+              aria-describedby="input-invalid-feedback"
               required
             />
-            <label class="form-label" for="formControlInvalid">Invalid Input</label>
-            <p class="invalid-feedback">Error message</p>
+            <label class="form-label" for="form-control-invalid">Invalid Input</label>
+            <p id="input-invalid-feedback" class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-floating">
             <input
-              id="FormControlValid"
+              id="form-control-valid"
               type="text"
               class="form-control is-valid"
               placeholder=" "
+              aria-describedby="input-valid-feedback"
               value="Value"
             />
-            <label class="form-label" for="FormControlValid">Valid Input</label>
-            <p class="valid-feedback">Success message (optional)</p>
+            <label class="form-label" for="form-control-valid">Valid Input</label>
+            <p id="input-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
         </div>
       </div>
@@ -149,20 +152,34 @@ export const Validation: Story = {
       <div class="row mb-16">
         <div class="col-md-6">
           <div class="form-floating">
-            <select id="FormSelectInvalid" class="form-select is-invalid" required></select>
-            <label class="form-label" for="FormSelectInvalid">Invalid Select</label>
-            <p class="invalid-feedback">Error message</p>
+            <select
+              id="form-select-invalid"
+              class="form-select is-invalid"
+              aria-invalid="true"
+              aria-describedby="select-invalid-feedback"
+              required
+            >
+              <option></option>
+              <option value="1">Value 1</option>
+              <option value="2">Value 2</option>
+            </select>
+            <label class="form-label" for="form-select-invalid">Invalid Select</label>
+            <p id="select-invalid-feedback" class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-floating">
-            <select id="FormSelectValid" class="form-select is-valid">
-              <option disabled>Select one..</option>
+            <select
+              id="form-select-valid"
+              class="form-select is-valid"
+              aria-describedby="select-valid-feedback"
+            >
+              <option></option>
               <option value="1">Value 1</option>
               <option value="2">Value 2</option>
             </select>
-            <label class="form-label" for="FormSelectValid">Valid Select</label>
-            <p class="valid-feedback">Success message (optional)</p>
+            <label class="form-label" for="form-select-valid">Valid Select</label>
+            <p id="select-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
         </div>
       </div>
@@ -171,16 +188,28 @@ export const Validation: Story = {
       <div class="row mb-16">
         <div class="col-md-6">
           <div class="form-floating">
-            <input id="FormFileInvalid" type="file" class="form-control is-invalid" required />
-            <label class="form-label" for="FormFileInvalid">Invalid File</label>
-            <p class="invalid-feedback">Error message</p>
+            <input
+              id="form-file-invalid"
+              type="file"
+              class="form-control is-invalid"
+              aria-invalid="true"
+              aria-describedby="file-input-invalid-feedback"
+              required
+            />
+            <label class="form-label" for="form-file-invalid">Invalid File</label>
+            <p id="file-input-invalid-feedback" class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-floating">
-            <input id="FormFileValid" type="file" class="form-control is-valid" />
-            <label class="form-label" for="FormFileValid">Valid File</label>
-            <p class="valid-feedback">Success message (optional)</p>
+            <input
+              id="form-file-valid"
+              type="file"
+              class="form-control is-valid"
+              aria-describedby="file-input-valid-feedback"
+            />
+            <label class="form-label" for="form-file-valid">Valid File</label>
+            <p id="file-input-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
         </div>
       </div>
@@ -190,29 +219,30 @@ export const Validation: Story = {
         <div class="col-md-6">
           <div class="form-floating">
             <textarea
-              id="FormTextareaInvalid"
-              type="text"
+              id="form-textarea-invalid"
               class="form-control is-invalid"
               placeholder=" "
+              aria-invalid="true"
+              aria-describedby="textarea-invalid-feedback"
               required
             ></textarea>
-            <label class="form-label" for="FormTextareaInvalid">Invalid Textarea</label>
-            <p class="invalid-feedback">Error message</p>
+            <label class="form-label" for="form-textarea-invalid">Invalid Textarea</label>
+            <p id="textarea-invalid-feedback" class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-floating">
             <textarea
-              id="FormTextareaValid"
-              type="text"
+              id="form-textarea-valid"
               class="form-control is-valid"
               placeholder=" "
+              aria-describedby="textarea-valid-feedback"
             >
               Value
             </textarea
             >
-            <label class="form-label" for="FormTextareaValid">Valid Textarea</label>
-            <p class="valid-feedback">Success message (optional)</p>
+            <label class="form-label" for="form-textarea-valid">Valid Textarea</label>
+            <p id="textarea-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
         </div>
       </div>
@@ -221,21 +251,28 @@ export const Validation: Story = {
       <div class="row mb-16">
         <div class="col-md-6">
           <div class="form-check">
-            <input class="form-check-input is-invalid" id="FormCheckboxInvalid" type="checkbox" />
-            <label class="form-check-label" for="FormCheckboxInvalid">Invalid Checkbox</label>
-            <p class="invalid-feedback">Error message</p>
+            <input
+              class="form-check-input is-invalid"
+              id="form-checkbox-invalid"
+              type="checkbox"
+              aria-invalid="true"
+              aria-describedby="checkbox-invalid-feedback"
+            />
+            <label class="form-check-label" for="form-checkbox-invalid">Invalid Checkbox</label>
+            <p id="checkbox-invalid-feedback" class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-check">
             <input
               class="form-check-input is-valid"
-              id="FormCheckboxValid"
+              id="form-checkbox-valid"
               type="checkbox"
+              aria-describedby="checkbox-valid-feedback"
               checked
             />
-            <label class="form-check-label" for="FormCheckboxValid">Valid Checkbox</label>
-            <p class="valid-feedback">Success message (optional)</p>
+            <label class="form-check-label" for="form-checkbox-valid">Valid Checkbox</label>
+            <p id="checkbox-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
         </div>
       </div>
@@ -244,16 +281,28 @@ export const Validation: Story = {
       <div class="row mb-16">
         <div class="col-md-6">
           <div class="form-check">
-            <input class="form-check-input is-invalid" id="FormRadioInvalid" type="radio" />
-            <label class="form-check-label" for="FormRadioInvalid">Invalid Radio</label>
-            <p class="invalid-feedback">Error message</p>
+            <input
+              class="form-check-input is-invalid"
+              id="form-radio-invalid"
+              type="radio"
+              required
+              aria-describedby="radio-invalid-feedback"
+            />
+            <label class="form-check-label" for="form-radio-invalid">Invalid Radio</label>
+            <p id="radio-invalid-feedback" class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-check">
-            <input class="form-check-input is-valid" id="FormRadioValid" type="radio" checked />
-            <label class="form-check-label" for="FormRadioValid">Valid Radio</label>
-            <p class="valid-feedback">Success message (optional)</p>
+            <input
+              class="form-check-input is-valid"
+              id="form-radio-valid"
+              type="radio"
+              checked
+              aria-describedby="radio-valid-feedback"
+            />
+            <label class="form-check-label" for="form-radio-valid">Valid Radio</label>
+            <p id="radio-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
         </div>
       </div>
@@ -263,26 +312,29 @@ export const Validation: Story = {
         <div class="col-md-6">
           <div class="form-check form-switch">
             <input
-              id="FormSwitchInvalid"
+              id="form-switch-invalid"
               class="form-check-input is-invalid"
               type="checkbox"
               role="switch"
+              aria-invalid="true"
+              aria-describedby="switch-invalid-feedback"
             />
-            <label class="form-check-label" for="FormSwitchInvalid">Invalid Switch</label>
-            <p class="invalid-feedback">Error message</p>
+            <label class="form-check-label" for="form-switch-invalid">Invalid Switch</label>
+            <p id="switch-invalid-feedback" class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-check form-switch">
             <input
-              id="FormSwitchValid"
+              id="form-switch-valid"
               class="form-check-input is-valid"
               type="checkbox"
               role="switch"
+              aria-describedby="switch-valid-feedback"
               checked
             />
-            <label class="form-check-label" for="FormSwitchValid">Valid Switch</label>
-            <p class="valid-feedback">Success message (optional)</p>
+            <label class="form-check-label" for="form-switch-valid">Valid Switch</label>
+            <p id="switch-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
         </div>
       </div>

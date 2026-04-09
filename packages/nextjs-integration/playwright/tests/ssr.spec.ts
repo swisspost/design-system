@@ -53,7 +53,6 @@ test.describe('SSR compatibility', () => {
     );
     await page.waitForLoadState('load');
 
-    // expect(hydrationErrors.length).toBe(0);
     if (hydrationErrors) {
       test.info().annotations.push({
         type: ' Warning',

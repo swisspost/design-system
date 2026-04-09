@@ -15,6 +15,9 @@ const meta: MetaComponent = {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=21-183',
     },
+    controls: {
+      exclude: ['emptyOptionText'],
+    },
   },
   args: {
     label: 'Label',
@@ -28,6 +31,8 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
+    emptyOptionText: 'Choose an option',
   },
   argTypes: {
     label: {
@@ -46,6 +51,25 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the select. A small select cannot have a floating label.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          small: 'Small',
+        },
+      },
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
+      options: ['null', 'small'],
       table: {
         category: 'General',
       },
@@ -172,6 +196,11 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    emptyOptionText: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 };
 
@@ -182,11 +211,7 @@ type Story = StoryObj;
 const Template: Story = {
   render: (args: Args, context: StoryContext) => {
     const [_, updateArgs] = useArgs();
-    const classes = [
-      'form-select',
-      args.validation,
-      args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
-    ]
+    const classes = ['form-select', args.validation, args.size === 'small' && 'form-select-sm']
       .filter(c => c && c !== 'null')
       .join(' ');
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
@@ -194,17 +219,9 @@ const Template: Story = {
     const label = !useAriaLabel
       ? html` <label for="${context.id}" class="form-label">${getLabelText(args)}</label> `
       : null;
-    const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
+    const options = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
       (key: number) => html` <option value="value_${key}">Option ${key}</option> `,
     );
-    const options = [
-      ...[
-        args.floatingLabelPlaceholder
-          ? html` <option></option> `
-          : html` <option>Choose an option...</option> `,
-      ],
-      ...optionElements,
-    ];
 
     const contextuals = getValidationMessages(args, context);
 
@@ -231,8 +248,8 @@ const Template: Story = {
         }}"
         ?required="${args.requiredOptional === 'required'}"
       >
+        <option>${args.emptyOptionText}</option>
         ${[
-          options[0],
           options
             .slice(1)
             .map(
@@ -264,48 +281,17 @@ export const Default: Story = {
 
 export const FloatingLabel: Story = {
   ...Template,
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
   args: {
     floatingLabel: true,
     hint: '',
+    emptyOptionText: '',
   },
 };
 
-export const FloatingLabelPlaceholder: Story = {
+export const Small: Story = {
   ...Template,
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
   args: {
-    floatingLabel: true,
-    floatingLabelPlaceholder: true,
-    hint: '',
-  },
-};
-
-export const Validation: Story = {
-  ...Template,
-  parameters: {
-    controls: {
-      exclude: [
-        'Label',
-        'Floating Label',
-        'Hidden Label',
-        'Options',
-        'Multiple',
-        'Helper Text',
-        'Disabled',
-      ],
-    },
-  },
-  args: {
-    validation: 'is-invalid',
-    hint: '',
+    floatingLabel: false,
+    size: 'small',
   },
 };

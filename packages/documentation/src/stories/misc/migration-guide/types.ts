@@ -94,7 +94,9 @@ export interface V910Checks {
   forms: {
     tooltip_validation: boolean;
     input_sizes: boolean;
+    select_empty: boolean;
     form_text: boolean;
+    card_control: boolean;
   };
   grid: {
     breakpoints: boolean;
@@ -152,6 +154,7 @@ export interface V910Checks {
     accordion_item_part: boolean;
     popover_trigger: boolean;
     tabs_anchor_navigation: boolean;
+    card_control: boolean;
   };
 }
 

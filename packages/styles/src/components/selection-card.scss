@@ -1,0 +1,163 @@
+@use '../mixins/forms' as forms-mx;
+@use '../mixins/utilities' as utility-mx;
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-selection-card;
+
+fieldset .selection-card {
+  margin-block-end: tokens.get('selection-card-group-gap');
+}
+
+fieldset .selection-card:first-of-type {
+  margin-block-start: tokens.get('selection-card-group-gap');
+}
+
+fieldset:has(.selection-card) {
+  padding-block: tokens.get('selection-card-group-padding-block');
+}
+
+.selection-card {
+  --post-current-bg: var(--post-selection-card-bg);
+  --post-current-fg: var(--post-selection-card-fg);
+
+  --post-selection-card-scheme: #{tokens.get('selection-card-unselected-scheme')};
+  --post-selection-card-bg: #{tokens.get('selection-card-unselected-bg')};
+  --post-selection-card-border-style: solid;
+  --post-selection-card-border-color: #{tokens.get('selection-card-unselected-stroke')};
+  --post-selection-card-color: #{tokens.get('selection-card-unselected-fg')};
+  --post-selection-card-bg-hover: var(--post-selection-card-bg);
+
+  display: grid;
+  grid-template-areas: 'input label icon';
+  grid-template-columns: min-content 1fr max-content;
+  column-gap: tokens.get('selection-card-gap-inline');
+  align-content: start;
+  padding: tokens.get('selection-card-padding-block') tokens.get('selection-card-padding-inline');
+  background-color: var(--post-selection-card-bg);
+  border-width: tokens.get('selection-card-border-width');
+  border-style: tokens.get('selection-card-border-style-default');
+  border-color: var(--post-selection-card-border-color);
+  border-radius: tokens.get('selection-card-border-radius');
+  color: var(--post-selection-card-color);
+  cursor: pointer;
+
+  @include utility-mx.focus-style();
+
+  &:not(:has(input:disabled)):hover {
+    --post-selection-card-border-color: #{tokens.get('selection-card-unselected-hovered-stroke')};
+    --post-selection-card-color: #{tokens.get('selection-card-unselected-hovered-fg')};
+    --post-selection-card-bg-hover: #{tokens.get('selection-card-unselected-hovered-bg-mix')};
+
+    background-image:
+      linear-gradient(var(--post-selection-card-bg-hover), var(--post-selection-card-bg-hover)),
+      linear-gradient(var(--post-selection-card-bg), var(--post-selection-card-bg));
+  }
+
+  &:has(input:disabled) {
+    --post-selection-card-border-color: #{tokens.get('selection-card-unselected-disabled-stroke')};
+    --post-selection-card-color: #{tokens.get('selection-card-unselected-disabled-fg')};
+    border-style: tokens.get('selection-card-border-style-disabled');
+    cursor: default;
+  }
+
+  &:has(input:checked) {
+    --post-selection-card-scheme: #{tokens.get('selection-card-selected-scheme')};
+    --post-selection-card-bg: #{tokens.get('selection-card-selected-bg')};
+    --post-selection-card-border-color: #{tokens.get('selection-card-selected-stroke')};
+    --post-selection-card-color: #{tokens.get('selection-card-selected-fg')};
+    box-shadow: tokens.get('selection-card-selected-elevation');
+
+    &:not(:has(input:disabled)):hover {
+      --post-selection-card-border-color: #{tokens.get('selection-card-selected-hovered-stroke')};
+      --post-selection-card-color: #{tokens.get('selection-card-selected-hovered-fg')};
+      --post-selection-card-bg-hover: #{tokens.get('selection-card-selected-hovered-bg-mix')};
+    }
+
+    &:has(input:disabled) {
+      --post-selection-card-border-color: #{tokens.get('selection-card-selected-disabled-stroke')};
+      --post-selection-card-color: #{tokens.get('selection-card-selected-disabled-fg')};
+      border-style: tokens.get('selection-card-border-style-disabled');
+    }
+  }
+
+  > * {
+    // HINT: keeping the color-scheme on the child elements, prevents the focus-outline from having the wrong color in some cases.
+    color-scheme: var(--post-selection-card-scheme);
+
+    // every custom-content is located on: row 2, column 'label' to 'icon'
+    grid-row: 2;
+    grid-column: label / icon;
+  }
+
+  &:where(:has(> .selection-card--description)) > * {
+    // if a description is present (located on row 2, column 'label' to 'icon'),
+    // every custom-content needs to be re-located to: row 3, column 'label' to 'icon'
+    grid-row: 3;
+  }
+
+  > input {
+    grid-row: 1;
+    grid-column: input;
+    margin-inline: 0 !important;
+    margin-block: tokens.get('selection-card-selector-padding-block-start') 0 !important;
+    outline: 0 none !important;
+    transition: none !important;
+
+    &[type='checkbox'] {
+      @include forms-mx.checkbox(
+        $custom-hover-selector: '.selection-card:hover > input:not([disabled])'
+      );
+    }
+
+    &[type='radio'] {
+      @include forms-mx.radio-button(
+        $custom-hover-selector: '.selection-card:hover > input:not([disabled])'
+      );
+    }
+  }
+
+  > label {
+    grid-row: 1;
+    grid-column: label / icon;
+    padding-block: tokens.get('selection-card-content-padding-block');
+    font-weight: tokens.get('selection-card-label-font-weight');
+    cursor: inherit;
+  }
+
+  &:has(> .selection-card--icon) > label {
+    grid-column: label;
+  }
+
+  > .selection-card--icon {
+    grid-row: 1;
+    grid-column: icon;
+    width: 1em;
+    height: 1em;
+    font-size: tokens.get('selection-card-icon-size');
+    line-height: 1;
+
+    &:not(post-icon) {
+      width: auto;
+
+      > * {
+        width: auto !important;
+        height: 100% !important;
+      }
+    }
+  }
+
+  > .selection-card--description {
+    grid-row: 2;
+    grid-column: label / icon;
+    align-items: start;
+    font-size: tokens.get('selection-card-sub-label-font-size');
+  }
+
+  // Adds top margin to the custom element
+  > label + *:not(.selection-card--description):not(.selection-card--icon),
+  > .selection-card--icon + *:not(.selection-card--description),
+  > .selection-card--description + * {
+    margin-block-start: tokens.get('selection-card-content-gap-block');
+  }
+}

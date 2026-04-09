@@ -9,15 +9,24 @@ const code = `
 
   <!-- Meta navigation -->
   <ul slot="global-nav-secondary">
-    <li><a href="#">Jobs</a></li>
-    <li><a href="#">Über uns</a></li>
+    <li>
+      <a href="">
+        Karriere
+        <post-icon name="rocket" aria-hidden="true"></post-icon>
+      </a>
+    </li>
+    <li>
+      <a href="">
+        Über uns
+        <post-icon name="adduser" aria-hidden="true"></post-icon>
+      </a>
+    </li>
   </ul>
 
   <!-- Language menu -->
   <post-language-menu
     text-change-language="Change the language"
     text-current-language="The currently selected language is #name."
-    variant="list"
     name="language-menu-example"
     slot="language-menu">
     <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>

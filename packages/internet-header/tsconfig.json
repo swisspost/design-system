@@ -14,7 +14,11 @@
     "jsx": "react",
     "jsxFactory": "h",
     "strictNullChecks": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@root/*": ["./*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]
