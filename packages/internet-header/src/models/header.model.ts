@@ -19,10 +19,6 @@ export interface HeaderConfig {
     primaryNavigation?: Array<IconLinkConfig>; // Primary navigation items: remain visible in the header on tablet and mobile.
     secondaryNavigation?: Array<IconLinkConfig>; // Secondary navigation items: move to the footer of the burger menu on tablet and mobile.
     languages?: Array<LanguageLinkConfig>; // Language menu options.
-
-    /**
-     TODO: this will be replaced by the KLP login API.
-     */
     login?: IconLinkConfig | UserMenuConfig; // Login link or authenticated user menu.
   };
 

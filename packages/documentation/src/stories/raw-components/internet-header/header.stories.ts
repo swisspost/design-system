@@ -1,6 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { fakeContent, spreadArgs } from '@/utils';
+import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {

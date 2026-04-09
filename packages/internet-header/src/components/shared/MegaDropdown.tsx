@@ -2,7 +2,7 @@ import { FunctionalComponent, h } from '@stencil/core';
 import { MegadropdownConfig } from '@/models/header.model';
 import { createIdFrom } from '@/utils/create-id-from';
 import { getText } from '@/utils/get-text';
-import { Title } from '@/components/internal/Title';
+import { Title } from './Title';
 import { Link } from './Link';
 
 interface MegaDropdownProps {

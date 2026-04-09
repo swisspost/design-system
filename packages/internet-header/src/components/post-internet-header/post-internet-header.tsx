@@ -3,7 +3,7 @@ import { getLocalizedConfig, isValidProjectId } from '@/services/config.service'
 import { version } from '@root/package.json';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
 import { dispose, state } from '@/data/store';
-import { Link, LinkProps, MegaDropdown, UserMenu } from '../internal';
+import { Link, LinkProps, MegaDropdown, UserMenu } from '../shared';
 import { LinkConfig } from '@/models/shared.model';
 import { UserMenuConfig } from '@/models/header.model';
 
