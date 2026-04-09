@@ -20,9 +20,9 @@ export const Link: FunctionalComponent<{ config: LinkConfig } & LinkProps> = ({
     aria-description={config.description}
     aria-current={config.active ? ariaCurrentWhenActive : undefined}
   >
+    {hiddenText ? <span class="visually-hidden">{config.text}</span> : config.text}
+
     {'icon' in config && <post-icon aria-hidden="true" name={config.icon}></post-icon>}
     {'image' in config && <img src={config.image.src} alt={config.image.alt} />}
-
-    {hiddenText ? <span class="visually-hidden">{config.text}</span> : config.text}
   </a>
 );

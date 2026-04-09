@@ -1,5 +1,4 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { JSXBase } from '@stencil/core/internal';
 import { version } from '@root/package.json';
 import { state } from '@/data/store';
 import { LinkListConfig } from '@/models/shared.model';
@@ -79,7 +78,7 @@ export class PostInternetFooter {
 
   private renderListWithTitle(
     config: LinkListConfig,
-    props: { titleProps?: TitleProps; listProps?: JSXBase.HTMLAttributes; linkProps?: LinkProps },
+    props: { titleProps?: TitleProps; listProps?: { slot: string }; linkProps?: LinkProps },
   ) {
     const { titleProps, linkProps } = props;
 

@@ -3,16 +3,9 @@ import { getLocalizedConfig, isValidProjectId } from '@/services/config.service'
 import { version } from '@root/package.json';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
 import { dispose, state } from '@/data/store';
-import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
-import { UserMenuConfig } from '@/models/header.model';
+import { Link, LinkProps, MegaDropdown, UserMenu } from '../internal';
 import { LinkConfig } from '@/models/shared.model';
-
-type NavItemConfig = LinkConfig | UserMenuConfig;
-
-type NavItemProps = {
-  slot: string | undefined;
-  linkProps?: LinkProps;
-};
+import { UserMenuConfig } from '@/models/header.model';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -20,14 +13,15 @@ type NavItemProps = {
 })
 export class PostInternetHeader {
   /**
-   * Your project id, previously passed as query string parameter serviceId.
+   * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
+   * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
    */
-  @Prop() project!: string;
+  @Prop() activeRoute: ActiveRouteProp = 'auto';
 
-  /**
-   * Initial language to be used. Overrides automatic language detection.
-   */
-  @Prop() language?: 'de' | 'fr' | 'it' | 'en';
+  @Watch('activeRoute')
+  async handleActiveRouteChange() {
+    await this.updateConfig();
+  }
 
   /**
    * Target environment. Choose 'int01' for local testing.
@@ -35,45 +29,30 @@ export class PostInternetHeader {
   @Prop() environment: Environment = 'prod';
 
   /**
-   * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
-   * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
-   */
-  @Prop() activeRoute: ActiveRouteProp = 'auto';
-
-  /**
    * Makes the header content span the full width on screens larger than 1440px.
    */
   @Prop() fullWidth = false;
 
   /**
-   * Fires when the header has been rendered to the page.
+   * Initial language to be used. Overrides automatic language detection.
    */
-  @Event() headerLoaded: EventEmitter<void>;
+  @Prop() language?: 'de' | 'fr' | 'it' | 'en';
+
+  @Watch('language')
+  async handleLanguageChange(newValue: string) {
+    state.currentLanguage = newValue;
+    await this.updateConfig();
+  }
 
   /**
-   * Visually hidden label for the main navigation element.
+   * Your project id, previously passed as query string parameter serviceId.
    */
-  @Prop({ reflect: true }) readonly textMain!: string;
+  @Prop() project!: string;
 
   /**
-   * Visually hidden label for the burger menu button.
+   * Visually hidden label for the back button.
    */
-  @Prop({ reflect: true }) readonly textMenu!: string;
-
-  /**
-   * Visually hidden label for the current user.
-   */
-  @Prop({ reflect: true }) readonly textCurrentUser!: string;
-
-  /**
-   * Visually hidden label for the user menu.
-   */
-  @Prop({ reflect: true }) readonly textUserLinks!: string;
-
-  /**
-   * Visually hidden label for the current language.
-   */
-  @Prop({ reflect: true }) readonly textCurrentLanguage!: string;
+  @Prop({ reflect: true }) readonly textBack!: string;
 
   /**
    * Visually hidden label for the language menu.
@@ -86,9 +65,34 @@ export class PostInternetHeader {
   @Prop({ reflect: true }) readonly textClose!: string;
 
   /**
-   * Visually hidden label for the back button.
+   * Visually hidden label for the current language.
    */
-  @Prop({ reflect: true }) readonly textBack!: string;
+  @Prop({ reflect: true }) readonly textCurrentLanguage!: string;
+
+  /**
+   * Visually hidden label for the current user.
+   */
+  @Prop({ reflect: true }) readonly textCurrentUser!: string;
+
+  /**
+   * Visually hidden label for the main navigation element.
+   */
+  @Prop({ reflect: true }) readonly textMain!: string;
+
+  /**
+   * Visually hidden label for the burger menu button.
+   */
+  @Prop({ reflect: true }) readonly textMenu!: string;
+
+  /**
+   * Visually hidden label for the user menu.
+   */
+  @Prop({ reflect: true }) readonly textUserLinks!: string;
+
+  /**
+   * Fires when the header has been rendered to the page.
+   */
+  @Event() headerLoaded: EventEmitter<void>;
 
   constructor() {
     if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
@@ -122,17 +126,6 @@ export class PostInternetHeader {
     dispose();
   }
 
-  @Watch('language')
-  async handleLanguageChange(newValue: string) {
-    state.currentLanguage = newValue;
-    await this.updateConfig();
-  }
-
-  @Watch('activeRoute')
-  async handleActiveRouteChange() {
-    await this.updateConfig();
-  }
-
   @Listen('postChange')
   handleLanguageChangeEvent(event: CustomEvent<string>) {
     if (
@@ -153,16 +146,14 @@ export class PostInternetHeader {
     });
   }
 
-  private renderNavItem(config: NavItemConfig, props: NavItemProps) {
-    const { linkProps } = props;
-
+  private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
     if ('url' in config) {
-      return <Link {...props} {...linkProps} config={config} />;
+      return <Link {...props} config={config} />;
     }
 
     return (
       <UserMenu
-        {...props}
+        slot={props.slot}
         config={config}
         textCurrentUser={this.textCurrentUser}
         textUserLinks={this.textUserLinks}
@@ -170,17 +161,21 @@ export class PostInternetHeader {
     );
   }
 
-  private renderNavigation(config: NavItemConfig[], props: NavItemProps) {
+  private renderNavigation(
+    slot: string,
+    config: (LinkConfig | UserMenuConfig)[],
+    props: LinkProps = {},
+  ) {
     if (config.length === 0) return null;
 
     if (config.length === 1) {
-      return this.renderNavItem(config[0], props);
+      return this.renderNavItem(config[0], { ...props, slot });
     }
 
     return (
-      <ul slot={props.slot}>
+      <ul slot={slot}>
         {config.map(navItem => (
-          <li>{this.renderNavItem(navItem, { ...props, slot: undefined })}</li>
+          <li>{this.renderNavItem(navItem, props)}</li>
         ))}
       </ul>
     );
@@ -211,33 +206,16 @@ export class PostInternetHeader {
           )}
 
           {globalHeader.audience &&
-            this.renderNavigation(globalHeader.audience, {
-              slot: 'audience',
-              linkProps: {
-                ariaCurrentWhenActive: 'location',
-              },
+            this.renderNavigation('audience', globalHeader.audience, {
+              ariaCurrentWhenActive: 'location',
             })}
 
           {globalHeader.primaryNavigation &&
-            this.renderNavigation(globalHeader.primaryNavigation, {
-              slot: 'global-nav-primary',
-            })}
+            this.renderNavigation('global-nav-primary', globalHeader.primaryNavigation)}
 
           {globalHeader.secondaryNavigation &&
-            this.renderNavigation(globalHeader.secondaryNavigation, {
-              slot: 'global-nav-secondary',
-              linkProps: {
-                ariaCurrentWhenActive: 'location',
-              },
-            })}
-
-          {globalHeader.login && this.renderNavItem(globalHeader.login, { slot: 'global-login' })}
-
-          {localHeader.title && <p slot="title">{localHeader.title}</p>}
-
-          {localHeader.navigation &&
-            this.renderNavigation(localHeader.navigation, {
-              slot: 'local-nav',
+            this.renderNavigation('global-nav-secondary', globalHeader.secondaryNavigation, {
+              ariaCurrentWhenActive: 'location',
             })}
 
           {globalHeader.languages && globalHeader.languages.length > 0 && (
@@ -259,6 +237,12 @@ export class PostInternetHeader {
               ))}
             </post-language-menu>
           )}
+
+          {globalHeader.login && this.renderNavItem(globalHeader.login, { slot: 'post-login' })}
+
+          {localHeader.title && <p slot="title">{localHeader.title}</p>}
+
+          {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
 
           {localHeader.mainNavigation && (
             <post-mainnavigation slot="main-nav" text-main={this.textMain}>

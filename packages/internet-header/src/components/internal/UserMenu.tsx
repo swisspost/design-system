@@ -1,25 +1,25 @@
 import { FunctionalComponent, h } from '@stencil/core';
-import { JSXBase } from '@stencil/core/internal';
 import { UserMenuConfig } from '@/models/header.model';
 import { createIdFrom } from '@/utils/create-id-from';
 import { Avatar } from './Avatar';
 import { Link } from './Link';
 
 export type UserMenuProps = {
+  slot?: string;
   textCurrentUser: string;
   textUserLinks: string;
-} & JSXBase.HTMLAttributes;
+};
 
 export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenuProps> = ({
   config,
+  slot,
   textCurrentUser,
   textUserLinks,
-  ...htmlAttributes
 }) => {
   const userName = [config.user.firstName, config.user.lastName].join(' ');
   const userMenuId = createIdFrom(userName);
   return (
-    <div {...htmlAttributes}>
+    <div slot={slot}>
       <post-menu-trigger for={userMenuId}>
         <button class="btn btn-link" type="button">
           <Avatar user={config.user} description={textCurrentUser} />

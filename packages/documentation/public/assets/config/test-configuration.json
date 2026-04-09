@@ -27,9 +27,9 @@
         ],
         "secondaryNavigation": [
           {
-            "text": "Jobs",
+            "text": "Career",
             "url": "#",
-            "icon": "jobs"
+            "icon": "rocket"
           },
           {
             "text": "Konto erstellen",
@@ -1084,7 +1084,7 @@
           "isActive": false,
           "isHomeLink": false,
 
-          "text": "Jobs",
+          "text": "Career",
           "url": "https://post.ch/de/jobs"
         },
         {
@@ -1428,7 +1428,7 @@
           {
             "text": "Emplois",
             "url": "#",
-            "icon": "jobs"
+            "icon": "rocket"
           },
           {
             "text": "Créer un compte",
@@ -2413,7 +2413,7 @@
           {
             "text": "Lavoro",
             "url": "#",
-            "icon": "jobs"
+            "icon": "rocket"
           },
           {
             "text": "Crea account",
@@ -3393,9 +3393,9 @@
         ],
         "secondaryNavigation": [
           {
-            "text": "Jobs",
+            "text": "Career",
             "url": "#",
-            "icon": "jobs"
+            "icon": "rocket"
           },
           {
             "text": "Create Account",
@@ -4033,7 +4033,7 @@
           "isActive": false,
           "isHomeLink": false,
 
-          "text": "Jobs",
+          "text": "Career",
           "url": "https://post.ch/en/jobs"
         },
         {
