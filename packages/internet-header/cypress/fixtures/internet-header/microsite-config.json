@@ -1,0 +1,94 @@
+{
+  "de": {
+    "header": {
+      "navMain": []
+    },
+    "header_new": {
+      "globalHeader": {
+        "postLogo": {
+          "text": "Benutzerdefiniertes Logo",
+          "url": "/",
+          "image": {
+            "src": "/img.png",
+            "alt": "Mikrosite-Logo"
+          }
+        },
+        "languages": [
+          {
+            "code": "de-CH",
+            "text": "DE",
+            "label": "Deutsch",
+            "url": "#",
+            "active": false
+          },
+          {
+            "code": "fr-CH",
+            "text": "FR",
+            "label": "Französisch",
+            "url": "#",
+            "active": false
+          },
+          {
+            "code": "it-CH",
+            "text": "IT",
+            "label": "Italienisch",
+            "url": "#",
+            "active": false
+          },
+          {
+            "code": "en",
+            "text": "EN",
+            "label": "Englisch",
+            "url": "#",
+            "active": true
+          }
+        ]
+      },
+      "localHeader": {
+        "title": "Mikrosite-Titel",
+        "navigation": [
+          {
+            "text": "Suche",
+            "url": "#",
+            "icon": "search"
+          },
+          {
+            "user": {},
+            "options": [
+              {
+                "text": "Mein Profil",
+                "url": "#",
+                "icon": "profile"
+              },
+              {
+                "text": "Nachrichten",
+                "url": "#",
+                "icon": "letter"
+              },
+              {
+                "text": "Einstellungen",
+                "url": "#",
+                "icon": "gear"
+              },
+              {
+                "text": "Abmelden",
+                "url": "#",
+                "icon": "logout"
+              }
+            ]
+          }
+        ],
+        "mainNavigation": [
+          {
+            "text": "Briefe",
+            "url": "#"
+          },
+          {
+            "text": "Pakete",
+            "url": "#"
+          }
+        ]
+      }
+    }
+  }
+}
