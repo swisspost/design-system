@@ -212,8 +212,8 @@ function renderCheckbox(args: Args, context: StoryContext) {
         ?required="${args.requiredOptional === 'required'}"
       />
       ${args.hiddenLabel ? nothing : html`<label for="${context.id}">${getLabelText(args)}</label>`}
-      ${args.validation !== 'null' ? getValidationMessages(args, context, false) : nothing}
     </div>
+    ${args.validation !== 'null' ? getValidationMessages(args, context, false) : nothing}
   `;
 }
 
@@ -232,7 +232,7 @@ export const Grouped: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Size'],
+      include: ['Size', 'Hidden Legend'],
     },
   },
 };
@@ -241,7 +241,7 @@ export const Inline: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Size'],
+      include: ['Size', 'Hidden Legend'],
     },
   },
   args: {
