@@ -1,5 +1,5 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { fakeContent, spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
 
@@ -46,7 +46,23 @@ const meta: MetaComponent = {
 };
 
 function render({ innerHMTL, ...args }: Args) {
-  return html` <swisspost-internet-header ${spreadArgs(args)}></swisspost-internet-header> `;
+  return html`
+    <swisspost-internet-header
+      active-route=${args.activeRoute !== 'auto' ? args.activeRoute : nothing}
+      project=${args.project}
+      environment=${args.environment !== 'prod' ? args.environment : nothing}
+      language=${args.language}
+      ?full-width=${args.fullWidth}
+      text-main=${args.textMain}
+      text-menu=${args.textMenu}
+      text-change-language=${args.textChangeLanguage}
+      text-current-language=${args.textCurrentLanguage}
+      text-current-user=${args.textCurrentUser}
+      text-user-links=${args.textUserLinks}
+      text-close=${args.textClose}
+      text-back=${args.textBack}
+    ></swisspost-internet-header>
+  `;
 }
 
 export default meta;
