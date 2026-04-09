@@ -8,8 +8,8 @@ export function renderGlobalNavSecondary(args: Args) {
       slot=${args.jobs ? 'global-nav-secondary' : nothing}
       aria-current=${args.jobs ? 'location' : nothing}
     >
-      Jobs
-      <post-icon name="jobs" aria-hidden="true"></post-icon>
+      Career
+      <post-icon name="rocket" aria-hidden="true"></post-icon>
     </a>
   `;
 
