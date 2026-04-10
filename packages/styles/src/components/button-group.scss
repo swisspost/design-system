@@ -9,9 +9,7 @@
 tokens.$default-map: components.$post-button-group;
 
 .btn-group {
-  max-width: 100%;
   position: relative;
-  display: inline-flex;
   box-shadow: tokens.get('button-group-elevation');
 
   label,

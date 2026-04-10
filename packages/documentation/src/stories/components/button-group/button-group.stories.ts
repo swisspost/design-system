@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { useArgs } from 'storybook/preview-api';
 import { MetaComponent } from '@root/types';
 
@@ -26,7 +26,7 @@ const meta: MetaComponent = {
   },
   args: {
     element: 'radio',
-    icon: true,
+    labelContent: 'iconAndText',
     direction: 'horizontal',
     disabledElement: null,
     groupClass: 'btn-group-vertical btn-group-lg-horizontal',
@@ -43,12 +43,18 @@ const meta: MetaComponent = {
         type: 'text',
       },
     },
-    icon: {
-      name: 'Icon',
-      description: 'Whether the buttons have an icon',
+    labelContent: {
+      name: 'Label content',
+      description: 'Whether the buttons have an icon and/or text.',
       control: {
-        type: 'boolean',
+        type: 'inline-radio',
+        labels: {
+          textOnly: 'Text only',
+          iconOnly: 'Icon only',
+          iconAndText: 'Icon and text',
+        },
       },
+      options: ['textOnly', 'iconOnly', 'iconAndText'],
       table: {
         category: 'Content',
       },
@@ -151,10 +157,10 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
   const position = index + 1;
   const id = `btngroup_${context.name}_${position}`;
   const name = `btngroup_${context.name}`;
-  const textLabel = BUTTON_LABELS[index];
-  const label = args.icon
-    ? html`<post-icon name="${BUTTON_ICONS[index]}"></post-icon> ${textLabel}`
-    : textLabel;
+  const text = BUTTON_LABELS[index];
+  const icon = html`<post-icon name="${BUTTON_ICONS[index]}"></post-icon>`;
+  const label = html`${args.labelContent !== 'textOnly' ? icon : nothing}
+  ${args.labelContent !== 'iconOnly' ? text : nothing}`;
 
   switch (args.element) {
     case 'checkbox': {

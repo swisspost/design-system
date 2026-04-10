@@ -21,6 +21,7 @@ export const ButtonGroup: Story = {
         <div class="row">
           ${bombArgs({
             direction: context.argTypes.direction.options,
+            labelContent: context.argTypes.labelContent.options,
             element: context.argTypes.element.options,
             checked: context.argTypes.checked.options,
             disabledElement: ['null', 0, 1, 2, 3, 4],
@@ -32,7 +33,7 @@ export const ButtonGroup: Story = {
                   (args.element === 'button' || args.element === 'link')
                 ),
             )
-            .filter(args => args.disabledElement !== ((args.checked as number) - 1))
+            .filter(args => args.disabledElement !== (args.checked as number) - 1)
             .map((args: Args) => {
               // Substitue checked with selected when element is checkbox
               if (args.element === 'checkbox') {
