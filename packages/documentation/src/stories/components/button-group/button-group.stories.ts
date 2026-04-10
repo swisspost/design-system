@@ -158,9 +158,10 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
   const id = `btngroup_${context.name}_${position}`;
   const name = `btngroup_${context.name}`;
   const text = BUTTON_LABELS[index];
+  const visuallyHiddenText = html`<span class="visually-hidden">${text}</span>`;
   const icon = html`<post-icon name="${BUTTON_ICONS[index]}"></post-icon>`;
   const label = html`${args.labelContent !== 'textOnly' ? icon : nothing}
-  ${args.labelContent !== 'iconOnly' ? text : html`<span class="visually-hidden">${text}</span>`}`;
+  ${args.labelContent !== 'iconOnly' ? text : visuallyHiddenText}`;
 
   switch (args.element) {
     case 'checkbox': {
