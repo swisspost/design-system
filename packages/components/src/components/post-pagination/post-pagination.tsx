@@ -9,9 +9,10 @@ import {
   EventEmitter,
   Watch,
 } from '@stencil/core';
-import { version } from '@root/package.json';
 import { nanoid } from 'nanoid';
-import { checkEmptyOrType, checkRequiredAndType, debounce } from '@/utils';
+import { debounce } from 'throttle-debounce';
+import { version } from '@root/package.json';
+import { checkEmptyOrType, checkRequiredAndType } from '@/utils';
 
 const ELLIPSIS = '...';
 const MEASUREMENT_DEBOUNCE_MS = 50;
@@ -112,7 +113,7 @@ export class PostPagination {
   private lastWindowWidth = window.innerWidth;
   private loaded: boolean = false;
 
-  private debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
+  private debouncedResize = debounce(RESIZE_DEBOUNCE_MS, this.handleResizeInternal.bind(this));
   private measurementTimeoutId: number | null = null;
 
   @Watch('page')
