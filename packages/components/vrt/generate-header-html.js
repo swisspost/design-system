@@ -81,8 +81,8 @@ const COMPONENTS = {
   <ul slot="global-nav-secondary">
     <li>
       <a href="{{GLOBAL_NAV_SECONDARY_CURRENT}}">
-        Jobs
-        <post-icon name="jobs" aria-hidden="true"></post-icon>
+        Career
+        <post-icon name="rocket" aria-hidden="true"></post-icon>
       </a>
     </li>
     <li>
@@ -95,8 +95,8 @@ const COMPONENTS = {
 
   globalNavSecondaryJobsOnly: `<!-- Global secondary navigation (Jobs link only) -->
   <a href="" slot="global-nav-secondary" aria-current="location">
-    Jobs
-    <post-icon name="jobs" aria-hidden="true"></post-icon>
+    Career
+    <post-icon name="rocket" aria-hidden="true"></post-icon>
   </a>`,
 
   languageMenu: `<!-- Language menu -->
