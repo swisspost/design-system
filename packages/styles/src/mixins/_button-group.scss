@@ -1,0 +1,70 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-button-group;
+
+@mixin vertical-variant() {
+  flex-direction: column;
+  border-radius: tokens.get('button-group-vertical-border-radius');
+  width: 100%;
+
+  label,
+  button,
+  a {
+    height: tokens.get('button-group-vertical-button-height');
+    padding-inline: tokens.get('button-group-horizontal-button-padding-inline');
+    gap: tokens.get('button-group-horizontal-button-gap-inline');
+
+    post-icon {
+      width: tokens.get('button-group-vertical-button-icon-size');
+    }
+
+    &:not(:first-of-type) {
+      margin-block-start: calc(#{tokens.get('button-group-button-border-width')} * -1);
+      margin-inline-start: 0;
+    }
+
+    &:first-of-type {
+      border-radius: tokens.get('button-group-vertical-button-border-radius')
+        tokens.get('button-group-vertical-button-border-radius') 0 0;
+    }
+
+    &:last-of-type {
+      border-radius: 0 0 tokens.get('button-group-vertical-button-border-radius')
+        tokens.get('button-group-vertical-button-border-radius');
+    }
+  }
+}
+
+@mixin horizontal-variant() {
+  flex-direction: row;
+  border-radius: tokens.get('button-group-horizontal-border-radius');
+  width: auto;
+
+  label,
+  button,
+  a {
+    height: tokens.get('button-group-horizontal-button-height');
+    padding-inline: tokens.get('button-group-horizontal-button-padding-inline');
+    gap: tokens.get('button-group-horizontal-button-gap-inline');
+
+    post-icon {
+      width: tokens.get('button-group-horizontal-button-icon-size');
+    }
+
+    &:not(:first-of-type) {
+      margin-inline-start: calc(#{tokens.get('button-group-button-border-width')} * -1);
+      margin-block-start: 0;
+    }
+
+    &:first-of-type {
+      border-radius: tokens.get('button-group-horizontal-button-border-radius') 0 0
+        tokens.get('button-group-horizontal-button-border-radius');
+    }
+
+    &:last-of-type {
+      border-radius: 0 tokens.get('button-group-horizontal-button-border-radius')
+        tokens.get('button-group-horizontal-button-border-radius') 0;
+    }
+  }
+}

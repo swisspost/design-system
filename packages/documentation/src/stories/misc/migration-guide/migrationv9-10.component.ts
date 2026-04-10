@@ -73,6 +73,7 @@ export class MigrationV910Component extends LitElement {
       stepper: false,
       dialog_icon: false,
       subnavigation: false,
+      button_group: false,
     },
     components: {
       alert: false,
@@ -1671,6 +1672,24 @@ export class MigrationV910Component extends LitElement {
                         Subnavigation component removed
                         <span class="info">
                           Replaced by the <code>post-tabs</code> component.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-button_group"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.button_group}"
+                      />
+                      <label class="form-check-label" for="others-button_group">
+                        Button group sizes removed
+                        <span class="info">
+                          The button group now only has one default size. You can safely remove the
+                          sizing class on the button group children elements.
                         </span>
                       </label>
                     </div>

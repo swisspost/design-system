@@ -146,6 +146,7 @@ export interface V910Checks {
     spinner: boolean;
     dialog_icon: boolean;
     subnavigation: boolean;
+    button_group: boolean;
   };
   components: {
     alert: boolean;
