@@ -32,7 +32,7 @@ export const ButtonGroup: Story = {
                   (args.element === 'button' || args.element === 'link')
                 ),
             )
-            .filter(args => !(args.disabledElement === (args.checked as number) - 1))
+            .filter(args => args.disabledElement !== ((args.checked as number) - 1))
             .map((args: Args) => {
               // Substitue checked with selected when element is checkbox
               if (args.element === 'checkbox') {
