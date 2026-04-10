@@ -22,8 +22,8 @@ tokens.$default-map: components.$post-button-group;
     }
 
     &:not(:first-of-type) {
-      margin-block-start: calc(#{tokens.get('button-group-button-border-width')} * -1);
-      margin-inline-start: 0;
+      border-top-width: 0;
+      border-left-width: tokens.get('button-group-button-border-width');
     }
 
     &:first-of-type {
@@ -58,8 +58,8 @@ tokens.$default-map: components.$post-button-group;
     }
 
     &:not(:first-of-type) {
-      margin-inline-start: calc(#{tokens.get('button-group-button-border-width')} * -1);
-      margin-block-start: 0;
+      border-left-width: 0;
+      border-top-width: tokens.get('button-group-button-border-width');
     }
 
     &:first-of-type {
