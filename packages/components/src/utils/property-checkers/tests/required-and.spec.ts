@@ -1,3 +1,7 @@
+jest.mock('throttle-debounce', () => ({
+  debounce: jest.fn().mockImplementation((_, fn) => fn),
+}));
+
 import { requiredAnd } from '../required-and';
 import { EMPTY_VALUES } from '@/utils/property-checkers/constants';
 
@@ -14,7 +18,10 @@ describe('requiredAnd', () => {
         [propName]: emptyValue,
       };
       const error = `The prop \`${propName}\` of the \`post-component\` component is not defined.`;
-      expect(() => mockRequiredAndCheck(component, propName)).toThrow(error);
+      expect(() => {
+        mockRequiredAndCheck(component, propName);
+        jest.runAllTimers();
+      }).toThrow(error);
     });
   });
 

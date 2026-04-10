@@ -19,7 +19,7 @@ global.getComputedStyle = jest.fn().mockReturnValue({
 });
 
 // Import breakpoint utility after mocks so it uses the mocked data
-import { breakpoint } from '@/utils';
+import { breakpoint } from '../breakpoints';
 
 describe('breakpoints', () => {
   breakpointStyles.widths.forEach((width, i) => {

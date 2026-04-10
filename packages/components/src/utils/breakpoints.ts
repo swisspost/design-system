@@ -1,5 +1,5 @@
 import { throttle } from 'throttle-debounce';
-import { IS_SERVER } from '@/utils/environment';
+import { IS_SERVER } from './environment';
 
 export type Device = 'desktop' | 'tablet' | 'mobile';
 export type BreakpointKey = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
