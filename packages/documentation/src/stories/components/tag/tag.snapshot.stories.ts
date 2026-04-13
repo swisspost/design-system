@@ -22,7 +22,7 @@ export const Tag: Story = {
           markup: [
             'Short text',
             'Long text - Lorem ipsum dolor sit amet consectetur.',
-            'With markup <span class="fst-italic">italic</span> <span class="fw-bold">bold</span> <img src="/favicon.svg"/>',
+            '<div>With markup <span class="fst-italic">italic</span> <span class="fw-bold">bold</span> <img src="/favicon.svg"/></div>',
           ],
           icon: ['tag'],
           showIcon: [false, true],
