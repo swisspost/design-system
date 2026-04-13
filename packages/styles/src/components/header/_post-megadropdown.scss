@@ -4,6 +4,16 @@
 @use './placeholders' as *;
 
 post-megadropdown {
+  --header-megadropdown-col-min-width: 8ch;
+
+  @include media.only(tablet) {
+    --header-megadropdown-col-min-width: 18ch;
+  }
+
+  @include media.only(mobile) {
+    --header-megadropdown-col-min-width: 100%;
+  }
+
   .row {
     --post-grid-gutter-x: 1.5rem;
     --post-grid-gutter-y: 1.5rem;
@@ -27,10 +37,10 @@ post-megadropdown {
   .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
     @extend %header-control;
     @include nav-item-block-layout;
-
     @include media.only(desktop) {
       font-size: 1.25rem;
     }
+    text-wrap: wrap;
   }
 
   .post-megadropdown-list-title {
@@ -48,6 +58,13 @@ post-megadropdown {
 
     &:first-child {
       margin-block-start: -0.5rem;
+    }
+  }
+
+  .post-megadropdown-grid {
+    li,
+    a {
+      word-break: break-word;
     }
   }
 }

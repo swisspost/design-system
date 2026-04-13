@@ -9,6 +9,23 @@
   box-sizing: border-box;
 }
 
+::slotted(.post-megadropdown-grid) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--header-megadropdown-col-min-width), 1fr));
+}
+
+@include media.only(desktop) {
+  ::slotted(.post-megadropdown-grid) {
+    gap: 24px;
+  }
+}
+
+@include media.max(desktop) {
+  ::slotted(.post-megadropdown-grid) {
+    gap: 16px 24px;
+  }
+}
+
 .megadropdown {
   position: absolute;
   inset-inline: 0;
