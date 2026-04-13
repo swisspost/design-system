@@ -45,22 +45,7 @@ If you need to add additional content to the component, you can do that as shown
 ### Grouping
 
 Multiple instances of the component can be grouped together using a `<fieldset>` and `<legend>` element to properly label the group.
-
-<post-banner type="info">
-  <p slot="heading">Accessible validation</p>
-  <p>Group validation differs slightly from individual validation. If there is an error, you should add the following attributes to the `<fieldset>` element instead of adding them to the `<input>` elements themselves.</p>
-  <ul className="unordered-list">
-    <li>
-      <code>aria-invalid</code>
-    </li>
-    <li>
-      <code>aria-describedby</code>
-    </li>
-    <li>
-      <code>disabled</code>
-    </li>
-  </ul>
-</post-banner>
+Group validation differs slightly from individual validation. For more information, read our [form validation docs](/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#radio-button-group).
 
 <Canvas of={SelectionCardStories.Grouping} />
 <div className="hide-col-default">
