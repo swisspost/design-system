@@ -48,10 +48,26 @@ export default meta;
 function getListboxOptions() {
   return html`
     <div slot="blank-slate">Nothing to see here</div>
+    <post-listbox-option value="Switzerland"></post-listbox-option>
+    <post-listbox-option value="Germany"></post-listbox-option>
+    <post-listbox-option value="France"></post-listbox-option>
+    <post-listbox-option value="Italy"></post-listbox-option>
+    <post-listbox-option value="Austria"></post-listbox-option>
+    <post-listbox-option value="Spain"></post-listbox-option>
+    <post-listbox-option value="Portugal"></post-listbox-option>
+    <post-listbox-option value="Netherlands"></post-listbox-option>
+    <post-listbox-option value="Belgium"></post-listbox-option>
+    <post-listbox-option value="Sweden"></post-listbox-option>
+  `;
+}
+
+function getListboxOptionsWithDescription() {
+  return html`
+    <div slot="blank-slate">Nothing to see here</div>
     <post-listbox-option value="Switzerland">Alpine Region</post-listbox-option>
     <post-listbox-option value="Germany">Central Europe</post-listbox-option>
     <post-listbox-option value="France">Western Europe</post-listbox-option>
-    <post-listbox-option value="Italy">Italian Peninsula</post-listbox-option>
+    <post-listbox-option value="Italy">Southern Europe</post-listbox-option>
     <post-listbox-option value="Austria">Alpine Region</post-listbox-option>
     <post-listbox-option value="Spain">Iberian Peninsula</post-listbox-option>
     <post-listbox-option value="Portugal">Iberian Peninsula</post-listbox-option>
@@ -116,5 +132,24 @@ export const FilterThreshold: Story = {
   args: {
     filterThreshold: 3,
     placeholder: 'Type at least three letters',
+  },
+};
+
+export const OptionDescription: Story = {
+  render: (args: Args, context: StoryContext) => {
+    const storyId = sanitizeStoryId(context);
+    const inputId = `${storyId}-input`;
+
+    return html`
+      <post-autocomplete
+        ${spreadArgs({ clearable: args.clearable, filterThreshold: args.filterThreshold })}
+      >
+        <div class="form-floating">
+          <input class="form-control" type="text" id="${inputId}" placeholder="Select Country" />
+          <label class="form-label" for="${inputId}">Country</label>
+        </div>
+        <post-listbox>${getListboxOptionsWithDescription()}</post-listbox>
+      </post-autocomplete>
+    `;
   },
 };
