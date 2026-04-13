@@ -41,19 +41,3 @@ export const FieldsetDoExample: Story = {
     </fieldset>
   `,
 };
-
-export const DivForGroupingExample: Story = {
-  render: () => html`
-    <span id="group-description">Please select your gender:</span>
-    <div role="group" aria-labelledby="group-label" aria-describedby="group-description">
-      <div class="form-check">
-        <input type="radio" id="male-option" name="gender-group" value="male" />
-        <label for="male-option">Male</label>
-      </div>
-      <div class="form-check">
-        <input type="radio" id="female-option" name="gender-group" value="female" />
-        <label for="female-option">Female</label>
-      </div>
-    </div>
-  `,
-};
