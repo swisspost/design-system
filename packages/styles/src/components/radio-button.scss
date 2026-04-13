@@ -1,6 +1,9 @@
-@use 'form-check';
 @use '../mixins/forms' as forms-mx;
 @use '../mixins/utilities' as utility-mx;
+@use '../tokens/components';
+@use '../functions/tokens';
+
+tokens.$default-map: components.$post-radio-button;
 
 :where(.form-check > input[type='radio']) {
   @include utility-mx.focus-style();
@@ -8,4 +11,81 @@
 
 .form-check > input[type='radio'] {
   @include forms-mx.radio-button();
+}
+
+.form-check.form-check-sm > input[type='radio'] {
+  width: tokens.get('radio-button-small-icon-size');
+  height: tokens.get('radio-button-small-icon-size');
+
+  &::after {
+    width: tokens.get('radio-button-small-icon-dot');
+    height: tokens.get('radio-button-small-icon-dot');
+  }
+}
+
+.form-check:has(input[type='radio']) {
+  column-gap: tokens.get('radio-button-gap-inline-text-start');
+  padding-block: tokens.get('radio-button-padding-block-single');
+
+  @include forms-mx.form-check-base();
+
+  // Grouped
+  fieldset > &:not(.form-check-inline):not(:last-of-type) {
+    margin-block-end: tokens.get('radio-button-gap-block-group');
+  }
+
+  // Grouped inline
+  fieldset > &.form-check-inline:not(:last-of-type) {
+    margin-inline-end: tokens.get('radio-button-group-items-gap-inline');
+  }
+
+  > input[type='radio'] {
+    ~ label {
+      padding-block: tokens.get('radio-button-label-padding-block');
+      color: tokens.get('radio-button-enabled-fg');
+    }
+
+    &:not([disabled]) {
+      &:hover ~ label {
+        color: tokens.get('radio-button-hover-fg');
+      }
+    }
+
+    &[disabled] ~ label {
+      color: tokens.get('radio-button-disabled-fg');
+    }
+  }
+
+  // Small
+  &.form-check-sm {
+    padding-block: tokens.get('radio-button-small-padding-block');
+
+    > input[type='radio'] ~ label {
+      font-size: tokens.get('radio-button-small-label-font-size');
+      padding-block: tokens.get('radio-button-small-label-padding-block');
+    }
+
+    fieldset > &:not(.form-check-inline):not(:last-of-type) {
+      margin-block-end: tokens.get('radio-button-small-group-items-gap-block');
+    }
+
+    fieldset > &.form-check-inline:not(:last-of-type) {
+      margin-inline-end: tokens.get('radio-button-small-group-items-gap-inline');
+    }
+  }
+}
+
+fieldset:has(.form-check input[type='radio']) {
+  margin-block: tokens.get('radio-button-padding-block-group');
+}
+
+fieldset legend {
+  &:has(+ .form-check input[type='radio']) {
+    font-size: tokens.get('radio-button-group-legend-font-size');
+    margin-block-end: tokens.get('radio-button-gap-block-group');
+  }
+
+  &:has(+ .form-check.form-check-sm input[type='radio']) {
+    margin-block-end: tokens.get('radio-button-small-group-gap-block');
+  }
 }

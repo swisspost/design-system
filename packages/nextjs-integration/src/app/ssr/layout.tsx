@@ -50,8 +50,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <ul slot="global-nav-secondary">
           <li>
             <a href="">
-              Jobs
-              <PostIcon name="jobs" aria-hidden="true" />
+              Career
+              <PostIcon name="rocket" aria-hidden="true" />
             </a>
           </li>
           <li>
