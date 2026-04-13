@@ -63,16 +63,9 @@ class Breakpoint {
     );
   }
 
-  public get key(): BreakpointDefinition['key'] {
-    return this.currentBreakpoint.key;
-  }
-
-  public get device(): BreakpointDefinition['device'] {
-    return this.currentBreakpoint.device;
-  }
-
-  public get minWidth(): BreakpointDefinition['minWidth'] {
-    return this.currentBreakpoint.minWidth;
+  public get<T extends BreakpointProperty>(property: T): BreakpointDefinition[T] {
+    this.updateCurrentBreakpoint({ emitEvents: false });
+    return this.currentBreakpoint[property];
   }
 }
 

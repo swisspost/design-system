@@ -63,7 +63,7 @@ export class PostMegadropdown {
     checkRequiredAndType(this, 'textBack', 'string');
   }
 
-  @State() readonly device: Device = breakpoint.device;
+  @State() device: Device = breakpoint.get('device');
 
   /**
    * Holds the current visibility state of the dropdown.
@@ -99,7 +99,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.cancelAnimation.bind(this));
+    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
   }
 
   componentDidRender() {
@@ -115,7 +115,7 @@ export class PostMegadropdown {
   }
 
   disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:device', this.cancelAnimation.bind(this));
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
 
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
@@ -260,6 +260,11 @@ export class PostMegadropdown {
   private cancelAnimation() {
     this.currentAnimation?.cancel();
     this.currentAnimation = null;
+  }
+
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
+    this.cancelAnimation();
   }
 
   private readonly handleClickOutside = async (event: MouseEvent) => {

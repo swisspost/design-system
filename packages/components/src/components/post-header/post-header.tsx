@@ -82,7 +82,7 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() readonly device: Device = breakpoint.device;
+  @State() device: Device = breakpoint.get('device');
   @State() hasTitle: boolean = true;
   @State() hasMainNav: boolean = true;
   @State() hasLocalNav: boolean = true;
@@ -136,8 +136,9 @@ export class PostHeader {
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
 
-  private readonly breakpointChange = () => {
+  private readonly breakpointChange = (e: CustomEvent) => {
     const previousDevice = this.device;
+    this.device = e.detail;
     this.switchLanguageSwitchMode();
 
     const wasDesktop = previousDevice === 'desktop';

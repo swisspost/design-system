@@ -26,7 +26,7 @@ export class PostFooter {
    */
   @Prop({ reflect: true }) readonly textFooter!: string;
 
-  @State() readonly device: Device = breakpoint.device;
+  @State() device: Device = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
 
   @Watch('textFooter')
@@ -38,6 +38,10 @@ export class PostFooter {
     this.handleGridSlotChange = this.handleGridSlotChange.bind(this);
   }
 
+  connectedCallback() {
+    window.addEventListener('postBreakpoint:device', this.breakpointChange);
+  }
+
   componentWillLoad() {
     this.validateTextFooter();
 
@@ -47,6 +51,14 @@ export class PostFooter {
       this.updateGridSlotDisplay(slotName, assignedElements.length > 0);
     });
   }
+
+  disconnectedCallback() {
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
+  }
+
+  private readonly breakpointChange = (e: CustomEvent) => {
+    this.device = e.detail;
+  };
 
   private handleGridSlotChange(...devices: string[]) {
     return (e: Event) => {

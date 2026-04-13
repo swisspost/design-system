@@ -25,17 +25,17 @@ describe('breakpoints', () => {
   breakpointStyles.widths.forEach((width, i) => {
     it('returns correct breakpoint key', () => {
       global['innerWidth'] = width;
-      expect(breakpoint.key).toBe(breakpointStyles.keys[i]);
+      expect(breakpoint.get('key')).toBe(breakpointStyles.keys[i]);
     });
 
     it('returns correct breakpoint device', () => {
       global['innerWidth'] = width;
-      expect(breakpoint.device).toBe(breakpointStyles.devices[i]);
+      expect(breakpoint.get('device')).toBe(breakpointStyles.devices[i]);
     });
 
     it('returns correct breakpoint min width', () => {
       global['innerWidth'] = width;
-      expect(breakpoint.minWidth).toBe(breakpointStyles.widths[i]);
+      expect(breakpoint.get('minWidth')).toBe(breakpointStyles.widths[i]);
     });
   });
 });
