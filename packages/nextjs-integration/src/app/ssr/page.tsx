@@ -1,6 +1,7 @@
 import {
   PostAccordion,
   PostAccordionItem,
+  PostAutocomplete,
   PostAvatar,
   PostBanner,
   PostClosebutton,
@@ -8,6 +9,8 @@ import {
   PostCollapsibleTrigger,
   PostDatePicker,
   PostLinkarea,
+  PostListbox,
+  PostListboxOption,
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
@@ -108,6 +111,25 @@ export default function Home() {
         <input className="form-control" type="text" />
         <p className="form-hint">Format: DD.MM.YYYY</p>
       </PostDatePicker>
+
+      <h2>Autocomplete</h2>
+      <PostAutocomplete clearable={true}>
+        <div className="form-floating">
+          <input
+            type="text"
+            id="autocomplete-country"
+            className="form-control"
+            placeholder="Search for a country"
+          />
+          <label htmlFor="autocomplete-country">Country</label>
+        </div>
+        <PostListbox>
+          <PostListboxOption value="Switzerland"></PostListboxOption>
+          <PostListboxOption value="Germany"></PostListboxOption>
+          <PostListboxOption value="France"></PostListboxOption>
+          <PostListboxOption value="Italy"></PostListboxOption>
+        </PostListbox>
+      </PostAutocomplete>
 
       <h2>Icons</h2>
 
