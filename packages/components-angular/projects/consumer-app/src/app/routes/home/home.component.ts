@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   PostAccordion,
   PostAccordionItem,
+  PostAutocomplete,
   PostAvatar,
   PostBanner,
   PostCollapsible,
@@ -9,9 +10,11 @@ import {
   PostDatePicker,
   PostIcon,
   PostLinkarea,
+  PostListbox,
   PostMenu,
   PostMenuTrigger,
   PostMenuItem,
+  PostOption,
   PostPagination,
   PostPopover,
   PostPopovercontainer,
@@ -36,6 +39,7 @@ import {
   imports: [
     PostAccordion,
     PostAccordionItem,
+    PostAutocomplete,
     PostAvatar,
     PostBanner,
     PostClosebutton,
@@ -44,9 +48,11 @@ import {
     PostDatePicker,
     PostIcon,
     PostLinkarea,
+    PostListbox,
     PostMenu,
     PostMenuTrigger,
     PostMenuItem,
+    PostOption,
     PostPagination,
     PostPopover,
     PostPopovercontainer,
@@ -65,4 +71,10 @@ import {
 })
 export class HomeComponent {
   isCollapsed = false;
+  
+  // Sample countries for autocomplete
+  countries = [
+    'Switzerland', 'Germany', 'France', 'Italy', 'Austria',
+    'Belgium', 'Netherlands', 'Spain', 'Portugal', 'United Kingdom'
+  ];
 }

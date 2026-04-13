@@ -1,0 +1,35 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+post-autocomplete {
+  display: block;
+  position: relative;
+}
+
+.autocomplete-input-wrapper {
+  display: block;
+  width: 100%;
+
+  // Style the slotted input
+  ::slotted(input) {
+    width: 100%;
+  }
+}
+
+.autocomplete-dropdown {
+  background-color: post.$white;
+  border: post.$size-line solid post.$gray-20;
+  border-radius: post.$border-radius;
+  box-shadow: post.$shadow-sm;
+  max-height: 16rem;
+  overflow-y: auto;
+  padding: post.$size-micro 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+// Highlighted option state (via keyboard navigation)
+::slotted(post-option[data-highlighted='true']) {
+  background-color: post.$gray-10;
+}
