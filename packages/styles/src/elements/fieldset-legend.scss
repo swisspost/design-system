@@ -4,7 +4,7 @@
 tokens.$default-map: elements.$post-legend;
 
 legend {
-  margin-bottom: tokens.get('legend-margin-block-end');
+  margin-block-end: tokens.get('legend-margin-block-end');
   font-weight: tokens.get('legend-font-weight');
   line-height: tokens.get('legend-line-height');
   width: 100%;
@@ -16,7 +16,7 @@ legend {
       tokens.get('legend-large-padding-block-end') - tokens.get('legend-large-border-width')
     );
     margin-block-end: tokens.get('legend-large-margin-block-end');
-    border-bottom: tokens.get('legend-large-border-width') tokens.get('legend-large-border-color')
-      tokens.get('legend-large-border-style');
+    border-block-end: tokens.get('legend-large-border-width')
+      tokens.get('legend-large-border-color') tokens.get('legend-large-border-style');
   }
 }
