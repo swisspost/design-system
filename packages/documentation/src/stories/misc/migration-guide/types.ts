@@ -146,6 +146,7 @@ export interface V910Checks {
     spinner: boolean;
     dialog_icon: boolean;
     subnavigation: boolean;
+    tag: boolean;
   };
   components: {
     alert: boolean;
@@ -155,6 +156,7 @@ export interface V910Checks {
     popover_trigger: boolean;
     tabs_anchor_navigation: boolean;
     card_control: boolean;
+    tag: boolean;
   };
 }
 

@@ -4,7 +4,7 @@
 
 tokens.$default-map: components.$post-tag;
 
-.tag {
+.tag:not(:where(pre .tag)) {
   display: inline-flex;
   align-items: center;
   border: tokens.get('tag-border-width') tokens.get('tag-border-style')

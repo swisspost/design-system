@@ -101,7 +101,7 @@ function renderTag(args: Args) {
   return html`
     <div class="${classes}">
       ${args.showIcon ? unsafeHTML(`<post-icon name="${args.icon}"></post-icon>`) : nothing}
-      <div class="tag-text">${unsafeHTML(args.markup)}</div>
+      ${unsafeHTML(args.markup)}
     </div>
   `;
 }

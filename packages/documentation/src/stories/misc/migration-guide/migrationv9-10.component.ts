@@ -73,6 +73,7 @@ export class MigrationV910Component extends LitElement {
       stepper: false,
       dialog_icon: false,
       subnavigation: false,
+      tag: false,
     },
     components: {
       alert: false,
@@ -82,6 +83,7 @@ export class MigrationV910Component extends LitElement {
       popover_trigger: false,
       tabs_anchor_navigation: false,
       card_control: false,
+      tag: false,
     },
   };
 
@@ -463,6 +465,21 @@ export class MigrationV910Component extends LitElement {
                       <label class="form-check-label" for="components-card_control">
                         <code>post-card-control</code> component removed
                         <span class="info"> Replace by the selection card. </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-tag"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.tag}"
+                      />
+                      <label class="form-check-label" for="components-tag">
+                        <code>post-tag</code> component removed
+                        <span class="info">Replaced by the <code>.tag</code> CSS class</span>
                       </label>
                     </div>
                   </li>
@@ -1672,6 +1689,24 @@ export class MigrationV910Component extends LitElement {
                         <span class="info">
                           Replaced by the <code>post-tabs</code> component.
                         </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-tag"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.tag}"
+                      />
+                      <label class="form-check-label" for="others-tag">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.tag-danger</code> renamed to <code>.tag-error</code>, and
+                        <code>.tag-yellow</code> and <code>.tag-white</code> variants removed
                       </label>
                     </div>
                   </li>
