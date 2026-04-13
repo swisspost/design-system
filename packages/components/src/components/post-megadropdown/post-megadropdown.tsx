@@ -99,7 +99,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    window.addEventListener('postBreakpoint:device', this.cancelAnimation.bind(this));
   }
 
   componentDidRender() {
@@ -115,7 +115,7 @@ export class PostMegadropdown {
   }
 
   disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    window.removeEventListener('postBreakpoint:device', this.cancelAnimation.bind(this));
 
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
@@ -260,10 +260,6 @@ export class PostMegadropdown {
   private cancelAnimation() {
     this.currentAnimation?.cancel();
     this.currentAnimation = null;
-  }
-
-  private breakpointChange() {
-    this.cancelAnimation();
   }
 
   private readonly handleClickOutside = async (event: MouseEvent) => {
