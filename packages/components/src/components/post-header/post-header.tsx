@@ -136,7 +136,7 @@ export class PostHeader {
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
 
-  private readonly breakpointChange = (e: CustomEvent) => {
+  private readonly breakpointChange = () => {
     const previousDevice = this.device;
     this.switchLanguageSwitchMode();
 
