@@ -63,7 +63,7 @@ export class PostMegadropdown {
     checkRequiredAndType(this, 'textBack', 'string');
   }
 
-  @State() device: Device = breakpoint.get('device');
+  @State() readonly device: Device = breakpoint.device;
 
   /**
    * Holds the current visibility state of the dropdown.
@@ -262,8 +262,7 @@ export class PostMegadropdown {
     this.currentAnimation = null;
   }
 
-  private breakpointChange(e: CustomEvent) {
-    this.device = e.detail;
+  private breakpointChange() {
     this.cancelAnimation();
   }
 

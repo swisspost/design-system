@@ -21,13 +21,16 @@ class Breakpoint {
     { key: 'sm', device: 'tablet', minWidth: 600 },
     { key: 'xs', device: 'mobile', minWidth: 0 },
   ];
+
   private currentBreakpoint: BreakpointDefinition;
+
+  private resizeObserver = new ResizeObserver(() => this.updateCurrentBreakpoint());
 
   constructor() {
     if (IS_SERVER) return;
 
     this.updateCurrentBreakpoint({ emitEvents: false });
-    window.addEventListener('resize', () => this.updateCurrentBreakpoint(), { passive: true });
+    this.resizeObserver.observe(document.body);
   }
 
   private updateCurrentBreakpoint = throttle(
@@ -60,9 +63,16 @@ class Breakpoint {
     );
   }
 
-  public get<T extends BreakpointProperty>(property: T): BreakpointDefinition[T] {
-    this.updateCurrentBreakpoint({ emitEvents: false });
-    return this.currentBreakpoint[property];
+  public get key(): BreakpointDefinition['key'] {
+    return this.currentBreakpoint.key;
+  }
+
+  public get device(): BreakpointDefinition['device'] {
+    return this.currentBreakpoint.device;
+  }
+
+  public get minWidth(): BreakpointDefinition['minWidth'] {
+    return this.currentBreakpoint.minWidth;
   }
 }
 

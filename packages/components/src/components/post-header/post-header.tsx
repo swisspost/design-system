@@ -82,7 +82,7 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: Device = breakpoint.get('device');
+  @State() readonly device: Device = breakpoint.device;
   @State() hasTitle: boolean = true;
   @State() hasMainNav: boolean = true;
   @State() hasLocalNav: boolean = true;
@@ -138,7 +138,6 @@ export class PostHeader {
 
   private readonly breakpointChange = (e: CustomEvent) => {
     const previousDevice = this.device;
-    this.device = e.detail;
     this.switchLanguageSwitchMode();
 
     const wasDesktop = previousDevice === 'desktop';
