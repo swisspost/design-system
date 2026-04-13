@@ -24,23 +24,21 @@ export const Tag: Story = {
             'Long text - Lorem ipsum dolor sit amet consectetur.',
             'With markup <span class="fst-italic">italic</span> <span class="fw-bold">bold</span> <img src="/favicon.svg"/>',
           ],
+          icon: ['tag'],
           showIcon: [false, true],
         }).map(
           (bombArgs: Args) =>
             html`<div class="d-flex flex-wrap gap-4 mb-24">
-              ${context.argTypes.variant.options
-                .filter((v: string) => v !== 'null')
-                .map((variant: string) =>
-                  meta.render?.(
-                    {
-                      ...args,
-                      ...bombArgs,
-                      variant,
-                      icon: 'letter',
-                    },
-                    context,
-                  ),
-                )}
+              ${context.argTypes.variant.options.map((variant: string) =>
+                meta.render?.(
+                  {
+                    ...args,
+                    ...bombArgs,
+                    variant,
+                  },
+                  context,
+                ),
+              )}
             </div>`,
         )}
       `,
