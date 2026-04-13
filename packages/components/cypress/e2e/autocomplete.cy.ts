@@ -8,6 +8,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-autocomplete#autocomplete-nested[data-hydrated]').as('autocomplete');
       cy.get('@autocomplete').find('input').as('input');
       cy.get('@autocomplete').find('post-listbox[data-hydrated]').as('listbox');
+      cy.get('@listbox').find('post-popovercontainer').as('popovercontainer');
     });
 
     it('should initialize the input with combobox semantics', () => {
@@ -55,7 +56,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
         .should('have.attr', 'selected');
       cy.get('@autocomplete').should('not.have.attr', 'open');
       cy.get('@input').should('have.attr', 'aria-expanded', 'false');
-      cy.get('@listbox').should('have.attr', 'hidden');
+      cy.get('@popovercontainer').should('not.match', ':popover-open');
     });
 
     it('should restore the selected value on blur', () => {
@@ -68,7 +69,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
 
       cy.get('@input').should('have.value', 'Portugal');
       cy.get('@autocomplete').should('not.have.attr', 'open');
-      cy.get('@listbox').should('have.attr', 'hidden');
+      cy.get('@popovercontainer').should('not.match', ':popover-open');
     });
 
     it('should clear the selected value when clicking the clear button', () => {
@@ -83,7 +84,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
         .find('post-listbox-option[value="Portugal"]')
         .should('not.have.attr', 'selected');
       cy.get('@autocomplete').should('not.have.attr', 'open');
-      cy.get('@listbox').should('have.attr', 'hidden');
+      cy.get('@popovercontainer').should('not.match', ':popover-open');
     });
 
     it('should close the listbox when pressing escape', () => {
@@ -94,7 +95,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
 
       cy.get('@autocomplete').should('not.have.attr', 'open');
       cy.get('@input').should('have.attr', 'aria-expanded', 'false');
-      cy.get('@listbox').should('have.attr', 'hidden');
+      cy.get('@popovercontainer').should('not.match', ':popover-open');
     });
   });
 
@@ -104,14 +105,16 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-autocomplete#autocomplete-detached[data-hydrated]').as('autocomplete');
       cy.get('#detached-input').as('input');
       cy.get('post-listbox#detached-listbox[data-hydrated]').as('listbox');
+      cy.get('@listbox').find('post-popovercontainer').as('popovercontainer');
     });
 
-    it('should connect to an detached listbox via the options property', () => {
+    it('should connect to an detached listbox via the listbox property', () => {
       cy.get('@input').should('have.attr', 'aria-controls', 'detached-listbox');
       cy.get('@input').type('fra');
       cy.wait(DEBOUNCE_TIMEOUT);
 
       cy.get('@autocomplete').should('have.attr', 'open');
+      cy.get('@popovercontainer').should('match', ':popover-open');
       cy.get('@listbox')
         .find('post-listbox-option[value="France"]')
         .should('not.have.attr', 'hidden');
@@ -123,7 +126,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
 
       cy.get('@input').should('have.value', 'France');
       cy.get('@autocomplete').should('not.have.attr', 'open');
-      cy.get('@listbox').should('have.attr', 'hidden');
+      cy.get('@popovercontainer').should('not.match', ':popover-open');
     });
   });
 

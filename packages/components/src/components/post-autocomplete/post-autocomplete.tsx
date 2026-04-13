@@ -22,7 +22,7 @@ export class PostAutocomplete {
   @Prop({ reflect: true }) readonly clearable: boolean = false;
 
   /** Optional idref to connect the autocomplete with the options dropdown if not nested */
-  @Prop({ reflect: true }) readonly options?: string;
+  @Prop({ reflect: true }) readonly listbox?: string;
 
   @State() inputValue: string = '';
 
@@ -34,8 +34,8 @@ export class PostAutocomplete {
   }
 
   private get listBoxElement() {
-    if (this.options) {
-      return document.getElementById(this.options) as HTMLPostListboxElement;
+    if (this.listbox) {
+      return document.getElementById(this.listbox) as HTMLPostListboxElement;
     } else {
       return this.host.querySelector('post-listbox');
     }
@@ -182,6 +182,7 @@ export class PostAutocomplete {
 
   private readonly showListBox = () => {
     this.listBoxElement.show();
+    console.log(this.listBoxElement);
     this.inputElement.ariaExpanded = 'true';
     this.host.setAttribute('open', '');
   };

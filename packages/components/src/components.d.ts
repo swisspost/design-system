@@ -73,7 +73,7 @@ export namespace Components {
         /**
           * Optional idref to connect the autocomplete with the options dropdown if not nested
          */
-        "options"?: string;
+        "listbox"?: string;
     }
     interface PostAvatar {
         /**
@@ -1259,13 +1259,13 @@ declare namespace LocalJSX {
          */
         "filterThreshold"?: number;
         /**
+          * Optional idref to connect the autocomplete with the options dropdown if not nested
+         */
+        "listbox"?: string;
+        /**
           * Cancelable event emitted when the input value is to be filtered
          */
         "onPostFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
-        /**
-          * Optional idref to connect the autocomplete with the options dropdown if not nested
-         */
-        "options"?: string;
     }
     interface PostAvatar {
         /**

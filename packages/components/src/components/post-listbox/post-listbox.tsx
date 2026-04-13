@@ -26,7 +26,7 @@ export class PostListbox {
   private get inputElement(): HTMLInputElement | null {
     let autocomplete = this.host.closest('post-autocomplete');
     if (!autocomplete) {
-      autocomplete = document.querySelector(`post-autocomplete[for="${this.host.id}"]`);
+      autocomplete = document.querySelector(`post-autocomplete[listbox="${this.host.id}"]`);
     }
     return autocomplete?.querySelector('input');
   }

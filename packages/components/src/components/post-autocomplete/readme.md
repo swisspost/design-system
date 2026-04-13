@@ -9,7 +9,7 @@
 | ----------------- | ------------------ | ---------------------------------------------------------------------------------- | --------- | ----------- |
 | `clearable`       | `clearable`        | Show or hide the clear button                                                      | `boolean` | `false`     |
 | `filterThreshold` | `filter-threshold` | Number of characters to type before filtering methods are called                   | `number`  | `0`         |
-| `options`         | `options`          | Optional idref to connect the autocomplete with the options dropdown if not nested | `string`  | `undefined` |
+| `listbox`         | `listbox`          | Optional idref to connect the autocomplete with the options dropdown if not nested | `string`  | `undefined` |
 
 
 ## Events
