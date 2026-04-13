@@ -29,6 +29,22 @@
   outline-offset: 2px;
 }
 
+.option-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.option-description {
+  display: none;
+  font-size: 0.85em;
+  color: post.$gray-60;
+}
+
+:host(:not(:empty)) .option-description {
+  display: block;
+}
+
 post-icon {
   width: 24px;
   height: 24px;

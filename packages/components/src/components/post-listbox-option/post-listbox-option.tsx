@@ -8,7 +8,7 @@ import { version } from '@root/package.json';
 })
 export class PostListboxOption {
   private readonly optionId = crypto.randomUUID();
-  /** A value string, similar to <option value="val1">Value 1</option> */
+  /** A value string, similar to <option value="Value 1">Value 1 description</option> */
   @Prop({ reflect: true }) readonly value!: string;
 
   /** Represents option is selected . */
@@ -32,7 +32,12 @@ export class PostListboxOption {
         onClick={() => this.postOptionSelected.emit(this.value)}
         id={`post-listbox-option-${this.optionId}`}
       >
-        <slot>{this.value}</slot>
+        <span class="option-content">
+          {this.value}
+          <span class="option-description">
+            <slot></slot>
+          </span>
+        </span>
         {this.selected && <post-icon aria-hidden="true" name="checkmark"></post-icon>}
       </Host>
     );

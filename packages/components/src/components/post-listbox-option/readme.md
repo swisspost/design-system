@@ -5,11 +5,11 @@
 
 ## Properties
 
-| Property             | Attribute     | Description                                                      | Type      | Default     |
-| -------------------- | ------------- | ---------------------------------------------------------------- | --------- | ----------- |
-| `highlighted`        | `highlighted` | Represents option is highlighted .                               | `boolean` | `false`     |
-| `selected`           | `selected`    | Represents option is selected .                                  | `boolean` | `false`     |
-| `value` _(required)_ | `value`       | A value string, similar to <option value="val1">Value 1</option> | `string`  | `undefined` |
+| Property             | Attribute     | Description                                                                     | Type      | Default     |
+| -------------------- | ------------- | ------------------------------------------------------------------------------- | --------- | ----------- |
+| `highlighted`        | `highlighted` | Represents option is highlighted .                                              | `boolean` | `false`     |
+| `selected`           | `selected`    | Represents option is selected .                                                 | `boolean` | `false`     |
+| `value` _(required)_ | `value`       | A value string, similar to <option value="Value 1">Value 1 description</option> | `string`  | `undefined` |
 
 
 ## Events

@@ -391,7 +391,7 @@ export namespace Components {
          */
         "selected": boolean;
         /**
-          * A value string, similar to <option value="val1">Value 1</option>
+          * A value string, similar to <option value="Value 1">Value 1 description</option>
          */
         "value": string;
     }
@@ -1559,7 +1559,7 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
-          * A value string, similar to <option value="val1">Value 1</option>
+          * A value string, similar to <option value="Value 1">Value 1 description</option>
          */
         "value": string;
     }
