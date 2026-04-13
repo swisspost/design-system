@@ -20,9 +20,15 @@
   }
 }
 
-@include media.max(desktop) {
+@include media.only(tablet) {
   ::slotted(.post-megadropdown-grid) {
-    gap: 16px 24px;
+    gap: 24px 16px;
+  }
+}
+
+@include media.only(mobile) {
+  ::slotted(.post-megadropdown-grid) {
+    grid-template-columns: 1fr;
   }
 }
 
