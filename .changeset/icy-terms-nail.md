@@ -1,6 +1,5 @@
 ---
-'@swisspost/design-system-components': patch
-'@swisspost/design-system-styles': patch
+'@swisspost/design-system-components': major
 ---
 
-Updated `post-header` megadropdown to use a responsive grid based on character-based min-width.
+Updated `post-header` megadropdown to use a responsive grid layout, ensuring columns adapt to content length across breakpoints.
