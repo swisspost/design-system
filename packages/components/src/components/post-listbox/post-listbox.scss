@@ -1,0 +1,35 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+:host {
+  display: block;
+}
+
+.listbox-content {
+  max-height: 16rem;
+  overflow-y: auto;
+  padding-block: 0.25rem;
+}
+
+.blank-slate {
+  display: none;
+  padding: 1rem;
+  text-align: center;
+  color: rgba(var(--post-contrast-color-rgb), 0.6);
+
+  post-icon {
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 0.25rem 0 0;
+  }
+}
+
+.blank-slate--visible {
+  display: block;
+}
+
+.sr-only {
+  @include utilities.visuallyhidden();
+}

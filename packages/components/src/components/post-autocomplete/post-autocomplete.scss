@@ -1,0 +1,42 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: block;
+  position: relative;
+}
+
+.autocomplete-wrapper {
+  position: relative;
+  display: contents;
+}
+
+.clear-button {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: inherit;
+  z-index: 1;
+
+  post-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--post-focus-color, #0571a5);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
