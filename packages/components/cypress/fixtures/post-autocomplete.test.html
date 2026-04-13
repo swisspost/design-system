@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autocomplete Test</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <link rel="stylesheet" href="../../www/build/post-components.css" />
+    <style>
+      body {
+        padding: 2rem;
+        font-family: system-ui, sans-serif;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Autocomplete Tests</h1>
+
+    <!-- Basic Autocomplete -->
+    <div class="form-group">
+      <post-autocomplete id="autocomplete-basic">
+        <label for="country-input">Select a country</label>
+        <input id="country-input" type="text" placeholder="Start typing..." />
+        <post-listbox id="country-listbox">
+          <post-option value="ch">Switzerland</post-option>
+          <post-option value="de">Germany</post-option>
+          <post-option value="fr">France</post-option>
+          <post-option value="it">Italy</post-option>
+          <post-option value="at">Austria</post-option>
+          <post-option value="us">United States</post-option>
+          <post-option value="uk">United Kingdom</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <!-- Autocomplete with filter threshold -->
+    <div class="form-group">
+      <post-autocomplete id="autocomplete-threshold" filter-threshold="2">
+        <label for="city-input">Select a city (min 2 chars)</label>
+        <input id="city-input" type="text" placeholder="Type at least 2 characters..." />
+        <post-listbox id="city-listbox">
+          <post-option value="zurich">Zurich</post-option>
+          <post-option value="geneva">Geneva</post-option>
+          <post-option value="basel">Basel</post-option>
+          <post-option value="bern">Bern</post-option>
+          <post-option value="lausanne">Lausanne</post-option>
+          <post-option value="lucerne">Lucerne</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <!-- Autocomplete with clearable -->
+    <div class="form-group">
+      <post-autocomplete id="autocomplete-clearable" clearable>
+        <label for="fruit-input">Select a fruit</label>
+        <input id="fruit-input" type="text" placeholder="Pick a fruit..." />
+        <post-listbox id="fruit-listbox">
+          <post-option value="apple">Apple</post-option>
+          <post-option value="banana">Banana</post-option>
+          <post-option value="cherry">Cherry</post-option>
+          <post-option value="orange">Orange</post-option>
+          <post-option value="grape">Grape</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <!-- Autocomplete with disabled option -->
+    <div class="form-group">
+      <post-autocomplete id="autocomplete-disabled-option">
+        <label for="color-input">Select a color</label>
+        <input id="color-input" type="text" placeholder="Pick a color..." />
+        <post-listbox id="color-listbox">
+          <post-option value="red">Red</post-option>
+          <post-option value="blue" disabled>Blue (disabled)</post-option>
+          <post-option value="green">Green</post-option>
+          <post-option value="yellow">Yellow</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <!-- Disabled Autocomplete -->
+    <div class="form-group">
+      <post-autocomplete id="autocomplete-disabled" disabled>
+        <label for="disabled-input">Disabled autocomplete</label>
+        <input id="disabled-input" type="text" placeholder="Cannot type here..." disabled />
+        <post-listbox id="disabled-listbox">
+          <post-option value="a">Option A</post-option>
+          <post-option value="b">Option B</post-option>
+        </post-listbox>
+      </post-autocomplete>
+    </div>
+
+    <!-- Form with Autocomplete -->
+    <form id="test-form">
+      <div class="form-group">
+        <post-autocomplete id="autocomplete-form" name="selection">
+          <label for="form-input">Form field</label>
+          <input id="form-input" type="text" placeholder="Select for form..." />
+          <post-listbox id="form-listbox">
+            <post-option value="value1">Option 1</post-option>
+            <post-option value="value2">Option 2</post-option>
+            <post-option value="value3">Option 3</post-option>
+          </post-listbox>
+        </post-autocomplete>
+      </div>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+  </body>
+</html>

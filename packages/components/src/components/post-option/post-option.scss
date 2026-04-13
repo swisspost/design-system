@@ -1,0 +1,47 @@
+@use '@swisspost/design-system-styles/variables/color';
+
+post-option {
+  display: block;
+  cursor: pointer;
+
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--post-contrast-color, #{color.$gray-80});
+    background-color: var(--post-bg, #{color.$white});
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover:not(.is-disabled) {
+      background-color: var(--post-bg-hover, #{color.$gray-10});
+    }
+
+    &.is-selected {
+      background-color: var(--post-bg-active, #{color.$yellow});
+      font-weight: 600;
+    }
+
+    &.is-disabled {
+      color: var(--post-contrast-color-disabled, #{color.$gray-40});
+      background-color: var(--post-bg-disabled, #{color.$gray-10});
+    }
+  }
+
+  // Focus styles when this option is the active descendant
+  &:focus-visible,
+  &[data-active='true'] {
+    .option {
+      outline: 2px solid var(--post-focus-color, #{color.$black});
+      outline-offset: -2px;
+    }
+  }
+}

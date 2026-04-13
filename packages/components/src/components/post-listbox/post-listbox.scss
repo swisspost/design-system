@@ -1,0 +1,44 @@
+@use '@swisspost/design-system-styles/variables/color';
+
+post-listbox {
+  // Popover positioning
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  border: none;
+  inset: unset;
+
+  // Visual styling
+  display: block;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: var(--post-bg, #{color.$white});
+  border: 1px solid var(--post-border-color, #{color.$gray-20});
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+
+  // Remove default popover backdrop
+  &::backdrop {
+    display: none;
+  }
+
+  .listbox {
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem 0;
+  }
+
+  // Empty state when all options are filtered out
+  &:empty,
+  &:has(post-option[hidden]:only-child),
+  &:not(:has(post-option:not([hidden]))) {
+    &::after {
+      content: attr(data-empty-message);
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--post-contrast-color-muted, #{color.$gray-60});
+      font-style: italic;
+      text-align: center;
+    }
+  }
+}
