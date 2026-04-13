@@ -39,6 +39,14 @@ post-header {
     @include nav-item-base;
   }
 
+  > [slot='post-login'] > :where(a, button, [role='link'], [role='button']) {
+    @include nav-item-base;
+  }
+
+  > [slot='post-login'] > post-menu-trigger > :where(a, button, [role='link'], [role='button']) {
+    @include nav-item-base;
+  }
+
   // links and buttons remaining in the global and local headers on tablet and mobile
   > :is([slot='global-nav-primary'], [slot='post-login'], [slot='local-nav']) {
     @include media.max(desktop) {
