@@ -10,9 +10,6 @@ const meta: MetaComponent = {
   title: 'Components/Form Radio Button',
   tags: ['package:Styles', 'status:Stable'],
   parameters: {
-    controls: {
-      exclude: ['Hidden Legend'],
-    },
     badges: [],
     design: {
       type: 'figma',
@@ -27,59 +24,50 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     hiddenLegend: {
       name: 'Hidden Legend',
       description: 'Render the group with or without a visible legend.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
+      control: { type: 'boolean' },
+      table: { category: 'General' },
     },
     label: {
       name: 'Label',
       description: 'Describes the content/topic of the component.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'General',
-      },
+      control: { type: 'text' },
+      table: { category: 'General' },
     },
     hiddenLabel: {
       name: 'Hidden Label',
       description:
         'Renders the component with or without a visible label.<post-banner data-size="sm"><p>There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</p></post-banner>',
+      control: { type: 'boolean' },
+      table: { category: 'General' },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the component.',
       control: {
-        type: 'boolean',
+        type: 'select',
+        labels: { 'null': 'Default', 'form-check-sm': 'Small' },
       },
-      table: {
-        category: 'General',
-      },
+      options: ['null', 'form-check-sm'],
+      table: { category: 'General' },
     },
     checked: {
       name: 'Checked',
       description: 'When set to `true`, places the component in the checked state.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'States',
-      },
+      control: { type: 'boolean' },
+      table: { category: 'States' },
     },
     disabled: {
       name: 'Disabled',
       description:
         'When set to `true`, disables the component\'s functionality and places it in a disabled state.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'States',
-      },
+      control: { type: 'boolean' },
+      table: { category: 'States' },
     },
     validation: {
       name: 'Validation',
@@ -87,32 +75,20 @@ const meta: MetaComponent = {
         'Defines the validation state of the radio button and controls the display of the corresponding return message. <post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#radio-button">validation guidelines here</a>.</p></post-banner> ',
       control: {
         type: 'radio',
-        labels: {
-          'null': 'Default',
-          'is-valid': 'Valid',
-          'is-invalid': 'Invalid',
-        },
+        labels: { 'null': 'Default', 'is-valid': 'Valid', 'is-invalid': 'Invalid' },
       },
       options: ['null', 'is-valid', 'is-invalid'],
-      table: {
-        category: 'States',
-      },
+      table: { category: 'States' },
     },
     requiredOptional: {
       name: 'Required / Optional',
       description: 'Whether the field is required or optional.',
       control: {
         type: 'radio',
-        labels: {
-          null: 'Default',
-          required: 'Required',
-          optional: 'Optional',
-        },
+        labels: { null: 'Default', required: 'Required', optional: 'Optional' },
       },
       options: ['null', 'required', 'optional'],
-      table: {
-        category: 'States',
-      },
+      table: { category: 'States' },
     },
   },
   render: render,
@@ -121,23 +97,18 @@ const meta: MetaComponent = {
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
-
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
-
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
-
   const useAriaLabel = args.hiddenLabel;
-
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}">${getLabelText(args)}</label> `
+    ? html` <label for="${context.id}">${getLabelText(args)}</label> `
     : null;
-
   const contextual: (TemplateResult | null)[] = getValidationMessages(args, context, false);
 
   const control = html`
     <input
-      id="${id}"
+      id="${context.id}"
+      name="${context.id}"
       class="${ifDefined(radioClass)}"
       type="radio"
       ?checked="${args.checked}"
@@ -154,7 +125,8 @@ function render(args: Args, context: StoryContext) {
   `;
 
   return html`
-    <div class="${groupClasses}">${[control, label, ...contextual].filter(el => el !== null)}</div>
+    <div class="${groupClasses}">${[control, label].filter(el => el !== null)}</div>
+    ${contextual}
   `;
 }
 
@@ -162,75 +134,50 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    controls: {
+      exclude: ['Hidden Legend'],
+    },
+  },
+};
 
 export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
-  const id1 = baseId + '1';
-  const id2 = baseId + '2';
-  const id3 = baseId + '3';
-  const id4 = baseId + '4';
 
   function onChange(e: Event, value: number) {
     const changeTarget = e.target as HTMLElement;
     updateArgs({ checkedRadio: value });
-
     if (document.activeElement === changeTarget) {
       setTimeout(() => {
-        const element: HTMLInputElement | null = document.querySelector(`#${changeTarget.id}`);
+        const element: HTMLInputElement | null = document.getElementById(changeTarget.id);
         if (element) element.focus();
       }, 25);
     }
   }
 
+  const formCheckClasses = ['form-check', args.size, args.inline ? 'form-check-inline' : '']
+    .filter(c => c && c !== 'null')
+    .join(' ');
+
   return html`
     <fieldset>
-      <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
-        <input
-          id="${id1}"
-          name="Inline_ExampleRadio_Group"
-          class="form-check-input"
-          type="radio"
-          ?checked="${args.checkedRadio === 1}"
-          @change="${(e: Event) => onChange(e, 1)}"
-        />
-        <label for="${id1}" class="form-check-label">${args.label}</label>
-      </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
-        <input
-          id="${id2}"
-          name="Inline_ExampleRadio_Group"
-          class="form-check-input"
-          type="radio"
-          ?checked="${args.checkedRadio === 2}"
-          @change="${(e: Event) => onChange(e, 2)}"
-        />
-        <label for="${id2}" class="form-check-label">${args.label}</label>
-      </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
-        <input
-          id="${id3}"
-          name="Inline_ExampleRadio_Group"
-          class="form-check-input"
-          type="radio"
-          ?checked="${args.checkedRadio === 3}"
-          @change="${(e: Event) => onChange(e, 3)}"
-        />
-        <label for="${id3}" class="form-check-label">${args.label}</label>
-      </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
-        <input
-          id="${id4}"
-          name="Inline_ExampleRadio_Group"
-          class="form-check-input"
-          type="radio"
-          ?checked="${args.checkedRadio === 4}"
-          @change="${(e: Event) => onChange(e, 4)}"
-        />
-        <label for="${id4}" class="form-check-label">${args.label}</label>
-      </div>
+      <legend class="${args.hiddenLegend ? 'visually-hidden' : nothing}">Legend</legend>
+      ${Array.from({ length: 4 }, (_, i) => {
+        return html`
+          <div class="${formCheckClasses}">
+            <input
+              id="${context.id}${i + 1}"
+              name="${context.id}"
+              class="form-check-input"
+              type="radio"
+              ?checked="${args.checkedRadio === i + 1}"
+              @change="${(e: Event) => onChange(e, i + 1)}"
+            />
+            <label for="${context.id}${i + 1}" class="form-check-label">${args.label}</label>
+          </div>
+        `;
+      })}
     </fieldset>
   `;
 }
@@ -239,7 +186,7 @@ export const Grouped: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
+      include: ['Size', 'Hidden Legend'],
     },
   },
   args: {
@@ -258,7 +205,7 @@ export const Inline: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
+      include: ['Size', 'Hidden Legend'],
     },
   },
   args: {
@@ -271,16 +218,5 @@ export const Inline: Story = {
         disable: true,
       },
     },
-  },
-};
-
-export const Validation: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Hidden Legend', 'Label', 'Hidden Label', 'Disabled'],
-    },
-  },
-  args: {
-    validation: 'is-invalid',
   },
 };
