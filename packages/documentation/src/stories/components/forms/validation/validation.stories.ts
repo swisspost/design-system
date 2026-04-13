@@ -45,12 +45,16 @@ export function getValidationProps(component: string, args: Args) {
   };
 }
 
-function renderFeedback(validFeedbackId: string | symbol, invalidFeedbackId: string | symbol) {
+function renderFeedback(
+  validFeedbackId: string | symbol,
+  invalidFeedbackId: string | symbol,
+  validationState: string,
+) {
   return html`
-    ${validFeedbackId
+    ${validFeedbackId && validationState === 'is-valid'
       ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
       : nothing}
-    ${invalidFeedbackId
+    ${invalidFeedbackId && validationState === 'is-invalid'
       ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
       : nothing}
   `;
@@ -84,16 +88,20 @@ export const Checkbox: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    const feedbackTemplate = renderFeedback(
+      props.validFeedbackId,
+      props.invalidFeedbackId,
+      props.validationState,
+    );
     return html`<div class="form-check">
       <input
         type="checkbox"
-        id="Checkbox_1${props.validationState}${props.scheme}"
+        id="checkbox_1${props.validationState}${props.scheme}"
         class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="${props.ariaDescribedBy}"
       />
-      <label class="form-check-label" for="Checkbox_1${props.validationState}${props.scheme}"
+      <label class="form-check-label" for="checkbox_1${props.validationState}${props.scheme}"
         >Label</label
       >
       ${feedbackTemplate}
@@ -111,19 +119,23 @@ export const Input: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    const feedbackTemplate = renderFeedback(
+      props.validFeedbackId,
+      props.invalidFeedbackId,
+      props.validationState,
+    );
     return html`<div class="form-floating">
       <input
-        id="Input_1${props.validationState}${props.scheme}"
+        id="input_1${props.validationState}${props.scheme}"
         class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
-        aria-describedby="Input_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
+        aria-describedby="input_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
         type="text"
         placeholder="Placeholder"
       />
-      <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
+      <label class="form-label" for="input_1${props.validationState}${props.scheme}">Label</label>
       ${feedbackTemplate}
-      <p class="form-hint" id="Input_1-form-hint${props.validationState}${props.scheme}">
+      <p class="form-hint" id="input_1-form-hint${props.validationState}${props.scheme}">
         This is helpful text that provides guidance or additional information to assist the user in
         filling out this field correctly.
       </p>
@@ -141,18 +153,22 @@ export const RadioButton: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    const feedbackTemplate = renderFeedback(
+      props.validFeedbackId,
+      props.invalidFeedbackId,
+      props.validationState,
+    );
     return html` <legend>Legend</legend>
       <div class="form-check form-check-inline">
         <input
           type="radio"
-          id="Radio_1${props.validationState}${props.scheme}"
-          name="radio_group"
+          id="radio-single${props.validationState}${props.scheme}"
+          name="radio-single"
           class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
           aria-invalid=${props.ariaInvalid}
           aria-describedby="${props.ariaDescribedBy}"
         />
-        <label class="form-check-label" for="Radio_1${props.validationState}${props.scheme}"
+        <label class="form-check-label" for="radio-single${props.validationState}${props.scheme}"
           >Option 1</label
         >
         ${feedbackTemplate}
@@ -170,45 +186,35 @@ export const RadioButtonGroup: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    const feedbackTemplate = renderFeedback(
+      props.validFeedbackId,
+      props.invalidFeedbackId,
+      props.validationState,
+    );
+
     return html`<fieldset>
       <legend>Legend</legend>
-      <div class="form-check form-check-inline">
-        <input
-          type="radio"
-          id="Radio_10${props.validationState}${props.scheme}"
-          name="radio_group"
-          class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
-          aria-invalid=${props.ariaInvalid}
-          aria-describedby="${props.ariaDescribedBy}"
-          required
-        />
-        <label class="form-check-label" for="Radio_10${props.validationState}${props.scheme}"
-          >Option 1</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          type="radio"
-          id="Radio_11${props.validationState}${props.scheme}"
-          name="radio_group"
-          class="form-check-input"
-        />
-        <label class="form-check-label" for="Radio_11${props.validationState}${props.scheme}"
-          >Option 2</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          type="radio"
-          id="Radio_12${props.validationState}${props.scheme}"
-          name="radio_group"
-          class="form-check-input"
-        />
-        <label class="form-check-label" for="Radio_12${props.validationState}${props.scheme}"
-          >Option 3</label
-        >
-      </div>
+      ${Array.from({ length: 3 }, (_, i) => {
+        return html`
+          <div class="form-check">
+            <input
+              type="radio"
+              id="radio_group_${i + 1}${props.validationState}${props.scheme}"
+              name="radio_group"
+              class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
+              aria-invalid=${props.ariaInvalid}
+              aria-describedby="${props.ariaDescribedBy}"
+              ?required="${i === 0}"
+            />
+            <label
+              class="form-check-label"
+              for="radio_group_${i + 1}${props.validationState}${props.scheme}"
+            >
+              Option ${i + 1}
+            </label>
+          </div>
+        `;
+      })}
       ${feedbackTemplate}
     </fieldset>`;
   },
@@ -224,13 +230,17 @@ export const Select: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    const feedbackTemplate = renderFeedback(
+      props.validFeedbackId,
+      props.invalidFeedbackId,
+      props.validationState,
+    );
     return html`<div class="form-floating">
       <select
-        id="Select_1${props.validationState}${props.scheme}"
+        id="select_1${props.validationState}${props.scheme}"
         class="form-select form-select-lg ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
-        aria-describedby="Select_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
+        aria-describedby="select_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
       >
         <option>Select option...</option>
         <option value="value_1">Option 1</option>
@@ -238,11 +248,11 @@ export const Select: Story = {
         <option value="value_3">Option 3</option>
         <option value="value_4">Option 4</option>
       </select>
-      <label class="form-label" for="Select_1${props.validationState}${props.scheme}">
+      <label class="form-label" for="select_1${props.validationState}${props.scheme}">
         <span>Label</span>
       </label>
       ${feedbackTemplate}
-      <p class="form-hint" id="Select_1-form-hint${props.validationState}${props.scheme}">
+      <p class="form-hint" id="select_1-form-hint${props.validationState}${props.scheme}">
         This is helpful text that provides guidance or additional information to assist the user in
         filling out this field correctly.
       </p>
@@ -260,19 +270,23 @@ export const Switch: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    const feedbackTemplate = renderFeedback(
+      props.validFeedbackId,
+      props.invalidFeedbackId,
+      props.validationState,
+    );
     return html`<div class="form-check form-switch">
       <input
         type="checkbox"
         role="switch"
-        id="Switch_1${props.validationState}${props.scheme}"
+        id="switch_1${props.validationState}${props.scheme}"
         class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="${props.ariaDescribedBy}"
       />
       <label
         class="form-check-label order-first"
-        for="Switch_1${props.validationState}${props.scheme}"
+        for="switch_1${props.validationState}${props.scheme}"
         >Notifications</label
       >
       ${feedbackTemplate}
@@ -290,21 +304,25 @@ export const TextArea: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    const feedbackTemplate = renderFeedback(
+      props.validFeedbackId,
+      props.invalidFeedbackId,
+      props.validationState,
+    );
     return html`<div class="form-floating">
       <textarea
         placeholder=""
         rows=""
-        id="TextArea_1${props.validationState}${props.scheme}"
+        id="textArea_1${props.validationState}${props.scheme}"
         class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
-        aria-describedby="TextArea_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
+        aria-describedby="textArea_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
       ></textarea
-      ><label class="form-label" for="TextArea_1${props.validationState}${props.scheme}"
+      ><label class="form-label" for="textArea_1${props.validationState}${props.scheme}"
         >Label</label
       >
       ${feedbackTemplate}
-      <p class="form-hint" id="TextArea_1-form-hint${props.validationState}${props.scheme}">
+      <p class="form-hint" id="textArea_1-form-hint${props.validationState}${props.scheme}">
         This is helpful text that provides guidance or additional information to assist the user in
         filling out this field correctly.
       </p>
