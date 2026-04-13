@@ -16,8 +16,12 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/6gsh0EC0itp2amxwU5m5K1/Nebula---Design-System?node-id=1709-10940&p=f&m=dev',
     },
     controls: {
-      exclude: ['options'],
+      exclude: ['listbox'],
     },
+  },
+  args: {
+    clearable: false,
+    filterThreshold: 0,
   },
   argTypes: {
     clearable: {
@@ -44,16 +48,16 @@ export default meta;
 function getListboxOptions() {
   return html`
     <div slot="blank-slate">Nothing to see here</div>
-    <post-listbox-option value="Switzerland"></post-listbox-option>
-    <post-listbox-option value="Germany"></post-listbox-option>
-    <post-listbox-option value="France"></post-listbox-option>
-    <post-listbox-option value="Italy"></post-listbox-option>
-    <post-listbox-option value="Austria"></post-listbox-option>
-    <post-listbox-option value="Spain"></post-listbox-option>
-    <post-listbox-option value="Portugal"></post-listbox-option>
-    <post-listbox-option value="Netherlands"></post-listbox-option>
-    <post-listbox-option value="Belgium"></post-listbox-option>
-    <post-listbox-option value="Sweden"></post-listbox-option>
+    <post-listbox-option value="Switzerland">Alpine Region</post-listbox-option>
+    <post-listbox-option value="Germany">Central Europe</post-listbox-option>
+    <post-listbox-option value="France">Western Europe</post-listbox-option>
+    <post-listbox-option value="Italy">Italian Peninsula</post-listbox-option>
+    <post-listbox-option value="Austria">Alpine Region</post-listbox-option>
+    <post-listbox-option value="Spain">Iberian Peninsula</post-listbox-option>
+    <post-listbox-option value="Portugal">Iberian Peninsula</post-listbox-option>
+    <post-listbox-option value="Netherlands">Benelux</post-listbox-option>
+    <post-listbox-option value="Belgium">Benelux</post-listbox-option>
+    <post-listbox-option value="Sweden">Scandinavia</post-listbox-option>
   `;
 }
 
@@ -75,23 +79,21 @@ export function createAutocompleteRenderer({ detached = false }: { detached?: bo
     };
 
     if (detached) {
-      autocompleteArgs.options = listboxId;
+      autocompleteArgs.listbox = listboxId;
     }
 
     return html`
-      <div style="width: 280px;">
-        <post-autocomplete ${spreadArgs(autocompleteArgs)}>
-          <div class="form-floating">
-            <input class="form-control" type="text" id="${inputId}" placeholder="Select Country" />
-            <label class="form-label" for="${inputId}">Country</label>
-          </div>
-          ${detached ? null : html`<post-listbox>${getListboxOptions()}</post-listbox>`}
-        </post-autocomplete>
+      <post-autocomplete ${spreadArgs(autocompleteArgs)}>
+        <div class="form-floating">
+          <input class="form-control" type="text" id="${inputId}" placeholder="Select Country" />
+          <label class="form-label" for="${inputId}">Country</label>
+        </div>
+        ${detached ? null : html`<post-listbox>${getListboxOptions()}</post-listbox>`}
+      </post-autocomplete>
 
-        ${detached
-          ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
-          : null}
-      </div>
+      ${detached
+        ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
+        : null}
     `;
   };
 }

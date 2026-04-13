@@ -182,7 +182,6 @@ export class PostAutocomplete {
 
   private readonly showListBox = () => {
     this.listBoxElement.show();
-    console.log(this.listBoxElement);
     this.inputElement.ariaExpanded = 'true';
     this.host.setAttribute('open', '');
   };
