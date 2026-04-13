@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autocomplete Test</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      main {
+        display: grid;
+        gap: 2rem;
+        padding: 1.5rem;
+      }
+
+      section {
+        inline-size: 20rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <label for="nested-input">Country</label>
+        <post-autocomplete id="autocomplete-nested" clearable>
+          <input id="nested-input" type="text" placeholder="Search for a country" />
+          <post-listbox>
+            <div slot="blank-slate">Nothing to see here</div>
+            <post-listbox-option value="Switzerland"></post-listbox-option>
+            <post-listbox-option value="Germany"></post-listbox-option>
+            <post-listbox-option value="France"></post-listbox-option>
+            <post-listbox-option value="Italy"></post-listbox-option>
+            <post-listbox-option value="Austria"></post-listbox-option>
+            <post-listbox-option value="Spain"></post-listbox-option>
+            <post-listbox-option value="Portugal"></post-listbox-option>
+            <post-listbox-option value="Netherlands"></post-listbox-option>
+            <post-listbox-option value="Belgium"></post-listbox-option>
+            <post-listbox-option value="Sweden"></post-listbox-option>
+          </post-listbox>
+        </post-autocomplete>
+      </section>
+
+      <section>
+        <label for="detached-input">Detached Country</label>
+        <post-autocomplete id="autocomplete-detached" listbox="detached-listbox">
+          <input id="detached-input" type="text" placeholder="Search for a country" />
+        </post-autocomplete>
+        <post-listbox id="detached-listbox">
+          <div slot="blank-slate">Nothing to see here</div>
+          <post-listbox-option value="Switzerland"></post-listbox-option>
+          <post-listbox-option value="Germany"></post-listbox-option>
+          <post-listbox-option value="France"></post-listbox-option>
+          <post-listbox-option value="Italy"></post-listbox-option>
+          <post-listbox-option value="Austria"></post-listbox-option>
+          <post-listbox-option value="Spain"></post-listbox-option>
+          <post-listbox-option value="Portugal"></post-listbox-option>
+          <post-listbox-option value="Netherlands"></post-listbox-option>
+          <post-listbox-option value="Belgium"></post-listbox-option>
+          <post-listbox-option value="Sweden"></post-listbox-option>
+        </post-listbox>
+      </section>
+    </main>
+  </body>
+</html>

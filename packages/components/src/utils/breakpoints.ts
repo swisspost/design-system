@@ -1,5 +1,5 @@
 import { throttle } from 'throttle-debounce';
-import { IS_SERVER } from '@/utils/environment';
+import { Build } from '@stencil/core';
 
 export type Device = 'desktop' | 'tablet' | 'mobile';
 export type BreakpointKey = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
@@ -27,7 +27,7 @@ class Breakpoint {
   private resizeObserver = new ResizeObserver(() => this.updateCurrentBreakpoint());
 
   constructor() {
-    if (IS_SERVER) return;
+    if (Build.isServer) return;
 
     this.updateCurrentBreakpoint({ emitEvents: false });
     this.resizeObserver.observe(document.body);
@@ -56,7 +56,7 @@ class Breakpoint {
   );
 
   private dispatchEvent(property: BreakpointProperty): void {
-    if (IS_SERVER) return;
+    if (Build.isServer) return;
 
     window.dispatchEvent(
       new CustomEvent(`postBreakpoint:${property}`, { detail: this.currentBreakpoint[property] }),
