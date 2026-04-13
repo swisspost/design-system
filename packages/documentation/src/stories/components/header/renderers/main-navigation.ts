@@ -21,7 +21,7 @@ export function renderMainnavigation() {
           <post-megadropdown id="letters" text-close="Close" text-back="Back">
             <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
 
-            <div class="row row-cols-1 row-cols-sm-2">
+            <div class="post-megadropdown-grid">
               <div class="col">
                 <p class="post-megadropdown-list-title" id="send-letters">Send letters</p>
                 <ul class="post-megadropdown-list" aria-labelledby="send-letters">
@@ -69,7 +69,7 @@ export function renderMainnavigation() {
           <post-megadropdown id="packages" text-close="Close" text-back="Back">
             <a class="post-megadropdown-overview" href="/packages">Overview Packages</a>
 
-            <div class="row row-cols-1 row-cols-sm-2">
+            <div class="post-megadropdown-grid">
               <div class="col">
                 <p class="post-megadropdown-list-title" id="send-packages">Send packages</p>
                 <ul class="post-megadropdown-list" aria-labelledby="send-packages">

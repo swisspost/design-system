@@ -88,7 +88,7 @@ const meta: MetaComponent = {
             <li>
               <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
               <post-megadropdown id="briefe" text-close="Schliessen" text-back="Back">
-                <div class="row row-cols-1 row-cols-sm-2">
+                <div class="post-megadropdown-grid">
                   <div class="col">
                     <p class="post-megadropdown-list-title" id="send-letters">Briefe senden</p>
                     <ul class="post-megadropdown-list" aria-labelledby="send-letters">
@@ -134,7 +134,7 @@ const meta: MetaComponent = {
             <li>
               <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
               <post-megadropdown id="pakete" text-close="Schliessen" text-back="Back">
-                <div class="row row-cols-1 row-cols-sm-2">
+                <div class="post-megadropdown-grid">
                   <div class="col">
                     <p class="post-megadropdown-list-title" id="send-packages">Pakete senden</p>
                     <ul class="post-megadropdown-list" aria-labelledby="send-packages">
