@@ -1,0 +1,70 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as AutocompleteStories from './autocomplete.stories';
+import * as ListboxStories from './listbox.stories';
+import * as ListboxOptionStories from './listbox-option.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={AutocompleteStories} />
+
+<div className="docs-title">
+  # Autocomplete
+
+<link-design of={JSON.stringify(AutocompleteStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<p className="lead">
+  Combine a text input with a listbox to help users quickly find and select an option.
+</p>
+
+The `<post-autocomplete>` component enhances a slotted `<input>` element and works together with a
+`<post-listbox>` containing `<post-listbox-option>` items.
+
+By default, the component filters the listbox items based on the typed text. If you need to fetch
+results asynchronously or apply your own filtering logic, you can listen to the cancelable
+`postFilteringEvent` and prevent the default behavior.
+
+<Canvas sourceState="shown" of={AutocompleteStories.Default} />
+
+## `<post-autocomplete>`
+
+<Controls of={AutocompleteStories.Default} />
+
+## `<post-listbox>`
+
+<Controls of={ListboxStories.Default} />
+
+## `<post-listbox-option>`
+
+<Controls of={ListboxOptionStories.Default} />
+
+<ComponentsPackageInstall component="<post-autocomplete>" />
+
+## Examples
+
+### Clear Button
+
+Enable the `clearable` property to show a clear button after a selection has been made.
+
+<Canvas of={AutocompleteStories.Clearable} />
+
+### Detached Listbox
+
+Use the `options` property when the listbox is not nested inside the autocomplete component.
+
+<Canvas of={AutocompleteStories.DetachedListbox} />
+
+### Filter Threshold
+
+Use `filter-threshold` to delay filtering until the user has typed enough characters.
+
+<Canvas of={AutocompleteStories.FilterThreshold} />
+
+### Option Description
+
+Provide text content inside `<post-listbox-option>` to show a description below the value, similar to the native `<datalist>` behavior in Chrome.
+
+<Canvas of={AutocompleteStories.OptionDescription} />

@@ -1,0 +1,43 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.autocomplete-icon,
+.autocomplete-clear {
+  position: absolute;
+  inset-block-start: 16px;
+
+  @include media.min(md) {
+    inset-block-start: 20px;
+  }
+}
+
+.autocomplete-icon {
+  inset-inline-end: 16px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+:host([open]) .autocomplete-icon {
+  transform: rotate(180deg);
+}
+
+.autocomplete-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset-inline-end: 42px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  > post-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
