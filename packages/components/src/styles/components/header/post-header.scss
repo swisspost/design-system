@@ -47,6 +47,10 @@ post-header {
     @include nav-item-base;
   }
 
+  // interactive-elements is only used for simple property overrides below (padding, flex-direction).
+  // nav-item-base and nav-item-block-focus must never go inside it, calling them on a
+  // multi-part selector causes Sass to produce broken :is() output in the compiled CSS.
+
   // links and buttons remaining in the global and local headers on tablet and mobile
   > :is([slot='global-nav-primary'], [slot='post-login'], [slot='local-nav']) {
     @include media.max(desktop) {
@@ -103,6 +107,8 @@ post-header {
   }
 
   // meta navigation on desktop
+  // nav-item-block-focus is applied on explicit selectors below because calling it inside
+  // interactive-elements would cause Sass to produce broken :is() output in the compiled CSS
   > [slot='global-nav-secondary'] {
     @include media.max(desktop) {
       &:where(ul) {
