@@ -831,12 +831,12 @@ export class PostDatePicker {
         selectOtherYears: true,
         showOtherMonths: false,
         moveToOtherMonthsOnSelect: true,
-        firstDay: 1,
         startDate: this.startDate,
         minDate: this.min,
         maxDate: this.max,
         locale: locale,
         dateFormat: locale.dateFormat,
+        firstDay: locale.firstDay,
         view: 'days',
         onChangeView: view => {
           this.currentViewType = view;
