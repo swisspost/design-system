@@ -21,6 +21,7 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
  * While the authentication state is being determined (`authenticated === null`),
  * neither slot is rendered.
  */
+// TODO: Rename to 'post-klp-login-widget' after @swisspost/internet-header components are migrated.
 @Component({
   tag: 'post-login-widget',
   styleUrl: 'post-login-widget.scss',

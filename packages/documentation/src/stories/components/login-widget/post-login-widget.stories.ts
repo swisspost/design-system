@@ -87,7 +87,7 @@ function renderUserMenu() {
 type Story = StoryObj;
 
 export const Unauthenticated: Story = {
-  render: (_args: Args) => html`
+  render: () => html`
     <post-login-widget .authenticated=${false}>
       <a slot="unauthenticated" href="/login" class="btn btn-primary btn-sm">
         Login <post-icon name="arrow-right" aria-hidden="true"></post-icon>
@@ -97,7 +97,7 @@ export const Unauthenticated: Story = {
 };
 
 export const Authenticated: Story = {
-  render: (_args: Args) => html`
+  render: () => html`
     <post-login-widget .authenticated=${true}>
       <div slot="authenticated">${renderUserMenu()}</div>
     </post-login-widget>
