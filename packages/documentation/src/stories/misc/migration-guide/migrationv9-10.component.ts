@@ -5,7 +5,7 @@ import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
 
 @customElement('migration-version-9-10')
-export class MigrationV99Component extends LitElement {
+export class MigrationV910Component extends LitElement {
   @property({ type: Number }) currentVersion?: number;
   @property({ type: String }) environment?: string;
   @property({ type: Boolean }) angular?: boolean;
@@ -23,6 +23,7 @@ export class MigrationV99Component extends LitElement {
       input_sizes: false,
       select_empty: false,
       form_text: false,
+      card_control: false,
     },
     grid: {
       breakpoints: false,
@@ -80,6 +81,7 @@ export class MigrationV99Component extends LitElement {
       accordion_item_part: false,
       popover_trigger: false,
       tabs_anchor_navigation: false,
+      card_control: false,
     },
   };
 
@@ -163,11 +165,12 @@ export class MigrationV99Component extends LitElement {
             <p>
               Update Design System styles and components packages to version 10 by running these two
               commands in your project root:
-              <code languages="['bash']">npm install @swisspost/design-system-styles@10</code>
-              <code languages="['bash']">
-                npm install
-                @swisspost/design-system-components${this.angular ? '-angular' : nothing}@10
-              </code>
+              <code-block code=${'npm install @swisspost/design-system-styles@10'}></code-block>
+              <code-block
+                code=${this.angular
+                  ? 'npm install @swisspost/design-system-components-angular@10'
+                  : 'npm install @swisspost/design-system-components@10'}
+              ></code-block>
               ${!this.angular
                 ? html`
                     <p class="mt-8">
@@ -195,17 +198,16 @@ export class MigrationV99Component extends LitElement {
             <ol>
               <li>
                 Install the Design System ESLint package as a dev dependency:
-                <code languages="['bash']"
-                  >npm install @swisspost/design-system-eslint --save-dev</code
-                >
+                <code-block
+                  code=${'npm install @swisspost/design-system-eslint --save-dev'}
+                ></code-block>
               </li>
               <li>
                 Run the migration rules using the official ESLint runner with the --fix flag at the
                 root of your project:
-                <code languages="['bash']"
-                  >npx eslint --config
-                  node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix
-                </code>
+                <code-block
+                  code=${'npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix'}
+                ></code-block>
                 <span class="info">
                   💡 This command applies migration rules using the official ESLint package without
                   installing it as a project dependency or modifying your existing ESLint
@@ -342,6 +344,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -356,6 +359,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -374,6 +378,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -395,6 +400,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -410,6 +416,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -441,6 +448,21 @@ export class MigrationV99Component extends LitElement {
                             </li>
                           </ul>
                         </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-card_control"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.card_control}"
+                      />
+                      <label class="form-check-label" for="components-card_control">
+                        <code>post-card-control</code> component removed
+                        <span class="info"> Replace by the selection card. </span>
                       </label>
                     </div>
                   </li>
@@ -479,6 +501,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -505,6 +528,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -536,6 +560,25 @@ export class MigrationV99Component extends LitElement {
                         >
                         <code>.form-text</code> class has been renamed to
                         <code>.form-hint</code>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="styles-card_control"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.forms.card_control}"
+                      />
+                      <label class="form-check-label" for="styles_card_control">
+                        CSS classes for Standard HTML <code>card-control</code> component renamed
+                        <span class="info">
+                          Replace <code>.checkbox-button-card</code> and
+                          <code>.radio-button-card</code> with
+                          <code>.selection-card</code> component.
+                        </span>
                       </label>
                     </div>
                   </li>
@@ -1580,6 +1623,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -1596,6 +1640,7 @@ export class MigrationV99Component extends LitElement {
                       </label>
                     </div>
                   </li>
+
                   <li class="mb-16">
                     <div class="form-check">
                       <input
@@ -1661,7 +1706,11 @@ export class MigrationV99Component extends LitElement {
               <li>
                 Once you've verified that your project builds and displays correctly, uninstall the
                 packages by running:
-                <code languages="['bash']">npm uninstall bootstrap @ng-bootstrap/ng-bootstrap</code>
+                <code-block
+                  code=${this.angular
+                    ? 'npm uninstall bootstrap @ng-bootstrap/ng-bootstrap'
+                    : 'npm uninstall bootstrap'}
+                ></code-block>
               </li>
             </ol>
           </li>

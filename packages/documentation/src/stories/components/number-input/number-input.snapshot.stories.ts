@@ -17,23 +17,36 @@ export const NumberInput: Story = {
   render: (_args: Args, context: StoryContext) => {
     return schemes(
       () => html`
-        <div class="d-flex flex-wrap align-items-end gap-16 pb-16">
+        <div class="row">
           ${bombArgs({
             floatingLabel: [true, false],
             hiddenLabel: [false, true],
             value: [undefined, 0],
             max: [undefined, 0],
             min: [undefined, 0],
+            disabled: [true, false],
+            hint: [
+              'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
+              null,
+            ],
+            validation: ['null', 'is-valid', 'is-invalid'],
+            size: ['null', 'small'],
             placeholder: ['', 'ex: 25'],
           })
             .filter(args => !(args.floatingLabel && args.hiddenLabel))
+            .filter(args => !(args.disabled && args.validation !== 'null'))
+            .filter(args => !(args.floatingLabel && args.size === 'small'))
             .filter(args => !(args.floatingLabel && args.placeholder !== ''))
             .filter(args => args.value === undefined || args.placeholder === '')
             .filter(args => args.min === undefined || args.value === args.min)
             .filter(args => args.max === undefined || args.value === args.max)
             .filter(args => args.min === undefined || args.max === undefined)
-            .map((args: Args, i: number) =>
-              meta.render?.({ ...context.args, ...args }, { ...context, name: String(i) }),
+            .map(
+              (args: Args, i: number) => html`
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  ${meta.render?.({ ...context.args, ...args }, { ...context, name: String(i) })}
+                </div>
+              `,
             )}
         </div>
       `,
