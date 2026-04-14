@@ -328,6 +328,12 @@ export class PostDatePicker {
     return LANGUAGE_CODES_RTL.includes(this.languageCode) ? 'rtl' : 'ltr';
   }
 
+  private get dateFormatRangeSeparator() {
+    return this.textDirection === 'rtl'
+      ? `${UNICODE_BIDI.rtl}${DATE_FORMAT_RANGE_SEPARATOR}${UNICODE_BIDI.pop}`
+      : DATE_FORMAT_RANGE_SEPARATOR;
+  }
+
   /**
    * Dynamically load the appropriate locale module for the date picker.
    * @returns The locale module for the Air date picker.
@@ -537,7 +543,7 @@ export class PostDatePicker {
 
   private handleInputBlur = () => {
     if (this.range) {
-      const dates = this.inputMask.value.split(DATE_FORMAT_RANGE_SEPARATOR);
+      const dates = this.inputMask.value.split(this.dateFormatRangeSeparator);
       const start = this.stringToDate(dates[0]);
       const end = this.stringToDate(dates[1]);
 
@@ -787,7 +793,7 @@ export class PostDatePicker {
     };
 
     const rangeMaskOptions = {
-      mask: `from${DATE_FORMAT_RANGE_SEPARATOR}to`,
+      mask: `from${this.dateFormatRangeSeparator}to`,
       blocks: {
         from: { ...baseMaskOptions },
         to: { ...baseMaskOptions },
