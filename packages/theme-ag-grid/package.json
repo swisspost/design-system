@@ -38,6 +38,6 @@
     "ag-grid-community": "^33.3.2"
   },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "5.9.3"
   }
 }
