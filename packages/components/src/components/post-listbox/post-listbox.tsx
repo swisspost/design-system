@@ -10,7 +10,7 @@ import { EventFrom } from '@/utils';
 export class PostListbox {
   private highlightedIndex: number = -1;
   private visibleOptions: HTMLPostListboxOptionElement[] = [];
-  private readonly diacriticPattern = /[\u0300-\u036f]/u;
+  private readonly diacriticPattern = /[\u0300-\u036F]/u;
   private popoverContainer?: HTMLPostPopovercontainerElement;
   @Element() host: HTMLPostListboxElement;
 
