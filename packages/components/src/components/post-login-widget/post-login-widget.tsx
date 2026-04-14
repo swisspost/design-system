@@ -9,6 +9,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
 
@@ -37,6 +38,13 @@ export class PostLoginWidget {
    * - `false` → user is not authenticated
    */
   @Prop({ mutable: true, reflect: true }) authenticated: boolean | null = null;
+
+  @Watch('authenticated')
+  onAuthenticatedPropChange(next: boolean | null) {
+    // Sync external prop changes (e.g. set directly in Storybook or tests)
+    // into the internal @State so the render reflects the new value.
+    this.authState = next;
+  }
 
   /**
    * Internal render state, kept in sync with `authenticated`.
