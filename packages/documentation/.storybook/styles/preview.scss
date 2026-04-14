@@ -1,5 +1,5 @@
-// importing the global component styles (use source SCSS in workspace so Sass can resolve it)
-@use '@swisspost/design-system-components/post-components.css' as components-styles;
+// importing the global component styles
+@use '@swisspost/design-system-components/post-components.css';
 
 // importing the complete styles package scss
 @use '@swisspost/design-system-styles/core.scss' as post;
