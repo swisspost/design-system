@@ -1,0 +1,66 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as LoginWidgetStories from './post-login-widget.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={LoginWidgetStories} />
+
+<div className="docs-title">
+  # Login Widget
+
+<link-design of={JSON.stringify(LoginWidgetStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  Conditionally renders content based on the user's KLP authentication state.
+</div>
+
+The `<post-login-widget>` calls the KLP session API on mount and renders either the `authenticated`
+or `unauthenticated` slot depending on the response. Both slots are fully customisable — no markup
+is imposed by the component itself.
+
+<ComponentsPackageInstall component="<post-login-widget>" />
+
+## Unauthenticated
+
+When the session API returns no user data, the `unauthenticated` slot is rendered.
+Use it to place a login link or button.
+
+<Canvas of={LoginWidgetStories.Unauthenticated} sourceState="shown" />
+<Controls of={LoginWidgetStories.Unauthenticated} />
+
+## Authenticated
+
+When the session API confirms the user is logged in, the `authenticated` slot is rendered.
+The [user menu from the header documentation](https://swisspost-design-system-next.netlify.app/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#user-menu) is the recommended content for this slot.
+
+<Canvas of={LoginWidgetStories.Authenticated} sourceState="shown" />
+<Controls of={LoginWidgetStories.Authenticated} />
+
+## Refreshing the state
+
+Call the public `refresh()` method to re-fetch the session state programmatically — for example
+after the user logs out via the user menu:
+
+```js
+const widget = document.querySelector('post-login-widget');
+await widget.refresh();
+```
+
+## Reacting to state changes
+
+The component emits a `post-login-change` event whenever the authentication state changes.
+
+```js
+document.querySelector('post-login-widget').addEventListener('post-login-change', e => {
+  console.log(e.detail.authenticated); // true | false
+});
+```
+
+## Fallback behaviour
+
+If the session API request fails for any reason (network error or non-2xx response), the component
+falls back to rendering the `unauthenticated` slot. No error is thrown.
