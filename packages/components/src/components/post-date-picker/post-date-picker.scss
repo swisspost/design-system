@@ -14,6 +14,7 @@ tokens.$default-map: components.$post-datepicker;
   /* General */
   --adp-cell-background-color-in-range: unset; // needed because of ardp behavior
   --adp-hover-color: unset; // needed because of ardp behavior
+  --adp-cell-border-width: 2px;
 
   font-family: inherit;
   font-size: var(--post-device-font-size-8);
@@ -222,8 +223,8 @@ tokens.$default-map: components.$post-datepicker;
               user-select: none;
               pointer-events: none;
               color: tokens.get('post-datepicker-grid-day-cell-element-color-disabled-fg');
-              border: 2px dashed
-                tokens.get('post-datepicker-grid-day-cell-element-color-disabled-border');
+              border: tokens.get('post-datepicker-grid-day-range-in-range-container-border-width')
+                dashed tokens.get('post-datepicker-grid-day-cell-element-color-disabled-border');
               width: tokens.get('post-datepicker-grid-day-cell-element-disabled-size');
               height: tokens.get('post-datepicker-grid-day-cell-element-disabled-size');
               outline: none;
@@ -234,7 +235,7 @@ tokens.$default-map: components.$post-datepicker;
 
             /* Day: Current */
             &.-current-:not(.-disabled-, .-other-month-) {
-              border: 2px solid
+              border: var(--adp-cell-border-width) solid
                 tokens.get('post-datepicker-grid-day-cell-element-current-color-enabled-border');
 
               &.-selected- {
@@ -298,7 +299,7 @@ tokens.$default-map: components.$post-datepicker;
               background-color: tokens.get(
                 'post-datepicker-grid-year-cell-element-color-selected-bg'
               );
-              border: 2px solid
+              border: var(--adp-cell-border-width) solid
                 tokens.get('post-datepicker-grid-year-cell-element-color-selected-border');
             }
 
@@ -307,13 +308,13 @@ tokens.$default-map: components.$post-datepicker;
               user-select: none;
               pointer-events: none;
               color: tokens.get('post-datepicker-grid-year-cell-element-color-disabled-fg');
-              border: 2px dashed
+              border: var(--adp-cell-border-width) dashed
                 tokens.get('post-datepicker-grid-year-cell-element-color-disabled-border');
             }
 
             /* Years: Current */
             &.-current- {
-              border: 2px solid
+              border: var(--adp-cell-border-width) solid
                 tokens.get('post-datepicker-grid-year-cell-element-current-color-enabled-border');
 
               &:hover {
@@ -376,7 +377,7 @@ tokens.$default-map: components.$post-datepicker;
               background-color: tokens.get(
                 'post-datepicker-grid-month-cell-element-color-selected-bg'
               );
-              border: 2px solid
+              border: var(--adp-cell-border-width) solid
                 tokens.get('post-datepicker-grid-month-cell-element-color-selected-border');
             }
 
@@ -385,13 +386,13 @@ tokens.$default-map: components.$post-datepicker;
               user-select: none;
               pointer-events: none;
               color: tokens.get('post-datepicker-grid-month-cell-element-color-disabled-fg');
-              border: 2px dashed
+              border: var(--adp-cell-border-width) dashed
                 tokens.get('post-datepicker-grid-month-cell-element-color-disabled-border');
             }
 
             /* Months: Current */
             &.-current- {
-              border: 2px solid
+              border: var(--adp-cell-border-width) solid
                 tokens.get('post-datepicker-grid-month-cell-element-current-color-enabled-border');
 
               &:hover {
@@ -426,14 +427,30 @@ tokens.$default-map: components.$post-datepicker;
           &.-range-from-,
           &.-range-to- {
             position: relative;
+            border: 0;
 
             &::before,
             &::after {
               content: '';
               position: absolute;
+              inset: 0;
               display: block;
               width: tokens.get('post-datepicker-grid-day-cell-size');
               height: tokens.get('post-datepicker-grid-day-cell-size');
+            }
+
+            &.-current- {
+              &::before,
+              &::after {
+                inset: calc(var(--adp-cell-border-width) * -1);
+              }
+
+              &.-selected-:hover {
+                &::before,
+                &::after {
+                  inset: 0;
+                }
+              }
             }
 
             &::before {
@@ -460,10 +477,6 @@ tokens.$default-map: components.$post-datepicker;
 
             /* Range: Current */
             &.-current-:not(.-disabled-, .-other-month-) {
-              &:hover {
-                color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-fg');
-              }
-
               &::after {
                 border: tokens.get('post-datepicker-grid-day-range-in-range-container-border-width')
                   solid
@@ -480,14 +493,18 @@ tokens.$default-map: components.$post-datepicker;
                   border-color: Highlight;
                 }
               }
-            }
 
-            &.-current-:hover::after {
-              border-color: tokens.get(
-                'post-datepicker-grid-day-cell-element-current-color-hovered-border'
-              );
-              color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-fg');
-              background: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-bg');
+              &:hover {
+                color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-fg');
+
+                &::after {
+                  border-color: tokens.get(
+                    'post-datepicker-grid-day-cell-element-current-color-hovered-border'
+                  );
+                  color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-fg');
+                  background: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-bg');
+                }
+              }
             }
           }
 
@@ -620,7 +637,7 @@ tokens.$default-map: components.$post-datepicker;
           &.-range-from-:not(.-other-month-, .-disabled-) {
             &:hover::before,
             &.-selected-::before {
-              inset-inline-end: -1px;
+              inset-inline-start: auto;
               width: 50%;
               background-color: tokens.get(
                 'post-datepicker-grid-day-range-in-range-container-color-selected-bg'
@@ -639,7 +656,7 @@ tokens.$default-map: components.$post-datepicker;
           &.-range-to-:not(.-other-month-, .-disabled-) {
             &:hover::before,
             &.-selected-::before {
-              inset-inline-start: -1px;
+              inset-inline-end: auto;
               width: 50%;
               background-color: tokens.get(
                 'post-datepicker-grid-day-range-in-range-container-color-selected-bg'
