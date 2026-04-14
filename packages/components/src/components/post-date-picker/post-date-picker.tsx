@@ -76,9 +76,27 @@ export class PostDatePicker {
     checkEmptyOrOneOf(this, 'locale', LOCALES);
   }
   @Watch('locale')
-  async updateDatePickerLocale() {
+  async updateLocale() {
     const locale = await this.airLocale();
-    this.dpInstance.update({ locale } as Partial<AirDatepickerCustomOptions>);
+    this.dpInstance?.update({
+      locale: locale,
+      dateFormat: locale.dateFormat,
+      firstDay: locale.firstDay,
+    });
+
+    this.updateMask();
+  }
+
+  /**
+   * Whether the date picker expects a range selection or a single date selection.
+   *
+   */
+  @Prop() range?: boolean = false;
+  @Watch('range')
+  updateRange() {
+    this.dpInstance?.update({ range: this.range });
+    this.handleSelectedDates();
+    this.updateMask();
   }
 
   /**
@@ -102,12 +120,6 @@ export class PostDatePicker {
     checkEmptyOrDate(this, 'selectedEndDate');
     checkIsoDate(this, 'selectedEndDate');
   }
-
-  /**
-   * Whether the date picker expects a range selection or a single date selection.
-   *
-   */
-  @Prop() range?: boolean = false;
 
   /**
    * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
@@ -806,6 +818,21 @@ export class PostDatePicker {
     this.inputMask = IMask(this.dpInput, this.range ? rangeMaskOptions : singleMaskOptions);
   }
 
+  private updateMask() {
+    if (!this.inline) {
+      this.inputMask.destroy();
+      this.setUpMask();
+
+      if (this.range) {
+        this.inputMask.value = this.dpInstance.selectedDates
+          .map(d => this.dateToString(d))
+          .join(this.dateFormatRangeSeparator);
+      } else {
+        this.inputMask.value = this.dateToString(this.dpInstance.selectedDates[0]);
+      }
+    }
+  }
+
   private async configDatePicker() {
     const locale = await this.airLocale();
 
@@ -878,8 +905,9 @@ export class PostDatePicker {
           // Assign value to the input, close the popover and focus on the input
           if (this.dpInput) {
             if (Array.isArray(date)) {
-              const dates = date.map(d => this.dateToString(d));
-              this.inputMask.value = dates.join(DATE_FORMAT_RANGE_SEPARATOR);
+              this.inputMask.value = date
+                .map(d => this.dateToString(d))
+                .join(this.dateFormatRangeSeparator);
               this.updateInputValue();
             } else if (date) {
               // If there is a date, set it to the input. No date = same date as before
