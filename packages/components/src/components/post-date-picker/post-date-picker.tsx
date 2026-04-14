@@ -1149,14 +1149,13 @@ export class PostDatePicker {
       <Host>
         {this.inline && <div class="datepicker-container"></div>}
         {!this.inline && (
-          <div>
+          <div dir={this.textDirection}>
             <div
               class={{
                 'calendar-input': !this.range,
                 'calendar-input-range': this.range,
                 'disabled': this.inputDisabled,
               }}
-              dir={this.textDirection}
             >
               <slot></slot>
               <button
