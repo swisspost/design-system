@@ -137,6 +137,7 @@ export default [
       'unicorn/prefer-modern-dom-apis': 'off',
       'unicorn/prefer-query-selector': 'off',
       'unicorn/no-useless-fallback-in-spread': 'off',
+      'unicorn/numeric-separators-style': 'off',
     },
   },
   {

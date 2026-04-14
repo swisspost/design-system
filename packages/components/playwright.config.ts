@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './vrt',
-  timeout: 30_000,
+  timeout: 30000,
 
   expect: {
     toHaveScreenshot: {
@@ -51,6 +51,6 @@ export default defineConfig({
     command: 'npx http-server www -p 9300 -c-1',
     url: 'http://localhost:9300',
     reuseExistingServer: true,
-    timeout: 60_000,
+    timeout: 60000,
   },
 });
