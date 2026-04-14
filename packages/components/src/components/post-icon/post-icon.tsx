@@ -162,8 +162,7 @@ export class PostIcon {
         (this.scale && !Number.isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
         (this.rotate && !Number.isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
-      .filter(([_key, value]) => value !== null)
-      .map(( [key, value]) => [key, value]));
+      .filter(([_key, value]) => value !== null));
   }
 
   componentDidLoad() {
