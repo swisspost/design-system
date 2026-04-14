@@ -756,7 +756,7 @@ export class PostDatePicker {
   private setUpMask() {
     // WARNING: using the DATE_FORMAT_SEPARATOR_REGEX is mandatory here,
     // because `this.dateFormat` can possibly contain unicode bidi characters!
-    const maskPattern = this.dateFormat.replace(DATE_FORMAT_SEPARATOR_REGEX, m => `{${m}}\``);
+    const maskPattern = this.dateFormat.replace(DATE_FORMAT_SEPARATOR_REGEX, m => `${m}\``);
 
     const baseMaskOptions = {
       mask: Date,
