@@ -106,7 +106,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   Overview Letters
                 </a>
                 <div className="post-megadropdown-grid">
-                  <div className="col">
+                  <div>
                     <p className="post-megadropdown-list-title" id="send-letters">
                       Send letters
                     </p>
@@ -125,7 +125,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                       </li>
                     </ul>
                   </div>
-                  <div className="col">
+                  <div>
                     <a
                       className="post-megadropdown-list-title"
                       id="step-by-step-letters"
@@ -160,7 +160,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                   Overview Packages
                 </a>
                 <div className="post-megadropdown-grid">
-                  <div className="col">
+                  <div>
                     <p className="post-megadropdown-list-title" id="send-packages">
                       Send packages
                     </p>
@@ -179,7 +179,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                       </li>
                     </ul>
                   </div>
-                  <div className="col">
+                  <div>
                     <a
                       className="post-megadropdown-list-title"
                       id="step-by-step-packages"
