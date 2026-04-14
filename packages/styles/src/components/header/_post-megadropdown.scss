@@ -5,8 +5,8 @@
 
 post-megadropdown {
   --header-megadropdown-col-min-width: calc(
-    0.75rem + 0.5rem + 13.75ch
-  ); // total-padding-inline + 13.75ch (11ch * 1.25(rem))
+    0.75rem + 0.5rem + 13ch
+  ); // total-padding-inline + 13ch (11ch * 1.25(rem) 13.75 rounded down to 13ch)
 
   @include media.only(tablet) {
     --header-megadropdown-col-min-width: calc(
