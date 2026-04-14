@@ -24,8 +24,10 @@ function compare(
 export class PostNumberInput {
   @Element() host: HTMLPostNumberInputElement;
 
+  @State() isDisabled = false;
   @State() isIncrementDisabled = false;
   @State() isDecrementDisabled = false;
+  @State() small = false;
   @State() input: HTMLInputElement | null;
 
   private mutationObserver: MutationObserver;
@@ -62,6 +64,9 @@ export class PostNumberInput {
     this.input = this.input ?? getSlottedElement(this.host, 'input[type="number"]');
 
     if (!this.input) return;
+
+    this.isDisabled = this.input.disabled;
+    this.small = this.input.classList.contains('form-control-sm');
 
     // step buttons may be disabled when the input loads
     this.updateStepButtonState();
@@ -118,7 +123,13 @@ export class PostNumberInput {
     const areButtonsShown = !!this.input;
 
     return (
-      <Host data-version={version}>
+      <Host
+        data-version={version}
+        class={{
+          'number-input-sm': this.small,
+          'disabled': this.isDisabled,
+        }}
+      >
         {areButtonsShown && (
           <div
             aria-hidden="true"
