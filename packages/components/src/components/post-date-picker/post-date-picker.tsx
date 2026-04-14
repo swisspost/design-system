@@ -11,6 +11,7 @@ import {
   Event,
   Watch,
 } from '@stencil/core';
+import { version } from '@root/package.json';
 import AirDatepicker, {
   AirDatepickerOptions,
   AirDatepickerViews,
@@ -1146,7 +1147,7 @@ export class PostDatePicker {
 
   render() {
     return (
-      <Host>
+      <Host data-version={version}>
         {this.inline && <div class="datepicker-container"></div>}
         {!this.inline && (
           <div dir={this.textDirection}>
