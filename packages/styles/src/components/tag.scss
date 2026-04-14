@@ -56,6 +56,10 @@ tokens.$default-map: components.$post-tag;
       color: tokens.get('tag-#{$name}-color-fg');
       border-color: tokens.get('tag-#{$name}-color-border');
 
+      post-icon {
+        color: tokens.get('tag-#{$name}-color-icon');
+      }
+
       &:not(:has(post-icon))::before {
         content: '';
         background-image: var(--post-signal-icon-#{$name});
