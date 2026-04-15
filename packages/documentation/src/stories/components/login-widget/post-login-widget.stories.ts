@@ -32,6 +32,22 @@ const meta: MetaComponent = {
         defaultValue: { summary: 'null' },
       },
     },
+    refresh: {
+      description:
+        '<p>Call the public <code>refresh()</code> method to re-fetch the session state programmatically — for example after the user logs out via the user menu.</p>',
+      table: {
+        category: 'Methods',
+        type: { summary: '(): Promise<void>' },
+      },
+    },
+    'post-login-change': {
+      description:
+        '<p>An event emitted whenever the authentication state changes.</p><p>The event payload is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent">CustomEvent</a> whose detail contains an <code>authenticated</code> boolean: <code>true</code> if the user is logged in, <code>false</code> if logged out.</p>',
+      table: {
+        category: 'Events',
+        type: { summary: 'CustomEvent<{ authenticated: boolean }>' },
+      },
+    },
   },
 };
 

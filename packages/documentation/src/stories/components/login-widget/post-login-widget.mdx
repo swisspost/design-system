@@ -32,29 +32,8 @@ Both slots are fully customisable — no markup is imposed by the component itse
 ## Authenticated
 
 When the session API confirms the user is logged in, the `authenticated` slot is rendered.
-The [user menu from the header documentation](https://swisspost-design-system-next.netlify.app/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#user-menu) is the recommended content for this slot.
 
 <Canvas of={LoginWidgetStories.Authenticated} sourceState="shown" />
-
-## Refreshing the state
-
-Call the public `refresh()` method to re-fetch the session state programmatically — for example
-after the user logs out via the user menu:
-
-```js
-const widget = document.querySelector('post-login-widget');
-await widget.refresh();
-```
-
-## Reacting to state changes
-
-The component emits a `post-login-change` event whenever the authentication state changes.
-
-```js
-document.querySelector('post-login-widget').addEventListener('post-login-change', e => {
-  console.log(e.detail.authenticated); // true | false
-});
-```
 
 ## Fallback behaviour
 
