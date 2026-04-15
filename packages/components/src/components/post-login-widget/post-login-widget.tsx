@@ -33,7 +33,7 @@ export class PostLoginWidget {
 
   /**
    * The current authentication state.
-   * - `null`  → loading / not yet determined
+   * - `null`  → loading / API call in progress
    * - `true`  → user is authenticated
    * - `false` → user is not authenticated
    */
@@ -65,7 +65,11 @@ export class PostLoginWidget {
 
   async componentWillLoad() {
     if (Build.isBrowser) {
-      await this.fetchAuthState();
+      if (this.host.hasAttribute('authenticated')) {
+        this.authState = this.authenticated;
+      } else {
+        await this.fetchAuthState();
+      }
     }
   }
 

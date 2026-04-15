@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property        | Attribute       | Description                                                                                                                                        | Type      | Default |
-| --------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
-| `authenticated` | `authenticated` | The current authentication state. - `null`  → loading / not yet determined - `true`  → user is authenticated - `false` → user is not authenticated | `boolean` | `null`  |
+| Property        | Attribute       | Description                                                                                                                                          | Type      | Default |
+| --------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| `authenticated` | `authenticated` | The current authentication state. - `null`  → loading / API call in progress - `true`  → user is authenticated - `false` → user is not authenticated | `boolean` | `null`  |
 
 
 ## Events

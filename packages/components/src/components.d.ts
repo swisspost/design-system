@@ -395,7 +395,7 @@ export namespace Components {
     }
     interface PostLoginWidget {
         /**
-          * The current authentication state. - `null`  → loading / not yet determined - `true`  → user is authenticated - `false` → user is not authenticated
+          * The current authentication state. - `null`  → loading / API call in progress - `true`  → user is authenticated - `false` → user is not authenticated
           * @default null
          */
         "authenticated": boolean | null;
@@ -1587,7 +1587,7 @@ declare namespace LocalJSX {
     }
     interface PostLoginWidget {
         /**
-          * The current authentication state. - `null`  → loading / not yet determined - `true`  → user is authenticated - `false` → user is not authenticated
+          * The current authentication state. - `null`  → loading / API call in progress - `true`  → user is authenticated - `false` → user is not authenticated
           * @default null
          */
         "authenticated"?: boolean | null;
