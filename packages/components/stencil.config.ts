@@ -124,8 +124,9 @@ export const config: Config = {
   ],
   rollupPlugins: {
     before: [
-      // Rollup dynamicImportVars plugin requires relative paths (starting with ./)
-      // We copy and convert and internalize air-datepicker CJS locales to ESM during prebuild
+      // Rollup dynamicImportVars plugin requires relative paths (starting with ./),
+      // loading them dynamically from the node_modules folder is not possible!
+      // Therefore, we copy, convert (cjs to esm) and internalize the air-datepicker language files during prebuild.
       dynamicImportVars({
         include: ['**/post-date-picker/air-locales.ts'],
       }),

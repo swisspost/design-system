@@ -1,14 +1,20 @@
-@use '../variables/components/form-check';
 @use '../mixins/forms' as forms-mx;
 @use '../mixins/utilities' as utility-mx;
 @use '../functions/tokens';
 @use '../tokens/components';
-@use '../tokens/utilities';
 
 tokens.$default-map: components.$post-selection-card;
 
-fieldset .selection-card:not(:last-child) {
-  margin-bottom: tokens.get('utility-gap-16', utilities.$post-spacing);
+fieldset .selection-card {
+  margin-block-end: tokens.get('selection-card-group-gap');
+}
+
+fieldset .selection-card:first-of-type {
+  margin-block-start: tokens.get('selection-card-group-gap');
+}
+
+fieldset:has(.selection-card) {
+  padding-block: tokens.get('selection-card-group-padding-block');
 }
 
 .selection-card {
@@ -16,34 +22,23 @@ fieldset .selection-card:not(:last-child) {
   --post-current-fg: var(--post-selection-card-fg);
 
   --post-selection-card-scheme: #{tokens.get('selection-card-unselected-scheme')};
-  --post-selection-card-padding: 1rem;
   --post-selection-card-bg: #{tokens.get('selection-card-unselected-bg')};
-  --post-selection-card-border-width: 2px;
   --post-selection-card-border-style: solid;
   --post-selection-card-border-color: #{tokens.get('selection-card-unselected-stroke')};
-  --post-selection-card-border-radius: 8px;
-  --post-selection-card-column-gap: 1rem;
   --post-selection-card-color: #{tokens.get('selection-card-unselected-fg')};
-
-  --post-selection-card-input-margin-block: 4px;
-  --post-selection-card-label-padding-block: 1px;
-  --post-selection-card-label-font-weight: 700;
-  --post-selection-card-icon-size: 32px;
-  --post-selection-card-description-font-size: 1rem;
-
   --post-selection-card-bg-hover: var(--post-selection-card-bg);
 
   display: grid;
   grid-template-areas: 'input label icon';
   grid-template-columns: min-content 1fr max-content;
-  column-gap: var(--post-selection-card-column-gap);
+  column-gap: tokens.get('selection-card-gap-inline');
   align-content: start;
-  padding: var(--post-selection-card-padding);
+  padding: tokens.get('selection-card-padding-block') tokens.get('selection-card-padding-inline');
   background-color: var(--post-selection-card-bg);
-  border-width: var(--post-selection-card-border-width);
-  border-style: var(--post-selection-card-border-style);
+  border-width: tokens.get('selection-card-border-width');
+  border-style: tokens.get('selection-card-border-style-default');
   border-color: var(--post-selection-card-border-color);
-  border-radius: var(--post-selection-card-border-radius);
+  border-radius: tokens.get('selection-card-border-radius');
   color: var(--post-selection-card-color);
   cursor: pointer;
 
@@ -60,9 +55,9 @@ fieldset .selection-card:not(:last-child) {
   }
 
   &:has(input:disabled) {
-    --post-selection-card-border-style: dashed;
     --post-selection-card-border-color: #{tokens.get('selection-card-unselected-disabled-stroke')};
     --post-selection-card-color: #{tokens.get('selection-card-unselected-disabled-fg')};
+    border-style: tokens.get('selection-card-border-style-disabled');
     cursor: default;
   }
 
@@ -71,6 +66,7 @@ fieldset .selection-card:not(:last-child) {
     --post-selection-card-bg: #{tokens.get('selection-card-selected-bg')};
     --post-selection-card-border-color: #{tokens.get('selection-card-selected-stroke')};
     --post-selection-card-color: #{tokens.get('selection-card-selected-fg')};
+    box-shadow: tokens.get('selection-card-selected-elevation');
 
     &:not(:has(input:disabled)):hover {
       --post-selection-card-border-color: #{tokens.get('selection-card-selected-hovered-stroke')};
@@ -79,9 +75,9 @@ fieldset .selection-card:not(:last-child) {
     }
 
     &:has(input:disabled) {
-      --post-selection-card-border-style: dashed;
       --post-selection-card-border-color: #{tokens.get('selection-card-selected-disabled-stroke')};
       --post-selection-card-color: #{tokens.get('selection-card-selected-disabled-fg')};
+      border-style: tokens.get('selection-card-border-style-disabled');
     }
   }
 
@@ -103,7 +99,8 @@ fieldset .selection-card:not(:last-child) {
   > input {
     grid-row: 1;
     grid-column: input;
-    margin: var(--post-selection-card-input-margin-block) 0 !important;
+    margin-inline: 0 !important;
+    margin-block: tokens.get('selection-card-selector-padding-block-start') 0 !important;
     outline: 0 none !important;
     transition: none !important;
 
@@ -123,8 +120,8 @@ fieldset .selection-card:not(:last-child) {
   > label {
     grid-row: 1;
     grid-column: label / icon;
-    padding-block: var(--post-selection-card-label-padding-block);
-    font-weight: var(--post-selection-card-label-font-weight);
+    padding-block: tokens.get('selection-card-content-padding-block');
+    font-weight: tokens.get('selection-card-label-font-weight');
     cursor: inherit;
   }
 
@@ -137,7 +134,7 @@ fieldset .selection-card:not(:last-child) {
     grid-column: icon;
     width: 1em;
     height: 1em;
-    font-size: var(--post-selection-card-icon-size);
+    font-size: tokens.get('selection-card-icon-size');
     line-height: 1;
 
     &:not(post-icon) {
@@ -154,6 +151,13 @@ fieldset .selection-card:not(:last-child) {
     grid-row: 2;
     grid-column: label / icon;
     align-items: start;
-    font-size: var(--post-selection-card-description-font-size);
+    font-size: tokens.get('selection-card-sub-label-font-size');
+  }
+
+  // Adds top margin to the custom element
+  > label + *:not(.selection-card--description):not(.selection-card--icon),
+  > .selection-card--icon + *:not(.selection-card--description),
+  > .selection-card--description + * {
+    margin-block-start: tokens.get('selection-card-content-gap-block');
   }
 }

@@ -64,7 +64,7 @@ export class PostDatePicker {
   validateLocale() {
     if (!isValidLocale(this.locale)) {
       console.error(
-        'The prop `locale` of the `post-date-picker` component must be a value localeCode (e.g. `en`, `en-GB`, etc.), based on <a href="https://www.rfc-editor.org/info/bcp47">BCP 47 (RFC 5646)</a> standard.',
+        'The prop `locale` of the `post-date-picker` component must be a valid localeCode (e.g. `en`, `en-GB`, etc.), based on <a href="https://www.rfc-editor.org/info/bcp47">BCP 47 (RFC 5646)</a> standard.',
       );
     }
   }
@@ -308,16 +308,18 @@ export class PostDatePicker {
    * with format keys (y, m, d). For example, it will return "dd.mm.yyyy" for "de-CH" locale and "mm/dd/yyyy" for "en-US" locale.
    */
   get dateFormat() {
-    const localeDate = new Date(Object.values(DATE_FORMAT_MAP).join('-'));
+    const isBuddhistDate = this.languageCode === 'th';
+    const date = new Date(Object.values(DATE_FORMAT_MAP).join('-'));
     // get the locale date format e.g. `22.11.3333` for `de-CH` or `11/22/3333` for `en-US`
-    let localeDateString = localeDate.toLocaleDateString(
-      this.localeCode,
-      DATE_FORMAT_STRING_OPTIONS,
-    );
+    let localeDateString = date.toLocaleDateString(this.localeCode, DATE_FORMAT_STRING_OPTIONS);
 
     // replace the date parts (3333, 11, 22) with the corresponding format keys (y, m, d)
     for (const [key, value] of Object.entries(DATE_FORMAT_MAP)) {
-      localeDateString = localeDateString.replace(value, key);
+      // for Thai locale, the year is in Buddhist calendar which is 543 years ahead of Gregorian calendar, so we need to adjust the year value accordingly
+      localeDateString = localeDateString.replace(
+        isBuddhistDate && value.length === 4 ? (Number(value) + 543).toString() : value,
+        key,
+      );
     }
 
     return localeDateString;
@@ -373,6 +375,7 @@ export class PostDatePicker {
    * @returns A localtime date object.
    */
   private stringToDate(localeDateString: string) {
+    const isThaiDate = this.languageCode === 'th';
     // Match the separator chars in the date format (e.g. "." for "dd.mm.yyyy", etc.).
     const dateSeparator = this.dateFormat.match(DATE_FORMAT_SEPARATOR_REGEX)[0];
     // Remove the text direction markers, split the date string into its parts (e.g. ["31", "01", "2026"], etc.)
@@ -396,7 +399,10 @@ export class PostDatePicker {
       {} as Record<string, string>,
     );
 
-    return this.isoToDate([y, m, d].join('-'));
+    // Adjust for Thai Buddhist calendar
+    const year = isThaiDate ? (Number(y) - 543).toString() : y;
+
+    return this.isoToDate([year, m, d].join('-'));
   }
 
   /**
@@ -778,7 +784,7 @@ export class PostDatePicker {
         y: {
           mask: IMask.MaskedRange,
           from: 1000,
-          to: 3000,
+          to: 5000,
           placeholderChar: Object.keys(DATE_FORMAT_MAP)[0],
         },
         m: {
@@ -904,16 +910,9 @@ export class PostDatePicker {
           // Assign value to the input, close the popover and focus on the input
           if (this.dpInput) {
             if (Array.isArray(date)) {
-              // console.log(
-              //   'TEST onSelect before mask value update',
-              //   this.inputMask.value,
-              //   '\n',
-              //   date.map(d => this.dateToString(d)).join(this.dateFormatRangeSeparator),
-              // );
               this.inputMask.value = date
                 .map(d => this.dateToString(d))
                 .join(this.dateFormatRangeSeparator);
-              // console.log('TEST onSelect after mask value update', this.inputMask);
               this.updateInputValue();
             } else if (date) {
               // If there is a date, set it to the input. No date = same date as before
