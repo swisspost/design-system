@@ -23,7 +23,7 @@ export const LoginWidget: Story = {
           </div>
           <div>
             <h3>Authenticated</h3>
-            ${meta.render?.({ ...context.args, ...Authenticated.args }, context)}
+            ${Authenticated.render?.({}, context)}
           </div>
         </div>
       `,

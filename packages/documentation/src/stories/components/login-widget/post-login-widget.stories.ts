@@ -14,9 +14,6 @@ const meta: MetaComponent = {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level',
     },
-    controls: {
-      exclude: ['postLoginChange', 'refresh'],
-    },
   },
   args: {
     authenticated: false,
@@ -35,31 +32,15 @@ const meta: MetaComponent = {
         defaultValue: { summary: 'null' },
       },
     },
-    'refresh ': {
-      description:
-        '<p>Call the public <code>refresh()</code> method to re-fetch the session state programmatically — for example after the user logs out via the user menu.</p>',
-      table: {
-        category: 'Methods',
-        type: { summary: '(): Promise<void>' },
-      },
-    },
-    'postLoginChange ': {
-      description:
-        '<p>An event emitted whenever the authentication state changes.</p><p>The event payload is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent">CustomEvent</a> whose detail contains an <code>authenticated</code> boolean: <code>true</code> if the user is logged in, <code>false</code> if logged out.</p>',
-      table: {
-        category: 'Events',
-        type: { summary: 'CustomEvent<{ authenticated: boolean }>' },
-      },
-    },
   },
 };
 
 export default meta;
 
 // RENDERERS
-function renderUserMenu() {
+function renderUserMenu(id = 'user-menu-widget') {
   return html`
-    <post-menu-trigger for="user-menu-widget">
+    <post-menu-trigger for="${id}">
       <button class="btn btn-link" type="button">
         <post-avatar
           firstname="John"
@@ -69,7 +50,7 @@ function renderUserMenu() {
         <span class="visually-hidden">Access user links.</span>
       </button>
     </post-menu-trigger>
-    <post-menu id="user-menu-widget" label="User links">
+    <post-menu id="${id}" label="User links">
       <div slot="header">
         <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
         John Doe
@@ -109,8 +90,6 @@ function render(args: Args) {
         <span>Login</span>
         <post-icon name="login" aria-hidden="true"></post-icon>
       </a>
-
-      <div slot="authenticated">${renderUserMenu()}</div>
     </post-login-widget>
   `;
 }
@@ -121,7 +100,9 @@ type Story = StoryObj;
 export const Default: Story = {};
 
 export const Authenticated: Story = {
-  args: {
-    authenticated: true,
-  },
+  render: () => html`
+    <post-login-widget authenticated>
+      <div slot="authenticated">${renderUserMenu('user-menu-authenticated')}</div>
+    </post-login-widget>
+  `,
 };
