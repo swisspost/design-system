@@ -17,12 +17,14 @@ const AUTH_FIXTURE = {
 
 const UNAUTH_FIXTURE = {};
 
-describe('post-login-widget', () => {
+const FIXTURE_PATH = './cypress/fixtures/post-login-widget.html';
+
+describe('post-login-widget', { baseUrl: null }, () => {
   // ─── API is called on initialization ──────────────────────────────────────
 
   it('calls the session API on mount', () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     cy.wait('@session');
   });
 
@@ -30,27 +32,27 @@ describe('post-login-widget', () => {
 
   it('renders the authenticated slot when the API returns user data', () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     cy.wait('@session');
 
     cy.get('[data-testid="user-menu"]').should('be.visible');
-    cy.get('[data-testid="login-link"]').should('not.exist');
+    cy.get('[data-testid="login-link"]').should('not.be.visible');
   });
 
   it('renders the unauthenticated slot when the API returns no user data', () => {
     cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     cy.wait('@session');
 
     cy.get('[data-testid="login-link"]').should('be.visible');
-    cy.get('[data-testid="user-menu"]').should('not.exist');
+    cy.get('[data-testid="user-menu"]').should('not.be.visible');
   });
 
   // ─── refresh() updates state and UI ───────────────────────────────────────
 
   it('refresh() re-fetches and switches to authenticated slot', () => {
     cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE }).as('session1');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     cy.wait('@session1');
     cy.get('[data-testid="login-link"]').should('be.visible');
 
@@ -59,14 +61,14 @@ describe('post-login-widget', () => {
     cy.wait('@session2');
 
     cy.get('[data-testid="user-menu"]').should('be.visible');
-    cy.get('[data-testid="login-link"]').should('not.exist');
+    cy.get('[data-testid="login-link"]').should('not.be.visible');
   });
 
   // ─── post-login-change event ───────────────────────────────────────────────
 
   it('emits post-login-change with authenticated=true when user data present', () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
       el.addEventListener('postLoginChange', spy);
@@ -80,7 +82,7 @@ describe('post-login-widget', () => {
 
   it('emits post-login-change with authenticated=false when no user data', () => {
     cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
       el.addEventListener('postLoginChange', spy);
@@ -94,42 +96,47 @@ describe('post-login-widget', () => {
 
   // ─── authenticated prop synced ─────────────────────────────────────────────
 
-  it('reflects authenticated=true prop after successful auth', () => {
+  it('exposes authenticated=true after successful auth', () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     cy.wait('@session');
-    cy.get('post-login-widget').should('have.attr', 'authenticated', 'true');
+    cy.get('post-login-widget').then(([el]) => {
+      expect((el as HTMLPostLoginWidgetElement).authenticated).to.equal(true);
+    });
   });
 
-  it('reflects authenticated=false prop when not authenticated', () => {
+  it('exposes authenticated=false when not authenticated', () => {
     cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     cy.wait('@session');
-    cy.get('post-login-widget').should('have.attr', 'authenticated', 'false');
+    cy.get('post-login-widget').then(([el]) => {
+      expect((el as HTMLPostLoginWidgetElement).authenticated).to.equal(false);
+    });
   });
 
   // ─── Fallback on API failure ──────────────────────────────────────────────
 
   it('renders the unauthenticated slot when the API request fails', () => {
     cy.intercept('GET', SESSION_URL, { forceNetworkError: true }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     cy.wait('@session');
     cy.get('[data-testid="login-link"]').should('be.visible');
-    cy.get('[data-testid="user-menu"]').should('not.exist');
+    cy.get('[data-testid="user-menu"]').should('not.be.visible');
   });
 
   it('renders the unauthenticated slot when the API returns a non-2xx status', () => {
     cy.intercept('GET', SESSION_URL, { statusCode: 401, body: {} }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     cy.wait('@session');
     cy.get('[data-testid="login-link"]').should('be.visible');
+    cy.get('[data-testid="user-menu"]').should('not.be.visible');
   });
 
   // ─── No unnecessary re-renders ────────────────────────────────────────────
 
   it('does not emit post-login-change if state has not changed', () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
-    cy.visit('../fixtures/post-login-widget.html');
+    cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
       el.addEventListener('postLoginChange', spy);
