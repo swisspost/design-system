@@ -1,7 +1,7 @@
 import { Args, StoryObj, StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { spreadArgs, LOCALES } from '@/utils';
+import { spreadArgs } from '@/utils';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
@@ -36,7 +36,7 @@ const meta: MetaComponent = {
   argTypes: {
     locale: {
       control: 'select',
-      options: ['de-CH', 'fr-CH', 'it-CH', 'en', ...LOCALES],
+      options: ['en', 'de-CH', 'fr-CH', 'it-CH'],
     },
     min: {
       control: 'text',

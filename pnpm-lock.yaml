@@ -117,9 +117,9 @@ importers:
       imask:
         specifier: 7.6.1
         version: 7.6.1
-      lcid:
-        specifier: 5.0.0
-        version: 5.0.0
+      language-tags:
+        specifier: 1.0.9
+        version: 1.0.9
       long-press-event:
         specifier: 2.5.0
         version: 2.5.0
@@ -225,7 +225,7 @@ importers:
         version: 5.0.2
       ts-jest:
         specifier: catalog:stencil/jest
-        version: 29.4.6(@babel/core@7.29.0)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.29.0))(jest-util@30.3.0)(jest@29.7.0(@types/node@24.12.0)(ts-node@10.9.2(@types/node@24.12.0)(typescript@5.8.3)))(typescript@5.8.3)
+        version: 29.4.6(@babel/core@7.26.0)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.26.0))(jest-util@30.3.0)(jest@29.7.0(@types/node@24.12.0)(ts-node@10.9.2(@types/node@24.12.0)(typescript@5.8.3)))(typescript@5.8.3)
       ts-node:
         specifier: catalog:node
         version: 10.9.2(@types/node@24.12.0)(typescript@5.8.3)
@@ -433,9 +433,6 @@ importers:
       '@swisspost/internet-header':
         specifier: workspace:10.0.0-next.66
         version: link:../internet-header
-      lcid:
-        specifier: 5.0.0
-        version: 5.0.0
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
@@ -7301,10 +7298,6 @@ packages:
     resolution: {integrity: sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ==}
     engines: {node: '>=10.13.0'}
 
-  invert-kv@4.2.0:
-    resolution: {integrity: sha512-6veZJCvIUzuPAeYmmeAUTvlE1mOpvl33ZQoSBVvuWHJ1Ou5oMgAf95YDmK57+oLcSJrFWXfh/nQFYJl2uLOmrQ==}
-    engines: {node: '>=12'}
-
   ip-address@10.1.0:
     resolution: {integrity: sha512-XXADHxXmvT9+CRxhXg56LJovE+bmWnEWB78LB83VZTprKTmaC5QfruXocxzTZ2Kl0DNwKuBdlIhjL8LeY8Sf8Q==}
     engines: {node: '>= 12'}
@@ -8079,6 +8072,13 @@ packages:
   known-css-properties@0.37.0:
     resolution: {integrity: sha512-JCDrsP4Z1Sb9JwG0aJ8Eo2r7k4Ou5MwmThS/6lcIe1ICyb7UBJKGRIUUdqc2ASdE/42lgz6zFUnzAIhtXnBVrQ==}
 
+  language-subtag-registry@0.3.23:
+    resolution: {integrity: sha512-0K65Lea881pHotoGEa5gDlMxt3pctLi2RplBb7Ezh4rRdLEOtgi7n4EwK9lamnUCkKBqaeKRVebTq6BAxSkpXQ==}
+
+  language-tags@1.0.9:
+    resolution: {integrity: sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA==}
+    engines: {node: '>=0.10'}
+
   last-run@2.0.0:
     resolution: {integrity: sha512-j+y6WhTLN4Itnf9j5ZQos1BGPCS8DAwmgMroR3OzfxAsBxam0hMw7J8M3KqZl0pLQJ1jNnwIexg5DYpC/ctwEQ==}
     engines: {node: '>= 10.13.0'}
@@ -8086,10 +8086,6 @@ packages:
   lazy-ass@1.6.0:
     resolution: {integrity: sha512-cc8oEVoctTvsFZ/Oje/kGnHbpWHYBe8IAJe4C0QNc3t8uM/0Y8+erSz/7Y1ALuXTEZTMvxXwO6YbX1ey3ujiZw==}
     engines: {node: '> 0.8'}
-
-  lcid@5.0.0:
-    resolution: {integrity: sha512-i0bOkKz5k41apRs5rzFHp5ukmUtGm+owHXj2LwtEir6xxww96mRH1l5Q1denx44LFm5LVKIjXu8ZseqZv7Oa9g==}
-    engines: {node: '>=18.20'}
 
   lead@4.0.0:
     resolution: {integrity: sha512-DpMa59o5uGUWWjruMp71e6knmwKU3jRBBn1kjuLWN9EeIOxNeSAwvHf03WIl8g/ZMR2oSQC9ej3yeLBwdDc/pg==}
@@ -19047,8 +19043,6 @@ snapshots:
 
   interpret@3.1.1: {}
 
-  invert-kv@4.2.0: {}
-
   ip-address@10.1.0: {}
 
   ip-address@9.0.5:
@@ -20375,13 +20369,15 @@ snapshots:
 
   known-css-properties@0.37.0: {}
 
+  language-subtag-registry@0.3.23: {}
+
+  language-tags@1.0.9:
+    dependencies:
+      language-subtag-registry: 0.3.23
+
   last-run@2.0.0: {}
 
   lazy-ass@1.6.0: {}
-
-  lcid@5.0.0:
-    dependencies:
-      invert-kv: 4.2.0
 
   lead@4.0.0: {}
 
@@ -23981,6 +23977,26 @@ snapshots:
       esbuild: 0.25.11
       jest-util: 30.3.0
 
+  ts-jest@29.4.6(@babel/core@7.26.0)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.26.0))(jest-util@30.3.0)(jest@29.7.0(@types/node@24.12.0)(ts-node@10.9.2(@types/node@24.12.0)(typescript@5.8.3)))(typescript@5.8.3):
+    dependencies:
+      bs-logger: 0.2.6
+      fast-json-stable-stringify: 2.1.0
+      handlebars: 4.7.9
+      jest: 29.7.0(@types/node@24.12.0)(ts-node@10.9.2(@types/node@24.12.0)(typescript@5.8.3))
+      json5: 2.2.3
+      lodash.memoize: 4.1.2
+      make-error: 1.3.6
+      semver: 7.7.3
+      type-fest: 4.41.0
+      typescript: 5.8.3
+      yargs-parser: 21.1.1
+    optionalDependencies:
+      '@babel/core': 7.26.0
+      '@jest/transform': 30.3.0
+      '@jest/types': 30.3.0
+      babel-jest: 30.3.0(@babel/core@7.26.0)
+      jest-util: 30.3.0
+
   ts-jest@29.4.6(@babel/core@7.29.0)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.29.0))(esbuild@0.25.11)(jest-util@30.3.0)(jest@30.3.0(@types/node@24.12.0)(esbuild-register@3.6.0(esbuild@0.25.11))(ts-node@10.9.2(@types/node@24.12.0)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       bs-logger: 0.2.6
@@ -24021,26 +24037,6 @@ snapshots:
       '@jest/types': 30.3.0
       babel-jest: 30.3.0(@babel/core@7.29.0)
       esbuild: 0.25.11
-      jest-util: 30.3.0
-
-  ts-jest@29.4.6(@babel/core@7.29.0)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.29.0))(jest-util@30.3.0)(jest@29.7.0(@types/node@24.12.0)(ts-node@10.9.2(@types/node@24.12.0)(typescript@5.8.3)))(typescript@5.8.3):
-    dependencies:
-      bs-logger: 0.2.6
-      fast-json-stable-stringify: 2.1.0
-      handlebars: 4.7.9
-      jest: 29.7.0(@types/node@24.12.0)(ts-node@10.9.2(@types/node@24.12.0)(typescript@5.8.3))
-      json5: 2.2.3
-      lodash.memoize: 4.1.2
-      make-error: 1.3.6
-      semver: 7.7.3
-      type-fest: 4.41.0
-      typescript: 5.8.3
-      yargs-parser: 21.1.1
-    optionalDependencies:
-      '@babel/core': 7.29.0
-      '@jest/transform': 30.3.0
-      '@jest/types': 30.3.0
-      babel-jest: 30.3.0(@babel/core@7.29.0)
       jest-util: 30.3.0
 
   ts-morph@22.0.0:

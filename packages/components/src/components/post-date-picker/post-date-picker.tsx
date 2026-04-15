@@ -23,9 +23,8 @@ import {
   checkEmptyOrDate,
   checkRequiredAndType,
   checkIsoDate,
-  checkEmptyOrOneOf,
-  LOCALES,
-  LANGUAGE_CODES_RTL,
+  getLocaleTextDirection,
+  isValidLocale,
   UNICODE_BIDI,
   FALLBACK_LANGUAGE_CODE,
 } from '@/utils';
@@ -63,7 +62,11 @@ export class PostDatePicker {
   @Prop() locale?: string = this.systemLocale;
   @Watch('locale')
   validateLocale() {
-    checkEmptyOrOneOf(this, 'locale', LOCALES);
+    if (!isValidLocale(this.locale)) {
+      console.error(
+        'The prop `locale` of the `post-date-picker` component must be a value localeCode (e.g. `en`, `en-GB`, etc.), based on <a href="https://www.rfc-editor.org/info/bcp47">BCP 47 (RFC 5646)</a> standard.',
+      );
+    }
   }
   @Watch('locale')
   async updateLocale() {
@@ -293,9 +296,7 @@ export class PostDatePicker {
    */
   private get localeCode() {
     const locale = this.locale || FALLBACK_LANGUAGE_CODE;
-    const localeRegex = new RegExp(`^${locale}`, 'i');
-    const localeIsValid = LOCALES.some(lc => localeRegex.test(lc));
-    return localeIsValid ? locale : FALLBACK_LANGUAGE_CODE;
+    return isValidLocale(locale) ? locale : FALLBACK_LANGUAGE_CODE;
   }
 
   private get languageCode() {
@@ -328,7 +329,7 @@ export class PostDatePicker {
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getTextInfo
    */
   private get textDirection() {
-    return LANGUAGE_CODES_RTL.includes(this.languageCode) ? 'rtl' : 'ltr';
+    return getLocaleTextDirection(this.localeCode);
   }
 
   private get dateFormatRangeSeparator() {
@@ -1200,9 +1201,6 @@ export class PostDatePicker {
               >
                 <post-icon name="calendar"></post-icon>
               </button>
-              <div>{this.localeCode}</div>
-              <div>{this.dateFormat}</div>
-              <div>separator: "{this.dateFormat.match(DATE_FORMAT_SEPARATOR_REGEX)[0]}"</div>
             </div>
             <post-popovercontainer
               placement="bottom-end"

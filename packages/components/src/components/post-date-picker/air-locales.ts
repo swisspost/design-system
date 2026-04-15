@@ -1,6 +1,6 @@
 import type { AirDatepickerLocale } from 'air-datepicker';
 
-const SUPPORTED_LOCALES = [
+const SUPPORTED_LANGUAGES = [
   'ar',
   'bg',
   'ca',
@@ -35,13 +35,11 @@ const SUPPORTED_LOCALES = [
   'zh',
 ] as const;
 
-export const airDatepickerLocales: Record<
-  string,
-  () => Promise<{ default: AirDatepickerLocale }>
-> = SUPPORTED_LOCALES.reduce(
-  (acc, locale) => ({
-    ...acc,
-    [locale]: () => import(`./locales/${locale}.js`),
-  }),
-  {},
-);
+export const airDatepickerLocales: Record<string, () => Promise<{ default: AirDatepickerLocale }>> =
+  SUPPORTED_LANGUAGES.reduce(
+    (acc, locale) => ({
+      ...acc,
+      [locale]: () => import(`./locales/${locale}.js`),
+    }),
+    {},
+  );
