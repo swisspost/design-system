@@ -1,0 +1,13 @@
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/components/header/placeholders' as *;
+
+/* Base styles for post-login-widget */
+post-login-widget > a {
+  @extend %header-control;
+  width: fit-content;
+
+  @include media.only(mobile) {
+    @include header-mx.nav-item-icon-only;
+  }
+}

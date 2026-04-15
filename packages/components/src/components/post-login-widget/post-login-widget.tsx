@@ -25,7 +25,6 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 // TODO: Rename to 'post-klp-login-widget' after @swisspost/internet-header components are migrated.
 @Component({
   tag: 'post-login-widget',
-  styleUrl: 'post-login-widget.scss',
   shadow: true,
 })
 export class PostLoginWidget {
