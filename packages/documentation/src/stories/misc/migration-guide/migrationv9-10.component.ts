@@ -920,7 +920,7 @@ export class MigrationV910Component extends LitElement {
                         </ul>
                         <span class="info"
                           >⚠️ Bold entries (<code>large</code>, <code>big</code>,
-                          <code>huge</code>) are not 1:1 migrations — carefully review the
+                          <code>huge</code>) are not 1:1 migrations, you should carefully review the
                           autofix output to ensure spacing behaves as intended at each
                           breakpoint.</span
                         >
