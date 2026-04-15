@@ -1,7 +1,7 @@
 import type { AnyNode } from 'domhandler';
 import type { Cheerio } from 'cheerio';
 
-// ── Dynamic class attribute type detection ────────────────────────────────────
+// Dynamic class attribute type detection
 
 export function getDynamicClassType(
   attrName: string,
@@ -19,7 +19,7 @@ export function getDynamicClassType(
   };
 }
 
-// ── Value type guards ─────────────────────────────────────────────────────────
+// Value type guards
 
 export function isStringLiteral(value: string): boolean {
   const first = value[0],
@@ -31,7 +31,7 @@ export function isObjectLiteral(value: string): boolean {
   return value.startsWith('{') && value.endsWith('}');
 }
 
-// ── One-to-one helpers (used by createClassUpdateRule) ────────────────────────
+// One-to-one helpers (used by createClassUpdateRule)
 
 export function getNewAttrValue(
   $node: Cheerio<AnyNode>,
@@ -80,7 +80,7 @@ export function updateObjectLiteral(
   );
 }
 
-// ── One-to-many helpers (used by createResponsiveClassUpdateRule) ─────────────
+// One-to-many helpers (used by createResponsiveClassUpdateRule)
 
 export function getNewAttrValueMulti(
   $node: Cheerio<AnyNode>,

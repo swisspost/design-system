@@ -64,7 +64,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
         tag(node: HtmlNode) {
           const $node = node.toCheerio();
 
-          // ── Static class="..." ────────────────────────────────────────────
+          // Static class="..."
           // Collect all matching deprecated classes on this node first,
           // then emit a single report with one combined fix to avoid
           // ESLint discarding overlapping fixes for the same node range.
@@ -105,7 +105,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
             return;
           }
 
-          // ── Angular dynamic bindings ──────────────────────────────────────
+          // Angular dynamic bindings
           const root = $node[0];
           if (!root || root.type !== 'tag') return;
 
