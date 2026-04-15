@@ -47,9 +47,3 @@ falls back to rendering the `unauthenticated` slot. No error is thrown.
 When the authentication state changes, the component updates the rendered slot.
 Ensure that focus is managed appropriately in your application — for example, after a user logs out
 and the unauthenticated slot becomes visible, move focus to the login link.
-
-### ARIA labels
-
-The `unauthenticated` slot content should have a descriptive accessible label.
-When using only an icon with text hidden via `visually-hidden`, ensure the visible text or
-`aria-label` clearly communicates the action to screen reader users.
