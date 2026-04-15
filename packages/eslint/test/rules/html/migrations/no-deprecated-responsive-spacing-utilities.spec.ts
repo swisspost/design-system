@@ -11,9 +11,9 @@ const invalidData = Object.entries(data.mutations).map(([key, [oldClass, newClas
 }));
 
 // Pick three known mappings for the combination/multi-class tests
-const [key0, [old0, new0]] = Object.entries(data.mutations)[0];  // m-tiny-r
-const [key1, [old1, new1]] = Object.entries(data.mutations)[8];  // mt-tiny-r
-const [, [old2, new2]] = Object.entries(data.mutations)[16];     // mb-tiny-r
+const [key0, [old0, new0]] = Object.entries(data.mutations)[0];   // m-tiny-r
+const [_key1, [old1, new1]] = Object.entries(data.mutations)[8];  // mt-tiny-r
+const [_key2, [old2, new2]] = Object.entries(data.mutations)[16]; // mb-tiny-r
 
 // Helper: simulate what Cheerio does — removes the old class from its position
 // and appends the new classes at the end of the class list.
