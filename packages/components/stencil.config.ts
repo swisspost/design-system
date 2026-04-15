@@ -141,9 +141,6 @@ export const config: Config = {
     ],
   },
   testing: {
-    moduleNameMapper: {
-      '^lcid$': '<rootDir>/src/utils/tests/__mocks__/lcid.cjs',
-    },
     testPathIgnorePatterns: [
       '<rootDir>/dist/',
       '<rootDir>/loader/',
