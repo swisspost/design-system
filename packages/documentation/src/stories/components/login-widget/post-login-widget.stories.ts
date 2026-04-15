@@ -14,6 +14,9 @@ const meta: MetaComponent = {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level',
     },
+    controls: {
+      exclude: ['postLoginChange', 'refresh'],
+    },
   },
   args: {
     authenticated: false,
@@ -32,7 +35,7 @@ const meta: MetaComponent = {
         defaultValue: { summary: 'null' },
       },
     },
-    refresh: {
+    'refresh ': {
       description:
         '<p>Call the public <code>refresh()</code> method to re-fetch the session state programmatically — for example after the user logs out via the user menu.</p>',
       table: {
@@ -40,7 +43,7 @@ const meta: MetaComponent = {
         type: { summary: '(): Promise<void>' },
       },
     },
-    'post-login-change': {
+    'postLoginChange ': {
       description:
         '<p>An event emitted whenever the authentication state changes.</p><p>The event payload is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent">CustomEvent</a> whose detail contains an <code>authenticated</code> boolean: <code>true</code> if the user is logged in, <code>false</code> if logged out.</p>',
       table: {
