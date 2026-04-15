@@ -1,7 +1,8 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as LoginWidgetStories from './post-login-widget.stories';
 import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import SampleFocus from './post-login-widget.focus.sample?raw';
 
 <Meta of={LoginWidgetStories} />
 
@@ -44,6 +45,8 @@ falls back to rendering the `unauthenticated` slot. No error is thrown.
 
 ### Focus management
 
-When the authentication state changes, the component updates the rendered slot.
-Ensure that focus is managed appropriately in your application — for example, after a user logs out
-and the unauthenticated slot becomes visible, move focus to the login link.
+When the authentication state changes, the component updates the rendered slot. **Your application is responsible for managing focus** — listen to the `postLoginChange` event and move focus appropriately.
+
+For example, after a user logs out, move focus to the login link:
+
+<Source code={SampleFocus} language="ts" />
