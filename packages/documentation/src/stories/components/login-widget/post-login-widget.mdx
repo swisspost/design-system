@@ -19,7 +19,7 @@ Conditionally renders content based on the user's KLP authentication state.
 
 The `<post-login-widget>` calls the KLP session API on mount and renders either the `authenticated`
 or `unauthenticated` slot depending on the response.
-Both slots are fully customisable — no markup is imposed by the component itself.
+Both slots are fully customisable.
 
 <div className="main-story">
   <Canvas sourceState="shown" of={LoginWidgetStories.Default} />
@@ -45,7 +45,7 @@ falls back to rendering the `unauthenticated` slot. No error is thrown.
 
 ### Focus management
 
-When the authentication state changes, the component updates the rendered slot. **Your application is responsible for managing focus** — listen to the `postLoginChange` event and move focus appropriately.
+When the authentication state changes, the component updates the rendered slot. Your application is responsible for managing focus. Listen to the `postLoginChange` event and move focus appropriately.
 
 For example, after a user logs out, move focus to the login link:
 
