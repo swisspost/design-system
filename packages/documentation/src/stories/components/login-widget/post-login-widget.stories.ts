@@ -32,25 +32,6 @@ const meta: MetaComponent = {
         defaultValue: { summary: 'null' },
       },
     },
-    postLoginChange: {
-      name: 'post-login-change',
-      description:
-        'Emitted whenever the authentication state changes. Payload: <code>{ authenticated: boolean }</code>.',
-      control: false,
-      table: {
-        category: 'Events',
-        type: { summary: 'CustomEvent<{ authenticated: boolean }>' },
-      },
-    },
-    refresh: {
-      description:
-        'Re-fetches the authentication state from the session API and updates the rendered slot accordingly.',
-      control: false,
-      table: {
-        category: 'Methods',
-        type: { summary: 'refresh(): Promise<void>' },
-      },
-    },
   },
 };
 
