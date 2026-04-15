@@ -13,8 +13,9 @@
   </head>
   <body>
     <post-login-widget>
-      <a slot="unauthenticated" href="/login" class="btn btn-primary btn-sm" data-testid="login-link">
-        Login <post-icon name="arrow-right" aria-hidden="true"></post-icon>
+      <a slot="unauthenticated" href="/login" data-testid="login-link">
+        <span>Login</span>
+        <post-icon name="arrow-right" aria-hidden="true"></post-icon>
       </a>
 
       <div slot="authenticated" data-testid="user-menu">

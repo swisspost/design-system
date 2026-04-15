@@ -89,8 +89,9 @@ type Story = StoryObj;
 export const Unauthenticated: Story = {
   render: () => html`
     <post-login-widget authenticated="false">
-      <a slot="unauthenticated" href="/login" class="btn btn-primary btn-sm">
-        Login <post-icon name="arrow-right" aria-hidden="true"></post-icon>
+      <a slot="unauthenticated" href="/login">
+        <span>Login</span>
+        <post-icon name="arrow-right" aria-hidden="true"></post-icon>
       </a>
     </post-login-widget>
   `,
