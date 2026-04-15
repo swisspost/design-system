@@ -1,6 +1,7 @@
 import type { AnyNode } from 'domhandler';
 import type { Cheerio } from 'cheerio';
 
+// Determine type of dynamic class attribute
 export function getDynamicClassType(
   attrName: string,
   value: string | undefined,
