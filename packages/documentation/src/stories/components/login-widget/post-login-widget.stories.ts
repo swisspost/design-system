@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components-vite';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -7,6 +7,7 @@ const meta: MetaComponent = {
   title: 'Components/Login Widget',
   tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-login-widget',
+  render,
   parameters: {
     badges: [],
     design: {
@@ -14,7 +15,23 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level',
     },
   },
+  args: {
+    authenticated: false,
+  },
   argTypes: {
+    authenticated: {
+      control: {
+        type: 'inline-radio',
+      },
+      options: [true, false],
+      description:
+        'Reflects the current authentication state. Managed internally — do not set manually in production. <code>null</code> while the API call is in progress, <code>true</code> when logged in, <code>false</code> when logged out.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean | null' },
+        defaultValue: { summary: 'null' },
+      },
+    },
     postLoginChange: {
       name: 'post-login-change',
       description:
@@ -39,6 +56,7 @@ const meta: MetaComponent = {
 
 export default meta;
 
+// RENDERERS
 function renderUserMenu() {
   return html`
     <post-menu-trigger for="user-menu-widget">
@@ -84,23 +102,26 @@ function renderUserMenu() {
   `;
 }
 
-type Story = StoryObj;
-
-export const Unauthenticated: Story = {
-  render: () => html`
-    <post-login-widget authenticated="false">
+function render(args: Args) {
+  return html`
+    <post-login-widget authenticated=${args.authenticated}>
       <a slot="unauthenticated" href="/login">
         <span>Login</span>
         <post-icon name="arrow-right" aria-hidden="true"></post-icon>
       </a>
-    </post-login-widget>
-  `,
-};
 
-export const Authenticated: Story = {
-  render: () => html`
-    <post-login-widget authenticated>
       <div slot="authenticated">${renderUserMenu()}</div>
     </post-login-widget>
-  `,
+  `;
+}
+
+// STORIES
+type Story = StoryObj;
+
+export const Default: Story = {};
+
+export const Authenticated: Story = {
+  args: {
+    authenticated: true,
+  },
 };
