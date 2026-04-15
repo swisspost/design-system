@@ -48,6 +48,10 @@ import noDeprecatedCssClasses, {
   name as noDeprecatedCssClassesRuleName,
 } from './no-deprecated-css-classes';
 
+import noDeprecatedResponsiveSpacingUtilitiesRule, {
+  name as noDeprecatedResponsiveSpacingUtilitiesRuleName,
+} from './no-deprecated-responsive-spacing-utilities';
+
 export const htmlMigrationRules = {
   [noDeprecatedBreakpointsRulePhase1Name]: noDeprecatedBreakpointsRulePhase1,
   [noDeprecatedBreakpointsRulePhase2Name]: noDeprecatedBreakpointsRulePhase2,
@@ -74,4 +78,5 @@ export const htmlMigrationRules = {
   [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
   [noDeprecatedAlertName]: noDeprecatedAlert,
   [noDeprecatedCssClassesRuleName]: noDeprecatedCssClasses,
+  [noDeprecatedResponsiveSpacingUtilitiesRuleName]: noDeprecatedResponsiveSpacingUtilitiesRule,
 };

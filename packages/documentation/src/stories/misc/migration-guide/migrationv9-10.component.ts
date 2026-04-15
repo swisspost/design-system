@@ -39,6 +39,7 @@ export class MigrationV910Component extends LitElement {
       elevation: false,
       removed_spacing: false,
       renamed_spacing: false,
+      responsive_spacing: false,
       background: false,
       renamed_various_utilities: false,
       removed_various_utilities: false,
@@ -872,6 +873,57 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-small-giant</code> is now <code>*-78</code></li>
                           <li><code>*-giant</code> is now <code>*-80</code></li>
                         </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-responsive_spacing"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.responsive_spacing}"
+                      />
+                      <label class="form-check-label" for="utilities-responsive_spacing">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Responsive margin, padding and gap utility classes renamed
+                        <ul>
+                          <li>
+                            <code>*-tiny-r</code> is now <code>*-12 *-md-16</code>
+                          </li>
+                          <li>
+                            <code>*-small-r</code> is now <code>*-12 *-sm-16</code>
+                          </li>
+                          <li>
+                            <code>*-regular-r</code> is now <code>*-16 *-md-24</code>
+                          </li>
+                          <li>
+                            <strong><code>*-large-r</code></strong> is now
+                            <strong><code>*-16 *-md-24 *-lg-32</code></strong>
+                          </li>
+                          <li>
+                            <strong><code>*-big-r</code></strong> is now
+                            <strong><code>*-24 *-md-32 *-lg-40</code></strong>
+                          </li>
+                          <li>
+                            <code>*-bigger-big-r</code> is now <code>*-24 *-md-48</code>
+                          </li>
+                          <li>
+                            <strong><code>*-huge-r</code></strong> is now
+                            <strong><code>*-32 *-md-40 *-lg-56</code></strong>
+                          </li>
+                          <li>
+                            <code>*-giant-r</code> is now <code>*-56 *-md-80</code>
+                          </li>
+                        </ul>
+                        <span class="info"
+                          >⚠️ Bold entries (<code>large</code>, <code>big</code>,
+                          <code>huge</code>) are not 1:1 migrations — carefully review the
+                          autofix output to ensure spacing behaves as intended at each
+                          breakpoint.</span
+                        >
                       </label>
                     </div>
                   </li>
