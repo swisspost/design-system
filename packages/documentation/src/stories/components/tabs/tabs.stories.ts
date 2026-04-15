@@ -7,12 +7,12 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<
   HTMLPostTabsElement & {
     'variant': string;
-    'activeTabPanels'?: string;
     'postChange': string;
     'post-tabs-content'?: string;
     'post-tabs'?: string;
     'slots-default'?: string;
     'slots-panels'?: string;
+    'activeTab'?: boolean;
   }
 > = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
@@ -27,7 +27,7 @@ const meta: MetaComponent<
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
     },
     controls: {
-      exclude: ['postChange', 'show', 'post-tabs-content', 'post-tabs'],
+      exclude: ['postChange', 'show', 'post-tabs-content', 'post-tabs', 'activeTab'],
     },
   },
   argTypes: {
@@ -40,23 +40,6 @@ const meta: MetaComponent<
       table: {
         category: 'Component Variant',
         defaultValue: { summary: 'panels' },
-      },
-    },
-    'activeTabPanels': {
-      name: 'active-tab',
-      description:
-        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\n**Changing this value after initialization has no effect.**',
-      control: 'select',
-      options: ['first', 'second', 'third'],
-      if: { arg: 'variant', eq: 'panels' },
-      table: {
-        category: 'Props',
-        type: { summary: 'string' },
-      },
-    },
-    'activeTab': {
-      table: {
-        disable: true,
       },
     },
     'fullWidth': {
@@ -162,7 +145,6 @@ const meta: MetaComponent<
     'variant': 'panels',
     'postChange': 'postChange',
     'post-tabs-content': 'post-tabs-content',
-    'activeTabPanels': undefined,
     'label': 'Tabs navigation',
     'slots-default': '',
     'slots-panels': '',
@@ -202,22 +184,20 @@ function renderNavigationVariant(
 
 // Helper function to render tabs variant
 function renderPanelsVariant(
-  activeTab: string | undefined,
   fullWidth: boolean | undefined,
   customSlots: string,
   panelSlots: string,
+  showActiveTab?: boolean,
 ): ReturnType<typeof html> {
   if (customSlots) {
     return html`
-      <post-tabs active-tab="${ifDefined(activeTab)}" full-width="${fullWidth ? true : nothing}">
-        ${unsafeHTML(customSlots)}
-      </post-tabs>
+      <post-tabs full-width="${fullWidth ? true : nothing}"> ${unsafeHTML(customSlots)} </post-tabs>
     `;
   }
 
   if (panelSlots) {
     return html`
-      <post-tabs active-tab="${ifDefined(activeTab)}" full-width="${fullWidth ? true : nothing}">
+      <post-tabs full-width="${fullWidth ? true : nothing}">
         <post-tab-item name="first">First tab</post-tab-item>
         <post-tab-item name="second">Second tab</post-tab-item>
         <post-tab-item name="third">Third tab</post-tab-item>
@@ -228,10 +208,10 @@ function renderPanelsVariant(
   }
 
   return html`
-    <post-tabs active-tab="${ifDefined(activeTab)}" full-width="${fullWidth ? true : nothing}">
+    <post-tabs full-width="${fullWidth ? true : nothing}">
       <post-tab-item name="first">First tab</post-tab-item>
       <post-tab-item name="second">Second tab</post-tab-item>
-      <post-tab-item name="third">Third tab</post-tab-item>
+      <post-tab-item name="third" ?active-tab=${showActiveTab}>Third tab</post-tab-item>
 
       <post-tab-panel for="first">
         This is the content of the first tab. By default it is shown initially.
@@ -250,9 +230,9 @@ function renderTabs(
   args: Partial<
     HTMLPostTabsElement & {
       'variant': string;
-      'activeTabPanels'?: string;
       'slots-default'?: string;
       'slots-panels'?: string;
+      'activeTab'?: boolean;
     }
   >,
 ) {
@@ -261,10 +241,10 @@ function renderTabs(
   return variant === 'navigation'
     ? renderNavigationVariant(args.fullWidth, args.label, args['slots-default'] || '')
     : renderPanelsVariant(
-        args.activeTabPanels,
         args.fullWidth,
         args['slots-default'] || '',
         args['slots-panels'] || '',
+        args.activeTab,
       );
 }
 
@@ -272,9 +252,9 @@ function renderTabs(
 type Story = StoryObj<
   HTMLPostTabsElement & {
     'variant': string;
-    'activeTabPanels'?: string;
     'slots-default'?: string;
     'slots-panels'?: string;
+    'activeTab'?: boolean;
   }
 >;
 
@@ -304,7 +284,7 @@ export const ActiveTab: Story = {
   },
   args: {
     variant: 'panels',
-    activeTabPanels: 'second',
+    activeTab: true,
   },
 };
 

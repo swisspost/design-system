@@ -50,13 +50,6 @@ export class PostTabs {
   @Element() host: HTMLPostTabsElement;
 
   /**
-   * The name of the tab in the panel mode that is initially active.
-   * Changing this value after initialization has no effect.
-   * If not specified, defaults to the first tab.
-   */
-  @Prop() readonly activeTab?: string;
-
-  /**
    * When set to true, this property allows the tabs container to span the
    * Changing this value after initialization has no effect.
    * full width of the screen, from edge to edge.
@@ -99,7 +92,9 @@ export class PostTabs {
         this.activateTab(activeTab);
       }
     } else {
-      const tabToActivate = this.activeTab || this.tabs[0]?.name;
+      const preActivated = this.tabs.find(tab => tab.hasAttribute('active-tab'));
+      const tabToActivate = preActivated?.name || this.tabs[0]?.name;
+
       if (tabToActivate) {
         void this.show(tabToActivate);
       }
@@ -190,7 +185,8 @@ export class PostTabs {
         this.activateTab(activeTab);
       }
     } else {
-      const tabToActivate = this.activeTab || this.tabs[0]?.name;
+      const preActivated = this.tabs.find(tab => tab.hasAttribute('active-tab'));
+      const tabToActivate = preActivated?.name || this.tabs[0]?.name;
       if (tabToActivate) {
         void this.show(tabToActivate);
       }
@@ -329,15 +325,11 @@ export class PostTabs {
   private activateTab(tab: HTMLPostTabItemElement) {
     // Deactivate previous tab
     if (this.currentActiveTab) {
-      this.currentActiveTab.classList.remove('active');
-
       if (!this.isNavigationMode) {
         this.currentActiveTab.setAttribute('aria-selected', 'false');
         this.currentActiveTab.setAttribute('tabindex', '-1');
       }
     }
-
-    tab.classList.add('active');
 
     if (!this.isNavigationMode) {
       tab.setAttribute('aria-selected', 'true');

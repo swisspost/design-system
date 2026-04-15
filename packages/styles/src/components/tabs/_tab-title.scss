@@ -105,7 +105,7 @@ tokens.$default-map: utilities.$post-spacing;
       outline: none;
     }
 
-    &:active {
+    &[aria-current='page'] {
       opacity: 1;
       background-color: color.$black-alpha-60;
       color: color.$white;
@@ -129,8 +129,8 @@ tokens.$default-map: utilities.$post-spacing;
   }
 }
 
-.tab-title.active,
-.nav-item.active a {
+.tab-title[aria-selected='true'],
+.nav-item a[aria-current='page'] {
   z-index: 1;
   border-right-color: nav.$nav-tabs-border-color;
   border-left-color: nav.$nav-tabs-border-color;
@@ -141,8 +141,8 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 // Create a line that does not suffer from border corner mitering
-.tab-title.active::before,
-.nav-item.active a::before {
+.tab-title[aria-selected='true']::before,
+.nav-item a[aria-current='page']::before {
   content: '';
   display: block;
   position: absolute;
@@ -154,8 +154,8 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 @include utilities-mx.high-contrast-mode() {
-  .tab-title.active,
-  .nav-item.active a {
+  .tab-title[aria-selected='true'],
+  .nav-item a[aria-current='page'] {
     border-left-color: ButtonText;
     border-right-color: ButtonText;
     color: Highlight;

@@ -639,6 +639,10 @@ export namespace Components {
     }
     interface PostTabItem {
         /**
+          * Indicates whether this tab item is the initially active one. Changing this value after initialization has no effect.
+         */
+        "activeTab"?: string;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -650,10 +654,6 @@ export namespace Components {
         "for": string;
     }
     interface PostTabs {
-        /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
-         */
-        "activeTab"?: string;
         /**
           * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
           * @default false
@@ -1779,6 +1779,10 @@ declare namespace LocalJSX {
     }
     interface PostTabItem {
         /**
+          * Indicates whether this tab item is the initially active one. Changing this value after initialization has no effect.
+         */
+        "activeTab"?: string;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -1790,10 +1794,6 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostTabs {
-        /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
-         */
-        "activeTab"?: string;
         /**
           * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
           * @default false
