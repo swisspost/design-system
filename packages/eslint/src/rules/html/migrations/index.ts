@@ -61,7 +61,7 @@ export const htmlMigrationRules = {
   [noDeprecatedSpacingUtilities[0].name]: noDeprecatedSpacingUtilities[0].rule,
   [noDeprecatedSpacingUtilities[1].name]: noDeprecatedSpacingUtilities[1].rule,
   [noDeprecatedSizingUtilities[0].name]: noDeprecatedSizingUtilities[0].rule,
-  [noDeprecatedSizingUtilities[0].name]: noDeprecatedSizingUtilities[1].rule,
+  [noDeprecatedSizingUtilities[1].name]: noDeprecatedSizingUtilities[1].rule,
   [noDeprecatedGutterUtilities[0].name]: noDeprecatedGutterUtilities[0].rule,
   [noDeprecatedGutterUtilities[1].name]: noDeprecatedGutterUtilities[1].rule,
   [noDeprecatedGapUtilities[0].name]: noDeprecatedGapUtilities[0].rule,
