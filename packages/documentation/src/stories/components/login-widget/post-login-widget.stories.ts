@@ -107,7 +107,7 @@ function render(args: Args) {
     <post-login-widget authenticated=${args.authenticated}>
       <a slot="unauthenticated" href="/login">
         <span>Login</span>
-        <post-icon name="arrow-right" aria-hidden="true"></post-icon>
+        <post-icon name="login" aria-hidden="true"></post-icon>
       </a>
 
       <div slot="authenticated">${renderUserMenu()}</div>
