@@ -90,6 +90,7 @@ function render(args: Args) {
         <span>Login</span>
         <post-icon name="login" aria-hidden="true"></post-icon>
       </a>
+      <div slot="authenticated">${renderUserMenu('user-menu-default')}</div>
     </post-login-widget>
   `;
 }
