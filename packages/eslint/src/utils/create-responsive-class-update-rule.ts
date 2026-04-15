@@ -1,7 +1,6 @@
 import { createRule } from './create-rule';
 import { HtmlNode } from '../parsers/html/html-node';
-import type { AnyNode } from 'domhandler';
-import type { Cheerio } from 'cheerio';
+import { getDynamicClassType, getNewAttrValueMulti } from './class-binding-helpers';
 
 export interface ResponsiveClassMapping {
   old: string;
@@ -144,7 +143,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
                   const raw = $node.attr(attrName)?.trim();
                   if (!raw) return null;
 
-                  const newValue = getNewAttrValue($node, attrName, oldClass, newClasses, raw);
+                  const newValue = getNewAttrValueMulti($node, attrName, oldClass, newClasses, raw);
                   if (newValue === null) return null;
 
                   const targetAttr = isNgClass ? '[ngClass]' : '[class]';
@@ -165,88 +164,3 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
 
   return { rule, data };
 };
-
-// ── Helpers (mirrored from create-class-update-rule.ts, extended for one-to-many) ──
-
-function getDynamicClassType(
-  attrName: string,
-  value: string | undefined,
-  oldClass: string,
-): { isClassBinding: boolean; isNgClass: boolean; isClass: boolean } {
-  const escaped = oldClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const regex = new RegExp(`(^|[^A-Za-z0-9_-])${escaped}([^A-Za-z0-9_-]|$)`);
-  const hasExactClass = typeof value === 'string' && regex.test(value);
-
-  return {
-    isClassBinding: attrName === `[class.${oldClass}]`,
-    isNgClass: attrName.toLowerCase() === '[ngclass]' && hasExactClass,
-    isClass: attrName.toLowerCase() === '[class]' && hasExactClass,
-  };
-}
-
-function getNewAttrValue(
-  $node: Cheerio<AnyNode>,
-  attrName: string,
-  oldClass: string,
-  newClasses: string[],
-  value: string,
-): string | null {
-  if (isStringLiteral(value)) return updateStringLiteral(value, oldClass, newClasses);
-  if (isObjectLiteral(value)) {
-    const rawAttr = $node.attr(attrName);
-    if (!rawAttr) return null;
-    return updateObjectLiteral(rawAttr, oldClass, newClasses);
-  }
-  return null;
-}
-
-function isStringLiteral(value: string): boolean {
-  const first = value[0],
-    last = value.at(-1);
-  return ['"', "'", '`'].includes(first) && first === last;
-}
-
-function isObjectLiteral(value: string): boolean {
-  return value.startsWith('{') && value.endsWith('}');
-}
-
-// Replaces the old class with multiple new classes inside a string literal,
-// e.g. "'foo m-tiny-r bar'" → "'foo m-12 m-md-16 bar'"
-function updateStringLiteral(value: string, oldClass: string, newClasses: string[]): string {
-  const quote = value[0];
-  const inner = value.slice(1, -1);
-  const parts = inner
-    .split(/\s+/)
-    .flatMap(cls => (cls === oldClass ? newClasses : [cls]))
-    .filter(Boolean);
-  return parts.length ? quote + parts.join(' ') + quote : '';
-}
-
-// Replaces the old class key with the first new class in an object literal,
-// e.g. "{'m-tiny-r': true}" → "{'m-12': true, 'm-md-16': true}"
-// Note: object literals use the key as the class name so we expand them inline.
-function updateObjectLiteral(
-  rawAttr: string,
-  oldClass: string,
-  newClasses: string[],
-): string | null {
-  const sanitized = rawAttr.replace(/['"\s]/g, '');
-  const inner = sanitized.slice(1, -1);
-  const keys = inner.split(',').map(p => p.split(':')[0]);
-  if (!keys.includes(oldClass)) return null;
-
-  const escapedOldClass = oldClass.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-  // Find the full key entry (including quotes if present) and the value after the colon
-  const keyPattern = new RegExp(
-    `(['"]?)${escapedOldClass}\\1\\s*:\\s*([^,}]+)`,
-  );
-  const match = rawAttr.match(keyPattern);
-  if (!match) return null;
-
-  const quote = match[1] || '';
-  const val = match[2].trim();
-  const replacement = newClasses.map(cls => `${quote}${cls}${quote}: ${val}`).join(', ');
-
-  return rawAttr.replace(keyPattern, replacement);
-}
