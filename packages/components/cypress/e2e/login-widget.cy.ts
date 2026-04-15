@@ -101,7 +101,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.visit(FIXTURE_PATH);
     cy.wait('@session');
     cy.get('post-login-widget').then(([el]) => {
-      expect((el as HTMLPostLoginWidgetElement).authenticated).to.equal(true);
+      expect(el.authenticated).to.equal(true);
     });
   });
 
@@ -110,7 +110,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.visit(FIXTURE_PATH);
     cy.wait('@session');
     cy.get('post-login-widget').then(([el]) => {
-      expect((el as HTMLPostLoginWidgetElement).authenticated).to.equal(false);
+      expect(el.authenticated).to.equal(false);
     });
   });
 
@@ -144,7 +144,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.wait('@session');
 
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session2');
-    cy.get('post-login-widget').then(([el]) => (el as HTMLPostLoginWidgetElement).refresh());
+    cy.get('post-login-widget').then(([el]) => el.refresh());
     cy.wait('@session2');
 
     cy.get('@changeSpy').should('have.been.calledOnce');
