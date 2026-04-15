@@ -31,36 +31,24 @@ export class PostLoginWidget {
   @Element() host: HTMLPostLoginWidgetElement;
 
   /**
-   * The current authentication state.
-   * - `null`  → loading / API call in progress
-   * - `true`  → user is authenticated
-   * - `false` → user is not authenticated
+   * The current authentication state: `null` (loading), `true` (authenticated), `false` (not authenticated).
    */
   @Prop({ mutable: true, reflect: true }) authenticated: boolean | null = null;
 
   @Watch('authenticated')
   onAuthenticatedPropChange(next: boolean | null) {
-    // Sync external prop changes (e.g. set directly in Storybook or tests)
-    // into the internal @State so the render reflects the new value.
     this.authState = next;
   }
 
   /**
-   * Internal render state, kept in sync with `authenticated`.
-   * Using a separate `@State` ensures Stencil re-renders on every change,
-   * including the `null → false` transition that would not re-render if
-   * only the reflected `@Prop` changed.
+   * Internal render state kept in sync with `authenticated` to ensure re-renders on all changes.
    */
   @State() private authState: boolean | null = null;
 
   /**
-   * Emitted whenever the authentication state changes.
-   * Payload: `{ authenticated: boolean }`.
-   * Not emitted for the initial `null` (loading) state.
+   * Emitted when the authentication state changes (not for initial `null` state).
    */
   @Event() postLoginChange: EventEmitter<{ authenticated: boolean }>;
-
-  // ─── Lifecycle ────────────────────────────────────────────────────────────
 
   async componentWillLoad() {
     if (Build.isBrowser) {
@@ -72,8 +60,6 @@ export class PostLoginWidget {
     }
   }
 
-  // ─── Public API ───────────────────────────────────────────────────────────
-
   /**
    * Re-fetches the authentication state from the session API and updates
    * the component rendering accordingly.
@@ -82,8 +68,6 @@ export class PostLoginWidget {
   async refresh(): Promise<void> {
     await this.fetchAuthState();
   }
-
-  // ─── Private helpers ──────────────────────────────────────────────────────
 
   private async fetchAuthState(): Promise<void> {
     try {
@@ -97,22 +81,13 @@ export class PostLoginWidget {
       }
 
       const data = await response.json();
-
-      // The session endpoint returns an object with a `data` property when
-      // the user is authenticated (see mocked fixture).  An empty / missing
-      // `data` property means the session exists but the user is anonymous.
       const isAuthenticated = !!(data && data.data && Object.keys(data.data).length > 0);
       this.setAuthState(isAuthenticated);
     } catch {
-      // Network error or unparseable response → treat as unauthenticated
       this.setAuthState(false);
     }
   }
 
-  /**
-   * Updates state and emits the change event, but only when the value
-   * actually changes to avoid unnecessary re-renders and duplicate events.
-   */
   private setAuthState(next: boolean): void {
     if (this.authState === next) return;
 
@@ -120,8 +95,6 @@ export class PostLoginWidget {
     this.authenticated = next;
     this.postLoginChange.emit({ authenticated: next });
   }
-
-  // ─── Render ───────────────────────────────────────────────────────────────
 
   render() {
     return (
