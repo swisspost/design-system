@@ -4,16 +4,16 @@ import { htmlRuleTester } from '../../../utils/html-rule-tester';
 const validClasses = ['mt-12 mt-md-16', 'pb-16 pb-md-24', 'gap-24 gap-md-48'];
 
 // Generate all invalid test cases from the exported mutations data
-const invalidData = Object.entries(data.mutations).map(([key, [oldClass, newClasses]]) => ({
+const invalidData = Object.entries(data).map(([key, [oldClass, newClasses]]) => ({
   code: `<div class="${oldClass}">Content</div>`,
   output: `<div class="${newClasses.join(' ')}">Content</div>`,
   errors: [{ messageId: key }],
 }));
 
 // Pick two known mappings for the combination/multi-class tests
-const [key0, [old0, new0]] = Object.entries(data.mutations)[0];   // m-tiny-r
-const [key1, [old1, new1]] = Object.entries(data.mutations)[8];   // mt-tiny-r
-const [key2, [old2, new2]] = Object.entries(data.mutations)[16];  // mb-tiny-r
+const [key0, [old0, new0]] = Object.entries(data)[0];   // m-tiny-r
+const [key1, [old1, new1]] = Object.entries(data)[8];   // mt-tiny-r
+const [key2, [old2, new2]] = Object.entries(data)[16];  // mb-tiny-r
 
 htmlRuleTester.run(name, rule, {
   valid: validClasses.map(cls => ({ code: `<div class="${cls}">Content</div>` })),
@@ -45,7 +45,11 @@ htmlRuleTester.run(name, rule, {
     {
       code: `<div class="${old0} ${old1} ${old2}">Content</div>`,
       output: `<div class="${new0.join(' ')} ${new1.join(' ')} ${new2.join(' ')}">Content</div>`,
-      errors: [{ messageId: key0 }],
+      errors: [
+        { messageId: key0 },
+        { messageId: key1 },
+        { messageId: key2 },
+      ],
     },
   ],
 });
