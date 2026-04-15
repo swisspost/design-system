@@ -29,25 +29,15 @@ import {
   UNICODE_BIDI,
   FALLBACK_LANGUAGE_CODE,
 } from '@/utils';
-
-const TEXT_DIRECTION_MARKERS = `${UNICODE_BIDI.ltr}${UNICODE_BIDI.rtl}${UNICODE_BIDI.pop}`;
-const TEXT_DIRECTION_MARKERS_REGEX = new RegExp(`[${TEXT_DIRECTION_MARKERS}]`, 'g');
-const DATE_FORMAT_RANGE_SEPARATOR = ' - ';
-const DATE_FORMAT_MAP = {
-  y: '3333',
-  m: '11',
-  d: '22',
-};
-const DATE_FORMAT_KEYS = Object.keys(DATE_FORMAT_MAP);
-const DATE_FORMAT_SEPARATOR_REGEX = new RegExp(
-  `[^${DATE_FORMAT_KEYS.join('')}${TEXT_DIRECTION_MARKERS}]`,
-  'g',
-);
-const DATE_FORMAT_STRING_OPTIONS = {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
-} as Intl.DateTimeFormatOptions;
+import {
+  TEXT_DIRECTION_MARKERS_REGEX,
+  DATE_FORMAT_RANGE_SEPARATOR,
+  DATE_FORMAT_MAP,
+  DATE_FORMAT_KEYS,
+  DATE_FORMAT_KEYS_REGEX,
+  DATE_FORMAT_SEPARATOR_REGEX,
+  DATE_FORMAT_STRING_OPTIONS,
+} from './constants';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -376,19 +366,27 @@ export class PostDatePicker {
   }
 
   /**
-   * Convert a localized date string to a date object. The date string should be in the same format as the date picker's `dateFormat`, which depends on the given `localeCode`.
-   * @param str A localized date string.
+   * Convert a localized date string to a date object.
+   * The date string should be in the same format as the date picker's `dateFormat`, which depends on the given `localeCode`.
+   * @param localeDateString A localized date string.
    * @returns A localtime date object.
    */
-  private stringToDate(str: string) {
-    // WARNING: using the TEXT_DIRECTION_MARKERS_REGEX is mandatory here,
-    // because `str` or `this.dateFormat` can possibly contain unicode bidi characters!
+  private stringToDate(localeDateString: string) {
+    // Match the separator chars in the date format (e.g. "." for "dd.mm.yyyy", etc.).
     const dateSeparator = this.dateFormat.match(DATE_FORMAT_SEPARATOR_REGEX)[0];
-    const dateParts: string[] = str.replace(TEXT_DIRECTION_MARKERS_REGEX, '').split(dateSeparator);
-    const formatParts: string[] = this.dateFormat
+    // Remove the text direction markers, split the date string into its parts (e.g. ["31", "01", "2026"], etc.)
+    // and make sure its values only contains digits (e.g. for "bg-BG", etc.).
+    const dateParts: string[] = localeDateString
       .replace(TEXT_DIRECTION_MARKERS_REGEX, '')
-      .split(dateSeparator);
+      .split(dateSeparator)
+      .map(p => p.replace(/[^\d]/g, ''));
+    // Split the dateFormat into its parts to get the year, month, day order (e.g. ["d", "m", "y"], etc.).
+    // Removing everything else but the DATE_FORMAT_KEYS is necessary to support date formats with additional chars (e.g. "d.m.y г.", etc.).
+    const formatParts: string[] = this.dateFormat.replace(DATE_FORMAT_KEYS_REGEX, '').split('');
 
+    // Map the datePart values to their corresponding keys (e.g. y, m, d),
+    // to construct an ISO date string (e.g. "2026-01-31") that can be parsed by the Date constructor.
+    // This is necessary because different locale date formats may have different orders (e.g. "ymd", "dmy", "mdy", etc.).
     const { y, m, d } = DATE_FORMAT_KEYS.reduce(
       (parts, key) => ({
         ...parts,
@@ -413,11 +411,11 @@ export class PostDatePicker {
 
   /**
    * Convert an ISO 8601 formatted date string (YYYY-MM-DD) to a localtime date object.
-   * @param iso An iso formatted, localtime date string.
+   * @param isoDateString An iso formatted, localtime date string.
    * @returns A localtime date object.
    */
-  private isoToDate(iso: string): Date | null {
-    return new Date(`${iso}T00:00`);
+  private isoToDate(isoDateString: string): Date | null {
+    return new Date(`${isoDateString}T00:00`);
   }
 
   private setupInputObserver() {
@@ -768,7 +766,7 @@ export class PostDatePicker {
   private setUpMask() {
     // WARNING: using the DATE_FORMAT_SEPARATOR_REGEX is mandatory here,
     // because `this.dateFormat` can possibly contain unicode bidi characters!
-    const maskPattern = this.dateFormat.replace(DATE_FORMAT_SEPARATOR_REGEX, m => `${m}\``);
+    const maskPattern = this.dateFormat; //.replace(DATE_FORMAT_SEPARATOR_REGEX, m => `${m}\``);
 
     const baseMaskOptions = {
       mask: Date,
@@ -905,9 +903,16 @@ export class PostDatePicker {
           // Assign value to the input, close the popover and focus on the input
           if (this.dpInput) {
             if (Array.isArray(date)) {
+              // console.log(
+              //   'TEST onSelect before mask value update',
+              //   this.inputMask.value,
+              //   '\n',
+              //   date.map(d => this.dateToString(d)).join(this.dateFormatRangeSeparator),
+              // );
               this.inputMask.value = date
                 .map(d => this.dateToString(d))
                 .join(this.dateFormatRangeSeparator);
+              // console.log('TEST onSelect after mask value update', this.inputMask);
               this.updateInputValue();
             } else if (date) {
               // If there is a date, set it to the input. No date = same date as before
@@ -1195,6 +1200,9 @@ export class PostDatePicker {
               >
                 <post-icon name="calendar"></post-icon>
               </button>
+              <div>{this.localeCode}</div>
+              <div>{this.dateFormat}</div>
+              <div>separator: "{this.dateFormat.match(DATE_FORMAT_SEPARATOR_REGEX)[0]}"</div>
             </div>
             <post-popovercontainer
               placement="bottom-end"
