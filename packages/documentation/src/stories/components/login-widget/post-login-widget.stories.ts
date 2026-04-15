@@ -97,7 +97,7 @@ export const Unauthenticated: Story = {
 };
 
 export const Authenticated: Story = {
-  render: (_args: Args) => html`
+  render: () => html`
     <post-login-widget authenticated>
       <div slot="authenticated">${renderUserMenu()}</div>
     </post-login-widget>
