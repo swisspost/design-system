@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Widget Test</title>
+    <link
+      href="../../node_modules/@swisspost/design-system-styles/post-default.css"
+      rel="stylesheet"
+    />
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+  </head>
+  <body>
+    <post-login-widget>
+      <a slot="unauthenticated" href="/login" data-testid="login-link">Login</a>
+      <div slot="authenticated" data-testid="user-menu">User Menu</div>
+    </post-login-widget>
+  </body>
+</html>
