@@ -13,16 +13,16 @@ const invalidData = Object.entries(data.mutations).map(([key, [oldClass, newClas
 }));
 
 // Look up test classes by name instead of magic indices so the test stays
-// correct even if the order of prefixes or size tokens changes.
+// correct even if the order of prefixes or size tokens changes
 const findMutation = (oldClass: string) => {
   const entry = Object.entries(data.mutations).find(([, [old]]) => old === oldClass);
   if (!entry) throw new Error(`No mutation found for "${oldClass}"`);
   return entry;
 };
 
-const [key_m_tiny, [old_m_tiny, new_m_tiny]] = findMutation('m-tiny-r');
-const [, [old_mt_tiny, new_mt_tiny]] = findMutation('mt-tiny-r');
-const [, [old_mb_tiny, new_mb_tiny]] = findMutation('mb-tiny-r');
+const [KEY_M_TINY, [OLD_M_TINY, NEW_M_TINY]] = findMutation('m-tiny-r');
+const [, [OLD_MT_TINY, NEW_MT_TINY]] = findMutation('mt-tiny-r');
+const [, [OLD_MB_TINY, NEW_MB_TINY]] = findMutation('mb-tiny-r');
 
 htmlRuleTester.run(name, rule, {
   valid: validClasses.map(cls => ({ code: `<div class="${cls}">Content</div>` })),
@@ -31,52 +31,52 @@ htmlRuleTester.run(name, rule, {
 
     // Cheerio removes the deprecated class and appends the new ones at the end
     {
-      code: `<div class="${old_m_tiny} container text-center">Content</div>`,
-      output: `<div class="container text-center ${new_m_tiny.join(' ')}">Content</div>`,
-      errors: [{ messageId: key_m_tiny }],
+      code: `<div class="${OLD_M_TINY} container text-center">Content</div>`,
+      output: `<div class="container text-center ${NEW_M_TINY.join(' ')}">Content</div>`,
+      errors: [{ messageId: KEY_M_TINY }],
     },
     {
-      code: `<div class="container ${old_m_tiny} text-center">Content</div>`,
-      output: `<div class="container text-center ${new_m_tiny.join(' ')}">Content</div>`,
-      errors: [{ messageId: key_m_tiny }],
+      code: `<div class="container ${OLD_M_TINY} text-center">Content</div>`,
+      output: `<div class="container text-center ${NEW_M_TINY.join(' ')}">Content</div>`,
+      errors: [{ messageId: KEY_M_TINY }],
     },
     {
-      code: `<div class="container text-center ${old_m_tiny}">Content</div>`,
-      output: `<div class="container text-center ${new_m_tiny.join(' ')}">Content</div>`,
-      errors: [{ messageId: key_m_tiny }],
+      code: `<div class="container text-center ${OLD_M_TINY}">Content</div>`,
+      output: `<div class="container text-center ${NEW_M_TINY.join(' ')}">Content</div>`,
+      errors: [{ messageId: KEY_M_TINY }],
     },
 
     // Multiple deprecated classes on the same element — all fixed in one pass
     {
-      code: `<div class="${old_m_tiny} ${old_mt_tiny} ${old_mb_tiny}">Content</div>`,
-      output: `<div class="${[...new_m_tiny, ...new_mt_tiny, ...new_mb_tiny].join(' ')}">Content</div>`,
-      errors: [{ messageId: key_m_tiny }],
+      code: `<div class="${OLD_M_TINY} ${OLD_MT_TINY} ${OLD_MB_TINY}">Content</div>`,
+      output: `<div class="${[...NEW_M_TINY, ...NEW_MT_TINY, ...NEW_MB_TINY].join(' ')}">Content</div>`,
+      errors: [{ messageId: KEY_M_TINY }],
     },
 
     // [ngClass] with string literal — can be auto-fixed inline
     {
-      code: `<div [ngClass]="'${old_m_tiny}'">Content</div>`,
-      output: `<div [ngClass]="'${new_m_tiny.join(' ')}'">Content</div>`,
-      errors: [{ messageId: key_m_tiny }],
+      code: `<div [ngClass]="'${OLD_M_TINY}'">Content</div>`,
+      output: `<div [ngClass]="'${NEW_M_TINY.join(' ')}'">Content</div>`,
+      errors: [{ messageId: KEY_M_TINY }],
     },
     {
-      code: `<div [ngClass]="'container ${old_m_tiny} text-center'">Content</div>`,
-      output: `<div [ngClass]="'container ${new_m_tiny.join(' ')} text-center'">Content</div>`,
-      errors: [{ messageId: key_m_tiny }],
+      code: `<div [ngClass]="'container ${OLD_M_TINY} text-center'">Content</div>`,
+      output: `<div [ngClass]="'container ${NEW_M_TINY.join(' ')} text-center'">Content</div>`,
+      errors: [{ messageId: KEY_M_TINY }],
     },
 
     // [class] with string literal — can be auto-fixed inline
     {
-      code: `<div [class]="'${old_m_tiny}'">Content</div>`,
-      output: `<div [class]="'${new_m_tiny.join(' ')}'">Content</div>`,
-      errors: [{ messageId: key_m_tiny }],
+      code: `<div [class]="'${OLD_M_TINY}'">Content</div>`,
+      output: `<div [class]="'${NEW_M_TINY.join(' ')}'">Content</div>`,
+      errors: [{ messageId: KEY_M_TINY }],
     },
 
     // [class.old-name] — flagged without autofix because one attribute cannot
     // expand to multiple [class.x] attributes automatically
     {
-      code: `<div [class.${old_m_tiny}]="expr">Content</div>`,
-      errors: [{ messageId: key_m_tiny }],
+      code: `<div [class.${OLD_M_TINY}]="expr">Content</div>`,
+      errors: [{ messageId: KEY_M_TINY }],
     },
   ],
 });
