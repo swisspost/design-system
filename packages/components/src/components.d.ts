@@ -641,7 +641,7 @@ export namespace Components {
         /**
           * Indicates whether this tab item is the initially active one. Changing this value after initialization has no effect.
          */
-        "activeTab"?: string;
+        "defaultActive"?: string;
         /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
@@ -1781,7 +1781,7 @@ declare namespace LocalJSX {
         /**
           * Indicates whether this tab item is the initially active one. Changing this value after initialization has no effect.
          */
-        "activeTab"?: string;
+        "defaultActive"?: string;
         /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */

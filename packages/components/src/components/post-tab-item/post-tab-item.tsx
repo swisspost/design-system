@@ -29,7 +29,7 @@ export class PostTabItem {
    * Indicates whether this tab item is the initially active one.
    * Changing this value after initialization has no effect.
    */
-  @Prop({ reflect: true }) readonly activeTab?: string;
+  @Prop({ reflect: true }) readonly defaultActive?: string;
 
   @Watch('name')
   validateName() {
@@ -60,7 +60,7 @@ export class PostTabItem {
   }
 
   render() {
-    const isActive = this.host.hasAttribute('active-tab');
+    const isActive = this.host.hasAttribute('default-active');
     return (
       <Host
         id={this.tabId}

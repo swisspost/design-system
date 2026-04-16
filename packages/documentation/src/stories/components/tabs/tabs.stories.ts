@@ -12,7 +12,7 @@ const meta: MetaComponent<
     'post-tabs'?: string;
     'slots-default'?: string;
     'slots-panels'?: string;
-    'activeTab'?: boolean;
+    'defaultActive'?: boolean;
   }
 > = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
@@ -27,7 +27,7 @@ const meta: MetaComponent<
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
     },
     controls: {
-      exclude: ['postChange', 'show', 'post-tabs-content', 'post-tabs', 'activeTab'],
+      exclude: ['postChange', 'show', 'post-tabs-content', 'post-tabs', 'defaultActive'],
     },
   },
   argTypes: {
@@ -187,7 +187,7 @@ function renderPanelsVariant(
   fullWidth: boolean | undefined,
   customSlots: string,
   panelSlots: string,
-  showActiveTab?: boolean,
+  showdefaultActive?: boolean,
 ): ReturnType<typeof html> {
   if (customSlots) {
     return html`
@@ -211,7 +211,7 @@ function renderPanelsVariant(
     <post-tabs full-width="${fullWidth ? true : nothing}">
       <post-tab-item name="first">First tab</post-tab-item>
       <post-tab-item name="second">Second tab</post-tab-item>
-      <post-tab-item name="third" ?active-tab=${showActiveTab}>Third tab</post-tab-item>
+      <post-tab-item name="third" ?default-active=${showdefaultActive}>Third tab</post-tab-item>
 
       <post-tab-panel for="first">
         This is the content of the first tab. By default it is shown initially.
@@ -232,7 +232,7 @@ function renderTabs(
       'variant': string;
       'slots-default'?: string;
       'slots-panels'?: string;
-      'activeTab'?: boolean;
+      'defaultActive'?: boolean;
     }
   >,
 ) {
@@ -244,7 +244,7 @@ function renderTabs(
         args.fullWidth,
         args['slots-default'] || '',
         args['slots-panels'] || '',
-        args.activeTab,
+        args.defaultActive,
       );
 }
 
@@ -254,7 +254,7 @@ type Story = StoryObj<
     'variant': string;
     'slots-default'?: string;
     'slots-panels'?: string;
-    'activeTab'?: boolean;
+    'defaultActive'?: boolean;
   }
 >;
 
@@ -278,13 +278,13 @@ export const ActiveTab: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Set which tab is initially active using the `active-tab` property.',
+        story: 'Set which tab is initially active using the `default-active` property.',
       },
     },
   },
   args: {
     variant: 'panels',
-    activeTab: true,
+    defaultActive: true,
   },
 };
 

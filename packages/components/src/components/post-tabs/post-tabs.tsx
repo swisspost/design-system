@@ -92,7 +92,7 @@ export class PostTabs {
         this.activateTab(activeTab);
       }
     } else {
-      const preActivated = this.tabs.find(tab => tab.hasAttribute('active-tab'));
+      const preActivated = this.tabs.find(tab => tab.hasAttribute('default-active'));
       const tabToActivate = preActivated?.name || this.tabs[0]?.name;
 
       if (tabToActivate) {
@@ -185,7 +185,7 @@ export class PostTabs {
         this.activateTab(activeTab);
       }
     } else {
-      const preActivated = this.tabs.find(tab => tab.hasAttribute('active-tab'));
+      const preActivated = this.tabs.find(tab => tab.hasAttribute('default-active'));
       const tabToActivate = preActivated?.name || this.tabs[0]?.name;
       if (tabToActivate) {
         void this.show(tabToActivate);
@@ -228,6 +228,8 @@ export class PostTabs {
    */
   @Method()
   async show(tabName: string) {
+    // hide all panels first
+    this.panels.forEach(panel => (panel.style.display = 'none'));
     // do nothing if the tab is already active
     if (tabName === this.currentActiveTab?.name) {
       return;
