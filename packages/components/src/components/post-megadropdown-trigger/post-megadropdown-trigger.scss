@@ -37,6 +37,10 @@ button {
 
   @include media.only(desktop) {
     @include header-mx.active-state {
+      font-weight: 700;
+    }
+
+    &:is(.active, [aria-expanded="true"]) {
       background-color: #f0efed;
       color: #050400;
       z-index: 2;
