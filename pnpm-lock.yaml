@@ -969,7 +969,7 @@ importers:
         version: 33.3.2
     devDependencies:
       typescript:
-        specifier: ^5.9.3
+        specifier: 5.9.3
         version: 5.9.3
 
   packages/tokens:
