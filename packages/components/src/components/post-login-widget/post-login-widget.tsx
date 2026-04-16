@@ -96,8 +96,7 @@ export class PostLoginWidget {
   render() {
     return (
       <Host data-version={version}>
-        {this.authState === true && <slot name="authenticated" />}
-        {this.authState === false && <slot name="unauthenticated" />}
+        {this.authState === true ? <slot name="authenticated" /> : <slot name="unauthenticated" />}
       </Host>
     );
   }
