@@ -59,6 +59,11 @@ export class PostTabItem {
     this.isNavigationMode = hasAnchor;
   }
 
+  private getTabIndex(isActive: boolean): string | undefined {
+    if (this.isNavigationMode) return undefined;
+    return isActive ? '0' : '-1';
+  }
+
   render() {
     const isActive = this.host.hasAttribute('default-active');
     return (
@@ -68,7 +73,7 @@ export class PostTabItem {
         data-version={version}
         data-navigation-mode={this.isNavigationMode.toString()}
         aria-selected={!this.isNavigationMode ? String(isActive) : undefined}
-        tabindex={!this.isNavigationMode ? (isActive ? '0' : '-1') : undefined}
+        tabindex={this.getTabIndex(isActive)}
         class={`${!this.isNavigationMode ? 'tab-title' : 'nav-item'}`}
       >
         <slot />
