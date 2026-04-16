@@ -1,5 +1,6 @@
 import { createRule } from './create-rule';
 import { HtmlNode } from '../parsers/html/html-node';
+import { getDynamicClassType, isStringLiteral } from './class-binding-helpers';
 
 export interface ResponsiveClassMapping {
   old: string;
@@ -21,13 +22,17 @@ interface ResponsiveRuleConfig {
  * Creates an ESLint rule that replaces a single deprecated class with multiple new classes.
  * Unlike `createClassUpdateRule`, mutations map [oldClass, newClasses[]] (one-to-many).
  * No two-phase approach is needed since the old `-r` suffix classes never collide with new names.
+ *
+ * Dynamic binding behaviour:
+ * - `[class.old]` and object-literal `[ngClass]`/`[class]` are flagged without autofix
+ * - String-literal `[ngClass]`/`[class]` are auto-fixed inline
  */
 export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) => {
   const messages: Record<string, string> = {};
   const mutations: Record<string, [string, string[]]> = {};
 
-  config.classesMap.forEach((mapping, index) => {
-    const key = `responsiveSpacing_${index}`;
+  config.classesMap.forEach(mapping => {
+    const key = mapping.old;
     const newClassesStr = mapping.new.join(' ');
 
     messages[key] = mapping.needsReview
@@ -58,7 +63,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
           const $node = node.toCheerio();
 
           // Collect all matching deprecated classes first, then emit a single report
-          // with one combined fix to avoid ESLint discarding overlapping fixes.
+          // with one combined fix to avoid ESLint discarding overlapping fixes
           const matches: Array<{ messageId: string; oldClass: string; newClasses: string[] }> = [];
 
           Object.entries(mutations).forEach(([messageId, [oldClass, newClasses]]) => {
@@ -67,25 +72,84 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
             }
           });
 
-          if (matches.length === 0) return;
+          if (matches.length > 0) {
+            context.report({
+              messageId: matches[0].messageId,
+              loc: node.loc,
+              fix(fixer) {
+                const fixedNode = $node.clone();
+                matches.forEach(({ oldClass, newClasses }) => {
+                  fixedNode.removeClass(oldClass);
+                  newClasses.forEach(cls => fixedNode.addClass(cls));
+                });
 
-          context.report({
-            messageId: matches[0].messageId,
-            loc: node.loc,
-            fix(fixer) {
-              const fixedNode = $node.clone();
+                // Remove empty class attribute
+                if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-              matches.forEach(({ oldClass, newClasses }) => {
-                fixedNode.removeClass(oldClass);
-                newClasses.forEach(cls => fixedNode.addClass(cls));
-              });
+                return fixer.replaceTextRange(node.range, fixedNode.toString());
+              },
+            });
 
-              // Remove empty class attribute
-              if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
+            // Plain `class` attribute handled above — skip dynamic-binding pass
+            return;
+          }
 
-              return fixer.replaceTextRange(node.range, fixedNode.toString());
-            },
-          });
+          const root = $node[0];
+          if (!root || root.type !== 'tag') return;
+
+          const attribs = root.attribs as Record<string, string>;
+
+          for (const [messageId, [oldClass, newClasses]] of Object.entries(mutations)) {
+            const newClassesStr = newClasses.join(' ');
+
+            for (const attrName of Object.keys(attribs)) {
+              const value = $node.attr(attrName);
+              const { isClassBinding, isNgClass, isClass } = getDynamicClassType(
+                attrName,
+                value,
+                oldClass,
+              );
+
+              if (!isClassBinding && !isNgClass && !isClass) continue;
+
+              // `[class.old]` cannot expand to multiple bindings — flag without autofix
+              if (isClassBinding) {
+                context.report({ messageId, loc: node.loc });
+                continue;
+              }
+
+              // String-literal `[ngClass]`/`[class]` can be fixed inline
+              if ((isNgClass || isClass) && value && isStringLiteral(value)) {
+                context.report({
+                  messageId,
+                  loc: node.loc,
+                  fix(fixer) {
+                    const quote = value[0];
+                    const inner = value.slice(1, -1);
+                    const updated = inner
+                      .split(/\s+/)
+                      .map(cls => (cls === oldClass ? newClassesStr : cls))
+                      .filter(Boolean)
+                      .join(' ');
+
+                    const newValue = updated ? quote + updated + quote : '';
+                    const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+
+                    if (newValue === '') $node.removeAttr(targetAttr);
+                    else $node.attr(targetAttr, newValue);
+
+                    if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
+
+                    return fixer.replaceTextRange(node.range, $node.toString());
+                  },
+                });
+                continue;
+              }
+
+              // Object-literal `[ngClass]`/`[class]` cannot expand one key to many — flag without autofix
+              context.report({ messageId, loc: node.loc });
+            }
+          }
         },
       };
     },
