@@ -67,7 +67,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
   // ─── post-login-change event ───────────────────────────────────────────────
 
   it('emits post-login-change with authenticated=true when user data present', () => {
-    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
+    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE, delay: 100 }).as('session');
     cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
@@ -81,7 +81,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
   });
 
   it('emits post-login-change with authenticated=false when no user data', () => {
-    cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE }).as('session');
+    cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE, delay: 100 }).as('session');
     cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
@@ -135,7 +135,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
   // ─── No unnecessary re-renders ────────────────────────────────────────────
 
   it('does not emit post-login-change if state has not changed', () => {
-    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
+    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE, delay: 100 }).as('session');
     cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
