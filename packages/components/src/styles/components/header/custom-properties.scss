@@ -122,11 +122,11 @@ post-header:not(:has([slot='main-nav'])) {
 
   // --- Total height (dynamic based on scroll position) ---
   --post-global-header-height: max(
-    calc(var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px)),
+    var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px),
     var(--post-global-header-reduced-height)
   );
   --post-local-header-height: max(
-    calc(var(--post-local-header-expanded-height) - var(--post-header-scroll-top, 0px)),
+    var(--post-local-header-expanded-height) - var(--post-header-scroll-top, 0px),
     var(--post-local-header-reduced-height)
   );
   --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
