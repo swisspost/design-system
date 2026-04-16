@@ -1592,7 +1592,7 @@ declare namespace LocalJSX {
          */
         "authenticated"?: boolean | null;
         /**
-          * Emitted when the authentication state changes (not for initial `null` state).
+          * An event emitted when the authentication state changes.  The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
          */
         "onPostLoginChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
     }

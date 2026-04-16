@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event             | Description                                                                   | Type                                       |
-| ----------------- | ----------------------------------------------------------------------------- | ------------------------------------------ |
-| `postLoginChange` | Emitted when the authentication state changes (not for initial `null` state). | `CustomEvent<{ authenticated: boolean; }>` |
+| Event             | Description                                                                                                                                                            | Type                                       |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| `postLoginChange` | An event emitted when the authentication state changes. The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out. | `CustomEvent<{ authenticated: boolean; }>` |
 
 
 ## Methods

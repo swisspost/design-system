@@ -10,9 +10,9 @@ const meta: MetaComponent = {
   render,
   parameters: {
     badges: [],
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level',
+    design: {},
+    controls: {
+      exclude: ['postLoginChange'],
     },
   },
   args: {
@@ -30,6 +30,16 @@ const meta: MetaComponent = {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+      },
+    },
+    postLoginChange: {
+      name: 'postLoginChange ',
+      description:
+        'An event emitted when the authentication state changes. The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.',
+      control: { disable: true },
+      table: {
+        category: 'Events',
+        type: { summary: 'CustomEvent<{ authenticated: boolean }>' },
       },
     },
   },
