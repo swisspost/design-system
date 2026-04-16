@@ -1,6 +1,9 @@
 import { createRule } from './create-rule';
 import { HtmlNode } from '../parsers/html/html-node';
 import { getDynamicClassType, isStringLiteral, updateStringLiteral } from './class-binding-helpers';
+import { Rule } from 'eslint';
+import type { Cheerio } from 'cheerio';
+import type { AnyNode } from 'domhandler';
 
 export interface ResponsiveClassMapping {
   old: string;
@@ -45,11 +48,12 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
   const data: ResponsiveClassUpdateData = { mutations };
 
   const handleDynamicBindings = (
-    $node: any,
+    $node: Cheerio<AnyNode>,
     node: HtmlNode,
     attribs: Record<string, string>,
-    context: any,
+    context: unknown,
   ) => {
+    const ctx = context as { report: (descriptor: Record<string, unknown>) => void };
     for (const [messageId, [oldClass, newClasses]] of Object.entries(mutations)) {
       const newClassesStr = newClasses.join(' ');
 
@@ -63,16 +67,18 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
 
         if (!isClassBinding && !isNgClass && !isClass) continue;
 
+        // `[class.old]` cannot expand to multiple bindings — flag without autofix
         if (isClassBinding) {
-          context.report({ messageId, loc: node.loc });
+          ctx.report({ messageId, loc: node.loc });
           continue;
         }
 
+        // String-literal `[ngClass]`/`[class]` can be fixed inline
         if ((isNgClass || isClass) && value && isStringLiteral(value)) {
-          context.report({
+          ctx.report({
             messageId,
             loc: node.loc,
-            fix(fixer: any) {
+            fix(fixer: Rule.RuleFixer) {
               const newValue = updateStringLiteral(value, oldClass, newClassesStr);
               const targetAttr = isNgClass ? '[ngClass]' : '[class]';
 
@@ -87,7 +93,8 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
           continue;
         }
 
-        context.report({ messageId, loc: node.loc });
+        // Object-literal `[ngClass]`/`[class]` cannot expand one key to many — flag without autofix
+        ctx.report({ messageId, loc: node.loc });
       }
     }
   };
