@@ -226,7 +226,7 @@ export class MigrationV910Component extends LitElement {
             <div class="my-16">
               <div class="form-check">
                 <input
-                  id="state-general-hide_automigration"
+                  id="general-hide_automigration"
                   type="checkbox"
                   class="form-check-input"
                   name="state-general-hide_automigration"
@@ -234,7 +234,7 @@ export class MigrationV910Component extends LitElement {
                   @change="${this._onAutoMigrationChange}"
                   ?checked="${this.state.general.hide_automigration}"
                 />
-                <label for="state-general-hide_automigration" class="form-check-label">
+                <label for="general-hide_automigration" class="form-check-label">
                   Hide changes covered by the automatic
                   <span class="tag tag-sm tag-info">🪄 migration rules</span>
                 </label>
@@ -405,12 +405,12 @@ export class MigrationV910Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="components.popover_trigger"
+                        id="components-popover_trigger"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.components.popover_trigger}"
                       />
-                      <label class="form-check-label" for="components.popover_trigger">
+                      <label class="form-check-label" for="components-popover_trigger">
                         The <code>post-popover</code> now uses its own
                         <code>post-popover-trigger</code> component instead of an element with a
                         <code>data-popover-target</code> attribute.
@@ -568,12 +568,12 @@ export class MigrationV910Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="styles-card_control"
+                        id="forms-card_control"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.forms.card_control}"
                       />
-                      <label class="form-check-label" for="styles_card_control">
+                      <label class="form-check-label" for="forms-card_control">
                         CSS classes for Standard HTML <code>card-control</code> component renamed
                         <span class="info">
                           Replace <code>.checkbox-button-card</code> and
@@ -1679,12 +1679,12 @@ export class MigrationV910Component extends LitElement {
                   <li class="mb-16">
                     <div class="form-check">
                       <input
-                        id="others.stepper"
+                        id="others-stepper"
                         class="form-check-input"
                         type="checkbox"
                         ?checked="${this.state.others.stepper}"
                       />
-                      <label class="form-check-label" for="others.stepper">
+                      <label class="form-check-label" for="others-stepper">
                         Removed the stepper HTML component.
                         <span class="info"
                           >You can now use the <code>post-stepper</code> web component.</span
