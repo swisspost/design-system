@@ -83,7 +83,7 @@ export class PostPopovercontainer {
   private arrowRef: HTMLElement;
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
-  private toggleTimeoutId: ReturnType<typeof globalThis.setTimeout> | null;
+  private toggleTimeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
   private hasOpenedOnce: boolean = true;
 
   /**
