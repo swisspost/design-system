@@ -72,7 +72,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
           context.report({
             messageId,
             loc: node.loc,
-            fix(fixer) {
+            fix(fixer: any) {
               const newValue = updateStringLiteral(value, oldClass, newClassesStr);
               const targetAttr = isNgClass ? '[ngClass]' : '[class]';
 
