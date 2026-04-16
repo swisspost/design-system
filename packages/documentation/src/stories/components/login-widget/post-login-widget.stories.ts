@@ -25,11 +25,11 @@ const meta: MetaComponent = {
       },
       options: [true, false],
       description:
-        'Reflects the current authentication state. <code>null</code> while the API call is in progress, <code>true</code> when logged in, <code>false</code> when logged out.',
+        'Reflects the current authentication state.<br><code>true</code> when logged in, <code>false</code> when logged out.',
       table: {
         category: 'Properties',
-        type: { summary: 'boolean | null' },
-        defaultValue: { summary: 'null' },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
   },
