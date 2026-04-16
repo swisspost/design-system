@@ -85,6 +85,11 @@ export class PostPopovercontainer {
   private clearAutoUpdate: () => void;
   private toggleTimeoutId: number;
   private hasOpenedOnce: boolean = true;
+  private boundMouseTrackingHandler: (event: MouseEvent) => void;
+
+  constructor() {
+    this.boundMouseTrackingHandler = this.mouseTrackingHandler.bind(this);
+  }
 
   /**
    * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
@@ -259,7 +264,7 @@ export class PostPopovercontainer {
     }
 
     if (this.safeSpace) {
-      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      window.addEventListener('mousemove', this.boundMouseTrackingHandler);
     }
   }
 
@@ -272,7 +277,7 @@ export class PostPopovercontainer {
     }
 
     if (this.safeSpace) {
-      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      window.removeEventListener('mousemove', this.boundMouseTrackingHandler);
     }
 
     // Cancel any running animation
