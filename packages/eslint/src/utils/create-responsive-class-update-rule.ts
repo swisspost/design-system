@@ -1,6 +1,6 @@
 import { createRule } from './create-rule';
 import { HtmlNode } from '../parsers/html/html-node';
-import { getDynamicClassType, isStringLiteral } from './class-binding-helpers';
+import { getDynamicClassType, isStringLiteral, updateStringLiteral } from './class-binding-helpers';
 
 export interface ResponsiveClassMapping {
   old: string;
@@ -43,6 +43,54 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
   });
 
   const data: ResponsiveClassUpdateData = { mutations };
+
+  const handleDynamicBindings = (
+    $node: any,
+    node: HtmlNode,
+    attribs: Record<string, string>,
+    context: any,
+  ) => {
+    for (const [messageId, [oldClass, newClasses]] of Object.entries(mutations)) {
+      const newClassesStr = newClasses.join(' ');
+
+      for (const attrName of Object.keys(attribs)) {
+        const value = $node.attr(attrName);
+        const { isClassBinding, isNgClass, isClass } = getDynamicClassType(
+          attrName,
+          value,
+          oldClass,
+        );
+
+        if (!isClassBinding && !isNgClass && !isClass) continue;
+
+        if (isClassBinding) {
+          context.report({ messageId, loc: node.loc });
+          continue;
+        }
+
+        if ((isNgClass || isClass) && value && isStringLiteral(value)) {
+          context.report({
+            messageId,
+            loc: node.loc,
+            fix(fixer) {
+              const newValue = updateStringLiteral(value, oldClass, newClassesStr);
+              const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+
+              if (newValue === '') $node.removeAttr(targetAttr);
+              else $node.attr(targetAttr, newValue);
+
+              if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
+
+              return fixer.replaceTextRange(node.range, $node.toString());
+            },
+          });
+          continue;
+        }
+
+        context.report({ messageId, loc: node.loc });
+      }
+    }
+  };
 
   const rule = createRule({
     name: config.name,
@@ -98,58 +146,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
           if (!root || root.type !== 'tag') return;
 
           const attribs = root.attribs as Record<string, string>;
-
-          for (const [messageId, [oldClass, newClasses]] of Object.entries(mutations)) {
-            const newClassesStr = newClasses.join(' ');
-
-            for (const attrName of Object.keys(attribs)) {
-              const value = $node.attr(attrName);
-              const { isClassBinding, isNgClass, isClass } = getDynamicClassType(
-                attrName,
-                value,
-                oldClass,
-              );
-
-              if (!isClassBinding && !isNgClass && !isClass) continue;
-
-              // `[class.old]` cannot expand to multiple bindings — flag without autofix
-              if (isClassBinding) {
-                context.report({ messageId, loc: node.loc });
-                continue;
-              }
-
-              // String-literal `[ngClass]`/`[class]` can be fixed inline
-              if ((isNgClass || isClass) && value && isStringLiteral(value)) {
-                context.report({
-                  messageId,
-                  loc: node.loc,
-                  fix(fixer) {
-                    const quote = value[0];
-                    const inner = value.slice(1, -1);
-                    const updated = inner
-                      .split(/\s+/)
-                      .map(cls => (cls === oldClass ? newClassesStr : cls))
-                      .filter(Boolean)
-                      .join(' ');
-
-                    const newValue = updated ? quote + updated + quote : '';
-                    const targetAttr = isNgClass ? '[ngClass]' : '[class]';
-
-                    if (newValue === '') $node.removeAttr(targetAttr);
-                    else $node.attr(targetAttr, newValue);
-
-                    if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
-
-                    return fixer.replaceTextRange(node.range, $node.toString());
-                  },
-                });
-                continue;
-              }
-
-              // Object-literal `[ngClass]`/`[class]` cannot expand one key to many — flag without autofix
-              context.report({ messageId, loc: node.loc });
-            }
-          }
+          handleDynamicBindings($node, node, attribs, context);
         },
       };
     },
