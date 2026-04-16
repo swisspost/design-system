@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
@@ -14,6 +15,7 @@ import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
@@ -116,9 +118,19 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * The optional URL to which the breadcrumb item will link.
+          * Defines whether the component renders as a list item or a menu item.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * The link destination for the breadcrumb item. If not provided, the item is rendered without a link.
          */
         "url"?: string | URL;
+        /**
+          * Defines whether the component renders as a list item or a menu item.
+          * @default 'listitem'
+         */
+        "variant": Variant;
     }
     interface PostBreadcrumbs {
         /**
@@ -1299,9 +1311,19 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * The optional URL to which the breadcrumb item will link.
+          * Defines whether the component renders as a list item or a menu item.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * The link destination for the breadcrumb item. If not provided, the item is rendered without a link.
          */
         "url"?: string | URL;
+        /**
+          * Defines whether the component renders as a list item or a menu item.
+          * @default 'listitem'
+         */
+        "variant"?: Variant;
     }
     interface PostBreadcrumbs {
         /**

@@ -5,33 +5,30 @@
 
 ## Properties
 
-| Property | Attribute | Description                                              | Type            | Default     |
-| -------- | --------- | -------------------------------------------------------- | --------------- | ----------- |
-| `url`    | `url`     | The optional URL to which the breadcrumb item will link. | `URL \| string` | `undefined` |
+| Property   | Attribute  | Description                                                                                         | Type                       | Default      |
+| ---------- | ---------- | --------------------------------------------------------------------------------------------------- | -------------------------- | ------------ |
+| `selected` | `selected` | Defines whether the component renders as a list item or a menu item.                                | `boolean`                  | `false`      |
+| `url`      | `url`      | The link destination for the breadcrumb item. If not provided, the item is rendered without a link. | `URL \| string`            | `undefined`  |
+| `variant`  | `variant`  | Defines whether the component renders as a list item or a menu item.                                | `"listitem" \| "menuitem"` | `'listitem'` |
 
 
 ## Slots
 
-| Slot        | Description                                           |
-| ----------- | ----------------------------------------------------- |
-| `"default"` | Slot for placing the text inside the breadcrumb item. |
+| Slot        | Description                                       |
+| ----------- | ------------------------------------------------- |
+| `"default"` | The content displayed inside the breadcrumb item. |
 
 
 ## Dependencies
 
-### Used by
-
- - [post-breadcrumbs](../post-breadcrumbs)
-
 ### Depends on
 
-- [post-icon](../post-icon)
+- [post-menu-item](../post-menu-item)
 
 ### Graph
 ```mermaid
 graph TD;
-  post-breadcrumb-item --> post-icon
-  post-breadcrumbs --> post-breadcrumb-item
+  post-breadcrumb-item --> post-menu-item
   style post-breadcrumb-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

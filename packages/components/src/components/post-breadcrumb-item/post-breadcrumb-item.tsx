@@ -1,9 +1,10 @@
-import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkEmptyOrUrl } from '@/utils';
+import { checkEmptyOrOneOf, checkEmptyOrUrl, checkRequiredAndType } from '@/utils';
+import { Variant, VARIANTS } from './variants';
 
 /**
- * @slot default - Slot for placing the text inside the breadcrumb item.
+ * @slot default - The content displayed inside the breadcrumb item.
  */
 @Component({
   tag: 'post-breadcrumb-item',
@@ -14,64 +15,52 @@ export class PostBreadcrumbItem {
   @Element() host: HTMLPostBreadcrumbItemElement;
 
   /**
-   * The optional URL to which the breadcrumb item will link.
+   * The link destination for the breadcrumb item. If not provided, the item is rendered without a link.
    */
   @Prop() url?: string | URL;
 
-  private validUrl?: string;
+  @Watch('url')
+  validateURL() {
+    checkEmptyOrUrl(this, 'url');
+  }
 
   /**
-   * The full path URL to validate.
+   * Defines whether the component renders as a list item or a menu item.
    */
-  @State() fullUrl: string | undefined;
+  @Prop({ reflect: true }) variant: Variant = 'listitem';
 
-  @Watch('url')
-  validateUrl() {
-    try {
-      this.validUrl = this.constructUrl(this.url);
-    } catch (error) {
-      this.validUrl = undefined;
-    }
+  @Watch('variant')
+  validateVariant() {
+    checkEmptyOrOneOf(this, 'variant', VARIANTS);
   }
 
-  // Helper to construct a valid URL string or return undefined
-  private constructUrl(value: unknown): string | undefined {
-    const hasBaseURL = /^https?:\/\//.test(String(this.url));
-    if (typeof value === 'string') {
-      this.fullUrl = hasBaseURL ? value : `${window.location.origin}${value}`;
-      checkEmptyOrUrl(this, 'fullUrl');
-      return this.fullUrl;
-    }
-    return undefined;
-  }
+  /**
+   * Defines whether the component renders as a list item or a menu item.
+   */
+  @Prop({ reflect: true }) selected = false;
 
-  connectedCallback() {
-    this.validateUrl();
-  }
-
-  private handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      const linkElement = this.host.shadowRoot?.querySelector('a');
-      if (linkElement) {
-        event.preventDefault();
-        (linkElement as HTMLElement).click();
-      }
-    }
+  @Watch('selected')
+  validateSelected() {
+    checkRequiredAndType(this, 'selected', 'boolean');
   }
 
   render() {
-    const BreadcrumbTag = this.validUrl ? 'a' : 'span';
+    const href = this.url instanceof URL ? this.url.href : this.url;
+    const content = href ? (
+      <a href={href}>
+        <slot></slot>
+      </a>
+    ) : (
+      <slot></slot>
+    );
 
-    return (
+    return this.variant === 'listitem' || this.selected ? (
+      <Host data-version={version} role="listitem" slot={this.selected ? 'selected' : undefined}>
+        {content}
+      </Host>
+    ) : (
       <Host data-version={version}>
-        <post-icon name="chevronright" class="breadcrumb-item-icon" />
-        <BreadcrumbTag
-          class="breadcrumb-item"
-          {...(this.validUrl ? { href: this.validUrl } : {})}
-          onKeyDown={event => this.handleKeyDown(event)}
-        >
-          <slot></slot>
-        </BreadcrumbTag>
+        <post-menu-item>{content}</post-menu-item>
       </Host>
     );
   }

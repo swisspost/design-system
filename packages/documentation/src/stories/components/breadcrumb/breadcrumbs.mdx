@@ -1,5 +1,6 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import meta, * as BreadcrumbsStories from './breadcrumbs.stories';
+import * as BreadcrumbItemStories from './breadcrumb-item.stories';
 import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
@@ -37,5 +38,5 @@ When space is constrained, the `<post-breadcrumbs>` concatenates middle items in
 
 ## `<post-breadcrumb-item>`
 
-<Canvas of={BreadcrumbsStories.BreadcrumbItem} sourceState="shown" />
-<Controls of={BreadcrumbsStories.BreadcrumbItem} />
+<Canvas of={BreadcrumbItemStories.Default} sourceState="shown" />
+<Controls of={BreadcrumbItemStories.Default} />
