@@ -143,7 +143,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
                 // Remove empty class attribute
                 if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                const fixedHtml = removeEmptyAttrs(fixedNode.toString(), context, node);
                 return fixer.replaceTextRange(node.range, fixedHtml);
               },
             });
