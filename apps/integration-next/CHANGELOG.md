@@ -1,4 +1,4 @@
-# @swisspost/design-system-nextjs-integration
+# @swisspost/design-system-integration-next
 
 ## 10.0.0-next.66
 
