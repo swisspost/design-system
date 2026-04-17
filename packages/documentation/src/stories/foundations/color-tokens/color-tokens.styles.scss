@@ -1,0 +1,292 @@
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+// Placeholder CSS custom properties for proposed tokens.
+// These will be updated once the tokens are implemented in the tokens package.
+:root {
+  // Background surface tokens — mapped to existing internal scheme tokens
+  --post-default-bg: var(--post-scheme-color-surface-default-bg);
+  --post-default-fg: var(--post-scheme-color-surface-default-fg);
+  --post-default-border: var(--post-scheme-color-surface-default-stroke);
+
+  --post-alternate-bg: var(--post-scheme-color-surface-alternate-bg);
+  --post-alternate-fg: var(--post-scheme-color-surface-alternate-fg);
+  --post-alternate-border: var(--post-scheme-color-surface-default-stroke);
+
+  --post-accent-bg: var(--post-scheme-color-surface-accent-bg);
+  --post-accent-fg: var(--post-scheme-color-surface-accent-fg);
+  --post-accent-border: var(--post-scheme-color-surface-accent-fg);
+
+  --post-brand-bg: var(--post-scheme-color-surface-brand-bg);
+  --post-brand-fg: var(--post-scheme-color-surface-brand-fg);
+  --post-brand-border: var(--post-scheme-color-surface-brand-fg);
+
+  // Signal color tokens
+  --post-success-bg: var(--post-scheme-color-signal-success-light);
+  --post-success-fg: var(--post-scheme-color-signal-success-dark);
+  --post-success-border: var(--post-scheme-color-signal-success-dark);
+
+  --post-info-bg: var(--post-scheme-color-signal-information-light);
+  --post-info-fg: var(--post-scheme-color-signal-information-dark);
+  --post-info-border: var(--post-scheme-color-signal-information-dark);
+
+  --post-warning-bg: var(--post-scheme-color-signal-warning-light);
+  --post-warning-fg: var(--post-scheme-color-signal-warning-dark);
+  --post-warning-border: var(--post-scheme-color-signal-warning-dark);
+
+  --post-error-bg: var(--post-scheme-color-signal-error-light);
+  --post-error-fg: var(--post-scheme-color-signal-error-dark);
+  --post-error-border: var(--post-scheme-color-signal-error-dark);
+
+  // Interactive button tokens — primary
+  --post-primary-bg-default: var(--post-scheme-color-interactive-button-primary-enabled-bg);
+  --post-primary-fg-default: var(--post-scheme-color-interactive-button-primary-enabled-fg);
+  --post-primary-border-default: var(--post-scheme-color-interactive-button-primary-enabled-stroke);
+  --post-primary-bg-hover: var(--post-scheme-color-interactive-button-primary-hover-bg);
+  --post-primary-fg-hover: var(--post-scheme-color-interactive-button-primary-hover-fg);
+  --post-primary-border-hover: var(--post-scheme-color-interactive-button-primary-hover-stroke);
+  --post-primary-bg-focus: var(--post-scheme-color-interactive-button-primary-hover-bg);
+  --post-primary-fg-focus: var(--post-scheme-color-interactive-button-primary-hover-fg);
+  --post-primary-border-focus: var(--post-scheme-color-interactive-button-primary-hover-stroke);
+  --post-primary-bg-disabled: var(--post-scheme-color-interactive-button-primary-disabled-bg);
+  --post-primary-fg-disabled: var(--post-scheme-color-interactive-button-primary-disabled-fg);
+  --post-primary-border-disabled: var(--post-scheme-color-interactive-button-primary-disabled-stroke);
+
+  // Interactive button tokens — secondary
+  --post-secondary-bg-default: var(--post-scheme-color-interactive-button-secondary-enabled-bg);
+  --post-secondary-fg-default: var(--post-scheme-color-interactive-button-secondary-enabled-fg);
+  --post-secondary-border-default: var(--post-scheme-color-interactive-button-secondary-enabled-stroke);
+  --post-secondary-bg-hover: var(--post-scheme-color-interactive-button-secondary-hover-bg);
+  --post-secondary-fg-hover: var(--post-scheme-color-interactive-button-secondary-hover-fg);
+  --post-secondary-border-hover: var(--post-scheme-color-interactive-button-secondary-hover-stroke);
+  --post-secondary-bg-focus: var(--post-scheme-color-interactive-button-secondary-hover-bg);
+  --post-secondary-fg-focus: var(--post-scheme-color-interactive-button-secondary-hover-fg);
+  --post-secondary-border-focus: var(--post-scheme-color-interactive-button-secondary-hover-stroke);
+  --post-secondary-bg-disabled: var(--post-scheme-color-interactive-button-secondary-disabled-bg);
+  --post-secondary-fg-disabled: var(--post-scheme-color-interactive-button-secondary-disabled-fg);
+  --post-secondary-border-disabled: var(--post-scheme-color-interactive-button-secondary-disabled-stroke);
+
+  // Interactive button tokens — tertiary
+  --post-tertiary-bg-default: var(--post-scheme-color-interactive-button-tertiary-enabled-bg);
+  --post-tertiary-fg-default: var(--post-scheme-color-interactive-button-tertiary-enabled-fg);
+  --post-tertiary-border-default: var(--post-scheme-color-interactive-button-tertiary-enabled-stroke);
+  --post-tertiary-bg-hover: var(--post-scheme-color-interactive-button-tertiary-hover-bg);
+  --post-tertiary-fg-hover: var(--post-scheme-color-interactive-button-tertiary-hover-fg);
+  --post-tertiary-border-hover: var(--post-scheme-color-interactive-button-tertiary-hover-stroke);
+  --post-tertiary-bg-focus: var(--post-scheme-color-interactive-button-tertiary-hover-bg);
+  --post-tertiary-fg-focus: var(--post-scheme-color-interactive-button-tertiary-hover-fg);
+  --post-tertiary-border-focus: var(--post-scheme-color-interactive-button-tertiary-hover-stroke);
+  --post-tertiary-bg-disabled: var(--post-scheme-color-interactive-button-tertiary-disabled-bg);
+  --post-tertiary-fg-disabled: var(--post-scheme-color-interactive-button-tertiary-disabled-fg);
+  --post-tertiary-border-disabled: var(--post-scheme-color-interactive-button-tertiary-disabled-stroke);
+
+  // Interactive input tokens
+  --post-input-bg-default: var(--post-scheme-color-interactive-input-enabled-bg);
+  --post-input-fg-default: var(--post-scheme-color-interactive-input-enabled-fg);
+  --post-input-border-default: var(--post-scheme-color-interactive-input-enabled-border);
+  --post-input-bg-hover: var(--post-scheme-color-interactive-input-hover-bg);
+  --post-input-fg-hover: var(--post-scheme-color-interactive-input-hover-fg);
+  --post-input-border-hover: var(--post-scheme-color-interactive-input-hover-border);
+  --post-input-bg-focus: var(--post-scheme-color-interactive-input-hover-bg);
+  --post-input-fg-focus: var(--post-scheme-color-interactive-input-hover-fg);
+  --post-input-border-focus: var(--post-scheme-color-interactive-input-hover-border);
+  --post-input-bg-disabled: var(--post-scheme-color-interactive-input-disabled-bg);
+  --post-input-fg-disabled: var(--post-scheme-color-interactive-input-disabled-fg);
+  --post-input-border-disabled: var(--post-scheme-color-interactive-input-disabled-border);
+  --post-input-bg-readonly: var(--post-scheme-color-interactive-input-enabled-bg);
+  --post-input-fg-readonly: var(--post-scheme-color-interactive-input-enabled-fg);
+  --post-input-border-readonly: var(--post-scheme-color-interactive-input-enabled-border);
+  --post-input-bg-valid: var(--post-scheme-color-interactive-input-enabled-bg);
+  --post-input-fg-valid: var(--post-scheme-color-signal-success-dark);
+  --post-input-border-valid: var(--post-scheme-color-signal-success-dark);
+  --post-input-bg-invalid: var(--post-scheme-color-interactive-input-enabled-bg);
+  --post-input-fg-invalid: var(--post-scheme-color-signal-error-dark);
+  --post-input-border-invalid: var(--post-scheme-color-signal-error-dark);
+}
+
+// ------------------------------------------------------------------
+// Color swatch grid
+// ------------------------------------------------------------------
+.color-token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: tokens.get('utility-gap-16');
+  margin-block: tokens.get('utility-gap-16') tokens.get('utility-gap-40');
+}
+
+.color-token-swatch {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--post-default-border);
+  border-radius: 4px;
+  overflow: hidden;
+
+  &__preview {
+    block-size: 4rem;
+    flex-shrink: 0;
+  }
+
+  &--alpha &__preview {
+    // Checkerboard below, alpha color on top via --color-preview custom property
+    background-color: #fff;
+    background-image:
+      linear-gradient(var(--color-preview, transparent), var(--color-preview, transparent)),
+      linear-gradient(45deg, #ccc 25%, transparent 25%),
+      linear-gradient(-45deg, #ccc 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #ccc 75%),
+      linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: auto, 12px 12px, 12px 12px, 12px 12px, 12px 12px;
+    background-position: 0 0, 0 0, 0 6px, 6px -6px, -6px 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: tokens.get('utility-gap-12');
+    padding-block-end: tokens.get('utility-gap-8');
+    background: var(--post-default-bg);
+    position: relative;
+    // Required so flex children can shrink below their content width
+    min-width: 0;
+  }
+
+  // __var class is now on a span, not a code element.
+  // Styles live on .color-token-var below.
+
+  &__value {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    font-family: monospace;
+  }
+
+  &__desc {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+}
+
+// ------------------------------------------------------------------
+// Copy button
+// ------------------------------------------------------------------
+.color-token-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+
+  // Position absolutely inside swatch info
+  .color-token-swatch__info & {
+    position: absolute;
+    inset-block-start: tokens.get('utility-gap-8');
+    inset-inline-end: tokens.get('utility-gap-8');
+  }
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+
+  &--copied {
+    opacity: 1;
+    color: var(--post-success-fg);
+  }
+
+  post-icon {
+    font-size: 1rem;
+    pointer-events: none;
+  }
+}
+
+// ------------------------------------------------------------------
+// Color token group sections
+// ------------------------------------------------------------------
+.color-token-group {
+  margin-block-end: tokens.get('utility-gap-48');
+
+  > h3 {
+    margin-block: 0 tokens.get('utility-gap-8');
+  }
+
+  > p {
+    margin-block-end: tokens.get('utility-gap-16');
+    font-size: 0.9rem;
+  }
+}
+
+// ------------------------------------------------------------------
+// Interactive token table
+// ------------------------------------------------------------------
+.color-token-table {
+  table-layout: fixed;
+  width: 100%;
+
+  // State column is narrow; color columns share remaining space equally
+  th:first-child,
+  td:first-child {
+    width: 6rem;
+  }
+
+  td,
+  th {
+    vertical-align: middle;
+    overflow: hidden;
+  }
+}
+
+.color-token-cell {
+  display: flex;
+  align-items: center;
+  gap: tokens.get('utility-gap-8');
+  min-width: 0;
+
+  // Keep copy button inline (not absolutely positioned) in table cells
+  .color-token-copy-btn {
+    position: static;
+    flex-shrink: 0;
+    margin-inline-start: auto;
+  }
+}
+
+// Shared monospace token-name style used in swatches and table cells.
+// Uses span instead of code to avoid Storybook's global code{white-space:nowrap} override.
+.color-token-var {
+  display: block;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.4;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  min-width: 0;
+  // Reserve space for the absolutely-positioned copy button inside swatches
+  .color-token-swatch__info & {
+    padding-inline-end: 1.75rem;
+  }
+  // Inside table cells, lay out inline so the chip and button fit alongside
+  .color-token-cell & {
+    display: block;
+    flex: 1 1 0;
+  }
+}
+
+.color-token-chip {
+  display: inline-block;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: 2px;
+  border: 1px solid var(--post-default-border);
+  flex-shrink: 0;
+}

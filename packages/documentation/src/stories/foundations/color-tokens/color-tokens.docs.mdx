@@ -1,0 +1,197 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+import * as ColorTokenStories from './color-tokens.stories';
+import {
+  ColorTokenTable,
+  InteractiveTokenTable,
+  CoreColorPalette,
+  BACKGROUND_TOKENS,
+  SIGNAL_TOKENS,
+  BUTTON_INTERACTIVE_GROUPS,
+  INPUT_INTERACTIVE_GROUP,
+} from './color-tokens.blocks';
+import './color-tokens.styles.scss';
+
+<Meta of={ColorTokenStories} />
+
+<div className="docs-title">
+  # Color Tokens
+</div>
+
+<div className="lead">
+  A set of semantic color tokens intended for building custom components that stay consistent with
+  the Swiss Post Design System. These tokens adapt automatically to light and dark color schemes.
+</div>
+
+> **Status: Proposal** — Token names and values are not yet finalized. This page documents the
+> proposed API for [#7308](https://github.com/swisspost/design-system/issues/7308). Changes are
+> expected before the stable release.
+
+<post-tabs active-tab="semantic">
+  <post-tab-item name="semantic">Semantic Colors</post-tab-item>
+  <post-tab-panel for="semantic">
+
+Color tokens are exposed as CSS custom properties. Use them in your component styles like any other CSS variable:
+
+<Source
+  language="css"
+  code={`
+.my-component {
+  background-color: var(--post-default-bg);
+  color: var(--post-default-fg);
+  border-color: var(--post-default-border);
+}
+  `.trim()}
+/>
+
+## Background Colors
+
+Background tokens represent the four color surfaces used to organize sections of a page. Each surface defines a `bg` (background), `fg` (foreground / text), and `border` color.
+
+The `color-scheme` value for each surface is available as `--post-{variant}-scheme` and should be applied to the same element alongside the background to ensure correct browser rendering of form controls and scrollbars.
+
+### Usage example
+
+<Source
+  language="html"
+  code={`
+<section style="
+  background-color: var(--post-brand-bg);
+  color: var(--post-brand-fg);
+  border-color: var(--post-brand-border);
+  color-scheme: var(--post-brand-scheme);
+">
+  Brand section content
+</section>
+  `.trim()}
+/>
+
+{BACKGROUND_TOKENS.map(group => (
+  <ColorTokenTable key={group.title} {...group} />
+))}
+
+## Signal Colors
+
+Signal tokens communicate feedback states: success, info, warning, and error. The `bg` token is the
+light background tint, `fg` is the accessible full-contrast text/icon color, and `border` matches
+`fg` for clear delineation.
+
+<Source
+  language="html"
+  code={`
+<div style="
+  background-color: var(--post-success-bg);
+  color: var(--post-success-fg);
+  border: 1px solid var(--post-success-border);
+">
+  Your form was submitted successfully.
+</div>
+  `.trim()}
+/>
+
+{SIGNAL_TOKENS.map(group => (
+  <ColorTokenTable key={group.title} {...group} />
+))}
+
+## Interactive Colors
+
+Interactive tokens cover the color states for buttons and text inputs. Each token follows the pattern `--post-{variant}-{property}-{state}`.
+
+### Buttons
+
+Button tokens cover three variants — **primary**, **secondary**, and **tertiary** — each with four states: `default`, `hover`, `focus`, and `disabled`.
+
+<Source
+  language="css"
+  code={`
+.my-button-primary {
+  background-color: var(--post-primary-bg-default);
+  color: var(--post-primary-fg-default);
+  border-color: var(--post-primary-border-default);
+}
+
+.my-button-primary:hover {
+  background-color: var(--post-primary-bg-hover);
+  color: var(--post-primary-fg-hover);
+  border-color: var(--post-primary-border-hover);
+}
+
+.my-button-primary:focus-visible {
+  background-color: var(--post-primary-bg-focus);
+  color: var(--post-primary-fg-focus);
+  border-color: var(--post-primary-border-focus);
+}
+
+.my-button-primary:disabled {
+  background-color: var(--post-primary-bg-disabled);
+  color: var(--post-primary-fg-disabled);
+  border-color: var(--post-primary-border-disabled);
+}
+  `.trim()}
+/>
+
+{BUTTON_INTERACTIVE_GROUPS.map(group => (
+  <InteractiveTokenTable key={group.title} {...group} />
+))}
+
+### Input
+
+Input tokens cover text field styling across seven states: `default`, `hover`, `focus`, `disabled`, `readonly`, `valid`, and `invalid`.
+
+<Source
+  language="css"
+  code={`
+.my-input {
+  background-color: var(--post-input-bg-default);
+  color: var(--post-input-fg-default);
+  border-color: var(--post-input-border-default);
+}
+
+.my-input:hover {
+  background-color: var(--post-input-bg-hover);
+  color: var(--post-input-fg-hover);
+  border-color: var(--post-input-border-hover);
+}
+
+.my-input:focus-visible {
+  background-color: var(--post-input-bg-focus);
+  color: var(--post-input-fg-focus);
+  border-color: var(--post-input-border-focus);
+}
+
+.my-input[aria-invalid="true"] {
+  background-color: var(--post-input-bg-invalid);
+  color: var(--post-input-fg-invalid);
+  border-color: var(--post-input-border-invalid);
+}
+  `.trim()}
+/>
+
+<InteractiveTokenTable {...INPUT_INTERACTIVE_GROUP} />
+
+## Token naming convention
+
+All public color tokens follow the pattern:
+
+```
+--post-{variant}-{property}[-{state}]
+```
+
+| Segment | Values |
+|---|---|
+| `variant` | `default`, `alternate`, `accent`, `brand`, `success`, `info`, `warning`, `error`, `primary`, `secondary`, `tertiary`, `input` |
+| `property` | `bg`, `fg`, `border`, `scheme` |
+| `state` _(interactive only)_ | `default`, `hover`, `focus`, `disabled`, `readonly`, `valid`, `invalid` |
+
+  </post-tab-panel>
+
+  <post-tab-item name="core">Core Colors</post-tab-item>
+  <post-tab-panel for="core">
+
+Core color tokens are the primitive values that make up the design system's base palette. These tokens are **not theme-aware** — they represent fixed color values and do not adapt to light or dark mode.
+
+Prefer [semantic tokens](#semantic-colors) for component styling. Use core tokens only when you need a specific raw color value that has no semantic equivalent, or to build your own semantic aliases.
+
+<CoreColorPalette />
+
+  </post-tab-panel>
+</post-tabs>
