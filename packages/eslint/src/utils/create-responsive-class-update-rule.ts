@@ -86,7 +86,8 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
               const originalNodeText = ctx.sourceCode.getText().slice(node.range[0], node.range[1]);
 
               const newValue = updateStringLiteral(value, oldClass, newClassesStr);
-              const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+
+              const targetAttr = attrName;
 
               if (newValue === '') $node.removeAttr(targetAttr);
               else $node.attr(targetAttr, newValue);

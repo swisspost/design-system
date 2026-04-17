@@ -119,7 +119,8 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                   const newValue = getNewAttrValue($node, attrName, oldClass, newClass, raw);
                   if (newValue === null) return null;
 
-                  const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+                  const targetAttr = attrName;
+
                   if (newValue === '') $node.removeAttr(targetAttr);
                   else $node.attr(targetAttr, newValue);
 
