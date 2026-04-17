@@ -4,6 +4,7 @@ import { getDynamicClassType, isStringLiteral, updateStringLiteral } from './cla
 import { Rule } from 'eslint';
 import type { Cheerio } from 'cheerio';
 import type { AnyNode } from 'domhandler';
+import { removeEmptyAttrs } from './empty-attrs-remover';
 
 export interface ResponsiveClassMapping {
   old: string;
@@ -53,7 +54,10 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
     attribs: Record<string, string>,
     context: unknown,
   ) => {
-    const ctx = context as { report: (descriptor: Record<string, unknown>) => void };
+    const ctx = context as {
+      report: (descriptor: Record<string, unknown>) => void;
+      sourceCode: { getText: () => string };
+    };
     for (const [messageId, [oldClass, newClasses]] of Object.entries(mutations)) {
       const newClassesStr = newClasses.join(' ');
 
@@ -79,6 +83,8 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
             messageId,
             loc: node.loc,
             fix(fixer: Rule.RuleFixer) {
+              const originalNodeText = ctx.sourceCode.getText().slice(node.range[0], node.range[1]);
+
               const newValue = updateStringLiteral(value, oldClass, newClassesStr);
               const targetAttr = isNgClass ? '[ngClass]' : '[class]';
 
@@ -87,7 +93,8 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
 
               if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
 
-              return fixer.replaceTextRange(node.range, $node.toString());
+              const fixedHtml = removeEmptyAttrs($node.toString(), originalNodeText);
+              return fixer.replaceTextRange(node.range, fixedHtml);
             },
           });
           continue;
@@ -132,6 +139,10 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
               messageId: matches[0].messageId,
               loc: node.loc,
               fix(fixer) {
+                const originalNodeText = context.sourceCode
+                  .getText()
+                  .slice(node.range[0], node.range[1]);
+
                 const fixedNode = $node.clone();
                 matches.forEach(({ oldClass, newClasses }) => {
                   fixedNode.removeClass(oldClass);
@@ -141,7 +152,8 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
                 // Remove empty class attribute
                 if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                return fixer.replaceTextRange(node.range, fixedNode.toString());
+                const fixedHtml = removeEmptyAttrs($node.toString(), originalNodeText);
+                return fixer.replaceTextRange(node.range, fixedHtml);
               },
             });
 
