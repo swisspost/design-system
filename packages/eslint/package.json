@@ -39,6 +39,7 @@
   "dependencies": {
     "@typescript-eslint/utils": "8.49.0",
     "cheerio": "1.0.0",
+    "eslint-plugin-unicorn": "^56.0.0",
     "eslint-scope": "8.2.0"
   },
   "devDependencies": {
