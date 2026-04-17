@@ -5,6 +5,7 @@ import { Rule } from 'eslint';
 import type { Cheerio } from 'cheerio';
 import type { AnyNode } from 'domhandler';
 import { removeEmptyAttrs } from './empty-attrs-remover';
+import { TSESLint } from '@typescript-eslint/utils';
 
 export interface ResponsiveClassMapping {
   old: string;
@@ -52,12 +53,8 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
     $node: Cheerio<AnyNode>,
     node: HtmlNode,
     attribs: Record<string, string>,
-    context: unknown,
+    context: TSESLint.RuleContext<string, []>,
   ) => {
-    const ctx = context as {
-      report: (descriptor: Record<string, unknown>) => void;
-      sourceCode: { getText: () => string };
-    };
     for (const [messageId, [oldClass, newClasses]] of Object.entries(mutations)) {
       const newClassesStr = newClasses.join(' ');
 
@@ -73,18 +70,16 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
 
         // `[class.old]` cannot expand to multiple bindings — flag without autofix
         if (isClassBinding) {
-          ctx.report({ messageId, loc: node.loc });
+          context.report({ messageId, loc: node.loc });
           continue;
         }
 
         // String-literal `[ngClass]`/`[class]` can be fixed inline
         if ((isNgClass || isClass) && value && isStringLiteral(value)) {
-          ctx.report({
+          context.report({
             messageId,
             loc: node.loc,
             fix(fixer: Rule.RuleFixer) {
-              const originalNodeText = ctx.sourceCode.getText().slice(node.range[0], node.range[1]);
-
               const newValue = updateStringLiteral(value, oldClass, newClassesStr);
 
               const targetAttr = attrName;
@@ -94,7 +89,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
 
               if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
 
-              const fixedHtml = removeEmptyAttrs($node.toString(), originalNodeText);
+              const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
               return fixer.replaceTextRange(node.range, fixedHtml);
             },
           });
@@ -102,7 +97,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
         }
 
         // Object-literal `[ngClass]`/`[class]` cannot expand one key to many — flag without autofix
-        ctx.report({ messageId, loc: node.loc });
+        context.report({ messageId, loc: node.loc });
       }
     }
   };
@@ -140,10 +135,6 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
               messageId: matches[0].messageId,
               loc: node.loc,
               fix(fixer) {
-                const originalNodeText = context.sourceCode
-                  .getText()
-                  .slice(node.range[0], node.range[1]);
-
                 const fixedNode = $node.clone();
                 matches.forEach(({ oldClass, newClasses }) => {
                   fixedNode.removeClass(oldClass);
@@ -153,7 +144,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
                 // Remove empty class attribute
                 if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                const fixedHtml = removeEmptyAttrs($node.toString(), originalNodeText);
+                const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
                 return fixer.replaceTextRange(node.range, fixedHtml);
               },
             });

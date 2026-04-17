@@ -58,16 +58,13 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                 messageId,
                 loc: node.loc,
                 fix(fixer) {
-                  const originalNodeText = context.sourceCode
-                    .getText()
-                    .slice(node.range[0], node.range[1]);
                   const fixedNode = $node.removeClass(oldClass);
                   if (newClass) fixedNode.addClass(newClass);
 
                   // Remove empty class attribute
                   if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                  const fixedHtml = removeEmptyAttrs($node.toString(), originalNodeText);
+                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
                   return fixer.replaceTextRange(node.range, fixedHtml);
                 },
               });
@@ -97,10 +94,6 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                 loc: node.loc,
                 messageId,
                 fix(fixer) {
-                  const originalNodeText = context.sourceCode
-                    .getText()
-                    .slice(node.range[0], node.range[1]);
-
                   if (isClassBinding) {
                     const fixedAttrName = `[class.${newClass}]`;
                     const oldAttrValue = $node.attr(attrName);
@@ -109,7 +102,7 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                     $node.attr(fixedAttrName, oldAttrValue);
                     $node.removeAttr(`[class.${oldClass}]`);
 
-                    const fixedHtml = removeEmptyAttrs($node.toString(), originalNodeText);
+                    const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
                     return fixer.replaceTextRange(node.range, fixedHtml);
                   }
 
@@ -126,7 +119,7 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
 
                   if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
 
-                  const fixedHtml = removeEmptyAttrs($node.toString(), originalNodeText);
+                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
                   return fixer.replaceTextRange(node.range, fixedHtml);
                 },
               });

@@ -34,10 +34,7 @@ export default createRule({
                 messageId: 'deprecatedAlert',
                 loc: node.loc,
                 fix(fixer) {
-                  const originalNodeText = context.sourceCode
-                    .getText()
-                    .slice(node.range[0], node.range[1]);
-                  const fixedHtml = removeEmptyAttrs($node.toString(), originalNodeText);
+                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
                   return fixer.replaceTextRange(node.range, fixedHtml);
                 },
               });

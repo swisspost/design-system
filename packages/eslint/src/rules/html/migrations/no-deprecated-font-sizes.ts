@@ -75,14 +75,11 @@ export default createRule({
                 ...(classMap.font
                   ? {
                       fix(fixer) {
-                        const originalNodeText = context.sourceCode
-                          .getText()
-                          .slice(node.range[0], node.range[1]);
                         const fixedNode = $node
                           .removeClass(classMap.old)
                           .addClass(isIcon ? classMap.size : classMap.font);
 
-                        const fixedHtml = removeEmptyAttrs(fixedNode.toString(), originalNodeText);
+                        const fixedHtml = removeEmptyAttrs(fixedNode.toString(), context, node);
                         return fixer.replaceTextRange(node.range, fixedHtml);
                       },
                     }
