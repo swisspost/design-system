@@ -24,13 +24,13 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/post-icons/1000.svg")`,
+        `url("${globalThis.location.origin}/post-icons/1000.svg")`,
       );
       cy.get('@icon').invoke('attr', 'name', 'accessibility');
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/post-icons/accessibility.svg")`,
+        `url("${globalThis.location.origin}/post-icons/accessibility.svg")`,
       );
     });
 
@@ -48,7 +48,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/base/path/1000.svg")`,
+        `url("${globalThis.location.origin}/base/path/1000.svg")`,
       );
     });
 
@@ -62,7 +62,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/base/path/1000.svg")`,
+        `url("${globalThis.location.origin}/base/path/1000.svg")`,
       );
     });
 
@@ -83,7 +83,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/meta/path/1000.svg")`,
+        `url("${globalThis.location.origin}/meta/path/1000.svg")`,
       );
     });
 
@@ -112,7 +112,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/base/meta/1000.svg")`,
+        `url("${globalThis.location.origin}/base/meta/1000.svg")`,
       );
     });
 
@@ -165,7 +165,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/basehref/path/base/path/1000.svg")`,
+        `url("${globalThis.location.origin}/basehref/path/base/path/1000.svg")`,
       );
     });
 
@@ -193,7 +193,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/level1/level2/level3/level4/1000.svg")`,
+        `url("${globalThis.location.origin}/level1/level2/level3/level4/1000.svg")`,
       );
     });
 
@@ -224,7 +224,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/basehref/path/meta/path/1000.svg")`,
+        `url("${globalThis.location.origin}/basehref/path/meta/path/1000.svg")`,
       );
     });
   });
