@@ -1,7 +1,6 @@
 import { createRule } from './create-rule';
 import { HtmlNode } from '../parsers/html/html-node';
 import { getDynamicClassType, isStringLiteral, updateStringLiteral } from './class-binding-helpers';
-import { Rule } from 'eslint';
 import type { Cheerio } from 'cheerio';
 import type { AnyNode } from 'domhandler';
 import { removeEmptyAttrs } from './empty-attrs-remover';
@@ -79,7 +78,7 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
           context.report({
             messageId,
             loc: node.loc,
-            fix(fixer: Rule.RuleFixer) {
+            fix(fixer: TSESLint.RuleFixer) {
               const newValue = updateStringLiteral(value, oldClass, newClassesStr);
 
               const targetAttr = attrName;
