@@ -10,14 +10,14 @@ $min-list-item-text-width-tablet: 25ch; // 25ch * 1(rem)
 
 post-megadropdown {
   --header-megadropdown-col-min-width: calc(
-    $post-megadropdown-list-item-padding-inline-start +
-      $post-megadropdown-list-item-padding-inline-end + $min-list-item-text-width-desktop
+    #{$post-megadropdown-list-item-padding-inline-start} +
+      #{$post-megadropdown-list-item-padding-inline-end} + #{$min-list-item-text-width-desktop}
   );
 
   @include media.only(tablet) {
     --header-megadropdown-col-min-width: calc(
-      $post-megadropdown-list-item-padding-inline-start +
-        $post-megadropdown-list-item-padding-inline-end + $min-list-item-text-width-tablet
+      #{$post-megadropdown-list-item-padding-inline-start} +
+        #{$post-megadropdown-list-item-padding-inline-end} + #{$min-list-item-text-width-tablet}
     );
   }
 
