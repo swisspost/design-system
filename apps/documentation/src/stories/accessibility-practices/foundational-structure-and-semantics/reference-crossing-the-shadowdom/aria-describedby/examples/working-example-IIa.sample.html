@@ -1,0 +1,18 @@
+
+
+<custom-component descriptionId="descriptionId">
+  ⏷ #shadow-root (open)
+    <div ref="targetRef" role="button" tabindex="0" aria-describedby>
+      <!--The aria-describedby attribute is set automatically by the browser -->
+      <custom-icon />
+    </div>
+</custom-component>
+
+<span id="descriptionId">My Description</span>
+
+<script>
+  const description = document.getElementById('descriptionId');
+  // Assign the description element directly to the component's internal target element
+  // using ariaDescribedByElements to establish the accessible description
+  this.targetRef.ariaDescribedByElements = [description];
+</script>

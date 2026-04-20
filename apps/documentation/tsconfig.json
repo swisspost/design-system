@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@root/*": ["./*"],
+      "@/*": ["./src/*"]
+    },
+    "target": "es2022",
+    "useDefineForClassFields": false,
+    "lib": ["DOM", "DOM.Iterable", "es2022"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "experimentalDecorators": true
+  },
+  "include": [".storybook/*", "src", "types", "../internet-header/src/components.d.ts"],
+  "exclude": ["node_modules", "src/**/*.sample.*"]
+}

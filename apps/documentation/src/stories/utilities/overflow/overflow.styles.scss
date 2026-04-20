@@ -1,0 +1,53 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+// Story
+.overflow-container {
+  overflow: visible;
+  height: 16rem;
+
+  > * {
+    width: 10rem;
+    height: 10rem;
+
+    .content {
+      width: 24rem;
+      font-size: 18px;
+
+      @include post.max(md) {
+        width: 20rem;
+        font-size: 16px;
+      }
+
+      @include post.max(sm) {
+        width: 16rem;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.my-container {
+  background-color: post.$yellow;
+}
+
+// Snapshots
+.snapshot-container {
+  width: 30rem;
+  height: 10rem;
+  background-color: post.$yellow;
+  @include post.max(lg) {
+    width: 15rem;
+  }
+
+  > * {
+    width: 35rem;
+
+    @include post.max(lg) {
+      width: 23rem;
+    }
+
+    @include post.max(md) {
+      width: 17rem;
+    }
+  }
+}

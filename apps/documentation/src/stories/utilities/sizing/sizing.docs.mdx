@@ -1,0 +1,62 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as SizingStories from './sizing.stories';
+
+<Meta of={SizingStories} />
+
+# Sizing
+
+<div className="lead">
+  Sizing utility classes are used to influence the height and width of elements to which they are
+  applied.
+</div>
+
+## Height & Width
+
+Height and width can be set using our utility classes `h-{size}` and `w-{size}`, max-height and max-width can be set with `max-h-{size}` and `max-w-{size}` and min-height and min-width can be set with `min-h-{size}` and `min-w-{size}`.
+
+### Parent Based
+
+The design system offers classes for percentage based sizing with the suffixes bellow. They allow you to set a height / width as a percentage of the parent element.
+
+- `*-auto`
+- `*-quarter`
+- `*-third`
+- `*-half`
+- `*-two-thirds`
+- `*-three-quarters`
+- `*-full`
+
+### Example
+
+<Canvas sourceState="shown" of={SizingStories.PercentSizes} />
+<div className="hide-col-default">
+  <Controls of={SizingStories.PercentSizes} />
+</div>
+
+### Pixel Based
+
+Additional pixel-based sizing classes allow precise height `h-{size}` and width `w-{size}` definitions in pixels (e.g., `w-12` for 12px width and `h-24` for 24px height).
+
+See all available sizes in the example bellow.
+
+### Example
+
+<Canvas sourceState="shown" of={SizingStories.PxSizes} />
+<div className="hide-col-default">
+  <Controls of={SizingStories.PxSizes} />
+</div>
+
+### Relative to breakpoints
+
+For width and height, the design system provides additionally `.w-{breakpoint}-{size}` classes (e.g. `w-md-full`, `h-md-56`) so that you can set different sizes for specific breakpoints.
+
+See <a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs#full-width">Full-width button</a> for a practical example.
+
+### Viewport Based
+
+You can set width and height relative to the viewport.
+Available suffixes: `quarter`, `third`, `half`, `two-thirds`, `three-quarters`, `full`.
+
+> - `vw-{suffix}`, `vh-{suffix}`
+> - `min-vw-{suffix}`, `min-vh-{suffix}`
+> - `max-vw-{suffix}`, `max-vh-{suffix}`

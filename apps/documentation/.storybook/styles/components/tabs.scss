@@ -1,0 +1,71 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '../mixins';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+@include mixins.style-docs-only-guard('post-tabs') {
+  &::part(post-tabs) {
+    background: none;
+  }
+
+  &::part(post-tabs-content) {
+    position: relative;
+  }
+
+  > post-tab-item {
+    border-top-left-radius: post.$border-radius;
+    border-top-right-radius: post.$border-radius;
+
+    &.active {
+      border-top-left-radius: post.$border-radius;
+      border-top-right-radius: post.$border-radius;
+
+      &::before {
+        background-color: post.$black;
+        border-radius: inherit;
+      }
+    }
+
+    ~ post-tab-item {
+      margin-left: 1px;
+    }
+  }
+
+  &:where(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
+    margin-top: tokens.get('utility-gap-32');
+
+    &::part(post-tabs) {
+      &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 100vw;
+        height: 1px;
+        background-color: post.$border-color;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &:not(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
+    > post-tab-item {
+      font-size: 0.875rem;
+    }
+
+    &::part(post-tabs-content) {
+      &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: calc(100% + tokens.get('utility-gap-16'));
+        left: 0;
+        right: calc(tokens.get('utility-gap-8') * -1);
+        border-top: post.$border-width dashed post.$border-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '../mixins';
+
+@include mixins.style-docs-only-guard('.blockquote') {
+  padding: 0;
+  border-left: 0 none;
+  font-style: italic;
+}
+
+@include mixins.style-docs-only-guard('.blockquote-footer') {
+  padding: 0;
+  border-left: 0 none;
+}

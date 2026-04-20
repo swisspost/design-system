@@ -1,0 +1,39 @@
+import { Canvas, Meta, Controls } from '@storybook/addon-docs/blocks';
+import meta, * as SectionStories from './sections.stories';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={SectionStories} />
+
+<div className="docs-title">
+  # Sections
+
+  <link-design of={JSON.stringify(SectionStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta}/>
+
+<div className="lead">
+  Limit content’s width to a maximum of 1440px.
+</div>
+
+<post-banner class="my-16">
+  To notice the width limitation in action, you’ll need to view the page on a screen wider than 1440px.
+</post-banner>
+
+The `.section` class does not include any padding by default.
+To maintain proper spacing, use a `.container` element and apply our [spacing utility classes](/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs).
+
+In the example bellow, the `.section` class ensures that the background-colored wrapper never exceeds 1440px.
+Meanwhile, the `.container` class keeps the content aligned consistently with the rest of the page.
+
+<Canvas sourceState="shown" of={SectionStories.Default}/>
+
+## Edge alignment
+
+Inside the `.section` element you can use some helper classes to align elements either with the edges of the `.section` or the `.container` element.
+
+<Canvas of={SectionStories.Alignment}/>
+<div className="hide-col-default">
+  <Controls of={SectionStories.Alignment}/>
+</div>

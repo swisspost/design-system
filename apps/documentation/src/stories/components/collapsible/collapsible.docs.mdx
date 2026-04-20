@@ -1,0 +1,39 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import meta, * as CollapsibleStories from './collapsible.stories';
+import SampleCustomTrigger from './collapsible-custom-trigger.sample?raw';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={CollapsibleStories} />
+
+# Collapsible
+
+<PackageTag meta={meta} />
+
+<p className="lead">Toggle the visibility of content across your project.</p>
+
+The `<post-collapsible>` component is used to show and hide content.
+Collapsing an element will animate the height from its current value to 0.
+
+<Canvas sourceState="shown" of={CollapsibleStories.Default} />
+<Controls of={CollapsibleStories.Default} />
+
+<ComponentsPackageInstall component="<post-collapsible>" />
+
+## Examples
+
+The following examples show different use cases for the `<post-collapsible>` component.
+
+### Initially Collapsed
+
+To make the collapsible content hidden by default, just use the `collapsible="true"` property.
+
+<Canvas of={CollapsibleStories.InitiallyCollapsed} />
+
+### Programmatic Toggle
+
+The `<post-collapsible>` component offers a `.toggle()` method that allows you to trigger the collapse programmatically.
+This method is asynchronous and returns a promise that resolves with the current open state.
+It optionally takes a boolean parameter: `true` forces it open, and `false` forces it closed.
+
+<Source code={SampleCustomTrigger} language="typescript" />

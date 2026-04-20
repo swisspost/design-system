@@ -1,0 +1,7 @@
+@use '../../../../node_modules/@swisspost/design-system-styles/core' as post;
+
+:export {
+  @each $elevation, $value in post.$elevation-map {
+    elevation_#{$elevation}: $value;
+  }
+}

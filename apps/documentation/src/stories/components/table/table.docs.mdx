@@ -1,0 +1,39 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as TableStories from './table.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={TableStories} />
+
+<div className="docs-title">
+  # Table
+
+<link-design of={JSON.stringify(TableStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  Customize the native <code>&lt;table&gt;</code> element with CSS that changes the element’s
+  initial appearance.
+</div>
+
+<Canvas sourceState="shown" of={TableStories.Default} />
+<div className="hide-col-default">
+  <Controls of={TableStories.Default} />
+</div>
+
+<StylesPackageImport components={['table']} />
+
+## Usage examples
+
+### Table with buttons
+
+When buttons are placed in a table, be sure to use `alignment: middle`, respectively `<tbody class="align-middle">` to nicely align the content and the buttons.
+
+<Canvas of={TableStories.TableWithButtons} />
+
+### Interactive Table in Angular
+
+If an interactive data table is needed, we recommend using [AG Grid](https://www.ag-grid.com/).

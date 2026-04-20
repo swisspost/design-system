@@ -1,0 +1,42 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as toggleButtonStories from './togglebutton.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={toggleButtonStories} />
+
+# Button Toggle
+
+<PackageTag meta={meta} />
+
+<p className="lead">
+  A toggle button component to switch between two states and display different content based on the
+  current state.
+</p>
+
+<Canvas sourceState="shown" of={toggleButtonStories.Default} />
+<div className="hide-col-default">
+  <Controls of={toggleButtonStories.Default} />
+</div>
+
+<ComponentsPackageInstall component="<post-togglebutton>" />
+
+## Examples
+
+### Initial Toggled State
+
+You can set the button to be toggled initially by using the `toggled` attribute. When set, the component will start in the toggled state and display the corresponding content.
+
+<Canvas of={toggleButtonStories.InitiallyToggled} />
+
+### Content Visibility
+
+The toggle button can contain any text or inline element.
+
+You can control the visibility of an element based on the state of the toggle button using the `data-showwhen` attribute.
+
+- If the element has a `data-showwhen="toggled"` attribute, it will be visible when the button is toggled on.
+- If the element has a `data-showwhen="untoggled"` attribute, it will be visible when the button is toggled off.
+- If the element **does not** have a `data-showwhen` attribute, it will always be visible, regardless of the button's state.
+
+<Canvas of={toggleButtonStories.ContentVisibility} />

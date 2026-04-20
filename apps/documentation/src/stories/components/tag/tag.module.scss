@@ -1,0 +1,6 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+
+:export {
+  tag-backgrounds: [map.keys(post.$tag-backgrounds)];
+}

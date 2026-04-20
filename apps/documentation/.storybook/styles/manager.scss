@@ -1,0 +1,195 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use './components';
+@use '../addons/addons';
+@use '../addons/version-switcher/version-switcher';
+
+.sidebar-header {
+  :nth-of-type(1) {
+    flex: 0 0 48px;
+  }
+
+  > div:last-child {
+    display: block;
+  }
+}
+
+.sidebar-container {
+  button:focus,
+  a:focus {
+    border-color: transparent;
+    box-shadow: unset;
+    outline: #050400 solid 2px;
+    border-radius: 4px;
+  }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
+}
+
+#storybook-explorer-tree {
+  .sidebar-subheading {
+    width: 100%;
+
+    button {
+      letter-spacing: 0.1em;
+
+      &:focus,
+      &:hover {
+        background: none;
+      }
+    }
+
+    .sidebar-subheading-action {
+      display: none;
+    }
+  }
+
+  .sidebar-subheading,
+  .sidebar-item {
+    position: relative;
+    border-radius: 0;
+    overflow: visible !important;
+
+    &:before,
+    &:after {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 13px;
+      background-color: inherit;
+    }
+
+    &:before {
+      right: 100%;
+    }
+
+    &:after {
+      left: 100%;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: post.$gray-10;
+
+      > a,
+      > button {
+        z-index: 1;
+      }
+    }
+  }
+
+  .sidebar-item {
+    + a:not([data-nodetype]) {
+      display: none;
+    }
+
+    > a {
+      display: flex;
+      align-items: center;
+    }
+
+    &[data-nodetype='group'] svg {
+      color: post.$gray-60;
+    }
+    &[data-nodetype='component'] svg {
+      color: #0076a8;
+    }
+    &[data-nodetype='document'] svg {
+      color: #e03c31;
+    }
+    &[data-nodetype='story'] svg {
+      color: #7566a0;
+    }
+
+    &[data-selected='true'] {
+      background-color: rgba(post.$yellow, 0.4);
+      color: post.$black;
+    }
+  }
+
+  #misc,
+  [data-item-id^='health'],
+  :is(#raw-components, [data-parent-id='raw-components']):where([data-env='production'] *),
+  :is(#accessibility-practices, [data-parent-id='accessibility-practices']):where(
+    [data-env='production'] *
+  ) {
+    display: none;
+  }
+
+  #introduction--docs,
+  [data-parent-id='misc'] a {
+    padding-inline-start: 0.5rem;
+  }
+
+  [data-parent-id='misc']:where(:not([data-parent-id='misc'] + *)) {
+    margin-block-start: 1rem;
+  }
+}
+
+.label-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  img {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+}
+
+// Hide default SVG icons
+#storybook-explorer-tree .sidebar-item > a > div > svg {
+  display: none;
+}
+
+#storybook-explorer-menu {
+  .search-result-item--label {
+    mark {
+      @include utilities.high-contrast-mode() {
+        background-color: Mark;
+        color: MarkText;
+      }
+    }
+  }
+}
+
+#downshift-1-menu {
+  .search-result-item {
+    svg {
+      margin-top: 1px;
+      width: 1.2em;
+      height: 1.2em;
+      color: #7566a0;
+
+      &[color='secondary'] {
+        color: #0076a8;
+      }
+    }
+
+    .search-result-item--label {
+      span {
+        color: post.$gray-60;
+      }
+
+      mark {
+        color: inherit;
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: post.$gray-10;
+    }
+  }
+}
+
+.docblock-argstable {
+  tr[title] button + span {
+    letter-spacing: 0.1em;
+  }
+}
