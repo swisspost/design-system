@@ -45,15 +45,15 @@ test.describe('SSR compatibility', () => {
       }
     });
 
-    const hydratedComponents = await page.locator('[data-hydrated]').all();
-
     // wait for page hydration before checking for errors
     await Promise.all(
-      hydratedComponents.map(component => component.waitFor({ state: 'attached' })),
+      (componentNames as string[]).map(componentName =>
+        page.locator(`${componentName}[data-hydrated]`).first().waitFor({ state: 'attached' }),
+      ),
     );
     await page.waitForLoadState('load');
 
-    if (hydrationErrors) {
+    if (hydrationErrors.length > 0) {
       test.info().annotations.push({
         type: ' Warning',
         description: `The test detected hydration errors!\n${hydrationErrors.join('\n')}`,
