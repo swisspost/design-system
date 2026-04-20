@@ -11,7 +11,7 @@ const breakpointStyles = {
 };
 
 // Mock getComputedStyle to return the above breakpoint data
-global.getComputedStyle = jest.fn().mockReturnValue({
+globalThis.getComputedStyle = jest.fn().mockReturnValue({
   getPropertyValue: (property: string) => {
     const key = property.replace('--post-grid-breakpoint-', '');
     return breakpointStyles[key].map(String).join(', ');

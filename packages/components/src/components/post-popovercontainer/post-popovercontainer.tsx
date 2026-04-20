@@ -83,7 +83,7 @@ export class PostPopovercontainer {
   private arrowRef: HTMLElement;
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
-  private toggleTimeoutId: number;
+  private toggleTimeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
   private hasOpenedOnce: boolean = true;
   private boundMouseTrackingHandler: (event: MouseEvent) => void;
 
@@ -264,7 +264,7 @@ export class PostPopovercontainer {
     }
 
     if (this.safeSpace) {
-      window.addEventListener('mousemove', this.boundMouseTrackingHandler);
+      globalThis.addEventListener('mousemove', this.boundMouseTrackingHandler);
     }
   }
 
@@ -277,7 +277,7 @@ export class PostPopovercontainer {
     }
 
     if (this.safeSpace) {
-      window.removeEventListener('mousemove', this.boundMouseTrackingHandler);
+      globalThis.removeEventListener('mousemove', this.boundMouseTrackingHandler);
     }
 
     // Cancel any running animation
@@ -346,7 +346,7 @@ export class PostPopovercontainer {
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
-    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
+    this.toggleTimeoutId = globalThis.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
 
     if (isOpen) {
@@ -374,7 +374,7 @@ export class PostPopovercontainer {
    */
   private getHeaderHeight(): number {
     const header = document.querySelector('post-header');
-    return header ? parseFloat(getComputedStyle(header).height) : 0;
+    return header ? Number.parseFloat(getComputedStyle(header).height) : 0;
   }
 
   private async calculatePosition() {

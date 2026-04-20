@@ -14,11 +14,10 @@
       "@swisspost/design-system-eslint": "10.0.0-next.62",
       "@swisspost/design-system-icons": "10.0.0-next.62",
       "@swisspost/internet-header": "10.0.0-next.62",
-      "@swisspost/design-system-nextjs-integration": "10.0.0-next.62",
+      "@swisspost/design-system-integration-next": "10.0.0-next.62",
       "@swisspost/design-system-styles": "10.0.0-next.62",
       "@swisspost/design-system-tokens": "10.0.0-next.62",
       "@swisspost/design-system-theme-ag-grid": "10.0.0-next.62"
-
     }
   },
   {
@@ -43,7 +42,7 @@
       "@swisspost/design-system-intranet-header": "9.0.0",
       "@swisspost/design-system-intranet-header-showcase": "1.0.28",
       "@swisspost/design-system-migrations": "9.0.0",
-      "@swisspost/design-system-nextjs-integration": "0.1.32",
+      "@swisspost/design-system-integration-next": "0.1.32",
       "@swisspost/design-system-styles": "9.0.0",
       "@swisspost/design-system-styles-primeng-workspace": "1.0.22",
       "@swisspost/design-system-styles-primeng": "9.0.0",
@@ -73,7 +72,7 @@
       "@swisspost/design-system-intranet-header": "8.2.1",
       "@swisspost/design-system-intranet-header-showcase": "1.0.10",
       "@swisspost/design-system-migrations": "8.2.1",
-      "@swisspost/design-system-nextjs-integration": "0.1.14",
+      "@swisspost/design-system-integration-next": "0.1.14",
       "@swisspost/design-system-styles": "8.2.1",
       "@swisspost/design-system-styles-primeng-workspace": "1.0.6",
       "@swisspost/design-system-styles-primeng": "8.2.1",
