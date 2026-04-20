@@ -177,7 +177,7 @@ describe('stepper', { baseUrl: null }, () => {
   it('should add correct class when a new step is added dynamically', () => {
     cy.get('post-stepper').find('post-stepper-item').should('have.length', 5);
     cy.get('post-stepper').then($stepper => {
-      $stepper[0].appendChild(document.createElement('post-stepper-item'));
+      $stepper[0].append(document.createElement('post-stepper-item'));
       cy.get('post-stepper')
         .wait(100)
         .find('post-stepper-item')

@@ -136,33 +136,39 @@ export class PostLanguageMenuItem {
       }
     };
 
-    return (
-      <Host data-version={version} role={this.variant === 'list' ? 'listitem' : undefined}>
-        {this.url ? (
-          <a
-            aria-current={this.active ? 'page' : undefined}
-            href={this.url}
-            hrefLang={lang}
-            lang={lang}
-            aria-description={this.description}
-            onClick={() => this.emitChange()}
-            onKeyDown={emitOnKeyDown}
-          >
-            <slot />
-            <span class="visually-hidden">{this.name}</span>
-          </a>
-        ) : (
-          <button
-            aria-current={this.active ? 'true' : undefined}
-            lang={lang}
-            aria-description={this.description}
-            onClick={() => this.emitChange()}
-            onKeyDown={emitOnKeyDown}
-          >
-            <slot />
-            <span class="visually-hidden">{this.name}</span>
-          </button>
-        )}
+    const interactiveElement = this.url ? (
+      <a
+        aria-current={this.active ? 'page' : undefined}
+        href={this.url}
+        hrefLang={lang}
+        lang={lang}
+        aria-description={this.description}
+        onClick={() => this.emitChange()}
+        onKeyDown={emitOnKeyDown}
+      >
+        <slot />
+        <span class="visually-hidden">{this.name}</span>
+      </a>
+    ) : (
+      <button
+        aria-current={this.active ? 'true' : undefined}
+        lang={lang}
+        aria-description={this.description}
+        onClick={() => this.emitChange()}
+        onKeyDown={emitOnKeyDown}
+      >
+        <slot />
+        <span class="visually-hidden">{this.name}</span>
+      </button>
+    );
+
+    return this.variant === 'list' ? (
+      <Host data-version={version} role="listitem">
+        {interactiveElement}
+      </Host>
+    ) : (
+      <Host data-version={version}>
+        <post-menu-item>{interactiveElement}</post-menu-item>
       </Host>
     );
   }
