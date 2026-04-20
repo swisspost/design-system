@@ -10,6 +10,20 @@ const breakpointStyles = {
   devices: ['mobile', 'tablet', 'tablet', 'desktop', 'desktop'],
 };
 
+class ResizeObserverMock {
+  observe() {
+    /* do nothing */
+  }
+  unobserve() {
+    /* do nothing */
+  }
+  disconnect() {
+    /* do nothing */
+  }
+}
+
+globalThis.ResizeObserver = ResizeObserverMock;
+
 // Mock getComputedStyle to return the above breakpoint data
 globalThis.getComputedStyle = jest.fn().mockReturnValue({
   getPropertyValue: (property: string) => {
