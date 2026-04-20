@@ -6,7 +6,7 @@ on:
       - 'packages/styles/**'
       - 'packages/components/**'
       - 'packages/components-react/**'
-      - 'packages/nextjs-integration/**'
+      - 'apps/integration-next/**'
 
 permissions:
   contents: read
@@ -25,10 +25,10 @@ jobs:
         uses: ./.github/actions/setup-pnpm
 
       - name: Install & build dependencies
-        run: pnpm install && pnpm --filter design-system-nextjs-integration^... build
+        run: pnpm install && pnpm --filter design-system-integration-next^... build
 
       - name: Install Playwright Browsers
-        run: pnpm --filter design-system-nextjs-integration exec playwright install --with-deps chromium
+        run: pnpm --filter design-system-integration-next exec playwright install --with-deps chromium
 
       - name: Run tests
-        run: pnpm --filter design-system-nextjs-integration e2e
+        run: pnpm --filter design-system-integration-next e2e

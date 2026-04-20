@@ -112,4 +112,48 @@ export default [
     ...pluginCypress.configs.recommended,
     rules: {},
   },
+  ...dsEslintConfigs.unicornRecommended,
+  {
+    name: 'post/unicorn/overrides',
+    files: ['**/*.{js,ts,jsx,tsx}'],
+    rules: {
+      'unicorn/no-null': 'off',
+      'unicorn/consistent-function-scoping': 'off',
+      'unicorn/no-array-reduce': 'off',
+      'unicorn/prefer-ternary': 'off',
+      'unicorn/no-negated-condition': 'off',
+      'unicorn/switch-case-braces': 'off',
+      'unicorn/no-lonely-if': 'off',
+      'unicorn/no-array-for-each': 'off',
+      'unicorn/prefer-spread': 'off',
+      'unicorn/no-invalid-remove-event-listener': 'off',
+      'unicorn/no-abusive-eslint-disable': 'off',
+      'unicorn/prefer-top-level-await': 'off',
+      'unicorn/catch-error-name': 'off',
+      'unicorn/no-array-callback-reference': 'off',
+      'unicorn/no-object-as-default-parameter': 'off',
+      'unicorn/prefer-switch': 'off',
+      'unicorn/prefer-add-event-listener': 'off',
+      'unicorn/prefer-modern-dom-apis': 'off',
+      'unicorn/prefer-query-selector': 'off',
+      'unicorn/no-useless-fallback-in-spread': 'off',
+      'unicorn/numeric-separators-style': 'off',
+    },
+  },
+  {
+    // environment.ts intentionally uses typeof global/window to distinguish Node vs browser environments
+    name: 'post/unicorn/environment-overrides',
+    files: ['**/utils/environment.ts'],
+    rules: {
+      'unicorn/prefer-global-this': 'off',
+    },
+  },
+  {
+    // getFocusableElements() returns a jQuery object which does not support .at()
+    name: 'post/unicorn/cypress-overrides',
+    files: ['cypress/**/*.{ts,js}'],
+    rules: {
+      'unicorn/prefer-at': 'off',
+    },
+  },
 ];

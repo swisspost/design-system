@@ -166,7 +166,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
       cy.document().then(document => {
         const output = document.createElement('output');
         output.id = 'cancel-event-value';
-        document.body.appendChild(output);
+        document.body.append(output);
 
         const autocomplete: HTMLPostAutocompleteElement = document.querySelector(
           'post-autocomplete#autocomplete-nested',
