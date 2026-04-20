@@ -199,7 +199,7 @@ describe('header', () => {
       cy.scrollTo(0, 500);
 
       // Page is scrolled down
-      cy.get('@title').should('visible');
+      cy.get('@title').should('be.visible');
       cy.get('post-togglebutton').click();
 
       // Burger menu is opened
