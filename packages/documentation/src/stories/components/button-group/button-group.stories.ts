@@ -25,7 +25,8 @@ const meta: MetaComponent = {
   argTypes: {
     size: {
       name: 'Size',
-      description: 'Sets the size of the button group.',
+      description:
+        'Sets the size of the button group. <span className="mt-mini alert alert-sm alert-warning">Button group sizes are deprecated and will be removed in the next version.</span>',
       control: {
         type: 'select',
         labels: {
@@ -129,17 +130,16 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story =>
-      html`
-        <div
-          @click="${(e: Event) => {
-            const target = e.target as HTMLElement;
-            if (target.tagName === 'A' || target.tagName === 'BUTTON') e.preventDefault();
-          }}"
-        >
-          ${story()}
-        </div>
-      `,
+    story => html`
+      <div
+        @click="${(e: Event) => {
+          const target = e.target as HTMLElement;
+          if (target.tagName === 'A' || target.tagName === 'BUTTON') e.preventDefault();
+        }}"
+      >
+        ${story()}
+      </div>
+    `,
   ],
 };
 
