@@ -74,6 +74,7 @@ export class MigrationV910Component extends LitElement {
       stepper: false,
       dialog_icon: false,
       subnavigation: false,
+      product_card: false,
     },
     components: {
       alert: false,
@@ -890,15 +891,9 @@ export class MigrationV910Component extends LitElement {
                         >
                         Responsive margin, padding and gap utility classes renamed
                         <ul>
-                          <li>
-                            <code>*-tiny-r</code> is now <code>*-12 *-md-16</code>
-                          </li>
-                          <li>
-                            <code>*-small-r</code> is now <code>*-12 *-sm-16</code>
-                          </li>
-                          <li>
-                            <code>*-regular-r</code> is now <code>*-16 *-md-24</code>
-                          </li>
+                          <li><code>*-tiny-r</code> is now <code>*-12 *-md-16</code></li>
+                          <li><code>*-small-r</code> is now <code>*-12 *-sm-16</code></li>
+                          <li><code>*-regular-r</code> is now <code>*-16 *-md-24</code></li>
                           <li>
                             <strong><code>*-large-r</code></strong> is now
                             <strong><code>*-16 *-md-24 *-lg-32</code></strong>
@@ -907,22 +902,17 @@ export class MigrationV910Component extends LitElement {
                             <strong><code>*-big-r</code></strong> is now
                             <strong><code>*-24 *-md-32 *-lg-40</code></strong>
                           </li>
-                          <li>
-                            <code>*-bigger-big-r</code> is now <code>*-24 *-md-48</code>
-                          </li>
+                          <li><code>*-bigger-big-r</code> is now <code>*-24 *-md-48</code></li>
                           <li>
                             <strong><code>*-huge-r</code></strong> is now
                             <strong><code>*-32 *-md-40 *-lg-56</code></strong>
                           </li>
-                          <li>
-                            <code>*-giant-r</code> is now <code>*-56 *-md-80</code>
-                          </li>
+                          <li><code>*-giant-r</code> is now <code>*-56 *-md-80</code></li>
                         </ul>
                         <span class="info"
-                          >⚠️ Bold entries (<code>large</code>, <code>big</code>,
-                          <code>huge</code>) are not 1:1 migrations, you should carefully review the
-                          autofix output to ensure spacing behaves as intended at each
-                          breakpoint.</span
+                          >⚠️ Bold entries (<code>large</code>, <code>big</code>, <code>huge</code>)
+                          are not 1:1 migrations, you should carefully review the autofix output to
+                          ensure spacing behaves as intended at each breakpoint.</span
                         >
                       </label>
                     </div>
@@ -1685,7 +1675,7 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.others.stepper}"
                       />
                       <label class="form-check-label" for="others.stepper">
-                        Removed the stepper HTML component.
+                        Stepper HTML component removed
                         <span class="info"
                           >You can now use the <code>post-stepper</code> web component.</span
                         >
@@ -1723,6 +1713,24 @@ export class MigrationV910Component extends LitElement {
                         Subnavigation component removed
                         <span class="info">
                           Replaced by the <code>post-tabs</code> component.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-product_card"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.product_card}"
+                      />
+                      <label class="form-check-label" for="others-product_card">
+                        Card product component removed.
+                        <span class="info">
+                          The <code>.product-card</code> and
+                          <code>.product-navigation</code> classes are no longer effective.
                         </span>
                       </label>
                     </div>
