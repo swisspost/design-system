@@ -230,7 +230,7 @@ export class MigrationV910Component extends LitElement {
                   id="general-hide_automigration"
                   type="checkbox"
                   class="form-check-input"
-                  name="state-general-hide_automigration"
+                  name="general-hide_automigration"
                   value="true"
                   @change="${this._onAutoMigrationChange}"
                   ?checked="${this.state.general.hide_automigration}"

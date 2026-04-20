@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Fixed a bug in the migration guide where each migration item's checkbox state was not saved correctly to localStorage.
+Fixed a bug in the migration guide where individual task checkboxes were not correctly saving their state to localStorage.
