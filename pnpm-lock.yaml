@@ -57,6 +57,148 @@ importers:
         specifier: 2.0.0-3
         version: 2.0.0-3
 
+  apps/documentation:
+    dependencies:
+      '@swisspost/design-system-components':
+        specifier: workspace:10.0.0-next.66
+        version: link:../../packages/components
+      '@swisspost/design-system-components-react':
+        specifier: workspace:10.0.0-next.66
+        version: link:../../packages/components-react
+      '@swisspost/design-system-icons':
+        specifier: workspace:10.0.0-next.66
+        version: link:../../packages/icons
+      '@swisspost/design-system-styles':
+        specifier: workspace:10.0.0-next.66
+        version: link:../../packages/styles/dist
+      '@swisspost/design-system-theme-ag-grid':
+        specifier: workspace:10.0.0-next.66
+        version: link:../../packages/theme-ag-grid
+      '@swisspost/design-system-tokens':
+        specifier: workspace:10.0.0-next.66
+        version: link:../../packages/tokens/dist
+      '@swisspost/internet-header':
+        specifier: workspace:10.0.0-next.66
+        version: link:../../packages/internet-header
+    devDependencies:
+      '@eslint/js':
+        specifier: 9.18.0
+        version: 9.18.0
+      '@eslint/markdown':
+        specifier: 7.5.1
+        version: 7.5.1
+      '@kurbar/storybook-addon-docs-stencil':
+        specifier: 8.0.0
+        version: 8.0.0(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))
+      '@lit/task':
+        specifier: 1.0.3
+        version: 1.0.3
+      '@open-wc/lit-helpers':
+        specifier: 0.7.0
+        version: 0.7.0(lit@3.3.2)
+      '@percy/cli':
+        specifier: 1.31.8
+        version: 1.31.8(typescript@5.8.3)
+      '@percy/cypress':
+        specifier: 3.1.7
+        version: 3.1.7(cypress@14.3.2)
+      '@storybook/addon-docs':
+        specifier: 9.0.18
+        version: 9.0.18(@types/react@18.3.27)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))
+      '@storybook/addon-links':
+        specifier: 9.0.18
+        version: 9.0.18(react@18.3.1)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))
+      '@storybook/web-components-vite':
+        specifier: 9.0.18
+        version: 9.0.18(lit@3.3.2)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3))
+      '@swisspost/design-system-components-angular':
+        specifier: workspace:10.0.0-next.66
+        version: link:../../packages/components-angular/dist/components
+      '@types/css-modules':
+        specifier: 1.0.5
+        version: 1.0.5
+      '@types/mdx':
+        specifier: 2.0.13
+        version: 2.0.13
+      '@types/react':
+        specifier: 18.3.27
+        version: 18.3.27
+      '@types/react-syntax-highlighter':
+        specifier: 15.5.13
+        version: 15.5.13
+      '@typescript-eslint/eslint-plugin':
+        specifier: 7.18.0
+        version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
+      '@typescript-eslint/parser':
+        specifier: 7.18.0
+        version: 7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
+      cypress:
+        specifier: 14.3.2
+        version: 14.3.2
+      cypress-axe:
+        specifier: 1.6.0
+        version: 1.6.0(axe-core@4.11.3)(cypress@14.3.2)
+      eslint:
+        specifier: 9.26.0
+        version: 9.26.0(jiti@2.6.1)
+      eslint-plugin-cypress:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@9.26.0(jiti@2.6.1))
+      eslint-plugin-mdx:
+        specifier: 3.6.2
+        version: 3.6.2(eslint@9.26.0(jiti@2.6.1))
+      eslint-plugin-react:
+        specifier: 7.37.5
+        version: 7.37.5(eslint@9.26.0(jiti@2.6.1))
+      eslint-plugin-storybook:
+        specifier: 9.0.10
+        version: 9.0.10(eslint@9.26.0(jiti@2.6.1))(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))(typescript@5.8.3)
+      globals:
+        specifier: 17.3.0
+        version: 17.3.0
+      lit:
+        specifier: 3.3.2
+        version: 3.3.2
+      lit-html:
+        specifier: 3.3.2
+        version: 3.3.2
+      prettier:
+        specifier: 3.6.2
+        version: 3.6.2
+      react:
+        specifier: 18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: 18.3.1
+        version: 18.3.1(react@18.3.1)
+      react-syntax-highlighter:
+        specifier: 16.1.0
+        version: 16.1.0(react@18.3.1)
+      rehype-autolink-headings:
+        specifier: 7.1.0
+        version: 7.1.0
+      rehype-slug:
+        specifier: 6.0.0
+        version: 6.0.0
+      rimraf:
+        specifier: 6.0.1
+        version: 6.0.1
+      sass-embedded:
+        specifier: 1.78.0
+        version: 1.78.0
+      storybook:
+        specifier: 9.1.19
+        version: 9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3))
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      typescript-eslint:
+        specifier: 8.20.0
+        version: 8.20.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
+      vite:
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)
+
   apps/integration-next:
     dependencies:
       '@swisspost/design-system-components-react':
@@ -473,148 +615,6 @@ importers:
       typescript-eslint:
         specifier: 8.20.0
         version: 8.20.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
-
-  packages/documentation:
-    dependencies:
-      '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.66
-        version: link:../components
-      '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.66
-        version: link:../components-react
-      '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.66
-        version: link:../icons
-      '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.66
-        version: link:../styles/dist
-      '@swisspost/design-system-theme-ag-grid':
-        specifier: workspace:10.0.0-next.66
-        version: link:../theme-ag-grid
-      '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.66
-        version: link:../tokens/dist
-      '@swisspost/internet-header':
-        specifier: workspace:10.0.0-next.66
-        version: link:../internet-header
-    devDependencies:
-      '@eslint/js':
-        specifier: 9.18.0
-        version: 9.18.0
-      '@eslint/markdown':
-        specifier: 7.5.1
-        version: 7.5.1
-      '@kurbar/storybook-addon-docs-stencil':
-        specifier: 8.0.0
-        version: 8.0.0(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))
-      '@lit/task':
-        specifier: 1.0.3
-        version: 1.0.3
-      '@open-wc/lit-helpers':
-        specifier: 0.7.0
-        version: 0.7.0(lit@3.3.2)
-      '@percy/cli':
-        specifier: 1.31.8
-        version: 1.31.8(typescript@5.8.3)
-      '@percy/cypress':
-        specifier: 3.1.7
-        version: 3.1.7(cypress@14.3.2)
-      '@storybook/addon-docs':
-        specifier: 9.0.18
-        version: 9.0.18(@types/react@18.3.27)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))
-      '@storybook/addon-links':
-        specifier: 9.0.18
-        version: 9.0.18(react@18.3.1)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))
-      '@storybook/web-components-vite':
-        specifier: 9.0.18
-        version: 9.0.18(lit@3.3.2)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3))
-      '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.66
-        version: link:../components-angular/dist/components
-      '@types/css-modules':
-        specifier: 1.0.5
-        version: 1.0.5
-      '@types/mdx':
-        specifier: 2.0.13
-        version: 2.0.13
-      '@types/react':
-        specifier: 18.3.27
-        version: 18.3.27
-      '@types/react-syntax-highlighter':
-        specifier: 15.5.13
-        version: 15.5.13
-      '@typescript-eslint/eslint-plugin':
-        specifier: 7.18.0
-        version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
-      '@typescript-eslint/parser':
-        specifier: 7.18.0
-        version: 7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
-      cypress:
-        specifier: 14.3.2
-        version: 14.3.2
-      cypress-axe:
-        specifier: 1.6.0
-        version: 1.6.0(axe-core@4.11.3)(cypress@14.3.2)
-      eslint:
-        specifier: 9.26.0
-        version: 9.26.0(jiti@2.6.1)
-      eslint-plugin-cypress:
-        specifier: 4.2.0
-        version: 4.2.0(eslint@9.26.0(jiti@2.6.1))
-      eslint-plugin-mdx:
-        specifier: 3.6.2
-        version: 3.6.2(eslint@9.26.0(jiti@2.6.1))
-      eslint-plugin-react:
-        specifier: 7.37.5
-        version: 7.37.5(eslint@9.26.0(jiti@2.6.1))
-      eslint-plugin-storybook:
-        specifier: 9.0.10
-        version: 9.0.10(eslint@9.26.0(jiti@2.6.1))(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)))(typescript@5.8.3)
-      globals:
-        specifier: 17.3.0
-        version: 17.3.0
-      lit:
-        specifier: 3.3.2
-        version: 3.3.2
-      lit-html:
-        specifier: 3.3.2
-        version: 3.3.2
-      prettier:
-        specifier: 3.6.2
-        version: 3.6.2
-      react:
-        specifier: 18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: 18.3.1
-        version: 18.3.1(react@18.3.1)
-      react-syntax-highlighter:
-        specifier: 16.1.0
-        version: 16.1.0(react@18.3.1)
-      rehype-autolink-headings:
-        specifier: 7.1.0
-        version: 7.1.0
-      rehype-slug:
-        specifier: 6.0.0
-        version: 6.0.0
-      rimraf:
-        specifier: 6.0.1
-        version: 6.0.1
-      sass-embedded:
-        specifier: 1.78.0
-        version: 1.78.0
-      storybook:
-        specifier: 9.1.19
-        version: 9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3))
-      typescript:
-        specifier: 5.8.3
-        version: 5.8.3
-      typescript-eslint:
-        specifier: 8.20.0
-        version: 8.20.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
-      vite:
-        specifier: 8.0.5
-        version: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.25.12)(jiti@2.6.1)(less@4.6.4)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.1)(yaml@2.8.3)
 
   packages/eslint:
     dependencies:
@@ -14927,7 +14927,7 @@ snapshots:
 
   '@types/concat-stream@2.0.3':
     dependencies:
-      '@types/node': 22.19.17
+      '@types/node': 25.6.0
 
   '@types/cors@2.8.19':
     dependencies:
@@ -15089,7 +15089,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
     optional: true
 
   '@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)':
@@ -18978,7 +18978,7 @@ snapshots:
       '@babel/parser': 7.29.2
       '@istanbuljs/schema': 0.1.6
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.2
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
