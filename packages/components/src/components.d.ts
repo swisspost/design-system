@@ -8,14 +8,14 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-import { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
+import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-export { AirDatepickerCustomOptions } from "./components/post-datepicker/post-datepicker";
+export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
@@ -58,6 +58,22 @@ export namespace Components {
           * Triggers the collapse programmatically.
          */
         "toggle": (force?: boolean) => Promise<boolean>;
+    }
+    interface PostAutocomplete {
+        /**
+          * Show or hide the clear button
+          * @default false
+         */
+        "clearable": boolean;
+        /**
+          * Number of characters to type before filtering methods are called
+          * @default 0
+         */
+        "filterThreshold": number;
+        /**
+          * Optional idref to connect the autocomplete with the options dropdown if not nested
+         */
+        "listbox"?: string;
     }
     interface PostAvatar {
         /**
@@ -160,7 +176,7 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
-    interface PostDatepicker {
+    interface PostDatePicker {
         /**
           * Hides the popover calendar.
          */
@@ -171,15 +187,15 @@ export namespace Components {
          */
         "inline": boolean;
         /**
-          * Maximum possible date to select.
+          * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "max"?: string;
         /**
-          * Minimun possible date to select.
+          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
-          * Whether the datepicker expects a range selection or a single date selection.
+          * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
@@ -188,18 +204,17 @@ export namespace Components {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The datepicker's selected end date (for range datepicker only).
+          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedEndDate"?: string;
         /**
-          * The datepicker's selected date. If in range mode, the selected start date.
+          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedStartDate"?: string;
         /**
           * Displays the popover calendar, focusing the first calendar item.
-          * @param target - The HTML element relative to which the popover calendar should be displayed
          */
-        "show": (target: HTMLElement) => Promise<void>;
+        "show": () => Promise<void>;
         /**
           * Label for "Next decade" button.
          */
@@ -232,8 +247,6 @@ export namespace Components {
           * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
          */
         "textToggleCalendar"?: string;
-    }
-    interface PostEnvTest {
     }
     interface PostFooter {
         /**
@@ -337,6 +350,48 @@ export namespace Components {
         "variant"?: SwitchVariant;
     }
     interface PostLinkarea {
+    }
+    interface PostListbox {
+        /**
+          * Clears the currently selected option
+         */
+        "clearSelection": () => Promise<void>;
+        /**
+          * Uses the internal default filtering mode to filter the list of options. An empty string resets the filter to it's original state.
+         */
+        "filter": (query: string) => Promise<void>;
+        /**
+          * Closes the listbox
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Navigates the listbox options in the specified direction and scrolls the active option into view.
+         */
+        "navigate": (direction: "up" | "down" | "first" | "last") => Promise<void>;
+        /**
+          * Selects the currently highlighted option in the listbox and scrolls it into view.
+         */
+        "selectActive": () => Promise<void>;
+        /**
+          * Opens the listbox
+         */
+        "show": () => Promise<void>;
+    }
+    interface PostListboxOption {
+        /**
+          * Represents option is highlighted .
+          * @default false
+         */
+        "highlighted": boolean;
+        /**
+          * Represents option is selected .
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * A value string, similar to <option value="Value 1">Value 1 description</option>
+         */
+        "value": string;
     }
     interface PostLogo {
         /**
@@ -512,6 +567,10 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Offset for more precise placement
+         */
+        "offset"?: number;
+        /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
           * @default 'top'
          */
@@ -555,10 +614,14 @@ export namespace Components {
     }
     interface PostStepper {
         /**
-          * Defines the currently active step
+          * Defines the current step, which is the next step the user has to complete.
           * @default -1
          */
         "currentIndex": number;
+        /**
+          * Defines the selected (active) step, which is the step the user is currently on. If not defined, the selected step is the current step.
+         */
+        "selectedIndex"?: number;
         /**
           * "Completed step" label for accessibility
          */
@@ -656,6 +719,10 @@ export namespace Components {
         "for": string;
     }
 }
+export interface PostAutocompleteCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostAutocompleteElement;
+}
 export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostBannerElement;
@@ -664,13 +731,21 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostDatepickerCustomEvent<T> extends CustomEvent<T> {
+export interface PostDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostDatepickerElement;
+    target: HTMLPostDatePickerElement;
 }
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageMenuItemElement;
+}
+export interface PostListboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostListboxElement;
+}
+export interface PostListboxOptionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostListboxOptionElement;
 }
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -708,6 +783,23 @@ declare global {
     var HTMLPostAccordionItemElement: {
         prototype: HTMLPostAccordionItemElement;
         new (): HTMLPostAccordionItemElement;
+    };
+    interface HTMLPostAutocompleteElementEventMap {
+        "postFilteringEvent": string;
+    }
+    interface HTMLPostAutocompleteElement extends Components.PostAutocomplete, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostAutocompleteElementEventMap>(type: K, listener: (this: HTMLPostAutocompleteElement, ev: PostAutocompleteCustomEvent<HTMLPostAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostAutocompleteElementEventMap>(type: K, listener: (this: HTMLPostAutocompleteElement, ev: PostAutocompleteCustomEvent<HTMLPostAutocompleteElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostAutocompleteElement: {
+        prototype: HTMLPostAutocompleteElement;
+        new (): HTMLPostAutocompleteElement;
     };
     interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
     }
@@ -779,28 +871,22 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-    interface HTMLPostDatepickerElementEventMap {
-        "postUpdateDates": Date | Date[];
+    interface HTMLPostDatePickerElementEventMap {
+        "postUpdateDates": string | string[];
     }
-    interface HTMLPostDatepickerElement extends Components.PostDatepicker, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLPostDatePickerElement extends Components.PostDatePicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostDatepickerElementEventMap>(type: K, listener: (this: HTMLPostDatepickerElement, ev: PostDatepickerCustomEvent<HTMLPostDatepickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPostDatepickerElement: {
-        prototype: HTMLPostDatepickerElement;
-        new (): HTMLPostDatepickerElement;
-    };
-    interface HTMLPostEnvTestElement extends Components.PostEnvTest, HTMLStencilElement {
-    }
-    var HTMLPostEnvTestElement: {
-        prototype: HTMLPostEnvTestElement;
-        new (): HTMLPostEnvTestElement;
+    var HTMLPostDatePickerElement: {
+        prototype: HTMLPostDatePickerElement;
+        new (): HTMLPostDatePickerElement;
     };
     interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
     }
@@ -852,6 +938,40 @@ declare global {
     var HTMLPostLinkareaElement: {
         prototype: HTMLPostLinkareaElement;
         new (): HTMLPostLinkareaElement;
+    };
+    interface HTMLPostListboxElementEventMap {
+        "postOptionActive": string | null;
+    }
+    interface HTMLPostListboxElement extends Components.PostListbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostListboxElementEventMap>(type: K, listener: (this: HTMLPostListboxElement, ev: PostListboxCustomEvent<HTMLPostListboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostListboxElementEventMap>(type: K, listener: (this: HTMLPostListboxElement, ev: PostListboxCustomEvent<HTMLPostListboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostListboxElement: {
+        prototype: HTMLPostListboxElement;
+        new (): HTMLPostListboxElement;
+    };
+    interface HTMLPostListboxOptionElementEventMap {
+        "postOptionSelected": string;
+    }
+    interface HTMLPostListboxOptionElement extends Components.PostListboxOption, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostListboxOptionElementEventMap>(type: K, listener: (this: HTMLPostListboxOptionElement, ev: PostListboxOptionCustomEvent<HTMLPostListboxOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostListboxOptionElementEventMap>(type: K, listener: (this: HTMLPostListboxOptionElement, ev: PostListboxOptionCustomEvent<HTMLPostListboxOptionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostListboxOptionElement: {
+        prototype: HTMLPostListboxOptionElement;
+        new (): HTMLPostListboxOptionElement;
     };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
@@ -1053,6 +1173,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
+        "post-autocomplete": HTMLPostAutocompleteElement;
         "post-avatar": HTMLPostAvatarElement;
         "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
@@ -1061,14 +1182,15 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
-        "post-datepicker": HTMLPostDatepickerElement;
-        "post-env-test": HTMLPostEnvTestElement;
+        "post-date-picker": HTMLPostDatePickerElement;
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
+        "post-listbox": HTMLPostListboxElement;
+        "post-listbox-option": HTMLPostListboxOptionElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1115,6 +1237,26 @@ declare namespace LocalJSX {
           * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
          */
         "headingLevel"?: HeadingLevel;
+    }
+    interface PostAutocomplete {
+        /**
+          * Show or hide the clear button
+          * @default false
+         */
+        "clearable"?: boolean;
+        /**
+          * Number of characters to type before filtering methods are called
+          * @default 0
+         */
+        "filterThreshold"?: number;
+        /**
+          * Optional idref to connect the autocomplete with the options dropdown if not nested
+         */
+        "listbox"?: string;
+        /**
+          * Cancelable event emitted when the input value is to be filtered
+         */
+        "onPostFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
     }
     interface PostAvatar {
         /**
@@ -1213,26 +1355,26 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
-    interface PostDatepicker {
+    interface PostDatePicker {
         /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
          */
         "inline"?: boolean;
         /**
-          * Maximum possible date to select.
+          * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "max"?: string;
         /**
-          * Minimun possible date to select.
+          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
           * An event emitted when a date or a range of dates have been selected.
          */
-        "onPostUpdateDates"?: (event: PostDatepickerCustomEvent<Date | Date[]>) => void;
+        "onPostUpdateDates"?: (event: PostDatePickerCustomEvent<string | string[]>) => void;
         /**
-          * Whether the datepicker expects a range selection or a single date selection.
+          * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
@@ -1241,11 +1383,11 @@ declare namespace LocalJSX {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The datepicker's selected end date (for range datepicker only).
+          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedEndDate"?: string;
         /**
-          * The datepicker's selected date. If in range mode, the selected start date.
+          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "selectedStartDate"?: string;
         /**
@@ -1280,8 +1422,6 @@ declare namespace LocalJSX {
           * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
          */
         "textToggleCalendar"?: string;
-    }
-    interface PostEnvTest {
     }
     interface PostFooter {
         /**
@@ -1385,6 +1525,32 @@ declare namespace LocalJSX {
         "variant"?: SwitchVariant;
     }
     interface PostLinkarea {
+    }
+    interface PostListbox {
+        /**
+          * Emitted option id for the active option
+         */
+        "onPostOptionActive"?: (event: PostListboxCustomEvent<string | null>) => void;
+    }
+    interface PostListboxOption {
+        /**
+          * Represents option is highlighted .
+          * @default false
+         */
+        "highlighted"?: boolean;
+        /**
+          * Fires when this option was selected. Bubbles up.
+         */
+        "onPostOptionSelected"?: (event: PostListboxOptionCustomEvent<string>) => void;
+        /**
+          * Represents option is selected .
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * A value string, similar to <option value="Value 1">Value 1 description</option>
+         */
+        "value": string;
     }
     interface PostLogo {
         /**
@@ -1524,6 +1690,10 @@ declare namespace LocalJSX {
          */
         "edgeGap"?: number;
         /**
+          * Offset for more precise placement
+         */
+        "offset"?: number;
+        /**
           * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
          */
         "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
@@ -1584,10 +1754,14 @@ declare namespace LocalJSX {
     }
     interface PostStepper {
         /**
-          * Defines the currently active step
+          * Defines the current step, which is the next step the user has to complete.
           * @default -1
          */
         "currentIndex"?: number;
+        /**
+          * Defines the selected (active) step, which is the step the user is currently on. If not defined, the selected step is the current step.
+         */
+        "selectedIndex"?: number;
         /**
           * "Completed step" label for accessibility
          */
@@ -1672,6 +1846,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
+        "post-autocomplete": PostAutocomplete;
         "post-avatar": PostAvatar;
         "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
@@ -1680,14 +1855,15 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
-        "post-datepicker": PostDatepicker;
-        "post-env-test": PostEnvTest;
+        "post-date-picker": PostDatePicker;
         "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-language-menu": PostLanguageMenu;
         "post-language-menu-item": PostLanguageMenuItem;
         "post-linkarea": PostLinkarea;
+        "post-listbox": PostListbox;
+        "post-listbox-option": PostListboxOption;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
@@ -1717,6 +1893,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
+            "post-autocomplete": LocalJSX.PostAutocomplete & JSXBase.HTMLAttributes<HTMLPostAutocompleteElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
@@ -1725,8 +1902,7 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
-            "post-datepicker": LocalJSX.PostDatepicker & JSXBase.HTMLAttributes<HTMLPostDatepickerElement>;
-            "post-env-test": LocalJSX.PostEnvTest & JSXBase.HTMLAttributes<HTMLPostEnvTestElement>;
+            "post-date-picker": LocalJSX.PostDatePicker & JSXBase.HTMLAttributes<HTMLPostDatePickerElement>;
             "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
@@ -1736,6 +1912,8 @@ declare module "@stencil/core" {
             "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
+            "post-listbox": LocalJSX.PostListbox & JSXBase.HTMLAttributes<HTMLPostListboxElement>;
+            "post-listbox-option": LocalJSX.PostListboxOption & JSXBase.HTMLAttributes<HTMLPostListboxOptionElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;

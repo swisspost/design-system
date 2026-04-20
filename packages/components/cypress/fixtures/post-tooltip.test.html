@@ -68,19 +68,11 @@
     <!-- All elements here must not shift position (top/left) when the tooltip is shown -->
     <div class="tooltip-layout-container">
 
-      <!-- stepper directly above the trigger row — must not shift vertically -->
-      <post-stepper
-        id="layout-stepper"
-        current-index="1"
-        text-completed-step="Completed step"
-        text-current-step="Current step"
-        text-step-number="Step #number:"
-        class="tooltip-layout-spacing"
-      >
-        <post-stepper-item>Step 1</post-stepper-item>
-        <post-stepper-item>Step 2</post-stepper-item>
-        <post-stepper-item>Step 3</post-stepper-item>
-      </post-stepper>
+      <!-- button group above the trigger row — must not shift vertically -->
+      <post-button-group id="layout-button-group" class="tooltip-layout-spacing">
+        <post-button variant="secondary">Button 1</post-button>
+        <post-button variant="secondary">Button 2</post-button>
+      </post-button-group>
 
       <!-- tabs directly above the trigger row — must not shift vertically -->
       <post-tabs id="layout-tabs" class="tooltip-layout-spacing">

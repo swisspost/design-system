@@ -6,7 +6,7 @@ import {
   PostBanner,
   PostCollapsible,
   PostCollapsibleTrigger,
-  PostDatepicker,
+  PostDatePicker,
   PostIcon,
   PostLinkarea,
   PostMenu,
@@ -27,6 +27,9 @@ import {
   PostStepperItem,
   PostClosebutton,
   PostNumberInput,
+  PostAutocomplete,
+  PostListbox,
+  PostListboxOption,
 } from 'components';
 
 @Component({
@@ -36,14 +39,17 @@ import {
   imports: [
     PostAccordion,
     PostAccordionItem,
+    PostAutocomplete,
     PostAvatar,
     PostBanner,
     PostClosebutton,
     PostCollapsible,
     PostCollapsibleTrigger,
-    PostDatepicker,
+    PostDatePicker,
     PostIcon,
     PostLinkarea,
+    PostListbox,
+    PostListboxOption,
     PostMenu,
     PostMenuTrigger,
     PostMenuItem,

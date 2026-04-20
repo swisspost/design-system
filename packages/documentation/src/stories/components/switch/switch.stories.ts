@@ -188,11 +188,6 @@ type Story = StoryObj;
 export const Default: Story = {};
 
 export const MultilineLabels: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Label Position', 'Hidden Label', 'Checked', 'Disabled', 'Validation'],
-    },
-  },
   args: {
     labelPosition: 'after',
     label:

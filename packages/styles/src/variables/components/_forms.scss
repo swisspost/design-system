@@ -1,13 +1,9 @@
 @use './../commons';
-@use './../../functions/sizing';
-
 @use './../../functions/tokens';
 @use './../../tokens/utilities';
 
 // Forms
 
 // Used elsewhere than text input, textarea or select
-$form-border-width: commons.$border-thick !default;
-$input-padding-x: sizing.px-to-rem(20) - sizing.px-to-rem($form-border-width) !default;
-$input-border-width: $form-border-width !default;
+$input-border-width: commons.$border-thick !default;
 $input-focus-outline-thickness: tokens.get('utility-gap-2', utilities.$post-spacing);

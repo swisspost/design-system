@@ -4,7 +4,6 @@ export * from './attribute-observer';
 export * from './breakpoints';
 export * from './component-on-ready';
 export * from './debounce';
-export * from './environment';
 export * from './event-from';
 export * from './get-focusable-children';
 export * from './get-root';
@@ -14,3 +13,5 @@ export * from './is-value-empty';
 export * from './repeat-on-long-press';
 export * from './sass-export';
 export * from './timeout';
+
+export * from './is-iso-date';

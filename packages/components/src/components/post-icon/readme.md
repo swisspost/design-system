@@ -24,13 +24,15 @@ some content
 ### Used by
 
  - [post-accordion-item](../post-accordion-item)
+ - [post-autocomplete](../post-autocomplete)
  - [post-back-to-top](../post-back-to-top)
  - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-closebutton](../post-closebutton)
- - [post-datepicker](../post-datepicker)
+ - [post-date-picker](../post-date-picker)
  - [post-header](../post-header)
  - [post-language-menu](../post-language-menu)
+ - [post-listbox-option](../post-listbox-option)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-megadropdown](../post-megadropdown)
  - [post-megadropdown-trigger](../post-megadropdown-trigger)
@@ -42,13 +44,15 @@ some content
 ```mermaid
 graph TD;
   post-accordion-item --> post-icon
+  post-autocomplete --> post-icon
   post-back-to-top --> post-icon
   post-breadcrumb-item --> post-icon
   post-breadcrumbs --> post-icon
   post-closebutton --> post-icon
-  post-datepicker --> post-icon
+  post-date-picker --> post-icon
   post-header --> post-icon
   post-language-menu --> post-icon
+  post-listbox-option --> post-icon
   post-mainnavigation --> post-icon
   post-megadropdown --> post-icon
   post-megadropdown-trigger --> post-icon

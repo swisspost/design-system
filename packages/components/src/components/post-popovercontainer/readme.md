@@ -9,6 +9,7 @@
 | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `arrow`     | `arrow`      | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                                            | `boolean`                                                                                                                                                            | `false`     |
 | `edgeGap`   | `edge-gap`   | Gap between the edge of the page and the popovercontainer                                                                                                                                                                                                                                                                                   | `number`                                                                                                                                                             | `8`         |
+| `offset`    | `offset`     | Offset for more precise placement                                                                                                                                                                                                                                                                                                           | `number`                                                                                                                                                             | `undefined` |
 | `placement` | `placement`  | Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
 | `safeSpace` | `safe-space` | Enables a safespace through which the cursor can be moved without the popover being disabled                                                                                                                                                                                                                                                | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
 
@@ -88,7 +89,8 @@ Type: `Promise<boolean>`
 
 ### Used by
 
- - [post-datepicker](../post-datepicker)
+ - [post-date-picker](../post-date-picker)
+ - [post-listbox](../post-listbox)
  - [post-menu](../post-menu)
  - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)
@@ -96,7 +98,8 @@ Type: `Promise<boolean>`
 ### Graph
 ```mermaid
 graph TD;
-  post-datepicker --> post-popovercontainer
+  post-date-picker --> post-popovercontainer
+  post-listbox --> post-popovercontainer
   post-menu --> post-popovercontainer
   post-popover --> post-popovercontainer
   post-tooltip --> post-popovercontainer

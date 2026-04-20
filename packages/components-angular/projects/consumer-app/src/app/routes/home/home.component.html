@@ -47,7 +47,7 @@
 
 <div class="my-24">
   <h2>Post Datepicker</h2>
-  <post-datepicker
+  <post-date-picker
     textToggleCalendar="Open calendar"
     textNextDecade="Next decade"
     textNextMonth="Next month"
@@ -57,7 +57,28 @@
     textPreviousYear="Previous year"
     textSwitchYear="Switch to year view"
   >
-  </post-datepicker>
+  </post-date-picker>
+</div>
+
+<div class="my-24">
+  <h2>Autocomplete</h2>
+  <post-autocomplete clearable>
+    <div class="form-floating">
+      <input
+        type="text"
+        id="autocomplete-country"
+        class="form-control"
+        placeholder="Search for a country"
+      />
+      <label for="autocomplete-country">Country</label>
+    </div>
+    <post-listbox>
+      <post-listbox-option value="Switzerland"></post-listbox-option>
+      <post-listbox-option value="Germany"></post-listbox-option>
+      <post-listbox-option value="France"></post-listbox-option>
+      <post-listbox-option value="Italy"></post-listbox-option>
+    </post-listbox>
+  </post-autocomplete>
 </div>
 
 <div class="my-24">

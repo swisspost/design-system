@@ -94,7 +94,9 @@ export interface V910Checks {
   forms: {
     tooltip_validation: boolean;
     input_sizes: boolean;
+    select_empty: boolean;
     form_text: boolean;
+    card_control: boolean;
   };
   grid: {
     breakpoints: boolean;
@@ -110,6 +112,7 @@ export interface V910Checks {
     elevation: boolean;
     removed_spacing: boolean;
     renamed_spacing: boolean;
+    responsive_spacing: boolean;
     background: boolean;
     renamed_various_utilities: boolean;
     removed_various_utilities: boolean;
@@ -144,6 +147,7 @@ export interface V910Checks {
     spinner: boolean;
     dialog_icon: boolean;
     subnavigation: boolean;
+    product_card: boolean;
   };
   components: {
     alert: boolean;
@@ -152,6 +156,7 @@ export interface V910Checks {
     accordion_item_part: boolean;
     popover_trigger: boolean;
     tabs_anchor_navigation: boolean;
+    card_control: boolean;
   };
 }
 

@@ -34,7 +34,7 @@ export class PostAccordion {
   /**
    * If `true`, multiple `post-accordion-item` can be open at the same time.
    */
-  @Prop() readonly multiple: boolean = false;
+  @Prop({ reflect: true }) readonly multiple: boolean = false;
 
   componentWillLoad() {
     this.registerAccordionItems();
@@ -88,7 +88,7 @@ export class PostAccordion {
   async expandAll() {
     if (this.multiple) {
       await Promise.all(this.accordionItems.map(item => item.toggle(true)));
-    } else if (!this.expandedItems.size) {
+    } else if (this.expandedItems.size === 0) {
       await this.accordionItems[0].toggle(true);
     }
   }
