@@ -81,7 +81,7 @@ export class PostPopover {
   }
 
   componentDidLoad() {
-    this.popoverRef.addEventListener('beforetoggle', this.localBeforeToggleHandler);
+    this.popoverRef?.addEventListener('beforetoggle', this.localBeforeToggleHandler);
   }
 
   disconnectedCallback() {
@@ -89,12 +89,12 @@ export class PostPopover {
 
     // Remove listeners and observer after the last popover has been destructed
     if (popoverInstances === 0) {
-      window.removeEventListener('click', globalToggleHandler);
+      window.removeEventListener('pointerup', globalToggleHandler);
       window.removeEventListener('keydown', globalToggleHandler);
       triggerObserver.disconnect();
     }
 
-    this.popoverRef.removeEventListener('beforetoggle', this.localBeforeToggleHandler);
+    this.popoverRef?.removeEventListener('beforetoggle', this.localBeforeToggleHandler);
     this.triggers.forEach(trigger => trigger.removeAttribute('aria-expanded'));
   }
 
@@ -104,7 +104,7 @@ export class PostPopover {
    */
   @Method()
   async show(target: HTMLElement) {
-    this.popoverRef.show(target);
+    this.popoverRef?.show(target);
     target.setAttribute('aria-expanded', 'true');
   }
 
@@ -113,7 +113,7 @@ export class PostPopover {
    */
   @Method()
   async hide() {
-    this.popoverRef.hide();
+    this.popoverRef?.hide();
     this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
   }
 
@@ -124,7 +124,7 @@ export class PostPopover {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
-    const newState = await this.popoverRef.toggle(target, force);
+    const newState = await this.popoverRef?.toggle(target, force);
     this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
     target.setAttribute('aria-expanded', `${newState}`);
   }
