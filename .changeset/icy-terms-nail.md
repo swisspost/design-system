@@ -3,6 +3,7 @@
 ---
 
 Updated `post-header` megadropdown to use a responsive grid layout, ensuring columns take up the available space regardless of their count across breakpoints.
+
 The `<div class="row row-cols-1 row-cols-sm-2">` column wrapper switches to `<div class="post-megadropdown-grid">`, and the `col` class is dropped from each column div.
 
 BEFORE:
