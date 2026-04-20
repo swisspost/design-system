@@ -99,7 +99,7 @@ export class PostBreadcrumbs {
         label: item.getAttribute('label') ?? undefined,
       }),
     );
-    this.lastItem = this.breadcrumbItems[this.breadcrumbItems.length - 1];
+    this.lastItem = this.breadcrumbItems.at(-1);
   }
 
   // Handles resizing to check concatenation

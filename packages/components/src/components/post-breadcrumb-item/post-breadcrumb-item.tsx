@@ -39,7 +39,7 @@ export class PostBreadcrumbItem {
   validateUrl() {
     try {
       this.validUrl = this.constructUrl(this.url);
-    } catch (error) {
+    } catch {
       this.validUrl = undefined;
     }
   }
@@ -48,7 +48,7 @@ export class PostBreadcrumbItem {
   private constructUrl(value: unknown): string | undefined {
     const hasBaseURL = /^https?:\/\//.test(String(this.url));
     if (typeof value === 'string') {
-      this.fullUrl = hasBaseURL ? value : `${window.location.origin}${value}`;
+      this.fullUrl = hasBaseURL ? value : `${globalThis.location.origin}${value}`;
       checkEmptyOrUrl(this, 'fullUrl');
       return this.fullUrl;
     }
