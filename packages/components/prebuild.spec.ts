@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import { vol, fs as memfs } from 'memfs';
 
 const LOCALE = fs.readFileSync('./node_modules/air-datepicker/locale/en.js', 'utf8');

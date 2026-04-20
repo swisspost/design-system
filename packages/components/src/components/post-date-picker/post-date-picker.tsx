@@ -383,7 +383,7 @@ export class PostDatePicker {
     const dateParts: string[] = localeDateString
       .replace(TEXT_DIRECTION_MARKERS_REGEX, '')
       .split(dateSeparator)
-      .map(p => p.replace(/[^\d]/g, ''));
+      .map(p => p.replaceAll(/[^\d]/g, ''));
     // Split the dateFormat into its parts to get the year, month, day order (e.g. ["d", "m", "y"], etc.).
     // Removing everything else but the DATE_FORMAT_KEYS is necessary to support date formats with additional chars (e.g. "d.m.y г.", etc.).
     const formatParts: string[] = this.dateFormat.replace(DATE_FORMAT_KEYS_REGEX, '').split('');
@@ -761,10 +761,7 @@ export class PostDatePicker {
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    this.setActiveCell(
-      this.isoToDate(this.selectedStartDate) || this.today,
-      focusOnDate,
-    );
+    this.setActiveCell(this.isoToDate(this.selectedStartDate) || this.today, focusOnDate);
   }
 
   /**
