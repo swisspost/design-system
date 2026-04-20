@@ -42,6 +42,19 @@ Type: `Promise<void>`
 | `"default"` | Slot for placing the content inside the anchor or button. |
 
 
+## Dependencies
+
+### Depends on
+
+- [post-menu-item](../post-menu-item)
+
+### Graph
+```mermaid
+graph TD;
+  post-language-menu-item --> post-menu-item
+  style post-language-menu-item fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
