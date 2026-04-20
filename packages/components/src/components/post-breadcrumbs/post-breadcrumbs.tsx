@@ -102,7 +102,7 @@ export class PostBreadcrumbs {
     clone.classList.add('invisible');
 
     shadowRoot.querySelector('nav.invisible')?.remove();
-    shadowRoot.appendChild(clone);
+    shadowRoot.append(clone);
 
     requestAnimationFrame(() => {
       this.duplicateSlottedElements(clone, 'slot:not([name])');

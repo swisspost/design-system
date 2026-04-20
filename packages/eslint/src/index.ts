@@ -11,6 +11,7 @@ import htmlRecommendedConfig from './configs/html/recommended';
 import tsAllConfig from './configs/ts/all';
 import tsRecommendedConfig from './configs/ts/recommended';
 import stencilRecommendedConfig from './configs/stencil/recommended';
+import unicornRecommendedConfig from './configs/unicorn';
 
 const htmlPlugin: TSESLint.FlatConfig.Plugin = {
   rules: htmlRules,
@@ -35,6 +36,7 @@ const configs = {
   tsAll: tsAllConfig(tsPlugin, parser),
   tsRecommended: tsRecommendedConfig(tsPlugin, parser),
   stencilRecommended: stencilRecommendedConfig(tsPlugin, parser),
+  unicornRecommended: unicornRecommendedConfig(),
 };
 
 /* default and named exports allow people to use this package from both CJS and ESM. */

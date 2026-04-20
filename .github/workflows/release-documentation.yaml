@@ -5,7 +5,7 @@ on:
       - main
       - release/v*
     paths:
-      - 'packages/documentation/package.json'
+      - 'apps/documentation/package.json'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -25,7 +25,7 @@ jobs:
         id: check
         uses: EndBug/version-check@36ff30f37c7deabe56a30caa043d127be658c425
         with:
-          file-name: ./packages/documentation/package.json
+          file-name: ./apps/documentation/package.json
           diff-search: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -70,7 +70,7 @@ jobs:
         with:
           script: |
             const fs = require('fs')
-            return JSON.parse(fs.readFileSync('./packages/documentation/netlify.config.json', 'utf8'))
+            return JSON.parse(fs.readFileSync('./apps/documentation/netlify.config.json', 'utf8'))
 
       - name: Publish documentation to netlify
         id: deploy
@@ -79,7 +79,7 @@ jobs:
           NETLIFY_SITE_ID: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
         run: |
           echo "site-url=https://${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}" >> $GITHUB_OUTPUT
-          netlify deploy --filter @swisspost/design-system-documentation --dir packages/documentation/storybook-static --prod
+          netlify deploy --filter @swisspost/design-system-documentation --dir apps/documentation/storybook-static --prod
 
       - name: Create Summary
         id: summary
