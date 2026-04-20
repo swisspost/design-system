@@ -6,7 +6,9 @@ export function _updatePersistedState(key: string, state: V45Checks | V910Checks
 }
 
 function _toggleStateProperty(path: string, state: V45Checks | V910Checks) {
-  const keys = path.split('.');
+  // Converts the first dash to a dot to access the nested property in the state object
+  const statePath = path.replace(/^([^-]*)-/, '$1.');
+  const keys = statePath.split('.');
   const last_key = keys.pop();
   if (last_key) {
     const last_obj = keys.reduce((o, k) => o[k], state);
