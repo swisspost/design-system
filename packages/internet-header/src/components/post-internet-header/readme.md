@@ -51,6 +51,7 @@ graph TD;
   post-language-menu --> post-icon
   post-language-menu --> post-menu
   post-menu --> post-popovercontainer
+  post-language-menu-item --> post-menu-item
   post-mainnavigation --> post-icon
   post-megadropdown-trigger --> post-icon
   post-megadropdown --> post-closebutton
