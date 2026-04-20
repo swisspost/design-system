@@ -9,9 +9,9 @@ import {
   EventEmitter,
   Watch,
 } from '@stencil/core';
-import { nanoid } from 'nanoid';
 import { debounce } from 'throttle-debounce';
 import { version } from '@root/package.json';
+import { nanoid } from 'nanoid';
 import { checkEmptyOrType, checkRequiredAndType } from '@/utils';
 
 const ELLIPSIS = '...';
@@ -114,7 +114,7 @@ export class PostPagination {
   private loaded: boolean = false;
 
   private debouncedResize = debounce(RESIZE_DEBOUNCE_MS, this.handleResizeInternal.bind(this));
-  private measurementTimeoutId: number | null = null;
+  private measurementTimeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
 
   @Watch('page')
   validatePage() {
@@ -234,7 +234,7 @@ export class PostPagination {
   private scheduleMeasurement() {
     if (!this.loaded) return;
 
-    this.measurementTimeoutId = window.setTimeout(() => {
+    this.measurementTimeoutId = globalThis.setTimeout(() => {
       const canMeasure = this.navRef?.clientWidth > 0 && this.hiddenItemsRef;
 
       if (canMeasure) {
@@ -321,9 +321,9 @@ export class PostPagination {
    */
   private getPaginationPadding(): number {
     if (!this.navRef) return 0;
-    const computedStyle = window.getComputedStyle(this.navRef);
-    const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
-    const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
+    const computedStyle = globalThis.getComputedStyle(this.navRef);
+    const paddingLeft = Number.parseFloat(computedStyle.paddingLeft) || 0;
+    const paddingRight = Number.parseFloat(computedStyle.paddingRight) || 0;
     return paddingLeft + paddingRight;
   }
 
@@ -347,8 +347,8 @@ export class PostPagination {
    * Clamps the page number to valid range
    */
   private clampPageToValidRange(totalPages: number): number {
-    const invalidTotalPages = totalPages === 0 || this.invalidSize || isNaN(totalPages);
-    const invalidPage = !this.page || this.page < 1 || isNaN(this.page);
+    const invalidTotalPages = totalPages === 0 || this.invalidSize || Number.isNaN(totalPages);
+    const invalidPage = !this.page || this.page < 1 || Number.isNaN(this.page);
     const pageExceedsTotal = this.page > totalPages;
 
     if (invalidTotalPages || invalidPage) {

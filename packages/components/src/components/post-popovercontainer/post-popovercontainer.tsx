@@ -9,9 +9,10 @@ import {
   h,
   Watch,
   State,
+  Build,
 } from '@stencil/core';
 
-import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -82,8 +83,13 @@ export class PostPopovercontainer {
   private arrowRef: HTMLElement;
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
-  private toggleTimeoutId: number;
+  private toggleTimeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
   private hasOpenedOnce: boolean = true;
+  private boundMouseTrackingHandler: (event: MouseEvent) => void;
+
+  constructor() {
+    this.boundMouseTrackingHandler = this.mouseTrackingHandler.bind(this);
+  }
 
   /**
    * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
@@ -171,7 +177,7 @@ export class PostPopovercontainer {
   private currentAnimation: Animation | null = null;
 
   connectedCallback() {
-    if (IS_BROWSER && !isSupported()) {
+    if (Build.isBrowser && !isSupported()) {
       apply();
     }
   }
@@ -258,7 +264,7 @@ export class PostPopovercontainer {
     }
 
     if (this.safeSpace) {
-      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      globalThis.addEventListener('mousemove', this.boundMouseTrackingHandler);
     }
   }
 
@@ -271,7 +277,7 @@ export class PostPopovercontainer {
     }
 
     if (this.safeSpace) {
-      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      globalThis.removeEventListener('mousemove', this.boundMouseTrackingHandler);
     }
 
     // Cancel any running animation
@@ -340,7 +346,7 @@ export class PostPopovercontainer {
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
-    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
+    this.toggleTimeoutId = globalThis.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
 
     if (isOpen) {
@@ -368,7 +374,7 @@ export class PostPopovercontainer {
    */
   private getHeaderHeight(): number {
     const header = document.querySelector('post-header');
-    return header ? parseFloat(getComputedStyle(header).height) : 0;
+    return header ? Number.parseFloat(getComputedStyle(header).height) : 0;
   }
 
   private async calculatePosition() {
@@ -415,17 +421,26 @@ export class PostPopovercontainer {
 
   private async computeMainPosition() {
     const gap = this.edgeGap;
+    const isAligned = (this.placement || 'top').includes('-');
+
+    const flipMiddleware = flip({
+      padding: this.getHeaderHeight(),
+      crossAxis: false,
+    });
+
+    const shiftMiddleware = shift({
+      padding: gap,
+      limiter: limitShift({
+        offset: 32,
+      }),
+    });
+
     const middleware = [
-      flip({
-        padding: this.getHeaderHeight(),
-      }),
+      offset(this.offset ?? (this.arrow ? gap + 4 : gap)),
       inline(),
-      shift({
-        padding: gap,
-        limiter: limitShift({
-          offset: 32,
-        }),
-      }),
+      // Per floating-ui docs: for aligned placements (e.g. bottom-end),
+      // flip should come before shift. For non-aligned, shift before flip.
+      ...(isAligned ? [flipMiddleware, shiftMiddleware] : [shiftMiddleware, flipMiddleware]),
       size({
         apply({ availableWidth, elements }) {
           Object.assign(elements.floating.style, {
@@ -433,7 +448,6 @@ export class PostPopovercontainer {
           });
         },
       }),
-      offset(this.offset ?? (this.arrow ? gap + 4 : gap)),
     ];
 
     if (this.arrow) {
