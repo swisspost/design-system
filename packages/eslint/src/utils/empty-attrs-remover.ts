@@ -8,7 +8,12 @@ export function removeEmptyAttrs(
 ): string {
   const originalNodeText = context.sourceCode.getText().slice(node.range[0], node.range[1]);
 
-  if (originalNodeText.includes('=""')) return serialized;
+  // Find all attrs that already had ="" in the original code
+  const originallyEmpty = new Set(
+    [...originalNodeText.matchAll(/\b([\w:[\].-]+)=""/g)].map(m => m[1]),
+  );
 
-  return serialized.replaceAll('=""', '');
+  return serialized.replaceAll(/\b([\w:[\].-]+)=""/g, (match, attr) =>
+    originallyEmpty.has(attr) ? match : attr,
+  );
 }

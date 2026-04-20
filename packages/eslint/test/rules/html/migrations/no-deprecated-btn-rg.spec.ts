@@ -28,8 +28,8 @@ htmlRuleTester.run(name, rule, {
   ],
   invalid: [
     {
-      code: '<button class="btn btn-rg">Click me</button>',
-      output: '<button class="btn btn-sm">Click me</button>',
+      code: '<button class="btn btn-rg" testattr test-attr1="" test-attr2="">Click me</button> ',
+      output: '<button class="btn btn-sm" testattr test-attr1="" test-attr2="">Click me</button> ',
       errors: ERROR,
     },
     {
