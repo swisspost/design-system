@@ -106,7 +106,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",
-    "@eslint/js": "9.18.0",
+    "@eslint/js": "10.0.1",
     "@percy/cli": "1.31.8",
     "@percy/cypress": "3.1.7",
     "@playwright/test": "1.56.1",
