@@ -1,5 +1,5 @@
 {
-  "name": "@swisspost/design-system-nextjs-integration",
+  "name": "@swisspost/design-system-integration-next",
   "version": "10.0.0-next.66",
   "description": "NextJS example integration of the Swiss Post Design System",
   "author": "Swiss Post <design-system@post.ch>",

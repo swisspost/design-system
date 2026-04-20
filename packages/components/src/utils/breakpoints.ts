@@ -21,13 +21,16 @@ class Breakpoint {
     { key: 'sm', device: 'tablet', minWidth: 600 },
     { key: 'xs', device: 'mobile', minWidth: 0 },
   ];
+
   private currentBreakpoint: BreakpointDefinition;
+
+  private resizeObserver = new ResizeObserver(() => this.updateCurrentBreakpoint());
 
   constructor() {
     if (Build.isServer) return;
 
     this.updateCurrentBreakpoint({ emitEvents: false });
-    window.addEventListener('resize', () => this.updateCurrentBreakpoint(), { passive: true });
+    this.resizeObserver.observe(document.body);
   }
 
   private updateCurrentBreakpoint = throttle(
@@ -55,7 +58,7 @@ class Breakpoint {
   private dispatchEvent(property: BreakpointProperty): void {
     if (Build.isServer) return;
 
-    window.dispatchEvent(
+    globalThis.dispatchEvent(
       new CustomEvent(`postBreakpoint:${property}`, { detail: this.currentBreakpoint[property] }),
     );
   }
