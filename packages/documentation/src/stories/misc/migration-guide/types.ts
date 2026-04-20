@@ -112,6 +112,7 @@ export interface V910Checks {
     elevation: boolean;
     removed_spacing: boolean;
     renamed_spacing: boolean;
+    responsive_spacing: boolean;
     background: boolean;
     renamed_various_utilities: boolean;
     removed_various_utilities: boolean;
@@ -146,6 +147,7 @@ export interface V910Checks {
     spinner: boolean;
     dialog_icon: boolean;
     subnavigation: boolean;
+    product_card: boolean;
   };
   components: {
     alert: boolean;

@@ -467,7 +467,7 @@ export class PostDatePicker {
 
   private setActiveCell(date: Date, focusOnDate: boolean = true) {
     const cells = this.getCells();
-    if (!cells.length) return;
+    if (cells.length === 0) return;
 
     let target: HTMLElement | undefined;
 
@@ -509,7 +509,7 @@ export class PostDatePicker {
 
     // fallback
     if (!target) {
-      target = cells[cells.length - 1];
+      target = cells.at(-1);
     }
 
     // Make only the target focusable
@@ -762,7 +762,7 @@ export class PostDatePicker {
     body.addEventListener('keydown', this.handleGridKeydown);
 
     this.setActiveCell(
-      this.isoToDate(this.selectedStartDate) ? this.isoToDate(this.selectedStartDate) : this.today,
+      this.isoToDate(this.selectedStartDate) || this.today,
       focusOnDate,
     );
   }
@@ -1118,7 +1118,7 @@ export class PostDatePicker {
   }
 
   private isValidDate(date: Date): boolean {
-    return date instanceof Date && !isNaN(date.getTime());
+    return date instanceof Date && !Number.isNaN(date.getTime());
   }
 
   private syncDatePickerState() {
