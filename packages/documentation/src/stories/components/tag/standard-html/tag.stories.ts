@@ -29,7 +29,8 @@ const meta: MetaComponent = {
   argTypes: {
     variant: {
       name: 'Variant',
-      description: 'Defines the color variant of the component.',
+      description:
+        'Defines the color variant of the component. <span className="alert alert-sm alert-warning">The `.tag-yellow` and `.tag-white` colors are deprecated and will be removed in the next version.</span>',
       control: {
         type: 'select',
         labels: {

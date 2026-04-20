@@ -1,14 +1,10 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
-import {
-  PostTabs,
-  PostTabHeader,
-  PostTabPanel,
-} from '@swisspost/design-system-components-react';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import * as TagStories from './standard-html/tag.stories';
 import * as PostTagStories from './web-component/post-tag.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
-<Meta of={TagStories}/>
+<Meta of={TagStories} />
 
 <div className="docs-title">
   # Tag
@@ -39,13 +35,23 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
     <Canvas of={TagStories.Icon}/>
 
     ## Color options
+
+    <div className="alert alert-md alert-warning">
+      <h2 className="alert-heading">The `.tag-yellow` and `.tag-white` colors are deprecated</h2>
+      <p>The CSS classes to apply to the tag will be removed in the next version.</p>
+    </div>
+
     Here is a quick overview of all the background colors available for this component.
 
     <Canvas of={TagStories.Variants}/>
+
   </PostTabPanel>
 
   <PostTabHeader panel="webcomponent">Web Component</PostTabHeader>
   <PostTabPanel name="webcomponent">
+    <div className="alert alert-md alert-warning">
+      The `<post-tag>` web component is deprecated and will be removed in the next version.
+    </div>
     <Canvas sourceState="shown" of={PostTagStories.Default}/>
     <Controls of={PostTagStories.Default}/>
 
@@ -65,5 +71,6 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
     Here is a quick overview of all the background colors available for this component.
 
     <Canvas of={PostTagStories.Variants}/>
+
   </PostTabPanel>
 </PostTabs>
