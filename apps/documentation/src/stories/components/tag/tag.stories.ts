@@ -15,7 +15,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    variant: 'null',
+    variant: 'neutral',
     size: 'null',
     showIcon: false,
     icon: 'tag',
@@ -27,11 +27,8 @@ const meta: MetaComponent = {
       description: 'Defines the color variant of the component.',
       control: {
         type: 'select',
-        labels: {
-          null: 'Default',
-        },
       },
-      options: ['null', 'info', 'success', 'warning', 'error'],
+      options: ['neutral', 'info', 'success', 'warning', 'error'],
       table: {
         category: 'General',
       },
@@ -94,8 +91,12 @@ export default meta;
 
 // RENDERER
 function renderTag(args: Args) {
-  const classes = ['tag', args.variant === 'null' ? args.variant : `tag-${args.variant}`, args.size]
-    .filter(c => c !== 'null')
+  const classes = [
+    'tag',
+    args.variant == 'neutral' ? args.variant : `tag-${args.variant}`,
+    args.size,
+  ]
+    .filter(c => c !== 'neutral' && c !== 'null')
     .join(' ');
 
   return html`
