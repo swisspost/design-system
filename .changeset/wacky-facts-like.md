@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added localization (l10n) support to the Date Picker component.
+Added internationalization (i18n) to the date-picker component.

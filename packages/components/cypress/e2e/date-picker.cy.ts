@@ -115,7 +115,7 @@ describe('date-picker', { includeShadowDom: true }, () => {
       });
     });
 
-    describe.only('l10n', () => {
+    describe.only('i18n', () => {
       const START_DAY = 1;
       const END_DAY = 10;
 
@@ -127,18 +127,18 @@ describe('date-picker', { includeShadowDom: true }, () => {
       s.setDate(START_DAY);
       e.setDate(END_DAY);
 
-      LOCALES_MAP.forEach(l10n => {
-        describe(`Locales: ${l10n.locales.join(', ')}`, () => {
+      LOCALES_MAP.forEach(i18n => {
+        describe(`Locales: ${i18n.locales.join(', ')}`, () => {
           it('should apply correct mask & date format based on the "locale" property', () => {
-            const expectedStartDate = s.toLocaleDateString(l10n.locale, DATE_FORMAT_STRING_OPTIONS);
-            const expectedEndDate = e.toLocaleDateString(l10n.locale, DATE_FORMAT_STRING_OPTIONS);
-            const separator = l10n.dir === 'rtl' ? rtlSeparator : ltrSeparator;
+            const expectedStartDate = s.toLocaleDateString(i18n.locale, DATE_FORMAT_STRING_OPTIONS);
+            const expectedEndDate = e.toLocaleDateString(i18n.locale, DATE_FORMAT_STRING_OPTIONS);
+            const separator = i18n.dir === 'rtl' ? rtlSeparator : ltrSeparator;
 
-            cy.get('@date-picker').invoke('attr', 'locale', l10n.locale);
-            cy.get('@input').should('have.value', l10n.mask);
+            cy.get('@date-picker').invoke('attr', 'locale', i18n.locale);
+            cy.get('@input').should('have.value', i18n.mask);
 
-            cy.get('@date-picker').invoke('attr', 'locale', l10n.locale);
-            cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', l10n.dir);
+            cy.get('@date-picker').invoke('attr', 'locale', i18n.locale);
+            cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', i18n.dir);
 
             cy.get('@toggle').click().wait(200);
             cy.get('@container').find(`[data-date="${START_DAY}"]`).first().click().wait(200);

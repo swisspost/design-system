@@ -447,7 +447,7 @@ function textDirection(locale: string) {
     : 'ltr';
 }
 
-type L10nObject = {
+type I18nObject = {
   locale: string;
   dir: string;
   mask: string;
@@ -457,31 +457,31 @@ type L10nObject = {
 
 export const LOCALES_MAP = Object.values(
   localesMap
-    .filter(l10n => !l10n.exclude)
-    .map(l10n => ({
-      ...l10n,
-      dir: textDirection(l10n.locale),
-      mask: dateFormat(l10n.locale),
+    .filter(i18n => !i18n.exclude)
+    .map(i18n => ({
+      ...i18n,
+      dir: textDirection(i18n.locale),
+      mask: dateFormat(i18n.locale),
     }))
     .reduce(
-      (locales, l10n) => {
-        const key = `${l10n.mask}__${l10n.dir}`;
+      (locales, i18n) => {
+        const key = `${i18n.mask}__${i18n.dir}`;
 
         if (locales[key]) {
-          locales[key].names.push(l10n.name);
-          locales[key].locales.push(l10n.locale);
+          locales[key].names.push(i18n.name);
+          locales[key].locales.push(i18n.locale);
         } else {
           locales[key] = {
-            locale: l10n.locale,
-            dir: l10n.dir,
-            mask: l10n.mask,
-            names: [l10n.name],
-            locales: [l10n.locale],
+            locale: i18n.locale,
+            dir: i18n.dir,
+            mask: i18n.mask,
+            names: [i18n.name],
+            locales: [i18n.locale],
           };
         }
 
         return locales;
       },
-      {} as Record<string, L10nObject>,
+      {} as Record<string, I18nObject>,
     ),
-) as L10nObject[];
+) as I18nObject[];
