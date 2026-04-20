@@ -118,6 +118,20 @@ footer {
   margin-block-end: var(--post-footer-grid-margin-block-end);
   padding-block-end: var(--post-footer-grid-padding-block-end);
 
+  // collapse spacing when all grid-{1|2|3|4} slots are empty (SSR initial state)
+  // desktop/tablet: collapse grid spacing
+  &:has(> .d-none + .d-none + .d-none + .d-none) {
+    margin-block-end: 0;
+    padding-block-end: 0;
+    row-gap: 0;
+    column-gap: 0;
+  }
+
+  // mobile: hide the accordion wrapper when all items are empty
+  post-accordion:has(> .d-none + .d-none + .d-none + .d-none) {
+    display: none;
+  }
+
   // post-accordion-item
   ::part(button),
   ::part(body) {
