@@ -2,7 +2,7 @@ import { Args, StoryObj, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
-import meta from './tag.stories';
+import meta, { CustomIconSignalMapping } from './tag.stories';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -35,6 +35,7 @@ export const Tag: Story = {
                     ...args,
                     ...bombArgs,
                     variant,
+                    icon: CustomIconSignalMapping[variant],
                   },
                   context,
                 ),

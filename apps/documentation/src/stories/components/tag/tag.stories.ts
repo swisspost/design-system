@@ -3,6 +3,14 @@ import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
+export const CustomIconSignalMapping: Record<string, string> = {
+  neutral: 'tag',
+  info: 'notes',
+  success: 'accessopen',
+  warning: 'accessrestricted',
+  error: 'userblocked',
+};
+
 const meta: MetaComponent = {
   id: '1b1ea384-7421-4064-ad34-e3f48a36b39f',
   title: 'Components/Tag',
@@ -132,7 +140,7 @@ export const Variants: Story = {
       renderTag({
         ...args,
         variant,
-        icon: 'tag',
+        icon: CustomIconSignalMapping[variant],
         showIcon: true,
         markup: variant.charAt(0).toUpperCase() + variant.slice(1),
       }),
