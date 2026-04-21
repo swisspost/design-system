@@ -187,7 +187,7 @@ export namespace Components {
          */
         "inline": boolean;
         /**
-          * The date picker's selected locale (e.g. "it" or "it-CH"). <br>Note: The Date Picker popup may not support the configured language and fall back to English, the right locale is important anyway to get the correct date format and text direction!
+          * The date pickers locale (e.g. "it", "it-CH", etc.), which specifies the date format and language. <post-banner type="info" data-size="sm"><p>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to english.</p></post-banner>
           * @default this.systemLocale
          */
         "locale"?: string;
@@ -1367,7 +1367,7 @@ declare namespace LocalJSX {
          */
         "inline"?: boolean;
         /**
-          * The date picker's selected locale (e.g. "it" or "it-CH"). <br>Note: The Date Picker popup may not support the configured language and fall back to English, the right locale is important anyway to get the correct date format and text direction!
+          * The date pickers locale (e.g. "it", "it-CH", etc.), which specifies the date format and language. <post-banner type="info" data-size="sm"><p>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to english.</p></post-banner>
           * @default this.systemLocale
          */
         "locale"?: string;
