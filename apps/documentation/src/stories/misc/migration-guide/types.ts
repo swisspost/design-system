@@ -148,6 +148,7 @@ export interface V910Checks {
     dialog_icon: boolean;
     subnavigation: boolean;
     button_group: boolean;
+    tag: boolean;
     product_card: boolean;
   };
   components: {
@@ -158,6 +159,7 @@ export interface V910Checks {
     popover_trigger: boolean;
     tabs_anchor_navigation: boolean;
     card_control: boolean;
+    tag: boolean;
   };
 }
 

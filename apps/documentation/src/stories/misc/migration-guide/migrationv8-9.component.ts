@@ -73,7 +73,7 @@ export class MigrationV89Component extends LitElement {
                   The <code>post-tooltip</code> now has its own <code>post-tooltip-trigger</code>,
                   meaning that the attribute <code>data-tooltip-target=""</code> is no longer
                   effective.
-                  <span class="tag tag-sm tag-danger">breaking</span>
+                  <span class="tag tag-sm tag-error">breaking</span>
                 </p>
                 <p class="info">
                   Instead of using the attribute, you should now wrap your target in the
@@ -85,7 +85,7 @@ export class MigrationV89Component extends LitElement {
                   The default value of the arrow property for the
                   <code>post-tooltip</code> component has changed to <code>false</code>, meaning
                   that tooltips don't display arrows by default anymore.
-                  <span class="tag tag-sm tag-danger">breaking</span>
+                  <span class="tag tag-sm tag-error">breaking</span>
                 </p>
                 <p class="info">
                   If you want to add an arrow to your tooltip, use the
