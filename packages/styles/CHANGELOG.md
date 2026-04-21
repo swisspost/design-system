@@ -1,5 +1,24 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.67
+
+### Major Changes
+
+- Removed the Card Product component. The `.product-card` and `product-navigation` classes are no longer effective. (by [@leagrdv](https://github.com/leagrdv) with [#7503](https://github.com/swisspost/design-system/pull/7503))
+
+- Removed deprecated `form-check` SCSS variables. (by [@bucknatt](https://github.com/bucknatt) with [#6805](https://github.com/swisspost/design-system/pull/6805))
+
+### Minor Changes
+
+- Added the small variant class `.form-check-sm` to the form radio button. (by [@bucknatt](https://github.com/bucknatt) with [#6805](https://github.com/swisspost/design-system/pull/6805))
+
+- Tokenized the styles of the `.selection-card` component. (by [@leagrdv](https://github.com/leagrdv) with [#7446](https://github.com/swisspost/design-system/pull/7446))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.67
+
 ## 10.0.0-next.66
 
 ### Major Changes
