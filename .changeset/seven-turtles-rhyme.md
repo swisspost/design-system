@@ -10,4 +10,4 @@ Moved global light-DOM styles for `post-header`, `post-footer`, and `post-tabs` 
 - `@swisspost/design-system-styles/components/footer/index`
 - `@swisspost/design-system-styles/components/tabs/index`
 
-These styles are now compiled into `@swisspost/design-system-components/post-components` via the Stencil `globalStyle` entry and are automatically available as part of the components CSS bundle.
+These styles are now compiled into `@swisspost/design-system-components/post-components`and are automatically available as part of the components CSS bundle.
