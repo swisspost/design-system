@@ -71,11 +71,3 @@
     @return 'dark';
   }
 }
-
-@function get-best-contrast-text($background, $light-text: #fff, $dark-text: #000) {
-  @if light-or-dark($background, $light-text, $dark-text) == 'light' {
-    @return $dark-text;
-  } @else {
-    @return $light-text;
-  }
-}
