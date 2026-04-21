@@ -62,8 +62,7 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 }
 
 /**
- layout-only styles for squared nav items (main navigation and burger menu)
- safe to use inside complex/multi-part selectors
+ styles for squared nav items (main navigation and burger menu)
  */
 @mixin nav-item-block-layout {
   --post-nav-item-border-width: 1px;
