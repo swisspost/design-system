@@ -8,8 +8,6 @@ import {
   h,
   Method,
   Prop,
-  State,
-  Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
 
@@ -32,16 +30,6 @@ export class PostLoginWidget {
    */
   @Prop({ mutable: true, reflect: true }) authenticated: boolean | null = null;
 
-  @Watch('authenticated')
-  onAuthenticatedPropChange(next: boolean | null) {
-    this.authState = next;
-  }
-
-  /**
-   * Internal render state kept in sync with `authenticated` to ensure re-renders on all changes.
-   */
-  @State() private authState: boolean | null = null;
-
   /**
    * An event emitted when the authentication state changes. 
    * The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
@@ -50,11 +38,7 @@ export class PostLoginWidget {
 
   async componentWillLoad() {
     if (Build.isBrowser) {
-      if (this.host.hasAttribute('authenticated')) {
-        this.authState = this.authenticated;
-      } else {
-        await this.fetchAuthState();
-      }
+      await this.fetchAuthState();
     }
   }
 
@@ -87,9 +71,8 @@ export class PostLoginWidget {
   }
 
   private setAuthState(next: boolean): void {
-    if (this.authState === next) return;
+    if (this.authenticated === next) return;
 
-    this.authState = next;
     this.authenticated = next;
     this.postLoginChange.emit({ authenticated: next });
   }
@@ -97,7 +80,7 @@ export class PostLoginWidget {
   render() {
     return (
       <Host data-version={version}>
-        {this.authState === true ? <slot name="authenticated" /> : <slot name="unauthenticated" />}
+        {this.authenticated === true ? <slot name="authenticated" /> : <slot name="unauthenticated" />}
       </Host>
     );
   }
