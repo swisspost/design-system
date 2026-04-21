@@ -12,24 +12,26 @@ const meta: MetaComponent = {
     badges: [],
     design: {},
     controls: {
-      exclude: ['postLoginChange'],
+      exclude: ['postLoginChange', 'authenticated', 'unauthenticated'],
     },
-  },
-  args: {
-    authenticated: false,
   },
   argTypes: {
     authenticated: {
-      control: {
-        type: 'inline-radio',
-      },
-      options: [true, false],
-      description:
-        'Reflects the current authentication state.<br><code>true</code> when logged in, <code>false</code> when logged out.',
+      name: 'authenticated ',
+      description: 'Content displayed when the user is authenticated.',
+      control: { disable: true },
       table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        category: 'Slots',
+        type: { summary: 'HTMLElement' },
+      },
+    },
+    unauthenticated: {
+      name: 'unauthenticated ',
+      description: 'Content displayed when the user is not authenticated.',
+      control: { disable: true },
+      table: {
+        category: 'Slots',
+        type: { summary: 'HTMLElement' },
       },
     },
     postLoginChange: {
@@ -47,7 +49,6 @@ const meta: MetaComponent = {
 
 export default meta;
 
-// RENDERERS
 function renderUserMenu(id = 'user-menu-widget') {
   return html`
     <post-menu-trigger for="${id}">
@@ -93,9 +94,9 @@ function renderUserMenu(id = 'user-menu-widget') {
   `;
 }
 
-function render(args: Args) {
+function render(_args: Args) {
   return html`
-    <post-login-widget authenticated=${args.authenticated}>
+    <post-login-widget>
       <a slot="unauthenticated" href="/login">
         <span>Login</span>
         <post-icon name="login" aria-hidden="true"></post-icon>
@@ -105,14 +106,38 @@ function render(args: Args) {
   `;
 }
 
-// STORIES
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [story => html`<div style="padding-top: 1rem">${story()}</div>`],
+  parameters: {
+    docs: {
+      story: { inline: false, height: '110px' },
+    },
+  },
+};
 
 export const Authenticated: Story = {
+  loaders: [
+    async () => {
+      const originalFetch = window.fetch;
+      window.fetch = ((input: RequestInfo | URL, init?: RequestInit) => {
+        const url = input instanceof Request ? input.url : String(input);
+        if (url.includes('n.account.post.ch/v1/session/subscribe')) {
+          return Promise.resolve(
+            new Response(
+              JSON.stringify({ data: { name: 'John', surname: 'Doe', email: 'john.doe@post.ch' } }),
+              { status: 200, headers: { 'Content-Type': 'application/json' } },
+            ),
+          );
+        }
+        return originalFetch(input, init);
+      }) as typeof fetch;
+      return originalFetch;
+    },
+  ],
   render: () => html`
-    <post-login-widget authenticated>
+    <post-login-widget>
       <div slot="authenticated">${renderUserMenu('user-menu-authenticated')}</div>
     </post-login-widget>
   `,
