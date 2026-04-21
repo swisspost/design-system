@@ -1,4 +1,4 @@
-import type { StoryContext, StoryObj } from '@storybook/web-components-vite';
+import type { StoryObj } from '@storybook/web-components-vite';
 import meta, { renderUserMenu } from './post-login-widget.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
@@ -13,7 +13,7 @@ export default {
 type Story = StoryObj;
 
 export const LoginWidget: Story = {
-  render: (_: unknown, context: StoryContext) => {
+  render: () => {
     return schemes(
       () => html`
         <div class="d-flex flex-column gap-24 p-16">
