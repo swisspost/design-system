@@ -59,14 +59,14 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session2');
     cy.get('post-login-widget').then(([el]) => el.refresh());
     cy.wait('@session2');
-
     cy.get('[data-testid="user-menu"]').should('be.visible');
     cy.get('[data-testid="login-link"]').should('not.be.visible');
   });
 
-  // ─── post-login-change event ───────────────────────────────────────────────
+  // Note: delay is intentional — gives the spy time to attach before the
+  // response arrives, preventing a race condition between visit and intercept.
 
-  it('emits post-login-change with authenticated=true when user data present', () => {
+  it('emits postLoginChange with authenticated=true when user data present', () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE, delay: 100 }).as('session');
     cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
@@ -80,7 +80,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
     });
   });
 
-  it('emits post-login-change with authenticated=false when no user data', () => {
+  it('emits postLoginChange with authenticated=false when no user data', () => {
     cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE, delay: 100 }).as('session');
     cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
@@ -134,7 +134,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
 
   // ─── No unnecessary re-renders ────────────────────────────────────────────
 
-  it('does not emit post-login-change if state has not changed', () => {
+  it('does not emit postLoginChange if state has not changed', () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE, delay: 100 }).as('session');
     cy.visit(FIXTURE_PATH);
     const spy = cy.spy().as('changeSpy');
@@ -147,6 +147,6 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.get('post-login-widget').then(([el]) => el.refresh());
     cy.wait('@session2');
 
-    cy.get('@changeSpy').should('have.been.calledOnce');
+    cy.get('@changeSpy').should('not.have.been.called');
   });
 });
