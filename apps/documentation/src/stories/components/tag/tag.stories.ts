@@ -58,7 +58,8 @@ const meta: MetaComponent = {
     },
     showIcon: {
       name: 'Show Icon',
-      description: 'Whether to renderd the component with an icon or not.',
+      description:
+        'Whether to render the tag with an icon or not. Note that if no icon is specified on a signal tag, there will always be a default one.',
       control: {
         type: 'boolean',
       },
