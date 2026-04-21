@@ -109,9 +109,9 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 
 /**
  focus styles for squared nav items
- must only be called on a single simple selector — never on a comma-separated
- multi-part selector or inside @include interactive-elements, as Sass will
- produce broken :is() output via button-base's focus-style mixin
+ must only be called on a single simple selector — never inside @include interactive-elements
+ or any comma-separated selector, as Stencil's Sass compiler produces broken :is(:focus-visible)
+ output in that context
  */
 @mixin nav-item-block-focus {
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus) {
