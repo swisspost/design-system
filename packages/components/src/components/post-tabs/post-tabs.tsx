@@ -9,6 +9,7 @@ import {
   Prop,
   State,
   Watch,
+  Build,
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fade } from '@/animations';
@@ -390,9 +391,21 @@ export class PostTabs {
 
   render() {
     const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
-
+    const activeTabName = this.host.getAttribute('active-tab');
     return (
-      <Host data-version={version}>
+      <Host
+        data-version={version}
+        style={
+          Build.isBrowser
+            ? undefined
+            : {
+                [`--${activeTabName}`]:
+                  Build.isBrowser && !this.isNavigationMode ? undefined : 'block',
+                [`--post-tab-${activeTabName}`]:
+                  Build.isBrowser && !this.isNavigationMode ? undefined : '1',
+              }
+        }
+      >
         <div class="tabs-wrapper" part="post-tabs">
           <TabsContainer
             class="tabs"

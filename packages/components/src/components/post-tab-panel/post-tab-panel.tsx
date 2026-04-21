@@ -34,8 +34,15 @@ export class PostTabPanel {
   }
 
   render() {
+    const tabFor = this.host.getAttribute('for');
     return (
-      <Host data-version={version} id={this.panelId} role="tabpanel" slot="panels">
+      <Host
+        data-version={version}
+        id={this.panelId}
+        role="tabpanel"
+        slot="panels"
+        style={{ display: `var(--${tabFor}, none)` }}
+      >
         <slot />
       </Host>
     );
