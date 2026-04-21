@@ -37,6 +37,18 @@ export namespace Components {
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
         "customItems"?: string | Array<Link>;
+        /**
+          * Accessible label for the breadcrumbs navigation.
+         */
+        "textBreadcrumbs": string;
+        /**
+          * Label for the home link.
+         */
+        "textHome": string;
+        /**
+          * Label for the overflow menu button.
+         */
+        "textMoreItems": string;
     }
     interface SwisspostInternetFooter {
         /**
@@ -163,6 +175,18 @@ declare namespace LocalJSX {
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
         "customItems"?: string | Array<Link>;
+        /**
+          * Accessible label for the breadcrumbs navigation.
+         */
+        "textBreadcrumbs": string;
+        /**
+          * Label for the home link.
+         */
+        "textHome": string;
+        /**
+          * Label for the overflow menu button.
+         */
+        "textMoreItems": string;
     }
     interface SwisspostInternetFooter {
         /**

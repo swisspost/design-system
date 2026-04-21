@@ -1,6 +1,5 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { state } from '../../data/store';
-import { translate } from '../../services/language.service';
 import { Link } from '../../models/general.model';
 import '@swisspost/design-system-components';
 
@@ -14,6 +13,21 @@ export class PostInternetBreadcrumbs {
    * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
    */
   @Prop() customItems?: string | Array<Link>;
+
+  /**
+   * Label for the home link.
+   */
+  @Prop() textHome!: string;
+
+  /**
+   * Accessible label for the breadcrumbs navigation.
+   */
+  @Prop() textBreadcrumbs!: string;
+
+  /**
+   * Label for the overflow menu button.
+   */
+  @Prop() textMoreItems!: string;
 
   @State() customBreadcrumbItems?: Array<Link>;
   @Element() host: HTMLSwisspostInternetBreadcrumbsElement;
@@ -64,9 +78,9 @@ export class PostInternetBreadcrumbs {
       <Host>
         <post-breadcrumbs
           homeUrl={breadcrumbConfig.rootUrl}
-          textHome={translate('Homepage')}
-          textBreadcrumbs={translate('Breadcrumbs')}
-          textMoreItems={translate('More items')}
+          textHome={this.textHome}
+          textBreadcrumbs={this.textBreadcrumbs}
+          textMoreItems={this.textMoreItems}
         >
           {items.map(item => (
             <post-breadcrumb-item label={item.label} description={item.description} url={item.url}>

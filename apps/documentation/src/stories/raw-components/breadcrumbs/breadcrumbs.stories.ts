@@ -19,6 +19,11 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=558-16158&m=dev',
     },
   },
+  args: {
+    textHome: 'Homepage',
+    textBreadcrumbs: 'Breadcrumbs',
+    textMoreItems: 'More items',
+  },
   argTypes: {
     customItems: {
       name: 'custom-items',
