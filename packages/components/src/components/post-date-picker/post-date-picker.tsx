@@ -25,6 +25,8 @@ import {
   checkIsoDate,
   getLocaleTextDirection,
   isValidLocale,
+  BUDDHIST_CALENDAR_YEAR_OFFSET,
+  BUDDHIST_CALENDAR_LOCALES,
   UNICODE_BIDI,
   FALLBACK_LANGUAGE_CODE,
 } from '@/utils';
@@ -307,7 +309,6 @@ export class PostDatePicker {
    * with format keys (y, m, d). For example, it will return "dd.mm.yyyy" for "de-CH" locale and "mm/dd/yyyy" for "en-US" locale.
    */
   get dateFormat() {
-    const isBuddhistDate = this.languageCode === 'th';
     const date = new Date(Object.values(DATE_FORMAT_MAP).join('-'));
     // get the locale date format e.g. `22.11.3333` for `de-CH` or `11/22/3333` for `en-US`
     let localeDateString = date.toLocaleDateString(this.localeCode, DATE_FORMAT_STRING_OPTIONS);
@@ -316,7 +317,9 @@ export class PostDatePicker {
     for (const [key, value] of Object.entries(DATE_FORMAT_MAP)) {
       // for Thai locale, the year is in Buddhist calendar which is 543 years ahead of Gregorian calendar, so we need to adjust the year value accordingly
       localeDateString = localeDateString.replace(
-        isBuddhistDate && value.length === 4 ? (Number(value) + 543).toString() : value,
+        this.isBuddhistCalendar && value.length === 4
+          ? (Number(value) + BUDDHIST_CALENDAR_YEAR_OFFSET).toString()
+          : value,
         key,
       );
     }
@@ -337,6 +340,10 @@ export class PostDatePicker {
     return this.textDirection === 'rtl'
       ? `${UNICODE_BIDI.rtl}${DATE_FORMAT_RANGE_SEPARATOR}${UNICODE_BIDI.pop}`
       : DATE_FORMAT_RANGE_SEPARATOR;
+  }
+
+  private get isBuddhistCalendar() {
+    return BUDDHIST_CALENDAR_LOCALES.includes(this.localeCode);
   }
 
   /**
@@ -374,7 +381,6 @@ export class PostDatePicker {
    * @returns A localtime date object.
    */
   private stringToDate(localeDateString: string) {
-    const isThaiDate = this.languageCode === 'th';
     // Match the separator chars in the date format (e.g. "." for "dd.mm.yyyy", etc.).
     const dateSeparator = this.dateFormat.match(DATE_FORMAT_SEPARATOR_REGEX)[0];
     // Remove the text direction markers, split the date string into its parts (e.g. ["31", "01", "2026"], etc.)
@@ -399,7 +405,9 @@ export class PostDatePicker {
     );
 
     // Adjust for Thai Buddhist calendar
-    const year = isThaiDate ? (Number(y) - 543).toString() : y;
+    const year = this.isBuddhistCalendar
+      ? (Number(y) - BUDDHIST_CALENDAR_YEAR_OFFSET).toString()
+      : y;
 
     return this.isoToDate([year, m, d].join('-'));
   }

@@ -1,4 +1,8 @@
-import { UNICODE_BIDI } from '../../src/utils/locales';
+import {
+  BUDDHIST_CALENDAR_YEAR_OFFSET,
+  BUDDHIST_CALENDAR_LOCALES,
+  UNICODE_BIDI,
+} from '../../src/utils/locales';
 import {
   DATE_FORMAT_MAP,
   DATE_FORMAT_STRING_OPTIONS,
@@ -424,13 +428,14 @@ const localesMap = [
 
 // A mock of the post-date-picker dateFormat getter and the iMask date format logic
 function dateFormat(locale: string) {
-  const isBuddhistDate = locale.startsWith('th');
   const date = new Date(Object.values(DATE_FORMAT_MAP).join('-'));
   let localeDateString = date.toLocaleDateString(locale, DATE_FORMAT_STRING_OPTIONS);
 
   for (const [key, value] of Object.entries(DATE_FORMAT_MAP)) {
     localeDateString = localeDateString.replace(
-      isBuddhistDate && value.length === 4 ? (Number(value) + 543).toString() : value,
+      BUDDHIST_CALENDAR_LOCALES.includes(locale) && value.length === 4
+        ? (Number(value) + BUDDHIST_CALENDAR_YEAR_OFFSET).toString()
+        : value,
       key,
     );
   }

@@ -3,6 +3,9 @@ import { check } from 'language-tags';
 export const FALLBACK_LANGUAGE_CODE = 'en';
 export const FALLBACK_LOCALE_CODE = 'en-GB';
 
+export const BUDDHIST_CALENDAR_YEAR_OFFSET = 543;
+export const BUDDHIST_CALENDAR_LOCALES = ['th', 'th-TH'];
+
 // https://de.wikipedia.org/wiki/Bidirektionales_Steuerzeichen
 export const UNICODE_BIDI = {
   ltr: '\u200E', // Left-to-right mark (LRM)
