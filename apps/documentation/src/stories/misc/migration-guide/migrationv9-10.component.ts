@@ -74,7 +74,9 @@ export class MigrationV910Component extends LitElement {
       stepper: false,
       dialog_icon: false,
       subnavigation: false,
+      tag: false,
       product_card: false,
+      button_group: false,
     },
     components: {
       alert: false,
@@ -84,6 +86,7 @@ export class MigrationV910Component extends LitElement {
       popover_trigger: false,
       tabs_anchor_navigation: false,
       card_control: false,
+      tag: false,
     },
   };
 
@@ -465,6 +468,21 @@ export class MigrationV910Component extends LitElement {
                       <label class="form-check-label" for="components-card_control">
                         <code>post-card-control</code> component removed
                         <span class="info"> Replace by the selection card. </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-tag"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.tag}"
+                      />
+                      <label class="form-check-label" for="components-tag">
+                        <code>post-tag</code> component removed
+                        <span class="info">Replaced by the <code>.tag</code> CSS class</span>
                       </label>
                     </div>
                   </li>
@@ -1727,10 +1745,46 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.others.product_card}"
                       />
                       <label class="form-check-label" for="others-product_card">
-                        Card product component removed.
+                        Card product component removed
                         <span class="info">
                           The <code>.product-card</code> and
                           <code>.product-navigation</code> classes are no longer effective.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-tag"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.tag}"
+                      />
+                      <label class="form-check-label" for="others-tag">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.tag-danger</code> renamed to <code>.tag-error</code>, and
+                        <code>.tag-yellow</code> and <code>.tag-white</code> variants removed
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-button_group"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.button_group}"
+                      />
+                      <label class="form-check-label" for="others-button_group">
+                        Button group sizes removed
+                        <span class="info">
+                          The button group now only has one default size. You can safely remove the
+                          sizing class on the button group children elements.
                         </span>
                       </label>
                     </div>
