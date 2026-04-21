@@ -228,7 +228,6 @@ export class PostDatePicker {
   @State() inputDisabled = false;
   @State() today = new Date();
   @State() startDate = new Date();
-  // @State() locale: string = Build.isBrowser ? document.documentElement.lang : 'en';
 
   /**
    * An event emitted when a date or a range of dates have been selected.
