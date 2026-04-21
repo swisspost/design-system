@@ -21,7 +21,6 @@ post-megadropdown {
     flex-direction: column;
   }
 
-  // each selector individually to avoid broken :is() output from nav-item-base
   .post-megadropdown-overview {
     @include nav-item-base;
     @include nav-item-block-layout;

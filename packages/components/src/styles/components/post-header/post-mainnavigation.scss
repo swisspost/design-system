@@ -18,7 +18,6 @@ post-mainnavigation {
     flex-wrap: nowrap;
   }
 
-  // split to avoid broken :is() output from nav-item-base
   > *:where(a, button, [role='link'], [role='button']) {
     @include nav-item-base;
     @include nav-item-block-layout;
