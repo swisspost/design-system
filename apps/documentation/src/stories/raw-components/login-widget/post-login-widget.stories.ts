@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components-vite';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -50,7 +50,8 @@ const meta: MetaComponent = {
 export default meta;
 
 // RENDERERS
-function renderUserMenu(id = 'user-menu-widget') {
+
+export function renderUserMenu(id = 'user-menu-widget') {
   return html`
     <post-menu-trigger for="${id}">
       <button class="btn btn-link" type="button">
@@ -95,7 +96,7 @@ function renderUserMenu(id = 'user-menu-widget') {
   `;
 }
 
-function render() {
+function render(_args: Args) {
   return html`
     <post-login-widget>
       <a slot="unauthenticated" href="/login">

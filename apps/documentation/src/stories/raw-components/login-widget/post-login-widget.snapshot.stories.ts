@@ -1,5 +1,6 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { Authenticated } from './post-login-widget.stories';
+import meta from './post-login-widget.stories';
+import { renderUserMenu } from './post-login-widget.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -13,17 +14,20 @@ export default {
 type Story = StoryObj;
 
 export const LoginWidget: Story = {
-  render: (_, context: StoryContext) => {
+  render: (_: unknown, context: StoryContext) => {
     return schemes(
       () => html`
         <div class="d-flex flex-column gap-24 p-16">
           <div>
             <h3>Unauthenticated</h3>
-            ${meta.render?.({ ...context.args }, context)}
+            <a href="/login">
+              <span>Login</span>
+              <post-icon name="login" aria-hidden="true"></post-icon>
+            </a>
           </div>
           <div>
             <h3>Authenticated</h3>
-            ${Authenticated.render?.({}, context)}
+            ${renderUserMenu('snapshot-user-menu')}
           </div>
         </div>
       `,
