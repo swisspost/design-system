@@ -21,14 +21,17 @@
 }
 
 post-header:has([slot='main-nav']):not(:has([slot='title'])) {
+  // Hide local header on tablet & mobile (no title present)
   @include media.max(desktop) {
     --post-local-header-display: none;
   }
 
+  // Portal: main-nav only
   &:not(:has([slot='local-nav'])) {
     --post-local-header-grid-template: 'main-nav' auto / 1fr;
   }
 
+  // Jobs: main-nav + local-nav
   &:has([slot='local-nav']) {
     --post-local-header-grid-template: 'main-nav local-nav' auto / minmax(0, 1fr) auto;
   }
@@ -61,10 +64,12 @@ post-header:has([slot='main-nav']):not(:has([slot='title'])) {
 post-header:has([slot='main-nav']):has([slot='title']) {
   --post-local-header-align-items: end;
 
+  // Microsite without local-nav
   &:not(:has([slot='local-nav'])) {
     --post-local-header-grid-template: 'title' 1fr 'main-nav' auto / 1fr;
   }
 
+  // Microsite with local-nav
   &:has([slot='local-nav']) {
     --post-local-header-grid-template: 'title local-nav' 1fr 'main-nav main-nav' auto /
       minmax(0, 1fr) auto;
@@ -94,16 +99,20 @@ post-header:has([slot='main-nav']):has([slot='title']) {
 }
 
 post-header:not(:has([slot='main-nav'])) {
+  // Hide burger button (no main navigation)
   --post-burger-button-display: none;
 
+  // Hide local header if there is no title either
   &:not(:has([slot='title'])) {
     --post-local-header-display: none;
   }
 
+  // One-pager without local-nav
   &:has([slot='title']):not(:has([slot='local-nav'])) {
     --post-local-header-grid-template: 'title' 1fr / 1fr;
   }
 
+  // One-pager with local-nav
   &:has([slot='title']):has([slot='local-nav']) {
     --post-local-header-grid-template: 'title local-nav' 1fr / minmax(0, 1fr) auto;
   }
