@@ -218,15 +218,21 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
 }
 
 function renderButtonGroup(args: Args, context: StoryContext) {
-  return html`
-    <div
-      class="${args.direction === 'vertical' ? 'btn-group btn-group-vertical' : 'btn-group'}"
-      role="${args.element === 'radio' ? 'radiogroup' : 'group'}"
-      aria-label="Button group example"
-    >
-      ${Array.from({ length: 4 }).map((_, i) => createButtonTemplate(args, context, i))}
-    </div>
-  `;
+  const buttons = Array.from({ length: 4 }).map((_, i) => createButtonTemplate(args, context, i));
+  const groupClass = args.direction === 'vertical' ? 'btn-group btn-group-vertical' : 'btn-group';
+
+  if (args.element === 'radio' || args.element === 'checkbox') {
+    return html`
+      <fieldset class="${groupClass}">
+        <legend class="visually-hidden">Button group example</legend>
+        ${buttons}
+      </fieldset>
+    `;
+  } else {
+    return html`
+      <div class="${groupClass}" role="group" aria-label="Button group example">${buttons}</div>
+    `;
+  }
 }
 
 function renderButtonGroupDirection(args: Args, context: StoryContext) {
