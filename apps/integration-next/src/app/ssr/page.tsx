@@ -258,9 +258,7 @@ export default function Home() {
 
       <h2>Tabs - Panel Variant</h2>
       <PostTabs>
-        <PostTabItem name="unua" active-tab>
-          Unua langeto
-        </PostTabItem>
+        <PostTabItem name="unua">Unua langeto</PostTabItem>
         <PostTabItem name="dua">Dua langeto</PostTabItem>
         <PostTabItem name="tria">Tria langeto</PostTabItem>
 

@@ -50,6 +50,13 @@ export class PostTabs {
   @Element() host: HTMLPostTabsElement;
 
   /**
+   * The name of the tab in the panel mode that is initially active.
+   * Changing this value after initialization has no effect.
+   * If not specified, defaults to the first tab.
+   */
+  @Prop() readonly activeTab?: string;
+
+  /**
    * When set to true, this property allows the tabs container to span the
    * Changing this value after initialization has no effect.
    * full width of the screen, from edge to edge.
@@ -92,9 +99,7 @@ export class PostTabs {
         this.activateTab(activeTab);
       }
     } else {
-      const preActivated = this.tabs.find(tab => tab.hasAttribute('default-active'));
-      const tabToActivate = preActivated?.name || this.tabs[0]?.name;
-
+      const tabToActivate = this.activeTab || this.tabs[0]?.name;
       if (tabToActivate) {
         void this.show(tabToActivate);
       }
@@ -185,8 +190,7 @@ export class PostTabs {
         this.activateTab(activeTab);
       }
     } else {
-      const preActivated = this.tabs.find(tab => tab.hasAttribute('default-active'));
-      const tabToActivate = preActivated?.name || this.tabs[0]?.name;
+      const tabToActivate = this.activeTab || this.tabs[0]?.name;
       if (tabToActivate) {
         void this.show(tabToActivate);
       }
@@ -228,8 +232,6 @@ export class PostTabs {
    */
   @Method()
   async show(tabName: string) {
-    // hide all panels first
-    this.panels.forEach(panel => (panel.style.display = 'none'));
     // do nothing if the tab is already active
     if (tabName === this.currentActiveTab?.name) {
       return;

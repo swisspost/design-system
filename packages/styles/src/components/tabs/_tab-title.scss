@@ -130,9 +130,9 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 .tab-title[aria-selected='true'],
-.nav-item a[aria-current='page'],
-post-tabs:not(:has(post-tab-item[aria-selected='true']))
-  post-tab-item[data-navigation-mode='false']:first-of-type {
+.nav-item a[aria-current='page'] {
+  // post-tabs:not(:has(post-tab-item[aria-selected='true']))
+  //   post-tab-item[data-navigation-mode='false']:first-of-type {
   z-index: 1;
   border-right-color: nav.$nav-tabs-border-color;
   border-left-color: nav.$nav-tabs-border-color;
@@ -144,9 +144,9 @@ post-tabs:not(:has(post-tab-item[aria-selected='true']))
 
 // Create a line that does not suffer from border corner mitering
 .tab-title[aria-selected='true']::before,
-.nav-item a[aria-current='page']::before,
-post-tabs:not(:has(post-tab-item[aria-selected='true']))
-  post-tab-item[data-navigation-mode='false']:first-of-type::before {
+.nav-item a[aria-current='page']::before {
+  // post-tabs:not(:has(post-tab-item[aria-selected='true']))
+  //   post-tab-item[data-navigation-mode='false']:first-of-type::before {
   content: '';
   display: block;
   position: absolute;
@@ -173,7 +173,7 @@ post-tabs:not(:has(post-tab-item[aria-selected='true']))
 }
 
 // Show by default the first panel for SSR if no explicit prop is set
-post-tabs:not(:has(post-tab-item[aria-selected='true'])):not(:has(post-tab-item[default-active]))
-  post-tab-panel:first-of-type {
-  display: block;
-}
+// post-tabs:not(:has(post-tab-item[aria-selected='true'])):not(:has(post-tab-item[default-active]))
+//   post-tab-panel:first-of-type {
+//   display: block;
+// }

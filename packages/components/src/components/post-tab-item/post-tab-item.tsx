@@ -25,12 +25,6 @@ export class PostTabItem {
    */
   @Prop({ reflect: true }) readonly name!: string;
 
-  /**
-   * Indicates whether this tab item is the initially active one.
-   * Changing this value after initialization has no effect.
-   */
-  @Prop({ reflect: true }) readonly defaultActive?: string;
-
   @Watch('name')
   validateName() {
     checkRequiredAndType(this, 'name', 'string');
@@ -59,22 +53,16 @@ export class PostTabItem {
     this.isNavigationMode = hasAnchor;
   }
 
-  private getTabIndex(isActive: boolean): string | undefined {
-    if (this.isNavigationMode) return undefined;
-    return isActive ? '0' : '-1';
-  }
-
   render() {
-    const isActive = this.host.hasAttribute('default-active');
     return (
       <Host
         id={this.tabId}
         role={!this.isNavigationMode ? 'tab' : undefined}
         data-version={version}
         data-navigation-mode={this.isNavigationMode.toString()}
-        aria-selected={!this.isNavigationMode ? String(isActive) : undefined}
-        tabindex={this.getTabIndex(isActive)}
-        class={`${!this.isNavigationMode ? 'tab-title' : 'nav-item'}`}
+        aria-selected={!this.isNavigationMode ? 'false' : undefined}
+        tabindex={!this.isNavigationMode ? '-1' : undefined}
+        class={!this.isNavigationMode ? 'tab-title' : 'nav-item'}
       >
         <slot />
       </Host>
