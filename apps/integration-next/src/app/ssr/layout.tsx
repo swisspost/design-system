@@ -87,7 +87,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <PostLoginWidget slot="post-login">
           <a href="#login" slot="unauthenticated">
             <span>Login</span>
-            <PostIcon name="login" />
+            <PostIcon aria-hidden="true" name="login" />
           </a>
         </PostLoginWidget>
         {/* Main navigation */}
