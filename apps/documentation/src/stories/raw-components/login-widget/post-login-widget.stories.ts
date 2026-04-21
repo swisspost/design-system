@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components-vite';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -96,7 +96,7 @@ export function renderUserMenu(id = 'user-menu-widget') {
   `;
 }
 
-function render(_args: Args) {
+function render() {
   return html`
     <post-login-widget>
       <a slot="unauthenticated" href="/login">
