@@ -120,6 +120,7 @@ post-header {
     }
   }
 
+  /* nav-item-block-focus must not go inside @include interactive-elements — Stencil's Sass breaks :is(:focus-visible) on comma-separated selectors */
   > [slot='global-nav-secondary']:where(a, button, [role='link'], [role='button']) {
     @include media.max(desktop) {
       @include nav-item-block-focus;
