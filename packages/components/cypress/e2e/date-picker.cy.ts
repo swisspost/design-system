@@ -114,7 +114,7 @@ describe('date-picker', { includeShadowDom: true }, () => {
       });
     });
 
-    describe.only('i18n', () => {
+    describe('i18n', () => {
       const START_DAY = 1;
       const END_DAY = 10;
 
