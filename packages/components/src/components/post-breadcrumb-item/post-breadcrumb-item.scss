@@ -1,3 +1,4 @@
+@use '@swisspost/design-system-styles/elements/anchor';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use './mixins';
@@ -15,6 +16,5 @@ tokens.$default-map: components.$post-breadcrumb;
     color: tokens.get('breadcrumb-selected-fg');
     font-weight: tokens.get('breadcrumb-selected-font-weight');
     text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
-    pointer-events: none;
   }
 }

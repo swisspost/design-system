@@ -5,11 +5,11 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                                                                         | Type                       | Default      |
-| ---------- | ---------- | --------------------------------------------------------------------------------------------------- | -------------------------- | ------------ |
-| `selected` | `selected` | Defines whether the component renders as a list item or a menu item.                                | `boolean`                  | `false`      |
-| `url`      | `url`      | The link destination for the breadcrumb item. If not provided, the item is rendered without a link. | `URL \| string`            | `undefined`  |
-| `variant`  | `variant`  | Defines whether the component renders as a list item or a menu item.                                | `"listitem" \| "menuitem"` | `'listitem'` |
+| Property   | Attribute  | Description                                                                                            | Type                       | Default      |
+| ---------- | ---------- | ------------------------------------------------------------------------------------------------------ | -------------------------- | ------------ |
+| `selected` | `selected` | Indicates that the item represents the current page, applying appropriate styling.                     | `boolean`                  | `false`      |
+| `url`      | `url`      | The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text. | `URL \| string`            | `undefined`  |
+| `variant`  | `variant`  | Controls how the item is rendered, either as a standard list item or within an overflow menu.          | `"listitem" \| "menuitem"` | `'listitem'` |
 
 
 ## Slots

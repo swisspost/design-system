@@ -15,7 +15,7 @@ export class PostBreadcrumbItem {
   @Element() host: HTMLPostBreadcrumbItemElement;
 
   /**
-   * The link destination for the breadcrumb item. If not provided, the item is rendered without a link.
+   * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
    */
   @Prop() url?: string | URL;
 
@@ -25,7 +25,7 @@ export class PostBreadcrumbItem {
   }
 
   /**
-   * Defines whether the component renders as a list item or a menu item.
+   * Controls how the item is rendered, either as a standard list item or within an overflow menu.
    */
   @Prop({ reflect: true }) variant: Variant = 'listitem';
 
@@ -35,7 +35,7 @@ export class PostBreadcrumbItem {
   }
 
   /**
-   * Defines whether the component renders as a list item or a menu item.
+   * Indicates that the item represents the current page, applying appropriate styling.
    */
   @Prop({ reflect: true }) selected = false;
 
@@ -47,7 +47,7 @@ export class PostBreadcrumbItem {
   render() {
     const href = this.url instanceof URL ? this.url.href : this.url;
     const content = href ? (
-      <a href={href}>
+      <a href={href} aria-current={this.selected ? 'page' : undefined}>
         <slot></slot>
       </a>
     ) : (

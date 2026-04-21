@@ -16,9 +16,10 @@ export class PostBreadcrumbs {
   @Element() host: HTMLPostBreadcrumbsElement;
 
   @State() shouldRenderMenu = false;
+  @State() id: string;
 
   /**
-   * The URL for the home breadcrumb item.
+   * The URL for the root (home) breadcrumb item.
    */
   @Prop({ reflect: true }) homeUrl!: string;
 
@@ -28,7 +29,7 @@ export class PostBreadcrumbs {
   }
 
   /**
-   * The text label for the home breadcrumb item.
+   * An accessible label for the root (home) breadcrumb item.
    */
   @Prop({ reflect: true }) textHome!: string;
 
@@ -38,7 +39,7 @@ export class PostBreadcrumbs {
   }
 
   /**
-   * The accessible label for the breadcrumb component.
+   * An accessible label for the breadcrumb navigation.
    */
   @Prop({ reflect: true }) textBreadcrumbs!: string;
 
@@ -48,13 +49,17 @@ export class PostBreadcrumbs {
   }
 
   /**
-   * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+   * An accessible label for the overflow menu that contains collapsed breadcrumb items.
    */
   @Prop({ reflect: true }) textMoreItems!: string;
 
   @Watch('textMoreItems')
   validateTextMoreItems() {
     checkRequiredAndType(this, 'textMoreItems', 'string');
+  }
+
+  componentWillLoad() {
+    this.id = this.host.id || `b${nanoid(6)}`;
   }
 
   componentDidLoad() {
@@ -149,7 +154,7 @@ export class PostBreadcrumbs {
   }
 
   private renderMenu() {
-    const menuId = `m${nanoid(6)}`;
+    const menuId = `${this.id}-menu`;
 
     return (
       <div role="listitem">

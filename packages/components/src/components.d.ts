@@ -118,35 +118,35 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * Defines whether the component renders as a list item or a menu item.
+          * Indicates that the item represents the current page, applying appropriate styling.
           * @default false
          */
         "selected": boolean;
         /**
-          * The link destination for the breadcrumb item. If not provided, the item is rendered without a link.
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
         /**
-          * Defines whether the component renders as a list item or a menu item.
+          * Controls how the item is rendered, either as a standard list item or within an overflow menu.
           * @default 'listitem'
          */
         "variant": Variant;
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the home breadcrumb item.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component.
+          * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * The text label for the home breadcrumb item.
+          * An accessible label for the root (home) breadcrumb item.
          */
         "textHome": string;
         /**
-          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+          * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
         "textMoreItems": string;
     }
@@ -1311,35 +1311,35 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * Defines whether the component renders as a list item or a menu item.
+          * Indicates that the item represents the current page, applying appropriate styling.
           * @default false
          */
         "selected"?: boolean;
         /**
-          * The link destination for the breadcrumb item. If not provided, the item is rendered without a link.
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
         /**
-          * Defines whether the component renders as a list item or a menu item.
+          * Controls how the item is rendered, either as a standard list item or within an overflow menu.
           * @default 'listitem'
          */
         "variant"?: Variant;
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the home breadcrumb item.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component.
+          * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * The text label for the home breadcrumb item.
+          * An accessible label for the root (home) breadcrumb item.
          */
         "textHome": string;
         /**
-          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+          * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
         "textMoreItems": string;
     }

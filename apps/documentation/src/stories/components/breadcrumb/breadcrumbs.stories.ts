@@ -36,9 +36,10 @@ function render(args: Args) {
       text-more-items=${args.textMoreItems}
     >
       ${Array.from({ length: args.itemCount }).map(
-        (_, i) => html`
-          <post-breadcrumb-item url="/section${i + 1}">Section ${i + 1}</post-breadcrumb-item>
-        `,
+        (_, i) =>
+          html`<post-breadcrumb-item url="/section${i + 1}"
+            >Section ${i + 1}</post-breadcrumb-item
+          > `,
       )}
     </post-breadcrumbs>
   `;

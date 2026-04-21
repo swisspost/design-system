@@ -14,7 +14,6 @@ tokens.$default-map: components.$post-breadcrumb;
 
 nav {
   max-width: 100%;
-  overflow: hidden;
 
   &.invisible {
     visibility: hidden;
@@ -41,7 +40,7 @@ nav {
     content: unset;
   }
 
-  > post-icon {
+  post-icon {
     font-size: tokens.get('breadcrumb-icon-size');
 
     @include media.only(mobile) {
