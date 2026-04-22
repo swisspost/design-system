@@ -5,11 +5,12 @@
 
 ## Properties
 
-| Property          | Attribute          | Description                                                                        | Type      | Default     |
-| ----------------- | ------------------ | ---------------------------------------------------------------------------------- | --------- | ----------- |
-| `clearable`       | `clearable`        | Show or hide the clear button                                                      | `boolean` | `false`     |
-| `filterThreshold` | `filter-threshold` | Number of characters to type before filtering methods are called                   | `number`  | `0`         |
-| `listbox`         | `listbox`          | Optional idref to connect the autocomplete with the options dropdown if not nested | `string`  | `undefined` |
+| Property                                | Attribute                    | Description                                                                                                                                                                         | Type      | Default     |
+| --------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `clearable`                             | `clearable`                  | Show or hide the clear button                                                                                                                                                       | `boolean` | `false`     |
+| `filterThreshold`                       | `filter-threshold`           | Number of characters to type before filtering methods are called                                                                                                                    | `number`  | `0`         |
+| `listbox`                               | `listbox`                    | Optional idref to connect the autocomplete with the options dropdown if not nested                                                                                                  | `string`  | `undefined` |
+| `textAvailableSuggestions` _(required)_ | `text-available-suggestions` | Announcement template for screen readers when the suggestion list updates. Use {count} as placeholder for the number of available suggestions, e.g. "{count} suggestions available" | `string`  | `undefined` |
 
 
 ## Events
