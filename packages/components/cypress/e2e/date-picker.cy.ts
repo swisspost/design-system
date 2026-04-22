@@ -126,6 +126,15 @@ describe('date-picker', { includeShadowDom: true }, () => {
       s.setDate(START_DAY);
       e.setDate(END_DAY);
 
+      it('should apply correct mask & date format based on the "locale" property', () => {
+        cy.get('@date-picker').invoke('attr', 'locale', 'ar');
+
+        cy.get('@date-picker').invoke('attr', 'locale', 'de');
+        cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', 'ltr');
+        cy.get('@date-picker').invoke('attr', 'locale', 'ar');
+        cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', 'rtl');
+      });
+
       LOCALES_MAP.forEach(i18n => {
         describe(`Locales: ${i18n.locales.join(', ')}`, () => {
           it('should apply correct mask & date format based on the "locale" property', () => {
@@ -135,9 +144,6 @@ describe('date-picker', { includeShadowDom: true }, () => {
 
             cy.get('@date-picker').invoke('attr', 'locale', i18n.locale);
             cy.get('@input').should('have.value', i18n.mask);
-
-            cy.get('@date-picker').invoke('attr', 'locale', i18n.locale);
-            cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', i18n.dir);
 
             cy.get('@toggle').click().wait(200);
             cy.get('@container').find(`[data-date="${START_DAY}"]`).first().click();
