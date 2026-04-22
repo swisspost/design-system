@@ -13,7 +13,7 @@ import { debounce } from '@/utils';
 })
 export class PostAutocomplete {
   private readonly debouncedHandleInput = debounce((event: Event) => this.handleInput(event), 250);
-  private outputElement: HTMLOutputElement;
+  private outputElement?: HTMLOutputElement;
 
   @Element() host: HTMLPostAutocompleteElement;
 
@@ -229,7 +229,7 @@ export class PostAutocomplete {
         {/* always in DOM, empty on load — required for aria-live to work correctly across all screen readers */}
         <output
           class="visually-hidden"
-          ref={el => (this.outputElement = el as HTMLOutputElement)}
+          ref={el => (this.outputElement = el)}
         ></output>
       </Host>
     );
