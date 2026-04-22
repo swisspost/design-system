@@ -5,9 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
+import { Link } from "./models/general.model";
 import { ActiveRouteProp, Environment } from "./models/general.model";
-export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
+export { Link } from "./models/general.model";
 export { ActiveRouteProp, Environment } from "./models/general.model";
 export namespace Components {
     /**
@@ -36,17 +36,19 @@ export namespace Components {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | IBreadcrumbItem[];
+        "customItems"?: string | Array<Link>;
         /**
-          * Hide all buttons.
-          * @default false
+          * Accessible label for the breadcrumbs navigation.
          */
-        "hideButtons": boolean;
+        "textBreadcrumbs": string;
         /**
-          * Toggle an overlay associated with a button.
-          * @param overlayId
+          * Label for the home link.
          */
-        "toggleOverlayById": (overlayId: IBreadcrumbOverlay["id"]) => Promise<void>;
+        "textHome": string;
+        /**
+          * Label for the overflow menu button.
+         */
+        "textMoreItems": string;
     }
     interface SwisspostInternetFooter {
         /**
@@ -172,12 +174,19 @@ declare namespace LocalJSX {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | IBreadcrumbItem[];
+        "customItems"?: string | Array<Link>;
         /**
-          * Hide all buttons.
-          * @default false
+          * Accessible label for the breadcrumbs navigation.
          */
-        "hideButtons"?: boolean;
+        "textBreadcrumbs": string;
+        /**
+          * Label for the home link.
+         */
+        "textHome": string;
+        /**
+          * Label for the overflow menu button.
+         */
+        "textMoreItems": string;
     }
     interface SwisspostInternetFooter {
         /**

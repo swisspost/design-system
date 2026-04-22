@@ -992,113 +992,20 @@
         "loginWidgetText": "Login"
       }
     },
-    "breadcrumb": {
-      "a11yLabel": "Breadcrumb",
-      "asWebComponent": true,
-      "buttons": [
-        {
-          "svgIcon": {
-            "name": "3033_question-mark",
-            "classes": [],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "text": "Hilfe",
-          "overlay": {
-            "id": "help",
-            "target": "https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/info?modal=true",
-            "closeText": "Schliessen",
-            "closeIcon": {
-              "name": "2043_cross",
-              "classes": [],
-              "additionalAttributes": [
-                {
-                  "name": "focusable",
-                  "value": "false"
-                }
-              ]
-            },
-            "classes": ["ppm-breadcrumb-overlay__body--light"],
-            "additionalAttributes": []
-          },
-          "classes": ["btn-outline-secondary"],
-          "additionalAttributes": []
-        },
-        {
-          "svgIcon": {
-            "name": "3073_phone",
-            "classes": [],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "text": "Kontakt",
-          "overlay": {
-            "id": "phone",
-            "target": "https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/kontakt?modal=true",
-            "closeText": "Schliessen",
-            "closeIcon": {
-              "name": "2043_cross",
-              "classes": [],
-              "additionalAttributes": [
-                {
-                  "name": "focusable",
-                  "value": "false"
-                }
-              ]
-            },
-            "classes": ["ppm-breadcrumb-overlay__body--dark"],
-            "additionalAttributes": []
-          },
-          "classes": ["btn-outline-secondary"],
-          "additionalAttributes": []
-        }
-      ],
-      "isCentered": false,
+    "breadcrumbs": {
+      "rootUrl": "https://post.ch/de/",
       "items": [
-        {
-          "text": "Website",
-          "url": "https://post.ch/de/"
-        },
         {
           "text": "Meine Post",
           "url": "https://post.ch/de/kundencenter"
         },
         {
           "text": "Standorte und Öffnungszeiten",
-          "url": "https://places.post.ch/?lang=de"
+          "url": "https://places.post.ch/?lang=de",
+          "label": "Die label",
+          "description": "Die description"
         }
-      ],
-      "svgIconArrowRightSmall": {
-        "name": "2111_angle-small-right",
-        "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
-        "additionalAttributes": [
-          {
-            "name": "focusable",
-            "value": "false"
-          }
-        ]
-      },
-      "svgIconHome": {
-        "name": "2035_home",
-        "classes": ["ppm-breadcrumb__svg-icon"],
-        "additionalAttributes": [
-          {
-            "name": "focusable",
-            "value": "false"
-          }
-        ]
-      },
-      "truncateButtonText": "Öffnen",
-      "classes": [],
-      "additionalAttributes": []
+      ]
     },
     "footer": {
       "sections": [
@@ -1440,113 +1347,20 @@
         "loginWidgetText": "Login"
       }
     },
-    "breadcrumb": {
-      "a11yLabel": "Breadcrumb",
-      "asWebComponent": true,
-      "buttons": [
-        {
-          "svgIcon": {
-            "name": "3033_question-mark",
-            "classes": [],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "text": "Aide",
-          "overlay": {
-            "id": "help",
-            "target": "https://post.ch/fr/espace-clients/services-en-ligne/standorte-und-oeffnungszeiten/info?modal=true",
-            "closeText": "Fermer",
-            "closeIcon": {
-              "name": "2043_cross",
-              "classes": [],
-              "additionalAttributes": [
-                {
-                  "name": "focusable",
-                  "value": "false"
-                }
-              ]
-            },
-            "classes": ["ppm-breadcrumb-overlay__body--light"],
-            "additionalAttributes": []
-          },
-          "classes": ["btn-outline-secondary"],
-          "additionalAttributes": []
-        },
-        {
-          "svgIcon": {
-            "name": "3073_phone",
-            "classes": [],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "text": "Contact",
-          "overlay": {
-            "id": "phone",
-            "target": "https://post.ch/fr/espace-clients/services-en-ligne/standorte-und-oeffnungszeiten/kontakt?modal=true",
-            "closeText": "Fermer",
-            "closeIcon": {
-              "name": "2043_cross",
-              "classes": [],
-              "additionalAttributes": [
-                {
-                  "name": "focusable",
-                  "value": "false"
-                }
-              ]
-            },
-            "classes": ["ppm-breadcrumb-overlay__body--dark"],
-            "additionalAttributes": []
-          },
-          "classes": ["btn-outline-secondary"],
-          "additionalAttributes": []
-        }
-      ],
-      "isCentered": false,
+    "breadcrumbs": {
+      "rootUrl": "https://post.ch/fr/",
       "items": [
-        {
-          "text": "Page d'accueil",
-          "url": "https://post.ch/fr/"
-        },
         {
           "text": "Ma Poste",
           "url": "https://post.ch/fr/espace-clients"
         },
         {
           "text": "Sites et heures d'ouverture",
-          "url": "https://places.post.ch/?lang=fr"
+          "url": "https://places.post.ch/?lang=fr",
+          "label": "Mon label",
+          "description": "Ma description"
         }
-      ],
-      "svgIconArrowRightSmall": {
-        "name": "2111_angle-small-right",
-        "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
-        "additionalAttributes": [
-          {
-            "name": "focusable",
-            "value": "false"
-          }
-        ]
-      },
-      "svgIconHome": {
-        "name": "2035_home",
-        "classes": ["ppm-breadcrumb__svg-icon"],
-        "additionalAttributes": [
-          {
-            "name": "focusable",
-            "value": "false"
-          }
-        ]
-      },
-      "truncateButtonText": "Ouvrir",
-      "classes": [],
-      "additionalAttributes": []
+      ]
     },
     "footer": {
       "sections": [
@@ -1891,113 +1705,20 @@
         "loginWidgetText": "Login"
       }
     },
-    "breadcrumb": {
-      "a11yLabel": "Breadcrumb",
-      "asWebComponent": true,
-      "buttons": [
-        {
-          "svgIcon": {
-            "name": "3033_question-mark",
-            "classes": [],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "text": "Aiuto",
-          "overlay": {
-            "id": "help",
-            "target": "https://post.ch/it/centro-clienti/servizi-online/standorte-und-oeffnungszeiten/info?modal=true",
-            "closeText": "Chiudere",
-            "closeIcon": {
-              "name": "2043_cross",
-              "classes": [],
-              "additionalAttributes": [
-                {
-                  "name": "focusable",
-                  "value": "false"
-                }
-              ]
-            },
-            "classes": ["ppm-breadcrumb-overlay__body--light"],
-            "additionalAttributes": []
-          },
-          "classes": ["btn-outline-secondary"],
-          "additionalAttributes": []
-        },
-        {
-          "svgIcon": {
-            "name": "3073_phone",
-            "classes": [],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "text": "Contatto",
-          "overlay": {
-            "id": "phone",
-            "target": "https://post.ch/it/centro-clienti/servizi-online/standorte-und-oeffnungszeiten/kontakt?modal=true",
-            "closeText": "Chiudere",
-            "closeIcon": {
-              "name": "2043_cross",
-              "classes": [],
-              "additionalAttributes": [
-                {
-                  "name": "focusable",
-                  "value": "false"
-                }
-              ]
-            },
-            "classes": ["ppm-breadcrumb-overlay__body--dark"],
-            "additionalAttributes": []
-          },
-          "classes": ["btn-outline-secondary"],
-          "additionalAttributes": []
-        }
-      ],
-      "isCentered": false,
+    "breadcrumbs": {
+      "rootUrl": "https://post.ch/it/",
       "items": [
-        {
-          "text": "Pagina iniziale",
-          "url": "https://post.ch/it/"
-        },
         {
           "text": "Mia Posta",
           "url": "https://post.ch/it/centro-clienti"
         },
         {
           "text": "Ubicazioni e orari di apertura",
-          "url": "https://places.post.ch/?lang=it"
+          "url": "https://places.post.ch/?lang=it",
+          "label": "Mi label",
+          "description": "Mi descriptioni"
         }
-      ],
-      "svgIconArrowRightSmall": {
-        "name": "2111_angle-small-right",
-        "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
-        "additionalAttributes": [
-          {
-            "name": "focusable",
-            "value": "false"
-          }
-        ]
-      },
-      "svgIconHome": {
-        "name": "2035_home",
-        "classes": ["ppm-breadcrumb__svg-icon"],
-        "additionalAttributes": [
-          {
-            "name": "focusable",
-            "value": "false"
-          }
-        ]
-      },
-      "truncateButtonText": "Aprire",
-      "classes": [],
-      "additionalAttributes": []
+      ]
     },
     "footer": {
       "sections": [
@@ -2339,113 +2060,20 @@
         "loginWidgetText": "Login"
       }
     },
-    "breadcrumb": {
-      "a11yLabel": "Breadcrumb",
-      "asWebComponent": true,
-      "buttons": [
-        {
-          "svgIcon": {
-            "name": "3033_question-mark",
-            "classes": [],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "text": "Help",
-          "overlay": {
-            "id": "help",
-            "target": "https://post.ch/en/customer-center/online-services/standorte-und-oeffnungszeiten/info?modal=true",
-            "closeText": "Close",
-            "closeIcon": {
-              "name": "2043_cross",
-              "classes": [],
-              "additionalAttributes": [
-                {
-                  "name": "focusable",
-                  "value": "false"
-                }
-              ]
-            },
-            "classes": ["ppm-breadcrumb-overlay__body--light"],
-            "additionalAttributes": []
-          },
-          "classes": ["btn-outline-secondary"],
-          "additionalAttributes": []
-        },
-        {
-          "svgIcon": {
-            "name": "3073_phone",
-            "classes": [],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "text": "Contact",
-          "overlay": {
-            "id": "phone",
-            "target": "https://post.ch/en/customer-center/online-services/standorte-und-oeffnungszeiten/kontakt?modal=true",
-            "closeText": "Close",
-            "closeIcon": {
-              "name": "2043_cross",
-              "classes": [],
-              "additionalAttributes": [
-                {
-                  "name": "focusable",
-                  "value": "false"
-                }
-              ]
-            },
-            "classes": ["ppm-breadcrumb-overlay__body--dark"],
-            "additionalAttributes": []
-          },
-          "classes": ["btn-outline-secondary"],
-          "additionalAttributes": []
-        }
-      ],
-      "isCentered": false,
+    "breadcrumbs": {
+      "rootUrl": "https://post.ch/en/",
       "items": [
-        {
-          "text": "Home page",
-          "url": "https://post.ch/en/"
-        },
         {
           "text": "My Post",
           "url": "https://post.ch/en/customer-center"
         },
         {
           "text": "Locations and opening hours",
-          "url": "https://places.post.ch/?lang=en"
+          "url": "https://places.post.ch/?lang=en",
+          "label": "My label",
+          "description": "My description"
         }
-      ],
-      "svgIconArrowRightSmall": {
-        "name": "2111_angle-small-right",
-        "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
-        "additionalAttributes": [
-          {
-            "name": "focusable",
-            "value": "false"
-          }
-        ]
-      },
-      "svgIconHome": {
-        "name": "2035_home",
-        "classes": ["ppm-breadcrumb__svg-icon"],
-        "additionalAttributes": [
-          {
-            "name": "focusable",
-            "value": "false"
-          }
-        ]
-      },
-      "truncateButtonText": "Open",
-      "classes": [],
-      "additionalAttributes": []
+      ]
     },
     "footer": {
       "sections": [
