@@ -129,7 +129,7 @@ post-tab-item.nav-item {
   }
 }
 
-// active state csr
+// active state
 post-tab-item.tab-title[aria-selected='true'],
 post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
@@ -139,6 +139,12 @@ post-tab-item.nav-item a[aria-current='page'] {
   background-color: color.$white;
   color: color.$black;
   font-weight: 700;
+
+  @include utilities-mx.high-contrast-mode() {
+    border-left-color: ButtonText;
+    border-right-color: ButtonText;
+    color: Highlight;
+  }
 }
 
 // Create a line that does not suffer from border corner mitering
@@ -152,15 +158,9 @@ post-tab-item.nav-item a[aria-current='page']::before {
   left: -1px;
   height: tokens.get('utility-gap-4');
   background-color: nav.$nav-tabs-link-active-border-color;
-  opacity: 1;
-}
 
-@include utilities-mx.high-contrast-mode() {
-  post-tab-item.tab-title[aria-selected='true'],
-  post-tab-item.nav-item a[aria-current='page'] {
-    border-left-color: ButtonText;
-    border-right-color: ButtonText;
-    color: Highlight;
+  @include utilities-mx.high-contrast-mode() {
+    background-color: Highlight;
   }
 }
 
@@ -190,11 +190,6 @@ post-tabs[active-tab] {
     color: #{color.$black};
     font-weight: calc(400 + var(--active, 0) * 300);
 
-    @include utilities-mx.high-contrast-mode() {
-      border-left-color: color-mix(in srgb, currentColor calc(var(--active, 0) * 100%), Canvas);
-      border-right-color: color-mix(in srgb, currentColor calc(var(--active, 0) * 100%), Canvas);
-    }
-
     &::before {
       content: '';
       height: var(--post-core-dimension-4);
@@ -211,6 +206,12 @@ post-tabs[active-tab] {
       }
     }
 
+    @include utilities-mx.high-contrast-mode() {
+      color: LinkText;
+      border-left-color: ButtonText;
+      border-right-color: ButtonText;
+    }
+
     &:hover {
       opacity: 1;
       background-color: color-mix(
@@ -221,32 +222,42 @@ post-tabs[active-tab] {
       color: color-mix(in srgb, #{color.$white} calc((1 - var(--active, 0)) * 100%), currentColor);
     }
   }
+}
 
-  // Style the first item for SSR when no [active-tab] is set
-  post-tabs:not([active-tab]) {
-    &:has(post-tab-item.tab-title.ssr) post-tab-panel:first-of-type {
-      display: block !important;
+// Style the first item for SSR when no [active-tab] is set
+post-tabs:not([active-tab]) {
+  &:has(post-tab-item.tab-title.ssr) post-tab-panel:first-of-type {
+    display: block !important;
+  }
+
+  post-tab-item.tab-title.ssr[data-navigation-mode='false']:first-of-type {
+    z-index: 1;
+    border-right-color: nav.$nav-tabs-border-color;
+    border-left-color: nav.$nav-tabs-border-color;
+    opacity: 1;
+    background-color: color.$white;
+    color: color.$black;
+    font-weight: 700;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: -1px;
+      left: -1px;
+      height: tokens.get('utility-gap-4');
+      background-color: nav.$nav-tabs-link-active-border-color;
+      opacity: 1;
     }
 
-    post-tab-item.tab-title.ssr[data-navigation-mode='false']:first-of-type {
-      z-index: 1;
-      border-right-color: nav.$nav-tabs-border-color;
-      border-left-color: nav.$nav-tabs-border-color;
-      opacity: 1;
-      background-color: color.$white;
-      color: color.$black;
-      font-weight: 700;
+    @include utilities-mx.high-contrast-mode() {
+      border-left-color: ButtonText;
+      border-right-color: ButtonText;
+      color: Highlight;
 
       &::before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 0;
-        right: -1px;
-        left: -1px;
-        height: tokens.get('utility-gap-4');
-        background-color: nav.$nav-tabs-link-active-border-color;
-        opacity: 1;
+        background-color: Highlight;
       }
     }
   }
