@@ -5,9 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
+import { Link } from "./models/general.model";
 import { ActiveRouteProp, Environment } from "./models/general.model";
-export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
+export { Link } from "./models/general.model";
 export { ActiveRouteProp, Environment } from "./models/general.model";
 export namespace Components {
     /**
@@ -36,17 +36,19 @@ export namespace Components {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | IBreadcrumbItem[];
+        "customItems"?: string | Array<Link>;
         /**
-          * Hide all buttons.
-          * @default false
+          * Accessible label for the breadcrumbs navigation.
          */
-        "hideButtons": boolean;
+        "textBreadcrumbs": string;
         /**
-          * Toggle an overlay associated with a button.
-          * @param overlayId
+          * Label for the home link.
          */
-        "toggleOverlayById": (overlayId: IBreadcrumbOverlay["id"]) => Promise<void>;
+        "textHome": string;
+        /**
+          * Label for the overflow menu button.
+         */
+        "textMoreItems": string;
     }
     interface SwisspostInternetFooter {
         /**
@@ -63,17 +65,17 @@ export namespace Components {
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
           * @default 'auto'
          */
-        "activeRoute"?: ActiveRouteProp;
+        "activeRoute": ActiveRouteProp;
         /**
           * Target environment. Choose 'int01' for local testing.
           * @default 'prod'
          */
         "environment": Environment;
         /**
-          * Displays the header at full width for full-screen applications
+          * Makes the header content span the full width on screens larger than 1440px.
           * @default false
          */
-        "fullWidth"?: boolean;
+        "fullWidth": boolean;
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
@@ -82,6 +84,38 @@ export namespace Components {
           * Your project id, previously passed as query string parameter serviceId.
          */
         "project": string;
+        /**
+          * Visually hidden label for the back button.
+         */
+        "textBack": string;
+        /**
+          * Visually hidden label for the language menu.
+         */
+        "textChangeLanguage": string;
+        /**
+          * Visually hidden label for the close button.
+         */
+        "textClose": string;
+        /**
+          * Visually hidden label for the current language.
+         */
+        "textCurrentLanguage": string;
+        /**
+          * Visually hidden label for the current user.
+         */
+        "textCurrentUser": string;
+        /**
+          * Visually hidden label for the main navigation element.
+         */
+        "textMain": string;
+        /**
+          * Visually hidden label for the burger menu button.
+         */
+        "textMenu": string;
+        /**
+          * Visually hidden label for the user menu.
+         */
+        "textUserLinks": string;
     }
 }
 export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
@@ -172,12 +206,19 @@ declare namespace LocalJSX {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | IBreadcrumbItem[];
+        "customItems"?: string | Array<Link>;
         /**
-          * Hide all buttons.
-          * @default false
+          * Accessible label for the breadcrumbs navigation.
          */
-        "hideButtons"?: boolean;
+        "textBreadcrumbs": string;
+        /**
+          * Label for the home link.
+         */
+        "textHome": string;
+        /**
+          * Label for the overflow menu button.
+         */
+        "textMoreItems": string;
     }
     interface SwisspostInternetFooter {
         /**
@@ -201,7 +242,7 @@ declare namespace LocalJSX {
          */
         "environment"?: Environment;
         /**
-          * Displays the header at full width for full-screen applications
+          * Makes the header content span the full width on screens larger than 1440px.
           * @default false
          */
         "fullWidth"?: boolean;
@@ -216,7 +257,39 @@ declare namespace LocalJSX {
         /**
           * Your project id, previously passed as query string parameter serviceId.
          */
-        "project"?: string;
+        "project": string;
+        /**
+          * Visually hidden label for the back button.
+         */
+        "textBack": string;
+        /**
+          * Visually hidden label for the language menu.
+         */
+        "textChangeLanguage": string;
+        /**
+          * Visually hidden label for the close button.
+         */
+        "textClose": string;
+        /**
+          * Visually hidden label for the current language.
+         */
+        "textCurrentLanguage": string;
+        /**
+          * Visually hidden label for the current user.
+         */
+        "textCurrentUser": string;
+        /**
+          * Visually hidden label for the main navigation element.
+         */
+        "textMain": string;
+        /**
+          * Visually hidden label for the burger menu button.
+         */
+        "textMenu": string;
+        /**
+          * Visually hidden label for the user menu.
+         */
+        "textUserLinks": string;
     }
     interface IntrinsicElements {
         "focus-trap": FocusTrap;
