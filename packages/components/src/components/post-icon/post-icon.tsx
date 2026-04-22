@@ -112,9 +112,9 @@ export class PostIcon {
 
     const isAbsolute = (url: string) => /^https?:\/\//.test(url);
     const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
-    const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
+    const cleanUrl = (url: string) => url.replaceAll(/([^:])\/\//g, '$1/');
 
-    const currentDomain = Build.isBrowser ? window.location.origin : '';
+    const currentDomain = Build.isBrowser ? globalThis.location.origin : '';
     const baseHref = Build.isBrowser
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
@@ -160,15 +160,14 @@ export class PostIcon {
   private getStyles() {
     const url = this.getUrl();
 
-    return Object.entries({
+    return Object.fromEntries(Object.entries({
       '-webkit-mask-image': `url(${url})`,
       'mask-image': `url('${url}')`,
       'transform':
-        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
-        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
+        (this.scale && !Number.isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
+        (this.rotate && !Number.isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
-      .filter(([_key, value]) => value !== null)
-      .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
+      .filter(([_key, value]) => value !== null));
   }
 
   componentDidLoad() {
