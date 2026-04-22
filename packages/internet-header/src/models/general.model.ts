@@ -1,4 +1,4 @@
-import { IHeaderConfig, ICustomHeaderConfig, NavMainEntity } from './header.model';
+import { IHeaderConfig, ICustomHeaderConfig, NavMainEntity, HeaderConfig } from './header.model';
 import { Breadcrumbs } from './breadcrumbs.model';
 import { FooterConfig } from './footer.model';
 
@@ -19,6 +19,7 @@ export interface IPortalConfig {
 }
 
 export interface ILocalizedConfig {
+  header_new: HeaderConfig;
   header: IHeaderConfig;
   breadcrumbs: Breadcrumbs;
   footer?: FooterConfig;
