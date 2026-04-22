@@ -118,11 +118,11 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
@@ -1319,11 +1319,11 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**

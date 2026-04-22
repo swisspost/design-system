@@ -20,12 +20,12 @@ export class PostBreadcrumbItem {
   @Prop({ reflect: true }) url?: string | URL;
 
   /**
-   * ARIA label, screen readers will use this instead of the breadcrumb item content.
+   * An accessible label screen readers will use this instead of the breadcrumb item content.
    */
   @Prop({ reflect: true }) label?: string;
 
   /**
-   * ARIA description for additional context, read after the breadcrumb item content or `label`.
+   * An accessible description for additional context, read after the content or `label`.
    */
   @Prop({ reflect: true }) description?: string;
 
