@@ -769,7 +769,10 @@ export class PostDatePicker {
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    this.setActiveCell(this.isoToDate(this.selectedStartDate) || this.today, focusOnDate);
+    this.setActiveCell(
+      (this.selectedStartDate && this.isoToDate(this.selectedStartDate)) || this.today,
+      focusOnDate,
+    );
   }
 
   /**
