@@ -14,7 +14,7 @@ jest.mock('prettier', () => ({
 import {
   createComponentNameOutput,
   componentNameOutputOptions,
-  copyAirDatepickerLocales,
+  copyAndConvertAirDatepickerLocales,
 } from './prebuild';
 
 describe('Prebuild - ComponentNames', () => {
@@ -51,7 +51,7 @@ describe('Prebuild - ComponentNames', () => {
   });
 });
 
-describe('Prebuild - Copy AirDatepicker locales', () => {
+describe('Prebuild - Copy and convert AirDatepicker locales', () => {
   const sourceDir = 'node_modules/air-datepicker/locale';
   const destDir = 'src/components/post-date-picker/locales';
 
@@ -71,30 +71,37 @@ describe('Prebuild - Copy AirDatepicker locales', () => {
     vol.reset();
   });
 
-  it('should copy .js locale files to the destination directory', () => {
-    copyAirDatepickerLocales();
+  it('should write all .js locale files to the destination directory', () => {
+    copyAndConvertAirDatepickerLocales();
 
     expect(memfs.existsSync(`${destDir}/en.js`)).toBe(true);
     expect(memfs.existsSync(`${destDir}/de.js`)).toBe(true);
   });
 
-  it('should copy .js files without modifying their content', () => {
-    copyAirDatepickerLocales();
+  it('should convert CJS syntax to ESM syntax', () => {
+    copyAndConvertAirDatepickerLocales();
 
     const output = memfs.readFileSync(`${destDir}/en.js`, 'utf8') as string;
-    expect(output).toBe(LOCALE);
+
+    expect(output).not.toContain('"use strict"');
+    expect(output).not.toContain('Object.defineProperty');
+    expect(output).not.toContain('exports.default = void 0');
+    expect(output).not.toContain('var _default');
+    expect(output).toContain('const _default =');
+    expect(output).toContain('export default _default;');
   });
 
   it('should generate ESM .d.ts files for each locale', () => {
-    copyAirDatepickerLocales();
+    copyAndConvertAirDatepickerLocales();
 
     const dts = memfs.readFileSync(`${destDir}/en.d.ts`, 'utf8') as string;
-    expect(dts).toContain("import type { AirDatepickerLocale } from 'air-datepicker'");
+    // eslint-disable-next-line quotes
+    expect(dts).toContain("import type { AirDatepickerLocale } from 'air-datepicker';");
     expect(dts).toContain('export default locale');
   });
 
-  it('should only copy .js files', () => {
-    copyAirDatepickerLocales();
+  it('should only process .js files', () => {
+    copyAndConvertAirDatepickerLocales();
 
     expect(memfs.existsSync(`${destDir}/readme.txt`)).toBe(false);
   });
@@ -103,10 +110,10 @@ describe('Prebuild - Copy AirDatepicker locales', () => {
     vol.reset();
     const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
-    copyAirDatepickerLocales();
+    copyAndConvertAirDatepickerLocales();
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      'air-datepicker locale directory not found, skipping copy',
+      'air-datepicker locale directory not found, skipping conversion',
     );
     consoleSpy.mockRestore();
   });
