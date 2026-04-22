@@ -1,10 +1,10 @@
-import { isPopoverSupported } from './popovercontainer.cy';
+import { isPopoverSupported } from './helper/popovercontainer';
 import {
   DATE_FORMAT_RANGE_SEPARATOR,
   DATE_FORMAT_STRING_OPTIONS,
 } from '../../src/components/post-date-picker/constants';
 import { UNICODE_BIDI } from '../../src/utils/locales';
-import { LOCALES_MAP } from './date-picker.helper';
+import { LOCALES_MAP } from './helper/date-picker';
 
 const DATEPICKER_ID = 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e';
 

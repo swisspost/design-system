@@ -2,11 +2,11 @@ import {
   BUDDHIST_CALENDAR_YEAR_OFFSET,
   BUDDHIST_CALENDAR_LOCALES,
   UNICODE_BIDI,
-} from '../../src/utils/locales';
+} from '../../../src/utils/locales';
 import {
   DATE_FORMAT_MAP,
   DATE_FORMAT_STRING_OPTIONS,
-} from '../../src/components/post-date-picker/constants';
+} from '../../../src/components/post-date-picker/constants';
 
 // Test only the locales containing a language,
 // which is supported by the air-datepicker
