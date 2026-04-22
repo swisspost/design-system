@@ -140,12 +140,12 @@ describe('date-picker', { includeShadowDom: true }, () => {
             cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', i18n.dir);
 
             cy.get('@toggle').click().wait(200);
-            cy.get('@container').find(`[data-date="${START_DAY}"]`).first().click().wait(200);
+            cy.get('@container').find(`[data-date="${START_DAY}"]`).first().click();
             cy.get('@input').should('have.value', expectedStartDate);
 
             cy.get('@date-picker').invoke('attr', 'range', true);
             cy.get('@toggle').click().wait(200);
-            cy.get('@container').find(`[data-date="${END_DAY}"]`).first().click().wait(200);
+            cy.get('@container').find(`[data-date="${END_DAY}"]`).first().click();
             cy.get('@input').should(
               'have.value',
               `${expectedStartDate}${separator}${expectedEndDate}`,
