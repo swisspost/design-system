@@ -1,32 +1,34 @@
+@use 'sass:math';
 @use '../../mixins/media';
-
 @use './mixins' as *;
 @use './placeholders' as *;
 
-$post-megadropdown-list-item-padding-inline-start: 0.5rem;
-$post-megadropdown-list-item-padding-inline-end: 0.75rem;
-$min-list-item-text-width-desktop: 13ch; // 11ch * 1.25(rem) = 13.75 - rounded down to 13ch
-$min-list-item-text-width-tablet: 25ch; // 25ch * 1(rem)
+$font-size-desktop: 1.25;
+$font-size-tablet: 1;
+
+$item-padding-inline-start: 0.5rem;
+$item-padding-inline-end: 0.75rem;
+
+$min-text-width-desktop: #{math.floor(11 * $font-size-desktop)}ch; // 13ch
+$min-text-width-tablet: #{math.floor(25 * $font-size-tablet)}ch; // 25ch
 
 post-megadropdown {
-  --header-megadropdown-col-min-width: calc(
-    #{$post-megadropdown-list-item-padding-inline-start} +
-      #{$post-megadropdown-list-item-padding-inline-end} + #{$min-list-item-text-width-desktop}
-  );
+  --min-text-width: #{$min-text-width-desktop};
 
   @include media.only(tablet) {
-    --header-megadropdown-col-min-width: calc(
-      #{$post-megadropdown-list-item-padding-inline-start} +
-        #{$post-megadropdown-list-item-padding-inline-end} + #{$min-list-item-text-width-tablet}
-    );
+    --min-text-width: #{$min-text-width-tablet};
   }
+
+  --header-megadropdown-col-min-width: calc(
+    #{$item-padding-inline-start} + #{$item-padding-inline-end} + var(--min-text-width)
+  );
 
   .post-megadropdown-list {
     @extend %header-list;
     flex-direction: column;
     li,
     a {
-      word-break: break-word;
+      word-break: normal;
     }
   }
 
@@ -36,7 +38,7 @@ post-megadropdown {
     @extend %header-control;
     @include nav-item-block-layout;
     @include media.only(desktop) {
-      font-size: 1.25rem;
+      font-size: #{$font-size-desktop}rem;
     }
     text-wrap: wrap;
   }
