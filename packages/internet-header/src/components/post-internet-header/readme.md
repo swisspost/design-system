@@ -29,35 +29,6 @@
 | `headerLoaded` | Fires when the header has been rendered to the page. | `CustomEvent<void>` |
 
 
-## Dependencies
-
-### Depends on
-
-- post-header
-- post-logo
-- post-language-menu
-- post-language-menu-item
-- post-mainnavigation
-
-### Graph
-```mermaid
-graph TD;
-  swisspost-internet-header --> post-header
-  swisspost-internet-header --> post-logo
-  swisspost-internet-header --> post-language-menu
-  swisspost-internet-header --> post-language-menu-item
-  swisspost-internet-header --> post-mainnavigation
-  post-header --> post-togglebutton
-  post-header --> post-icon
-  post-language-menu --> post-menu-trigger
-  post-language-menu --> post-icon
-  post-language-menu --> post-menu
-  post-menu --> post-popovercontainer
-  post-language-menu-item --> post-menu-item
-  post-mainnavigation --> post-icon
-  style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
