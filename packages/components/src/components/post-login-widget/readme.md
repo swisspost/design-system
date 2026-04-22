@@ -5,13 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property        | Attribute       | Description                                                                                              | Type      | Default |
-| --------------- | --------------- | -------------------------------------------------------------------------------------------------------- | --------- | ------- |
-| `authenticated` | `authenticated` | The current authentication state: `null` (loading), `true` (authenticated), `false` (not authenticated). | `boolean` | `null`  |
-
-
 ## Events
 
 | Event             | Description                                                                                                                                                             | Type                                       |

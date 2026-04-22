@@ -395,11 +395,6 @@ export namespace Components {
     }
     interface PostLoginWidget {
         /**
-          * The current authentication state: `null` (loading), `true` (authenticated), `false` (not authenticated).
-          * @default null
-         */
-        "authenticated": boolean | null;
-        /**
           * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
          */
         "refresh": () => Promise<void>;
@@ -1586,11 +1581,6 @@ declare namespace LocalJSX {
         "value": string;
     }
     interface PostLoginWidget {
-        /**
-          * The current authentication state: `null` (loading), `true` (authenticated), `false` (not authenticated).
-          * @default null
-         */
-        "authenticated"?: boolean | null;
         /**
           * An event emitted when the authentication state changes.  The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
          */

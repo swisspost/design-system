@@ -7,7 +7,7 @@ import {
   Host,
   h,
   Method,
-  Prop,
+  State,
 } from '@stencil/core';
 import { version } from '@root/package.json';
 
@@ -26,15 +26,12 @@ export class PostLoginWidget {
   @Element() host: HTMLPostLoginWidgetElement;
 
   /**
-   * The current authentication state: `null` (loading), `true` (authenticated), `false` (not authenticated).
-   */
-  @Prop({ mutable: true, reflect: true }) authenticated: boolean | null = null;
-
-  /**
    * An event emitted when the authentication state changes. 
    * The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
    */
   @Event() postLoginChange: EventEmitter<{ authenticated: boolean }>;
+
+  @State() private authenticated: boolean | null = null;
 
   async componentWillLoad() {
     if (Build.isBrowser) {

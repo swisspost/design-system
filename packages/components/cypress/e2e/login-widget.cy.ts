@@ -93,23 +93,31 @@ describe('post-login-widget', { baseUrl: null }, () => {
     });
   });
 
-  // ─── authenticated prop synced ─────────────────────────────────────────────
+  // ─── authenticated state exposed via event ────────────────────────────────
 
-  it('exposes authenticated=true after successful auth', () => {
-    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
+  it('emits postLoginChange with authenticated=true after successful auth', () => {
+    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE, delay: 100 }).as('session');
     cy.visit(FIXTURE_PATH);
-    cy.wait('@session');
+    const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
-      expect(el.authenticated).to.equal(true);
+      el.addEventListener('postLoginChange', spy);
+    });
+    cy.wait('@session');
+    cy.get('@changeSpy').should('have.been.calledWithMatch', {
+      detail: { authenticated: true },
     });
   });
 
-  it('exposes authenticated=false when not authenticated', () => {
-    cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE }).as('session');
+  it('emits postLoginChange with authenticated=false when not authenticated', () => {
+    cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE, delay: 100 }).as('session');
     cy.visit(FIXTURE_PATH);
-    cy.wait('@session');
+    const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
-      expect(el.authenticated).to.equal(false);
+      el.addEventListener('postLoginChange', spy);
+    });
+    cy.wait('@session');
+    cy.get('@changeSpy').should('have.been.calledWithMatch', {
+      detail: { authenticated: false },
     });
   });
 
@@ -138,6 +146,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.visit(FIXTURE_PATH);
     cy.wait('@session');
 
+    // attach spy only after initial fetch completes so it does not capture the mount event
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
       el.addEventListener('postLoginChange', spy);

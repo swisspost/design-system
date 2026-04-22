@@ -11,39 +11,7 @@ const meta: MetaComponent = {
   parameters: {
     badges: [],
     design: {},
-    controls: {
-      exclude: ['postLoginChange', 'authenticated', 'unauthenticated'],
-    },
-  },
-  argTypes: {
-    authenticated: {
-      name: 'authenticated ',
-      description: 'Content displayed when the user is authenticated.',
-      control: { disable: true },
-      table: {
-        category: 'Slots',
-        type: { summary: 'HTMLElement' },
-      },
-    },
-    unauthenticated: {
-      name: 'unauthenticated ',
-      description: 'Content displayed when the user is not authenticated.',
-      control: { disable: true },
-      table: {
-        category: 'Slots',
-        type: { summary: 'HTMLElement' },
-      },
-    },
-    postLoginChange: {
-      name: 'postLoginChange ',
-      description:
-        'An event emitted when the authentication state changes. The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.',
-      control: { disable: true },
-      table: {
-        category: 'Events',
-        type: { summary: 'CustomEvent<{ authenticated: boolean }>' },
-      },
-    },
+
   },
 };
 
