@@ -200,16 +200,16 @@ post-tabs[active-tab] {
       left: -1px;
       right: -1px;
       opacity: var(--active, 0);
-
-      @include utilities-mx.high-contrast-mode() {
-        background-color: Highlight;
-      }
     }
 
     @include utilities-mx.high-contrast-mode() {
       color: LinkText;
       border-left-color: ButtonText;
       border-right-color: ButtonText;
+
+      &::before {
+        background-color: Highlight;
+      }
     }
 
     &:hover {
