@@ -20,15 +20,7 @@ const compatStencilCommunityRecommendedRules = fixupConfigRules(
 export default [
   {
     name: 'post/global/ignores',
-    ignores: [
-      'prebuild.ts',
-      'dist/*',
-      'loader/*',
-      'hydrate/*',
-      'www/*',
-      'stencil.config.ts',
-      '**/post-date-picker/locales/*',
-    ],
+    ignores: ['prebuild.ts', 'dist/*', 'loader/*', 'hydrate/*', 'www/*', 'stencil.config.ts'],
   },
   {
     name: 'post/defaults',

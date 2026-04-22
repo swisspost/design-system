@@ -64,7 +64,7 @@ export class PostDatePicker {
   @Prop() locale?: string = this.systemLocale;
   @Watch('locale')
   validateLocale() {
-    if (!isValidLocale(this.locale)) {
+    if (!isValidLocale(this.localeCode)) {
       console.error(
         'The prop `locale` of the `post-date-picker` component must be a valid localeCode (e.g. `en`, `en-GB`, etc.), based on <a href="https://www.rfc-editor.org/info/bcp47">BCP 47 (RFC 5646)</a> standard.',
       );
@@ -297,7 +297,7 @@ export class PostDatePicker {
    * `this.locale` can still be used when you want to get the exact value of the `locale` prop without fallback or validation.
    */
   private get localeCode() {
-    const locale = this.locale || FALLBACK_LANGUAGE_CODE;
+    const locale = this.locale ?? FALLBACK_LANGUAGE_CODE;
     return isValidLocale(locale) ? locale : FALLBACK_LANGUAGE_CODE;
   }
 
