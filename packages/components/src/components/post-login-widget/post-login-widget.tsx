@@ -1,7 +1,6 @@
 import {
   Build,
   Component,
-  Element,
   Event,
   EventEmitter,
   Host,
@@ -23,8 +22,6 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
   shadow: true,
 })
 export class PostLoginWidget {
-  @Element() host: HTMLPostLoginWidgetElement;
-
   /**
    * An event emitted when the authentication state changes. 
    * The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
