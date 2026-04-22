@@ -36,15 +36,15 @@ Import the stylesheet into your project, e.g. `src/styles.scss`.
 
 Available Sass entrypoints:
 
-- **index.scss** (internet facing applications)
-- **intranet.scss** (internal applications)
+- **post-default.scss** (internet facing applications)
+- **post-compact.scss** (internal applications)
 - **basics.scss** (atomic styles for font, buttons, lists etc.)
 - **core.scss** (variables, mixins, functions and placeholders only)
 
 Available CSS bundles:
 
-- **index.css** (internet facing applications)
-- **intranet.css** (internal applications)
+- **post-default.css** (internet facing applications)
+- **post-compact.css** (internal applications)
 - **basics.css** (atomic styles for font, buttons, lists etc.)
 
 ## Migration guide
