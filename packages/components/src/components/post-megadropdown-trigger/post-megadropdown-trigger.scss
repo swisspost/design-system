@@ -40,7 +40,7 @@ button {
       font-weight: 700;
     }
 
-    &:is(.active, [aria-expanded="true"]) {
+    &[aria-expanded="true"] {
       background-color: #f0efed;
       color: #050400;
       z-index: 2;
