@@ -6,9 +6,6 @@
 $font-size-desktop: 1.25;
 $font-size-tablet: 1;
 
-$item-padding-inline-start: 0.5rem;
-$item-padding-inline-end: 0.75rem;
-
 $min-text-width-desktop: #{math.floor(11 * $font-size-desktop)}ch; // 13ch
 $min-text-width-tablet: #{math.floor(25 * $font-size-tablet)}ch; // 25ch
 
@@ -20,7 +17,7 @@ post-megadropdown {
   }
 
   --header-megadropdown-col-min-width: calc(
-    #{$item-padding-inline-start} + #{$item-padding-inline-end} + var(--min-text-width)
+    #{$sqr-item-padding-inline-start} + #{$sqr-item-padding-inline-end} + var(--min-text-width)
   );
 
   .post-megadropdown-list {
@@ -28,7 +25,7 @@ post-megadropdown {
     flex-direction: column;
     li,
     a {
-      word-break: normal;
+      overflow-wrap: anywhere;
     }
   }
 
