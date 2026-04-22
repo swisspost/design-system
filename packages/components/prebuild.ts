@@ -68,6 +68,8 @@ export function copyAndConvertAirDatepickerLocales() {
   const SOURCE_LOCALE_PATH = path.resolve('./node_modules/air-datepicker/locale');
   const DEST_LOCALE_PATH = path.resolve('./src/components/post-date-picker/locales');
 
+  // Clean destination directory before copying
+  fs.rmSync(DEST_LOCALE_PATH, { recursive: true, force: true });
   // Ensure the destination directory exists
   fs.mkdirSync(DEST_LOCALE_PATH, { recursive: true });
 
