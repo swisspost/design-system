@@ -38,8 +38,9 @@ function render(args: Args) {
       label=${args.label || nothing}
       description=${args.description || nothing}
       ?selected=${args.selected}
-      >Section 1</post-breadcrumb-item
     >
+      Section 1
+    </post-breadcrumb-item>
   `;
 }
 
