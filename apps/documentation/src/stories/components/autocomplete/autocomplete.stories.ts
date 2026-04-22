@@ -22,6 +22,7 @@ const meta: MetaComponent = {
   args: {
     clearable: false,
     filterThreshold: 0,
+    textAvailableSuggestions: '{count} suggestions available',
   },
   argTypes: {
     clearable: {
@@ -92,6 +93,7 @@ export function createAutocompleteRenderer({ detached = false }: { detached?: bo
     const autocompleteArgs: Record<string, unknown> = {
       clearable: args.clearable,
       filterThreshold: args.filterThreshold,
+      textAvailableSuggestions: args.textAvailableSuggestions,
     };
 
     if (detached) {
@@ -142,7 +144,11 @@ export const OptionDescription: Story = {
 
     return html`
       <post-autocomplete
-        ${spreadArgs({ clearable: args.clearable, filterThreshold: args.filterThreshold })}
+        ${spreadArgs({
+          clearable: args.clearable,
+          filterThreshold: args.filterThreshold,
+          textAvailableSuggestions: args.textAvailableSuggestions,
+        })}
       >
         <div class="form-floating">
           <input class="form-control" type="text" id="${inputId}" placeholder="Select Country" />

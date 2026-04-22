@@ -12,7 +12,9 @@ import { debounce } from '@/utils';
   shadow: true,
 })
 export class PostAutocomplete {
-  private readonly debouncedHandleInput = debounce((event: Event) => this.handleInput(event), 250);
+  private readonly debouncedHandleInput = debounce((event: Event) => {
+    void this.handleInput(event);
+  }, 250);
   private outputElement?: HTMLOutputElement;
 
   @Element() host: HTMLPostAutocompleteElement;
@@ -31,7 +33,7 @@ export class PostAutocomplete {
    * Use {count} as placeholder for the number of available suggestions,
    * e.g. "{count} suggestions available"
    */
-  @Prop({ reflect: true }) readonly textAvailableSuggestions!: string;
+  @Prop() readonly textAvailableSuggestions!: string;
 
   @State() inputValue: string = '';
 
@@ -227,10 +229,7 @@ export class PostAutocomplete {
         )}
         <post-icon aria-hidden="true" class="autocomplete-icon" name="chevronDown"></post-icon>
         {/* always in DOM, empty on load — required for aria-live to work correctly across all screen readers */}
-        <output
-          class="visually-hidden"
-          ref={el => (this.outputElement = el)}
-        ></output>
+        <output class="visually-hidden" ref={el => (this.outputElement = el)}></output>
       </Host>
     );
   }
