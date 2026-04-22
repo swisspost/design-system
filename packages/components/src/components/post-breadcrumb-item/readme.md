@@ -5,9 +5,11 @@
 
 ## Properties
 
-| Property | Attribute | Description                                              | Type            | Default     |
-| -------- | --------- | -------------------------------------------------------- | --------------- | ----------- |
-| `url`    | `url`     | The optional URL to which the breadcrumb item will link. | `URL \| string` | `undefined` |
+| Property      | Attribute     | Description                                                                                 | Type            | Default     |
+| ------------- | ------------- | ------------------------------------------------------------------------------------------- | --------------- | ----------- |
+| `description` | `description` | ARIA description for additional context, read after the breadcrumb item content or `label`. | `string`        | `undefined` |
+| `label`       | `label`       | ARIA label, screen readers will use this instead of the breadcrumb item content.            | `string`        | `undefined` |
+| `url`         | `url`         | The optional URL to which the breadcrumb item will link.                                    | `URL \| string` | `undefined` |
 
 
 ## Slots

@@ -76,6 +76,7 @@ export class MigrationV910Component extends LitElement {
       subnavigation: false,
       tag: false,
       product_card: false,
+      button_group: false,
     },
     components: {
       alert: false,
@@ -1744,7 +1745,7 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.others.product_card}"
                       />
                       <label class="form-check-label" for="others-product_card">
-                        Card product component removed.
+                        Card product component removed
                         <span class="info">
                           The <code>.product-card</code> and
                           <code>.product-navigation</code> classes are no longer effective.
@@ -1767,6 +1768,24 @@ export class MigrationV910Component extends LitElement {
                         >
                         <code>.tag-danger</code> renamed to <code>.tag-error</code>, and
                         <code>.tag-yellow</code> and <code>.tag-white</code> variants removed
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-button_group"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.button_group}"
+                      />
+                      <label class="form-check-label" for="others-button_group">
+                        Button group sizes removed
+                        <span class="info">
+                          The button group now only has one default size. You can safely remove the
+                          sizing class on the button group children elements.
+                        </span>
                       </label>
                     </div>
                   </li>
