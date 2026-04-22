@@ -79,8 +79,10 @@ describe('tabs', () => {
             cy.wrap($item)
               .invoke('attr', 'name')
               .then(tabName => {
-                cy.wrap($item.filter('[aria-selected="true"]')).should(
-                  tabName === activeTab ? 'exist' : 'not.exist',
+                cy.wrap($item).should(
+                  tabName === activeTab ? 'have.attr' : 'not.have.attr',
+                  'aria-selected',
+                  'true',
                 );
               });
           });
