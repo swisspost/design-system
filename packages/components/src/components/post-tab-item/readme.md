@@ -5,10 +5,9 @@
 
 ## Properties
 
-| Property            | Attribute        | Description                                                                                                          | Type     | Default     |
-| ------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `defaultActive`     | `default-active` | Indicates whether this tab item is the initially active one. Changing this value after initialization has no effect. | `string` | `undefined` |
-| `name` _(required)_ | `name`           | The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.                 | `string` | `undefined` |
+| Property            | Attribute | Description                                                                                          | Type     | Default     |
+| ------------------- | --------- | ---------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `name` _(required)_ | `name`    | The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode. | `string` | `undefined` |
 
 
 ## Slots

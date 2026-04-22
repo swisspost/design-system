@@ -67,9 +67,9 @@ export class PostTabItem {
         tabindex={!this.isNavigationMode ? '-1' : undefined}
         class={`${!this.isNavigationMode ? 'tab-title' : 'nav-item'}${isSSR && !this.isNavigationMode ? ' ssr' : ''}`}
         style={
-          Build.isBrowser && !this.isNavigationMode
-            ? undefined
-            : { '--on': `var(--post-tab-${tabName}, 0)` }
+          Build.isServer && !this.isNavigationMode
+            ? { '--active': `var(--post-tab-item-${tabName}, 0)` }
+            : undefined
         }
       >
         <slot />

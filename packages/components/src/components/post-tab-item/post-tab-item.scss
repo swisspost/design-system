@@ -4,41 +4,7 @@
 @use '@swisspost/design-system-styles/variables/components/nav';
 
 :host {
-  display: block;
-}
-
-:host(.ssr) {
-  font-weight: calc(var(--on, 0) * 700) !important;
-  background-color: color-mix(
-    in srgb,
-    #{color.$white} calc(var(--on, 0) * 100%),
-    transparent
-  ) !important;
-  color: #{color.$black} !important;
-  opacity: calc(0.7 + var(--on, 0) * 0.3) !important;
-  border-left-color: color-mix(
-    in srgb,
-    #{nav.$nav-tabs-border-color} calc(var(--on, 0) * 100%),
-    transparent
-  ) !important;
-  border-right-color: color-mix(
-    in srgb,
-    #{nav.$nav-tabs-border-color} calc(var(--on, 0) * 100%),
-    transparent
-  ) !important;
-  z-index: calc(var(--on, 0) * 1) !important;
-
-  &::after {
-    content: '';
-    height: var(--post-core-dimension-4);
-    background-color: #fc0;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: -1px;
-    right: -1px;
-    opacity: var(--on, 0);
-  }
+  display: inline-block;
 }
 
 .tab-title {

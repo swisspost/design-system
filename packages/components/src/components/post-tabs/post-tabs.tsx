@@ -396,14 +396,14 @@ export class PostTabs {
       <Host
         data-version={version}
         style={
-          Build.isBrowser
-            ? undefined
-            : {
-                [`--${activeTabName}`]:
+          Build.isServer && !this.isNavigationMode
+            ? {
+                [`--post-tab-panel-${activeTabName}`]:
                   Build.isBrowser && !this.isNavigationMode ? undefined : 'block',
-                [`--post-tab-${activeTabName}`]:
+                [`--post-tab-item-${activeTabName}`]:
                   Build.isBrowser && !this.isNavigationMode ? undefined : '1',
               }
+            : undefined
         }
       >
         <div class="tabs-wrapper" part="post-tabs">

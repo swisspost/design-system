@@ -30,6 +30,16 @@ tokens.$default-map: utilities.$post-spacing;
     color: color.$white;
   }
 
+  &.ssr:hover {
+    opacity: 1;
+    background-color: color-mix(
+      in srgb,
+      #{color.$black-alpha-60} calc((1 - var(--active, 0)) * 100%),
+      #{color.$white}
+    );
+    color: color-mix(in srgb, #{color.$white} calc((1 - var(--active, 0)) * 100%), currentColor);
+  }
+
   // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
   &:focus-visible {
     outline: transparent;
@@ -129,10 +139,10 @@ tokens.$default-map: utilities.$post-spacing;
   }
 }
 
+// Styles for active state
+
 .tab-title[aria-selected='true'],
 .nav-item a[aria-current='page'] {
-  // post-tabs:not(:has(post-tab-item[aria-selected='true']))
-  //   post-tab-item[data-navigation-mode='false']:first-of-type {
   z-index: 1;
   border-right-color: nav.$nav-tabs-border-color;
   border-left-color: nav.$nav-tabs-border-color;
@@ -142,11 +152,35 @@ tokens.$default-map: utilities.$post-spacing;
   font-weight: 700;
 }
 
+// Only for SSR version
+.tab-title.ssr,
+post-tabs:not([active-tab]) post-tab-item.ssr[data-navigation-mode='false']:first-of-type {
+  z-index: calc(var(--active, 0) * 1);
+  border-right-color: color-mix(
+    in srgb,
+    #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
+    transparent
+  );
+  border-left-color: color-mix(
+    in srgb,
+    #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
+    transparent
+  );
+  opacity: calc(0.7 + var(--active, 0) * 0.3);
+  background-color: color-mix(in srgb, #{color.$white} calc(var(--active, 0) * 100%), transparent);
+  color: #{color.$black};
+  font-weight: calc(400 + var(--active, 0) * 300);
+
+  @include utilities-mx.high-contrast-mode() {
+    // border-right-color: currentColor;
+    // border-left-color: currentColor;
+    color: currentColor;
+  }
+}
+
 // Create a line that does not suffer from border corner mitering
 .tab-title[aria-selected='true']::before,
 .nav-item a[aria-current='page']::before {
-  // post-tabs:not(:has(post-tab-item[aria-selected='true']))
-  //   post-tab-item[data-navigation-mode='false']:first-of-type::before {
   content: '';
   display: block;
   position: absolute;
@@ -157,23 +191,46 @@ tokens.$default-map: utilities.$post-spacing;
   background-color: nav.$nav-tabs-link-active-border-color;
 }
 
+// Only for SSR version
+.tab-title.ssr:before,
+post-tabs:not(:has(post-tab-item[aria-selected='true']))
+  post-tab-item.ssr[data-navigation-mode='false']:first-of-type::before {
+  content: '';
+  height: var(--post-core-dimension-4);
+  background-color: #fc0;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -1px;
+  right: -1px;
+  opacity: var(--active, 0);
+}
+
 @include utilities-mx.high-contrast-mode() {
   .tab-title[aria-selected='true'],
-  .nav-item a[aria-current='page'],
-  post-tabs:not(:has(post-tab-item[aria-selected='true']))
-    post-tab-item[data-navigation-mode='false']:first-of-type {
-    border-left-color: ButtonText;
-    border-right-color: ButtonText;
-    color: Highlight;
+  .nav-item a[aria-current='page'] {
+    // border-left-color: Canvas;
+    // border-right-color: Canvas;
 
     &::before {
       background-color: Highlight;
     }
   }
+
+  .tab-title.ssr,
+  post-tabs:not(:has(post-tab-item[aria-selected='true']))
+    post-tab-item.ssr[data-navigation-mode='false']:first-of-type {
+    border-left-color: color-mix(in srgb, currentColor calc(var(--active, 0) * 100%), Canvas);
+    border-right-color: color-mix(in srgb, currentColor calc(var(--active, 0) * 100%), Canvas);
+
+    &::before {
+      background-color: Highlight;
+      opacity: var(--active, 0);
+    }
+  }
 }
 
 // Show by default the first panel for SSR if no explicit prop is set
-// post-tabs:not(:has(post-tab-item[aria-selected='true'])):not(:has(post-tab-item[default-active]))
-//   post-tab-panel:first-of-type {
-//   display: block;
-// }
+post-tabs:not([active-tab]):has(post-tab-item.ssr) post-tab-panel:first-of-type {
+  display: block !important;
+}
