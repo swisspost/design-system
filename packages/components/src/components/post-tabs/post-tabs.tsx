@@ -397,13 +397,7 @@ export class PostTabs {
       <Host
         data-version={version}
         style={
-          isSSR && !this.isNavigationMode
-            ? {
-                [`--post-tab-panel-${activeTabName}`]: 'block',
-                [`--post-tab-item-${activeTabName}`]: '1',
-              }
-            : undefined
-        }
+          isSSR && !this.isNavigationMode ? {[`--post-tab-panel-${activeTabName}`]: 'block', [`--post-tab-item-${activeTabName}`]: '1', } : undefined}
       >
         <div class="tabs-wrapper" part="post-tabs">
           <TabsContainer
