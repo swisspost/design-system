@@ -79,7 +79,7 @@ describe('tabs', () => {
             cy.wrap($item)
               .invoke('attr', 'name')
               .then(tabName => {
-                cy.wrap($item.filter('.active')).should(
+                cy.wrap($item.filter('[aria-selected="true"]')).should(
                   tabName === activeTab ? 'exist' : 'not.exist',
                 );
               });
