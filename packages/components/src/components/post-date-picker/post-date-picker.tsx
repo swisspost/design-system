@@ -271,6 +271,7 @@ export class PostDatePicker {
 
   private popoverRef: HTMLPostPopovercontainerElement;
   private dpInput: HTMLInputElement;
+  private dpTrigger: HTMLButtonElement;
   private dpInstance: AirDatepicker<HTMLDivElement>;
   private dpContainer: HTMLDivElement;
 
@@ -930,6 +931,7 @@ export class PostDatePicker {
             }
 
             this.popoverRef?.hide();
+            requestAnimationFrame(() => this.dpTrigger.focus());
           }
         },
         onShow: () => {
@@ -1201,6 +1203,7 @@ export class PostDatePicker {
                 aria-haspopup="true"
                 aria-label={this.textToggleCalendar}
                 disabled={this.inputDisabled}
+                ref={e => (this.dpTrigger = e)}
               >
                 <post-icon name="calendar"></post-icon>
               </button>
