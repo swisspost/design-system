@@ -1,10 +1,8 @@
 @use '@swisspost/design-system-styles/components/tabs/tab-title';
 @use '@swisspost/design-system-styles/core' as post;
-@use '@swisspost/design-system-styles/variables/color';
-@use '@swisspost/design-system-styles/variables/components/nav';
 
 :host {
-  display: inline-block;
+  display: block;
 }
 
 .tab-title {

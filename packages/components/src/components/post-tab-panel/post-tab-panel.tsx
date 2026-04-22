@@ -35,13 +35,14 @@ export class PostTabPanel {
 
   render() {
     const tabFor = this.host.getAttribute('for');
+    const isSSR = Build.isServer;
     return (
       <Host
         data-version={version}
         id={this.panelId}
         role="tabpanel"
         slot="panels"
-        style={Build.isServer ? { display: `var(--post-tab-panel-${tabFor}, none)` } : undefined}
+        style={isSSR ? { display: `var(--post-tab-panel-${tabFor}, none)` } : undefined}
       >
         <slot />
       </Host>

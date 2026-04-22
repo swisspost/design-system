@@ -392,16 +392,15 @@ export class PostTabs {
   render() {
     const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
     const activeTabName = this.host.getAttribute('active-tab');
+    const isSSR = Build.isServer;
     return (
       <Host
         data-version={version}
         style={
-          Build.isServer && !this.isNavigationMode
+          isSSR && !this.isNavigationMode
             ? {
-                [`--post-tab-panel-${activeTabName}`]:
-                  Build.isBrowser && !this.isNavigationMode ? undefined : 'block',
-                [`--post-tab-item-${activeTabName}`]:
-                  Build.isBrowser && !this.isNavigationMode ? undefined : '1',
+                [`--post-tab-panel-${activeTabName}`]: 'block',
+                [`--post-tab-item-${activeTabName}`]: '1',
               }
             : undefined
         }

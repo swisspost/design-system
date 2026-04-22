@@ -9,8 +9,8 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
-.tab-title,
-.nav-item a {
+post-tab-item.tab-title,
+post-tab-item.nav-item a {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -28,16 +28,6 @@ tokens.$default-map: utilities.$post-spacing;
     opacity: 1;
     background-color: color.$black-alpha-60;
     color: color.$white;
-  }
-
-  &.ssr:hover {
-    opacity: 1;
-    background-color: color-mix(
-      in srgb,
-      #{color.$black-alpha-60} calc((1 - var(--active, 0)) * 100%),
-      #{color.$white}
-    );
-    color: color-mix(in srgb, #{color.$white} calc((1 - var(--active, 0)) * 100%), currentColor);
   }
 
   // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
@@ -83,7 +73,7 @@ tokens.$default-map: utilities.$post-spacing;
   }
 }
 
-.nav-item {
+post-tab-item.nav-item {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -139,10 +129,9 @@ tokens.$default-map: utilities.$post-spacing;
   }
 }
 
-// Styles for active state
-
-.tab-title[aria-selected='true'],
-.nav-item a[aria-current='page'] {
+// active state csr
+post-tab-item.tab-title[aria-selected='true'],
+post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
   border-right-color: nav.$nav-tabs-border-color;
   border-left-color: nav.$nav-tabs-border-color;
@@ -152,35 +141,9 @@ tokens.$default-map: utilities.$post-spacing;
   font-weight: 700;
 }
 
-// Only for SSR version
-.tab-title.ssr,
-post-tabs:not([active-tab]) post-tab-item.ssr[data-navigation-mode='false']:first-of-type {
-  z-index: calc(var(--active, 0) * 1);
-  border-right-color: color-mix(
-    in srgb,
-    #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
-    transparent
-  );
-  border-left-color: color-mix(
-    in srgb,
-    #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
-    transparent
-  );
-  opacity: calc(0.7 + var(--active, 0) * 0.3);
-  background-color: color-mix(in srgb, #{color.$white} calc(var(--active, 0) * 100%), transparent);
-  color: #{color.$black};
-  font-weight: calc(400 + var(--active, 0) * 300);
-
-  @include utilities-mx.high-contrast-mode() {
-    // border-right-color: currentColor;
-    // border-left-color: currentColor;
-    color: currentColor;
-  }
-}
-
 // Create a line that does not suffer from border corner mitering
-.tab-title[aria-selected='true']::before,
-.nav-item a[aria-current='page']::before {
+post-tab-item.tab-title[aria-selected='true']::before,
+post-tab-item.nav-item a[aria-current='page']::before {
   content: '';
   display: block;
   position: absolute;
@@ -189,48 +152,102 @@ post-tabs:not([active-tab]) post-tab-item.ssr[data-navigation-mode='false']:firs
   left: -1px;
   height: tokens.get('utility-gap-4');
   background-color: nav.$nav-tabs-link-active-border-color;
-}
-
-// Only for SSR version
-.tab-title.ssr:before,
-post-tabs:not(:has(post-tab-item[aria-selected='true']))
-  post-tab-item.ssr[data-navigation-mode='false']:first-of-type::before {
-  content: '';
-  height: var(--post-core-dimension-4);
-  background-color: #fc0;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: -1px;
-  right: -1px;
-  opacity: var(--active, 0);
+  opacity: 1;
 }
 
 @include utilities-mx.high-contrast-mode() {
-  .tab-title[aria-selected='true'],
-  .nav-item a[aria-current='page'] {
-    // border-left-color: Canvas;
-    // border-right-color: Canvas;
-
-    &::before {
-      background-color: Highlight;
-    }
-  }
-
-  .tab-title.ssr,
-  post-tabs:not(:has(post-tab-item[aria-selected='true']))
-    post-tab-item.ssr[data-navigation-mode='false']:first-of-type {
-    border-left-color: color-mix(in srgb, currentColor calc(var(--active, 0) * 100%), Canvas);
-    border-right-color: color-mix(in srgb, currentColor calc(var(--active, 0) * 100%), Canvas);
-
-    &::before {
-      background-color: Highlight;
-      opacity: var(--active, 0);
-    }
+  post-tab-item.tab-title[aria-selected='true'],
+  post-tab-item.nav-item a[aria-current='page'] {
+    border-left-color: ButtonText;
+    border-right-color: ButtonText;
+    color: Highlight;
   }
 }
 
+// SSR specific styles
+
 // Show by default the first panel for SSR if no explicit prop is set
-post-tabs:not([active-tab]):has(post-tab-item.ssr) post-tab-panel:first-of-type {
-  display: block !important;
+post-tabs[active-tab] {
+  // Style active post-tab-item for SSR if there is a [active-tab] set
+  post-tab-item.tab-title.ssr {
+    z-index: calc(var(--active, 0) * 1);
+    border-right-color: color-mix(
+      in srgb,
+      #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
+      transparent
+    );
+    border-left-color: color-mix(
+      in srgb,
+      #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
+      transparent
+    );
+    opacity: calc(0.7 + var(--active, 0) * 0.3);
+    background-color: color-mix(
+      in srgb,
+      #{color.$white} calc(var(--active, 0) * 100%),
+      transparent
+    );
+    color: #{color.$black};
+    font-weight: calc(400 + var(--active, 0) * 300);
+
+    @include utilities-mx.high-contrast-mode() {
+      border-left-color: color-mix(in srgb, currentColor calc(var(--active, 0) * 100%), Canvas);
+      border-right-color: color-mix(in srgb, currentColor calc(var(--active, 0) * 100%), Canvas);
+    }
+
+    &::before {
+      content: '';
+      height: var(--post-core-dimension-4);
+      background-color: #fc0;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -1px;
+      right: -1px;
+      opacity: var(--active, 0);
+
+      @include utilities-mx.high-contrast-mode() {
+        background-color: Highlight;
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+      background-color: color-mix(
+        in srgb,
+        #{color.$black-alpha-60} calc((1 - var(--active, 0)) * 100%),
+        #{color.$white}
+      );
+      color: color-mix(in srgb, #{color.$white} calc((1 - var(--active, 0)) * 100%), currentColor);
+    }
+  }
+
+  // Style the first item for SSR when no [active-tab] is set
+  post-tabs:not([active-tab]) {
+    &:has(post-tab-item.tab-title.ssr) post-tab-panel:first-of-type {
+      display: block !important;
+    }
+
+    post-tab-item.tab-title.ssr[data-navigation-mode='false']:first-of-type {
+      z-index: 1;
+      border-right-color: nav.$nav-tabs-border-color;
+      border-left-color: nav.$nav-tabs-border-color;
+      opacity: 1;
+      background-color: color.$white;
+      color: color.$black;
+      font-weight: 700;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -1px;
+        left: -1px;
+        height: tokens.get('utility-gap-4');
+        background-color: nav.$nav-tabs-link-active-border-color;
+        opacity: 1;
+      }
+    }
+  }
 }

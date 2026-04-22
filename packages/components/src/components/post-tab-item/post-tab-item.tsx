@@ -55,7 +55,6 @@ export class PostTabItem {
 
   render() {
     const tabName = this.host.getAttribute('name');
-
     const isSSR = Build.isServer;
     return (
       <Host
@@ -67,7 +66,7 @@ export class PostTabItem {
         tabindex={!this.isNavigationMode ? '-1' : undefined}
         class={`${!this.isNavigationMode ? 'tab-title' : 'nav-item'}${isSSR && !this.isNavigationMode ? ' ssr' : ''}`}
         style={
-          Build.isServer && !this.isNavigationMode
+          isSSR && !this.isNavigationMode
             ? { '--active': `var(--post-tab-item-${tabName}, 0)` }
             : undefined
         }
