@@ -1,6 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import { fakeContent, spreadArgs } from '@/utils';
+import { html, nothing } from 'lit';
+import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -22,37 +22,16 @@ const meta: MetaComponent = {
     project: 'test',
     environment: 'int01',
     language: 'en',
-  },
-  argTypes: {
-    project: {
-      control: false,
-      table: {
-        category: 'Required props',
-      },
-      type: {
-        name: 'string',
-        required: true,
-      },
-    },
-    environment: {
-      control: false,
-      table: {
-        category: 'Optional props',
-      },
-    },
-    fullWidth: {
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Optional props',
-      },
-    },
-    language: {
-      table: {
-        category: 'Optional props',
-      },
-    },
+    activeRoute: 'auto',
+    fullWidth: false,
+    textMain: 'Main',
+    textMenu: 'Menu',
+    textChangeLanguage: 'Change the language',
+    textCurrentLanguage: 'The currently selected language is #name.',
+    textCurrentUser: 'Current user is John Doe.',
+    textUserLinks: 'User links',
+    textClose: 'Close',
+    textBack: 'Back',
   },
   decorators: [
     story => html`
@@ -67,7 +46,23 @@ const meta: MetaComponent = {
 };
 
 function render({ innerHMTL, ...args }: Args) {
-  return html` <swisspost-internet-header ${spreadArgs(args)}></swisspost-internet-header> `;
+  return html`
+    <swisspost-internet-header
+      active-route=${args.activeRoute !== 'auto' ? args.activeRoute : nothing}
+      project=${args.project}
+      environment=${args.environment !== 'prod' ? args.environment : nothing}
+      language=${args.language}
+      ?full-width=${args.fullWidth}
+      text-main=${args.textMain}
+      text-menu=${args.textMenu}
+      text-change-language=${args.textChangeLanguage}
+      text-current-language=${args.textCurrentLanguage}
+      text-current-user=${args.textCurrentUser}
+      text-user-links=${args.textUserLinks}
+      text-close=${args.textClose}
+      text-back=${args.textBack}
+    ></swisspost-internet-header>
+  `;
 }
 
 export default meta;

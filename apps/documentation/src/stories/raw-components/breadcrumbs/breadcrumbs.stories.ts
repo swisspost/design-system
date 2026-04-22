@@ -9,15 +9,20 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
   id: '4347e5bf-8bf2-4f44-9075-9faaa53591ed',
   title: 'Raw Components/Internet Header/Breadcrumbs',
   component: 'swisspost-internet-breadcrumbs',
-  tags: ['package:InternetHeader', 'status:Deprecated', 'devOnly'],
+  tags: ['package:InternetHeader', 'devOnly'],
   render: renderInternetBreadcrumbs,
   decorators: [hiddenHeader],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21648-20076&mode=design&t=HksCTWa2MMccgMl4-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=558-16158&m=dev',
     },
+  },
+  args: {
+    textHome: 'Homepage',
+    textBreadcrumbs: 'Breadcrumbs',
+    textMoreItems: 'More items',
   },
   argTypes: {
     customItems: {

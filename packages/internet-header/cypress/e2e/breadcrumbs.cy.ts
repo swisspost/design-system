@@ -6,22 +6,6 @@ import { BREADCRUMBS } from './shared/variables';
 const testConfiguration: IPortalConfig = rawTestConfiguration as unknown as IPortalConfig;
 
 describe('breadcrumb', () => {
-  function closeOverlayOnKey(key: string) {
-    cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
-
-    cy.get('@breadcrumbs').get('div.breadcrumb-buttons button').first().click();
-
-    cy.get('@breadcrumbs')
-      .find('div.overlay')
-      .should('exist')
-      .find('[role=dialog].loaded', { timeout: 30000 })
-      .should('exist');
-
-    cy.get('@breadcrumbs')
-      .find('div.overlay')
-      .trigger('keydown', { eventConstructor: 'KeyboardEvent', force: true, key: key });
-  }
-
   describe('configuration', () => {
     it(`should not rendered if no config present`, () => {
       // Cast the imported JSON object to the IPortalConfig interface
@@ -29,14 +13,14 @@ describe('breadcrumb', () => {
       const modifiedConfig = JSON.parse(JSON.stringify(config));
 
       // Clear breadcrumb config
-      modifiedConfig.de.breadcrumb = undefined;
-      modifiedConfig.en.breadcrumb = undefined;
-      modifiedConfig.fr.breadcrumb = undefined;
-      modifiedConfig.it.breadcrumb = undefined;
+      modifiedConfig.de.breadcrumbs = undefined;
+      modifiedConfig.en.breadcrumbs = undefined;
+      modifiedConfig.fr.breadcrumbs = undefined;
+      modifiedConfig.it.breadcrumbs = undefined;
 
       prepare(BREADCRUMBS, 'Default', { config: modifiedConfig });
       cy.get('swisspost-internet-breadcrumbs').should('exist');
-      cy.get('div.breadcrumbs').should('not.exist');
+      cy.get('post-breadcrumbs').should('not.exist');
     });
 
     it(`should add custom elements`, () => {
@@ -47,88 +31,21 @@ describe('breadcrumb', () => {
         { text: 'Test2', url: '/a/b/c' },
       ]);
 
-      cy.get('div.breadcrumbs')
+      cy.get('post-breadcrumbs')
         .as('breadcrumbs')
-        .find('> nav > ol > li')
-        .should('to.have.length', 5);
+        .shadow()
+        .find('.hidden-items post-breadcrumb-item')
+        .should('to.have.length', 4);
 
-      // Contains both elements, only first one should contain the link
+      // Contains both elements and sets the url to the post-breadcrumb-item
       cy.get('@breadcrumbs')
-        .contains('.breadcrumbs-list > li > a', 'Test1')
-        .should('to.have.attr', 'href', '/x/y/z');
+        .shadow()
+        .contains('.hidden-items post-breadcrumb-item', 'Test1')
+        .should('to.have.attr', 'url', '/x/y/z');
       cy.get('@breadcrumbs')
-        .contains('.breadcrumbs-list > li > a', 'Test2')
-        .should('to.have.attr', 'href', '/a/b/c');
-    });
-  });
-
-  describe('Toggle overlay buttons', () => {
-    beforeEach(() => {
-      prepare(BREADCRUMBS, 'Default');
-      cy.get('div.breadcrumbs').as('breadcrumbs');
-      cy.intercept(
-        'https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/**',
-        {
-          fixture: 'pages/help-contact-overlay.html',
-        },
-      ).as('overlay');
-    });
-
-    it(`should open overlay for help button`, () => {
-      cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
-      cy.get('@breadcrumbs')
-        .get('div.breadcrumb-buttons button:first-child')
-        .click({ force: true });
-      cy.get('@breadcrumbs').find('div.overlay').should('exist');
-    });
-
-    it(`should open overlay for contact`, () => {
-      cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
-      cy.get('@breadcrumbs').get('div.breadcrumb-buttons button:last-child').click({ force: true });
-      cy.get('@breadcrumbs').find('div.overlay').should('exist');
-    });
-
-    it(`should close overlay on ESC press`, () => {
-      closeOverlayOnKey('Escape');
-      cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
-    });
-
-    it(`should open overlay programmatically`, () => {
-      cy.get('swisspost-internet-breadcrumbs').then(async el => {
-        await el[0].toggleOverlayById('help');
-        cy.get('div.breadcrumbs').find('div.overlay').should('exist');
-      });
-    });
-
-    it(`should close overlay programmatically`, () => {
-      cy.get('swisspost-internet-breadcrumbs').then(async el => {
-        await el[0].toggleOverlayById('help');
-        await el[0].toggleOverlayById('help');
-        cy.get('div.breadcrumbs').find('div.overlay').should('not.exist');
-      });
-    });
-  });
-
-  describe('mobile', () => {
-    beforeEach(() => {
-      cy.viewport('iphone-6+');
-      prepare(BREADCRUMBS, 'Default');
-      cy.get('div.breadcrumbs').as('breadcrumbs');
-    });
-
-    it(`should show cropped breadcrumb as dropdown`, () => {
-      cy.get('.middle-dropdown-button').click({ force: true });
-
-      cy.get('nav.middle-dropdown').should('exist');
-    });
-
-    it(`should not break line for long elements`, () => {
-      const itemText = 'Veeeeeeeeery loooooooong element';
-      cy.changeArg('custom-items', [{ text: itemText, url: '/x/y/z' }]);
-
-      cy.get('div.breadcrumbs > nav > ol li').as('breadcrumbItems');
-
-      cy.get('@breadcrumbItems').contains(itemText).should('have.css', 'white-space', 'nowrap');
+        .shadow()
+        .contains('.hidden-items post-breadcrumb-item', 'Test2')
+        .should('to.have.attr', 'url', '/a/b/c');
     });
   });
 });
