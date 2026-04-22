@@ -34,17 +34,17 @@ describe('breadcrumb', () => {
       cy.get('post-breadcrumbs')
         .as('breadcrumbs')
         .shadow()
-        .find('.hidden-items post-breadcrumb-item')
+        .find('post-breadcrumb-item')
         .should('to.have.length', 4);
 
       // Contains both elements and sets the url to the post-breadcrumb-item
       cy.get('@breadcrumbs')
         .shadow()
-        .contains('.hidden-items post-breadcrumb-item', 'Test1')
+        .contains('post-breadcrumb-item', 'Test1')
         .should('to.have.attr', 'url', '/x/y/z');
       cy.get('@breadcrumbs')
         .shadow()
-        .contains('.hidden-items post-breadcrumb-item', 'Test2')
+        .contains('post-breadcrumb-item', 'Test2')
         .should('to.have.attr', 'url', '/a/b/c');
     });
   });
