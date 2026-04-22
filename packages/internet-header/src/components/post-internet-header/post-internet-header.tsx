@@ -6,6 +6,7 @@ import { dispose, state } from '@/data/store';
 import { Link, LinkProps, MegaDropdown, UserMenu } from '../shared';
 import { LinkConfig } from '@/models/shared.model';
 import { UserMenuConfig } from '@/models/header.model';
+import '@swisspost/design-system-components';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -191,7 +192,7 @@ export class PostInternetHeader {
 
     return (
       <Host data-version={version}>
-        <post-header text-menu={this.textMenu}>
+        <post-header textMenu={this.textMenu}>
           {'image' in globalHeader.postLogo ? (
             <Link slot="post-logo" config={globalHeader.postLogo} />
           ) : (
@@ -221,8 +222,8 @@ export class PostInternetHeader {
           {globalHeader.languages && globalHeader.languages.length > 0 && (
             <post-language-menu
               slot="language-menu"
-              text-change-language={this.textChangeLanguage}
-              text-current-language={this.textCurrentLanguage}
+              textChangeLanguage={this.textChangeLanguage}
+              textCurrentLanguage={this.textCurrentLanguage}
             >
               {globalHeader.languages.map(lang => (
                 <post-language-menu-item
@@ -245,7 +246,7 @@ export class PostInternetHeader {
           {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
 
           {localHeader.mainNavigation && (
-            <post-mainnavigation slot="main-nav" text-main={this.textMain}>
+            <post-mainnavigation slot="main-nav" textMain={this.textMain}>
               <ul>
                 {localHeader.mainNavigation.map(navItem => (
                   <li>

@@ -20,7 +20,7 @@ export const MegaDropdown: FunctionalComponent<
       {config.trigger.text}
     </post-megadropdown-trigger>,
 
-    <post-megadropdown id={megaDropdownId} text-close={textClose} text-back={textBack}>
+    <post-megadropdown id={megaDropdownId} textClose={textClose} textBack={textBack}>
       {config.overview && <Link config={config.overview} class="post-megadropdown-overview" />}
       <div class="row row-cols-1 row-cols-sm-2">
         {config.sections.map(section => (
