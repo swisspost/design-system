@@ -146,7 +146,9 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.visit(FIXTURE_PATH);
     cy.wait('@session');
 
-    // attach spy only after initial fetch completes so it does not capture the mount event
+    // wait for the component to finish rendering before attaching spy
+    cy.get('[data-testid="user-menu"]').should('be.visible');
+
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
       el.addEventListener('postLoginChange', spy);
