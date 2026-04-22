@@ -14,7 +14,7 @@ jest.mock('prettier', () => ({
 import {
   createComponentNameOutput,
   componentNameOutputOptions,
-  copyAndConvertAirDatepickerLocales,
+  copyAirDatepickerLocales,
 } from './prebuild';
 
 describe('Prebuild - ComponentNames', () => {
@@ -51,7 +51,7 @@ describe('Prebuild - ComponentNames', () => {
   });
 });
 
-describe('Prebuild - Copy and convert AirDatepicker locales', () => {
+describe('Prebuild - Copy AirDatepicker locales', () => {
   const sourceDir = 'node_modules/air-datepicker/locale';
   const destDir = 'src/components/post-date-picker/locales';
 
@@ -71,28 +71,30 @@ describe('Prebuild - Copy and convert AirDatepicker locales', () => {
     vol.reset();
   });
 
-  it('should write all .js locale files to the destination directory', () => {
-    copyAndConvertAirDatepickerLocales();
+  it('should copy .js locale files to the destination directory', () => {
+    copyAirDatepickerLocales();
 
     expect(memfs.existsSync(`${destDir}/en.js`)).toBe(true);
     expect(memfs.existsSync(`${destDir}/de.js`)).toBe(true);
   });
 
-  it('should convert CJS syntax to ESM syntax', () => {
-    copyAndConvertAirDatepickerLocales();
+  it('should copy .js files without modifying their content', () => {
+    copyAirDatepickerLocales();
 
     const output = memfs.readFileSync(`${destDir}/en.js`, 'utf8') as string;
-
-    expect(output).not.toContain('"use strict"');
-    expect(output).not.toContain('Object.defineProperty');
-    expect(output).not.toContain('exports.default = void 0');
-    expect(output).not.toContain('var _default');
-    expect(output).toContain('const _default =');
-    expect(output).toContain('export default _default;');
+    expect(output).toBe(LOCALE);
   });
 
-  it('should only process .js files', () => {
-    copyAndConvertAirDatepickerLocales();
+  it('should generate ESM .d.ts files for each locale', () => {
+    copyAirDatepickerLocales();
+
+    const dts = memfs.readFileSync(`${destDir}/en.d.ts`, 'utf8') as string;
+    expect(dts).toContain("import type { AirDatepickerLocale } from 'air-datepicker'");
+    expect(dts).toContain('export default locale');
+  });
+
+  it('should only copy .js files', () => {
+    copyAirDatepickerLocales();
 
     expect(memfs.existsSync(`${destDir}/readme.txt`)).toBe(false);
   });
@@ -101,10 +103,10 @@ describe('Prebuild - Copy and convert AirDatepicker locales', () => {
     vol.reset();
     const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
-    copyAndConvertAirDatepickerLocales();
+    copyAirDatepickerLocales();
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      'air-datepicker locale directory not found, skipping conversion',
+      'air-datepicker locale directory not found, skipping copy',
     );
     consoleSpy.mockRestore();
   });

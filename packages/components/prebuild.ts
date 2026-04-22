@@ -63,7 +63,7 @@ export async function createComponentNameOutput(
   );
 }
 
-export function copyAndConvertAirDatepickerLocales() {
+export function copyAirDatepickerLocales() {
   // air-datepicker is in the package-level node_modules
   const SOURCE_LOCALE_PATH = path.resolve('./node_modules/air-datepicker/locale');
   const DEST_LOCALE_PATH = path.resolve('./src/components/post-date-picker/locales');
@@ -73,46 +73,32 @@ export function copyAndConvertAirDatepickerLocales() {
   // Ensure the destination directory exists
   fs.mkdirSync(DEST_LOCALE_PATH, { recursive: true });
 
-  // Copy and convert all .js locale files from CJS to ESM
+  // Copy .js locale files as-is (CJS to ESM conversion is handled by @rollup/plugin-commonjs at build time)
+  // and generate proper ESM .d.ts files (the originals use ambient module declarations which aren't valid ESM modules)
   if (fs.existsSync(SOURCE_LOCALE_PATH)) {
-    const files = fs.readdirSync(SOURCE_LOCALE_PATH).filter(file => file.endsWith('.js'));
-    files.forEach(file => {
-      const src = path.join(SOURCE_LOCALE_PATH, file);
-      const dest = path.join(DEST_LOCALE_PATH, file);
+    fs.readdirSync(SOURCE_LOCALE_PATH)
+      .filter(file => file.endsWith('.js'))
+      .forEach(file => {
+        const src = path.join(SOURCE_LOCALE_PATH, file);
+        const dest = path.join(DEST_LOCALE_PATH, file);
+        fs.copyFileSync(src, dest);
 
-      // Read the CJS file
-      let content = fs.readFileSync(src, 'utf8');
-
-      // Convert from CJS to ESM
-      // Remove "use strict"
-      content = content.replace(/["']use strict["'];?\s*/g, '');
-
-      // Remove Object.defineProperty exports boilerplate
-      content = content.replace(
-        /Object\.defineProperty\(exports,\s*["']__esModule["'],\s*\{[\s\S]*?\}\);?\s*/g,
-        '',
-      );
-
-      // Remove exports.default = void 0;
-      content = content.replace(/exports\.default\s*=\s*void\s*0;?\s*/g, '');
-
-      // Convert var _default = {...} to const _default = {...}
-      content = content.replace(/var _default\s*=/g, 'const _default =');
-
-      // Convert exports.default = _default; to export default _default;
-      content = content.replace(/exports\.default\s*=\s*_default;?/g, 'export default _default;');
-
-      // Write the ESM file
-      fs.writeFileSync(dest, content, 'utf8');
-    });
+        // Generate a proper ESM type declaration
+        const dtsPath = path.join(DEST_LOCALE_PATH, file.replace(/\.js$/, '.d.ts'));
+        fs.writeFileSync(
+          dtsPath,
+          "import type { AirDatepickerLocale } from 'air-datepicker';\ndeclare const locale: AirDatepickerLocale;\nexport default locale;\n",
+          'utf8',
+        );
+      });
   } else {
-    console.warn('air-datepicker locale directory not found, skipping conversion');
+    console.warn('air-datepicker locale directory not found, skipping copy');
   }
 }
 
 function prebuild() {
   createComponentNameOutput(componentNameOutputOptions);
-  copyAndConvertAirDatepickerLocales();
+  copyAirDatepickerLocales();
 }
 
 // run prebuild automatically if script is executed directly in node

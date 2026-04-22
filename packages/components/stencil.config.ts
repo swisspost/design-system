@@ -1,6 +1,7 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import postcss from 'rollup-plugin-postcss';
+import commonjs from '@rollup/plugin-commonjs';
 import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { angularOutputTarget } from '@stencil/angular-output-target';
@@ -124,9 +125,13 @@ export const config: Config = {
   ],
   rollupPlugins: {
     before: [
+      // Convert CJS locale files (copied from air-datepicker) to ESM at build time
+      commonjs({
+        include: ['**/post-date-picker/locales/**'],
+      }),
       // Rollup dynamicImportVars plugin requires relative paths (starting with ./),
       // loading them dynamically from the node_modules folder is not possible!
-      // Therefore, we copy, convert (cjs to esm) and internalize the air-datepicker language files during prebuild.
+      // Therefore, we copy and internalize the air-datepicker language files during prebuild.
       dynamicImportVars({
         include: ['**/post-date-picker/air-locales.ts'],
       }),
