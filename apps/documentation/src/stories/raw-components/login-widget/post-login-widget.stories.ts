@@ -51,6 +51,15 @@ export default meta;
 
 // RENDERERS
 
+export function renderLoginLink() {
+  return html`
+    <a slot="unauthenticated" href="/login">
+      <span>Login</span>
+      <post-icon name="login" aria-hidden="true"></post-icon>
+    </a>
+  `;
+}
+
 export function renderUserMenu(id = 'user-menu-widget') {
   return html`
     <post-menu-trigger for="${id}">
@@ -99,10 +108,7 @@ export function renderUserMenu(id = 'user-menu-widget') {
 function render() {
   return html`
     <post-login-widget>
-      <a slot="unauthenticated" href="/login">
-        <span>Login</span>
-        <post-icon name="login" aria-hidden="true"></post-icon>
-      </a>
+      ${renderLoginLink()}
       <div slot="authenticated">${renderUserMenu('user-menu-default')}</div>
     </post-login-widget>
   `;
@@ -141,6 +147,7 @@ export const Authenticated: Story = {
   ],
   render: () => html`
     <post-login-widget>
+      ${renderLoginLink()}
       <div slot="authenticated">${renderUserMenu('user-menu-authenticated')}</div>
     </post-login-widget>
   `,

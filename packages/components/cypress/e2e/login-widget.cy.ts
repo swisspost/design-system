@@ -34,7 +34,6 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
     cy.visit(FIXTURE_PATH);
     cy.wait('@session');
-
     cy.get('[data-testid="user-menu"]').should('be.visible');
     cy.get('[data-testid="login-link"]').should('not.be.visible');
   });
@@ -43,7 +42,6 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE }).as('session');
     cy.visit(FIXTURE_PATH);
     cy.wait('@session');
-
     cy.get('[data-testid="login-link"]').should('be.visible');
     cy.get('[data-testid="user-menu"]').should('not.be.visible');
   });
@@ -63,6 +61,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.get('[data-testid="login-link"]').should('not.be.visible');
   });
 
+  // ─── postLoginChange event ─────────────────────────────────────────────────
   // Note: delay is intentional — gives the spy time to attach before the
   // response arrives, preventing a race condition between visit and intercept.
 
@@ -114,7 +113,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
     });
   });
 
-  // ─── Fallback on API failure ──────────────────────────────────────────────
+  // ─── Fallback on API failure ───────────────────────────────────────────────
 
   it('renders the unauthenticated slot when the API request fails', () => {
     cy.intercept('GET', SESSION_URL, { forceNetworkError: true }).as('session');
@@ -135,13 +134,14 @@ describe('post-login-widget', { baseUrl: null }, () => {
   // ─── No unnecessary re-renders ────────────────────────────────────────────
 
   it('does not emit postLoginChange if state has not changed', () => {
-    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE, delay: 100 }).as('session');
+    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
     cy.visit(FIXTURE_PATH);
+    cy.wait('@session');
+
     const spy = cy.spy().as('changeSpy');
     cy.get('post-login-widget').then(([el]) => {
       el.addEventListener('postLoginChange', spy);
     });
-    cy.wait('@session');
 
     cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session2');
     cy.get('post-login-widget').then(([el]) => el.refresh());
