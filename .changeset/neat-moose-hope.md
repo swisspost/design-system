@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-components': major
+'@swisspost/design-system-components': minor
 ---
 
-Updated `post-tabs` markup to support Server-Side Rendering.
+Updated `post-tabs` to support Server-Side Rendering.
