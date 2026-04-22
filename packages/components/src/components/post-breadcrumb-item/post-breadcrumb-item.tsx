@@ -17,7 +17,17 @@ export class PostBreadcrumbItem {
   /**
    * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
    */
-  @Prop() url?: string | URL;
+  @Prop({ reflect: true }) url?: string | URL;
+
+  /**
+   * ARIA label, screen readers will use this instead of the breadcrumb item content.
+   */
+  @Prop({ reflect: true }) label?: string;
+
+  /**
+   * ARIA description for additional context, read after the breadcrumb item content or `label`.
+   */
+  @Prop({ reflect: true }) description?: string;
 
   @Watch('url')
   validateURL() {
@@ -47,7 +57,12 @@ export class PostBreadcrumbItem {
   render() {
     const href = this.url instanceof URL ? this.url.href : this.url;
     const content = href ? (
-      <a href={href} aria-current={this.selected ? 'page' : undefined}>
+      <a
+        href={href}
+        aria-current={this.selected ? 'page' : undefined}
+        aria-label={this.label}
+        aria-description={this.description}
+      >
         <slot></slot>
       </a>
     ) : (

@@ -5,11 +5,13 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                                                                            | Type                       | Default      |
-| ---------- | ---------- | ------------------------------------------------------------------------------------------------------ | -------------------------- | ------------ |
-| `selected` | `selected` | Indicates that the item represents the current page, applying appropriate styling.                     | `boolean`                  | `false`      |
-| `url`      | `url`      | The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text. | `URL \| string`            | `undefined`  |
-| `variant`  | `variant`  | Controls how the item is rendered, either as a standard list item or within an overflow menu.          | `"listitem" \| "menuitem"` | `'listitem'` |
+| Property      | Attribute     | Description                                                                                            | Type                       | Default      |
+| ------------- | ------------- | ------------------------------------------------------------------------------------------------------ | -------------------------- | ------------ |
+| `description` | `description` | ARIA description for additional context, read after the breadcrumb item content or `label`.            | `string`                   | `undefined`  |
+| `label`       | `label`       | ARIA label, screen readers will use this instead of the breadcrumb item content.                       | `string`                   | `undefined`  |
+| `selected`    | `selected`    | Indicates that the item represents the current page, applying appropriate styling.                     | `boolean`                  | `false`      |
+| `url`         | `url`         | The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text. | `URL \| string`            | `undefined`  |
+| `variant`     | `variant`     | Controls how the item is rendered, either as a standard list item or within an overflow menu.          | `"listitem" \| "menuitem"` | `'listitem'` |
 
 
 ## Slots

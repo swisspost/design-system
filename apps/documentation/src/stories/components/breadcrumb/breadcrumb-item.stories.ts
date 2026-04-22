@@ -17,6 +17,8 @@ const meta: MetaComponent = {
   },
   args: {
     variant: 'listitem',
+    label: 'Products section',
+    description: 'This section contains all the products you can buy.',
     selected: false,
   },
   argTypes: {
@@ -33,6 +35,8 @@ function render(args: Args) {
     <post-breadcrumb-item
       url=${args.url || nothing}
       variant=${args.variant !== 'listitem' ? args.variant : nothing}
+      label=${args.label || nothing}
+      description=${args.description || nothing}
       ?selected=${args.selected}
       >Section 1</post-breadcrumb-item
     >

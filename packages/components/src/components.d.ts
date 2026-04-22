@@ -118,6 +118,14 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
+          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+         */
+        "description"?: string;
+        /**
+          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+         */
+        "label"?: string;
+        /**
           * Indicates that the item represents the current page, applying appropriate styling.
           * @default false
          */
@@ -1310,6 +1318,14 @@ declare namespace LocalJSX {
         "type"?: BannerType;
     }
     interface PostBreadcrumbItem {
+        /**
+          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+         */
+        "description"?: string;
+        /**
+          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+         */
+        "label"?: string;
         /**
           * Indicates that the item represents the current page, applying appropriate styling.
           * @default false
