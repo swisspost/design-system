@@ -59,7 +59,7 @@ export class PostDatePicker {
 
   /**
    * The date pickers locale (e.g. "it", "it-CH", etc.), which specifies the date format and language.
-   * <post-banner type="info" data-size="sm"><p>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to english.</p></post-banner>
+   * <post-banner type="info" data-size="sm"><span>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to english.</span></post-banner>
    */
   @Prop() locale?: string = this.systemLocale;
   @Watch('locale')
