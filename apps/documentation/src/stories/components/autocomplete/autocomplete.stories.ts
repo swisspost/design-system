@@ -41,6 +41,14 @@ const meta: MetaComponent = {
         category: 'Props',
       },
     },
+    textAvailableSuggestions: {
+      name: 'text-available-suggestions',
+      description: 'Announcement template for screen readers when the suggestion list updates. Use {count} as placeholder for the number of available suggestions.',
+      control: 'text',
+      table: {
+        category: 'Props',
+      },
+    },
   },
 };
 
