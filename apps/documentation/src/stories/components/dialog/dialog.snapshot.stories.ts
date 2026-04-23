@@ -41,3 +41,29 @@ export const Dialog: Story = {
     );
   },
 };
+
+export const DialogBottomSheet: Story = {
+  render: (_args: Args, context: StoryContext) => {
+    return schemes(
+      () => html`
+        <style>
+          dialog {
+            transition: none !important;
+          }
+        </style>
+        ${Default.render?.(
+          {
+            ...context.args,
+            variant: 'bottom-sheet',
+            animation: 'slide-in',
+            open: true,
+            width: '',
+            content:
+              'Contentus momentus vero siteos et accusam iretea et justo. Contentus momentus vero siteos et accusam iretea et justo.',
+          },
+          context,
+        )}
+      `,
+    );
+  },
+};

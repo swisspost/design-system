@@ -1,10 +1,12 @@
 @use 'sass:list';
+@use 'sass:map';
 
 @use '../mixins/utilities' as utilities-mx;
 @use '../variables/spacing';
 @use '../variables/color';
 @use '../variables/animation';
 @use '../variables/elevation';
+@use '../variables/grid';
 
 @use '../functions/tokens';
 @use '../tokens/utilities';
@@ -15,6 +17,7 @@ tokens.$default-map: utilities.$post-spacing;
 
 $dialog-types: 'info', 'error', 'success', 'warning';
 $border-radius: 0.5rem;
+$dialog-bottom-sheet-selector: "[data-variant='bottom-sheet']";
 
 .post-dialog,
 // deprecated
@@ -83,6 +86,50 @@ dialog {
     bottom: 2rem;
   }
 
+  &#{$dialog-bottom-sheet-selector} {
+    --_dialog-sheet-default-width: 100%;
+    min-width: 0;
+    width: var(--post-dialog-width, var(--_dialog-sheet-default-width));
+    max-width: var(--post-dialog-width, var(--_dialog-sheet-default-width));
+    max-height: 80dvh;
+    overflow: hidden;
+    border-radius: $border-radius $border-radius 0 0;
+    top: auto;
+    bottom: 0;
+    margin-block-start: auto;
+    margin-block-end: 0;
+
+    @include media.min(md) {
+      --_dialog-sheet-default-width: calc(100vw - 2 * var(--post-container-padding-inline, 0));
+    }
+
+    @include media.min(lg) {
+      .container & {
+        --_dialog-sheet-default-width: min(
+          calc(100vw - 2 * var(--post-container-padding-inline, 0)),
+          var(--post-container-max-width)
+        );
+      }
+
+      .container-fluid & {
+        --_dialog-sheet-default-width: calc(
+          (100vw - 2 * var(--post-container-padding-inline, 0)) / 2
+        );
+      }
+    }
+
+    > .dialog-grid {
+      max-height: 80dvh;
+    }
+
+    > .dialog-grid > post-closebutton {
+      inset-block-start: tokens.get('utility-gap-16');
+      inset-inline-end: tokens.get('utility-gap-16');
+      transform: none;
+      z-index: 2;
+    }
+  }
+
   > .dialog-grid {
     padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0;
     border-radius: $border-radius;
@@ -95,6 +142,7 @@ dialog {
       'icon header'
       'icon body'
       'controls controls';
+    position: relative;
 
     // Propagate bg color to the controls
     background-color: inherit;
@@ -132,7 +180,10 @@ dialog {
   .dialog-header {
     grid-area: header;
     margin-top: 0;
+    top: 0;
     position: sticky;
+    z-index: 1;
+    background-color: inherit;
   }
 
   .dialog-body {
@@ -160,6 +211,7 @@ dialog {
   grid-area: controls;
   position: sticky;
   bottom: 0;
+  z-index: 1;
   padding-top: tokens.get('utility-gap-16');
   padding-bottom: tokens.get('utility-gap-16');
   margin-block-end: 0;
@@ -176,6 +228,11 @@ dialog {
   }
 }
 
+.post-dialog#{$dialog-bottom-sheet-selector} .dialog-header,
+dialog#{$dialog-bottom-sheet-selector} .dialog-header {
+  padding-inline-end: calc(tokens.get('utility-gap-40') + tokens.get('utility-gap-16'));
+}
+
 // Animations
 // [slide-in, pop-in, none]
 // Progressively enhanced with currently experimental @starting-style which allows to animate stuff appearing in the top layer
@@ -184,8 +241,10 @@ dialog {
 // deprecated
 dialog:not([data-animation='none']) {
   --_dialog-transition-duration: var(--dialog-transition-duration, 0.5s);
+  --_dialog-closed-scale: 0.8;
+  --_dialog-closed-translate-y: 0;
 
-  transform: scale(0.8);
+  transform: translateY(var(--_dialog-closed-translate-y)) scale(var(--_dialog-closed-scale));
   opacity: 0;
   transition-property: transform, opacity, overlay, display;
   transition-behavior: allow-discrete;
@@ -220,12 +279,12 @@ dialog:not([data-animation='none']) {
   }
 
   &[open] {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     opacity: 1;
 
     @starting-style {
       opacity: 0;
-      transform: scale(0.8);
+      transform: translateY(var(--_dialog-closed-translate-y)) scale(var(--_dialog-closed-scale));
     }
 
     &::backdrop {
@@ -243,8 +302,11 @@ dialog:not([data-animation='none']) {
     }
   }
 
-  &[data-animation='slide-in'] {
-    transform: translateY(calc(var(--_dialog-slide-in-offset)));
+  &[data-animation='slide-in'],
+  &#{$dialog-bottom-sheet-selector}:not([data-animation]) {
+    --_dialog-slide-in-offset: 3rem;
+    --_dialog-closed-scale: 1;
+    --_dialog-closed-translate-y: var(--_dialog-slide-in-offset);
 
     &[data-position='top'] {
       --_dialog-slide-in-offset: -3rem;
@@ -255,10 +317,20 @@ dialog:not([data-animation='none']) {
     }
 
     &[open] {
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
 
       @starting-style {
-        transform: translateY(calc(var(--_dialog-slide-in-offset)));
+        transform: translateY(var(--_dialog-slide-in-offset)) scale(1);
+      }
+    }
+  }
+
+  &#{$dialog-bottom-sheet-selector} {
+    @media (prefers-reduced-motion: reduce) {
+      transition-duration: 0s;
+
+      &::backdrop {
+        transition-duration: 0s;
       }
     }
   }
