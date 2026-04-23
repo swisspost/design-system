@@ -13,14 +13,14 @@ export function transformToAngular(html) {
     html
       // Remove HTML and Lit comments
       // <!--?lit$123$--> → ''
-      .replace(/<!--[\s\S]*?-->/g, '')
+      .replaceAll(/<!--[\s\S]*?-->/g, '')
 
       // Convert kebab-case attributes to camelCase on post-* components (skip aria-*)
       // <post-header text-menu="Menu"> → <post-header textMenu="Menu">
       // Convert all kebab-case attributes to camelCase on post-* tags (skip aria-*)
-      .replace(/<post-[\w-]+[^>]*>/g, tag =>
-        tag.replace(/\s(?!aria-)([a-z]+(?:-[a-z]+)+)=/g, attr => {
-          return attr.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+      .replaceAll(/<post-[\w-]+[^>]*>/g, tag =>
+        tag.replaceAll(/\s(?!aria-)([a-z]+(?:-[a-z]+)+)=/g, attr => {
+          return attr.replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase());
         }),
       )
 
@@ -28,18 +28,18 @@ export function transformToAngular(html) {
       // headingLevel="3" → [headingLevel]="3" (number)
       // multiple="true" → [multiple]="true" (boolean)
       // name="search" → name="search" (string, unchanged)
-      .replace(/(<post-[\w-]+)((?:\s+[^>]*?)*?)>/g, (match, tag, attrs) => {
+      .replaceAll(/(<post-[\w-]+)((?:\s+[^>]*?)*?)>/g, (match, tag, attrs) => {
         const componentName =
           'Post' +
           tag
-            .replace('<post-', '')
+            .replaceAll('<post-', '')
             .split('-')
             .map(p => p.charAt(0).toUpperCase() + p.slice(1))
             .join('');
         const componentProps = propTypes[componentName] ?? {};
 
-        const convertedAttrs = attrs.replace(/(\w+)="([^"]*)"/g, (attrMatch, name, value) => {
-          const kebab = name.replace(/([A-Z])/g, c => `-${c.toLowerCase()}`);
+        const convertedAttrs = attrs.replaceAll(/(\w+)="([^"]*)"/g, (attrMatch, name, value) => {
+          const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);
           const type = componentProps[kebab] ?? componentProps[name];
           if (type === 'number' && /^\d+$/.test(value)) return `[${name}]="${value}"`;
           if (type === 'boolean') return `[${name}]="${value}"`;
@@ -51,16 +51,16 @@ export function transformToAngular(html) {
 
       // Self-closing void elements
       // <img src="foo.png"> → <img src="foo.png" />
-      .replace(
+      .replaceAll(
         /<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)([^>]*)>/g,
         (_, tag, attrs) => `<${tag}${attrs} />`,
       )
 
       // Clean up multiple blank lines
-      .replace(/\n{3,}/g, '\n\n')
+      .replaceAll(/\n{3,}/g, '\n\n')
 
       // Remove empty lines
-      .replace(/^\s*[\r\n]/gm, '')
+      .replaceAll(/^\s*[\r\n]/gm, '')
 
       .trim()
   );

@@ -9,7 +9,7 @@ const componentsPath = path.resolve(__dirname, '../output/markup-map.json');
 const pagePath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/page.tsx');
 const layoutPath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/layout.tsx');
 
-const LAYOUT_COMPONENTS = ['Header', 'Footer', 'BackToTop', 'Breadcrumbs'];
+const LAYOUT_COMPONENTS = new Set(['Header', 'Footer', 'BackToTop', 'Breadcrumbs']);
 
 // ─── LAYOUT.TSX ───────────────────────────────────────────────────────────────
 
@@ -82,7 +82,7 @@ const rendered = Object.entries(components)
   })
   .join('\n\n');
 
-const homepage = `import { ${[...pageImports].sort().join(', ')} } from '@swisspost/design-system-components-react/server';
+const homepage = `import { ${[...pageImports].sort((a, b) => a.localeCompare(b)).join(', ')} } from '@swisspost/design-system-components-react/server';
 import { PostIconExplosives, PostIconLetter, PostIconLetterSolid } from '@swisspost/design-system-components-react/icons';
 
 export default function Home() {
@@ -150,7 +150,7 @@ const usedNames = [...layoutTemplate.matchAll(/\{\/\* COMPONENT:(\w+) \*\/\}/g)]
 );
 const layoutImports = collectImports(usedNames.map(name => components[name]).filter(Boolean));
 
-let result = layoutTemplate.replace(/\{\/\* COMPONENT:(\w+) \*\/\}/g, (_, name) => {
+let result = layoutTemplate.replaceAll(/\{\/\* COMPONENT:(\w+) \*\/\}/g, (_, name) => {
   const entry = components[name];
   if (!entry) return `{/* WARNING: ${name} not found in markup-map.json */}`;
   return transformToReact(getHtml(entry));
@@ -160,8 +160,8 @@ result = result
   .replace(/^import type React from 'react';\n?/m, '')
   .replace(/^import \{[^}]*\} from '@swisspost\/design-system-components-react\/server';\n?/m, '');
 
-result = `import { ${[...layoutImports].sort().join(', ')} } from '@swisspost/design-system-components-react/server';\n\n${result}`;
-result = result.replace(/^\s*[\r\n]/gm, '');
+result = `import { ${[...layoutImports].sort((a, b) => a.localeCompare(b)).join(', ')} } from '@swisspost/design-system-components-react/server';\n\n${result}`;
+result = result.replaceAll(/^\s*[\r\n]/gm, '');
 
 fs.mkdirSync(path.dirname(layoutPath), { recursive: true });
 fs.writeFileSync(layoutPath, result, 'utf-8');

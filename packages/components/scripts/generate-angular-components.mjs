@@ -8,7 +8,7 @@ const componentsPath = path.resolve(__dirname, '../output/markup-map.json');
 const basePath = path.resolve(__dirname, '../../components-angular/projects/consumer-app/src/app');
 const appTsPath = path.join(basePath, 'app.component.ts');
 
-const LAYOUT_COMPONENTS = ['Header', 'Footer', 'BackToTop', 'Breadcrumbs'];
+const LAYOUT_COMPONENTS = new Set(['Header', 'Footer', 'BackToTop', 'Breadcrumbs']);
 
 // Ensure markup-map.json exists
 fs.mkdirSync(path.dirname(componentsPath), { recursive: true });
@@ -44,7 +44,7 @@ function collectImports(entries) {
       );
     });
   });
-  return [...allImports].sort();
+  return [...allImports].sort((a, b) => a.localeCompare(b));
 }
 
 // ─── HOME COMPONENT ───────────────────────────────────────────────────────────
@@ -160,7 +160,7 @@ const layoutTemplate = `
 <!-- COMPONENT:Footer -->`;
 
 // Replace placeholders with captured markup from markup-map.json
-const appHtml = layoutTemplate.replace(/<!-- COMPONENT:(\w+) -->/g, (_, name) => {
+const appHtml = layoutTemplate.replaceAll(/<!-- COMPONENT:(\w+) -->/g, (_, name) => {
   const entry = components[name];
   console.log(`COMPONENT:${name}`, entry ? 'found' : 'NOT FOUND'); // ← add this
   if (!entry) return `<!-- WARNING: ${name} not found -->`;
@@ -175,9 +175,7 @@ const allImports = collectImports(
 );
 
 // Update only the imports in the existing app.component.ts
-if (!fs.existsSync(appTsPath)) {
-  console.log('⚠️ app.component.ts not found — skipping');
-} else {
+if (fs.existsSync(appTsPath)) {
   const updated = fs
     .readFileSync(appTsPath, 'utf-8')
     .replace(
@@ -190,6 +188,8 @@ if (!fs.existsSync(appTsPath)) {
     );
   fs.writeFileSync(appTsPath, updated, 'utf-8');
   console.log(`✅ app.component.ts imports updated`);
+} else {
+  console.log('⚠️ app.component.ts not found — skipping');
 }
 
 // Write generated app HTML
