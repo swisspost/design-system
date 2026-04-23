@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/list';
+
 @use './mixins' as *;
-@use './placeholders' as *;
 
 post-megadropdown {
   .row {
@@ -17,20 +18,24 @@ post-megadropdown {
   }
 
   .post-megadropdown-list {
-    @extend %header-list;
+    @include list.list-inline;
+    gap: 0 0.25rem;
+    margin: 0;
     flex-direction: column;
+
+    > li {
+      flex: 1 0 auto !important;
+    }
   }
 
   .post-megadropdown-overview {
     @include nav-item-base;
     @include nav-item-block-layout;
-    @include nav-item-block-focus;
+    margin-block: 0 1rem;
 
     @include media.only(desktop) {
       font-size: 1.25rem;
     }
-
-    margin-block: 0 1rem;
 
     &:first-child {
       margin-block-start: -0.5rem;
@@ -40,15 +45,13 @@ post-megadropdown {
   .post-megadropdown-list-title {
     @include nav-item-base;
     @include nav-item-block-layout;
-    @include nav-item-block-focus;
+    margin: 0;
+    font-weight: 950;
+    --post-nav-item-border-width: 2px;
 
     @include media.only(desktop) {
       font-size: 1.25rem;
     }
-
-    margin: 0;
-    font-weight: 950;
-    --post-nav-item-border-width: 2px;
 
     &:not(#{$interactive-elements-selector}) {
       pointer-events: none;
@@ -58,7 +61,6 @@ post-megadropdown {
   .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
     @include nav-item-base;
     @include nav-item-block-layout;
-    @include nav-item-block-focus;
 
     @include media.only(desktop) {
       font-size: 1.25rem;

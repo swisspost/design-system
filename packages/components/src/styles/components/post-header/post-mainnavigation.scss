@@ -1,7 +1,7 @@
-@use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/list';
+
 @use './mixins' as *;
-@use './placeholders' as *;
 
 post-mainnavigation {
   grid-area: main-nav;
@@ -11,17 +11,26 @@ post-mainnavigation {
   }
 
   > ul {
-    @extend %header-list;
+    @include list.list-inline;
+    gap: 0 0.25rem;
+    margin: 0;
     column-gap: 0;
     height: 100%;
     align-items: stretch;
     flex-wrap: nowrap;
+
+    @include media.max(desktop) {
+      flex-direction: column;
+    }
+
+    > li {
+      flex: 1 0 auto !important;
+    }
   }
 
-  > *:where(a, button, [role='link'], [role='button']) {
+  > *:where(#{$interactive-elements-selector}) {
     @include nav-item-base;
     @include nav-item-block-layout;
-    @include nav-item-block-focus;
     height: 100%;
 
     @include media.only(desktop) {
@@ -31,10 +40,9 @@ post-mainnavigation {
     }
   }
 
-  > *:where(ul) > li > :where(a, button, [role='link'], [role='button']) {
+  > *:where(ul) > li > :where(#{$interactive-elements-selector}) {
     @include nav-item-base;
     @include nav-item-block-layout;
-    @include nav-item-block-focus;
     height: 100%;
 
     @include media.only(desktop) {
