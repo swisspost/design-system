@@ -41,10 +41,12 @@ post-header {
   }
 
   // all slotted links and buttons
-  > * {
-    @include interactive-elements {
-      @include nav-item-base;
-    }
+  > *:where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
+  }
+
+  > *:where(ul) > li > :where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
   }
 
   // links and buttons remaining in the global and local headers on tablet and mobile
@@ -54,7 +56,11 @@ post-header {
     }
 
     @include media.only(mobile) {
-      @include interactive-elements {
+      &:where(#{$interactive-elements-selector}) {
+        @include nav-item-icon-only;
+      }
+
+      &:where(ul) > li > :where(#{$interactive-elements-selector}) {
         @include nav-item-icon-only;
       }
     }
@@ -63,7 +69,11 @@ post-header {
   // links and buttons remaining in the global header on tablet and mobile
   > :is([slot='global-nav-primary'], [slot='post-login']) {
     @include media.only(mobile) {
-      @include interactive-elements {
+      &:where(#{$interactive-elements-selector}) {
+        padding: 0.625rem;
+      }
+
+      &:where(ul) > li > :where(#{$interactive-elements-selector}) {
         padding: 0.625rem;
       }
     }
@@ -78,7 +88,11 @@ post-header {
     }
 
     @include media.only(mobile) {
-      @include interactive-elements {
+      &:where(#{$interactive-elements-selector}) {
+        padding: 0.25rem 0.75rem;
+      }
+
+      &:where(ul) > li > :where(#{$interactive-elements-selector}) {
         padding: 0.25rem 0.75rem;
       }
     }
@@ -97,19 +111,32 @@ post-header {
       }
     }
 
-    @include interactive-elements {
+    &:where(#{$interactive-elements-selector}) {
+      padding-inline: 1rem;
+    }
+
+    &:where(ul) > li > :where(#{$interactive-elements-selector}) {
       padding-inline: 1rem;
     }
   }
 
-  // meta navigation on desktop
+  // meta navigation on desktop — split to avoid multi-selector + focus-style-custom corruption
   > [slot='global-nav-secondary'] {
     @include media.max(desktop) {
       &:where(ul) {
         flex-direction: column;
       }
 
-      @include interactive-elements {
+      &:where(#{$interactive-elements-selector}) {
+        flex-direction: row-reverse;
+        @include nav-item-block-layout;
+
+        > post-icon {
+          margin: unset;
+        }
+      }
+
+      &:where(ul) > li > :where(#{$interactive-elements-selector}) {
         flex-direction: row-reverse;
         @include nav-item-block-layout;
 
