@@ -19,7 +19,7 @@ for (const component of docs.components) {
 
   propTypes[componentName] = {};
 
-  component.props.forEach(prop => {
+  for (const prop of component.props) {
     const type = prop.type.trim();
 
     // Use the attr name (kebab-case) as key since that's what appears in HTML
@@ -36,9 +36,9 @@ for (const component of docs.components) {
     } else {
       propTypes[componentName][attrName] = 'string';
     }
-  });
+  }
 }
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-fs.writeFileSync(outputPath, JSON.stringify(propTypes, null, 2), 'utf8');
+fs.writeFileSync(outputPath, JSON.stringify(propTypes, undefined, 2), 'utf8');
 console.log(`✅ prop-types.json written → ${outputPath}`);
