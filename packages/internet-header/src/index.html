@@ -25,7 +25,11 @@
     </swisspost-internet-header>
 
     <div class="container my-32">
-      <swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>
+      <swisspost-internet-breadcrumbs
+        text-home="Homepage"
+        text-breadcrumbs="Breadcrumbs"
+        text-more-items="More items"
+      ></swisspost-internet-breadcrumbs>
     </div>
 
     <!-- Portal config test -->
@@ -995,113 +999,20 @@
             "nonResponsiveHeader": "Diese Seite ist nicht für mobile Geräte konzipiert."
           }
         },
-        "breadcrumb": {
-          "a11yLabel": "Breadcrumb",
-          "asWebComponent": true,
-          "buttons": [
-            {
-              "svgIcon": {
-                "name": "3033_question-mark",
-                "classes": [],
-                "additionalAttributes": [
-                  {
-                    "name": "focusable",
-                    "value": "false"
-                  }
-                ]
-              },
-              "text": "Hilfe",
-              "overlay": {
-                "id": "help",
-                "target": "https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/info?modal=true",
-                "closeText": "Schliessen",
-                "closeIcon": {
-                  "name": "2043_cross",
-                  "classes": [],
-                  "additionalAttributes": [
-                    {
-                      "name": "focusable",
-                      "value": "false"
-                    }
-                  ]
-                },
-                "classes": ["ppm-breadcrumb-overlay__body--light"],
-                "additionalAttributes": []
-              },
-              "classes": ["btn-outline-secondary"],
-              "additionalAttributes": []
-            },
-            {
-              "svgIcon": {
-                "name": "3073_phone",
-                "classes": [],
-                "additionalAttributes": [
-                  {
-                    "name": "focusable",
-                    "value": "false"
-                  }
-                ]
-              },
-              "text": "Kontakt",
-              "overlay": {
-                "id": "phone",
-                "target": "https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/kontakt?modal=true",
-                "closeText": "Schliessen",
-                "closeIcon": {
-                  "name": "2043_cross",
-                  "classes": [],
-                  "additionalAttributes": [
-                    {
-                      "name": "focusable",
-                      "value": "false"
-                    }
-                  ]
-                },
-                "classes": ["ppm-breadcrumb-overlay__body--dark"],
-                "additionalAttributes": []
-              },
-              "classes": ["btn-outline-secondary"],
-              "additionalAttributes": []
-            }
-          ],
-          "isCentered": false,
+        "breadcrumbs": {
+          "rootUrl": "https://post.ch/de/",
           "items": [
-            {
-              "text": "Website",
-              "url": "https://post.ch/de/"
-            },
             {
               "text": "Meine Post",
               "url": "https://post.ch/de/kundencenter"
             },
             {
               "text": "Standorte und Öffnungszeiten",
-              "url": "https://places.post.ch/?lang=de"
+              "url": "https://places.post.ch/?lang=de",
+              "label": "Die label",
+              "description": "Die description"
             }
-          ],
-          "svgIconArrowRightSmall": {
-            "name": "2111_angle-small-right",
-            "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "svgIconHome": {
-            "name": "2035_home",
-            "classes": ["ppm-breadcrumb__svg-icon"],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "truncateButtonText": "Öffnen",
-          "classes": [],
-          "additionalAttributes": []
+          ]
         },
         "footer": {
           "sections": [
