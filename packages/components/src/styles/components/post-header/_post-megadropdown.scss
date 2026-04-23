@@ -23,18 +23,12 @@ post-megadropdown {
     margin: 0;
     flex-direction: column;
 
-    @include media.max(desktop) {
-      flex-direction: column;
-    }
-
     > li {
       flex: 1 0 auto !important;
     }
   }
 
-  .post-megadropdown-overview,
-  .post-megadropdown-list-title,
-  .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
+  .post-megadropdown-overview {
     @include nav-item-base;
     @include nav-item-block-layout;
 
@@ -44,12 +38,27 @@ post-megadropdown {
   }
 
   .post-megadropdown-list-title {
+    @include nav-item-base;
+    @include nav-item-block-layout;
     margin: 0;
     font-weight: 950;
     --post-nav-item-border-width: 2px;
 
+    @include media.only(desktop) {
+      font-size: 1.25rem;
+    }
+
     &:not(#{$interactive-elements-selector}) {
       pointer-events: none;
+    }
+  }
+
+  .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
+    @include nav-item-block-layout;
+
+    @include media.only(desktop) {
+      font-size: 1.25rem;
     }
   }
 
