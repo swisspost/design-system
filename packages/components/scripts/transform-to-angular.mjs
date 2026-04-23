@@ -47,15 +47,30 @@ export function transformToAngular(html) {
             .join('');
         const componentProps = propTypes[componentName] ?? {};
 
-        const convertedAttrs = attrs.replaceAll(/([\w-]+)="([^"]*)"/g, (attrMatch, name, value) => {
+        let convertedAttrs = '';
+        for (const attr of attrs.split(/\s+/)) {
+          const eqIndex = attr.indexOf('="');
+          if (eqIndex === -1) {
+            convertedAttrs += ` ${attr}`;
+            continue;
+          }
+
+          const name = attr.slice(0, eqIndex);
+          const value = attr.slice(eqIndex + 2, -1);
+
           const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);
           const type = componentProps[kebab] ?? componentProps[name];
-          if (type === 'number' && /^\d+$/.test(value)) return `[${name}]="${value}"`;
-          if (type === 'boolean') return `[${name}]="${value}"`;
-          return attrMatch;
-        });
 
-        return `${tag}${convertedAttrs}>`;
+          if (type === 'number' && /^\d+$/.test(value)) {
+            convertedAttrs += ` [${name}]="${value}"`;
+          } else if (type === 'boolean') {
+            convertedAttrs += ` [${name}]="${value}"`;
+          } else {
+            convertedAttrs += ` ${attr}`;
+          }
+        }
+
+        return `${tag}${convertedAttrs.trim()}>`;
       })
 
       // Self-closing void elements

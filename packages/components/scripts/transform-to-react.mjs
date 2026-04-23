@@ -72,25 +72,31 @@ export function transformToReact(html) {
       .replaceAll(/(<Post\w+)((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>/g, (match, tag, attrs) => {
         const componentName = tag.slice(1);
         const componentProps = propTypes[componentName] ?? {};
-        const convertedAttrs = attrs
-          .split(/\s+/)
-          .reduce((result, attr) => {
-            const eqIndex = attr.indexOf('="');
-            if (eqIndex === -1) return `${result} ${attr}`;
 
-            const name = attr.slice(0, eqIndex);
-            const value = attr.slice(eqIndex + 2, -1); // strip ="..."
+        let convertedAttrs = '';
+        for (const attr of attrs.split(/\s+/)) {
+          const eqIndex = attr.indexOf('="');
+          if (eqIndex === -1) {
+            convertedAttrs += ` ${attr}`;
+            continue;
+          }
 
-            const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);
-            const type = componentProps[kebab] ?? componentProps[name];
+          const name = attr.slice(0, eqIndex);
+          const value = attr.slice(eqIndex + 2, -1);
 
-            if (type === 'number' && /^\d+$/.test(value)) return `${result} ${name}={${value}}`;
-            if (type === 'boolean')
-              return value === 'true' ? `${result} ${name}={true}` : `${result} ${name}={false}`;
-            return `${result} ${attr}`;
-          }, '')
-          .trim();
-        return `${tag}${convertedAttrs}>`;
+          const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);
+          const type = componentProps[kebab] ?? componentProps[name];
+
+          if (type === 'number' && /^\d+$/.test(value)) {
+            convertedAttrs += ` ${name}={${value}}`;
+          } else if (type === 'boolean') {
+            convertedAttrs += value === 'true' ? ` ${name}={true}` : ` ${name}={false}`;
+          } else {
+            convertedAttrs += ` ${attr}`;
+          }
+        }
+
+        return `${tag}${convertedAttrs.trim()}>`;
       })
 
       // Self-closing void elements
