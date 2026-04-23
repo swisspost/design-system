@@ -74,7 +74,7 @@ export function transformToReact(html) {
         const componentProps = propTypes[componentName] ?? {};
 
         let convertedAttrs = '';
-        for (const attr of attrs.split(/\s+/)) {
+        for (const attr of attrs.split(/\s+/).filter(Boolean)) {
           const eqIndex = attr.indexOf('="');
           if (eqIndex === -1) {
             convertedAttrs += ` ${attr}`;
@@ -96,7 +96,7 @@ export function transformToReact(html) {
           }
         }
 
-        return `${tag}${convertedAttrs.trim()}>`;
+        return `${tag} ${convertedAttrs.trim()}>`;
       })
 
       // Self-closing void elements

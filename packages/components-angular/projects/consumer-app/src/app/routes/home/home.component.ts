@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   PostAccordion,
   PostAccordionItem,
+  PostAutocomplete,
   PostAvatar,
   PostBanner,
   PostClosebutton,
@@ -10,6 +11,8 @@ import {
   PostDatePicker,
   PostIcon,
   PostLinkarea,
+  PostListbox,
+  PostListboxOption,
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
@@ -35,6 +38,7 @@ import {
   imports: [
     PostAccordion,
     PostAccordionItem,
+    PostAutocomplete,
     PostAvatar,
     PostBanner,
     PostClosebutton,
@@ -43,6 +47,8 @@ import {
     PostDatePicker,
     PostIcon,
     PostLinkarea,
+    PostListbox,
+    PostListboxOption,
     PostMenu,
     PostMenuItem,
     PostMenuTrigger,

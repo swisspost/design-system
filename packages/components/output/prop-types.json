@@ -7,6 +7,11 @@
     "collapsed": "boolean",
     "heading-level": "number"
   },
+  "PostAutocomplete": {
+    "clearable": "boolean",
+    "filter-threshold": "number",
+    "listbox": "string"
+  },
   "PostAvatar": {
     "description": "string",
     "email": "string",
@@ -21,6 +26,8 @@
     "type": "string"
   },
   "PostBreadcrumbItem": {
+    "description": "string",
+    "label": "string",
     "url": "string"
   },
   "PostBreadcrumbs": {
@@ -56,7 +63,6 @@
     "text-switch-year": "string",
     "text-toggle-calendar": "string"
   },
-  "PostEnvTest": {},
   "PostFooter": {
     "text-footer": "string"
   },
@@ -82,11 +88,18 @@
   "PostLanguageMenuItem": {
     "active": "boolean",
     "code": "string",
+    "description": "string",
     "name": "string",
     "url": "string",
     "variant": "string"
   },
   "PostLinkarea": {},
+  "PostListbox": {},
+  "PostListboxOption": {
+    "highlighted": "boolean",
+    "selected": "boolean",
+    "value": "string"
+  },
   "PostLogo": {
     "url": "string"
   },

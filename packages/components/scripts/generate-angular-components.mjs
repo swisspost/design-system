@@ -49,9 +49,7 @@ function collectImports(entries) {
 // ─── HOME COMPONENT ───────────────────────────────────────────────────────────
 
 // Filter out layout components — home only shows non-layout components
-const homeEntries = Object.entries(components).filter(
-  ([name]) => !LAYOUT_COMPONENTS.includes(name),
-);
+const homeEntries = Object.entries(components).filter(([name]) => !LAYOUT_COMPONENTS.has(name));
 
 const homeImports = collectImports(homeEntries.map(([, e]) => e));
 
@@ -169,7 +167,7 @@ const appHtml = layoutTemplate.replaceAll(/<!-- COMPONENT:(\w+) -->/g, (_, name)
 // Collect imports only from layout components
 const allImports = collectImports(
   Object.entries(components)
-    .filter(([name]) => LAYOUT_COMPONENTS.includes(name))
+    .filter(([name]) => LAYOUT_COMPONENTS.has(name))
     .map(([, e]) => e),
 );
 

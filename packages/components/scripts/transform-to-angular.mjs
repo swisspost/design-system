@@ -70,7 +70,7 @@ export function transformToAngular(html) {
           }
         }
 
-        return `${tag}${convertedAttrs.trim()}>`;
+        return `${tag} ${convertedAttrs.trim()}>`;
       })
 
       // Self-closing void elements

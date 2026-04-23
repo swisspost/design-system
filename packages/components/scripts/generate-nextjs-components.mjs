@@ -6,8 +6,8 @@ import { transformToReact } from './transform-to-react.mjs';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const componentsPath = path.resolve(__dirname, '../output/markup-map.json');
 
-const pagePath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/page.tsx');
-const layoutPath = path.resolve(__dirname, '../../nextjs-integration/src/app/ssr/layout.tsx');
+const pagePath = path.resolve(__dirname, '../../../apps/integration-next/src/app/ssr/page.tsx');
+const layoutPath = path.resolve(__dirname, '../../../apps/integration-next/src/app/ssr/layout.tsx');
 
 const LAYOUT_COMPONENTS = new Set(['Header', 'Footer', 'BackToTop', 'Breadcrumbs']);
 
@@ -67,12 +67,12 @@ function collectImports(entries) {
 
 const pageImports = collectImports(
   Object.entries(components)
-    .filter(([name]) => !LAYOUT_COMPONENTS.includes(name))
+    .filter(([name]) => !LAYOUT_COMPONENTS.has(name))
     .map(([, entry]) => entry),
 );
 
 const rendered = Object.entries(components)
-  .filter(([name]) => !LAYOUT_COMPONENTS.includes(name))
+  .filter(([name]) => !LAYOUT_COMPONENTS.has(name))
   .map(([name, entry]) => {
     const html = getHtml(entry);
     const title = typeof entry === 'string' ? name : entry.title;
