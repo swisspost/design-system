@@ -259,7 +259,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           </a>
         </li>
         <li>
-          <a href="http://www.youtube.com/swisspost" className="btn btn-primary btn-icon">
+          <a href="https://www.youtube.com/swisspost" className="btn btn-primary btn-icon">
             <PostIcon aria-hidden="true" name="youtube" />
             <span className="visually-hidden">Youtube</span>
           </a>

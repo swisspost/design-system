@@ -74,7 +74,7 @@ export default function Home() {
       <button className="btn btn-secondary">Toggle Collapsible</button>
     </PostCollapsibleTrigger>
 
-  <PostCollapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default" dataVersion="10.0.0-next.67" dataHydrated="">
+  <PostCollapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default" data-version="10.0.0-next.67" data-hydrated="">
       <p className="border rounded p-24">This is collapsible content that can be shown or hidden.</p>
     </PostCollapsible>
 
@@ -100,10 +100,10 @@ export default function Home() {
   <h2>Menu</h2>
   <PostMenuTrigger for="menu--default">  <button className="btn btn-secondary">Open Menu</button>  </PostMenuTrigger>
 
-  <PostMenu id="menu--default" label="Menu description" dataVersion="10.0.0-next.67">
-      <PostMenuItem dataVersion="10.0.0-next.67" dataHydrated=""><a href="/first">First menu item</a></PostMenuItem>
-      <PostMenuItem dataVersion="10.0.0-next.67" dataHydrated=""><a href="/second">Second menu item</a></PostMenuItem>
-      <PostMenuItem dataVersion="10.0.0-next.67" dataHydrated=""><a href="/third">Third menu item</a></PostMenuItem>
+  <PostMenu id="menu--default" label="Menu description" data-version="10.0.0-next.67">
+      <PostMenuItem data-version="10.0.0-next.67" data-hydrated=""><a href="/first">First menu item</a></PostMenuItem>
+      <PostMenuItem data-version="10.0.0-next.67" data-hydrated=""><a href="/second">Second menu item</a></PostMenuItem>
+      <PostMenuItem data-version="10.0.0-next.67" data-hydrated=""><a href="/third">Third menu item</a></PostMenuItem>
       </PostMenu>
 
   <h2>NumberInput</h2>
@@ -121,7 +121,7 @@ export default function Home() {
     </PostPopoverTrigger>
 
   <h2>Popover</h2>
-  <PostPopover id="popover-one" textClose="Close" dataVersion="10.0.0-next.67" dataHydrated="">
+  <PostPopover id="popover-one" textClose="Close" data-version="10.0.0-next.67" data-hydrated="">
       <p id="testtext">This is a <a href="">test</a></p>
     </PostPopover>
 
@@ -159,7 +159,7 @@ export default function Home() {
   <PostTooltipTrigger for="tooltip-one">
       <button className="btn btn-secondary btn-large">Button</button></PostTooltipTrigger>
 
-  <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top" dataVersion="10.0.0-next.67">
+  <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top" data-version="10.0.0-next.67">
       Hi there 👋
     </PostTooltip>
       <h2>React Server Icons</h2>
