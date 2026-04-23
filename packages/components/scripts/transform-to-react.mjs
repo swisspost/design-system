@@ -64,8 +64,8 @@ export function transformToReact(html) {
       // headingLevel="3" → headingLevel={3} (number)
       // multiple="true" → multiple={true} (boolean)
       // name="search" → name="search" (string, unchanged)
-      .replaceAll(/(<Post\w+)((?:\s+[^>]*?)*?)>/g, (match, tag, attrs) => {
-        const componentName = tag.replaceAll('<', '');
+      .replaceAll(/(<Post\w+)([^>]*)>/g, (tag, attrs) => {
+        const componentName = tag.slice(1);
         const componentProps = propTypes[componentName] ?? {};
         const convertedAttrs = attrs.replaceAll(/(\w+)="([^"]*)"/g, (attrMatch, name, value) => {
           const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);

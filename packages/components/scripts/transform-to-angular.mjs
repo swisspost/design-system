@@ -8,13 +8,22 @@ const propTypes = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '../output/prop-types.json'), 'utf-8'),
 );
 
+function removeHtmlComments(input) {
+  let sanitized;
+
+  do {
+    sanitized = input;
+    input = input.replaceAll(/<!--[\s\S]*?-->/g, '');
+  } while (input !== sanitized);
+
+  return input;
+}
+
 export function transformToAngular(html) {
   return (
-    html
-      // Remove HTML and Lit comments
-      // <!--?lit$123$--> → ''
-      .replaceAll(/<!--[\s\S]*?-->/g, '')
-
+    // Remove HTML and Lit comments
+    // <!--?lit$123$--> → ''
+    removeHtmlComments(html)
       // Convert kebab-case attributes to camelCase on post-* components (skip aria-*)
       // <post-header text-menu="Menu"> → <post-header textMenu="Menu">
       // Convert all kebab-case attributes to camelCase on post-* tags (skip aria-*)
@@ -28,7 +37,7 @@ export function transformToAngular(html) {
       // headingLevel="3" → [headingLevel]="3" (number)
       // multiple="true" → [multiple]="true" (boolean)
       // name="search" → name="search" (string, unchanged)
-      .replaceAll(/(<post-[\w-]+)((?:\s+[^>]*?)*?)>/g, (match, tag, attrs) => {
+      .replaceAll(/(<post-[\w-]+)([^>]*)>/g, (tag, attrs) => {
         const componentName =
           'Post' +
           tag

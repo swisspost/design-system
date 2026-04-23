@@ -26,7 +26,7 @@ docs.components.forEach(component => {
     const attrName = prop.attr;
     if (!attrName) return; // skip props with no attr (methods etc.)
 
-    if (/^(\d+\s*\|?\s*)+$/.test(type)) {
+    if (/^\d+(?:\s*\|\s*\d+)*$/.test(type)) {
       // e.g. "1 | 2 | 3 | 4 | 5 | 6" → number
       propTypes[componentName][attrName] = 'number';
     } else if (type === 'number') {
