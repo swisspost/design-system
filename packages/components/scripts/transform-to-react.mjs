@@ -8,13 +8,20 @@ const propTypes = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '../output/prop-types.json'), 'utf8'),
 );
 
+function removeHtmlComments(input) {
+  let sanitized;
+
+  do {
+    sanitized = input;
+    input = input.replaceAll(/<!--[\s\S]*?-->/g, '');
+  } while (input !== sanitized);
+
+  return input;
+}
+
 export function transformToReact(html) {
   return (
-    html
-      // Remove HTML and Lit comments
-      // <!--?lit$123$--> → ''
-      .replaceAll(/<!--[\s\S]*?-->/g, '')
-
+    removeHtmlComments(html)
       // Convert style strings to JSX objects
       // style="color: red; font-size: 1rem" → style={{ color: 'red', fontSize: '1rem' }}
       .replaceAll(/style="([^"]*)"/g, (_, styles) => {
@@ -65,16 +72,24 @@ export function transformToReact(html) {
       .replaceAll(/(<Post\w+)((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>/g, (match, tag, attrs) => {
         const componentName = tag.slice(1);
         const componentProps = propTypes[componentName] ?? {};
-        const convertedAttrs = attrs.replaceAll(
-          /(\w+)="([^"]{0,9999})"/g,
-          (attrMatch, name, value) => {
+        const convertedAttrs = attrs
+          .split(/\s+/)
+          .reduce((result, attr) => {
+            const eqIndex = attr.indexOf('="');
+            if (eqIndex === -1) return `${result} ${attr}`;
+
+            const name = attr.slice(0, eqIndex);
+            const value = attr.slice(eqIndex + 2, -1); // strip ="..."
+
             const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);
             const type = componentProps[kebab] ?? componentProps[name];
-            if (type === 'number' && /^\d+$/.test(value)) return `${name}={${value}}`;
-            if (type === 'boolean') return value === 'true' ? `${name}={true}` : `${name}={false}`;
-            return attrMatch;
-          },
-        );
+
+            if (type === 'number' && /^\d+$/.test(value)) return `${result} ${name}={${value}}`;
+            if (type === 'boolean')
+              return value === 'true' ? `${result} ${name}={true}` : `${result} ${name}={false}`;
+            return `${result} ${attr}`;
+          }, '')
+          .trim();
         return `${tag}${convertedAttrs}>`;
       })
 
@@ -87,7 +102,7 @@ export function transformToReact(html) {
 
       // Self-closing empty Post components
       // <PostBackToTop></PostBackToTop> → <PostBackToTop />
-      .replaceAll(/<(Post[A-Za-z]+)([^>]*)>[\t\n\r ]*<\/\1>/g, '<$1$2 />')
+      .replaceAll(/<(Post[A-Za-z]+)((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>[\t\n\r ]*<\/\1>/g, '<$1$2 />')
 
       // Clean up multiple blank lines
       .replaceAll(/\n{3,}/g, '\n\n')
