@@ -1,4 +1,4 @@
-@use '@swisspost/design-system-styles/mixins/media';
+@use '../../mixins/media';
 
 @use './mixins' as *;
 @use './placeholders' as *;
@@ -25,7 +25,7 @@ post-megadropdown {
   .post-megadropdown-overview,
   .post-megadropdown-list-title,
   .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
-    @extend %header-control;
+    @include nav-item-base;
     @include nav-item-block-layout;
 
     @include media.only(desktop) {

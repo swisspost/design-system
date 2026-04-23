@@ -33,7 +33,7 @@ post-header {
   // all slotted links and buttons
   > * {
     @include interactive-elements {
-      @extend %header-control;
+      @include nav-item-base;
     }
   }
 

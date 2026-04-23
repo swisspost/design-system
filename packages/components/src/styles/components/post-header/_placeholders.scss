@@ -1,5 +1,5 @@
-@use '@swisspost/design-system-styles/mixins/list';
-@use '@swisspost/design-system-styles/mixins/media';
+@use '../../mixins/list';
+@use '../../mixins/media';
 
 @use './mixins' as *;
 
@@ -14,21 +14,5 @@
 
   > li {
     flex: 1 0 auto !important;
-  }
-}
-
-%header-control {
-  @include nav-item-base;
-}
-
-%mainnavigation-control {
-  @extend %header-control;
-  @include nav-item-block-layout;
-  height: 100%;
-
-  @include media.only(desktop) {
-    padding: 1rem 0.75rem;
-    gap: 0.5rem;
-    border-bottom: none;
   }
 }
