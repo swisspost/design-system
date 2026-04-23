@@ -20,8 +20,7 @@ if (!fs.existsSync(componentsPath)) {
 const components = JSON.parse(fs.readFileSync(componentsPath, 'utf8'));
 
 if (Object.keys(components).length === 0) {
-  console.log('⚠️ No components found in markup-map.json — run Cypress tests first');
-  process.exit(0);
+  throw new Error('⚠️ No components found in markup-map.json — run Cypress tests first');
 }
 
 // Extract raw HTML from entry (plain string or { html, title } object)
@@ -32,8 +31,8 @@ function getHtml(entry) {
 // Scan HTML for post-* tags and return sorted PascalCase import names
 function collectImports(entries) {
   const allImports = new Set();
-  entries.forEach(entry => {
-    [...getHtml(entry).matchAll(/<(post-[a-z-]+)/g)].forEach(([, tag]) => {
+  for (const entry of entries) {
+    for (const [, tag] of getHtml(entry).matchAll(/<(post-[a-z-]+)/g)) {
       allImports.add(
         'Post' +
           tag
@@ -42,8 +41,8 @@ function collectImports(entries) {
             .map(p => p.charAt(0).toUpperCase() + p.slice(1))
             .join(''),
       );
-    });
-  });
+    }
+  }
   return [...allImports].sort((a, b) => a.localeCompare(b));
 }
 

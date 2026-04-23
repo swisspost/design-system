@@ -38,8 +38,7 @@ if (!fs.existsSync(componentsPath)) {
 const components = JSON.parse(fs.readFileSync(componentsPath, 'utf8'));
 
 if (Object.keys(components).length === 0) {
-  console.log('⚠️ No components found in markup-map.json — run Cypress tests first');
-  process.exit(0);
+  throw new Error('⚠️ No components found in markup-map.json — run Cypress tests first');
 }
 
 function getHtml(entry) {
@@ -48,9 +47,9 @@ function getHtml(entry) {
 
 function collectImports(entries) {
   const allImports = new Set();
-  entries.forEach(entry => {
+  for (const entry of entries) {
     const html = getHtml(entry);
-    [...html.matchAll(/<(post-[a-z-]+)/g)].forEach(([, tag]) => {
+    for (const [, tag] of html.matchAll(/<(post-[a-z-]+)/g)) {
       const pascal =
         'Post' +
         tag
@@ -59,8 +58,8 @@ function collectImports(entries) {
           .map(p => p.charAt(0).toUpperCase() + p.slice(1))
           .join('');
       allImports.add(pascal);
-    });
-  });
+    }
+  }
   return allImports;
 }
 

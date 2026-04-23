@@ -55,10 +55,10 @@ Cypress.Commands.add('getComponent', (component: string, id: string, story = 'de
 Cypress.Commands.add('getComponents', (id: string, story: string, ...components: string[]) => {
   cy.visit(`/iframe.html?id=${id}--${story}`);
 
-  components.forEach(component => {
+  for (const component of components) {
     const alias = component.replace(/^post-/, '');
     cy.get(`post-${alias}[data-hydrated]`, { timeout: 30000 }).as(alias);
-  });
+  }
 
   cy.injectAxe();
 });

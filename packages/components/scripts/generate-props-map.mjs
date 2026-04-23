@@ -10,7 +10,7 @@ const docs = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
 
 const propTypes = {};
 
-docs.components.forEach(component => {
+for (const component of docs.components) {
   // post-accordion → PostAccordion
   const componentName = component.tag
     .split('-')
@@ -37,7 +37,7 @@ docs.components.forEach(component => {
       propTypes[componentName][attrName] = 'string';
     }
   });
-});
+}
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, JSON.stringify(propTypes, null, 2), 'utf8');
