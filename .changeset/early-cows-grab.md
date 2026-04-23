@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed collapse animation to prevent content from overflowing during the animation.
+Fixed expanding animation of collapsible/accordion to prevent content from overflowing during the opening phase.
