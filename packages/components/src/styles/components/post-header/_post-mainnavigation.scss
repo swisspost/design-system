@@ -28,17 +28,27 @@ post-mainnavigation {
     }
   }
 
-  > * {
-    @include interactive-elements {
-      @include nav-item-base;
-      @include nav-item-block-layout;
-      height: 100%;
+  > *:where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
+    @include nav-item-block-layout;
+    height: 100%;
 
-      @include media.only(desktop) {
-        padding: 1rem 0.75rem;
-        gap: 0.5rem;
-        border-bottom: none;
-      }
+    @include media.only(desktop) {
+      padding: 1rem 0.75rem;
+      gap: 0.5rem;
+      border-bottom: none;
+    }
+  }
+
+  > *:where(ul) > li > :where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
+    @include nav-item-block-layout;
+    height: 100%;
+
+    @include media.only(desktop) {
+      padding: 1rem 0.75rem;
+      gap: 0.5rem;
+      border-bottom: none;
     }
   }
 
