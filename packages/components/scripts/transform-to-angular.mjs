@@ -27,7 +27,7 @@ export function transformToAngular(html) {
       // Convert kebab-case attributes to camelCase on post-* components (skip aria-*)
       // <post-header text-menu="Menu"> → <post-header textMenu="Menu">
       // Convert all kebab-case attributes to camelCase on post-* tags (skip aria-*)
-      .replaceAll(/<post-[\w-]+(?:[^>]*)>/g, tag =>
+      .replaceAll(/<post-[\w-]+[^>]*>/g, tag =>
         tag.replaceAll(/\s(?!aria-)([a-z]+(?:-[a-z]+)+)=/g, attr => {
           return attr.replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase());
         }),
@@ -47,7 +47,7 @@ export function transformToAngular(html) {
             .join('');
         const componentProps = propTypes[componentName] ?? {};
 
-        const convertedAttrs = attrs.replaceAll(/(\w+)="([^"]*?)"/g, (attrMatch, name, value) => {
+        const convertedAttrs = attrs.replaceAll(/(\w+)="([^"]*)"/g, (attrMatch, name, value) => {
           const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);
           const type = componentProps[kebab] ?? componentProps[name];
           if (type === 'number' && /^\d+$/.test(value)) return `[${name}]="${value}"`;

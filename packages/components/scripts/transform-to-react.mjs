@@ -52,7 +52,7 @@ export function transformToReact(html) {
 
       // Convert kebab-case attributes to camelCase on Post components (skip aria-*)
       // <PostHeader text-menu="Menu"> → <PostHeader textMenu="Menu">
-      .replaceAll(/<Post[A-Za-z]+[^>]*>/g, tag =>
+      .replaceAll(/<Post[A-Za-z]+((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>/g, tag =>
         tag.replaceAll(/\s(?!aria-)([a-z]+(?:-[a-z]+)+)=/g, attr =>
           attr.replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase()),
         ),
@@ -62,16 +62,19 @@ export function transformToReact(html) {
       // headingLevel="3" → headingLevel={3} (number)
       // multiple="true" → multiple={true} (boolean)
       // name="search" → name="search" (string, unchanged)
-      .replaceAll(/(<Post\w+)([^>]*)>/g, (match, tag, attrs) => {
+      .replaceAll(/(<Post\w+)((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>/g, (match, tag, attrs) => {
         const componentName = tag.slice(1);
         const componentProps = propTypes[componentName] ?? {};
-        const convertedAttrs = attrs.replaceAll(/(\w+)="([^"]*)"/g, (attrMatch, name, value) => {
-          const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);
-          const type = componentProps[kebab] ?? componentProps[name];
-          if (type === 'number' && /^\d+$/.test(value)) return `${name}={${value}}`;
-          if (type === 'boolean') return value === 'true' ? `${name}={true}` : `${name}={false}`;
-          return attrMatch;
-        });
+        const convertedAttrs = attrs.replaceAll(
+          /(\w+)="([^"]{0,9999})"/g,
+          (attrMatch, name, value) => {
+            const kebab = name.replaceAll(/([A-Z])/g, c => `-${c.toLowerCase()}`);
+            const type = componentProps[kebab] ?? componentProps[name];
+            if (type === 'number' && /^\d+$/.test(value)) return `${name}={${value}}`;
+            if (type === 'boolean') return value === 'true' ? `${name}={true}` : `${name}={false}`;
+            return attrMatch;
+          },
+        );
         return `${tag}${convertedAttrs}>`;
       })
 
