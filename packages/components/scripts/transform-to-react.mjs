@@ -1,11 +1,11 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const propTypes = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '../output/prop-types.json'), 'utf-8'),
+  fs.readFileSync(path.resolve(__dirname, '../output/prop-types.json'), 'utf8'),
 );
 
 export function transformToReact(html) {

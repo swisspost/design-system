@@ -1,5 +1,5 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToReact } from './transform-to-react.mjs';
 
@@ -32,10 +32,10 @@ const layoutTemplate = `export default function Layout({ children }: { readonly 
 // Create markup-map.json if it doesn't exist
 fs.mkdirSync(path.dirname(componentsPath), { recursive: true });
 if (!fs.existsSync(componentsPath)) {
-  fs.writeFileSync(componentsPath, '{}', 'utf-8');
+  fs.writeFileSync(componentsPath, '{}', 'utf8');
 }
 
-const components = JSON.parse(fs.readFileSync(componentsPath, 'utf-8'));
+const components = JSON.parse(fs.readFileSync(componentsPath, 'utf8'));
 
 if (Object.keys(components).length === 0) {
   console.log('⚠️ No components found in markup-map.json — run Cypress tests first');
@@ -140,7 +140,7 @@ ${rendered}
 `;
 
 fs.mkdirSync(path.dirname(pagePath), { recursive: true });
-fs.writeFileSync(pagePath, homepage, 'utf-8');
+fs.writeFileSync(pagePath, homepage, 'utf8');
 console.log(`✅ page.tsx written → ${pagePath}`);
 
 // ─── LAYOUT.TSX ───────────────────────────────────────────────────────────────
@@ -164,5 +164,5 @@ result = `import { ${[...layoutImports].sort((a, b) => a.localeCompare(b)).join(
 result = result.replaceAll(/^[\t ]*\r?\n/gm, '');
 
 fs.mkdirSync(path.dirname(layoutPath), { recursive: true });
-fs.writeFileSync(layoutPath, result, 'utf-8');
+fs.writeFileSync(layoutPath, result, 'utf8');
 console.log(`✅ layout.tsx written → ${layoutPath}`);

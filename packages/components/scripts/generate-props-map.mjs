@@ -1,12 +1,12 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const inputPath = path.resolve(__dirname, '../dist/docs.json');
 const outputPath = '../components/output/prop-types.json';
 
-const docs = JSON.parse(fs.readFileSync(inputPath, 'utf-8'));
+const docs = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
 
 const propTypes = {};
 
@@ -40,5 +40,5 @@ docs.components.forEach(component => {
 });
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-fs.writeFileSync(outputPath, JSON.stringify(propTypes, null, 2), 'utf-8');
+fs.writeFileSync(outputPath, JSON.stringify(propTypes, null, 2), 'utf8');
 console.log(`✅ prop-types.json written → ${outputPath}`);

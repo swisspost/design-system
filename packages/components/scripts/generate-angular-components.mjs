@@ -1,5 +1,5 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToAngular } from './transform-to-angular.mjs';
 
@@ -13,11 +13,11 @@ const LAYOUT_COMPONENTS = new Set(['Header', 'Footer', 'BackToTop', 'Breadcrumbs
 // Ensure markup-map.json exists
 fs.mkdirSync(path.dirname(componentsPath), { recursive: true });
 if (!fs.existsSync(componentsPath)) {
-  fs.writeFileSync(componentsPath, '{}', 'utf-8');
+  fs.writeFileSync(componentsPath, '{}', 'utf8');
   console.log(`✅ Created ${componentsPath}`);
 }
 
-const components = JSON.parse(fs.readFileSync(componentsPath, 'utf-8'));
+const components = JSON.parse(fs.readFileSync(componentsPath, 'utf8'));
 
 if (Object.keys(components).length === 0) {
   console.log('⚠️ No components found in markup-map.json — run Cypress tests first');
@@ -126,8 +126,8 @@ export class HomeComponent {}
 
 const homePath = path.join(basePath, 'routes/home');
 fs.mkdirSync(homePath, { recursive: true });
-fs.writeFileSync(path.join(homePath, 'home.component.html'), homeHtml, 'utf-8');
-fs.writeFileSync(path.join(homePath, 'home.component.ts'), homeTs, 'utf-8');
+fs.writeFileSync(path.join(homePath, 'home.component.html'), homeHtml, 'utf8');
+fs.writeFileSync(path.join(homePath, 'home.component.ts'), homeTs, 'utf8');
 console.log(`✅ home.component.html + .ts written`);
 
 // ─── APP COMPONENT ────────────────────────────────────────────────────────────
@@ -177,7 +177,7 @@ const allImports = collectImports(
 // Update only the imports in the existing app.component.ts
 if (fs.existsSync(appTsPath)) {
   const updated = fs
-    .readFileSync(appTsPath, 'utf-8')
+    .readFileSync(appTsPath, 'utf8')
     .replace(
       /import \{[^}]+\} from 'components';/,
       `import {\n  ${allImports.join(',\n  ')},\n} from 'components';`,
@@ -186,12 +186,12 @@ if (fs.existsSync(appTsPath)) {
       /imports: \[\n([\s\S]*?)\],/,
       `imports: [\n    CommonModule,\n    RouterOutlet,\n    RouterLink,\n    ${allImports.join(',\n    ')},\n  ],`,
     );
-  fs.writeFileSync(appTsPath, updated, 'utf-8');
+  fs.writeFileSync(appTsPath, updated, 'utf8');
   console.log(`✅ app.component.ts imports updated`);
 } else {
   console.log('⚠️ app.component.ts not found — skipping');
 }
 
 // Write generated app HTML
-fs.writeFileSync(path.join(basePath, 'app.component.html'), appHtml, 'utf-8');
+fs.writeFileSync(path.join(basePath, 'app.component.html'), appHtml, 'utf8');
 console.log(`✅ app.component.html written`);

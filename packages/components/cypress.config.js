@@ -1,7 +1,7 @@
 import { defineConfig } from 'cypress';
 import pkg from './package.json' with { type: 'json' };
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -20,7 +20,7 @@ export default defineConfig({
     setupNodeEvents(on) {
       on('before:run', () => {
         fs.mkdirSync(path.dirname(markupMapPath), { recursive: true });
-        fs.writeFileSync(markupMapPath, '{}', 'utf-8');
+        fs.writeFileSync(markupMapPath, '{}', 'utf8');
         console.log('✅ Cleared markup-map.json');
       });
 
@@ -29,10 +29,10 @@ export default defineConfig({
           try {
             fs.mkdirSync(path.dirname(filePath), { recursive: true });
             if (!fs.existsSync(filePath)) {
-              fs.writeFileSync(filePath, '{}', 'utf-8');
+              fs.writeFileSync(filePath, '{}', 'utf8');
               return {};
             }
-            return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+            return JSON.parse(fs.readFileSync(filePath, 'utf8'));
           } catch {
             return {};
           }
