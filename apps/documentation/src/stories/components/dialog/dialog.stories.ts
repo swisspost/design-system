@@ -15,9 +15,11 @@ const meta: Meta = {
     title: 'Dialog',
     content: 'This is a dialog',
     type: 'default',
+    variant: 'default',
     size: 'medium',
     position: 'center',
     animation: 'pop-in',
+    width: '',
     closeButton: true,
     open: false,
   },
@@ -43,9 +45,19 @@ const meta: Meta = {
       options: ['default', 'info', 'success', 'error', 'warning'],
       table: { category: 'Variant' },
     },
+    variant: {
+      name: 'Variant',
+      description: 'The visual variant of the dialog.',
+      control: {
+        type: 'radio',
+      },
+      options: ['default', 'bottom-sheet'],
+      table: { category: 'Variant' },
+    },
     size: {
       name: 'Size',
-      description: 'Max width of the dialog.',
+      description:
+        'Max width of the dialog. The bottom-sheet variant uses its own responsive width rules and ignores `data-size`.',
       control: {
         type: 'radio',
       },
@@ -54,7 +66,8 @@ const meta: Meta = {
     },
     position: {
       name: 'Position',
-      description: 'Position of the dialog on the screen',
+      description:
+        'Position of the dialog on the screen. This is deprecated for the bottom-sheet variant and should not be used.',
       control: {
         type: 'radio',
       },
@@ -63,9 +76,17 @@ const meta: Meta = {
     },
     animation: {
       name: 'Animation',
-      description: 'Choose an animation effect for showing and hidding the dialog.',
+      description:
+        'Choose an animation effect for showing and hidding the dialog. The bottom-sheet variant defaults to slide-in.',
       control: 'radio',
       options: ['pop-in', 'slide-in', 'none'],
+      table: { category: 'Variant' },
+    },
+    width: {
+      name: 'Width override',
+      description:
+        'Optional `--post-dialog-width` override. This replaces the bottom-sheet variant’s responsive default width.',
+      control: 'text',
       table: { category: 'Variant' },
     },
     closeButton: {
@@ -157,9 +178,14 @@ const getControls = () => {
 const Template = {
   render: (args: Args) => {
     const postDialogCloseButton = args.closeButton ? getCloseButton() : nothing;
+    const isBottomSheet = args.variant === 'bottom-sheet';
+    const animation =
+      (isBottomSheet && args.animation === 'slide-in') || (!isBottomSheet && args.animation === 'pop-in')
+        ? nothing
+        : args.animation;
+    const style = args.width ? `--post-dialog-width: ${args.width}` : nothing;
 
     // Don't declare default values or show empty containers
-    if (args.animation === 'pop-in') args.animation = nothing;
     if (args.position === 'center') args.position = nothing;
     if (args.size === 'medium') args.size = nothing;
 
@@ -167,10 +193,12 @@ const Template = {
       <dialog
         class="post-dialog"
         data-type="${args.type !== 'default' ? args.type : nothing}"
+        data-variant="${isBottomSheet ? args.variant : nothing}"
         data-size="${args.size}"
         data-position="${args.position}"
-        data-animation="${args.animation}"
+        data-animation="${animation}"
         open="${args.open || nothing}"
+        style="${style}"
         aria-labelledby="dialog-title"
         aria-describedby="dialog-description"
       >
@@ -248,6 +276,47 @@ const CustomContentTemplate = {
   },
 };
 
+const BottomSheetTemplate = {
+  ...Template,
+  render: (args: Args) => {
+    const postDialogCloseButton = args.closeButton ? getCloseButton() : nothing;
+    const style = args.width ? `--post-dialog-width: ${args.width}` : nothing;
+
+    return html`
+      <dialog
+        class="post-dialog"
+        data-variant="bottom-sheet"
+        data-type="${args.type !== 'default' ? args.type : nothing}"
+        data-animation="${args.animation === 'slide-in' ? nothing : args.animation}"
+        open="${args.open || nothing}"
+        style="${style}"
+        aria-labelledby="bottom-sheet-title"
+        aria-describedby="bottom-sheet-description"
+      >
+        <form method="dialog" class="dialog-grid">
+          <h3 class="dialog-header" id="bottom-sheet-title">${args.title}</h3>
+          <div class="dialog-body">
+            <p id="bottom-sheet-description">${args.content}</p>
+            <p>
+              This variant keeps the action area visible while the content region becomes scrollable.
+            </p>
+            <p>
+              Use the --post-dialog-width custom property when the default responsive width needs to
+              be adapted to the surrounding layout.
+            </p>
+            <p>
+              Additional content is included here so the bottom sheet can be inspected with a longer
+              body and an inset close button.
+            </p>
+          </div>
+          <div class="dialog-controls">${getControls()}</div>
+          ${postDialogCloseButton}
+        </form>
+      </dialog>
+    `;
+  },
+};
+
 type Story = StoryObj;
 
 export const Default: Story = {
@@ -256,6 +325,15 @@ export const Default: Story = {
 
 export const Form: Story = {
   ...FormTemplate,
+};
+
+export const BottomSheet: Story = {
+  ...BottomSheetTemplate,
+  args: {
+    variant: 'bottom-sheet',
+    animation: 'slide-in',
+    width: '',
+  },
 };
 
 export const Custom: Story = {

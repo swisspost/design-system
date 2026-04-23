@@ -46,6 +46,40 @@ import PackageTag from '@/shared/package-tag';
 
 ## Examples
 
+### Bottom sheet dialog
+
+<Canvas sourceState="shown" of={DialogStories.BottomSheet} />
+
+The bottom-sheet variant is enabled with <code>data-variant="bottom-sheet"</code>. It defaults to
+the slide-in animation, ignores <code>data-size</code>, and supports an optional
+<code>--post-dialog-width</code> custom property override.
+
+The default width follows the layout:
+
+- mobile: <code>100%</code>
+- tablet: container width
+- desktop inside <code>.container</code>: container width
+- desktop inside <code>.container-fluid</code>: <code>50%</code> of the container width
+
+The <code>data-position</code> attribute is deprecated for the bottom-sheet variant and should not
+be used.
+
+<Source
+  code={`<dialog class="post-dialog" data-variant="bottom-sheet" style="--post-dialog-width: min(100vw - 2rem, 48rem)">
+  ...
+</dialog>`}
+  language="html"
+/>
+
+<Source
+  code={`<div class="container-fluid">
+  <dialog class="post-dialog" data-variant="bottom-sheet">
+    ...
+  </dialog>
+</div>`}
+  language="html"
+/>
+
 ### Form dialog
 
 <Canvas sourceState="hidden" of={DialogStories.Form} />
