@@ -178,7 +178,7 @@ describe('header', () => {
       cy.get('@header').shadow().find(localNavNextToMainNav).should('not.exist');
     });
 
-    it('should show the local navigation next to the title', () => {
+    it('should show the local navigation next to the main navigation', () => {
       cy.get('@title').then($title => {
         $title[0].remove();
       });
@@ -199,7 +199,7 @@ describe('header', () => {
       cy.scrollTo(0, 500);
 
       // Page is scrolled down
-      cy.get('@title').should('not.be.visible');
+      cy.get('@title').should('be.visible');
       cy.get('post-togglebutton').click();
 
       // Burger menu is opened

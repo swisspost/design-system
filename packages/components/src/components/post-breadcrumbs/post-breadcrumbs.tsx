@@ -2,6 +2,13 @@ import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
 
+type BreadcrumbItem = {
+  url: string | undefined;
+  text: string;
+  description: string | undefined;
+  label: string | undefined;
+};
+
 @Component({
   tag: 'post-breadcrumbs',
   styleUrl: 'post-breadcrumbs.scss',
@@ -30,12 +37,12 @@ export class PostBreadcrumbs {
    */
   @Prop({ reflect: true }) textMoreItems!: string;
 
-  @State() breadcrumbItems: { url: string; text: string }[] = [];
+  @State() breadcrumbItems: BreadcrumbItem[] = [];
   @State() isConcatenated: boolean;
   @State() lastWindowWidth: number;
 
   private breadcrumbsNavRef?: HTMLElement;
-  private lastItem: { url: string; text: string };
+  private lastItem: BreadcrumbItem;
 
   @Watch('homeUrl')
   validateHomeUrl() {
@@ -57,10 +64,6 @@ export class PostBreadcrumbs {
     checkRequiredAndType(this, 'textMoreItems', 'string');
   }
 
-  componentWillLoad() {
-    this.updateBreadcrumbItems();
-  }
-
   componentDidLoad() {
     this.validateHomeUrl();
     this.validateTextHome();
@@ -68,6 +71,9 @@ export class PostBreadcrumbs {
     this.validateTextMoreItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbsRef();
+    requestAnimationFrame(() => {
+      this.updateBreadcrumbItems();
+    });
   }
 
   disconnectedCallback() {
@@ -88,7 +94,9 @@ export class PostBreadcrumbs {
     this.breadcrumbItems = Array.from(this.host.querySelectorAll('post-breadcrumb-item')).map(
       item => ({
         text: item.textContent || '',
-        url: item.getAttribute('url') || '',
+        url: item.getAttribute('url') ?? undefined,
+        description: item.getAttribute('description') ?? undefined,
+        label: item.getAttribute('label') ?? undefined,
       }),
     );
     this.lastItem = this.breadcrumbItems.at(-1);
@@ -190,7 +198,17 @@ export class PostBreadcrumbs {
                           }
                         }}
                       >
-                        {item.url ? <a href={item.url}>{item.text}</a> : <span>{item.text}</span>}
+                        {item.url ? (
+                          <a
+                            href={item.url}
+                            aria-label={item.label}
+                            aria-description={item.description}
+                          >
+                            {item.text}
+                          </a>
+                        ) : (
+                          <span>{item.text}</span>
+                        )}
                       </post-menu-item>
                     ))}
                   </post-menu>
@@ -199,7 +217,12 @@ export class PostBreadcrumbs {
             ) : (
               visibleItems.map(item => (
                 <li>
-                  <post-breadcrumb-item url={item.url} key={item.url || item.text}>
+                  <post-breadcrumb-item
+                    url={item.url}
+                    label={item.label}
+                    description={item.description}
+                    key={item.url || item.text}
+                  >
                     {item.text}
                   </post-breadcrumb-item>
                 </li>
@@ -208,7 +231,12 @@ export class PostBreadcrumbs {
 
             {this.lastItem && (
               <li aria-current="page">
-                <post-breadcrumb-item url={this.lastItem.url} tabindex={-1}>
+                <post-breadcrumb-item
+                  url={this.lastItem.url}
+                  label={this.lastItem.label}
+                  description={this.lastItem.description}
+                  tabindex={-1}
+                >
                   {this.lastItem.text}
                 </post-breadcrumb-item>
               </li>
@@ -225,6 +253,8 @@ export class PostBreadcrumbs {
               <post-breadcrumb-item
                 url={item.url}
                 key={`hidden-${item.url || item.text}`}
+                label={item.label}
+                description={item.description}
                 class="hidden-breadcrumb-item"
               >
                 {item.text}
