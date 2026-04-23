@@ -52,19 +52,17 @@ export function transformToReact(html) {
 
       // Convert kebab-case attributes to camelCase on Post components (skip aria-*)
       // <PostHeader text-menu="Menu"> → <PostHeader textMenu="Menu">
-      .replaceAll(
-        /(<Post[A-Za-z]+[^>]*?)(\s(?!aria-)([a-z]+(?:-[a-z]+)+)=)/g,
-        (match, tag, attr) => {
-          const camel = attr.replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase());
-          return `${tag}${camel}`;
-        },
+      .replaceAll(/<Post[A-Za-z]+[^>]*>/g, tag =>
+        tag.replaceAll(/\s(?!aria-)([a-z]+(?:-[a-z]+)+)=/g, attr =>
+          attr.replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase()),
+        ),
       )
 
       // Type-aware attribute conversion using prop-types.json
       // headingLevel="3" → headingLevel={3} (number)
       // multiple="true" → multiple={true} (boolean)
       // name="search" → name="search" (string, unchanged)
-      .replaceAll(/(<Post\w+)([^>]*)>/g, (tag, attrs) => {
+      .replaceAll(/(<Post\w+)([^>]*)>/g, (match, tag, attrs) => {
         const componentName = tag.slice(1);
         const componentProps = propTypes[componentName] ?? {};
         const convertedAttrs = attrs.replaceAll(/(\w+)="([^"]*)"/g, (attrMatch, name, value) => {
@@ -86,13 +84,13 @@ export function transformToReact(html) {
 
       // Self-closing empty Post components
       // <PostBackToTop></PostBackToTop> → <PostBackToTop />
-      .replaceAll(/<(Post[A-Za-z]+)([^>]*)>\s*<\/\1>/g, '<$1$2 />')
+      .replaceAll(/<(Post[A-Za-z]+)([^>]*)>[\t\n\r ]*<\/\1>/g, '<$1$2 />')
 
       // Clean up multiple blank lines
       .replaceAll(/\n{3,}/g, '\n\n')
 
       // Remove empty lines
-      .replaceAll(/^\s*[\r\n]/gm, '')
+      .replaceAll(/^[\t ]*\r?\n/gm, '')
 
       .trim()
   );

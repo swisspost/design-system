@@ -161,7 +161,7 @@ result = result
   .replace(/^import \{[^}]*\} from '@swisspost\/design-system-components-react\/server';\n?/m, '');
 
 result = `import { ${[...layoutImports].sort((a, b) => a.localeCompare(b)).join(', ')} } from '@swisspost/design-system-components-react/server';\n\n${result}`;
-result = result.replaceAll(/^\s*[\r\n]/gm, '');
+result = result.replaceAll(/^[\t ]*\r?\n/gm, '');
 
 fs.mkdirSync(path.dirname(layoutPath), { recursive: true });
 fs.writeFileSync(layoutPath, result, 'utf-8');
