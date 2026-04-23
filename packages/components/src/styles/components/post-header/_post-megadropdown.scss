@@ -1,7 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/list';
 
 @use './mixins' as *;
-@use './placeholders' as *;
 
 post-megadropdown {
   .row {
@@ -18,8 +18,18 @@ post-megadropdown {
   }
 
   .post-megadropdown-list {
-    @extend %header-list;
+    @include list.list-inline;
+    gap: 0 0.25rem;
+    margin: 0;
     flex-direction: column;
+
+    @include media.max(desktop) {
+      flex-direction: column;
+    }
+
+    > li {
+      flex: 1 0 auto !important;
+    }
   }
 
   .post-megadropdown-overview,

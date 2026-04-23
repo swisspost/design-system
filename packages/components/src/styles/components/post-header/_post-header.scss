@@ -1,9 +1,9 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/list';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 
 @use './mixins' as *;
-@use './placeholders' as *;
 
 body:has(post-header) {
   scroll-padding-top: var(--post-header-height);
@@ -27,7 +27,17 @@ post-header {
 
   // all header lists
   > ul {
-    @extend %header-list;
+    @include list.list-inline;
+    gap: 0 0.25rem;
+    margin: 0;
+
+    @include media.max(desktop) {
+      flex-direction: column;
+    }
+
+    > li {
+      flex: 1 0 auto !important;
+    }
   }
 
   // all slotted links and buttons

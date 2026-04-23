@@ -149,7 +149,7 @@ post-header:not(:has([slot='main-nav'])) {
 
   // Override when mobile menu is open and page is scrolled
   &:has([data-menu-extended]) {
-    --post-header-height: (
+    --post-header-height: calc(
       var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
     );
   }
