@@ -24,7 +24,7 @@ for (const component of docs.components) {
 
     // Use the attr name (kebab-case) as key since that's what appears in HTML
     const attrName = prop.attr;
-    if (!attrName) return; // skip props with no attr (methods etc.)
+    if (!attrName) continue; // skip props with no attr (methods etc.)
 
     if (/^\d+(?:\s*\|\s*\d+)*$/.test(type)) {
       // e.g. "1 | 2 | 3 | 4 | 5 | 6" → number
