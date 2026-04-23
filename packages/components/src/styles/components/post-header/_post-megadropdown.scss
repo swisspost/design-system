@@ -31,9 +31,14 @@ post-megadropdown {
   .post-megadropdown-overview {
     @include nav-item-base;
     @include nav-item-block-layout;
+    margin-block: 0 1rem;
 
     @include media.only(desktop) {
       font-size: 1.25rem;
+    }
+
+    &:first-child {
+      margin-block-start: -0.5rem;
     }
   }
 
@@ -59,14 +64,6 @@ post-megadropdown {
 
     @include media.only(desktop) {
       font-size: 1.25rem;
-    }
-  }
-
-  .post-megadropdown-overview {
-    margin-block: 0 1rem;
-
-    &:first-child {
-      margin-block-start: -0.5rem;
     }
   }
 }
