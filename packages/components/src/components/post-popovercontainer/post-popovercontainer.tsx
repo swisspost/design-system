@@ -402,7 +402,7 @@ export class PostPopovercontainer {
         ? Number.parseFloat(arrowSizeValue) * rootFontSize
         : Number.parseFloat(arrowSizeValue);
 
-      const halfSide = -0.5 * arrowSizePx;
+      const halfSide = -0.46 * arrowSizePx;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {

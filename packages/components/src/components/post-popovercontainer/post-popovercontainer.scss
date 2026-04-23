@@ -55,6 +55,7 @@
     rotate: $arrow-rotation;
     pointer-events: none;
     z-index: -1;
+    box-shadow: 1px 1px 0 var(--post-overlay-element-arrow-color-border, transparent);
 
     &[dynamic-placement='top'] {
       border-bottom-right-radius: 2px;

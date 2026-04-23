@@ -4,9 +4,10 @@
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/variables/spacing';
 @use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
 
-tokens.$default-map: utilities.$post-spacing;
+tokens.$default-map: components.$post-tooltip;
 
 :host {
   display: none;
@@ -16,7 +17,11 @@ tokens.$default-map: utilities.$post-spacing;
   display: contents;
 }
 
-// Creates a safe space around the popovercontainer for save pointer crossing between trigger and tooltip
+post-popovercontainer {
+  --post-overlay-element-arrow-color-border: #{tokens.get('post-tooltip-color-border')};
+}
+
+// creates a safe space around the popovercontainer for safe pointer crossing between trigger and tooltip
 post-popovercontainer[arrow]::after {
   position: absolute;
   content: '';
@@ -25,12 +30,12 @@ post-popovercontainer[arrow]::after {
 }
 
 post-popovercontainer::part(post-popovercontainer-content) {
-  color: var(--post-current-fg);
-  background-color: var(--post-current-bg);
-  padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
+  border: #{tokens.get('post-tooltip-color-border')} #{tokens.get('post-tooltip-border-width')} solid ;
+  border-radius: #{tokens.get('post-tooltip-border-radius')};
+  padding: #{tokens.get('post-tooltip-padding-block')} #{tokens.get('post-tooltip-padding-inline')};
+  font-size: #{tokens.get('post-tooltip-font-size')};
   max-width: var(--post-tooltip-max-width, 280px);
   width: inherit;
-  min-height: 32px;
   word-wrap: break-word;
   white-space: normal;
 }
