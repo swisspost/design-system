@@ -60,7 +60,7 @@ export function transformToReact(html) {
       // Convert kebab-case attributes to camelCase on Post components (skip aria-*)
       // <PostHeader text-menu="Menu"> → <PostHeader textMenu="Menu">
       .replaceAll(/<Post[A-Za-z]+((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>/g, tag =>
-        tag.replaceAll(/\s(?!aria-)([a-z]+(?:-[a-z]+)+)=/g, attr =>
+        tag.replaceAll(/\s(?!aria-)(?!data-)([a-z]+(?:-[a-z]+)+)=/g, attr =>
           attr.replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase()),
         ),
       )
