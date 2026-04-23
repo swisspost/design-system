@@ -1,7 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/mixins/list';
 
 @use './mixins' as *;
+@use './placeholders' as *;
 
 post-mainnavigation {
   grid-area: main-nav;
@@ -11,21 +11,11 @@ post-mainnavigation {
   }
 
   > ul {
-    @include list.list-inline;
-    gap: 0 0.25rem;
-    margin: 0;
+    @extend %header-list;
     column-gap: 0;
     height: 100%;
     align-items: stretch;
     flex-wrap: nowrap;
-
-    @include media.max(desktop) {
-      flex-direction: column;
-    }
-
-    > li {
-      flex: 1 0 auto !important;
-    }
   }
 
   > *:where(#{$interactive-elements-selector}) {
