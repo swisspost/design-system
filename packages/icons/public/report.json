@@ -33628,6 +33628,67 @@
       "modifiedAt": "2026-04-01T05:05:04.223Z"
     },
     {
+      "uuid": "2e803da0-3a5a-11f1-bdb3-0050568d2654",
+      "id": 10045884,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10045884/storage/MDEwMDQ1ODgzLzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Managed Detection & Response Service",
+          "Service géré de détection et de réponse",
+          "Servizio di rilevamento e risposta gestito"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2778.svg",
+        "basename": "2778",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-17T12:37:22.000Z",
+      "modifiedAt": "2026-04-18T12:05:07.723Z"
+    },
+    {
+      "uuid": "bea26f20-3a5a-11f1-bdb3-0050568d2654",
+      "id": 10045896,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10045896/storage/MDEwMDQ1ODk1LzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Customer portal",
+          "Kundenportal",
+          "Portail clients",
+          "Portale clienti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2779.svg",
+        "basename": "2779",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-17T12:41:24.000Z",
+      "modifiedAt": "2026-04-18T12:05:07.723Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -46079,37 +46140,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:43.000Z"
-    },
-    {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
       "id": 352299,
       "type": "picture.pictogram.",
@@ -46139,6 +46169,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:42.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:43.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -46252,11 +46313,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-04-05T03:43:51.652Z",
+  "created": "2026-04-19T03:56:49.110Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1107
+    "success": 1109
   },
   "version": "9.11.0"
 }
