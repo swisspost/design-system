@@ -1,6 +1,6 @@
-@use '../../mixins/media';
-@use '../../functions/tokens';
-@use '../../tokens/components';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
 
 @use './mixins' as *;
 @use './placeholders' as *;

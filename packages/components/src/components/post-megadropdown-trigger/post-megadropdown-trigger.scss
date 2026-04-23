@@ -2,8 +2,8 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/helpers';
-@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
-@use '@swisspost/design-system-styles/components/header/placeholders' as *;
+@use '../../styles/components/post-header/mixins.scss' as header-mx;
+@use '../../styles/components/post-header/placeholders.scss' as *;
 
 :host {
   position: relative;
