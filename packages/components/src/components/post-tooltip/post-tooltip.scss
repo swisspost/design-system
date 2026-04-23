@@ -1,9 +1,3 @@
-@use 'sass:meta';
-@use 'sass:math';
-@use '@swisspost/design-system-styles/variables/color';
-@use '@swisspost/design-system-styles/functions/color' as color-fn;
-@use '@swisspost/design-system-styles/variables/spacing';
-@use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
 
@@ -17,10 +11,6 @@ tokens.$default-map: components.$post-tooltip;
   display: contents;
 }
 
-post-popovercontainer {
-  --post-overlay-element-arrow-color-border: #{tokens.get('post-tooltip-color-border')};
-}
-
 // creates a safe space around the popovercontainer for safe pointer crossing between trigger and tooltip
 post-popovercontainer[arrow]::after {
   position: absolute;
@@ -29,8 +19,19 @@ post-popovercontainer[arrow]::after {
   z-index: -1;
 }
 
+post-popovercontainer {
+  // feed tooltip tokens into the popovercontainer's color inheritance chain
+  // so the arrow (background-color: inherit) picks up the correct bg
+  --post-current-bg: #{tokens.get('post-tooltip-color-bg')};
+  --post-current-fg: #{tokens.get('post-tooltip-color-fg')};
+  // arrow border color consumed by post-popovercontainer.scss via box-shadow
+  --post-overlay-element-arrow-color-border: #{tokens.get('post-tooltip-color-border')};
+  // overrides the default 0px so calculatePosition offsets the arrow inward by the border width
+  --post-popovercontainer-border-width: #{tokens.get('post-tooltip-border-width')};
+}
+
 post-popovercontainer::part(post-popovercontainer-content) {
-  border: #{tokens.get('post-tooltip-color-border')} #{tokens.get('post-tooltip-border-width')} solid ;
+  border: #{tokens.get('post-tooltip-border-width')} solid #{tokens.get('post-tooltip-color-border')};
   border-radius: #{tokens.get('post-tooltip-border-radius')};
   padding: #{tokens.get('post-tooltip-padding-block')} #{tokens.get('post-tooltip-padding-inline')};
   font-size: #{tokens.get('post-tooltip-font-size')};

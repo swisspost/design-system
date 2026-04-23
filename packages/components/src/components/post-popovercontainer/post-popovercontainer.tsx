@@ -402,7 +402,17 @@ export class PostPopovercontainer {
         ? Number.parseFloat(arrowSizeValue) * rootFontSize
         : Number.parseFloat(arrowSizeValue);
 
-      const halfSide = -0.46 * arrowSizePx;
+      // read border width from arrowRef which inherits from :host — consumers can override
+      // --post-popovercontainer-border-width on the host element to adjust the arrow offset
+      const borderWidthValue = getComputedStyle(this.arrowRef)
+        .getPropertyValue('--post-popovercontainer-border-width')
+        .trim();
+
+      const borderWidthPx = borderWidthValue.endsWith('rem')
+        ? Number.parseFloat(borderWidthValue) * rootFontSize
+        : Number.parseFloat(borderWidthValue) || 0;
+
+      const halfSide = -0.5 * arrowSizePx + borderWidthPx / 2;;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {
