@@ -56,11 +56,7 @@ post-header {
     }
 
     @include media.only(mobile) {
-      &:where(#{$interactive-elements-selector}) {
-        @include nav-item-icon-only;
-      }
-
-      &:where(ul) > li > :where(#{$interactive-elements-selector}) {
+      @include interactive-elements {
         @include nav-item-icon-only;
       }
     }
@@ -69,11 +65,7 @@ post-header {
   // links and buttons remaining in the global header on tablet and mobile
   > :is([slot='global-nav-primary'], [slot='post-login']) {
     @include media.only(mobile) {
-      &:where(#{$interactive-elements-selector}) {
-        padding: 0.625rem;
-      }
-
-      &:where(ul) > li > :where(#{$interactive-elements-selector}) {
+      @include interactive-elements {
         padding: 0.625rem;
       }
     }
@@ -88,11 +80,7 @@ post-header {
     }
 
     @include media.only(mobile) {
-      &:where(#{$interactive-elements-selector}) {
-        padding: 0.25rem 0.75rem;
-      }
-
-      &:where(ul) > li > :where(#{$interactive-elements-selector}) {
+      @include interactive-elements {
         padding: 0.25rem 0.75rem;
       }
     }
@@ -111,11 +99,7 @@ post-header {
       }
     }
 
-    &:where(#{$interactive-elements-selector}) {
-      padding-inline: 1rem;
-    }
-
-    &:where(ul) > li > :where(#{$interactive-elements-selector}) {
+    @include interactive-elements {
       padding-inline: 1rem;
     }
   }
