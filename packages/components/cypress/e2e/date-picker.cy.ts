@@ -14,7 +14,7 @@ describe('Extract markup', () => {
 
 describe('date-picker', { includeShadowDom: true }, () => {
   describe('default', () => {
-    const selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
+    const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
     beforeEach(() => {
       cy.getComponent('date-picker', DATEPICKER_ID);
       cy.get('@date-picker').find('input').as('input');

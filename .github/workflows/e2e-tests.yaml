@@ -2,7 +2,7 @@ name: End to end tests
 on:
   pull_request:
     paths:
-      - 'packages/documentation/**'
+      - 'apps/documentation/**'
       - 'packages/styles/**'
       - 'packages/components/**'
       - 'packages/components-angular/**'
@@ -30,7 +30,7 @@ jobs:
           use_cache: false
 
       - name: Cache cypress
-        uses: actions/cache@565629816435f6c0b50676926c9b05c254113c0c
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}

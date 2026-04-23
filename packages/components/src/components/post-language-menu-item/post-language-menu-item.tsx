@@ -64,6 +64,16 @@ export class PostLanguageMenuItem {
   }
 
   /**
+   * A description for the language read by screen-readers for improved accessibility.
+   */
+  @Prop() description?: string;
+
+  @Watch('description')
+  validateDescription() {
+    checkEmptyOrType(this, 'description', 'string');
+  }
+
+  /**
    * The URL used for the href attribute of the internal anchor.
    * This field is optional; if not provided, a button will be used internally instead of an anchor.
    */
@@ -77,6 +87,7 @@ export class PostLanguageMenuItem {
   componentDidLoad() {
     this.validateCode();
     this.validateName();
+    this.validateDescription();
     this.validateUrl();
 
     if (!this.name && this.isNameRequired()) {
@@ -125,31 +136,39 @@ export class PostLanguageMenuItem {
       }
     };
 
-    return (
-      <Host data-version={version} role={this.variant === 'list' ? 'listitem' : undefined}>
-        {this.url ? (
-          <a
-            aria-current={this.active ? 'page' : undefined}
-            href={this.url}
-            hrefLang={lang}
-            lang={lang}
-            onClick={() => this.emitChange()}
-            onKeyDown={emitOnKeyDown}
-          >
-            <slot />
-            <span class="visually-hidden">{this.name}</span>
-          </a>
-        ) : (
-          <button
-            aria-current={this.active ? 'true' : undefined}
-            lang={lang}
-            onClick={() => this.emitChange()}
-            onKeyDown={emitOnKeyDown}
-          >
-            <slot />
-            <span class="visually-hidden">{this.name}</span>
-          </button>
-        )}
+    const interactiveElement = this.url ? (
+      <a
+        aria-current={this.active ? 'page' : undefined}
+        href={this.url}
+        hrefLang={lang}
+        lang={lang}
+        aria-description={this.description}
+        onClick={() => this.emitChange()}
+        onKeyDown={emitOnKeyDown}
+      >
+        <slot />
+        <span class="visually-hidden">{this.name}</span>
+      </a>
+    ) : (
+      <button
+        aria-current={this.active ? 'true' : undefined}
+        lang={lang}
+        aria-description={this.description}
+        onClick={() => this.emitChange()}
+        onKeyDown={emitOnKeyDown}
+      >
+        <slot />
+        <span class="visually-hidden">{this.name}</span>
+      </button>
+    );
+
+    return this.variant === 'list' ? (
+      <Host data-version={version} role="listitem">
+        {interactiveElement}
+      </Host>
+    ) : (
+      <Host data-version={version}>
+        <post-menu-item>{interactiveElement}</post-menu-item>
       </Host>
     );
   }

@@ -1,0 +1,63 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as ButtonGroupStories from './button-group.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={ButtonGroupStories} />
+
+<div className="docs-title">
+  # Button Group
+
+<link-design of={JSON.stringify(ButtonGroupStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  The button group is a container consisting of multiple buttons with similar or related actions.
+</div>
+
+<Canvas sourceState="shown" of={ButtonGroupStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ButtonGroupStories.Default} />
+</div>
+
+<StylesPackageImport components={['button-group']} />
+
+## Usage examples
+
+The following examples demonstrate the different variations of the component. These may differ in visual appearance, HTML structure, and usage context.
+
+### Direction variants
+
+A button group can be displayed either horizontally or vertically. Modifier classes are available for each breakpoint, allowing you to control when the layout switches between these orientations.
+
+**Classes:**
+
+- Horizontal (default): `.btn-group-{breakpoint}-horizontal`
+- Vertical: `.btn-group-vertical` for all breakpoints, or `.btn-group-{breakpoint}-vertical`
+
+The example below shows a vertical button group that switches to a horizontal layout at the large breakpoint.
+
+<Canvas sourceState="hidden" of={ButtonGroupStories.Direction} />
+
+### Checkboxes and radio buttons
+
+A button group can also be used with checkable inputs. In these cases, the buttons behave as form controls and may support a disabled state.
+
+<post-banner data-size="md"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>
+
+#### Checkboxes
+
+Each button can be selected or deselected independently.
+
+<Canvas sourceState="hidden" of={ButtonGroupStories.Checks} />
+
+#### Radio buttons
+
+All buttons are linked, allowing only one selection at a time.
+
+For accessibility, ensure `role="radiogroup"` is applied to the `.btn-group` parent element.
+
+<Canvas sourceState="hidden" of={ButtonGroupStories.Radios} />

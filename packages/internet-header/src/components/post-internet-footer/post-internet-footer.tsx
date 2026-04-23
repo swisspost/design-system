@@ -74,7 +74,6 @@ export class PostInternetFooter {
   }
 
   render() {
-
     // Config has not loaded yet
     if (!state.localizedConfig) {
       return null;
@@ -94,52 +93,61 @@ export class PostInternetFooter {
 
     return (
       <Host data-version={version}>
-        <post-footer text-footer={this.textFooter}>
-          {footerConfig.sections.map((section, i) => (
-            <LinkList
-              config={section}
-              titleTag="span"
-              titleSlot={`grid-${i + 1}-title`}
-              listSlot={`grid-${i + 1}`}
-            />
-          ))}
+        <post-footer textFooter={this.textFooter}>
+          {footerConfig.sections &&
+            footerConfig.sections.map((section, i) => (
+              <LinkList
+                config={section}
+                titleTag="span"
+                titleSlot={`grid-${i + 1}-title`}
+                listSlot={`grid-${i + 1}`}
+              />
+            ))}
 
-          <div slot="socialmedia">
-            <LinkList
-              config={footerConfig.socialLinks}
-              titleTag="h3"
-              linkProps={{ class: 'btn btn-primary btn-icon', hiddenText: true }}
-            />
-          </div>
+          {footerConfig.socialLinks && (
+            <div slot="socialmedia">
+              <LinkList
+                config={footerConfig.socialLinks}
+                titleTag="h3"
+                linkProps={{ class: 'btn btn-primary btn-icon', hiddenText: true }}
+              />
+            </div>
+          )}
 
-          <div slot="app">
-            <LinkList
-              config={footerConfig.appStoreLinks}
-              titleTag="h3"
-              linkProps={{ class: 'app-store-badge', hiddenText: true }}
-            />
-          </div>
+          {footerConfig.appStoreLinks && (
+            <div slot="app">
+              <LinkList
+                config={footerConfig.appStoreLinks}
+                titleTag="h3"
+                linkProps={{ class: 'app-store-badge', hiddenText: true }}
+              />
+            </div>
+          )}
 
-          <div slot="businesssectors">
-            <LinkList config={footerConfig.companyLinks} titleTag="h3" />
-          </div>
+          {footerConfig.companyLinks && (
+            <div slot="businesssectors">
+              <LinkList config={footerConfig.companyLinks} titleTag="h3" />
+            </div>
+          )}
 
-          <div slot="meta">
-            <LinkList config={footerConfig.complianceLinks} hiddenTitle={true}>
-              {this.cookieSettingsEnabled && (
-                <li>
-                  <button
-                    class="btn btn-link cookie-settings"
-                    onClick={this.handleCookieSettingsClick}
-                  >
-                    {this.textCookieSettings}
-                  </button>
-                </li>
-              )}
-            </LinkList>
-          </div>
+          {footerConfig.complianceLinks && (
+            <div slot="meta">
+              <LinkList config={footerConfig.complianceLinks} hiddenTitle={true}>
+                {this.cookieSettingsEnabled && (
+                  <li>
+                    <button
+                      class="btn btn-link cookie-settings"
+                      onClick={this.handleCookieSettingsClick}
+                    >
+                      {this.textCookieSettings}
+                    </button>
+                  </li>
+                )}
+              </LinkList>
+            </div>
+          )}
 
-          <p slot="copyright">{footerConfig.copyright}</p>
+          {footerConfig.copyright && <p slot="copyright">{footerConfig.copyright}</p>}
         </post-footer>
       </Host>
     );
