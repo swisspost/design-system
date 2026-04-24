@@ -21,6 +21,7 @@ const meta: MetaComponent = {
   },
   args: {
     id: 'main',
+    locale: '',
     inline: false,
     range: false,
     textToggleCalendar: 'Open calendar',
@@ -33,6 +34,49 @@ const meta: MetaComponent = {
     textSwitchYear: 'Switch to year view',
   },
   argTypes: {
+    locale: {
+      control: 'select',
+      options: [
+        // Common locales for Swiss Post projects
+        'en',
+        'en-GB',
+        'de',
+        'de-CH',
+        'fr',
+        'fr-CH',
+        'it',
+        'it-CH',
+        // Others supported by the air-datepicker
+        'ar',
+        'bg',
+        'ca',
+        'cs',
+        'da',
+        'el',
+        'es',
+        'eu',
+        'fi',
+        'hr',
+        'hu',
+        'id',
+        'ja',
+        'ko',
+        'nb',
+        'nl',
+        'pl',
+        'pt',
+        'ro',
+        'ru',
+        'si',
+        'sk',
+        'sl',
+        'sv',
+        'th',
+        'tr',
+        'uk',
+        'zh',
+      ],
+    },
     min: {
       control: 'text',
     },
@@ -54,30 +98,17 @@ export default meta;
 
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
-  if (args.range) {
-    return args.inline ? renderInline(args) : renderPopupRange(args);
-  } else {
-    return args.inline ? renderInline(args) : renderPopupSimple(args);
-  }
-}
-
-function renderPopupRange(args: Args) {
-  return html`
-    <post-date-picker ${spreadArgs(args)}>
-      <input class="form-control" type="text"></input>
-      <p class="form-hint">Format: DD.MM.YYYY - DD.MM.YYYY</p>
-    </post-date-picker>`;
+  return args.inline ? renderInline(args) : renderPopup(args);
 }
 
 function renderInline(args: Args) {
   return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
 }
 
-function renderPopupSimple(args: Args) {
+function renderPopup(args: Args) {
   return html`
     <post-date-picker ${spreadArgs(args)}>
       <input class="form-control" type="text"></input>
-      <p class="form-hint">Format: DD.MM.YYYY</p>
     </post-date-picker>`;
 }
 
