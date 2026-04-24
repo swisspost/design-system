@@ -4,6 +4,7 @@ import { Rule } from 'eslint';
 import { generateReplacedClassMutations } from './generate-mutations';
 import { generateReplacedClassMessages } from './generate-messages';
 import { getDynamicClassType, getNewAttrValue } from './class-binding-helpers';
+import { removeEmptyAttrs } from './empty-attrs-remover';
 
 type RuleType = Rule.RuleMetaData['type'];
 
@@ -63,7 +64,8 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                   // Remove empty class attribute
                   if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                  return fixer.replaceTextRange(node.range, fixedNode.toString());
+                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                  return fixer.replaceTextRange(node.range, fixedHtml);
                 },
               });
               return;
@@ -100,7 +102,8 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                     $node.attr(fixedAttrName, oldAttrValue);
                     $node.removeAttr(`[class.${oldClass}]`);
 
-                    return fixer.replaceTextRange(node.range, $node.toString());
+                    const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                    return fixer.replaceTextRange(node.range, fixedHtml);
                   }
 
                   const raw = $node.attr(attrName)?.trim();
@@ -109,13 +112,15 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
                   const newValue = getNewAttrValue($node, attrName, oldClass, newClass, raw);
                   if (newValue === null) return null;
 
-                  const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+                  const targetAttr = attrName;
+
                   if (newValue === '') $node.removeAttr(targetAttr);
                   else $node.attr(targetAttr, newValue);
 
                   if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
 
-                  return fixer.replaceTextRange(node.range, $node.toString());
+                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                  return fixer.replaceTextRange(node.range, fixedHtml);
                 },
               });
             }
