@@ -7,12 +7,22 @@
 
 ## Events
 
-| Event             | Description                                                                                                                                                   | Type                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| `postLoginChange` | Emitted when the authentication state changes. The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out. | `CustomEvent<{ authenticated: boolean; }>` |
+| Event             | Description                                                                                                                                                                                                          | Type                                       |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| `postLoginChange` | Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed. | `CustomEvent<{ authenticated: boolean; }>` |
 
 
 ## Methods
+
+### `getAuthenticated() => Promise<boolean | null>`
+
+Returns the current authentication state as determined by the KLP session API.
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+
 
 ### `refresh() => Promise<void>`
 
@@ -28,10 +38,10 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot                | Description                                                                                                                                                                                                                                                                                            |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `"authenticated"`   | Content rendered when the user is authenticated (e.g. user menu).                                                                                                                                                                                                                                      |
-| `"unauthenticated"` | Content rendered when the user is not authenticated (e.g. login link).  The `authenticated` property reflects the current authentication state and can be read after the component has mounted. It is set internally. `null` while loading, `true` when authenticated, `false` when not authenticated. |
+| Slot                | Description                                                            |
+| ------------------- | ---------------------------------------------------------------------- |
+| `"authenticated"`   | Content rendered when the user is authenticated (e.g. user menu).      |
+| `"unauthenticated"` | Content rendered when the user is not authenticated (e.g. login link). |
 
 
 ----------------------------------------------

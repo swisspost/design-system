@@ -407,6 +407,10 @@ export namespace Components {
     }
     interface PostLoginWidget {
         /**
+          * Returns the current authentication state as determined by the KLP session API.
+         */
+        "getAuthenticated": () => Promise<boolean | null>;
+        /**
           * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
          */
         "refresh": () => Promise<void>;
@@ -1606,7 +1610,7 @@ declare namespace LocalJSX {
     }
     interface PostLoginWidget {
         /**
-          * Emitted when the authentication state changes. The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
+          * Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
          */
         "onPostLoginChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
     }

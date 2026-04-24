@@ -93,6 +93,32 @@ describe('post-login-widget', { baseUrl: null }, () => {
     });
   });
 
+  // ─── getAuthenticated() method ────────────────────────────────────────────
+
+  it('getAuthenticated() returns true after successful auth', () => {
+    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE }).as('session');
+    cy.visit(FIXTURE_PATH);
+    cy.wait('@session');
+    cy.get('[data-testid="user-menu"]').should('be.visible');
+    cy.get('post-login-widget').then(([el]) => {
+      el.getAuthenticated().then(value => {
+        expect(value).to.equal(true);
+      });
+    });
+  });
+
+  it('getAuthenticated() returns false when not authenticated', () => {
+    cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE }).as('session');
+    cy.visit(FIXTURE_PATH);
+    cy.wait('@session');
+    cy.get('[data-testid="login-link"]').should('be.visible');
+    cy.get('post-login-widget').then(([el]) => {
+      el.getAuthenticated().then(value => {
+        expect(value).to.equal(false);
+      });
+    });
+  });
+
   // ─── Fallback on API failure ───────────────────────────────────────────────
 
   it('renders the unauthenticated slot when the API request fails', () => {
