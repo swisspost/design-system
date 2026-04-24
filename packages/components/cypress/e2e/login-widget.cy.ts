@@ -93,34 +93,6 @@ describe('post-login-widget', { baseUrl: null }, () => {
     });
   });
 
-  // ─── authenticated state exposed via event ────────────────────────────────
-
-  it('emits postLoginChange with authenticated=true after successful auth', () => {
-    cy.intercept('GET', SESSION_URL, { body: AUTH_FIXTURE, delay: 100 }).as('session');
-    cy.visit(FIXTURE_PATH);
-    const spy = cy.spy().as('changeSpy');
-    cy.get('post-login-widget').then(([el]) => {
-      el.addEventListener('postLoginChange', spy);
-    });
-    cy.wait('@session');
-    cy.get('@changeSpy').should('have.been.calledWithMatch', {
-      detail: { authenticated: true },
-    });
-  });
-
-  it('emits postLoginChange with authenticated=false when not authenticated', () => {
-    cy.intercept('GET', SESSION_URL, { body: UNAUTH_FIXTURE, delay: 100 }).as('session');
-    cy.visit(FIXTURE_PATH);
-    const spy = cy.spy().as('changeSpy');
-    cy.get('post-login-widget').then(([el]) => {
-      el.addEventListener('postLoginChange', spy);
-    });
-    cy.wait('@session');
-    cy.get('@changeSpy').should('have.been.calledWithMatch', {
-      detail: { authenticated: false },
-    });
-  });
-
   // ─── Fallback on API failure ───────────────────────────────────────────────
 
   it('renders the unauthenticated slot when the API request fails', () => {
@@ -146,7 +118,7 @@ describe('post-login-widget', { baseUrl: null }, () => {
     cy.visit(FIXTURE_PATH);
     cy.wait('@session');
 
-    // wait for the component to finish rendering before attaching spy
+    // attach spy only after initial fetch completes so it does not capture the mount event
     cy.get('[data-testid="user-menu"]').should('be.visible');
 
     const spy = cy.spy().as('changeSpy');

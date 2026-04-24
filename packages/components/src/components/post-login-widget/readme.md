@@ -28,10 +28,10 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot                | Description                                                                                                                                                                                                                                                                                                                         |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"authenticated"`   | Content rendered when the user is authenticated (e.g. user menu).                                                                                                                                                                                                                                                                   |
-| `"unauthenticated"` | Content rendered when the user is not authenticated (e.g. login link).  The `authenticated` property reflects the current authentication state and can be read after the component has mounted. It is set internally — do not set it from outside. `null` while loading, `true` when authenticated, `false` when not authenticated. |
+| Slot                | Description                                                                                                                                                                                                                                                                                            |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `"authenticated"`   | Content rendered when the user is authenticated (e.g. user menu).                                                                                                                                                                                                                                      |
+| `"unauthenticated"` | Content rendered when the user is not authenticated (e.g. login link).  The `authenticated` property reflects the current authentication state and can be read after the component has mounted. It is set internally. `null` while loading, `true` when authenticated, `false` when not authenticated. |
 
 
 ----------------------------------------------

@@ -16,16 +16,9 @@ const meta: MetaComponent = {
     authenticated: {
       description:
         'Reflects the current authentication state. This property is read-only and is set internally based on the KLP session API response.<br><br>' +
-        '<code>null</code> - the component is loading and has not yet received a response.<br>' +
-        '<code>true</code> - the user is logged in.<br>' +
-        '<code>false</code> - the user is not logged in or the API request failed.',
-      control: { disable: true },
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean | null' },
-        defaultValue: { summary: 'null' },
-      },
-    },
+        '<code>null</code> — the component is loading and has not yet received a response.<br>' +
+        '<code>true</code> — the user is logged in.<br>' +
+        '<code>false</code> — the user is not logged in or the API request failed.',
       control: { disable: true },
       table: {
         category: 'Properties',
