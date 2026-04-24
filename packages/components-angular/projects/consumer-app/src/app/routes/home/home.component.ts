@@ -27,6 +27,8 @@ import {
   PostTabPanel,
   PostTabs,
   PostTogglebutton,
+  PostTooltip,
+  PostTooltipTrigger,
 } from 'components';
 
 @Component({
@@ -61,6 +63,8 @@ import {
     PostTabPanel,
     PostTabs,
     PostTogglebutton,
+    PostTooltip,
+    PostTooltipTrigger,
   ],
 })
 export class HomeComponent {}
