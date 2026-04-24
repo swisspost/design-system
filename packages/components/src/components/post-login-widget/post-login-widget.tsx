@@ -60,8 +60,8 @@ export class PostLoginWidget {
         return;
       }
 
-      const data = await response.json();
-      const isAuthenticated = data?.data?.email !== undefined;
+      const json = await response.json();
+      const isAuthenticated = json?.data?.email !== undefined;
       this.setAuthState(isAuthenticated);
     } catch {
       this.setAuthState(false);
