@@ -1606,7 +1606,7 @@ declare namespace LocalJSX {
     }
     interface PostLoginWidget {
         /**
-          * An event emitted when the authentication state changes.  The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
+          * Emitted when the authentication state changes. The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
          */
         "onPostLoginChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
     }

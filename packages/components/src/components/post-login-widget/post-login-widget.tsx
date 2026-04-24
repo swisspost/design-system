@@ -15,6 +15,10 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 /**
  * @slot authenticated - Content rendered when the user is authenticated (e.g. user menu).
  * @slot unauthenticated - Content rendered when the user is not authenticated (e.g. login link).
+ *
+ * The `authenticated` property reflects the current authentication state and can be read
+ * after the component has mounted. It is set internally — do not set it from outside.
+ * `null` while loading, `true` when authenticated, `false` when not authenticated.
  */
 // TODO: Rename to 'post-klp-login-widget' after @swisspost/internet-header components are migrated.
 @Component({
@@ -23,7 +27,7 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 })
 export class PostLoginWidget {
   /**
-   * An event emitted when the authentication state changes. 
+   * Emitted when the authentication state changes.
    * The event payload is an object: `authenticated` is `true` when the user is logged in, `false` when logged out.
    */
   @Event() postLoginChange: EventEmitter<{ authenticated: boolean }>;
@@ -57,7 +61,7 @@ export class PostLoginWidget {
       }
 
       const data = await response.json();
-      const isAuthenticated = !!(data && data.data && Object.keys(data.data).length > 0);
+      const isAuthenticated = data?.data?.email !== undefined;
       this.setAuthState(isAuthenticated);
     } catch {
       this.setAuthState(false);
