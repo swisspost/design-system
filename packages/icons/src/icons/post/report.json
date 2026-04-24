@@ -28699,6 +28699,108 @@
       "modifiedAt": "2026-04-18T12:05:07.723Z"
     },
     {
+      "uuid": "41a61580-3ef1-11f1-b595-0050568d2654",
+      "id": 10190826,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190826/storage/MDEwMTkwODI2LzAvbWFzdGVy",
+        "keywords": [
+          "Post TV",
+          "Poste TV"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2780.svg",
+        "basename": "2780",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-04-23T08:48:53.000Z",
+      "modifiedAt": "2026-04-23T12:05:00.571Z"
+    },
+    {
+      "uuid": "b2207780-3f03-11f1-9918-0050568d2654",
+      "id": 10190853,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190853/storage/MDEwMTkwODUzLzAvbWFzdGVy",
+        "keywords": [
+          "Italien",
+          "Italy",
+          "Italie",
+          "Italia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2781.svg",
+        "basename": "2781",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:00:53.000Z",
+      "modifiedAt": "2026-04-23T11:04:12.000Z"
+    },
+    {
+      "uuid": "31f9f580-3f04-11f1-9918-0050568d2654",
+      "id": 10190858,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190858/storage/MDEwMTkwODU4LzAvbWFzdGVy",
+        "keywords": [
+          "France",
+          "Frankreich",
+          "Francia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2782.svg",
+        "basename": "2782",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:04:27.000Z",
+      "modifiedAt": "2026-04-23T11:07:07.000Z"
+    },
+    {
+      "uuid": "9e9ffc20-3f04-11f1-9918-0050568d2654",
+      "id": 10190866,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190866/storage/MDEwMTkwODY2LzAvbWFzdGVy",
+        "keywords": [
+          "DEUTSCHLAND"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2783.svg",
+        "basename": "2783",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:07:29.000Z",
+      "modifiedAt": "2026-04-23T11:11:46.000Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -41958,13 +42060,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1111,
+    "success": 1115,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-04-20T13:42:08.226Z",
-  "version": "10.0.0-next.66"
+  "created": "2026-04-23T12:31:31.572Z",
+  "version": "10.0.0-next.67"
 }
