@@ -1,5 +1,46 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.67
+
+### Minor Changes
+
+- Added icons: `2730`, `2731`, `2732`, `2733`, `2734`, `2735`, `2736`, `2737`, `2738`, `2739`, `2766`, `2767`, `2768`, `2769`, `2770`, `2771`, `2772`, `2773`, `2774`, `2775` and `2776` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7421](https://github.com/swisspost/design-system/pull/7421))
+
+- Added icons:
+  - `stepsdown` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `stepsup` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7421](https://github.com/swisspost/design-system/pull/7421))
+
+- Added icons: `2777` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7436](https://github.com/swisspost/design-system/pull/7436))
+
+- Added icons:
+  - `branchtakeout` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `education` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `elevator` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `feedback` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `inhousenavigation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `stairs` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7436](https://github.com/swisspost/design-system/pull/7436))
+
+- Added icons: `2778` and `2779` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7513](https://github.com/swisspost/design-system/pull/7513))
+
+- Added icons:
+  - `aivoicetovoice` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bottleglass` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bottlepet` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bunnyfast` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `candle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `digitallettersend` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `doormailbox` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `door` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `favoriteoverview` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `lettersorting` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parcelsorting` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `pindeselected` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `rollingbelt` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `snail` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `tshirt` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `turtleslow` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `voicecontrol` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7523](https://github.com/swisspost/design-system/pull/7523))
+
 ## 10.0.0-next.66
 
 ### Minor Changes

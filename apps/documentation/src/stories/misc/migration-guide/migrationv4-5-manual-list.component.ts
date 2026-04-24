@@ -131,7 +131,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-naming_cwfpackagename">
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed <em>packages</em>.
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed <em>packages</em>.
                     <ul class="mt-8">
                       <li>
                         <code>@******/common-web-frontend</code> became
@@ -158,7 +158,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     ?checked="${this.state.general.naming_entryfiles}"
                   />
                   <label for="general-naming_entryfiles" class="form-check-label">
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-error">breaking</span>
                     Renamed entry files. Renamed entry files.
                     <br />
 
@@ -217,7 +217,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-naming_cwfname">
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed
                     <em>src/cwf.scss</em> file to <em>src/core.scss</em>.<br />
                     <span
                       >We recommend to import the <em>core.scss</em> file as follows:
@@ -247,7 +247,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-naming_cwflicense">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>src/lic/cwf-license.scss</em>
                     file.
                   </label>
@@ -263,7 +263,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-naming_options">
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed
                     <em>src/themes/bootstrap/options.scss</em> file to
                     <em>src/variables/features.scss</em>.
                   </label>
@@ -286,7 +286,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-variables_isolatecomponents">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <code>$isolate-components</code>
                     variable.
                   </label>
@@ -302,7 +302,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-variables_fontsizemap">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <code>$font-size-map</code>
                     variable.
                   </label>
@@ -318,7 +318,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-variables_lineheightrg">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <code>$line-height-rg</code> variable.<br />
                     <em>Line-heights</em> are now relative to the font-size.
                   </label>
@@ -334,7 +334,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-variables_floatinglabel">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>floating-label</em> variables.<br />
                     <ul class="mt-8">
                       <li><code>$form-floating-label-padding-t</code></li>
@@ -356,7 +356,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-variables_colorsremoved">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>color</em> variables.<br />
                     <ul class="mt-8">
                       <li>
@@ -395,7 +395,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-variables_colorsrenamed">
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed
                     <em>color</em> variables.
                     <ul class="mt-8">
                       <li><code>$gray-pampas</code> became <code>$gray-background-light</code></li>
@@ -490,7 +490,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="general-mixins_fontsizelineheight">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>font-size</em> and <em>line-height</em> mixins:<br />
                     <ul class="mt-8">
                       <li><code>font-size-calc()</code></li>
@@ -518,7 +518,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="general-classes_bgopacity">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <code>.bg-[colorname]-opacity-[opacityvalue]</code> classes.<br />
                     Use <code>.bg-[colorname]</code> together with
                     <code>var(--post-bg-opacity)</code> instead.<br />
@@ -540,7 +540,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="general-classes_secondary"
                     >${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>secondary</em> classes.<br />
                     <ul class="mt-8">
                       <li><code>.bg-secondary</code></li>
@@ -561,7 +561,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="general-classes_rtlmode">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span>
+                    <span class="tag tag-sm tag-error">breaking</span>
                     Updated spacing and alignment helper classes, for better support of
                     <em>rtl-mode</em>.
                     <ul class="mt-8">
@@ -628,7 +628,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="general-classes_sronly"
                     >${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Updated
+                    <span class="tag tag-sm tag-error">breaking</span> Updated
                     <em>sr-only</em>
                     classes.
                     <ul class="mt-8">
@@ -668,7 +668,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-alerts_closebuttoncontent">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the
+                    <span class="tag tag-sm tag-error">breaking</span> Removed the
                     <code>&lt;span aria-hidden="true"&gt;&lt;/span&gt;</code>
                     element contained in the <em>close-button</em>
                     elements.
@@ -687,7 +687,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-alerts_closebuttonclass">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed class
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed class
                     <code>.close</code> to <code>.btn-close</code>.
                   </label>
                 </div>
@@ -717,7 +717,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-badges_classes">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed
                     <em>badge</em> classes.<br />
                     <ul class="mt-8">
                       <li>
@@ -804,7 +804,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-blockquotes_footerstructure">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Refactored
+                    <span class="tag tag-sm tag-error">breaking</span> Refactored
                     <em>blockquote</em> with footer.<br />
                     Such blockquotes should now be nested in a
                     <code>figure</code> tag. In addition, the tag
@@ -854,7 +854,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-buttons_outline">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>button</em> classes <code>.btn-outline-[colorname]</code>.<br />
                     All the <code>.btn-outline-[colorname]</code> classes will be replaced by
                     <code>.btn-secondary</code>.
@@ -874,7 +874,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="bootstrap-buttons_borderradius">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>button</em> variables.<br />
                     <ul class="mt-8">
                       <li><code>$btn-border-radius-rg</code></li>
@@ -960,7 +960,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-buttonclose_content">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the
+                    <span class="tag tag-sm tag-error">breaking</span> Removed the
                     <code>&lt;span aria-hidden="true"&gt;&lt;/span&gt;</code>
                     element contained in the <em>close-button</em>
                     elements.
@@ -979,7 +979,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-buttonclose_class">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed class
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed class
                     <code>.close</code> to <code>.btn-close</code>.
                   </label>
                 </div>
@@ -1027,7 +1027,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="bootstrap-cards_classes">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>card</em> classes <code>.card-deck</code> and
                     <code>.card-columns</code>.<br />
                     Use the <em>grid-system</em> instead.
@@ -1059,7 +1059,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="boostrap-forms_formlabelclass">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Required class
+                    <span class="tag tag-sm tag-error">breaking</span> Required class
                     <code>.form-label</code> on <em>form-label</em> elements.
                   </label>
                 </div>
@@ -1121,7 +1121,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="boostrapformcontrols_formfloatingwrapper">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Required a
+                    <span class="tag tag-sm tag-error">breaking</span> Required a
                     <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code>
                     wrapper around <em>floating-label</em>
                     elements.
@@ -1171,7 +1171,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="boostrapformselects_formfloatingwrapper">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Required a
+                    <span class="tag tag-sm tag-error">breaking</span> Required a
                     <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code>
                     wrapper around <em>floating-label</em>
                     elements.
@@ -1189,7 +1189,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-formselects_classes">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed <em>select</em>,
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed <em>select</em>,
                     <em>multi-select</em> and
                     <em>custom-select</em>
                     classes.
@@ -1273,7 +1273,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="boostrapformtextareas_formfloatingwrapper">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Required a
+                    <span class="tag tag-sm tag-error">breaking</span> Required a
                     <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code>
                     wrapper around <em>floating-label</em>
                     elements.
@@ -1304,7 +1304,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="boostrapformfiles_formlabelclass">
-                    <span class="tag tag-sm tag-danger">breaking</span> Required class
+                    <span class="tag tag-sm tag-error">breaking</span> Required class
                     <code>.form-label</code> on <em>form-label</em> elements.
                   </label>
                 </div>
@@ -1334,7 +1334,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-formcheckboxes_classes">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed
                     <em>control</em>
                     classes.
                     <ul class="mt-8">
@@ -1368,7 +1368,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="bootstrap-formcheckboxes_validationclasses">
-                    <span class="tag tag-sm tag-danger">breaking</span> Shifted
+                    <span class="tag tag-sm tag-error">breaking</span> Shifted
                     <em>validation</em> classes.<br />
                     The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on
                     the <code>.form-check-input</code> element. The <code>.form-check</code> element
@@ -1389,7 +1389,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     class="form-check-label"
                     for="bootstrap-formcheckboxes_validationfeedbackclasses"
                   >
-                    <span class="tag tag-sm tag-danger">breaking</span> Shifted
+                    <span class="tag tag-sm tag-error">breaking</span> Shifted
                     <em>validation-feedback</em> elements.<br />
                     The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now
                     belong inside of the <code>.form-check</code> element.
@@ -1421,7 +1421,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-formradios_classes">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed
                     <em>control</em>
                     classes.
                     <ul class="mt-8">
@@ -1455,7 +1455,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="bootstrap-formradios_validationclasses">
-                    <span class="tag tag-sm tag-danger">breaking</span> Shifted
+                    <span class="tag tag-sm tag-error">breaking</span> Shifted
                     <em>validation</em> classes.<br />
                     The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on
                     the <code>.form-check-input</code> element. The <code>.form-check</code> element
@@ -1476,7 +1476,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     class="form-check-label"
                     for="bootstrap-formradios_validationfeedbackclasses"
                   >
-                    <span class="tag tag-sm tag-danger">breaking</span> Shifted
+                    <span class="tag tag-sm tag-error">breaking</span> Shifted
                     <em>validation-feedback</em> elements.<br />
                     The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now
                     belong inside of the <code>.form-check</code> element.
@@ -1520,7 +1520,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-formswitches_classes">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Refactored
+                    <span class="tag tag-sm tag-error">breaking</span> Refactored
                     <em>switch</em> classes.<br />
                     <ul class="mt-8">
                       <li>
@@ -1546,7 +1546,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap-formswitches_labelclasses">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Refactored
+                    <span class="tag tag-sm tag-error">breaking</span> Refactored
                     <em>switch-label</em>.<br />
                     <ul class="mt-8">
                       <li>
@@ -1574,7 +1574,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="bootstrap-formswitches_validationclasses">
-                    <span class="tag tag-sm tag-danger">breaking</span> Shifted
+                    <span class="tag tag-sm tag-error">breaking</span> Shifted
                     <em>validation</em> classes.<br />
                     The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on
                     the <code>.form-check-input</code> element.<br />
@@ -1594,7 +1594,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     class="form-check-label"
                     for="bootstrap-formswitches_validationfeedbackclasses"
                   >
-                    <span class="tag tag-sm tag-danger">breaking</span> Shifted
+                    <span class="tag tag-sm tag-error">breaking</span> Shifted
                     <em>validation-feedback</em> elements.<br />
                     The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now
                     belong inside of the <code>.form-check</code> element.
@@ -1635,7 +1635,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="ngbootstrap-buttons_labelclass">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Refactored
+                    <span class="tag tag-sm tag-error">breaking</span> Refactored
                     <code>label.btn-primary</code> to <code>label.btn.btn-secondary</code>.
                   </label>
                 </div>
@@ -1651,7 +1651,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="ngbootstrap-buttons_inputclass">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Required class
+                    <span class="tag tag-sm tag-error">breaking</span> Required class
                     <code>.btn-check</code> on the <code>input</code> element.
                   </label>
                 </div>
@@ -1689,7 +1689,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="ngbootstrap-datepickers_variables">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <em>padding</em> variables.
                     <ul class="mt-8">
                       <li><code>$ngb-dp-icon-padding</code></li>
@@ -1725,7 +1725,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="ngbootstrap-modals_closebuttoncontent">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the
+                    <span class="tag tag-sm tag-error">breaking</span> Removed the
                     <code>&lt;span aria-hidden="true"&gt;&lt;/span&gt;</code>
                     element contained in the <em>close-button</em>
                     elements.
@@ -1744,7 +1744,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="ngbootstrap-modals_closebuttonclass">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed class
+                    <span class="tag tag-sm tag-error">breaking</span> Renamed class
                     <code>.close</code> to <code>.btn-close</code>.
                   </label>
                 </div>
@@ -1780,7 +1780,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="jquery-accordions_removed">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the entire jQuery
+                    <span class="tag tag-sm tag-error">breaking</span> Removed the entire jQuery
                     <em>accordion</em> component.
                     <p class="info">
                       This can be migrated easily to the new
@@ -1824,7 +1824,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="post-accordions_removed">
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the entire Post
+                    <span class="tag tag-sm tag-error">breaking</span> Removed the entire Post
                     <em>accordion</em> component and the associated
                     <em>detail-summary</em> stylesheet.<br />
                     The component has been removed due to
@@ -1865,7 +1865,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="post-customselects_formfloatingwrapper">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Required a
+                    <span class="tag tag-sm tag-error">breaking</span> Required a
                     <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code>
                     wrapper around <em>floating-label</em>
                     elements.
@@ -1883,7 +1883,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="post-customselects_classes">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Refactored
+                    <span class="tag tag-sm tag-error">breaking</span> Refactored
                     <code>.form-control.custom-select</code> and
                     <code>.form-control.form-control-lg.custom-select</code> to
                     <code>.form-select</code>.
@@ -1901,7 +1901,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="post-customselects_menuclass">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed
+                    <span class="tag tag-sm tag-error">breaking</span> Removed
                     <code>.custom-select-menu</code> class.<br />
                     Use <em>utility-classes</em>&nbsp;<code>.w-100.mw-100</code>
                     instead.
@@ -1963,7 +1963,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="post-topicteasers_imageattributes">
                     ${this._templateAutoIconAngular()}
-                    <span class="tag tag-sm tag-danger">breaking</span> Required
+                    <span class="tag tag-sm tag-error">breaking</span> Required
                     <em>image</em>
                     attributes.
                     <ul class="mt-8">

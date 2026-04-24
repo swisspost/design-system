@@ -28401,7 +28401,7 @@
         }
       },
       "createdAt": "2026-03-27T07:32:44.000Z",
-      "modifiedAt": "2026-03-27T07:35:31.000Z"
+      "modifiedAt": "2026-04-02T11:45:30.000Z"
     },
     {
       "uuid": "37d9a770-29b0-11f1-90d1-0050568d2654",
@@ -28491,7 +28491,7 @@
         }
       },
       "createdAt": "2026-03-27T07:59:51.000Z",
-      "modifiedAt": "2026-03-27T08:04:22.000Z"
+      "modifiedAt": "2026-04-02T11:50:00.000Z"
     },
     {
       "uuid": "f3efa650-29b3-11f1-90d1-0050568d2654",
@@ -28516,7 +28516,7 @@
         }
       },
       "createdAt": "2026-03-27T08:07:09.000Z",
-      "modifiedAt": "2026-03-27T08:10:06.000Z"
+      "modifiedAt": "2026-04-02T11:49:32.000Z"
     },
     {
       "uuid": "9d9a1910-29b4-11f1-90d1-0050568d2654",
@@ -28548,7 +28548,7 @@
         }
       },
       "createdAt": "2026-03-27T08:11:54.000Z",
-      "modifiedAt": "2026-03-27T08:14:46.000Z"
+      "modifiedAt": "2026-04-02T11:49:04.000Z"
     },
     {
       "uuid": "51440e30-29b5-11f1-90d1-0050568d2654",
@@ -28577,7 +28577,7 @@
         }
       },
       "createdAt": "2026-03-27T08:16:55.000Z",
-      "modifiedAt": "2026-03-28T08:05:08.810Z"
+      "modifiedAt": "2026-04-02T11:48:30.000Z"
     },
     {
       "uuid": "ec435630-29c8-11f1-90d1-0050568d2654",
@@ -28635,7 +28635,170 @@
         }
       },
       "createdAt": "2026-03-31T05:13:35.000Z",
-      "modifiedAt": "2026-03-31T15:05:00.602Z"
+      "modifiedAt": "2026-04-01T05:05:04.223Z"
+    },
+    {
+      "uuid": "2e4be730-3a5a-11f1-bdb3-0050568d2654",
+      "id": 10045883,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10045883/storage/MDEwMDQ1ODgzLzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Managed Detection & Response Service",
+          "Service géré de détection et de réponse",
+          "Servizio di rilevamento e risposta gestito"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2778.svg",
+        "basename": "2778",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-17T12:37:22.000Z",
+      "modifiedAt": "2026-04-18T12:05:07.723Z"
+    },
+    {
+      "uuid": "be73be00-3a5a-11f1-bdb3-0050568d2654",
+      "id": 10045895,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10045895/storage/MDEwMDQ1ODk1LzAvbWFzdGVy",
+        "keywords": [
+          "Customer portal",
+          "Kundenportal",
+          "Portail clients",
+          "Portale clienti",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2779.svg",
+        "basename": "2779",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-17T12:41:24.000Z",
+      "modifiedAt": "2026-04-18T12:05:07.723Z"
+    },
+    {
+      "uuid": "41a61580-3ef1-11f1-b595-0050568d2654",
+      "id": 10190826,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190826/storage/MDEwMTkwODI2LzAvbWFzdGVy",
+        "keywords": [
+          "Post TV",
+          "Poste TV"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2780.svg",
+        "basename": "2780",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-04-23T08:48:53.000Z",
+      "modifiedAt": "2026-04-23T12:05:00.571Z"
+    },
+    {
+      "uuid": "b2207780-3f03-11f1-9918-0050568d2654",
+      "id": 10190853,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190853/storage/MDEwMTkwODUzLzAvbWFzdGVy",
+        "keywords": [
+          "Italien",
+          "Italy",
+          "Italie",
+          "Italia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2781.svg",
+        "basename": "2781",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:00:53.000Z",
+      "modifiedAt": "2026-04-23T11:04:12.000Z"
+    },
+    {
+      "uuid": "31f9f580-3f04-11f1-9918-0050568d2654",
+      "id": 10190858,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190858/storage/MDEwMTkwODU4LzAvbWFzdGVy",
+        "keywords": [
+          "France",
+          "Frankreich",
+          "Francia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2782.svg",
+        "basename": "2782",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:04:27.000Z",
+      "modifiedAt": "2026-04-23T11:07:07.000Z"
+    },
+    {
+      "uuid": "9e9ffc20-3f04-11f1-9918-0050568d2654",
+      "id": 10190866,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190866/storage/MDEwMTkwODY2LzAvbWFzdGVy",
+        "keywords": [
+          "DEUTSCHLAND"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2783.svg",
+        "basename": "2783",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:07:29.000Z",
+      "modifiedAt": "2026-04-23T11:11:46.000Z"
     },
     {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
@@ -41897,13 +42060,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1109,
+    "success": 1115,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-03-31T15:43:58.052Z",
-  "version": "10.0.0-next.66"
+  "created": "2026-04-23T12:31:31.572Z",
+  "version": "10.0.0-next.67"
 }
