@@ -34,14 +34,17 @@
       "default": "./dist/*"
     },
     "./loader": {
-      "types": "./dist/loader/index.d.ts",
-      "import": "./dist/loader/index.js",
-      "require": "./dist/loader/index.cjs.js"
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs.js"
     },
     "./loaders": {
-      "types": "./dist/loaders/index.d.ts",
-      "import": "./dist/loaders/index.js",
-      "require": "./dist/loaders/index.cjs.js"
+      "types": "./loaders/index.d.ts",
+      "import": "./loaders/index.js",
+      "require": "./loaders/index.cjs.js"
+    },
+    "./loaders/*": {
+      "default": "./loaders/*"
     }
   },
   "scripts": {
