@@ -84,7 +84,7 @@
     "title": "Rating"
   },
   "Stepper": {
-    "html": "<post-stepper text-completed-step=\"Completed step\" text-current-step=\"Current step\" text-step-number=\"Step #number:\" current-index=\"2\" selected-index=\"\">\n      <!--?lit$695292170$--><!----> <post-stepper-item> Step <!--?lit$695292170$-->1 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->2 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->3 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->4 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->5 label</post-stepper-item> <!---->\n    </post-stepper>",
+    "html": "<post-stepper text-completed-step=\"Completed step\" text-current-step=\"Current step\" text-step-number=\"Step #number:\" current-index=\"2\"  <!--?lit$695292170$--><!----> <post-stepper-item> Step <!--?lit$695292170$-->1 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->2 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->3 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->4 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->5 label</post-stepper-item> <!---->\n    </post-stepper>",
     "title": "Stepper"
   },
   "Tabs": {

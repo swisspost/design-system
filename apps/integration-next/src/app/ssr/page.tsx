@@ -129,8 +129,7 @@ export default function Home() {
   <PostRating label="Rating" />
 
   <h2>Stepper</h2>
-  <PostStepper textCompletedStep="Completed step" textCurrentStep="Current step" textStepNumber="Step #number:" currentIndex={2} selectedIndex="">
-       <PostStepperItem > Step 1 label</PostStepperItem>  <PostStepperItem > Step 2 label</PostStepperItem>  <PostStepperItem > Step 3 label</PostStepperItem>  <PostStepperItem > Step 4 label</PostStepperItem>  <PostStepperItem > Step 5 label</PostStepperItem> 
+  <PostStepper text-completed-step="Completed step" text-current-step="Current step" text-step-number="Step #number:" current-index="2"   <PostStepperItem > Step 1 label</PostStepperItem>  <PostStepperItem > Step 2 label</PostStepperItem>  <PostStepperItem > Step 3 label</PostStepperItem>  <PostStepperItem > Step 4 label</PostStepperItem>  <PostStepperItem > Step 5 label</PostStepperItem> 
     </PostStepper>
 
   <h2>Tabs</h2>
