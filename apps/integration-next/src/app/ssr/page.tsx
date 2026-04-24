@@ -1,4 +1,4 @@
-import { PostAccordion, PostAccordionItem, PostAutocomplete, PostAvatar, PostBanner, PostClosebutton, PostCollapsible, PostCollapsibleTrigger, PostDatePicker, PostIcon, PostLinkarea, PostListbox, PostListboxOption, PostMenu, PostMenuItem, PostMenuTrigger, PostNumberInput, PostPagination, PostPopover, PostPopoverTrigger, PostRating, PostStepper, PostStepperItem, PostTabItem, PostTabPanel, PostTabs, PostTogglebutton, PostTooltip, PostTooltipTrigger } from '@swisspost/design-system-components-react/server';
+import { PostAccordion, PostAccordionItem, PostAutocomplete, PostAvatar, PostBanner, PostClosebutton, PostCollapsible, PostCollapsibleTrigger, PostDatePicker, PostIcon, PostLinkarea, PostListbox, PostListboxOption, PostMenu, PostMenuItem, PostMenuTrigger, PostNumberInput, PostPagination, PostPopover, PostPopoverTrigger, PostRating, PostStepper, PostStepperItem, PostTabItem, PostTabPanel, PostTabs, PostTogglebutton } from '@swisspost/design-system-components-react/server';
 import { PostIconExplosives, PostIconLetter, PostIconLetterSolid } from '@swisspost/design-system-components-react/icons';
 
 export default function Home() {
@@ -129,7 +129,8 @@ export default function Home() {
   <PostRating label="Rating" />
 
   <h2>Stepper</h2>
-  <PostStepper text-completed-step="Completed step" text-current-step="Current step" text-step-number="Step #number:" current-index="2"   <PostStepperItem > Step 1 label</PostStepperItem>  <PostStepperItem > Step 2 label</PostStepperItem>  <PostStepperItem > Step 3 label</PostStepperItem>  <PostStepperItem > Step 4 label</PostStepperItem>  <PostStepperItem > Step 5 label</PostStepperItem> 
+  <PostStepper textCompletedStep="Completed step" textCurrentStep="Current step" textStepNumber="Step #number:" currentIndex={2}>
+       <PostStepperItem > Step 1 label</PostStepperItem>  <PostStepperItem > Step 2 label</PostStepperItem>  <PostStepperItem > Step 3 label</PostStepperItem>  <PostStepperItem > Step 4 label</PostStepperItem>  <PostStepperItem > Step 5 label</PostStepperItem> 
     </PostStepper>
 
   <h2>Tabs</h2>
@@ -153,14 +154,6 @@ export default function Home() {
       <span data-showwhen="untoggled">Untoggled</span>
       <span data-showwhen="toggled">Toggled</span>
     </PostTogglebutton>
-
-  <h2>Tooltip</h2>
-  <PostTooltipTrigger for="tooltip-one">
-      <button className="btn btn-secondary btn-large">Button</button></PostTooltipTrigger>
-
-  <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
-      Hi there 👋
-    </PostTooltip>
       <h2>React Server Icons</h2>
       <div className="d-flex gap-16 flex-wrap">
         <figure>

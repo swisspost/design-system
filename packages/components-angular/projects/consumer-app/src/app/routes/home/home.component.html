@@ -152,7 +152,8 @@
 
 <div class="my-24">
   <h2>Stepper</h2>
-  <post-stepper text-completed-step="Completed step" text-current-step="Current step" text-step-number="Step #number:" current-index="2"   <post-stepper-item > Step 1 label</post-stepper-item>  <post-stepper-item > Step 2 label</post-stepper-item>  <post-stepper-item > Step 3 label</post-stepper-item>  <post-stepper-item > Step 4 label</post-stepper-item>  <post-stepper-item > Step 5 label</post-stepper-item> 
+  <post-stepper textCompletedStep="Completed step" textCurrentStep="Current step" textStepNumber="Step #number:" [currentIndex]="2">
+       <post-stepper-item > Step 1 label</post-stepper-item>  <post-stepper-item > Step 2 label</post-stepper-item>  <post-stepper-item > Step 3 label</post-stepper-item>  <post-stepper-item > Step 4 label</post-stepper-item>  <post-stepper-item > Step 5 label</post-stepper-item> 
     </post-stepper>
 </div>
 
@@ -180,18 +181,6 @@
       <span data-showwhen="untoggled">Untoggled</span>
       <span data-showwhen="toggled">Toggled</span>
     </post-togglebutton>
-</div>
-
-<div class="my-24">
-  <h2>Tooltip</h2>
-  <post-tooltip-trigger for="tooltip-one">
-      <button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger>
-</div>
-
-<div class="my-24">
-    <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top">
-      Hi there 👋
-    </post-tooltip>
 </div>
 
 <div class="my-24">

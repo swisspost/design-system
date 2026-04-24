@@ -84,7 +84,7 @@
     "title": "Rating"
   },
   "Stepper": {
-    "html": "<post-stepper text-completed-step=\"Completed step\" text-current-step=\"Current step\" text-step-number=\"Step #number:\" current-index=\"2\"  <!--?lit$695292170$--><!----> <post-stepper-item> Step <!--?lit$695292170$-->1 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->2 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->3 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->4 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$695292170$-->5 label</post-stepper-item> <!---->\n    </post-stepper>",
+    "html": "<post-stepper text-completed-step=\"Completed step\" text-current-step=\"Current step\" text-step-number=\"Step #number:\" current-index=\"2\">\n      <!--?lit$414033900$--><!----> <post-stepper-item> Step <!--?lit$414033900$-->1 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$414033900$-->2 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$414033900$-->3 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$414033900$-->4 label</post-stepper-item> <!----><!----> <post-stepper-item> Step <!--?lit$414033900$-->5 label</post-stepper-item> <!---->\n    </post-stepper>",
     "title": "Stepper"
   },
   "Tabs": {
@@ -94,13 +94,5 @@
   "Togglebutton": {
     "html": "<post-togglebutton class=\"btn btn-primary\">\n      <span data-showwhen=\"untoggled\"><!--?lit$900285332$-->Untoggled</span>\n      <span data-showwhen=\"toggled\"><!--?lit$900285332$-->Toggled</span>\n    </post-togglebutton>",
     "title": "Togglebutton"
-  },
-  "TooltipTrigger": {
-    "html": "<post-tooltip-trigger for=\"tooltip-one\">\n      <button class=\"btn btn-secondary btn-large\">Button</button></post-tooltip-trigger>",
-    "title": "Tooltip"
-  },
-  "Tooltip": {
-    "html": "<post-tooltip id=\"tooltip-one\" class=\"palette palette-accent\" placement=\"top\">\n      <!--?lit$192740168$-->Hi there 👋\n    </post-tooltip>",
-    "title": null
   }
 }
