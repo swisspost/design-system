@@ -39,7 +39,8 @@ export class PostLoginWidget {
 
   /**
    * Returns the current authentication state as determined by the KLP session API.
-   */
+   * `null` when the component is still loading, `true` when authenticated, `false` when not.
+  */
   @Method()
   async getAuthenticated(): Promise<boolean | null> {
     return this.authenticated;
