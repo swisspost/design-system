@@ -1,0 +1,85 @@
+@use '@swisspost/design-system-styles/variables/elevation';
+
+:host {
+  --post-slider-thumb-size: 1.75rem;
+  --post-slider-track-size: .75rem;
+  --post-slider-fill-start: 0;
+  --post-slider-fill-end: 1;
+
+  display: block;
+  position: relative;
+  height: var(--post-slider-thumb-size);
+  container-type: inline-size;
+  touch-action: none;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset-block: calc(50% - var(--post-slider-track-size) / 2);
+    inset-inline: 0;
+  }
+
+  // slider track
+  &::before {
+    background-color: #f0efed;
+  }
+
+  // slider fill
+  &::after {
+    --post-slider-fill-scale: calc(var(--post-slider-fill-end) - var(--post-slider-fill-start));
+    background-color: #050400;
+    transform-origin: left;
+    transform: translateX(calc(var(--post-slider-fill-start) * 100cqw)) scaleX(var(--post-slider-fill-scale));
+  }
+
+  // slider thumbs
+  [role="slider"] {
+    --post-slider-thumb-scale: 1;
+
+    z-index: 1;
+    box-sizing: border-box;
+    height: var(--post-slider-thumb-size);
+    width: var(--post-slider-thumb-size);
+    margin-inline-start: calc(var(--post-slider-thumb-size) / -2);
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    background-color: #050400;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: elevation.$elevation-100;
+    will-change: transform;
+    transform: translateX(calc(var(--post-slider-thumb-position) * 100cqw)) scale(var(--post-slider-thumb-scale));
+    transition: background-color 200ms;
+
+    &:not(:last-child) {
+      --post-slider-thumb-position: var(--post-slider-fill-start);
+    }
+
+    &:last-child {
+      --post-slider-thumb-position: var(--post-slider-fill-end);
+    }
+
+    &:is(:hover, .active) {
+      background-color: #504f4b;
+    }
+  }
+}
+
+:host([orient="vertical"]) {
+  writing-mode: vertical-lr;
+  height: unset;
+  min-height: 15rem;
+  width: var(--post-slider-thumb-size);
+
+  &::after {
+    transform-origin: top;
+    transform: translateY(calc(var(--post-slider-fill-start) * 100cqh)) scaleY(var(--post-slider-fill-scale));
+  }
+
+  [role="slider"] {
+    transform: translateY(calc(var(--post-slider-thumb-position) * 100cqh)) scale(var(--post-slider-thumb-scale));
+  }
+}
