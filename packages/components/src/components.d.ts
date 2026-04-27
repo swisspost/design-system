@@ -116,6 +116,14 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
+          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+         */
+        "description"?: string;
+        /**
+          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+         */
+        "label"?: string;
+        /**
           * The optional URL to which the breadcrumb item will link.
          */
         "url"?: string | URL;
@@ -332,6 +340,10 @@ export namespace Components {
           * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
+        /**
+          * A description for the language read by screen-readers for improved accessibility.
+         */
+        "description"?: string;
         /**
           * The full name of the language. For example, "Deutsch".
          */
@@ -1299,6 +1311,14 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
+          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+         */
+        "description"?: string;
+        /**
+          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+         */
+        "label"?: string;
+        /**
           * The optional URL to which the breadcrumb item will link.
          */
         "url"?: string | URL;
@@ -1503,6 +1523,10 @@ declare namespace LocalJSX {
           * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
+        /**
+          * A description for the language read by screen-readers for improved accessibility.
+         */
+        "description"?: string;
         /**
           * The full name of the language. For example, "Deutsch".
          */

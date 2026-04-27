@@ -1,5 +1,17 @@
 # @swisspost/design-system-integration-next
 
+## 10.0.0-next.67
+
+### Major Changes
+
+- Renamed package from `@swisspost/design-system-nextjs-integration` to `@swisspost/design-system-integration-next`. (by [@alizedebray](https://github.com/alizedebray) with [#7464](https://github.com/swisspost/design-system/pull/7464))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.67
+  - @swisspost/design-system-components-react@10.0.0-next.67
+
 ## 10.0.0-next.66
 
 ### Patch Changes

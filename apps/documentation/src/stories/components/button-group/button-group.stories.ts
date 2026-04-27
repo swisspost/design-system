@@ -1,47 +1,82 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { useArgs } from 'storybook/preview-api';
 import { MetaComponent } from '@root/types';
+
+const BUTTON_LABELS = ['Letters', 'Parcel', 'Stamp', 'Mail', 'Packages', 'Pickup'];
+const BUTTON_ICONS = [
+  'letter',
+  'parcel',
+  'stampapost',
+  'mailboxprivate',
+  'bulkparcels',
+  'transporter',
+];
 
 const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
-  tags: ['package:Styles', 'status:InProgress'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderButtonGroup,
   parameters: {
     badges: [],
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22233-42010&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    controls: {
+      exclude: ['disabledElement', 'groupClass'],
     },
   },
   args: {
-    size: 'btn-md',
     element: 'radio',
-    label_1: 'Left',
-    label_2: 'Middle',
-    label_3: 'Right',
+    labelContent: 'iconAndText',
+    direction: 'horizontal',
+    disabledElement: null,
+    groupClass: 'btn-group-vertical btn-group-lg-horizontal',
   },
   argTypes: {
-    size: {
-      name: 'Size',
-      description: 'Sets the size of the button group.',
+    disabledElement: {
       control: {
-        type: 'select',
+        type: 'radio',
+      },
+      options: [null, 0, 1, 2, 3, 4],
+    },
+    groupClass: {
+      control: {
+        type: 'text',
+      },
+    },
+    labelContent: {
+      name: 'Label content',
+      description: 'Whether the buttons have an icon and/or text.',
+      control: {
+        type: 'inline-radio',
         labels: {
-          'btn-sm': 'Small',
-          'btn-md': 'Medium',
-          'btn-lg': 'Large',
+          textOnly: 'Text only',
+          iconOnly: 'Icon only',
+          iconAndText: 'Icon and text',
         },
       },
-      options: ['btn-sm', 'btn-md', 'btn-lg'],
+      options: ['textOnly', 'iconOnly', 'iconAndText'],
+      table: {
+        category: 'Content',
+      },
+    },
+    direction: {
+      name: 'Direction',
+      description: 'Whether the buttons are stacked horizontally or vertically.',
+      control: {
+        type: 'radio',
+        labels: {
+          horizontal: 'Horizontal (default)',
+          vertical: 'Vertical',
+        },
+      },
+      options: ['horizontal', 'vertical'],
       table: {
         category: 'General',
       },
     },
     element: {
       name: 'Variant',
-      description: 'Defined the semantic elements used as button within the group.',
+      description: 'Defines the semantic elements used as button within the group.',
       control: {
         type: 'radio',
         labels: {
@@ -56,39 +91,9 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    label_1: {
-      name: 'First Label',
-      description: 'Defines the label of the first button.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
-    label_2: {
-      name: 'Second Label',
-      description: 'Defines the label of the second button.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
-    label_3: {
-      name: 'Third Label',
-      description: 'Defines the label of the third button.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
     checked: {
       name: 'Checked Button',
-      description: 'Defined which button is checked in a radio button group.',
+      description: 'Defines which button is checked in a radio button group.',
       if: {
         arg: 'element',
         eq: 'radio',
@@ -99,16 +104,17 @@ const meta: MetaComponent = {
           1: 'First',
           2: 'Second',
           3: 'Third',
+          4: 'Fourth',
         },
       },
-      options: [1, 2, 3],
+      options: [1, 2, 3, 4],
       table: {
         category: 'Value',
       },
     },
     selected: {
       name: 'Selected Button',
-      description: 'Defined which button is selected in a checkbox group.',
+      description: 'Defines which buttons are selected in a checkbox group.',
       if: {
         arg: 'element',
         eq: 'checkbox',
@@ -119,9 +125,10 @@ const meta: MetaComponent = {
           1: 'First',
           2: 'Second',
           3: 'Third',
+          4: 'Fourth',
         },
       },
-      options: [1, 2, 3],
+      options: [1, 2, 3, 4],
       table: {
         category: 'Value',
       },
@@ -150,7 +157,11 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
   const position = index + 1;
   const id = `btngroup_${context.name}_${position}`;
   const name = `btngroup_${context.name}`;
-  const label = args[`label_${position}`];
+  const text = BUTTON_LABELS[index];
+  const visuallyHiddenText = html`<span class="visually-hidden">${text}</span>`;
+  const icon = html`<post-icon name="${BUTTON_ICONS[index]}"></post-icon>`;
+  const label = html`${args.labelContent !== 'textOnly' ? icon : nothing}
+  ${args.labelContent !== 'iconOnly' ? text : visuallyHiddenText}`;
 
   switch (args.element) {
     case 'checkbox': {
@@ -160,7 +171,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
           type="checkbox"
           class="btn-check"
           id="${id}"
-          autocomplete="off"
+          ?disabled="${args.disabledElement === index}"
           ?checked="${isSelected}"
           .checked="${isSelected}"
           @change="${(e: Event) => {
@@ -177,7 +188,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
             updateArgs({ selected: isChecked });
           }}"
         />
-        <label class="btn ${args.size} btn-secondary" for="${id}">${label}</label>
+        <label for="${id}"> ${label}</label>
       `;
     }
     case 'radio': {
@@ -186,46 +197,72 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
         <input
           type="radio"
           class="btn-check"
+          ?disabled="${args.disabledElement === index}"
           name="${name}"
           id="${id}"
-          autocomplete="off"
           ?checked="${isChecked}"
           .checked="${isChecked}"
           @change="${() => {
             updateArgs({ checked: position });
           }}"
         />
-        <label class="btn ${args.size} btn-secondary" for="${id}">${label}</label>
+        <label for="${id}">${label}</label>
       `;
     }
     case 'link':
-      return html` <a href="#" class="btn ${args.size} btn-secondary">${label}</a> `;
+      return html` <a href="#">${label}</a> `;
     case 'button':
     default:
-      return html` <button type="button" class="btn ${args.size} btn-secondary">${label}</button> `;
+      return html` <button type="button">${label}</button> `;
   }
 }
 
 function renderButtonGroup(args: Args, context: StoryContext) {
+  const buttons = Array.from({ length: 4 }).map((_, i) => createButtonTemplate(args, context, i));
+  const groupClass = args.direction === 'vertical' ? 'btn-group btn-group-vertical' : 'btn-group';
+
+  if (args.element === 'radio' || args.element === 'checkbox') {
+    return html`
+      <fieldset class="${groupClass}">
+        <legend class="visually-hidden">Button group example</legend>
+        ${buttons}
+      </fieldset>
+    `;
+  } else {
+    return html`
+      <div class="${groupClass}" role="group" aria-label="Button group example">${buttons}</div>
+    `;
+  }
+}
+
+function renderButtonGroupDirection(args: Args, context: StoryContext) {
   return html`
-    <div class="btn-group" role="group" aria-label="Button group example">
-      ${Array.from({ length: 3 }).map((_, i) => createButtonTemplate(args, context, i))}
+    <div class="btn-group ${args.groupClass}" role="group" aria-label="Button group example">
+      ${Array.from({ length: 6 }).map((_, i) => createButtonTemplate(args, context, i))}
     </div>
   `;
 }
 
 export const Default: Story = {};
 
-export const Sizing: Story = {
-  args: {
-    size: 'btn-sm',
-  },
-};
-
 export const Checks: Story = {
   args: {
     element: 'checkbox',
     selected: [1, 3],
-    checked: 2,
+  },
+};
+
+export const Radios: Story = {
+  args: {
+    element: 'radio',
+    checked: 1,
+    disabledElement: 3,
+  },
+};
+
+export const Direction: Story = {
+  render: renderButtonGroupDirection,
+  args: {
+    element: 'button',
   },
 };

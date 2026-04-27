@@ -1,5 +1,5 @@
-import { IHeaderConfig, ICustomHeaderConfig, NavMainEntity } from './header.model';
-import { IBreadcrumbConfig } from './breadcrumbs.model';
+import { IHeaderConfig, ICustomHeaderConfig, NavMainEntity, HeaderConfig } from './header.model';
+import { Breadcrumbs } from './breadcrumbs.model';
 import { FooterConfig } from './footer.model';
 
 declare global {
@@ -19,8 +19,9 @@ export interface IPortalConfig {
 }
 
 export interface ILocalizedConfig {
+  header_new: HeaderConfig;
   header: IHeaderConfig;
-  breadcrumb: IBreadcrumbConfig;
+  breadcrumbs: Breadcrumbs;
   footer?: FooterConfig;
 }
 
@@ -59,4 +60,21 @@ export interface TagManagerDataLayer {
     label: string | undefined;
     type: string | undefined;
   }) => void;
+}
+
+/**
+ * Basic navigation link with a URL and accessible text.
+ */
+export interface Link extends AccessibleText {
+  url: string; // Target URL of the link.
+  active?: boolean; // Whether the link represents the current page.
+}
+
+/**
+ * Accessible text information for any UI element.
+ */
+interface AccessibleText {
+  text: string; // Base text content, can be visible or visually hidden.
+  label?: string; // ARIA label, screen readers will use this instead of `text`.
+  description?: string; // ARIA description for additional context, read after `text` or `label`.
 }

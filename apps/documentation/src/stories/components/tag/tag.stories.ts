@@ -2,11 +2,14 @@ import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-compo
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { parse } from '@/utils/sass-export';
-import scss from '@/stories/components/tag/tag.module.scss';
 
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const SCSS_VARIABLES: any = parse(scss);
+export const CustomIconSignalMapping: Record<string, string> = {
+  neutral: 'tag',
+  info: 'notes',
+  success: 'accessopen',
+  warning: 'accessrestricted',
+  error: 'userblocked',
+};
 
 const meta: MetaComponent = {
   id: '1b1ea384-7421-4064-ad34-e3f48a36b39f',
@@ -20,10 +23,10 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    variant: 'null',
+    variant: 'neutral',
     size: 'null',
     showIcon: false,
-    icon: 'letter',
+    icon: 'tag',
     markup: 'Tag',
   },
   argTypes: {
@@ -32,11 +35,8 @@ const meta: MetaComponent = {
       description: 'Defines the color variant of the component.',
       control: {
         type: 'select',
-        labels: {
-          null: 'Default',
-        },
       },
-      options: ['null', ...SCSS_VARIABLES['tag-backgrounds']],
+      options: ['neutral', 'info', 'success', 'warning', 'error'],
       table: {
         category: 'General',
       },
@@ -58,7 +58,8 @@ const meta: MetaComponent = {
     },
     showIcon: {
       name: 'Show Icon',
-      description: 'Whether to renderd the component with an icon or not.',
+      description:
+        'Whether to render the tag with an icon or not. Note that if no icon is specified on a signal tag, there will always be a default one.',
       control: {
         type: 'boolean',
       },
@@ -71,7 +72,7 @@ const meta: MetaComponent = {
       description:
         'Defines the icon `name` inside of the component.<br/>To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.',
       control: {
-        type: 'number',
+        type: 'text',
       },
       if: {
         arg: 'showIcon',
@@ -99,14 +100,18 @@ export default meta;
 
 // RENDERER
 function renderTag(args: Args) {
-  const classes = ['tag', args.variant === 'null' ? args.variant : `tag-${args.variant}`, args.size]
-    .filter(c => c !== 'null')
+  const classes = [
+    'tag',
+    args.variant == 'neutral' ? args.variant : `tag-${args.variant}`,
+    args.size,
+  ]
+    .filter(c => c !== 'neutral' && c !== 'null')
     .join(' ');
 
   return html`
     <div class="${classes}">
       ${args.showIcon ? unsafeHTML(`<post-icon name="${args.icon}"></post-icon>`) : nothing}
-      <div class="tag-text">${unsafeHTML(args.markup)}</div>
+      ${unsafeHTML(args.markup)}
     </div>
   `;
 }
@@ -115,7 +120,7 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
-export const Icon: Story = {
+export const Neutral: Story = {
   args: {
     showIcon: true,
   },
@@ -129,8 +134,17 @@ export const Variants: Story = {
   render: (args: Args, context: StoryContext) => {
     const variants: string[] = context.argTypes.variant.options.slice(1);
 
-    return html`${variants.map(variant =>
+    return html` ${variants.map(variant =>
       renderTag({ ...args, variant, markup: variant.charAt(0).toUpperCase() + variant.slice(1) }),
+    )}
+    ${variants.map(variant =>
+      renderTag({
+        ...args,
+        variant,
+        icon: CustomIconSignalMapping[variant],
+        showIcon: true,
+        markup: variant.charAt(0).toUpperCase() + variant.slice(1),
+      }),
     )}`;
   },
 };

@@ -22,6 +22,204 @@
     <!-- Portal config test -->
     <script id="PPM_HEADER_DATA" type="application/json">
       {
+        "header_new": {
+          "globalHeader": {
+            "postLogo": {
+              "text": "Startseite",
+              "url": "/"
+            },
+            "audience": [
+              {
+                "text": "Privatkunden",
+                "url": "#",
+                "active": true
+              },
+              {
+                "text": "Geschäftskunden",
+                "url": "#",
+                "active": false
+              }
+            ],
+            "primaryNavigation": [
+              {
+                "text": "Suche",
+                "url": "#",
+                "icon": "search"
+              }
+            ],
+            "secondaryNavigation": [
+              {
+                "text": "Jobs",
+                "url": "#",
+                "icon": "jobs"
+              },
+              {
+                "text": "Konto erstellen",
+                "url": "#",
+                "icon": "adduser"
+              }
+            ],
+            "languages": [
+              {
+                "code": "de-CH",
+                "text": "DE",
+                "label": "Deutsch",
+                "url": "#",
+                "active": false
+              },
+              {
+                "code": "fr-CH",
+                "text": "FR",
+                "label": "Französisch",
+                "url": "#",
+                "active": false
+              },
+              {
+                "code": "it-CH",
+                "text": "IT",
+                "label": "Italienisch",
+                "url": "#",
+                "active": false
+              },
+              {
+                "code": "en",
+                "text": "EN",
+                "label": "Englisch",
+                "url": "#",
+                "active": true
+              }
+            ],
+            "login": {
+              "text": "Login",
+              "url": "#",
+              "icon": "login"
+            }
+          },
+          "localHeader": {
+            "mainNavigation": [
+              {
+                "text": "Briefe",
+                "url": "#"
+              },
+              {
+                "text": "Pakete",
+                "url": "#"
+              },
+              {
+                "trigger": {
+                  "text": "Briefe"
+                },
+                "overview": {
+                  "text": "Übersicht Briefe",
+                  "url": "/letters"
+                },
+                "sections": [
+                  {
+                    "title": "Brief senden",
+                    "items": [
+                      {
+                        "text": "Briefe Schweiz",
+                        "url": "/sch"
+                      },
+                      {
+                        "text": "Kleinsendungen ins Ausland",
+                        "url": "/kl"
+                      },
+                      {
+                        "text": "Waren ins Ausland",
+                        "url": ""
+                      },
+                      {
+                        "text": "Express und Kurier",
+                        "url": ""
+                      }
+                    ]
+                  },
+                  {
+                    "title": {
+                      "text": "Schritt für Schritt",
+                      "url": "/step-by-step"
+                    },
+                    "items": [
+                      {
+                        "text": "Pakete Schweiz",
+                        "url": "/sch"
+                      },
+                      {
+                        "text": "Kleinsendungen ins Ausland",
+                        "url": "/kl"
+                      },
+                      {
+                        "text": "Waren ins Ausland",
+                        "url": ""
+                      },
+                      {
+                        "text": "Express und Kurier",
+                        "url": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "trigger": {
+                  "text": "Pakete"
+                },
+                "overview": {
+                  "text": "Übersicht Pakete",
+                  "url": "/packages"
+                },
+                "sections": [
+                  {
+                    "title": "Brief senden",
+                    "items": [
+                      {
+                        "text": "Pakete Schweiz",
+                        "url": "/sch"
+                      },
+                      {
+                        "text": "Kleinsendungen ins Ausland",
+                        "url": "/kl"
+                      },
+                      {
+                        "text": "Waren ins Ausland",
+                        "url": ""
+                      },
+                      {
+                        "text": "Express und Kurier",
+                        "url": ""
+                      }
+                    ]
+                  },
+                  {
+                    "title": {
+                      "text": "Schritt für Schritt",
+                      "url": "/step-by-step"
+                    },
+                    "items": [
+                      {
+                        "text": "Pakete Schweiz",
+                        "url": "/sch"
+                      },
+                      {
+                        "text": "Kleinsendungen ins Ausland",
+                        "url": "/kl"
+                      },
+                      {
+                        "text": "Waren ins Ausland",
+                        "url": ""
+                      },
+                      {
+                        "text": "Express und Kurier",
+                        "url": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
         "header": {
           "asWebComponent": true,
           "isHeaderResponsive": true,
@@ -986,113 +1184,20 @@
             "nonResponsiveHeader": "Diese Seite ist nicht für mobile Geräte konzipiert."
           }
         },
-        "breadcrumb": {
-          "a11yLabel": "Breadcrumb",
-          "asWebComponent": true,
-          "buttons": [
-            {
-              "svgIcon": {
-                "name": "3033_question-mark",
-                "classes": [],
-                "additionalAttributes": [
-                  {
-                    "name": "focusable",
-                    "value": "false"
-                  }
-                ]
-              },
-              "text": "Hilfe",
-              "overlay": {
-                "id": "help",
-                "target": "https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/info?modal=true",
-                "closeText": "Schliessen",
-                "closeIcon": {
-                  "name": "2043_cross",
-                  "classes": [],
-                  "additionalAttributes": [
-                    {
-                      "name": "focusable",
-                      "value": "false"
-                    }
-                  ]
-                },
-                "classes": ["ppm-breadcrumb-overlay__body--light"],
-                "additionalAttributes": []
-              },
-              "classes": ["btn-outline-secondary"],
-              "additionalAttributes": []
-            },
-            {
-              "svgIcon": {
-                "name": "3073_phone",
-                "classes": [],
-                "additionalAttributes": [
-                  {
-                    "name": "focusable",
-                    "value": "false"
-                  }
-                ]
-              },
-              "text": "Kontakt",
-              "overlay": {
-                "id": "phone",
-                "target": "https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/kontakt?modal=true",
-                "closeText": "Schliessen",
-                "closeIcon": {
-                  "name": "2043_cross",
-                  "classes": [],
-                  "additionalAttributes": [
-                    {
-                      "name": "focusable",
-                      "value": "false"
-                    }
-                  ]
-                },
-                "classes": ["ppm-breadcrumb-overlay__body--dark"],
-                "additionalAttributes": []
-              },
-              "classes": ["btn-outline-secondary"],
-              "additionalAttributes": []
-            }
-          ],
-          "isCentered": false,
+        "breadcrumbs": {
+          "rootUrl": "https://post.ch/de/",
           "items": [
-            {
-              "text": "Website",
-              "url": "https://post.ch/de/"
-            },
             {
               "text": "Meine Post",
               "url": "https://post.ch/de/kundencenter"
             },
             {
               "text": "Standorte und Öffnungszeiten",
-              "url": "https://places.post.ch/?lang=de"
+              "url": "https://places.post.ch/?lang=de",
+              "label": "Die label",
+              "description": "Die description"
             }
-          ],
-          "svgIconArrowRightSmall": {
-            "name": "2111_angle-small-right",
-            "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "svgIconHome": {
-            "name": "2035_home",
-            "classes": ["ppm-breadcrumb__svg-icon"],
-            "additionalAttributes": [
-              {
-                "name": "focusable",
-                "value": "false"
-              }
-            ]
-          },
-          "truncateButtonText": "Öffnen",
-          "classes": [],
-          "additionalAttributes": []
+          ]
         },
         "footer": {
           "sections": [

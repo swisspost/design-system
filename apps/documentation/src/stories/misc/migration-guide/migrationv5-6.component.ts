@@ -125,7 +125,7 @@ npm uninstall @swisspost/design-system-migrations`}
               <li>
                 <h5>
                   Stepper
-                  <span class="tag tag-sm tag-danger">breaking</span>
+                  <span class="tag tag-sm tag-error">breaking</span>
                 </h5>
                 <p>
                   The markup of the
@@ -154,7 +154,7 @@ npm uninstall @swisspost/design-system-migrations`}
                     <li>
                       <h5>
                         ngbButton ⚙️
-                        <span class="tag tag-sm tag-danger">breaking</span>
+                        <span class="tag tag-sm tag-error">breaking</span>
                       </h5>
                       <p>
                         The
@@ -179,7 +179,7 @@ npm uninstall @swisspost/design-system-migrations`}
               <li>
                 <h5>
                   Removed variables
-                  <span class="tag tag-sm tag-danger">breaking</span>
+                  <span class="tag tag-sm tag-error">breaking</span>
                 </h5>
                 <p>
                   The following Sass variables have been removed because they are not being used

@@ -1,5 +1,37 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.68
+
+### Minor Changes
+
+- Added the `post-number-input` web component. (by [@leagrdv](https://github.com/leagrdv) with [#7415](https://github.com/swisspost/design-system/pull/7415))
+
+- Added the small variant class `.form-check-sm` to the form radio button. (by [@bucknatt](https://github.com/bucknatt) with [#6805](https://github.com/swisspost/design-system/pull/6805))
+
+- Tokenized the styles of the `.selection-card` component. (by [@leagrdv](https://github.com/leagrdv) with [#7446](https://github.com/swisspost/design-system/pull/7446))
+
+### Patch Changes
+
+- Added migration information for the Card Control component. (by [@bucknatt](https://github.com/bucknatt) with [#7220](https://github.com/swisspost/design-system/pull/7220))
+
+- Addressed inconsistencies across the form elements documentation and updated the validation guidelines for radio button elements. (by [@leagrdv](https://github.com/leagrdv) with [#7443](https://github.com/swisspost/design-system/pull/7443))
+
+- Improved the code snippets in the migration guide documentation. (by [@leagrdv](https://github.com/leagrdv) with [#7404](https://github.com/swisspost/design-system/pull/7404))
+
+- Updated the _Job_ button name and icon of the `post-header` examples to align with design. (by [@leagrdv](https://github.com/leagrdv) with [#7461](https://github.com/swisspost/design-system/pull/7461))
+
+- Removed the Card Product component. The `.product-card` and `product-navigation` classes are no longer effective. (by [@leagrdv](https://github.com/leagrdv) with [#7503](https://github.com/swisspost/design-system/pull/7503))
+
+- Fixed a bug in the migration guide where individual task checkboxes were not correctly saving their state to localStorage. (by [@leagrdv](https://github.com/leagrdv) with [#7505](https://github.com/swisspost/design-system/pull/7505))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.67
+  - @swisspost/design-system-components@10.0.0-next.67
+  - @swisspost/design-system-styles@10.0.0-next.67
+  - @swisspost/design-system-components-react@10.0.0-next.67
+  - @swisspost/internet-header@10.0.0-next.67
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.67
+  - @swisspost/design-system-tokens@10.0.0-next.67
+
 ## 6.0.0-next.67
 
 ### Minor Changes

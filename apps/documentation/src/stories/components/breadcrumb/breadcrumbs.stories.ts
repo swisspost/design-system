@@ -65,11 +65,15 @@ export const Concatenated: Story = {
 
 export const BreadcrumbItem: Story = {
   render: (args: Args) => html`
-    <post-breadcrumb-item url=${args.url}>${args.content}</post-breadcrumb-item>
+    <post-breadcrumb-item url=${args.url} label=${args.label} description=${args.description}
+      >${args.content}</post-breadcrumb-item
+    >
   `,
   args: {
     url: '/section1',
     content: 'Section 1',
+    label: 'Products section',
+    description: 'This section contains all the products you can buy.',
   },
   argTypes: {
     url: {
@@ -80,6 +84,18 @@ export const BreadcrumbItem: Story = {
     content: {
       name: 'content',
       description: 'The visible label of the breadcrumb item.',
+      control: { type: 'text' },
+    },
+    label: {
+      name: 'label',
+      description:
+        'ARIA label, screen readers will use this instead of the breadcrumb item content.',
+      control: { type: 'text' },
+    },
+    description: {
+      name: 'description',
+      description:
+        'ARIA description for additional context, read after the breadcrumb item content or `label`.',
       control: { type: 'text' },
     },
     homeUrl: { table: { disable: true } },
