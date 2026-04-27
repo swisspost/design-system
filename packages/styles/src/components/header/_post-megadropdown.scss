@@ -1,25 +1,32 @@
+@use 'sass:math';
 @use '../../mixins/media';
-
 @use './mixins' as *;
 @use './placeholders' as *;
 
+$font-size-desktop: 1.25;
+$font-size-tablet: 1;
+
+$min-text-width-desktop: #{math.floor(11 * $font-size-desktop)}ch; // 13ch
+$min-text-width-tablet: #{math.floor(25 * $font-size-tablet)}ch; // 25ch
+
 post-megadropdown {
-  .row {
-    --post-grid-gutter-x: 1.5rem;
-    --post-grid-gutter-y: 1.5rem;
+  --min-text-width: #{$min-text-width-desktop};
 
-    @include media.max(desktop) {
-      --post-grid-gutter-x: 1rem;
-    }
-
-    @include media.only(mobile) {
-      --post-grid-gutter-y: 1rem;
-    }
+  @include media.only(tablet) {
+    --min-text-width: #{$min-text-width-tablet};
   }
+
+  --header-megadropdown-col-min-width: calc(
+    #{$sqr-item-padding-inline-start} + #{$sqr-item-padding-inline-end} + var(--min-text-width)
+  );
 
   .post-megadropdown-list {
     @extend %header-list;
     flex-direction: column;
+    li,
+    a {
+      overflow-wrap: anywhere;
+    }
   }
 
   .post-megadropdown-overview,
@@ -27,10 +34,10 @@ post-megadropdown {
   .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
     @extend %header-control;
     @include nav-item-block-layout;
-
     @include media.only(desktop) {
-      font-size: 1.25rem;
+      font-size: #{$font-size-desktop}rem;
     }
+    text-wrap: wrap;
   }
 
   .post-megadropdown-list-title {
@@ -48,6 +55,21 @@ post-megadropdown {
 
     &:first-child {
       margin-block-start: -0.5rem;
+    }
+  }
+
+  .post-megadropdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--header-megadropdown-col-min-width), 1fr));
+    gap: 24px;
+
+    @include media.only(tablet) {
+      column-gap: 16px;
+    }
+
+    @include media.only(mobile) {
+      grid-template-columns: 1fr;
+      column-gap: 0;
     }
   }
 }
