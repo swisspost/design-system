@@ -1,5 +1,26 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.68
+
+### Minor Changes
+
+- Added two props to the `post-breadcrumb-item`:
+  - `label`: ARIA label, screen readers will use this instead of the breadcrumb item content.
+  - `description`: ARIA description for additional context, read after the breadcrumb item content or `label`. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Added a `description` property to enable aria-description on the `post-language-menu-item` component. (by [@alizedebray](https://github.com/alizedebray) with [#7470](https://github.com/swisspost/design-system/pull/7470))
+
+### Patch Changes
+
+- Visually separated active page state from open megadropdown state for `post-header` on desktop. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7283](https://github.com/swisspost/design-system/pull/7283))
+
+- Fixed expanding animation of collapsible/accordion to prevent content from overflowing during the opening phase. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7526](https://github.com/swisspost/design-system/pull/7526))
+
+- Added `reflect: true` to the `post-breadcrumb-item` props to ensure they are being correctly applied. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.68
+  - @swisspost/design-system-styles@10.0.0-next.68
+
 ## 10.0.0-next.67
 
 ### Minor Changes
