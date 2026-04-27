@@ -377,6 +377,18 @@ export class PostPopovercontainer {
     return header ? Number.parseFloat(getComputedStyle(header).height) : 0;
   }
 
+  /**
+   * Resolves a CSS value string (px or rem) to pixels
+   */
+  private resolveToPx(value: string): number {
+    if (!value) return 0;
+    if (value.endsWith('rem')) {
+      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+      return Number.parseFloat(value) * rootFontSize;
+    }
+    return Number.parseFloat(value);
+  }
+
   private async calculatePosition() {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
@@ -391,18 +403,14 @@ export class PostPopovercontainer {
 
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
-      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const arrowStyles = getComputedStyle(this.arrowRef);
 
-      // Calculate dynamically the half side which provides the static side offset
-      const arrowSizeValue = getComputedStyle(this.arrowRef)
-        .getPropertyValue('--arrow-size')
-        .trim();
+      const arrowSizePx = this.resolveToPx(arrowStyles.getPropertyValue('--arrow-size').trim());
 
-      const arrowSizePx = arrowSizeValue.endsWith('rem')
-        ? Number.parseFloat(arrowSizeValue) * rootFontSize
-        : Number.parseFloat(arrowSizeValue);
-
-      const halfSide = -0.5 * arrowSizePx;
+      const borderWidthPx = this.resolveToPx(
+        arrowStyles.getPropertyValue('--post-arrow-border-width').trim(),
+      );
+      const halfSide = -(0.5 * arrowSizePx) - borderWidthPx;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {
