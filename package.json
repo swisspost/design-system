@@ -12,7 +12,7 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "scripts": {
-    "bootstrap": "pnpm install && pnpm -r --filter \"!*-integration\" build",
+    "bootstrap": "pnpm install && pnpm -r --filter \"!*integration*\" build",
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
@@ -88,15 +88,15 @@
     "eslint:unit": "pnpm --filter design-system-eslint unit",
     "eslint:unit:watch": "pnpm --filter design-system-eslint unit:watch",
     "eslint:inspect": "pnpm --filter design-system-eslint inspect",
-    "nextjs": "pnpm nextjs:start",
-    "nextjs:start": "pnpm --filter design-system-nextjs-integration start",
-    "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
-    "nextjs:build:serve": "pnpm --filter design-system-nextjs-integration build:serve",
-    "nextjs:e2e": "pnpm --filter design-system-nextjs-integration e2e",
-    "nextjs:e2e:watch": "pnpm --filter design-system-nextjs-integration e2e:watch",
-    "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
-    "nextjs:lint:fix": "pnpm --filter design-system-nextjs-integration lint:fix",
-    "nextjs:typecheck": "pnpm --filter design-system-nextjs-integration typecheck",
+    "apps-next": "pnpm apps-next:start",
+    "apps-next:start": "pnpm --filter design-system-integration-next start",
+    "apps-next:build": "pnpm --filter design-system-integration-next build",
+    "apps-next:build:serve": "pnpm --filter design-system-integration-next build:serve",
+    "apps-next:e2e": "pnpm --filter design-system-integration-next e2e",
+    "apps-next:e2e:watch": "pnpm --filter design-system-integration-next e2e:watch",
+    "apps-next:lint": "pnpm --filter design-system-integration-next lint",
+    "apps-next:lint:fix": "pnpm --filter design-system-integration-next lint:fix",
+    "apps-next:typecheck": "pnpm --filter design-system-integration-next typecheck",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "tokens:build:verbose": "pnpm --filter design-system-tokens build:verbose",
     "tokens:lint": "pnpm --filter design-system-tokens lint",
@@ -128,7 +128,8 @@
       }
     },
     "overrides": {
-      "form-data@>=4.0.0 <4.0.4": "4.0.5"
+      "form-data@>=4.0.0 <4.0.4": "4.0.5",
+      "parse5": "npm:parse5-case-sensitive@7.1.2-0"
     },
     "onlyBuiltDependencies": [
       "cypress"

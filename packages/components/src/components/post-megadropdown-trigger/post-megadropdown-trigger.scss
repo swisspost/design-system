@@ -1,4 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use '@swisspost/design-system-styles/components/header/placeholders' as *;
 
@@ -35,6 +38,22 @@ button {
   @include media.only(desktop) {
     @include header-mx.active-state {
       font-weight: 700;
+    }
+
+    &[aria-expanded="true"] {
+      background-color: #f0efed;
+      color: #050400;
+      z-index: 2;
+
+      &:hover {
+        box-shadow: inset 0 -0.7px 0 0 #f0efed;
+      }
+
+      @include utilities.focus-style-custom {
+        &::after {
+          border-color: tokens.get('focus-outline-color', helpers.$post-focus);
+        }
+      }
     }
   }
 

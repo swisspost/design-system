@@ -1,8 +1,9 @@
-@use 'form-check';
 @use '../mixins/forms' as forms-mx;
 @use '../mixins/utilities' as utility-mx;
 @use './../tokens/components';
 @use './../functions/tokens';
+
+tokens.$default-map: components.$post-checkbox;
 
 :where(.form-check > input[type='checkbox']) {
   @include utility-mx.focus-style();
@@ -13,10 +14,78 @@
 }
 
 .form-check.form-check-sm:not(.form-switch) > input[type='checkbox'] {
-  width: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
-  height: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+  width: tokens.get('checkbox-small-icon-size');
+  height: tokens.get('checkbox-small-icon-size');
+  margin-block: tokens.get('checkbox-small-icon-container-padding');
 
   &::after {
-    mask-size: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+    mask-size: tokens.get('checkbox-small-icon-size');
+  }
+}
+
+.form-check:has(input[type='checkbox']):not(.form-switch) {
+  column-gap: tokens.get('checkbox-gap-inline-text-start');
+  padding-block: tokens.get('checkbox-padding-block-single');
+
+  @include forms-mx.form-check-base();
+
+  // Grouped
+  fieldset > &:not(.form-check-inline):not(:last-of-type) {
+    margin-block-end: tokens.get('checkbox-gap-block-group');
+  }
+
+  // Grouped inline
+  fieldset > &.form-check-inline:not(:last-of-type) {
+    margin-inline-end: tokens.get('checkbox-group-items-gap-inline');
+  }
+
+  > input[type='checkbox'] {
+    ~ label {
+      padding-block: tokens.get('checkbox-label-padding-block');
+      color: tokens.get('checkbox-enabled-fg');
+    }
+
+    &:not([disabled]) {
+      &:hover ~ label {
+        color: tokens.get('checkbox-hover-fg');
+      }
+    }
+
+    &[disabled] ~ label {
+      color: tokens.get('checkbox-disabled-fg');
+    }
+  }
+
+  // Small
+  &.form-check-sm {
+    padding-block: tokens.get('checkbox-small-padding-block');
+
+    > input[type='checkbox'] ~ label {
+      font-size: tokens.get('checkbox-small-label-font-size');
+      padding-block: tokens.get('checkbox-small-label-padding-block');
+    }
+
+    fieldset > &:not(.form-check-inline):not(:last-of-type) {
+      margin-block-end: tokens.get('checkbox-small-group-items-gap-block');
+    }
+
+    fieldset > &.form-check-inline:not(:last-of-type) {
+      margin-inline-end: tokens.get('checkbox-small-group-items-gap-inline');
+    }
+  }
+}
+
+fieldset:has(.form-check input[type='checkbox']) {
+  margin-block: tokens.get('checkbox-padding-block-group');
+}
+
+fieldset legend {
+  &:has(+ .form-check input[type='checkbox']) {
+    font-size: tokens.get('checkbox-group-legend-font-size');
+    margin-block-end: tokens.get('checkbox-gap-block-group');
+  }
+
+  &:has(+ .form-check.form-check-sm input[type='checkbox']) {
+    margin-block-end: tokens.get('checkbox-small-group-gap-block');
   }
 }

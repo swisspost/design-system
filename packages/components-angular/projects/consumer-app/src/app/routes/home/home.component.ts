@@ -27,6 +27,9 @@ import {
   PostStepperItem,
   PostClosebutton,
   PostNumberInput,
+  PostAutocomplete,
+  PostListbox,
+  PostListboxOption,
 } from 'components';
 
 @Component({
@@ -36,6 +39,7 @@ import {
   imports: [
     PostAccordion,
     PostAccordionItem,
+    PostAutocomplete,
     PostAvatar,
     PostBanner,
     PostClosebutton,
@@ -44,6 +48,8 @@ import {
     PostDatePicker,
     PostIcon,
     PostLinkarea,
+    PostListbox,
+    PostListboxOption,
     PostMenu,
     PostMenuTrigger,
     PostMenuItem,
