@@ -405,6 +405,16 @@ export namespace Components {
          */
         "value": string;
     }
+    interface PostLoginWidget {
+        /**
+          * Returns the current authentication state: `null` when the component is still loading, `true` when authenticated, `false` when not.
+         */
+        "getAuthenticated": () => Promise<boolean | null>;
+        /**
+          * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
+         */
+        "refresh": () => Promise<void>;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -759,6 +769,10 @@ export interface PostListboxOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostListboxOptionElement;
 }
+export interface PostLoginWidgetCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostLoginWidgetElement;
+}
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMegadropdownElement;
@@ -985,6 +999,23 @@ declare global {
         prototype: HTMLPostListboxOptionElement;
         new (): HTMLPostListboxOptionElement;
     };
+    interface HTMLPostLoginWidgetElementEventMap {
+        "postLoginChange": { authenticated: boolean };
+    }
+    interface HTMLPostLoginWidgetElement extends Components.PostLoginWidget, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostLoginWidgetElement: {
+        prototype: HTMLPostLoginWidgetElement;
+        new (): HTMLPostLoginWidgetElement;
+    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -1203,6 +1234,7 @@ declare global {
         "post-linkarea": HTMLPostLinkareaElement;
         "post-listbox": HTMLPostListboxElement;
         "post-listbox-option": HTMLPostListboxOptionElement;
+        "post-login-widget": HTMLPostLoginWidgetElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1576,6 +1608,12 @@ declare namespace LocalJSX {
          */
         "value": string;
     }
+    interface PostLoginWidget {
+        /**
+          * Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
+         */
+        "onPostLoginChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -1888,6 +1926,7 @@ declare namespace LocalJSX {
         "post-linkarea": PostLinkarea;
         "post-listbox": PostListbox;
         "post-listbox-option": PostListboxOption;
+        "post-login-widget": PostLoginWidget;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
@@ -1938,6 +1977,7 @@ declare module "@stencil/core" {
             "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-listbox": LocalJSX.PostListbox & JSXBase.HTMLAttributes<HTMLPostListboxElement>;
             "post-listbox-option": LocalJSX.PostListboxOption & JSXBase.HTMLAttributes<HTMLPostListboxOptionElement>;
+            "post-login-widget": LocalJSX.PostLoginWidget & JSXBase.HTMLAttributes<HTMLPostLoginWidgetElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
