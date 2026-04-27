@@ -50,7 +50,7 @@
     "https-proxy-agent": "7.0.6",
     "jest": "catalog:jest",
     "mock-fs": "5.5.0",
-    "node-fetch": "2.7.0",
+    "node-fetch": "3.3.2",
     "node-html-parser": "7.0.2",
     "nodemon": "3.1.11",
     "prettier": "3.6.2",
