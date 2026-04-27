@@ -406,7 +406,7 @@ export class PostPopovercontainer {
       const arrowStyles = getComputedStyle(this.arrowRef);
 
       const arrowSizePx = this.resolveToPx(arrowStyles.getPropertyValue('--arrow-size').trim());
-      const halfSide = -(0.5 * arrowSizePx) - 0.4;
+      const halfSide = -(0.5 * arrowSizePx) - 0.6;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {
