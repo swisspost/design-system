@@ -45,7 +45,7 @@
     "@lit/task": "1.0.3",
     "@open-wc/lit-helpers": "0.7.0",
     "@percy/cli": "1.31.8",
-    "@percy/cypress": "3.1.7",
+    "@percy/cypress": "3.1.8",
     "@storybook/addon-docs": "9.0.18",
     "@storybook/addon-links": "9.0.18",
     "@storybook/web-components-vite": "9.0.18",
