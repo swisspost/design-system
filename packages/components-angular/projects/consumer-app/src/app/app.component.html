@@ -52,11 +52,12 @@
   </post-language-menu>
 
   <!-- Global header login/user menu -->
-
-  <a href="" slot="post-login">
-    <span>Login</span>
-    <post-icon name="login"></post-icon>
-  </a>
+  <post-login-widget slot="post-login">
+    <a slot="unauthenticated" href="#login">
+      <span>Login</span>
+      <post-icon name="login" aria-hidden="true"></post-icon>
+    </a>
+  </post-login-widget>
 
   <!-- Main navigation -->
   <post-mainnavigation slot="main-nav" textMain="Main">
