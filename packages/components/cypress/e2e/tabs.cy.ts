@@ -16,7 +16,7 @@ describe('tabs', () => {
     });
 
     it('should only show the first tab item as active', () => {
-      cy.get('post-tab-item.active').each(($item, index) => {
+      cy.get('post-tab-item[aria-selected="true"').each(($item, index) => {
         cy.wrap($item).should(index === 0 ? 'exist' : 'not.exist');
       });
     });
@@ -34,9 +34,8 @@ describe('tabs', () => {
 
     it('should activate a clicked tab item and deactivate the tab item that was previously activated', () => {
       cy.get('@items').last().click();
-
-      cy.get('@items').first().should('not.have.class', 'active');
-      cy.get('@items').last().should('have.class', 'active');
+      cy.get('@items').first().should('have.attr', 'aria-selected', 'false');
+      cy.get('@items').last().should('have.attr', 'aria-selected', 'true');
     });
 
     it('should show the panel associated with a clicked tab item and hide the panel that was previously shown', () => {
@@ -80,8 +79,10 @@ describe('tabs', () => {
             cy.wrap($item)
               .invoke('attr', 'name')
               .then(tabName => {
-                cy.wrap($item.filter('.active')).should(
-                  tabName === activeTab ? 'exist' : 'not.exist',
+                cy.wrap($item).should(
+                  tabName === activeTab ? 'have.attr' : 'not.have.attr',
+                  'aria-selected',
+                  'true',
                 );
               });
           });
@@ -129,40 +130,6 @@ describe('tabs', () => {
           cy.wrap($item).find('a').should('exist');
         });
       });
-
-      it('should mark the tab with aria-current="page" as active', () => {
-        cy.get('@items').each($item => {
-          cy.wrap($item)
-            .find('a')
-            .then($anchor => {
-              const hasAriaCurrent = $anchor.attr('aria-current') === 'page';
-              if (hasAriaCurrent) {
-                cy.wrap($item).should('have.class', 'active');
-              } else {
-                cy.wrap($item).should('not.have.class', 'active');
-              }
-            });
-        });
-      });
-
-      it('should mark only one tab as active when anchor has aria-current="page"', () => {
-        let activeCount = 0;
-        cy.get('@items')
-          .each($item => {
-            cy.wrap($item)
-              .find('a')
-              .then($anchor => {
-                const hasAriaCurrent = $anchor.attr('aria-current') === 'page';
-                if (hasAriaCurrent) {
-                  activeCount++;
-                  cy.wrap($item).should('have.class', 'active');
-                }
-              });
-          })
-          .then(() => {
-            expect(activeCount).to.be.lte(1); // At most one active tab
-          });
-      });
     });
 
     describe('tab item properties', () => {
@@ -206,16 +173,11 @@ describe('tabs', () => {
 
     describe('active state management', () => {
       it('should be controlled by aria-current attribute only', () => {
-        // Verify the active tab has aria-current="page" on its anchor
-        cy.get('post-tab-item.active').find('a').should('have.attr', 'aria-current', 'page');
+        // Verify there is one active tab which has aria-current="page" on its anchor
+        cy.get('post-tab-item').find('a[aria-current="page"]').should('have.length', 1);
 
-        // Verify non-active tabs don't have aria-current="page"
-        cy.get('post-tab-item')
-          .not('.active')
-          .find('a')
-          .each($anchor => {
-            cy.wrap($anchor).should('not.have.attr', 'aria-current', 'page');
-          });
+        // Verify that the rest of the tabs don't have aria-current="page"
+        cy.get('post-tab-item').find('a:not([aria-current="page"])').should('have.length', 2);
       });
     });
 
@@ -323,7 +285,7 @@ describe('Accessibility', () => {
     });
 
     it('should use aria-current for active state indication', () => {
-      cy.get('post-tab-item.active').find('a').should('have.attr', 'aria-current', 'page');
+      cy.get('post-tab-item').find('a[aria-current="page"]').should('have.length', 1);
     });
   });
 });

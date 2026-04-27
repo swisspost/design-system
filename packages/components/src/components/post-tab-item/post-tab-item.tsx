@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch, Build } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndType } from '@/utils';
 import { nanoid } from 'nanoid';
@@ -54,6 +54,8 @@ export class PostTabItem {
   }
 
   render() {
+    const tabName = this.host.getAttribute('name');
+    const isSSR = Build.isServer;
     return (
       <Host
         id={this.tabId}
@@ -62,7 +64,12 @@ export class PostTabItem {
         data-navigation-mode={this.isNavigationMode.toString()}
         aria-selected={!this.isNavigationMode ? 'false' : undefined}
         tabindex={!this.isNavigationMode ? '-1' : undefined}
-        class={!this.isNavigationMode ? 'tab-title' : 'nav-item'}
+        class={`${!this.isNavigationMode ? 'tab-title' : 'nav-item'}${isSSR && !this.isNavigationMode ? ' ssr' : ''}`}
+        style={
+          isSSR && !this.isNavigationMode
+            ? { '--active': `var(--post-tab-item-${tabName}, 0)` }
+            : undefined
+        }
       >
         <slot />
       </Host>

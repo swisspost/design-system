@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch, Build } from '@stencil/core';
 import { version } from '@root/package.json';
 import { nanoid } from 'nanoid';
 import { checkRequiredAndType } from '@/utils';
@@ -34,8 +34,16 @@ export class PostTabPanel {
   }
 
   render() {
+    const tabFor = this.host.getAttribute('for');
+    const isSSR = Build.isServer;
     return (
-      <Host data-version={version} id={this.panelId} role="tabpanel" slot="panels">
+      <Host
+        data-version={version}
+        id={this.panelId}
+        role="tabpanel"
+        slot="panels"
+        style={isSSR ? { display: `var(--post-tab-panel-${tabFor}, none)` } : undefined}
+      >
         <slot />
       </Host>
     );
