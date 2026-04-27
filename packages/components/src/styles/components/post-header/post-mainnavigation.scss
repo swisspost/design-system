@@ -1,0 +1,49 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+@use './mixins' as *;
+@use './placeholders' as *;
+
+post-mainnavigation {
+  grid-area: main-nav;
+
+  &:where(post-header:has([slot='local-nav']):not(:has([slot='title']))) {
+    max-width: calc(100% + var(--post-local-header-padding-inline-start));
+  }
+
+  > ul {
+    @extend %header-list;
+    column-gap: 0;
+    height: 100%;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+
+  > *:where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
+    @include nav-item-block-layout;
+    height: 100%;
+
+    @include media.only(desktop) {
+      padding: 1rem 0.75rem;
+      gap: 0.5rem;
+      border-bottom: none;
+    }
+  }
+
+  > *:where(ul) > li > :where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
+    @include nav-item-block-layout;
+    height: 100%;
+
+    @include media.only(desktop) {
+      padding: 1rem 0.75rem;
+      gap: 0.5rem;
+      border-bottom: none;
+    }
+  }
+
+  post-megadropdown-trigger {
+    height: 100%;
+    width: 100%;
+  }
+}

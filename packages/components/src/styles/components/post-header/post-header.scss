@@ -1,6 +1,6 @@
-@use '../../mixins/media';
-@use '../../functions/tokens';
-@use '../../tokens/components';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
 
 @use './mixins' as *;
 @use './placeholders' as *;
@@ -31,10 +31,12 @@ post-header {
   }
 
   // all slotted links and buttons
-  > * {
-    @include interactive-elements {
-      @extend %header-control;
-    }
+  > *:where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
+  }
+
+  > *:where(ul) > li > :where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
   }
 
   // links and buttons remaining in the global and local headers on tablet and mobile
@@ -92,14 +94,23 @@ post-header {
     }
   }
 
-  // meta navigation on desktop
+  // meta navigation on desktop — split to avoid multi-selector + focus-style-custom corruption
   > [slot='global-nav-secondary'] {
     @include media.max(desktop) {
       &:where(ul) {
         flex-direction: column;
       }
 
-      @include interactive-elements {
+      &:where(#{$interactive-elements-selector}) {
+        flex-direction: row-reverse;
+        @include nav-item-block-layout;
+
+        > post-icon {
+          margin: unset;
+        }
+      }
+
+      &:where(ul) > li > :where(#{$interactive-elements-selector}) {
         flex-direction: row-reverse;
         @include nav-item-block-layout;
 

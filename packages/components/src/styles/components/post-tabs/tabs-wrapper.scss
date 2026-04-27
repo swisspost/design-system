@@ -1,7 +1,8 @@
-@use './../../mixins/utilities' as utilities-mx;
-@use './../../variables/color';
-@use './../../variables/spacing';
-@use './../../variables/components/nav';
+
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/spacing';
+@use '@swisspost/design-system-styles/variables/components/nav';
 
 .tabs-wrapper {
   position: relative;

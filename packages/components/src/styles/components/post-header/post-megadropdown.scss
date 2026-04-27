@@ -1,4 +1,4 @@
-@use '../../mixins/media';
+@use '@swisspost/design-system-styles/mixins/media';
 
 @use './mixins' as *;
 @use './placeholders' as *;
@@ -22,32 +22,42 @@ post-megadropdown {
     flex-direction: column;
   }
 
-  .post-megadropdown-overview,
-  .post-megadropdown-list-title,
-  .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
-    @extend %header-control;
+  .post-megadropdown-overview {
+    @include nav-item-base;
     @include nav-item-block-layout;
+    margin-block: 0 1rem;
 
     @include media.only(desktop) {
       font-size: 1.25rem;
     }
+
+    &:first-child {
+      margin-block-start: -0.5rem;
+    }
   }
 
   .post-megadropdown-list-title {
+    @include nav-item-base;
+    @include nav-item-block-layout;
     margin: 0;
     font-weight: 950;
     --post-nav-item-border-width: 2px;
+
+    @include media.only(desktop) {
+      font-size: 1.25rem;
+    }
 
     &:not(#{$interactive-elements-selector}) {
       pointer-events: none;
     }
   }
 
-  .post-megadropdown-overview {
-    margin-block: 0 1rem;
+  .post-megadropdown-list > li > :where(#{$interactive-elements-selector}) {
+    @include nav-item-base;
+    @include nav-item-block-layout;
 
-    &:first-child {
-      margin-block-start: -0.5rem;
+    @include media.only(desktop) {
+      font-size: 1.25rem;
     }
   }
 }

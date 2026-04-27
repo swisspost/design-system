@@ -179,10 +179,12 @@ function getHeaderRenderer(
     const globalLogin = args.isLoggedIn
       ? html` <div slot="post-login">${userMenu}</div> `
       : html`
-          <a href="" slot="post-login">
-            <span>Login</span>
-            <post-icon name="login"></post-icon>
-          </a>
+          <div slot="post-login">
+            <a href="">
+              <span>Login</span>
+              <post-icon name="login"></post-icon>
+            </a>
+          </div>
         `;
 
     const globalControls = html`
