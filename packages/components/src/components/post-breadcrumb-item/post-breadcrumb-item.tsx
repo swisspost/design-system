@@ -1,9 +1,10 @@
-import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkEmptyOrUrl } from '@/utils';
+import { checkEmptyOrOneOf, checkEmptyOrUrl, checkRequiredAndType } from '@/utils';
+import { Variant, VARIANTS } from './variants';
 
 /**
- * @slot default - Slot for placing the text inside the breadcrumb item.
+ * @slot default - The content displayed inside the breadcrumb item.
  */
 @Component({
   tag: 'post-breadcrumb-item',
@@ -14,80 +15,67 @@ export class PostBreadcrumbItem {
   @Element() host: HTMLPostBreadcrumbItemElement;
 
   /**
-   * The optional URL to which the breadcrumb item will link.
+   * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
    */
   @Prop({ reflect: true }) url?: string | URL;
 
   /**
-   * ARIA label, screen readers will use this instead of the breadcrumb item content.
+   * An accessible label screen readers will use this instead of the breadcrumb item content.
    */
   @Prop({ reflect: true }) label?: string;
 
   /**
-   * ARIA description for additional context, read after the breadcrumb item content or `label`.
+   * An accessible description for additional context, read after the content or `label`.
    */
   @Prop({ reflect: true }) description?: string;
 
-  private validUrl?: string;
+  @Watch('url')
+  validateURL() {
+    checkEmptyOrUrl(this, 'url');
+  }
 
   /**
-   * The full path URL to validate.
+   * Controls how the item is rendered, either as a standard list item or within an overflow menu.
    */
-  @State() fullUrl: string | undefined;
+  @Prop({ reflect: true }) variant: Variant = 'listitem';
 
-  @Watch('url')
-  validateUrl() {
-    try {
-      this.validUrl = this.constructUrl(this.url);
-    } catch {
-      this.validUrl = undefined;
-    }
+  @Watch('variant')
+  validateVariant() {
+    checkEmptyOrOneOf(this, 'variant', VARIANTS);
   }
 
-  // Helper to construct a valid URL string or return undefined
-  private constructUrl(value: unknown): string | undefined {
-    const hasBaseURL = /^https?:\/\//.test(String(this.url));
-    if (typeof value === 'string') {
-      this.fullUrl = hasBaseURL ? value : `${globalThis.location.origin}${value}`;
-      checkEmptyOrUrl(this, 'fullUrl');
-      return this.fullUrl;
-    }
-    return undefined;
-  }
+  /**
+   * Indicates that the item represents the current page, applying appropriate styling.
+   */
+  @Prop({ reflect: true }) selected = false;
 
-  connectedCallback() {
-    this.validateUrl();
-  }
-
-  private handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      const linkElement = this.host.shadowRoot?.querySelector('a');
-      if (linkElement) {
-        event.preventDefault();
-        (linkElement as HTMLElement).click();
-      }
-    }
+  @Watch('selected')
+  validateSelected() {
+    checkRequiredAndType(this, 'selected', 'boolean');
   }
 
   render() {
-    return (
+    const href = this.url instanceof URL ? this.url.href : this.url;
+    const content = href ? (
+      <a
+        href={href}
+        aria-current={this.selected ? 'page' : undefined}
+        aria-label={this.label}
+        aria-description={this.description}
+      >
+        <slot></slot>
+      </a>
+    ) : (
+      <slot></slot>
+    );
+
+    return this.variant === 'listitem' || this.selected ? (
+      <Host data-version={version} role="listitem" slot={this.selected ? 'selected' : undefined}>
+        {content}
+      </Host>
+    ) : (
       <Host data-version={version}>
-        <post-icon name="chevronright" class="breadcrumb-item-icon" />
-        {this.validUrl ? (
-          <a
-            class="breadcrumb-item"
-            href={this.validUrl}
-            onKeyDown={event => this.handleKeyDown(event)}
-            aria-label={this.label}
-            aria-description={this.description}
-          >
-            <slot></slot>
-          </a>
-        ) : (
-          <span class="breadcrumb-item">
-            <slot></slot>
-          </span>
-        )}
+        <post-menu-item>{content}</post-menu-item>
       </Host>
     );
   }
