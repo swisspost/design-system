@@ -1,5 +1,13 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.68
+
+### Patch Changes
+
+- Added `reflect: true` to the `post-breadcrumb-item` props to ensure they are being correctly applied. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.68
+
 ## 10.0.0-next.67
 
 ### Patch Changes
