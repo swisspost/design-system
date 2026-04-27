@@ -410,7 +410,7 @@ export class PostPopovercontainer {
       const borderWidthPx = this.resolveToPx(
         arrowStyles.getPropertyValue('--post-arrow-border-width').trim(),
       );
-      const halfSide = -(0.5 * arrowSizePx) - borderWidthPx;
+      const halfSide = -(0.5 * arrowSizePx) - borderWidthPx/2;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {

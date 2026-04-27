@@ -48,6 +48,7 @@
   .arrow {
     $arrow-size: 0.5825rem;
     --arrow-size: #{$arrow-size};
+    box-sizing: border-box;
     position: absolute;
     width: $arrow-size;
     height: $arrow-size;
