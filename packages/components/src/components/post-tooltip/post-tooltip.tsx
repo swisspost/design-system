@@ -42,16 +42,13 @@ export class PostTooltip {
   }
 
   componentDidLoad() {
-  if (!this.host.id) {
-    console.error(
-      /*prettier-ignore*/
-      'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.',
-    );
+    if (!this.host.id) {
+      console.error(
+        /*prettier-ignore*/
+        'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.',
+      );
+    }
   }
-
-  // TODO: remove - temp debug
-  this.popoverRef.show(this.host);
-}
 
   /**
    * Programmatically display the tooltip.
