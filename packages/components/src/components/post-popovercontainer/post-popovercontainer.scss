@@ -48,37 +48,48 @@
   .arrow {
     $arrow-size: 0.5825rem;
     --arrow-size: #{$arrow-size};
-    box-sizing: border-box;
     position: absolute;
     width: $arrow-size;
     height: $arrow-size;
-    // use custom property directly so it resolves correctly regardless of cascade depth
-    background-color: var(--post-current-bg);
+    background-color: inherit;
     rotate: $arrow-rotation;
     pointer-events: none;
     z-index: -1;
 
-    // per placement: only the two outer sides of the rotated square get a border —
-    // the two inner sides sit behind the content div (z-index: -1) and are naturally hidden
     &[dynamic-placement='top'] {
       border-bottom-right-radius: 2px;
-      border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
-      border-right: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
     }
     &[dynamic-placement='right'] {
       border-bottom-left-radius: 2px;
-      border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
-      border-left: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
     }
     &[dynamic-placement='bottom'] {
       border-top-left-radius: 2px;
+    }
+    &[dynamic-placement='left'] {
+      border-top-right-radius: 2px;
+    }
+
+    // Arrow border — the two outer sides per placement get a border;
+    // the two sides hidden under the content div stay borderless so no
+    // diagonal line cuts across the arrow face.
+    // --post-arrow-border-width and --post-current-border are tunneled in
+    // via CSS custom properties from the consuming component (e.g. post-tooltip).
+    // Fallbacks to 0px/transparent ensure no visible border when no consumer sets them.
+    &[dynamic-placement='top'] {
+      border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-right: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+    }
+    &[dynamic-placement='bottom'] {
       border-top: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
       border-left: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
     }
     &[dynamic-placement='left'] {
-      border-top-right-radius: 2px;
       border-top: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
       border-right: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+    }
+    &[dynamic-placement='right'] {
+      border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-left: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
     }
 
     $angle-rad: math.div($arrow-rotation, 180deg) * 3.14; // convert deg to rad

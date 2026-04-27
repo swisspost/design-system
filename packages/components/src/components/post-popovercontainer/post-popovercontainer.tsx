@@ -377,18 +377,6 @@ export class PostPopovercontainer {
     return header ? Number.parseFloat(getComputedStyle(header).height) : 0;
   }
 
-  /**
-   * Resolves a CSS value string (px or rem) to pixels
-   */
-  private resolveToPx(value: string): number {
-    if (!value) return 0;
-    if (value.endsWith('rem')) {
-      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
-      return Number.parseFloat(value) * rootFontSize;
-    }
-    return Number.parseFloat(value);
-  }
-
   private async calculatePosition() {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
@@ -403,14 +391,29 @@ export class PostPopovercontainer {
 
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
-      const arrowStyles = getComputedStyle(this.arrowRef);
+      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
 
-      const arrowSizePx = this.resolveToPx(arrowStyles.getPropertyValue('--arrow-size').trim());
+      // Calculate dynamically the half side which provides the static side offset
+      const arrowSizeValue = getComputedStyle(this.arrowRef)
+        .getPropertyValue('--arrow-size')
+        .trim();
 
-      const borderWidthPx = this.resolveToPx(
-        arrowStyles.getPropertyValue('--post-arrow-border-width').trim(),
-      );
-      const halfSide = -(0.5 * arrowSizePx) - borderWidthPx/2;
+      const arrowSizePx = arrowSizeValue.endsWith('rem')
+        ? Number.parseFloat(arrowSizeValue) * rootFontSize
+        : Number.parseFloat(arrowSizeValue);
+
+      // Read the border width tunneled in via CSS custom property (e.g. from post-tooltip).
+      // This must be factored into the static-side offset so the arrow tip sits flush
+      // with the content box edge rather than being pushed inward by the border thickness.
+      const arrowBorderRaw = getComputedStyle(this.host)
+        .getPropertyValue('--post-arrow-border-width')
+        .trim();
+
+      const arrowBorderPx = arrowBorderRaw.endsWith('rem')
+        ? Number.parseFloat(arrowBorderRaw) * rootFontSize
+        : Number.parseFloat(arrowBorderRaw) || 0;
+
+      const halfSide = -0.5 * arrowSizePx - arrowBorderPx;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {
