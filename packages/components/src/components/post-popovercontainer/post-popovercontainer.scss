@@ -23,7 +23,6 @@
 }
 
 :host {
-  --post-popovercontainer-border-width: 0px; // overridable by consumers to adjust arrow offset
   background-color: transparent;
   border: transparent;
   position: fixed;
@@ -59,19 +58,15 @@
 
     &[dynamic-placement='top'] {
       border-bottom-right-radius: 2px;
-      box-shadow: 1px 1px 0 var(--post-overlay-element-arrow-color-border, transparent);
     }
     &[dynamic-placement='right'] {
       border-bottom-left-radius: 2px;
-      box-shadow: -1px 1px 0 var(--post-overlay-element-arrow-color-border, transparent);
     }
     &[dynamic-placement='bottom'] {
       border-top-left-radius: 2px;
-      box-shadow: -1px -1px 0 var(--post-overlay-element-arrow-color-border, transparent);
     }
     &[dynamic-placement='left'] {
       border-top-right-radius: 2px;
-      box-shadow: 1px -1px 0 var(--post-overlay-element-arrow-color-border, transparent);
     }
 
     $angle-rad: math.div($arrow-rotation, 180deg) * 3.14; // convert deg to rad

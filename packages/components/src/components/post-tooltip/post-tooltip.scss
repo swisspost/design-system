@@ -24,10 +24,6 @@ post-popovercontainer {
   // so the arrow (background-color: inherit) picks up the correct bg
   --post-current-bg: #{tokens.get('post-tooltip-color-bg')};
   --post-current-fg: #{tokens.get('post-tooltip-color-fg')};
-  // arrow border color consumed by post-popovercontainer.scss via box-shadow
-  --post-overlay-element-arrow-color-border: #{tokens.get('post-tooltip-color-border')};
-  // overrides the default 0px so calculatePosition offsets the arrow inward by the border width
-  --post-popovercontainer-border-width: #{tokens.get('post-tooltip-border-width')};
 }
 
 post-popovercontainer::part(post-popovercontainer-content) {
