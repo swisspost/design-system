@@ -3,7 +3,6 @@ export * from './property-checkers';
 export * from './attribute-observer';
 export * from './breakpoints';
 export * from './component-on-ready';
-export * from './debounce';
 export * from './event-from';
 export * from './get-focusable-children';
 export * from './get-root';
