@@ -33689,6 +33689,136 @@
       "modifiedAt": "2026-04-18T12:05:07.723Z"
     },
     {
+      "uuid": "41d42a60-3ef1-11f1-b595-0050568d2654",
+      "id": 10190827,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190827/storage/MDEwMTkwODI2LzAvbWFzdGVy",
+        "keywords": [
+          "Post TV",
+          "Poste TV"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2780.svg",
+        "basename": "2780",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-04-23T08:48:53.000Z",
+      "modifiedAt": "2026-04-24T08:05:01.657Z"
+    },
+    {
+      "uuid": "b241bb20-3f03-11f1-9918-0050568d2654",
+      "id": 10190854,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190854/storage/MDEwMTkwODUzLzAvbWFzdGVy",
+        "keywords": [
+          "Italien",
+          "Italy",
+          "Italie",
+          "Italia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2781.svg",
+        "basename": "2781",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:00:53.000Z",
+      "modifiedAt": "2026-04-23T11:02:49.000Z"
+    },
+    {
+      "uuid": "322412c0-3f04-11f1-9918-0050568d2654",
+      "id": 10190859,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190859/storage/MDEwMTkwODU4LzAvbWFzdGVy",
+        "keywords": [
+          "France",
+          "Frankreich",
+          "Francia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2782.svg",
+        "basename": "2782",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:04:27.000Z",
+      "modifiedAt": "2026-04-23T11:06:09.000Z"
+    },
+    {
+      "uuid": "9ecf97a0-3f04-11f1-9918-0050568d2654",
+      "id": 10190867,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190867/storage/MDEwMTkwODY2LzAvbWFzdGVy",
+        "keywords": [
+          "DEUTSCHLAND"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2783.svg",
+        "basename": "2783",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:07:30.000Z",
+      "modifiedAt": "2026-04-23T11:09:36.000Z"
+    },
+    {
+      "uuid": "8f56f8d0-3f19-11f1-9918-0050568d2654",
+      "id": 10190908,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190908/storage/MDEwMTkwOTA3LzAvbWFzdGVy",
+        "keywords": [
+          "address book",
+          "Adressbuch",
+          "Carnet d’adresses",
+          "rubrica"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2784.svg",
+        "basename": "2784",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T13:37:23.000Z",
+      "modifiedAt": "2026-04-23T13:38:43.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -46140,37 +46270,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
-      "id": 352299,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3058.svg",
-        "basename": "3058",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:42.000Z"
-    },
-    {
       "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
       "id": 352314,
       "type": "picture.pictogram.",
@@ -46200,6 +46299,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:43.000Z"
+    },
+    {
+      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
+      "id": 352299,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3058.svg",
+        "basename": "3058",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:42.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -46313,11 +46443,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-04-19T03:56:49.110Z",
+  "created": "2026-04-26T04:04:20.262Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1109
+    "success": 1114
   },
   "version": "9.11.0"
 }
