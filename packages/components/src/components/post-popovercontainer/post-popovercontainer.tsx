@@ -413,7 +413,7 @@ export class PostPopovercontainer {
         ? Number.parseFloat(arrowBorderRaw) * rootFontSize
         : Number.parseFloat(arrowBorderRaw) || 0;
 
-      const halfSide = -0.5 * arrowSizePx - arrowBorderPx;
+      const halfSide = -0.5 * arrowSizePx - arrowBorderPx / 2;
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {

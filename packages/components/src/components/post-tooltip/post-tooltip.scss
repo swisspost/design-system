@@ -27,6 +27,9 @@ post-popovercontainer {
   // tunnel border into the arrow's per-placement border rules
   --post-arrow-border-width: #{tokens.get('post-tooltip-border-width')};
   --post-current-border: #{tokens.get('post-tooltip-color-border')};
+  // mask size = padding-block so the inset box-shadow covers exactly the padding
+  // zone where arrow border bleed can appear, never reaching the text content
+  --post-popovercontainer-mask-size: #{tokens.get('post-tooltip-padding-block')};
 }
 
 post-popovercontainer::part(post-popovercontainer-content) {
