@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 5.10.2
+
+### Patch Changes
+
+- Added a deprecation notice on the button group sizes. (by [@leagrdv](https://github.com/leagrdv) with [#7473](https://github.com/swisspost/design-system/pull/7473))
+
+- Added a deprecation notice on the `post-tag` component and two color variants of the html/css tag. (by [@leagrdv](https://github.com/leagrdv) with [#7482](https://github.com/swisspost/design-system/pull/7482))
+
+- Added a deprecation notice on the Card Product component. (by [@leagrdv](https://github.com/leagrdv) with [#7504](https://github.com/swisspost/design-system/pull/7504))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.12.0
+  - @swisspost/design-system-components@9.12.0
+  - @swisspost/design-system-styles@9.12.0
+  - @swisspost/design-system-components-react@9.12.0
+  - @swisspost/design-system-theme-ag-grid@9.12.0
+  - @swisspost/internet-header@1.16.5
+
 ## 5.10.1
 
 ### Patch Changes
