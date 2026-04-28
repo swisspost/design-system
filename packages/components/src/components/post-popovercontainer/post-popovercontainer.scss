@@ -48,7 +48,6 @@
 
   // exposed via ::part(post-popovercontainer-border-mask) so consuming components
   // (e.g. post-tooltip) can activate this mask from their own stylesheet
-  // hidden by default
   .border-mask {
     display: none;
     position: absolute;
@@ -69,9 +68,8 @@
     pointer-events: none;
     z-index: -1;
 
-    // border radius on the visible corner + border on the two outer sides per placement
-    // the two sides tucked under the content div stay borderless so no diagonal
-    // line cuts across the arrow face, fallbacks to 0px/transparent when no consumer sets the variables
+    // only the two outer sides get a border — the sides hidden under the content div stay borderless
+    // fallbacks to 0px/transparent when no consumer components sets the variables
     &[dynamic-placement='top'] {
       border-bottom-right-radius: 2px;
       border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
