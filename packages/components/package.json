@@ -23,6 +23,30 @@
     "access": "public",
     "linkDirectory": true
   },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./dist/*": {
+      "default": "./dist/*"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs.js"
+    },
+    "./loaders": {
+      "types": "./loaders/index.d.ts",
+      "import": "./loaders/index.js",
+      "require": "./loaders/index.cjs.js"
+    },
+    "./loaders/*": {
+      "default": "./loaders/*"
+    }
+  },
   "scripts": {
     "dev": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
     "start": "stencil build --dev --watch --docs --docs-readme",
