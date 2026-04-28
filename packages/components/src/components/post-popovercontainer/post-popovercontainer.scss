@@ -38,21 +38,23 @@
     color: var(--post-current-fg);
     background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
+    // Required so .border-mask (a child absolute element) positions correctly.
+    position: relative;
+
     @include utilities.high-contrast-mode {
       border: 2px solid transparent; // border is needed in HCM because the shadow is not visible
     }
+  }
 
-    // Arrow border bleed mask — only active when a consumer (e.g. post-tooltip)
-    // explicitly sets --post-popovercontainer-mask-size. Plain popovers never set
-    // this variable so the ::after is invisible (0px spread, transparent color).
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      box-shadow: inset 0 0 0 var(--post-popovercontainer-mask-size, 0px) var(--post-current-bg, transparent);
-      pointer-events: none;
-    }
+  // Exposed via ::part(post-popovercontainer-border-mask) so consuming components
+  // (e.g. post-tooltip) can activate this mask from their own stylesheet.
+  // Hidden by default.
+  .border-mask {
+    display: none;
+    position: absolute;
+    inset: 0;
+    border-radius: commons.$border-radius;
+    pointer-events: none;
   }
 
   $arrow-rotation: 45deg;
