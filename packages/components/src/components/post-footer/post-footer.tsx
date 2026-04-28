@@ -76,7 +76,7 @@ export class PostFooter {
 
   private renderAccordion() {
     return (
-      <post-accordion headingLevel={3} multiple={true}>
+      <post-accordion testingReason='hello' headingLevel={3} multiple={true}>
         {GRID_SLOTS.map(slotName => (
           <post-accordion-item
             class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}

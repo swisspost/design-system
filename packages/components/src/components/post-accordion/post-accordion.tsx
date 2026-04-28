@@ -4,6 +4,10 @@ import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkRequiredAndOneOf, EventFrom } from '@/utils';
 
 /**
+ * @prop testingReason - Optional prop for testing purposes only. Not for production use.
+ */
+
+/**
  * @slot default - Slot for placing post-accordion-item components.
  */
 
@@ -17,6 +21,11 @@ export class PostAccordion {
   private expandedItems = new Set<HTMLPostAccordionItemElement>();
 
   @Element() host: HTMLPostAccordionElement;
+
+  /**
+   * Optional prop for testing purposes only. Not for production use.
+   */
+  @Prop({ reflect: true }) readonly testingReason!: string;
 
   /**
    * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.

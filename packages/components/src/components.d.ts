@@ -39,6 +39,10 @@ export namespace Components {
          */
         "multiple": boolean;
         /**
+          * Optional prop for testing purposes only. Not for production use.
+         */
+        "testingReason": string;
+        /**
           * Toggles the `post-accordion-item` with the given id.
          */
         "toggle": (id: string) => Promise<void>;
@@ -1269,6 +1273,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "multiple"?: boolean;
+        /**
+          * Optional prop for testing purposes only. Not for production use.
+         */
+        "testingReason": string;
     }
     interface PostAccordionItem {
         /**

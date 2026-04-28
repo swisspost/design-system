@@ -21,6 +21,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
     multiple: false,
     headingLevel: 4 as HeadingLevel, // needs to be a string for the control to properly initialize
     logoSrc: '',
+    testingReason: 'storybook-test',
   },
   argTypes: {
     postToggle: {
@@ -39,6 +40,13 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
         'Define an image `src` to insert a custom image.<post-banner data-size="sm"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</p></post-banner>',
       table: {
         category: 'Content',
+      },
+    },
+    testingReason: {
+      control: 'text',
+      description: 'Optional prop for testing purposes only. Not for production use.',
+      table: {
+        category: 'Testing',
       },
     },
   },
@@ -75,6 +83,7 @@ function renderAccordion(
     <post-accordion
       heading-level=${args.headingLevel}
       multiple=${ifDefined(args.multiple || undefined)}
+      .testingReason=${ifDefined(args.testingReason)}
     >
       ${Array.from({ length: 3 }, (_, i) => accordionItemRenderer(args, i))}
     </post-accordion>
