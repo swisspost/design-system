@@ -38,23 +38,19 @@
     color: var(--post-current-fg);
     background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
-    position: relative;
-
     @include utilities.high-contrast-mode {
       border: 2px solid transparent; // border is needed in HCM because the shadow is not visible
     }
 
-    // A 1px inset box-shadow acts as a thin frame just inside the content border,
-    // sitting above the arrow (z-index: -1) but covering only the very edge of
-    // the box — no padding or text area is obscured. This hides any arrow border
-    // bleed that creeps inward without affecting layout or readability.
+    // Arrow border bleed mask — only active when a consumer (e.g. post-tooltip)
+    // explicitly sets --post-popovercontainer-mask-size. Plain popovers never set
+    // this variable so the ::after is invisible (0px spread, transparent color).
     &::after {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      box-shadow: inset 0 0 0 var(--post-popovercontainer-mask-size, 1px) var(--post-current-bg);
-      z-index: 0;
+      box-shadow: inset 0 0 0 var(--post-popovercontainer-mask-size, 0px) var(--post-current-bg, transparent);
       pointer-events: none;
     }
   }
