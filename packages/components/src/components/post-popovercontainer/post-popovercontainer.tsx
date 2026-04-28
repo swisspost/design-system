@@ -381,53 +381,49 @@ export class PostPopovercontainer {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
     this.dynamicPlacement = currentPlacement;
+
     // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
 
     // Position arrow if enabled
     if (this.arrow && middlewareData.arrow) {
-      const { x: arrowX, y: arrowY } = middlewareData.arrow;
-
-      const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
-
-      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-      // Calculate dynamically the half side which provides the static side offset
-      const arrowSizeValue = getComputedStyle(this.arrowRef)
-        .getPropertyValue('--arrow-size')
-        .trim();
-
-      const arrowSizePx = arrowSizeValue.endsWith('rem')
-        ? Number.parseFloat(arrowSizeValue) * rootFontSize
-        : Number.parseFloat(arrowSizeValue);
-
-      // Read the border width tunneled in via CSS custom property (e.g. from post-tooltip).
-      // This must be factored into the static-side offset so the arrow tip sits flush
-      // with the content box edge rather than being pushed inward by the border thickness.
-      const arrowBorderRaw = getComputedStyle(this.host)
-        .getPropertyValue('--post-arrow-border-width')
-        .trim();
-
-      const arrowBorderPx = arrowBorderRaw.endsWith('rem')
-        ? Number.parseFloat(arrowBorderRaw) * rootFontSize
-        : Number.parseFloat(arrowBorderRaw) || 0;
-
-      const halfSide = -0.5 * arrowSizePx - arrowBorderPx / 2;
-
-      if (staticSide) {
-        Object.assign(this.arrowRef.style, {
-          left: arrowX ? `${arrowX}px` : '',
-          top: arrowY ? `${arrowY}px` : '',
-          [staticSide]: `${halfSide}px`,
-        });
-      }
+      this.positionArrow(middlewareData.arrow, currentPlacement);
     }
 
     // Handle safe space if enabled
     if (this.safeSpace && this.eventTarget) {
       await this.updateSafeSpaceBoundaries(currentPlacement);
     }
+  }
+
+  /**
+   * Positions the arrow element based on floating-ui middleware data.
+   * Accounts for any border width tunneled in via --post-arrow-border-width
+   * so the arrow tip sits flush with the content box edge.
+   */
+  private positionArrow(arrowData: { x?: number; y?: number }, currentPlacement: string) {
+    const { x: arrowX, y: arrowY } = arrowData;
+    const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
+    if (!staticSide) return;
+
+    const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+    const remToPx = (value: string): number =>
+      value.endsWith('rem') ? Number.parseFloat(value) * rootFontSize : Number.parseFloat(value);
+
+    const arrowSizePx = remToPx(getComputedStyle(this.arrowRef).getPropertyValue('--arrow-size').trim());
+
+    const arrowBorderRaw = getComputedStyle(this.host).getPropertyValue('--post-arrow-border-width').trim();
+    const arrowBorderPx = arrowBorderRaw ? remToPx(arrowBorderRaw) : 0;
+
+    const halfSide = -0.5 * arrowSizePx - arrowBorderPx;
+
+    Object.assign(this.arrowRef.style, {
+      left: arrowX ? `${arrowX}px` : '',
+      top: arrowY ? `${arrowY}px` : '',
+      [staticSide]: `${halfSide}px`,
+    });
   }
 
   private async computeMainPosition() {
