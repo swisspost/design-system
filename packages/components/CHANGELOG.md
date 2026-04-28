@@ -1,5 +1,15 @@
 # @swisspost/design-system-components
 
+## 9.12.0
+
+### Patch Changes
+
+- Added optional chaining guards on `popoverRef` to prevent errors when the popover reference is not initialized. (by [@leagrdv](https://github.com/leagrdv) with [#7522](https://github.com/swisspost/design-system/pull/7522))
+
+- Fixed ESM directory import for consuming packages, by adding an export definition, pointing to specific entry files, in the package.json file. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7548](https://github.com/swisspost/design-system/pull/7548))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.12.0
+
 ## 9.11.0
 
 ### Patch Changes
