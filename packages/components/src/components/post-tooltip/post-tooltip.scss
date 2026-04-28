@@ -11,7 +11,7 @@ tokens.$default-map: components.$post-tooltip;
   display: contents;
 }
 
-// creates a safe space around the popovercontainer for safe pointer crossing between trigger and tooltip
+// Creates a safe space around the popovercontainer for safe pointer crossing between trigger and tooltip
 post-popovercontainer[arrow]::after {
   position: absolute;
   content: '';
@@ -20,11 +20,8 @@ post-popovercontainer[arrow]::after {
 }
 
 post-popovercontainer {
-  // feed tooltip tokens into the popovercontainer's color inheritance chain
-  // so the arrow (background-color: var(--post-current-bg)) picks up the correct bg
   --post-current-bg: #{tokens.get('post-tooltip-color-bg')};
   --post-current-fg: #{tokens.get('post-tooltip-color-fg')};
-  // tunnel border into the arrow's per-placement border rules
   --post-arrow-border-width: #{tokens.get('post-tooltip-border-width')};
   --post-current-border: #{tokens.get('post-tooltip-color-border')};
 }
