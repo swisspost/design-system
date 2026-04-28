@@ -1,5 +1,16 @@
 const BACK_TO_TOP_ID = '1a1b4cab-d0a8-4b01-bd85-b70e18668cb5';
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${BACK_TO_TOP_ID}--default`);
+    cy.get('post-back-to-top')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-back-to-top', before, { noTitle: true });
+      });
+  });
+});
+
 describe('Back-to-top', () => {
   describe('default', () => {
     beforeEach(() => {

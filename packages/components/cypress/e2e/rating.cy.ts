@@ -1,5 +1,16 @@
 const RATING_ID = '956e063b-b40c-4fe4-bc27-53b8c4ab1e81';
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${RATING_ID}--default`);
+    cy.get('post-rating')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-rating', before);
+      });
+  });
+});
+
 describe('Rating', () => {
   beforeEach(() => {
     cy.getComponent('rating', RATING_ID);

@@ -1,5 +1,18 @@
 import ClickOptions = Cypress.ClickOptions;
 
+const LINKAREA_ID = '1d52b794-768b-464e-90eb-4fd15774aa90';
+
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${LINKAREA_ID}--default`);
+    cy.get('post-linkarea')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-linkarea', before);
+      });
+  });
+});
+
 describe('post-linkarea', { baseUrl: null }, () => {
   describe('default', () => {
     beforeEach(() => {

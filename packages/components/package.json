@@ -75,7 +75,7 @@
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "unit:updatesnapshot": "stencil test --spec --updateSnapshot",
-    "e2e": "cypress run --browser chrome",
+    "e2e": "cypress run --browser chrome && pnpm generate-markup",
     "e2e:watch": "cypress open",
     "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "lint": "eslint",
@@ -90,7 +90,8 @@
     "prebuild:script": "node --loader ts-node/esm prebuild.ts",
     "copy:component-names": "copyfiles -f src/_generated/component-names.json dist/",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
-    "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
+    "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/",
+    "generate-markup": "node scripts/generate-props-map.mjs && node scripts/generate-nextjs-components.mjs && node scripts/generate-angular-components.mjs"
   },
   "dependencies": {
     "@floating-ui/dom": "1.7.5",

@@ -1,5 +1,23 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 
+const TOOLTIP_ID = 'cd684d90-e7a7-41a9-8923-b1b72ad9b384';
+
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${TOOLTIP_ID}--default`);
+    cy.get('post-tooltip-trigger')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-tooltip-trigger', before, { title: 'Tooltip' });
+      });
+    cy.get('post-tooltip')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-tooltip', before, { noTitle: true });
+      });
+  });
+});
+
 describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   // prettier-ignore
   const shouldBeOpen = () => cy.get(String.raw`.\:popover-open, :popover-open`).should('exist');
@@ -441,7 +459,8 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       });
     });
 
-    it('does not shift the accordion above the trigger', () => assertNoLayoutShift('#layout-accordion-item'));
+    it('does not shift the accordion above the trigger', () =>
+      assertNoLayoutShift('#layout-accordion-item'));
 
     it('does not reflow paragraph text before the trigger', () => {
       snapRect('#paragraph-before').then(before => {
@@ -467,15 +486,19 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       });
     });
 
-    it('does not shift inline text after the trigger', () => assertNoLayoutShift('#text-after-trigger'));
+    it('does not shift inline text after the trigger', () =>
+      assertNoLayoutShift('#text-after-trigger'));
 
-    it('does not shift sibling reference boxes when tooltip is shown', () => assertNoLayoutShift('#reference-box', '#layout-trigger-2'));
+    it('does not shift sibling reference boxes when tooltip is shown', () =>
+      assertNoLayoutShift('#reference-box', '#layout-trigger-2'));
 
-    it('does not shift a second sibling reference box when tooltip is shown', () => assertNoLayoutShift('#reference-box-2', '#layout-trigger-2'));
+    it('does not shift a second sibling reference box when tooltip is shown', () =>
+      assertNoLayoutShift('#reference-box-2', '#layout-trigger-2'));
 
     it('does not shift the rating below the trigger', () => assertNoLayoutShift('#layout-rating'));
 
-    it('does not shift the pagination below the trigger', () => assertNoLayoutShift('#layout-pagination'));
+    it('does not shift the pagination below the trigger', () =>
+      assertNoLayoutShift('#layout-pagination'));
 
     it('does not shift the form input below the trigger', () => assertNoLayoutShift('#test-input'));
 

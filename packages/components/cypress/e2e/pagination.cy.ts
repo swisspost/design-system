@@ -6,6 +6,17 @@ interface PaginationEl {
   collectionSize: number;
 }
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${PAGINATION_ID}--default`);
+    cy.get('post-pagination')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-pagination', before);
+      });
+  });
+});
+
 describe('pagination', () => {
   describe('default', () => {
     beforeEach(() => {

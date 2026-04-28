@@ -39,3 +39,5 @@ playwright-report/
 /playwright/.auth/
 
 *.tsbuildinfo
+
+output/

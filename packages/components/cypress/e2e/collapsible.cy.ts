@@ -1,5 +1,22 @@
 const COLLAPSIBLE_ID = '6a91848c-16ec-4a23-bc45-51c797b5b2c3';
 
+describe('Extract markup', () => {
+  it('should extract markup for consumer apps', () => {
+    cy.visit(`/iframe.html?id=${COLLAPSIBLE_ID}--default`);
+    cy.get('post-collapsible-trigger')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-collapsible-trigger', before, { title: 'Collapsible' });
+      });
+
+    cy.get('post-collapsible')
+      .invoke('prop', 'outerHTML')
+      .then(before => {
+        cy.writeMarkup('post-collapsible', before, { noTitle: true });
+      });
+  });
+});
+
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {

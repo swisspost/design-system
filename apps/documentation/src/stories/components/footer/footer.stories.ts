@@ -65,7 +65,7 @@ function render(args: Args) {
           </a>
         </li>
         <li>
-          <a href="http://www.youtube.com/swisspost" class="btn btn-primary btn-icon">
+          <a href="https://www.youtube.com/swisspost" class="btn btn-primary btn-icon">
             <post-icon aria-hidden="true" name="youtube"></post-icon>
             <span class="visually-hidden">Youtube</span>
           </a>

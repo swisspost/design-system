@@ -55,10 +55,10 @@ Cypress.Commands.add('getComponent', (component: string, id: string, story = 'de
 Cypress.Commands.add('getComponents', (id: string, story: string, ...components: string[]) => {
   cy.visit(`/iframe.html?id=${id}--${story}`);
 
-  components.forEach(component => {
+  for (const component of components) {
     const alias = component.replace(/^post-/, '');
     cy.get(`post-${alias}[data-hydrated]`, { timeout: 30000 }).as(alias);
-  });
+  }
 
   cy.injectAxe();
 });
@@ -127,5 +127,37 @@ Cypress.Commands.add(
     );
 
     return cy.wrap(Array.from(focusableElements));
+  },
+);
+
+Cypress.Commands.add(
+  'writeMarkup',
+  (tag: string, html?: string, options?: { title?: string; noTitle?: boolean }) => {
+    const key = tag
+      .replace(/^post-/, '')
+      .split('-')
+      .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+      .join('');
+
+    const capture = (markup: string) => {
+      cy.task('readJsonFile', 'output/markup-map.json').then(existing => {
+        const updated = {
+          ...((existing as object) || {}),
+          [key]: {
+            html: markup,
+            title: options?.noTitle ? null : (options?.title ?? key),
+          },
+        };
+        cy.writeFile('output/markup-map.json', JSON.stringify(updated, null, 2));
+      });
+    };
+
+    if (html) {
+      capture(html);
+    } else {
+      cy.get(tag)
+        .invoke('prop', 'outerHTML')
+        .then(markup => capture(markup));
+    }
   },
 );
