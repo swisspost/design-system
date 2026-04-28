@@ -6,8 +6,8 @@
 @use '@swisspost/design-system-styles/variables/spacing';
 @use '@swisspost/design-system-styles/mixins/color' as color-mx;
 @use '@swisspost/design-system-styles/variables/elevation';
-@use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
 
@@ -38,10 +38,22 @@
     color: var(--post-current-fg);
     background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
+    // required so .border-mask (a child absolute element) positions correctly
+    position: relative;
 
     @include utilities.high-contrast-mode {
       border: 2px solid transparent; // border is needed in HCM because the shadow is not visible
     }
+  }
+
+  // exposed via ::part(post-popovercontainer-border-mask) so consuming components
+  // (e.g. post-tooltip) can activate this mask from their own stylesheet
+  .border-mask {
+    display: none;
+    position: absolute;
+    inset: 0;
+    border-radius: commons.$border-radius;
+    pointer-events: none;
   }
 
   $arrow-rotation: 45deg;
@@ -56,17 +68,27 @@
     pointer-events: none;
     z-index: -1;
 
+    // only the two outer sides get a border — the sides hidden under the content div stay borderless
+    // fallbacks to 0px/transparent when no consumer components sets the variables
     &[dynamic-placement='top'] {
       border-bottom-right-radius: 2px;
+      border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-right: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
     }
     &[dynamic-placement='right'] {
       border-bottom-left-radius: 2px;
+      border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-left: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
     }
     &[dynamic-placement='bottom'] {
       border-top-left-radius: 2px;
+      border-top: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-left: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
     }
     &[dynamic-placement='left'] {
       border-top-right-radius: 2px;
+      border-top: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-right: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
     }
 
     $angle-rad: math.div($arrow-rotation, 180deg) * 3.14; // convert deg to rad
