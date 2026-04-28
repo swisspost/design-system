@@ -6,8 +6,8 @@
 @use '@swisspost/design-system-styles/variables/spacing';
 @use '@swisspost/design-system-styles/mixins/color' as color-mx;
 @use '@swisspost/design-system-styles/variables/elevation';
-@use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
 
@@ -38,7 +38,7 @@
     color: var(--post-current-fg);
     background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
-    // Required so .border-mask (a child absolute element) positions correctly.
+    // required so .border-mask (a child absolute element) positions correctly
     position: relative;
 
     @include utilities.high-contrast-mode {
@@ -46,9 +46,9 @@
     }
   }
 
-  // Exposed via ::part(post-popovercontainer-border-mask) so consuming components
-  // (e.g. post-tooltip) can activate this mask from their own stylesheet.
-  // Hidden by default.
+  // exposed via ::part(post-popovercontainer-border-mask) so consuming components
+  // (e.g. post-tooltip) can activate this mask from their own stylesheet
+  // hidden by default
   .border-mask {
     display: none;
     position: absolute;
@@ -69,10 +69,9 @@
     pointer-events: none;
     z-index: -1;
 
-    // Border radius on the visible corner + border on the two outer sides per placement.
-    // The two sides tucked under the content div stay borderless so no diagonal
-    // line cuts across the arrow face. Fallbacks to 0px/transparent ensure no
-    // visible border when no consumer (e.g. post-tooltip) sets the variables.
+    // border radius on the visible corner + border on the two outer sides per placement
+    // the two sides tucked under the content div stay borderless so no diagonal
+    // line cuts across the arrow face, fallbacks to 0px/transparent when no consumer sets the variables
     &[dynamic-placement='top'] {
       border-bottom-right-radius: 2px;
       border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
