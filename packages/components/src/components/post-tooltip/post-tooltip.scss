@@ -38,8 +38,6 @@ post-popovercontainer::part(post-popovercontainer-border-mask) {
 }
 
 post-popovercontainer::part(post-popovercontainer-content) {
-  position: relative;
-  z-index: 0;
   border: #{tokens.get('post-tooltip-border-width')} solid #{tokens.get('post-tooltip-color-border')};
   border-radius: #{tokens.get('post-tooltip-border-radius')};
   padding: #{tokens.get('post-tooltip-padding-block')} #{tokens.get('post-tooltip-padding-inline')};
