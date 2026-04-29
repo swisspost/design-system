@@ -372,7 +372,14 @@ export class PostDatePicker {
    * @returns A localized date string, depending on the given `localeCode` and the given `options`.
    */
   private dateToString(date: Date) {
-    return date.toLocaleDateString(this.localeCode, DATE_FORMAT_STRING_OPTIONS);
+    const dateString = date.toLocaleDateString(this.localeCode, DATE_FORMAT_STRING_OPTIONS);
+    const yearString = date.getFullYear().toString();
+
+    if (yearString.length < 4) {
+      return dateString.replace(yearString, yearString.padStart(4, '0'));
+    }
+
+    return dateString;
   }
 
   /**
@@ -430,7 +437,12 @@ export class PostDatePicker {
    * @returns A localtime date object.
    */
   private isoToDate(isoDateString: string): Date | null {
-    return new Date(`${isoDateString}T00:00`);
+    return new Date(`${this.padIsoDate(isoDateString)}T00:00`);
+  }
+
+  private padIsoDate(isoDateString: string): string {
+    const valueParts = isoDateString.split('-');
+    return `${valueParts[0].padStart(4, '0')}-${valueParts[1]}-${valueParts[2]}`;
   }
 
   private setupInputObserver() {
@@ -791,8 +803,9 @@ export class PostDatePicker {
       blocks: {
         y: {
           mask: IMask.MaskedRange,
-          from: 1000,
-          to: 5000,
+          from: 101, // dates from 0100-01-31 and earlier are causing issues in air-datepicker
+          to: 9999,
+          maxLength: 4,
           placeholderChar: Object.keys(DATE_FORMAT_MAP)[0],
         },
         m: {
@@ -808,8 +821,8 @@ export class PostDatePicker {
           placeholderChar: Object.keys(DATE_FORMAT_MAP)[2],
         },
       },
-      min: this.min ? new Date(`${this.min}T00:00`) : null,
-      max: this.max ? new Date(`${this.max}T00:00`) : null,
+      min: this.min ? new Date(`${this.padIsoDate(this.min)}T00:00`) : null,
+      max: this.max ? new Date(`${this.padIsoDate(this.max)}T00:00`) : null,
     };
 
     const singleMaskOptions = {
