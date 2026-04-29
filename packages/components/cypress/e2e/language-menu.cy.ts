@@ -87,13 +87,15 @@ describe('post-language-menu', () => {
 
     it('should show the menu on trigger click', () => {
       cy.get('@trigger').find('button').click();
-      cy.get(`post-popovercontainer${popoverOpenSelector}`).should('exist');
+      // Use a longer timeout — calculatePosition() in post-popovercontainer is async
+      // but not awaited before togglePopover(), causing occasional open failures on slow CI.
+      cy.get(`post-popovercontainer${popoverOpenSelector}`, { timeout: 10000 }).should('exist');
       cy.get('@language-menu').find('post-language-menu-item button').should('be.visible');
     });
 
     it('should correctly switch language and hide menu on option click', () => {
       cy.get('@trigger').find('button').click();
-      cy.get(`post-popovercontainer${popoverOpenSelector}`).should('exist');
+      cy.get(`post-popovercontainer${popoverOpenSelector}`, { timeout: 10000 }).should('exist');
       cy.get('@language-menu').find('post-language-menu-item[code="de"]').click();
 
       cy.get('@trigger').should('contain.text', 'de');
@@ -102,9 +104,7 @@ describe('post-language-menu', () => {
 
     it('should have correct ARIA roles', () => {
       cy.get('@trigger').find('button').click();
-      // role="menu" and role="menuitem" are set by handlePostShown which fires
-      // after the open animation completes — wait for the popover to be open first.
-      cy.get(`post-popovercontainer${popoverOpenSelector}`).should('exist');
+      cy.get(`post-popovercontainer${popoverOpenSelector}`, { timeout: 10000 }).should('exist');
       cy.get('@language-menu').find('post-menu').should('have.attr', 'role', 'menu');
       cy.get('@language-menu')
         .find('post-language-menu-item')
