@@ -102,6 +102,9 @@ describe('post-language-menu', () => {
 
     it('should have correct ARIA roles', () => {
       cy.get('@trigger').find('button').click();
+      // role="menu" and role="menuitem" are set by handlePostShown which fires
+      // after the open animation completes — wait for the popover to be open first.
+      cy.get(`post-popovercontainer${popoverOpenSelector}`).should('exist');
       cy.get('@language-menu').find('post-menu').should('have.attr', 'role', 'menu');
       cy.get('@language-menu')
         .find('post-language-menu-item')
