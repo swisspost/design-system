@@ -21,7 +21,6 @@ const meta: MetaComponent = {
   args: {
     id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
-    palette: 'palette-accent',
     placement: 'top',
   },
   argTypes: {
@@ -38,20 +37,6 @@ const meta: MetaComponent = {
         category: 'General',
         type: {
           summary: 'string',
-        },
-      },
-    },
-    palette: {
-      name: 'Palette',
-      description: 'Define the color scheme of the tooltip.',
-      control: {
-        type: 'select',
-      },
-      options: ['palette-accent'],
-      table: {
-        category: 'General',
-        type: {
-          summary: 'HTML class attribute',
         },
       },
     },
@@ -84,7 +69,6 @@ function render(args: Args) {
     <post-tooltip
       id="${args.id}"
       arrow="${ifDefined(args.arrow)}"
-      class="palette ${args.palette}"
       placement="${ifDefined(args.placement)}"
     >
       ${unsafeHTML(innerHTML)}
