@@ -24,13 +24,14 @@ class Breakpoint {
 
   private currentBreakpoint: BreakpointDefinition;
 
-  private resizeObserver = new ResizeObserver(() => this.updateCurrentBreakpoint());
+  private resizeObserver: ResizeObserver | null = null;
 
   constructor() {
-    if (Build.isServer) return;
-
-    this.updateCurrentBreakpoint({ emitEvents: false });
-    this.resizeObserver.observe(document.body);
+    if (Build.isBrowser) {
+      this.resizeObserver = new ResizeObserver(() => this.updateCurrentBreakpoint());
+      this.updateCurrentBreakpoint({ emitEvents: false });
+      this.resizeObserver.observe(document.body);
+    }
   }
 
   private updateCurrentBreakpoint = throttle(
@@ -56,8 +57,6 @@ class Breakpoint {
   );
 
   private dispatchEvent(property: BreakpointProperty): void {
-    if (Build.isServer) return;
-
     globalThis.dispatchEvent(
       new CustomEvent(`postBreakpoint:${property}`, { detail: this.currentBreakpoint[property] }),
     );
