@@ -849,12 +849,14 @@ export class PostDatePicker {
       this.inputMask.destroy();
       this.setUpMask();
 
-      if (this.range) {
-        this.inputMask.value = this.dpInstance.selectedDates
-          .map(d => this.dateToString(d))
-          .join(this.dateFormatRangeSeparator);
-      } else {
-        this.inputMask.value = this.dateToString(this.dpInstance.selectedDates[0]);
+      if (this.dpInstance.selectedDates.length > 0) {
+        if (this.range) {
+          this.inputMask.value = this.dpInstance.selectedDates
+            .map(d => this.dateToString(d))
+            .join(this.dateFormatRangeSeparator);
+        } else {
+          this.inputMask.value = this.dateToString(this.dpInstance.selectedDates[0]);
+        }
       }
     }
   }
