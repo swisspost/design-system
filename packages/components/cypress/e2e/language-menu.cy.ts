@@ -83,15 +83,17 @@ describe('post-language-menu', () => {
 
     it('should show the menu on trigger click', () => {
       cy.get('@trigger').find('button').click();
-      // Wait for the menu to finish opening before asserting item visibility
-      cy.get('@language-menu').find('post-menu').should('have.attr', 'open');
+      // With includeShadowDom: true, find() already pierces all shadow roots.
+      // post-popovercontainer is hidden via the native Popover API until open —
+      // waiting for it to be visible is the correct signal that the menu is ready.
+      cy.get('@language-menu').find('post-popovercontainer').should('be.visible');
       cy.get('@language-menu').find('post-language-menu-item button').should('be.visible');
     });
 
     it('should correctly switch language and hide menu on option click', () => {
       cy.get('@trigger').find('button').click();
-      // Wait for the menu to finish opening before clicking an item
-      cy.get('@language-menu').find('post-menu').should('have.attr', 'open');
+      // Wait for the popover to be open before clicking an item
+      cy.get('@language-menu').find('post-popovercontainer').should('be.visible');
       cy.get('@language-menu').find('post-language-menu-item[code="de"]').click();
 
       cy.get('@trigger').should('contain.text', 'de');
