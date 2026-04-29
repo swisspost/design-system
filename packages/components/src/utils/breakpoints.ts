@@ -1,5 +1,4 @@
 import { throttle } from 'throttle-debounce';
-import { Build } from '@stencil/core';
 
 export type Device = 'desktop' | 'tablet' | 'mobile';
 export type BreakpointKey = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
@@ -24,11 +23,12 @@ class Breakpoint {
 
   private currentBreakpoint: BreakpointDefinition;
 
-  private resizeObserver: ResizeObserver | null = null;
+  private resizeObserver: ResizeObserver | null = globalThis.ResizeObserver
+    ? new ResizeObserver(() => this.updateCurrentBreakpoint())
+    : null;
 
   constructor() {
-    if (Build.isBrowser) {
-      this.resizeObserver = new ResizeObserver(() => this.updateCurrentBreakpoint());
+    if (this.resizeObserver) {
       this.updateCurrentBreakpoint({ emitEvents: false });
       this.resizeObserver.observe(document.body);
     }
