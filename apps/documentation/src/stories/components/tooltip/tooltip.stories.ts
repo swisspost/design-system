@@ -47,7 +47,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['palette-accent', 'palette-brand'],
+      options: ['palette-accent'],
       table: {
         category: 'General',
         type: {
