@@ -83,11 +83,15 @@ describe('post-language-menu', () => {
 
     it('should show the menu on trigger click', () => {
       cy.get('@trigger').find('button').click();
+      // Wait for the menu to finish opening before asserting item visibility
+      cy.get('@language-menu').find('post-menu').should('have.attr', 'open');
       cy.get('@language-menu').find('post-language-menu-item button').should('be.visible');
     });
 
     it('should correctly switch language and hide menu on option click', () => {
       cy.get('@trigger').find('button').click();
+      // Wait for the menu to finish opening before clicking an item
+      cy.get('@language-menu').find('post-menu').should('have.attr', 'open');
       cy.get('@language-menu').find('post-language-menu-item[code="de"]').click();
 
       cy.get('@trigger').should('contain.text', 'de');
