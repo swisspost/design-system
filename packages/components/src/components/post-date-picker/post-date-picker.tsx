@@ -64,7 +64,7 @@ export class PostDatePicker {
   @Prop() locale?: string = this.systemLocale;
   @Watch('locale')
   validateLocale() {
-    if (!isValidLocale(this.localeCode)) {
+    if (!isValidLocale(this.locale)) {
       console.error(
         'The prop `locale` of the `post-date-picker` component must be a valid localeCode (e.g. `en`, `en-GB`, etc.), based on <a href="https://www.rfc-editor.org/info/bcp47">BCP 47 (RFC 5646)</a> standard.',
       );

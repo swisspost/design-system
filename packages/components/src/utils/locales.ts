@@ -17,6 +17,6 @@ export function getLocaleTextDirection(locale: string) {
   return new Date().toLocaleDateString(locale).includes(UNICODE_BIDI.rtl) ? 'rtl' : 'ltr';
 }
 
-export function isValidLocale(locale: string) {
-  return check(locale);
+export function isValidLocale(locale: string | undefined): boolean {
+  return locale !== undefined && check(locale);
 }
