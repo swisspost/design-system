@@ -1,5 +1,9 @@
+import { isPopoverSupported } from './helper/popovercontainer';
+
 const LANGUAGE_SWITCH_ID = 'decbb10c-2b39-4f47-b67d-337d8111a3ae';
 const LANGUAGE_OPTION_ID = '3753ab83-a659-47b5-a2f2-ac452ec97916';
+
+const popoverOpenSelector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
 
 describe('post-language-menu', () => {
   describe('list variant', () => {
@@ -83,20 +87,13 @@ describe('post-language-menu', () => {
 
     it('should show the menu on trigger click', () => {
       cy.get('@trigger').find('button').click();
-      // The polyfill controls visibility via the '\:popover-open' class on post-popovercontainer.
-      // Check the class directly instead of visibility, since the host has display:none until open.
-      cy.get('@language-menu')
-        .find('post-popovercontainer')
-        .should('have.class', ':popover-open');
+      cy.get(`post-popovercontainer${popoverOpenSelector}`).should('exist');
       cy.get('@language-menu').find('post-language-menu-item button').should('be.visible');
     });
 
     it('should correctly switch language and hide menu on option click', () => {
       cy.get('@trigger').find('button').click();
-      // Wait for the popover to be open before clicking an item
-      cy.get('@language-menu')
-        .find('post-popovercontainer')
-        .should('have.class', ':popover-open');
+      cy.get(`post-popovercontainer${popoverOpenSelector}`).should('exist');
       cy.get('@language-menu').find('post-language-menu-item[code="de"]').click();
 
       cy.get('@trigger').should('contain.text', 'de');
