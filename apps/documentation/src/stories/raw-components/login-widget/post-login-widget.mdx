@@ -1,0 +1,52 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import meta, * as LoginWidgetStories from './post-login-widget.stories';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import SampleFocus from './post-login-widget.focus.sample?raw';
+
+<Meta of={LoginWidgetStories} />
+
+<div className="docs-title">
+  # Login Widget
+
+<link-design of={JSON.stringify(LoginWidgetStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+Conditionally renders content based on the user's KLP authentication state.
+
+The `<post-login-widget>` calls the KLP session API on mount and renders either the `authenticated`
+or `unauthenticated` slot depending on the response.
+Both slots are fully customisable.
+
+<div className="main-story">
+  <Canvas sourceState="shown" of={LoginWidgetStories.Default} />
+</div>
+<div className="hide-col-default">
+  <Controls of={LoginWidgetStories.Default} />
+</div>
+
+<ComponentsPackageInstall component="<post-login-widget>" />
+
+## Authenticated
+
+When the session API confirms the user is logged in, the `authenticated` slot is rendered.
+
+<Canvas of={LoginWidgetStories.Authenticated} sourceState="shown" />
+
+## Fallback behaviour
+
+If the session API request fails for any reason (network error or non-2xx response), the component
+falls back to rendering the `unauthenticated` slot. No error is thrown.
+
+## Accessibility
+
+### Focus management
+
+When the authentication state changes, the component updates the rendered slot. Your application is responsible for managing focus. Listen to the `postLoginChange` event and move focus appropriately.
+
+For example, after a user logs out, move focus to the login link:
+
+<Source code={SampleFocus} language="ts" />
