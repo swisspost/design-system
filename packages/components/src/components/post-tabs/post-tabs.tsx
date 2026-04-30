@@ -392,18 +392,13 @@ export class PostTabs {
   render() {
     const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
     const isSSR = Build.isServer;
+    const tabStyle = {
+      [`--post-tab-panel-${this.activeTab}`]: 'block',
+      [`--post-tab-item-${this.activeTab}`]: '1',
+    };
+    const style = isSSR && !this.isNavigationMode ? tabStyle : undefined;
     return (
-      <Host
-        data-version={version}
-        style={
-          isSSR && !this.isNavigationMode
-            ? {
-                [`--post-tab-panel-${this.activeTab}`]: 'block',
-                [`--post-tab-item-${this.activeTab}`]: '1',
-              }
-            : undefined
-        }
-      >
+      <Host data-version={version} style={style}>
         <div class="tabs-wrapper" part="post-tabs">
           <TabsContainer
             class="tabs"
