@@ -103,7 +103,6 @@ const COMPONENTS = {
   <post-language-menu
     text-change-language="Change the language"
     text-current-language="The currently selected language is English."
-    name="language-menu-example"
     slot="language-menu"
   >
     <post-language-menu-item code="de" name="German">de</post-language-menu-item>
