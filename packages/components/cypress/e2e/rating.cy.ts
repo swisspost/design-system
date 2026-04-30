@@ -1,6 +1,5 @@
 const RATING_ID = '956e063b-b40c-4fe4-bc27-53b8c4ab1e81';
 
-
 describe('Rating', () => {
   beforeEach(() => {
     cy.getComponent('rating', RATING_ID);

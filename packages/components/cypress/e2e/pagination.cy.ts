@@ -6,7 +6,6 @@ interface PaginationEl {
   collectionSize: number;
 }
 
-
 describe('pagination', () => {
   describe('default', () => {
     beforeEach(() => {

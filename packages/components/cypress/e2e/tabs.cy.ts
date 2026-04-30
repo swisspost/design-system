@@ -1,6 +1,5 @@
 const TABS_ID = 'bb1291ca-4dbb-450c-a15f-596836d9f39e';
 
-
 describe('tabs', () => {
   describe('default', () => {
     beforeEach(() => {
