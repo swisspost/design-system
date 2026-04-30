@@ -119,64 +119,13 @@
             "styles": ["projects/consumer-app/src/styles.scss"],
             "scripts": []
           }
-        },
-        "cypress-run": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "consumer-app:serve",
-            "configFile": "projects/consumer-app/cypress.config.js"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "consumer-app:serve:production"
-            }
-          }
-        },
-        "cypress-open": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "watch": true,
-            "headless": false,
-            "configFile": "projects/consumer-app/cypress.config.js"
-          }
-        },
-        "ct": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "consumer-app:serve",
-            "watch": true,
-            "headless": false,
-            "testingType": "component"
-          },
-          "configurations": {
-            "development": {
-              "devServerTarget": "consumer-app:serve:development"
-            }
-          }
-        },
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "consumer-app:serve",
-            "watch": true,
-            "headless": false,
-            "project": "projects/consumer-app"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "consumer-app:serve:production"
-            },
-            "ci": {
-              "devServerTarget": ""
-            }
-          }
         }
       }
     }
   },
   "cli": {
     "packageManager": "pnpm",
-    "schematicCollections": ["@cypress/schematic", "@schematics/angular"],
+    "schematicCollections": ["@schematics/angular"],
     "analytics": false
   },
   "schematics": {
