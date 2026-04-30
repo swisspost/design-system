@@ -16,7 +16,7 @@
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
-    "e2e:ci": "xvfb-run -a start-server-and-test 'npx serve dist/consumer-app -p 4200 --no-clipboard' http://localhost:4200 'ng e2e --configuration ci --watch=false'",    
+    "e2e:ci": "pnpm --filter design-system-components-angular-workspace build && xvfb-run -a start-server-and-test 'npx serve dist/consumer-app -p 4200 --no-clipboard' http://localhost:4200 'ng e2e --configuration ci --watch=false'",
     "unit": "pnpm -r unit",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
