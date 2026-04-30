@@ -19,9 +19,9 @@ const outputPath = path.resolve(__dirname, '../cypress/fixtures/markup-component
 /** PascalCase / camelCase → Storybook kebab-case (mirrors lodash startCase → kebab) */
 function toKebab(name) {
   return name
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .replace(/([A-Za-z])([0-9])/g, '$1-$2')
-    .replace(/([0-9])([A-Za-z])/g, '$1-$2')
+    .replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+    .replaceAll(/([A-Za-z])([0-9])/g, '$1-$2')
+    .replaceAll(/([0-9])([A-Za-z])/g, '$1-$2')
     .toLowerCase();
 }
 
