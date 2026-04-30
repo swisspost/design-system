@@ -1,4 +1,4 @@
-import { PostBackToTop, PostBreadcrumbItem, PostBreadcrumbs, PostFooter, PostHeader, PostIcon, PostLanguageMenu, PostLanguageMenuItem, PostLogo, PostMainnavigation, PostMegadropdown, PostMegadropdownTrigger } from '@swisspost/design-system-components-react/server';
+import { PostAvatar, PostBackToTop, PostBreadcrumbItem, PostBreadcrumbs, PostFooter, PostHeader, PostIcon, PostLanguageMenu, PostLanguageMenuItem, PostLogo, PostMainnavigation, PostMegadropdown, PostMegadropdownTrigger, PostMenu, PostMenuItem, PostMenuTrigger } from '@swisspost/design-system-components-react/server';
 export default function Layout({ children }: { readonly children: React.ReactNode }) {
   return (
     <>

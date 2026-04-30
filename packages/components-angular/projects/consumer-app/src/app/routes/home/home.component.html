@@ -1,5 +1,6 @@
 <div class="my-24">
   <h2>Accordion</h2>
+  <h3>default</h3>
   <post-accordion [headingLevel]="3">
     <post-accordion-item >
     <span slot="header">Title 1</span>
@@ -23,10 +24,161 @@
     </p>
     </post-accordion-item>
     </post-accordion>
+
+  <h3>logos</h3>
+  <post-accordion [headingLevel]="4">
+    <post-accordion-item ><img slot="logo" alt="logo" src="/assets/images/logo-swisspost.svg" />
+    <span slot="header">Title 1</span>
+    <p>
+      Example content for accordion item 1. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+    </post-accordion-item>
+    <post-accordion-item ><img slot="logo" alt="logo" src="/assets/images/logo-swisspost.svg" />
+    <span slot="header">Title 2</span>
+    <p>
+      Example content for accordion item 2. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+    </post-accordion-item>
+    <post-accordion-item ><img slot="logo" alt="logo" src="/assets/images/logo-swisspost.svg" />
+    <span slot="header">Title 3</span>
+    <p>
+      Example content for accordion item 3. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+    </post-accordion-item>
+    </post-accordion>
+
+  <h3>multiple-open-panels</h3>
+  <post-accordion [headingLevel]="4" [multiple]="true">
+    <post-accordion-item >
+    <span slot="header">Title 1</span>
+    <p>
+      Example content for accordion item 1. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+    </post-accordion-item>
+    <post-accordion-item [collapsed]="">
+    <span slot="header">Title 2</span>
+    <p>
+      Example content for accordion item 2. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+    </post-accordion-item>
+    <post-accordion-item [collapsed]="">
+    <span slot="header">Title 3</span>
+    <p>
+      Example content for accordion item 3. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+    </post-accordion-item>
+    </post-accordion>
+
+  <h3>default-collapsed-panels</h3>
+  <post-accordion [headingLevel]="4">
+      <post-accordion-item [collapsed]="true">
+    <span slot="header">Title 1</span>
+    <p>
+      Example content for accordion item 1. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+      </post-accordion-item>
+      <post-accordion-item >
+    <span slot="header">Title 2</span>
+    <p>
+      Example content for accordion item 2. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+      </post-accordion-item>
+      <post-accordion-item [collapsed]="true">
+    <span slot="header">Title 3</span>
+    <p>
+      Example content for accordion item 3. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+      </post-accordion-item>
+    </post-accordion>
+
+  <h3>nested</h3>
+  <post-accordion [headingLevel]="4">
+      <post-accordion-item >
+    <span slot="header">Title 1 <code>h4</code></span>
+    <p>
+      Example content for accordion item 1. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+    <post-accordion [headingLevel]="5">
+          <post-accordion-item >
+    <span slot="header">Title 1.1 <code>h5</code></span>
+    <p>
+      Example content for accordion item 1.1. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+          </post-accordion-item>
+          <post-accordion-item >
+    <span slot="header">Title 1.2 <code>h5</code></span>
+    <p>
+      Example content for accordion item 1.2. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+          </post-accordion-item>
+          <post-accordion-item >
+    <span slot="header">Title 1.3 <code>h5</code></span>
+    <p>
+      Example content for accordion item 1.3. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+          </post-accordion-item>
+    </post-accordion>
+        <div></div>
+      </post-accordion-item>
+      <post-accordion-item >
+    <span slot="header">Title 2 <code>h4</code></span>
+    <p>
+      Example content for accordion item 2. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+        <div>
+    <post-accordion [headingLevel]="5">
+          <post-accordion-item >
+    <span slot="header">Title 2.1 <code>h5</code></span>
+    <p>
+      Example content for accordion item 2.1. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+          </post-accordion-item>
+          <post-accordion-item >
+    <span slot="header">Title 2.2 <code>h5</code></span>
+    <p>
+      Example content for accordion item 2.2. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+          </post-accordion-item>
+          <post-accordion-item >
+    <span slot="header">Title 2.3 <code>h5</code></span>
+    <p>
+      Example content for accordion item 2.3. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+          </post-accordion-item>
+    </post-accordion>
+  </div>
+      </post-accordion-item>
+      <post-accordion-item >
+    <span slot="header">Title 3 <code>h4</code></span>
+    <p>
+      Example content for accordion item 3. This is a sample text demonstrating how the
+      accordion component works.
+    </p>
+        <div></div>
+      </post-accordion-item>
+    </post-accordion>
 </div>
 
 <div class="my-24">
   <h2>Autocomplete</h2>
+  <h3>default</h3>
   <post-autocomplete [filterThreshold]="0">
         <div class="form-floating">
           <input class="form-control" type="text" placeholder="Select Country" id="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--default-input" />
@@ -46,22 +198,118 @@
     <post-listbox-option value="Sweden"></post-listbox-option>
   </post-listbox>
       </post-autocomplete>
+
+  <h3>clearable</h3>
+  <post-autocomplete [clearable]="" [filterThreshold]="0">
+        <div class="form-floating">
+          <input class="form-control" type="text" placeholder="Select Country" id="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--clearable-input" />
+          <label class="form-label" for="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--clearable-input">Country</label>
+        </div>
+        <post-listbox >
+    <div slot="blank-slate">Nothing to see here</div>
+    <post-listbox-option value="Switzerland"></post-listbox-option>
+    <post-listbox-option value="Germany"></post-listbox-option>
+    <post-listbox-option value="France"></post-listbox-option>
+    <post-listbox-option value="Italy"></post-listbox-option>
+    <post-listbox-option value="Austria"></post-listbox-option>
+    <post-listbox-option value="Spain"></post-listbox-option>
+    <post-listbox-option value="Portugal"></post-listbox-option>
+    <post-listbox-option value="Netherlands"></post-listbox-option>
+    <post-listbox-option value="Belgium"></post-listbox-option>
+    <post-listbox-option value="Sweden"></post-listbox-option>
+  </post-listbox>
+      </post-autocomplete>
+
+  <h3>detached-listbox</h3>
+  <post-autocomplete [filterThreshold]="0" listbox="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--detached-listbox-listbox">
+        <div class="form-floating">
+          <input class="form-control" type="text" placeholder="Select Country" id="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--detached-listbox-input" />
+          <label class="form-label" for="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--detached-listbox-input">Country</label>
+        </div>
+      </post-autocomplete>
+
+  <h3>filter-threshold</h3>
+  <post-autocomplete [filterThreshold]="3">
+        <div class="form-floating">
+          <input class="form-control" type="text" placeholder="Select Country" id="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--filter-threshold-input" />
+          <label class="form-label" for="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--filter-threshold-input">Country</label>
+        </div>
+        <post-listbox >
+    <div slot="blank-slate">Nothing to see here</div>
+    <post-listbox-option value="Switzerland"></post-listbox-option>
+    <post-listbox-option value="Germany"></post-listbox-option>
+    <post-listbox-option value="France"></post-listbox-option>
+    <post-listbox-option value="Italy"></post-listbox-option>
+    <post-listbox-option value="Austria"></post-listbox-option>
+    <post-listbox-option value="Spain"></post-listbox-option>
+    <post-listbox-option value="Portugal"></post-listbox-option>
+    <post-listbox-option value="Netherlands"></post-listbox-option>
+    <post-listbox-option value="Belgium"></post-listbox-option>
+    <post-listbox-option value="Sweden"></post-listbox-option>
+  </post-listbox>
+      </post-autocomplete>
+
+  <h3>option-description</h3>
+  <post-autocomplete [filterThreshold]="0">
+        <div class="form-floating">
+          <input class="form-control" type="text" placeholder="Select Country" id="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--option-description-input" />
+          <label class="form-label" for="5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d--option-description-input">Country</label>
+        </div>
+        <post-listbox >
+    <div slot="blank-slate">Nothing to see here</div>
+    <post-listbox-option value="Switzerland">Alpine Region</post-listbox-option>
+    <post-listbox-option value="Germany">Central Europe</post-listbox-option>
+    <post-listbox-option value="France">Western Europe</post-listbox-option>
+    <post-listbox-option value="Italy">Southern Europe</post-listbox-option>
+    <post-listbox-option value="Austria">Alpine Region</post-listbox-option>
+    <post-listbox-option value="Spain">Iberian Peninsula</post-listbox-option>
+    <post-listbox-option value="Portugal">Iberian Peninsula</post-listbox-option>
+    <post-listbox-option value="Netherlands">Benelux</post-listbox-option>
+    <post-listbox-option value="Belgium">Benelux</post-listbox-option>
+    <post-listbox-option value="Sweden">Scandinavia</post-listbox-option>
+  </post-listbox>
+      </post-autocomplete>
 </div>
 
 <div class="my-24">
   <h2>Avatar</h2>
+  <h3>default</h3>
+  <post-avatar firstname="Firstname" description="The current user is Firstname."></post-avatar>
+
+  <h3>anchor-wrapped</h3>
+  <post-avatar firstname="Firstname" description="The current user is Firstname."></post-avatar>
+
+  <h3>button-wrapped</h3>
   <post-avatar firstname="Firstname" description="The current user is Firstname."></post-avatar>
 </div>
 
 <div class="my-24">
   <h2>Banner</h2>
+  <h3>default</h3>
   <post-banner >
+      <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
+    </post-banner>
+
+  <h3>contents</h3>
+  <post-banner >
+      <h4 slot="heading">Heading Title</h4><ul class="list-unstyled"><li class="d-flex gap-8"><post-icon name="moon"></post-icon>An example list item</li><li class="d-flex gap-8"><post-icon name="sun"></post-icon>Another example list item</li></ul><hr class="w-full" /><p>This is the banner content that provides important information to the user.</p><button slot="actions" class="btn btn-secondary"><span>Cancel</span></button><button slot="actions" class="btn btn-primary"><span>Accept</span></button>
+    </post-banner>
+
+  <h3>dismissible</h3>
+  <post-banner >
+       <post-closebutton slot="close-button"> Close </post-closebutton> 
       <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
     </post-banner>
 </div>
 
 <div class="my-24">
   <h2>Closebutton</h2>
+  <h3>default</h3>
+  <post-closebutton >
+      Close
+    </post-closebutton>
+
+  <h3>automatic-positioning</h3>
   <post-closebutton >
       Close
     </post-closebutton>
@@ -69,28 +317,78 @@
 
 <div class="my-24">
   <h2>Collapsible</h2>
+  <h3>default</h3>
   <post-collapsible-trigger for="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
+      <button class="btn btn-secondary">Toggle Collapsible</button>
+    </post-collapsible-trigger>
+
+  <h3>initially-collapsed</h3>
+  <post-collapsible-trigger for="6a91848c-16ec-4a23-bc45-51c797b5b2c3--initially-collapsed">
       <button class="btn btn-secondary">Toggle Collapsible</button>
     </post-collapsible-trigger>
 </div>
 
 <div class="my-24">
-    <post-collapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default" dataVersion="10.0.0-next.67" dataHydrated="">
+    <h3>default</h3>
+  <post-collapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default" dataVersion="10.0.0-next.67" dataHydrated="">
+      <p class="border rounded p-24">This is collapsible content that can be shown or hidden.</p>
+    </post-collapsible>
+
+  <h3>initially-collapsed</h3>
+  <post-collapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--initially-collapsed" [collapsed]="" dataVersion="10.0.0-next.67" tabindex="-1" dataHydrated="" style="height: 0px; overflow: hidden;">
       <p class="border rounded p-24">This is collapsible content that can be shown or hidden.</p>
     </post-collapsible>
 </div>
 
 <div class="my-24">
   <h2>DatePicker</h2>
+  <h3>default</h3>
   <post-date-picker textToggleCalendar="Open calendar" textNextDecade="Next decade" textNextMonth="Next month" textNextYear="Next year" textPreviousDecade="Previous decade" textPreviousMonth="Previous month" textPreviousYear="Previous year" textSwitchYear="Switch to year view" id="main">
       <input class="form-control" type="text" />
       <p class="form-hint">Format: DD.MM.YYYY</p>
     </post-date-picker>
+
+  <h3>inline</h3>
+  <post-date-picker [inline]="" textToggleCalendar="Open calendar" textNextDecade="Next decade" textNextMonth="Next month" textNextYear="Next year" textPreviousDecade="Previous decade" textPreviousMonth="Previous month" textPreviousYear="Previous year" textSwitchYear="Switch to year view" id="inline"> </post-date-picker>
+
+  <h3>inline-range</h3>
+  <post-date-picker [inline]="" [range]="" textToggleCalendar="Open calendar" textNextDecade="Next decade" textNextMonth="Next month" textNextYear="Next year" textPreviousDecade="Previous decade" textPreviousMonth="Previous month" textPreviousYear="Previous year" textSwitchYear="Switch to year view" id="inline-range"> </post-date-picker>
+
+  <h3>range</h3>
+  <post-date-picker [range]="" textToggleCalendar="Open calendar" textNextDecade="Next decade" textNextMonth="Next month" textNextYear="Next year" textPreviousDecade="Previous decade" textPreviousMonth="Previous month" textPreviousYear="Previous year" textSwitchYear="Switch to year view" id="range">
+      <input class="form-control" type="text" />
+      <p class="form-hint">Format: DD.MM.YYYY - DD.MM.YYYY</p>
+    </post-date-picker>
+
+  <h3>disabled-dates</h3>
+  <post-date-picker [inline]="" textToggleCalendar="Open calendar" textNextDecade="Next decade" textNextMonth="Next month" textNextYear="Next year" textPreviousDecade="Previous decade" textPreviousMonth="Previous month" textPreviousYear="Previous year" textSwitchYear="Switch to year view" id="disabled-dates"> </post-date-picker>
 </div>
 
 <div class="my-24">
   <h2>Icon</h2>
+  <h3>default</h3>
   <post-icon name="stampapostplus"></post-icon>
+
+  <h3>ui</h3>
+  <post-icon name="accessibility"></post-icon>
+
+  <h3>color</h3>
+  <post-icon name="stampapostplus" style="color: blue"></post-icon>
+
+  <h3>size</h3>
+  <post-icon name="stampapostplus" style="font-size: 1rem"></post-icon>
+
+  <h3>flip</h3>
+  <post-icon name="stampapostplus"></post-icon>
+
+  <h3>scale</h3>
+  <post-icon name="stampapostplus" scale="0.5"></post-icon>
+
+  <h3>rotate</h3>
+  <post-icon name="stampapostplus" rotate="-365"></post-icon>
+
+  <h3>animate</h3>
+  <post-icon name="dragleftright" animation="cylon"></post-icon>
 </div>
 
 <div class="my-24">
@@ -107,58 +405,190 @@
 
 <div class="my-24">
   <h2>Menu</h2>
+  <h3>default</h3>
   <post-menu-trigger for="menu--default">  <button class="btn btn-secondary">Open Menu</button>  </post-menu-trigger>
+
+  <h3>right</h3>
+  <post-menu-trigger for="menu--right">  <button class="btn btn-secondary">Menu on the right</button>  </post-menu-trigger>
+
+  <h3>icon-trigger</h3>
+  <post-menu-trigger for="menu--icon-trigger"> 
+      <button class="btn btn-tertiary btn-lg btn-icon">
+        <post-icon aria-hidden="true" name="home"></post-icon>
+        <span class="visually-hidden">Open home menu</span>
+      </button>
+     </post-menu-trigger>
+
+  <h3>mixed-content</h3>
+  <post-menu-trigger for="menu--mixed-content">  <button class="btn btn-secondary">Mixed content</button>  </post-menu-trigger>
+
+  <h3>with-icons</h3>
+  <post-menu-trigger for="menu--with-icons">  <button class="btn btn-secondary">Icons in front</button>  </post-menu-trigger>
 </div>
 
 <div class="my-24">
-    <post-menu id="menu--default" label="Menu description" dataVersion="10.0.0-next.67">
+    <h3>default</h3>
+  <post-menu id="menu--default" label="Menu description" dataVersion="10.0.0-next.67">
       <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/first">First menu item</a></post-menu-item>
       <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/second">Second menu item</a></post-menu-item>
       <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/third">Third menu item</a></post-menu-item>
+      </post-menu>
+
+  <h3>right</h3>
+  <post-menu id="menu--right" placement="right" label="Menu description" dataVersion="10.0.0-next.67" dataHydrated="">
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/first">First menu item</a></post-menu-item>
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/second">Second menu item</a></post-menu-item>
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/third">Third menu item</a></post-menu-item>
+      </post-menu>
+
+  <h3>icon-trigger</h3>
+  <post-menu id="menu--icon-trigger" label="Menu description" dataVersion="10.0.0-next.67">
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/first">First menu item</a></post-menu-item>
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/second">Second menu item</a></post-menu-item>
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated=""><a href="/third">Third menu item</a></post-menu-item>
+      </post-menu>
+
+  <h3>mixed-content</h3>
+  <post-menu id="menu--mixed-content" label="Menu description" dataVersion="10.0.0-next.67" dataHydrated="">
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated="">
+        <a href="/details">View details <em class="fs-7">link</em></a>
+      </post-menu-item>
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated="">
+        <button type="button">Duplicate <em class="fs-7">button</em></button>
+      </post-menu-item>
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated="">
+        <button type="button">Delete <em class="fs-7">button</em></button>
+      </post-menu-item>
+      </post-menu>
+
+  <h3>with-icons</h3>
+  <post-menu id="menu--with-icons" label="Menu description" dataVersion="10.0.0-next.67">
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated="">
+        <button type="button"><post-icon aria-hidden="true" name="edit" dataVersion="10.0.0-next.67" dataHydrated=""></post-icon> Edit</button>
+      </post-menu-item>
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated="">
+        <button type="button"><post-icon aria-hidden="true" name="copy" dataVersion="10.0.0-next.67" dataHydrated=""></post-icon> Copy</button>
+      </post-menu-item>
+      <post-menu-item dataVersion="10.0.0-next.67" dataHydrated="">
+        <button type="button">
+          <post-icon aria-hidden="true" name="trash" dataVersion="10.0.0-next.67" dataHydrated=""></post-icon> Delete
+        </button>
+      </post-menu-item>
       </post-menu>
 </div>
 
 <div class="my-24">
   <h2>NumberInput</h2>
+  <h3>default</h3>
   <post-number-input class="form-floating">
     <input type="number" id="number-input--default" class="form-control" placeholder="" aria-describedby="form-hint-d5f43fa8-42ba-4cb9-98c7-9386d4c939bb--default" />
    <label class="form-label" for="number-input--default">Quantity</label> 
+      </post-number-input>
+
+  <h3>floating-label</h3>
+  <post-number-input class="form-floating">
+    <input type="number" id="number-input--floating-label" class="form-control" placeholder="" />
+   <label class="form-label" for="number-input--floating-label">Quantity</label> 
+      </post-number-input>
+
+  <h3>small</h3>
+  <post-number-input >
+    <input type="number" id="number-input--small" class="form-control form-control-sm" aria-describedby="form-hint-d5f43fa8-42ba-4cb9-98c7-9386d4c939bb--small" />
       </post-number-input>
 </div>
 
 <div class="my-24">
   <h2>Pagination</h2>
+  <h3>default</h3>
   <post-pagination [page]="1" [pageSize]="10" [collectionSize]="100" label="Pagination" textPrevious="Previous page" textNext="Next page" textPage="Page" textFirst="First page" textLast="Last page"></post-pagination>
+
+  <h3>many-pages</h3>
+  <post-pagination [page]="10" [pageSize]="6" [collectionSize]="200" label="Pagination" textPrevious="Previous page" textNext="Next page" textPage="Page" textFirst="First page" textLast="Last page"></post-pagination>
+
+  <h3>page-out-of-range</h3>
+  <post-pagination [page]="50" [pageSize]="10" [collectionSize]="40" label="Pagination" textPrevious="Previous page" textNext="Next page" textPage="Page" textFirst="First page" textLast="Last page"></post-pagination>
 </div>
 
 <div class="my-24">
   <h2>Popover</h2>
+  <h3>default</h3>
   <post-popover-trigger for="popover-one">
       <button class="btn btn-secondary">Popover Trigger</button>
     </post-popover-trigger>
+
+  <h3>wrapped</h3>
+  <post-popover-trigger >
+        <button class="btn btn-secondary">Popover Trigger</button>
+        <post-popover class="palette palette-accent" placement="top" textClose="Close" [arrow]="">
+          <h2 class="h6">Optional title</h2>
+          <p class="mb-0">
+            A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+          </p>
+        </post-popover>
+      </post-popover-trigger>
+
+  <h3>info-icon</h3>
+  <post-popover-trigger >
+        <button class="btn btn-link btn-icon">
+          <post-icon aria-hidden="true" name="info"></post-icon>
+          <span class="visually-hidden">See more information</span>
+        </button>
+        <post-popover class="palette palette-accent" placement="top" textClose="Close" [arrow]="">
+          <p class="mb-0">
+            Follow your letter's journey with automatic updates at key delivery milestones.
+          </p>
+        </post-popover>
+      </post-popover-trigger>
 </div>
 
 <div class="my-24">
-    <post-popover class="palette palette-accent" id="popover-one" placement="top" textClose="Close" [arrow]="" dataVersion="10.0.0-next.67">
+    <h3>default</h3>
+  <post-popover class="palette palette-accent" id="popover-one" placement="top" textClose="Close" [arrow]="" dataVersion="10.0.0-next.67">
        <h2 class="h6">Optional title</h2> 
       <p class="mb-0">A longer message that needs more time to read. <a href="#">Links</a> are also possible.</p>
     </post-popover>
+
+  <h3>wrapped</h3>
+  <post-popover class="palette palette-accent" placement="top" textClose="Close" [arrow]="" dataVersion="10.0.0-next.67">
+          <h2 class="h6">Optional title</h2>
+          <p class="mb-0">
+            A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+          </p>
+        </post-popover>
+
+  <h3>info-icon</h3>
+  <post-popover class="palette palette-accent" placement="top" textClose="Close" [arrow]="">
+          <p class="mb-0">
+            Follow your letter's journey with automatic updates at key delivery milestones.
+          </p>
+        </post-popover>
 </div>
 
 <div class="my-24">
   <h2>Rating</h2>
+  <h3>default</h3>
   <post-rating label="Rating"></post-rating>
+
+  <h3>readonly</h3>
+  <post-rating label="Rating" [currentRating]="3" [readonly]="true"></post-rating>
 </div>
 
 <div class="my-24">
   <h2>Stepper</h2>
+  <h3>default</h3>
   <post-stepper textCompletedStep="Completed step" textCurrentStep="Current step" textStepNumber="Step #number:" [currentIndex]="2">
+       <post-stepper-item > Step 1 label</post-stepper-item>  <post-stepper-item > Step 2 label</post-stepper-item>  <post-stepper-item > Step 3 label</post-stepper-item>  <post-stepper-item > Step 4 label</post-stepper-item>  <post-stepper-item > Step 5 label</post-stepper-item> 
+    </post-stepper>
+
+  <h3>selected</h3>
+  <post-stepper textCompletedStep="Completed step" textCurrentStep="Current step" textStepNumber="Step #number:" [currentIndex]="3">
        <post-stepper-item > Step 1 label</post-stepper-item>  <post-stepper-item > Step 2 label</post-stepper-item>  <post-stepper-item > Step 3 label</post-stepper-item>  <post-stepper-item > Step 4 label</post-stepper-item>  <post-stepper-item > Step 5 label</post-stepper-item> 
     </post-stepper>
 </div>
 
 <div class="my-24">
   <h2>Tabs</h2>
+  <h3>default</h3>
   <post-tabs >
       <post-tab-item name="first">First tab</post-tab-item>
       <post-tab-item name="second">Second tab</post-tab-item>
@@ -173,26 +603,149 @@
         This is the content of the third tab. By default it is also hidden initially.
       </post-tab-panel>
     </post-tabs>
+
+  <h3>panels-variant</h3>
+  <post-tabs >
+      <post-tab-item name="first">First tab</post-tab-item>
+      <post-tab-item name="second">Second tab</post-tab-item>
+      <post-tab-item name="third">Third tab</post-tab-item>
+      <post-tab-panel for="first">
+        This is the content of the first tab. By default it is shown initially.
+      </post-tab-panel>
+      <post-tab-panel for="second">
+        This is the content of the second tab. By default it is hidden initially.
+      </post-tab-panel>
+      <post-tab-panel for="third">
+        This is the content of the third tab. By default it is also hidden initially.
+      </post-tab-panel>
+    </post-tabs>
+
+  <h3>active-tab</h3>
+  <post-tabs activeTab="second">
+      <post-tab-item name="first">First tab</post-tab-item>
+      <post-tab-item name="second">Second tab</post-tab-item>
+      <post-tab-item name="third">Third tab</post-tab-item>
+      <post-tab-panel for="first">
+        This is the content of the first tab. By default it is shown initially.
+      </post-tab-panel>
+      <post-tab-panel for="second">
+        This is the content of the second tab. By default it is hidden initially.
+      </post-tab-panel>
+      <post-tab-panel for="third">
+        This is the content of the third tab. By default it is also hidden initially.
+      </post-tab-panel>
+    </post-tabs>
+
+  <h3>full-width</h3>
+  <post-tabs [fullWidth]="true">
+      <post-tab-item name="first">First tab</post-tab-item>
+      <post-tab-item name="second">Second tab</post-tab-item>
+      <post-tab-item name="third">Third tab</post-tab-item>
+      <post-tab-panel for="first">
+        This is the content of the first tab. By default it is shown initially.
+      </post-tab-panel>
+      <post-tab-panel for="second">
+        This is the content of the second tab. By default it is hidden initially.
+      </post-tab-panel>
+      <post-tab-panel for="third">
+        This is the content of the third tab. By default it is also hidden initially.
+      </post-tab-panel>
+    </post-tabs>
+
+  <h3>navigation-full-width</h3>
+  <post-tabs [fullWidth]="true" label="Tabs navigation">
+      <post-tab-item name="first">
+        <a href="/first" aria-current="page">First page</a>
+      </post-tab-item>
+      <post-tab-item name="second">
+        <a href="/second">Second page</a>
+      </post-tab-item>
+      <post-tab-item name="third">
+        <a href="/third">Third page</a>
+      </post-tab-item>
+    </post-tabs>
+
+  <h3>navigation-variant</h3>
+  <post-tabs label="Tabs navigation">
+      <post-tab-item name="first">
+        <a href="/first" aria-current="page">First page</a>
+      </post-tab-item>
+      <post-tab-item name="second">
+        <a href="/second">Second page</a>
+      </post-tab-item>
+      <post-tab-item name="third">
+        <a href="/third">Third page</a>
+      </post-tab-item>
+    </post-tabs>
+
+  <h3>active-navigation-item</h3>
+  <post-tabs label="Tabs navigation">
+      <post-tab-item name="letters">
+        <a href="/letters">Letters</a>
+      </post-tab-item>
+      <post-tab-item name="packages">
+        <a href="/packages" aria-current="page">Packages</a>
+      </post-tab-item>
+      <post-tab-item name="logistics">
+        <a href="/logistics">Logistics</a>
+      </post-tab-item>
+      </post-tabs>
 </div>
 
 <div class="my-24">
   <h2>Togglebutton</h2>
+  <h3>default</h3>
   <post-togglebutton class="btn btn-primary">
       <span data-showwhen="untoggled">Untoggled</span>
       <span data-showwhen="toggled">Toggled</span>
     </post-togglebutton>
+
+  <h3>initially-toggled</h3>
+  <post-togglebutton class="btn btn-primary" [toggled]="true">
+      <span data-showwhen="untoggled">Untoggled</span>
+      <span data-showwhen="toggled">Toggled</span>
+    </post-togglebutton>
+
+  <h3>content-visibility</h3>
+  <post-togglebutton class="btn btn-primary">
+        Menu
+        <span data-showwhen="untoggled"><post-icon name="burger"></post-icon></span>
+        <span data-showwhen="toggled"><post-icon name="closex"></post-icon></span>
+      </post-togglebutton>
 </div>
 
 <div class="my-24">
   <h2>Tooltip</h2>
+  <h3>default</h3>
   <post-tooltip-trigger for="tooltip-one">
       <button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger>
+
+  <h3>non-focusable</h3>
+  <post-tooltip-trigger for="tooltip-non-focusable" [delay]="650">
+        <cite>This is a cite element with a tooltip on it.</cite>
+      </post-tooltip-trigger>
+
+  <h3>multiple</h3>
+  <post-tooltip-trigger for="tooltip-multiple" [delay]="650">
+        <button class="btn btn-secondary btn-large">Tooltip button</button>
+      </post-tooltip-trigger>
 </div>
 
 <div class="my-24">
-    <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top" dataVersion="10.0.0-next.67">
+    <h3>default</h3>
+  <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top" dataVersion="10.0.0-next.67">
       Hi there 👋
     </post-tooltip>
+
+  <h3>non-focusable</h3>
+  <post-tooltip class="hydrated" id="tooltip-non-focusable" placement="top" dataVersion="10.0.0-next.67" dataHydrated="">
+        This is not the link you are looking for
+      </post-tooltip>
+
+  <h3>multiple</h3>
+  <post-tooltip id="tooltip-multiple" class="hydrated bg-" placement="top" dataVersion="10.0.0-next.67">
+        I'm the same, no matter what
+      </post-tooltip>
 </div>
 
 <div class="my-24">

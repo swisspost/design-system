@@ -18,6 +18,7 @@ declare global {
         tag: string,
         html?: string,
         options?: { title?: string; noTitle?: boolean },
+        story?: string,
       ): Chainable<void>;
     }
   }

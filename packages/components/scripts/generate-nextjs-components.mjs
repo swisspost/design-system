@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToReact } from './transform-to-react.mjs';
-import { LAYOUT_COMPONENTS, loadMarkupMap, getHtml, collectImports } from './utils.mjs';
+import { LAYOUT_COMPONENTS, loadMarkupMap, getHtml, getVariants, collectImports } from './utils.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pagePath = path.resolve(__dirname, '../../../apps/integration-next/src/app/ssr/page.tsx');
@@ -39,10 +39,16 @@ const pageImports = collectImports(
 const rendered = Object.entries(components)
   .filter(([name]) => !LAYOUT_COMPONENTS.has(name))
   .map(([name, entry]) => {
-    const html = getHtml(entry);
     const title = typeof entry === 'string' ? name : entry.title;
     const heading = title ? `  <h2>${title}</h2>\n` : '';
-    return `${heading}  ${transformToReact(html)}`;
+    const variants = getVariants(entry);
+    const variantHtml = variants
+      .map(({ story, html }) => {
+        const storyHeading = variants.length > 1 ? `  <h3>${story}</h3>\n` : '';
+        return `${storyHeading}  ${transformToReact(html)}`;
+      })
+      .join('\n\n');
+    return `${heading}${variantHtml}`;
   })
   .join('\n\n');
 

@@ -132,7 +132,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'writeMarkup',
-  (tag: string, html?: string, options?: { title?: string; noTitle?: boolean }) => {
+  (tag: string, html?: string, options?: { title?: string; noTitle?: boolean }, story = 'default') => {
     const key = tag
       .replace(/^post-/, '')
       .split('-')
@@ -141,11 +141,15 @@ Cypress.Commands.add(
 
     const capture = (markup: string) => {
       cy.task('readJsonFile', 'output/markup-map.json').then(existing => {
+        const current = ((existing as Record<string, any>) || {})[key] || {};
         const updated = {
           ...((existing as object) || {}),
           [key]: {
-            html: markup,
             title: options?.noTitle ? null : (options?.title ?? key),
+            variants: {
+              ...(current.variants || {}),
+              [story]: markup,
+            },
           },
         };
         cy.writeFile('output/markup-map.json', JSON.stringify(updated, null, 2));

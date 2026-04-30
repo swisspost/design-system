@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToAngular } from './transform-to-angular.mjs';
-import { LAYOUT_COMPONENTS, loadMarkupMap, getHtml, collectImports } from './utils.mjs';
+import { LAYOUT_COMPONENTS, loadMarkupMap, getHtml, getVariants, collectImports } from './utils.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const basePath = path.resolve(__dirname, '../../components-angular/projects/consumer-app/src/app');
@@ -22,7 +22,14 @@ const homeHtml =
     .map(([name, entry]) => {
       const title = typeof entry === 'string' ? name : entry.title;
       const heading = title ? `<h2>${title}</h2>\n` : '';
-      return `<div class="my-24">\n  ${heading}  ${transformToAngular(getHtml(entry))}\n</div>`;
+      const variants = getVariants(entry);
+      const variantHtml = variants
+        .map(({ story, html }) => {
+          const storyHeading = variants.length > 1 ? `  <h3>${story}</h3>\n` : '';
+          return `${storyHeading}  ${transformToAngular(html)}`;
+        })
+        .join('\n\n');
+      return `<div class="my-24">\n  ${heading}${variantHtml}\n</div>`;
     })
     .join('\n\n') +
   `

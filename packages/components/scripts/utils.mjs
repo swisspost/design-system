@@ -31,9 +31,18 @@ export function loadMarkupMap() {
   return components;
 }
 
-/** Extracts raw HTML from a markup-map entry (plain string or { html, title } object). */
-export function getHtml(entry) {
-  return typeof entry === 'string' ? entry : entry.html;
+/** Extracts raw HTML from a markup-map entry. Supports legacy { html } and new { variants } shapes. */
+export function getHtml(entry, story = 'default') {
+  if (typeof entry === 'string') return entry;
+  if (entry.variants) return entry.variants[story] ?? Object.values(entry.variants)[0];
+  return entry.html;
+}
+
+/** Returns all variants as [{ story, html }]. Falls back to a single 'default' entry for legacy shapes. */
+export function getVariants(entry) {
+  if (typeof entry === 'string') return [{ story: 'default', html: entry }];
+  if (entry.variants) return Object.entries(entry.variants).map(([story, html]) => ({ story, html }));
+  return [{ story: 'default', html: entry.html }];
 }
 
 /**
@@ -43,15 +52,17 @@ export function getHtml(entry) {
 export function collectImports(entries) {
   const allImports = new Set();
   for (const entry of entries) {
-    for (const [, tag] of getHtml(entry).matchAll(/<(post-[a-z-]+)/g)) {
-      allImports.add(
-        'Post' +
-          tag
-            .replace(/^post-/, '')
-            .split('-')
-            .map(p => p.charAt(0).toUpperCase() + p.slice(1))
-            .join(''),
-      );
+    for (const { html } of getVariants(entry)) {
+      for (const [, tag] of html.matchAll(/<(post-[a-z-]+)/g)) {
+        allImports.add(
+          'Post' +
+            tag
+              .replace(/^post-/, '')
+              .split('-')
+              .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+              .join(''),
+        );
+      }
     }
   }
   return [...allImports].sort((a, b) => a.localeCompare(b));
