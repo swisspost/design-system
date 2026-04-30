@@ -100,10 +100,10 @@ export default function Home() {
   <h2>Menu</h2>
   <PostMenuTrigger for="menu--default">  <button className="btn btn-secondary">Open Menu</button>  </PostMenuTrigger>
 
-  <PostMenu id="menu--default" label="Menu description">
-      <PostMenuItem ><a href="/first">First menu item</a></PostMenuItem>
-      <PostMenuItem ><a href="/second">Second menu item</a></PostMenuItem>
-      <PostMenuItem ><a href="/third">Third menu item</a></PostMenuItem>
+  <PostMenu id="menu--default" label="Menu description" data-version="10.0.0-next.67">
+      <PostMenuItem data-version="10.0.0-next.67" data-hydrated=""><a href="/first">First menu item</a></PostMenuItem>
+      <PostMenuItem data-version="10.0.0-next.67" data-hydrated=""><a href="/second">Second menu item</a></PostMenuItem>
+      <PostMenuItem data-version="10.0.0-next.67" data-hydrated=""><a href="/third">Third menu item</a></PostMenuItem>
       </PostMenu>
 
   <h2>NumberInput</h2>
@@ -120,7 +120,7 @@ export default function Home() {
       <button className="btn btn-secondary">Popover Trigger</button>
     </PostPopoverTrigger>
 
-  <PostPopover className="palette palette-accent" id="popover-one" placement="top" textClose="Close" arrow={false}>
+  <PostPopover className="palette palette-accent" id="popover-one" placement="top" textClose="Close" arrow={false} data-version="10.0.0-next.67">
        <h2 className="h6">Optional title</h2> 
       <p className="mb-0">A longer message that needs more time to read. <a href="#">Links</a> are also possible.</p>
     </PostPopover>
@@ -159,7 +159,7 @@ export default function Home() {
   <PostTooltipTrigger for="tooltip-one">
       <button className="btn btn-secondary btn-large">Button</button></PostTooltipTrigger>
 
-  <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
+  <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top" data-version="10.0.0-next.67">
       Hi there 👋
     </PostTooltip>
       <h2>React Server Icons</h2>

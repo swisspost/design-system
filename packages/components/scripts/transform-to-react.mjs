@@ -4,7 +4,7 @@ import {
   convertAttributes,
   selfCloseVoidElements,
   cleanupHtml,
-} from './transform-utils.mjs';
+} from './utils.mjs';
 
 export function transformToReact(html) {
   const transformed = removeHtmlComments(html)

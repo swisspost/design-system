@@ -2,49 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToAngular } from './transform-to-angular.mjs';
+import { LAYOUT_COMPONENTS, loadMarkupMap, getHtml, collectImports } from './utils.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const componentsPath = path.resolve(__dirname, '../output/markup-map.json');
 const basePath = path.resolve(__dirname, '../../components-angular/projects/consumer-app/src/app');
 const appTsPath = path.join(basePath, 'app.component.ts');
 
-const LAYOUT_COMPONENTS = new Set(['Header', 'Footer', 'BackToTop', 'Breadcrumbs']);
-
-// Ensure markup-map.json exists
-fs.mkdirSync(path.dirname(componentsPath), { recursive: true });
-if (!fs.existsSync(componentsPath)) {
-  fs.writeFileSync(componentsPath, '{}', 'utf8');
-  console.log(`✅ Created ${componentsPath}`);
-}
-
-const components = JSON.parse(fs.readFileSync(componentsPath, 'utf8'));
-
-if (Object.keys(components).length === 0) {
-  throw new Error('⚠️ No components found in markup-map.json — run Cypress tests first');
-}
-
-// Extract raw HTML from entry (plain string or { html, title } object)
-function getHtml(entry) {
-  return typeof entry === 'string' ? entry : entry.html;
-}
-
-// Scan HTML for post-* tags and return sorted PascalCase import names
-function collectImports(entries) {
-  const allImports = new Set();
-  for (const entry of entries) {
-    for (const [, tag] of getHtml(entry).matchAll(/<(post-[a-z-]+)/g)) {
-      allImports.add(
-        'Post' +
-          tag
-            .replace(/^post-/, '')
-            .split('-')
-            .map(p => p.charAt(0).toUpperCase() + p.slice(1))
-            .join(''),
-      );
-    }
-  }
-  return [...allImports].sort((a, b) => a.localeCompare(b));
-}
+const components = loadMarkupMap();
 
 // ─── HOME COMPONENT ───────────────────────────────────────────────────────────
 
@@ -159,7 +123,7 @@ const layoutTemplate = `
 // Replace placeholders with captured markup from markup-map.json
 const appHtml = layoutTemplate.replaceAll(/<!-- COMPONENT:(\w+) -->/g, (_, name) => {
   const entry = components[name];
-  console.log(`COMPONENT:${name}`, entry ? 'found' : 'NOT FOUND'); // ← add this
+  console.log(`COMPONENT:${name}`, entry ? 'found' : 'NOT FOUND');
   if (!entry) return `<!-- WARNING: ${name} not found -->`;
   return transformToAngular(getHtml(entry));
 });
