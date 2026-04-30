@@ -1,23 +1,5 @@
 import { isPopoverSupported } from './popovercontainer.cy';
 
-const POPOVER_ID = '9a636763-de2d-4f72-bc81-98daf10871f7';
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${POPOVER_ID}--default`);
-    cy.get('post-popover-trigger')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-popover-trigger', before, { title: 'Popover' });
-      });
-
-    cy.get('post-popover')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-popover', before, { noTitle: true });
-      });
-  });
-});
-
 describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
     const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;

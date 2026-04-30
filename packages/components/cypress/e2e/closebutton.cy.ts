@@ -1,15 +1,5 @@
 const CLOSE_BTN_ID = 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a';
 
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${CLOSE_BTN_ID}--default`);
-    cy.get('post-closebutton')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-closebutton', before);
-      });
-  });
-});
 
 describe('Close button', () => {
   describe('default', () => {

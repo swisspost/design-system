@@ -1,15 +1,5 @@
 const TOGGLE_BUTTON_ID = '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24';
 
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${TOGGLE_BUTTON_ID}--default`);
-    cy.get('post-togglebutton')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-togglebutton', before);
-      });
-  });
-});
 
 describe('togglebutton', () => {
   describe('default', () => {

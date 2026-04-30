@@ -1,15 +1,5 @@
 const FOOTER_ID = 'd97528b3-a9ef-4201-bf28-9caf6e8997dc';
 
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${FOOTER_ID}--default`);
-    cy.get('post-footer')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-footer', before);
-      });
-  });
-});
 
 describe('Footer', () => {
   describe('Structure & Basic Functionality', () => {

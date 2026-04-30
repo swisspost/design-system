@@ -32,20 +32,6 @@ describe('header', () => {
   }
 
   HEADER_CONFIGS.forEach(config => {
-    describe('Extract markup', () => {
-      it('should extract markup for consumer apps', () => {
-        // Extract only the portal Header to the consumer apps
-        if (config === 'portal') {
-          cy.visit(`/iframe.html?id=${HEADER_ID}--default`);
-          cy.get('post-header')
-            .invoke('prop', 'outerHTML')
-            .then(before => {
-              cy.writeMarkup('post-header', before);
-            });
-        }
-      });
-    });
-
     describe(config.replace('-', ' '), () => {
       beforeEach(() => {
         cy.visit(`/iframe.html?id=${HEADER_ID}--${config}`);

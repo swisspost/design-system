@@ -1,20 +1,5 @@
 const MENUBUTTON_ID = '8ca2bd70-56e6-4da9-b1fd-4e55388dca88';
 
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${MENUBUTTON_ID}--default`);
-    cy.get('post-menu-trigger')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-menu-trigger', before, { title: 'Menu' });
-      });
-    cy.get('post-menu')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-menu', before, { noTitle: true });
-      });
-  });
-});
 
 describe('menu', () => {
   describe('default', () => {

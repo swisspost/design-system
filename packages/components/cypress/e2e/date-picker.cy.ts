@@ -1,16 +1,6 @@
 const DATEPICKER_ID = 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e';
 import { isPopoverSupported } from './popovercontainer.cy';
 
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${DATEPICKER_ID}--default`);
-    cy.get('post-date-picker')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-date-picker', before);
-      });
-  });
-});
 
 describe('date-picker', { includeShadowDom: true }, () => {
   describe('default', () => {

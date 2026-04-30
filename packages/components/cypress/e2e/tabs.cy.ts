@@ -1,15 +1,5 @@
 const TABS_ID = 'bb1291ca-4dbb-450c-a15f-596836d9f39e';
 
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${TABS_ID}--default`);
-    cy.get('post-tabs')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-tabs', before);
-      });
-  });
-});
 
 describe('tabs', () => {
   describe('default', () => {

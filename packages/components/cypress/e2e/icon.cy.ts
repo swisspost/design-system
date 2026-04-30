@@ -1,15 +1,5 @@
 const POSTICON_ID = '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f';
 
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${POSTICON_ID}--default`);
-    cy.get('post-icon')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-icon', before);
-      });
-  });
-});
 
 describe('Icon', () => {
   describe('Structure & Props', () => {

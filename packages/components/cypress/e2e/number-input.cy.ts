@@ -1,15 +1,5 @@
 const NUMBER_INPUT_ID = 'd5f43fa8-42ba-4cb9-98c7-9386d4c939bb';
 
-describe('Extract markup', () => {
-  it('should extract markup for consumer apps', () => {
-    cy.visit(`/iframe.html?id=${NUMBER_INPUT_ID}--default`);
-    cy.get('post-number-input')
-      .invoke('prop', 'outerHTML')
-      .then(before => {
-        cy.writeMarkup('post-number-input', before);
-      });
-  });
-});
 
 describe('number-input', () => {
   beforeEach(() => {
