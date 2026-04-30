@@ -41,3 +41,4 @@ playwright-report/
 *.tsbuildinfo
 
 output/
+cypress/downloads/
