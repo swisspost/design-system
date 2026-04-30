@@ -165,6 +165,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "consumer-app:serve:production"
+            },
+            "ci": {
+              "devServerTarget": ""
             }
           }
         }
