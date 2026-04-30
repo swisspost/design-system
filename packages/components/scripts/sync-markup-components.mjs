@@ -54,7 +54,8 @@ for (const file of storyFiles) {
 
   // Normalise — trim any accidental leading space from the regex capture
   const id = idMatch?.[1];
-  const component = componentMatch?.[1]?.trim() ?? src.match(/\bcomponent:\s*'(post-[a-z-]+)'/)?.[ 1];
+  const component =
+    componentMatch?.[1]?.trim() ?? src.match(/\bcomponent:\s*'(post-[a-z-]+)'/)?.[1];
 
   if (!id || !component) continue;
 

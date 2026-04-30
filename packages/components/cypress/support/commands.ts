@@ -132,7 +132,12 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'writeMarkup',
-  (tag: string, html?: string, options?: { title?: string; noTitle?: boolean }, story = 'default') => {
+  (
+    tag: string,
+    html?: string,
+    options?: { title?: string; noTitle?: boolean },
+    story = 'default',
+  ) => {
     const key = tag
       .replace(/^post-/, '')
       .split('-')
