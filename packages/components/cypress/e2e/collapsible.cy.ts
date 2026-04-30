@@ -1,6 +1,5 @@
 const COLLAPSIBLE_ID = '6a91848c-16ec-4a23-bc45-51c797b5b2c3';
 
-
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {

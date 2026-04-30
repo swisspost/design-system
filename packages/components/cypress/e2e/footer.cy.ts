@@ -1,6 +1,5 @@
 const FOOTER_ID = 'd97528b3-a9ef-4201-bf28-9caf6e8997dc';
 
-
 describe('Footer', () => {
   describe('Structure & Basic Functionality', () => {
     beforeEach(() => {

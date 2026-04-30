@@ -1,6 +1,5 @@
 const NUMBER_INPUT_ID = 'd5f43fa8-42ba-4cb9-98c7-9386d4c939bb';
 
-
 describe('number-input', () => {
   beforeEach(() => {
     cy.getComponent('number-input', NUMBER_INPUT_ID);

@@ -2,7 +2,6 @@ import { getGravatarUrl } from '../../src/components/post-avatar/avatar-utils';
 
 const PAGE_ID = '09aac03d-220e-4885-8fb8-1cfa01add188';
 
-
 describe('Avatar', () => {
   describe('Structure & Props', () => {
     beforeEach(() => {

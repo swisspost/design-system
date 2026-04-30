@@ -1,6 +1,5 @@
 const CLOSE_BTN_ID = 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a';
 
-
 describe('Close button', () => {
   describe('default', () => {
     beforeEach(() => {

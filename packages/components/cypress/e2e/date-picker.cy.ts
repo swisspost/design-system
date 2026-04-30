@@ -1,7 +1,5 @@
 const DATEPICKER_ID = 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e';
 import { isPopoverSupported } from './popovercontainer.cy';
-
-
 describe('date-picker', { includeShadowDom: true }, () => {
   describe('default', () => {
     const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;

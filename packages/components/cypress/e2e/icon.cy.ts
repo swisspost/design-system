@@ -1,6 +1,5 @@
 const POSTICON_ID = '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f';
 
-
 describe('Icon', () => {
   describe('Structure & Props', () => {
     beforeEach(() => {

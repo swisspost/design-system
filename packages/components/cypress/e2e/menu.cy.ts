@@ -1,6 +1,5 @@
 const MENUBUTTON_ID = '8ca2bd70-56e6-4da9-b1fd-4e55388dca88';
 
-
 describe('menu', () => {
   describe('default', () => {
     beforeEach(() => {

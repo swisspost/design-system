@@ -1,6 +1,5 @@
 const BANNER_ID = '105e67d8-31e9-4d0b-87ff-685aba31fd4c';
 
-
 describe('banner', () => {
   describe('default', () => {
     beforeEach(() => {
