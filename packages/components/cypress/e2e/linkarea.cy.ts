@@ -1,8 +1,5 @@
 import ClickOptions = Cypress.ClickOptions;
 
-const LINKAREA_ID = '1d52b794-768b-464e-90eb-4fd15774aa90';
-
-
 describe('post-linkarea', { baseUrl: null }, () => {
   describe('default', () => {
     beforeEach(() => {

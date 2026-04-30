@@ -1,6 +1,3 @@
-const STEPPER_ID = '7dc546d9-e248-4d06-befe-3ad62fcd310f';
-
-
 describe('stepper', { baseUrl: null }, () => {
   beforeEach(() => {
     cy.visit('./cypress/fixtures/post-stepper.test.html');

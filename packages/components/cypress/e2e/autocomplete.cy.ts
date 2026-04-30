@@ -1,6 +1,5 @@
 const FIXTURE_PATH = './cypress/fixtures/post-autocomplete.test.html';
 const DEBOUNCE_TIMEOUT = 300;
-const AUTOCOMPLETE_ID = '5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d';
 
 describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
   describe('nested listbox', () => {

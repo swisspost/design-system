@@ -1,6 +1,5 @@
 const ACCORDION_ID = '4d1b4185-e04d-494a-ab38-2b56c1778b0b';
 
-
 describe('accordion', () => {
   describe('default', () => {
     beforeEach(() => {

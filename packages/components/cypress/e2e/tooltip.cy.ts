@@ -1,8 +1,5 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 
-const TOOLTIP_ID = 'cd684d90-e7a7-41a9-8923-b1b72ad9b384';
-
-
 describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   // prettier-ignore
   const shouldBeOpen = () => cy.get(String.raw`.\:popover-open, :popover-open`).should('exist');
