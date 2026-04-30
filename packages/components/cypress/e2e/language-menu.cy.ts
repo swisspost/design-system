@@ -67,8 +67,10 @@ describe('post-language-menu', () => {
 
   describe('menu variant', () => {
     beforeEach(() => {
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
-      cy.get('@language-menu').invoke('prop', 'variant', 'menu');
+      // The default story already renders with variant="menu" (it's the component default).
+      // Load it directly instead of mutating the list variant — avoids the re-render
+      // race condition that caused flaky tests.
+      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID, 'menu-variant');
       cy.get('@language-menu').find('post-menu-trigger').as('trigger');
     });
 
@@ -87,8 +89,6 @@ describe('post-language-menu', () => {
 
     it('should show the menu on trigger click', () => {
       cy.get('@trigger').find('button').click();
-      // Use a longer timeout — calculatePosition() in post-popovercontainer is async
-      // but not awaited before togglePopover(), causing occasional open failures on slow CI.
       cy.get(`post-popovercontainer${popoverOpenSelector}`, { timeout: 10000 }).should('exist');
       cy.get('@language-menu').find('post-language-menu-item button').should('be.visible');
     });
@@ -170,18 +170,10 @@ describe('post-language-menu', () => {
   });
 
   describe('Accessibility', () => {
-    beforeEach(() => {
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
-      cy.get('@language-menu').invoke('prop', 'variant', 'menu');
-      cy.get('@language-menu').find('post-menu-trigger').as('trigger');
-      cy.get('@language-menu').find('post-language-menu-item').as('language-options');
-    });
-
     it('Has no detectable a11y violations for all variants', () => {
-      cy.get('post-language-menu').as('languageMenu');
-      cy.get('@languageMenu').invoke('prop', 'variant', 'menu');
+      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
       cy.checkA11y('#root-inner');
-      cy.get('@languageMenu').invoke('prop', 'variant', 'list');
+      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID, 'menu-variant');
       cy.checkA11y('#root-inner');
     });
   });
