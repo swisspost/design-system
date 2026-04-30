@@ -2,14 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToReact } from './transform-to-react.mjs';
+import { LAYOUT_COMPONENTS, loadMarkupMap, getHtml, collectImports } from './utils.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const componentsPath = path.resolve(__dirname, '../output/markup-map.json');
-
 const pagePath = path.resolve(__dirname, '../../../apps/integration-next/src/app/ssr/page.tsx');
 const layoutPath = path.resolve(__dirname, '../../../apps/integration-next/src/app/ssr/layout.tsx');
 
-const LAYOUT_COMPONENTS = new Set(['Header', 'Footer', 'BackToTop', 'Breadcrumbs']);
+const components = loadMarkupMap();
 
 // ─── LAYOUT.TSX ───────────────────────────────────────────────────────────────
 
@@ -29,40 +28,6 @@ const layoutTemplate = `export default function Layout({ children }: { readonly 
   );
 }`;
 
-// Create markup-map.json if it doesn't exist
-fs.mkdirSync(path.dirname(componentsPath), { recursive: true });
-if (!fs.existsSync(componentsPath)) {
-  fs.writeFileSync(componentsPath, '{}', 'utf8');
-}
-
-const components = JSON.parse(fs.readFileSync(componentsPath, 'utf8'));
-
-if (Object.keys(components).length === 0) {
-  throw new Error('⚠️ No components found in markup-map.json — run Cypress tests first');
-}
-
-function getHtml(entry) {
-  return typeof entry === 'string' ? entry : entry.html;
-}
-
-function collectImports(entries) {
-  const allImports = new Set();
-  for (const entry of entries) {
-    const html = getHtml(entry);
-    for (const [, tag] of html.matchAll(/<(post-[a-z-]+)/g)) {
-      const pascal =
-        'Post' +
-        tag
-          .replace(/^post-/, '')
-          .split('-')
-          .map(p => p.charAt(0).toUpperCase() + p.slice(1))
-          .join('');
-      allImports.add(pascal);
-    }
-  }
-  return allImports;
-}
-
 // ─── PAGE.TSX ─────────────────────────────────────────────────────────────────
 
 const pageImports = collectImports(
@@ -81,7 +46,7 @@ const rendered = Object.entries(components)
   })
   .join('\n\n');
 
-const homepage = `import { ${[...pageImports].sort((a, b) => a.localeCompare(b)).join(', ')} } from '@swisspost/design-system-components-react/server';
+const homepage = `import { ${pageImports.join(', ')} } from '@swisspost/design-system-components-react/server';
 import { PostIconExplosives, PostIconLetter, PostIconLetterSolid } from '@swisspost/design-system-components-react/icons';
 
 export default function Home() {
@@ -159,7 +124,7 @@ result = result
   .replace(/^import type React from 'react';\n?/m, '')
   .replace(/^import \{[^}]*\} from '@swisspost\/design-system-components-react\/server';\n?/m, '');
 
-result = `import { ${[...layoutImports].sort((a, b) => a.localeCompare(b)).join(', ')} } from '@swisspost/design-system-components-react/server';\n\n${result}`;
+result = `import { ${layoutImports.join(', ')} } from '@swisspost/design-system-components-react/server';\n\n${result}`;
 result = result.replaceAll(/^[\t ]*\r?\n/gm, '');
 
 fs.mkdirSync(path.dirname(layoutPath), { recursive: true });
