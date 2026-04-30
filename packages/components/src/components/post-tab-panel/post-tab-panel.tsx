@@ -34,7 +34,6 @@ export class PostTabPanel {
   }
 
   render() {
-    const tabFor = this.host.getAttribute('for');
     const isSSR = Build.isServer;
     return (
       <Host
@@ -42,7 +41,7 @@ export class PostTabPanel {
         id={this.panelId}
         role="tabpanel"
         slot="panels"
-        style={isSSR ? { display: `var(--post-tab-panel-${tabFor}, none)` } : undefined}
+        style={isSSR ? { display: `var(--post-tab-panel-${this.for}, none)` } : undefined}
       >
         <slot />
       </Host>
