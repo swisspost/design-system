@@ -39,9 +39,6 @@ jobs:
       - name: Install & build dependencies
         run: pnpm install && pnpm -r build
 
-      - name: Build consumer-app
-        run: pnpm --filter design-system-components-angular-workspace exec ng build consumer-app --configuration production
-
       - name: Prepare Cypress – Spawn Xvfb server
         run: Xvfb :99 &
 
