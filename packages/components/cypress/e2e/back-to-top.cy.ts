@@ -1,6 +1,5 @@
 const BACK_TO_TOP_ID = '1a1b4cab-d0a8-4b01-bd85-b70e18668cb5';
 
-
 describe('Back-to-top', () => {
   describe('default', () => {
     beforeEach(() => {
