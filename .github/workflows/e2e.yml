@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: read
-"e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --stream e2e:ci'",
 
 jobs:
   e2e:
@@ -23,7 +22,7 @@ jobs:
         uses: ./.github/actions/setup-pnpm
 
       - name: Install & build dependencies
-        run: pnpm install && pnpm --filter design-system-components-angular-workspace^... build
+        run: pnpm install && pnpm -r build
 
       - name: Build consumer app
         run: pnpm --filter design-system-components-angular-workspace exec ng build consumer-app
