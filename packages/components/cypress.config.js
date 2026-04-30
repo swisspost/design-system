@@ -38,6 +38,10 @@ export default defineConfig({
           }
         },
       });
+
+      on('after:run', () => {
+        fs.rmSync(path.resolve(__dirname, 'cypress/downloads'), { recursive: true, force: true });
+      });
     },
   },
   includeShadowDom: true,
