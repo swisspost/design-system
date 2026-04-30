@@ -1,13 +1,8 @@
-name: End to end tests
+name: End to end tests - Angular
 on:
   pull_request:
     paths:
-      - 'apps/documentation/**'
-      - 'packages/styles/**'
-      - 'packages/components/**'
-      - 'packages/internet-header/**'
-      - 'packages/icons/**'
-      - 'packages/tokens/tokensstudio-generated/tokens.json'
+      - 'packages/components-angular/**'
   workflow_dispatch:
 
 permissions:
@@ -25,35 +20,23 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
-        with:
-          use_cache: false
-
-      - name: Cache cypress
-        uses: actions/cache@v4
-        with:
-          path: /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-cypress-
 
       - name: Install & build dependencies
-        run: pnpm install && pnpm -r build
+        run: pnpm install && pnpm --filter design-system-components-angular-workspace^... build
 
-      - name: Prepare Cypress – Spawn Xvfb server
-        run: Xvfb :99 &
+      - name: Build consumer app
+        run: pnpm --filter design-system-components-angular-workspace exec ng build consumer-app
 
-      - name: Prepare Cypress – Share Xvfb server as environment variable
-        run: echo "DISPLAY=:99" >> $GITHUB_ENV
-
-      - name: Cypress info
-        run: pnpm --filter design-system-documentation exec cypress info
+      - name: Install Playwright browsers
+        run: pnpm --filter design-system-components-angular-workspace exec playwright install --with-deps chromium
 
       - name: Run tests
-        run: pnpm e2e:ci
+        run: pnpm --filter design-system-components-angular-workspace e2e:ci
 
-      - name: Upload screenshots
+      - name: Upload test results
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: cypress-snapshots
-          path: packages/**/cypress/screenshots
+          name: playwright-results-angular
+          path: packages/components-angular/projects/consumer-app/playwright/results
           retention-days: 14
