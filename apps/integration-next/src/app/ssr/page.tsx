@@ -74,7 +74,7 @@ export default function Home() {
       <button className="btn btn-secondary">Toggle Collapsible</button>
     </PostCollapsibleTrigger>
 
-  <PostCollapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
+  <PostCollapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default" data-version="10.0.0-next.67" data-hydrated="">
       <p className="border rounded p-24">This is collapsible content that can be shown or hidden.</p>
     </PostCollapsible>
 
@@ -120,9 +120,9 @@ export default function Home() {
       <button className="btn btn-secondary">Popover Trigger</button>
     </PostPopoverTrigger>
 
-  <h2>Popover</h2>
-  <PostPopover id="popover-one" textClose="Close" data-version="10.0.0-next.67" data-hydrated="">
-      <p id="testtext">This is a <a href="">test</a></p>
+  <PostPopover className="palette palette-accent" id="popover-one" placement="top" textClose="Close" arrow={false}>
+       <h2 className="h6">Optional title</h2> 
+      <p className="mb-0">A longer message that needs more time to read. <a href="#">Links</a> are also possible.</p>
     </PostPopover>
 
   <h2>Rating</h2>

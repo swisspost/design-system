@@ -1,20 +1,4 @@
-import Image from 'next/image';
-import {
-  PostBackToTop,
-  PostBreadcrumbs,
-  PostBreadcrumbItem,
-  PostFooter,
-  PostHeader,
-  PostIcon,
-  PostLanguageMenuItem,
-  PostLanguageMenu,
-  PostLogo,
-  PostLoginWidget,
-  PostMainnavigation,
-  PostMegadropdown,
-  PostMegadropdownTrigger,
-} from '@swisspost/design-system-components-react/server';
-
+import { PostBackToTop, PostBreadcrumbItem, PostBreadcrumbs, PostFooter, PostHeader, PostIcon, PostLanguageMenu, PostLanguageMenuItem, PostLogo, PostMainnavigation, PostMegadropdown, PostMegadropdownTrigger } from '@swisspost/design-system-components-react/server';
 export default function Layout({ children }: { readonly children: React.ReactNode }) {
   return (
     <>
@@ -56,134 +40,104 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <PostLanguageMenuItem code="it" name="Italian">it</PostLanguageMenuItem>
           <PostLanguageMenuItem active={true} code="en" name="English">en</PostLanguageMenuItem>
         </PostLanguageMenu>
-
-        {/* Global header login/user menu */}
-        <PostLoginWidget slot="post-login">
-          <a href="#login" slot="unauthenticated">
+          <a href="" slot="post-login">
             <span>Login</span>
-            <PostIcon aria-hidden="true" name="login" />
+            <PostIcon name="login" />
           </a>
-        </PostLoginWidget>
-        {/* Main navigation */}
-        <PostMainnavigation slot="main-nav" text-main="Main">
-          <ul>
-            {/* Link only level 1 */}
-            <li>
-              <a href="/letters">Letters</a>
-            </li>
-            <li>
-              <a href="/packages">Packages</a>
-            </li>
-
-            {/* Level 1 with megadropdown - Letters */}
-            <li>
-              <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
-              <PostMegadropdown id="letters" text-close="Close" text-back="Back">
-                <a className="post-megadropdown-overview" href="/letters">
-                  Overview Letters
-                </a>
-                <div className="row row-cols-1 row-cols-sm-2">
-                  <div className="col">
-                    <p className="post-megadropdown-list-title" id="send-letters">
-                      Send letters
-                    </p>
-                    <ul className="post-megadropdown-list" aria-labelledby="send-letters">
-                      <li>
-                        <a href="/sch">Letters Switzerland</a>
-                      </li>
-                      <li>
-                        <a href="/kl">Small items abroad</a>
-                      </li>
-                      <li>
-                        <a href="">Goods abroad</a>
-                      </li>
-                      <li>
-                        <a href="">Express and courier</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col">
-                    <a
-                      className="post-megadropdown-list-title"
-                      id="step-by-step-letters"
-                      href="/step-by-step"
-                    >
-                      Step by step
-                    </a>
-                    <ul className="post-megadropdown-list" aria-labelledby="step-by-step-letters">
-                      <li>
-                        <a href="/sch">Packages Switzerland</a>
-                      </li>
-                      <li>
-                        <a href="/kl">Small items abroad</a>
-                      </li>
-                      <li>
-                        <a href="">Goods abroad</a>
-                      </li>
-                      <li>
-                        <a href="">Express and courier</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </PostMegadropdown>
-            </li>
-
-            {/* Level 1 with megadropdown - Packages */}
-            <li>
-              <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
-              <PostMegadropdown id="packages" text-close="Close" text-back="Back">
-                <a className="post-megadropdown-overview" href="/packages">
-                  Overview Packages
-                </a>
-                <div className="row row-cols-1 row-cols-sm-2">
-                  <div className="col">
-                    <p className="post-megadropdown-list-title" id="send-packages">
-                      Send packages
-                    </p>
-                    <ul className="post-megadropdown-list" aria-labelledby="send-packages">
-                      <li>
-                        <a href="/sch">Packages Switzerland</a>
-                      </li>
-                      <li>
-                        <a href="/kl">Small items abroad</a>
-                      </li>
-                      <li>
-                        <a href="">Goods abroad</a>
-                      </li>
-                      <li>
-                        <a href="">Express and courier</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col">
-                    <a
-                      className="post-megadropdown-list-title"
-                      id="step-by-step-packages"
-                      href="/step-by-step"
-                    >
-                      Step by step
-                    </a>
-                    <ul className="post-megadropdown-list" aria-labelledby="step-by-step-packages">
-                      <li>
-                        <a href="/sch">Packages Switzerland</a>
-                      </li>
-                      <li>
-                        <a href="/kl">Small items abroad</a>
-                      </li>
-                      <li>
-                        <a href="">Goods abroad</a>
-                      </li>
-                      <li>
-                        <a href="">Express and courier</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </PostMegadropdown>
-            </li>
-          </ul>
-        </PostMainnavigation>
+    <PostMainnavigation slot="main-nav" textMain="Main">
+      <ul>
+        <li>
+          <a href="/letters">Letters</a>
+        </li>
+        <li>
+          <a href="/packages">Packages</a>
+        </li>
+        <li>
+          <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
+          <PostMegadropdown id="letters" textClose="Close" textBack="Back">
+            <a className="post-megadropdown-overview" href="/letters">Overview Letters</a>
+            <div className="row row-cols-1 row-cols-sm-2">
+              <div className="col">
+                <p className="post-megadropdown-list-title" id="send-letters">Send letters</p>
+                <ul className="post-megadropdown-list" aria-labelledby="send-letters">
+                  <li>
+                    <a href="/sch">Letters Switzerland</a>
+                  </li>
+                  <li>
+                    <a href="/kl">Small items abroad</a>
+                  </li>
+                  <li>
+                    <a href="">Goods abroad</a>
+                  </li>
+                  <li>
+                    <a href="">Express and courier</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="col">
+                <a className="post-megadropdown-list-title" id="step-by-step-letters" href="/step-by-step">Step by step</a>
+                <ul className="post-megadropdown-list" aria-labelledby="step-by-step-letters">
+                  <li>
+                    <a href="/sch">Packages Switzerland</a>
+                  </li>
+                  <li>
+                    <a href="/kl">Small items abroad</a>
+                  </li>
+                  <li>
+                    <a href="">Goods abroad</a>
+                  </li>
+                  <li>
+                    <a href="">Express and courier</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </PostMegadropdown>
+        </li>
+        <li>
+          <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
+          <PostMegadropdown id="packages" textClose="Close" textBack="Back">
+            <a className="post-megadropdown-overview" href="/packages">Overview Packages</a>
+            <div className="row row-cols-1 row-cols-sm-2">
+              <div className="col">
+                <p className="post-megadropdown-list-title" id="send-packages">Send packages</p>
+                <ul className="post-megadropdown-list" aria-labelledby="send-packages">
+                  <li>
+                    <a href="/sch">Packages Switzerland</a>
+                  </li>
+                  <li>
+                    <a href="/kl">Small items abroad</a>
+                  </li>
+                  <li>
+                    <a href="">Goods abroad</a>
+                  </li>
+                  <li>
+                    <a href="">Express and courier</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="col">
+                <a className="post-megadropdown-list-title" id="step-by-step-packages" href="/step-by-step">Step by step</a>
+                <ul className="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+                  <li>
+                    <a href="/sch">Packages Switzerland</a>
+                  </li>
+                  <li>
+                    <a href="/kl">Small items abroad</a>
+                  </li>
+                  <li>
+                    <a href="">Goods abroad</a>
+                  </li>
+                  <li>
+                    <a href="">Express and courier</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </PostMegadropdown>
+        </li>
+      </ul>
+    </PostMainnavigation>
       </PostHeader>
       <main style={{ paddingBlock: '3rem' }}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
