@@ -101,8 +101,8 @@ importers:
         specifier: 1.31.8
         version: 1.31.8(typescript@5.8.3)
       '@percy/cypress':
-        specifier: 3.1.7
-        version: 3.1.7(cypress@14.3.2)
+        specifier: 3.1.8
+        version: 3.1.8(cypress@14.3.2)
       '@storybook/addon-docs':
         specifier: 9.0.18
         version: 9.0.18(@types/react@18.3.27)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.46.2)(yaml@2.8.3)))
@@ -347,8 +347,8 @@ importers:
         specifier: 1.31.8
         version: 1.31.8(typescript@5.8.3)
       '@percy/cypress':
-        specifier: 3.1.7
-        version: 3.1.7(cypress@14.3.2)
+        specifier: 3.1.8
+        version: 3.1.8(cypress@14.3.2)
       '@playwright/test':
         specifier: 1.56.1
         version: 1.56.1
@@ -793,8 +793,8 @@ importers:
         specifier: 1.31.8
         version: 1.31.8(typescript@5.8.3)
       '@percy/cypress':
-        specifier: 3.1.7
-        version: 3.1.7(cypress@14.3.2)
+        specifier: 3.1.8
+        version: 3.1.8(cypress@14.3.2)
       '@stencil-community/eslint-plugin':
         specifier: 0.10.0
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3))(eslint-plugin-react@7.37.5(eslint@9.26.0(jiti@2.6.1)))(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
@@ -3296,8 +3296,8 @@ packages:
     resolution: {integrity: sha512-p5KWNvbU8GUlA/DxV8q9N0alSzaEKx8aJxgO8TkmMA3HalMl/HogYw5+B7tvOUU0CAw9ar5vXyPXuOIm4wpqvA==}
     engines: {node: '>=14'}
 
-  '@percy/cypress@3.1.7':
-    resolution: {integrity: sha512-UXPE7egnOOX/nv5oSwhTG7BEGio/HjnFdMuBR1Vbm2Izj3pUwMkxGqZRJsNtFuGl2iVckwbh9SuFoeKIdcaTcg==}
+  '@percy/cypress@3.1.8':
+    resolution: {integrity: sha512-0eSgzkU4S19giir/PKpWPCEnUDSqBaRrTB/flBMbkhXRv/OP2b66dZsA68Im6t/xZ8UpKYvJ4l643Bh1toSoyg==}
     peerDependencies:
       cypress: '>=3'
 
@@ -3316,8 +3316,8 @@ packages:
     resolution: {integrity: sha512-NBLQIoXWZb1Oi8M6Q6o8rmA6PzZi+65cxgyoKXHboxF7wAb8i8Vyc2JM7zTvay6RZ6JGuVHpqkxPcQaarxM1IQ==}
     engines: {node: '>=14'}
 
-  '@percy/sdk-utils@1.31.4':
-    resolution: {integrity: sha512-IBzSQZ8jx1pnSyyn7tF4UX8BVffbw0xjsNsPl/MuYuFuE5rW/D8arc+sH6xI1Kog0+tECt2XdAf4hMGWij2lxw==}
+  '@percy/sdk-utils@1.31.11':
+    resolution: {integrity: sha512-I4/Bx2RqSx/k00qVU0t/wcYudeyVRARQPdMnRZ/JvEZRZmXo0u+mHHpvZ5liHvnlpvWq6dv2WRA5MVy+GZHUhA==}
     engines: {node: '>=14'}
 
   '@percy/sdk-utils@1.31.8':
@@ -14305,9 +14305,9 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@percy/cypress@3.1.7(cypress@14.3.2)':
+  '@percy/cypress@3.1.8(cypress@14.3.2)':
     dependencies:
-      '@percy/sdk-utils': 1.31.4
+      '@percy/sdk-utils': 1.31.11
       cypress: 14.3.2
     transitivePeerDependencies:
       - supports-color
@@ -14330,7 +14330,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@percy/sdk-utils@1.31.4':
+  '@percy/sdk-utils@1.31.11':
     dependencies:
       pac-proxy-agent: 7.2.0
     transitivePeerDependencies:
