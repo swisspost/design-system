@@ -13,10 +13,10 @@
   position: absolute;
   inset-inline: 0;
   overflow-y: auto;
-  background-color: #fafafa;
   box-shadow: elevation.$elevation-300;
 
   @include media.only(desktop) {
+    background-color: #f0efed;
     z-index: -1;
     inset-block-start: 100%;
 
@@ -30,6 +30,7 @@
   }
 
   @include media.max(desktop) {
+    background-color: #fafafa;
     z-index: 1;
     inset-block-start: var(--post-header-navigation-current-inset);
     overscroll-behavior: contain;

@@ -16,7 +16,17 @@ export class PostBreadcrumbItem {
   /**
    * The optional URL to which the breadcrumb item will link.
    */
-  @Prop() url?: string | URL;
+  @Prop({ reflect: true }) url?: string | URL;
+
+  /**
+   * ARIA label, screen readers will use this instead of the breadcrumb item content.
+   */
+  @Prop({ reflect: true }) label?: string;
+
+  /**
+   * ARIA description for additional context, read after the breadcrumb item content or `label`.
+   */
+  @Prop({ reflect: true }) description?: string;
 
   private validUrl?: string;
 
@@ -60,18 +70,24 @@ export class PostBreadcrumbItem {
   }
 
   render() {
-    const BreadcrumbTag = this.validUrl ? 'a' : 'span';
-
     return (
       <Host data-version={version}>
         <post-icon name="chevronright" class="breadcrumb-item-icon" />
-        <BreadcrumbTag
-          class="breadcrumb-item"
-          {...(this.validUrl ? { href: this.validUrl } : {})}
-          onKeyDown={event => this.handleKeyDown(event)}
-        >
-          <slot></slot>
-        </BreadcrumbTag>
+        {this.validUrl ? (
+          <a
+            class="breadcrumb-item"
+            href={this.validUrl}
+            onKeyDown={event => this.handleKeyDown(event)}
+            aria-label={this.label}
+            aria-description={this.description}
+          >
+            <slot></slot>
+          </a>
+        ) : (
+          <span class="breadcrumb-item">
+            <slot></slot>
+          </span>
+        )}
       </Host>
     );
   }

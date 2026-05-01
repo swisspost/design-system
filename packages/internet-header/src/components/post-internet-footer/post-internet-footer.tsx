@@ -93,7 +93,7 @@ export class PostInternetFooter {
 
     return (
       <Host data-version={version}>
-        <post-footer text-footer={this.textFooter}>
+        <post-footer textFooter={this.textFooter}>
           {footerConfig.sections &&
             footerConfig.sections.map((section, i) => (
               <LinkList

@@ -34,10 +34,20 @@ export const translations = {
     fr: 'Aller au login',
     it: 'Vai al login',
   },
-  'Open menu': {
-    de: 'Menü öffnen',
-    fr: 'Ouvrir le menu',
-    it: 'Apri il menu',
+  'Homepage': {
+    de: 'Startseite',
+    fr: "Page d'accueil",
+    it: 'Homepage',
+  },
+  'Breadcrumbs': {
+    de: 'Brotkrumennavigation',
+    fr: "Fil d'ariane",
+    it: 'Breadcrumb',
+  },
+  'More items': {
+    de: 'Weitere Elemente',
+    fr: "Plus d'éléments",
+    it: 'Altri elementi',
   },
   'Navigate on post.ch': {
     de: 'Navigieren auf post.ch',
