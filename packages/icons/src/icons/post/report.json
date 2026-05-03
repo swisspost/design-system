@@ -1091,6 +1091,9 @@
           "Vente de marques",
           "Vendita del marchio",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "vente de timbres",
           "vendita di francobolli",
           "Verkauf von Briefmarken",
@@ -1099,7 +1102,6 @@
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A"
         ],
@@ -1119,7 +1121,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:03.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "21e53ff0-df41-11e7-a943-005056a94f4a",
@@ -1141,11 +1143,13 @@
           "Lettera",
           "Lettre",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "Briefmarke",
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A"
         ],
@@ -1165,7 +1169,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:03.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "21e82620-df41-11e7-a943-005056a94f4a",
@@ -1181,11 +1185,13 @@
           "Filatelia",
           "Philatelie",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "Briefmarke",
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A"
         ],
@@ -1205,7 +1211,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:03.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "21ea9720-df41-11e7-a943-005056a94f4a",
@@ -28715,10 +28721,14 @@
         "name": "2780.svg",
         "basename": "2780",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-04-23T08:48:53.000Z",
-      "modifiedAt": "2026-04-23T12:05:00.571Z"
+      "modifiedAt": "2026-04-24T08:05:01.657Z"
     },
     {
       "uuid": "b2207780-3f03-11f1-9918-0050568d2654",
@@ -28799,6 +28809,34 @@
       },
       "createdAt": "2026-04-23T11:07:29.000Z",
       "modifiedAt": "2026-04-23T11:11:46.000Z"
+    },
+    {
+      "uuid": "8f30fa40-3f19-11f1-9918-0050568d2654",
+      "id": 10190907,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190907/storage/MDEwMTkwOTA3LzAvbWFzdGVy",
+        "keywords": [
+          "address book",
+          "Adressbuch",
+          "Carnet d’adresses",
+          "rubrica"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2784.svg",
+        "basename": "2784",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T13:37:23.000Z",
+      "modifiedAt": "2026-04-23T13:39:48.000Z"
     },
     {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
@@ -42060,13 +42098,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1115,
+    "success": 1116,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-04-23T12:31:31.572Z",
+  "created": "2026-05-03T04:11:15.006Z",
   "version": "10.0.0-next.67"
 }
