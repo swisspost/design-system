@@ -1,5 +1,11 @@
 # @swisspost/design-system-eslint
 
+## 10.0.0-next.68
+
+### Patch Changes
+
+- Fixed serialization issues in automigration rules that caused attribute names to be lowercased and valueless attributes to get `=""` appended. (by [@myrta2302](https://github.com/myrta2302) with [#7510](https://github.com/swisspost/design-system/pull/7510))
+
 ## 10.0.0-next.67
 
 ## 10.0.0-next.66
