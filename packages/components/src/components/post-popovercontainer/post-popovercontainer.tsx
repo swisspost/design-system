@@ -395,7 +395,7 @@ export class PostPopovercontainer {
 
       // Calculate dynamically the half side which provides the static side offset
       const arrowSizeValue = getComputedStyle(this.arrowRef)
-        .getPropertyValue('--arrow-size')
+        .getPropertyValue('--post-arrow-size')
         .trim();
 
       const arrowSizePx = arrowSizeValue.endsWith('rem')

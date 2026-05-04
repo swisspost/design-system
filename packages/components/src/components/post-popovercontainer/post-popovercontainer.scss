@@ -56,7 +56,7 @@
   $arrow-rotation: 45deg;
   .arrow {
     $arrow-size: 0.5825rem;
-    --arrow-size: #{$arrow-size};
+    --post-arrow-size: #{$arrow-size};
     position: absolute;
     width: $arrow-size;
     height: $arrow-size;
