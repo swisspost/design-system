@@ -17,6 +17,7 @@ nav {
 
   &.invisible {
     visibility: hidden;
+    overflow: hidden;
   }
 
   &:not(.invisible) {

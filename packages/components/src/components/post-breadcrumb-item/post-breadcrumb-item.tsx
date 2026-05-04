@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
-import { version } from '@root/package.json';
 import { checkEmptyOrOneOf, checkEmptyOrUrl, checkRequiredAndType } from '@/utils';
+import { version } from '@root/package.json';
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { Variant, VARIANTS } from './variants';
 
 /**
@@ -66,7 +66,9 @@ export class PostBreadcrumbItem {
         <slot></slot>
       </a>
     ) : (
-      <slot></slot>
+      <span>
+        <slot></slot>
+      </span>
     );
 
     return this.variant === 'listitem' || this.selected ? (

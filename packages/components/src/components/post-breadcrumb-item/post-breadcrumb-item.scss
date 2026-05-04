@@ -12,7 +12,7 @@ tokens.$default-map: components.$post-breadcrumb;
 :host([selected]:not([selected='false'])) {
   @include mixins.breadcrumb-item;
 
-  :is(button, a, span) {
+  :is(a, span) {
     color: tokens.get('breadcrumb-selected-fg');
     font-weight: tokens.get('breadcrumb-selected-font-weight');
     text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
