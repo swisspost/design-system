@@ -1,5 +1,6 @@
 // app.tsx
-import { PostAvatar, PostBanner } from '@swisspost/design-system-components-react';
+import { PostAvatar } from '@swisspost/design-system-components-react/post-avatar';
+import { PostBanner } from '@swisspost/design-system-components-react/post-banner';
 
 export default function App() {
   return (
