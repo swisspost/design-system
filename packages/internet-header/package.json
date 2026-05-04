@@ -55,7 +55,7 @@
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
     "@percy/cli": "1.31.8",
-    "@percy/cypress": "3.1.7",
+    "@percy/cypress": "3.1.8",
     "@stencil-community/eslint-plugin": "0.10.0",
     "@stencil/core": "4.43.3",
     "@stencil/sass": "3.0.12",
