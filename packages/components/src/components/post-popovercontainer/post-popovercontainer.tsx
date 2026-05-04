@@ -552,7 +552,7 @@ export class PostPopovercontainer {
             ></span>
           )}
           {/* exposed via ::part for consuming components to activate as a bleed mask */}
-          <span part="post-popovercontainer-border-mask" class="border-mask"></span>
+          <span part="post-popovercontainer-border-mask"></span>
           <slot></slot>
         </div>
       </Host>
