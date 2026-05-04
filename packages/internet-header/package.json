@@ -51,7 +51,7 @@
     "url-polyfill": "1.1.14"
   },
   "devDependencies": {
-    "@babel/core": "7.26.0",
+    "@babel/core": "7.29.0",
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
     "@percy/cli": "1.31.8",
