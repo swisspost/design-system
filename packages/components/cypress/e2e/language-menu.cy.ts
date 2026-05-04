@@ -8,7 +8,6 @@ const popoverOpenSelector = isPopoverSupported() ? ':popover-open' : String.raw`
 describe('post-language-menu', () => {
   describe('list variant', () => {
     beforeEach(() => {
-      // Default story renders with variant="list"
       cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
     });
 
@@ -68,8 +67,15 @@ describe('post-language-menu', () => {
 
   describe('menu variant', () => {
     beforeEach(() => {
-      // Use the "Links" story which renders with variant="menu"
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID, 'links');
+      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
+      cy.get('@language-menu').invoke('prop', 'variant', 'menu');
+      // Wait for post-menu-trigger to be fully hydrated after the variant re-render.
+      // aria-expanded is set in componentDidLoad of post-menu-trigger — its presence
+      // confirms the trigger is ready to receive clicks.
+      cy.get('@language-menu')
+        .find('post-menu-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false');
       cy.get('@language-menu').find('post-menu-trigger').as('trigger');
     });
 
@@ -89,7 +95,7 @@ describe('post-language-menu', () => {
     it('should show the menu on trigger click', () => {
       cy.get('@trigger').find('button').click();
       cy.get(`post-popovercontainer${popoverOpenSelector}`, { timeout: 10000 }).should('exist');
-      cy.get('@language-menu').find('post-language-menu-item button, post-language-menu-item a').should('be.visible');
+      cy.get('@language-menu').find('post-language-menu-item button').should('be.visible');
     });
 
     it('should correctly switch language and hide menu on option click', () => {
@@ -107,7 +113,7 @@ describe('post-language-menu', () => {
       cy.get('@language-menu').find('post-menu').should('have.attr', 'role', 'menu');
       cy.get('@language-menu')
         .find('post-language-menu-item')
-        .find('[role="menuitem"]:visible')
+        .find('button[role="menuitem"]:visible')
         .should('have.length', 2);
     });
   });
@@ -172,7 +178,12 @@ describe('post-language-menu', () => {
     it('Has no detectable a11y violations for all variants', () => {
       cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
       cy.checkA11y('#root-inner');
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID, 'links');
+      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
+      cy.get('post-language-menu').invoke('prop', 'variant', 'menu');
+      cy.get('post-language-menu[data-hydrated]')
+        .find('post-menu-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false');
       cy.checkA11y('#root-inner');
     });
   });
