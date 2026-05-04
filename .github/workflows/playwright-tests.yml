@@ -48,7 +48,7 @@ jobs:
         uses: ./.github/actions/setup-pnpm
 
       - name: Install & build dependencies
-        run: pnpm install && pnpm --filter design-system-components-angular-workspace^... build
+        run: pnpm install && pnpm --filter design-system-components-angular-workspace... build
 
       - name: Build consumer app
         run: pnpm --filter design-system-components-angular-workspace exec ng build consumer-app
