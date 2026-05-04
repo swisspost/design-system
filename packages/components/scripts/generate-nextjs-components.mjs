@@ -2,7 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToReact } from './transform-to-react.mjs';
-import { LAYOUT_COMPONENTS, loadMarkupMap, getHtml, getVariants, collectImports } from './utils.mjs';
+import {
+  LAYOUT_COMPONENTS,
+  loadMarkupMap,
+  getHtml,
+  getVariants,
+  collectImports,
+} from './utils.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pagePath = path.resolve(__dirname, '../../../apps/integration-next/src/app/ssr/page.tsx');
@@ -118,7 +124,12 @@ console.log(`✅ page.tsx written → ${pagePath}`);
 const usedNames = [...layoutTemplate.matchAll(/\{\/\* COMPONENT:(\w+) \*\/\}/g)].map(
   ([, name]) => name,
 );
-const layoutImports = collectImports(usedNames.map(name => components[name]).filter(Boolean));
+const layoutImports = collectImports(
+  usedNames
+    .map(name => components[name])
+    .filter(Boolean)
+    .map(entry => ({ html: getHtml(entry) })),
+);
 
 let result = layoutTemplate.replaceAll(/\{\/\* COMPONENT:(\w+) \*\/\}/g, (_, name) => {
   const entry = components[name];

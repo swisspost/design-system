@@ -2,7 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transformToAngular } from './transform-to-angular.mjs';
-import { LAYOUT_COMPONENTS, loadMarkupMap, getHtml, getVariants, collectImports } from './utils.mjs';
+import {
+  LAYOUT_COMPONENTS,
+  loadMarkupMap,
+  getHtml,
+  getVariants,
+  collectImports,
+} from './utils.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const basePath = path.resolve(__dirname, '../../components-angular/projects/consumer-app/src/app');

@@ -20,8 +20,8 @@ const outputPath = path.resolve(__dirname, '../cypress/fixtures/markup-component
 function toKebab(name) {
   return name
     .replaceAll(/([a-z])([A-Z])/g, '$1-$2')
-    .replaceAll(/([A-Za-z])(\d+)/g, '$1-$2')
-    .replaceAll(/([\d+)([A-Za-z])/g, '$1-$2')
+    .replaceAll(/([A-Za-z])(\d)/g, '$1-$2')
+    .replaceAll(/(\d)([A-Za-z])/g, '$1-$2')
     .toLowerCase();
 }
 

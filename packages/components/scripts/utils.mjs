@@ -41,7 +41,8 @@ export function getHtml(entry, story = 'default') {
 /** Returns all variants as [{ story, html }]. Falls back to a single 'default' entry for legacy shapes. */
 export function getVariants(entry) {
   if (typeof entry === 'string') return [{ story: 'default', html: entry }];
-  if (entry.variants) return Object.entries(entry.variants).map(([story, html]) => ({ story, html }));
+  if (entry.variants)
+    return Object.entries(entry.variants).map(([story, html]) => ({ story, html }));
   return [{ story: 'default', html: entry.html }];
 }
 
