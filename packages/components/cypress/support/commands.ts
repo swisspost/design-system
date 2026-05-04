@@ -85,7 +85,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'checkFormDataPropValue',
-  ($form: JQuery<HTMLElement>, key: string, value: string | number | boolean | null) => {
+  ($form: JQuery<HTMLElement>, key: string, value: string | number | boolean | File | null) => {
     const formControlData = new FormData($form.get(0) as HTMLFormElement).get(key);
     expect(formControlData).to.be.eq(value);
   },
@@ -144,15 +144,22 @@ Cypress.Commands.add(
       .map(p => p.charAt(0).toUpperCase() + p.slice(1))
       .join('');
 
-    const capture = (markup: string) => {
+    const capture = (rawMarkup: string) => {
+      // Strip Lit template comments (e.g. <!--?lit$160545571$-->)
+      const markup = rawMarkup.replaceAll(/<!--\?lit\$\d+\$-->/g, '');
+      if (!/<post-[a-z]/.test(markup)) {
+        cy.log(`WARNING: no <post-*> tags in captured markup for "${key}" (${story}) — skipping`);
+        return;
+      }
       cy.task('readJsonFile', 'output/markup-map.json').then(existing => {
-        const current = ((existing as Record<string, any>) || {})[key] || {};
+        const data = (existing as Record<string, unknown>) ?? {};
+        const current = (data[key] as Record<string, unknown>) ?? {};
         const updated = {
-          ...((existing as object) || {}),
+          ...data,
           [key]: {
             title: options?.noTitle ? null : (options?.title ?? key),
             variants: {
-              ...(current.variants || {}),
+              ...((current['variants'] as Record<string, unknown> | undefined) ?? {}),
               [story]: markup,
             },
           },

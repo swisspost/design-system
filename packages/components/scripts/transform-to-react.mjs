@@ -16,8 +16,12 @@ export function transformToReact(html) {
         .filter(s => s.trim())
         .map(s => {
           const [prop, ...val] = s.split(':');
-          const camelProp = prop.trim().replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase());
-          return `${camelProp}: '${val.join(':').trim()}'`;
+          const trimmed = prop.trim();
+          const camelProp = trimmed.startsWith('--')
+            ? trimmed
+            : trimmed.replaceAll(/-([a-z])/g, (_, c) => c.toUpperCase());
+          const key = trimmed.startsWith('--') ? `['${camelProp}']` : camelProp;
+          return `${key}: '${val.join(':').trim()}'`;
         })
         .join(', ');
       return `style={{ ${obj} }}`;

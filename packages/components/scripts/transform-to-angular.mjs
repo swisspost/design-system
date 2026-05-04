@@ -8,6 +8,16 @@ import {
 
 export function transformToAngular(html) {
   const transformed = removeHtmlComments(html)
+    // Strip inline CSS custom properties (e.g. --post-header-scroll-parent-height: 1549px)
+    .replaceAll(/style="([^"]*)"/g, (_, styles) => {
+      const cleaned = styles
+        .split(';')
+        .filter(s => s.trim() && !s.trim().startsWith('--'))
+        .join(';')
+        .trim();
+      return cleaned ? `style="${cleaned}"` : '';
+    })
+
     // Convert kebab-case attributes to camelCase on post-* components (skip aria-*)
     // <post-header text-menu="Menu"> → <post-header textMenu="Menu">
     .replaceAll(/<post-[\w-]+((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>/g, tag =>

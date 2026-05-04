@@ -13,6 +13,12 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const storiesRoot = path.resolve(__dirname, '../../../apps/documentation/src/stories/components');
 const outputPath = path.resolve(__dirname, '../cypress/fixtures/markup-components.ts');
+const markupMapPath = path.resolve(__dirname, '../output/markup-map.json');
+
+// Clear markup-map.json before Cypress runs so we start fresh
+fs.mkdirSync(path.dirname(markupMapPath), { recursive: true });
+fs.writeFileSync(markupMapPath, '{}', 'utf8');
+console.log('✅ Cleared markup-map.json');
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 
