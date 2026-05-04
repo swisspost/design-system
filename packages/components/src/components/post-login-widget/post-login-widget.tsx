@@ -26,7 +26,7 @@ export class PostLoginWidget {
    * The event payload is an object with an `authenticated` property:
    * `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
    */
-  @Event() postLoginChange: EventEmitter<{ authenticated: boolean }>;
+  @Event() postChange: EventEmitter<{ authenticated: boolean }>;
 
   @State() private authenticated: boolean | null = null;
 
@@ -41,7 +41,7 @@ export class PostLoginWidget {
    * `null` when the component is still loading, `true` when authenticated, `false` when not.
    */
   @Method()
-  async getAuthState(): Promise<boolean | null> {
+  async isAuthenticated(): Promise<boolean | null> {
     return this.authenticated;
   }
 
@@ -77,7 +77,7 @@ export class PostLoginWidget {
     if (this.authenticated === next) return;
 
     this.authenticated = next;
-    this.postLoginChange.emit({ authenticated: next });
+    this.postChange.emit({ authenticated: next });
   }
 
   render() {
