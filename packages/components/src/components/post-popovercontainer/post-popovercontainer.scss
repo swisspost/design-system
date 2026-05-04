@@ -38,7 +38,6 @@
     color: var(--post-current-fg);
     background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
-    // required so .border-mask (a child absolute element) positions correctly
     position: relative;
 
     @include utilities.high-contrast-mode {
