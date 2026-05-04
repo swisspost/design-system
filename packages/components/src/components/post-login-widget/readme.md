@@ -14,7 +14,7 @@
 
 ## Methods
 
-### `getAuthenticated() => Promise<boolean | null>`
+### `getAuthState() => Promise<boolean | null>`
 
 Returns the current authentication state:
 `null` when the component is still loading, `true` when authenticated, `false` when not.
