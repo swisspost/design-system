@@ -1,11 +1,11 @@
-import { Component, h, Host, Prop, State } from '@stencil/core';
-import { version } from '@root/package.json';
-import { state } from '@/data/store';
-import { getText } from '@/utils/get-text';
 import { Link, LinkProps, Title, TitleProps } from '@/components/internal';
-import { createIdFrom } from '@/utils/create-id-from';
-import { JSXBase } from '@stencil/core/internal';
+import { state } from '@/data/store';
 import { LinkListConfig } from '@/models/shared.model';
+import { createIdFrom } from '@/utils/create-id-from';
+import { getText } from '@/utils/get-text';
+import { version } from '@root/package.json';
+import { Component, h, Host, Prop, State } from '@stencil/core';
+import { JSXBase } from '@stencil/core/internal';
 
 @Component({
   tag: 'swisspost-internet-footer',
@@ -128,47 +128,55 @@ export class PostInternetFooter {
             }),
           )}
 
-          <div slot="socialmedia">
-            {this.renderListWithTitle(footerConfig.socialLinks, {
-              titleProps: { tag: 'h3' },
-              linkProps: { class: 'btn btn-primary btn-icon', hiddenText: true },
-            })}
-          </div>
+          {footerConfig.socialLinks && (
+            <div slot="socialmedia">
+              {this.renderListWithTitle(footerConfig.socialLinks, {
+                titleProps: { tag: 'h3' },
+                linkProps: { class: 'btn btn-primary btn-icon', hiddenText: true },
+              })}
+            </div>
+          )}
 
-          <div slot="app">
-            {this.renderListWithTitle(footerConfig.appStoreLinks, {
-              titleProps: { tag: 'h3' },
-              linkProps: { class: 'app-store-badge', hiddenText: true },
-            })}
-          </div>
+          {footerConfig.appStoreLinks && (
+            <div slot="app">
+              {this.renderListWithTitle(footerConfig.appStoreLinks, {
+                titleProps: { tag: 'h3' },
+                linkProps: { class: 'app-store-badge', hiddenText: true },
+              })}
+            </div>
+          )}
 
-          <div slot="businesssectors">
-            {this.renderListWithTitle(footerConfig.companyLinks, {
-              titleProps: { tag: 'h3' },
-            })}
-          </div>
+          {footerConfig.companyLinks && (
+            <div slot="businesssectors">
+              {this.renderListWithTitle(footerConfig.companyLinks, {
+                titleProps: { tag: 'h3' },
+              })}
+            </div>
+          )}
 
           {footerConfig.complianceLinks && (
             <div slot="meta">
               <ul aria-label={getText(footerConfig.complianceLinks.title)}>
                 {footerConfig.complianceLinks.items.map(item => (
-                  <Link config={item} />
+                  <li>
+                    <Link config={item} />
+                  </li>
                 ))}
+                {this.cookieSettingsEnabled && (
+                  <li>
+                    <button
+                      class="btn btn-link cookie-settings"
+                      onClick={this.handleCookieSettingsClick}
+                    >
+                      {this.textCookieSettings}
+                    </button>
+                  </li>
+                )}
               </ul>
-              {this.cookieSettingsEnabled && (
-                <li>
-                  <button
-                    class="btn btn-link cookie-settings"
-                    onClick={this.handleCookieSettingsClick}
-                  >
-                    {this.textCookieSettings}
-                  </button>
-                </li>
-              )}
             </div>
           )}
 
-          <p slot="copyright">{footerConfig.copyright}</p>
+          {footerConfig.copyright && <p slot="copyright">{footerConfig.copyright}</p>}
         </post-footer>
       </Host>
     );

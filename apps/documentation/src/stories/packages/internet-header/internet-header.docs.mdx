@@ -1,17 +1,17 @@
-import { Meta, Source } from '@storybook/addon-docs/blocks';
-import SampleFrameworks from './internet-header-frameworks.sample.html?raw';
-import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
-import SampleBareComponent from './internet-header-bare-component.sample.js?raw';
-import SampleCDNLazyLoaded from './internet-header-cdn-lazy-loaded.sample.html?raw';
-import SampleCDNBareComponent from './internet-header-cdn-bare-component.sample.html?raw';
-import SampleReference from './internet-header-reference.sample.ts?raw';
-import SampleInstall from './internet-header-install.sample.html?raw';
-import SampleFixAppStyles from './internet-header-fix-app-styles.sample.html?raw';
-import SampleOld from './internet-header-old.sample.html?raw';
-import * as PackageStories from './internet-header.stories';
-import { SourceDarkScheme } from '@/../.storybook/preview';
 import changelog from '@/../../../packages/internet-header/CHANGELOG.md?raw';
+import { SourceDarkScheme } from '@/../.storybook/preview';
 import PackageDocs from '@/shared/packages-docs-layout.mdx';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+import SampleBareComponent from './internet-header-bare-component.sample.js?raw';
+import SampleCDNBareComponent from './internet-header-cdn-bare-component.sample.html?raw';
+import SampleCDNLazyLoaded from './internet-header-cdn-lazy-loaded.sample.html?raw';
+import SampleFixAppStyles from './internet-header-fix-app-styles.sample.html?raw';
+import SampleFrameworks from './internet-header-frameworks.sample.html?raw';
+import SampleInstall from './internet-header-install.sample.html?raw';
+import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
+import SampleOld from './internet-header-old.sample.html?raw';
+import SampleReference from './internet-header-reference.sample.ts?raw';
+import * as PackageStories from './internet-header.stories';
 
 <Meta of={PackageStories} />
 
@@ -124,12 +124,6 @@ Internet-header package provide two versions:
 ### Usage with Angular
 
 For Angular user, please have a look at [How to integrate Web Components inside Angular](/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs#usage-of-web-components)
-
-## Migration from the old header
-
-This guide aims to give a broad overview of how a migration can be performed.
-Different projects have different levels of integration with the header,
-and therefore require more steps to migrate.
 
 ### Architecture
 

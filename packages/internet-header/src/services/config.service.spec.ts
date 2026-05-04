@@ -1,5 +1,5 @@
-import { PortalConfig } from '@/models/general.model';
 import * as testConfigRaw from '@/assets/config/test-configuration.json';
+import { PortalConfig } from '@/models/general.model';
 import {
   fetchConfig,
   generateConfigUrl,
@@ -7,7 +7,7 @@ import {
   isValidProjectId,
 } from './config.service';
 
-const testConfig: PortalConfig = testConfigRaw as unknown as PortalConfig;
+const testConfig: PortalConfig = testConfigRaw as PortalConfig;
 
 describe('config.service.ts', () => {
   global.fetch = jest.fn(() => {
