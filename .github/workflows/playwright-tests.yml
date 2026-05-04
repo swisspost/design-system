@@ -27,7 +27,7 @@ jobs:
         uses: ./.github/actions/setup-pnpm
 
       - name: Install & build dependencies
-        run: pnpm install && pnpm --filter design-system-integration-next^... build
+        run: pnpm e2e:next:ci
 
       - name: Install Playwright Browsers
         run: pnpm --filter design-system-integration-next exec playwright install --with-deps chromium
