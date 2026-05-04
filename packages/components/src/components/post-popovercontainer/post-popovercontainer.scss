@@ -69,23 +69,23 @@
     // fallbacks to 0px/transparent when no consumer components sets the variables
     &[dynamic-placement='top'] {
       border-bottom-right-radius: 2px;
-      border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
-      border-right: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-bottom: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
+      border-right: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
     }
     &[dynamic-placement='right'] {
       border-bottom-left-radius: 2px;
-      border-bottom: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
-      border-left: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-bottom: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
+      border-left: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
     }
     &[dynamic-placement='bottom'] {
       border-top-left-radius: 2px;
-      border-top: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
-      border-left: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-top: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
+      border-left: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
     }
     &[dynamic-placement='left'] {
       border-top-right-radius: 2px;
-      border-top: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
-      border-right: var(--post-arrow-border-width, 0px) solid var(--post-current-border, transparent);
+      border-top: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
+      border-right: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
     }
 
     $angle-rad: math.div($arrow-rotation, 180deg) * 3.14; // convert deg to rad

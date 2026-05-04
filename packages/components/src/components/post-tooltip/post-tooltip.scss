@@ -22,8 +22,8 @@ post-popovercontainer[arrow]::after {
 post-popovercontainer {
   --post-current-bg: #{tokens.get('post-tooltip-color-bg')};
   --post-current-fg: #{tokens.get('post-tooltip-color-fg')};
-  --post-arrow-border-width: #{tokens.get('post-tooltip-border-width')};
-  --post-current-border: #{tokens.get('post-tooltip-color-border')};
+  --post-popovercontainer-arrow-border-width: #{tokens.get('post-tooltip-border-width')};
+  --post-popovercontainer-arrow-border-color: #{tokens.get('post-tooltip-color-border')};
 }
 
 // activates the border-mask element to cover arrow border bleed
