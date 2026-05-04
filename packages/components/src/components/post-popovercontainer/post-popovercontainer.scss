@@ -54,6 +54,11 @@
     z-index: 0;
   }
 
+  ::slotted(*) {
+    position: relative;
+    z-index: 1;
+  }
+
   $arrow-rotation: 45deg;
   .arrow {
     $arrow-size: 0.5825rem;
