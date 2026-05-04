@@ -570,10 +570,7 @@ export class PostDatePicker {
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    this.setActiveCell(
-      this.isoToDate(this.selectedStartDate) || this.today,
-      focusOnDate,
-    );
+    this.setActiveCell(this.isoToDate(this.selectedStartDate) || this.today, focusOnDate);
   }
 
   /**
@@ -644,7 +641,7 @@ export class PostDatePicker {
 
     if (!this.inline) {
       this.dpInput = assignedNodes?.find(el => el.tagName === 'INPUT') as HTMLInputElement;
-      this.setUpMask();
+      if (this.dpInput) this.setUpMask();
     }
 
     this.dpContainer = this.host.shadowRoot.querySelector('.datepicker-container');
@@ -784,8 +781,8 @@ export class PostDatePicker {
       if (!this.titleBtn) return;
 
       this.titleBtn.onclick = null; // remove inline handler AirDatepicker sets
-      this.titleBtn.removeEventListener('click', this.forceTitleClickToYear);
-      this.titleBtn.addEventListener('click', this.forceTitleClickToYear, { capture: true });
+      this.titleBtn?.removeEventListener('click', this.forceTitleClickToYear);
+      this.titleBtn?.addEventListener('click', this.forceTitleClickToYear, { capture: true });
     });
   }
 
@@ -948,7 +945,7 @@ export class PostDatePicker {
   }
 
   private addInputListener() {
-    this.dpInput.addEventListener('blur', this.handleInputBlur);
+    this.dpInput?.addEventListener('blur', this.handleInputBlur);
   }
 
   private resetSelection() {

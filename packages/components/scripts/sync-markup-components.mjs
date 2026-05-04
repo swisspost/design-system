@@ -66,7 +66,7 @@ for (const file of storyFiles) {
 
   components.push({
     id,
-    stories: storyExports.map(toKebab),
+    stories: storyExports.map(s => toKebab(s)),
     tags: [component],
   });
 }

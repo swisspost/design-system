@@ -61,7 +61,7 @@ export function transformToReact(html) {
 
       const convertedAttrs = convertAttributes(attrs, componentProps, (name, value, type, attr) => {
         if (type === 'number' && /^\d+$/.test(value)) return `${name}={${value}}`;
-        if (type === 'boolean') return value === 'true' ? `${name}={true}` : `${name}={false}`;
+        if (type === 'boolean') return value === 'false' ? `${name}={false}` : `${name}={true}`;
         return attr;
       });
 
