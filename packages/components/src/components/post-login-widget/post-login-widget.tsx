@@ -39,9 +39,9 @@ export class PostLoginWidget {
   /**
    * Returns the current authentication state:
    * `null` when the component is still loading, `true` when authenticated, `false` when not.
-  */
+   */
   @Method()
-  async getAuthenticated(): Promise<boolean | null> {
+  async getAuthState(): Promise<boolean | null> {
     return this.authenticated;
   }
 
