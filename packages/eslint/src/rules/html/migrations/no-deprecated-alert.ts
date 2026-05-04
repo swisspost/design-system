@@ -1,5 +1,6 @@
 import { createRule } from '../../../utils/create-rule';
 import { HtmlNode } from '../../../parsers/html/html-node';
+import { removeEmptyAttrs } from '../../../utils/empty-attrs-remover';
 
 export const name = 'no-deprecated-alert';
 
@@ -33,7 +34,7 @@ export default createRule({
                 messageId: 'deprecatedAlert',
                 loc: node.loc,
                 fix(fixer) {
-                  const fixedHtml = $node.toString();
+                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
                   return fixer.replaceTextRange(node.range, fixedHtml);
                 },
               });
