@@ -28,22 +28,31 @@
     "./post-components.css": "./dist/post-components.css",
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js",
-      "node": "./dist/index.server.js"
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/types/stencil-generated/standalone/*.d.ts",
+      "import": "./dist/stencil-generated/standalone/*.js"
     },
     "./server": {
       "types": "./dist/types/index.server.d.ts",
       "import": "./dist/index.server.js"
     },
+    "./server/*": {
+      "types": "./dist/types/stencil-generated/standalone/*.server.d.ts",
+      "import": "./dist/stencil-generated/standalone/*.server.js"
+    },
+    "./standalone": {
+      "types": "./dist/types/stencil-generated/standalone/components.d.ts",
+      "import": "./dist/stencil-generated/standalone/components.js"
+    },
     "./icons": {
       "types": "./dist/types/icons-generated/index.d.ts",
-      "import": "./dist/icons-generated/index.js",
-      "node": "./dist/icons-generated/index.js"
+      "import": "./dist/icons-generated/index.js"
     },
     "./icons/*": {
       "types": "./dist/types/icons-generated/*.d.ts",
-      "import": "./dist/icons-generated/*.js",
-      "node": "./dist/icons-generated/*.js"
+      "import": "./dist/icons-generated/*.js"
     }
   },
   "scripts": {
