@@ -11,8 +11,7 @@ const BASE_TEMPLATE = `<!DOCTYPE html>
     <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
     <title>Post Header - {{VARIANT_NAME}}</title>
     <link rel="stylesheet" href="/build/post-components.css" />
-    <link rel="stylesheet" href="/assets/css/post-tokens-default.css" />
-    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/post-default.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <style>
       /* Fake content for scroll testing */
