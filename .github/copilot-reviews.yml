@@ -1,0 +1,22 @@
+# .github/copilot-reviews.yml
+
+# Automatically request Copilot review on new PRs
+reviews:
+  auto_review: true
+
+  # Limit auto-review to specific paths (optional)
+  path_filters:
+    include:
+      - 'src/**'
+      - 'apps/**'
+      - 'packages/**'
+    exclude:
+      - '**/*.md'
+      - '**/*.json'
+      - '**/test/**'
+
+  # Custom coding guidelines for Copilot to check against
+  # NOTE: Copilot code review automatically uses your `copilot-instructions.md` as context when reviewing PRs.
+  # coding_guidelines:
+  #   - title: 'topic'
+  #     description: 'instruction'
