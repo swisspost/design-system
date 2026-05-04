@@ -28,7 +28,7 @@ export const fullScreenUrlDecorator = (story: StoryFn, context: StoryContext) =>
   return html`
     <p class="linkConfigURL" hidden>${linkConfigURL}</p>
     <p class="storyURL " hidden>${storyURL}</p>
-    ${story(context.args, context)}
+    <div class="story-markup">${story(context.args, context)}</div>
   `;
 };
 

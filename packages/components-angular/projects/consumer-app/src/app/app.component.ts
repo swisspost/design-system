@@ -1,20 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router, RouterOutlet, RouterLink } from '@angular/router';
-import {
-  PostBackToTop,
-  PostBreadcrumbItem,
-  PostBreadcrumbs,
-  PostFooter,
-  PostHeader,
-  PostIcon,
-  PostLanguageMenuItem,
-  PostLanguageMenu,
-  PostLogo,
-  PostLoginWidget,
-  PostMainnavigation,
-  PostMegadropdown,
-  PostMegadropdownTrigger,
-} from 'components';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -26,19 +11,6 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     RouterOutlet,
     RouterLink,
-    PostBackToTop,
-    PostBreadcrumbItem,
-    PostBreadcrumbs,
-    PostFooter,
-    PostHeader,
-    PostIcon,
-    PostLanguageMenuItem,
-    PostLanguageMenu,
-    PostLogo,
-    PostLoginWidget,
-    PostMainnavigation,
-    PostMegadropdown,
-    PostMegadropdownTrigger,
   ],
 })
 export class AppComponent implements OnInit {

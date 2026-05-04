@@ -1,5 +1,5 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -88,7 +88,11 @@ function render(args: Args) {
       text-current-step="${args.textCurrentStep}"
       text-step-number="${args.textStepNumber}"
       current-index="${args.currentIndex}"
-      selected-index="${args.selectedIndex}"
+      ${args.selectedIndex === undefined ||
+      args.selectedIndex === '' ||
+      Number.isNaN(args.selectedIndex)
+        ? nothing
+        : html`selected-index="${args.selectedIndex}"`}
     >
       ${Array.from({ length: args.stepsAmount }).map(
         (a, i) => html` <post-stepper-item> Step ${i + 1} label</post-stepper-item> `,

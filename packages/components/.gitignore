@@ -39,3 +39,6 @@ playwright-report/
 /playwright/.auth/
 
 *.tsbuildinfo
+
+output/
+cypress/downloads/
