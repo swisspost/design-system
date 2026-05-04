@@ -1,8 +1,9 @@
+// importing the complete styles package scss
+@use '@swisspost/design-system-styles/core.scss' as post;
+
 // importing the global component styles
 @use '@swisspost/design-system-components/post-components.css';
 
-// importing the complete styles package scss
-@use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/tokens/elements';
