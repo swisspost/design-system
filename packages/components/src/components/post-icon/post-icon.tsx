@@ -95,7 +95,8 @@ export class PostIcon {
    **/
 
   private getUrl(): string {
-    const fileName = `${this.name}.svg`;
+    const name = this.name ?? this.host.getAttribute('name');
+    const fileName = `${name}.svg`;
 
     // Prioritize only data:image URLs
     if (this.url?.startsWith('data:image/')) {
