@@ -16,7 +16,6 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
  * @slot authenticated - Content rendered when the user is authenticated (e.g. user menu).
  * @slot unauthenticated - Content rendered when the user is not authenticated (e.g. login link).
  */
-// TODO: Rename to 'post-klp-login-widget' after @swisspost/internet-header components are migrated.
 @Component({
   tag: 'post-login-widget',
   shadow: true,
