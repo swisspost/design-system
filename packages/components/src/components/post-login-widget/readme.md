@@ -7,14 +7,14 @@
 
 ## Events
 
-| Event             | Description                                                                                                                                                                                                          | Type                                       |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| `postLoginChange` | Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed. | `CustomEvent<{ authenticated: boolean; }>` |
+| Event        | Description                                                                                                                                                                                                          | Type                                       |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| `postChange` | Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed. | `CustomEvent<{ authenticated: boolean; }>` |
 
 
 ## Methods
 
-### `getAuthenticated() => Promise<boolean | null>`
+### `isAuthenticated() => Promise<boolean | null>`
 
 Returns the current authentication state:
 `null` when the component is still loading, `true` when authenticated, `false` when not.
