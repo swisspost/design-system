@@ -45,8 +45,6 @@
     }
   }
 
-  // exposed via ::part(post-popovercontainer-border-mask) so consuming components
-  // (e.g. post-tooltip) can activate this mask from their own stylesheet
   [part='post-popovercontainer-border-mask'] {
     display: none;
     position: absolute;
