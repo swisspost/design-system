@@ -2,7 +2,7 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/helpers';
-@use '../../styles/components/post-header/mixins.scss' as header-mx;
+@use '../../styles/components/post-header/mixins' as header-mx;
 
 :host {
   position: relative;
