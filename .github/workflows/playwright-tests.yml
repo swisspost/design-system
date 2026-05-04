@@ -8,7 +8,6 @@ on:
       - 'packages/components-react/**'
       - 'packages/components-angular/**'
       - 'apps/integration-next/**'
-  workflow_dispatch:
 
 permissions:
   contents: read
