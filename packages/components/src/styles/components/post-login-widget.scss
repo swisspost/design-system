@@ -1,12 +1,11 @@
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
-@use '@swisspost/design-system-styles/components/header/placeholders' as *;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '../../styles/components/post-header/mixins' as header-mx;
 
 post-login-widget {
   > [slot='unauthenticated'] {
-    @extend %header-control;
+    @include header-mx.nav-item-base;
     width: fit-content;
 
     @include media.only(mobile) {
