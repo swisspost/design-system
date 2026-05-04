@@ -54,7 +54,7 @@ jobs:
         run: pnpm --filter design-system-components-angular-workspace exec ng build consumer-app
 
       - name: Install Playwright browsers
-        run: pnpm --filter design-system-components-angular-workspace exec playwright install --with-deps chromium
+        run: pnpm --filter design-system-components-angular-workspace playwright:install
 
       - name: Run tests
         run: pnpm --filter design-system-components-angular-workspace e2e:ci

@@ -21,6 +21,7 @@
     "e2e": "playwright test",
     "e2e:ci": "playwright test",
     "e2e:watch": "playwright test --ui",
+    "playwright:install": "playwright install --with-deps chromium",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "copy:styles:dist": "copyfiles -f projects/components/src/lib/stencil-generated/post-components.css dist/components/"
