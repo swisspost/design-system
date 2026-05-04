@@ -51,6 +51,7 @@
     inset: 0;
     border-radius: commons.$border-radius;
     pointer-events: none;
+    z-index: 0;
   }
 
   $arrow-rotation: 45deg;
