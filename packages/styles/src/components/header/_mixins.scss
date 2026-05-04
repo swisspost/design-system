@@ -7,8 +7,8 @@
 
 $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 
-$sqr-item-padding-inline-start: 0.5rem;
-$sqr-item-padding-inline-end: 0.75rem;
+$nav-block-padding-inline-start: 0.5rem;
+$nav-block-padding-inline-end: 0.75rem;
 
 /**
  selects all slotted nav items
@@ -72,8 +72,8 @@ $sqr-item-padding-inline-end: 0.75rem;
   width: 100%;
   justify-content: start;
   position: relative;
-  padding: 0.75rem $sqr-item-padding-inline-end calc(0.75rem - var(--post-nav-item-border-width))
-    $sqr-item-padding-inline-start;
+  padding: 0.75rem $nav-block-padding-inline-end calc(0.75rem - var(--post-nav-item-border-width))
+    $nav-block-padding-inline-start;
   gap: 1rem;
   border-radius: 0;
   line-height: 1.5;
@@ -119,8 +119,8 @@ $sqr-item-padding-inline-end: 0.75rem;
   }
 
   @include media.only(mobile) {
-    padding: calc(0.5rem + 1.5px) $sqr-item-padding-inline-end
-      calc(0.5rem + 1.5px - var(--post-nav-item-border-width)) $sqr-item-padding-inline-start;
+    padding: calc(0.5rem + 1.5px) $nav-block-padding-inline-end
+      calc(0.5rem + 1.5px - var(--post-nav-item-border-width)) $nav-block-padding-inline-start;
     gap: 0.5rem;
     font-size: 0.875rem;
 

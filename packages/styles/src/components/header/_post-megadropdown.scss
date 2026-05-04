@@ -3,11 +3,8 @@
 @use './mixins' as *;
 @use './placeholders' as *;
 
-$font-size-desktop: 1.25;
-$font-size-tablet: 1;
-
-$min-text-width-desktop: #{math.floor(11 * $font-size-desktop)}ch; // 13ch
-$min-text-width-tablet: #{math.floor(25 * $font-size-tablet)}ch; // 25ch
+$min-text-width-desktop: 12ch;
+$min-text-width-tablet: 25ch;
 
 post-megadropdown {
   --min-text-width: #{$min-text-width-desktop};
@@ -17,16 +14,12 @@ post-megadropdown {
   }
 
   --header-megadropdown-col-min-width: calc(
-    #{$sqr-item-padding-inline-start} + #{$sqr-item-padding-inline-end} + var(--min-text-width)
+    #{$nav-block-padding-inline-start} + #{$nav-block-padding-inline-end} + var(--min-text-width)
   );
 
   .post-megadropdown-list {
     @extend %header-list;
     flex-direction: column;
-    li,
-    a {
-      overflow-wrap: anywhere;
-    }
   }
 
   .post-megadropdown-overview,
@@ -35,9 +28,10 @@ post-megadropdown {
     @extend %header-control;
     @include nav-item-block-layout;
     @include media.only(desktop) {
-      font-size: #{$font-size-desktop}rem;
+      font-size: 1.25rem;
     }
     text-wrap: wrap;
+    overflow-wrap: anywhere;
   }
 
   .post-megadropdown-list-title {
