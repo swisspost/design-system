@@ -51,12 +51,6 @@
     inset: 0;
     border-radius: commons.$border-radius;
     pointer-events: none;
-    z-index: 0;
-  }
-
-  ::slotted(*) {
-    position: relative;
-    z-index: 1;
   }
 
   $arrow-rotation: 45deg;
@@ -73,7 +67,7 @@
     z-index: -1;
 
     // only the two outer sides get a border — the sides hidden under the content div stay borderless
-    // fallbacks to 0px/transparent when no consumer components sets the variables
+    // fallbacks to 0px/transparent when no consumer (e.g. post-tooltip) sets the variables
     &[dynamic-placement='top'] {
       border-bottom-right-radius: 2px;
       border-bottom: var(--post-popovercontainer-arrow-border);
