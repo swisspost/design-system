@@ -22,6 +22,7 @@
     "lint:fix": "eslint --fix",
     "e2e": "pnpm exec playwright test",
     "e2e:watch": "pnpm exec playwright test --ui",
+    "unit": "echo 'No unit tests for integration-next'",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
