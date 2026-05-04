@@ -1091,6 +1091,9 @@
           "Vente de marques",
           "Vendita del marchio",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "vente de timbres",
           "vendita di francobolli",
           "Verkauf von Briefmarken",
@@ -1099,7 +1102,6 @@
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A"
         ],
@@ -1119,7 +1121,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:03.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "21e53ff0-df41-11e7-a943-005056a94f4a",
@@ -1141,11 +1143,13 @@
           "Lettera",
           "Lettre",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "Briefmarke",
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A"
         ],
@@ -1165,7 +1169,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:03.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "21e82620-df41-11e7-a943-005056a94f4a",
@@ -1181,11 +1185,13 @@
           "Filatelia",
           "Philatelie",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "Briefmarke",
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A"
         ],
@@ -1205,7 +1211,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:03.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "21ea9720-df41-11e7-a943-005056a94f4a",
@@ -28401,7 +28407,7 @@
         }
       },
       "createdAt": "2026-03-27T07:32:44.000Z",
-      "modifiedAt": "2026-03-27T07:35:31.000Z"
+      "modifiedAt": "2026-04-02T11:45:30.000Z"
     },
     {
       "uuid": "37d9a770-29b0-11f1-90d1-0050568d2654",
@@ -28491,7 +28497,7 @@
         }
       },
       "createdAt": "2026-03-27T07:59:51.000Z",
-      "modifiedAt": "2026-03-27T08:04:22.000Z"
+      "modifiedAt": "2026-04-02T11:50:00.000Z"
     },
     {
       "uuid": "f3efa650-29b3-11f1-90d1-0050568d2654",
@@ -28516,7 +28522,7 @@
         }
       },
       "createdAt": "2026-03-27T08:07:09.000Z",
-      "modifiedAt": "2026-03-27T08:10:06.000Z"
+      "modifiedAt": "2026-04-02T11:49:32.000Z"
     },
     {
       "uuid": "9d9a1910-29b4-11f1-90d1-0050568d2654",
@@ -28548,7 +28554,7 @@
         }
       },
       "createdAt": "2026-03-27T08:11:54.000Z",
-      "modifiedAt": "2026-03-27T08:14:46.000Z"
+      "modifiedAt": "2026-04-02T11:49:04.000Z"
     },
     {
       "uuid": "51440e30-29b5-11f1-90d1-0050568d2654",
@@ -28577,7 +28583,7 @@
         }
       },
       "createdAt": "2026-03-27T08:16:55.000Z",
-      "modifiedAt": "2026-03-28T08:05:08.810Z"
+      "modifiedAt": "2026-04-02T11:48:30.000Z"
     },
     {
       "uuid": "ec435630-29c8-11f1-90d1-0050568d2654",
@@ -28635,7 +28641,543 @@
         }
       },
       "createdAt": "2026-03-31T05:13:35.000Z",
-      "modifiedAt": "2026-03-31T15:05:00.602Z"
+      "modifiedAt": "2026-04-01T05:05:04.223Z"
+    },
+    {
+      "uuid": "2e4be730-3a5a-11f1-bdb3-0050568d2654",
+      "id": 10045883,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10045883/storage/MDEwMDQ1ODgzLzAvbWFzdGVy",
+        "keywords": [
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity",
+          "Managed Detection & Response Service",
+          "Service géré de détection et de réponse",
+          "Servizio di rilevamento e risposta gestito"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2778.svg",
+        "basename": "2778",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-17T12:37:22.000Z",
+      "modifiedAt": "2026-04-18T12:05:07.723Z"
+    },
+    {
+      "uuid": "be73be00-3a5a-11f1-bdb3-0050568d2654",
+      "id": 10045895,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10045895/storage/MDEwMDQ1ODk1LzAvbWFzdGVy",
+        "keywords": [
+          "Customer portal",
+          "Kundenportal",
+          "Portail clients",
+          "Portale clienti",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2779.svg",
+        "basename": "2779",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-17T12:41:24.000Z",
+      "modifiedAt": "2026-04-18T12:05:07.723Z"
+    },
+    {
+      "uuid": "41a61580-3ef1-11f1-b595-0050568d2654",
+      "id": 10190826,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190826/storage/MDEwMTkwODI2LzAvbWFzdGVy",
+        "keywords": [
+          "Post TV",
+          "Poste TV"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2780.svg",
+        "basename": "2780",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T08:48:53.000Z",
+      "modifiedAt": "2026-04-24T08:05:01.657Z"
+    },
+    {
+      "uuid": "b2207780-3f03-11f1-9918-0050568d2654",
+      "id": 10190853,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190853/storage/MDEwMTkwODUzLzAvbWFzdGVy",
+        "keywords": [
+          "Italien",
+          "Italy",
+          "Italie",
+          "Italia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2781.svg",
+        "basename": "2781",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:00:53.000Z",
+      "modifiedAt": "2026-04-23T11:04:12.000Z"
+    },
+    {
+      "uuid": "31f9f580-3f04-11f1-9918-0050568d2654",
+      "id": 10190858,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190858/storage/MDEwMTkwODU4LzAvbWFzdGVy",
+        "keywords": [
+          "France",
+          "Frankreich",
+          "Francia"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2782.svg",
+        "basename": "2782",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:04:27.000Z",
+      "modifiedAt": "2026-04-23T11:07:07.000Z"
+    },
+    {
+      "uuid": "9e9ffc20-3f04-11f1-9918-0050568d2654",
+      "id": 10190866,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190866/storage/MDEwMTkwODY2LzAvbWFzdGVy",
+        "keywords": [
+          "DEUTSCHLAND"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2783.svg",
+        "basename": "2783",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T11:07:29.000Z",
+      "modifiedAt": "2026-04-23T11:11:46.000Z"
+    },
+    {
+      "uuid": "8f30fa40-3f19-11f1-9918-0050568d2654",
+      "id": 10190907,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10190907/storage/MDEwMTkwOTA3LzAvbWFzdGVy",
+        "keywords": [
+          "address book",
+          "Adressbuch",
+          "Carnet d’adresses",
+          "rubrica"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2784.svg",
+        "basename": "2784",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-04-23T13:37:23.000Z",
+      "modifiedAt": "2026-04-23T13:39:48.000Z"
+    },
+    {
+      "uuid": "5826e1a0-478d-11f1-ab36-0050568d2654",
+      "id": 10279473,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279473/storage/MDEwMjc5NDczLzAvbWFzdGVy",
+        "keywords": [
+          "without identification",
+          "ohne Identifikation",
+          "sans identification",
+          "senza identificazione",
+          "No identification",
+          "keine Identifikation",
+          "Pas d’identification",
+          "nessuna identificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2785.svg",
+        "basename": "2785",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T07:46:22.000Z",
+      "modifiedAt": "2026-05-04T12:05:06.705Z"
+    },
+    {
+      "uuid": "3e1074b0-478e-11f1-ab36-0050568d2654",
+      "id": 10279482,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279482/storage/MDEwMjc5NDgyLzAvbWFzdGVy",
+        "keywords": [
+          "Top up credit",
+          "Guthaben aufladen",
+          "Recharger du crédit",
+          "Ricaricare il credito"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2786.svg",
+        "basename": "2786",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T07:52:47.000Z",
+      "modifiedAt": "2026-05-04T12:05:06.705Z"
+    },
+    {
+      "uuid": "6b8a08a0-479a-11f1-ab36-0050568d2654",
+      "id": 10279703,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279703/storage/MDEwMjc5NzAzLzAvbWFzdGVy",
+        "keywords": [
+          "Kreditkarte",
+          "Credit Card",
+          "Carta di credito",
+          "Carte De Crédit",
+          "Bloquer",
+          "Bloccare",
+          "Sperren",
+          "Block"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2787.svg",
+        "basename": "2787",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T09:19:57.000Z",
+      "modifiedAt": "2026-05-04T09:23:01.000Z"
+    },
+    {
+      "uuid": "81d048d0-479b-11f1-ab36-0050568d2654",
+      "id": 10279707,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279707/storage/MDEwMjc5NzA3LzAvbWFzdGVy",
+        "keywords": [
+          "Grenze",
+          "frontier",
+          "Limite",
+          "Confine",
+          "Barriere",
+          "Bar",
+          "Barra",
+          "Barre"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2788.svg",
+        "basename": "2788",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T09:27:44.000Z",
+      "modifiedAt": "2026-05-04T09:34:53.000Z"
+    },
+    {
+      "uuid": "a1a10270-479c-11f1-ab36-0050568d2654",
+      "id": 10279712,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279712/storage/MDEwMjc5NzEyLzAvbWFzdGVy",
+        "keywords": [
+          "transparency",
+          "Transparenz",
+          "Transparence",
+          "trasparenza",
+          "expenditure",
+          "Ausgaben",
+          "Dépense",
+          "Uscite"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2789.svg",
+        "basename": "2789",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T09:35:47.000Z",
+      "modifiedAt": "2026-05-04T12:05:06.705Z"
+    },
+    {
+      "uuid": "2cebbb40-479d-11f1-ab36-0050568d2654",
+      "id": 10279717,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279717/storage/MDEwMjc5NzE3LzAvbWFzdGVy",
+        "keywords": [
+          "App",
+          "Application",
+          "Bloquer",
+          "Bloccare",
+          "Sperren",
+          "Block"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2790.svg",
+        "basename": "2790",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T09:39:41.000Z",
+      "modifiedAt": "2026-05-04T09:43:11.000Z"
+    },
+    {
+      "uuid": "ffc898d0-479d-11f1-ab36-0050568d2654",
+      "id": 10279721,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279721/storage/MDEwMjc5NzIxLzAvbWFzdGVy",
+        "keywords": [
+          "expenditure",
+          "Ausgaben",
+          "Dépense",
+          "Uscite",
+          "Expenditure under control",
+          "Ausgaben im Griff",
+          "Maîtriser ses dépenses",
+          "Spese sotto controllo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2791.svg",
+        "basename": "2791",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T09:45:35.000Z",
+      "modifiedAt": "2026-05-04T12:05:06.705Z"
+    },
+    {
+      "uuid": "8dd753a0-479e-11f1-ab36-0050568d2654",
+      "id": 10279730,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279730/storage/MDEwMjc5NzMwLzAvbWFzdGVy",
+        "keywords": [
+          "Creditworthiness check",
+          "Bonitätsprüfung",
+          "Contrôle de solvabilité",
+          "Controllo della solvibilità",
+          "Vaglio",
+          "Screening",
+          "Crible",
+          "Prüfung"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2792.svg",
+        "basename": "2792",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T09:49:33.000Z",
+      "modifiedAt": "2026-05-04T12:05:06.705Z"
+    },
+    {
+      "uuid": "508a9e70-479f-11f1-ab36-0050568d2654",
+      "id": 10279736,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279736/storage/MDEwMjc5NzM2LzAvbWFzdGVy",
+        "keywords": [
+          "Teenager",
+          "Teen",
+          "Adolescente",
+          "Adolescent",
+          "Jugendliche",
+          "Teenagers",
+          "Giovani",
+          "Adolescents"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2793.svg",
+        "basename": "2793",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-05-04T09:55:00.000Z",
+      "modifiedAt": "2026-05-04T09:59:06.000Z"
+    },
+    {
+      "uuid": "20e129d0-47a1-11f1-b1f0-0050568d2654",
+      "id": 10279749,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279749/storage/MDEwMjc5NzQ5LzAvbWFzdGVy",
+        "keywords": [
+          "Secure shopping",
+          "Sicheres Shopping",
+          "Shopping sécurisé",
+          "Shopping sicuro",
+          "Mobile Shopping",
+          "Achats mobiles",
+          "Acquisti per dispositivi mobili",
+          "Online-Shopping",
+          "Online shopping",
+          "Shopping online",
+          "Achats en ligne"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2794.svg",
+        "basename": "2794",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T10:07:59.000Z",
+      "modifiedAt": "2026-05-04T12:05:06.705Z"
+    },
+    {
+      "uuid": "ed9a86b0-47a1-11f1-b1f0-0050568d2654",
+      "id": 10279754,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279754/storage/MDEwMjc5NzU0LzAvbWFzdGVy",
+        "keywords": [
+          "Control via app",
+          "Kontrolle per App",
+          "Contrôle via l’application",
+          "Controllo tramite app"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2795.svg",
+        "basename": "2795",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T10:13:42.000Z",
+      "modifiedAt": "2026-05-04T12:05:06.705Z"
+    },
+    {
+      "uuid": "68d1ccd0-47a2-11f1-b1f0-0050568d2654",
+      "id": 10279759,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279759/storage/MDEwMjc5NzU5LzAvbWFzdGVy",
+        "keywords": [
+          "Sicherheit",
+          "Security",
+          "Sicurezza",
+          "Sécurité",
+          "Travelling safely",
+          "Sicher unterwegs",
+          "Sécurité en déplacement",
+          "Sicuri fuori casa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2796.svg",
+        "basename": "2796",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T10:17:09.000Z",
+      "modifiedAt": "2026-05-04T12:05:06.705Z"
     },
     {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
@@ -41897,13 +42439,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1109,
+    "success": 1128,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-03-31T15:43:58.052Z",
+  "created": "2026-05-04T12:55:25.719Z",
   "version": "10.0.0-next.66"
 }
