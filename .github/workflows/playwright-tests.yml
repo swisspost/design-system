@@ -6,7 +6,9 @@ on:
       - 'packages/styles/**'
       - 'packages/components/**'
       - 'packages/components-react/**'
+      - 'packages/components-angular/**'
       - 'apps/integration-next/**'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -32,3 +34,35 @@ jobs:
 
       - name: Run tests
         run: pnpm --filter design-system-integration-next e2e
+
+  e2e-angular:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install & build dependencies
+        run: pnpm install && pnpm -r build
+
+      - name: Build consumer app
+        run: pnpm --filter design-system-components-angular-workspace exec ng build consumer-app
+
+      - name: Install Playwright browsers
+        run: pnpm --filter design-system-components-angular-workspace exec playwright install --with-deps chromium
+
+      - name: Run tests
+        run: pnpm --filter design-system-components-angular-workspace e2e:ci
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-results-angular
+          path: packages/components-angular/projects/consumer-app/playwright/results
+          retention-days: 14
