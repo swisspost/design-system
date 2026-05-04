@@ -1,5 +1,5 @@
-import { IS_BROWSER } from './environment';
+import { Build } from '@stencil/core';
 
 export function isMotionReduced(): boolean {
-  return IS_BROWSER ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : true;
+  return Build.isBrowser ? globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches : true;
 }

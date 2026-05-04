@@ -210,7 +210,7 @@ export class PostAvatar {
   }
 
   render() {
-    const names = [this.firstname, this.lastname].filter(n => n).map(n => n.trim());
+    const names = [this.firstname, this.lastname].filter(Boolean).map(n => n.trim());
     const initials = names
       .map(n => n.charAt(0))
       .join('')

@@ -1,60 +1,54 @@
-@use '@swisspost/design-system-styles/core' as post;
-@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/mixins/button';
 
 post-language-menu-item {
-  display: inline-block;
-
-  button {
-    @include post.reset-button;
-    .visually-hidden {
-      @include utilities-mx.visuallyhidden();
-    }
-  }
-
-  a {
-    color: var(--post-current-fg);
-    text-decoration: none;
-  }
-
   :is(a, button) {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
     text-transform: uppercase;
-
-    @include utilities-mx.focus-style {
-      border-radius: 4px;
-    }
   }
 
-  // Show all options now, instead of hiding the active one
+  &:where([variant='menu']) {
+    min-width: 72px;
+  }
 
   &:where([variant='list']) {
+    button {
+      @include button.reset-button;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     :is(a, button) {
-      padding-inline: 0;
       width: 40px;
       height: 40px;
       border-radius: 2px;
 
-      &:hover {
-        color: #504f4b;
-      }
+      @include button.button-variant-def('enabled', 'tertiary');
 
+      &:hover {
+        @include button.button-variant-def('hover', 'tertiary');
+      }
+      
       @include utilities-mx.high-contrast-mode() {
         border: 1px solid ButtonBorder;
         color: ButtonText;
       }
     }
+  }
 
-    &[active]:not([active='false']) {
+  &[active]:not([active='false']) {
+    &:where([variant='menu']) {
+      display: none;
+    }
+
+    &:where([variant='list']) {
       :is(a, button) {
-        background-color: #050400 !important;
-        color: #fff;
-        pointer-events: none;
+        @include button.button-variant-def('enabled', 'primary');
+        cursor: default;
 
         @include utilities-mx.high-contrast-mode() {
           background-color: Highlight !important;
@@ -64,35 +58,7 @@ post-language-menu-item {
     }
   }
 
-  &:where([variant='menu']) {
-    min-width: 72px;
-
-    &[active]:not([active='false']) {
-      display: none;
-    }
-
-    :is(a, button) {
-      padding-block: 13px;
-      padding-inline: 16px;
-      box-sizing: border-box;
-      justify-content: flex-start;
-      position: relative;
-      border-radius: 0;
-
-      &:hover {
-        color: white;
-        background-color: #504f4b;
-      }
-    }
-
-    &:first-child :is(a, button) {
-      border-start-start-radius: commons.$border-radius;
-      border-start-end-radius: commons.$border-radius;
-    }
-
-    &:last-child :is(a, button) {
-      border-end-start-radius: commons.$border-radius;
-      border-end-end-radius: commons.$border-radius;
-    }
+  .visually-hidden {
+    @include utilities-mx.visuallyhidden();
   }
 }

@@ -3,6 +3,10 @@ import { getLocalizedConfig, isValidProjectId } from '@/services/config.service'
 import { version } from '@root/package.json';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
 import { dispose, state } from '@/data/store';
+import { Link, LinkProps, MegaDropdown, UserMenu } from '../shared';
+import { LinkConfig } from '@/models/shared.model';
+import { UserMenuConfig } from '@/models/header.model';
+import '@swisspost/design-system-components';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -10,14 +14,15 @@ import { dispose, state } from '@/data/store';
 })
 export class PostInternetHeader {
   /**
-   * Your project id, previously passed as query string parameter serviceId.
+   * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
+   * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
    */
-  @Prop() project: string;
+  @Prop() activeRoute: ActiveRouteProp = 'auto';
 
-  /**
-   * Initial language to be used. Overrides automatic language detection.
-   */
-  @Prop() language?: 'de' | 'fr' | 'it' | 'en';
+  @Watch('activeRoute')
+  async handleActiveRouteChange() {
+    await this.updateConfig();
+  }
 
   /**
    * Target environment. Choose 'int01' for local testing.
@@ -25,15 +30,65 @@ export class PostInternetHeader {
   @Prop() environment: Environment = 'prod';
 
   /**
-   * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
-   * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
+   * Makes the header content span the full width on screens larger than 1440px.
    */
-  @Prop() activeRoute?: ActiveRouteProp = 'auto';
+  @Prop() fullWidth = false;
 
   /**
-   * Displays the header at full width for full-screen applications
+   * Initial language to be used. Overrides automatic language detection.
    */
-  @Prop() fullWidth?: boolean = false;
+  @Prop() language?: 'de' | 'fr' | 'it' | 'en';
+
+  @Watch('language')
+  async handleLanguageChange(newValue: string) {
+    state.currentLanguage = newValue;
+    await this.updateConfig();
+  }
+
+  /**
+   * Your project id, previously passed as query string parameter serviceId.
+   */
+  @Prop() project!: string;
+
+  /**
+   * Visually hidden label for the back button.
+   */
+  @Prop({ reflect: true }) readonly textBack!: string;
+
+  /**
+   * Visually hidden label for the language menu.
+   */
+  @Prop({ reflect: true }) readonly textChangeLanguage!: string;
+
+  /**
+   * Visually hidden label for the close button.
+   */
+  @Prop({ reflect: true }) readonly textClose!: string;
+
+  /**
+   * Visually hidden label for the current language.
+   */
+  @Prop({ reflect: true }) readonly textCurrentLanguage!: string;
+
+  /**
+   * Visually hidden label for the current user.
+   */
+  @Prop({ reflect: true }) readonly textCurrentUser!: string;
+
+  /**
+   * Visually hidden label for the main navigation element.
+   */
+  @Prop({ reflect: true }) readonly textMain!: string;
+
+  /**
+   * Visually hidden label for the burger menu button.
+   */
+  @Prop({ reflect: true }) readonly textMenu!: string;
+
+  /**
+   * Visually hidden label for the user menu.
+   */
+  @Prop({ reflect: true }) readonly textUserLinks!: string;
 
   /**
    * Fires when the header has been rendered to the page.
@@ -46,11 +101,6 @@ export class PostInternetHeader {
         `Internet Header project key is "${this.project}". Please provide a valid project key.`,
       );
     }
-  }
-
-  disconnectedCallback() {
-    // Reset the store to its original state
-    dispose();
   }
 
   async componentWillLoad() {
@@ -72,15 +122,9 @@ export class PostInternetHeader {
     });
   }
 
-  @Watch('language')
-  async handleLanguageChange(newValue: string) {
-    state.currentLanguage = newValue;
-    await this.updateConfig();
-  }
-
-  @Watch('activeRoute')
-  async handleActiveRouteChange() {
-    await this.updateConfig();
+  disconnectedCallback() {
+    // Reset the store to its original state
+    dispose();
   }
 
   @Listen('postChange')
@@ -103,199 +147,123 @@ export class PostInternetHeader {
     });
   }
 
+  private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
+    if ('url' in config) {
+      return <Link {...props} config={config} />;
+    }
+
+    return (
+      <UserMenu
+        slot={props.slot}
+        config={config}
+        textCurrentUser={this.textCurrentUser}
+        textUserLinks={this.textUserLinks}
+      />
+    );
+  }
+
+  private renderNavigation(
+    slot: string,
+    config: (LinkConfig | UserMenuConfig)[],
+    props: LinkProps = {},
+  ) {
+    if (config.length === 0) return null;
+
+    if (config.length === 1) {
+      return this.renderNavItem(config[0], { ...props, slot });
+    }
+
+    return (
+      <ul slot={slot}>
+        {config.map(navItem => (
+          <li>{this.renderNavItem(navItem, props)}</li>
+        ))}
+      </ul>
+    );
+  }
+
   render() {
     if (!state.localizedConfig?.header) {
       console.error(new Error('Internet Header: Config cannot be loaded'));
       return;
     }
 
-    const config = state.localizedConfig;
-    console.info(config);
+    const { globalHeader, localHeader } = state.localizedConfig.header_new;
 
     return (
       <Host data-version={version}>
-        <post-header text-menu="Menu">
-          <post-logo slot="post-logo" url="/">
-            Homepage
-          </post-logo>
+        <post-header textMenu={this.textMenu}>
+          {'image' in globalHeader.postLogo ? (
+            <Link slot="post-logo" config={globalHeader.postLogo} />
+          ) : (
+            <post-logo
+              slot="post-logo"
+              url={globalHeader.postLogo.url}
+              aria-label={globalHeader.postLogo.label}
+              aria-description={globalHeader.postLogo.description}
+            >
+              {globalHeader.postLogo.text}
+            </post-logo>
+          )}
 
-          <ul slot="audience">
-            <li>
-              <a href="#" aria-current="location">
-                Private customers
-              </a>
-            </li>
-            <li>
-              <a href="#">Business customers</a>
-            </li>
-          </ul>
+          {globalHeader.audience &&
+            this.renderNavigation('audience', globalHeader.audience, {
+              ariaCurrentWhenActive: 'location',
+            })}
 
-          <ul slot="global-nav-primary">
-            <li>
-              <a href="">
-                <span>Search</span>
-                <post-icon aria-hidden="true" name="search"></post-icon>
-              </a>
-            </li>
-          </ul>
+          {globalHeader.primaryNavigation &&
+            this.renderNavigation('global-nav-primary', globalHeader.primaryNavigation)}
 
-          <ul slot="global-nav-secondary">
-            <li>
-              <a href="">
-                Jobs
-                <post-icon name="jobs" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Create Account
-                <post-icon name="adduser" aria-hidden="true"></post-icon>
-              </a>
-            </li>
-          </ul>
+          {globalHeader.secondaryNavigation &&
+            this.renderNavigation('global-nav-secondary', globalHeader.secondaryNavigation, {
+              ariaCurrentWhenActive: 'location',
+            })}
 
-          <post-language-menu
-            text-change-language="Change the language"
-            text-current-language="The currently selected language is #name."
-            name="language-menu-example"
-            slot="language-menu"
-          >
-            <post-language-menu-item code="de" name="German">
-              de
-            </post-language-menu-item>
-            <post-language-menu-item code="fr" name="French">
-              fr
-            </post-language-menu-item>
-            <post-language-menu-item code="it" name="Italian">
-              it
-            </post-language-menu-item>
-            <post-language-menu-item active="true" code="en" name="English">
-              en
-            </post-language-menu-item>
-          </post-language-menu>
+          {globalHeader.languages && globalHeader.languages.length > 0 && (
+            <post-language-menu
+              slot="language-menu"
+              textChangeLanguage={this.textChangeLanguage}
+              textCurrentLanguage={this.textCurrentLanguage}
+            >
+              {globalHeader.languages.map(lang => (
+                <post-language-menu-item
+                  url={lang.url}
+                  active={lang.active}
+                  code={lang.code}
+                  name={lang.label}
+                  description={lang.description}
+                >
+                  {lang.text}
+                </post-language-menu-item>
+              ))}
+            </post-language-menu>
+          )}
 
-          <a href="" slot="post-login">
-            <span>Login</span>
-            <post-icon name="login"></post-icon>
-          </a>
+          {globalHeader.login && this.renderNavItem(globalHeader.login, { slot: 'post-login' })}
 
-          <post-mainnavigation slot="main-nav" text-main="Main">
-            <ul>
-              <li>
-                <a href="/letters">Letters</a>
-              </li>
-              <li>
-                <a href="/packages">Packages</a>
-              </li>
+          {localHeader.title && <p slot="title">{localHeader.title}</p>}
 
-              <li>
-                <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
-                <post-megadropdown id="letters" text-close="Close" text-back="Back">
-                  <a class="post-megadropdown-overview" href="/letters">
-                    Overview Letters
-                  </a>
+          {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
 
-                  <div class="row row-cols-1 row-cols-sm-2">
-                    <div class="col">
-                      <p class="post-megadropdown-list-title" id="send-letters">
-                        Send letters
-                      </p>
-                      <ul class="post-megadropdown-list" aria-labelledby="send-letters">
-                        <li>
-                          <a href="/sch">Letters Switzerland</a>
-                        </li>
-                        <li>
-                          <a href="/kl">Small items abroad</a>
-                        </li>
-                        <li>
-                          <a href="">Goods abroad</a>
-                        </li>
-                        <li>
-                          <a href="">Express and courier</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col">
-                      <a
-                        class="post-megadropdown-list-title"
-                        id="step-by-step-letters"
-                        href="/step-by-step"
-                      >
-                        Step by step
-                      </a>
-                      <ul class="post-megadropdown-list" aria-labelledby="step-by-step-letters">
-                        <li>
-                          <a href="/sch">Packages Switzerland</a>
-                        </li>
-                        <li>
-                          <a href="/kl">Small items abroad</a>
-                        </li>
-                        <li>
-                          <a href="">Goods abroad</a>
-                        </li>
-                        <li>
-                          <a href="">Express and courier</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </post-megadropdown>
-              </li>
-              <li>
-                <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
-                <post-megadropdown id="packages" text-close="Close" text-back="Back">
-                  <a class="post-megadropdown-overview" href="/packages">
-                    Overview Packages
-                  </a>
-
-                  <div class="row row-cols-1 row-cols-sm-2">
-                    <div class="col">
-                      <p class="post-megadropdown-list-title" id="send-packages">
-                        Send packages
-                      </p>
-                      <ul class="post-megadropdown-list" aria-labelledby="send-packages">
-                        <li>
-                          <a href="/sch">Packages Switzerland</a>
-                        </li>
-                        <li>
-                          <a href="/kl">Small items abroad</a>
-                        </li>
-                        <li>
-                          <a href="">Goods abroad</a>
-                        </li>
-                        <li>
-                          <a href="">Express and courier</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col">
-                      <a
-                        class="post-megadropdown-list-title"
-                        id="step-by-step-packages"
-                        href="/step-by-step"
-                      >
-                        Step by step
-                      </a>
-                      <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
-                        <li>
-                          <a href="/sch">Packages Switzerland</a>
-                        </li>
-                        <li>
-                          <a href="/kl">Small items abroad</a>
-                        </li>
-                        <li>
-                          <a href="">Goods abroad</a>
-                        </li>
-                        <li>
-                          <a href="">Express and courier</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </post-megadropdown>
-              </li>
-            </ul>
-          </post-mainnavigation>
+          {localHeader.mainNavigation && (
+            <post-mainnavigation slot="main-nav" textMain={this.textMain}>
+              <ul>
+                {localHeader.mainNavigation.map(navItem => (
+                  <li>
+                    {'url' in navItem ? (
+                      <Link config={navItem} ariaCurrentWhenActive="page" />
+                    ) : (
+                      <MegaDropdown
+                        config={navItem}
+                        textBack={this.textBack}
+                        textClose={this.textClose}
+                      />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </post-mainnavigation>
+          )}
         </post-header>
       </Host>
     );

@@ -49,7 +49,7 @@ runs:
         # the action automatically uses the "packageManager" field from the package.json file
         # If input.pnpm_version is defined, we need to point to another package.json file, without the "packageManager" field,
         # so we do not end up with a "Multiple versions of pnpm specified" error
-        package_json_file: ${{ inputs.pnpm_version && 'packages/documentation/package.json' || 'package.json' }}
+        package_json_file: ${{ inputs.pnpm_version && 'apps/documentation/package.json' || 'package.json' }}
         version: ${{ inputs.pnpm_version || null }}
 
     - name: Install node

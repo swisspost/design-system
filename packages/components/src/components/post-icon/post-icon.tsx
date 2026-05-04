@@ -1,5 +1,5 @@
-import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
+import { Component, Element, Host, h, Prop, Watch, Build } from '@stencil/core';
+import { checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 import { ANIMATION_KEYS, PostIconAnimation } from '@/types/icon-animations';
 
@@ -97,7 +97,12 @@ export class PostIcon {
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
 
-    if (!IS_BROWSER && !this.base) {
+    // Prioritize only data:image URLs
+    if (this.url?.startsWith('data:image/')) {
+      return this.url;
+    }
+
+    if (Build.isServer && !this.base) {
       return `${CDN_URL}${fileName}`;
     }
 
@@ -107,15 +112,15 @@ export class PostIcon {
 
     const isAbsolute = (url: string) => /^https?:\/\//.test(url);
     const normalizeUrl = (url: string) => (url && !url.endsWith('/') ? `${url}/` : url);
-    const cleanUrl = (url: string) => url.replace(/([^:])\/\//g, '$1/');
+    const cleanUrl = (url: string) => url.replaceAll(/([^:])\/\//g, '$1/');
 
-    const currentDomain = IS_BROWSER ? window.location.origin : '';
-    const baseHref = IS_BROWSER
+    const currentDomain = Build.isBrowser ? globalThis.location.origin : '';
+    const baseHref = Build.isBrowser
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
 
     let metaIconBase = '';
-    if (IS_BROWSER) {
+    if (Build.isBrowser) {
       const metaTag = document.querySelector('meta[name="design-system-settings"]');
       metaIconBase = metaTag?.getAttribute('data-post-icon-base') || '';
     }
@@ -155,15 +160,14 @@ export class PostIcon {
   private getStyles() {
     const url = this.getUrl();
 
-    return Object.entries({
+    return Object.fromEntries(Object.entries({
       '-webkit-mask-image': `url(${url})`,
       'mask-image': `url('${url}')`,
       'transform':
-        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
-        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
+        (this.scale && !Number.isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
+        (this.rotate && !Number.isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
-      .filter(([_key, value]) => value !== null)
-      .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
+      .filter(([_key, value]) => value !== null));
   }
 
   componentDidLoad() {

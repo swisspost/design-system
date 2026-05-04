@@ -8,10 +8,11 @@ import {
   Method,
   Prop,
   Watch,
+  Build,
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { collapsedKeyframe, collapse, expand } from '@/animations/collapse';
-import { IS_BROWSER, checkEmptyOrType } from '@/utils';
+import { checkEmptyOrType } from '@/utils';
 
 type InlineStyles = { [key: string]: string };
 
@@ -68,7 +69,7 @@ export class PostCollapsible {
     this.collapsed = !shouldExpand;
     const isExpanded = this.isExpanded;
 
-    if (IS_BROWSER) {
+    if (Build.isBrowser) {
       const animation = isExpanded ? expand(this.host) : collapse(this.host);
       this.postToggle.emit(isExpanded);
 

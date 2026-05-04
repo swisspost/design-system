@@ -688,6 +688,10 @@ tokens.$default-map: components.$post-datepicker;
 
   button {
     @include form-input-mx.input-btn();
+    // Safari applies its system accent color to buttons; reset it explicitly
+    -webkit-appearance: none;
+    appearance: none;
+    color: tokens.get('post-datepicker-grid-day-cell-element-color-enabled-fg');
     outline-offset: 4px;
     right: tokens.get('search-position-inline-end-icon', components.$post-search-input);
 

@@ -63,7 +63,7 @@ export class PostBackToTop {
 
   private animateButton() {
     // Get the back-to-top button top postiion
-    const positionTop = window.getComputedStyle(this.host).getPropertyValue('top');
+    const positionTop = globalThis.getComputedStyle(this.host).getPropertyValue('top');
 
     const buttonElement = this.host.shadowRoot.querySelector('button');
 
@@ -80,8 +80,8 @@ export class PostBackToTop {
     // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
     this.translateY =
       (-1 * 100) / 100 -
-      parseFloat(positionTop.replace('px', '')) -
-      parseFloat(elevationHeight.replace('px', ''));
+      Number.parseFloat(positionTop.replace('px', '')) -
+      Number.parseFloat(elevationHeight.replace('px', ''));
 
     if (this.belowFold) {
       fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });

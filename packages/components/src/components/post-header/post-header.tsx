@@ -117,10 +117,10 @@ export class PostHeader {
       propName === 'burgerMenuExtended' ? newValue : this.burgerMenuExtended;
 
     if (this.device !== 'desktop' && burgerMenuExtended) {
-      scrollParent.setAttribute('data-post-scroll-locked', '');
+      scrollParent.dataset.postScrollLocked = '';
       this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
-      scrollParent.removeAttribute('data-post-scroll-locked');
+      delete scrollParent.dataset.postScrollLocked;
       this.host.removeEventListener('keydown', this.keyboardHandler);
     }
   }
@@ -155,15 +155,15 @@ export class PostHeader {
   };
 
   connectedCallback() {
-    window.addEventListener('resize', this.throttledResize, { passive: true });
-    window.addEventListener('scroll', this.handleScrollEvent, {
+    globalThis.addEventListener('resize', this.throttledResize, { passive: true });
+    globalThis.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
     this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-    window.addEventListener('postBreakpoint:device', this.breakpointChange);
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.handleScrollParentResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
@@ -198,9 +198,9 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
-    window.removeEventListener('resize', this.throttledResize);
-    window.removeEventListener('scroll', this.handleScrollEvent);
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
+    globalThis.removeEventListener('resize', this.throttledResize);
+    globalThis.removeEventListener('scroll', this.handleScrollEvent);
     if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
@@ -288,7 +288,7 @@ export class PostHeader {
     );
 
     this.firstFocusableEl = focusableElements[0];
-    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
+    this.lastFocusableEl = focusableElements.at(-1);
   }
 
   private keyboardHandler(e: KeyboardEvent) {

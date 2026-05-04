@@ -39,7 +39,7 @@ export class PostFooter {
   }
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.breakpointChange);
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
   componentWillLoad() {
@@ -53,7 +53,7 @@ export class PostFooter {
   }
 
   disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {

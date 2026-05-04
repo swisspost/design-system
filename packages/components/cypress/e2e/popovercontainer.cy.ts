@@ -1,6 +1,6 @@
 describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
-    const selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
+    const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
 
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');

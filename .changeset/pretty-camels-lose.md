@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-nextjs-integration': patch
+'@swisspost/design-system-integration-next': patch
 ---
 
 Added new react icon demo cases.

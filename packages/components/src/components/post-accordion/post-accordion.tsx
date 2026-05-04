@@ -88,7 +88,7 @@ export class PostAccordion {
   async expandAll() {
     if (this.multiple) {
       await Promise.all(this.accordionItems.map(item => item.toggle(true)));
-    } else if (!this.expandedItems.size) {
+    } else if (this.expandedItems.size === 0) {
       await this.accordionItems[0].toggle(true);
     }
   }

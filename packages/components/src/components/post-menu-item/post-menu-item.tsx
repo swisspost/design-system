@@ -9,6 +9,6 @@ export class PostMenuItem {
   @Element() host: HTMLPostMenuItemElement;
 
   connectedCallback() {
-    this.host.setAttribute('data-version', version);
+    this.host.dataset.version = version;
   }
 }

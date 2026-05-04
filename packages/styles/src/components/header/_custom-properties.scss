@@ -43,7 +43,7 @@ post-header:has([slot='main-nav']):not(:has([slot='title'])) {
 
 :root:has(post-header [slot='main-nav']):has(post-header [slot='title']) {
   --post-global-header-expanded-height: 4rem;
-  --post-local-header-reduced-height: 0rem;
+  --post-local-header-reduced-height: var(--post-local-header-expanded-height);
 
   @include media.only(mobile) {
     --post-local-header-expanded-min-height: 3rem;
@@ -57,8 +57,7 @@ post-header:has([slot='main-nav']):not(:has([slot='title'])) {
     --post-global-header-expanded-height: 4.5rem;
     --post-local-header-expanded-min-height: 7rem;
     --post-global-header-reduced-height: 1.5rem;
-    --post-local-header-reduced-height: 3.5rem;
-    --post-main-navigation-height: var(--post-local-header-reduced-height);
+    --post-main-navigation-height: 3.5rem;
   }
 }
 
@@ -93,7 +92,9 @@ post-header:has([slot='main-nav']):has([slot='title']) {
 
 // One-pager header: when there is no main-nav and no title,
 // ensure the local header collapses to zero height
-:root:has(post-header):not(:has(post-header [slot='main-nav'])):not(:has(post-header [slot='title'])) {
+:root:has(post-header):not(:has(post-header [slot='main-nav'])):not(
+    :has(post-header [slot='title'])
+  ) {
   --post-local-header-expanded-min-height: 0rem;
 }
 

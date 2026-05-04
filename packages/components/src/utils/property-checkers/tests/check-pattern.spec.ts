@@ -22,7 +22,7 @@ describe('checkPattern', () => {
     [
       undefined,
       null,
-      NaN,
+      Number.NaN,
       1,
       true,
       {},

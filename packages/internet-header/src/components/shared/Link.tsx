@@ -1,20 +1,28 @@
 import { FunctionalComponent, h } from '@stencil/core';
-import { LinkConfig } from '@/models/shared.model';
 import { JSXBase } from '@stencil/core/internal';
+import { LinkConfig } from '@/models/shared.model';
 
-export interface LinkProps extends JSXBase.AnchorHTMLAttributes<HTMLAnchorElement> {
+export type LinkProps = {
   hiddenText?: boolean;
-}
+  ariaCurrentWhenActive?: boolean | 'page' | 'step' | 'location' | 'date' | 'time';
+} & JSXBase.HTMLAttributes;
 
-export const Link: FunctionalComponent<LinkProps & { config: LinkConfig }> = ({
+export const Link: FunctionalComponent<{ config: LinkConfig } & LinkProps> = ({
   config,
   hiddenText,
-  ...props
+  ariaCurrentWhenActive,
+  ...htmlAttributes
 }) => (
-  <a {...props} href={config.url} aria-label={config.label} aria-description={config.description}>
+  <a
+    {...htmlAttributes}
+    href={config.url}
+    aria-label={config.label}
+    aria-description={config.description}
+    aria-current={config.active ? ariaCurrentWhenActive : undefined}
+  >
+    {hiddenText ? <span class="visually-hidden">{config.text}</span> : config.text}
+
     {'icon' in config && <post-icon aria-hidden="true" name={config.icon}></post-icon>}
     {'image' in config && <img src={config.image.src} alt={config.image.alt} />}
-
-    {hiddenText ? <span class="visually-hidden">{config.text}</span> : config.text}
   </a>
 );

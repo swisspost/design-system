@@ -99,7 +99,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
   }
 
   componentDidRender() {
@@ -115,7 +115,7 @@ export class PostMegadropdown {
   }
 
   disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
 
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
@@ -314,7 +314,7 @@ export class PostMegadropdown {
     ];
 
     this.firstFocusableEl = focusableElements[0];
-    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
+    this.lastFocusableEl = focusableElements.at(-1);
   }
 
   // Loop through the focusable children
@@ -373,7 +373,7 @@ export class PostMegadropdown {
    * and sets the trigger as active accordingly.
    */
   private handleAriaCurrentChange(mutations: MutationRecord[]) {
-    if (!mutations.length) return;
+    if (mutations.length === 0) return;
     const hasCurrentPage = mutations.some(
       m => m.target instanceof HTMLElement && m.target.getAttribute('aria-current') === 'page',
     );

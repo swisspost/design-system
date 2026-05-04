@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-nextjs-integration': patch
+'@swisspost/design-system-integration-next': patch
 '@swisspost/design-system-documentation': patch
 ---
 

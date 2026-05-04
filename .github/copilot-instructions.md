@@ -44,7 +44,7 @@ Hey Copilot! Here’s how to play nice with our setup:
 
 ## Documentation
 
-- Document all components under the `/packages/documentation` directory.
+- Document all components under the `/apps/documentation` directory.
 - Document all components thoroughly, including usage examples, API references, and accessibility considerations with storybook stories.
 - Use standard HTML or lit to create documentation pages for components when necessary, avoid creating react components for documentation.
 - Write easy to understand documentation using simple language and clear examples.

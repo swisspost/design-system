@@ -71,7 +71,7 @@ export class PostLanguageMenu {
       );
 
     return activeLanguage
-      ? this.textCurrentLanguage.replace(/#name/g, activeLanguage.name)
+      ? this.textCurrentLanguage.replaceAll('#name', activeLanguage.name)
       : undefined;
   }
 

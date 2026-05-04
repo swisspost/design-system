@@ -202,7 +202,7 @@ export class PostTabs {
     // This works even before post-tab-item sets data-navigation-mode attribute
     const hasNavigationTabs = this.tabs.some(tab => {
       const hasAnchor = tab.querySelector('a') !== null;
-      const navModeAttr = tab.getAttribute('data-navigation-mode') === 'true';
+      const navModeAttr = tab.dataset.navigationMode === 'true';
       return hasAnchor || navModeAttr;
     });
 
@@ -384,7 +384,7 @@ export class PostTabs {
     if (key === 'ArrowRight') {
       nextTab = this.tabs[activeTabIndex + 1] || this.tabs[0];
     } else {
-      nextTab = this.tabs[activeTabIndex - 1] || this.tabs[this.tabs.length - 1];
+      nextTab = this.tabs[activeTabIndex - 1] || this.tabs.at(-1);
     }
     if (!nextTab) return;
 

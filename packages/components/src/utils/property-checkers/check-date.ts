@@ -13,7 +13,7 @@ export function checkDate<T extends { host: HTMLElement }>(component: T, prop: k
 
   const date = new Date(value);
 
-  if (isNaN(date.getTime())) {
+  if (Number.isNaN(date.getTime())) {
     console.error(message);
   }
 }

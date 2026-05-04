@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "lib": ["dom", "es2022"],
     "noEmit": true,
     "types": [
       "../src/components",

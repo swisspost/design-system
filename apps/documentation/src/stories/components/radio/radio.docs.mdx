@@ -1,0 +1,69 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as RadioStories from './radio.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={RadioStories} />
+
+<div className="docs-title">
+  # Radio
+
+<link-design of={JSON.stringify(RadioStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  Customize the native <code>&lt;input type="radio"&gt;</code> with CSS that changes the element’s
+  initial appearance. Consistent, cross-browser and cross-device.
+</div>
+
+Our radios use custom icons to indicate checked states.
+
+<Canvas sourceState="shown" of={RadioStories.Default} />
+<div className="hide-col-default">
+  <Controls of={RadioStories.Default} />
+</div>
+
+<StylesPackageImport components={['radio-button']} required={{ validation: true }} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Grouped
+
+To show radio button group, just wrap your radios in a `fieldset`.
+Use the small variant `.form-check-sm` to render small radio buttons.
+
+<post-banner>
+  Don't forget to add also a `<legend>` element.
+  You can visually hide the legend using the `.visually-hidden` class if necessary.
+
+Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs).
+</post-banner>
+
+<Canvas of={RadioStories.Grouped} />
+<div className="hide-col-default">
+  <Controls of={RadioStories.Grouped} />
+</div>
+
+### Inline
+
+To render a radio inline, simply add the class `.form-check-inline` to the `.form-check` wrapper element.
+Combine it with the small variant `.form-check-sm`  to render small radio buttons in an inline group.
+
+<post-banner>
+  Remember to wrap your radio groups in a <code>&lt;fieldset&gt;</code> including a <code>&lt;legend&gt;</code> tag.
+  This provides a label for your radio group.
+
+Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs).
+</post-banner>
+
+To visually hide the `<legend>` element, use the `.visually-hidden` class.
+
+<Canvas of={RadioStories.Inline} />
+  <div className="hide-col-default">
+    <Controls of={RadioStories.Inline} />
+  </div>

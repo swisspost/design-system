@@ -1,0 +1,41 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as BlockquoteStories from './blockquote.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={BlockquoteStories} />
+
+<div className="docs-title">
+  # Blockquote
+
+<link-design of={JSON.stringify(BlockquoteStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  For quoting blocks of content from another source within your document. Wrap `
+  <blockquote
+    className="blockquote">` along with a `<q>` around any HTML as the quote.
+</div>
+
+<Canvas sourceState="shown" of={BlockquoteStories.Default} />
+
+<div className="hide-col-default">
+  <Controls of={BlockquoteStories.Default} />
+</div>
+
+<StylesPackageImport components={['blockquote']} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+
+### Nested
+
+To add simple quote characters around any nested text within your blockquote, you can wrap it with a
+
+<code>&lt;q&gt;</code> tag.
+
+<Canvas of={BlockquoteStories.Nested} />

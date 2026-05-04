@@ -4,7 +4,6 @@
 @use './../variables/components/button';
 @use './../variables/type';
 @use './../variables/color' as color-var;
-@use './../functions/contrast' as contrast-fn;
 @use 'utilities';
 @use './../mixins/color' as color-mx;
 @use '../functions/tokens';

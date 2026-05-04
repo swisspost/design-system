@@ -3,7 +3,7 @@ export function isIsoDate(value: string): boolean {
   if (!ISO_REGEX.test(value)) return false;
 
   const date = new Date(value); // strict UTC parsing
-  if (isNaN(date.getTime())) return false;
+  if (Number.isNaN(date.getTime())) return false;
 
   // Roundtrip comparison to catch auto-corrected dates
   // Use UTC getters to match the UTC parsing above - no timezone shift

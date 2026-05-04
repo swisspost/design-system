@@ -1,5 +1,26 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.67
+
+### Minor Changes
+
+- Added the `post-number-input` web component. (by [@leagrdv](https://github.com/leagrdv) with [#7415](https://github.com/swisspost/design-system/pull/7415))
+
+- Added the autocomplete component. `<post-autocomplete>`, `<post-listbox>` and `<post-listbox-option>` are now experimentally ready to be used. A style refinement will follow. (by [@JoaoSequeira489](https://github.com/JoaoSequeira489) with [#7287](https://github.com/swisspost/design-system/pull/7287))
+
+### Patch Changes
+
+- Fixed the calendar toggle button icon appearing blue on Safari/iOS in the `post-date-picker`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7486](https://github.com/swisspost/design-system/pull/7486))
+
+- Fix an issue where components were sometimes not correctly rendered on load because of an incorrect breakpoint found. (by [@alizedebray](https://github.com/alizedebray) with [#7483](https://github.com/swisspost/design-system/pull/7483))
+
+- Fixed inconsistent flyout flipping on window resize for `post-popover`, `post-menu`, and `post-datepicker` when using `*-end` / `*-start` placement at non-integer DPR (e.g. 1.25). (by [@myrta2302](https://github.com/myrta2302) with [#7438](https://github.com/swisspost/design-system/pull/7438))
+
+- Cleaned up layout gap caused by empty `grid-{1|2|3|4}` slots in the `<post-footer>` component on initial load in SSR environment. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7507](https://github.com/swisspost/design-system/pull/7507))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.67
+  - @swisspost/design-system-styles@10.0.0-next.67
+
 ## 10.0.0-next.66
 
 ### Minor Changes

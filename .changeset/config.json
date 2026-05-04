@@ -15,7 +15,7 @@
       "@swisspost/design-system-eslint",
       "@swisspost/design-system-icons",
       "@swisspost/internet-header",
-      "@swisspost/design-system-nextjs-integration",
+      "@swisspost/design-system-integration-next",
       "@swisspost/design-system-styles",
       "@swisspost/design-system-theme-ag-grid",
       "@swisspost/design-system-tokens"

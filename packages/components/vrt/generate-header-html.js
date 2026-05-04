@@ -11,8 +11,7 @@ const BASE_TEMPLATE = `<!DOCTYPE html>
     <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
     <title>Post Header - {{VARIANT_NAME}}</title>
     <link rel="stylesheet" href="/build/post-components.css" />
-    <link rel="stylesheet" href="/assets/css/post-tokens-default.css" />
-    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/post-default.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <style>
       /* Fake content for scroll testing */
@@ -81,8 +80,8 @@ const COMPONENTS = {
   <ul slot="global-nav-secondary">
     <li>
       <a href="{{GLOBAL_NAV_SECONDARY_CURRENT}}">
-        Jobs
-        <post-icon name="jobs" aria-hidden="true"></post-icon>
+        Career
+        <post-icon name="rocket" aria-hidden="true"></post-icon>
       </a>
     </li>
     <li>
@@ -95,8 +94,8 @@ const COMPONENTS = {
 
   globalNavSecondaryJobsOnly: `<!-- Global secondary navigation (Jobs link only) -->
   <a href="" slot="global-nav-secondary" aria-current="location">
-    Jobs
-    <post-icon name="jobs" aria-hidden="true"></post-icon>
+    Career
+    <post-icon name="rocket" aria-hidden="true"></post-icon>
   </a>`,
 
   languageMenu: `<!-- Language menu -->

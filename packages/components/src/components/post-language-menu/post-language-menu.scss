@@ -28,10 +28,6 @@ tokens.$default-map: components.$post-button;
   cursor: pointer;
 }
 
-post-menu::part(post-menu) {
-  padding-block: 0;
-}
-
 .post-language-menu-list {
   margin-top: 1rem;
 }

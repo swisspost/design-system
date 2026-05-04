@@ -90,6 +90,7 @@ Type: `Promise<boolean>`
 ### Used by
 
  - [post-date-picker](../post-date-picker)
+ - [post-listbox](../post-listbox)
  - [post-menu](../post-menu)
  - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)
@@ -98,6 +99,7 @@ Type: `Promise<boolean>`
 ```mermaid
 graph TD;
   post-date-picker --> post-popovercontainer
+  post-listbox --> post-popovercontainer
   post-menu --> post-popovercontainer
   post-popover --> post-popovercontainer
   post-tooltip --> post-popovercontainer

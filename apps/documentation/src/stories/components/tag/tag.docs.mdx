@@ -1,0 +1,41 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as TagStories from './tag.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
+
+<Meta of={TagStories} />
+
+<div className="docs-title">
+  # Tag
+
+<link-design of={JSON.stringify(TagStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  A small label, generally appearing inside or in close proximity to another larger interface
+  component, representing a status, property, or some other metadata.
+</div>
+
+<Canvas of={TagStories.Default} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={TagStories.Default} />
+</div>
+
+<StylesPackageImport components={['tag']} />
+
+## Neutral tag
+
+Use the neutral tag for general-purpose labeling. You can pair it with any icon to provide additional context.
+Browse available icons on the <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon search page</a>.
+
+<Canvas of={TagStories.Neutral} />
+
+## Signal tags
+
+Signal tags communicate status or meaning through color and icon.
+Each variant includes a default signal icon, which can be replaced with a custom icon if needed. Note that the icons should be meaningful and relevant to the context of the tag.
+
+<Canvas of={TagStories.Variants} />

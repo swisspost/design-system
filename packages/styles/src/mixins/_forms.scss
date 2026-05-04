@@ -3,6 +3,7 @@
 @use './../variables/animation';
 @use './../variables/components/forms';
 @use './../tokens/components';
+@use './../tokens/helpers';
 @use './../mixins/color' as color-mx;
 @use './../mixins/icons' as icons-mx;
 @use './../mixins/utilities' as utility-mx;
@@ -307,6 +308,57 @@
     &:checked {
       &::after {
         background-color: Highlight !important;
+      }
+    }
+  }
+}
+
+@mixin form-check-base() {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: fit-content;
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+
+  &.form-check-inline {
+    display: inline-flex;
+    vertical-align: top;
+  }
+
+  &:has(> input:not(:only-child)) {
+    @include utility-mx.focus-style();
+
+    > input {
+      @include utility-mx.focus-style-none();
+    }
+  }
+
+  > label {
+    transition: color #{animation.$transition-base-timing};
+    flex: 1;
+
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+    }
+  }
+
+  > input[type='radio'],
+  > input[type='checkbox'] {
+    &:not([disabled]) {
+      ~ label {
+        cursor: pointer;
+      }
+
+      &:hover ~ label {
+        @include utility-mx.high-contrast-mode() {
+          color: Highlight;
+        }
+      }
+    }
+
+    &[disabled] ~ label {
+      @include utility-mx.high-contrast-mode() {
+        color: GrayText;
       }
     }
   }
