@@ -1,6 +1,7 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { debounce } from 'throttle-debounce';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
+import { checkRequiredAndUrl, checkRequiredAndType } from '@/utils';
 
 type BreadcrumbItem = {
   url: string | undefined;
@@ -81,13 +82,13 @@ export class PostBreadcrumbs {
   }
 
   // Waits for breadcrumbs navigation reference to be available
-  private waitForBreadcrumbsRef = debounce(() => {
+  private waitForBreadcrumbsRef = debounce(50, () => {
     if (this.breadcrumbsNavRef?.clientWidth > 0) {
       this.checkConcatenation();
     } else {
       this.waitForBreadcrumbsRef();
     }
-  }, 50);
+  });
 
   // Updates breadcrumb items and sets the last item
   private updateBreadcrumbItems() {

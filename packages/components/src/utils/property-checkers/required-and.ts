@@ -1,3 +1,4 @@
+import { debounce } from 'throttle-debounce';
 import { isValueEmpty } from '../is-value-empty';
 
 export function requiredAnd<
@@ -5,7 +6,7 @@ export function requiredAnd<
   K extends keyof T,
   ExtraArgs extends unknown[],
 >(check: (component: T, prop: K, ...extraArgs: ExtraArgs) => void) {
-  return (component: T, prop: K, ...extraArgs: ExtraArgs) => {
+  return debounce(100, (component: T, prop: K, ...extraArgs: ExtraArgs) => {
     const componentName = component.host.localName;
     const value = component[prop];
     const message = `The prop \`${String(
@@ -17,5 +18,5 @@ export function requiredAnd<
     } else {
       check(component, prop, ...extraArgs);
     }
-  };
+  });
 }

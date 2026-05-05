@@ -65,8 +65,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         {/* Language switch */}
         <PostLanguageMenu
-          text-change-language="Change the language"
-          text-current-language="The currently selected language is #name."
+          textChangeLanguage="Change the language"
+          textCurrentLanguage="The currently selected language is #name."
           slot="language-menu"
         >
           <PostLanguageMenuItem code="de" name="German">
@@ -91,7 +91,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           </a>
         </PostLoginWidget>
         {/* Main navigation */}
-        <PostMainnavigation slot="main-nav" text-main="Main">
+        <PostMainnavigation slot="main-nav" textMain="Main">
           <ul>
             {/* Link only level 1 */}
             <li>
@@ -104,7 +104,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Letters */}
             <li>
               <PostMegadropdownTrigger for="letters">Letters</PostMegadropdownTrigger>
-              <PostMegadropdown id="letters" text-close="Close" text-back="Back">
+              <PostMegadropdown id="letters" textClose="Close" textBack="Back">
                 <a className="post-megadropdown-overview" href="/letters">
                   Overview Letters
                 </a>
@@ -158,7 +158,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             {/* Level 1 with megadropdown - Packages */}
             <li>
               <PostMegadropdownTrigger for="packages">Packages</PostMegadropdownTrigger>
-              <PostMegadropdown id="packages" text-close="Close" text-back="Back">
+              <PostMegadropdown id="packages" textClose="Close" textBack="Back">
                 <a className="post-megadropdown-overview" href="/packages">
                   Overview Packages
                 </a>
@@ -215,10 +215,10 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       <main style={{ paddingBlock: '3rem' }}>
         <div className="container">
           <PostBreadcrumbs
-            home-url="/"
-            text-home="Home"
-            text-breadcrumbs="Breadcrumbs"
-            text-more-items="More items"
+            homeUrl="/"
+            textHome="Home"
+            textBreadcrumbs="Breadcrumbs"
+            textMoreItems="More items"
           >
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
@@ -228,7 +228,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </div>
       </main>
 
-      <PostFooter text-footer="Footer">
+      <PostFooter textFooter="Footer">
         <span id="grid-1-title" slot="grid-1-title">
           Title 1
         </span>
@@ -494,7 +494,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         <span slot="copyright">All rights reserved.</span>
       </PostFooter>
 
-      <PostBackToTop text-back-to-top="Back to top" />
+      <PostBackToTop textBackToTop="Back to top" />
     </>
   );
 }
