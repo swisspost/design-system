@@ -1,11 +1,11 @@
-@use './../../mixins/color' as color-mx;
-@use './../../mixins/utilities' as utilities-mx;
-@use './../../variables/color';
-@use './../../variables/spacing';
-@use './../../variables/components/nav';
+@use '@swisspost/design-system-styles/mixins/color' as color-mx;
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/spacing';
+@use '@swisspost/design-system-styles/variables/components/nav';
 
-@use './../../functions/tokens';
-@use './../../tokens/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
 
 tokens.$default-map: utilities.$post-spacing;
 

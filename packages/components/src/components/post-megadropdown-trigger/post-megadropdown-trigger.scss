@@ -2,8 +2,7 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/helpers';
-@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
-@use '@swisspost/design-system-styles/components/header/placeholders' as *;
+@use '../../styles/components/post-header/mixins' as header-mx;
 
 :host {
   position: relative;
@@ -11,7 +10,16 @@
 }
 
 button {
-  @extend %mainnavigation-control;
+  @include header-mx.nav-item-base;
+  @include header-mx.nav-item-block-layout;
+  height: 100%;
+
+  @include media.only(desktop) {
+    padding: 1rem 0.75rem;
+    gap: 0.5rem;
+    border-bottom: none;
+  }
+
   @include header-mx.nav-item-rotating-chevron;
 
   // Bellow styles prevent layout shifts caused by the real button toggling between normal and bold font-weights.
