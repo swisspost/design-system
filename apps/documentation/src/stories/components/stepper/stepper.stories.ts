@@ -22,7 +22,7 @@ const meta: MetaComponent = {
     currentIndex: 2,
     textCompletedStep: 'Completed step',
     textCurrentStep: 'Current step',
-    textStepNumber: 'Step #number:',
+    textStepNumber: 'Step {number}:',
     stepsAmount: 5,
   },
   argTypes: {
