@@ -1,1 +1,1 @@
-import '@swisspsot/design-system-components';
+import '@swisspost/design-system-components';
