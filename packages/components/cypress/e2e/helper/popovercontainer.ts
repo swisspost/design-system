@@ -1,1 +1,7 @@
-export { isPopoverSupported } from '../popovercontainer.cy';
+export function isPopoverSupported() {
+  return (
+    typeof HTMLElement !== 'undefined' &&
+    typeof HTMLElement.prototype === 'object' &&
+    'popover' in HTMLElement.prototype
+  );
+}

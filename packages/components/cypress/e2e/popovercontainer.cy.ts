@@ -1,3 +1,5 @@
+import { isPopoverSupported } from "./helper/popovercontainer";
+
 describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
     const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
@@ -55,11 +57,3 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
     });
   });
 });
-
-export function isPopoverSupported() {
-  return (
-    typeof HTMLElement !== 'undefined' &&
-    typeof HTMLElement.prototype === 'object' &&
-    'popover' in HTMLElement.prototype
-  );
-}
