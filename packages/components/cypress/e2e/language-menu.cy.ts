@@ -5,7 +5,7 @@ const LANGUAGE_OPTION_ID = '3753ab83-a659-47b5-a2f2-ac452ec97916';
 
 const popoverOpenSelector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
 
-describe.only('post-language-menu', () => {
+describe('post-language-menu', () => {
   describe('list variant', () => {
     beforeEach(() => {
       cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
