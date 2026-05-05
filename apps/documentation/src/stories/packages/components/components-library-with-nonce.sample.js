@@ -1,5 +1,5 @@
 // main.ts
-import { defineCustomElements, setNonce } from '@swisspsot/design-system-components/loader';
+import { defineCustomElements, setNonce } from '@swisspost/design-system-components/loader';
 
 // Will set the `nonce` attribute for all script tags
 // i.e. will run scriptTag.setAttribute('nonce', 'r4nd0m')
