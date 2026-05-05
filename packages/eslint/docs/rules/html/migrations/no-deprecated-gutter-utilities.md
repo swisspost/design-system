@@ -3,7 +3,15 @@
 Flags all deprecated bootstrap gutter utility classes and replaces them with the new ones.
 
 - Type: problem
-- 🔧 Supports autofix (--fix)
+- 🔧 Supports autofix (--fix) — **except for classes using value `1` (see note below)**
+
+## ⚠️ Manual migration required for `*-1` classes
+
+Classes using the value `1` **cannot be auto-migrated**.
+
+The value `1` renames to `4`, but `4` is itself deprecated and would be renamed again to `24` on ESLint's next fix pass, producing the wrong final class.
+
+These classes are flagged as errors so you can find them, but you must rename them by hand.
 
 ## Class list
 

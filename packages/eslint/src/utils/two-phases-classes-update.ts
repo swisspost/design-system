@@ -30,16 +30,21 @@ export function arrayToMap(array: Array<string | number>): Record<string, string
  * - Second, migrate all `_tmp-newClassName` to `newClassName`
  *
  * This ensures that we don't get any deprecation errors when running the tests on those identical classes
+ *
+ * @param conflictingOldValues - A set of old class value tokens (e.g. `'1'`, `'hair'`) whose
+ * replacement would collide with another migration rule when ESLint loops the fix pass.
+ * These classes are flagged but **not auto-fixed** — users must migrate them by hand.
  */
 export function setUpClassesMutations(
   classNamesMap: Record<string, string | number>,
   classValuesMap: Record<string, string | number>,
   messageId: string,
+  conflictingOldValues: ReadonlySet<string> = new Set(),
 ): TwoPhasesData {
   const messagesPhase1: Record<string, string> = {};
-  const mutationsPhase1: Record<string, [string, string]> = {};
+  const mutationsPhase1: Record<string, [string, string, boolean?]> = {};
   const messagesPhase2: Record<string, string> = {};
-  const mutationsPhase2: Record<string, [string, string]> = {};
+  const mutationsPhase2: Record<string, [string, string, boolean?]> = {};
 
   let index = 0;
 
@@ -56,18 +61,24 @@ export function setUpClassesMutations(
         // Add the index to the tempClass to avoid issues with having the wrong error msg when running tests
         const tempClass = tempPrefix + index + finalNewClass;
 
+        const isConflicting = conflictingOldValues.has(classValue);
+
         const keyPhase1 = `${messageId}Phase1_${index}`;
 
-        messagesPhase1[keyPhase1] =
-          `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
-        // Mutate from `oldClass` to `_tmp-newClass`
-        mutationsPhase1[keyPhase1] = [oldClass, tempClass];
+        messagesPhase1[keyPhase1] = isConflicting
+          ? `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}". ⚠️ This cannot be auto-migrated — apply the fix manually to avoid a chain collision.`
+          : `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
+        // Conflicting old values must not be auto-fixed: they would be picked up again
+        // by a subsequent migration rule and renamed to the wrong final class.
+        mutationsPhase1[keyPhase1] = isConflicting
+          ? [oldClass, finalNewClass, true]
+          : [oldClass, tempClass];
 
         const keyPhase2 = `${messageId}Phase2_${index}`;
 
         messagesPhase2[keyPhase2] =
           `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
-        // Mutate from `_tmp-newClass` to `newClass`
+        // Phase-2 entry only matters for non-conflicting values (conflicting ones never get a temp class)
         mutationsPhase2[keyPhase2] = [tempClass, finalNewClass];
 
         index++;

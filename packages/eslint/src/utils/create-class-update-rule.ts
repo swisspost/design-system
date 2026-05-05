@@ -16,7 +16,13 @@ export interface RuleConfigBase {
 export interface PhaseConfig<T> {
   description: string;
   messages: T;
-  mutations: Record<keyof T, [string, string]>;
+  /**
+   * Tuple of [oldClass, newClass, manualOnly?].
+   * When `manualOnly` is `true` the rule reports the violation but provides no autofix,
+   * because applying the fix would create a chain collision with another migration rule.
+   * Users must migrate these classes by hand.
+   */
+  mutations: Record<keyof T, [string, string, boolean?]>;
 }
 
 export interface PhaseConfigWrapper {
@@ -51,22 +57,29 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
         tag(node: HtmlNode) {
           const $node = node.toCheerio();
 
-          Object.entries(config.mutations).forEach(([messageId, [oldClass, newClass]]) => {
+          Object.entries(config.mutations).forEach(([messageId, [oldClass, newClass, manualOnly]]) => {
             // Simple HTML class
             if ($node.hasClass(oldClass)) {
               context.report({
                 messageId,
                 loc: node.loc,
-                fix(fixer) {
-                  const fixedNode = $node.removeClass(oldClass);
-                  if (newClass) fixedNode.addClass(newClass);
+                // Manual-only mutations must not provide a fixer: applying the fix would
+                // create a chain collision with another migration rule (e.g. rg→sm then sm→xs).
+                // Users must migrate these classes by hand.
+                ...(manualOnly
+                  ? {}
+                  : {
+                      fix(fixer) {
+                        const fixedNode = $node.removeClass(oldClass);
+                        if (newClass) fixedNode.addClass(newClass);
 
-                  // Remove empty class attribute
-                  if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
+                        // Remove empty class attribute
+                        if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
-                  return fixer.replaceTextRange(node.range, fixedHtml);
-                },
+                        const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                        return fixer.replaceTextRange(node.range, fixedHtml);
+                      },
+                    }),
               });
               return;
             }
@@ -93,35 +106,41 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
               context.report({
                 loc: node.loc,
                 messageId,
-                fix(fixer) {
-                  if (isClassBinding) {
-                    const fixedAttrName = `[class.${newClass}]`;
-                    const oldAttrValue = $node.attr(attrName);
-                    if (!oldAttrValue) return null;
+                // Manual-only mutations are flagged but never auto-fixed, even in dynamic
+                // bindings — the fixer would produce a value that chains into another rule.
+                ...(manualOnly
+                  ? {}
+                  : {
+                      fix(fixer) {
+                        if (isClassBinding) {
+                          const fixedAttrName = `[class.${newClass}]`;
+                          const oldAttrValue = $node.attr(attrName);
+                          if (!oldAttrValue) return null;
 
-                    $node.attr(fixedAttrName, oldAttrValue);
-                    $node.removeAttr(`[class.${oldClass}]`);
+                          $node.attr(fixedAttrName, oldAttrValue);
+                          $node.removeAttr(`[class.${oldClass}]`);
 
-                    const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
-                    return fixer.replaceTextRange(node.range, fixedHtml);
-                  }
+                          const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                          return fixer.replaceTextRange(node.range, fixedHtml);
+                        }
 
-                  const raw = $node.attr(attrName)?.trim();
-                  if (!raw) return null;
+                        const raw = $node.attr(attrName)?.trim();
+                        if (!raw) return null;
 
-                  const newValue = getNewAttrValue($node, attrName, oldClass, newClass, raw);
-                  if (newValue === null) return null;
+                        const newValue = getNewAttrValue($node, attrName, oldClass, newClass, raw);
+                        if (newValue === null) return null;
 
-                  const targetAttr = attrName;
+                        const targetAttr = attrName;
 
-                  if (newValue === '') $node.removeAttr(targetAttr);
-                  else $node.attr(targetAttr, newValue);
+                        if (newValue === '') $node.removeAttr(targetAttr);
+                        else $node.attr(targetAttr, newValue);
 
-                  if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
+                        if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
 
-                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
-                  return fixer.replaceTextRange(node.range, fixedHtml);
-                },
+                        const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                        return fixer.replaceTextRange(node.range, fixedHtml);
+                      },
+                    }),
               });
             }
           });

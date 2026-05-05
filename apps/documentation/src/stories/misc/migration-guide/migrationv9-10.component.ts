@@ -633,16 +633,28 @@ export class MigrationV910Component extends LitElement {
                         Breakpoints updated
                         <ul>
                           <li>
-                            All classes containing <code>*-rg-*</code> are no longer effective
+                            All classes containing <code>*-sm-*</code> are renamed to
+                            <code>*-xs-*</code> — <b>auto-migrated ✅</b>
                           </li>
                           <li>
-                            All classes containing <code>*-xxl-*</code> are no longer effective
+                            All classes containing <code>*-xxl-*</code> are renamed to
+                            <code>*-xl-*</code> — <b>auto-migrated ✅</b>
+                          </li>
+                          <li>
+                            All classes containing <code>*-rg-*</code> are renamed to
+                            <code>*-sm-*</code> — <b>⚠️ manual migration required</b>
                           </li>
                         </ul>
                         <span class="info">
                           <code>xs</code> now covers old <code>xs</code> and <code>sm</code>, while
                           <code>sm</code> covers old <code>rg</code>. <code>xl</code> covers old
                           <code>xl</code> and <code>xxl</code> breakpoints.
+                          <br /><br />
+                          ⚠️ <strong><code>*-rg-*</code> classes cannot be auto-fixed.</strong>
+                          Renaming <code>rg</code> → <code>sm</code> would immediately be picked up
+                          by the <code>sm</code> → <code>xs</code> rule and renamed again to the
+                          wrong value. Search for <code>-rg-</code> in your templates and rename
+                          them to <code>-sm-</code> by hand.
                         </span>
                       </label>
                     </div>
@@ -662,16 +674,21 @@ export class MigrationV910Component extends LitElement {
                         Gutter classes (<code>.g-*</code>, <code>.gx-*</code>, <code>.gy-*</code>)
                         renamed
                         <ul>
-                          <li><code>*-1</code> is now <code>*-4</code></li>
+                          <li><code>*-1</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-2</code> is now <code>*-8</code></li>
                           <li><code>*-3</code> is now <code>*-16</code></li>
-                          <li><code>*-4</code> is now <code>*-24</code></li>
+                          <li><code>*-4</code> is now <code>*-24</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-5</code> is now <code>*-48</code></li>
                         </ul>
 
                         <span class="info">
                           For instance, the old Bootstrap class <code>.g-1</code> (gutter of 4px) is
                           now <code>.g-4</code> for better coherance.
+                          <br /><br />
+                          ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
+                          <code>*-4</code> → <code>*-24</code> rule would fire on the next pass and
+                          produce the wrong result. Search for both classes and rename them by hand.
                         </span>
                       </label>
                     </div>
@@ -691,12 +708,18 @@ export class MigrationV910Component extends LitElement {
                         Gap classes (<code>.gap-*</code>, <code>.row-gap-*</code>,
                         <code>.column-gap-*</code>) renamed
                         <ul>
-                          <li><code>*-1</code> is now <code>*-4</code></li>
+                          <li><code>*-1</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-2</code> is now <code>*-8</code></li>
                           <li><code>*-3</code> is now <code>*-16</code></li>
-                          <li><code>*-4</code> is now <code>*-24</code></li>
+                          <li><code>*-4</code> is now <code>*-24</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-5</code> is now <code>*-48</code></li>
                         </ul>
+                        <span class="info">
+                          ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
+                          <code>*-4</code> → <code>*-24</code> rule would fire on the next pass and
+                          produce the wrong result. Search for both classes and rename them by hand.
+                        </span>
                       </label>
                     </div>
                   </li>
@@ -763,9 +786,9 @@ export class MigrationV910Component extends LitElement {
                         Pixel sizing utility classes (<code>.w-*</code>,
                         <code>.h-*</code>, <code>.mh-*</code>, <code>.mw-*</code>) renamed
                         <ul>
-                          <li><code>*-hair</code> is now <code>*-1</code></li>
+                          <li><code>*-hair</code> is now <code>*-1</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-line</code> is now <code>*-2</code></li>
-                          <li><code>*-micro</code> is now <code>*-4</code></li>
+                          <li><code>*-micro</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-mini</code> is now <code>*-8</code></li>
                           <li><code>*-small-regular</code> is now <code>*-12</code></li>
                           <li><code>*-regular</code> is now <code>*-16</code></li>
@@ -777,6 +800,13 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-small-giant</code> is now <code>*-78</code></li>
                           <li><code>*-giant</code> is now <code>*-80</code></li>
                         </ul>
+                        <span class="info">
+                          ⚠️ <strong><code>*-hair</code>, <code>*-micro</code>, and <code>*-1</code> (via Bootstrap rename) classes cannot be auto-fixed.</strong>
+                          <code>*-hair</code> → <code>*-1</code> and <code>*-micro</code> → <code>*-4</code>
+                          would immediately chain into further renames (<code>*-1</code> → <code>*-4</code> →
+                          <code>*-24</code>), producing the wrong final value. Search for these classes and rename
+                          them by hand.
+                        </span>
                       </label>
                     </div>
                   </li>
@@ -882,10 +912,10 @@ export class MigrationV910Component extends LitElement {
                         Margin and padding utilities classes (
                         <code>.{m/p}{x/y/s/e/t/b}-*</code>) renamed
                         <ul>
-                          <li><code>*-hair</code> is now <code>*-1</code></li>
+                          <li><code>*-hair</code> is now <code>*-1</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-line</code> is now <code>*-2</code></li>
                           <li>
-                            <code>*-micro</code> and <code>*-1</code> are now <code>*-4</code>
+                            <code>*-micro</code> and <code>*-1</code> are now <code>*-4</code> — <b>⚠️ manual migration required</b>
                           </li>
                           <li><code>*-mini</code> and <code>*-2</code> are now <code>*-8</code></li>
                           <li><code>*-small-regular</code> is now <code>*-12</code></li>
@@ -893,7 +923,7 @@ export class MigrationV910Component extends LitElement {
                             <code>*-regular</code> and <code>*-3</code> are now <code>*-16</code>
                           </li>
                           <li>
-                            <code>*-large</code> and <code>*-4</code> are now <code>*-24</code>
+                            <code>*-large</code> and <code>*-4</code> are now <code>*-24</code> — <b>⚠️ manual migration required</b>
                           </li>
                           <li><code>*-big</code> is now <code>*-32</code></li>
                           <li><code>*-bigger-big</code> is now <code>*-40</code></li>
@@ -904,6 +934,15 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-small-giant</code> is now <code>*-78</code></li>
                           <li><code>*-giant</code> is now <code>*-80</code></li>
                         </ul>
+                        <span class="info">
+                          ⚠️ <strong><code>*-hair</code>, <code>*-micro</code>, <code>*-1</code>, <code>*-large</code>, and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          These values form rename chains that ESLint's fix loop would follow
+                          incorrectly: <code>*-hair</code> → <code>*-1</code> → <code>*-4</code> →
+                          <code>*-24</code>. Since <code>*-4</code> is the correct final value for
+                          <code>*-1</code>/<code>*-micro</code> but also a deprecated input for
+                          <code>*-large</code>, all steps in this chain must be done manually.
+                          Search for these classes and rename them by hand.
+                        </span>
                       </label>
                     </div>
                   </li>
