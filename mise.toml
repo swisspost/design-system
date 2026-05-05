@@ -1,8 +1,0 @@
-# mise.toml — versions Node pour le monorepo design-system
-# pnpm est géré par Corepack via le champ "packageManager" du package.json
-
-[tools]
-node = "20.19.0"
-
-[settings]
-node.compile = false
