@@ -1,4 +1,4 @@
-import { isPopoverSupported } from "./helper/popovercontainer";
+import { isPopoverSupported } from './helper/popovercontainer';
 
 describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
