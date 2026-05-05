@@ -9,8 +9,8 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
-.tab-title,
-.nav-item a {
+post-tab-item.tab-title,
+post-tab-item.nav-item a {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -73,7 +73,7 @@ tokens.$default-map: utilities.$post-spacing;
   }
 }
 
-.nav-item {
+post-tab-item.nav-item {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -105,7 +105,7 @@ tokens.$default-map: utilities.$post-spacing;
       outline: none;
     }
 
-    &:active {
+    &[aria-current='page'] {
       opacity: 1;
       background-color: color.$black-alpha-60;
       color: color.$white;
@@ -129,8 +129,9 @@ tokens.$default-map: utilities.$post-spacing;
   }
 }
 
-.tab-title.active,
-.nav-item.active a {
+// active state
+post-tab-item.tab-title[aria-selected='true'],
+post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
   border-right-color: nav.$nav-tabs-border-color;
   border-left-color: nav.$nav-tabs-border-color;
@@ -138,11 +139,17 @@ tokens.$default-map: utilities.$post-spacing;
   background-color: color.$white;
   color: color.$black;
   font-weight: 700;
+
+  @include utilities-mx.high-contrast-mode() {
+    border-left-color: ButtonText;
+    border-right-color: ButtonText;
+    color: Highlight;
+  }
 }
 
 // Create a line that does not suffer from border corner mitering
-.tab-title.active::before,
-.nav-item.active a::before {
+post-tab-item.tab-title[aria-selected='true']::before,
+post-tab-item.nav-item a[aria-current='page']::before {
   content: '';
   display: block;
   position: absolute;
@@ -151,17 +158,112 @@ tokens.$default-map: utilities.$post-spacing;
   left: -1px;
   height: tokens.get('utility-gap-4');
   background-color: nav.$nav-tabs-link-active-border-color;
+
+  @include utilities-mx.high-contrast-mode() {
+    background-color: Highlight;
+  }
 }
 
-@include utilities-mx.high-contrast-mode() {
-  .tab-title.active,
-  .nav-item.active a {
-    border-left-color: ButtonText;
-    border-right-color: ButtonText;
-    color: Highlight;
+// SSR specific styles
+
+// Show by default the first panel for SSR if no explicit prop is set
+post-tabs[active-tab] {
+  // Style active post-tab-item for SSR if there is a [active-tab] set
+  post-tab-item.tab-title.ssr {
+    z-index: calc(var(--active, 0) * 1);
+    border-right-color: color-mix(
+      in srgb,
+      #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
+      transparent
+    );
+    border-left-color: color-mix(
+      in srgb,
+      #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
+      transparent
+    );
+    opacity: calc(0.7 + var(--active, 0) * 0.3);
+    background-color: color-mix(
+      in srgb,
+      #{color.$white} calc(var(--active, 0) * 100%),
+      transparent
+    );
+    color: #{color.$black};
+    font-weight: calc(400 + var(--active, 0) * 300);
+    cursor: default;
 
     &::before {
-      background-color: Highlight;
+      content: '';
+      height: var(--post-core-dimension-4);
+      background-color: nav.$nav-tabs-link-active-border-color;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -1px;
+      right: -1px;
+      opacity: var(--active, 0);
     }
+
+    @include utilities-mx.high-contrast-mode() {
+      color: LinkText;
+      border-left-color: ButtonText;
+      border-right-color: ButtonText;
+
+      &::before {
+        background-color: Highlight;
+      }
+    } 
+  }
+}
+
+// Style the first item for SSR when no [active-tab] is set
+post-tabs:not([active-tab]) {
+  &:has(post-tab-item.tab-title.ssr) post-tab-panel:first-of-type {
+    display: block !important;
+  }
+
+  post-tab-item.tab-title.ssr[data-navigation-mode='false']{
+
+    cursor:default;
+
+  &:first-of-type {
+    z-index: 1;
+    border-right-color: nav.$nav-tabs-border-color;
+    border-left-color: nav.$nav-tabs-border-color;
+    opacity: 1;
+    background-color: color.$white;
+    color: color.$black;
+    font-weight: 700;
+ 
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: -1px;
+      left: -1px;
+      height: tokens.get('utility-gap-4');
+      background-color: nav.$nav-tabs-link-active-border-color;
+      opacity: 1;
+    }
+
+    @include utilities-mx.high-contrast-mode() {
+      border-left-color: ButtonText;
+      border-right-color: ButtonText;
+      color: Highlight;
+
+      &::before {
+        background-color: Highlight;
+      }
+    }
+  }
+
+  &:not(:first-of-type) {
+    &:hover{
+       opacity: 0.7;
+         color: color.$black;
+          background-color: transparent;
+      }
+    }
+  
   }
 }

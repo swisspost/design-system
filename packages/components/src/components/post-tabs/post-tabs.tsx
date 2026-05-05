@@ -9,6 +9,7 @@ import {
   Prop,
   State,
   Watch,
+  Build,
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fade } from '@/animations';
@@ -329,15 +330,11 @@ export class PostTabs {
   private activateTab(tab: HTMLPostTabItemElement) {
     // Deactivate previous tab
     if (this.currentActiveTab) {
-      this.currentActiveTab.classList.remove('active');
-
       if (!this.isNavigationMode) {
         this.currentActiveTab.setAttribute('aria-selected', 'false');
         this.currentActiveTab.setAttribute('tabindex', '-1');
       }
     }
-
-    tab.classList.add('active');
 
     if (!this.isNavigationMode) {
       tab.setAttribute('aria-selected', 'true');
@@ -394,9 +391,14 @@ export class PostTabs {
 
   render() {
     const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
-
+    const isSSR = Build.isServer;
+    const tabStyle = {
+      [`--post-tab-panel-${this.activeTab}`]: 'block',
+      [`--post-tab-item-${this.activeTab}`]: '1',
+    };
+    const style = isSSR && !this.isNavigationMode ? tabStyle : undefined;
     return (
-      <Host data-version={version}>
+      <Host data-version={version} style={style}>
         <div class="tabs-wrapper" part="post-tabs">
           <TabsContainer
             class="tabs"
