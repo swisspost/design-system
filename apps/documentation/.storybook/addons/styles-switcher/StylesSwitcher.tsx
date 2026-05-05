@@ -11,9 +11,6 @@ const SCHEMES = ['Light', 'Dark'] as const;
 const getStylesheetUrl = (theme: string, appearance: string) => {
   return `/styles/${theme.toLowerCase()}-${appearance.toLowerCase()}.css`;
 };
-const possibleStylesheets = THEMES.flatMap(theme => {
-  return APPEARANCE.map(appearance => getStylesheetUrl(theme, appearance));
-});
 
 /*
  * Local storage access
@@ -89,20 +86,31 @@ function StylesSwitcher() {
   }, [preview]);
 
   /**
-   * Sets the expected stylesheet in the preview head when the theme or appearance changes
+   * Sets the expected stylesheet in the preview head when the theme or appearance changes.
+   *
+   * The theme stylesheet is inserted after post-default.css rather than appended to the end
+   * of <head>. This ensures post-components.css always loads last and wins the cascade over base styles.
    */
   useEffect(() => {
     if (!preview) return;
 
-    possibleStylesheets.forEach(stylesheet => {
-      const stylesheetLink = preview.head.querySelector(`link[href="${stylesheet}"]`);
-      if (stylesheetLink) stylesheetLink.remove();
-    });
+    const existingThemeLink = preview.head.querySelector('link[id="post-theme-stylesheet"]');
+    if (existingThemeLink) {
+      existingThemeLink.remove();
+    }
 
-    preview.head.insertAdjacentHTML(
-      'beforeend',
-      `<link rel="stylesheet" href="${getStylesheetUrl(currentTheme, currentAppearance)}" />`,
-    );
+    const newLink = preview.createElement('link');
+    newLink.id = 'post-theme-stylesheet';
+    newLink.rel = 'stylesheet';
+    newLink.href = getStylesheetUrl(currentTheme, currentAppearance);
+
+    const postDefaultStylesheet = preview.head.querySelector('link[href*="post-default"]');
+
+    if (postDefaultStylesheet) {
+      postDefaultStylesheet.insertAdjacentElement('afterend', newLink);
+    } else {
+      preview.head.appendChild(newLink);
+    }
   }, [preview, currentTheme, currentAppearance]);
 
   /**
