@@ -66,7 +66,7 @@
     }
   },
   "scripts": {
-    "play": "pnpm prebuild:script && stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
+    "play": "pnpm prebuild:script && stencil build --dev --port 9200 --serve --watch --config stencil.config.play.ts",
     "start": "pnpm prebuild:script && stencil build --dev --watch --docs --docs-readme",
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
@@ -101,6 +101,7 @@
     "air-datepicker": "3.6.0",
     "ally.js": "1.4.1",
     "imask": "7.6.1",
+    "language-tags": "1.0.9",
     "long-press-event": "2.5.0",
     "nanoid": "5.1.6"
   },

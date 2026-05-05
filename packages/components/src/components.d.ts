@@ -195,6 +195,11 @@ export namespace Components {
          */
         "inline": boolean;
         /**
+          * The date pickers locale (e.g. "it", "it-CH", etc.), which specifies the date format and language. <post-banner type="info" data-size="sm"><span>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to English.</span></post-banner>
+          * @default this.systemLocale
+         */
+        "locale"?: string;
+        /**
           * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "max"?: string;
@@ -1413,6 +1418,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "inline"?: boolean;
+        /**
+          * The date pickers locale (e.g. "it", "it-CH", etc.), which specifies the date format and language. <post-banner type="info" data-size="sm"><span>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to English.</span></post-banner>
+          * @default this.systemLocale
+         */
+        "locale"?: string;
         /**
           * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
