@@ -3,7 +3,18 @@
 Flags all deprecated responsive spacing utility classes and replaces them with the new ones.
 
 - Type: problem
-- 🔧 Supports autofix (--fix)
+- 🔧 Supports autofix (--fix) — **except for classes using values `1`, `hair`, or `micro` (see note below)**
+
+## ⚠️ Manual migration required for `*-1`, `*-hair`, and `*-micro` classes
+
+Classes using the values `1`, `hair`, or `micro` **cannot be auto-migrated**.
+
+These values form rename chains that ESLint's `--fix` loop would follow incorrectly:
+- `*-1` → renames to `*-4`, but `*-4` is itself deprecated → would chain to `*-24`
+- `*-hair` → renames to `*-1`, which then chains `*-1` → `*-4` → `*-24`
+- `*-micro` → renames to `*-4`, which then chains `*-4` → `*-24`
+
+These classes are flagged as errors so you can find them, but you must rename them by hand.
 
 ## Class list
 

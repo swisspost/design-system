@@ -48,6 +48,11 @@ export const data: TwoPhasesData = setUpClassesMutations(
   arrayToMap(classNames),
   classValuesMap,
   'deprecatedSpacingUtilities',
+  // These old values collide with other migration rules when ESLint loops --fix:
+  //   '1'    → renamed to '4', but '4' is itself deprecated → would chain to '24'
+  //   'hair' → renamed to '1', which then chains '1' → '4' → '24'
+  //   'micro'→ renamed to '4', which then chains '4' → '24'
+  new Set(['1', 'hair', 'micro']),
 );
 
 export const rules = createTwoPhasesClassUpdateRule({

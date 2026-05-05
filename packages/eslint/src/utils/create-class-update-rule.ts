@@ -16,7 +16,13 @@ export interface RuleConfigBase {
 export interface PhaseConfig<T> {
   description: string;
   messages: T;
-  mutations: Record<keyof T, [string, string]>;
+  /**
+   * Tuple of [oldClass, newClass, manualOnly?].
+   * When `manualOnly` is `true` the rule reports the violation but provides no autofix,
+   * because applying the fix would create a chain collision with another migration rule.
+   * Users must migrate these classes by hand.
+   */
+  mutations: Record<keyof T, [string, string, boolean?]>;
 }
 
 export interface PhaseConfigWrapper {
@@ -51,28 +57,38 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
         tag(node: HtmlNode) {
           const $node = node.toCheerio();
 
-          Object.entries(config.mutations).forEach(([messageId, [oldClass, newClass]]) => {
+          Object.entries(config.mutations).forEach(([messageId, [oldClass, newClass, manualOnly]]) => {
             // Simple HTML class
             if ($node.hasClass(oldClass)) {
               context.report({
                 messageId,
                 loc: node.loc,
-                fix(fixer) {
-                  const fixedNode = $node.removeClass(oldClass);
-                  if (newClass) fixedNode.addClass(newClass);
+                // Manual-only mutations must not provide a fixer: applying the fix would
+                // create a chain collision with another migration rule (e.g. rg→sm then sm→xs).
+                // Users must migrate these classes by hand.
+                ...(manualOnly
+                  ? {}
+                  : {
+                      fix(fixer) {
+                        const fixedNode = $node.removeClass(oldClass);
+                        if (newClass) fixedNode.addClass(newClass);
 
-                  // Remove empty class attribute
-                  if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
+                        // Remove empty class attribute
+                        if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
-                  return fixer.replaceTextRange(node.range, fixedHtml);
-                },
+                        const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                        return fixer.replaceTextRange(node.range, fixedHtml);
+                      },
+                    }),
               });
               return;
             }
 
             // Skip if no newClass to replace - should be updated for deleted classes case
             if (!newClass?.trim()) return;
+
+            // Manual-only mutations are not auto-fixed in dynamic bindings either
+            if (manualOnly) return;
 
             const root = $node[0];
             if (!root || root.type !== 'tag') return;

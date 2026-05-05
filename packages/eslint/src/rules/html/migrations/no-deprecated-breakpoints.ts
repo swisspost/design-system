@@ -136,16 +136,24 @@ const classesConfig: ClassesConfig = {
 };
 
 // Breakpoint changes
+// NOTE: 'rg' → 'sm' is intentionally excluded from the two-phase auto-fix approach.
+// The problem is that 'sm' is also a source breakpoint ('sm' → 'xs'), so after ESLint
+// renames *-rg-* to *-sm-*, it immediately picks up the result and renames it again to
+// *-xs-*. The 'rg' entries are therefore flagged as errors but marked manual-only so
+// no autofix is emitted. Users must rename these classes by hand.
 const breakpointMap: Record<string, string> = {
   sm: 'xs',
   rg: 'sm',
   xxl: 'xl',
 };
 
+// Breakpoints that would create a chain collision when auto-fixed.
+const manualOnlyBreakpoints = new Set(['rg']);
+
 const messagesPhase1: Record<string, string> = {};
-export const mutationsPhase1: Record<string, [string, string]> = {};
+export const mutationsPhase1: Record<string, [string, string, boolean?]> = {};
 const messagesPhase2: Record<string, string> = {};
-export const mutationsPhase2: Record<string, [string, string]> = {};
+export const mutationsPhase2: Record<string, [string, string, boolean?]> = {};
 
 let index = 0;
 const tempPrefix = '_tmp-';
@@ -159,11 +167,16 @@ for (const type in classesConfig) {
         const tempClass = `${tempPrefix}${prefix}-${breakpointMap[breakpoint]}-${suffix}`;
         const newClass = `${prefix}-${breakpointMap[breakpoint]}-${suffix}`;
 
+        const isConflicting = manualOnlyBreakpoints.has(breakpoint);
+
         const keyPhase1 = `deprecatedBreakpointsPhase1_${index}`;
 
-        messagesPhase1[keyPhase1] =
-          `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".`;
-        mutationsPhase1[keyPhase1] = [oldClass, tempClass];
+        messagesPhase1[keyPhase1] = isConflicting
+          ? `The "${oldClass}" class is deprecated. Please replace it with "${newClass}". ⚠️ This cannot be auto-migrated — apply the fix manually to avoid a chain collision with the sm→xs rename.`
+          : `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".`;
+        mutationsPhase1[keyPhase1] = isConflicting
+          ? [oldClass, newClass, true]
+          : [oldClass, tempClass];
 
         const keyPhase2 = `deprecatedBreakpointsPhase2_${index}`;
 

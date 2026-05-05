@@ -13,6 +13,8 @@ export const data: TwoPhasesData = setUpClassesMutations(
   arrayToMap(classNames),
   bootstrapSizeMap,
   'deprecatedGapUtilities',
+  // Value '1' renames to '4', but '4' is itself deprecated → would chain to '24'
+  new Set(['1']),
 );
 
 export const rules = createTwoPhasesClassUpdateRule({
