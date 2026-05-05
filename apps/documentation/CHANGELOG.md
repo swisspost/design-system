@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.70
+
+### Patch Changes
+
+- Changed the `post-stepper` component's **text-step-number** prop format from `Step #number:` to `Step {number}:`. (by [@leagrdv](https://github.com/leagrdv) with [#7581](https://github.com/swisspost/design-system/pull/7581))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.69
+  - @swisspost/design-system-components@10.0.0-next.69
+  - @swisspost/design-system-components-react@10.0.0-next.69
+  - @swisspost/design-system-styles@10.0.0-next.69
+  - @swisspost/internet-header@10.0.0-next.69
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.69
+  - @swisspost/design-system-tokens@10.0.0-next.69
+
 ## 6.0.0-next.69
 
 ### Minor Changes
