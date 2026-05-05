@@ -13,8 +13,9 @@ export const data: TwoPhasesData = setUpClassesMutations(
   arrayToMap(classNames),
   bootstrapSizeMap,
   'deprecatedGutterUtilities',
-  // Value '1' renames to '4', but '4' is itself deprecated → would chain to '24'
-  new Set(['1']),
+  // '1' → '4' and '4' → '24' form a chain: both must be manual-only so that
+  // a user who manually fixes '*-1' → '*-4' doesn't have '*-4' auto-renamed to '*-24'
+  new Set(['1', '4']),
 );
 
 export const rules = createTwoPhasesClassUpdateRule({

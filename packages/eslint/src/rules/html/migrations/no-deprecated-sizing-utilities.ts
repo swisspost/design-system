@@ -42,9 +42,11 @@ export const data: TwoPhasesData = setUpClassesMutations(
   'deprecatedSizingUtilities',
   // These old values collide with other migration rules when ESLint loops --fix:
   //   '1'    → renamed to '4', but '4' is itself deprecated → would chain to '24'
+  //   '4'    → renamed to '24', but a manually-fixed '*-1' or '*-micro' also becomes '*-4'
+  //            first, so '4' must also be manual-only to break the chain
   //   'hair' → renamed to '1', which then chains '1' → '4' → '24'
   //   'micro'→ renamed to '4', which then chains '4' → '24'
-  new Set(['1', 'hair', 'micro']),
+  new Set(['1', '4', 'hair', 'micro']),
 );
 
 export const rules = createTwoPhasesClassUpdateRule({

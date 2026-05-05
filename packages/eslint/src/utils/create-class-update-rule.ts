@@ -87,9 +87,6 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
             // Skip if no newClass to replace - should be updated for deleted classes case
             if (!newClass?.trim()) return;
 
-            // Manual-only mutations are not auto-fixed in dynamic bindings either
-            if (manualOnly) return;
-
             const root = $node[0];
             if (!root || root.type !== 'tag') return;
 
@@ -109,35 +106,41 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
               context.report({
                 loc: node.loc,
                 messageId,
-                fix(fixer) {
-                  if (isClassBinding) {
-                    const fixedAttrName = `[class.${newClass}]`;
-                    const oldAttrValue = $node.attr(attrName);
-                    if (!oldAttrValue) return null;
+                // Manual-only mutations are flagged but never auto-fixed, even in dynamic
+                // bindings — the fixer would produce a value that chains into another rule.
+                ...(manualOnly
+                  ? {}
+                  : {
+                      fix(fixer) {
+                        if (isClassBinding) {
+                          const fixedAttrName = `[class.${newClass}]`;
+                          const oldAttrValue = $node.attr(attrName);
+                          if (!oldAttrValue) return null;
 
-                    $node.attr(fixedAttrName, oldAttrValue);
-                    $node.removeAttr(`[class.${oldClass}]`);
+                          $node.attr(fixedAttrName, oldAttrValue);
+                          $node.removeAttr(`[class.${oldClass}]`);
 
-                    const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
-                    return fixer.replaceTextRange(node.range, fixedHtml);
-                  }
+                          const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                          return fixer.replaceTextRange(node.range, fixedHtml);
+                        }
 
-                  const raw = $node.attr(attrName)?.trim();
-                  if (!raw) return null;
+                        const raw = $node.attr(attrName)?.trim();
+                        if (!raw) return null;
 
-                  const newValue = getNewAttrValue($node, attrName, oldClass, newClass, raw);
-                  if (newValue === null) return null;
+                        const newValue = getNewAttrValue($node, attrName, oldClass, newClass, raw);
+                        if (newValue === null) return null;
 
-                  const targetAttr = attrName;
+                        const targetAttr = attrName;
 
-                  if (newValue === '') $node.removeAttr(targetAttr);
-                  else $node.attr(targetAttr, newValue);
+                        if (newValue === '') $node.removeAttr(targetAttr);
+                        else $node.attr(targetAttr, newValue);
 
-                  if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
+                        if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
 
-                  const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
-                  return fixer.replaceTextRange(node.range, fixedHtml);
-                },
+                        const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                        return fixer.replaceTextRange(node.range, fixedHtml);
+                      },
+                    }),
               });
             }
           });

@@ -677,7 +677,7 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-1</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-2</code> is now <code>*-8</code></li>
                           <li><code>*-3</code> is now <code>*-16</code></li>
-                          <li><code>*-4</code> is now <code>*-24</code></li>
+                          <li><code>*-4</code> is now <code>*-24</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-5</code> is now <code>*-48</code></li>
                         </ul>
 
@@ -685,10 +685,10 @@ export class MigrationV910Component extends LitElement {
                           For instance, the old Bootstrap class <code>.g-1</code> (gutter of 4px) is
                           now <code>.g-4</code> for better coherance.
                           <br /><br />
-                          ⚠️ <strong><code>*-1</code> classes cannot be auto-fixed.</strong>
-                          Renaming <code>*-1</code> → <code>*-4</code> would be immediately picked
-                          up by the <code>*-4</code> → <code>*-24</code> rule and renamed to the
-                          wrong value. Search for these classes and rename them by hand.
+                          ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
+                          <code>*-4</code> → <code>*-24</code> rule would fire on the next pass and
+                          produce the wrong result. Search for both classes and rename them by hand.
                         </span>
                       </label>
                     </div>
@@ -711,14 +711,14 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-1</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-2</code> is now <code>*-8</code></li>
                           <li><code>*-3</code> is now <code>*-16</code></li>
-                          <li><code>*-4</code> is now <code>*-24</code></li>
+                          <li><code>*-4</code> is now <code>*-24</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-5</code> is now <code>*-48</code></li>
                         </ul>
                         <span class="info">
-                          ⚠️ <strong><code>*-1</code> classes cannot be auto-fixed.</strong>
-                          Renaming <code>*-1</code> → <code>*-4</code> would be immediately picked
-                          up by the <code>*-4</code> → <code>*-24</code> rule and renamed to the
-                          wrong value. Search for these classes and rename them by hand.
+                          ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
+                          <code>*-4</code> → <code>*-24</code> rule would fire on the next pass and
+                          produce the wrong result. Search for both classes and rename them by hand.
                         </span>
                       </label>
                     </div>
@@ -801,7 +801,7 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-giant</code> is now <code>*-80</code></li>
                         </ul>
                         <span class="info">
-                          ⚠️ <strong><code>*-hair</code> and <code>*-micro</code> classes cannot be auto-fixed.</strong>
+                          ⚠️ <strong><code>*-hair</code>, <code>*-micro</code>, and <code>*-1</code> (via Bootstrap rename) classes cannot be auto-fixed.</strong>
                           <code>*-hair</code> → <code>*-1</code> and <code>*-micro</code> → <code>*-4</code>
                           would immediately chain into further renames (<code>*-1</code> → <code>*-4</code> →
                           <code>*-24</code>), producing the wrong final value. Search for these classes and rename
@@ -923,7 +923,7 @@ export class MigrationV910Component extends LitElement {
                             <code>*-regular</code> and <code>*-3</code> are now <code>*-16</code>
                           </li>
                           <li>
-                            <code>*-large</code> and <code>*-4</code> are now <code>*-24</code>
+                            <code>*-large</code> and <code>*-4</code> are now <code>*-24</code> — <b>⚠️ manual migration required</b>
                           </li>
                           <li><code>*-big</code> is now <code>*-32</code></li>
                           <li><code>*-bigger-big</code> is now <code>*-40</code></li>
@@ -935,10 +935,13 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-giant</code> is now <code>*-80</code></li>
                         </ul>
                         <span class="info">
-                          ⚠️ <strong><code>*-hair</code>, <code>*-micro</code>, and <code>*-1</code> classes cannot be auto-fixed.</strong>
+                          ⚠️ <strong><code>*-hair</code>, <code>*-micro</code>, <code>*-1</code>, <code>*-large</code>, and <code>*-4</code> classes cannot be auto-fixed.</strong>
                           These values form rename chains that ESLint's fix loop would follow
                           incorrectly: <code>*-hair</code> → <code>*-1</code> → <code>*-4</code> →
-                          <code>*-24</code>. Search for these classes and rename them by hand.
+                          <code>*-24</code>. Since <code>*-4</code> is the correct final value for
+                          <code>*-1</code>/<code>*-micro</code> but also a deprecated input for
+                          <code>*-large</code>, all steps in this chain must be done manually.
+                          Search for these classes and rename them by hand.
                         </span>
                       </label>
                     </div>
