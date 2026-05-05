@@ -43,14 +43,14 @@ export class PostStepper {
   }
 
   /**
-   * Label for the "Step N:" indicator for mobile view.
-   * Use `#number` as a placeholder — it will be replaced with the current step number at runtime.
+   * Label for the "Step {number}:" indicator for mobile view.
+   * Use `{number}` as a placeholder — it will be replaced with the current step number at runtime.
    */
   @Prop({ reflect: true }) textStepNumber!: string;
 
   @Watch('textStepNumber')
   validateTextStepNumber() {
-    checkRequiredAndPattern(this, 'textStepNumber', /#number\b/);
+    checkRequiredAndPattern(this, 'textStepNumber', /\{number\}/);
     this.updateActiveStepNumber();
   }
 
@@ -109,7 +109,10 @@ export class PostStepper {
   private updateActiveStepNumber() {
     if (this.textStepNumber) {
       const labelTemplate = this.textStepNumber;
-      this.mobileActiveStepLabel = labelTemplate.replaceAll('#number', `${this.selectedIndex + 1}`);
+      this.mobileActiveStepLabel = labelTemplate.replaceAll(
+        '{number}',
+        `${this.selectedIndex + 1}`,
+      );
       if (this.stepItems) {
         this.updateMobileActiveStepVisibility();
       }
