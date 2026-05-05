@@ -14,14 +14,13 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18199-6303&mode=design&t=rXQXLIbDtUBHn9jE-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=14016-23251&t=0yPuKvPCIphY5J5M-0',
     },
   },
   render,
   args: {
     id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
-    palette: 'palette-accent',
     placement: 'top',
   },
   argTypes: {
@@ -38,20 +37,6 @@ const meta: MetaComponent = {
         category: 'General',
         type: {
           summary: 'string',
-        },
-      },
-    },
-    palette: {
-      name: 'Palette',
-      description: 'Define the color scheme of the tooltip.',
-      control: {
-        type: 'select',
-      },
-      options: ['palette-accent', 'palette-brand'],
-      table: {
-        category: 'General',
-        type: {
-          summary: 'HTML class attribute',
         },
       },
     },
@@ -84,7 +69,6 @@ function render(args: Args) {
     <post-tooltip
       id="${args.id}"
       arrow="${ifDefined(args.arrow)}"
-      class="palette ${args.palette}"
       placement="${ifDefined(args.placement)}"
     >
       ${unsafeHTML(innerHTML)}

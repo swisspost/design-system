@@ -80,9 +80,10 @@ Type: `Promise<boolean>`
 
 ## Shadow Parts
 
-| Part                              | Description |
-| --------------------------------- | ----------- |
-| `"post-popovercontainer-content"` |             |
+| Part                                  | Description |
+| ------------------------------------- | ----------- |
+| `"post-popovercontainer-border-mask"` |             |
+| `"post-popovercontainer-content"`     |             |
 
 
 ## Dependencies

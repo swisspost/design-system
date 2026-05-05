@@ -395,7 +395,7 @@ export class PostPopovercontainer {
 
       // Calculate dynamically the half side which provides the static side offset
       const arrowSizeValue = getComputedStyle(this.arrowRef)
-        .getPropertyValue('--arrow-size')
+        .getPropertyValue('--post-arrow-size')
         .trim();
 
       const arrowSizePx = arrowSizeValue.endsWith('rem')
@@ -551,6 +551,8 @@ export class PostPopovercontainer {
               }}
             ></span>
           )}
+          {/* exposed via ::part for consuming components to activate as a bleed mask */}
+          <span part="post-popovercontainer-border-mask"></span>
           <slot></slot>
         </div>
       </Host>
