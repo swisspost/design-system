@@ -1,5 +1,18 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.68
+
+### Minor Changes
+
+- Added icons: `2780`, `2781`, `2782` and `2783` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7543](https://github.com/swisspost/design-system/pull/7543))
+
+- Added icons:
+  - `github` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `hat` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `locationedit` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `npm` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `override` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7543](https://github.com/swisspost/design-system/pull/7543))
+
 ## 10.0.0-next.67
 
 ### Minor Changes
