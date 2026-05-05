@@ -74,6 +74,10 @@ export namespace Components {
           * Optional idref to connect the autocomplete with the options dropdown if not nested
          */
         "listbox"?: string;
+        /**
+          * Announcement template for screen readers when the suggestion list updates. Use {count} as placeholder for the number of available suggestions, e.g. "{count} suggestions available"
+         */
+        "textAvailableSuggestions": string;
     }
     interface PostAvatar {
         /**
@@ -1301,6 +1305,10 @@ declare namespace LocalJSX {
           * Cancelable event emitted when the input value is to be filtered
          */
         "onPostFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
+        /**
+          * Announcement template for screen readers when the suggestion list updates. Use {count} as placeholder for the number of available suggestions, e.g. "{count} suggestions available"
+         */
+        "textAvailableSuggestions": string;
     }
     interface PostAvatar {
         /**

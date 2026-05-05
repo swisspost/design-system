@@ -25,7 +25,11 @@
     <main>
       <section>
         <label for="nested-input">Country</label>
-        <post-autocomplete id="autocomplete-nested" clearable>
+        <post-autocomplete
+          id="autocomplete-nested"
+          clearable
+          text-available-suggestions="{count} suggestions available"
+        >
           <input id="nested-input" type="text" placeholder="Search for a country" />
           <post-listbox>
             <div slot="blank-slate">Nothing to see here</div>
@@ -45,7 +49,11 @@
 
       <section>
         <label for="detached-input">Detached Country</label>
-        <post-autocomplete id="autocomplete-detached" listbox="detached-listbox">
+        <post-autocomplete
+          id="autocomplete-detached"
+          listbox="detached-listbox"
+          text-available-suggestions="{count} suggestions available"
+        >
           <input id="detached-input" type="text" placeholder="Search for a country" />
         </post-autocomplete>
         <post-listbox id="detached-listbox">
