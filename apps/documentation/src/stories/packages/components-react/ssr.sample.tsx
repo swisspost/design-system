@@ -1,6 +1,11 @@
 // page.tsx
-import { PostAvatar } from '@swisspost/design-system-components-react/server';
+import { PostAvatar, PostBanner } from '@swisspost/design-system-components-react/server';
 
 export default function Page() {
-  return <PostAvatar firstname="Max"></PostAvatar>;
+  return (
+    <div>
+      <PostAvatar firstname="Max"></PostAvatar>
+      <PostBanner>Lorem ipsum</PostBanner>
+    </div>
+  );
 }
