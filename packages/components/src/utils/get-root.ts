@@ -1,11 +1,9 @@
-import { Build } from '@stencil/core';
-
 /**
  * getRootNode() can only be used after the element has been attached to the document!
  * So use it for example in the componentDidLoad lifecycle hook.
  */
 export function getRoot(element: Element): Document | ShadowRoot {
-  const root = Build.isBrowser ? element.getRootNode() : element;
+  const root = element.getRootNode ? element.getRootNode() : element;
 
   if (root instanceof Document || root instanceof ShadowRoot) {
     return root;
