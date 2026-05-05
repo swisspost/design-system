@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  e2e:
+  e2e-nextjs:
     runs-on: ubuntu-latest
 
     steps:
