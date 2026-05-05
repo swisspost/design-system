@@ -414,7 +414,7 @@ export namespace Components {
         /**
           * Returns the current authentication state: `null` when the component is still loading, `true` when authenticated, `false` when not.
          */
-        "getAuthenticated": () => Promise<boolean | null>;
+        "isAuthenticated": () => Promise<boolean | null>;
         /**
           * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
          */
@@ -1005,7 +1005,7 @@ declare global {
         new (): HTMLPostListboxOptionElement;
     };
     interface HTMLPostLoginWidgetElementEventMap {
-        "postLoginChange": { authenticated: boolean };
+        "postChange": { authenticated: boolean };
     }
     interface HTMLPostLoginWidgetElement extends Components.PostLoginWidget, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1622,7 +1622,7 @@ declare namespace LocalJSX {
         /**
           * Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
          */
-        "onPostLoginChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
+        "onPostChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
     }
     interface PostLogo {
         /**
