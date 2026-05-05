@@ -2,7 +2,7 @@ import { Page, ConsoleMessage } from '@playwright/test';
 
 type CapturedError = {
   message: string;
-  source: 'console';
+  source: 'console' | 'pageerror';
   stack?: string;
   timestamp: number;
 };
@@ -13,6 +13,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
   const lowerCaseComponentNames = componentNames.map(n => n.toLowerCase());
 
   page.on('console', onConsole);
+  page.on('pageerror', onPageError);
 
   return { errors, captured, dispose } as const;
 
@@ -21,6 +22,14 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
       if (msg.type() === 'error') {
         pushError(msg.text(), 'console');
       }
+    } catch {
+      // ignore handler errors
+    }
+  }
+
+  function onPageError(error: Error): void {
+    try {
+      pushError(error.message, 'pageerror', error.stack);
     } catch {
       // ignore handler errors
     }
@@ -41,6 +50,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
   function dispose(): void {
     try {
       page.off('console', onConsole);
+      page.off('pageerror', onPageError);
     } catch {
       // best-effort teardown
     }
