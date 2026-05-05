@@ -93,7 +93,7 @@
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.7.5",
+    "@floating-ui/dom": "1.7.6",
     "@oddbird/popover-polyfill": "0.6.0",
     "@stencil/core": "4.43.3",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.68",
@@ -101,13 +101,13 @@
     "air-datepicker": "3.6.0",
     "ally.js": "1.4.1",
     "imask": "7.6.1",
-    "long-press-event": "2.5.0",
-    "nanoid": "5.1.6"
+    "long-press-event": "2.5.2",
+    "nanoid": "5.1.11"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
-    "@percy/cli": "1.31.8",
+    "@percy/cli": "1.31.13",
     "@percy/cypress": "3.1.8",
     "@playwright/test": "1.56.1",
     "@stencil-community/eslint-plugin": "0.10.0",
