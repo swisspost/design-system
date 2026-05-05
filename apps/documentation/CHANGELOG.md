@@ -1,5 +1,38 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.69
+
+### Minor Changes
+
+- Added two props to the `post-breadcrumb-item`:
+  - `label`: ARIA label, screen readers will use this instead of the breadcrumb item content.
+  - `description`: ARIA description for additional context, read after the breadcrumb item content or `label`. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Added standalone entry points for the components-react package, to provide fine grained import options. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7559](https://github.com/swisspost/design-system/pull/7559))
+
+- Updated the `swisspost-internet-breadcrumbs` to the new config and removed the `hide-buttons` prop as well as the `toggleOverlayById` method. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Added the `post-login-widget` component, which conditionally renders its authenticated or unauthenticated slot based on the KLP session API response. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7580](https://github.com/swisspost/design-system/pull/7580))
+
+### Patch Changes
+
+- Updated the tag component (HTML/CSS) to match the latest design. The `.tag-danger` variant has been renamed to `.tag-error`, and the `.tag-yellow` and `.tag-white` have been removed. (by [@leagrdv](https://github.com/leagrdv) with [#7481](https://github.com/swisspost/design-system/pull/7481))
+
+- Removed the `index.scss` and `intranet.scss` files. The following entrypoints need to be used instead:
+  - For internet facing applications, use `post-default.scss` instead of `index.scss`
+  - For internal applications, use `post-compact.scss` instead of `intranet.scss` (by [@leagrdv](https://github.com/leagrdv) with [#7535](https://github.com/swisspost/design-system/pull/7535))
+
+- Updated the button group component (HTML/CSS) to match the latest design and introduced a vertical layout variant.  
+  This update adds a vertical option (`.btn-group-vertical`) along with responsive modifier classes (e.g. .`btn-group-md-vertical`, `btn-group-lg-horizontal`) to allow switching between horizontal and vertical orientations at different breakpoints. (by [@leagrdv](https://github.com/leagrdv) with [#7471](https://github.com/swisspost/design-system/pull/7471))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.68
+  - @swisspost/design-system-components@10.0.0-next.68
+  - @swisspost/design-system-styles@10.0.0-next.68
+  - @swisspost/design-system-components-react@10.0.0-next.68
+  - @swisspost/internet-header@10.0.0-next.68
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.68
+  - @swisspost/design-system-tokens@10.0.0-next.68
+
 ## 6.0.0-next.68
 
 ### Minor Changes
