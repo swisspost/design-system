@@ -85,7 +85,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         {/* Global header login/user menu */}
         <PostLoginWidget slot="post-login">
-          <a href="#login" slot="unauthenticated">
+          <a href="#login" slot="login-link">
             <span>Login</span>
             <PostIcon aria-hidden="true" name="login" />
           </a>

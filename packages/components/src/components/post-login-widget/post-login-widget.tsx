@@ -1,26 +1,24 @@
-import {
-  Build,
-  Component,
-  Event,
-  EventEmitter,
-  Host,
-  h,
-  Method,
-  State,
-} from '@stencil/core';
+import { Build, Component, Event, EventEmitter, Host, h, Method, State } from '@stencil/core';
 import { version } from '@root/package.json';
+import { Prop } from '@stencil/core';
+import { Watch } from '@stencil/core';
+import { checkRequiredAndType } from '@/utils';
+import { Element } from '@stencil/core';
 
 const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 
 /**
- * @slot authenticated - Content rendered when the user is authenticated (e.g. user menu).
- * @slot unauthenticated - Content rendered when the user is not authenticated (e.g. login link).
+ * @slot user-links - Links to show in the user menu when the user is authenticated.
+ * @slot login-link - Content rendered when the user is not authenticated.
  */
 @Component({
   tag: 'post-login-widget',
+  styleUrl: 'post-login-widget.scss',
   shadow: true,
 })
 export class PostLoginWidget {
+  @Element() host: HTMLPostLoginWidgetElement;
+
   /**
    * Emitted when the authentication state changes.
    * The event payload is an object with an `authenticated` property:
@@ -28,7 +26,30 @@ export class PostLoginWidget {
    */
   @Event() postChange: EventEmitter<{ authenticated: boolean }>;
 
+  /**
+   * Label for the "Current user is {user}" accessibility description.
+   * Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+   */
+  @Prop({ reflect: true }) textCurrentUser!: string;
+
+  @Watch('textCurrentUser')
+  validateTextCurrentUser() {
+    checkRequiredAndType(this, 'textCurrentUser', 'string');
+  }
+
+  /**
+   * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
+   */
+  @Prop({ reflect: true }) textUserMenuTrigger!: string;
+
+  @Watch('textUserMenuTrigger')
+  validateTextUserMenuTrigger() {
+    checkRequiredAndType(this, 'textUserMenuTrigger', 'string');
+  }
+
   @State() private authenticated: boolean | null = null;
+
+  @State() private user: { name: string; surname: string; email: string } | null = null;
 
   async componentWillLoad() {
     if (Build.isBrowser) {
@@ -67,6 +88,7 @@ export class PostLoginWidget {
 
       const json = await response.json();
       const isAuthenticated = json?.data?.email !== undefined;
+      this.user = json?.data;
       this.setAuthState(isAuthenticated);
     } catch {
       this.setAuthState(false);
@@ -83,7 +105,39 @@ export class PostLoginWidget {
   render() {
     return (
       <Host data-version={version}>
-        {this.authenticated === true ? <slot name="authenticated" /> : <slot name="unauthenticated" />}
+        {this.authenticated === true ? (
+          <div>
+            <post-menu-trigger for="user-menu-default">
+              <button class="btn btn-link" type="button">
+                <post-avatar
+                  firstname={this.user.name}
+                  lastname={this.user.surname}
+                  description={this.textCurrentUser.replace(
+                    '{user}',
+                    `${this.user.name} ${this.user.surname}`,
+                  )}
+                ></post-avatar>
+                <span class="visually-hidden">{this.textUserMenuTrigger}</span>
+              </button>
+            </post-menu-trigger>
+            <post-menu label="User links" id="user-menu-default">
+              <div slot="header">
+                <post-avatar
+                  firstname={this.user.name}
+                  lastname={this.user.surname}
+                  email={this.user.email}
+                  aria-hidden="true"
+                ></post-avatar>
+                {this.user.name} {this.user.surname}
+              </div>
+              <slot name="user-links" />
+            </post-menu>
+          </div>
+        ) : (
+          <div>
+            <slot name="login-link" />
+          </div>
+        )}
       </Host>
     );
   }
