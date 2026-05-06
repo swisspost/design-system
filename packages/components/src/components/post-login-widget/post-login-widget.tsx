@@ -1,9 +1,18 @@
-import { Build, Component, Event, EventEmitter, Host, h, Method, State } from '@stencil/core';
+import {
+  Build,
+  Component,
+  Event,
+  EventEmitter,
+  Host,
+  h,
+  Method,
+  State,
+  Prop,
+  Watch,
+  Element,
+} from '@stencil/core';
 import { version } from '@root/package.json';
-import { Prop } from '@stencil/core';
-import { Watch } from '@stencil/core';
 import { checkRequiredAndType } from '@/utils';
-import { Element } from '@stencil/core';
 
 const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 
