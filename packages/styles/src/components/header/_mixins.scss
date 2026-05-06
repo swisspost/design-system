@@ -7,6 +7,9 @@
 
 $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
 
+$nav-block-padding-inline-start: 0.5rem;
+$nav-block-padding-inline-end: 0.75rem;
+
 /**
  selects all slotted nav items
  */
@@ -69,7 +72,8 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   width: 100%;
   justify-content: start;
   position: relative;
-  padding: 0.75rem 0.75rem calc(0.75rem - var(--post-nav-item-border-width)) 0.5rem;
+  padding: 0.75rem $nav-block-padding-inline-end calc(0.75rem - var(--post-nav-item-border-width))
+    $nav-block-padding-inline-start;
   gap: 1rem;
   border-radius: 0;
   line-height: 1.5;
@@ -115,8 +119,8 @@ $interactive-elements-selector: 'a, button, [role="link"], [role="button"]';
   }
 
   @include media.only(mobile) {
-    padding: calc(0.5rem + 1.5px) 0.75rem calc(0.5rem + 1.5px - var(--post-nav-item-border-width))
-      0.5rem;
+    padding: calc(0.5rem + 1.5px) $nav-block-padding-inline-end
+      calc(0.5rem + 1.5px - var(--post-nav-item-border-width)) $nav-block-padding-inline-start;
     gap: 0.5rem;
     font-size: 0.875rem;
 

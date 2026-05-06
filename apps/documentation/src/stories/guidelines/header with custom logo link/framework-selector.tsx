@@ -66,8 +66,8 @@ const code = `
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
         <post-megadropdown id="briefe" text-close="Schliessen" text-back="Back">
           <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
-          <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col">
+          <div class="post-megadropdown-grid">
+            <div>
               <p class="post-megadropdown-list-title" id="send-letters">Briefe senden</p>
               <ul class="post-megadropdown-list" aria-labelledby="send-letters">
                 <li><a href="/sch">Briefe Schweiz</a></li>
@@ -76,7 +76,7 @@ const code = `
                 <li><a href="">Express und Kurier</a></li>
               </ul>
             </div>
-            <div class="col">
+            <div>
               <a
                 class="post-megadropdown-list-title"
                 id="step-by-step-letters"
@@ -97,8 +97,8 @@ const code = `
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
         <post-megadropdown id="pakete" text-close="Schliessen" text-back="Back">
           <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
-          <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col">
+          <div class="post-megadropdown-grid">
+            <div>
               <p class="post-megadropdown-list-title" id="send-packages">Pakete senden</p>
               <ul class="post-megadropdown-list" aria-labelledby="send-packages">
                 <li><a href="/sch">Pakete Schweiz</a></li>
@@ -107,7 +107,7 @@ const code = `
                 <li><a href="">Express und Kurier</a></li>
               </ul>
             </div>
-            <div class="col">
+            <div>
               <a
                 class="post-megadropdown-list-packages"
                 id="step-by-step-packages"
