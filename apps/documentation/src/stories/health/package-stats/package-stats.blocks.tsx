@@ -4,31 +4,6 @@ import { AgCharts } from 'ag-charts-react';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-function useIsVisible<T extends HTMLElement>(): [React.RefObject<T | null>, boolean] {
-  const ref = useRef<T | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0 },
-    );
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
-  return [ref, isVisible];
-}
-
 const LOCALE_DATE_STRING_OPTIONS: Intl.DateTimeFormatOptions = {
   year: 'numeric',
   month: 'long',
@@ -65,7 +40,6 @@ const TotalDownloads: React.FC<{
 }> = ({ packageName, year, isFirstYear, isLastYear }) => {
   const [downloads, setDownloads] = useState<number | null>(null);
   const [daysWithData, setDaysWithData] = useState<number | null>(null);
-  const [firstDay, setFirstDay] = useState<string | null>(null);
 
   useEffect(() => {
     fetch(`https://api.npmjs.org/downloads/range/${year}-01-01:${year}-12-31/${packageName}`)
@@ -78,13 +52,9 @@ const TotalDownloads: React.FC<{
           const daysWithDownloads = days.filter(d => d.downloads > 0);
           setDaysWithData(daysWithDownloads.length);
           setDownloads(daysWithDownloads.reduce((sum, d) => sum + d.downloads, 0));
-          setFirstDay(
-            isFirstYear && daysWithDownloads.length > 0 ? daysWithDownloads[0].day : null,
-          );
         } else {
           setDaysWithData(totalDaysInYear);
           setDownloads(days.reduce((sum, d) => sum + d.downloads, 0));
-          setFirstDay(null);
         }
       });
   }, [packageName, year, isFirstYear, isLastYear]);
@@ -116,8 +86,10 @@ const TotalDownloads: React.FC<{
 const DownloadsChart: React.FC<{
   packageName: string;
   year: number;
+  isFirstYear: boolean;
+  isLastYear: boolean;
   releases: { version: string; date: Date }[];
-}> = ({ packageName, year, releases }) => {
+}> = ({ packageName, year, isFirstYear, isLastYear, releases }) => {
   const [downloads, setDownloads] = useState<{ day: string; downloads: number }[]>([]);
   const [chartOptions, setChartOptions] = useState<AgChartOptions>({});
 
@@ -149,7 +121,8 @@ const DownloadsChart: React.FC<{
 
     const values = downloads.map(d => d.downloads);
     const max = Math.max(...values);
-    const avg = Math.round(values.reduce((sum, v) => sum + v, 0) / values.length);
+    const relevantValues = isFirstYear || isLastYear ? values.filter(v => v > 0) : values;
+    const avg = Math.round(relevantValues.reduce((sum, v) => sum + v, 0) / relevantValues.length);
 
     const releaseY = max * 0.5;
     const releaseData = releases.map(r => ({
@@ -447,7 +420,13 @@ const LazyYearSection: React.FC<{
             isFirstYear={isFirstYear}
             isLastYear={isLastYear}
           />
-          <DownloadsChart packageName={packageName} year={year} releases={releases} />
+          <DownloadsChart
+            packageName={packageName}
+            year={year}
+            isFirstYear={isFirstYear}
+            isLastYear={isLastYear}
+            releases={releases}
+          />
         </div>
       ) : (
         <div style={{ height: 300 }} />
@@ -455,3 +434,28 @@ const LazyYearSection: React.FC<{
     </div>
   );
 };
+
+function useIsVisible<T extends HTMLElement>(): [React.RefObject<T | null>, boolean] {
+  const ref = useRef<T | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0 },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, isVisible];
+}
