@@ -1,8 +1,8 @@
 import { prepare } from '../support/prepare-story';
 import { HEADER } from './shared/variables';
 
-import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import micrositeConfiguration from '../fixtures/internet-header/microsite-config.json';
+import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 
 const language = 'de';
 
@@ -84,6 +84,38 @@ describe('header', () => {
               .should('have.length', mainNavigationConfig[megadropdownTrigerIndex].sections?.length)
               .and('be.visible');
           });
+      });
+    });
+
+    context('active route', () => {
+      it('should set aria-current="page" on matching link', () => {
+        cy.changeArg('activeRoute', '/letters');
+        cy.get('[slot="main-nav"] [aria-current="page"]')
+          .should('have.length', 1)
+          .and('have.attr', 'href', '/letters');
+      });
+
+      it('should not set aria-current="page" when activeRoute is "none"', () => {
+        cy.changeArg('activeRoute', 'none');
+        cy.get('[slot="main-nav"] [aria-current="page"]').should('not.exist');
+      });
+
+      it('should move aria-current="page" when activeRoute changes', () => {
+        cy.changeArg('activeRoute', '/letters');
+        cy.get('[slot="main-nav"] [aria-current="page"]')
+          .should('have.length', 1)
+          .and('have.attr', 'href', '/letters');
+
+        cy.changeArg('activeRoute', '/sch');
+        cy.get('[slot="main-nav"] [aria-current="page"]')
+          .should('have.length', 1)
+          .and('have.attr', 'href', '/sch');
+        cy.get('[slot="main-nav"] a[href="/letters"]').should('not.have.attr', 'aria-current');
+      });
+
+      it('should not set aria-current="page" when no link matches', () => {
+        cy.changeArg('activeRoute', '/nonexistent');
+        cy.get('[slot="main-nav"] [aria-current="page"]').should('not.exist');
       });
     });
   });
